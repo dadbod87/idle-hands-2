@@ -28,26 +28,31 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  // Actual keyboard moves the actor, not a debug mutator.
  const before=await snapshot(page);await page.keyboard.down('ArrowRight');await page.waitForTimeout(350);await page.keyboard.up('ArrowRight');
  expect((await snapshot(page)).position.x).toBeGreaterThan(before.position.x);
+ const cardinal=await snapshot(page);await page.keyboard.down('ArrowRight');await page.keyboard.down('ArrowDown');await page.waitForTimeout(180);await page.keyboard.up('ArrowRight');await page.keyboard.up('ArrowDown');
+ const diagonal=await snapshot(page);expect(diagonal.position.x).toBeGreaterThan(cardinal.position.x);expect(diagonal.position.y).toBeGreaterThan(cardinal.position.y);
+ await page.waitForTimeout(70);const resting=await snapshot(page);await page.waitForTimeout(90);expect((await snapshot(page)).position).toEqual(resting.position);
  await page.getByRole('button',{name:'Places',exact:false}).click();
- const locked=await snapshot(page);await page.keyboard.down('ArrowRight');await page.waitForTimeout(250);await page.keyboard.up('ArrowRight');
+ const locked=await snapshot(page);expect(locked.position).toEqual(resting.position);await page.keyboard.down('ArrowRight');await page.waitForTimeout(250);await page.keyboard.up('ArrowRight');
  expect((await snapshot(page)).position).toEqual(locked.position);
  await page.getByRole('button',{name:'Close panel'}).click();
  // A real pointer on the canvas uses camera conversion.
- const pos=await snapshot(page);const screen=await page.evaluate(p=>(window as any).__pilot.screenPoint(Math.round(p.position.x)+1,Math.round(p.position.y)),pos);
+ const pos=await snapshot(page);const endpoint={x:pos.position.x+1.173,y:pos.position.y+.213};
+ const screen=await page.evaluate(p=>(window as any).__pilot.screenPoint(p.x,p.y),endpoint);
  const canvasBox=await page.locator('canvas').boundingBox();
  if(shape.name==='phone'||shape.name==='narrow') await page.touchscreen.tap(canvasBox!.x+screen.x,canvasBox!.y+screen.y);
  else await page.mouse.click(canvasBox!.x+screen.x,canvasBox!.y+screen.y);
  await expect.poll(async()=>(await snapshot(page)).position.x).toBeGreaterThan(pos.position.x);
  await expect.poll(async()=>(await snapshot(page)).walking).toBe(false);
- await page.screenshot({path:`docs/evidence/IH2-010/${shape.name}-square.png`});
+ const arrived=await snapshot(page);expect(Math.abs(arrived.position.x-endpoint.x)).toBeLessThan(.05);expect(Math.abs(arrived.position.y-endpoint.y)).toBeLessThan(.05);
+ await page.screenshot({path:`docs/evidence/IH2-012/${shape.name}-square.png`});
  await destination(page,'workshop');
  // Holding north against the solid building never enters the wall.
  await page.keyboard.down('ArrowUp');await page.waitForTimeout(350);await page.keyboard.up('ArrowUp');
- expect((await snapshot(page)).position.y).toBeGreaterThanOrEqual(22);
+ expect((await snapshot(page)).position.y).toBeGreaterThanOrEqual(21.74);
  await page.getByRole('button',{name:'Enter workshop',exact:true}).click();
  await expect.poll(async()=>(await snapshot(page)).room).toBe('workshop');
  await expect(page.locator('#location')).toContainText('Your workshop');
- await page.screenshot({path:`docs/evidence/IH2-010/${shape.name}-workshop.png`});
+ await page.screenshot({path:`docs/evidence/IH2-012/${shape.name}-workshop.png`});
  await page.reload();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
  expect((await snapshot(page)).room).toBe('workshop');
  await destination(page,'bench');await page.getByRole('button',{name:'Inspect Work bench'}).click();
@@ -57,7 +62,7 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  await expect.poll(async()=>(await snapshot(page)).room).toBe('square');
  await destination(page,'plot');await page.getByRole('button',{name:'Inspect Future house plots'}).click();
  await expect(page.getByRole('dialog')).toContainText('upgrade a house');
- await page.screenshot({path:`docs/evidence/IH2-010/${shape.name}-housing-note.png`});
+ await page.screenshot({path:`docs/evidence/IH2-012/${shape.name}-housing-note.png`});
  await page.keyboard.press('Escape');
  // Resize and ensure the canvas follows its container, with bounded HUD controls.
  await page.setViewportSize({width:shape.height,height:shape.width});await page.waitForTimeout(150);
@@ -65,7 +70,7 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  expect(Math.abs(wrap!.width-cv!.width)).toBeLessThan(2);expect(Math.abs(wrap!.height-cv!.height)).toBeLessThan(2);
  await page.setViewportSize(shape);await page.waitForTimeout(2500);
  const metrics=await page.evaluate(()=>(window as any).__pilot.metrics());
- fs.writeFileSync(`docs/evidence/IH2-010/${shape.name}-metrics.json`,JSON.stringify({viewport:shape,metrics,errors,external,userAgent:await page.evaluate(()=>navigator.userAgent)},null,2)+'\n');
+ fs.writeFileSync(`docs/evidence/IH2-012/${shape.name}-metrics.json`,JSON.stringify({viewport:shape,metrics,errors,external,userAgent:await page.evaluate(()=>navigator.userAgent)},null,2)+'\n');
  expect(metrics.phaser).toBe('4.2.1');expect(metrics.frameSamples).toBeGreaterThan(60);
  expect(errors).toEqual([]);expect(external).toEqual([]);
 });

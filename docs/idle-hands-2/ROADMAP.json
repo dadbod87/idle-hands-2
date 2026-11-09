@@ -57,11 +57,38 @@
       ]
     },
     {
+      "id": "IH2-012",
+      "title": "Natural continuous movement and living-town design capture",
+      "status": "done",
+      "depends_on": [
+        "IH2-010"
+      ],
+      "goal": "Address direct pilot feedback about grid-like motion and preserve the expanded living-town direction.",
+      "acceptance": [
+        "Continuous keyboard motion with normalized diagonals, immediate steering/release and precise pointer endpoints; no snapping on menu lock, stopping or local save/reload.",
+        "Retain obstacle collision, sliding, obstacle-aware destination paths, scene transitions and input locks at desktop, phone and short viewports; meaningful domain and actual-input browser checks.",
+        "Record quests/skills/gathering/restoration/NPC/rare-decor direction and staged boundaries; distinguish proposed systems from implemented preview features.",
+        "Update screenshots/evidence, state, history and handoff; preserve local-only source and unchanged 1.0 game."
+      ],
+      "exclusions": [
+        "No quests/economy/backend implementation, paid assets, cloud/remote provisioning or 1.0 changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-012/REPORT.md",
+        "docs/evidence/IH2-012/build-metrics.json",
+        "docs/evidence/IH2-012/phone-square.png",
+        "docs/evidence/IH2-012/short-workshop.png",
+        "tests/domain.test.ts",
+        "tests/pilot.spec.ts",
+        "docs/idle-hands-2/LIVING_TOWN_SYSTEMS.md"
+      ]
+    },
+    {
       "id": "IH2-015",
       "title": "Private GitHub source and sequel CI checkpoint",
       "status": "queued",
       "depends_on": [
-        "IH2-010"
+        "IH2-012"
       ],
       "goal": "Make the local sequel source durable and resumable through GitHub before substantial art/content work.",
       "acceptance": [
@@ -86,7 +113,8 @@
         "Compare an original illustrated sample and a coherent verified CC0 pixel sample for the same workshop/square/player scene; choose and record one without requiring routine approval.",
         "Asset manifest includes source/archive hash, exact files/licenses, creator/credits and modifications; no paid or unknown assets.",
         "Produce representative player/prop/building/UI scale sheet and desktop/narrow/short screenshots; check silhouettes, contrast, 200% text zoom, reduced motion and 44px touch targets.",
-        "Lock camera/tile/animation/material conventions; identify missing art before bulk production."
+        "Lock camera/tile/animation/material conventions; identify missing art before bulk production.",
+        "Include one before/after restoration sample and a clear quest/interaction affordance; do not expand into a full second district."
       ],
       "exclusions": [
         "No bulk city art, paid pack, account data or production release."
@@ -106,7 +134,8 @@
         "Versioned synthetic local save survives reload; deterministic clock tests cover completion, offline cap, storage limit and no duplicated settlement. Mark local saves as non-authoritative prototype.",
         "Show exact resource changes, clear feedback, free preview/cancel and useful first-minute completion; test keyboard/touch workflow with no shifting controls.",
         "Capture a short playtest report against first-session brief; record confusing/boring steps and resolve blockers before shared play.",
-        "Add deterministic progression-cohort simulation for slow days/weeks pacing; compare idle, regular and active schedules and housing/project milestones before final economy tuning. First fast craft is a one-time tutorial, not repeatable click income."
+        "Add deterministic progression-cohort simulation for slow days/weeks pacing; compare idle, regular and active schedules and housing/project milestones before final economy tuning. First fast craft is a one-time tutorial, not repeatable click income.",
+        "Integrate a short personal quest chain and small gathering/making skill progression into the existing loop; simulate bounded unlocks and useful crafting choices before broad recipe trees."
       ],
       "exclusions": [
         "No public economy, trading, exponential progression, purchases, auth or claim that local saves are secure."
@@ -127,7 +156,8 @@
         "Test duplicate command IDs, concurrent last contributions, insufficient inventory, unauthorized edits, disconnect/reconnect, server restart, stale client and migration/restore; no double charge or lost committed progress.",
         "Server validates gathering/proximity/rates; receipt replay is deterministic; visible loading/error/retry never invents a reward. Room updates scoped, bounded movement sends, no animation database writes.",
         "Verify simulated weekly rollover changes only season-keyed scores and preserves inventory, jobs, decoration and bridge. Capture two-client desktop/phone evidence.",
-        "Prove plot acquisition/owner-only edits and upgrade/placement persistence, including concurrent claims, visitor denial and newcomers joining after initial plot allocations."
+        "Prove plot acquisition/owner-only edits and upgrade/placement persistence, including concurrent claims, visitor denial and newcomers joining after initial plot allocations.",
+        "Personal/shared quest progress and associated rewards derive from validated actions, stable IDs and atomic receipts; test duplicate/replay/concurrent completion and quest-content version migration without real data."
       ],
       "exclusions": [
         "No real accounts, hosted database, paid transport service, production load test or huge multiplayer world."
@@ -147,7 +177,8 @@
         "Inventory, dialogue, crafting, decorating, destination directory and offline summary work on narrow phones/short landscape and keyboard; no obstructed essentials.",
         "Fresh/resumed/reconnected two-client playthroughs, weekly rollover and regression suites pass; inspect screenshots and small UX findings list.",
         "Measure play duration and identify a reason to return without mandatory waiting or punitive reset. Fix first-session blockers.",
-        "Include expandable personal plots, starter house and one home upgrade/decorating path; validate slow progression targets using isolated accelerated-time fixtures, with humor and useful newcomer teamwork."
+        "Include expandable personal plots, starter house and one home upgrade/decorating path; validate slow progression targets using isolated accelerated-time fixtures, with humor and useful newcomer teamwork.",
+        "Bridge/trail restoration visibly changes the place and authored NPC reactions; include a modest cosmetic discovery path without luck-gating required access. Larger helpers/shops/areas remain post-beta extensions."
       ],
       "exclusions": [
         "No broad expansion, marketplace, PvP, guild politics, public chat or monetization."

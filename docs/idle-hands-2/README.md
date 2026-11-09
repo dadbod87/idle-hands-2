@@ -12,6 +12,8 @@ Nick has delegated routine design and technical choices, asked for free assets a
 
 The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/dependencies/acceptance/evidence. The script is read-only and validates the records; an agent must inspect the actual evidence and update them honestly. A fresh session must inspect the current local source, handoff and any newly added remote before acting. No remote currently exists for this sequel repository.
 
+- [Living-town quests, skills and restoration design](LIVING_TOWN_SYSTEMS.md)
+
 ## Chosen direction
 
 - [Engine comparison and decision](ENGINE_DECISION.md): **Phaser 4 + TypeScript + Vite + DOM UI**, selected after current source/documentation review; validate desktop/phone in IH2-010. RPGJS offers more built-in RPG systems and remains the fallback if the pilot changes the tradeoff. The Phaser pilot has now been tested locally; RPGJS has not been runtime-benchmarked. See CURRENT_SESSION and pilot evidence.

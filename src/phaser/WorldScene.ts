@@ -72,15 +72,16 @@ export class WorldScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.actor, true, 1, 1);
     const onDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLElement && e.target.closest('button,input,dialog')) return;
-      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd'].includes(e.key)) { this.keys.add(e.key); e.preventDefault(); }
+      const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd'].includes(key)) { this.keys.add(key); e.preventDefault(); }
     };
-    const onUp = (e: KeyboardEvent) => this.keys.delete(e.key);
+    const onUp = (e: KeyboardEvent) => this.keys.delete(e.key.length === 1 ? e.key.toLowerCase() : e.key);
     const clear = () => { this.keys.clear(); this.session.stop(); };
     document.addEventListener('keydown', onDown); document.addEventListener('keyup', onUp);
     window.addEventListener('blur', clear); document.addEventListener('visibilitychange', clear);
     this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
       const pos = this.cameras.main.getWorldPoint(p.x, p.y);
-      const to = { x: Math.floor(pos.x / TILE), y: Math.floor(pos.y / TILE) };
+      const to = { x: pos.x / TILE - .5, y: pos.y / TILE - .5 };
       this.session.walk(to);
     });
     this.events.once('shutdown', () => { document.removeEventListener('keydown', onDown); document.removeEventListener('keyup', onUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear); });
@@ -88,11 +89,10 @@ export class WorldScene extends Phaser.Scene {
   update(time: number, delta: number) {
     if (this.room !== this.session.room) { this.scene.restart(); return; }
     const pressed = (...keys: string[]) => keys.some(key => this.keys.has(key));
-    let direction;
-    if (pressed('ArrowUp', 'w')) direction = { x: 0, y: -1 };
-    else if (pressed('ArrowDown', 's')) direction = { x: 0, y: 1 };
-    else if (pressed('ArrowLeft', 'a')) direction = { x: -1, y: 0 };
-    else if (pressed('ArrowRight', 'd')) direction = { x: 1, y: 0 };
+    const direction = {
+      x: Number(pressed('ArrowRight', 'd')) - Number(pressed('ArrowLeft', 'a')),
+      y: Number(pressed('ArrowDown', 's')) - Number(pressed('ArrowUp', 'w'))
+    };
     if (this.session.locked) this.keys.clear();
     this.session.tick(delta, direction);
     this.actor.setPosition((this.session.position.x + .5) * TILE, (this.session.position.y + .5) * TILE);

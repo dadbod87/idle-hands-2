@@ -28,6 +28,10 @@ Personal plots are a first-neighborhood priority: reserve space in the map now, 
 
 Complete the planter loop, inspect the café, start one bounded bench production job, choose a second cosmetic placement, contribute to the bridge and explore the first trail once open. A small NPC errand gives context, not a second currency. Leave knowing what will finish and when. Return/reconnect to exactly one settled job result and the saved room. Show what changed, where the reward came from and the offline cap; no silent loss or duplicated output. Initial tunings are data, not hard-coded rendering rules.
 
+## Quest and living-town direction
+
+[Living-town systems](LIVING_TOWN_SYSTEMS.md) connects personal and shared quests, gathering, crafting, enduring skills and visible restoration. Helpers, services/shops, rare décor and further area upgrades are staged candidates, not immediate additions. Keep the bridge/trail as the first shared story and one small personal teaching chain; no broad content explosion in the pilot.
+
 ## Initial content budget
 
 One 48×48-tile outdoor neighborhood, one small workshop interior, café exterior/interaction, town-square bridge project and a short trail. One character rig, three resources (scrap, timber, supplies), two recipes (planter, bridge supplies), one timed bench job and six placeable props. Three short NPC conversations. No trading, auction house, PvP, hunger/energy tax, real-money store, guild governance or infinite procedural world at this stage. Revise counts if the pilot finds a smaller fun slice.

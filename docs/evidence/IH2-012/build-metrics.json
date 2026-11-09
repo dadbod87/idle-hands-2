@@ -1,0 +1,42 @@
+{
+  "method": "Summed Python gzip default-level per dist file, mtime zero; not network capture",
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "961f1502c65b04b3f515e4c803b624f80318e5d927f6225c98c9dc01c1ba1acc",
+      "bytes": 468,
+      "gzip_bytes": 318
+    },
+    {
+      "path": "licenses/eventemitter3-LICENSE.txt",
+      "sha256": "3aecc12b1cb28832b5f65ab64291de96568c3f236a74d646281b4491f7bcadbf",
+      "bytes": 1082,
+      "gzip_bytes": 656
+    },
+    {
+      "path": "licenses/README.txt",
+      "sha256": "5afe252ab041dbd90d66231dabe18f6e00eef01d88bb98bc850c55ee4d299478",
+      "bytes": 262,
+      "gzip_bytes": 207
+    },
+    {
+      "path": "licenses/phaser-LICENSE.txt",
+      "sha256": "d59c20a9deb5dc240614b428dce5246ae561d15efeeebea0e069d73f0a78fbff",
+      "bytes": 1120,
+      "gzip_bytes": 681
+    },
+    {
+      "path": "assets/index-DdEHQMA6.js",
+      "sha256": "e5228afe5b751ba4c7e82bed88485b673396cfcc91790ea2799322c29c6181ec",
+      "bytes": 1381691,
+      "gzip_bytes": 357870
+    },
+    {
+      "path": "assets/index-DHwuz8hp.css",
+      "sha256": "c7b06d463ae8538371e5a2967fdd1c03feceecf50ab35b89c87768d43d179d20",
+      "bytes": 4887,
+      "gzip_bytes": 1651
+    }
+  ],
+  "total_gzip_bytes": 361383
+}

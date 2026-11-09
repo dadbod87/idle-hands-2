@@ -46,3 +46,32 @@ export function pathTo(room: Room, from: Point, to: Point): Point[] {
   }
   return [];
 }
+
+// Positions are continuous foot centres expressed relative to tile centres.
+export const FOOT_RADIUS = .24;
+export function canStand(room: Room, p: Point): boolean {
+  const w = worlds[room], cx = p.x + .5, cy = p.y + .5, r = FOOT_RADIUS;
+  return Number.isFinite(cx) && Number.isFinite(cy) && cx - r >= 1 && cy - r >= 1 && cx + r <= w.width - 1 && cy + r <= w.height - 1 &&
+    !w.blocked.some(([x, y, width, height]) => cx + r > x && cx - r < x + width && cy + r > y && cy - r < y + height);
+}
+export function clearSegment(room: Room, from: Point, to: Point): boolean {
+  const steps = Math.max(1, Math.ceil(Math.hypot(to.x - from.x, to.y - from.y) / .1));
+  for (let i = 0; i <= steps; i++) if (!canStand(room, { x: from.x + (to.x - from.x) * i / steps, y: from.y + (to.y - from.y) * i / steps })) return false;
+  return true;
+}
+export function routeTo(room: Room, from: Point, to: Point): Point[] {
+  if (!canStand(room, from) || !canStand(room, to)) return [];
+  if (clearSegment(room, from, to)) return [{ ...to }];
+  const start = { x: Math.round(from.x), y: Math.round(from.y) }, end = { x: Math.round(to.x), y: Math.round(to.y) };
+  const grid = pathTo(room, start, end);
+  if (!grid.length && (start.x !== end.x || start.y !== end.y)) return [];
+  const candidates = [start, ...grid, to], result: Point[] = [];
+  let current = from, index = 0;
+  while (index < candidates.length) {
+    let next = candidates.length - 1;
+    while (next >= index && !clearSegment(room, current, candidates[next])) next--;
+    if (next < index) return [];
+    current = candidates[next]; result.push({ ...current }); index = next + 1;
+  }
+  return result;
+}

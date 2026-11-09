@@ -7,7 +7,7 @@ const snapshot = (page:Page) => page.evaluate(() => (window as any).__pilot.snap
 async function destination(page:Page,id:string) {
  await page.getByRole('button',{name:'Places',exact:false}).click();
  await page.locator(`[data-destination="${id}"]`).click();
- await expect.poll(async()=> (await snapshot(page)).walking).toBe(false);
+ await expect.poll(async()=> (await snapshot(page)).walking, {timeout: 10000}).toBe(false);
  await expect.poll(async()=> (await snapshot(page)).nearby).toBe(id);
 }
 for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:shape.name==='phone'||shape.name==='narrow'}); test(`${shape.name}: walk, collision, UI lock, tap, transition and reload`,async({page})=>{

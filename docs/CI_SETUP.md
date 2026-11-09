@@ -8,4 +8,10 @@ Actions pinned to verified upstream full commit IDs: checkout v7.0.1 3d3c42e5aac
 
 Current test output goes to ignored test-results/browser (or QA_EVIDENCE_DIR), keeping previously committed milestone evidence unchanged. Browser errors/external attempts fail the suite. CI success is not physical-device, multi-client, backend or production proof.
 
-The CLI connection has repo access but no workflow scope. The connected GitHub app is the first workflow-write path; record its actual result rather than claiming the pipeline exists from a local file alone. Any missing permission needs an explicit connection fix; no credential exposure or bypass. Final PR/head/jobs/merge and branch-protection availability are recorded in the handoff/PR closeout after actual verification. No merge with pending/failed jobs.
+The CLI connection has repo access but no workflow scope. The connected GitHub app is the first workflow-write path; record its actual result rather than claiming the pipeline exists from a local file alone. The app successfully wrote the reviewed workflow. Any future missing permission needs an explicit connection fix; no credential exposure or bypass. Final PR/head/jobs/merge and branch-protection availability are recorded in the handoff/PR closeout after actual verification. No merge with pending/failed jobs.
+
+## Actual bootstrap findings
+
+GitHub rejected branch protection with HTTP 403: this private repository needs GitHub Pro for that feature. Visibility remains private and no upgrade was purchased. Both jobs remain mandatory project/manual merge gates; do not claim platform-enforced protection.
+
+The initial CI run 42708814883 passed domain-build-plan and three browser layouts; desktop reached the final plot walk while still moving at the 45s test deadline. Its trace shows progress rather than a stuck route. CI software rendering is slower than the local Chrome run. The complete-flow timeout is now 90s in CI only; named-destination arrival has a bounded 10s wait. All position, collision, input, no-error/network and arrival assertions remain; no retry or skipped case masks failures. New CI results must be verified.

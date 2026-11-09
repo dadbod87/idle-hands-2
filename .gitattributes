@@ -1,0 +1,4 @@
+# Preserve upstream guidance/license formatting exactly; source changes still get whitespace checks.
+.agents/** -whitespace
+licenses/dependencies/** -whitespace
+public/licenses/*-LICENSE.txt -whitespace

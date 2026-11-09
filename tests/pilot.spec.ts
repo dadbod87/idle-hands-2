@@ -52,7 +52,9 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  await page.keyboard.down('ArrowUp');await page.waitForTimeout(350);await page.keyboard.up('ArrowUp');
  expect((await snapshot(page)).position.y).toBeGreaterThanOrEqual(21.74);
  // Back away, then click/tap the actual door: approach and enter without the HUD button.
- await page.keyboard.down('ArrowDown');await page.waitForTimeout(350);await page.keyboard.up('ArrowDown');await page.waitForTimeout(60);
+ const backScreen=await page.evaluate(()=>(window as any).__pilot.screenPoint(20,23.5));const backCanvas=(await page.locator('canvas').boundingBox())!;
+ if(shape.name==='phone'||shape.name==='narrow')await page.touchscreen.tap(backCanvas.x+backScreen.x,backCanvas.y+backScreen.y);else await page.mouse.click(backCanvas.x+backScreen.x,backCanvas.y+backScreen.y);
+ await expect.poll(async()=>(await snapshot(page)).walking,{timeout:process.env.CI?30000:10000}).toBe(false);
  expect((await snapshot(page)).nearby).toBe(null);
  const doorScreen=await page.evaluate(()=>(window as any).__pilot.screenPoint(19.5,21.5));
  const doorCanvas=await page.locator('canvas').boundingBox();expect(doorScreen.y).toBeGreaterThanOrEqual(0);expect(doorScreen.y).toBeLessThan(doorCanvas!.height);

@@ -45,4 +45,4 @@ These are dependency gates, not promised dates. The task file contains full acce
 - [Installed development toolkit](../DEVELOPMENT_TOOLKIT.md)
 - Current game: [state](../CURRENT_STATE.md), [art direction](../ART_DIRECTION.md), [history](../CHANGELOG.md)
 
-Root README, AGENTS and CURRENT_STATE point here. Direct user decisions and agent defaults are distinguished in DECISIONS. Keep dated closeouts, exact check/artifact evidence, discovered follow-ups and a next task. When implementation moves to the sequel repository, copy this system there, repair links and leave the authoritative pointer here. Never rely on this chat as the only record.
+Root README, AGENTS and CURRENT_STATE point here. Direct user decisions and agent defaults are distinguished in DECISIONS. Keep dated closeouts, exact check/artifact evidence, discovered follow-ups and a next task. Implementation/planning now lives in this private sequel repository; the original game keeps a discovery pointer. Keep source and handoff authoritative here. Never rely on this chat as the only record.

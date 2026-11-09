@@ -78,3 +78,15 @@ test('door click queues one arrival, walks into range and cancels on steering/me
  const noIntent=new Session({version:1,room:'square',position:{x:20,y:22}});assert.equal(noIntent.takeArrival(),undefined);
  noIntent.lock(true);assert.equal(noIntent.point(doorPoint),false);
 });
+
+
+test('authored door arrivals are safe, exit in front of the source door and persist without re-entry', () => {
+ for (const room of ['square','workshop'] as Room[]) for (const door of worlds[room].stops) {
+  if (door.transition) {assert.ok(door.arrival);assert.ok(canStand(door.transition,door.arrival));}
+ }
+ const s=new Session();s.enter('workshop');const exit=worlds.workshop.stops.find(stop=>stop.id==='door')!;
+ s.enter(exit.transition!,exit.arrival);assert.equal(s.room,'square');assert.deepEqual(s.position,{x:19.5,y:22.3});
+ assert.equal(s.nearby()?.id,'workshop');assert.equal(s.takeArrival(),undefined);
+ for(let i=0;i<100;i++)s.tick(16);assert.equal(s.room,'square');assert.deepEqual(new Session(s.save()).position,s.position);
+ const before=s.save();assert.throws(()=>s.enter('square',{x:20,y:18}));assert.deepEqual(s.save(),before);
+});

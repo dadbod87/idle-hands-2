@@ -51,7 +51,7 @@ document.querySelector('#places')!.addEventListener('click', () => {
 });
 function activate(stop: Stop) {
   if (stop.transition) {
-    session.enter(stop.transition); save(); focusWorld(); feedback.textContent = stop.transition === 'workshop' ? 'Your workshop. A place to make things, eventually.' : 'Back in the square. The committee has made no measurable progress.';
+    session.enter(stop.transition, stop.arrival); save(); focusWorld(); feedback.textContent = stop.transition === 'workshop' ? 'Your workshop. A place to make things, eventually.' : 'Back in the square. The committee has made no measurable progress.';
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
     const note = paragraph('Prototype note: this is a local interaction test. No purchases, resources or shared progress are implemented.'); note.className = 'disclosure'; body.append(note);

@@ -75,7 +75,10 @@ export class Session {
     this.moving = Math.hypot(this.position.x - before.x, this.position.y - before.y) > .00001;
   }
   nearby(): Stop | undefined { return worlds[this.room].stops.find(s => Math.hypot(this.position.x - s.point.x, this.position.y - s.point.y) <= 1.25); }
-  enter(room: Room): void { this.stop(); this.room = room; this.position = { ...spawn[room] }; }
+  enter(room: Room, arrival: Point = spawn[room]): void {
+    if (!canStand(room, arrival)) throw new Error('Transition arrival must be collision-safe.');
+    this.stop(); this.room = room; this.position = { ...arrival };
+  }
   save(): SavedPosition { return { version: 1, room: this.room, position: { ...this.position } }; }
   snapshot() { return { ...this.save(), locked: this.locked, walking: this.moving || this.path.length > 0, nearby: this.nearby()?.id ?? null }; }
 }

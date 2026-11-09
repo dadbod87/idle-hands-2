@@ -1,0 +1,7 @@
+# IH2-014 — exit beside the door
+
+2026-11-09. Each transition now authors a collision-safe arrival position; workshop exit lands at square position (19.5, 22.3), directly outside its door, instead of the initial square spawn. Entry continues to use the existing workshop arrival. Invalid arrival metadata is rejected before changing the room. All activations (door click/tap, E/Enter and HUD) share this transition path, including local position saving. Queued door intent is cleared on transition, so standing beside the door never loops straight back inside.
+
+Ten domain tests and four complete desktop/phone/narrow/short browser walkthroughs pass (1.3m), including automatic and manual exits, exact outdoor position and no immediate re-entry. Strict TypeScript/Vite build passes. A separate desktop/phone actual-input exit capture starts with a clearly synthetic local workshop position, clicks/taps the exit and verifies/captures the outdoor landing. No real account/backend data; external HTTP blocked. Real devices/cross-browser/multiplayer remain unverified. Movement, collision and input/menu safeguards retained.
+
+Tracker/ten tests, 40 pinned skill hashes and diff checks run at closeout. New evidence is separate from previous pilot feedback. Existing Idle Hands unaffected. Refresh local port 4175 for the changed build. The separate private repository has been created at https://github.com/dadbod87/idle-hands-2 but source synchronization/CI remains the next task; this exit fix has local acceptance only at this point.

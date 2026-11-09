@@ -1,5 +1,7 @@
 # History
 
+2026-11-09 — IH2-014: authored collision-safe door arrivals; exiting returns outside the workshop door and saves the position. Ten domain/four viewport browser checks plus targeted exit captures pass. User authorized continuing to private GitHub/CI after the fix.
+
 2026-11-09 — IH2-013: click/tap workshop and exit doors to walk into range and enter automatically. One-shot intent cancels on steering/new target/menu/stop/room change; existing E/HUD/Places controls retained. Nine domain tests and four viewport browser walkthroughs pass; served build hashes verified. User accepted natural movement; future character animation/art polish recorded. Local-only, no existing-game change.
 
 2026-11-09 — IH2-012: replaced grid-step movement with continuous steering, normalized diagonals, immediate release, no stop/menu/save snap, fractional pointer endpoints and line-of-sight path smoothing with collision/wall sliding. 8 domain and 4 full browser walkthroughs pass; evidence stored separately from the original pilot. Recorded quests/skills/gathering/group restoration/NPC service/rare décor direction with staged implementation boundaries. Source remains local-only; next private GitHub/CI checkpoint.

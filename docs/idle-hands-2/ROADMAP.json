@@ -109,11 +109,35 @@
       ]
     },
     {
+      "id": "IH2-014",
+      "title": "Return outside the building door on exit",
+      "status": "done",
+      "depends_on": [
+        "IH2-013"
+      ],
+      "goal": "Use authored safe arrival positions rather than a shared square spawn.",
+      "acceptance": [
+        "All exit controls place the player directly outside the workshop door and persist that position.",
+        "Collision-safe transition metadata is verified; standing at the returned doorway does not auto-enter.",
+        "Domain/browser checks and desktop/phone exit evidence; preserve existing movement and local-only game state."
+      ],
+      "exclusions": [
+        "No new game systems, 1.0 change or hosting."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-014/REPORT.md",
+        "docs/evidence/IH2-014/desktop-exit.png",
+        "docs/evidence/IH2-014/phone-exit.png",
+        "tests/domain.test.ts",
+        "tests/pilot.spec.ts"
+      ]
+    },
+    {
       "id": "IH2-015",
       "title": "Private GitHub source and sequel CI checkpoint",
       "status": "queued",
       "depends_on": [
-        "IH2-013"
+        "IH2-014"
       ],
       "goal": "Make the local sequel source durable and resumable through GitHub before substantial art/content work.",
       "acceptance": [

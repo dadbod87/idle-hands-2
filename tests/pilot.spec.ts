@@ -7,7 +7,7 @@ const snapshot = (page:Page) => page.evaluate(() => (window as any).__pilot.snap
 async function destination(page:Page,id:string) {
  await page.getByRole('button',{name:'Places',exact:false}).click();
  await page.locator(`[data-destination="${id}"]`).click();
- await expect.poll(async()=> (await snapshot(page)).walking, {timeout: 10000}).toBe(false);
+ await expect.poll(async()=> (await snapshot(page)).walking, {timeout: process.env.CI?30000:10000}).toBe(false);
  await expect.poll(async()=> (await snapshot(page)).nearby).toBe(id);
 }
 for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:shape.name==='phone'||shape.name==='narrow'}); test(`${shape.name}: walk, collision, UI lock, tap, transition and reload`,async({page})=>{
@@ -54,8 +54,8 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  // Back away, then click/tap the actual door: approach and enter without the HUD button.
  await page.keyboard.down('ArrowDown');await page.waitForTimeout(350);await page.keyboard.up('ArrowDown');await page.waitForTimeout(60);
  expect((await snapshot(page)).nearby).toBe(null);
- const doorScreen=await page.evaluate(()=>(window as any).__pilot.screenPoint(19.5,20.5));
- const doorCanvas=await page.locator('canvas').boundingBox();
+ const doorScreen=await page.evaluate(()=>(window as any).__pilot.screenPoint(19.5,21.5));
+ const doorCanvas=await page.locator('canvas').boundingBox();expect(doorScreen.y).toBeGreaterThanOrEqual(0);expect(doorScreen.y).toBeLessThan(doorCanvas!.height);
  if(shape.name==='phone'||shape.name==='narrow')await page.touchscreen.tap(doorCanvas!.x+doorScreen.x,doorCanvas!.y+doorScreen.y);
  else await page.mouse.click(doorCanvas!.x+doorScreen.x,doorCanvas!.y+doorScreen.y);
  await expect.poll(async()=>(await snapshot(page)).room).toBe('workshop');

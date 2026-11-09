@@ -1,5 +1,7 @@
 # History
 
+2026-11-09 — IH2-020: original illustrated visual kit selected after exact-licensed CC0 pixel comparison;39 SVG sources, direction/walk poses, reduced-motion idle, depth/occlusion, field guide/quest affordance and bridge before/after sample.13 domain/art and8 browser checks, tagged DOM axe/text-scale checks and independent phone review. Fixed contrast, narrow comparison overflow, crowded decorative text and contextual bench label. Systems-reuse review recorded independently of art; user authorizes continued bounded autonomous workshop work with usage guard. No backend/real accounts/paid assets/1.0 changes. Final CI/merge records belong in PR closeout.
+
 2026-11-09 — IH2-015: private GitHub source/history and independent pinned CI. Exact Node 24.22.2/Ubuntu 24.04, locked install, build/domain/planning/integrity and four bundled-Chromium viewport flows; seven-day build/browser artifacts. Current output moved to ignored test-results/browser. Desktop software-renderer whole-flow timing adjusted with all assertions retained; verified successful code/config run 42709538834. Private branch protection requires a paid upgrade and remains unavailable; manual checks required. No hosted sequel or 1.0 change. Final closeout candidate/check/merge recorded in PR #1.
 
 2026-11-09 — IH2-014: authored collision-safe door arrivals; exiting returns outside the workshop door and saves the position. Ten domain/four viewport browser checks plus targeted exit captures pass. User authorized continuing to private GitHub/CI after the fix.

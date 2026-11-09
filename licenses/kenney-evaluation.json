@@ -1,0 +1,46 @@
+{
+  "observed_date": "2026-11-09",
+  "role": "evaluation-only; not loaded by playable game",
+  "creator": "Kenney",
+  "license": "CC0-1.0",
+  "credit": "Kenney (kenney.nl), optional credit retained",
+  "sources": [
+    {
+      "page": "https://kenney.nl/assets/tiny-town",
+      "version": "1.1",
+      "archive_sha256": "9768692dccff1d706408a5aedd6ca4f6cd1409506cbc84cb2f862919764be977"
+    },
+    {
+      "page": "https://kenney.nl/assets/tiny-dungeon",
+      "version": "1.0",
+      "archive_sha256": "c109438ab06f65fd80f9b2686a4cf9c7c11dc64444b47333ec71d602f8bb5fc7"
+    }
+  ],
+  "files": [
+    {
+      "source_archive_file": "Tilemap/tilemap_packed.png",
+      "imported_path": "public/art/evaluation/kenney/tiny-town.png",
+      "sha256": "3a54d99ecde790d4fdea207a3644cf130fc56fa838f1beb1507c185a95b8e902",
+      "modified": false
+    },
+    {
+      "source_archive_file": "License.txt",
+      "imported_path": "public/art/evaluation/kenney/tiny-town-LICENSE.txt",
+      "sha256": "c483c167cc3bdfe17c15f957ff847d409f64d81b410b28783636cf3b2b7814c5",
+      "modified": false
+    },
+    {
+      "source_archive_file": "Tilemap/tilemap_packed.png",
+      "imported_path": "public/art/evaluation/kenney/tiny-dungeon.png",
+      "sha256": "d24e60a41e4ac7a745c0304dfde121143688557f40215f23221c29cfe683825f",
+      "modified": false
+    },
+    {
+      "source_archive_file": "License.txt",
+      "imported_path": "public/art/evaluation/kenney/tiny-dungeon-LICENSE.txt",
+      "sha256": "9f574a2f1f636a3db8a0665ba90212f34e2b5e61ecb533d77c05237766374111",
+      "modified": false
+    }
+  ],
+  "acquisition": "Official public download via Continue without donating, included license inspected. Temporary signed download URLs not retained."
+}

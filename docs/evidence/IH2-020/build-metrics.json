@@ -1,0 +1,301 @@
+{
+  "method": "Summed Python gzip per dist file, not network transfer. Evaluation assets not loaded on game page.",
+  "playable_dist_gzip_bytes": 385687,
+  "all_dist_gzip_bytes": 396672,
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 468,
+      "gzip_bytes": 315,
+      "sha256": "689aeeecf5d2a943c7bd083816a7f30ce8f60ea4b15b82286af32ef2d4ebc4a6"
+    },
+    {
+      "path": "licenses/eventemitter3-LICENSE.txt",
+      "bytes": 1082,
+      "gzip_bytes": 656,
+      "sha256": "3aecc12b1cb28832b5f65ab64291de96568c3f236a74d646281b4491f7bcadbf"
+    },
+    {
+      "path": "licenses/README.txt",
+      "bytes": 262,
+      "gzip_bytes": 207,
+      "sha256": "5afe252ab041dbd90d66231dabe18f6e00eef01d88bb98bc850c55ee4d299478"
+    },
+    {
+      "path": "licenses/phaser-LICENSE.txt",
+      "bytes": 1120,
+      "gzip_bytes": 681,
+      "sha256": "d59c20a9deb5dc240614b428dce5246ae561d15efeeebea0e069d73f0a78fbff"
+    },
+    {
+      "path": "art/original/employee-north-4.svg",
+      "bytes": 1659,
+      "gzip_bytes": 488,
+      "sha256": "2be7a7befc79c388e7ffaf48eca115b18c52a5cd6f35a6f2650f19bcc8263c20"
+    },
+    {
+      "path": "art/original/employee-east-0.svg",
+      "bytes": 1592,
+      "gzip_bytes": 487,
+      "sha256": "0cba5093c0e3ab1e2c91a9bcfce0f8721667d5c7df4415c2bb58279b554effb7"
+    },
+    {
+      "path": "art/original/employee-east-1.svg",
+      "bytes": 1602,
+      "gzip_bytes": 489,
+      "sha256": "dc9a4396ee5492f47d35f5f619c59b0251bf8693e831128c5f2ed22539ace8f7"
+    },
+    {
+      "path": "art/original/employee-north-5.svg",
+      "bytes": 1715,
+      "gzip_bytes": 516,
+      "sha256": "69b3a1b4edcd0ed2803f5c47600caa62639bcb5049ecc288f6d2353b85ace53e"
+    },
+    {
+      "path": "art/original/employee-east-3.svg",
+      "bytes": 1657,
+      "gzip_bytes": 518,
+      "sha256": "e0b5c7756fdea77e4c8af6eb4c20f50169eadd220b84fc12494d767ca85537e5"
+    },
+    {
+      "path": "art/original/crates.svg",
+      "bytes": 648,
+      "gzip_bytes": 308,
+      "sha256": "6cb24c73daa14c4f8ebc813bd54cda7bc4abf0209cc10d03275a2c8f243a4768"
+    },
+    {
+      "path": "art/original/workshop.svg",
+      "bytes": 3263,
+      "gzip_bytes": 772,
+      "sha256": "56408bed86630cc63b33c129cdb560575f61feb64ab5d5166c1f90bd3fa2c348"
+    },
+    {
+      "path": "art/original/employee-east-2.svg",
+      "bytes": 1657,
+      "gzip_bytes": 518,
+      "sha256": "e0b5c7756fdea77e4c8af6eb4c20f50169eadd220b84fc12494d767ca85537e5"
+    },
+    {
+      "path": "art/original/employee-north-6.svg",
+      "bytes": 1715,
+      "gzip_bytes": 516,
+      "sha256": "69b3a1b4edcd0ed2803f5c47600caa62639bcb5049ecc288f6d2353b85ace53e"
+    },
+    {
+      "path": "art/original/employee-north-2.svg",
+      "bytes": 1715,
+      "gzip_bytes": 516,
+      "sha256": "bd1d5d83aa2ce276922e4017830f82a00f3b9198b6ae9b472b6f522ca9ff4959"
+    },
+    {
+      "path": "art/original/employee-east-6.svg",
+      "bytes": 1656,
+      "gzip_bytes": 518,
+      "sha256": "010d3d20ab17771da79ef735051e1badd0f54daa9f17dcf2418f05b571fa00ec"
+    },
+    {
+      "path": "art/original/bridge-neglected.svg",
+      "bytes": 2025,
+      "gzip_bytes": 470,
+      "sha256": "d15df35c041dade7e549d96b7e65f4bcfd8c5d3a143453715bdfbab4b4176d3e"
+    },
+    {
+      "path": "art/original/employee-north-3.svg",
+      "bytes": 1715,
+      "gzip_bytes": 516,
+      "sha256": "bd1d5d83aa2ce276922e4017830f82a00f3b9198b6ae9b472b6f522ca9ff4959"
+    },
+    {
+      "path": "art/original/employee-north-1.svg",
+      "bytes": 1659,
+      "gzip_bytes": 488,
+      "sha256": "2be7a7befc79c388e7ffaf48eca115b18c52a5cd6f35a6f2650f19bcc8263c20"
+    },
+    {
+      "path": "art/original/employee-east-5.svg",
+      "bytes": 1656,
+      "gzip_bytes": 518,
+      "sha256": "010d3d20ab17771da79ef735051e1badd0f54daa9f17dcf2418f05b571fa00ec"
+    },
+    {
+      "path": "art/original/employee-east-4.svg",
+      "bytes": 1602,
+      "gzip_bytes": 489,
+      "sha256": "dc9a4396ee5492f47d35f5f619c59b0251bf8693e831128c5f2ed22539ace8f7"
+    },
+    {
+      "path": "art/original/employee-north-0.svg",
+      "bytes": 1649,
+      "gzip_bytes": 482,
+      "sha256": "22f955ac9d03d6b1bf08dfbd648f47d41391cdebb28c4cc8c74b3a6085b24cda"
+    },
+    {
+      "path": "art/original/employee-south-2.svg",
+      "bytes": 2114,
+      "gzip_bytes": 579,
+      "sha256": "4c6cc2c4969539d544e1a1e625f83077eb70486b6661e9e73c6eeb56b9ae837a"
+    },
+    {
+      "path": "art/original/cafe.svg",
+      "bytes": 3417,
+      "gzip_bytes": 802,
+      "sha256": "d62a75dfba1f0a12345174164ae845f885d18d4c7ca3341f2d33c29457e13bd2"
+    },
+    {
+      "path": "art/original/bench.svg",
+      "bytes": 1031,
+      "gzip_bytes": 364,
+      "sha256": "b47a00f02175e4b2b8cb985fd42446d5fd8078b357f6e27d7d04eb6e70d5887e"
+    },
+    {
+      "path": "art/original/employee-south-3.svg",
+      "bytes": 2114,
+      "gzip_bytes": 579,
+      "sha256": "4c6cc2c4969539d544e1a1e625f83077eb70486b6661e9e73c6eeb56b9ae837a"
+    },
+    {
+      "path": "art/original/ground-workshop.svg",
+      "bytes": 1154,
+      "gzip_bytes": 445,
+      "sha256": "942000d2bffcd127c564f503b192b594b3380d89ea0f5f990ae4ba375f4880cd"
+    },
+    {
+      "path": "art/original/employee-south-1.svg",
+      "bytes": 2058,
+      "gzip_bytes": 552,
+      "sha256": "e0f8c1d7bb99cc164db84e938f1fd49e85ba01ec74dc155993872dfa16f8f2b5"
+    },
+    {
+      "path": "art/original/employee-south-0.svg",
+      "bytes": 2048,
+      "gzip_bytes": 547,
+      "sha256": "6df29fabfb13c838ff41f9db407a3e1463c8db25259bbc3d7ba7872de5ad4473"
+    },
+    {
+      "path": "art/original/employee-south-4.svg",
+      "bytes": 2058,
+      "gzip_bytes": 552,
+      "sha256": "e0f8c1d7bb99cc164db84e938f1fd49e85ba01ec74dc155993872dfa16f8f2b5"
+    },
+    {
+      "path": "art/original/employee-south-5.svg",
+      "bytes": 2114,
+      "gzip_bytes": 579,
+      "sha256": "2d594f8c08c5d00c3ddd85e04ce2c416d37f90e12202b342539ec817c0fd77b1"
+    },
+    {
+      "path": "art/original/employee-south-6.svg",
+      "bytes": 2114,
+      "gzip_bytes": 579,
+      "sha256": "2d594f8c08c5d00c3ddd85e04ce2c416d37f90e12202b342539ec817c0fd77b1"
+    },
+    {
+      "path": "art/original/home-plot.svg",
+      "bytes": 3667,
+      "gzip_bytes": 598,
+      "sha256": "96fb2e269744f2659d4b29b67b57dd1f6ac5e2d6d1f28801e85a52d54eeb6083"
+    },
+    {
+      "path": "art/original/employee-west-0.svg",
+      "bytes": 1639,
+      "gzip_bytes": 501,
+      "sha256": "ff3587afc6478781bf247d1c5fb75859720d6c65ee2171ce31d77405ede8e674"
+    },
+    {
+      "path": "art/original/bridge-restored.svg",
+      "bytes": 1927,
+      "gzip_bytes": 433,
+      "sha256": "e18a216590a7a8b92541640f212889db8e2d6ced7de55084bccacb47e4085c95"
+    },
+    {
+      "path": "art/original/employee-west-1.svg",
+      "bytes": 1649,
+      "gzip_bytes": 503,
+      "sha256": "66316b02d5bec1aad6f184fb3f22cb65b24fe62f259878fc26eb6f42e268ac03"
+    },
+    {
+      "path": "art/original/employee-west-3.svg",
+      "bytes": 1704,
+      "gzip_bytes": 533,
+      "sha256": "fa13b81bc3fe9aa468121cf5c35c5b8c7fabe6eac745ccc75c132462f25ed860"
+    },
+    {
+      "path": "art/original/shelf.svg",
+      "bytes": 988,
+      "gzip_bytes": 275,
+      "sha256": "2a4d019673db4d2219a49ae702dac29518ff2a33df9aa1cb6e49d3772d3c23d8"
+    },
+    {
+      "path": "art/original/employee-west-2.svg",
+      "bytes": 1704,
+      "gzip_bytes": 533,
+      "sha256": "fa13b81bc3fe9aa468121cf5c35c5b8c7fabe6eac745ccc75c132462f25ed860"
+    },
+    {
+      "path": "art/original/employee-west-6.svg",
+      "bytes": 1703,
+      "gzip_bytes": 532,
+      "sha256": "4c3fcb4552ee58a0e90428044e16d75607b257148407dc5b7ff6c15f03c21193"
+    },
+    {
+      "path": "art/original/employee-west-5.svg",
+      "bytes": 1703,
+      "gzip_bytes": 532,
+      "sha256": "4c3fcb4552ee58a0e90428044e16d75607b257148407dc5b7ff6c15f03c21193"
+    },
+    {
+      "path": "art/original/ground-square.svg",
+      "bytes": 12469,
+      "gzip_bytes": 1129,
+      "sha256": "86fc69c6a8ad95331c1f60f0e3f1abe298e60d58940430bd23024748fe8b6d04"
+    },
+    {
+      "path": "art/original/employee-west-4.svg",
+      "bytes": 1649,
+      "gzip_bytes": 503,
+      "sha256": "66316b02d5bec1aad6f184fb3f22cb65b24fe62f259878fc26eb6f42e268ac03"
+    },
+    {
+      "path": "art/original/tree.svg",
+      "bytes": 984,
+      "gzip_bytes": 414,
+      "sha256": "82c1db67d3a80e7f198f917842190d5d63fcaec99b19833cddba1728369ae57e"
+    },
+    {
+      "path": "art/evaluation/kenney/tiny-town.png",
+      "bytes": 5042,
+      "gzip_bytes": 5023,
+      "sha256": "3a54d99ecde790d4fdea207a3644cf130fc56fa838f1beb1507c185a95b8e902"
+    },
+    {
+      "path": "art/evaluation/kenney/tiny-dungeon.png",
+      "bytes": 5294,
+      "gzip_bytes": 5299,
+      "sha256": "d24e60a41e4ac7a745c0304dfde121143688557f40215f23221c29cfe683825f"
+    },
+    {
+      "path": "art/evaluation/kenney/tiny-town-LICENSE.txt",
+      "bytes": 567,
+      "gzip_bytes": 330,
+      "sha256": "c483c167cc3bdfe17c15f957ff847d409f64d81b410b28783636cf3b2b7814c5"
+    },
+    {
+      "path": "art/evaluation/kenney/tiny-dungeon-LICENSE.txt",
+      "bytes": 570,
+      "gzip_bytes": 333,
+      "sha256": "9f574a2f1f636a3db8a0665ba90212f34e2b5e61ecb533d77c05237766374111"
+    },
+    {
+      "path": "assets/index-jL1gXwYr.css",
+      "bytes": 10459,
+      "gzip_bytes": 3029,
+      "sha256": "cb5ec6cfa45c4d4d6959e6fd85489ab58e49ade05bb63499218e2bc359581950"
+    },
+    {
+      "path": "assets/index-vVrYKLed.js",
+      "bytes": 1388266,
+      "gzip_bytes": 360126,
+      "sha256": "24b417df945ce6e179d228e261f4e496c55cb7b2759f76facb836631cc233bde"
+    }
+  ]
+}

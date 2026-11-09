@@ -2,3 +2,4 @@
 .agents/** -whitespace
 licenses/dependencies/** -whitespace
 public/licenses/*-LICENSE.txt -whitespace
+public/art/evaluation/kenney/*-LICENSE.txt -whitespace

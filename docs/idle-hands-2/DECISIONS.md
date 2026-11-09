@@ -25,6 +25,14 @@ Keep direct user requirements distinct from agent-selected defaults. Supersede a
 | A-006 | 2026-11-09 | Agent-selected | No mandatory monetization, ads, paid advantages or subscriptions in first release. Hosting free-tier feasibility is unproven; never promise permanent zero operating costs. |
 | A-007 | 2026-11-09 | Agent-selected | Start with local-only fixtures and no external runtime calls; cloud/real auth after permissions, cost and backup gate. No automatic account import. |
 
+## Later decisions — autonomous session
+
+2026-11-09: Nick explicitly authorized continued active work while away, focused agent review, shared-system reuse independently of art, and a stop at about 10% remaining weekly usage. Bounded target/rules: [AUTONOMOUS_SESSION_2026-11-09](../AUTONOMOUS_SESSION_2026-11-09.md). Actual read initially 69% remaining; no reset/credit/spending/publication authorized. Distinct identity and phone-first direct interaction are priorities.
+
+A-008 (agent-selected): original illustrated company-town kit, not the Kenney comparison, with four facing directions and distance-based walk poses. Source/license comparison and concrete dimensions in [ART_DIRECTION](../ART_DIRECTION.md). Selection is a reversible art decision, not a public release.
+
+A-009 (agent-selected after independent review): retain Phaser; borrow RPGJS separation/storage/event patterns, adopt exact-pinned Zod validation for the upcoming loop when installed/reviewed, defer XState until branching/parallel behavior warrants it. [System source review](SYSTEMS_REUSE_REVIEW.md). No engine-system code copied in this visual milestone.
+
 ## Reconsider only when evidence warrants it
 
 Engine: pilot fails phone input/loading/rendering budgets or standard RPG plumbing dominates. Art: silhouette/scale/license coverage fails. Multiplayer: server memory/event volume or reconnect semantics fail. Cost: invited pilot does not fit a measured free option; prepare reduced scope/hosting alternatives for Nick instead of adding a bill. Product: feedback shows the small loop lacks visible personal/community progress. Record new evidence and superseding decision before changing direction.

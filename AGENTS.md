@@ -1,0 +1,20 @@
+# Idle Hands 2 — source authority
+
+Separate **local-only** sequel repository. No remote or hosted backend yet. Do not confuse it with dadbod87/idle-hands (live build 194, real accounts). This repository now owns sequel implementation and planning; the original repository keeps a pointer.
+
+Read docs/CURRENT_STATE.md, docs/CHANGELOG.md, docs/RELEASE_CHECKLIST.md, then docs/idle-hands-2/{CURRENT_SESSION,BUILD_SYSTEM,DECISIONS,EXPERIENCE_BRIEF}.md. Run the tracker `status`, `check`, `prompt`. The task file is authoritative. Make ordinary reversible decisions autonomously, one bounded task per prompt. New user instructions outrank older planning assumptions.
+
+Current task IH2-010 engine pilot, branch feat/engine-pilot, 2026-11-09. Follow .agents/skills/phaser-2d-game, game-ui-frontend and game-playtest; pinned upstream files must remain intact. No current-game art/cast/economy restrictions silently migrate into this independent prototype. Read docs/ART_DIRECTION.md before art changes.
+
+## Product requirements
+- Slow long-term progression, humor, deep systems and teamwork. Rapid onboarding is not rapid completion; avoid infinite click-to-money compounding.
+- Players should acquire personal house plots, upgrade homes and decorate them over time. Plot rights and creative work persist; weekly competition must not erase them.
+- Free assets only, original or verified CC0 first. Prefer GitHub + Vercel/Supabase where suitable. Modest extra hosting can be considered with a concrete cost estimate; no unlimited spending or silent billed setup.
+- Preserve the existing game's accounts/runtime; no imports, real data, credentials, production tests or new infrastructure in this pilot.
+
+## Implementation / verification
+Use an isolated feature branch, preserve unrelated work. Domain state is pure serializable TypeScript outside Phaser; DOM HUD/menus, explicit input lock, local synthetic fixtures. No server authority claim until a server exists. Assets require exact provenance/licenses; no unreviewed starter scripts, paid assets or telemetry.
+
+Required checks: npm run test, npm run build, npm run test:browser, npm run check:plan, python3 tools/verify-game-skills.py and git diff --check. Browser tests must inspect actual canvas screenshots at desktop, narrow phones and short landscape; console/network checks, pointer and keyboard interactions, collision, menu gating, room transition and reload. Record measured payload/frame methodology and real-device limits. Never call emulation a physical-phone test. Benchmark targets are evidence gates, not promises.
+
+No remote exists: commit on the feature branch after required local checks; no pretend GitHub CI/PR or deployment claims. If a remote is deliberately added later, establish CI/PR checks before merges. Public launch, cloud provisioning and any expense require their concrete gate. Update docs, task evidence and dated handoff with exact commit/commands/outcomes; close the task only after its acceptance artifacts exist.

@@ -1,0 +1,1 @@
+Idle Hands 2 local pilot. Original procedural placeholders, no imported art/fonts/audio. Runtime uses Phaser 4.2.1 and eventemitter3 5.0.4 under MIT; included notices must accompany any distribution. Source/license inventory: licenses/dependency-inventory.json.

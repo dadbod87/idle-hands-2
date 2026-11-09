@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "updated": "2026-11-09",
+  "authority": "docs/idle-hands-2/README.md",
+  "tasks": [
+    {
+      "id": "IH2-000",
+      "title": "Choose architecture and establish the build system",
+      "status": "done",
+      "depends_on": [],
+      "goal": "Decide a free-first technical direction and establish resumable bounded work.",
+      "acceptance": [
+        "Compare current RPGJS/Phaser source and docs; distinguish source review from runtime validation.",
+        "Record delegated decisions, free-asset policy, first-session loop and persistent/resettable state.",
+        "Provide a validated dependency roadmap, generated continuation prompt and dated handoff."
+      ],
+      "exclusions": [
+        "No sequel runtime, asset import, account mutation or cloud provisioning."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/ENGINE_DECISION.md",
+        "docs/idle-hands-2/engine-sources-2026-11-09.json",
+        "docs/idle-hands-2/EXPERIENCE_BRIEF.md",
+        "docs/idle-hands-2/BUILD_SYSTEM.md",
+        "docs/idle-hands-2/handoffs/2026-11-09-build-system.md",
+        "tests/idle-hands-2-tracker.test.py"
+      ]
+    },
+    {
+      "id": "IH2-010",
+      "title": "Separate local repository and engine pilot",
+      "status": "done",
+      "depends_on": [
+        "IH2-000"
+      ],
+      "goal": "Prove the selected browser engine can move, interact and transition on desktop and phone layouts.",
+      "acceptance": [
+        "Inspect current worktrees/PRs and search for an existing sequel repository; create a separate local repository only if absent. Carry planning documents, tracker, local instructions and notices into it, fix their relative links, and leave exact source/authority pointer in 1.0.",
+        "Use exact-pinned Phaser 4.2.1 initially, compatible TypeScript/Vite versions and a lockfile; inspect release/dependency metadata and scripts before installation, avoid telemetry and unlicensed demo art. Record justified version changes.",
+        "One original placeholder outdoor scene plus workshop transition; keyboard and tap movement, collision, interact/cancel, DOM destination list; menus block world input.",
+        "Automated build/type checks and Playwright walk/interact/transition/reload at 1440x900, 390x844, 360x640 and 844x390; capture screenshots and console/page/network errors with all data synthetic.",
+        "Record compressed initial transfer, frame sampling methodology, input/UI bounds and capability limits; no benchmark or real-phone claim without evidence. Reopen engine decision if budgets fail."
+      ],
+      "exclusions": [
+        "No production login, live backend, cloud resources, finished asset library or new features."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-010/REPORT.md",
+        "docs/evidence/IH2-010/build-metrics.json",
+        "docs/evidence/IH2-010/desktop-square.png",
+        "docs/evidence/IH2-010/phone-workshop.png",
+        "docs/evidence/IH2-010/narrow-housing-note.png",
+        "tests/pilot.spec.ts",
+        "tests/domain.test.ts",
+        "package-lock.json",
+        "licenses/dependency-inventory.json"
+      ]
+    },
+    {
+      "id": "IH2-015",
+      "title": "Private GitHub source and sequel CI checkpoint",
+      "status": "queued",
+      "depends_on": [
+        "IH2-010"
+      ],
+      "goal": "Make the local sequel source durable and resumable through GitHub before substantial art/content work.",
+      "acceptance": [
+        "Check for an existing dadbod87 sequel repository; choose private visibility by default, never overwrite an existing remote or publish publicly. Confirm no new paid feature or hosting resource is required.",
+        "Establish separate build, domain, browser and planning/integrity checks on GitHub using pinned versions, isolated synthetic data and collected screenshot artifacts. Resolve actual permission limits transparently; do not bypass restrictions or claim a workflow ran if it did not.",
+        "Push the exact local pilot/history to the verified private source, run required checks on the final commit and record remote URL, branch, commit and next task in both source and bridge pointers."
+      ],
+      "exclusions": [
+        "No game hosting, real accounts, live backend, public repository or paid service."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "IH2-020",
+      "title": "Choose and prove one coherent visual kit",
+      "status": "queued",
+      "depends_on": [
+        "IH2-015"
+      ],
+      "goal": "Make the same representative scene readable, warm and distinct on a phone.",
+      "acceptance": [
+        "Compare an original illustrated sample and a coherent verified CC0 pixel sample for the same workshop/square/player scene; choose and record one without requiring routine approval.",
+        "Asset manifest includes source/archive hash, exact files/licenses, creator/credits and modifications; no paid or unknown assets.",
+        "Produce representative player/prop/building/UI scale sheet and desktop/narrow/short screenshots; check silhouettes, contrast, 200% text zoom, reduced motion and 44px touch targets.",
+        "Lock camera/tile/animation/material conventions; identify missing art before bulk production."
+      ],
+      "exclusions": [
+        "No bulk city art, paid pack, account data or production release."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "IH2-030",
+      "title": "Playable local workshop loop",
+      "status": "queued",
+      "depends_on": [
+        "IH2-020"
+      ],
+      "goal": "Make the first five minutes enjoyable with isolated deterministic state.",
+      "acceptance": [
+        "Pure domain modules support gathering, two recipes, legal personal placement and one timed bench job; Phaser remains disposable view state.",
+        "Versioned synthetic local save survives reload; deterministic clock tests cover completion, offline cap, storage limit and no duplicated settlement. Mark local saves as non-authoritative prototype.",
+        "Show exact resource changes, clear feedback, free preview/cancel and useful first-minute completion; test keyboard/touch workflow with no shifting controls.",
+        "Capture a short playtest report against first-session brief; record confusing/boring steps and resolve blockers before shared play.",
+        "Add deterministic progression-cohort simulation for slow days/weeks pacing; compare idle, regular and active schedules and housing/project milestones before final economy tuning. First fast craft is a one-time tutorial, not repeatable click income."
+      ],
+      "exclusions": [
+        "No public economy, trading, exponential progression, purchases, auth or claim that local saves are secure."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "IH2-040",
+      "title": "Durable shared bridge and two-player proof",
+      "status": "queued",
+      "depends_on": [
+        "IH2-030"
+      ],
+      "goal": "Move rules to a local authoritative server and make two synthetic players cooperate safely.",
+      "acceptance": [
+        "Implement an isolated authoritative command service and disposable PostgreSQL with migrations, separate synthetic identities and scoped authorization; evaluate Supabase-compatible functions/auth boundaries before choosing deployment runtime; no 1.0 secrets/data.",
+        "Validate scoped room/presence updates; use Colyseus only if needed after comparing suitable Supabase realtime and command boundaries. Durable resources, jobs, house plots and projects remain atomic PostgreSQL transactions.",
+        "Test duplicate command IDs, concurrent last contributions, insufficient inventory, unauthorized edits, disconnect/reconnect, server restart, stale client and migration/restore; no double charge or lost committed progress.",
+        "Server validates gathering/proximity/rates; receipt replay is deterministic; visible loading/error/retry never invents a reward. Room updates scoped, bounded movement sends, no animation database writes.",
+        "Verify simulated weekly rollover changes only season-keyed scores and preserves inventory, jobs, decoration and bridge. Capture two-client desktop/phone evidence.",
+        "Prove plot acquisition/owner-only edits and upgrade/placement persistence, including concurrent claims, visitor denial and newcomers joining after initial plot allocations."
+      ],
+      "exclusions": [
+        "No real accounts, hosted database, paid transport service, production load test or huge multiplayer world."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "IH2-050",
+      "title": "Polished first neighborhood",
+      "status": "queued",
+      "depends_on": [
+        "IH2-040"
+      ],
+      "goal": "Deliver the small persistent neighborhood with coherent art, story and useful phone navigation.",
+      "acceptance": [
+        "Workshop/square/cafe/trail, three resources/two recipes/one project and six props meet the brief; locked art kit and provenance cover shipped content.",
+        "Inventory, dialogue, crafting, decorating, destination directory and offline summary work on narrow phones/short landscape and keyboard; no obstructed essentials.",
+        "Fresh/resumed/reconnected two-client playthroughs, weekly rollover and regression suites pass; inspect screenshots and small UX findings list.",
+        "Measure play duration and identify a reason to return without mandatory waiting or punitive reset. Fix first-session blockers.",
+        "Include expandable personal plots, starter house and one home upgrade/decorating path; validate slow progression targets using isolated accelerated-time fixtures, with humor and useful newcomer teamwork."
+      ],
+      "exclusions": [
+        "No broad expansion, marketplace, PvP, guild politics, public chat or monetization."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "IH2-060",
+      "title": "Cost, performance and isolated release readiness",
+      "status": "queued",
+      "depends_on": [
+        "IH2-050"
+      ],
+      "goal": "Prepare a concrete affordable private-preview package and prove recovery before inviting anyone.",
+      "acceptance": [
+        "Run bounded 20-client synthetic tests only on local/authorized isolated environment; report commands/events/queries, latency percentiles, frame time, CPU/memory, storage and bandwidth against budgets.",
+        "Prefer GitHub CI/source, Vercel client delivery and separate Supabase database/auth/storage where appropriate. Measure whether extra persistent-room hosting is needed; present modest cost/limits/backup plan before provisioning any billed service. No asset purchases.",
+        "Threat/permission review, auth plan, rate limits, data retention, migration/backup/restore drill and rollback plan complete; real phone manual check pending clearly if unavailable.",
+        "Create a reviewable private-preview deployment/access plan with exact artifact, targets, costs, separate identity/data, monitoring and support. Resolve any required access/budget decision before dependent work."
+      ],
+      "exclusions": [
+        "No unapproved cloud billing, real-player writes, public release or 1.0 account import."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "IH2-070",
+      "title": "Invited beta on approved isolated hosting",
+      "status": "queued",
+      "depends_on": [
+        "IH2-060"
+      ],
+      "goal": "Run a small separate private beta after hosting/access gates are resolved.",
+      "acceptance": [
+        "Approved preview target and cost boundary recorded before provisioning; deploy exact tested artifact with isolated database/auth and verified backup/restore.",
+        "Verify deployed SHA/artifact and real flows using dedicated test accounts with explicit fixture disclosure; desktop and real-phone screenshots.",
+        "Invite-only access, credits, beta notice, understandable persistence/offline rules and feedback route; no silent import of existing accounts.",
+        "Observe representative concurrent play within approved bounds; triage blockers, record known issues and rollback/recovery evidence."
+      ],
+      "exclusions": [
+        "No public launch, new paid plan, current-game migration or unbounded load test."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "IH2-080",
+      "title": "Public-launch decision and release",
+      "status": "queued",
+      "depends_on": [
+        "IH2-070"
+      ],
+      "goal": "Prepare a safe, reviewable launch and release only with explicit public-launch authorization.",
+      "acceptance": [
+        "Beta blockers resolved with reproducible evidence, permission/device/performance/cost checks current, onboarding and persistent/reset wording correct.",
+        "Prepare final artifact/commit, release notes, hosting quotas, rollback, backup and support plan for Nick. Explicit public launch/domain authorization recorded before publication.",
+        "After authorization, deploy/verify actual production artifact and live desktop/phone flows; disclose test data and limitations, then close out exact release and follow-up backlog."
+      ],
+      "exclusions": [
+        "No assumed public launch from planning approval; no asset purchases or monetization added."
+      ],
+      "evidence": []
+    }
+  ]
+}

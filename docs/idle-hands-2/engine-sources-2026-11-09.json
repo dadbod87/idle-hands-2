@@ -1,0 +1,358 @@
+{
+  "observed_date": "2026-11-09",
+  "method": "GitHub API and raw package.json at exact commit; npm registry dist-tags; no starter execution",
+  "repositories": [
+    {
+      "repository": "RSamaium/RPG-JS",
+      "url": "https://github.com/RSamaium/RPG-JS",
+      "branch": "v5",
+      "commit": "e357a13d8b50662b777fb0b31659a5fba31c4f71",
+      "license_spdx": "MIT",
+      "package_url": "https://raw.githubusercontent.com/RSamaium/RPG-JS/e357a13d8b50662b777fb0b31659a5fba31c4f71/package.json",
+      "package_sha256": "201e387c530ea260c12a6ffe3a65b3c6e311e842e4c70be73055d2146b1deed9",
+      "package": {
+        "name": "rpgjs",
+        "version": "5.0.0-beta.7",
+        "scripts": {
+          "build": "tsx bin/build.ts",
+          "dev": "tsx bin/dev.ts",
+          "playground": "pnpm --dir playground dev",
+          "storybook": "pnpm --filter @rpgjs/ui-css storybook",
+          "build-storybook": "pnpm --filter @rpgjs/ui-css build-storybook",
+          "clean": "tsx bin/clean.ts",
+          "docs:extract-api": "tsx bin/extract-jsdoc.ts",
+          "docs:client-api": "tsx bin/extract-jsdoc.ts extract --package @rpgjs/client-api --entry packages/client/src --output docs/.generated/client-api.json && tsx bin/extract-jsdoc.ts render --input docs/.generated/client-api.json --config docs/api/client.config.json --output docs/api/client",
+          "docs:map-api": "tsx bin/extract-jsdoc.ts extract --package @rpgjs/map-api --entry packages/server/src/rooms,packages/common/src/rooms --output docs/.generated/map-api.json && tsx bin/extract-jsdoc.ts render --input docs/.generated/map-api.json --config docs/api/map.config.json --output docs/api/map",
+          "docs:player-api": "tsx bin/extract-jsdoc.ts extract --package @rpgjs/server --entry packages/server/src --output docs/.generated/server-api.json && tsx bin/extract-jsdoc.ts render --input docs/.generated/server-api.json --config docs/api/player.config.json --output docs/api/player",
+          "api:boundary": "tsx bin/check-public-boundary.ts",
+          "api:boundary:update": "tsx bin/check-public-boundary.ts --update",
+          "changeset": "changeset",
+          "version-packages": "changeset version && pnpm install --lockfile-only",
+          "publish-packages": "pnpm run rpgjs:version && tsx bin/publish.ts",
+          "rpgjs:version": "tsx bin/version.ts",
+          "rpgjs:tag-latest": "tsx bin/tag-latest.ts",
+          "rpgjs:publish": "pnpm run publish-packages",
+          "test": "vitest",
+          "test:types": "tsc -p tsconfig.typetests.json"
+        },
+        "author": "Samuel Ronce",
+        "license": "MIT",
+        "description": "RPGJS is a framework for creating RPG/MMORPG games",
+        "dependencies": {
+          "execa": "^9.6.1",
+          "pnpm": "^11.6.0",
+          "tsx": "^4.22.4",
+          "wait-on": "^9.0.10"
+        },
+        "keywords": [
+          "rpg",
+          "game",
+          "engine",
+          "javascript",
+          "typescript"
+        ],
+        "packageManager": "pnpm@11.6.0",
+        "private": true,
+        "type": "module",
+        "devDependencies": {
+          "@canvasengine/compiler": "2.5.0",
+          "@canvasengine/presets": "2.6.0",
+          "@changesets/cli": "^2.31.0",
+          "@types/node": "^25.9.3",
+          "canvasengine": "2.5.2",
+          "jsdom": "^29.1.1",
+          "pixi.js": "^8.19.0",
+          "ts-morph": "^28.0.0",
+          "typescript": "^6.0.3",
+          "vite": "^8.0.16",
+          "vitest": "^4.1.9"
+        }
+      }
+    },
+    {
+      "repository": "rpgjs/starter",
+      "url": "https://github.com/rpgjs/starter",
+      "branch": "v5",
+      "commit": "b5b09e29ee5a156de44e684660dd0a5b5b48d13f",
+      "license_spdx": null,
+      "package_url": "https://raw.githubusercontent.com/rpgjs/starter/b5b09e29ee5a156de44e684660dd0a5b5b48d13f/package.json",
+      "package_sha256": "edc591110f326f19cdd0f4de63aa715f0a6e445bb99480f3982432f4ee209da1",
+      "package": {
+        "name": "myrpg",
+        "version": "1.0.0",
+        "main": "index.js",
+        "scripts": {
+          "dev": "vite",
+          "build": "vite build",
+          "test:production": "node --test test/production-preview.test.mjs"
+        },
+        "keywords": [],
+        "author": "",
+        "license": "MIT",
+        "description": "",
+        "devDependencies": {
+          "@canvasengine/compiler": "2.5.0",
+          "@vitejs/plugin-vue": "^6.0.10",
+          "path-browserify": "^1.0.1",
+          "vite": "^8.3.7"
+        },
+        "private": true,
+        "dependencies": {
+          "@canvasengine/presets": "2.6.0",
+          "@rpgjs/action-battle": "5.2.0",
+          "@rpgjs/client": "5.4.0",
+          "@rpgjs/common": "5.2.0",
+          "@rpgjs/server": "5.3.0",
+          "@rpgjs/tiledmap": "5.0.2",
+          "@rpgjs/ui-css": "5.3.0",
+          "@rpgjs/vite": "5.0.4",
+          "@signe/di": "^3.1.1",
+          "canvasengine": "2.5.2",
+          "pixi.js": "^8.22.0"
+        },
+        "type": "module"
+      }
+    },
+    {
+      "repository": "phaserjs/phaser",
+      "url": "https://github.com/phaserjs/phaser",
+      "branch": "master",
+      "commit": "02d8931b626d9764c133cbb3fbf99966c03c757c",
+      "license_spdx": "MIT",
+      "package_url": "https://raw.githubusercontent.com/phaserjs/phaser/02d8931b626d9764c133cbb3fbf99966c03c757c/package.json",
+      "package_sha256": "fa59aa5eef07850c4535444cb7bc45d02dcf4a0306ae053fde5d537c447892c1",
+      "package": {
+        "name": "phaser",
+        "version": "4.2.1",
+        "release": "Giedi",
+        "description": "A fast, free and fun HTML5 Game Framework for Desktop and Mobile web browsers from the team at Phaser Studio Inc.",
+        "author": "Richard Davey <rich@phaser.io> (https://www.phaser.io)",
+        "homepage": "https://phaser.io",
+        "bugs": "https://github.com/phaserjs/phaser/issues",
+        "license": "MIT",
+        "licenseUrl": "https://www.opensource.org/licenses/mit-license.php",
+        "main": "./src/phaser.js",
+        "types": "./types/phaser.d.ts",
+        "browser": "./dist/phaser.js",
+        "module": "./dist/phaser.esm.js",
+        "exports": {
+          ".": {
+            "types": "./types/phaser.d.ts",
+            "import": "./dist/phaser.esm.js",
+            "require": "./dist/phaser.js",
+            "default": "./dist/phaser.esm.js"
+          },
+          "./package.json": "./package.json"
+        },
+        "repository": {
+          "type": "git",
+          "url": "https://phaserjs@github.com/phaserjs/phaser.git"
+        },
+        "scripts": {
+          "beta": "npm publish --tag beta",
+          "help": "node scripts/help.js",
+          "build": "webpack --config config/webpack.config.js",
+          "watch": "webpack --watch --config config/webpack.config.js",
+          "watchns": "webpack --watch --config config/webpack-nospector.config.js",
+          "dist": "webpack --config config/webpack.dist.config.js",
+          "lint": "eslint --config .eslintrc.json \"src/**/*.js\"",
+          "lintfix": "eslint --config .eslintrc.json \"src/**/*.js\" --fix",
+          "sloc": "node-sloc \"./src\" --include-extensions \"js\"",
+          "bundleshaders": "node scripts/bundle-shaders.js",
+          "build-tsgen": "cd scripts/tsgen && tsc",
+          "tsgen": "cd scripts/tsgen && jsdoc -c jsdoc-tsd.conf.json",
+          "test-ts": "cd scripts/tsgen/test && tsc --build tsconfig.json > output.txt 2>&1",
+          "ts": "npm run tsgen && npm run test-ts",
+          "tsdev": "npm run build-tsgen && npm run tsgen && npm run test-ts",
+          "test": "vitest run",
+          "test:watch": "vitest"
+        },
+        "keywords": [
+          "2d",
+          "HTML5",
+          "WebGL",
+          "canvas",
+          "game",
+          "javascript",
+          "physics",
+          "tweens",
+          "typescript",
+          "web audio"
+        ],
+        "devDependencies": {
+          "@types/offscreencanvas": "^2019.7.3",
+          "@types/source-map": "^0.5.7",
+          "clean-webpack-plugin": "^4.0.0",
+          "dts-dom": "^3.7.0",
+          "eslint": "^10.2.0",
+          "eslint-plugin-es5": "^1.5.0",
+          "exports-loader": "^5.0.0",
+          "fs-extra": "^11.3.4",
+          "imports-loader": "^5.0.0",
+          "jsdoc": "3.x.x",
+          "jsdom": "^29.0.2",
+          "node-sloc": "^0.2.1",
+          "path": "^0.12.7",
+          "phaser3spectorjs": "^0.0.8",
+          "remove-files-webpack-plugin": "^1.5.0",
+          "source-map": "^0.7.6",
+          "terser-webpack-plugin": "^5.4.0",
+          "typescript": "^6.0.2",
+          "vitest": "^4.1.4",
+          "vivid-cli": "^1.1.2",
+          "webpack": "^5.106.0",
+          "webpack-cli": "^7.0.2",
+          "webpack-shell-plugin": "^0.5.0"
+        },
+        "dependencies": {
+          "eventemitter3": "^5.0.4"
+        }
+      }
+    },
+    {
+      "repository": "phaserjs/template-vite-ts",
+      "url": "https://github.com/phaserjs/template-vite-ts",
+      "branch": "main",
+      "commit": "d1d7d58acfcf47f97642bcb8b4967071b85f8db9",
+      "license_spdx": "MIT",
+      "package_url": "https://raw.githubusercontent.com/phaserjs/template-vite-ts/d1d7d58acfcf47f97642bcb8b4967071b85f8db9/package.json",
+      "package_sha256": "a6617d0392c8043f65a1193db51861c52374889b254162d56abb41ae8d6c6938",
+      "package": {
+        "name": "template-vite-ts",
+        "description": "A Phaser 3 TypeScript template using Vite.",
+        "version": "1.4.0",
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/phaserjs/template-vite-ts.git"
+        },
+        "author": "Phaser Studio <support@phaser.io> (https://phaser.io/)",
+        "license": "MIT",
+        "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
+        "bugs": {
+          "url": "https://github.com/phaserjs/template-vite-ts/issues"
+        },
+        "homepage": "https://github.com/phaserjs/template-vite-ts#readme",
+        "scripts": {
+          "dev": "node log.js dev & vite --config vite/config.dev.mjs",
+          "build": "node log.js build & vite build --config vite/config.prod.mjs",
+          "dev-nolog": "vite --config vite/config.dev.mjs",
+          "build-nolog": "vite build --config vite/config.prod.mjs"
+        },
+        "devDependencies": {
+          "typescript": "~5.7.2",
+          "vite": "^6.3.1"
+        },
+        "dependencies": {
+          "phaser": "4.0.0",
+          "terser": "^5.39.0"
+        }
+      }
+    }
+  ],
+  "packages": [
+    {
+      "name": "phaser",
+      "url": "https://registry.npmjs.org/phaser",
+      "dist_tags": {
+        "phaser@3.0.0-alpha.2": "3.0.0-alpha.2",
+        "alpha": "4.0.0-alpha.4",
+        "beta": "4.0.0-rc.7",
+        "latest": "4.2.1"
+      },
+      "selected_latest_metadata": {
+        "version": "4.2.1",
+        "license": "MIT",
+        "engines": null,
+        "dist": {
+          "integrity": "sha512-WUNwCPJpdjvZiuT6SgCfYVW8Qw/3j0jJ4ws7P2QkhFLFu74sbGuyHJcbFueGkY/AYO4Pi47bNQXn1OCJeLX//w==",
+          "shasum": "5512f23d348e6fb5c48ce71a9fbddd200ef919ea",
+          "tarball": "https://registry.npmjs.org/phaser/-/phaser-4.2.1.tgz",
+          "fileCount": 3593,
+          "unpackedSize": 112530289,
+          "signatures": [
+            {
+              "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+              "sig": "MEUCIAWFg85qkmYSwG/KLHHUY95iAr0Nni4AYg5yDpOWtc4jAiEAkoGIaCfmaHwoFkBEctnAyTuSnM2hzju8aL8hMvPXr/Q="
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "@rpgjs/server",
+      "url": "https://registry.npmjs.org/@rpgjs/server",
+      "dist_tags": {
+        "alpha": "5.0.0-alpha.3",
+        "beta": "5.0.0-beta.35",
+        "rc": "5.0.0-rc.2",
+        "latest": "5.3.0"
+      },
+      "selected_latest_metadata": {
+        "version": "5.3.0",
+        "license": "MIT",
+        "engines": null,
+        "dist": {
+          "shasum": "1d4e597a29010577ba5615b4271c7b26c1ef77fa",
+          "tarball": "https://registry.npmjs.org/@rpgjs/server/-/server-5.3.0.tgz",
+          "fileCount": 255,
+          "integrity": "sha512-gaqEC59QR/C4b2q0RQJBmGAO0TRWxuhJawq4/EJzfDloA6iqB+rikMHAWcBXmM5z1WwtLr8j2cdnZV5lI1+0kg==",
+          "signatures": [
+            {
+              "sig": "MEUCIQDFERCLyv9TZR6OvUNTFtjWyJcqQL/DI3q1lz8CdaRD3QIgRR2XbfFe3vmFx3o4SRcJ+QzdDc1S74nMUxYz5EaL0Bk=",
+              "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+            },
+            {
+              "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+              "sig": "MEUCIQCka7XfMwKiCy1zlQdjzUfzYJRUz5uwHcLOHRZ2zhOISAIgM4clEMPEBgN7OrpVHkg+ar4Ttf3ZnDzLHYcmtw3JU6g="
+            }
+          ],
+          "attestations": {
+            "url": "https://registry.npmjs.org/-/npm/v1/attestations/@rpgjs%2fserver@5.3.0",
+            "provenance": {
+              "predicateType": "https://slsa.dev/provenance/v1"
+            }
+          },
+          "unpackedSize": 5819861
+        }
+      }
+    },
+    {
+      "name": "@rpgjs/client",
+      "url": "https://registry.npmjs.org/@rpgjs/client",
+      "dist_tags": {
+        "alpha": "5.0.0-alpha.3",
+        "beta": "5.0.0-beta.35",
+        "rc": "5.0.0-rc.2",
+        "latest": "5.4.0"
+      },
+      "selected_latest_metadata": {
+        "version": "5.4.0",
+        "license": "MIT",
+        "engines": null,
+        "dist": {
+          "shasum": "47b17fcb0b4b4a85f603e119c4831533d99679f2",
+          "tarball": "https://registry.npmjs.org/@rpgjs/client/-/client-5.4.0.tgz",
+          "fileCount": 581,
+          "integrity": "sha512-JDGr3esXnif3tfi19JaZbq1tu9bSPDEaFfnoOrw4Pr8moeocqKPX/O3CfSlCwr8mYrR5USmFBRLm8Mb4AH4XlQ==",
+          "signatures": [
+            {
+              "sig": "MEQCIAnKf+ihqeHQyHHArWKyGgctCZiVxIgfWn9JBiXardeFAiBESCXA8An7hjQYOeXqC5KPktP9turgP93DDYxugjRwTA==",
+              "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+            },
+            {
+              "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+              "sig": "MEUCIQCzJLfWD2mZG9WzzUp2bLLfeNL567fBke37duEnJx9oAQIgENl5CDiDQTL1HnBpVqjDmMSw7RHYHT64S/+iA7SplJo="
+            }
+          ],
+          "attestations": {
+            "url": "https://registry.npmjs.org/-/npm/v1/attestations/@rpgjs%2fclient@5.4.0",
+            "provenance": {
+              "predicateType": "https://slsa.dev/provenance/v1"
+            }
+          },
+          "unpackedSize": 3812311
+        }
+      }
+    }
+  ]
+}

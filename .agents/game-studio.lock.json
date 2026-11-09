@@ -1,0 +1,210 @@
+{
+  "source": "https://github.com/openai/plugins",
+  "ref": "d420d13051bffe4543ed39e30fa46b87148e47dd",
+  "path": "plugins/game-studio",
+  "version": "0.1.2",
+  "license": "MIT (declared in upstream plugin.json)",
+  "reviewed": "2026-11-09",
+  "files": [
+    {
+      "path": ".agents/game-studio.upstream.json",
+      "upstream_path": "plugins/game-studio/.codex-plugin/plugin.json",
+      "sha256": "edd750d7ab6df61834916cfc2498fd71c0c19fd9523e1e300fd4d958630e6cd5"
+    },
+    {
+      "path": ".agents/assets/app-icon.png",
+      "upstream_path": "plugins/game-studio/assets/app-icon.png",
+      "sha256": "5b3b083e4acc72b2d905e08b99dff08b811c1140aeb25adfc878a278e6dff20e"
+    },
+    {
+      "path": ".agents/assets/game-studio.svg",
+      "upstream_path": "plugins/game-studio/assets/game-studio.svg",
+      "sha256": "8a1c309bf1d37f8f70361263ca09e44c196d41673d7c036fbebb9a698db4243f"
+    },
+    {
+      "path": ".agents/references/alternative-3d-engines.md",
+      "upstream_path": "plugins/game-studio/references/alternative-3d-engines.md",
+      "sha256": "cbb3c09a86ec838ddae81dd4bdbb5bfa3ed993b3551392374458117d04d3b413"
+    },
+    {
+      "path": ".agents/references/engine-selection.md",
+      "upstream_path": "plugins/game-studio/references/engine-selection.md",
+      "sha256": "8a4113a5a51d89a679d258aef17ecd0e6b85544c303e8b807f7971c5726c5f70"
+    },
+    {
+      "path": ".agents/references/frontend-prompts.md",
+      "upstream_path": "plugins/game-studio/references/frontend-prompts.md",
+      "sha256": "3485139464cb56670bbdaef5f65bb0c657fc27b4c7106723005f5fe79aed0368"
+    },
+    {
+      "path": ".agents/references/gltf-loading-starter.md",
+      "upstream_path": "plugins/game-studio/references/gltf-loading-starter.md",
+      "sha256": "d5a13a894b2a22e5562044cbece99b07ba7414bc9db667004aac5119451ccf6d"
+    },
+    {
+      "path": ".agents/references/phaser-architecture.md",
+      "upstream_path": "plugins/game-studio/references/phaser-architecture.md",
+      "sha256": "c7c5b4c611d5c7aa40349a49d6fc37fa52e13d6c326088a662d55b717db877ae"
+    },
+    {
+      "path": ".agents/references/playtest-checklist.md",
+      "upstream_path": "plugins/game-studio/references/playtest-checklist.md",
+      "sha256": "d8a4119f3912064c1328f7c537ff5fa94004f3aa81acba33d518758bf7fb8a3c"
+    },
+    {
+      "path": ".agents/references/rapier-integration-starter.md",
+      "upstream_path": "plugins/game-studio/references/rapier-integration-starter.md",
+      "sha256": "2b518d8305b33ade922bf6e82d886e11ce12fdbae5884c4834da90432ff0e953"
+    },
+    {
+      "path": ".agents/references/react-three-fiber-stack.md",
+      "upstream_path": "plugins/game-studio/references/react-three-fiber-stack.md",
+      "sha256": "344a78b61cdff9ad8139ad874fcd832554ab5d465bc680e8568104e1b7d0980e"
+    },
+    {
+      "path": ".agents/references/react-three-fiber-starter.md",
+      "upstream_path": "plugins/game-studio/references/react-three-fiber-starter.md",
+      "sha256": "f66806159f15d38eadd9deccc792548622e1f02164a83eaf53393324c1524119"
+    },
+    {
+      "path": ".agents/references/sprite-pipeline.md",
+      "upstream_path": "plugins/game-studio/references/sprite-pipeline.md",
+      "sha256": "75ccf6f3329e3af78f55d804c6997675297dc239ce282570d47a59f65241a009"
+    },
+    {
+      "path": ".agents/references/three-hud-layout-patterns.md",
+      "upstream_path": "plugins/game-studio/references/three-hud-layout-patterns.md",
+      "sha256": "5b7c0d49b0495b4be7bf0b860302b74b125e7db681edaec5594909c91f9af090"
+    },
+    {
+      "path": ".agents/references/three-webgl-architecture.md",
+      "upstream_path": "plugins/game-studio/references/three-webgl-architecture.md",
+      "sha256": "703adaedc9355f0ba47cec65d1594d76f3955e7c20ea8b304d98035fa4bc909e"
+    },
+    {
+      "path": ".agents/references/threejs-stack.md",
+      "upstream_path": "plugins/game-studio/references/threejs-stack.md",
+      "sha256": "1fa03624f7ab879f61f26c69f664f7d7932558732795bef4c5dbc4adf595304d"
+    },
+    {
+      "path": ".agents/references/threejs-vanilla-starter.md",
+      "upstream_path": "plugins/game-studio/references/threejs-vanilla-starter.md",
+      "sha256": "ecb594ebba4cc6804e8a74ebd800e0610fdca515113225efbcfe5f0001c03b29"
+    },
+    {
+      "path": ".agents/references/web-3d-asset-pipeline.md",
+      "upstream_path": "plugins/game-studio/references/web-3d-asset-pipeline.md",
+      "sha256": "036bb8a469519735d4d43ebab686e8e26639f4a35c74360e0c9dc176c1026c65"
+    },
+    {
+      "path": ".agents/references/webgl-debugging-and-performance.md",
+      "upstream_path": "plugins/game-studio/references/webgl-debugging-and-performance.md",
+      "sha256": "09c3efac9fae5ff7fee7fb75a6a40be6956da6028e0517d2a3ff5829709bb71a"
+    },
+    {
+      "path": ".agents/scripts/build_sprite_edit_canvas.py",
+      "upstream_path": "plugins/game-studio/scripts/build_sprite_edit_canvas.py",
+      "sha256": "c04fa1becb078c02c60f66ce8ada736983fef77e09f80158816b23098d889b95"
+    },
+    {
+      "path": ".agents/scripts/normalize_sprite_strip.py",
+      "upstream_path": "plugins/game-studio/scripts/normalize_sprite_strip.py",
+      "sha256": "746403f79454a9ae072fd46e337f9b0b3dad9bd07b080b7523e412a71f3a8ec0"
+    },
+    {
+      "path": ".agents/scripts/render_sprite_preview_sheet.py",
+      "upstream_path": "plugins/game-studio/scripts/render_sprite_preview_sheet.py",
+      "sha256": "a72468c463b12a44898a26981b14e6f35eb60c0d1814566dd3e32fea85a3e890"
+    },
+    {
+      "path": ".agents/skills/game-playtest/SKILL.md",
+      "upstream_path": "plugins/game-studio/skills/game-playtest/SKILL.md",
+      "sha256": "413f2453c602678962fab62446144f2929fcd5b9239f209c7889cc592d2b5be8"
+    },
+    {
+      "path": ".agents/skills/game-playtest/agents/openai.yaml",
+      "upstream_path": "plugins/game-studio/skills/game-playtest/agents/openai.yaml",
+      "sha256": "40f1fa63786745e9127bab780e4db18fc463c940ea4d8d0e0f862eccd224e53e"
+    },
+    {
+      "path": ".agents/skills/game-studio/SKILL.md",
+      "upstream_path": "plugins/game-studio/skills/game-studio/SKILL.md",
+      "sha256": "87c32773f787b338064e3b7cf5e237a46b5c12e9ffe082927349ebb9584fd15b"
+    },
+    {
+      "path": ".agents/skills/game-studio/agents/openai.yaml",
+      "upstream_path": "plugins/game-studio/skills/game-studio/agents/openai.yaml",
+      "sha256": "b844d035f2fab4512842660aa7e1cb021f5ea2cdacaa24837c53569ac9d9f352"
+    },
+    {
+      "path": ".agents/skills/game-ui-frontend/SKILL.md",
+      "upstream_path": "plugins/game-studio/skills/game-ui-frontend/SKILL.md",
+      "sha256": "cd017fe0761207dcfd801f236490896cbf1cd6627ee267c801a19c7c780b7a01"
+    },
+    {
+      "path": ".agents/skills/game-ui-frontend/agents/openai.yaml",
+      "upstream_path": "plugins/game-studio/skills/game-ui-frontend/agents/openai.yaml",
+      "sha256": "f82611816d1a3cecee1344543c717aeb906eecbc95ee7f97a212eacb48023aa9"
+    },
+    {
+      "path": ".agents/skills/phaser-2d-game/SKILL.md",
+      "upstream_path": "plugins/game-studio/skills/phaser-2d-game/SKILL.md",
+      "sha256": "f740df62cb4c6c0f7f5457be4f860d9d163f4cd1df78326c5a61de03d9d7efb8"
+    },
+    {
+      "path": ".agents/skills/phaser-2d-game/agents/openai.yaml",
+      "upstream_path": "plugins/game-studio/skills/phaser-2d-game/agents/openai.yaml",
+      "sha256": "6492bc935c9ea1237dadbb3dc4129fb3b827aa632f54bc9b8e86634374e6737b"
+    },
+    {
+      "path": ".agents/skills/react-three-fiber-game/SKILL.md",
+      "upstream_path": "plugins/game-studio/skills/react-three-fiber-game/SKILL.md",
+      "sha256": "45e5aa86ff3a6a71d1f3f2ab6f0267ce4ca4d35d9e1883a483c16bc9b201db4d"
+    },
+    {
+      "path": ".agents/skills/react-three-fiber-game/agents/openai.yaml",
+      "upstream_path": "plugins/game-studio/skills/react-three-fiber-game/agents/openai.yaml",
+      "sha256": "1c97d5c1eded6d566350c62f62791b5c037faf2b52e4b5e5ea2efa084ede6899"
+    },
+    {
+      "path": ".agents/skills/sprite-pipeline/SKILL.md",
+      "upstream_path": "plugins/game-studio/skills/sprite-pipeline/SKILL.md",
+      "sha256": "eaaca5ef3faef575164e0775394980318b5561ba54fe7552dbe41971717cc7fc"
+    },
+    {
+      "path": ".agents/skills/sprite-pipeline/agents/openai.yaml",
+      "upstream_path": "plugins/game-studio/skills/sprite-pipeline/agents/openai.yaml",
+      "sha256": "e99afc9cc7b8514566fe7622cd83fcf2b447fc1443e764642e2f3c3de2181f80"
+    },
+    {
+      "path": ".agents/skills/three-webgl-game/SKILL.md",
+      "upstream_path": "plugins/game-studio/skills/three-webgl-game/SKILL.md",
+      "sha256": "0e7dabddb98442387c29a8c1269c12b69430addca8d47df0fa9f1ee2e7a3dd7f"
+    },
+    {
+      "path": ".agents/skills/three-webgl-game/agents/openai.yaml",
+      "upstream_path": "plugins/game-studio/skills/three-webgl-game/agents/openai.yaml",
+      "sha256": "e2f8d12441c70a9fa57a78160a12537bf987d5a0003f937bdc1f911bdc2a6998"
+    },
+    {
+      "path": ".agents/skills/web-3d-asset-pipeline/SKILL.md",
+      "upstream_path": "plugins/game-studio/skills/web-3d-asset-pipeline/SKILL.md",
+      "sha256": "22f39ea4eaabd9e9771a90957ed7f3a52c6837ee37b054962675c689ba8ef630"
+    },
+    {
+      "path": ".agents/skills/web-3d-asset-pipeline/agents/openai.yaml",
+      "upstream_path": "plugins/game-studio/skills/web-3d-asset-pipeline/agents/openai.yaml",
+      "sha256": "0865c13e734648451881e5b08ab0654272de316775bed6b9fd55ba8af101e43c"
+    },
+    {
+      "path": ".agents/skills/web-game-foundations/SKILL.md",
+      "upstream_path": "plugins/game-studio/skills/web-game-foundations/SKILL.md",
+      "sha256": "ef35c1954fa07d10673c1a5a7749656319494fd0675dd2be9671e2dd3cbd7e1b"
+    },
+    {
+      "path": ".agents/skills/web-game-foundations/agents/openai.yaml",
+      "upstream_path": "plugins/game-studio/skills/web-game-foundations/agents/openai.yaml",
+      "sha256": "199ebde0ec55d0bc60364a824098a11e53a9419fac98c9904033679a03f6b45c"
+    }
+  ]
+}

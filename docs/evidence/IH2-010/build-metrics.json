@@ -1,0 +1,45 @@
+{
+  "method": "Sum of gzip-compressed dist files including distributed runtime notices, Python gzip default level, mtime zero; not network capture.",
+  "node": "v26.7.0",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "architecture": "arm64",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 468,
+      "gzip_bytes": 315,
+      "sha256": "f19714185db0056b9ca17924e6135b67e17123e25a3b8cdf64bbf1eb38d831db"
+    },
+    {
+      "path": "licenses/eventemitter3-LICENSE.txt",
+      "bytes": 1082,
+      "gzip_bytes": 656,
+      "sha256": "3aecc12b1cb28832b5f65ab64291de96568c3f236a74d646281b4491f7bcadbf"
+    },
+    {
+      "path": "licenses/README.txt",
+      "bytes": 262,
+      "gzip_bytes": 207,
+      "sha256": "5afe252ab041dbd90d66231dabe18f6e00eef01d88bb98bc850c55ee4d299478"
+    },
+    {
+      "path": "licenses/phaser-LICENSE.txt",
+      "bytes": 1120,
+      "gzip_bytes": 681,
+      "sha256": "d59c20a9deb5dc240614b428dce5246ae561d15efeeebea0e069d73f0a78fbff"
+    },
+    {
+      "path": "assets/index-DHwuz8hp.css",
+      "bytes": 4887,
+      "gzip_bytes": 1651,
+      "sha256": "c7b06d463ae8538371e5a2967fdd1c03feceecf50ab35b89c87768d43d179d20"
+    },
+    {
+      "path": "assets/index-iagiSGBt.js",
+      "bytes": 1380582,
+      "gzip_bytes": 357509,
+      "sha256": "70a0982c11c54ed351e6def31c25988f5638f81563e77296b388e6795daff5c5"
+    }
+  ],
+  "total_gzip_bytes": 361019
+}

@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "environment.square",
+      "kind": "original-procedural",
+      "source": "src/phaser/WorldScene.ts",
+      "created": "2026-11-09",
+      "license": "project-original",
+      "notes": "32px tiles; warm original placeholder geometry"
+    },
+    {
+      "id": "environment.workshop",
+      "kind": "original-procedural",
+      "source": "src/phaser/WorldScene.ts",
+      "created": "2026-11-09",
+      "license": "project-original",
+      "notes": "Separate local interior; original placeholder furniture"
+    },
+    {
+      "id": "character.employee",
+      "kind": "original-procedural",
+      "source": "src/phaser/WorldScene.ts",
+      "created": "2026-11-09",
+      "license": "project-original",
+      "notes": "Original code-drawn silhouette, no photo or third-party likeness"
+    }
+  ],
+  "external_art": [],
+  "fonts": "OS-provided Georgia/Times New Roman/Courier New; no font files bundled"
+}

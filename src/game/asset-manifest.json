@@ -1,31 +1,208 @@
 {
-  "version": 1,
+  "version": 2,
+  "selected": "original-illustrated",
+  "tile_units": 32,
+  "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
-      "id": "environment.square",
-      "kind": "original-procedural",
-      "source": "src/phaser/WorldScene.ts",
-      "created": "2026-11-09",
-      "license": "project-original",
-      "notes": "32px tiles; warm original placeholder geometry"
+      "id": "bench",
+      "path": "art/original/bench.svg",
+      "kind": "original-svg"
     },
     {
-      "id": "environment.workshop",
-      "kind": "original-procedural",
-      "source": "src/phaser/WorldScene.ts",
-      "created": "2026-11-09",
-      "license": "project-original",
-      "notes": "Separate local interior; original placeholder furniture"
+      "id": "bridge-neglected",
+      "path": "art/original/bridge-neglected.svg",
+      "kind": "original-svg"
     },
     {
-      "id": "character.employee",
-      "kind": "original-procedural",
-      "source": "src/phaser/WorldScene.ts",
-      "created": "2026-11-09",
-      "license": "project-original",
-      "notes": "Original code-drawn silhouette, no photo or third-party likeness"
+      "id": "bridge-restored",
+      "path": "art/original/bridge-restored.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "cafe",
+      "path": "art/original/cafe.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "crates",
+      "path": "art/original/crates.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-east-0",
+      "path": "art/original/employee-east-0.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-east-1",
+      "path": "art/original/employee-east-1.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-east-2",
+      "path": "art/original/employee-east-2.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-east-3",
+      "path": "art/original/employee-east-3.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-east-4",
+      "path": "art/original/employee-east-4.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-east-5",
+      "path": "art/original/employee-east-5.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-east-6",
+      "path": "art/original/employee-east-6.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-north-0",
+      "path": "art/original/employee-north-0.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-north-1",
+      "path": "art/original/employee-north-1.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-north-2",
+      "path": "art/original/employee-north-2.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-north-3",
+      "path": "art/original/employee-north-3.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-north-4",
+      "path": "art/original/employee-north-4.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-north-5",
+      "path": "art/original/employee-north-5.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-north-6",
+      "path": "art/original/employee-north-6.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-south-0",
+      "path": "art/original/employee-south-0.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-south-1",
+      "path": "art/original/employee-south-1.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-south-2",
+      "path": "art/original/employee-south-2.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-south-3",
+      "path": "art/original/employee-south-3.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-south-4",
+      "path": "art/original/employee-south-4.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-south-5",
+      "path": "art/original/employee-south-5.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-south-6",
+      "path": "art/original/employee-south-6.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-west-0",
+      "path": "art/original/employee-west-0.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-west-1",
+      "path": "art/original/employee-west-1.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-west-2",
+      "path": "art/original/employee-west-2.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-west-3",
+      "path": "art/original/employee-west-3.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-west-4",
+      "path": "art/original/employee-west-4.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-west-5",
+      "path": "art/original/employee-west-5.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "employee-west-6",
+      "path": "art/original/employee-west-6.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "ground-square",
+      "path": "art/original/ground-square.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "ground-workshop",
+      "path": "art/original/ground-workshop.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-plot",
+      "path": "art/original/home-plot.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "shelf",
+      "path": "art/original/shelf.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "tree",
+      "path": "art/original/tree.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "workshop",
+      "path": "art/original/workshop.svg",
+      "kind": "original-svg"
     }
   ],
-  "external_art": [],
-  "fonts": "OS-provided Georgia/Times New Roman/Courier New; no font files bundled"
+  "comparison_only": [
+    "art/evaluation/kenney/tiny-town.png",
+    "art/evaluation/kenney/tiny-dungeon.png"
+  ],
+  "external_playable_art": []
 }

@@ -61,6 +61,9 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  await expect.poll(async()=>(await snapshot(page)).room).toBe('workshop');
  await expect(page.locator('#location')).toContainText('Your workshop');
  await page.screenshot({path:`${evidenceDir}/${shape.name}-workshop.png`});
+ await page.getByRole('button',{name:'Open field guide'}).click();
+ await expect(page.getByRole('button',{name:'Walk to your bench →'})).toBeVisible();
+ await page.keyboard.press('Escape');
  await page.reload();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
  expect((await snapshot(page)).room).toBe('workshop');
  await destination(page,'bench');await page.getByRole('button',{name:'Inspect Work bench'}).click();

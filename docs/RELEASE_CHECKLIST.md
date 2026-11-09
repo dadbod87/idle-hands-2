@@ -10,3 +10,8 @@
 - GitHub runner: Ubuntu 24.04, Node 24.22.2, bundled Chromium from pinned Playwright 1.56.1; local default uses Chrome. No runtime/deployment secrets.
 - Preserve current browser screenshots/metrics/traces/report and built client artifact for seven days; disclose synthetic data.
 - Verify remote private visibility/default main, merge/check hashes and current handoff. Source backup/CI is not a hosted beta.
+
+## Visual kit
+- Run 13 domain/art/provenance tests, eight actual-input/visual/reduced-motion flows, and keep exact asset/license fingerprints.
+- Review desktop/narrow/short screenshots, doubled DOM text, reachable 44px controls and optional guide focus/input lock. Preserve incomplete axe checks; do not claim canvas/full accessibility compliance.
+- Game page loads only original art; CC0 comparison media is confined to art study. No geometry, movement or door regression.

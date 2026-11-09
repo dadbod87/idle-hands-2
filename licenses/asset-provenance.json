@@ -1,0 +1,445 @@
+{
+  "schema_version": 1,
+  "selected_direction": "original illustrated company town",
+  "original": [
+    {
+      "id": "bench",
+      "path": "public/art/original/bench.svg",
+      "sha256": "b47a00f02175e4b2b8cb985fd42446d5fd8078b357f6e27d7d04eb6e70d5887e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "bridge-neglected",
+      "path": "public/art/original/bridge-neglected.svg",
+      "sha256": "d15df35c041dade7e549d96b7e65f4bcfd8c5d3a143453715bdfbab4b4176d3e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "bridge-restored",
+      "path": "public/art/original/bridge-restored.svg",
+      "sha256": "e18a216590a7a8b92541640f212889db8e2d6ced7de55084bccacb47e4085c95",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "cafe",
+      "path": "public/art/original/cafe.svg",
+      "sha256": "d62a75dfba1f0a12345174164ae845f885d18d4c7ca3341f2d33c29457e13bd2",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "crates",
+      "path": "public/art/original/crates.svg",
+      "sha256": "6cb24c73daa14c4f8ebc813bd54cda7bc4abf0209cc10d03275a2c8f243a4768",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-east-0",
+      "path": "public/art/original/employee-east-0.svg",
+      "sha256": "0cba5093c0e3ab1e2c91a9bcfce0f8721667d5c7df4415c2bb58279b554effb7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-east-1",
+      "path": "public/art/original/employee-east-1.svg",
+      "sha256": "dc9a4396ee5492f47d35f5f619c59b0251bf8693e831128c5f2ed22539ace8f7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-east-2",
+      "path": "public/art/original/employee-east-2.svg",
+      "sha256": "e0b5c7756fdea77e4c8af6eb4c20f50169eadd220b84fc12494d767ca85537e5",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-east-3",
+      "path": "public/art/original/employee-east-3.svg",
+      "sha256": "e0b5c7756fdea77e4c8af6eb4c20f50169eadd220b84fc12494d767ca85537e5",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-east-4",
+      "path": "public/art/original/employee-east-4.svg",
+      "sha256": "dc9a4396ee5492f47d35f5f619c59b0251bf8693e831128c5f2ed22539ace8f7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-east-5",
+      "path": "public/art/original/employee-east-5.svg",
+      "sha256": "010d3d20ab17771da79ef735051e1badd0f54daa9f17dcf2418f05b571fa00ec",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-east-6",
+      "path": "public/art/original/employee-east-6.svg",
+      "sha256": "010d3d20ab17771da79ef735051e1badd0f54daa9f17dcf2418f05b571fa00ec",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-north-0",
+      "path": "public/art/original/employee-north-0.svg",
+      "sha256": "22f955ac9d03d6b1bf08dfbd648f47d41391cdebb28c4cc8c74b3a6085b24cda",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-north-1",
+      "path": "public/art/original/employee-north-1.svg",
+      "sha256": "2be7a7befc79c388e7ffaf48eca115b18c52a5cd6f35a6f2650f19bcc8263c20",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-north-2",
+      "path": "public/art/original/employee-north-2.svg",
+      "sha256": "bd1d5d83aa2ce276922e4017830f82a00f3b9198b6ae9b472b6f522ca9ff4959",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-north-3",
+      "path": "public/art/original/employee-north-3.svg",
+      "sha256": "bd1d5d83aa2ce276922e4017830f82a00f3b9198b6ae9b472b6f522ca9ff4959",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-north-4",
+      "path": "public/art/original/employee-north-4.svg",
+      "sha256": "2be7a7befc79c388e7ffaf48eca115b18c52a5cd6f35a6f2650f19bcc8263c20",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-north-5",
+      "path": "public/art/original/employee-north-5.svg",
+      "sha256": "69b3a1b4edcd0ed2803f5c47600caa62639bcb5049ecc288f6d2353b85ace53e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-north-6",
+      "path": "public/art/original/employee-north-6.svg",
+      "sha256": "69b3a1b4edcd0ed2803f5c47600caa62639bcb5049ecc288f6d2353b85ace53e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-south-0",
+      "path": "public/art/original/employee-south-0.svg",
+      "sha256": "6df29fabfb13c838ff41f9db407a3e1463c8db25259bbc3d7ba7872de5ad4473",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-south-1",
+      "path": "public/art/original/employee-south-1.svg",
+      "sha256": "e0f8c1d7bb99cc164db84e938f1fd49e85ba01ec74dc155993872dfa16f8f2b5",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-south-2",
+      "path": "public/art/original/employee-south-2.svg",
+      "sha256": "4c6cc2c4969539d544e1a1e625f83077eb70486b6661e9e73c6eeb56b9ae837a",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-south-3",
+      "path": "public/art/original/employee-south-3.svg",
+      "sha256": "4c6cc2c4969539d544e1a1e625f83077eb70486b6661e9e73c6eeb56b9ae837a",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-south-4",
+      "path": "public/art/original/employee-south-4.svg",
+      "sha256": "e0f8c1d7bb99cc164db84e938f1fd49e85ba01ec74dc155993872dfa16f8f2b5",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-south-5",
+      "path": "public/art/original/employee-south-5.svg",
+      "sha256": "2d594f8c08c5d00c3ddd85e04ce2c416d37f90e12202b342539ec817c0fd77b1",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-south-6",
+      "path": "public/art/original/employee-south-6.svg",
+      "sha256": "2d594f8c08c5d00c3ddd85e04ce2c416d37f90e12202b342539ec817c0fd77b1",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-west-0",
+      "path": "public/art/original/employee-west-0.svg",
+      "sha256": "ff3587afc6478781bf247d1c5fb75859720d6c65ee2171ce31d77405ede8e674",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-west-1",
+      "path": "public/art/original/employee-west-1.svg",
+      "sha256": "66316b02d5bec1aad6f184fb3f22cb65b24fe62f259878fc26eb6f42e268ac03",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-west-2",
+      "path": "public/art/original/employee-west-2.svg",
+      "sha256": "fa13b81bc3fe9aa468121cf5c35c5b8c7fabe6eac745ccc75c132462f25ed860",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-west-3",
+      "path": "public/art/original/employee-west-3.svg",
+      "sha256": "fa13b81bc3fe9aa468121cf5c35c5b8c7fabe6eac745ccc75c132462f25ed860",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-west-4",
+      "path": "public/art/original/employee-west-4.svg",
+      "sha256": "66316b02d5bec1aad6f184fb3f22cb65b24fe62f259878fc26eb6f42e268ac03",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-west-5",
+      "path": "public/art/original/employee-west-5.svg",
+      "sha256": "4c3fcb4552ee58a0e90428044e16d75607b257148407dc5b7ff6c15f03c21193",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "employee-west-6",
+      "path": "public/art/original/employee-west-6.svg",
+      "sha256": "4c3fcb4552ee58a0e90428044e16d75607b257148407dc5b7ff6c15f03c21193",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "ground-square",
+      "path": "public/art/original/ground-square.svg",
+      "sha256": "86fc69c6a8ad95331c1f60f0e3f1abe298e60d58940430bd23024748fe8b6d04",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "ground-workshop",
+      "path": "public/art/original/ground-workshop.svg",
+      "sha256": "942000d2bffcd127c564f503b192b594b3380d89ea0f5f990ae4ba375f4880cd",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "home-plot",
+      "path": "public/art/original/home-plot.svg",
+      "sha256": "96fb2e269744f2659d4b29b67b57dd1f6ac5e2d6d1f28801e85a52d54eeb6083",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "shelf",
+      "path": "public/art/original/shelf.svg",
+      "sha256": "2a4d019673db4d2219a49ae702dac29518ff2a33df9aa1cb6e49d3772d3c23d8",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "tree",
+      "path": "public/art/original/tree.svg",
+      "sha256": "82c1db67d3a80e7f198f917842190d5d63fcaec99b19833cddba1728369ae57e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "workshop",
+      "path": "public/art/original/workshop.svg",
+      "sha256": "56408bed86630cc63b33c129cdb560575f61feb64ab5d5166c1f90bd3fa2c348",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-original-art.py",
+      "date": "2026-11-09",
+      "modifications": "Generated original vector illustration; no imported image source."
+    }
+  ],
+  "comparison": {
+    "observed_date": "2026-11-09",
+    "role": "evaluation-only; not loaded by playable game",
+    "creator": "Kenney",
+    "license": "CC0-1.0",
+    "credit": "Kenney (kenney.nl), optional credit retained",
+    "sources": [
+      {
+        "page": "https://kenney.nl/assets/tiny-town",
+        "version": "1.1",
+        "archive_sha256": "9768692dccff1d706408a5aedd6ca4f6cd1409506cbc84cb2f862919764be977"
+      },
+      {
+        "page": "https://kenney.nl/assets/tiny-dungeon",
+        "version": "1.0",
+        "archive_sha256": "c109438ab06f65fd80f9b2686a4cf9c7c11dc64444b47333ec71d602f8bb5fc7"
+      }
+    ],
+    "files": [
+      {
+        "source_archive_file": "Tilemap/tilemap_packed.png",
+        "imported_path": "public/art/evaluation/kenney/tiny-town.png",
+        "sha256": "3a54d99ecde790d4fdea207a3644cf130fc56fa838f1beb1507c185a95b8e902",
+        "modified": false
+      },
+      {
+        "source_archive_file": "License.txt",
+        "imported_path": "public/art/evaluation/kenney/tiny-town-LICENSE.txt",
+        "sha256": "c483c167cc3bdfe17c15f957ff847d409f64d81b410b28783636cf3b2b7814c5",
+        "modified": false
+      },
+      {
+        "source_archive_file": "Tilemap/tilemap_packed.png",
+        "imported_path": "public/art/evaluation/kenney/tiny-dungeon.png",
+        "sha256": "d24e60a41e4ac7a745c0304dfde121143688557f40215f23221c29cfe683825f",
+        "modified": false
+      },
+      {
+        "source_archive_file": "License.txt",
+        "imported_path": "public/art/evaluation/kenney/tiny-dungeon-LICENSE.txt",
+        "sha256": "9f574a2f1f636a3db8a0665ba90212f34e2b5e61ecb533d77c05237766374111",
+        "modified": false
+      }
+    ],
+    "acquisition": "Official public download via Continue without donating, included license inspected. Temporary signed download URLs not retained.",
+    "usage": "Unmodified sheets and included notices; CSS sprite crops composed into a comparison scene. Not used by playable runtime."
+  },
+  "cost": "No paid assets/fonts/API services.",
+  "font_policy": "System Georgia/Times New Roman/Courier New; no font files imported."
+}

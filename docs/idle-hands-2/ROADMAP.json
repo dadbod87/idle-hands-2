@@ -158,7 +158,7 @@
     {
       "id": "IH2-020",
       "title": "Choose and prove one coherent visual kit",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-015"
       ],
@@ -173,7 +173,16 @@
       "exclusions": [
         "No bulk city art, paid pack, account data or production release."
       ],
-      "evidence": []
+      "evidence": [
+        "docs/evidence/IH2-020/REPORT.md",
+        "docs/evidence/IH2-020/INDEPENDENT_REVIEW.md",
+        "docs/evidence/IH2-020/desktop-art-study.png",
+        "docs/evidence/IH2-020/narrow-text-200.png",
+        "docs/ART_DIRECTION.md",
+        "licenses/asset-provenance.json",
+        "tests/visual-kit.spec.ts",
+        "tests/art-kit.test.ts"
+      ]
     },
     {
       "id": "IH2-030",

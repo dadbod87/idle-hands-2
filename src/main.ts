@@ -3,6 +3,8 @@ import { Session } from './game/session.ts';
 import { worlds, type Stop } from './game/world.ts';
 import { WorldScene } from './phaser/WorldScene.ts';
 import './ui/style.css';
+import { renderStudy, guideContents } from './art/study.ts';
+if(new URLSearchParams(location.search).has('art-study')) { renderStudy(); } else {
 
 const saveKey = 'ih2:pilot-position:v1';
 let stored: unknown;
@@ -11,7 +13,7 @@ const session = new Session(stored);
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
 <main class="shell">
- <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">NEIGHBORHOOD PILOT<span>Local only · placeholder art</span></div></header>
+ <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">NEIGHBORHOOD STUDY<span>Local prototype · visual kit 01</span></div><button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
  <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
  <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite">A small beginning. Room for a much bigger story.</p></div><nav aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="interact" class="primary" disabled>Nothing nearby</button></nav></footer>
 </main>
@@ -39,6 +41,10 @@ panel.addEventListener('close', () => { if (session.locked) session.lock(false);
 panel.addEventListener('cancel', () => { session.lock(false); });
 function openPanel(heading: string) { session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }
+document.querySelector('#field-guide')!.addEventListener('click',()=>{
+  openPanel('Town field guide');body.innerHTML=guideContents(session.room==='workshop');
+  body.querySelector('#guide-workshop')!.addEventListener('click',()=>{closePanel();const stop=worlds[session.room].stops.find(s=>s.id==='workshop'||s.id==='bench');if(stop)session.walk(stop.point);feedback.textContent=session.room==='square'?'Walking to your workshop.':'Your bench is right here.';});
+});
 document.querySelector('#places')!.addEventListener('click', () => {
   openPanel('Places to go');
   body.append(paragraph('Pick a stop. Your employee will walk there; you can inspect it when you arrive.'));
@@ -92,7 +98,9 @@ Object.defineProperty(window, '__pilot', { value: Object.freeze({
   snapshot: () => session.snapshot(),
   metrics: () => {
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);
-    return { ready, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, phaser: Phaser.VERSION };
+    return { ready, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, phaser: Phaser.VERSION, visual:scene.visualState() };
   },
   screenPoint: (x: number, y: number) => { const c = scene.cameras.main; return { x: (x + .5) * 32 - c.scrollX, y: (y + .5) * 32 - c.scrollY }; }
 }), writable: false });
+
+}

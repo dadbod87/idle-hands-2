@@ -2,7 +2,7 @@
 
 Private source: [dadbod87/idle-hands-2](https://github.com/dadbod87/idle-hands-2). No hosted game/backend yet.
 
-A separate local prototype for a slower, persistent, cooperative company town. Humor, deep systems, teamwork and eventually personal home ownership/upgrades/decoration drive the design. Pilot feedback through IH2-014 is implemented locally, including continuous movement, door-click entry and doorway exit placement. Independent CI is established in bootstrap PR #1; next is IH2-020 visual kit after final checks/merge. No live accounts, currency, server or deployment.
+A separate local prototype for a slower, persistent, cooperative company town. Humor, deep systems, teamwork and eventually personal home ownership/upgrades/decoration drive the design. Pilot feedback through IH2-014 is implemented locally, including continuous movement, door-click entry and doorway exit placement. Independent CI is established. The original illustrated visual kit is implemented locally; /?art-study=1 compares the styles. The book button opens a field guide. Next is a phone-friendly workshop loop after visual-kit checks/merge. No live accounts, currency, server or deployment.
 
 ```sh
 npm ci --ignore-scripts

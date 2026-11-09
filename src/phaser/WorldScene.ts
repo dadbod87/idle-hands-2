@@ -1,73 +1,56 @@
 import Phaser from 'phaser';
 import { Session } from '../game/session.ts';
 import { TILE, worlds } from '../game/world.ts';
-const ink = 0x343b35;
+import { ORIGINAL_STATIC, FACINGS, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 export class WorldScene extends Phaser.Scene {
-  actor!: Phaser.GameObjects.Container;
+  actor!: Phaser.GameObjects.Image;
+  private facing: Facing = 'south';
+  private travelled = 0;
+  private frame = 0;
+  private occluders: {image:Phaser.GameObjects.Image;x:number;y:number;width:number;height:number}[] = [];
   private keys = new Set<string>();
   private room = '';
   private lastFrame = 0;
   frameSamples: number[] = [];
   onFrame?: () => void;
   constructor(public session: Session) { super('world'); }
+  preload() {
+    for (const key of ORIGINAL_STATIC) this.load.svg(key, `/art/original/${key}.svg`);
+    for (const facing of FACINGS) for (let frame=0;frame<7;frame++) this.load.svg(`employee-${facing}-${frame}`, `/art/original/employee-${facing}-${frame}.svg`);
+  }
   create() {
     this.room = this.session.room;
-    const w = worlds[this.session.room], g = this.add.graphics();
-    const rect = (x: number, y: number, width: number, height: number, fill: number, outline = false) => {
-      g.fillStyle(fill).fillRect(x, y, width, height);
-      if (outline) g.lineStyle(2, ink).strokeRect(x, y, width, height);
-    };
-    const cell = (x: number, y: number, width: number, height: number, fill: number, outline = false) => rect(x * TILE, y * TILE, width * TILE, height * TILE, fill, outline);
-    const label = (x: number, y: number, text: string, size = 13, background = '#343b35') => this.add.text(x * TILE, y * TILE, text, { fontFamily: 'monospace', fontSize: size, color: '#fff5dc', backgroundColor: background, padding: { x: 7, y: 5 }, align: 'center' }).setOrigin(.5);
-    for (let y = 0; y < w.height; y++) for (let x = 0; x < w.width; x++) cell(x, y, 1, 1, this.room === 'square' ? ((x + y) % 2 ? 0xa8b597 : 0xa3b090) : ((x + y) % 2 ? 0xe3cfac : 0xdfc9a3));
-    if (this.room === 'square') {
-      cell(14, 22, 23, 7, 0xded2b9); cell(23, 12, 3, 22, 0xded2b9);
-      cell(0, 10, 48, 2, 0x7ba5ad); // Not yet bridged: boundary stays blocked.
-      for (let x = 0; x < 48; x += 2) { cell(x, 10, 1, .12, 0x93b7bc); cell(x + .4, 11, 1, .08, 0x93b7bc); }
-      const building = (x: number, title: string, color: number, roof: number) => {
-        cell(x + .15, 16.3, 6, 6, 0x79836c); cell(x, 16, 6, 6, color, true);
-        cell(x - .2, 15.5, 6.4, 2, roof, true); cell(x + 2.5, 20, 1, 2, 0x596a60, true);
-        for (const wx of [x + .6, x + 4.2]) { cell(wx, 18.3, 1.2, 1.2, 0x8eafbd, true); cell(wx + .58, 18.3, .07, 1.2, 0xece3cb); }
-        label(x + 3, 18.1, title, 13);
-      };
-      building(17, 'WORKSHOP', 0xe9d7af, 0xb97760); building(28, 'ALMOST OPEN', 0xe5d9b7, 0x637d77);
-      cell(27, 30, 8, 5, 0x8f9e7b, true);
-      for (let x = 27; x <= 35; x++) { cell(x, 30, .12, 5, 0xf4e9ca); cell(x, 30, .26, .26, 0xf4e9ca); }
-      cell(27, 30.8, 8, .1, 0xf4e9ca); cell(27, 34, 8, .1, 0xf4e9ca);
-      label(31, 31.4, 'A PLACE OF YOUR OWN', 13); label(31, 32.6, 'Housing · planned', 11, '#59664c');
-      label(24.5, 13.2, 'BRIDGE COMMITTEE', 12); label(24.5, 14, 'Please form a queue.', 11, '#69775f');
-      for (const [x, y] of [[17, 26], [34, 26], [14, 17], [37, 19], [13, 30], [37, 33]]) {
-        cell(x + .8, y + .8, .4, 1.2, 0x8c7357);
-        g.fillStyle(0x8b9d76).fillEllipse((x + 1) * TILE, (y + .5) * TILE, 65, 49);
-        g.lineStyle(2, ink).strokeEllipse((x + 1) * TILE, (y + .5) * TILE, 65, 49);
-        g.fillStyle(0xb3bf8d).fillEllipse((x + .65) * TILE, (y + .2) * TILE, 25, 22);
+    this.occluders = [];
+    this.frame = 0; this.facing = 'south'; this.travelled = 0;
+    const w = worlds[this.session.room];
+    const image=(key:string,x:number,y:number,depth:number)=>this.add.image(x,y,key).setOrigin(0).setDepth(depth);
+    image(`ground-${this.room}`,0,0,-1000);
+    const label=(x:number,y:number,value:string)=>this.add.text(x*TILE,y*TILE,value,{fontFamily:'Georgia,serif',fontSize:13,color:'#343c36',backgroundColor:'#f3e6c5',padding:{x:9,y:5}}).setOrigin(.5).setDepth(y*TILE);
+    if(this.room==='square') {
+      for(const [key,x] of [['workshop',17],['cafe',28]] as const){
+        const building=image(key,x*TILE-8,14.5*TILE,22*TILE);
+        this.occluders.push({image:building,x:x*TILE-8,y:22*TILE,width:208,height:180});
       }
-      label(24.5, 27.9, 'THE TOWN SQUARE', 13); label(24.5, 28.7, 'Under new mismanagement.', 11, '#69775f');
-      // Paving details stay quiet so interactables read first.
-      for (let x = 19; x < 34; x += 3) cell(x, 24.5, .45, .05, 0xc6b9a2);
+      image('home-plot',27*TILE-8,30*TILE-8,35*TILE);
+      image('bridge-neglected',23*TILE,9.55*TILE,12.7*TILE);
+      label(24.5,13.7,'!  Bridge committee');
+      label(24.5,28.3,'The town square · under new mismanagement');
+      for(const [x,y] of [[17,26],[34,26],[14,17],[37,19],[13,30],[37,33]]){
+        const footY=(y+2)*TILE+4,tree=this.add.image((x+1)*TILE,footY,'tree').setOrigin(.5,1).setDepth(footY);
+        this.occluders.push({image:tree,x:(x+1)*TILE-46,y:footY,width:92,height:85});
+      }
     } else {
-      cell(1, 1, 16, 1.5, 0x748775, true); label(9, 1.8, 'YOUR WORKSHOP', 17);
-      cell(3, 3, 5, 2, 0xa57d57, true); cell(3, 3, 5, .3, 0xdbc49c, true);
-      cell(3.3, 3.4, 1, 1.2, 0x627f7b, true); cell(6, 3.4, .8, .6, 0xe9d8ad, true);
-      label(5.5, 3.8, 'BENCH', 11);
-      cell(11, 3, 4, 3, 0x8c9d82, true);
-      for (let y = 3; y < 6; y++) cell(11, y + .75, 4, .15, 0x6c7e66);
-      cell(3, 8, 2, 2, 0xb78361, true); label(4, 8.8, 'BOXES', 10);
-      cell(8, 13, 3, 2, 0x8b755a, true); label(9.5, 14, 'SQUARE ↓', 11);
-      label(9, 7.4, 'Great things take time.', 14, '#6a795e'); label(9, 8.3, 'This bench is extremely optimistic.', 11, '#6a795e');
+      image('bench',3*TILE,3*TILE,5*TILE).setDisplaySize(5*TILE,3*TILE);
+      image('shelf',11*TILE,3*TILE,6*TILE);
+      image('crates',3*TILE,8*TILE,10*TILE);
+      label(9,1.8,'Your workshop');
+      label(9,7.6,'Great things take time.');
+      label(9,8.5,'This bench is extremely optimistic.');
+      this.add.rectangle(9.5*TILE,14*TILE,3*TILE,2*TILE,0x8c7757).setStrokeStyle(2,0x343c36).setDepth(0);
+      label(9.5,14,'Square ↓');
     }
-    const figure = this.add.graphics();
-    figure.fillStyle(0x333c32, .2).fillEllipse(0, 8, 28, 10);
-    figure.fillStyle(0x40484a).fillRect(-8, -9, 6, 15).fillRect(2, -9, 6, 15);
-    figure.fillStyle(0x547c78).fillRoundedRect(-12, -29, 24, 23, 3);
-    figure.lineStyle(2, ink).strokeRoundedRect(-12, -29, 24, 23, 3);
-    figure.fillStyle(0xead2a8).fillRoundedRect(-11, -49, 22, 23, 3);
-    figure.lineStyle(2, ink).strokeRoundedRect(-11, -49, 22, 23, 3);
-    figure.fillStyle(ink).fillRect(-6, -40, 3, 3).fillRect(4, -40, 3, 3);
-    figure.lineStyle(1.5, ink).lineBetween(-4, -32, 4, -32);
-    figure.fillStyle(0xe5bd67).fillCircle(5, -19, 3);
-    this.actor = this.add.container(0, 0, [figure]).setDepth(100);
-    this.cameras.main.setBackgroundColor(this.room === 'square' ? '#a3b090' : '#d2bd98');
+    this.actor=this.add.image(0,0,'employee-south-0').setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale);
+    this.cameras.main.setBackgroundColor(this.room === 'square' ? '#aebc92' : '#c5b28d');
     this.cameras.main.setBounds(0, 0, w.width * TILE, w.height * TILE);
     this.cameras.main.startFollow(this.actor, true, 1, 1);
     const onDown = (e: KeyboardEvent) => {
@@ -86,6 +69,7 @@ export class WorldScene extends Phaser.Scene {
     });
     this.events.once('shutdown', () => { document.removeEventListener('keydown', onDown); document.removeEventListener('keyup', onUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear); });
   }
+  visualState(){return {facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale};}
   update(time: number, delta: number) {
     if (this.room !== this.session.room) { this.scene.restart(); return; }
     const pressed = (...keys: string[]) => keys.some(key => this.keys.has(key));
@@ -94,8 +78,18 @@ export class WorldScene extends Phaser.Scene {
       y: Number(pressed('ArrowDown', 's')) - Number(pressed('ArrowUp', 'w'))
     };
     if (this.session.locked) this.keys.clear();
+    const before={...this.session.position};
     this.session.tick(delta, direction);
-    this.actor.setPosition((this.session.position.x + .5) * TILE, (this.session.position.y + .5) * TILE);
+    const dx=this.session.position.x-before.x,dy=this.session.position.y-before.y;
+    const moving=Math.hypot(dx,dy)>.00001;
+    if(moving)this.travelled+=Math.hypot(dx,dy)*TILE;
+    this.facing=facingFor(dx,dy,this.facing);
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.frame=walkFrame(this.travelled,moving,reduced);
+    this.actor.setTexture(`employee-${this.facing}-${this.frame}`);
+    const x=(this.session.position.x+.5)*TILE,y=(this.session.position.y+.5)*TILE;
+    this.actor.setPosition(x,y).setDepth(y);
+    for(const item of this.occluders){const hidden=x>item.x&&x<item.x+item.width&&y<item.y&&y>item.y-item.height;item.image.setAlpha(hidden?.55:1);}
     if (this.lastFrame && !document.hidden) { this.frameSamples.push(time - this.lastFrame); if (this.frameSamples.length > 600) this.frameSamples.shift(); }
     this.lastFrame = time;
     this.onFrame?.();

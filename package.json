@@ -10,7 +10,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "node --experimental-strip-types --test tests/domain.test.ts",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
     "test:browser": "playwright test",
     "check:plan": "python3 tools/idle-hands-2.py check && python3 tests/idle-hands-2-tracker.test.py"
   },
@@ -18,8 +18,9 @@
     "phaser": "4.2.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.56.1",
     "typescript": "7.0.2",
-    "vite": "8.3.7",
-    "@playwright/test": "1.56.1"
+    "vite": "8.3.7"
   }
 }

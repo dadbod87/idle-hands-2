@@ -64,3 +64,17 @@ test('wall sliding stays outside obstacles and manual steering interrupts a poin
  s.enter('square');s.walk({x:30,y:25});s.tick(20);const prior={...s.position};s.tick(20,{x:0,y:1});
  assert.equal(s.position.x,prior.x);assert.ok(s.position.y>prior.y);s.tick(20);assert.equal(s.snapshot().walking,false);
 });
+
+test('door click queues one arrival, walks into range and cancels on steering/menu/new target', () => {
+ const doorPoint={x:19.5,y:20.5};
+ const s=new Session();assert.equal(s.point(doorPoint),true);assert.equal(s.takeArrival(),undefined);
+ let arrival;
+ for(let i=0;i<200&&!arrival;i++){s.tick(16);arrival=s.takeArrival();}
+ assert.equal(arrival?.id,'workshop');assert.ok(Math.hypot(s.position.x-20,s.position.y-22)<=1.25);
+ assert.equal(s.takeArrival(),undefined); // One-shot intent, never an automatic room loop.
+ for(const cancel of [(s:Session)=>s.tick(16,{x:1,y:0}),(s:Session)=>{s.lock(true);s.lock(false);},(s:Session)=>s.walk({x:24,y:25})]){
+  const c=new Session();c.point(doorPoint);cancel(c);c.position={x:20,y:22};assert.equal(c.takeArrival(),undefined);
+ }
+ const noIntent=new Session({version:1,room:'square',position:{x:20,y:22}});assert.equal(noIntent.takeArrival(),undefined);
+ noIntent.lock(true);assert.equal(noIntent.point(doorPoint),false);
+});

@@ -82,7 +82,7 @@ export class WorldScene extends Phaser.Scene {
     this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
       const pos = this.cameras.main.getWorldPoint(p.x, p.y);
       const to = { x: pos.x / TILE - .5, y: pos.y / TILE - .5 };
-      this.session.walk(to);
+      this.session.point(to);
     });
     this.events.once('shutdown', () => { document.removeEventListener('keydown', onDown); document.removeEventListener('keyup', onUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear); });
   }

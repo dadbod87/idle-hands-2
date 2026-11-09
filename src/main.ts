@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { Session } from './game/session.ts';
-import { worlds } from './game/world.ts';
+import { worlds, type Stop } from './game/world.ts';
 import { WorldScene } from './phaser/WorldScene.ts';
 import './ui/style.css';
 
@@ -49,16 +49,18 @@ document.querySelector('#places')!.addEventListener('click', () => {
     body.append(button);
   }
 });
-function interact() {
-  if (session.locked) return;
-  const stop = session.nearby();
-  if (!stop) return;
+function activate(stop: Stop) {
   if (stop.transition) {
     session.enter(stop.transition); save(); focusWorld(); feedback.textContent = stop.transition === 'workshop' ? 'Your workshop. A place to make things, eventually.' : 'Back in the square. The committee has made no measurable progress.';
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
     const note = paragraph('Prototype note: this is a local interaction test. No purchases, resources or shared progress are implemented.'); note.className = 'disclosure'; body.append(note);
   }
+}
+function interact() {
+  if (session.locked) return;
+  const stop = session.nearby();
+  if (stop) activate(stop);
 }
 interactButton.addEventListener('click', interact);
 document.addEventListener('keydown', e => {
@@ -71,6 +73,8 @@ scene.onFrame = () => {
     ready = true; document.querySelector('#boot')?.remove();
     const canvas = document.querySelector('canvas')!; canvas.tabIndex = 0; canvas.setAttribute('aria-label', 'Walkable neighborhood. Use Places for named destinations.'); canvas.setAttribute('aria-describedby', 'instructions'); focusWorld();
   }
+  const arrival = session.takeArrival();
+  if (arrival) activate(arrival);
   const stop = session.nearby();
   const state = session.room + ':' + (stop?.id ?? '');
   if (state !== lastContext) {

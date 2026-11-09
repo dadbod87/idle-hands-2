@@ -1,5 +1,7 @@
 # History
 
+2026-11-09 — IH2-013: click/tap workshop and exit doors to walk into range and enter automatically. One-shot intent cancels on steering/new target/menu/stop/room change; existing E/HUD/Places controls retained. Nine domain tests and four viewport browser walkthroughs pass; served build hashes verified. User accepted natural movement; future character animation/art polish recorded. Local-only, no existing-game change.
+
 2026-11-09 — IH2-012: replaced grid-step movement with continuous steering, normalized diagonals, immediate release, no stop/menu/save snap, fractional pointer endpoints and line-of-sight path smoothing with collision/wall sliding. 8 domain and 4 full browser walkthroughs pass; evidence stored separately from the original pilot. Recorded quests/skills/gathering/group restoration/NPC service/rare décor direction with staged implementation boundaries. Source remains local-only; next private GitHub/CI checkpoint.
 
 2026-11-09 — IH2-010 local engine pilot complete: original procedural square/workshop/employee, pure movement/collision/session modules, DOM destination/context UI, synchronous modal unlock, room/position persistence and four viewport actual-input tests. Dependency/provenance/notices and source continuity preserved. Slower pacing/housing/provider requirements added; new IH2-015 private GitHub/CI checkpoint precedes the visual kit. No server, external service, account mutation or public deployment. See pilot report and dated handoff.

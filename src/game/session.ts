@@ -8,6 +8,7 @@ export class Session {
   path: Point[] = [];
   locked = false;
   private moving = false;
+  private pendingDoor: string | null = null;
   constructor(saved?: unknown) {
     if (!saved || typeof saved !== 'object') return;
     const s = saved as Partial<SavedPosition>;
@@ -15,12 +16,30 @@ export class Session {
       this.room = s.room; this.position = { ...s.position };
     }
   }
-  stop(): void { this.path = []; this.moving = false; }
+  stop(): void { this.path = []; this.moving = false; this.pendingDoor = null; }
   lock(value: boolean): void { this.locked = value; this.stop(); }
   walk(to: Point): boolean {
     if (this.locked) return false;
     this.stop(); this.path = routeTo(this.room, this.position, to);
     return this.path.length > 0;
+  }
+  point(to: Point): boolean {
+    if (this.locked) return false;
+    const door = worlds[this.room].stops.find(stop => {
+      if (!stop.transition || !stop.doorArea) return false;
+      const [x, y, width, height] = stop.doorArea;
+      return to.x + .5 >= x && to.x + .5 <= x + width && to.y + .5 >= y && to.y + .5 <= y + height;
+    });
+    const accepted = this.walk(door?.point ?? to);
+    if (accepted && door) this.pendingDoor = door.id;
+    return accepted;
+  }
+  takeArrival(): Stop | undefined {
+    if (this.locked || !this.pendingDoor) return;
+    const door = worlds[this.room].stops.find(stop => stop.id === this.pendingDoor && stop.transition);
+    if (!door || Math.hypot(this.position.x - door.point.x, this.position.y - door.point.y) > 1.25) return;
+    this.stop();
+    return door;
   }
   private move(dx: number, dy: number): void {
     const steps = Math.max(1, Math.ceil(Math.hypot(dx, dy) / .1));
@@ -39,7 +58,7 @@ export class Session {
     const amount = Math.min(Math.max(delta, 0), 50) / 1000 * WALK_SPEED;
     const before = { ...this.position };
     if (direction && (direction.x || direction.y)) {
-      this.path = [];
+      this.path = []; this.pendingDoor = null;
       const length = Math.hypot(direction.x, direction.y);
       this.move(direction.x / length * amount, direction.y / length * amount);
     } else {

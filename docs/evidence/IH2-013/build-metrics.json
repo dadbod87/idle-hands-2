@@ -1,0 +1,42 @@
+{
+  "method": "Summed Python gzip default-level per dist file; not a measured network transfer. Served loopback files match every SHA256.",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 468,
+      "gzip_bytes": 316,
+      "sha256": "c80d2c25c738b7670b30f6f06d5f54d9f7ff9583efbec040e90a93db62b785a2"
+    },
+    {
+      "path": "licenses/eventemitter3-LICENSE.txt",
+      "bytes": 1082,
+      "gzip_bytes": 656,
+      "sha256": "3aecc12b1cb28832b5f65ab64291de96568c3f236a74d646281b4491f7bcadbf"
+    },
+    {
+      "path": "licenses/README.txt",
+      "bytes": 262,
+      "gzip_bytes": 207,
+      "sha256": "5afe252ab041dbd90d66231dabe18f6e00eef01d88bb98bc850c55ee4d299478"
+    },
+    {
+      "path": "licenses/phaser-LICENSE.txt",
+      "bytes": 1120,
+      "gzip_bytes": 681,
+      "sha256": "d59c20a9deb5dc240614b428dce5246ae561d15efeeebea0e069d73f0a78fbff"
+    },
+    {
+      "path": "assets/index-BmGy7VUq.js",
+      "bytes": 1382329,
+      "gzip_bytes": 358070,
+      "sha256": "cedad07b5112fe9fe00d2f29682dba4e2670eda3533cb1bf6ea50b7ef9d1a7a1"
+    },
+    {
+      "path": "assets/index-DHwuz8hp.css",
+      "bytes": 4887,
+      "gzip_bytes": 1651,
+      "sha256": "c7b06d463ae8538371e5a2967fdd1c03feceecf50ab35b89c87768d43d179d20"
+    }
+  ],
+  "total_gzip_bytes": 361581
+}

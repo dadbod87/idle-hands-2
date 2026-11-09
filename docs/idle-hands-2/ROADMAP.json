@@ -84,11 +84,36 @@
       ]
     },
     {
+      "id": "IH2-013",
+      "title": "Click doors to approach and enter",
+      "status": "done",
+      "depends_on": [
+        "IH2-012"
+      ],
+      "goal": "Direct door clicks/taps approach and activate a transition automatically once in range.",
+      "acceptance": [
+        "Click the workshop door from outside interaction range; actor walks around obstacles and enters automatically, with no HUD Enter click. Apply the same interaction to the exit door.",
+        "Keep keyboard/HUD/destination navigation alternatives; entry is one-shot, only from explicit door intent and cancelled by steering, another target, menu/stop or room change.",
+        "Run domain tests and actual pointer/touch browser walkthroughs on desktop/phone/narrow/short; preserve movement, collision, save/reload and input locks.",
+        "Document user acceptance of natural movement and future animation/art polish, update source handoff/evidence, keep local-only/no 1.0 changes."
+      ],
+      "exclusions": [
+        "No graphics redesign, backend, accounts, economy, remote/cloud resources or current-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-013/REPORT.md",
+        "docs/evidence/IH2-013/phone-workshop.png",
+        "docs/evidence/IH2-013/build-metrics.json",
+        "tests/domain.test.ts",
+        "tests/pilot.spec.ts"
+      ]
+    },
+    {
       "id": "IH2-015",
       "title": "Private GitHub source and sequel CI checkpoint",
       "status": "queued",
       "depends_on": [
-        "IH2-012"
+        "IH2-013"
       ],
       "goal": "Make the local sequel source durable and resumable through GitHub before substantial art/content work.",
       "acceptance": [

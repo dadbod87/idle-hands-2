@@ -1,6 +1,6 @@
 # Idle Hands 2 — neighborhood pilot
 
-A separate local prototype for a slower, persistent, cooperative company town. Humor, deep systems, teamwork and eventually personal home ownership/upgrades/decoration drive the design. IH2-010 pilot and IH2-012 continuous-movement feedback complete locally; next IH2-015 private GitHub/CI checkpoint. No live accounts, currency, server or deployment.
+A separate local prototype for a slower, persistent, cooperative company town. Humor, deep systems, teamwork and eventually personal home ownership/upgrades/decoration drive the design. IH2-010 pilot, IH2-012 continuous movement and IH2-013 click-to-enter doors complete locally; next IH2-015 private GitHub/CI checkpoint. No live accounts, currency, server or deployment.
 
 ```sh
 npm ci --ignore-scripts

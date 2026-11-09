@@ -1,0 +1,11 @@
+# IH2-013 — click doors to approach and enter
+
+2026-11-09. Complete locally. Clicking/tapping the workshop door now selects its approach point, walks around obstacles and activates the transition once within the existing interaction radius. The interior exit uses the same behavior. Arrival intent is one-shot; manual steering, a new floor/destination target, menus, stop/blur and room changes cancel it. Merely standing/walking near a doorway or reloading there does not enter without explicit intent. Door target areas are authored alongside transition metadata; the workshop target includes a small touch margin around the visible door.
+
+Existing Places walking, E/Enter and HUD interaction remain available. Activation reuses the original transition/save/feedback path. No movement/economy/backend/graphics redesign or 1.0 changes.
+
+Checks: nine domain tests pass (including arrival distance/one-shot/cancellation/no incidental entry), strict TypeScript/Vite build passes, four actual-input browser walkthroughs pass (1.5m). Each of desktop 1440×900, phone 390×844, narrow 360×640 and short 844×390 clicks/taps the workshop door from outside interaction range and enters without the Enter button, then uses the exit-door target; E and HUD alternatives also remain tested. Previous continuous movement, fractional pointer endpoint, collision, menu lock, save/reload, layout and resize checks remain. No browser console/page errors or attempted external HTTP origins. All data is local synthetic state; no real accounts or backend interception.
+
+New screenshots/metrics are separate from IH2-010/012 evidence. Phone workshop screenshot inspected; same placeholder presentation, no blocking control issue observed. Real hardware, cross-browser and complete accessibility testing remain pending. Short local frame metrics are not low-end-device proof. Built asset/license hashes match the loopback preview (build-metrics.json); refresh http://127.0.0.1:4175/ to load the change.
+
+Tracker/ten tracker tests, 40 pinned skill hashes, documentation links and diff checks pass at closeout. Natural movement was accepted by the user before this request; animation/graphic polish remains future visual-kit work. Next task stays IH2-015 private GitHub/CI. Source is local-only, no new cloud resource or deployment.

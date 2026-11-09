@@ -1,0 +1,9 @@
+# IH2-015 closeout — 2026-11-09
+
+Canonical private source: https://github.com/dadbod87/idle-hands-2, default main. Bootstrap PR #1, branch chore/private-github-ci. Full prototype/feedback history backed up. Read live PR for final candidate/check/merge state, then fetch current main; do not resume an old local pilot branch. Initial verified code/config d58ebb0 passed both jobs in run 42709538834; final closeout commit requires its own success before merge. CI results/artifact links and limitations: docs/evidence/IH2-015/REPORT.md and docs/CI_SETUP.md.
+
+Workflow uses exact Node 24.22.2/Ubuntu 24.04, locked dependencies, bundled Playwright Chromium and full-SHA official actions; ten domain/ten tracker/four viewport browser checks, strict build, integrity and evidence collection. Initial desktop renderer timing issue documented and bounded test allowance fixed without skipping assertions. Local portability walkthrough passes. Connected app workflow write succeeded; CLI repo scope remains without workflow. Branch protection rejected by GitHub as paid private feature; manual exact-head green-check gating mandatory, no upgrade/public repository chosen.
+
+The exit fix (IH2-014) is included: transitions return directly outside the door and save that position without reentry. No hosted sequel/backend/auth/economy or original-game change. Source/CI is not a launch. Original 1.0 bridge PR points here and has independent regression/release verification.
+
+Next IH2-020: compare representative original illustration vs coherent licensed CC0 sample, select final kit for phone readability, establish character/animation/camera/tile/material conventions and complete provenance. Accepted continuous movement/door behavior stays intact. Review the source's DECISIONS/EXPERIENCE/LIVING_TOWN before art; no paid assets or broad system/content expansion.

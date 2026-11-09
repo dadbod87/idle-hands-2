@@ -135,7 +135,7 @@
     {
       "id": "IH2-015",
       "title": "Private GitHub source and sequel CI checkpoint",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-014"
       ],
@@ -148,7 +148,12 @@
       "exclusions": [
         "No game hosting, real accounts, live backend, public repository or paid service."
       ],
-      "evidence": []
+      "evidence": [
+        "docs/evidence/IH2-015/REPORT.md",
+        "docs/evidence/IH2-015/verification.json",
+        "docs/CI_SETUP.md",
+        ".github/workflows/sequel-ci.yml"
+      ]
     },
     {
       "id": "IH2-020",

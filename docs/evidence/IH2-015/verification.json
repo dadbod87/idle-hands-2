@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-09",
+  "repository": "dadbod87/idle-hands-2",
+  "visibility": "private",
+  "default_branch": "main",
+  "initial_seed": "af7d9dd",
+  "bootstrap_pr": "https://github.com/dadbod87/idle-hands-2/pull/1",
+  "verified_candidate": "d58ebb0f003f58af66ca6364cc1131e2d0376d63",
+  "verified_run": 42709538834,
+  "jobs": {
+    "domain-build-plan": "success",
+    "browser-playtest": "success"
+  },
+  "final_documentation_candidate": "must pass before merge; see live PR closeout",
+  "branch_protection": "GitHub HTTP 403 requires paid upgrade; manual gating only",
+  "hosted_game": false,
+  "runtime_secrets": false,
+  "artifacts_retention_days": 7
+}

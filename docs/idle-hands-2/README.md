@@ -1,6 +1,6 @@
 # Idle Hands 2.0 — planning and build home
 
-Status: **local engine pilot complete; private GitHub/CI checkpoint next** (2026-11-09). Working title. Separate game; local Phaser pilot exists, with no hosted service, backend/account connection or asset purchase. Current game remains build 194.
+Status: **private source/CI established; visual kit next** (2026-11-09). Working title. Separate game; local Phaser pilot exists, with no hosted service, backend/account connection or asset purchase. Current game remains build 194.
 
 Nick has delegated routine design and technical choices, asked for free assets and a system that can progress one prompt at a time. The agent selects reasonable defaults, tests them and records decisions. No large upfront questionnaire is required.
 
@@ -10,7 +10,7 @@ Nick has delegated routine design and technical choices, asked for free assets a
 2. Read [build protocol](BUILD_SYSTEM.md), [decision log](DECISIONS.md), [first-session brief](EXPERIENCE_BRIEF.md) and [free-assets policy](FREE_ASSETS.md).
 3. Run `python3 tools/idle-hands-2.py status`, `check` and `prompt` from the repository root. Say **“Continue Idle Hands 2.0”** to work on the next ready task. This is an on-demand workflow, not unattended background execution.
 
-The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/dependencies/acceptance/evidence. The script is read-only and validates the records; an agent must inspect the actual evidence and update them honestly. A fresh session must inspect the current local source, handoff and any newly added remote before acting. No remote currently exists for this sequel repository.
+The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/dependencies/acceptance/evidence. The script is read-only and validates the records; an agent must inspect the actual evidence and update them honestly. A fresh session must inspect the current local source, handoff and any newly added remote before acting. Canonical private remote is https://github.com/dadbod87/idle-hands-2, main; fetch current source/PR checks before work.
 
 - [Living-town quests, skills and restoration design](LIVING_TOWN_SYSTEMS.md)
 
@@ -45,4 +45,4 @@ These are dependency gates, not promised dates. The task file contains full acce
 - [Installed development toolkit](../DEVELOPMENT_TOOLKIT.md)
 - Current game: [state](../CURRENT_STATE.md), [art direction](../ART_DIRECTION.md), [history](../CHANGELOG.md)
 
-Root README, AGENTS and CURRENT_STATE point here. Direct user decisions and agent defaults are distinguished in DECISIONS. Keep dated closeouts, exact check/artifact evidence, discovered follow-ups and a next task. When implementation moves to the sequel repository, copy this system there, repair links and leave the authoritative pointer here. Never rely on this chat as the only record.
+Root README, AGENTS and CURRENT_STATE point here. Direct user decisions and agent defaults are distinguished in DECISIONS. Keep dated closeouts, exact check/artifact evidence, discovered follow-ups and a next task. Implementation/planning now lives in this private sequel repository; the original game keeps a discovery pointer. Keep source and handoff authoritative here. Never rely on this chat as the only record.

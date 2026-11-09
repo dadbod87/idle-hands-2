@@ -2,7 +2,7 @@
 
 Private source: [dadbod87/idle-hands-2](https://github.com/dadbod87/idle-hands-2). No hosted game/backend yet.
 
-A separate local prototype for a slower, persistent, cooperative company town. Humor, deep systems, teamwork and eventually personal home ownership/upgrades/decoration drive the design. Pilot feedback through IH2-014 is implemented locally, including continuous movement, door-click entry and doorway exit placement. IH2-015 private GitHub/CI is being established. No live accounts, currency, server or deployment.
+A separate local prototype for a slower, persistent, cooperative company town. Humor, deep systems, teamwork and eventually personal home ownership/upgrades/decoration drive the design. Pilot feedback through IH2-014 is implemented locally, including continuous movement, door-click entry and doorway exit placement. Independent CI is established in bootstrap PR #1; next is IH2-020 visual kit after final checks/merge. No live accounts, currency, server or deployment.
 
 ```sh
 npm ci --ignore-scripts
@@ -15,4 +15,4 @@ Browser runs write current screenshots/metrics to ignored `test-results/browser/
 
 Run `npm run test`, `npm run build`, `npm run test:browser`, `npm run check:plan`. [Planning home](docs/idle-hands-2/README.md), [current source state](docs/CURRENT_STATE.md), [latest handoff](docs/idle-hands-2/CURRENT_SESSION.md).
 
-All content is original code-drawn placeholder art; the final visual kit is a later task. External dependencies are exact-pinned; see licenses. This directory is the sequel source authority. Existing Idle Hands remains separate at https://idlehands.thepatrongrp.com/.
+All content is original code-drawn placeholder art; the final visual kit is a later task. External dependencies are exact-pinned; see licenses. The private GitHub repository is the sequel source authority; fetch main and current handoff before work. Existing Idle Hands remains separate at https://idlehands.thepatrongrp.com/.

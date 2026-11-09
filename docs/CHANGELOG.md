@@ -1,5 +1,7 @@
 # History
 
+2026-11-09 — IH2-015: private GitHub source/history and independent pinned CI. Exact Node 24.22.2/Ubuntu 24.04, locked install, build/domain/planning/integrity and four bundled-Chromium viewport flows; seven-day build/browser artifacts. Current output moved to ignored test-results/browser. Desktop software-renderer whole-flow timing adjusted with all assertions retained; verified successful code/config run 42709538834. Private branch protection requires a paid upgrade and remains unavailable; manual checks required. No hosted sequel or 1.0 change. Final closeout candidate/check/merge recorded in PR #1.
+
 2026-11-09 — IH2-014: authored collision-safe door arrivals; exiting returns outside the workshop door and saves the position. Ten domain/four viewport browser checks plus targeted exit captures pass. User authorized continuing to private GitHub/CI after the fix.
 
 2026-11-09 — IH2-013: click/tap workshop and exit doors to walk into range and enter automatically. One-shot intent cancels on steering/new target/menu/stop/room change; existing E/HUD/Places controls retained. Nine domain tests and four viewport browser walkthroughs pass; served build hashes verified. User accepted natural movement; future character animation/art polish recorded. Local-only, no existing-game change.

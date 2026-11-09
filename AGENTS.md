@@ -1,6 +1,6 @@
 # Idle Hands 2 — source authority
 
-Separate sequel repository: private `dadbod87/idle-hands-2`, production/source branch `main`. No hosted game or backend yet. Do not confuse it with dadbod87/idle-hands (live build 194, real accounts). This repository now owns sequel implementation and planning; the original repository keeps a pointer.
+Separate sequel repository: private `dadbod87/idle-hands-2`, default source branch `main`. No hosted game or backend yet. Do not confuse it with dadbod87/idle-hands (live build 194, real accounts). This repository now owns sequel implementation and planning; the original repository keeps a pointer.
 
 Read docs/CURRENT_STATE.md, docs/CHANGELOG.md, docs/RELEASE_CHECKLIST.md, then docs/idle-hands-2/{CURRENT_SESSION,BUILD_SYSTEM,DECISIONS,EXPERIENCE_BRIEF}.md. Run the tracker `status`, `check`, `prompt`. The task file is authoritative. Make ordinary reversible decisions autonomously, one bounded task per prompt. New user instructions outrank older planning assumptions.
 

@@ -1,6 +1,6 @@
 # Idle Hands 2 — source authority
 
-Separate **local-only** sequel repository. No remote or hosted backend yet. Do not confuse it with dadbod87/idle-hands (live build 194, real accounts). This repository now owns sequel implementation and planning; the original repository keeps a pointer.
+Separate sequel repository: private `dadbod87/idle-hands-2`, production/source branch `main`. No hosted game or backend yet. Do not confuse it with dadbod87/idle-hands (live build 194, real accounts). This repository now owns sequel implementation and planning; the original repository keeps a pointer.
 
 Read docs/CURRENT_STATE.md, docs/CHANGELOG.md, docs/RELEASE_CHECKLIST.md, then docs/idle-hands-2/{CURRENT_SESSION,BUILD_SYSTEM,DECISIONS,EXPERIENCE_BRIEF}.md. Run the tracker `status`, `check`, `prompt`. The task file is authoritative. Make ordinary reversible decisions autonomously, one bounded task per prompt. New user instructions outrank older planning assumptions.
 
@@ -19,4 +19,4 @@ Use an isolated feature branch, preserve unrelated work. Domain state is pure se
 
 Required checks: npm run test, npm run build, npm run test:browser, npm run check:plan, python3 tools/verify-game-skills.py and git diff --check. Browser tests must inspect actual canvas screenshots at desktop, narrow phones and short landscape; console/network checks, pointer and keyboard interactions, collision, menu gating, room transition and reload. Record measured payload/frame methodology and real-device limits. Never call emulation a physical-phone test. Benchmark targets are evidence gates, not promises.
 
-No remote exists: commit on the feature branch after required local checks; no pretend GitHub CI/PR or deployment claims. If a remote is deliberately added later, establish CI/PR checks before merges. Public launch, cloud provisioning and any expense require their concrete gate. Update docs, task evidence and dated handoff with exact commit/commands/outcomes; close the task only after its acceptance artifacts exist.
+Use feature branches and PRs to main. Both sequel CI jobs, `domain-build-plan` and `browser-playtest`, must complete success on the exact final candidate before merging; keep manual gating even if branch protection is unavailable. Inspect current remote/PR state and preserve concurrent work. Never infer hosting or production from a source/CI merge. Bootstrap status is in CURRENT_SESSION; do not claim a check ran until it did. Public launch, cloud provisioning and any expense require their concrete gate. Update docs, task evidence and dated handoff with exact commit/commands/outcomes; close the task only after its acceptance artifacts exist.

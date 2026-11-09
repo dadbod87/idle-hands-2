@@ -135,7 +135,7 @@
     {
       "id": "IH2-015",
       "title": "Private GitHub source and sequel CI checkpoint",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-014"
       ],
@@ -148,7 +148,8 @@
       "exclusions": [
         "No game hosting, real accounts, live backend, public repository or paid service."
       ],
-      "evidence": []
+      "evidence": [],
+      "owner_branch": "chore/private-github-ci"
     },
     {
       "id": "IH2-020",

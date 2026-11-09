@@ -1,5 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import fs from 'node:fs';
+const evidenceDir = process.env.QA_EVIDENCE_DIR ?? 'test-results/browser';
+fs.mkdirSync(evidenceDir,{recursive:true});
 const shapes = [{name:'desktop',width:1440,height:900},{name:'phone',width:390,height:844},{name:'narrow',width:360,height:640},{name:'short',width:844,height:390}];
 const snapshot = (page:Page) => page.evaluate(() => (window as any).__pilot.snapshot());
 async function destination(page:Page,id:string) {
@@ -44,7 +46,7 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  await expect.poll(async()=>(await snapshot(page)).position.x).toBeGreaterThan(pos.position.x);
  await expect.poll(async()=>(await snapshot(page)).walking).toBe(false);
  const arrived=await snapshot(page);expect(Math.abs(arrived.position.x-endpoint.x)).toBeLessThan(.05);expect(Math.abs(arrived.position.y-endpoint.y)).toBeLessThan(.05);
- await page.screenshot({path:`docs/evidence/IH2-014/${shape.name}-square.png`});
+ await page.screenshot({path:`${evidenceDir}/${shape.name}-square.png`});
  await destination(page,'workshop');
  // Holding north against the solid building never enters the wall.
  await page.keyboard.down('ArrowUp');await page.waitForTimeout(350);await page.keyboard.up('ArrowUp');
@@ -58,7 +60,7 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  else await page.mouse.click(doorCanvas!.x+doorScreen.x,doorCanvas!.y+doorScreen.y);
  await expect.poll(async()=>(await snapshot(page)).room).toBe('workshop');
  await expect(page.locator('#location')).toContainText('Your workshop');
- await page.screenshot({path:`docs/evidence/IH2-014/${shape.name}-workshop.png`});
+ await page.screenshot({path:`${evidenceDir}/${shape.name}-workshop.png`});
  await page.reload();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
  expect((await snapshot(page)).room).toBe('workshop');
  await destination(page,'bench');await page.getByRole('button',{name:'Inspect Work bench'}).click();
@@ -80,7 +82,7 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  await page.waitForTimeout(200);expect((await snapshot(page)).room).toBe('square');
  await destination(page,'plot');await page.getByRole('button',{name:'Inspect Future house plots'}).click();
  await expect(page.getByRole('dialog')).toContainText('upgrade a house');
- await page.screenshot({path:`docs/evidence/IH2-014/${shape.name}-housing-note.png`});
+ await page.screenshot({path:`${evidenceDir}/${shape.name}-housing-note.png`});
  await page.keyboard.press('Escape');
  // Resize and ensure the canvas follows its container, with bounded HUD controls.
  await page.setViewportSize({width:shape.height,height:shape.width});await page.waitForTimeout(150);
@@ -88,7 +90,7 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  expect(Math.abs(wrap!.width-cv!.width)).toBeLessThan(2);expect(Math.abs(wrap!.height-cv!.height)).toBeLessThan(2);
  await page.setViewportSize(shape);await page.waitForTimeout(2500);
  const metrics=await page.evaluate(()=>(window as any).__pilot.metrics());
- fs.writeFileSync(`docs/evidence/IH2-014/${shape.name}-metrics.json`,JSON.stringify({viewport:shape,metrics,errors,external,userAgent:await page.evaluate(()=>navigator.userAgent)},null,2)+'\n');
+ fs.writeFileSync(`${evidenceDir}/${shape.name}-metrics.json`,JSON.stringify({viewport:shape,metrics,errors,external,userAgent:await page.evaluate(()=>navigator.userAgent)},null,2)+'\n');
  expect(metrics.phaser).toBe('4.2.1');expect(metrics.frameSamples).toBeGreaterThan(60);
  expect(errors).toEqual([]);expect(external).toEqual([]);
 });

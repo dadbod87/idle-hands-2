@@ -36,3 +36,6 @@ A-009 (agent-selected after independent review): retain Phaser; borrow RPGJS sep
 ## Reconsider only when evidence warrants it
 
 Engine: pilot fails phone input/loading/rendering budgets or standard RPG plumbing dominates. Art: silhouette/scale/license coverage fails. Multiplayer: server memory/event volume or reconnect semantics fail. Cost: invited pilot does not fit a measured free option; prepare reduced scope/hosting alternatives for Nick instead of adding a bill. Product: feedback shows the small loop lacks visible personal/community progress. Record new evidence and superseding decision before changing direction.
+
+## A010 — local workshop rules and phone-first input (2026-11-09)
+Agent-selected reversible tuning under Nick’s autonomous authorization: initial depots6each to complete first visit; regeneration1/4h up to6,24h recovery cap,60 material bag,99 item cap. First planter5s once, later8h, bridge kit12h; no repeated click income/auto queue. Six authored furniture nooks, free preview/cancel/moves, nonblocking cosmetic view. Single-writer browser save, visible failure and typed validation. XP/levels are persistent practice progress without yield multipliers. These are local tuning choices, not final economy or server authority. Pacing simulations use housing kit equivalents only. Revisit waiting/content balance in neighborhood polish.

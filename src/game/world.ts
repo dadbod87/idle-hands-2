@@ -8,6 +8,9 @@ export const worlds: Record<Room, World> = {
     width: 48, height: 48,
     blocked: [[17, 16, 6, 6], [28, 16, 6, 6], [27, 30, 8, 5], [17, 26, 2, 2], [34, 26, 2, 2], [14, 17, 2, 2], [37, 19, 2, 2], [13, 30, 2, 2], [37, 33, 2, 2], [0, 10, 48, 2]],
     stops: [
+      { id: 'scrap', name: 'Scrap depot', point: {x:21,y:30}, doorArea:[20.5,27.5,2,2], text: 'Rescued metal. Someone has already filed it under miscellaneous.' },
+      { id: 'timber', name: 'Timber depot', point: {x:23,y:30}, doorArea:[22.5,27.5,2,2], text: 'Locally sourced. The source was a badly assembled shelf.' },
+      { id: 'supplies', name: 'Supply depot', point: {x:25,y:30}, doorArea:[24.5,27.5,2,2], text: 'The essentials. In a box marked non-essential.' },
       { id: 'workshop', name: 'Workshop', point: { x: 20, y: 22 }, transition: 'workshop', arrival: { x: 9, y: 11 }, doorArea: [19.25, 20, 1.5, 2.25], text: 'Your workshop. The desk is temporary. The paperwork is structural.' },
       { id: 'cafe', name: 'The Almost Open Café', point: { x: 30, y: 22 }, text: 'The opening date is pencilled in. The pencil has requested an extension.' },
       { id: 'plot', name: 'Future house plots', point: { x: 30, y: 29 }, text: 'Room to put down roots. The full game will let you acquire a plot, upgrade a house and make it yours. No plots are sold in this pilot.' },
@@ -18,7 +21,7 @@ export const worlds: Record<Room, World> = {
     width: 18, height: 16,
     blocked: [[3, 3, 5, 2], [11, 3, 4, 3], [3, 8, 2, 2]],
     stops: [
-      { id: 'bench', name: 'Work bench', point: { x: 5, y: 5 }, text: 'Future home of useful work, slow production and several very confident mistakes. Crafting arrives in a later milestone.' },
+      { id: 'bench', name: 'Work bench', point: { x: 5, y: 5 }, doorArea:[3,3,5,3], text: 'Make useful things. Submit questionable paperwork.' },
       { id: 'door', name: 'Town square', point: { x: 9, y: 13 }, transition: 'square', arrival: { x: 19.5, y: 22.3 }, doorArea: [8, 13, 3, 2], text: 'Back to the square. Meetings are outdoors now. There was an incident with a flip chart.' }
     ]
   }

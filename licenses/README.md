@@ -7,3 +7,5 @@ Runtime dependencies: Phaser 4.2.1 and its exact locked eventemitter3 dependency
 The pinned OpenAI Game Studio guidance retains its own upstream manifest, notices and 40-file hash inventory under .agents. It is authoring guidance, not in-game art. No anonymous starter telemetry or bundled example artwork is used.
 
 Development-only visual checking adds @axe-core/playwright 4.14.0 and its locked axe-core dependency, with included notices preserved. Zero automated violations is not a complete accessibility audit.
+
+IH2-030 adds exact Zod4.6.7 (MIT), with its installed LICENSE copied to dependencies/zod and lock integrity in dependency-inventory.json. No RPGJS source is bundled. Depot and furnishing primitives are original code in WorldScene.ts, separate from the39 original SVG assets.

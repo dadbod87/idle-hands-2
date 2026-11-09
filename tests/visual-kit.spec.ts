@@ -28,6 +28,7 @@ for(const shape of [{name:'desktop',width:1440,height:900},{name:'narrow',width:
   const large=await page.locator('h1').evaluate(e=>parseFloat(getComputedStyle(e).fontSize));expect(large).toBeCloseTo(initial*2,0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   const world=await page.locator('.world-wrap').boundingBox();expect(world!.height).toBeGreaterThan(100);
+  await expect.poll(async()=>{const wrap=await page.locator('.world-wrap').boundingBox(),canvas=await page.locator('canvas').boundingBox();return Math.abs(wrap!.height-canvas!.height);}).toBeLessThan(2);
   await page.getByRole('button',{name:'Open field guide'}).click();
   await expect(page.getByRole('button',{name:'Close panel'})).toBeInViewport();
   await page.screenshot({path:`${evidence}/${shape.name}-text-200.png`});

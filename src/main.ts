@@ -3,6 +3,8 @@ import { Session } from './game/session.ts';
 import { worlds, type Stop } from './game/world.ts';
 import { WorldScene } from './phaser/WorldScene.ts';
 import './ui/style.css';
+import {questStep} from './game/workshop.ts';
+import {WorkshopUI} from './ui/workshop.ts';
 import { renderStudy, guideContents } from './art/study.ts';
 if(new URLSearchParams(location.search).has('art-study')) { renderStudy(); } else {
 
@@ -13,9 +15,9 @@ const session = new Session(stored);
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
 <main class="shell">
- <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">NEIGHBORHOOD STUDY<span>Local prototype · visual kit 01</span></div><button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
+ <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">NEIGHBORHOOD STUDY<span>Local workshop · saved here</span></div><button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
  <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
- <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite">A small beginning. Room for a much bigger story.</p></div><nav aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="interact" class="primary" disabled>Nothing nearby</button></nav></footer>
+ <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite">Tap the three material depots below you. Your first planter starts here.</p></div><nav aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag">Bag & journal</button><button id="interact" class="primary" disabled>Nothing nearby</button></nav></footer>
 </main>
 <dialog id="panel" aria-labelledby="panel-title"><form method="dialog"><header class="dialog-head"><div><p class="eyebrow">TOWN INFORMATION SERVICES</p><h2 id="panel-title">Places to go</h2></div><button aria-label="Close panel" value="close">×</button></header><div id="panel-body"></div></form></dialog>`;
 const panel = document.querySelector<HTMLDialogElement>('#panel')!;
@@ -31,18 +33,25 @@ const game = new Phaser.Game({
   render: { antialias: true, pixelArt: false }, audio: { noAudio: true },
   fps: { target: 60 }, scene: [scene]
 });
+scene.onWalkFailure=()=>feedback.textContent='That spot cannot be reached. Try a clear patch of ground or tap a named prop.';
+const worldContainer=document.querySelector<HTMLElement>('#world')!;
+const worldResize=new ResizeObserver(entries=>{const {width,height}=entries[0].contentRect;if(game.isBooted&&width>0&&height>0&&(Math.abs(game.scale.width-width)>.5||Math.abs(game.scale.height-height)>.5))game.scale.setParentSize(width,height);});
+worldResize.observe(worldContainer);
 let ready = false;
 let lastContext = '';
 function save() { try { localStorage.setItem(saveKey, JSON.stringify(session.save())); } catch { feedback.textContent = 'Position could not be saved in this browser. The pilot remains playable.'; } }
 function focusWorld() { document.querySelector('canvas')?.focus(); }
-function closePanel() { if (session.locked) session.lock(false); panel.close(); focusWorld(); }
+function closePanel() { workshop.closed(); if (session.locked) session.lock(false); panel.close(); focusWorld(); }
 panel.addEventListener('submit', event => { event.preventDefault(); closePanel(); });
-panel.addEventListener('close', () => { if (session.locked) session.lock(false); focusWorld(); });
+panel.addEventListener('close', () => { workshop.closed(); if (session.locked) session.lock(false); focusWorld(); });
 panel.addEventListener('cancel', () => { session.lock(false); });
 function openPanel(heading: string) { session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }
+const workshop=new WorkshopUI({open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>scene.refreshDecorations()});
+scene.decorations=()=>workshop.state.placements;
+document.querySelector('#bag')!.addEventListener('click',()=>workshop.showInventory());
 document.querySelector('#field-guide')!.addEventListener('click',()=>{
-  openPanel('Town field guide');body.innerHTML=guideContents(session.room==='workshop');
+  openPanel('Town field guide');body.innerHTML=guideContents(session.room==='workshop');const objective=questStep(workshop.state);const note=paragraph(objective.title+' — '+objective.detail);note.className='quest-card';body.prepend(note);
   body.querySelector('#guide-workshop')!.addEventListener('click',()=>{closePanel();const stop=worlds[session.room].stops.find(s=>s.id==='workshop'||s.id==='bench');if(stop)session.walk(stop.point);feedback.textContent=session.room==='square'?'Walking to your workshop.':'Your bench is right here.';});
 });
 document.querySelector('#places')!.addEventListener('click', () => {
@@ -56,11 +65,13 @@ document.querySelector('#places')!.addEventListener('click', () => {
   }
 });
 function activate(stop: Stop) {
+  if(['scrap','timber','supplies'].includes(stop.id)){workshop.showResource(stop.id as 'scrap'|'timber'|'supplies');return;}
+  if(stop.id==='bench'){workshop.showBench();return;}
   if (stop.transition) {
-    session.enter(stop.transition, stop.arrival); save(); focusWorld(); feedback.textContent = stop.transition === 'workshop' ? 'Your workshop. A place to make things, eventually.' : 'Back in the square. The committee has made no measurable progress.';
+    session.enter(stop.transition, stop.arrival); save(); focusWorld(); feedback.textContent = stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : 'Back in the square. The committee has made no measurable progress.';
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
-    const note = paragraph('Prototype note: this is a local interaction test. No purchases, resources or shared progress are implemented.'); note.className = 'disclosure'; body.append(note);
+    const note = paragraph('Prototype note: this is a local interaction test. Shared progress is not connected. Gather materials and make things at your workshop bench.'); note.className = 'disclosure'; body.append(note);
   }
 }
 function interact() {
@@ -96,6 +107,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) save(
 // Read-only diagnostics for reproducible pilot checks; never an economy/debug mutation API.
 Object.defineProperty(window, '__pilot', { value: Object.freeze({
   snapshot: () => session.snapshot(),
+  workshop:()=>workshop.snapshot(),
   metrics: () => {
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);
     return { ready, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, phaser: Phaser.VERSION, visual:scene.visualState() };

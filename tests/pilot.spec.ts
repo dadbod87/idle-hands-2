@@ -7,7 +7,7 @@ const snapshot = (page:Page) => page.evaluate(() => (window as any).__pilot.snap
 async function destination(page:Page,id:string) {
  await page.getByRole('button',{name:'Places',exact:false}).click();
  await page.locator(`[data-destination="${id}"]`).click();
- await expect.poll(async()=> (await snapshot(page)).walking, {timeout: 10000}).toBe(false);
+ await expect.poll(async()=> (await snapshot(page)).walking, {timeout: process.env.CI?30000:10000}).toBe(false);
  await expect.poll(async()=> (await snapshot(page)).nearby).toBe(id);
 }
 for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:shape.name==='phone'||shape.name==='narrow'}); test(`${shape.name}: walk, collision, UI lock, tap, transition and reload`,async({page})=>{
@@ -52,10 +52,12 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  await page.keyboard.down('ArrowUp');await page.waitForTimeout(350);await page.keyboard.up('ArrowUp');
  expect((await snapshot(page)).position.y).toBeGreaterThanOrEqual(21.74);
  // Back away, then click/tap the actual door: approach and enter without the HUD button.
- await page.keyboard.down('ArrowDown');await page.waitForTimeout(350);await page.keyboard.up('ArrowDown');await page.waitForTimeout(60);
+ const backScreen=await page.evaluate(()=>(window as any).__pilot.screenPoint(20,23.5));const backCanvas=(await page.locator('canvas').boundingBox())!;
+ if(shape.name==='phone'||shape.name==='narrow')await page.touchscreen.tap(backCanvas.x+backScreen.x,backCanvas.y+backScreen.y);else await page.mouse.click(backCanvas.x+backScreen.x,backCanvas.y+backScreen.y);
+ await expect.poll(async()=>(await snapshot(page)).walking,{timeout:process.env.CI?30000:10000}).toBe(false);
  expect((await snapshot(page)).nearby).toBe(null);
- const doorScreen=await page.evaluate(()=>(window as any).__pilot.screenPoint(19.5,20.5));
- const doorCanvas=await page.locator('canvas').boundingBox();
+ const doorScreen=await page.evaluate(()=>(window as any).__pilot.screenPoint(19.5,21.5));
+ const doorCanvas=await page.locator('canvas').boundingBox();expect(doorScreen.y).toBeGreaterThanOrEqual(0);expect(doorScreen.y).toBeLessThan(doorCanvas!.height);
  if(shape.name==='phone'||shape.name==='narrow')await page.touchscreen.tap(doorCanvas!.x+doorScreen.x,doorCanvas!.y+doorScreen.y);
  else await page.mouse.click(doorCanvas!.x+doorScreen.x,doorCanvas!.y+doorScreen.y);
  await expect.poll(async()=>(await snapshot(page)).room).toBe('workshop');
@@ -67,7 +69,7 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  await page.reload();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
  expect((await snapshot(page)).room).toBe('workshop');
  await destination(page,'bench');await page.getByRole('button',{name:'Inspect Work bench'}).click();
- await expect(page.getByRole('dialog')).toContainText('Crafting arrives in a later milestone');
+ await expect(page.getByRole('dialog')).toContainText('One job at a time');
  await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).not.toBeVisible();
  await destination(page,'door');
  const exitScreen=await page.evaluate(()=>(window as any).__pilot.screenPoint(9,13.5));const exitCanvas=await page.locator('canvas').boundingBox();

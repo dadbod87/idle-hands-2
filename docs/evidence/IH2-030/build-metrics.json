@@ -1,0 +1,11 @@
+{
+  "method": "Sum of Python gzip.compress byte counts for built HTML/CSS/JS, excluding art. This is a reproducible payload estimate, not measured network latency.",
+  "bytes": 1511152,
+  "gzipBytes": 395578,
+  "files": {
+    "dist/index.html": "67c4b69f7a289ad548f8bdfa656cf59f6a9be196958ba2a3671b9914c79297e5",
+    "dist/assets/index-CI49t2lc.css": "3f5bb3a1d4128bef28496a13420192093ceabbabcffadb0570cc9d05fe803419",
+    "dist/assets/index-2sQqgSiH.js": "87b726027f1544d19ca03ee9d955ba3e54c3f6f097663461fa4ad244db089255"
+  },
+  "limits": "Chrome emulation; Phaser engine dominates initial bundle; Vite >500kB chunk warning remains visible. No physical phone or hosted latency claim."
+}

@@ -90,3 +90,11 @@ test('authored door arrivals are safe, exit in front of the source door and pers
  for(let i=0;i<100;i++)s.tick(16);assert.equal(s.room,'square');assert.deepEqual(new Session(s.save()).position,s.position);
  const before=s.save();assert.throws(()=>s.enter('square',{x:20,y:18}));assert.deepEqual(s.save(),before);
 });
+
+test('the visible lower edge of the bench approaches and opens like its upper edge',()=>{
+ const session=new Session();session.enter('workshop');
+ assert.equal(session.point({x:5,y:5.4}),true);
+ let arrival;
+ for(let i=0;i<100;i++){session.tick(50);arrival=session.takeArrival();if(arrival)break;}
+ assert.equal(arrival?.id,'bench');assert.equal(session.takeArrival(),undefined);
+});

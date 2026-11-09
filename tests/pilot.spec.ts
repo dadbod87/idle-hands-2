@@ -67,7 +67,7 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  await page.reload();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
  expect((await snapshot(page)).room).toBe('workshop');
  await destination(page,'bench');await page.getByRole('button',{name:'Inspect Work bench'}).click();
- await expect(page.getByRole('dialog')).toContainText('Crafting arrives in a later milestone');
+ await expect(page.getByRole('dialog')).toContainText('One job at a time');
  await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).not.toBeVisible();
  await destination(page,'door');
  const exitScreen=await page.evaluate(()=>(window as any).__pilot.screenPoint(9,13.5));const exitCanvas=await page.locator('canvas').boundingBox();

@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "simulatedDays": 42,
+  "clock": "Injected deterministic millisecond timestamps",
+  "source": "src/game/workshop.ts commands, no live records or grants",
+  "assumptions": [
+    "Visits are evenly repeated at the listed local hour offsets; visit duration is a cohort label, not a reward multiplier.",
+    "Every cohort completes the one-time five-second planter lesson and then prioritizes bridge kits.",
+    "Gathering recovers one unit per four hours per bin, maximum six; one job at a time, no queue auto-repeat. Offline material accrual capped at 24 hours; finished jobs wait until collected.",
+    "Material storage is 60, each prop/kit output cap 99. All cohorts stop stockpiling a material at 18 to keep other resources usable.",
+    "Housing and improvement milestones are cumulative kit-equivalent design proxies, NOT implemented purchases/unlocks. No kit is spent in this experiment.",
+    "The model does not simulate quests beyond the tutorial, shared contributions, skill bonuses, rare drops, retention or real player schedules. XP has bounded levels and no compounding yield multiplier."
+  ],
+  "provisionalCumulativeKitThresholds": {
+    "workshopImprovement": 2,
+    "starterHome": 12,
+    "homeUpgrade": 36,
+    "districtExpansion": 120
+  },
+  "cohorts": [
+    {
+      "cohort": "idle",
+      "dailyMinutes": 10,
+      "visitsPerDay": 1,
+      "absentDays": [],
+      "completedKits": 41,
+      "materialsGathered": 311,
+      "commandsAttempted": 150,
+      "noMaterialVisits": 0,
+      "maxMaterialStorage": 54,
+      "milestonesInDays": {
+        "workshopImprovement": 2.38,
+        "starterHome": 12.38,
+        "homeUpgrade": 36.38,
+        "districtExpansion": null
+      },
+      "pendingJob": "bridge-kit",
+      "lastObservedDay": 41.38
+    },
+    {
+      "cohort": "regular",
+      "dailyMinutes": 30,
+      "visitsPerDay": 2,
+      "absentDays": [],
+      "completedKits": 82,
+      "materialsGathered": 546,
+      "commandsAttempted": 311,
+      "noMaterialVisits": 0,
+      "maxMaterialStorage": 46,
+      "milestonesInDays": {
+        "workshopImprovement": 1.88,
+        "starterHome": 6.88,
+        "homeUpgrade": 18.88,
+        "districtExpansion": null
+      },
+      "pendingJob": "bridge-kit",
+      "lastObservedDay": 41.88
+    },
+    {
+      "cohort": "active",
+      "dailyMinutes": 120,
+      "visitsPerDay": 4,
+      "absentDays": [],
+      "completedKits": 82,
+      "materialsGathered": 547,
+      "commandsAttempted": 417,
+      "noMaterialVisits": 28,
+      "maxMaterialStorage": 50,
+      "milestonesInDays": {
+        "workshopImprovement": 1.5,
+        "starterHome": 6.83,
+        "homeUpgrade": 18.83,
+        "districtExpansion": null
+      },
+      "pendingJob": "bridge-kit",
+      "lastObservedDay": 41.96
+    }
+  ],
+  "activeToRegularOutputRatio": 1,
+  "regularWeekAbsence": {
+    "cohort": "regular",
+    "dailyMinutes": 30,
+    "visitsPerDay": 2,
+    "absentDays": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "completedKits": 68,
+    "materialsGathered": 459,
+    "commandsAttempted": 261,
+    "noMaterialVisits": 0,
+    "maxMaterialStorage": 49,
+    "milestonesInDays": {
+      "workshopImprovement": 1.88,
+      "starterHome": 6.88,
+      "homeUpgrade": 25.88,
+      "districtExpansion": null
+    },
+    "pendingJob": "bridge-kit",
+    "lastObservedDay": 41.88
+  },
+  "conclusions": [
+    "Active output is 1x regular over six weeks; no click or online-minute income. Returning twice daily matters more than staying online.",
+    "Idle is constrained by one daily collection/start; active extra visits offer flexibility rather than exponential production.",
+    "The first useful workshop improvement proxy occurs in days, starter home in roughly one to two weeks, and a home upgrade in weeks. The district expansion remains beyond six weeks for these cohorts.",
+    "A missed week pauses additional production after the queued job finishes, preserves that job and holdings, and resumes without a streak penalty. Recovery caps prevent stockpiling unlimited absence gains.",
+    "One twelve-hour recipe is a deliberate bounded local test, not enough content for a released game. Later milestone must add useful short-session exploration/choices before treating this pacing as fun."
+  ]
+}

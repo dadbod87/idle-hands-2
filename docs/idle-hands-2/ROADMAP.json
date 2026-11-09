@@ -187,7 +187,7 @@
     {
       "id": "IH2-030",
       "title": "Playable local workshop loop",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-020"
       ],
@@ -203,7 +203,14 @@
       "exclusions": [
         "No public economy, trading, exponential progression, purchases, auth or claim that local saves are secure."
       ],
-      "evidence": []
+      "evidence": [
+        "docs/evidence/IH2-030/REPORT.md",
+        "docs/evidence/IH2-030/INDEPENDENT_REVIEW.md",
+        "docs/evidence/IH2-030/progression.json",
+        "src/game/workshop.ts",
+        "tests/workshop.test.ts",
+        "tests/workshop.spec.ts"
+      ]
     },
     {
       "id": "IH2-040",

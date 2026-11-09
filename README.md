@@ -16,3 +16,5 @@ Browser runs write current screenshots/metrics to ignored `test-results/browser/
 Run `npm run test`, `npm run build`, `npm run test:browser`, `npm run check:plan`. [Planning home](docs/idle-hands-2/README.md), [current source state](docs/CURRENT_STATE.md), [latest handoff](docs/idle-hands-2/CURRENT_SESSION.md).
 
 All content is original code-drawn placeholder art; the final visual kit is a later task. External dependencies are exact-pinned; see licenses. The private GitHub repository is the sequel source authority; fetch main and current handoff before work. Existing Idle Hands remains separate at https://idlehands.thepatrongrp.com/.
+
+Current local slice: direct-tap material depots, crafting bench, orientation journal, six furnishing types, placement and saved timed jobs. See [tomorrow’s handoff](docs/idle-hands-2/handoffs/2026-11-09-workshop-loop.md). Persistent shared town/housing is the next proof, not implemented server functionality.

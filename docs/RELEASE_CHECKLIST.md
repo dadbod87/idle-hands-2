@@ -15,3 +15,10 @@
 - Run 13 domain/art/provenance tests, eight actual-input/visual/reduced-motion flows, and keep exact asset/license fingerprints.
 - Review desktop/narrow/short screenshots, doubled DOM text, reachable 44px controls and optional guide focus/input lock. Preserve incomplete axe checks; do not claim canvas/full accessibility compliance.
 - Game page loads only original art; CC0 comparison media is confined to art study. No geometry, movement or door regression.
+
+## IH2-030 local workshop source gate
+- Pure commands validate costs, IDs/revisions, caps, clocks and legal owned placement before committing; replay/invalid/insufficient requests are atomic.
+- First session completes planter/placement and queues useful longer work without a forced multi-hour gap.
+- Fresh/resumed, direct phone taps without directory, free cancel, elapsed fixture, second-tab, quota failure and cache lifecycle checks; independent source/phone reviews resolved.
+- Selected screenshots and six-week simulation preserved; distinguish housing proxies/local saves from actual housing/server authority.
+- Both required CI jobs must succeed on final candidate before merge. No production deployment implied; no current-game mutation.

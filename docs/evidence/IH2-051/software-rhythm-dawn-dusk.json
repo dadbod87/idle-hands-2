@@ -1,0 +1,51 @@
+{
+  "method": "Explicit visual-only phases; actual compositor PNG foliage coverage; 200% DOM text without manual resize event. Headless phone viewport, not physical device.",
+  "measurements": [
+    {
+      "climate": {
+        "phase": "dawn",
+        "minute": 420,
+        "dayIndex": 0,
+        "weather": "clear",
+        "tint": {
+          "color": 15776123,
+          "alpha": 0.09
+        },
+        "lampStrength": 0.5,
+        "label": "Dawn · Clear skies",
+        "effectiveAlpha": 0.09,
+        "fixture": true,
+        "interior": false,
+        "precipitation": {
+          "enabled": false,
+          "offset": 0
+        }
+      },
+      "coverage": 0.9868421052631579,
+      "meanLuminance": 161.4681331578908
+    },
+    {
+      "climate": {
+        "phase": "dusk",
+        "minute": 1140,
+        "dayIndex": 0,
+        "weather": "clear",
+        "tint": {
+          "color": 13802111,
+          "alpha": 0.18
+        },
+        "lampStrength": 0.5,
+        "label": "Dusk · Clear skies",
+        "effectiveAlpha": 0.18,
+        "fixture": true,
+        "interior": false,
+        "precipitation": {
+          "enabled": false,
+          "offset": 0
+        }
+      },
+      "coverage": 0.9916666666666667,
+      "meanLuminance": 159.31605122807017
+    }
+  ]
+}

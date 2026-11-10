@@ -69,13 +69,13 @@ export class WorkshopUI {
   const b=this.host.body;b.replaceChildren();b.append(this.p('Rescued from the company’s extremely ambitious disposal policy.'),this.resources());
   const stock=this.p('');stock.dataset.node=resource;b.append(stock);
   const collect=this.button('Collect available '+names[resource].toLowerCase(),()=>this.dispatch({kind:'gather',resource}),'primary');collect.dataset.collect=resource;b.append(collect);
-  this.notice();b.append(this.p('Each depot holds at most 6. One unit returns every 4 hours, for up to 24 hours per absence. Bag capacity: 60 materials. Returning often does not speed it up.','disclosure'),this.disclosure());this.updateClocks();
+  this.notice();b.append(this.p('Each depot holds at most 6. One unit returns every 4 real hours, for up to 24 real hours per absence. Bag capacity: 60 materials. Returning often does not speed it up.','disclosure'),this.disclosure());this.updateClocks();
  };this.begin(names[resource]+' depot',render);}
  showBench(){const render=()=>{
-  const b=this.host.body;b.replaceChildren();b.append(this.p('Useful work. Unnecessary forms. One job at a time.'),this.resources());
+  const b=this.host.body;b.replaceChildren();b.append(this.p('Useful work. Unnecessary forms. One job at a time. All durations use real time, not the town’s day/night clock.'),this.resources());
   const job=this.p('');job.dataset.job='';b.append(job);
   const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';b.append(claim);
-  const recipes=[{id:'planter',label:'Make orientation planter',text:'2 scrap + 2 timber + 1 supplies. First planter: 5 seconds, once. Later planters: 8 hours.'},{id:'bridge-kit',label:'Make bridge supplies',text:'3 scrap + 2 timber + 1 supplies. 12 hours. Practice stock for a future town project.'}];
+  const recipes=[{id:'planter',label:'Make orientation planter',text:'2 scrap + 2 timber + 1 supplies. First planter: 5 seconds, once. Later planters: 8 real hours.'},{id:'bridge-kit',label:'Make bridge supplies',text:'3 scrap + 2 timber + 1 supplies. 12 real hours. '+(this.remote?'Bring the finished kit to the bridge committee.':'Crafting practice stock stays in this browser’s workshop.')}];
   for(const recipe of recipes){const section=document.createElement('section');section.className='recipe';const craft=this.button(recipe.label,()=>this.dispatch({kind:'craft',recipe:recipe.id}),'destination');craft.dataset.craft=recipe.id;section.append(this.p(recipe.text),craft);b.append(section);}
   this.notice();b.append(this.p('A queued job finishes while you are away and waits for collection. No automatic repeat jobs or hidden lost output.','disclosure'),this.disclosure());this.updateClocks();
  };this.begin('Your work bench',render);}
@@ -111,6 +111,6 @@ export class WorkshopUI {
   const job=b.querySelector('[data-job]');if(job)job.textContent=this.state.job?`${this.state.job.recipe==='planter'?'Planter':'Bridge supplies'} · ${this.state.job.readyAt<=now?'ready to collect':duration(this.state.job.readyAt-now)+' remaining'}`:'Bench is free. Choose a recipe.';
   const quest=b.querySelector('[data-quest]');if(quest)quest.textContent='Orientation: '+questStep(this.state).title+' — '+questStep(this.state).detail;
   const skills=b.querySelector('[data-skills]');if(skills)skills.textContent=`Gathering L${skillLevel(this.state.skills.gathering)} (${this.state.skills.gathering} XP) · Making L${skillLevel(this.state.skills.making)} (${this.state.skills.making} XP). Skills are persistent practice progress; no speed bonus yet.`;
-  const kits=b.querySelector('[data-kits]');if(kits)kits.textContent=`Bridge supplies in storage: ${this.state.bridgeKits}. ${this.remote?'Visit the bridge committee to contribute.':'Shared contributions arrive in a later milestone.'}`;
+  const kits=b.querySelector('[data-kits]');if(kits)kits.textContent=`Bridge supplies in storage: ${this.state.bridgeKits}. ${this.remote?'Visit the bridge committee to contribute.':'Shared practice has separate resources and bridge donations; stock from this browser is not imported.'}`;
  }
 }

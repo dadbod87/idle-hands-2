@@ -11,3 +11,9 @@
 /* Phone playfield first: keep decoration compact while rem text still scales honestly. */
 @media(max-width:650px){.brand .eyebrow{display:none}.brand h1{font-size:1.25rem}.brand h1 span{font-size:1rem}.location-tag span,.world-note{display:none}.dialog-head .eyebrow{display:none}.dialog-head h2{font-size:1.15rem}.guide-hero h3{font-size:1.3rem}.dialog-head{align-items:flex-start}.dialog-head button{flex-shrink:0}}
 @media(max-height:480px) and (min-width:651px){#field-guide{height:44px;min-height:44px}.dialog-head .eyebrow{display:none}}
+
+#town-sky{display:block;font:0.6875rem/1.35 'Courier New',monospace;max-width:30ch;margin-top:3px;color:#43533f} @media(max-width:650px){#town-sky{font-size:.625rem;max-width:28ch;line-height:1.25}} @media(max-height:480px){#town-sky{font-size:.5625rem;max-width:28ch}}
+
+/* Enlarge text without covering the door: optional location/sky details remain in the guide. */
+@media(max-width:650px){.shell.large-text .location-tag{display:none}}
+#guide-sky{padding:.65rem;background:#e3e8d6;border:1px solid #7b8060;color:#343c36}

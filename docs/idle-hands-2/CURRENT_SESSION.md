@@ -1,11 +1,7 @@
-# IH2-045 closeout and next task
+# IH2-051 closeout and next task
 
-2026-11-10. Owner this chat, branch `feat/town-variety`, based on verified main bfcf7a96d605ff005922e1ff5c89caa34b483717 (PR #4). Local acceptance artifacts exist; both final exact-head CI jobs must pass before merge. Record actual candidate, CI and merge hashes in the PR closeout.
+2026-11-10. Owner this chat, branch feat/town-rhythm, base54153a2. Local acceptance/evidence exists; final exact-head CI plus actual screenshots gate merge. The PR closeout supplies actual candidate/run/merge and artifact verification after this source document.
 
-Read [dated handoff](handoffs/2026-11-10-town-variety.md), [current state](../CURRENT_STATE.md), [evidence](../evidence/IH2-045/REPORT.md), then tracker status/check/prompt. Next bounded task IH2-050 polishes the first neighborhood, including content/onboarding/physical housing as scoped by its contract. Do not silently expand this art milestone into economy/cloud work.
+Read [dated handoff](handoffs/2026-11-10-town-rhythm.md), [current state](../CURRENT_STATE.md), [deep-system plan](DEEP_SYSTEMS_PLAN.md), then tracker status/check/prompt. Next taskIH2-052: starter homes, return summary and first-session bridge-kit gap. IH2-053 trail/discovery and parent050 integrated acceptance follow. Wider resource/crop/equipment/shop/animation catalog is planned, not shipped.
 
-Original game and real accounts remain separate. Public launch, billed infrastructure and paid assets retain their gates. Routine reversible work and focused reviews remain authorized. Actual startup allowance65% remained; stop near10%, no automatic reset credits. Recheck before substantial next work.
-
-Follow-up: PR #5 merged205cc27 after50/24 green, but final CI screenshot review exposed missing canopy wedges under software rendering. Acceptance reopened on `fix/canopy-rendering`; complete the pixel regression, axis-aligned gentle sway and exact-head CI/artifact review before closing. Do not start IH2-050 yet.
-
-Corrective local acceptance:50 domain/server/art checks, all24 browser cases, strict build, and four additional forced-SwiftShader focused cases pass. New compositor-pixel checks reject the old build and accept axis-aligned sway (~98.3% coverage). Final corrective CI and actual screenshot review still gate merge; exact candidate/run/merge belong in the corrective PR closeout.
+Maintain accepted own art, natural movement, readable phones, persistent creative work and slow progression. No original-game/real-account changes or billed/public services. Startup63% weekly remained; recheck before large work and stop near10%, no automatic reset credits. Routine reversible choices and focused agents remain authorized.

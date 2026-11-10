@@ -1,0 +1,70 @@
+{
+  "method": "Headless viewport/touch emulation; explicit visual-only URL fixtures; synthetic local position and one future12-hour job. Real Date.now remains unchanged. Economy comparison excludes elapsed observedAt; no real accounts/backend commands.",
+  "day": {
+    "climate": {
+      "phase": "day",
+      "minute": 780,
+      "dayIndex": 0,
+      "weather": "clear",
+      "tint": {
+        "color": 16314847,
+        "alpha": 0
+      },
+      "lampStrength": 0,
+      "label": "Day · Clear skies",
+      "effectiveAlpha": 0,
+      "fixture": true,
+      "interior": false,
+      "precipitation": {
+        "enabled": false,
+        "offset": 0
+      }
+    },
+    "coverage": 0.9850877192982456,
+    "meanLuminance": 158.39133701754585
+  },
+  "night": {
+    "climate": {
+      "phase": "night",
+      "minute": 60,
+      "dayIndex": 0,
+      "weather": "clear",
+      "tint": {
+        "color": 2504281,
+        "alpha": 0.36
+      },
+      "lampStrength": 1,
+      "label": "Night · Clear skies",
+      "effectiveAlpha": 0.36,
+      "fixture": true,
+      "interior": false,
+      "precipitation": {
+        "enabled": false,
+        "offset": 0
+      }
+    },
+    "coverage": 0.9964912280701754,
+    "meanLuminance": 121.02267842104813
+  },
+  "inside": {
+    "phase": "night",
+    "minute": 60,
+    "dayIndex": 0,
+    "weather": "clear",
+    "tint": {
+      "color": 2504281,
+      "alpha": 0.36
+    },
+    "lampStrength": 1,
+    "label": "Night · Clear skies",
+    "effectiveAlpha": 0.09,
+    "fixture": true,
+    "interior": true,
+    "precipitation": {
+      "enabled": false,
+      "offset": 0
+    }
+  },
+  "errors": [],
+  "apiRequests": []
+}

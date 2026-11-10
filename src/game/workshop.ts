@@ -118,7 +118,7 @@ export function questStep(state: WorkshopState): { id: string; title: string; de
   if (!state.stats.plantersCrafted) return { id: 'craft', title: 'A remarkably short apprenticeship', detail: 'At the workshop bench, make and collect your first planter. This first lesson takes five seconds; later planters take eight hours.', complete: false };
   if (!state.stats.planterPlacedAfterCraft) return { id: 'place', title: 'Put down a very small root', detail: 'Open your bag and place your new planter in a workshop nook. Previewing and moving furniture are free.', complete: false };
   if (!state.stats.bridgeJobsStarted) return { id: 'bridge', title: 'The committee requests a kit', detail: 'Gather more materials and start a twelve-hour bridge kit at the bench. It will wait for you; no need to keep this tab open.', complete: false };
-  return { id: 'complete', title: 'Orientation postponed. Again.', detail: 'First lesson complete. Your queued job and furnishings survive local reloads. Bridge contributions and a real shared town come in a later milestone.', complete: true };
+  return { id: 'complete', title: 'Orientation postponed. Again.', detail: 'First lesson complete. Your queued job and furnishings stay saved. Bridge donations and plot ownership are available in shared practice, which keeps a separate save.', complete: true };
 }
 export function applyWorkshop(input: WorkshopState, raw: unknown, now: number): WorkshopResult {
   const fail = (message: string): WorkshopResult => ({ state: input, ok: false, message, replayed: false });

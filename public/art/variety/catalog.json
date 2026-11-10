@@ -167,7 +167,21 @@
         "y": 85,
         "width": 192,
         "height": 155
-      }
+      },
+      "lightingWindows": [
+        {
+          "x": 148,
+          "y": 112,
+          "width": 31,
+          "height": 58
+        },
+        {
+          "x": 91,
+          "y": 175,
+          "width": 26,
+          "height": 21
+        }
+      ]
     },
     {
       "id": "building-cafe",
@@ -198,7 +212,39 @@
       "chimneyMouth": {
         "x": 162.5,
         "y": 9
-      }
+      },
+      "lightingWindows": [
+        {
+          "x": 34,
+          "y": 92,
+          "width": 35,
+          "height": 39
+        },
+        {
+          "x": 139,
+          "y": 92,
+          "width": 35,
+          "height": 39
+        },
+        {
+          "x": 26,
+          "y": 214,
+          "width": 36,
+          "height": 33
+        },
+        {
+          "x": 146,
+          "y": 214,
+          "width": 36,
+          "height": 33
+        },
+        {
+          "x": 90,
+          "y": 220,
+          "width": 28,
+          "height": 25
+        }
+      ]
     },
     {
       "id": "resident-aster",

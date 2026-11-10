@@ -92,7 +92,8 @@ def buildings():
     b += path('M80 240h48', stroke='#514939', sw=3)
     meta = dict(foot={'x': 104, 'y': 240}, doorFoot={'x': 104, 'y': 240},
                 occupiedBounds={'x': 8, 'y': 87, 'width': 192, 'height': 153},
-                occlusion={'x': 8, 'y': 85, 'width': 192, 'height': 155})
+                occlusion={'x': 8, 'y': 85, 'width': 192, 'height': 155},
+                lightingWindows=[{'x':148,'y':112,'width':31,'height':58},{'x':91,'y':175,'width':26,'height':21}])
     save('building-workshop', w, 248, b, 'building', **meta)
     b = ellipse(104, 273, 94, 5, '#53604730')
     b += rect(9, 59, 190, 211, '#e9ddbd', 3) + rect(9, 252, 190, 20, '#bba681')
@@ -116,7 +117,8 @@ def buildings():
     b += path('M79 272h50', stroke='#514939', sw=3)
     save('building-cafe', 208, 280, b, 'building', foot={'x':104, 'y':272}, doorFoot={'x':104, 'y':272},
          occupiedBounds={'x':9, 'y':59, 'width':190, 'height':213}, occlusion={'x':9, 'y':59, 'width':190, 'height':213},
-         chimneyMouth={'x':162.5, 'y':9})
+         chimneyMouth={'x':162.5, 'y':9},
+         lightingWindows=[{'x':34,'y':92,'width':35,'height':39},{'x':139,'y':92,'width':35,'height':39},{'x':26,'y':214,'width':36,'height':33},{'x':146,'y':214,'width':36,'height':33},{'x':90,'y':220,'width':28,'height':25}])
 
 
 RESIDENTS = {

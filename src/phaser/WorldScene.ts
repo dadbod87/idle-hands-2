@@ -1,11 +1,14 @@
 import Phaser from 'phaser';
+import {TownSky} from './TownSky.ts';
+import {type TownClimate} from '../game/town-climate.ts';
+import {TOWN_PEOPLE} from '../game/town-people.ts';
 import { Session } from '../game/session.ts';
 import { TILE, worlds } from '../game/world.ts';
 import { PLACEMENT_SLOTS, type WorkshopState } from '../game/workshop.ts';
 import { ORIGINAL_STATIC, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 import catalog from '../../public/art/variety/catalog.json';
 import {RESIDENT_IDS,TREE_KINDS,BUILDING_KINDS,residentArt,residentFrame,ambientPose} from '../art/variety.ts';
-type ArtAsset={id:string;width:number;height:number;foot?:{x:number;y:number};occlusion?:{x:number;y:number;width:number;height:number}};
+type ArtAsset={id:string;width:number;height:number;foot?:{x:number;y:number};occlusion?:{x:number;y:number;width:number;height:number};lightingWindows?:Array<{x:number;y:number;width:number;height:number}>};
 const assets=catalog.assets as ArtAsset[];
 const art=(id:string)=>{const asset=assets.find(a=>a.id===id);if(!asset)throw new Error('Missing authored art: '+id);return asset;};
 export class WorldScene extends Phaser.Scene {
@@ -13,6 +16,10 @@ export class WorldScene extends Phaser.Scene {
   bridgeRestored=false;
   residentId='devon';
   showTownfolk=true;
+  skyNow:()=>number=Date.now;
+  skyFixture:TownClimate|null=null;
+  private sky?:TownSky;
+  climateState(){return this.sky?.snapshot()??null;}
   private canopies:Array<{key:string;image:Phaser.GameObjects.Image;phase:number;baseX:number}>=[];
   private townfolk:Array<{id:string;image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text}>=[];
   private steam?:Phaser.GameObjects.Graphics;
@@ -52,6 +59,7 @@ export class WorldScene extends Phaser.Scene {
     this.occluders = [];
     this.frame = 0; this.facing = 'south'; this.travelled = 0;
     const w = worlds[this.session.room];
+    const litWindows:Array<{x:number;y:number;width:number;height:number}>=[];
     const image=(key:string,x:number,y:number,depth:number)=>this.add.image(x,y,key).setOrigin(0).setDepth(depth);
     image(this.room==='square'?'variety-ground-square':'ground-workshop',0,0,-1000);
     const label=(x:number,y:number,value:string)=>this.add.text(x*TILE,y*TILE,value,{fontFamily:'Georgia,serif',fontSize:13,color:'#343c36',backgroundColor:'#f3e6c5',padding:{x:9,y:5}}).setOrigin(.5).setDepth(y*TILE);
@@ -59,6 +67,7 @@ export class WorldScene extends Phaser.Scene {
       for(const [key,x] of [['workshop',17],['cafe',28]] as const){
         const meta=art('building-'+key),foot=meta.foot!,left=x*TILE-8,top=22*TILE-foot.y;
         const building=image('variety-building-'+key,left,top,22*TILE);
+        for(const box of meta.lightingWindows??[])litWindows.push({...box,x:left+box.x,y:top+box.y});
         const bounds=meta.occlusion??{x:0,y:foot.y-180,width:meta.width,height:180};
         this.occluders.push({image:building,x:left+bounds.x,y:top+bounds.y+bounds.height,width:bounds.width,height:bounds.height});
         if(key==='cafe'){this.steam=this.add.graphics().setPosition(left+162.5,top+9).setDepth(22*TILE+1);this.steamBaseY=top+9;this.steam.fillStyle(0xf8f1df).fillEllipse(0,0,13,19).fillEllipse(-5,-12,17,16).fillEllipse(2,-25,20,14);}
@@ -76,7 +85,7 @@ export class WorldScene extends Phaser.Scene {
         for(const layer of ['trunk','canopy']){const tree=this.add.image(footX,footY,'variety-tree-'+kind+'-'+layer).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(footY+(layer==='canopy'?.1:0));
          if(layer==='canopy'){this.canopies.push({key:kind,image:tree,phase:index*1.7,baseX:footX});const bounds=meta.occlusion??{x:4,y:0,width:meta.width-8,height:foot.y};this.occluders.push({image:tree,x:footX-foot.x+bounds.x,y:footY-foot.y+bounds.y+bounds.height,width:bounds.width,height:bounds.height});}}
       }
-      if(this.showTownfolk)for(const [id,role,x,y] of [['aster','Town clerk',18,24],['bea','Caretaker',32,24],['casey','Courier',26.2,25.2]] as const){const py=(y+.5)*TILE,px=(x+.5)*TILE;const person=this.add.image(px,py,'variety-resident-'+id,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale).setDepth(py);const tag=this.add.text(px,py-62,role,{fontFamily:'Georgia',fontSize:11,color:'#343c36',backgroundColor:'#f8f1df',padding:{x:3,y:2}}).setOrigin(.5,1).setDepth(py+1);this.townfolk.push({id,image:person,label:tag});}
+      if(this.showTownfolk)for(const person of TOWN_PEOPLE){const py=(person.point.y+.5)*TILE,px=(person.point.x+.5)*TILE;const view=this.add.image(px,py,'variety-resident-'+person.rig,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale).setDepth(py);const tag=this.add.text(px,py-62,person.name+' · '+person.role.split(' · ')[0],{fontFamily:'Georgia',fontSize:11,color:'#343c36',backgroundColor:'#f8f1df',padding:{x:3,y:2}}).setOrigin(.5,1).setDepth(py+1);this.townfolk.push({id:person.id,image:view,label:tag});}
     } else {
       image('bench',3*TILE,3*TILE,5*TILE).setDisplaySize(5*TILE,3*TILE);
       image('shelf',11*TILE,3*TILE,6*TILE);
@@ -91,6 +100,7 @@ export class WorldScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor(this.room === 'square' ? '#aebc92' : '#c5b28d');
     this.cameras.main.setBounds(0, 0, w.width * TILE, w.height * TILE);
     this.cameras.main.startFollow(this.actor, true, 1, 1);
+    this.sky=new TownSky(this,litWindows);this.sky.update(this.skyNow(),0,this.room!=='square',!document.hidden&&!this.reducedMotion.matches,this.skyFixture);
     const onDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLElement && e.target.closest('button,input,dialog')) return;
       const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
@@ -111,6 +121,7 @@ export class WorldScene extends Phaser.Scene {
   visualState(){return {facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:this.room==='square'?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
   private updateAmbient(delta:number){
     this.ambientEnabled=!document.hidden&&!this.reducedMotion.matches;
+    this.sky?.motion(0,this.ambientEnabled);
     if(this.ambientEnabled)this.ambientMs+=Math.min(50,Math.max(0,delta));
     const camera=this.cameras.main,visible=(x:number,y:number)=>x>camera.worldView.left-120&&x<camera.worldView.right+120&&y>camera.worldView.top-160&&y<camera.worldView.bottom+120;
     // Keep canopy quads axis-aligned: software rendering clipped rotated SVG quads in CI.
@@ -139,6 +150,7 @@ export class WorldScene extends Phaser.Scene {
     const x=(this.session.position.x+.5)*TILE,y=(this.session.position.y+.5)*TILE;
     this.actor.setPosition(x,y).setDepth(y);
     this.updateAmbient(delta);
+    this.sky?.update(this.skyNow(),delta,this.room!=='square',this.ambientEnabled,this.skyFixture);
     for(const item of this.occluders){const hidden=x>item.x&&x<item.x+item.width&&y<item.y&&y>item.y-item.height;item.image.setAlpha(hidden?.55:1);}
     if (this.lastFrame && !document.hidden) { this.frameSamples.push(time - this.lastFrame); if (this.frameSamples.length > 600) this.frameSamples.shift(); }
     this.lastFrame = time;

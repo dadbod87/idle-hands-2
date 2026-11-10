@@ -4,7 +4,7 @@ Separate sequel repository: private `dadbod87/idle-hands-2`, default source bran
 
 Read docs/CURRENT_STATE.md, docs/CHANGELOG.md, docs/RELEASE_CHECKLIST.md, then docs/idle-hands-2/{CURRENT_SESSION,BUILD_SYSTEM,DECISIONS,EXPERIENCE_BRIEF}.md. Run the tracker `status`, `check`, `prompt`. The task file is authoritative. Make ordinary reversible decisions autonomously, one bounded task per prompt. New user instructions outrank older planning assumptions.
 
-IH2-010 engine pilot is complete. Read the current handoff/tracker for the active task and actual branch; do not switch to an older pilot checkpoint before inspecting the current source. Follow .agents/skills/phaser-2d-game, game-ui-frontend and game-playtest; pinned upstream files must remain intact. No current-game art/cast/economy restrictions silently migrate into this independent prototype. Read docs/ART_DIRECTION.md before art changes.
+IH2-010 engine pilot is complete. Read the current handoff/tracker for the active task and actual branch; do not switch to an older pilot checkpoint before inspecting the current source. Follow .agents/skills/phaser-2d-game, game-ui-frontend and game-playtest; pinned upstream files must remain intact. No current-game art/cast/economy restrictions silently migrate into this independent prototype. Read docs/ART_DIRECTION.md before art changes. docs/idle-hands-2/DEEP_SYSTEMS_PLAN.md records candidate resource/growing/equipment/home/town/action-animation depth; keep candidate catalogs distinct from implemented systems. Cosmetic town time/weather must never settle jobs or alter server economy.
 
 ## Product requirements
 - Slow long-term progression, humor, deep systems and teamwork. Rapid onboarding is not rapid completion; avoid infinite click-to-money compounding.

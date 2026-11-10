@@ -1,6 +1,6 @@
 # Idle Hands 2.0 — planning and build home
 
-Status: **private source/CI established; visual kit next** (2026-11-09). Working title. Separate game; local Phaser pilot exists, with no hosted service, backend/account connection or asset purchase. Current game remains build 194.
+Status: **private local shared-town prototype with original visual kit; first-neighborhood slices in progress** (2026-11-10). Separate game, with an isolated local command service and fictional practice identities. No hosted sequel, real accounts or paid assets. The original Idle Hands remains separate.
 
 Nick has delegated routine design and technical choices, asked for free assets and a system that can progress one prompt at a time. The agent selects reasonable defaults, tests them and records decisions. No large upfront questionnaire is required.
 
@@ -12,6 +12,7 @@ Nick has delegated routine design and technical choices, asked for free assets a
 
 The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/dependencies/acceptance/evidence. The script is read-only and validates the records; an agent must inspect the actual evidence and update them honestly. A fresh session must inspect the current local source, handoff and any newly added remote before acting. Canonical private remote is https://github.com/dadbod87/idle-hands-2, main; fetch current source/PR checks before work.
 
+- [Deep resource, growing, equipment, home and animation plan](DEEP_SYSTEMS_PLAN.md)
 - [Living-town quests, skills and restoration design](LIVING_TOWN_SYSTEMS.md)
 
 ## Chosen direction
@@ -31,7 +32,11 @@ The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/de
 | IH2-020 | One coherent visual kit | Comparable samples, licensed asset inventory, phone readability |
 | IH2-030 | Fun local workshop loop | Gather/craft/decorate, saved synthetic state, deterministic idle tests |
 | IH2-040 | Durable two-player bridge loop | Transactions, replay/concurrency, restart/reconnect and rollover safety |
-| IH2-050 | Polished neighborhood | Small content scope, first-session playtest and phone usability |
+| IH2-045 | Distinct original people, trees, buildings and motion | Actual software-rendered canopy pixels and responsive evidence |
+| IH2-051 | Town rhythm, conversations and deep-system plan | Day/night/weather without production changes, NPC access, real screenshot evidence |
+| IH2-052 | Starter homes and return visits | Persistent expansion/decorating, first-kit teaching and offline summary |
+| IH2-053 | Restored trail and discovery | Useful shared destination, resident reactions and earned cosmetic |
+| IH2-050 | Integrated polished neighborhood | Parent brief acceptance after the smaller slices |
 | IH2-060 | Private-preview readiness package | Measured 20-client cost/performance, permissions, backup/restore, hosting decision |
 | IH2-070 | Invited beta | Approved isolated target, actual deployed artifact and device verification |
 | IH2-080 | Public launch | Beta issues resolved, concrete launch package and explicit launch authorization |

@@ -5,6 +5,10 @@ import { PLACEMENT_SLOTS, type WorkshopState } from '../game/workshop.ts';
 import { ORIGINAL_STATIC, FACINGS, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 export class WorldScene extends Phaser.Scene {
   actor!: Phaser.GameObjects.Image;
+  bridgeRestored=false;
+  residents:Array<{id:string;name:string;room:string;position:{x:number;y:number}}>=[];
+  private residentViews=new Map<string,{image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text}>();
+  private bridgeView?:Phaser.GameObjects.Image;
   decorations?:()=>WorkshopState['placements'];
   private decorationViews:Phaser.GameObjects.GameObject[]=[];
   private decorationKey='';
@@ -26,7 +30,7 @@ export class WorldScene extends Phaser.Scene {
   }
   create() {
     this.room = this.session.room;
-    this.decorationKey=''; this.decorationViews=[];
+    this.decorationKey=''; this.decorationViews=[];this.residentViews=new Map();this.bridgeView=undefined;
     this.occluders = [];
     this.frame = 0; this.facing = 'south'; this.travelled = 0;
     const w = worlds[this.session.room];
@@ -43,7 +47,7 @@ export class WorldScene extends Phaser.Scene {
         this.add.text((x+.5)*TILE,28.1*TILE,id,{fontFamily:'Georgia',fontSize:11,color:'#202f28',backgroundColor:'#f8f1df',padding:{x:3,y:3}}).setOrigin(.5).setDepth(30*TILE);
       }
       image('home-plot',27*TILE-8,30*TILE-8,35*TILE);
-      image('bridge-neglected',23*TILE,9.55*TILE,12.7*TILE);
+      this.bridgeView=image(this.bridgeRestored?'bridge-restored':'bridge-neglected',23*TILE,9.55*TILE,12.7*TILE);
       label(24.5,13.7,'!  Bridge committee');
       for(const [x,y] of [[17,26],[34,26],[14,17],[37,19],[13,30],[37,33]]){
         const footY=(y+2)*TILE+4,tree=this.add.image((x+1)*TILE,footY,'tree').setOrigin(.5,1).setDepth(footY);
@@ -118,6 +122,10 @@ export class WorldScene extends Phaser.Scene {
         }
       }
     }
+    if(this.bridgeView)this.bridgeView.setTexture(this.bridgeRestored?'bridge-restored':'bridge-neglected');
+    const peers=this.residents.filter(r=>r.room===this.room&&Number.isFinite(r.position.x)&&Number.isFinite(r.position.y));
+    for(const[id,view]of this.residentViews)if(!peers.some(p=>p.id===id)){view.image.destroy();view.label.destroy();this.residentViews.delete(id);}
+    for(const peer of peers){let view=this.residentViews.get(peer.id);if(!view){view={image:this.add.image(0,0,'employee-south-0').setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale),label:this.add.text(0,0,peer.name,{fontFamily:'Georgia',fontSize:12,color:'#253c34',backgroundColor:'#f8f1df',padding:{x:4,y:3}}).setOrigin(.5,1)};this.residentViews.set(peer.id,view);}const px=(peer.position.x+.5)*TILE,py=(peer.position.y+.5)*TILE;view.image.setPosition(px,py).setDepth(py);view.label.setPosition(px,py-63).setDepth(py+1);}
     this.onFrame?.();
   }
 }

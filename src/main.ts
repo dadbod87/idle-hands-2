@@ -4,18 +4,20 @@ import { worlds, type Stop } from './game/world.ts';
 import { WorldScene } from './phaser/WorldScene.ts';
 import './ui/style.css';
 import {questStep} from './game/workshop.ts';
+import {TownClient,TownUI} from './ui/town.ts';
 import {WorkshopUI} from './ui/workshop.ts';
 import { renderStudy, guideContents } from './art/study.ts';
 if(new URLSearchParams(location.search).has('art-study')) { renderStudy(); } else {
 
+const townMode=new URLSearchParams(window.location.search).has('town');
 const saveKey = 'ih2:pilot-position:v1';
 let stored: unknown;
-try { stored = JSON.parse(localStorage.getItem(saveKey) ?? 'null'); } catch { stored = null; }
-const session = new Session(stored);
+try { stored = townMode?null:JSON.parse(localStorage.getItem(saveKey) ?? 'null'); } catch { stored = null; }
+const session = new Session(townMode?null:stored);
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
-<main class="shell">
- <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">NEIGHBORHOOD STUDY<span>Local workshop · saved here</span></div><button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
+<main class="shell ${townMode?'town-mode':''}">
+ <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">NEIGHBORHOOD STUDY<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
  <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
  <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite">Tap the three material depots below you. Your first planter starts here.</p></div><nav aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag">Bag & journal</button><button id="interact" class="primary" disabled>Nothing nearby</button></nav></footer>
 </main>
@@ -39,7 +41,7 @@ const worldResize=new ResizeObserver(entries=>{const {width,height}=entries[0].c
 worldResize.observe(worldContainer);
 let ready = false;
 let lastContext = '';
-function save() { try { localStorage.setItem(saveKey, JSON.stringify(session.save())); } catch { feedback.textContent = 'Position could not be saved in this browser. The pilot remains playable.'; } }
+function save() { if(townMode)return; try { localStorage.setItem(saveKey, JSON.stringify(session.save())); } catch { feedback.textContent = 'Position could not be saved in this browser. The pilot remains playable.'; } }
 function focusWorld() { document.querySelector('canvas')?.focus(); }
 function closePanel() { workshop.closed(); if (session.locked) session.lock(false); panel.close(); focusWorld(); }
 panel.addEventListener('submit', event => { event.preventDefault(); closePanel(); });
@@ -47,7 +49,25 @@ panel.addEventListener('close', () => { workshop.closed(); if (session.locked) s
 panel.addEventListener('cancel', () => { session.lock(false); });
 function openPanel(heading: string) { session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }
-const workshop=new WorkshopUI({open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>scene.refreshDecorations()});
+let townUI:TownUI|undefined;
+let residentId='',serverInstance='',needResync=true,lastSent='',lastMove=0,moveBackoff=0;
+let movement:Promise<void>|null=null;
+const town=townMode?new TownClient({
+ onSnapshot:snapshot=>{if(residentId!==snapshot.playerId||needResync||(snapshot.serverInstance&&snapshot.serverInstance!==serverInstance)){scene.residents=[];session.enter(snapshot.position.room,snapshot.position.position);residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);if(!panel.open)session.lock(false);}scene.bridgeRestored=snapshot.bridge.restored;scene.refreshDecorations();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
+ onPresence:presence=>{scene.residents=Array.isArray(presence)?presence:[];},
+ onConnection:message=>{feedback.textContent=message;if(message.includes('interrupted')){needResync=true;session.lock(true);}},
+ beforeCommand:()=>flushMovement(true)
+}):null;
+async function flushMovement(force=false):Promise<void>{
+ if(!town?.snapshot)return;if(movement){await movement;if(!force)return;}
+ if(!force&&(Date.now()-lastMove<150||Date.now()<moveBackoff))return;
+ const value={room:session.room,position:{...session.position}},hash=JSON.stringify(value);if(hash===lastSent)return;
+ lastMove=Date.now();
+ const action=town.movement(value).then(()=>{lastSent=hash;moveBackoff=0;}).catch(async error=>{moveBackoff=Date.now()+2000;needResync=true;session.lock(true);feedback.textContent='Movement could not be confirmed. Reconnecting to the local town…';try{const snapshot=await town.load();session.enter(snapshot.position.room,snapshot.position.position);lastSent=JSON.stringify(snapshot.position);}catch{/* SSE reconnect reloads the authoritative position. */}if(force)throw error;}).finally(()=>movement=null);
+ movement=action;await action;
+}
+const workshop=new WorkshopUI({open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>scene.refreshDecorations()},town?.workshopAdapter());
+if(town){townUI=new TownUI({open:openPanel,body,feedback:message=>feedback.textContent=message,changed:()=>scene.refreshDecorations()},town);document.querySelector('#resident')!.addEventListener('click',()=>void townUI!.showLogin(()=>closePanel()));}
 scene.decorations=()=>workshop.state.placements;
 document.querySelector('#bag')!.addEventListener('click',()=>workshop.showInventory());
 document.querySelector('#field-guide')!.addEventListener('click',()=>{
@@ -65,6 +85,8 @@ document.querySelector('#places')!.addEventListener('click', () => {
   }
 });
 function activate(stop: Stop) {
+  if(town&&stop.id==='bridge'){townUI!.showBridge();return;}
+  if(town&&stop.id==='plot'){townUI!.showPlots();return;}
   if(['scrap','timber','supplies'].includes(stop.id)){workshop.showResource(stop.id as 'scrap'|'timber'|'supplies');return;}
   if(stop.id==='bench'){workshop.showBench();return;}
   if (stop.transition) {
@@ -86,9 +108,11 @@ document.addEventListener('keydown', e => {
   e.preventDefault(); interact();
 });
 scene.onFrame = () => {
+  if(town&&!document.hidden)void flushMovement().catch(()=>{});
   if (!ready) {
     ready = true; document.querySelector('#boot')?.remove();
     const canvas = document.querySelector('canvas')!; canvas.tabIndex = 0; canvas.setAttribute('aria-label', 'Walkable neighborhood. Use Places for named destinations.'); canvas.setAttribute('aria-describedby', 'instructions'); focusWorld();
+    if(town){session.lock(true);void town.load().then(()=>town.connect()).catch(()=>townUI!.showLogin(()=>closePanel()));}
   }
   const arrival = session.takeArrival();
   if (arrival) activate(arrival);
@@ -97,16 +121,19 @@ scene.onFrame = () => {
   if (state !== lastContext) {
     lastContext = state;
     location.innerHTML = session.room === 'square' ? 'Town square<span>Under new mismanagement.</span>' : 'Your workshop<span>Great things take time.</span>';
+    if(town){const label=document.createElement('small');label.className='fixture-label';label.textContent='Practice town · '+(town.snapshot?.name??'choose a resident');location.append(label);}
     interactButton.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : 'square'}` : 'Inspect') : 'Nothing nearby';
     interactButton.disabled = !stop;
     interactButton.setAttribute('aria-label', stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : 'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
   }
 };
 window.addEventListener('pagehide', save);
-document.addEventListener('visibilitychange', () => { if (document.hidden) save(); });
+document.addEventListener('visibilitychange', () => { if(document.hidden)save();else if(town){needResync=true;session.lock(true);void town.load().catch(()=>{});} });
+window.addEventListener('pageshow',event=>{if(event.persisted&&town){needResync=true;session.lock(true);void town.load().catch(()=>{});}});
 // Read-only diagnostics for reproducible pilot checks; never an economy/debug mutation API.
 Object.defineProperty(window, '__pilot', { value: Object.freeze({
   snapshot: () => session.snapshot(),
+  town:()=>town?.snapshot?JSON.parse(JSON.stringify(town.snapshot)):null,
   workshop:()=>workshop.snapshot(),
   metrics: () => {
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);

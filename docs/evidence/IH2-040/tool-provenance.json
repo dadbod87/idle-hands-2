@@ -1,0 +1,15 @@
+{
+  "supabaseCli": {
+    "version": "3.1.0",
+    "source": "https://github.com/supabase/cli/releases/tag/v3.1.0",
+    "archive": "supabase_3.1.0_darwin_arm64.tar.gz",
+    "sha256": "2bd2a45fd5cd9e45b6393cfd534651ac1dbfb78c8a311b7f48e14143594e7a26",
+    "use": "migration new only; advisor connection attempt to absent local stack recorded"
+  },
+  "postgres": {
+    "version": "16.15",
+    "image": "postgres@sha256:9e2cf6287f25c3151f4c9421ccce2b17f3e60061c111a29165e0d2cdd9ff0a97",
+    "scope": "isolated local/CI fixture containers, no cloud database"
+  },
+  "notices": "New pg and type dependency licenses are retained in licenses/dependencies; pg-types/pgpass license text is from the installed package README."
+}

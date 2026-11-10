@@ -14,6 +14,19 @@ jobs:
   domain-build-plan:
     runs-on: ubuntu-24.04
     timeout-minutes: 8
+    services:
+      postgres:
+        image: postgres@sha256:9e2cf6287f25c3151f4c9421ccce2b17f3e60061c111a29165e0d2cdd9ff0a97
+        env:
+          POSTGRES_USER: ih2
+          POSTGRES_PASSWORD: local-synthetic-only
+          POSTGRES_DB: ih2_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U ih2 -d ih2_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -23,11 +36,32 @@ jobs:
           node-version: '24.22.2'
           cache: npm
       - run: npm ci --ignore-scripts
+      - name: Prepare isolated fixture databases
+        env:
+          IH2_TEST_DATABASE_URL: postgres://ih2:local-synthetic-only@127.0.0.1:5432/ih2_test
+        run: node --experimental-strip-types tools/prepare-test-dbs.ts
       - run: npm run test
+        env:
+          IH2_TEST_DATABASE_URL: postgres://ih2:local-synthetic-only@127.0.0.1:5432/ih2_test
+          IH2_HTTP_TEST_DATABASE_URL: postgres://ih2:local-synthetic-only@127.0.0.1:5432/ih2_http_test
+          IH2_PG_DOCKER: '1'
+          IH2_PG_CONTAINER: ${{ job.services.postgres.id }}
+      - name: Prove isolated database restart recovery
+        env:
+          IH2_HTTP_TEST_DATABASE_URL: postgres://ih2:local-synthetic-only@127.0.0.1:5432/ih2_http_test
+          IH2_PG_CONTAINER: ${{ job.services.postgres.id }}
+        run: node --experimental-strip-types tools/prove-database-restart.ts
       - run: npm run build
       - run: npm run check:plan
       - run: python3 tools/verify-game-skills.py
       - run: git diff --check
+      - name: Preserve synthetic server evidence
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: sequel-server-evidence
+          path: test-results/server/
+          retention-days: 7
+          if-no-files-found: error
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: sequel-client-build
@@ -36,7 +70,20 @@ jobs:
           if-no-files-found: error
   browser-playtest:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres@sha256:9e2cf6287f25c3151f4c9421ccce2b17f3e60061c111a29165e0d2cdd9ff0a97
+        env:
+          POSTGRES_USER: ih2
+          POSTGRES_PASSWORD: local-synthetic-only
+          POSTGRES_DB: ih2_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U ih2 -d ih2_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -46,9 +93,15 @@ jobs:
           node-version: '24.22.2'
           cache: npm
       - run: npm ci --ignore-scripts
+      - name: Prepare isolated fixture databases
+        env:
+          IH2_TEST_DATABASE_URL: postgres://ih2:local-synthetic-only@127.0.0.1:5432/ih2_test
+        run: node --experimental-strip-types tools/prepare-test-dbs.ts
       - run: npx playwright install --with-deps chromium
       - run: npm run build
       - run: npm run test:browser
+        env:
+          IH2_BROWSER_DATABASE_URL: postgres://ih2:local-synthetic-only@127.0.0.1:5432/ih2_browser
       - name: Preserve synthetic playtest evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

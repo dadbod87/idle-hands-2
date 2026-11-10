@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-09",
+  "updated": "2026-11-10",
   "authority": "docs/idle-hands-2/README.md",
   "tasks": [
     {
@@ -215,7 +215,7 @@
     {
       "id": "IH2-040",
       "title": "Durable shared bridge and two-player proof",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-030"
       ],
@@ -232,6 +232,32 @@
       "exclusions": [
         "No real accounts, hosted database, paid transport service, production load test or huge multiplayer world."
       ],
+      "evidence": [
+        "docs/evidence/IH2-040/REPORT.md",
+        "docs/evidence/IH2-040/INDEPENDENT_REVIEW.md",
+        "docs/evidence/IH2-040/database-restart.json",
+        "docs/idle-hands-2/handoffs/2026-11-10-durable-town.md"
+      ],
+      "owner_branch": "feat/durable-town"
+    },
+    {
+      "id": "IH2-045",
+      "title": "Distinct town silhouettes, materials and gentle life",
+      "status": "queued",
+      "depends_on": [
+        "IH2-040"
+      ],
+      "goal": "Apply Nick\u2019s approved visual direction with recognizable varied people, trees, buildings and ground, plus restrained life on phones.",
+      "acceptance": [
+        "Original coherent variations: at least three tree silhouettes and four residents with varied builds, clothing and hair, retaining readable shared scale.",
+        "Workshop, cafe and future house samples have distinct footprints, height/roof shapes and material textures beyond signage; land/paths have intentional variation without visual noise.",
+        "A small set of ambient leaf, steam or idle-gesture motions adds life; reduced motion disables decorative movement and phone performance is measured with no extra database/network activity.",
+        "Desktop, narrow phone, short viewport and enlarged-text screenshot review; preserve camera/door/movement/interaction usability and provenance.",
+        "If footprints/collision change, prove safe forward recovery of persisted positions and door arrivals without erasing inventory, plots or creative work."
+      ],
+      "exclusions": [
+        "No paid assets, huge city expansion or new multiplayer/economy scope."
+      ],
       "evidence": []
     },
     {
@@ -239,7 +265,8 @@
       "title": "Polished first neighborhood",
       "status": "queued",
       "depends_on": [
-        "IH2-040"
+        "IH2-040",
+        "IH2-045"
       ],
       "goal": "Deliver the small persistent neighborhood with coherent art, story and useful phone navigation.",
       "acceptance": [

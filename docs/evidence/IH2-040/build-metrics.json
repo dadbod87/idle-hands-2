@@ -1,0 +1,11 @@
+{
+  "method": "Python gzip.compress sum of HTML/CSS/JS; excludes original SVG art. Build estimate, not measured network delivery.",
+  "gzipBytes": 400945,
+  "files": {
+    "dist/index.html": "30160d1cec96077f721c42e502d9b764401d66f254f800a19dbc18b433a09524",
+    "dist/assets/index-CzqK5hQD.js": "7da45ac222d4fbb4caeda682478aa42584f1004796168c62531877f4d18c0ce6",
+    "dist/assets/index-DYBJq1g3.css": "57fee2d90181170ffb899608b65f7baea7261528e0eabebfbfcdb80763fdc137"
+  },
+  "node": "26.7.0 local; CI separately uses 24.22.2",
+  "limits": "Visible Vite >500kB engine chunk warning; physical-phone/load/hosting budgets await later gates."
+}

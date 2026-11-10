@@ -1,0 +1,3 @@
+.town-status{min-height:4.5em;font-weight:bold;overflow-wrap:anywhere}.town-plot{border-top:1px solid var(--line);padding:14px 0}.town-plot select{margin:8px 0}.town-plot button{min-height:46px;overflow-wrap:anywhere}#panel-body[aria-busy=true]{cursor:progress}.remote-status{min-height:4.5em;overflow-wrap:anywhere}.remote-retry{min-height:46px;margin:8px 0}
+
+.town-mode .brand{min-width:0}.town-mode h1{overflow-wrap:anywhere}#resident{min-width:44px;min-height:44px;padding:7px 8px;font-size:.8rem}.fixture-label{display:block;font:0.65rem/1.3 'Courier New',monospace;margin-top:4px;color:#343c36}@media(max-width:650px){.town-mode .brand-mark{display:none}.town-mode header{gap:7px}}

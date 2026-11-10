@@ -16,3 +16,5 @@ Run the checks listed in [release checklist](docs/RELEASE_CHECKLIST.md), includi
 [Planning home](docs/idle-hands-2/README.md) · [Current state](docs/CURRENT_STATE.md) · [Handoff](docs/idle-hands-2/CURRENT_SESSION.md) · [Licenses](licenses/README.md).
 
 IH2-045 adds tree/resident variety, distinct building shapes/materials, ground detail and restrained reduced-motion-aware animation. Open `/?variety-study=1` for the responsive art review. Next is first-neighborhood polish. Real authentication, hosted play, physical house lots and wider neighborhood content remain later gates. Dependencies are pinned and original art provenance is recorded; no paid assets are required.
+
+Town rhythm adds a48-real-minute cosmetic day, light weather and three authored conversations. Night/rain never change production. The field guide explains the live clock and labelled lighting studies; [the depth plan](docs/idle-hands-2/DEEP_SYSTEMS_PLAN.md) tracks future woods, growing, equipment, homes, town projects and their action animations. Those larger systems are staged, not all implemented.

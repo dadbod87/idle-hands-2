@@ -47,8 +47,15 @@ async function canopyCoverage(page:Page,shape:string){
   const clip={x:Math.round(canvas.x+foot.x-30),y:Math.round(canvas.y+foot.y-77),width:60,height:38};
   expect(clip.x).toBeGreaterThanOrEqual(wrap.x);expect(clip.x+clip.width).toBeLessThanOrEqual(wrap.x+wrap.width);
   expect(clip.y).toBeGreaterThanOrEqual(wrap.y);expect(clip.y+clip.height).toBeLessThanOrEqual(wrap.y+wrap.height);
+  const climate=await page.evaluate(()=>(window as any).__pilot.metrics().climate);
+  expect(typeof climate.effectiveAlpha).toBe('number');
   const png=await page.screenshot({clip,path:`${evidence}/variety-${shape}-canopy-pixels-${sample}.png`});
-  const counts=await page.evaluate(async data=>{
+  const counts=await page.evaluate(async({data,tint,alpha})=>{
+   const overlay=[(tint>>16)&255,(tint>>8)&255,tint&255];
+   const composite=(base:number[])=>base.map((channel,index)=>Math.round(channel*(1-alpha)+overlay[index]*alpha));
+   const leafColors=[[125,153,108],[168,189,141]].map(composite);
+   const backgroundColors=[[174,188,146],[222,208,172]].map(composite);
+   const distance=(pixel:number[],color:number[])=>pixel.reduce((sum,channel,index)=>sum+(channel-color[index])**2,0);
    const image=new Image();image.src='data:image/png;base64,'+data;await image.decode();
    const bitmap=document.createElement('canvas');bitmap.width=image.width;bitmap.height=image.height;
    const context=bitmap.getContext('2d')!;context.drawImage(image,0,0);
@@ -56,16 +63,18 @@ async function canopyCoverage(page:Page,shape:string){
    let leafPixels=0;
    for(let offset=0;offset<pixels.length;offset+=4){
     const r=pixels[offset],g=pixels[offset+1],b=pixels[offset+2];
-    // Allow antialiasing around the two authored leaf materials while excluding
-    // the tan path, sage grass, trunk and ink. No OS/font-sensitive golden diff.
-    const near=(red:number,green:number,blue:number)=>Math.abs(r-red)<15&&Math.abs(g-green)<15&&Math.abs(b-blue)<15;
-    if(g-r>=18&&(near(125,153,108)||near(168,189,141)))leafPixels++;
+    // Adapt both leaf materials to the actual source-over climate tint. Require
+    // the pixel to be closer to foliage than grass/path, rather than a fixed
+    // green-channel margin that would fail under night lighting.
+    const pixel=[r,g,b],leafDistance=Math.min(...leafColors.map(color=>distance(pixel,color)));
+    const backgroundDistance=Math.min(...backgroundColors.map(color=>distance(pixel,color)));
+    if(leafDistance<15**2*3&&leafDistance<backgroundDistance)leafPixels++;
    }
    const totalPixels=pixels.length/4;return{leafPixels,totalPixels,coverage:leafPixels/totalPixels};
-  },png.toString('base64'));
+  },{data:png.toString('base64'),tint:climate.tint.color,alpha:climate.effectiveAlpha});
   measurements.push({sample,...counts,clip});
  }
- fs.writeFileSync(`${evidence}/variety-${shape}-canopy-coverage.json`,JSON.stringify({method:'Three compositor PNG crops, 200ms apart, decoded using a detached browser 2D canvas. Opaque oak interior at the isolated local door-position fixture. Healthy authored interior coverage98.7%; known broken CI captures0.35% desktop/62.8% narrow. Threshold85% tolerates minor motion/antialiasing but detects the missing triangular canopy regions.',measurements},null,2));
+ fs.writeFileSync(`${evidence}/variety-${shape}-canopy-coverage.json`,JSON.stringify({method:'Three compositor PNG crops, 200ms apart, decoded using a detached browser 2D canvas. Opaque oak interior at the isolated local door-position fixture. Offline pixel calibration: healthy authored interior above98%, known broken CI crops below65% with clear or synthetic20% night wash; expected leaf/background palettes follow the read-only runtime climate tint. Threshold85% tolerates minor motion/antialiasing but detects the missing triangular canopy regions.',measurements},null,2));
  for(const result of measurements)expect(result.coverage,`oak canopy sample ${result.sample}: actual screenshot leaf coverage`).toBeGreaterThan(.85);
 }
 

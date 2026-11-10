@@ -51,3 +51,8 @@ Agent-selected reversible tuning under Nick’s autonomous authorization: initia
 
 ## A016 — restrained original variation (2026-11-10)
 Agent-selected implementation of D-015: original layered tree SVGs and four compact directional pose sheets; new building silhouettes within existing collision/threshold geometry; future-house sample stays explicitly non-buildable. Keep stable resident identity mapping, passive local decorative people separate from server presence, and view-only reduced/hidden/offscreen-aware motion. No asset dependencies or schema/economy changes. Physical-device performance and larger NPC systems remain later gates.
+
+## 2026-11-10 — deeper systems and town rhythm
+- D-016 (user requested): keep gradually designing distinct woods/resources, plants/fruit, purchases, individual clothing/equipment, deep home expansion/decorating and shared town building; harvesting fruit, chopping, planting and other actions should eventually have their own animations. Add at least day/night, with a simple weather system considered.
+- A-017 (agent selected, reversible prototype):48-real-minute cosmetic day, deterministic clear/overcast/light-drizzle segments, global timestamp-derived phases, warm windows and readable blue night. No production/crop/weekly modifier, storm loss or closed-at-night destination. Shared view anchors to snapshot time; QA phases change presentation only.
+- A-018 (agent selected under bounded-work protocol): split the broad parent IH2-050 into051 rhythm/conversations/plan,052 starter housing/first-session/returns and053 restored trail/discovery, then original050 integrated acceptance. Preserve all parent acceptance; no unimplemented systems are marked done by the split.

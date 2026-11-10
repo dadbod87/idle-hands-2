@@ -39,3 +39,9 @@
 - 50 domain/art/server checks and24 browser cases, strict build, planning/integrity/diff; both exact-head CI jobs success before merge.
 
 - IH2-045 correction: inspect actual final CI images before merge, not only green assertions. Three canopy PNG crops per viewport must retain>85% authored leaf coverage under software rendering; reduced/hidden offsets zero. Keep rejected/accepted diagnostics clearly labeled.
+
+## IH2-051 rhythm and first conversations
+- Pure clock/weather boundaries, negative/invalid time, deterministic fixtures and phase/lamp continuity; production uses real time, not the48-minute visual clock.
+- Actual day/night/dawn/dusk foliage pixels, unchanged HUD pixels, reachable doors, bright interiors, drizzle reduced/hidden resets and no added API work. Explicitly disclose visual-time, saved-position, queued-job and hidden-state fixtures.
+- NPC body/keyboard/directory access, menu input lock, safe one-shot arrivals, state-aware copy and no dialogue rewards; authored residents distinct from player presence.
+-66 domain/art/server checks,33 full browser cases, strict build, planning/integrity/diff. Both exact-head CI jobs plus actual final screenshots inspected before merge. No physical-phone/cloud-load/full accessibility claim.

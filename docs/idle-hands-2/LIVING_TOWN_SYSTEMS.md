@@ -49,4 +49,4 @@ IH2-040: make personal/shared quest progress and rewards authoritative; prove du
 
 IH2-050: one coherent bridge/trail story, a few authored NPC reactions and a modest cosmetic discovery path alongside starter housing. More residents, helpers, shops and restoration zones are later task-sized expansions after beta evidence, not hidden additions to the engine pilot.
 
-Current local preview has movement and inspectable placeholder locations only. None of these quest, skill, NPC-helper or economy systems is implemented yet.
+Current implementation includes the three-resource/two-recipe workshop, orientation and skill records, durable shared bridge/plot proof and original visual kit. IH2-051 adds cosmetic town rhythm and authored conversations. Physical housing/trail expansion remain the next bounded slices; crop, shop, equipment and helper depth is planned, not implemented. See [deep-system plan](DEEP_SYSTEMS_PLAN.md) and the current roadmap rather than treating historical milestone descriptions as current status.

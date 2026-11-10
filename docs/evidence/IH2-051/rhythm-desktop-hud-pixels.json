@@ -1,0 +1,13 @@
+{
+  "method": "Decoded compositor PNG RGBA comparison, ignoring PNG encoding differences. Mean RGB error below1/255 and fewer than3% pixels differing by more than4/255 tolerate font antialiasing; a full-world tint applied to HUD would affect most of its background.",
+  "daySize": {
+    "width": 1404,
+    "height": 78
+  },
+  "nightSize": {
+    "width": 1404,
+    "height": 78
+  },
+  "meanAbsoluteRGBError": 0,
+  "changedPixelFraction": 0
+}

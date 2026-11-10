@@ -1,0 +1,97 @@
+{
+  "scope": "Initial compositor-only comparison, BEFORE the final raw-frame pacing correction. Short/noisy sample; after may overlap another browser startup. Indicative only, not a CI cure, physical-device or cloud-load benchmark.",
+  "before": {
+    "label": "before",
+    "method": "Three isolated visible local practice contexts, forced ANGLE SwiftShader, same1440/360/390 viewports, night+drizzle fixture. Six-second north key hold, actualelapsed measured. Rolling metrics include bootstrap; frame-count deltas report sample average, not physical-device performance.",
+    "elapsed": 6019,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+    "samples": [
+      {
+        "frames": 129,
+        "approxFPS": 21.43213158331949,
+        "rollingP95": 83.29999999999927,
+        "positionBefore": {
+          "x": 24,
+          "y": 25
+        },
+        "positionAfter": {
+          "x": 24,
+          "y": 11.8088
+        }
+      },
+      {
+        "frames": 130,
+        "approxFPS": 21.598272138228943,
+        "rollingP95": 116.60000000000036,
+        "positionBefore": {
+          "x": 24,
+          "y": 25
+        },
+        "positionAfter": {
+          "x": 24,
+          "y": 25
+        }
+      },
+      {
+        "frames": 130,
+        "approxFPS": 21.598272138228943,
+        "rollingP95": 100,
+        "positionBefore": {
+          "x": 24,
+          "y": 25
+        },
+        "positionAfter": {
+          "x": 24,
+          "y": 25
+        }
+      }
+    ]
+  },
+  "after": {
+    "label": "after",
+    "method": "Three isolated visible local practice contexts, forced ANGLE SwiftShader, same1440/360/390 viewports, night+drizzle fixture. Six-second north key hold, actualelapsed measured. Rolling metrics include bootstrap; frame-count deltas report sample average, not physical-device performance.",
+    "elapsed": 6006,
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+    "samples": [
+      {
+        "frames": 135,
+        "approxFPS": 22.477522477522477,
+        "rollingP95": 83.30000000000018,
+        "positionBefore": {
+          "x": 24,
+          "y": 25
+        },
+        "positionAfter": {
+          "x": 24,
+          "y": 11.742100000000095
+        }
+      },
+      {
+        "frames": 135,
+        "approxFPS": 22.477522477522477,
+        "rollingP95": 100,
+        "positionBefore": {
+          "x": 24,
+          "y": 25
+        },
+        "positionAfter": {
+          "x": 24,
+          "y": 25
+        }
+      },
+      {
+        "frames": 136,
+        "approxFPS": 22.644022644022645,
+        "rollingP95": 100,
+        "positionBefore": {
+          "x": 24,
+          "y": 25
+        },
+        "positionAfter": {
+          "x": 24,
+          "y": 25
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+# IH2-051 review closeout
+
+Focused agents owned the pure climate/plan and dialogue modules; another owned browser checks and reviewed actual screenshots. Root integrated renderer, controls and documentation.
+
+- Climate: deterministic clock/hash, no Date.now mutation or external calls; boundary, continuity and fixture tests. Night refinement selected from actual captures, not a production modifier.
+- Integration: review traced sky-study/server anchor separately from WorkshopUI/commands, rain resize/reduced/hidden behavior and no per-frame database/network work. NPC safe body rectangles, one-shot arrival, menu lock and separate authored/player identities were checked. No blocker found in those boundaries.
+- Concrete copy finding: repaired shared bridge still had old no-progress exit text. Root made it conditional on saved restoration.
+- Actual phone/software screenshots: normal day/night/drizzle/interior and three dialogues readable. Reviewer found200% weather placard hiding the door; root moved optional status into guide in that layout and added actual geometry coverage.
+- Test finding: compressed-PNG byte equality was overstrict/noisy. Decoded RGBA comparison preserves the untinted guard; standalone calibration measured valid HUD difference0 versus54.45 mean RGB/100% pixels for an erroneous36% tint. Local final full suite passes30/30.
+
+Limits: synthetic view/time/job/hidden fixtures, emulated phones; final CI and actual image inspection must occur before merge. No physical-device, hosted-load, full accessibility or future-crop/equipment implementation claim.
+
+Post-CI review: two initial runs exposed reproducible slow software rendering; no passing claim was made and no deadlines were raised. World-only compositor layers retain actual foliage/HUD pixels and ordering. A short noisy before/after sample indicates only a modest FPS benefit. Independent review approved raw elapsed visible movement split into bounded existing domain steps, with reset/hidden safeguards; final code and exact-head CI still gate merge. Both existing CI jobs remain required; the proposed matrix split was not shipped because the connection lacks workflow-edit permission.
+
+Further review confirmed the shared409 was a real client/server movement-envelope mismatch, not an authority change. Client acknowledgment backpressure/room-arrival hold and a new delayed-response regression address it. Root reproduced near-zero frame-tail route cancellation and added a boundary test; the additional canvas-origin guard hardens DOM controls with an explicitly synthetic native-event regression. Final candidate is reviewed separately from earlier failed CI runs.
+
+Final source review guards obsolete movement errors during login (positive and negative-control integration fixture), already-confirmed endpoint credit release, source acknowledgment before shared portal entry and cancellation by a superseding panel. Server burst/speed/proximity limits, economy and production clocks remain unchanged. Full33-case and final CI outcomes belong to root closeout; earlier focused passes are not substituted for them.

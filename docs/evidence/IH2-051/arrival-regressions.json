@@ -43,5 +43,22 @@
     ],
     "discardedRemainderMaximumMs": 0.01
   },
-  "inputHardening": "Canvas-origin guard independently covers window-forwarded HTML presses; original trace does not establish this as its cause."
+  "inputHardening": "Canvas-origin guard independently covers window-forwarded HTML presses; original trace does not establish this as its cause.",
+  "laterFixtureFinding": {
+    "run": 42900926915,
+    "candidate": "c575e8da35789ad9b8471cc9d50ca34d2a65dc14",
+    "browserPassed": 32,
+    "browserTotal": 33,
+    "from": {
+      "x": 32.84260701322042,
+      "y": 29.259440346553774
+    },
+    "oldEndpoint": {
+      "x": 34.015607013220425,
+      "y": 29.472440346553775
+    },
+    "oldSegmentClear": false,
+    "alternateSegmentClear": true,
+    "resolution": "Test chooses collision-clear non-interactive fractional floor from actual post-keyboard position; exact arrival and wall checks retained."
+  }
 }

@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import fs from 'node:fs';
+import {clearSegment,worlds,type Room} from '../src/game/world.ts';
 const evidenceDir = process.env.QA_EVIDENCE_DIR ?? 'test-results/browser';
 fs.mkdirSync(evidenceDir,{recursive:true});
 const shapes = [{name:'desktop',width:1440,height:900},{name:'phone',width:390,height:844},{name:'narrow',width:360,height:640},{name:'short',width:844,height:390}];
@@ -44,12 +45,17 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  expect((await snapshot(page)).position).toEqual(locked.position);
  await page.getByRole('button',{name:'Close panel'}).click();
  // A real pointer on the canvas uses camera conversion.
- const pos=await snapshot(page);const endpoint={x:pos.position.x+1.173,y:pos.position.y+.213};
+ const pos=await snapshot(page);
+ // Held keys can cover farther ground when a slow runner delays release. Select clear
+ // floor from the actual arrival, rather than accidentally testing a blocked plot/tree.
+ const offsets=[[1.173,.213],[1.173,-.213],[-1.173,.213],[-1.173,-.213],[.213,1.173],[-.213,1.173],[.213,-1.173],[-.213,-1.173],[1.173,0],[-1.173,0],[0,1.173],[0,-1.173]];
+ const endpoint=offsets.map(([x,y])=>({x:pos.position.x+x,y:pos.position.y+y})).find(point=>clearSegment(pos.room as Room,pos.position,point)&&!worlds[pos.room as Room].stops.some(stop=>{if(!stop.doorArea)return false;const[x,y,w,h]=stop.doorArea;return point.x+.5>=x&&point.x+.5<=x+w&&point.y+.5>=y&&point.y+.5<=y+h;}))!;
+ expect(endpoint,'a visible, collision-clear fractional floor endpoint exists').toBeDefined();
  const screen=await page.evaluate(p=>(window as any).__pilot.screenPoint(p.x,p.y),endpoint);
  const canvasBox=await page.locator('canvas').boundingBox();
  if(shape.name==='phone'||shape.name==='narrow') await page.touchscreen.tap(canvasBox!.x+screen.x,canvasBox!.y+screen.y);
  else await page.mouse.click(canvasBox!.x+screen.x,canvasBox!.y+screen.y);
- await expect.poll(async()=>(await snapshot(page)).position.x).toBeGreaterThan(pos.position.x);
+ await expect.poll(async()=>{const next=(await snapshot(page)).position;return Math.hypot(next.x-pos.position.x,next.y-pos.position.y);}).toBeGreaterThan(.05);
  await expect.poll(async()=>(await snapshot(page)).walking).toBe(false);
  const arrived=await snapshot(page);expect(Math.abs(arrived.position.x-endpoint.x)).toBeLessThan(.05);expect(Math.abs(arrived.position.y-endpoint.y)).toBeLessThan(.05);
  await page.screenshot({path:`${evidenceDir}/${shape.name}-square.png`});

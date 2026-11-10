@@ -1,0 +1,2506 @@
+{
+  "schema_version": 1,
+  "status": "CANDIDATE-DESIGN-ONLY",
+  "as_of": "2026-11-10",
+  "runtime_base": "fb0fab36b7bd66d7711bb7eca55126821d880f3d",
+  "not_executable_economy": true,
+  "scope": "Bounded first production set; every catalog row is a design entry, including coverage work for existing definitions. Existing-definition does not mean final item art exists. No new runtime content, grants, prices or build timers are introduced. Entry region_ids are first proposed availability/location, not a phase-wide union or a limit on where owned portable items may later be carried.",
+  "identity_policy": "Catalog IDs index design; runtime_ref preserves current IDs. Do not rename or convert durable scrap/timber/supplies or item instances from this file. Null recipe amounts/durations are unresolved and must never execute.",
+  "candidate_regions": {
+    "ledgerwick": {
+      "status": "candidate-name",
+      "runtime_region": false
+    },
+    "inkwood": {
+      "status": "candidate-name",
+      "runtime_region": false
+    },
+    "pumpworks": {
+      "status": "candidate-name",
+      "runtime_region": false
+    },
+    "mossbank": {
+      "status": "candidate-name",
+      "runtime_region": false
+    },
+    "bellwether-quay": {
+      "status": "candidate-name",
+      "runtime_region": false
+    }
+  },
+  "phases": {
+    "starter-home": {
+      "roadmap_refs": [
+        "IH2-052"
+      ],
+      "region_ids": [
+        "ledgerwick"
+      ]
+    },
+    "first-woodland": {
+      "roadmap_refs": [
+        "IH2-053"
+      ],
+      "region_ids": [
+        "ledgerwick",
+        "inkwood"
+      ],
+      "scope_note": "IH2-053 selects traversable trail, timed bridge/opening and cosmetic discovery using the existing three resources and two recipes. New wood distinctions, material/tool definitions and recipes in this semantic phase are later unassigned candidates after integrated IH2-050 acceptance; their presence here does not add them to053."
+    },
+    "food-combat": {
+      "roadmap_refs": [],
+      "region_ids": [
+        "ledgerwick",
+        "inkwood",
+        "pumpworks"
+      ]
+    },
+    "regional-cities": {
+      "roadmap_refs": [],
+      "region_ids": [
+        "mossbank",
+        "bellwether-quay"
+      ]
+    }
+  },
+  "art_policy": {
+    "license": "Original authored art first; independently verified CC0 alternatives only. No paid assets or imported game cast.",
+    "rules": [
+      "Inventory icon, world form and directional/equipped/build/grow/damage states are distinct obligations.",
+      "Generic PROPS.art hints and procedural drawings are not final item-specific inventory/world production families.",
+      "Opening, damage and corpse poses present confirmed server state; no animation grants output or determines damage.",
+      "Housing and furnishings are protected from prank/combat destruction; no damage-state mechanic is implied for homes."
+    ]
+  },
+  "count": 45,
+  "entries": [
+    {
+      "id": "material:scrap",
+      "name": "Reclaimed scrap",
+      "kind": "material",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-depot",
+          "id": "scrap"
+        }
+      ],
+      "use": "Retains the current material meaning; framing, repairs and existing recipes remain useful.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "resource",
+          "id": "scrap"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "src/phaser/WorldScene.ts",
+            "scope": "generic colored depot rectangle and text; not item-specific art",
+            "status": "placeholder-node"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "depot-full",
+              "depot-partial",
+              "depot-empty",
+              "material-bundle"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "material:timber",
+      "name": "Reclaimed timber",
+      "kind": "material",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-depot",
+          "id": "timber"
+        }
+      ],
+      "use": "Retains the current material meaning; framing, repairs and existing recipes remain useful.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "resource",
+          "id": "timber"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "src/phaser/WorldScene.ts",
+            "scope": "generic colored depot rectangle and text; not item-specific art",
+            "status": "placeholder-node"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "depot-full",
+              "depot-partial",
+              "depot-empty",
+              "material-bundle"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "material:supplies",
+      "name": "Workshop supplies",
+      "kind": "material",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-depot",
+          "id": "supplies"
+        }
+      ],
+      "use": "Retains the current material meaning; framing, repairs and existing recipes remain useful.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "resource",
+          "id": "supplies"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "src/phaser/WorldScene.ts",
+            "scope": "generic colored depot rectangle and text; not item-specific art",
+            "status": "placeholder-node"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "depot-full",
+              "depot-partial",
+              "depot-empty",
+              "material-bundle"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "wood:pine",
+      "name": "Pine",
+      "kind": "material",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "inkwood"
+      ],
+      "source": [
+        {
+          "kind": "candidate-personal-entitlement-node",
+          "id": "inkwood:pine"
+        }
+      ],
+      "use": "Common framing alternative; pale warm grain. Existing timber is never silently converted or devalued.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "living-tree",
+              "harvest-ready",
+              "personal-yield-exhausted",
+              "regrowing",
+              "log-bundle"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "wood:birch",
+      "name": "Birch",
+      "kind": "material",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "inkwood"
+      ],
+      "source": [
+        {
+          "kind": "candidate-personal-entitlement-node",
+          "id": "inkwood:birch"
+        }
+      ],
+      "use": "Light furniture and flooring with fine grain. Existing timber is never silently converted or devalued.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "living-tree",
+              "harvest-ready",
+              "personal-yield-exhausted",
+              "regrowing",
+              "log-bundle"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "wood:oak",
+      "name": "Oak",
+      "kind": "material",
+      "catalog_status": "candidate",
+      "phase": "regional-cities",
+      "region_ids": [
+        "mossbank"
+      ],
+      "source": [
+        {
+          "kind": "candidate-earned-nursery-or-node",
+          "id": "mossbank:oak"
+        }
+      ],
+      "use": "Later strong beams and broad-grain statement furniture; optional choice, not a prerequisite for first woodland access or a starter weapon. Existing timber remains useful.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "living-tree",
+              "harvest-ready",
+              "personal-yield-exhausted",
+              "regrowing",
+              "log-bundle"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "stone:salvaged",
+      "name": "Salvaged stone",
+      "kind": "material",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "inkwood"
+      ],
+      "source": [
+        {
+          "kind": "candidate-node",
+          "id": "inkwood:stone"
+        }
+      ],
+      "use": "Garden edging and later masonry; not a luck-gated first-home requirement.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "intact-source",
+              "available-source",
+              "empty-entitlement",
+              "stone-pile"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "part:fastener",
+      "name": "A jar of fasteners",
+      "kind": "material",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-bench-conversion",
+          "input_id": "material:scrap"
+        }
+      ],
+      "use": "Optional repair input. Do not impose another stack before the first planter.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "cloth:plain",
+      "name": "Plain cloth",
+      "kind": "material",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-salvaged-supplier",
+          "id": "ledgerwick:salvager"
+        }
+      ],
+      "use": "Clothes and upholstery, not a hidden global productivity multiplier.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "seed:herb",
+      "name": "Herb seed packet",
+      "kind": "seed",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-npc-service",
+          "id": "ledgerwick:groundskeeper"
+        }
+      ],
+      "use": "Plant a persistent owned bed; no missed-day crop death.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "crop:herb",
+      "name": "Kitchen herbs",
+      "kind": "crop",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-owned-bed",
+          "input_id": "seed:herb"
+        }
+      ],
+      "use": "Cooking ingredient and small garden decoration.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "prepared-bed",
+              "planted",
+              "sprout",
+              "growing",
+              "ready",
+              "harvested-regrowing"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "fruit:orchard",
+      "name": "Orchard fruit",
+      "kind": "crop",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "ledgerwick",
+        "inkwood"
+      ],
+      "source": [
+        {
+          "kind": "candidate-personal-orchard-entitlement",
+          "id": "ledgerwick:orchard"
+        },
+        {
+          "kind": "candidate-personal-orchard-entitlement",
+          "id": "inkwood:orchard"
+        }
+      ],
+      "use": "Food and optional delivery/decoration recipes; ripe yield waits.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "young-tree",
+              "growing",
+              "mature-empty",
+              "fruit-ready",
+              "harvested-regrowing",
+              "fruit-basket"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "equipment:hand-tool",
+      "name": "Starter hand tool",
+      "kind": "tool",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-introduction",
+          "id": "ledgerwick:tool-lesson"
+        }
+      ],
+      "use": "One useful hand slot before specialized tools; essential gear protected in recovery design.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          },
+          {
+            "view": "equipped-layer",
+            "states": [
+              "south",
+              "north",
+              "east",
+              "west",
+              "idle",
+              "action-contact",
+              "action-recovery"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "equipment:axe",
+      "name": "Practical axe",
+      "kind": "tool",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-tool-unlock",
+          "id": "ledgerwick:forestry-lesson"
+        }
+      ],
+      "use": "Bounded tree gathering with a distinct contact pose; animation does not create wood.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          },
+          {
+            "view": "equipped-layer",
+            "states": [
+              "south",
+              "north",
+              "east",
+              "west",
+              "idle",
+              "action-contact",
+              "action-recovery"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "equipment:watering-can",
+      "name": "Watering can",
+      "kind": "tool",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-groundskeeper-service",
+          "id": "ledgerwick:groundskeeper"
+        }
+      ],
+      "use": "One watering action on a selected owned bed; never per-drop database writes.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          },
+          {
+            "view": "equipped-layer",
+            "states": [
+              "south",
+              "north",
+              "east",
+              "west",
+              "idle",
+              "action-contact",
+              "action-recovery"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "equipment:work-gloves",
+      "name": "Work gloves",
+      "kind": "equipment",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-introductory-workwear",
+          "id": "ledgerwick:clerk"
+        }
+      ],
+      "use": "First small cosmetic hand layer from an introductory workwear choice; later Mossbank outfitter expands the collection. No hidden productivity bonus.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          },
+          {
+            "view": "equipped-layer",
+            "states": [
+              "south",
+              "north",
+              "east",
+              "west",
+              "idle",
+              "action-contact",
+              "action-recovery"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "weapon:practice-club",
+      "name": "A thoroughly inspected club",
+      "kind": "weapon",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-recipe",
+          "content_id": "recipe:practice-club"
+        }
+      ],
+      "use": "Deliberate close-range PvE; no player combat assumed.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          },
+          {
+            "view": "equipped-layer",
+            "states": [
+              "south",
+              "north",
+              "east",
+              "west",
+              "idle",
+              "action-contact",
+              "action-recovery"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "food:herb-soup",
+      "name": "Committee soup",
+      "kind": "food",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-recipe",
+          "content_id": "recipe:herb-soup"
+        }
+      ],
+      "use": "Optional hospitality/healing or capped temporary benefit; numbers unresolved.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "food:orchard-snack",
+      "name": "Orchard snack",
+      "kind": "food",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "ledgerwick",
+        "inkwood"
+      ],
+      "source": [
+        {
+          "kind": "candidate-preparation",
+          "input_id": "fruit:orchard"
+        }
+      ],
+      "use": "Small food action with a readable eating pose; no required night harvest.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "furniture:planter",
+      "name": "Orientation planter",
+      "kind": "furniture",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-recipe",
+          "content_id": "recipe:planter"
+        }
+      ],
+      "use": "Preserve recognizable base silhouette and material under any future finish. Owned copies remain allocated once across rental and home.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "prop",
+          "id": "planter"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "src/phaser/WorldScene.ts",
+            "scope": "procedural placed planter drawing only; no inventory icon or production/state family",
+            "status": "prototype-world-only"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "inventory-object",
+              "placement-preview",
+              "placed",
+              "finish-material-mask"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "furniture:stool",
+      "name": "Committee stool",
+      "kind": "furniture",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-starter-donation",
+          "id": "stool"
+        }
+      ],
+      "use": "Preserve recognizable base silhouette and material under any future finish. Owned copies remain allocated once across rental and home.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "prop",
+          "id": "stool"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "src/phaser/WorldScene.ts",
+            "scope": "procedural placed stool drawing only; no inventory icon or production/state family",
+            "status": "prototype-world-only"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "inventory-object",
+              "placement-preview",
+              "placed",
+              "finish-material-mask"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "furniture:rug",
+      "name": "Welcome-ish rug",
+      "kind": "furniture",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-starter-donation",
+          "id": "rug"
+        }
+      ],
+      "use": "Preserve recognizable base silhouette and material under any future finish. Owned copies remain allocated once across rental and home.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "prop",
+          "id": "rug"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "src/phaser/WorldScene.ts",
+            "scope": "procedural placed rug drawing only; no inventory icon or production/state family",
+            "status": "prototype-world-only"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "inventory-object",
+              "placement-preview",
+              "placed",
+              "finish-material-mask"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "furniture:lamp",
+      "name": "Bright idea lamp",
+      "kind": "furniture",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-starter-donation",
+          "id": "lamp"
+        }
+      ],
+      "use": "Preserve recognizable base silhouette and material under any future finish. Owned copies remain allocated once across rental and home.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "prop",
+          "id": "lamp"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "src/phaser/WorldScene.ts",
+            "scope": "procedural placed lamp drawing only; no inventory icon or production/state family",
+            "status": "prototype-world-only"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "inventory-object",
+              "placement-preview",
+              "placed",
+              "finish-material-mask"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "furniture:crate",
+      "name": "Useful crate",
+      "kind": "furniture",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-starter-donation",
+          "id": "crate"
+        }
+      ],
+      "use": "Preserve recognizable base silhouette and material under any future finish. Owned copies remain allocated once across rental and home.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "prop",
+          "id": "crate"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "src/phaser/WorldScene.ts",
+            "scope": "procedural placed crate drawing only; no inventory icon or production/state family",
+            "status": "prototype-world-only"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "inventory-object",
+              "placement-preview",
+              "placed",
+              "finish-material-mask"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "furniture:shelf",
+      "name": "Shelf of intentions",
+      "kind": "furniture",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-starter-donation",
+          "id": "shelf"
+        }
+      ],
+      "use": "Preserve recognizable base silhouette and material under any future finish. Owned copies remain allocated once across rental and home.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "prop",
+          "id": "shelf"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "src/phaser/WorldScene.ts",
+            "scope": "procedural placed shelf drawing only; no inventory icon or production/state family",
+            "status": "prototype-world-only"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "inventory-object",
+              "placement-preview",
+              "placed",
+              "finish-material-mask"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "home:starter",
+      "name": "Starter house",
+      "kind": "home",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-owned-plot-build",
+          "id": "ledgerwick:personal-plot"
+        }
+      ],
+      "use": "First physical owned interior and safe owner/visitor door; current plot ownership is not a physical house.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "public/art/variety/comparison-sheet.svg",
+            "scope": "future-house vignette inside the comparison sheet only; not a standalone runtime house or finished state family",
+            "status": "concept-sample"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world-and-preview",
+            "states": [
+              "proposed",
+              "contributing",
+              "building",
+              "ready",
+              "opened"
+            ],
+            "status": "not-produced-complete-family"
+          },
+          {
+            "view": "opening",
+            "states": [
+              "confirmed-short-celebration",
+              "static-reduced-motion",
+              "journal-replay-card"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "home:workroom",
+      "name": "Workroom extension",
+      "kind": "home",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-owner-expansion",
+          "content_id": "home:starter"
+        }
+      ],
+      "use": "The first physical Ledgerwick owner expansion selected for052: more intentional layout space; preserve or safely store displaced furnishings. Later regional fa\u00e7ades are a separate candidate distribution, not first availability.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world-and-preview",
+            "states": [
+              "proposed",
+              "contributing",
+              "building",
+              "ready",
+              "opened"
+            ],
+            "status": "not-produced-complete-family"
+          },
+          {
+            "view": "opening",
+            "states": [
+              "confirmed-short-celebration",
+              "static-reduced-motion",
+              "journal-replay-card"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "home:garden-bed",
+      "name": "Garden bed",
+      "kind": "home",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-owned-yard",
+          "content_id": "home:starter"
+        }
+      ],
+      "use": "Persistent planting space, distinct from current yield. Preview must retain usable walking paths.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world-and-preview",
+            "states": [
+              "preview",
+              "building",
+              "ready",
+              "empty-bed",
+              "planted-bed"
+            ],
+            "status": "not-produced-complete-family"
+          },
+          {
+            "view": "opening",
+            "states": [
+              "confirmed-short-celebration",
+              "static-reduced-motion",
+              "journal-replay-card"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "lodging:boarding-bed",
+      "name": "Boarding-room bed",
+      "kind": "home",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "candidate-public-lodging",
+          "id": "ledgerwick:boarding-room"
+        }
+      ],
+      "use": "Opening/wake and early recovery anchor; lodging does not grant house ownership.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world-and-preview",
+            "states": [
+              "available",
+              "sleeping",
+              "wake-preview",
+              "confirmed-wake",
+              "static-wake"
+            ],
+            "status": "not-produced-complete-family"
+          },
+          {
+            "view": "opening",
+            "states": [
+              "confirmed-short-celebration",
+              "static-reduced-motion",
+              "journal-replay-card"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "town:bridge",
+      "name": "The committee bridge",
+      "kind": "project",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-shared-contributions",
+          "content_id": "recipe:bridge-kit"
+        }
+      ],
+      "use": "Current durable repair is real. The timed construction/ready/first-opening family is selected design coverage for053 new projects; grandfather already-repaired bridges rather than regress earned state or impose a retroactive timer.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "server/store.ts",
+          "kind": "shared-project",
+          "id": "bridge"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "public/art/original/bridge-neglected.svg",
+            "scope": "current before state",
+            "status": "runtime-world-art"
+          },
+          {
+            "file": "public/art/original/bridge-restored.svg",
+            "scope": "current repaired state; trail still closed",
+            "status": "runtime-world-art"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world-and-preview",
+            "states": [
+              "proposed",
+              "contributing",
+              "building",
+              "ready",
+              "opened"
+            ],
+            "status": "not-produced-complete-family"
+          },
+          {
+            "view": "opening",
+            "states": [
+              "confirmed-short-celebration",
+              "static-reduced-motion",
+              "journal-replay-card"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "town:trail",
+      "name": "Inkwood approach",
+      "kind": "project",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "ledgerwick",
+        "inkwood"
+      ],
+      "source": [
+        {
+          "kind": "candidate-shared-project",
+          "id": "ledgerwick:trail-survey"
+        }
+      ],
+      "use": "One useful woodland destination after actual access is implemented; no fake open path.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world-and-preview",
+            "states": [
+              "blocked",
+              "surveyed",
+              "contributing",
+              "building-inspection",
+              "ready",
+              "opened"
+            ],
+            "status": "not-produced-complete-family"
+          },
+          {
+            "view": "opening",
+            "states": [
+              "confirmed-short-celebration",
+              "static-reduced-motion",
+              "journal-replay-card"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "town:orchard",
+      "name": "Community orchard",
+      "kind": "project",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "ledgerwick",
+        "inkwood"
+      ],
+      "source": [
+        {
+          "kind": "candidate-shared-restoration",
+          "id": "ledgerwick:orchard"
+        },
+        {
+          "kind": "candidate-managed-orchard",
+          "id": "inkwood:orchard"
+        }
+      ],
+      "use": "A public place plus personal bounded yields; early players cannot strip all shared scenery.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world-and-preview",
+            "states": [
+              "neglected",
+              "contributing",
+              "building",
+              "ready",
+              "opened"
+            ],
+            "status": "not-produced-complete-family"
+          },
+          {
+            "view": "opening",
+            "states": [
+              "confirmed-short-celebration",
+              "static-reduced-motion",
+              "journal-replay-card"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "service:workshop",
+      "name": "Timber workshop",
+      "kind": "service-building",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-destination",
+          "id": "workshop"
+        }
+      ],
+      "use": "Existing craft bench and rental room; fa\u00e7ade art is not a complete future upgrade family.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/world.ts",
+          "kind": "stop",
+          "id": "workshop"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "public/art/variety/building-workshop.svg",
+            "scope": "current exterior only",
+            "status": "runtime-world-art"
+          },
+          {
+            "file": "public/art/original/ground-workshop.svg",
+            "scope": "current rental floor/room only",
+            "status": "runtime-world-art"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world-and-preview",
+            "states": [
+              "proposed",
+              "contributing",
+              "building",
+              "ready",
+              "opened"
+            ],
+            "status": "not-produced-complete-family"
+          },
+          {
+            "view": "opening",
+            "states": [
+              "confirmed-short-celebration",
+              "static-reduced-motion",
+              "journal-replay-card"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "service:outfitter",
+      "name": "The Almost Fitting Outfitter",
+      "kind": "service-building",
+      "catalog_status": "candidate",
+      "phase": "regional-cities",
+      "region_ids": [
+        "mossbank"
+      ],
+      "source": [
+        {
+          "kind": "candidate-restored-service",
+          "id": "mossbank:outfitter"
+        }
+      ],
+      "use": "Owned clothing/tool offers with quotes; no real-money store.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world-and-preview",
+            "states": [
+              "proposed",
+              "contributing",
+              "building",
+              "ready",
+              "opened"
+            ],
+            "status": "not-produced-complete-family"
+          },
+          {
+            "view": "opening",
+            "states": [
+              "confirmed-short-celebration",
+              "static-reduced-motion",
+              "journal-replay-card"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "recipe:planter",
+      "name": "Make an orientation planter",
+      "kind": "recipe",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "bench-recipe-definition",
+          "id": "planter"
+        }
+      ],
+      "use": "Explicit inputs/output/real duration before submission. This candidate catalog is never executable economy data.",
+      "recipe": {
+        "inputs": [
+          {
+            "content_id": "material:scrap",
+            "amount": 2
+          },
+          {
+            "content_id": "material:timber",
+            "amount": 2
+          },
+          {
+            "content_id": "material:supplies",
+            "amount": 1
+          }
+        ],
+        "outputs": [
+          {
+            "content_id": "furniture:planter",
+            "amount": 1
+          }
+        ],
+        "duration_ms": 28800000,
+        "tuning_status": "existing-rule-not-retuned",
+        "existing_tutorial_exception_ms": 5000
+      },
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "recipe",
+          "id": "planter"
+        }
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "recipe-card",
+            "states": [
+              "input-icons",
+              "output-icon",
+              "queued",
+              "ready",
+              "collected"
+            ],
+            "status": "not-produced-item-specific"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "recipe:bridge-kit",
+      "name": "Make bridge supplies",
+      "kind": "recipe",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "bench-recipe-definition",
+          "id": "bridge-kit"
+        }
+      ],
+      "use": "Explicit inputs/output/real duration before submission. This candidate catalog is never executable economy data.",
+      "recipe": {
+        "inputs": [
+          {
+            "content_id": "material:scrap",
+            "amount": 3
+          },
+          {
+            "content_id": "material:timber",
+            "amount": 2
+          },
+          {
+            "content_id": "material:supplies",
+            "amount": 1
+          }
+        ],
+        "outputs": [
+          {
+            "content_id": "part:bridge-kit",
+            "amount": 1
+          }
+        ],
+        "duration_ms": 43200000,
+        "tuning_status": "existing-rule-not-retuned"
+      },
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "recipe",
+          "id": "bridge-kit"
+        }
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "recipe-card",
+            "states": [
+              "input-icons",
+              "output-icon",
+              "queued",
+              "ready",
+              "collected"
+            ],
+            "status": "not-produced-item-specific"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "part:bridge-kit",
+      "name": "Bridge repair kit",
+      "kind": "material",
+      "catalog_status": "candidate",
+      "phase": "starter-home",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "existing-recipe",
+          "content_id": "recipe:bridge-kit"
+        }
+      ],
+      "use": "One finished kit for current bridge contribution; future timed construction is a separate versioned design.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/workshop.ts",
+          "kind": "inventory-counter",
+          "id": "bridgeKits"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "src/ui/workshop.ts",
+            "scope": "text counter only; not a kit icon/world asset",
+            "status": "text-only"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "recipe:pine-crate",
+      "name": "Make a pine crate",
+      "kind": "recipe",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "bench-recipe-definition",
+          "id": "pine-crate"
+        }
+      ],
+      "use": "Explicit inputs/output/real duration before submission. This candidate catalog is never executable economy data.",
+      "recipe": {
+        "inputs": [
+          {
+            "content_id": "wood:pine",
+            "amount": null
+          },
+          {
+            "content_id": "part:fastener",
+            "amount": null
+          }
+        ],
+        "outputs": [
+          {
+            "content_id": "furniture:crate",
+            "amount": 1
+          }
+        ],
+        "duration_ms": null,
+        "tuning_status": "candidate-unpriced-unbalanced"
+      },
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "recipe-card",
+            "states": [
+              "input-icons",
+              "output-icon",
+              "queued",
+              "ready",
+              "collected"
+            ],
+            "status": "not-produced-item-specific"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "recipe:birch-stool",
+      "name": "Make a birch stool",
+      "kind": "recipe",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "bench-recipe-definition",
+          "id": "birch-stool"
+        }
+      ],
+      "use": "Explicit inputs/output/real duration before submission. This candidate catalog is never executable economy data.",
+      "recipe": {
+        "inputs": [
+          {
+            "content_id": "wood:birch",
+            "amount": null
+          },
+          {
+            "content_id": "part:fastener",
+            "amount": null
+          }
+        ],
+        "outputs": [
+          {
+            "content_id": "furniture:stool",
+            "amount": 1
+          }
+        ],
+        "duration_ms": null,
+        "tuning_status": "candidate-unpriced-unbalanced"
+      },
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "recipe-card",
+            "states": [
+              "input-icons",
+              "output-icon",
+              "queued",
+              "ready",
+              "collected"
+            ],
+            "status": "not-produced-item-specific"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "recipe:herb-soup",
+      "name": "Prepare committee soup",
+      "kind": "recipe",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "bench-recipe-definition",
+          "id": "herb-soup"
+        }
+      ],
+      "use": "Explicit inputs/output/real duration before submission. This candidate catalog is never executable economy data.",
+      "recipe": {
+        "inputs": [
+          {
+            "content_id": "crop:herb",
+            "amount": null
+          },
+          {
+            "content_id": "material:supplies",
+            "amount": null
+          }
+        ],
+        "outputs": [
+          {
+            "content_id": "food:herb-soup",
+            "amount": 1
+          }
+        ],
+        "duration_ms": null,
+        "tuning_status": "candidate-unpriced-unbalanced"
+      },
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "recipe-card",
+            "states": [
+              "input-icons",
+              "output-icon",
+              "queued",
+              "ready",
+              "collected"
+            ],
+            "status": "not-produced-item-specific"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "recipe:practice-club",
+      "name": "Shape a practice club",
+      "kind": "recipe",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "ledgerwick"
+      ],
+      "source": [
+        {
+          "kind": "bench-recipe-definition",
+          "id": "practice-club"
+        }
+      ],
+      "use": "Explicit inputs/output/real duration before submission. This candidate catalog is never executable economy data.",
+      "recipe": {
+        "inputs": [
+          {
+            "content_id": "material:timber",
+            "amount": null
+          },
+          {
+            "content_id": "cloth:plain",
+            "amount": null
+          }
+        ],
+        "outputs": [
+          {
+            "content_id": "weapon:practice-club",
+            "amount": 1
+          }
+        ],
+        "duration_ms": null,
+        "tuning_status": "candidate-unpriced-unbalanced"
+      },
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "recipe-card",
+            "states": [
+              "input-icons",
+              "output-icon",
+              "queued",
+              "ready",
+              "collected"
+            ],
+            "status": "not-produced-item-specific"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "decor:clipboard-pennant",
+      "name": "Earnestly earned pennant",
+      "kind": "decoration",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "inkwood",
+        "pumpworks"
+      ],
+      "source": [
+        {
+          "kind": "candidate-optional-rare-drop",
+          "id": "inkwood:marked-encounter-pocket"
+        },
+        {
+          "kind": "candidate-optional-rare-drop",
+          "id": "pumpworks:records-vault"
+        }
+      ],
+      "use": "Optional d\u00e9cor only. Essential access never requires this drop.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "decor:quay-lantern",
+      "name": "Quay lantern",
+      "kind": "decoration",
+      "catalog_status": "candidate",
+      "phase": "regional-cities",
+      "region_ids": [
+        "bellwether-quay"
+      ],
+      "source": [
+        {
+          "kind": "candidate-regional-craft",
+          "id": "bellwether-quay:lantern-maker"
+        }
+      ],
+      "use": "Distinct coastal material/light silhouette; never flatten the earned object into a generic color block.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world",
+            "states": [
+              "recognizable-object",
+              "dropped-or-presented"
+            ],
+            "status": "not-produced-final-item-family"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "service:quay-market",
+      "name": "Quay exchange hall",
+      "kind": "service-building",
+      "catalog_status": "candidate",
+      "phase": "regional-cities",
+      "region_ids": [
+        "bellwether-quay"
+      ],
+      "source": [
+        {
+          "kind": "candidate-city-restoration",
+          "id": "bellwether-quay:market"
+        }
+      ],
+      "use": "A later distinct service and housing style; no player marketplace promised.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "inventory-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "world-and-preview",
+            "states": [
+              "proposed",
+              "contributing",
+              "building",
+              "ready",
+              "opened"
+            ],
+            "status": "not-produced-complete-family"
+          },
+          {
+            "view": "opening",
+            "states": [
+              "confirmed-short-celebration",
+              "static-reduced-motion",
+              "journal-replay-card"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "creature:paper-mite",
+      "name": "Paper mite",
+      "kind": "creature",
+      "catalog_status": "candidate",
+      "phase": "food-combat",
+      "region_ids": [
+        "inkwood",
+        "pumpworks"
+      ],
+      "source": [
+        {
+          "kind": "candidate-encounter",
+          "id": "inkwood:marked-encounter-pocket"
+        },
+        {
+          "kind": "candidate-encounter",
+          "id": "pumpworks:records-room"
+        }
+      ],
+      "use": "One readable telegraph and recovery cycle for a small PvE test. Creature name, health and loot are not settled.",
+      "recipe": null,
+      "implementation": {
+        "status": "not-implemented",
+        "runtime_ref": null
+      },
+      "art": {
+        "existing_evidence": [],
+        "requirements": [
+          {
+            "view": "encounter-icon",
+            "states": [
+              "default"
+            ],
+            "status": "not-produced-item-specific"
+          },
+          {
+            "view": "directional-actor",
+            "states": [
+              "idle",
+              "move",
+              "readable-tell",
+              "attack",
+              "hit",
+              "incapacitated",
+              "static-reduced-motion"
+            ],
+            "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    }
+  ]
+}

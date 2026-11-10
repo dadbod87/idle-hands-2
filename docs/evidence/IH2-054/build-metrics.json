@@ -1,0 +1,10 @@
+{
+  "method": "SHA-256 of locally built HTML/CSS/JS compared byte-for-byte with committed IH2-051 evidence. No new runtime source/art/server files in task diff.",
+  "matchesPreviousRuntime": true,
+  "files": {
+    "dist/index.html": "96191ea2c1e5a07424df88aaccc7f37f388ccdcae8ba7e38e648040c50b3ecfb",
+    "dist/assets/index-C7olP2bQ.css": "44cad0457a374a39b9bba32b136428240ded189b5a06b8f17fc205a96f2b5d79",
+    "dist/assets/index-BWr5XXyC.js": "8177abd21f084d2d58a63db91c2507030020951bea2499bbb5f6b0fe32b2653b"
+  },
+  "limits": "Design docs/marketing are not bundled into game. Existing Vite >500kB raw chunk warning remains; no physical phone, hosted-load or public deployment claim."
+}

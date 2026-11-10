@@ -12,6 +12,8 @@ Nick has delegated routine design and technical choices, asked for free assets a
 
 The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/dependencies/acceptance/evidence. The script is read-only and validates the records; an agent must inspect the actual evidence and update them honestly. A fresh session must inspect the current local source, handoff and any newly added remote before acting. Canonical private remote is https://github.com/dadbod87/idle-hands-2, main; fetch current source/PR checks before work.
 
+- [Expanded-world design package: systems, world map, content/art catalog, phone storyboards and pacing experiments](design/README.md)
+- [Approved development teaser and provenance](../marketing/teaser-provenance.json)
 - [Deep resource, growing, equipment, home and animation plan](DEEP_SYSTEMS_PLAN.md)
 - [Living-town quests, skills and restoration design](LIVING_TOWN_SYSTEMS.md)
 
@@ -34,6 +36,7 @@ The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/de
 | IH2-040 | Durable two-player bridge loop | Transactions, replay/concurrency, restart/reconnect and rollover safety |
 | IH2-045 | Distinct original people, trees, buildings and motion | Actual software-rendered canopy pixels and responsive evidence |
 | IH2-051 | Town rhythm, conversations and deep-system plan | Day/night/weather without production changes, NPC access, real screenshot evidence |
+| IH2-054 | Expanded-world design foundation | Owner/default boundaries, original world/phone concepts, catalog/art coverage and deterministic pacing experiments; no runtime expansion |
 | IH2-052 | Starter homes and return visits | Persistent expansion/decorating, first-kit teaching and offline summary |
 | IH2-053 | Restored trail and discovery | Useful shared destination, resident reactions and earned cosmetic |
 | IH2-050 | Integrated polished neighborhood | Parent brief acceptance after the smaller slices |

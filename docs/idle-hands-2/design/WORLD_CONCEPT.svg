@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1000" viewBox="0 0 1480 1000" role="img" aria-labelledby="title desc">
+<title id="title">Idle Hands 2 candidate world connections</title>
+<desc id="desc">Design concept only: Ledgerwick connects to Inkwood, an optional Pumpworks dungeon, Mossbank and Bellwether Quay. All expansion regions are unimplemented. This is not a playable map or travel scale.</desc>
+<rect width="1480" height="1000" fill="#f7efdc"/>
+<rect x="22" y="22" width="1436" height="956" rx="12" fill="none" stroke="#343c36" stroke-width="3"/>
+<style>text{fill:#343c36;font-family:Georgia,serif}.mono{font-family:monospace;letter-spacing:1px}.small{font-size:17px}.card{fill:#fff9eb;stroke:#6b795c;stroke-width:2}.road{fill:none;stroke-linecap:round;stroke-linejoin:round}</style>
+<text class="mono" x="65" y="66" font-size="16">IDLE HANDS 2 / DESIGN ATLAS / IH2-054</text>
+<text x="65" y="112" font-size="38" font-weight="bold">Beyond the paperwork.</text>
+<text x="65" y="146" font-size="19">One useful neighborhood first. A larger world, built in deliberate steps.</text>
+<rect x="1140" y="59" width="273" height="56" rx="5" fill="#e7d69f" stroke="#857247"/>
+<text x="1276" y="83" text-anchor="middle" class="mono" font-size="14">DESIGN CONCEPT</text>
+<text x="1276" y="104" text-anchor="middle" font-size="14">Candidate names · not playable</text>
+<ellipse cx="755" cy="448" rx="635" ry="263" fill="#e4e7cc"/>
+<ellipse cx="1008" cy="754" rx="357" ry="138" fill="#d7e4df"/>
+<path d="M419 185C350 340 505 440 455 581S509 769 466 896" class="road" stroke="#9db6b5" stroke-width="48"/>
+<path d="M419 185C350 340 505 440 455 581S509 769 466 896" class="road" stroke="#c5d9cf" stroke-width="34"/>
+<path d="M513 255v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M488 254Q479 220 511 215Q546 221 538 255Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M555 300v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M537 299Q528 272 553 267Q581 273 573 300Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M642 219v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M620 218Q611 187 640 182Q672 188 664 219Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M711 248v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M684 247Q675 211 709 206Q746 212 738 248Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M782 201v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M764 200Q755 173 780 168Q808 174 800 201Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M860 432v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M842 431Q833 404 858 399Q886 405 878 432Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M951 456v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M927 455Q918 422 949 417Q983 423 975 456Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M1035 412v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M1015 411Q1006 382 1033 377Q1063 383 1055 412Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M1088 332v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M1065 331Q1056 299 1086 294Q1119 300 1111 332Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M1147 319v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M1129 318Q1120 291 1145 286Q1173 292 1165 319Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M1300 341v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M1277 340Q1268 308 1298 303Q1331 309 1323 341Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M1336 408v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M1308 407Q1299 370 1334 365Q1372 371 1364 408Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M1379 681v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M1355 680Q1346 647 1377 642Q1411 648 1403 681Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M753 697v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M728 696Q719 662 751 657Q786 663 778 697Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M811 762v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M793 761Q784 734 809 729Q837 735 829 762Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M620 736v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M598 735Q589 704 618 699Q650 705 642 736Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M145 324v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M123 323Q114 292 143 287Q175 293 167 324Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M209 373v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M184 372Q175 338 207 333Q242 339 234 373Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M110 463v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M91 462Q82 434 108 429Q137 435 129 463Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M317 297v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M297 296Q288 267 315 262Q345 268 337 297Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M369 600Q456 545 582 465" class="road" stroke="#c5a16e" stroke-width="20"/>
+<path d="M369 600Q456 545 582 465" class="road" stroke="#e8d4ad" stroke-width="12"/>
+<path d="M785 440Q843 406 930 381" class="road" stroke="#a76d58" stroke-width="7" stroke-dasharray="9 13"/>
+<path d="M841 494Q951 510 1077 514" class="road" stroke="#7a8b69" stroke-width="7" stroke-dasharray="9 13"/>
+<path d="M1211 632Q1210 690 1117 735" class="road" stroke="#7a8b69" stroke-width="7" stroke-dasharray="9 13"/>
+<g transform="translate(449 560) rotate(-24)"><rect x="-38" y="-17" width="76" height="34" fill="#b58d62" stroke="#63543e" stroke-width="3"/><path d="M-24-17v34M-8-17v34M8-17v34M24-17v34" stroke="#63543e" stroke-width="2"/></g>
+<text x="411" y="658" class="small">First trail: materials + inspection time</text>
+<text x="965" y="465" class="small" text-anchor="middle">Later restoration route</text>
+<text x="873" y="419" font-size="16" style="fill:#87533f">Optional PvE</text>
+<g data-region-id="ledgerwick" id="region-ledgerwick"><title>Starter company town. The current square exists; this name, rental-bed opening and physical housing design are proposed.</title>
+<rect x="196" y="515" width="98" height="65" fill="#e3d0aa" stroke="#343c36" stroke-width="3"/>
+<path d="M185 515L245 471l60 44Z" fill="#be896a" stroke="#343c36" stroke-width="3"/>
+<rect x="232" y="544" width="26" height="36" fill="#587b76" stroke="#343c36" stroke-width="3"/>
+<rect x="213" y="529" width="16" height="17" fill="#eccc7d" stroke="#343c36" stroke-width="2"/>
+<rect x="265" y="529" width="16" height="17" fill="#eccc7d" stroke="#343c36" stroke-width="2"/>
+<rect class="card" x="108" y="595" width="274" height="136" rx="7"/>
+<text x="245" y="624" font-size="25" font-weight="bold" text-anchor="middle">Ledgerwick</text>
+<text x="245" y="648" font-size="14" font-style="italic" text-anchor="middle">A roof, a workshop, a rather long form.</text>
+<text x="245" y="682" font-size="16" text-anchor="middle">Workshop · café · infirmary</text>
+<text x="245" y="707" font-size="16" text-anchor="middle">Earned homes and public projects</text>
+</g>
+<g data-region-id="inkwood" id="region-inkwood"><title>First woodland route. Not implemented; first trail remains IH2-053 work.</title>
+<path d="M668 396v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M643 395Q634 361 666 356Q701 362 693 396Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M710 378v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M679 377Q670 337 708 332Q749 338 741 378Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<path d="M753 398v24" stroke="#6d6250" stroke-width="7"/>
+<path d="M730 397Q721 365 751 360Q784 366 776 398Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
+<rect class="card" x="573" y="440" width="274" height="136" rx="7"/>
+<text x="710" y="469" font-size="25" font-weight="bold" text-anchor="middle">Inkwood</text>
+<text x="710" y="493" font-size="14" font-style="italic" text-anchor="middle">A trail worth getting distracted on.</text>
+<text x="710" y="527" font-size="16" text-anchor="middle">Pine/birch · herbs · fruit</text>
+<text x="710" y="552" font-size="16" text-anchor="middle">Safe trail + optional creature pockets</text>
+</g>
+<g data-region-id="pumpworks" id="region-pumpworks"><title>Optional small cooperative dungeon. Design candidate only; no combat or dungeon runtime exists.</title>
+<rect x="878" y="165" width="104" height="62" fill="#909b8b" stroke="#343c36" stroke-width="3"/>
+<path d="M878 165l12-24 20 8 18-16 18 16 18-7 18 23" fill="#a6ad96" stroke="#343c36" stroke-width="3"/>
+<path d="M909 227v-26q21-31 42 0v26" fill="#45594f" stroke="#343c36" stroke-width="3"/>
+<rect x="968" y="123" width="18" height="42" fill="#91846e" stroke="#343c36" stroke-width="3"/>
+<rect class="card" x="793" y="245" width="274" height="136" rx="7"/>
+<text x="930" y="274" font-size="25" font-weight="bold" text-anchor="middle">The Old Pumpworks</text>
+<text x="930" y="298" font-size="14" font-style="italic" text-anchor="middle">The maintenance request is overdue.</text>
+<text x="930" y="332" font-size="16" text-anchor="middle">Small optional cooperative outing</text>
+<text x="930" y="357" font-size="16" text-anchor="middle">Fittings and decorative salvage</text>
+</g>
+<g data-region-id="mossbank" id="region-mossbank"><title>Woodland service settlement. Future regional candidate; not a second shipped town.</title>
+<rect x="1152" y="411" width="116" height="64" fill="#b18e67" stroke="#343c36" stroke-width="3"/>
+<path d="M1142 411l11-29 119 13 7 16Z" fill="#76917b" stroke="#343c36" stroke-width="3"/>
+<path d="M1153 429h114m-114 17h114m-114 17h114" stroke="#796549"/>
+<rect x="1194" y="426" width="32" height="49" fill="#587b76" stroke="#343c36" stroke-width="3"/>
+<rect class="card" x="1073" y="490" width="274" height="136" rx="7"/>
+<text x="1210" y="519" font-size="25" font-weight="bold" text-anchor="middle">Mossbank</text>
+<text x="1210" y="543" font-size="14" font-style="italic" text-anchor="middle">Locally sourced. Extensively discussed.</text>
+<text x="1210" y="577" font-size="16" text-anchor="middle">Sawmill · nursery · natural dyes</text>
+<text x="1210" y="602" font-size="16" text-anchor="middle">Cabins and woodland finishes</text>
+</g>
+<g data-region-id="bellwether-quay" id="region-bellwether-quay"><title>Coastal trade settlement. Future regional candidate, not a configured market or travel system.</title>
+<rect x="952" y="633" width="86" height="89" fill="#e1d6b7" stroke="#343c36" stroke-width="3"/>
+<path d="M941 633l54-31 54 31Z" fill="#728f8d" stroke="#343c36" stroke-width="3"/>
+<path d="M950 683h90l10 14h-110Z" fill="#ba876a" stroke="#343c36" stroke-width="2"/>
+<rect x="983" y="697" width="24" height="25" fill="#587b76" stroke="#343c36" stroke-width="2"/>
+<rect x="965" y="650" width="15" height="22" fill="#eccc7d" stroke="#343c36" stroke-width="2"/>
+<rect x="1010" y="650" width="15" height="22" fill="#eccc7d" stroke="#343c36" stroke-width="2"/>
+<rect class="card" x="858" y="735" width="274" height="136" rx="7"/>
+<text x="995" y="764" font-size="25" font-weight="bold" text-anchor="middle">Bellwether Quay</text>
+<text x="995" y="788" font-size="14" font-style="italic" text-anchor="middle">Imports arrive. Explanations do not.</text>
+<text x="995" y="822" font-size="16" text-anchor="middle">Food stalls · lamps · regional orders</text>
+<text x="995" y="847" font-size="16" text-anchor="middle">Courtyard and waterside homes</text>
+</g>
+<path d="M64 909H1416" stroke="#b9ac91"/>
+<path d="M70 937h55" stroke="#c5a16e" stroke-width="10" stroke-linecap="round"/>
+<text x="140" y="943" font-size="17">First planned expansion</text>
+<path d="M448 937h55" stroke="#7a8b69" stroke-width="6" stroke-dasharray="8 10"/>
+<text x="518" y="943" font-size="17">Later candidate connection</text>
+<text x="1410" y="938" font-size="15" text-anchor="end">No travel scale · Expansion areas unimplemented</text>
+<text x="1410" y="959" font-size="15" text-anchor="end">Safe town/home progress has a noncombat route</text>
+</svg>

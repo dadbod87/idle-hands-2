@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "tools/check-design-plan.ts",
+    "tools/simulate-design-pacing.ts",
+    "tests/design-*.test.ts",
+    "tests/design-documents.spec.ts"
+  ],
+  "compilerOptions": {
+    "types": [
+      "node",
+      "vite/client"
+    ]
+  }
+}

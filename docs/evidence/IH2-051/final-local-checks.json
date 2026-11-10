@@ -1,0 +1,20 @@
+{
+  "domain": {
+    "passed": 65,
+    "skipped": 0
+  },
+  "browser": {
+    "passed": 30,
+    "duration": "3.1min"
+  },
+  "forcedSoftwareBrowser": {
+    "passed": 4,
+    "duration": "47.8sec",
+    "cooperationFlow": "36.2sec",
+    "method": "ANGLE SwiftShader, shared cooperation plus narrow rhythm/dawn/dusk/drizzle; isolated fixtures, no deadline changes"
+  },
+  "build": "strict TypeScript/server/Vite pass",
+  "plan": "17 tasks and10 tracker checks pass",
+  "pinnedSources": "40 files pass",
+  "limitations": "Emulated viewports and isolated synthetic data, not physical-phone/cloud-load acceptance. Exact final candidate CI/merge recorded in PR closeout."
+}

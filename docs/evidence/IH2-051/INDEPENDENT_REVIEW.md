@@ -9,3 +9,5 @@ Focused agents owned the pure climate/plan and dialogue modules; another owned b
 - Test finding: compressed-PNG byte equality was overstrict/noisy. Decoded RGBA comparison preserves the untinted guard; standalone calibration measured valid HUD difference0 versus54.45 mean RGB/100% pixels for an erroneous36% tint. Local final full suite passes30/30.
 
 Limits: synthetic view/time/job/hidden fixtures, emulated phones; final CI and actual image inspection must occur before merge. No physical-device, hosted-load, full accessibility or future-crop/equipment implementation claim.
+
+Post-CI review: two initial runs exposed reproducible slow software rendering; no passing claim was made and no deadlines were raised. World-only compositor layers retain actual foliage/HUD pixels and ordering. A short noisy before/after sample indicates only a modest FPS benefit. Independent review approved raw elapsed visible movement split into bounded existing domain steps, with reset/hidden safeguards; final code and exact-head CI still gate merge. Both existing CI jobs remain required; the proposed matrix split was not shipped because the connection lacks workflow-edit permission.

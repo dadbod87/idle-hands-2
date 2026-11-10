@@ -56,7 +56,7 @@ for(const shape of [{name:'desktop',width:1440,height:900},{name:'narrow',width:
  test.describe(`town rhythm ${shape.name}`,()=>{test.use({viewport:{width:shape.width,height:shape.height},hasTouch:shape.name!=='desktop'});
   test('day/night preserve jobs, readable controls and direct doors',async({page})=>{
    const errors:string[]=[],requests:string[]=[];page.on('pageerror',error=>errors.push(error.message));page.on('request',request=>requests.push(new URL(request.url()).pathname));
-   await installFixture(page);await openSky(page,'day');await controlsFit(page);
+   await installFixture(page);await openSky(page,'day');await controlsFit(page);await expect(page.locator('#world>.town-sky-overlay')).toHaveCount(1);
    const browserBefore=await page.evaluate(()=>Date.now()),wallBefore=Date.now();
    const before=await economy(page),position=(await snapshot(page)).position,header=await page.locator('.shell>header').screenshot({path:`${evidence}/rhythm-${shape.name}-day-hud.png`});
    const day=await canopyPixels(page,`${shape.name}-day`);await page.screenshot({path:`${evidence}/rhythm-${shape.name}-day.png`});
@@ -70,8 +70,8 @@ for(const shape of [{name:'desktop',width:1440,height:900},{name:'narrow',width:
    const night=await canopyPixels(page,`${shape.name}-night`);expect(night.meanLuminance).toBeLessThan(day.meanLuminance);expect(night.climate.lampStrength).toBeGreaterThan(day.climate.lampStrength);
    await page.screenshot({path:`${evidence}/rhythm-${shape.name}-night.png`});
    await point(page,19.5,21.5,shape.name!=='desktop');await expect.poll(async()=>(await snapshot(page)).room,{timeout:arrivalTimeout}).toBe('workshop');await expect.poll(async()=>(await climate(page)).interior).toBe(true);
-   const inside=await climate(page);expect(inside.effectiveAlpha).toBeCloseTo(inside.tint.alpha*.25,5);expect(await economy(page)).toEqual(before);await controlsFit(page);await page.screenshot({path:`${evidence}/rhythm-${shape.name}-night-interior.png`});
-   await point(page,9,13.5,shape.name!=='desktop');await expect.poll(async()=>(await snapshot(page)).room,{timeout:arrivalTimeout}).toBe('square');expect(await economy(page)).toEqual(before);
+   await expect(page.locator('#world>.town-sky-overlay')).toHaveCount(1);expect(await page.locator('.town-sky-overlay').evaluate(el=>getComputedStyle(el).pointerEvents)).toBe('none');const inside=await climate(page);expect(inside.effectiveAlpha).toBeCloseTo(inside.tint.alpha*.25,5);expect(await economy(page)).toEqual(before);await controlsFit(page);await page.screenshot({path:`${evidence}/rhythm-${shape.name}-night-interior.png`});
+   await point(page,9,13.5,shape.name!=='desktop');await expect.poll(async()=>(await snapshot(page)).room,{timeout:arrivalTimeout}).toBe('square');await expect(page.locator('#world>.town-sky-overlay')).toHaveCount(1);expect(await economy(page)).toEqual(before);
    expect(requests.some(path=>path.startsWith('/api/'))).toBe(false);expect(errors).toEqual([]);
    fs.writeFileSync(`${evidence}/rhythm-${shape.name}.json`,JSON.stringify({method:'Headless viewport/touch emulation; explicit visual-only URL fixtures; synthetic local position and one future12-hour job. Real Date.now remains unchanged. Economy comparison excludes elapsed observedAt; no real accounts/backend commands.',day,night,inside,errors,apiRequests:requests.filter(path=>path.startsWith('/api/'))},null,2));
   });

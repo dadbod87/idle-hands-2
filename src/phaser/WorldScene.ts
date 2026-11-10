@@ -3,6 +3,7 @@ import {TownSky} from './TownSky.ts';
 import {type TownClimate} from '../game/town-climate.ts';
 import {TOWN_PEOPLE} from '../game/town-people.ts';
 import { Session } from '../game/session.ts';
+import {movementFrameSteps} from '../game/movement-frame.ts';
 import { TILE, worlds } from '../game/world.ts';
 import { PLACEMENT_SLOTS, type WorkshopState } from '../game/workshop.ts';
 import { ORIGINAL_STATIC, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
@@ -42,6 +43,7 @@ export class WorldScene extends Phaser.Scene {
   private keys = new Set<string>();
   private room = '';
   private lastFrame = 0;
+  private movementReset=true;
   frameSamples: number[] = [];
   onFrame?: () => void;
   onWalkFailure?:()=>void;
@@ -52,6 +54,7 @@ export class WorldScene extends Phaser.Scene {
     for(const key of keys)this.load.svg('variety-'+key,`/art/variety/${key}.svg`);
   }
   create() {
+    this.movementReset=true;
     this.room = this.session.room;
     this.canopies=[];this.townfolk=[];this.steam=undefined;this.ambientMs=0;
     for(const id of RESIDENT_IDS){const texture=this.textures.get('variety-resident-'+id);if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});}
@@ -107,7 +110,7 @@ export class WorldScene extends Phaser.Scene {
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd'].includes(key)) { this.keys.add(key); e.preventDefault(); }
     };
     const onUp = (e: KeyboardEvent) => this.keys.delete(e.key.length === 1 ? e.key.toLowerCase() : e.key);
-    const clear = () => { this.keys.clear(); this.session.stop();this.updateAmbient(0); };
+    const clear = () => { this.movementReset=true;this.keys.clear(); this.session.stop();this.updateAmbient(0); };
     const motionChanged=()=>this.updateAmbient(0);this.reducedMotion.addEventListener('change',motionChanged);
     document.addEventListener('keydown', onDown); document.addEventListener('keyup', onUp);
     window.addEventListener('blur', clear); document.addEventListener('visibilitychange', clear);
@@ -139,7 +142,10 @@ export class WorldScene extends Phaser.Scene {
     };
     if (this.session.locked) this.keys.clear();
     const before={...this.session.position};
-    this.session.tick(delta, direction);
+    // Phaser smooths/replaces delayed deltas; visible walking follows bounded real elapsed time.
+    // Reuse the existing <=50ms collision-safe domain steps, never offline catch-up.
+    for(const step of movementFrameSteps(this.game.loop.rawDelta,!document.hidden,this.movementReset))this.session.tick(step,direction);
+    this.movementReset=document.hidden;
     const dx=this.session.position.x-before.x,dy=this.session.position.y-before.y;
     const moving=Math.hypot(dx,dy)>.00001;
     if(moving)this.travelled+=Math.hypot(dx,dy)*TILE;

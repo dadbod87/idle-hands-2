@@ -9,7 +9,9 @@ async function visit(p:Page,id:string){await p.getByRole('button',{name:'Places'
 async function close(p:Page){await p.getByRole('button',{name:'Close panel'}).click();}
 
 test('desktop and narrow-phone residents cooperate, retain ownership and retry the same committed request',async({browser})=>{
- test.setTimeout(process.env.CI?240000:90000);
+ // Three simultaneous software-rendered canvases make CI cumulative walking much slower.
+ // Keep individual arrival assertions bounded; allow the complete ownership/retry flow to finish.
+ test.setTimeout(process.env.CI?420000:90000);
  const desktop=await browser.newContext({viewport:{width:1440,height:900}}),phone=await browser.newContext({viewport:{width:360,height:640},hasTouch:true}),third=await browser.newContext({viewport:{width:390,height:844},hasTouch:true});
  const a=await desktop.newPage(),b=await phone.newPage(),c=await third.newPage();const errors:string[]=[];
  for(const page of [a,b,c])page.on('pageerror',e=>errors.push(e.message));

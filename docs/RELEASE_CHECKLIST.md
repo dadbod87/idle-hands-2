@@ -22,3 +22,12 @@
 - Fresh/resumed, direct phone taps without directory, free cancel, elapsed fixture, second-tab, quota failure and cache lifecycle checks; independent source/phone reviews resolved.
 - Selected screenshots and six-week simulation preserved; distinguish housing proxies/local saves from actual housing/server authority.
 - Both required CI jobs must succeed on final candidate before merge. No production deployment implied; no current-game mutation.
+
+## IH2-040 durable local proof
+- Isolated loopback PostgreSQL/Node only; signed fictional identity, private SQL schema, no real accounts/1.0 keys or browser balance import.
+- Persistent command ID/payload/revision receipts, row locks, exact costs, injected-failure rollback and safe stale/error/retry handling.
+- Concurrent final contribution, newcomer plot claims, owner/visitor denial, cross-location owned-copy checks and weekly/DST/content migration.
+- Legal movement/speed/rate bounds, room-scoped presence, no animation/continuous-position database writes; authoritative resync after reconnect and identity switch.
+- Fresh independent Node process preserves signed session/data; matching-version pg_dump/pg_restore recovers upgraded/decorated property, queued job and receipts, then checksum migration replay.
+- 47 domain/server checks with zero skips when fixture DBs configured;20 browser cases including isolated intercepted data, real shared requests, phone/short/enlarged text. Preserve metrics/screenshots and incomplete axe findings.
+- Both required jobs on the final exact candidate must complete success, including evidence upload; merge tree must match. Browser CI budget20m for expanded software-rendered suite. Source/CI remains separate from hosted beta.

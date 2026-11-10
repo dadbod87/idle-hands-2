@@ -1,0 +1,83 @@
+{
+  "method": "Node fetch loopback request-to-response-headers RTT across synthetic functional command cases, not a load or device benchmark. PostgreSQL16.15; local Node v26.7.0",
+  "samples": 45,
+  "caseMetrics": [
+    {
+      "case": "identity, origin and payload boundaries reject forged client authority",
+      "commands": 1,
+      "snapshots": 2,
+      "movementAccepted": 1,
+      "movementRejected": 0,
+      "presenceEvents": 0,
+      "positionCheckpoints": 0
+    },
+    {
+      "case": "movement checks speed, collision, room transitions and sustained packet credit",
+      "commands": 0,
+      "snapshots": 3,
+      "movementAccepted": 8,
+      "movementRejected": 4,
+      "presenceEvents": 0,
+      "positionCheckpoints": 1
+    },
+    {
+      "case": "movement and command rate limits bound repeated input without changing progress",
+      "commands": 30,
+      "snapshots": 2,
+      "movementAccepted": 11,
+      "movementRejected": 0,
+      "presenceEvents": 0,
+      "positionCheckpoints": 0
+    },
+    {
+      "case": "server proximity and replay reject false gathering, stale cost and duplicate claims",
+      "commands": 4,
+      "snapshots": 3,
+      "movementAccepted": 6,
+      "movementRejected": 0,
+      "presenceEvents": 0,
+      "positionCheckpoints": 0
+    },
+    {
+      "case": "scoped presence omits private workshop residents and performs no movement database checkpoints",
+      "commands": 0,
+      "snapshots": 2,
+      "movementAccepted": 6,
+      "movementRejected": 0,
+      "presenceEvents": 4,
+      "positionCheckpoints": 1
+    },
+    {
+      "case": "fresh service restart preserves identity, committed costs and deterministic retry receipts",
+      "commands": 1,
+      "snapshots": 0,
+      "movementAccepted": 0,
+      "movementRejected": 0,
+      "presenceEvents": 0,
+      "positionCheckpoints": 0
+    },
+    {
+      "case": "a new Node process resumes durable progress and its prior signed session",
+      "commands": 0,
+      "snapshots": 0,
+      "movementAccepted": 0,
+      "movementRejected": 0,
+      "presenceEvents": 0,
+      "positionCheckpoints": 0
+    },
+    {
+      "case": "dump, restore and migration replay preserve shared state and committed receipt",
+      "commands": 5,
+      "snapshots": 5,
+      "movementAccepted": 52,
+      "movementRejected": 0,
+      "presenceEvents": 0,
+      "positionCheckpoints": 1
+    }
+  ],
+  "p50Ms": 3.9281670000000304,
+  "p95Ms": 6.151499999999942,
+  "maxMs": 11.335583000000042,
+  "fixtureOnly": true,
+  "countsScope": "Counters cover the parent service adapter; restarted child-process calls have RTT samples only."
+}

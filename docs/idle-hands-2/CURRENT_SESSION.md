@@ -1,9 +1,9 @@
-# Resume here — playable local workshop
+# IH2-040 closeout and next task
 
-2026-11-09. Canonical source: private dadbod87/idle-hands-2, main. IH2-020 is merged in PR #2 (12579bbe5acfc2454a1a90c738856e17c4aecb5a). IH2-030 acceptance/evidence are complete locally on feat/workshop-loop. Final exact-head CI and merged PR are authoritative for remote status; inspect before starting work. This document is written before its own commit and does not imply a merge.
+2026-11-10. Owner: this chat. Feature branch `feat/durable-town`, based on current main 0c33b63e3a5fc86f5e808d794d0ec591e18694cf. Local acceptance artifacts exist; both exact-head CI jobs must pass before merge. Final SHA, run, merge and artifact verification belong in the PR closeout.
 
-Read [workshop handoff](handoffs/2026-11-09-workshop-loop.md), CURRENT_STATE, RELEASE_CHECKLIST, ROADMAP and [local evidence](../evidence/IH2-030/REPORT.md). Tracker next after accepted030: IH2-040, isolated durable two-player proof. The current user wanted autonomous work while away and tomorrow's review, so stop after the030 source/CI milestone; no public launch, real accounts, new billed infrastructure or automatic usage resets. Actual latest weekly allowance 68% remaining, shared account-wide. Recheck next session.
+Read [dated handoff](handoffs/2026-11-10-durable-town.md), [current state](../CURRENT_STATE.md), [evidence](../evidence/IH2-040/REPORT.md), then run tracker status/check/prompt. Do not replay IH2-030 or replace browser saves with seeded test stock.
 
-Preview: http://127.0.0.1:4175/ if the local server/computer remain active. All data is synthetic and saved only in that browser. Direct taps operate depots/bench/doors; Places remains optional. Bag & journal has orientation, resources, skills and furniture placement. Initial full depots allow a fast first planter plus a 12-hour bridge kit; subsequent jobs are slower. Finished jobs wait safely for collection. No server authority or shared town yet.
+Next task IH2-045 implements Nick’s requested visual variety: different tree and resident silhouettes, distinctive building shapes/sizes/materials, richer land textures and subtle animation. Preserve the accepted visual family and controls. Original game, real accounts, public launch, billed cloud infrastructure and asset purchases remain outside this task.
 
-Maintain persistent creative work and long-term housing; weekly competition must never erase these. Phone playability is a product requirement, not a later port. Keep art and inventory/quest/save logic independent. RPGJS patterns reviewed; Zod adopted, XState deferred. Do not reopen obsolete original-game worktrees or import its players/secrets/economy.
+Authorization: routine reversible work and focused independent review are allowed. Monitor actual weekly usage and stop near 10% remaining; never consume reset credits automatically. Last observed 66% remained. Keep a clear handoff at each bounded milestone.

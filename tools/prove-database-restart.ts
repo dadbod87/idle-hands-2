@@ -1,0 +1,14 @@
+import {execFileSync} from 'node:child_process';
+import {mkdirSync,writeFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
+import {database} from '../server/db.ts';
+import {createTownServer} from '../server/http.ts';
+const url=new URL(process.env.IH2_HTTP_TEST_DATABASE_URL??'postgres://ih2:local-synthetic-only@127.0.0.1:55432/ih2_http_test');if(url.pathname!=='/ih2_http_test')throw new Error('Restart proof requires the dedicated HTTP fixture cluster.');url.pathname='/ih2_restore';
+const container=process.env.IH2_PG_CONTAINER??'idle-hands-2-pg';if(!/^[a-zA-Z0-9_-]+$/.test(container))throw new Error('Invalid fixture container.');
+if(!process.env.IH2_PG_CONTAINER){const info=JSON.parse(execFileSync('docker',['inspect',container],{encoding:'utf8'}))[0];if(info.Config?.Labels?.app!=='idle-hands-2-synthetic')throw new Error('Refusing to restart an unrelated container.');}
+const pool=database(url.toString()),app=createTownServer({pool,secret:'isolated-database-restart-synthetic-proof',port:0});let interrupted=false;pool.on('error',()=>interrupted=true);
+try{const before=await app.store.snapshot('aster');assert.equal(before.plot?.level,2);assert.equal(before.plot?.placements['north-west'],'planter');assert.equal(before.workshop.job?.recipe,'bridge-kit');const base='http://127.0.0.1:'+await app.listen();const response=await fetch(base+'/api/town/login',{method:'POST',headers:{Origin:base,'Content-Type':'application/json'},body:JSON.stringify({fixtureId:'aster'})});const cookie=response.headers.get('set-cookie')!.split(';')[0];await response.json();
+ execFileSync('docker',['restart',container],{stdio:'pipe',timeout:30000});let ready=false;for(let i=0;i<60;i++){try{execFileSync('docker',['exec',container,'pg_isready','-U','ih2','-d','ih2_restore'],{stdio:'pipe',timeout:3000});ready=true;break;}catch{await new Promise(r=>setTimeout(r,250));}}assert.equal(ready,true);
+ const after=await app.store.snapshot('aster');assert.deepEqual(after.workshop,before.workshop);assert.deepEqual(after.plot,before.plot);assert.deepEqual(after.bridge,before.bridge);const resumed=await fetch(base+'/api/town/snapshot',{headers:{Cookie:cookie}});assert.equal(resumed.status,200);assert.equal((await resumed.json()).snapshot.playerId,'aster');
+ mkdirSync('test-results/server',{recursive:true});writeFileSync('test-results/server/database-restart.json',JSON.stringify({fixtureOnly:true,postgres:'16.15',actualContainerRestart:true,serviceSurvived:true,sameSignedSession:true,decoratedUpgradeAndQueuedJobPreserved:true,idleConnectionInterruptionObserved:interrupted,limits:'Local single-process/isolated container recovery, not cloud HA or a real-player drill.'},null,2)+'\n');console.log('PASS: isolated PostgreSQL restart preserved decorated property/job and the live service reconnected.');
+}finally{await app.close();await pool.end();}

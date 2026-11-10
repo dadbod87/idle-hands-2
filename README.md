@@ -1,20 +1,18 @@
 # Idle Hands 2 — neighborhood pilot
 
-Private source: [dadbod87/idle-hands-2](https://github.com/dadbod87/idle-hands-2). No hosted game/backend yet.
+Private source: [dadbod87/idle-hands-2](https://github.com/dadbod87/idle-hands-2). A separate local game with persistent creative progress, slower progression and a cooperative town. The original live Idle Hands and its real accounts remain separate and unchanged. No public sequel deployment or cloud backend exists.
 
-A separate local prototype for a slower, persistent, cooperative company town. Humor, deep systems, teamwork and eventually personal home ownership/upgrades/decoration drive the design. Pilot feedback through IH2-014 is implemented locally, including continuous movement, door-click entry and doorway exit placement. Independent CI is established. The original illustrated visual kit is implemented locally; /?art-study=1 compares the styles. The book button opens a field guide. Next is a phone-friendly workshop loop after visual-kit checks/merge. No live accounts, currency, server or deployment.
+The accepted illustrated pilot has continuous movement, direct-tap destinations, doorway entry/exit, a field guide, material gathering, crafting, skills, six furnishing types and saved timed jobs. Default mode saves in this browser. Opt-in `/?town=1` uses an isolated local authoritative service: fictional residents cooperate on a bridge, own/upgrade plots, decorate and retain progress through weekly score rollover.
 
 ```sh
 npm ci --ignore-scripts
 npm run dev
 ```
 
-Open the loopback URL printed by Vite. Keyboard: WASD/arrows, E/Enter to interact, Escape to close. Touch/mouse: tap the floor or use Places to walk to a destination. Menus block walking.
+Open the loopback URL printed by Vite. Keyboard: WASD/arrows, E/Enter to interact, Escape to close. Touch/mouse: tap the floor or use Places. Menus block walking. For shared practice mode and its separate database, follow [local setup](docs/LOCAL_TOWN.md). Ordinary fictional residents begin with no kits; automated tests seed supplies only in isolated fixture databases.
 
-Browser runs write current screenshots/metrics to ignored `test-results/browser/` (or `QA_EVIDENCE_DIR`), with traces/reports on failure. Committed task evidence stays under docs/evidence.
+Run the checks listed in [release checklist](docs/RELEASE_CHECKLIST.md), including the database setup for server/browser tests. Current screenshots/metrics go to ignored `test-results/`; committed evidence lives under `docs/evidence/`.
 
-Run `npm run test`, `npm run build`, `npm run test:browser`, `npm run check:plan`. [Planning home](docs/idle-hands-2/README.md), [current source state](docs/CURRENT_STATE.md), [latest handoff](docs/idle-hands-2/CURRENT_SESSION.md).
+[Planning home](docs/idle-hands-2/README.md) · [Current state](docs/CURRENT_STATE.md) · [Handoff](docs/idle-hands-2/CURRENT_SESSION.md) · [Licenses](licenses/README.md).
 
-All content is original code-drawn placeholder art; the final visual kit is a later task. External dependencies are exact-pinned; see licenses. The private GitHub repository is the sequel source authority; fetch main and current handoff before work. Existing Idle Hands remains separate at https://idlehands.thepatrongrp.com/.
-
-Current local slice: direct-tap material depots, crafting bench, orientation journal, six furnishing types, placement and saved timed jobs. See [tomorrow’s handoff](docs/idle-hands-2/handoffs/2026-11-09-workshop-loop.md). Persistent shared town/housing is the next proof, not implemented server functionality.
+Next art pass IH2-045 expands tree and resident variety, building shapes/materials, ground textures and restrained ambient animation while preserving the style Nick accepted. Real authentication, hosted play, physical house lots and wider neighborhood content remain later gates. Dependencies are pinned and original art provenance is recorded; no paid assets are required.

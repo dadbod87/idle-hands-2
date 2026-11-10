@@ -9,3 +9,5 @@ The pinned OpenAI Game Studio guidance retains its own upstream manifest, notice
 Development-only visual checking adds @axe-core/playwright 4.14.0 and its locked axe-core dependency, with included notices preserved. Zero automated violations is not a complete accessibility audit.
 
 IH2-030 adds exact Zod4.6.7 (MIT), with its installed LICENSE copied to dependencies/zod and lock integrity in dependency-inventory.json. No RPGJS source is bundled. Depot and furnishing primitives are original code in WorldScene.ts, separate from the39 original SVG assets.
+
+IH2-040 adds exact pg8.16.3, @types/pg8.15.5 and @types/node24.19.2 with lock-resolved transitive licenses (MIT/ISC). Notices are retained; pg-types2.2.0 and pgpass1.0.5 carry their full MIT text in the package README, copied verbatim to LICENSE_FROM_README.md. PostgreSQL runs as an external pinned official fixture container, not a redistributed game asset. Tool/image provenance is recorded in docs/evidence/IH2-040/tool-provenance.json.

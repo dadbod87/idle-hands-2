@@ -1,6 +1,6 @@
 # Idle Hands 2 — source authority
 
-Separate sequel repository: private `dadbod87/idle-hands-2`, default source branch `main`. No hosted game or backend yet. Do not confuse it with dadbod87/idle-hands (live build 194, real accounts). This repository now owns sequel implementation and planning; the original repository keeps a pointer.
+Separate sequel repository: private `dadbod87/idle-hands-2`, default source branch `main`. No hosted game or cloud backend. An isolated local PostgreSQL practice town is available. Do not confuse it with dadbod87/idle-hands (live build 194, real accounts). This repository now owns sequel implementation and planning; the original repository keeps a pointer.
 
 Read docs/CURRENT_STATE.md, docs/CHANGELOG.md, docs/RELEASE_CHECKLIST.md, then docs/idle-hands-2/{CURRENT_SESSION,BUILD_SYSTEM,DECISIONS,EXPERIENCE_BRIEF}.md. Run the tracker `status`, `check`, `prompt`. The task file is authoritative. Make ordinary reversible decisions autonomously, one bounded task per prompt. New user instructions outrank older planning assumptions.
 
@@ -10,7 +10,7 @@ IH2-010 engine pilot is complete. Read the current handoff/tracker for the activ
 - Slow long-term progression, humor, deep systems and teamwork. Rapid onboarding is not rapid completion; avoid infinite click-to-money compounding.
 - Players should acquire personal house plots, upgrade homes and decorate them over time. Plot rights and creative work persist; weekly competition must not erase them.
 - Free assets only, original or verified CC0 first. Prefer GitHub + Vercel/Supabase where suitable. Modest extra hosting can be considered with a concrete cost estimate; no unlimited spending or silent billed setup.
-- Preserve the existing game's accounts/runtime; no imports, real data, credentials, production tests or new infrastructure in this pilot.
+- Preserve the existing game's accounts/runtime; no imports, real data, credentials, production tests or unapproved cloud infrastructure. The isolated local Docker database is authorized for IH2-040.
 
 - Personal/group quests, gathering/crafting, skills and restoration should make the town feel alive; integrate candidates such as helpers/shops/rare décor gradually. See LIVING_TOWN_SYSTEMS. Movement is continuous, not a tile-step control contract.
 

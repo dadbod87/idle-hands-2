@@ -1,0 +1,10 @@
+{
+  "fixtureOnly": true,
+  "postgres": "16.15",
+  "actualContainerRestart": true,
+  "serviceSurvived": true,
+  "sameSignedSession": true,
+  "decoratedUpgradeAndQueuedJobPreserved": true,
+  "idleConnectionInterruptionObserved": true,
+  "limits": "Local single-process/isolated container recovery, not cloud HA or a real-player drill."
+}

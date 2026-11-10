@@ -6,3 +6,6 @@ playwright-report/
 !.env.example
 __pycache__/
 .DS_Store
+.local/
+.env.ih2.local
+supabase/.temp/

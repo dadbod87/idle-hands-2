@@ -391,6 +391,146 @@
       "source": "tools/create-original-art.py",
       "date": "2026-11-09",
       "modifications": "Generated original vector illustration; no imported image source."
+    },
+    {
+      "id": "variety-building-cafe",
+      "path": "public/art/variety/building-cafe.svg",
+      "sha256": "29faeaae7b996735ae97b5e3e156f6900bd1247e19ef95f4c344212e4f7a5078",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-building-workshop",
+      "path": "public/art/variety/building-workshop.svg",
+      "sha256": "dc9e1f108e870121edd2170745348aab6c19b590c0f8cd085dc9c57e30db11cc",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-comparison-sheet",
+      "path": "public/art/variety/comparison-sheet.svg",
+      "sha256": "005a4c49235f13b7786aecba8c9407f496678f7527c58223871f947cc4e0c20c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-ground-square",
+      "path": "public/art/variety/ground-square.svg",
+      "sha256": "5284f5948b425cbe391f83b93c5a7c88713251d3b2c602474109e91d1ed77064",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-resident-aster",
+      "path": "public/art/variety/resident-aster.svg",
+      "sha256": "ea9299bd173705f45c4990802f609cad51cfbc8523cf7a3e51ec4ebb9e499688",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-resident-bea",
+      "path": "public/art/variety/resident-bea.svg",
+      "sha256": "cff1de8e1db2980a42c5ff046e6c05578f7da6559f94bd0a07f7b99b51d31134",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-resident-casey",
+      "path": "public/art/variety/resident-casey.svg",
+      "sha256": "c54f655493894813963dee09475e333e20abd0f7640751a657368597a107b39c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-resident-devon",
+      "path": "public/art/variety/resident-devon.svg",
+      "sha256": "bb536c20d5f8a81f8ce1be95a19819c01d95f0107118fc774f39ca6346661298",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-tree-birch-canopy",
+      "path": "public/art/variety/tree-birch-canopy.svg",
+      "sha256": "23438973e085bc39d01216359d27bea7d8c3c7f93173e0e45adf9c843a7057a2",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-tree-birch-trunk",
+      "path": "public/art/variety/tree-birch-trunk.svg",
+      "sha256": "bb3feff780663ffd678dfe1318ed64d87fe88ad03f477ce4d7eb28024b752b46",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-tree-fruit-canopy",
+      "path": "public/art/variety/tree-fruit-canopy.svg",
+      "sha256": "a8ce3f124244c873a9036cffd423c70b1927f311de0a315d202e6eb536431d34",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-tree-fruit-trunk",
+      "path": "public/art/variety/tree-fruit-trunk.svg",
+      "sha256": "67684dc81fc049aaa5755eba818d0125c6ddc744703a2739d91bd503b63dda1f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-tree-oak-canopy",
+      "path": "public/art/variety/tree-oak-canopy.svg",
+      "sha256": "5171c9ef3b13bba0b398390637043e201f3ce4743eafe548a375723dc58acf2e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "variety-tree-oak-trunk",
+      "path": "public/art/variety/tree-oak-trunk.svg",
+      "sha256": "71ba673ac11dfc610a4fb509e30cde25804f2da0cf882c74d190c5cce66b42aa",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
     }
   ],
   "comparison": {

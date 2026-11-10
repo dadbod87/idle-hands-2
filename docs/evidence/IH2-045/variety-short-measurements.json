@@ -1,0 +1,19 @@
+{
+  "method": "Headless Chrome/Chromium viewport emulation; local synthetic position only; 750ms idle sample after boot/reload; rolling frame metric, not physical-device or isolated renderer benchmark. SVG bytes are decoded response bodies, not compressed transfer size. Study excluded from game asset counts.",
+  "viewport": {
+    "name": "short",
+    "width": 844,
+    "height": 390
+  },
+  "gameAssets": {
+    "requests": 49,
+    "originalSVGRequests": 17,
+    "varietySVGRequests": 26,
+    "uniqueGameSVGs": 21,
+    "decodedGameSVGBytes": 314900
+  },
+  "frameSampleDelta": 45,
+  "p95RollingFrameMs": 16.80000000000001,
+  "errors": [],
+  "external": []
+}

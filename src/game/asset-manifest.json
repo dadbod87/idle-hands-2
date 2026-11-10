@@ -198,6 +198,76 @@
       "id": "workshop",
       "path": "art/original/workshop.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "variety-building-cafe",
+      "path": "art/variety/building-cafe.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-building-workshop",
+      "path": "art/variety/building-workshop.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-comparison-sheet",
+      "path": "art/variety/comparison-sheet.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-ground-square",
+      "path": "art/variety/ground-square.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-resident-aster",
+      "path": "art/variety/resident-aster.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-resident-bea",
+      "path": "art/variety/resident-bea.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-resident-casey",
+      "path": "art/variety/resident-casey.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-resident-devon",
+      "path": "art/variety/resident-devon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-tree-birch-canopy",
+      "path": "art/variety/tree-birch-canopy.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-tree-birch-trunk",
+      "path": "art/variety/tree-birch-trunk.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-tree-fruit-canopy",
+      "path": "art/variety/tree-fruit-canopy.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-tree-fruit-trunk",
+      "path": "art/variety/tree-fruit-trunk.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-tree-oak-canopy",
+      "path": "art/variety/tree-oak-canopy.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "variety-tree-oak-trunk",
+      "path": "art/variety/tree-oak-trunk.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

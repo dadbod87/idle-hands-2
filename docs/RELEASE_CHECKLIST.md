@@ -31,3 +31,9 @@
 - Fresh independent Node process preserves signed session/data; matching-version pg_dump/pg_restore recovers upgraded/decorated property, queued job and receipts, then checksum migration replay.
 - 47 domain/server checks with zero skips when fixture DBs configured;20 browser cases including isolated intercepted data, real shared requests, phone/short/enlarged text. Preserve metrics/screenshots and incomplete axe findings.
 - Both required jobs on the final exact candidate must complete success, including evidence upload; merge tree must match. Browser CI budget20m for expanded software-rendered suite. Source/CI remains separate from hosted beta.
+
+## IH2-045 visual variety
+- Reproduce original SVGs/catalog and exact provenance; four resident sheets retain64×80 frames and foot anchors, no missing textures.
+- Review actual desktop/narrow/short/two-times-text canvas and study screenshots, distinct silhouettes/materials, door entry/exit and saved positions.
+- Decorative motion bounded, reduced/hidden/offscreen handling; no added API/database activity. Report sample method/bytes and physical-device limits.
+- 50 domain/art/server checks and24 browser cases, strict build, planning/integrity/diff; both exact-head CI jobs success before merge.

@@ -1,0 +1,184 @@
+{
+  "method": "Headless browser, default local mode; actual prefers-reduced-motion emulation plus synthetic document visibility getter/event. No real accounts or backend commands.",
+  "first": {
+    "enabled": true,
+    "canopies": [
+      {
+        "key": "oak",
+        "rotation": 0.00022823652910020087
+      },
+      {
+        "key": "birch",
+        "rotation": 0
+      },
+      {
+        "key": "fruit",
+        "rotation": 0
+      },
+      {
+        "key": "oak",
+        "rotation": 0
+      },
+      {
+        "key": "birch",
+        "rotation": 0
+      },
+      {
+        "key": "fruit",
+        "rotation": 0
+      }
+    ],
+    "steam": {
+      "alpha": 0.12258176097489483,
+      "y": -4.0737771495385005
+    },
+    "gestureOffset": 0.014523177591569576
+  },
+  "observed": {
+    "enabled": true,
+    "canopies": [
+      {
+        "key": "oak",
+        "rotation": 0.0006901438359676604
+      },
+      {
+        "key": "birch",
+        "rotation": 0
+      },
+      {
+        "key": "fruit",
+        "rotation": 0
+      },
+      {
+        "key": "oak",
+        "rotation": 0
+      },
+      {
+        "key": "birch",
+        "rotation": 0
+      },
+      {
+        "key": "fruit",
+        "rotation": 0
+      }
+    ],
+    "steam": {
+      "alpha": 0.12779913333851456,
+      "y": -4.223180040898967
+    },
+    "gestureOffset": 0.04389150737992292
+  },
+  "reduced": {
+    "enabled": false,
+    "canopies": [
+      {
+        "key": "oak",
+        "rotation": 0
+      },
+      {
+        "key": "birch",
+        "rotation": 0
+      },
+      {
+        "key": "fruit",
+        "rotation": 0
+      },
+      {
+        "key": "oak",
+        "rotation": 0
+      },
+      {
+        "key": "birch",
+        "rotation": 0
+      },
+      {
+        "key": "fruit",
+        "rotation": 0
+      }
+    ],
+    "steam": {
+      "alpha": 0,
+      "y": 0
+    },
+    "gestureOffset": 0
+  },
+  "hidden": {
+    "enabled": false,
+    "canopies": [
+      {
+        "key": "oak",
+        "rotation": 0
+      },
+      {
+        "key": "birch",
+        "rotation": 0
+      },
+      {
+        "key": "fruit",
+        "rotation": 0
+      },
+      {
+        "key": "oak",
+        "rotation": 0
+      },
+      {
+        "key": "birch",
+        "rotation": 0
+      },
+      {
+        "key": "fruit",
+        "rotation": 0
+      }
+    ],
+    "steam": {
+      "alpha": 0,
+      "y": 0
+    },
+    "gestureOffset": 0
+  },
+  "requests": [
+    "/",
+    "/assets/index-h5JJTDUL.js",
+    "/assets/index-CYxPEHaU.css",
+    "/art/original/ground-workshop.svg",
+    "/art/original/bench.svg",
+    "/art/original/shelf.svg",
+    "/art/original/crates.svg",
+    "/art/original/home-plot.svg",
+    "/art/original/bridge-neglected.svg",
+    "/art/original/bridge-restored.svg",
+    "/art/variety/ground-square.svg",
+    "/art/variety/building-workshop.svg",
+    "/art/variety/building-cafe.svg",
+    "/art/variety/tree-oak-trunk.svg",
+    "/art/variety/tree-oak-canopy.svg",
+    "/art/variety/tree-birch-trunk.svg",
+    "/art/variety/tree-birch-canopy.svg",
+    "/art/variety/tree-fruit-trunk.svg",
+    "/art/variety/tree-fruit-canopy.svg",
+    "/art/variety/resident-aster.svg",
+    "/art/variety/resident-bea.svg",
+    "/art/variety/resident-casey.svg",
+    "/art/variety/resident-devon.svg",
+    "http://127.0.0.1:4198/f2dab2d8-bd10-4c1a-9d41-d94912a020ab",
+    "http://127.0.0.1:4198/18885bda-4c33-45ae-9e4f-06d4690ba5a4",
+    "http://127.0.0.1:4198/2f3d952e-b896-41dc-bfbf-41a9b5a83c28",
+    "http://127.0.0.1:4198/93abe5f1-b295-4a68-b831-604367da3b48",
+    "http://127.0.0.1:4198/aa0db824-e5cb-44af-bb5e-c980bf32a571",
+    "http://127.0.0.1:4198/e26e32f7-5716-474c-854c-e5facf88649a",
+    "http://127.0.0.1:4198/abaf0653-c231-4271-8c23-8cdf53155fbc",
+    "http://127.0.0.1:4198/08f89fa0-5117-4eb1-8503-d0b71f57ad70",
+    "http://127.0.0.1:4198/d4b8869b-a3b8-4a9a-95ca-622d9ec74cc9",
+    "http://127.0.0.1:4198/252036df-c3bd-496e-b864-55c02715bdb9",
+    "http://127.0.0.1:4198/28feea69-5f55-43bb-aaab-86e731ad370c",
+    "http://127.0.0.1:4198/bf45e578-30dd-4797-b0a6-a032847ab64a",
+    "http://127.0.0.1:4198/5de16e76-fabe-4fed-88d3-ef5f405f358d",
+    "http://127.0.0.1:4198/997c4b4b-2810-4ab1-a419-0a0c298e4624",
+    "http://127.0.0.1:4198/ac004b82-472c-4e2e-8d6a-9abae2a321cc",
+    "http://127.0.0.1:4198/6ad0b6e0-2cae-4dec-af81-d19388426ff1",
+    "http://127.0.0.1:4198/2fceed9e-4e2d-483f-9d54-d446496916c3",
+    "http://127.0.0.1:4198/12932860-b70c-4e19-80a2-7089a0abadc0",
+    "http://127.0.0.1:4198/8e9e5d0d-2024-411f-b05b-43b2631de4b7",
+    "http://127.0.0.1:4198/9053e823-0160-4637-b685-66654d6e5d58"
+  ]
+}

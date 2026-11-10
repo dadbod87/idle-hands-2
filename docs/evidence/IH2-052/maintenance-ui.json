@@ -1,0 +1,44 @@
+{
+  "disclosure": "All /api/town requests and EventSource intercepted with isolated fictional state. Server-clock advanced61seconds and room/boot relocated explicitly; not real progress or backend authority proof. Actual backend timers/receipts are covered separately by server tests.",
+  "commands": [
+    {
+      "kind": "start-lesson",
+      "route": "upkeep",
+      "expectedBridgeContributed": 3,
+      "id": "e7779c11-eb2f-4a80-9795-1d7cccf653dd",
+      "expectedRevision": 0
+    },
+    {
+      "kind": "complete-lesson",
+      "id": "95150a02-ddcf-4e5c-a5ed-498b63faf02a",
+      "expectedRevision": 1
+    },
+    {
+      "kind": "redeem-lesson",
+      "route": "upkeep",
+      "expectedBridgeContributed": 3,
+      "id": "412703e5-9dde-4fca-a207-a45d89226365",
+      "expectedRevision": 2
+    }
+  ],
+  "inventory": {
+    "scrap": 3,
+    "timber": 3,
+    "supplies": 4
+  },
+  "bridge": {
+    "contributed": 3,
+    "target": 3,
+    "restored": true
+  },
+  "lesson": {
+    "startedAt": 1794353085383,
+    "readyAt": 1794353145383,
+    "completed": true,
+    "redeemed": true,
+    "route": "upkeep",
+    "legacySatisfied": false
+  },
+  "normalJobUnchanged": true,
+  "errors": []
+}

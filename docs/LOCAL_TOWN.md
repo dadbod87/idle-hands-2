@@ -20,7 +20,7 @@ npm run preview -- --port 4175 --strictPort
 
 Open http://127.0.0.1:4175/?town=1 and choose Aster, Bea or Casey. Different browsers/profiles can represent different residents together on the same computer. No real accounts or old-game saves are imported. Each resident starts with zero bridge kits; the first planter is quick, later production is slow. Confirmed inventory/jobs/property persist through local server restarts in the dedicated Docker volume. The computer and local services must remain running to use the preview.
 
-Use normal gathering/crafting to produce kits; contribute at the bridge and acquire/upgrade plot rights. Plot claim12 kits, upgrade24 additional. Visitors can inspect public plot records but only their owner can edit. House artwork, separate physical lots and trail access remain the next visual/neighborhood work.
+Use normal gathering/crafting to produce kits; contribute at the bridge and acquire/upgrade plot rights. Plot claim12 kits, upgrade24 additional. The frontage leads to a selected resident’s private home instance. Visitors can enter and see its furnishings; only the owner can edit or expand. Existing six placement IDs survive the continuous workroom expansion. A whole street of separate lots and useful trail access remain later work. Paid one-time orientation maintenance at the bench costs one of each material and60real seconds, with ordinary jobs running independently. Bring its credit to repair or upkeep; no inventory kit is granted. Bag → Since your last visit describes confirmed status without collecting work.
 
 ## Isolated tests
 

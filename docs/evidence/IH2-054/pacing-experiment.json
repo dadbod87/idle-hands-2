@@ -3,9 +3,9 @@
   "classification": "DESIGN-ONLY; no runtime/state/database changes",
   "simulatedDays": 42,
   "sourceHashes": {
-    "src/game/workshop.ts": "66d152d65669d4b9592c9c215ed956481509230229cbc4e1c3cc3d7eda27b028",
-    "src/game/town-rules.ts": "9d77c0fa693bad0fe9c2c4caf34c6bd031d9d988f4e7438c4bf9cc980060ba2c",
-    "server/store.ts": "dd5eab12eefe0cf8b5c49d6f49068ce8d4ef35c83cfc24bc8115e3a68805336c"
+    "src/game/workshop.ts": "19071a722e8613c2124138dc1a9dd45ede7fe4e4602d024d76ea766de4e26edf",
+    "src/game/town-rules.ts": "39969c6c7bf1bf3c22bb6c6a1402b5892c614b525cb660d2aa5731fd48661b05",
+    "server/store.ts": "7acd7adcf804c57df123b3b8fc8727b9959013a2d92b74b306a24b3caf69bc47"
   },
   "implementedConstantsUsed": {
     "nodeCapacity": 6,

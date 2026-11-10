@@ -1,0 +1,21 @@
+{
+  "domainTests": 93,
+  "domainSkipped": 0,
+  "authoritativeServerTests": 30,
+  "browserTests": 37,
+  "browserMinutes": 3.7,
+  "strictBuild": "PASS",
+  "catalog": "PASS;45entries/5candidate regions",
+  "planner": "PASS;18tasks/10tracker tests",
+  "toolkit": "PASS;40pinned files",
+  "diff": "PASS",
+  "actualFinalImagesReviewed": [
+    "home-desktop.png",
+    "home-phone.png",
+    "home-short.png",
+    "home-short-text200.png",
+    "maintenance-phone.png",
+    "pending-entry.png"
+  ],
+  "limits": "Synthetic/intercepted fixtures disclosed in individual JSON. Headless viewports, not physical phones/full accessibility. Exact head CI/artifact/merge gates remain separate."
+}

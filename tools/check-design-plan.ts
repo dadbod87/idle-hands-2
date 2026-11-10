@@ -49,7 +49,7 @@ export function checkDesignPlan(catalog:Obj,regionPlan:Obj,repoRoot=process.cwd(
   require((entry.implementation?.status==='existing-definition')===!!runtime,`${name} runtime reference/status disagree.`);
   if(runtime){
    require(file(runtime.file),`${name} runtime file is missing.`);
-   const valid=runtime.kind==='resource'?RESOURCE_IDS.includes(runtime.id):runtime.kind==='prop'?PROP_IDS.includes(runtime.id):runtime.kind==='recipe'?runtime.id in RECIPES:runtime.kind==='inventory-counter'?runtime.id in createWorkshop(0):runtime.kind==='stop'?Object.values(worlds).some(world=>world.stops.some(stop=>stop.id===runtime.id)):runtime.kind==='shared-project'&&runtime.id==='bridge';
+   const valid=runtime.kind==='room'?runtime.id in worlds:runtime.kind==='resource'?RESOURCE_IDS.includes(runtime.id):runtime.kind==='prop'?PROP_IDS.includes(runtime.id):runtime.kind==='recipe'?runtime.id in RECIPES:runtime.kind==='inventory-counter'?runtime.id in createWorkshop(0):runtime.kind==='stop'?Object.values(worlds).some(world=>world.stops.some(stop=>stop.id===runtime.id)):runtime.kind==='shared-project'&&runtime.id==='bridge';
    require(valid,`${name} claims an unknown runtime definition ${runtime.id}`);
    if(runtime.kind==='recipe'&&runtime.id in RECIPES){const actual=RECIPES[runtime.id as keyof typeof RECIPES];require(recipe?.duration_ms===actual.durationMs,`${name} changes an existing normal production duration.`);const expected=Object.entries(actual.cost).map(([id,amount])=>({content_id:`material:${id}`,amount}));require(JSON.stringify(recipe?.inputs)===JSON.stringify(expected),`${name} changes existing recipe material costs.`);}
   }

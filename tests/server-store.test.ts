@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import {migrate} from '../server/db.ts';
 import { Pool } from 'pg';
 import { TownStore, seasonKey, type TownPosition, type TownSnapshot } from '../server/store.ts';
 import { createWorkshop, type WorkshopState } from '../src/game/workshop.ts';
@@ -29,7 +30,7 @@ test('PostgreSQL authoritative town store (dedicated local synthetic database)',
   const store = new TownStore(pool, { now: () => now });
   const migration = await readFile(new URL('../supabase/migrations/20261110150647_durable_town.sql', import.meta.url), 'utf8');
   try {
-    if (!(await pool.query("select to_regnamespace('ih2') as name")).rows[0].name) await pool.query(migration);
+    await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade'); await migrate(pool);
     async function reset() {
       now = start;
       await pool.query('truncate ih2.command_receipts,ih2.bridge_contributions,ih2.quest_awards,ih2.season_scores,ih2.plots,ih2.players,ih2.bridge restart identity cascade');
@@ -171,9 +172,58 @@ test('PostgreSQL authoritative town store (dedicated local synthetic database)',
       } finally { await pool.query('drop trigger test_receipt_failure on ih2.command_receipts'); await pool.query('drop function ih2.test_receipt_failure()'); }
       const retry = await store.execute('aster', cmd, square(24, 13)); assert.ok(retry.ok); assert.equal(retry.snapshot.workshop.bridgeKits, 1); assert.equal(retry.snapshot.bridge.contributed, 1);
     });
+    async function planter(id:string){await actor(id);for(const[resource,x]of [['scrap',21],['timber',23],['supplies',25]] as const)assert.ok((await command(id,{kind:'gather',resource},square(x,30))).ok);assert.ok((await command(id,{kind:'craft',recipe:'planter'},bench)).ok);now+=5000;assert.ok((await command(id,{kind:'claim'},bench)).ok);assert.ok((await command(id,{kind:'place',prop:'planter',slot:'north-west'})).ok);}
+    await t.test('maintenance debits once independently from the unchanged ordinary twelve-hour job',async()=>{
+      await reset();await planter('aster');const before=await store.snapshot('aster'),quote=before.lessonQuote;
+      const wrongRoute=await command('aster',{kind:'start-lesson',route:'upkeep',expectedBridgeContributed:quote.expectedBridgeContributed},bench);assert.equal(wrongRoute.ok,false);assert.equal(wrongRoute.snapshot.lesson.startedAt,null);assert.deepEqual(wrongRoute.snapshot.workshop.inventory,before.workshop.inventory);
+      const dto={kind:'start-lesson',...quote,id:'lesson-start',expectedRevision:before.workshop.revision};const begun=await store.execute('aster',dto,bench);assert.ok(begun.ok,begun.message);assert.deepEqual(begun.snapshot.workshop.inventory,{scrap:3,timber:3,supplies:4});assert.equal(begun.snapshot.workshop.bridgeKits,0);
+      const replay=await store.execute('aster',dto,bench);assert.ok(replay.replayed);assert.deepEqual(replay.snapshot.workshop.inventory,begun.snapshot.workshop.inventory);
+      assert.ok((await command('aster',{kind:'craft',recipe:'bridge-kit'},bench)).ok);const job=(await store.snapshot('aster')).workshop.job!;assert.equal(job.readyAt-job.startedAt,12*3600_000);
+      now+=59_999;assert.equal((await command('aster',{kind:'complete-lesson'},bench)).ok,false);now++;const completed=await command('aster',{kind:'complete-lesson'},bench);assert.ok(completed.ok);assert.ok(completed.snapshot.lesson.completed);assert.deepEqual(completed.snapshot.workshop.job,job);assert.equal(completed.snapshot.workshop.bridgeKits,0);
+      const credit=completed.snapshot;const redeemed=await command('aster',{kind:'redeem-lesson',...credit.lessonQuote},square(24,13));assert.ok(redeemed.ok,redeemed.message);assert.equal(redeemed.snapshot.bridge.contributed,1);assert.equal(redeemed.snapshot.lesson.route,'construction');assert.equal(redeemed.snapshot.workshop.bridgeKits,0);assert.deepEqual(redeemed.snapshot.workshop.inventory,{scrap:0,timber:1,supplies:3});assert.equal(redeemed.snapshot.scores.length,0);
+      const again=await command('aster',{kind:'redeem-lesson',...redeemed.snapshot.lessonQuote},square(24,13));assert.equal(again.ok,false);assert.equal((await pool.query('select count(*)::int as n from ih2.maintenance_events')).rows[0].n,1);
+      const restarted=new TownStore(pool,{now:()=>now});assert.deepEqual((await restarted.snapshot('aster')).lesson,redeemed.snapshot.lesson);
+    });
+    await t.test('ordinary participation after migration satisfies only unpaid lessons and preserves paid in-flight credit',async()=>{
+      await reset();await planter('aster');let s=await store.snapshot('aster');s.workshop.bridgeKits=1;await pool.query('update ih2.players set workshop=$2 where id=$1',['aster',s.workshop]);
+      const donated=await command('aster',{kind:'contribute'},square(24,13));assert.ok(donated.ok);assert.equal(donated.snapshot.lesson.legacySatisfied,true);const inventory=structuredClone(donated.snapshot.workshop.inventory);
+      const noCharge=await command('aster',{kind:'start-lesson',...donated.snapshot.lessonQuote},bench);assert.equal(noCharge.ok,false);assert.equal(noCharge.snapshot.lesson.startedAt,null);assert.deepEqual(noCharge.snapshot.workshop.inventory,inventory);
+      await planter('bea');s=await store.snapshot('bea');assert.ok((await command('bea',{kind:'start-lesson',...s.lessonQuote},bench)).ok);const paid=await store.snapshot('bea');paid.workshop.bridgeKits=1;await pool.query('update ih2.players set workshop=$2 where id=$1',['bea',paid.workshop]);
+      const afterDonation=await command('bea',{kind:'contribute'},square(24,13));assert.ok(afterDonation.ok);assert.equal(afterDonation.snapshot.lesson.legacySatisfied,false);assert.equal(afterDonation.snapshot.lesson.startedAt,paid.lesson.startedAt);assert.equal(afterDonation.snapshot.lesson.readyAt,paid.lesson.readyAt);assert.deepEqual(afterDonation.snapshot.workshop.inventory,paid.workshop.inventory);
+      now+=60_000;const ready=await command('bea',{kind:'complete-lesson'},bench);assert.ok(ready.ok);const redeemed=await command('bea',{kind:'redeem-lesson',...ready.snapshot.lessonQuote},square(24,13));assert.ok(redeemed.ok);assert.equal(redeemed.snapshot.lesson.redeemed,true);assert.deepEqual(redeemed.snapshot.workshop.inventory,paid.workshop.inventory);assert.equal(redeemed.snapshot.workshop.bridgeKits,0);
+    });
+    await t.test('changed project quotes preserve paid credit and upkeep never changes restored totals',async()=>{
+      await reset();await planter('aster');let s=await store.snapshot('aster');assert.ok((await command('aster',{kind:'start-lesson',...s.lessonQuote},bench)).ok);now+=60_000;assert.ok((await command('aster',{kind:'complete-lesson'},bench)).ok);s=await store.snapshot('aster');const inventory=structuredClone(s.workshop.inventory);
+      await pool.query('update ih2.bridge set contributed=3 where id=1');const stale=await command('aster',{kind:'redeem-lesson',...s.lessonQuote},square(24,13));assert.equal(stale.ok,false);assert.ok(stale.snapshot.lesson.completed&&!stale.snapshot.lesson.redeemed);assert.deepEqual(stale.snapshot.workshop.inventory,inventory);
+      const upkeep=await command('aster',{kind:'redeem-lesson',...stale.snapshot.lessonQuote},square(24,13));assert.ok(upkeep.ok);assert.equal(upkeep.snapshot.lesson.route,'upkeep');assert.equal(upkeep.snapshot.bridge.contributed,3);assert.equal(upkeep.snapshot.workshop.bridgeKits,0);assert.deepEqual(upkeep.snapshot.workshop.inventory,inventory);
+      assert.equal((await command('aster',{kind:'start-lesson',...upkeep.snapshot.lessonQuote},bench)).ok,false);assert.equal((await pool.query("select count(*)::int as n from ih2.quest_awards where quest_id='maintenance-v1'")).rows[0].n,1);
+    });
+    await t.test('concurrent final maintenance redemption preserves the losing paid credit for explicit upkeep re-quote',async()=>{
+      await reset();await pool.query('update ih2.bridge set contributed=2 where id=1');
+      for(const id of ['aster','bea']){await planter(id);const s=await store.snapshot(id);assert.ok((await command(id,{kind:'start-lesson',...s.lessonQuote},bench)).ok);}
+      now+=60_000;for(const id of ['aster','bea'])assert.ok((await command(id,{kind:'complete-lesson'},bench)).ok);
+      const snapshots=await Promise.all(['aster','bea'].map(id=>store.snapshot(id)));const outputs=await Promise.all(['aster','bea'].map((id,index)=>store.execute(id,{kind:'redeem-lesson',...snapshots[index].lessonQuote,id:'race-'+id,expectedRevision:snapshots[index].workshop.revision},square(24,13))));assert.equal(outputs.filter(r=>r.ok).length,1);
+      const index=outputs.findIndex(r=>!r.ok),id=['aster','bea'][index];const losing=await store.snapshot(id);assert.ok(losing.lesson.completed&&!losing.lesson.redeemed);assert.deepEqual(losing.workshop.inventory,snapshots[index].workshop.inventory);assert.equal(losing.bridge.contributed,3);
+      const upkeep=await command(id,{kind:'redeem-lesson',...losing.lessonQuote},square(24,13));assert.ok(upkeep.ok);assert.equal(upkeep.snapshot.lesson.route,'upkeep');assert.equal(upkeep.snapshot.bridge.contributed,3);assert.deepEqual((await pool.query('select route,count(*)::int as n from ih2.maintenance_events group by route order by route')).rows,[{route:'construction',n:1},{route:'upkeep',n:1}]);
+    });
+    await t.test('forward maintenance migration preserves old orientation and grandfathered bridge participation',async()=>{
+      await reset();await actor('old-crafter');await actor('old-helper');await pool.query("insert into ih2.quest_awards(player_id,quest_id,content_version) values('old-crafter','orientation-v1',1),('old-helper','bridge-contributor-v1',1)");await pool.query('update ih2.bridge set contributed=3 where id=1');const before=await store.snapshot('old-helper');
+      const c=await pool.connect();try{await c.query('begin');await c.query('drop table ih2.maintenance_events,ih2.maintenance_lessons');await c.query(await readFile(new URL('../supabase/migrations/20261110225711_starter_homes_maintenance.sql',import.meta.url),'utf8'));const rows=(await c.query('select player_id,legacy_satisfied,started_at from ih2.maintenance_lessons order by player_id')).rows;assert.equal(rows.find(r=>r.player_id==='old-helper').legacy_satisfied,true);assert.equal(rows.find(r=>r.player_id==='old-crafter').legacy_satisfied,false);assert.ok(rows.every(r=>r.started_at===null));assert.deepEqual((await c.query("select workshop from ih2.players where id='old-helper'")).rows[0].workshop,before.workshop);assert.equal((await c.query('select contributed from ih2.bridge')).rows[0].contributed,3);}finally{await c.query('rollback');c.release();}
+    });
+    await t.test('home entry is authoritative, visitor edits fail, and expansion preserves six slots and instance across restart',async()=>{
+      await reset();await fixtureKits('aster',36);await actor('bea');const claimed=await command('aster',{kind:'claim-plot'},square(30,29));const plotId=claimed.snapshot.plot!.id;
+      const owner=await command('aster',{kind:'enter-home',plotId},square(30,35.5));assert.ok(owner.ok,owner.message);assert.deepEqual(owner.snapshot.position,{room:'home',homePlotId:plotId,position:{x:9,y:11}});
+      const visitor=await command('bea',{kind:'enter-home',plotId},square(30,35.5));assert.ok(visitor.ok);const visiting=visitor.snapshot.position;
+      assert.equal((await command('bea',{kind:'edit-plot',plotId,action:'place',prop:'rug',slot:'south-west'},visiting)).ok,false);
+      assert.equal((await command('aster',{kind:'edit-plot',plotId,action:'place',prop:'rug',slot:'south-west'},{...owner.snapshot.position,homePlotId:'999999'})).ok,false);
+      const placed=await command('aster',{kind:'edit-plot',plotId,action:'place',prop:'rug',slot:'south-west'},owner.snapshot.position);assert.ok(placed.ok);const slots=structuredClone(placed.snapshot.plot!.placements);
+      const expanded=await command('aster',{kind:'upgrade-plot',plotId},owner.snapshot.position);assert.ok(expanded.ok);assert.equal(expanded.snapshot.position.room,'home-expanded');assert.deepEqual(expanded.snapshot.plot!.placements,slots);
+      const restarted=new TownStore(pool,{now:()=>now});const guest=await restarted.snapshot('bea');assert.equal(guest.position.room,'home-expanded');assert.equal(guest.position.homePlotId,plotId);assert.deepEqual(guest.position.position,{x:9,y:11});assert.deepEqual((await restarted.snapshot('aster')).plot!.placements,slots);
+    });
     await t.test('private schema, row security and database constraints remain closed to untrusted SQL roles', async () => {
       const tables = (await pool.query("select relname,relrowsecurity from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='ih2' and c.relkind='r'")).rows;
-      assert.ok(tables.length >= 7); assert.ok(tables.every(r => r.relrowsecurity));
+      assert.ok(tables.length >= 9); assert.ok(tables.every(r => r.relrowsecurity)); assert.ok(['maintenance_lessons','maintenance_events'].every(name=>tables.some(row=>row.relname===name)));
+      const grants=(await pool.query("select c.relname,a.grantee from pg_class c join pg_namespace n on n.oid=c.relnamespace cross join lateral aclexplode(coalesce(c.relacl,acldefault('r',c.relowner))) a left join pg_roles r on r.oid=a.grantee where n.nspname='ih2' and c.relname in ('maintenance_lessons','maintenance_events') and (a.grantee=0 or r.rolname in ('anon','authenticated'))")).rows; assert.deepEqual(grants,[],'New private tables expose no PUBLIC/anon/authenticated grants.');
       assert.equal((await pool.query("select has_schema_privilege('public','ih2','USAGE') as allowed")).rows[0].allowed, false);
       await assert.rejects(() => pool.query('update ih2.bridge set contributed=4 where id=1'), /check constraint/);
     });

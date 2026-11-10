@@ -1,6 +1,6 @@
 # A living town, built one useful layer at a time
 
-IH2-054 design package, 2026-11-10. **Design candidates, not implemented features.** The current playable prototype remains the IH2-051 neighborhood. No new regions, combat, chat, purchases, real accounts or hosting are added by this package.
+IH2-054 design package, 2026-11-10. **Design candidates, not implemented features.** The design was recorded against the IH2-051 neighborhood. The design package itself adds no regions, combat, chat, purchases, real accounts or hosting. IH2-052 now implements its bounded home/teaching/return slice; see CURRENT_SESSION and exact task evidence, rather than treating every candidate as shipped.
 
 ## Read the design
 

@@ -3,15 +3,17 @@ import type { Pool, PoolClient } from 'pg';
 import { z } from 'zod';
 import { applyWorkshop, createWorkshop, loadWorkshop, questStep, PROP_IDS, PLACEMENT_SLOTS, type WorkshopState } from '../src/game/workshop.ts';
 import { canStand, worlds, type Point, type Room } from '../src/game/world.ts';
-import { PLOT_CLAIM_KITS, PLOT_UPGRADE_KITS } from '../src/game/town-rules.ts';
+import { PLOT_CLAIM_KITS, PLOT_UPGRADE_KITS, MAINTENANCE_MS, MAINTENANCE_COST } from '../src/game/town-rules.ts';
 
-export type TownPosition = { room: Room; position: Point };
+export type TownPosition = { room: Room; position: Point; homePlotId?: string };
 export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'] };
+export type MaintenanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot = {
   playerId: string; name: string; workshop: WorkshopState; position: TownPosition;
   quest: { contentVersion: 1; awarded: string[] };
   bridge: { contributed: number; target: number; restored: boolean };
   plot: TownPlot | null; plots: TownPlot[];
+  lesson:MaintenanceLesson; lessonQuote:{route:'construction'|'upkeep';expectedBridgeContributed:number};
   seasonKey: string; scores: { playerId: string; name: string; points: number }[]; serverTime: number;
 };
 export type TownResult = { ok: boolean; message: string; replayed: boolean; revision: number; snapshot: TownSnapshot };
@@ -22,6 +24,10 @@ const base = { id: idSchema, expectedRevision: z.number().int().min(0).max(1_000
 const slotSchema = z.enum(PLACEMENT_SLOTS.map(s => s.id) as [string, ...string[]]);
 const specialSchema = z.discriminatedUnion('kind', [
   z.object({ ...base, kind: z.literal('contribute') }).strict(),
+  z.object({ ...base, kind: z.literal('enter-home'), plotId:z.string().regex(/^[1-9][0-9]{0,17}$/) }).strict(),
+  z.object({ ...base, kind:z.literal('start-lesson'), route:z.enum(['construction','upkeep']),expectedBridgeContributed:z.number().int().min(0).max(3) }).strict(),
+  z.object({ ...base, kind:z.literal('complete-lesson') }).strict(),
+  z.object({ ...base, kind:z.literal('redeem-lesson'),route:z.enum(['construction','upkeep']),expectedBridgeContributed:z.number().int().min(0).max(3) }).strict(),
   z.object({ ...base, kind: z.literal('claim-plot') }).strict(),
   z.object({ ...base, kind: z.literal('upgrade-plot'), plotId: z.string().regex(/^[1-9][0-9]{0,17}$/) }).strict(),
   z.object({ ...base, kind: z.literal('edit-plot'), plotId: z.string().regex(/^[1-9][0-9]{0,17}$/), action: z.enum(['place', 'remove']), slot: slotSchema, prop: z.enum(PROP_IDS).optional(), fromSlot: slotSchema.optional() }).strict()
@@ -35,7 +41,14 @@ function canonical(value: unknown): string {
   return JSON.stringify(value);
 }
 function hash(value: unknown): string { return createHash('sha256').update(canonical(value)).digest('hex'); }
-function validPosition(value: TownPosition): boolean { return (value.room === 'square' || value.room === 'workshop') && canStand(value.room, value.position); }
+export function isHome(room:Room):boolean{return room==='home'||room==='home-expanded';}
+function validPosition(value: TownPosition): boolean { return !!worlds[value.room] && canStand(value.room,value.position) && (isHome(value.room)?!!value.homePlotId&&/^[1-9][0-9]{0,17}$/.test(value.homePlotId):value.homePlotId===undefined); }
+export function canonicalHomePosition(value:TownPosition,plots:TownPlot[]):TownPosition{
+ if(!isHome(value.room))return value;
+ const plot=plots.find(p=>p.id===value.homePlotId);
+ if(!plot)return {room:'square',position:{x:30,y:35.5}};
+ const room=plot.level===2?'home-expanded':'home';return {room,homePlotId:plot.id,position:canStand(room,value.position)?value.position:{x:9,y:11}};
+}
 function near(p: TownPosition, room: Room, stopId: string): boolean {
   const stop = worlds[room].stops.find(s => s.id === stopId);
   return !!stop && p.room === room && Math.hypot(p.position.x - stop.point.x, p.position.y - stop.point.y) <= 1.4;
@@ -65,6 +78,7 @@ export class TownStore {
     idSchema.parse(id); if (!name || name.length > 40) throw new Error('Invalid synthetic player name.');
     const now = this.clock();
     await this.pool.query('insert into ih2.players(id,name,workshop,position) values($1,$2,$3,$4) on conflict(id) do nothing', [id, name, createWorkshop(now), initialPosition]);
+    await this.pool.query('insert into ih2.maintenance_lessons(player_id) values($1) on conflict do nothing',[id]);
     return this.snapshot(id);
   }
   private readState(row: PlayerRow, now: number): WorkshopState {
@@ -74,6 +88,7 @@ export class TownStore {
   }
   async savePosition(id: string, position: TownPosition): Promise<void> {
     if (!validPosition(position)) throw new Error('Invalid server-validated position.');
+    if(isHome(position.room)){const plot=(await this.pool.query('select level from ih2.plots where id=$1',[position.homePlotId])).rows[0];if(!plot||(plot.level===2?'home-expanded':'home')!==position.room)throw new Error('Home instance is not valid.');}
     await this.pool.query('update ih2.players set position=$2,updated_at=now() where id=$1', [id, position]);
   }
   private async readSnapshot(client: PoolClient, id: string, now: number): Promise<TownSnapshot> {
@@ -82,9 +97,11 @@ export class TownStore {
     const plots = (await client.query('select p.id::text,p.owner_id,p.level,p.placements,u.name from ih2.plots p join ih2.players u on u.id=p.owner_id order by p.id')).rows.map(p => ({ id: p.id, ownerId: p.owner_id, ownerName: p.name, level: p.level as 1 | 2, placements: p.placements }));
     const bridgeRow = (await client.query('select contributed,target from ih2.bridge where id=1')).rows[0];
     const awarded = (await client.query('select quest_id from ih2.quest_awards where player_id=$1 order by quest_id', [id])).rows.map(r => r.quest_id);
+    const lessonRow=(await client.query('select * from ih2.maintenance_lessons where player_id=$1',[id])).rows[0];
+    const lesson:MaintenanceLesson={startedAt:lessonRow?.started_at===null||!lessonRow?null:Number(lessonRow.started_at),readyAt:lessonRow?.ready_at===null||!lessonRow?null:Number(lessonRow.ready_at),completed:!!lessonRow?.completed,redeemed:!!lessonRow?.redeemed,route:lessonRow?.route??null,legacySatisfied:!!lessonRow?.legacy_satisfied};
     const key = seasonKey(now);
     const scores = (await client.query('select s.player_id,u.name,s.points from ih2.season_scores s join ih2.players u on u.id=s.player_id where s.season_key=$1 order by s.points desc,s.player_id', [key])).rows.map(r => ({ playerId: r.player_id, name: r.name, points: r.points }));
-    return { playerId: id, name: player.name, workshop: this.readState(player, now), position: player.position, quest: { contentVersion: 1, awarded }, bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.contributed >= bridgeRow.target }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    return { playerId: id, name: player.name, workshop: this.readState(player, now), position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.contributed >= bridgeRow.target }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string): Promise<TownSnapshot> {
     const client = await this.pool.connect();
@@ -103,7 +120,7 @@ export class TownStore {
       const now = this.clock();
       const player = (await client.query<PlayerRow>('select * from ih2.players where id=$1 for update', [id])).rows[0];
       if (!player) throw new Error('Unknown synthetic player.');
-      let state = this.readState(player, now);
+      let state = this.readState(player, now);let authoritativePosition=position;
       const prior = (await client.query('select payload_hash,result from ih2.command_receipts where player_id=$1 and command_id=$2', [id, cmd.id])).rows[0];
       if (prior) {
         const result: Receipt = prior.payload_hash === hash(raw) ? prior.result : { ok: false, message: 'That command ID was already used for a different request.', revision: state.revision };
@@ -113,17 +130,48 @@ export class TownStore {
       let result: Receipt = { ok: false, message: '', revision: state.revision };
       const ownPlot = (await client.query('select id::text,owner_id,level,placements from ih2.plots where owner_id=$1 for update', [id])).rows[0];
       const special = specialSchema.safeParse(raw);
-      const specialKinds = ['contribute', 'claim-plot', 'upgrade-plot', 'edit-plot'];
+      const specialKinds = ['contribute', 'claim-plot', 'upgrade-plot', 'edit-plot','enter-home','start-lesson','complete-lesson','redeem-lesson'];
+      const contextPlot=isHome(position.room)?(await client.query('select id::text,owner_id,level from ih2.plots where id=$1',[position.homePlotId])).rows[0]:null;
+      const validContext=!isHome(position.room)||!!contextPlot&&position.room===(contextPlot.level===2?'home-expanded':'home');
       const reject = (message: string) => { result = { ok: false, message, revision: state.revision }; };
       if (cmd.expectedRevision !== state.revision) reject('Your town state changed. Review the refreshed bag and try again.');
-      else if (!validPosition(position)) reject('A valid server position is required.');
+      else if (!validPosition(position)||!validContext) reject('A valid server position is required.');
       else if (now < state.observedAt) reject('The server clock moved backwards. Your progress is unchanged.');
       else if (state.revision >= 1_000_000) reject('Prototype command limit reached. Your progress is unchanged.');
       else if (specialKinds.includes(cmd.kind)) {
         if (!special.success) reject('Invalid town request. Nothing changed.');
         else {
           const action = special.data;
-          if (action.kind === 'contribute') {
+          if(action.kind==='enter-home'){
+            const target=(await client.query('select id::text,level from ih2.plots where id=$1',[action.plotId])).rows[0];
+            if(!near(position,'square','plot')&&!near(position,'square','home-front'))reject('Walk to the home entrance before entering.');
+            else if(!target)reject('That home does not exist.');
+            else{authoritativePosition={room:target.level===2?'home-expanded':'home',homePlotId:target.id,position:{x:9,y:11}};state.revision++;state.observedAt=now;state.lastMessage='Entered home '+target.id+'. Visitors may look; only the owner may arrange it.';result={ok:true,message:state.lastMessage,revision:state.revision};}
+          }else if(action.kind==='start-lesson'||action.kind==='complete-lesson'||action.kind==='redeem-lesson'){
+            await client.query('insert into ih2.maintenance_lessons(player_id) values($1) on conflict do nothing',[id]);
+            const lesson=(await client.query('select * from ih2.maintenance_lessons where player_id=$1 for update',[id])).rows[0];
+            if(lesson.legacy_satisfied)reject('Your earlier bridge participation is already recorded. No new lesson or charge is needed.');
+            else if(action.kind==='start-lesson'){
+              const bridge=(await client.query('select * from ih2.bridge where id=1 for update')).rows[0],route=bridge.contributed<bridge.target?'construction':'upkeep';
+              if(!near(position,'workshop','bench'))reject('Walk to your work bench to start the lesson.');
+              else if(lesson.started_at!==null)reject('This lesson has already started. Its materials are paid once.');
+              else if(!state.stats.planterPlacedAfterCraft)reject('Make and place your first planter before starting maintenance.');
+              else if(action.route!==route||action.expectedBridgeContributed!==bridge.contributed)reject('The project changed. Review the new lesson route; no materials were spent.');
+              else if(Object.keys(MAINTENANCE_COST).some(key=>state.inventory[key as keyof typeof MAINTENANCE_COST]<1))reject('The lesson needs one scrap, one timber and one supplies. Nothing was spent.');
+              else{for(const key of Object.keys(MAINTENANCE_COST) as Array<keyof typeof MAINTENANCE_COST>)state.inventory[key]-=MAINTENANCE_COST[key];await client.query('update ih2.maintenance_lessons set started_at=$2,ready_at=$3 where player_id=$1',[id,now,now+MAINTENANCE_MS]);state.revision++;state.observedAt=now;state.lastMessage='Maintenance lesson started: one of each material paid once. Ready in one minute; ordinary bench work keeps its own timer.';result={ok:true,message:state.lastMessage,revision:state.revision};}
+            }else if(action.kind==='complete-lesson'){
+              if(!near(position,'workshop','bench'))reject('Collect the lesson credit at your work bench.');
+              else if(lesson.started_at===null||now<Number(lesson.ready_at))reject('The lesson is not ready yet.');
+              else if(lesson.completed)reject('The lesson credit has already been collected.');
+              else{await client.query('update ih2.maintenance_lessons set completed=true where player_id=$1',[id]);state.revision++;state.observedAt=now;state.lastMessage='Lesson complete. One paid maintenance credit is ready for the bridge committee; it is not a kit or currency.';result={ok:true,message:state.lastMessage,revision:state.revision};}
+            }else{
+              const bridge=(await client.query('select * from ih2.bridge where id=1 for update')).rows[0],route=bridge.contributed<bridge.target?'construction':'upkeep';
+              if(!near(position,'square','bridge'))reject('Walk to the bridge committee to record your maintenance.');
+              else if(!lesson.completed||lesson.redeemed)reject('You do not have an unused maintenance credit.');
+              else if(action.route!==route||action.expectedBridgeContributed!==bridge.contributed)reject('The project changed. Your paid credit is safe; review its new route before recording it.');
+              else{if(route==='construction')await client.query('update ih2.bridge set contributed=contributed+1 where id=1');await client.query('insert into ih2.maintenance_events(player_id,command_id,route,recorded_at) values($1,$2,$3,$4)',[id,action.id,route,now]);await client.query('update ih2.maintenance_lessons set redeemed=true,route=$2 where player_id=$1',[id,route]);await client.query('insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing',[id,'maintenance-v1']);state.revision++;state.observedAt=now;state.lastMessage=route==='construction'?'Maintenance recorded toward the bridge. No kit or currency was created.':'Upkeep inspection recorded. The repaired bridge stays repaired; no extra materials were charged.';result={ok:true,message:state.lastMessage,revision:state.revision};}
+            }
+          }else if (action.kind === 'contribute') {
             if (!near(position, 'square', 'bridge')) reject('Walk to the bridge committee before contributing.');
             else {
               const bridge = (await client.query('select * from ih2.bridge where id=1 for update')).rows[0];
@@ -135,6 +183,8 @@ export class TownStore {
                 await client.query('update ih2.bridge set contributed=contributed+1 where id=1');
                 await client.query('insert into ih2.bridge_contributions(player_id,command_id) values($1,$2)', [id, cmd.id]);
                 await client.query('insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing', [id, 'bridge-contributor-v1']);
+                // Participation satisfies an unpaid lesson, but never consumes or cancels an already-paid credit.
+                await client.query('insert into ih2.maintenance_lessons(player_id,legacy_satisfied) values($1,true) on conflict(player_id) do update set legacy_satisfied=true where ih2.maintenance_lessons.started_at is null',[id]);
                 await client.query('insert into ih2.season_scores(player_id,season_key,points) values($1,$2,1) on conflict(player_id,season_key) do update set points=ih2.season_scores.points+1', [id, seasonKey(now)]);
                 result = { ok: true, message: state.lastMessage, revision: state.revision };
               }
@@ -150,7 +200,7 @@ export class TownStore {
             }
           } else if (action.kind === 'upgrade-plot') {
             if (!ownPlot || ownPlot.id !== action.plotId) reject('Only the owner can upgrade this plot.');
-            else if (!near(position, 'square', 'plot')) reject('Walk to the housing notice before upgrading.');
+            else if (!near(position, 'square', 'plot')&&!(isHome(position.room)&&position.homePlotId===ownPlot.id)) reject('Walk to the housing notice or your own home before upgrading.');
             else if (ownPlot.level >= 2) reject('This proof includes one home upgrade. Your furnishings remain safe.');
             else if (state.bridgeKits < PLOT_UPGRADE_KITS) reject(`The home upgrade requires ${PLOT_UPGRADE_KITS} additional bridge kits. Nothing was spent.`);
             else {
@@ -160,7 +210,7 @@ export class TownStore {
             }
           } else {
             if (!ownPlot || ownPlot.id !== action.plotId) reject('Only the owner can arrange this plot.');
-            else if (!near(position, 'square', 'plot')) reject('Walk to the housing notice to arrange your plot.');
+            else if (!near(position, 'square', 'plot')&&!(isHome(position.room)&&position.homePlotId===ownPlot.id)) reject('Walk to the housing notice or your own home to arrange furniture.');
             else if (action.action === 'place' && !action.prop) reject('Choose an owned furnishing to place.');
             else {
               const original = structuredClone(state);
@@ -199,7 +249,7 @@ export class TownStore {
       }
       if (result.ok) {
         if (questStep(state).complete) await client.query('insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing', [id, 'orientation-v1']);
-        await client.query('update ih2.players set workshop=$2,position=$3,quest_content_version=1,updated_at=now() where id=$1', [id, state, position]);
+        await client.query('update ih2.players set workshop=$2,position=$3,quest_content_version=1,updated_at=now() where id=$1', [id, state, authoritativePosition]);
       } else if (player.quest_content_version === 0) {
         // Content migration changes metadata only; stable award IDs survive and no reward is reissued.
         await client.query('update ih2.players set quest_content_version=1 where id=$1', [id]);

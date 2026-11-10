@@ -2,7 +2,7 @@
   "schema_version": 1,
   "status": "CANDIDATE-DESIGN-ONLY",
   "as_of": "2026-11-10",
-  "runtime_base": "fb0fab36b7bd66d7711bb7eca55126821d880f3d",
+  "runtime_base": "IH2-052 working candidate; see CURRENT_SESSION and exact PR closeout",
   "not_executable_economy": true,
   "scope": "Bounded first production set; every catalog row is a design entry, including coverage work for existing definitions. Existing-definition does not mean final item art exists. No new runtime content, grants, prices or build timers are introduced. Entry region_ids are first proposed availability/location, not a phase-wide union or a limit on where owned portable items may later be carried.",
   "identity_policy": "Catalog IDs index design; runtime_ref preserves current IDs. Do not rename or convert durable scrap/timber/supplies or item instances from this file. Null recipe amounts/durations are unresolved and must never execute.",
@@ -1048,6 +1048,14 @@
             "file": "src/phaser/WorldScene.ts",
             "scope": "procedural placed planter drawing only; no inventory icon or production/state family",
             "status": "prototype-world-only"
+          },
+          {
+            "file": "public/art/homes/home-planter-world.svg",
+            "scope": "IH2-052 original placed prototype form; material/base identity retained."
+          },
+          {
+            "file": "public/art/homes/home-planter-icon.svg",
+            "scope": "IH2-052 readable inventory/selection icon; future action/state art remains unproduced."
           }
         ],
         "requirements": [
@@ -1103,6 +1111,14 @@
             "file": "src/phaser/WorldScene.ts",
             "scope": "procedural placed stool drawing only; no inventory icon or production/state family",
             "status": "prototype-world-only"
+          },
+          {
+            "file": "public/art/homes/home-stool-world.svg",
+            "scope": "IH2-052 original placed prototype form; material/base identity retained."
+          },
+          {
+            "file": "public/art/homes/home-stool-icon.svg",
+            "scope": "IH2-052 readable inventory/selection icon; future action/state art remains unproduced."
           }
         ],
         "requirements": [
@@ -1158,6 +1174,14 @@
             "file": "src/phaser/WorldScene.ts",
             "scope": "procedural placed rug drawing only; no inventory icon or production/state family",
             "status": "prototype-world-only"
+          },
+          {
+            "file": "public/art/homes/home-rug-world.svg",
+            "scope": "IH2-052 original placed prototype form; material/base identity retained."
+          },
+          {
+            "file": "public/art/homes/home-rug-icon.svg",
+            "scope": "IH2-052 readable inventory/selection icon; future action/state art remains unproduced."
           }
         ],
         "requirements": [
@@ -1213,6 +1237,14 @@
             "file": "src/phaser/WorldScene.ts",
             "scope": "procedural placed lamp drawing only; no inventory icon or production/state family",
             "status": "prototype-world-only"
+          },
+          {
+            "file": "public/art/homes/home-lamp-world.svg",
+            "scope": "IH2-052 original placed prototype form; material/base identity retained."
+          },
+          {
+            "file": "public/art/homes/home-lamp-icon.svg",
+            "scope": "IH2-052 readable inventory/selection icon; future action/state art remains unproduced."
           }
         ],
         "requirements": [
@@ -1268,6 +1300,14 @@
             "file": "src/phaser/WorldScene.ts",
             "scope": "procedural placed crate drawing only; no inventory icon or production/state family",
             "status": "prototype-world-only"
+          },
+          {
+            "file": "public/art/homes/home-crate-world.svg",
+            "scope": "IH2-052 original placed prototype form; material/base identity retained."
+          },
+          {
+            "file": "public/art/homes/home-crate-icon.svg",
+            "scope": "IH2-052 readable inventory/selection icon; future action/state art remains unproduced."
           }
         ],
         "requirements": [
@@ -1323,6 +1363,14 @@
             "file": "src/phaser/WorldScene.ts",
             "scope": "procedural placed shelf drawing only; no inventory icon or production/state family",
             "status": "prototype-world-only"
+          },
+          {
+            "file": "public/art/homes/home-shelf-world.svg",
+            "scope": "IH2-052 original placed prototype form; material/base identity retained."
+          },
+          {
+            "file": "public/art/homes/home-shelf-icon.svg",
+            "scope": "IH2-052 readable inventory/selection icon; future action/state art remains unproduced."
           }
         ],
         "requirements": [
@@ -1365,8 +1413,12 @@
       "use": "First physical owned interior and safe owner/visitor door; current plot ownership is not a physical house.",
       "recipe": null,
       "implementation": {
-        "status": "not-implemented",
-        "runtime_ref": null
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/world.ts",
+          "kind": "room",
+          "id": "home"
+        }
       },
       "art": {
         "existing_evidence": [
@@ -1374,6 +1426,10 @@
             "file": "public/art/variety/comparison-sheet.svg",
             "scope": "future-house vignette inside the comparison sheet only; not a standalone runtime house or finished state family",
             "status": "concept-sample"
+          },
+          {
+            "file": "public/art/homes/home-starter-interior.svg",
+            "scope": "IH2-052 original enterable prototype interior; not the future full home progression family."
           }
         ],
         "requirements": [
@@ -1426,11 +1482,20 @@
       "use": "The first physical Ledgerwick owner expansion selected for052: more intentional layout space; preserve or safely store displaced furnishings. Later regional fa\u00e7ades are a separate candidate distribution, not first availability.",
       "recipe": null,
       "implementation": {
-        "status": "not-implemented",
-        "runtime_ref": null
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/world.ts",
+          "kind": "room",
+          "id": "home-expanded"
+        }
       },
       "art": {
-        "existing_evidence": [],
+        "existing_evidence": [
+          {
+            "file": "public/art/homes/home-expanded-interior.svg",
+            "scope": "IH2-052 original enterable prototype interior; not the future full home progression family."
+          }
+        ],
         "requirements": [
           {
             "view": "inventory-icon",

@@ -1,0 +1,43 @@
+{
+  "disclosure": "All /api/town requests, EventSource, owned plot/initial feet and accepted movement are intercepted fictional fixtures. The first enter-home is committed in fixture memory before its response is aborted. This proves bundled-client retry/lock/context behavior only, not backend authentication, economic authority or real account persistence. Real server receipts/home ownership are tested separately.",
+  "loginRequests": [
+    "aster"
+  ],
+  "commandPayloads": [
+    {
+      "kind": "enter-home",
+      "plotId": "42",
+      "id": "10863539-5f22-4aeb-9292-0c40c8f1e8c0",
+      "expectedRevision": 0
+    },
+    {
+      "kind": "enter-home",
+      "plotId": "42",
+      "id": "10863539-5f22-4aeb-9292-0c40c8f1e8c0",
+      "expectedRevision": 0
+    }
+  ],
+  "fixtureCommits": 1,
+  "replayedResponses": 1,
+  "lockedSourceFeet": {
+    "x": 30,
+    "y": 35.5
+  },
+  "visual": {
+    "room": "home",
+    "plotId": "42",
+    "ownerName": "Aster",
+    "level": 1,
+    "decorations": {
+      "north-west": null,
+      "north-middle": null,
+      "north-east": "planter",
+      "south-west": null,
+      "south-middle": null,
+      "south-east": null
+    },
+    "interiorTexture": "home-starter-interior"
+  },
+  "bridgeKitsUnchanged": 7,
+  "errors": []
+}

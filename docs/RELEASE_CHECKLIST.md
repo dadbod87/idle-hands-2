@@ -52,3 +52,10 @@
 - Deterministic design-only cohort/construction/late-join/recovery experiments conserve materials, reproduce committed artifacts and expose hard-expiry/first-kit failures. Never present them as server implementation.
 - Render and inspect actual original SVG world/phone diagrams with labels and bounds; target dimensions are design pixels, not physical-phone/a11y certification. Inspect final CI images too.
 - Full domain/browser/build/plan/pinned-integrity/diff gates and both exact-head CI jobs before source merge. Verify runtime bundles/source unchanged. No game release or cloud provisioning in this task.
+
+## IH2-052 homes, teaching and return summaries
+- Preserve existing plot levels/six placement IDs through owner/visitor entry, expansion, restart/restore and weekly rollover. Reject forged home context, visitor edits and duplicate owned-copy allocation. Exact safe exit/front-door re-entry; in-place upgrade reconciles occupants.
+- Start/payment → timed completion/credit → quoted construction/upkeep redemption: once-only material debit, fixed60s, no kit/currency, stale quote retains credit, normal12h jobs unchanged. Earlier and post-migration ordinary participation satisfy only unpaid lessons.
+- Optional return summary uses latest confirmed state, never awards work or fabricates offline earnings/history. Pending entry stays locked with same-request retry; ordinary snapshots cannot rewind acknowledged room movement.
+- Original19home/item/material vectors, exact provenance, authored anchors, desktop centring and narrow/short/text-scale screenshots. Home test uses actual isolated authority; maintenance/retry fixtures explicitly intercept API/EventSource/time/position. No physical-phone claim.
+-93domain/server/art/design tests (zero skips), full37browser cases, strict build/catalog/plan/40pinned files/diff and both exact-head CI jobs required. Review actual final CI images/build. Retain authored screenshots/pixel checks and failure PNG+DOM/action/source traces; no test/job deadline increase.

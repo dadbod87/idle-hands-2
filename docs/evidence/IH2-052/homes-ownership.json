@@ -1,0 +1,358 @@
+{
+  "method": "Actual isolated ih2_browser backend and fictional seeded Casey/Bea contexts; no HTTP interception, clock overrides, SQL resets or real player grants. Starting fixture balance may reflect the preceding shared bridge test. Viewports are headless emulation, not physical-device evidence.",
+  "startingFixtureKits": 47,
+  "claimKits": 12,
+  "upgradeKits": 24,
+  "plotId": "2",
+  "ownerStarter": {
+    "position": {
+      "version": 1,
+      "room": "home",
+      "position": {
+        "x": 9,
+        "y": 11
+      },
+      "locked": false,
+      "walking": false,
+      "nearby": null
+    },
+    "lastAuthoritativeSnapshotPosition": {
+      "room": "home",
+      "homePlotId": "2",
+      "position": {
+        "x": 9,
+        "y": 11
+      }
+    },
+    "visual": {
+      "room": "home",
+      "plotId": "2",
+      "ownerName": "Casey",
+      "level": 1,
+      "decorations": {
+        "north-east": null,
+        "north-west": "planter",
+        "south-east": null,
+        "south-west": null,
+        "north-middle": null,
+        "south-middle": "rug"
+      },
+      "interiorTexture": "home-starter-interior"
+    },
+    "climate": {
+      "phase": "day",
+      "minute": 708,
+      "dayIndex": 623039,
+      "weather": "clear",
+      "tint": {
+        "color": 16314847,
+        "alpha": 0
+      },
+      "lampStrength": 0,
+      "label": "Day · Clear skies",
+      "effectiveAlpha": 0,
+      "fixture": false,
+      "interior": true,
+      "precipitation": {
+        "enabled": false,
+        "offset": 0
+      }
+    }
+  },
+  "visitorStarter": {
+    "position": {
+      "version": 1,
+      "room": "home",
+      "position": {
+        "x": 9,
+        "y": 11
+      },
+      "locked": false,
+      "walking": false,
+      "nearby": null
+    },
+    "lastAuthoritativeSnapshotPosition": {
+      "room": "home",
+      "homePlotId": "2",
+      "position": {
+        "x": 9,
+        "y": 11
+      }
+    },
+    "visual": {
+      "room": "home",
+      "plotId": "2",
+      "ownerName": "Casey",
+      "level": 1,
+      "decorations": {
+        "north-east": null,
+        "north-west": "planter",
+        "south-east": null,
+        "south-west": null,
+        "north-middle": null,
+        "south-middle": "rug"
+      },
+      "interiorTexture": "home-starter-interior"
+    },
+    "climate": {
+      "phase": "day",
+      "minute": 710,
+      "dayIndex": 623039,
+      "weather": "clear",
+      "tint": {
+        "color": 16314847,
+        "alpha": 0
+      },
+      "lampStrength": 0,
+      "label": "Day · Clear skies",
+      "effectiveAlpha": 0,
+      "fixture": false,
+      "interior": true,
+      "precipitation": {
+        "enabled": false,
+        "offset": 0
+      }
+    }
+  },
+  "expanded": {
+    "position": {
+      "version": 1,
+      "room": "home-expanded",
+      "position": {
+        "x": 20,
+        "y": 10.984375
+      },
+      "locked": false,
+      "walking": false,
+      "nearby": null
+    },
+    "lastAuthoritativeSnapshotPosition": {
+      "room": "home-expanded",
+      "homePlotId": "2",
+      "position": {
+        "x": 9,
+        "y": 11
+      }
+    },
+    "visual": {
+      "room": "home-expanded",
+      "plotId": "2",
+      "ownerName": "Casey",
+      "level": 2,
+      "decorations": {
+        "north-east": null,
+        "north-west": "planter",
+        "south-east": null,
+        "south-west": null,
+        "north-middle": null,
+        "south-middle": "rug"
+      },
+      "interiorTexture": "home-expanded-interior"
+    },
+    "climate": {
+      "phase": "day",
+      "minute": 711,
+      "dayIndex": 623039,
+      "weather": "clear",
+      "tint": {
+        "color": 16314847,
+        "alpha": 0
+      },
+      "lampStrength": 0,
+      "label": "Day · Clear skies",
+      "effectiveAlpha": 0,
+      "fixture": false,
+      "interior": true,
+      "precipitation": {
+        "enabled": false,
+        "offset": 0
+      }
+    }
+  },
+  "visitorExpanded": {
+    "position": {
+      "version": 1,
+      "room": "home-expanded",
+      "position": {
+        "x": 9,
+        "y": 11
+      },
+      "locked": false,
+      "walking": false,
+      "nearby": null
+    },
+    "lastAuthoritativeSnapshotPosition": {
+      "room": "home-expanded",
+      "homePlotId": "2",
+      "position": {
+        "x": 9,
+        "y": 11
+      }
+    },
+    "visual": {
+      "room": "home-expanded",
+      "plotId": "2",
+      "ownerName": "Casey",
+      "level": 2,
+      "decorations": {
+        "north-east": null,
+        "north-west": "planter",
+        "south-east": null,
+        "south-west": null,
+        "north-middle": null,
+        "south-middle": "rug"
+      },
+      "interiorTexture": "home-expanded-interior"
+    },
+    "climate": {
+      "phase": "day",
+      "minute": 711,
+      "dayIndex": 623039,
+      "weather": "clear",
+      "tint": {
+        "color": 16314847,
+        "alpha": 0
+      },
+      "lampStrength": 0,
+      "label": "Day · Clear skies",
+      "effectiveAlpha": 0,
+      "fixture": false,
+      "interior": true,
+      "precipitation": {
+        "enabled": false,
+        "offset": 0
+      }
+    }
+  },
+  "shortPanel": {
+    "position": {
+      "version": 1,
+      "room": "home-expanded",
+      "position": {
+        "x": 20,
+        "y": 10.984375
+      },
+      "locked": true,
+      "walking": false,
+      "nearby": null
+    },
+    "lastAuthoritativeSnapshotPosition": {
+      "room": "home-expanded",
+      "homePlotId": "2",
+      "position": {
+        "x": 20,
+        "y": 10.984375
+      }
+    },
+    "visual": {
+      "room": "home-expanded",
+      "plotId": "2",
+      "ownerName": "Casey",
+      "level": 2,
+      "decorations": {
+        "north-east": null,
+        "north-west": "planter",
+        "south-east": null,
+        "south-west": null,
+        "north-middle": null,
+        "south-middle": "rug"
+      },
+      "interiorTexture": "home-expanded-interior"
+    },
+    "climate": {
+      "phase": "day",
+      "minute": 711,
+      "dayIndex": 623039,
+      "weather": "clear",
+      "tint": {
+        "color": 16314847,
+        "alpha": 0
+      },
+      "lampStrength": 0,
+      "label": "Day · Clear skies",
+      "effectiveAlpha": 0,
+      "fixture": false,
+      "interior": true,
+      "precipitation": {
+        "enabled": false,
+        "offset": 0
+      }
+    }
+  },
+  "front": {
+    "position": {
+      "version": 1,
+      "room": "square",
+      "position": {
+        "x": 30,
+        "y": 35.5
+      },
+      "locked": false,
+      "walking": false,
+      "nearby": "home-front"
+    },
+    "lastAuthoritativeSnapshotPosition": {
+      "room": "home-expanded",
+      "homePlotId": "2",
+      "position": {
+        "x": 20,
+        "y": 10.984375
+      }
+    },
+    "visual": {
+      "room": "square",
+      "plotId": null,
+      "ownerName": "Casey",
+      "level": 2,
+      "decorations": null,
+      "interiorTexture": null
+    },
+    "climate": {
+      "phase": "day",
+      "minute": 712,
+      "dayIndex": 623039,
+      "weather": "clear",
+      "tint": {
+        "color": 16314847,
+        "alpha": 0
+      },
+      "lampStrength": 0,
+      "label": "Day · Clear skies",
+      "effectiveAlpha": 0,
+      "fixture": false,
+      "interior": false,
+      "precipitation": {
+        "enabled": false,
+        "offset": 0
+      }
+    }
+  },
+  "homeRequests": [
+    "/art/homes/home-starter-exterior.svg",
+    "/art/homes/home-expanded-exterior.svg",
+    "/art/homes/home-starter-interior.svg",
+    "/art/homes/home-expanded-interior.svg",
+    "/art/homes/home-planter-world.svg",
+    "/art/homes/home-planter-icon.svg",
+    "/art/homes/home-stool-world.svg",
+    "/art/homes/home-stool-icon.svg",
+    "/art/homes/home-rug-world.svg",
+    "/art/homes/home-rug-icon.svg",
+    "/art/homes/home-lamp-world.svg",
+    "/art/homes/home-lamp-icon.svg",
+    "/art/homes/home-crate-world.svg",
+    "/art/homes/home-crate-icon.svg",
+    "/art/homes/home-shelf-world.svg",
+    "/art/homes/home-shelf-icon.svg",
+    "/art/homes/home-scrap-icon.svg",
+    "/art/homes/home-timber-icon.svg",
+    "/art/homes/home-supplies-icon.svg"
+  ],
+  "expectedInitialGuest401": [
+    "/api/town/snapshot",
+    "/api/town/snapshot",
+    "/api/town/snapshot",
+    "/api/town/snapshot"
+  ],
+  "errors": []
+}

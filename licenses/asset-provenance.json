@@ -531,6 +531,196 @@
       "source": "tools/create-town-variety.py",
       "date": "2026-11-10",
       "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "id": "home-crate-icon",
+      "path": "public/art/homes/home-crate-icon.svg",
+      "sha256": "78eb27662af14424c94b3fd8369771010a4faa6136d1881d7710171ad13a9b2e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-crate-world",
+      "path": "public/art/homes/home-crate-world.svg",
+      "sha256": "364211cd0a744b88ac1176d8eb3d18dae34acfe7728281d0bf2dfb6ceef9c5c7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-expanded-exterior",
+      "path": "public/art/homes/home-expanded-exterior.svg",
+      "sha256": "c6680ceecc64cf805a14fe7a7070834a8081ae9b5b447469323462fe21b62c65",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-expanded-interior",
+      "path": "public/art/homes/home-expanded-interior.svg",
+      "sha256": "a483ae5c2127cb5a07b5a8ca16eaf843162ff6a16dc5e73f1ad188fec5d6471f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-lamp-icon",
+      "path": "public/art/homes/home-lamp-icon.svg",
+      "sha256": "619102550525abe32d7527d8494b0ac8a2825c2b31ff6fc3e3512996e0c95a90",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-lamp-world",
+      "path": "public/art/homes/home-lamp-world.svg",
+      "sha256": "c2546e5883b4b9acbddedf86cd39166ed4202d010e0757a7cd975c39601cdd7c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-planter-icon",
+      "path": "public/art/homes/home-planter-icon.svg",
+      "sha256": "73a6a10d0fd1cd60b82ef5ac5b0838872f6742b91b1318bebee9f58aa3f81ce5",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-planter-world",
+      "path": "public/art/homes/home-planter-world.svg",
+      "sha256": "a26294a02081db0e6dfa964524e33f3fd724c5a4b2fd357a24dba61a810221fe",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-rug-icon",
+      "path": "public/art/homes/home-rug-icon.svg",
+      "sha256": "cf71261e7af1973150732628e695577ebb38f51e3838a51a78053556711ce524",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-rug-world",
+      "path": "public/art/homes/home-rug-world.svg",
+      "sha256": "eea8ae3010514b58793f684ecf729ebcbc3d631a11d87620e92fe86147469144",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-scrap-icon",
+      "path": "public/art/homes/home-scrap-icon.svg",
+      "sha256": "8ba2be589e6819fa8ae52d9a80f1d83e372fee5a635b1a2086977d900ac4705e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-shelf-icon",
+      "path": "public/art/homes/home-shelf-icon.svg",
+      "sha256": "a06748ae499a06bee4e3f2b49619819c9d24a71c2f4f54d29b8817734125ae99",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-shelf-world",
+      "path": "public/art/homes/home-shelf-world.svg",
+      "sha256": "cce4f6767f60b27e9294934df050f03513befd59ff26abc0f34c3d8fb48805b9",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-starter-exterior",
+      "path": "public/art/homes/home-starter-exterior.svg",
+      "sha256": "7cff4118776b04127e17f9d9b5b2faa3ca6848d7d4268be133c3c661f411e8bd",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-starter-interior",
+      "path": "public/art/homes/home-starter-interior.svg",
+      "sha256": "233336299d0801f6fa845f039c7c1fc6085cf38f06ddfcfa68385ec16ae755b7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-stool-icon",
+      "path": "public/art/homes/home-stool-icon.svg",
+      "sha256": "216b5cbf46c828eb8e1d523bd6af8c0713d362909b3877f8f7ea7b4ebcbe1f88",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-stool-world",
+      "path": "public/art/homes/home-stool-world.svg",
+      "sha256": "c926d0984e244ac2f141e9e2f68dfa053168d65f122bc898719bc3234dbac4ad",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-supplies-icon",
+      "path": "public/art/homes/home-supplies-icon.svg",
+      "sha256": "e8df6885386f5b5f622323f0a24943f332d3911101a03ef51c5472a75db4e76e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-timber-icon",
+      "path": "public/art/homes/home-timber-icon.svg",
+      "sha256": "624730d90ab789bbac86bdebc4c72ff1e280c966948c3831a40c0adda67a36de",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
     }
   ],
   "comparison": {

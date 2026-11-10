@@ -1,0 +1,11 @@
+{
+  "classification": "INTENTIONAL isolated DOM failure to verify diagnostics; not a feature regression",
+  "method": "Temporary Playwright config inherits committed trace settings, disables game web servers, renders one heading/button and deliberately asserts a mismatched heading. Expected exit1.",
+  "traceDomSnapshots": 7,
+  "traceScreencastFrames": 0,
+  "traceActionEvents": 25,
+  "sourceAttachments": 1,
+  "failureScreenshotRetained": true,
+  "authoredGameScreenshotsAndPixelAssertions": "Unchanged and separately run in full browser suite",
+  "performanceGain": "Not yet measured in CI"
+}

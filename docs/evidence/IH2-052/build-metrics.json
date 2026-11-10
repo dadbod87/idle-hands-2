@@ -1,0 +1,13 @@
+{
+  "method": "SHA-256 and independent gzip.compress sum of built HTML/CSS/JS; estimate, not observed delivery. HomeSVG sizes separate. Headless samples are not physical-device benchmarks.",
+  "files": {
+    "dist/index.html": "20a1017efb117864730b00234018c62bd79bf74aeedf29789de54e3c5d3dd17b",
+    "dist/assets/index-Ca7SKGWS.js": "1fa34b5f20e99327d5884c81c0e6865b9302ee76d834930fc224069455457078",
+    "dist/assets/index-Czs-gdY8.css": "9f9d17a64451195aa3541c58f25bcd9fbf81833502f3e96ed2ca975dbf5ee96a"
+  },
+  "clientGzipBytes": 414581,
+  "newHomeSvgRawBytes": 26069,
+  "newHomeSvgGzipBytes": 8887,
+  "originalSvgCount": 72,
+  "limits": "Existing large raw engine chunk warning; physical phones, hosted concurrency/load/cost and full accessibility remain later gates."
+}

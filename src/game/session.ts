@@ -1,6 +1,6 @@
 import { worlds, canStand, routeTo, type Room, type Point, type Stop } from './world.ts';
 export type SavedPosition = { version: 1; room: Room; position: Point };
-const spawn: Record<Room, Point> = { square: { x: 24, y: 25 }, workshop: { x: 9, y: 11 } };
+const spawn: Record<Room, Point> = { square: { x: 24, y: 25 }, workshop: { x: 9, y: 11 }, home: {x:9,y:11}, 'home-expanded': {x:9,y:11} };
 export const WALK_SPEED = 5; // World tiles per second; the actor is never snapped to them.
 export class Session {
   room: Room = 'square';
@@ -63,7 +63,8 @@ export class Session {
       this.move(direction.x / length * amount, direction.y / length * amount);
     } else {
       let remaining = amount;
-      while (this.path.length && remaining > 0) {
+      // A microscopic tail at a corner is not a blocked next leg. Keep its route queued.
+      while (this.path.length && remaining > .00001) {
         const target = this.path[0], dx = target.x - this.position.x, dy = target.y - this.position.y, distance = Math.hypot(dx, dy);
         if (distance < .00001) { this.path.shift(); continue; }
         const step = Math.min(distance, remaining), prior = { ...this.position };

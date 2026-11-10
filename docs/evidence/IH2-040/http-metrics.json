@@ -75,9 +75,9 @@
       "positionCheckpoints": 1
     }
   ],
-  "p50Ms": 3.9281670000000304,
-  "p95Ms": 6.151499999999942,
-  "maxMs": 11.335583000000042,
+  "p50Ms": 4.9399589999999876,
+  "p95Ms": 7.421291999999994,
+  "maxMs": 11.721416999999974,
   "fixtureOnly": true,
   "countsScope": "Counters cover the parent service adapter; restarted child-process calls have RTT samples only."
 }

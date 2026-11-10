@@ -3,8 +3,9 @@
   "postgres": "16.15",
   "actualContainerRestart": true,
   "serviceSurvived": true,
+  "checkedOutConnectionInterruptionHandled": true,
   "sameSignedSession": true,
   "decoratedUpgradeAndQueuedJobPreserved": true,
-  "idleConnectionInterruptionObserved": true,
+  "idleConnectionInterruptionObserved": false,
   "limits": "Local single-process/isolated container recovery, not cloud HA or a real-player drill."
 }

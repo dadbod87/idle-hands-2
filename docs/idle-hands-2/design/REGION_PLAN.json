@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "designOnly": true,
+  "status": "candidate",
+  "coordinateMeaning": "Illustration layout only, not world units, routes or travel-time measurements",
+  "regions": [
+    {
+      "id": "ledgerwick",
+      "name": "Ledgerwick",
+      "phase": "starter-home",
+      "role": "Starter company town",
+      "position": [
+        245,
+        620
+      ],
+      "services": [
+        "Rented workshop and lodging",
+        "Clerk, caf\u00e9 and infirmary",
+        "First owned house plots"
+      ],
+      "resources": [
+        "Reclaimed timber",
+        "Scrap",
+        "Supplies"
+      ],
+      "housing": "Modest plaster and timber homes",
+      "risk": "Safe town; no hostile roaming enemies",
+      "currentBoundary": "The current square exists; this name, rental-bed opening and physical housing design are proposed."
+    },
+    {
+      "id": "inkwood",
+      "name": "Inkwood",
+      "phase": "first-woodland",
+      "role": "First woodland route",
+      "position": [
+        710,
+        465
+      ],
+      "services": [
+        "Managed gathering trail",
+        "Public restoration errands"
+      ],
+      "resources": [
+        "Pine and birch candidates",
+        "Herbs and orchard fruit",
+        "Optional rare decorative finds"
+      ],
+      "housing": "No first-slice housing requirement",
+      "risk": "Safe main trail, clearly marked optional creature pockets",
+      "currentBoundary": "Not implemented; first trail remains IH2-053 work."
+    },
+    {
+      "id": "pumpworks",
+      "name": "The Old Pumpworks",
+      "phase": "food-combat",
+      "role": "Optional small cooperative dungeon",
+      "position": [
+        930,
+        270
+      ],
+      "services": [
+        "A short repair/exploration story",
+        "A replayable PvE outing"
+      ],
+      "resources": [
+        "Mechanical fittings",
+        "Optional decorative salvage"
+      ],
+      "housing": "No housing plots",
+      "risk": "Telegraphed PvE; corpse recovery needs reachable instance rules",
+      "currentBoundary": "Design candidate only; no combat or dungeon runtime exists."
+    },
+    {
+      "id": "mossbank",
+      "name": "Mossbank",
+      "phase": "regional-cities",
+      "role": "Woodland service settlement",
+      "position": [
+        1210,
+        515
+      ],
+      "services": [
+        "Sawmill and nursery",
+        "Woodworking and dye collections"
+      ],
+      "resources": [
+        "Later hardwood families",
+        "Seeds and natural pigments"
+      ],
+      "housing": "Cabins, garden plots and woodland finishes",
+      "risk": "Safe settlement; connected by a restoration route",
+      "currentBoundary": "Future regional candidate; not a second shipped town."
+    },
+    {
+      "id": "bellwether-quay",
+      "name": "Bellwether Quay",
+      "phase": "regional-cities",
+      "role": "Coastal trade settlement",
+      "position": [
+        995,
+        760
+      ],
+      "services": [
+        "Food stalls and lampmaker",
+        "Ferry restoration and regional craft orders"
+      ],
+      "resources": [
+        "Coastal food and textile candidates",
+        "Distinct lighting and decor collections"
+      ],
+      "housing": "Courtyard and waterside styles",
+      "risk": "Safe town with optional surrounding outings",
+      "currentBoundary": "Future regional candidate, not a configured market or travel system."
+    }
+  ],
+  "routes": [
+    {
+      "id": "founding-trail",
+      "from": "ledgerwick",
+      "to": "inkwood",
+      "phase": "first-woodland",
+      "gate": "Fixed bridge/trail restoration goals; future materials-plus-completion timer",
+      "combatRequired": false,
+      "luckRequired": false
+    },
+    {
+      "id": "pumpworks-spur",
+      "from": "inkwood",
+      "to": "pumpworks",
+      "phase": "food-combat",
+      "gate": "Explicit optional outing with ordinary preparation",
+      "combatRequired": true,
+      "luckRequired": false
+    },
+    {
+      "id": "mossbank-road",
+      "from": "inkwood",
+      "to": "mossbank",
+      "phase": "regional-cities",
+      "gate": "Deterministic regional restoration/quest; no dungeon drop required",
+      "combatRequired": false,
+      "luckRequired": false
+    },
+    {
+      "id": "quay-road",
+      "from": "mossbank",
+      "to": "bellwether-quay",
+      "phase": "regional-cities",
+      "gate": "Later shared access project with a safe alternative activity loop",
+      "combatRequired": false,
+      "luckRequired": false
+    }
+  ],
+  "invariants": [
+    "Permanent housing has a safe noncombat progression route.",
+    "Required regional access never depends on a lucky drop.",
+    "Housing, placed decor and skills remain outside weekly reset and corpse loot.",
+    "A future dungeon closure cannot erase a still-recoverable corpse."
+  ]
+}

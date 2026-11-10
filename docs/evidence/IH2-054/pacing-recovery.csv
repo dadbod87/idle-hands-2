@@ -1,0 +1,7 @@
+scenario,arrival_minutes,hard30_status,hard30_final_loss,soft_status,soft_recovery_minutes,soft_final_loss,longer60_status,outage_grace_status
+inkwood-near-trail,8,corpse-recovered,0,corpse-recovered,8,0,corpse-recovered,corpse-recovered
+pumpworks-dungeon,32,expired-loss,10,lost-found-wait,390,0,corpse-recovered,expired-loss
+inkwood-mossbank-approach-phone-interruption,33,expired-loss,10,lost-found-wait,390,0,corpse-recovered,expired-loss
+bellwether-quay-disconnect,39,expired-loss,10,lost-found-wait,390,0,corpse-recovered,expired-loss
+inkwood-service-outage,35,expired-loss,10,lost-found-wait,390,0,corpse-recovered,corpse-recovered
+pumpworks-instance-closed,18,inaccessible-instance,10,inaccessible-instance,390,0,inaccessible-instance,inaccessible-instance

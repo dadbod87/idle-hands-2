@@ -1,0 +1,4920 @@
+{
+  "schemaVersion": 1,
+  "classification": "DESIGN-ONLY; no runtime/state/database changes",
+  "simulatedDays": 42,
+  "sourceHashes": {
+    "src/game/workshop.ts": "66d152d65669d4b9592c9c215ed956481509230229cbc4e1c3cc3d7eda27b028",
+    "src/game/town-rules.ts": "9d77c0fa693bad0fe9c2c4caf34c6bd031d9d988f4e7438c4bf9cc980060ba2c",
+    "server/store.ts": "dd5eab12eefe0cf8b5c49d6f49068ce8d4ef35c83cfc24bc8115e3a68805336c"
+  },
+  "implementedConstantsUsed": {
+    "nodeCapacity": 6,
+    "unitRecoveryHours": 4,
+    "offlineAccrualCapHours": 24,
+    "materialStorage": 60,
+    "kitStorage": 99,
+    "normalKitHours": 12,
+    "firstPlanterSeconds": 5,
+    "claimKits": 12,
+    "upgradeAdditionalKits": 24
+  },
+  "assumptions": [
+    "Independent model imports current constants; it does not execute production transactions. Gathering, costs, single queued job and caps mirror source rules; movement/travel/click overhead is omitted in the cohort model.",
+    "Sessions occur at fixed hour offsets and can wait for a job that becomes ready within that visit’s time budget. Daily minutes label visit opportunities, not an income multiplier.",
+    "Personal ledger is one participant with one accepted project contribution (one inventory kit, or one separate paid-maintenance credit in that candidate), then actual12-kit plot spending and24additional-kit upgrade spending. The current3-kit bridge cannot accept a donation from every member of a12-person group; group experiment exposes this separately.",
+    "The current-rules row models immediate plot/upgrade records; physical homes are not yet playable. Candidate rows add6h home/bridge construction and12h upgrade construction; these durations are not implemented or final.",
+    "The separate paid-maintenance candidate consumes1scrap/1timber/1supplies once at60seconds, makes a nontradeable orientation/project credit instead of an inventory kit, and keeps all ordinary kit inputs/time unchanged. Already-restored project routing is not solved by this arithmetic model.",
+    "Candidate teaching kits compare60seconds and300seconds, consume the normal3scrap/2timber/1supplies exactly once and supply no extra grant. All subsequent kits take12hours. Neither candidate is a runtime rule.",
+    "Inventory management gathers a material only below18held units to reserve capacity for all types; this is a model strategy, not a new runtime restriction.",
+    "Seven-day observation checkpoints clear only the model weekly score. Actual Friday16:00Pacific scheduling is covered by existing server tests, not reimplemented here.",
+    "No luck, skill yield bonus, sale prices, trade, buffs, travel rewards or exponential income. Fixed schedules and perfect resource choices are optimistic; simulations are not retention/fun evidence.",
+    "Recovery scenarios are arithmetic candidate-policy tests. Ten carried material units are droppable and four essential units protected; equipped gear, final deadlines/loss and outage treatment remain owner decisions. Six-hour fee-free lost-and-found is a comparison, not a promise."
+  ],
+  "cohorts": [
+    {
+      "cohort": "idle",
+      "policy": "current-rules",
+      "firstVisitHours": 9,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 24,
+        "bridgeContribution": 24,
+        "plotClaimed": 312,
+        "homeReady": 312,
+        "homeObservedOpen": 312,
+        "upgradePaid": 888,
+        "upgradeReady": 888,
+        "upgradeObservedOpen": 888
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": "bridge-kit",
+        "materials": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "kitOutputs": 0,
+        "orientationCredits": 0
+      },
+      "orientation": {
+        "started": false,
+        "completed": false,
+        "creditProduced": 0,
+        "creditSpent": 0,
+        "completedAt": null,
+        "paid": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 0
+        },
+        "receipts": []
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 42,
+      "firstSessionDurationMinutes": 10,
+      "milestonesHours": {
+        "firstPlanterPlaced": 9.0014,
+        "firstKit": 33,
+        "bridgeContribution": 33,
+        "plotClaimed": 321,
+        "homeReady": 321,
+        "homeObservedOpen": 321,
+        "upgradePaid": 897,
+        "upgradeReady": 897,
+        "upgradeObservedOpen": 897
+      },
+      "kits": {
+        "produced": 41,
+        "balance": 4,
+        "spent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 144,
+          "timber": 101,
+          "supplies": 60
+        },
+        "gathered": {
+          "scrap": 144,
+          "timber": 107,
+          "supplies": 60
+        },
+        "spent": {
+          "scrap": 128,
+          "timber": 86,
+          "supplies": 43
+        },
+        "remaining": {
+          "scrap": 16,
+          "timber": 21,
+          "supplies": 17
+        },
+        "nodeStock": {
+          "scrap": 6,
+          "timber": 0,
+          "supplies": 6
+        },
+        "maxStored": 60
+      },
+      "teachingJobs": 0,
+      "blockedRecipeVisits": 0,
+      "idleBenchHours": 9,
+      "longestFinishedJobWaitHours": 12,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 5,
+          "plot": false,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 0,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 7,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 14,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 21,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        118800000,
+        205200000,
+        291600000,
+        378000000,
+        464400000,
+        550800000,
+        637200000,
+        723600000,
+        810000000,
+        896400000,
+        982800000,
+        1069200000,
+        1155600000,
+        1242000000,
+        1328400000,
+        1414800000,
+        1501200000,
+        1587600000,
+        1674000000,
+        1760400000,
+        1846800000,
+        1933200000,
+        2019600000,
+        2106000000,
+        2192400000,
+        2278800000,
+        2365200000,
+        2451600000,
+        2538000000,
+        2624400000,
+        2710800000,
+        2797200000,
+        2883600000,
+        2970000000,
+        3056400000,
+        3142800000,
+        3229200000,
+        3315600000,
+        3402000000,
+        3488400000,
+        3574800000
+      ],
+      "finalState": {
+        "at": 3574800000,
+        "inventory": {
+          "scrap": 16,
+          "timber": 21,
+          "supplies": 17
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 6,
+            "at": 3574800000
+          },
+          "timber": {
+            "stock": 0,
+            "at": 3574800000
+          },
+          "supplies": {
+            "stock": 6,
+            "at": 3315600000
+          }
+        },
+        "generated": {
+          "scrap": 144,
+          "timber": 101,
+          "supplies": 60
+        },
+        "gathered": {
+          "scrap": 144,
+          "timber": 107,
+          "supplies": 60
+        },
+        "materialSpent": {
+          "scrap": 128,
+          "timber": 86,
+          "supplies": 43
+        },
+        "kitsProduced": 41,
+        "kitBalance": 4,
+        "kitsSpent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3618000000,
+          "teaching": false
+        },
+        "peakMaterials": 60,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 0,
+        "jobsStarted": 43,
+        "kitJobsStarted": 42,
+        "orientation": {
+          "started": false,
+          "completed": false,
+          "creditProduced": 0,
+          "creditSpent": 0,
+          "completedAt": null,
+          "paid": {
+            "scrap": 0,
+            "timber": 0,
+            "supplies": 0
+          },
+          "receipts": []
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 0,
+          "readyAt": 1155600000,
+          "openedAt": 1155600000,
+          "openedObservedAt": 1155600000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 0,
+          "readyAt": 3229200000,
+          "openedAt": 3229200000,
+          "openedObservedAt": 3229200000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    },
+    {
+      "cohort": "regular",
+      "policy": "current-rules",
+      "firstVisitHours": 9,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 12.0014,
+        "bridgeContribution": 12.0014,
+        "plotClaimed": 156.0014,
+        "homeReady": 156.0014,
+        "homeObservedOpen": 156.0014,
+        "upgradePaid": 444.0014,
+        "upgradeReady": 444.0014,
+        "upgradeObservedOpen": 444.0014
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": "bridge-kit",
+        "materials": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "kitOutputs": 0,
+        "orientationCredits": 0
+      },
+      "orientation": {
+        "started": false,
+        "completed": false,
+        "creditProduced": 0,
+        "creditSpent": 0,
+        "completedAt": null,
+        "paid": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 0
+        },
+        "receipts": []
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 84,
+      "firstSessionDurationMinutes": 15,
+      "milestonesHours": {
+        "firstPlanterPlaced": 9.0014,
+        "firstKit": 21.0014,
+        "bridgeContribution": 21.0014,
+        "plotClaimed": 165.0014,
+        "homeReady": 165.0014,
+        "homeObservedOpen": 165.0014,
+        "upgradePaid": 453.0014,
+        "upgradeReady": 453.0014,
+        "upgradeObservedOpen": 453.0014
+      },
+      "kits": {
+        "produced": 83,
+        "balance": 46,
+        "spent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 249,
+          "timber": 186,
+          "supplies": 105
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 186,
+          "supplies": 105
+        },
+        "spent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "remaining": {
+          "scrap": 1,
+          "timber": 16,
+          "supplies": 20
+        },
+        "nodeStock": {
+          "scrap": 0,
+          "timber": 6,
+          "supplies": 6
+        },
+        "maxStored": 49
+      },
+      "teachingJobs": 0,
+      "blockedRecipeVisits": 0,
+      "idleBenchHours": 9,
+      "longestFinishedJobWaitHours": 0,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 0,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 14,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 4,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 18,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 32,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        75605000,
+        118805000,
+        162005000,
+        205205000,
+        248405000,
+        291605000,
+        334805000,
+        378005000,
+        421205000,
+        464405000,
+        507605000,
+        550805000,
+        594005000,
+        637205000,
+        680405000,
+        723605000,
+        766805000,
+        810005000,
+        853205000,
+        896405000,
+        939605000,
+        982805000,
+        1026005000,
+        1069205000,
+        1112405000,
+        1155605000,
+        1198805000,
+        1242005000,
+        1285205000,
+        1328405000,
+        1371605000,
+        1414805000,
+        1458005000,
+        1501205000,
+        1544405000,
+        1587605000,
+        1630805000,
+        1674005000,
+        1717205000,
+        1760405000,
+        1803605000,
+        1846805000,
+        1890005000,
+        1933205000,
+        1976405000,
+        2019605000,
+        2062805000,
+        2106005000,
+        2149205000,
+        2192405000,
+        2235605000,
+        2278805000,
+        2322005000,
+        2365205000,
+        2408405000,
+        2451605000,
+        2494805000,
+        2538005000,
+        2581205000,
+        2624405000,
+        2667605000,
+        2710805000,
+        2754005000,
+        2797205000,
+        2840405000,
+        2883605000,
+        2926805000,
+        2970005000,
+        3013205000,
+        3056405000,
+        3099605000,
+        3142805000,
+        3186005000,
+        3229205000,
+        3272405000,
+        3315605000,
+        3358805000,
+        3402005000,
+        3445205000,
+        3488405000,
+        3531605000,
+        3574805000,
+        3618005000
+      ],
+      "finalState": {
+        "at": 3618005000,
+        "inventory": {
+          "scrap": 1,
+          "timber": 16,
+          "supplies": 20
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 0,
+            "at": 3618000000
+          },
+          "timber": {
+            "stock": 6,
+            "at": 3618000000
+          },
+          "supplies": {
+            "stock": 6,
+            "at": 3618000000
+          }
+        },
+        "generated": {
+          "scrap": 249,
+          "timber": 186,
+          "supplies": 105
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 186,
+          "supplies": 105
+        },
+        "materialSpent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "kitsProduced": 83,
+        "kitBalance": 46,
+        "kitsSpent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3661205000,
+          "teaching": false
+        },
+        "peakMaterials": 49,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 0,
+        "jobsStarted": 85,
+        "kitJobsStarted": 84,
+        "orientation": {
+          "started": false,
+          "completed": false,
+          "creditProduced": 0,
+          "creditSpent": 0,
+          "completedAt": null,
+          "paid": {
+            "scrap": 0,
+            "timber": 0,
+            "supplies": 0
+          },
+          "receipts": []
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 0,
+          "readyAt": 594005000,
+          "openedAt": 594005000,
+          "openedObservedAt": 594005000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 0,
+          "readyAt": 1630805000,
+          "openedAt": 1630805000,
+          "openedObservedAt": 1630805000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    },
+    {
+      "cohort": "active",
+      "policy": "current-rules",
+      "firstVisitHours": 8,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 12.0014,
+        "bridgeContribution": 12.0014,
+        "plotClaimed": 156.0014,
+        "homeReady": 156.0014,
+        "homeObservedOpen": 156.0014,
+        "upgradePaid": 444.0014,
+        "upgradeReady": 444.0014,
+        "upgradeObservedOpen": 444.0014
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": "bridge-kit",
+        "materials": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "kitOutputs": 0,
+        "orientationCredits": 0
+      },
+      "orientation": {
+        "started": false,
+        "completed": false,
+        "creditProduced": 0,
+        "creditSpent": 0,
+        "completedAt": null,
+        "paid": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 0
+        },
+        "receipts": []
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 168,
+      "firstSessionDurationMinutes": 30,
+      "milestonesHours": {
+        "firstPlanterPlaced": 8.0014,
+        "firstKit": 20.0014,
+        "bridgeContribution": 20.0014,
+        "plotClaimed": 164.0014,
+        "homeReady": 164.0014,
+        "homeObservedOpen": 164.0014,
+        "upgradePaid": 452.0014,
+        "upgradeReady": 452.0014,
+        "upgradeObservedOpen": 452.0014
+      },
+      "kits": {
+        "produced": 83,
+        "balance": 46,
+        "spent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 249,
+          "timber": 187,
+          "supplies": 103
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 193,
+          "supplies": 103
+        },
+        "spent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "remaining": {
+          "scrap": 1,
+          "timber": 23,
+          "supplies": 18
+        },
+        "nodeStock": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 6
+        },
+        "maxStored": 48
+      },
+      "teachingJobs": 0,
+      "blockedRecipeVisits": 0,
+      "idleBenchHours": 8,
+      "longestFinishedJobWaitHours": 0,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 0,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 14,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 4,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 18,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 32,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        72005000,
+        115205000,
+        158405000,
+        201605000,
+        244805000,
+        288005000,
+        331205000,
+        374405000,
+        417605000,
+        460805000,
+        504005000,
+        547205000,
+        590405000,
+        633605000,
+        676805000,
+        720005000,
+        763205000,
+        806405000,
+        849605000,
+        892805000,
+        936005000,
+        979205000,
+        1022405000,
+        1065605000,
+        1108805000,
+        1152005000,
+        1195205000,
+        1238405000,
+        1281605000,
+        1324805000,
+        1368005000,
+        1411205000,
+        1454405000,
+        1497605000,
+        1540805000,
+        1584005000,
+        1627205000,
+        1670405000,
+        1713605000,
+        1756805000,
+        1800005000,
+        1843205000,
+        1886405000,
+        1929605000,
+        1972805000,
+        2016005000,
+        2059205000,
+        2102405000,
+        2145605000,
+        2188805000,
+        2232005000,
+        2275205000,
+        2318405000,
+        2361605000,
+        2404805000,
+        2448005000,
+        2491205000,
+        2534405000,
+        2577605000,
+        2620805000,
+        2664005000,
+        2707205000,
+        2750405000,
+        2793605000,
+        2836805000,
+        2880005000,
+        2923205000,
+        2966405000,
+        3009605000,
+        3052805000,
+        3096005000,
+        3139205000,
+        3182405000,
+        3225605000,
+        3268805000,
+        3312005000,
+        3355205000,
+        3398405000,
+        3441605000,
+        3484805000,
+        3528005000,
+        3571205000,
+        3614405000
+      ],
+      "finalState": {
+        "at": 3625200000,
+        "inventory": {
+          "scrap": 1,
+          "timber": 23,
+          "supplies": 18
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 0,
+            "at": 3614400000
+          },
+          "timber": {
+            "stock": 0,
+            "at": 3625200000
+          },
+          "supplies": {
+            "stock": 6,
+            "at": 3499200000
+          }
+        },
+        "generated": {
+          "scrap": 249,
+          "timber": 187,
+          "supplies": 103
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 193,
+          "supplies": 103
+        },
+        "materialSpent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "kitsProduced": 83,
+        "kitBalance": 46,
+        "kitsSpent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3657605000,
+          "teaching": false
+        },
+        "peakMaterials": 48,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 0,
+        "jobsStarted": 85,
+        "kitJobsStarted": 84,
+        "orientation": {
+          "started": false,
+          "completed": false,
+          "creditProduced": 0,
+          "creditSpent": 0,
+          "completedAt": null,
+          "paid": {
+            "scrap": 0,
+            "timber": 0,
+            "supplies": 0
+          },
+          "receipts": []
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 0,
+          "readyAt": 590405000,
+          "openedAt": 590405000,
+          "openedObservedAt": 590405000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 0,
+          "readyAt": 1627205000,
+          "openedAt": 1627205000,
+          "openedObservedAt": 1627205000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    },
+    {
+      "cohort": "idle",
+      "policy": "teaching-kit-candidate",
+      "firstVisitHours": 9,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 0.0847,
+        "bridgeContribution": 0.0847,
+        "plotClaimed": 312,
+        "homeReady": 318,
+        "homeObservedOpen": 336,
+        "upgradePaid": 888,
+        "upgradeReady": 900,
+        "upgradeObservedOpen": 912
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": null,
+        "materials": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "kitOutputs": 1,
+        "orientationCredits": 0
+      },
+      "orientation": {
+        "started": false,
+        "completed": false,
+        "creditProduced": 0,
+        "creditSpent": 0,
+        "completedAt": null,
+        "paid": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 0
+        },
+        "receipts": []
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 42,
+      "firstSessionDurationMinutes": 10,
+      "milestonesHours": {
+        "firstPlanterPlaced": 9.0014,
+        "firstKit": 9.0847,
+        "bridgeContribution": 9.0847,
+        "plotClaimed": 321,
+        "homeReady": 327,
+        "homeObservedOpen": 345,
+        "upgradePaid": 897,
+        "upgradeReady": 909,
+        "upgradeObservedOpen": 921
+      },
+      "kits": {
+        "produced": 41,
+        "balance": 4,
+        "spent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 144,
+          "timber": 101,
+          "supplies": 60
+        },
+        "gathered": {
+          "scrap": 144,
+          "timber": 107,
+          "supplies": 60
+        },
+        "spent": {
+          "scrap": 128,
+          "timber": 86,
+          "supplies": 43
+        },
+        "remaining": {
+          "scrap": 16,
+          "timber": 21,
+          "supplies": 17
+        },
+        "nodeStock": {
+          "scrap": 6,
+          "timber": 0,
+          "supplies": 6
+        },
+        "maxStored": 60
+      },
+      "teachingJobs": 1,
+      "blockedRecipeVisits": 1,
+      "idleBenchHours": 32.83,
+      "longestFinishedJobWaitHours": 12,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 5,
+          "plot": false,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 0,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 7,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 14,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 21,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        32705000,
+        205200000,
+        291600000,
+        378000000,
+        464400000,
+        550800000,
+        637200000,
+        723600000,
+        810000000,
+        896400000,
+        982800000,
+        1069200000,
+        1155600000,
+        1242000000,
+        1328400000,
+        1414800000,
+        1501200000,
+        1587600000,
+        1674000000,
+        1760400000,
+        1846800000,
+        1933200000,
+        2019600000,
+        2106000000,
+        2192400000,
+        2278800000,
+        2365200000,
+        2451600000,
+        2538000000,
+        2624400000,
+        2710800000,
+        2797200000,
+        2883600000,
+        2970000000,
+        3056400000,
+        3142800000,
+        3229200000,
+        3315600000,
+        3402000000,
+        3488400000,
+        3574800000
+      ],
+      "finalState": {
+        "at": 3574800000,
+        "inventory": {
+          "scrap": 16,
+          "timber": 21,
+          "supplies": 17
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 6,
+            "at": 3574800000
+          },
+          "timber": {
+            "stock": 0,
+            "at": 3574800000
+          },
+          "supplies": {
+            "stock": 6,
+            "at": 3315600000
+          }
+        },
+        "generated": {
+          "scrap": 144,
+          "timber": 101,
+          "supplies": 60
+        },
+        "gathered": {
+          "scrap": 144,
+          "timber": 107,
+          "supplies": 60
+        },
+        "materialSpent": {
+          "scrap": 128,
+          "timber": 86,
+          "supplies": 43
+        },
+        "kitsProduced": 41,
+        "kitBalance": 4,
+        "kitsSpent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3618000000,
+          "teaching": false
+        },
+        "peakMaterials": 60,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 1,
+        "jobsStarted": 43,
+        "kitJobsStarted": 42,
+        "orientation": {
+          "started": false,
+          "completed": false,
+          "creditProduced": 0,
+          "creditSpent": 0,
+          "completedAt": null,
+          "paid": {
+            "scrap": 0,
+            "timber": 0,
+            "supplies": 0
+          },
+          "receipts": []
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 21600000,
+          "readyAt": 1177200000,
+          "openedAt": 1177200000,
+          "openedObservedAt": 1242000000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 43200000,
+          "readyAt": 3272400000,
+          "openedAt": 3272400000,
+          "openedObservedAt": 3315600000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    },
+    {
+      "cohort": "regular",
+      "policy": "teaching-kit-candidate",
+      "firstVisitHours": 9,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 0.0847,
+        "bridgeContribution": 0.0847,
+        "plotClaimed": 156,
+        "homeReady": 162,
+        "homeObservedOpen": 168,
+        "upgradePaid": 444,
+        "upgradeReady": 456,
+        "upgradeObservedOpen": 456
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": null,
+        "materials": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "kitOutputs": 1,
+        "orientationCredits": 0
+      },
+      "orientation": {
+        "started": false,
+        "completed": false,
+        "creditProduced": 0,
+        "creditSpent": 0,
+        "completedAt": null,
+        "paid": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 0
+        },
+        "receipts": []
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 84,
+      "firstSessionDurationMinutes": 15,
+      "milestonesHours": {
+        "firstPlanterPlaced": 9.0014,
+        "firstKit": 9.0847,
+        "bridgeContribution": 9.0847,
+        "plotClaimed": 165,
+        "homeReady": 171,
+        "homeObservedOpen": 177,
+        "upgradePaid": 453,
+        "upgradeReady": 465,
+        "upgradeObservedOpen": 465
+      },
+      "kits": {
+        "produced": 83,
+        "balance": 46,
+        "spent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 249,
+          "timber": 186,
+          "supplies": 105
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 186,
+          "supplies": 105
+        },
+        "spent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "remaining": {
+          "scrap": 1,
+          "timber": 16,
+          "supplies": 20
+        },
+        "nodeStock": {
+          "scrap": 0,
+          "timber": 6,
+          "supplies": 6
+        },
+        "maxStored": 49
+      },
+      "teachingJobs": 1,
+      "blockedRecipeVisits": 1,
+      "idleBenchHours": 20.75,
+      "longestFinishedJobWaitHours": 0,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 0,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 14,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 4,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 18,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 32,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        32705000,
+        118800000,
+        162000000,
+        205200000,
+        248400000,
+        291600000,
+        334800000,
+        378000000,
+        421200000,
+        464400000,
+        507600000,
+        550800000,
+        594000000,
+        637200000,
+        680400000,
+        723600000,
+        766800000,
+        810000000,
+        853200000,
+        896400000,
+        939600000,
+        982800000,
+        1026000000,
+        1069200000,
+        1112400000,
+        1155600000,
+        1198800000,
+        1242000000,
+        1285200000,
+        1328400000,
+        1371600000,
+        1414800000,
+        1458000000,
+        1501200000,
+        1544400000,
+        1587600000,
+        1630800000,
+        1674000000,
+        1717200000,
+        1760400000,
+        1803600000,
+        1846800000,
+        1890000000,
+        1933200000,
+        1976400000,
+        2019600000,
+        2062800000,
+        2106000000,
+        2149200000,
+        2192400000,
+        2235600000,
+        2278800000,
+        2322000000,
+        2365200000,
+        2408400000,
+        2451600000,
+        2494800000,
+        2538000000,
+        2581200000,
+        2624400000,
+        2667600000,
+        2710800000,
+        2754000000,
+        2797200000,
+        2840400000,
+        2883600000,
+        2926800000,
+        2970000000,
+        3013200000,
+        3056400000,
+        3099600000,
+        3142800000,
+        3186000000,
+        3229200000,
+        3272400000,
+        3315600000,
+        3358800000,
+        3402000000,
+        3445200000,
+        3488400000,
+        3531600000,
+        3574800000,
+        3618000000
+      ],
+      "finalState": {
+        "at": 3618000000,
+        "inventory": {
+          "scrap": 1,
+          "timber": 16,
+          "supplies": 20
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 0,
+            "at": 3618000000
+          },
+          "timber": {
+            "stock": 6,
+            "at": 3618000000
+          },
+          "supplies": {
+            "stock": 6,
+            "at": 3618000000
+          }
+        },
+        "generated": {
+          "scrap": 249,
+          "timber": 186,
+          "supplies": 105
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 186,
+          "supplies": 105
+        },
+        "materialSpent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "kitsProduced": 83,
+        "kitBalance": 46,
+        "kitsSpent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3661200000,
+          "teaching": false
+        },
+        "peakMaterials": 49,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 1,
+        "jobsStarted": 85,
+        "kitJobsStarted": 84,
+        "orientation": {
+          "started": false,
+          "completed": false,
+          "creditProduced": 0,
+          "creditSpent": 0,
+          "completedAt": null,
+          "paid": {
+            "scrap": 0,
+            "timber": 0,
+            "supplies": 0
+          },
+          "receipts": []
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 21600000,
+          "readyAt": 615600000,
+          "openedAt": 615600000,
+          "openedObservedAt": 637200000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 43200000,
+          "readyAt": 1674000000,
+          "openedAt": 1674000000,
+          "openedObservedAt": 1674000000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    },
+    {
+      "cohort": "active",
+      "policy": "teaching-kit-candidate",
+      "firstVisitHours": 8,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 0.0847,
+        "bridgeContribution": 0.0847,
+        "plotClaimed": 156,
+        "homeReady": 162,
+        "homeObservedOpen": 168,
+        "upgradePaid": 444,
+        "upgradeReady": 456,
+        "upgradeObservedOpen": 456
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": null,
+        "materials": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "kitOutputs": 1,
+        "orientationCredits": 0
+      },
+      "orientation": {
+        "started": false,
+        "completed": false,
+        "creditProduced": 0,
+        "creditSpent": 0,
+        "completedAt": null,
+        "paid": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 0
+        },
+        "receipts": []
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 168,
+      "firstSessionDurationMinutes": 30,
+      "milestonesHours": {
+        "firstPlanterPlaced": 8.0014,
+        "firstKit": 8.0847,
+        "bridgeContribution": 8.0847,
+        "plotClaimed": 164,
+        "homeReady": 170,
+        "homeObservedOpen": 176,
+        "upgradePaid": 452,
+        "upgradeReady": 464,
+        "upgradeObservedOpen": 464
+      },
+      "kits": {
+        "produced": 83,
+        "balance": 46,
+        "spent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 249,
+          "timber": 187,
+          "supplies": 103
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 193,
+          "supplies": 103
+        },
+        "spent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "remaining": {
+          "scrap": 1,
+          "timber": 23,
+          "supplies": 18
+        },
+        "nodeStock": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 6
+        },
+        "maxStored": 48
+      },
+      "teachingJobs": 1,
+      "blockedRecipeVisits": 2,
+      "idleBenchHours": 19,
+      "longestFinishedJobWaitHours": 0,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 0,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 14,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 4,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 18,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 32,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        29105000,
+        115200000,
+        158400000,
+        201600000,
+        244800000,
+        288000000,
+        331200000,
+        374400000,
+        417600000,
+        460800000,
+        504000000,
+        547200000,
+        590400000,
+        633600000,
+        676800000,
+        720000000,
+        763200000,
+        806400000,
+        849600000,
+        892800000,
+        936000000,
+        979200000,
+        1022400000,
+        1065600000,
+        1108800000,
+        1152000000,
+        1195200000,
+        1238400000,
+        1281600000,
+        1324800000,
+        1368000000,
+        1411200000,
+        1454400000,
+        1497600000,
+        1540800000,
+        1584000000,
+        1627200000,
+        1670400000,
+        1713600000,
+        1756800000,
+        1800000000,
+        1843200000,
+        1886400000,
+        1929600000,
+        1972800000,
+        2016000000,
+        2059200000,
+        2102400000,
+        2145600000,
+        2188800000,
+        2232000000,
+        2275200000,
+        2318400000,
+        2361600000,
+        2404800000,
+        2448000000,
+        2491200000,
+        2534400000,
+        2577600000,
+        2620800000,
+        2664000000,
+        2707200000,
+        2750400000,
+        2793600000,
+        2836800000,
+        2880000000,
+        2923200000,
+        2966400000,
+        3009600000,
+        3052800000,
+        3096000000,
+        3139200000,
+        3182400000,
+        3225600000,
+        3268800000,
+        3312000000,
+        3355200000,
+        3398400000,
+        3441600000,
+        3484800000,
+        3528000000,
+        3571200000,
+        3614400000
+      ],
+      "finalState": {
+        "at": 3625200000,
+        "inventory": {
+          "scrap": 1,
+          "timber": 23,
+          "supplies": 18
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 0,
+            "at": 3614400000
+          },
+          "timber": {
+            "stock": 0,
+            "at": 3625200000
+          },
+          "supplies": {
+            "stock": 6,
+            "at": 3499200000
+          }
+        },
+        "generated": {
+          "scrap": 249,
+          "timber": 187,
+          "supplies": 103
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 193,
+          "supplies": 103
+        },
+        "materialSpent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "kitsProduced": 83,
+        "kitBalance": 46,
+        "kitsSpent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3657600000,
+          "teaching": false
+        },
+        "peakMaterials": 48,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 1,
+        "jobsStarted": 85,
+        "kitJobsStarted": 84,
+        "orientation": {
+          "started": false,
+          "completed": false,
+          "creditProduced": 0,
+          "creditSpent": 0,
+          "completedAt": null,
+          "paid": {
+            "scrap": 0,
+            "timber": 0,
+            "supplies": 0
+          },
+          "receipts": []
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 21600000,
+          "readyAt": 612000000,
+          "openedAt": 612000000,
+          "openedObservedAt": 633600000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 43200000,
+          "readyAt": 1670400000,
+          "openedAt": 1670400000,
+          "openedObservedAt": 1670400000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    },
+    {
+      "cohort": "idle",
+      "policy": "teaching-60s-candidate",
+      "firstVisitHours": 9,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 0.0181,
+        "bridgeContribution": 0.0181,
+        "plotClaimed": 312,
+        "homeReady": 318,
+        "homeObservedOpen": 336,
+        "upgradePaid": 888,
+        "upgradeReady": 900,
+        "upgradeObservedOpen": 912
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": null,
+        "materials": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "kitOutputs": 1,
+        "orientationCredits": 0
+      },
+      "orientation": {
+        "started": false,
+        "completed": false,
+        "creditProduced": 0,
+        "creditSpent": 0,
+        "completedAt": null,
+        "paid": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 0
+        },
+        "receipts": []
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 42,
+      "firstSessionDurationMinutes": 10,
+      "milestonesHours": {
+        "firstPlanterPlaced": 9.0014,
+        "firstKit": 9.0181,
+        "bridgeContribution": 9.0181,
+        "plotClaimed": 321,
+        "homeReady": 327,
+        "homeObservedOpen": 345,
+        "upgradePaid": 897,
+        "upgradeReady": 909,
+        "upgradeObservedOpen": 921
+      },
+      "kits": {
+        "produced": 41,
+        "balance": 4,
+        "spent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 144,
+          "timber": 101,
+          "supplies": 60
+        },
+        "gathered": {
+          "scrap": 144,
+          "timber": 107,
+          "supplies": 60
+        },
+        "spent": {
+          "scrap": 128,
+          "timber": 86,
+          "supplies": 43
+        },
+        "remaining": {
+          "scrap": 16,
+          "timber": 21,
+          "supplies": 17
+        },
+        "nodeStock": {
+          "scrap": 6,
+          "timber": 0,
+          "supplies": 6
+        },
+        "maxStored": 60
+      },
+      "teachingJobs": 1,
+      "blockedRecipeVisits": 1,
+      "idleBenchHours": 32.83,
+      "longestFinishedJobWaitHours": 12,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 5,
+          "plot": false,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 0,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 7,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 14,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 21,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        32465000,
+        205200000,
+        291600000,
+        378000000,
+        464400000,
+        550800000,
+        637200000,
+        723600000,
+        810000000,
+        896400000,
+        982800000,
+        1069200000,
+        1155600000,
+        1242000000,
+        1328400000,
+        1414800000,
+        1501200000,
+        1587600000,
+        1674000000,
+        1760400000,
+        1846800000,
+        1933200000,
+        2019600000,
+        2106000000,
+        2192400000,
+        2278800000,
+        2365200000,
+        2451600000,
+        2538000000,
+        2624400000,
+        2710800000,
+        2797200000,
+        2883600000,
+        2970000000,
+        3056400000,
+        3142800000,
+        3229200000,
+        3315600000,
+        3402000000,
+        3488400000,
+        3574800000
+      ],
+      "finalState": {
+        "at": 3574800000,
+        "inventory": {
+          "scrap": 16,
+          "timber": 21,
+          "supplies": 17
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 6,
+            "at": 3574800000
+          },
+          "timber": {
+            "stock": 0,
+            "at": 3574800000
+          },
+          "supplies": {
+            "stock": 6,
+            "at": 3315600000
+          }
+        },
+        "generated": {
+          "scrap": 144,
+          "timber": 101,
+          "supplies": 60
+        },
+        "gathered": {
+          "scrap": 144,
+          "timber": 107,
+          "supplies": 60
+        },
+        "materialSpent": {
+          "scrap": 128,
+          "timber": 86,
+          "supplies": 43
+        },
+        "kitsProduced": 41,
+        "kitBalance": 4,
+        "kitsSpent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3618000000,
+          "teaching": false
+        },
+        "peakMaterials": 60,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 1,
+        "jobsStarted": 43,
+        "kitJobsStarted": 42,
+        "orientation": {
+          "started": false,
+          "completed": false,
+          "creditProduced": 0,
+          "creditSpent": 0,
+          "completedAt": null,
+          "paid": {
+            "scrap": 0,
+            "timber": 0,
+            "supplies": 0
+          },
+          "receipts": []
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 21600000,
+          "readyAt": 1177200000,
+          "openedAt": 1177200000,
+          "openedObservedAt": 1242000000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 43200000,
+          "readyAt": 3272400000,
+          "openedAt": 3272400000,
+          "openedObservedAt": 3315600000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    },
+    {
+      "cohort": "regular",
+      "policy": "teaching-60s-candidate",
+      "firstVisitHours": 9,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 0.0181,
+        "bridgeContribution": 0.0181,
+        "plotClaimed": 156,
+        "homeReady": 162,
+        "homeObservedOpen": 168,
+        "upgradePaid": 444,
+        "upgradeReady": 456,
+        "upgradeObservedOpen": 456
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": null,
+        "materials": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "kitOutputs": 1,
+        "orientationCredits": 0
+      },
+      "orientation": {
+        "started": false,
+        "completed": false,
+        "creditProduced": 0,
+        "creditSpent": 0,
+        "completedAt": null,
+        "paid": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 0
+        },
+        "receipts": []
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 84,
+      "firstSessionDurationMinutes": 15,
+      "milestonesHours": {
+        "firstPlanterPlaced": 9.0014,
+        "firstKit": 9.0181,
+        "bridgeContribution": 9.0181,
+        "plotClaimed": 165,
+        "homeReady": 171,
+        "homeObservedOpen": 177,
+        "upgradePaid": 453,
+        "upgradeReady": 465,
+        "upgradeObservedOpen": 465
+      },
+      "kits": {
+        "produced": 83,
+        "balance": 46,
+        "spent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 249,
+          "timber": 186,
+          "supplies": 105
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 186,
+          "supplies": 105
+        },
+        "spent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "remaining": {
+          "scrap": 1,
+          "timber": 16,
+          "supplies": 20
+        },
+        "nodeStock": {
+          "scrap": 0,
+          "timber": 6,
+          "supplies": 6
+        },
+        "maxStored": 49
+      },
+      "teachingJobs": 1,
+      "blockedRecipeVisits": 1,
+      "idleBenchHours": 20.75,
+      "longestFinishedJobWaitHours": 0,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 0,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 14,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 4,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 18,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 32,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        32465000,
+        118800000,
+        162000000,
+        205200000,
+        248400000,
+        291600000,
+        334800000,
+        378000000,
+        421200000,
+        464400000,
+        507600000,
+        550800000,
+        594000000,
+        637200000,
+        680400000,
+        723600000,
+        766800000,
+        810000000,
+        853200000,
+        896400000,
+        939600000,
+        982800000,
+        1026000000,
+        1069200000,
+        1112400000,
+        1155600000,
+        1198800000,
+        1242000000,
+        1285200000,
+        1328400000,
+        1371600000,
+        1414800000,
+        1458000000,
+        1501200000,
+        1544400000,
+        1587600000,
+        1630800000,
+        1674000000,
+        1717200000,
+        1760400000,
+        1803600000,
+        1846800000,
+        1890000000,
+        1933200000,
+        1976400000,
+        2019600000,
+        2062800000,
+        2106000000,
+        2149200000,
+        2192400000,
+        2235600000,
+        2278800000,
+        2322000000,
+        2365200000,
+        2408400000,
+        2451600000,
+        2494800000,
+        2538000000,
+        2581200000,
+        2624400000,
+        2667600000,
+        2710800000,
+        2754000000,
+        2797200000,
+        2840400000,
+        2883600000,
+        2926800000,
+        2970000000,
+        3013200000,
+        3056400000,
+        3099600000,
+        3142800000,
+        3186000000,
+        3229200000,
+        3272400000,
+        3315600000,
+        3358800000,
+        3402000000,
+        3445200000,
+        3488400000,
+        3531600000,
+        3574800000,
+        3618000000
+      ],
+      "finalState": {
+        "at": 3618000000,
+        "inventory": {
+          "scrap": 1,
+          "timber": 16,
+          "supplies": 20
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 0,
+            "at": 3618000000
+          },
+          "timber": {
+            "stock": 6,
+            "at": 3618000000
+          },
+          "supplies": {
+            "stock": 6,
+            "at": 3618000000
+          }
+        },
+        "generated": {
+          "scrap": 249,
+          "timber": 186,
+          "supplies": 105
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 186,
+          "supplies": 105
+        },
+        "materialSpent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "kitsProduced": 83,
+        "kitBalance": 46,
+        "kitsSpent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3661200000,
+          "teaching": false
+        },
+        "peakMaterials": 49,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 1,
+        "jobsStarted": 85,
+        "kitJobsStarted": 84,
+        "orientation": {
+          "started": false,
+          "completed": false,
+          "creditProduced": 0,
+          "creditSpent": 0,
+          "completedAt": null,
+          "paid": {
+            "scrap": 0,
+            "timber": 0,
+            "supplies": 0
+          },
+          "receipts": []
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 21600000,
+          "readyAt": 615600000,
+          "openedAt": 615600000,
+          "openedObservedAt": 637200000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 43200000,
+          "readyAt": 1674000000,
+          "openedAt": 1674000000,
+          "openedObservedAt": 1674000000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    },
+    {
+      "cohort": "active",
+      "policy": "teaching-60s-candidate",
+      "firstVisitHours": 8,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 0.0181,
+        "bridgeContribution": 0.0181,
+        "plotClaimed": 156,
+        "homeReady": 162,
+        "homeObservedOpen": 168,
+        "upgradePaid": 444,
+        "upgradeReady": 456,
+        "upgradeObservedOpen": 456
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": null,
+        "materials": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "kitOutputs": 1,
+        "orientationCredits": 0
+      },
+      "orientation": {
+        "started": false,
+        "completed": false,
+        "creditProduced": 0,
+        "creditSpent": 0,
+        "completedAt": null,
+        "paid": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 0
+        },
+        "receipts": []
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 168,
+      "firstSessionDurationMinutes": 30,
+      "milestonesHours": {
+        "firstPlanterPlaced": 8.0014,
+        "firstKit": 8.0181,
+        "bridgeContribution": 8.0181,
+        "plotClaimed": 164,
+        "homeReady": 170,
+        "homeObservedOpen": 176,
+        "upgradePaid": 452,
+        "upgradeReady": 464,
+        "upgradeObservedOpen": 464
+      },
+      "kits": {
+        "produced": 83,
+        "balance": 46,
+        "spent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 249,
+          "timber": 187,
+          "supplies": 103
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 193,
+          "supplies": 103
+        },
+        "spent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "remaining": {
+          "scrap": 1,
+          "timber": 23,
+          "supplies": 18
+        },
+        "nodeStock": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 6
+        },
+        "maxStored": 48
+      },
+      "teachingJobs": 1,
+      "blockedRecipeVisits": 2,
+      "idleBenchHours": 19,
+      "longestFinishedJobWaitHours": 0,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 0,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 14,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 4,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 18,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 32,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        28865000,
+        115200000,
+        158400000,
+        201600000,
+        244800000,
+        288000000,
+        331200000,
+        374400000,
+        417600000,
+        460800000,
+        504000000,
+        547200000,
+        590400000,
+        633600000,
+        676800000,
+        720000000,
+        763200000,
+        806400000,
+        849600000,
+        892800000,
+        936000000,
+        979200000,
+        1022400000,
+        1065600000,
+        1108800000,
+        1152000000,
+        1195200000,
+        1238400000,
+        1281600000,
+        1324800000,
+        1368000000,
+        1411200000,
+        1454400000,
+        1497600000,
+        1540800000,
+        1584000000,
+        1627200000,
+        1670400000,
+        1713600000,
+        1756800000,
+        1800000000,
+        1843200000,
+        1886400000,
+        1929600000,
+        1972800000,
+        2016000000,
+        2059200000,
+        2102400000,
+        2145600000,
+        2188800000,
+        2232000000,
+        2275200000,
+        2318400000,
+        2361600000,
+        2404800000,
+        2448000000,
+        2491200000,
+        2534400000,
+        2577600000,
+        2620800000,
+        2664000000,
+        2707200000,
+        2750400000,
+        2793600000,
+        2836800000,
+        2880000000,
+        2923200000,
+        2966400000,
+        3009600000,
+        3052800000,
+        3096000000,
+        3139200000,
+        3182400000,
+        3225600000,
+        3268800000,
+        3312000000,
+        3355200000,
+        3398400000,
+        3441600000,
+        3484800000,
+        3528000000,
+        3571200000,
+        3614400000
+      ],
+      "finalState": {
+        "at": 3625200000,
+        "inventory": {
+          "scrap": 1,
+          "timber": 23,
+          "supplies": 18
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 0,
+            "at": 3614400000
+          },
+          "timber": {
+            "stock": 0,
+            "at": 3625200000
+          },
+          "supplies": {
+            "stock": 6,
+            "at": 3499200000
+          }
+        },
+        "generated": {
+          "scrap": 249,
+          "timber": 187,
+          "supplies": 103
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 193,
+          "supplies": 103
+        },
+        "materialSpent": {
+          "scrap": 254,
+          "timber": 170,
+          "supplies": 85
+        },
+        "kitsProduced": 83,
+        "kitBalance": 46,
+        "kitsSpent": {
+          "bridge": 1,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3657600000,
+          "teaching": false
+        },
+        "peakMaterials": 48,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 1,
+        "jobsStarted": 85,
+        "kitJobsStarted": 84,
+        "orientation": {
+          "started": false,
+          "completed": false,
+          "creditProduced": 0,
+          "creditSpent": 0,
+          "completedAt": null,
+          "paid": {
+            "scrap": 0,
+            "timber": 0,
+            "supplies": 0
+          },
+          "receipts": []
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 21600000,
+          "readyAt": 612000000,
+          "openedAt": 612000000,
+          "openedObservedAt": 633600000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 43200000,
+          "readyAt": 1670400000,
+          "openedAt": 1670400000,
+          "openedObservedAt": 1670400000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    },
+    {
+      "cohort": "idle",
+      "policy": "paid-maintenance-candidate",
+      "firstVisitHours": 9,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 24,
+        "bridgeContribution": 0.0181,
+        "plotClaimed": 288,
+        "homeReady": 294,
+        "homeObservedOpen": 312,
+        "upgradePaid": 864,
+        "upgradeReady": 876,
+        "upgradeObservedOpen": 888
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": "bridge-kit",
+        "materials": {
+          "scrap": 0,
+          "timber": 1,
+          "supplies": 3
+        },
+        "kitOutputs": 0,
+        "orientationCredits": 1
+      },
+      "orientation": {
+        "started": true,
+        "completed": true,
+        "creditProduced": 1,
+        "creditSpent": 1,
+        "completedAt": 32465000,
+        "paid": {
+          "scrap": 1,
+          "timber": 1,
+          "supplies": 1
+        },
+        "receipts": [
+          "orientation:paid:v1",
+          "orientation:completed:v1",
+          "orientation:contributed:v1"
+        ]
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 42,
+      "firstSessionDurationMinutes": 10,
+      "milestonesHours": {
+        "firstPlanterPlaced": 9.0014,
+        "firstKit": 33,
+        "bridgeContribution": 9.0181,
+        "plotClaimed": 297,
+        "homeReady": 303,
+        "homeObservedOpen": 321,
+        "upgradePaid": 873,
+        "upgradeReady": 885,
+        "upgradeObservedOpen": 897
+      },
+      "kits": {
+        "produced": 41,
+        "balance": 5,
+        "spent": {
+          "bridge": 0,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 144,
+          "timber": 102,
+          "supplies": 62
+        },
+        "gathered": {
+          "scrap": 144,
+          "timber": 108,
+          "supplies": 62
+        },
+        "spent": {
+          "scrap": 129,
+          "timber": 87,
+          "supplies": 44
+        },
+        "remaining": {
+          "scrap": 15,
+          "timber": 21,
+          "supplies": 18
+        },
+        "nodeStock": {
+          "scrap": 6,
+          "timber": 0,
+          "supplies": 6
+        },
+        "maxStored": 60
+      },
+      "teachingJobs": 0,
+      "blockedRecipeVisits": 0,
+      "idleBenchHours": 9,
+      "longestFinishedJobWaitHours": 12,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 6,
+          "plot": false,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 1,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 8,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 15,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 22,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        118800000,
+        205200000,
+        291600000,
+        378000000,
+        464400000,
+        550800000,
+        637200000,
+        723600000,
+        810000000,
+        896400000,
+        982800000,
+        1069200000,
+        1155600000,
+        1242000000,
+        1328400000,
+        1414800000,
+        1501200000,
+        1587600000,
+        1674000000,
+        1760400000,
+        1846800000,
+        1933200000,
+        2019600000,
+        2106000000,
+        2192400000,
+        2278800000,
+        2365200000,
+        2451600000,
+        2538000000,
+        2624400000,
+        2710800000,
+        2797200000,
+        2883600000,
+        2970000000,
+        3056400000,
+        3142800000,
+        3229200000,
+        3315600000,
+        3402000000,
+        3488400000,
+        3574800000
+      ],
+      "finalState": {
+        "at": 3574800000,
+        "inventory": {
+          "scrap": 15,
+          "timber": 21,
+          "supplies": 18
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 6,
+            "at": 3574800000
+          },
+          "timber": {
+            "stock": 0,
+            "at": 3574800000
+          },
+          "supplies": {
+            "stock": 6,
+            "at": 3315600000
+          }
+        },
+        "generated": {
+          "scrap": 144,
+          "timber": 102,
+          "supplies": 62
+        },
+        "gathered": {
+          "scrap": 144,
+          "timber": 108,
+          "supplies": 62
+        },
+        "materialSpent": {
+          "scrap": 129,
+          "timber": 87,
+          "supplies": 44
+        },
+        "kitsProduced": 41,
+        "kitBalance": 5,
+        "kitsSpent": {
+          "bridge": 0,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3618000000,
+          "teaching": false
+        },
+        "peakMaterials": 60,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 0,
+        "jobsStarted": 44,
+        "kitJobsStarted": 42,
+        "orientation": {
+          "started": true,
+          "completed": true,
+          "creditProduced": 1,
+          "creditSpent": 1,
+          "completedAt": 32465000,
+          "paid": {
+            "scrap": 1,
+            "timber": 1,
+            "supplies": 1
+          },
+          "receipts": [
+            "orientation:paid:v1",
+            "orientation:completed:v1",
+            "orientation:contributed:v1"
+          ]
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 21600000,
+          "readyAt": 1090800000,
+          "openedAt": 1090800000,
+          "openedObservedAt": 1155600000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 43200000,
+          "readyAt": 3186000000,
+          "openedAt": 3186000000,
+          "openedObservedAt": 3229200000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    },
+    {
+      "cohort": "regular",
+      "policy": "paid-maintenance-candidate",
+      "firstVisitHours": 9,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 12.0181,
+        "bridgeContribution": 0.0181,
+        "plotClaimed": 144.0181,
+        "homeReady": 150.0181,
+        "homeObservedOpen": 156,
+        "upgradePaid": 432.0181,
+        "upgradeReady": 444.0181,
+        "upgradeObservedOpen": 444.0181
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": "bridge-kit",
+        "materials": {
+          "scrap": 0,
+          "timber": 1,
+          "supplies": 3
+        },
+        "kitOutputs": 0,
+        "orientationCredits": 1
+      },
+      "orientation": {
+        "started": true,
+        "completed": true,
+        "creditProduced": 1,
+        "creditSpent": 1,
+        "completedAt": 32465000,
+        "paid": {
+          "scrap": 1,
+          "timber": 1,
+          "supplies": 1
+        },
+        "receipts": [
+          "orientation:paid:v1",
+          "orientation:completed:v1",
+          "orientation:contributed:v1"
+        ]
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 84,
+      "firstSessionDurationMinutes": 15,
+      "milestonesHours": {
+        "firstPlanterPlaced": 9.0014,
+        "firstKit": 21.0181,
+        "bridgeContribution": 9.0181,
+        "plotClaimed": 153.0181,
+        "homeReady": 159.0181,
+        "homeObservedOpen": 165,
+        "upgradePaid": 441.0181,
+        "upgradeReady": 453.0181,
+        "upgradeObservedOpen": 453.0181
+      },
+      "kits": {
+        "produced": 83,
+        "balance": 47,
+        "spent": {
+          "bridge": 0,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 249,
+          "timber": 186,
+          "supplies": 102
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 189,
+          "supplies": 108
+        },
+        "spent": {
+          "scrap": 255,
+          "timber": 171,
+          "supplies": 86
+        },
+        "remaining": {
+          "scrap": 0,
+          "timber": 18,
+          "supplies": 22
+        },
+        "nodeStock": {
+          "scrap": 0,
+          "timber": 3,
+          "supplies": 0
+        },
+        "maxStored": 46
+      },
+      "teachingJobs": 0,
+      "blockedRecipeVisits": 0,
+      "idleBenchHours": 9,
+      "longestFinishedJobWaitHours": 0,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 1,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 15,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 5,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 19,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 33,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        75665000,
+        118865000,
+        162065000,
+        205265000,
+        248465000,
+        291665000,
+        334865000,
+        378065000,
+        421265000,
+        464465000,
+        507665000,
+        550865000,
+        594065000,
+        637265000,
+        680465000,
+        723665000,
+        766865000,
+        810065000,
+        853265000,
+        896465000,
+        939665000,
+        982865000,
+        1026065000,
+        1069265000,
+        1112465000,
+        1155665000,
+        1198865000,
+        1242065000,
+        1285265000,
+        1328465000,
+        1371665000,
+        1414865000,
+        1458065000,
+        1501265000,
+        1544465000,
+        1587665000,
+        1630865000,
+        1674065000,
+        1717265000,
+        1760465000,
+        1803665000,
+        1846865000,
+        1890065000,
+        1933265000,
+        1976465000,
+        2019665000,
+        2062865000,
+        2106065000,
+        2149265000,
+        2192465000,
+        2235665000,
+        2278865000,
+        2322065000,
+        2365265000,
+        2408465000,
+        2451665000,
+        2494865000,
+        2538065000,
+        2581265000,
+        2624465000,
+        2667665000,
+        2710865000,
+        2754065000,
+        2797265000,
+        2840465000,
+        2883665000,
+        2926865000,
+        2970065000,
+        3013265000,
+        3056465000,
+        3099665000,
+        3142865000,
+        3186065000,
+        3229265000,
+        3272465000,
+        3315665000,
+        3358865000,
+        3402065000,
+        3445265000,
+        3488465000,
+        3531665000,
+        3574865000,
+        3618065000
+      ],
+      "finalState": {
+        "at": 3618065000,
+        "inventory": {
+          "scrap": 0,
+          "timber": 18,
+          "supplies": 22
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 0,
+            "at": 3618000000
+          },
+          "timber": {
+            "stock": 3,
+            "at": 3618000000
+          },
+          "supplies": {
+            "stock": 0,
+            "at": 3618000000
+          }
+        },
+        "generated": {
+          "scrap": 249,
+          "timber": 186,
+          "supplies": 102
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 189,
+          "supplies": 108
+        },
+        "materialSpent": {
+          "scrap": 255,
+          "timber": 171,
+          "supplies": 86
+        },
+        "kitsProduced": 83,
+        "kitBalance": 47,
+        "kitsSpent": {
+          "bridge": 0,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3661265000,
+          "teaching": false
+        },
+        "peakMaterials": 46,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 0,
+        "jobsStarted": 86,
+        "kitJobsStarted": 84,
+        "orientation": {
+          "started": true,
+          "completed": true,
+          "creditProduced": 1,
+          "creditSpent": 1,
+          "completedAt": 32465000,
+          "paid": {
+            "scrap": 1,
+            "timber": 1,
+            "supplies": 1
+          },
+          "receipts": [
+            "orientation:paid:v1",
+            "orientation:completed:v1",
+            "orientation:contributed:v1"
+          ]
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 21600000,
+          "readyAt": 572465000,
+          "openedAt": 572465000,
+          "openedObservedAt": 594000000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 43200000,
+          "readyAt": 1630865000,
+          "openedAt": 1630865000,
+          "openedObservedAt": 1630865000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    },
+    {
+      "cohort": "active",
+      "policy": "paid-maintenance-candidate",
+      "firstVisitHours": 8,
+      "milestonesAfterArrivalHours": {
+        "firstPlanterPlaced": 0.0014,
+        "firstKit": 12.0181,
+        "bridgeContribution": 0.0181,
+        "plotClaimed": 144.0181,
+        "homeReady": 150.0181,
+        "homeObservedOpen": 156,
+        "upgradePaid": 432.0181,
+        "upgradeReady": 444.0181,
+        "upgradeObservedOpen": 444.0181
+      },
+      "simulatedDays": 42,
+      "firstSession": {
+        "jobQueuedAtEnd": "bridge-kit",
+        "materials": {
+          "scrap": 0,
+          "timber": 1,
+          "supplies": 3
+        },
+        "kitOutputs": 0,
+        "orientationCredits": 1
+      },
+      "orientation": {
+        "started": true,
+        "completed": true,
+        "creditProduced": 1,
+        "creditSpent": 1,
+        "completedAt": 28865000,
+        "paid": {
+          "scrap": 1,
+          "timber": 1,
+          "supplies": 1
+        },
+        "receipts": [
+          "orientation:paid:v1",
+          "orientation:completed:v1",
+          "orientation:contributed:v1"
+        ]
+      },
+      "joinDay": 0,
+      "absentDays": [],
+      "visits": 168,
+      "firstSessionDurationMinutes": 30,
+      "milestonesHours": {
+        "firstPlanterPlaced": 8.0014,
+        "firstKit": 20.0181,
+        "bridgeContribution": 8.0181,
+        "plotClaimed": 152.0181,
+        "homeReady": 158.0181,
+        "homeObservedOpen": 164,
+        "upgradePaid": 440.0181,
+        "upgradeReady": 452.0181,
+        "upgradeObservedOpen": 452.0181
+      },
+      "kits": {
+        "produced": 83,
+        "balance": 47,
+        "spent": {
+          "bridge": 0,
+          "home": 12,
+          "upgrade": 24
+        }
+      },
+      "materials": {
+        "generated": {
+          "scrap": 249,
+          "timber": 187,
+          "supplies": 104
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 193,
+          "supplies": 108
+        },
+        "spent": {
+          "scrap": 255,
+          "timber": 171,
+          "supplies": 86
+        },
+        "remaining": {
+          "scrap": 0,
+          "timber": 22,
+          "supplies": 22
+        },
+        "nodeStock": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 2
+        },
+        "maxStored": 47
+      },
+      "teachingJobs": 0,
+      "blockedRecipeVisits": 0,
+      "idleBenchHours": 8,
+      "longestFinishedJobWaitHours": 0,
+      "weeklyCheckpoints": [
+        {
+          "day": 7,
+          "kits": 1,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 14,
+          "kits": 15,
+          "plot": true,
+          "upgrade": false,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 21,
+          "kits": 5,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 28,
+          "kits": 19,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        },
+        {
+          "day": 35,
+          "kits": 33,
+          "plot": true,
+          "upgrade": true,
+          "pendingJob": true,
+          "weeklyScore": 0
+        }
+      ],
+      "productionTimes": [
+        72065000,
+        115265000,
+        158465000,
+        201665000,
+        244865000,
+        288065000,
+        331265000,
+        374465000,
+        417665000,
+        460865000,
+        504065000,
+        547265000,
+        590465000,
+        633665000,
+        676865000,
+        720065000,
+        763265000,
+        806465000,
+        849665000,
+        892865000,
+        936065000,
+        979265000,
+        1022465000,
+        1065665000,
+        1108865000,
+        1152065000,
+        1195265000,
+        1238465000,
+        1281665000,
+        1324865000,
+        1368065000,
+        1411265000,
+        1454465000,
+        1497665000,
+        1540865000,
+        1584065000,
+        1627265000,
+        1670465000,
+        1713665000,
+        1756865000,
+        1800065000,
+        1843265000,
+        1886465000,
+        1929665000,
+        1972865000,
+        2016065000,
+        2059265000,
+        2102465000,
+        2145665000,
+        2188865000,
+        2232065000,
+        2275265000,
+        2318465000,
+        2361665000,
+        2404865000,
+        2448065000,
+        2491265000,
+        2534465000,
+        2577665000,
+        2620865000,
+        2664065000,
+        2707265000,
+        2750465000,
+        2793665000,
+        2836865000,
+        2880065000,
+        2923265000,
+        2966465000,
+        3009665000,
+        3052865000,
+        3096065000,
+        3139265000,
+        3182465000,
+        3225665000,
+        3268865000,
+        3312065000,
+        3355265000,
+        3398465000,
+        3441665000,
+        3484865000,
+        3528065000,
+        3571265000,
+        3614465000
+      ],
+      "finalState": {
+        "at": 3625200000,
+        "inventory": {
+          "scrap": 0,
+          "timber": 22,
+          "supplies": 22
+        },
+        "nodes": {
+          "scrap": {
+            "stock": 0,
+            "at": 3614400000
+          },
+          "timber": {
+            "stock": 0,
+            "at": 3625200000
+          },
+          "supplies": {
+            "stock": 2,
+            "at": 3614400000
+          }
+        },
+        "generated": {
+          "scrap": 249,
+          "timber": 187,
+          "supplies": 104
+        },
+        "gathered": {
+          "scrap": 255,
+          "timber": 193,
+          "supplies": 108
+        },
+        "materialSpent": {
+          "scrap": 255,
+          "timber": 171,
+          "supplies": 86
+        },
+        "kitsProduced": 83,
+        "kitBalance": 47,
+        "kitsSpent": {
+          "bridge": 0,
+          "home": 12,
+          "upgrade": 24
+        },
+        "job": {
+          "kind": "bridge-kit",
+          "readyAt": 3657665000,
+          "teaching": false
+        },
+        "peakMaterials": 47,
+        "planterOwned": 1,
+        "planterPlaced": true,
+        "firstKitStarted": true,
+        "teachingJobs": 0,
+        "jobsStarted": 86,
+        "kitJobsStarted": 84,
+        "orientation": {
+          "started": true,
+          "completed": true,
+          "creditProduced": 1,
+          "creditSpent": 1,
+          "completedAt": 28865000,
+          "paid": {
+            "scrap": 1,
+            "timber": 1,
+            "supplies": 1
+          },
+          "receipts": [
+            "orientation:paid:v1",
+            "orientation:completed:v1",
+            "orientation:contributed:v1"
+          ]
+        },
+        "plot": {
+          "id": "personal-home",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 21600000,
+          "readyAt": 568865000,
+          "openedAt": 568865000,
+          "openedObservedAt": 590400000,
+          "receipts": [
+            "home-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-home:opened:v1"
+          ]
+        },
+        "upgrade": {
+          "id": "personal-upgrade",
+          "target": 1,
+          "contributed": 1,
+          "buildMs": 43200000,
+          "readyAt": 1627265000,
+          "openedAt": 1627265000,
+          "openedObservedAt": 1627265000,
+          "receipts": [
+            "upgrade-materials:v1"
+          ],
+          "openingReceipts": [
+            "personal-upgrade:opened:v1"
+          ]
+        },
+        "weeklyScore": 0
+      }
+    }
+  ],
+  "missedWeek": {
+    "cohort": "regular",
+    "policy": "current-rules",
+    "firstVisitHours": 9,
+    "milestonesAfterArrivalHours": {
+      "firstPlanterPlaced": 0.0014,
+      "firstKit": 12.0014,
+      "bridgeContribution": 12.0014,
+      "plotClaimed": 156.0014,
+      "homeReady": 156.0014,
+      "homeObservedOpen": 156.0014,
+      "upgradePaid": 612,
+      "upgradeReady": 612,
+      "upgradeObservedOpen": 612
+    },
+    "simulatedDays": 42,
+    "firstSession": {
+      "jobQueuedAtEnd": "bridge-kit",
+      "materials": {
+        "scrap": 1,
+        "timber": 2,
+        "supplies": 4
+      },
+      "kitOutputs": 0,
+      "orientationCredits": 0
+    },
+    "orientation": {
+      "started": false,
+      "completed": false,
+      "creditProduced": 0,
+      "creditSpent": 0,
+      "completedAt": null,
+      "paid": {
+        "scrap": 0,
+        "timber": 0,
+        "supplies": 0
+      },
+      "receipts": []
+    },
+    "joinDay": 0,
+    "absentDays": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "visits": 70,
+    "firstSessionDurationMinutes": 15,
+    "milestonesHours": {
+      "firstPlanterPlaced": 9.0014,
+      "firstKit": 21.0014,
+      "bridgeContribution": 21.0014,
+      "plotClaimed": 165.0014,
+      "homeReady": 165.0014,
+      "homeObservedOpen": 165.0014,
+      "upgradePaid": 621,
+      "upgradeReady": 621,
+      "upgradeObservedOpen": 621
+    },
+    "kits": {
+      "produced": 69,
+      "balance": 32,
+      "spent": {
+        "bridge": 1,
+        "home": 12,
+        "upgrade": 24
+      }
+    },
+    "materials": {
+      "generated": {
+        "scrap": 210,
+        "timber": 159,
+        "supplies": 87
+      },
+      "gathered": {
+        "scrap": 216,
+        "timber": 159,
+        "supplies": 93
+      },
+      "spent": {
+        "scrap": 212,
+        "timber": 142,
+        "supplies": 71
+      },
+      "remaining": {
+        "scrap": 4,
+        "timber": 17,
+        "supplies": 22
+      },
+      "nodeStock": {
+        "scrap": 0,
+        "timber": 6,
+        "supplies": 0
+      },
+      "maxStored": 52
+    },
+    "teachingJobs": 0,
+    "blockedRecipeVisits": 0,
+    "idleBenchHours": 9,
+    "longestFinishedJobWaitHours": 168,
+    "weeklyCheckpoints": [
+      {
+        "day": 7,
+        "kits": 0,
+        "plot": true,
+        "upgrade": false,
+        "pendingJob": true,
+        "weeklyScore": 0
+      },
+      {
+        "day": 14,
+        "kits": 2,
+        "plot": true,
+        "upgrade": false,
+        "pendingJob": true,
+        "weeklyScore": 0
+      },
+      {
+        "day": 21,
+        "kits": 14,
+        "plot": true,
+        "upgrade": false,
+        "pendingJob": true,
+        "weeklyScore": 0
+      },
+      {
+        "day": 28,
+        "kits": 4,
+        "plot": true,
+        "upgrade": true,
+        "pendingJob": true,
+        "weeklyScore": 0
+      },
+      {
+        "day": 35,
+        "kits": 18,
+        "plot": true,
+        "upgrade": true,
+        "pendingJob": true,
+        "weeklyScore": 0
+      }
+    ],
+    "productionTimes": [
+      75605000,
+      118805000,
+      162005000,
+      205205000,
+      248405000,
+      291605000,
+      334805000,
+      378005000,
+      421205000,
+      464405000,
+      507605000,
+      550805000,
+      594005000,
+      637205000,
+      680405000,
+      1328400000,
+      1371600000,
+      1414800000,
+      1458000000,
+      1501200000,
+      1544400000,
+      1587600000,
+      1630800000,
+      1674000000,
+      1717200000,
+      1760400000,
+      1803600000,
+      1846800000,
+      1890000000,
+      1933200000,
+      1976400000,
+      2019600000,
+      2062800000,
+      2106000000,
+      2149200000,
+      2192400000,
+      2235600000,
+      2278800000,
+      2322000000,
+      2365200000,
+      2408400000,
+      2451600000,
+      2494800000,
+      2538000000,
+      2581200000,
+      2624400000,
+      2667600000,
+      2710800000,
+      2754000000,
+      2797200000,
+      2840400000,
+      2883600000,
+      2926800000,
+      2970000000,
+      3013200000,
+      3056400000,
+      3099600000,
+      3142800000,
+      3186000000,
+      3229200000,
+      3272400000,
+      3315600000,
+      3358800000,
+      3402000000,
+      3445200000,
+      3488400000,
+      3531600000,
+      3574800000,
+      3618000000
+    ],
+    "finalState": {
+      "at": 3618000000,
+      "inventory": {
+        "scrap": 4,
+        "timber": 17,
+        "supplies": 22
+      },
+      "nodes": {
+        "scrap": {
+          "stock": 0,
+          "at": 3618000000
+        },
+        "timber": {
+          "stock": 6,
+          "at": 3618000000
+        },
+        "supplies": {
+          "stock": 0,
+          "at": 3618000000
+        }
+      },
+      "generated": {
+        "scrap": 210,
+        "timber": 159,
+        "supplies": 87
+      },
+      "gathered": {
+        "scrap": 216,
+        "timber": 159,
+        "supplies": 93
+      },
+      "materialSpent": {
+        "scrap": 212,
+        "timber": 142,
+        "supplies": 71
+      },
+      "kitsProduced": 69,
+      "kitBalance": 32,
+      "kitsSpent": {
+        "bridge": 1,
+        "home": 12,
+        "upgrade": 24
+      },
+      "job": {
+        "kind": "bridge-kit",
+        "readyAt": 3661200000,
+        "teaching": false
+      },
+      "peakMaterials": 52,
+      "planterOwned": 1,
+      "planterPlaced": true,
+      "firstKitStarted": true,
+      "teachingJobs": 0,
+      "jobsStarted": 71,
+      "kitJobsStarted": 70,
+      "orientation": {
+        "started": false,
+        "completed": false,
+        "creditProduced": 0,
+        "creditSpent": 0,
+        "completedAt": null,
+        "paid": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 0
+        },
+        "receipts": []
+      },
+      "plot": {
+        "id": "personal-home",
+        "target": 1,
+        "contributed": 1,
+        "buildMs": 0,
+        "readyAt": 594005000,
+        "openedAt": 594005000,
+        "openedObservedAt": 594005000,
+        "receipts": [
+          "home-materials:v1"
+        ],
+        "openingReceipts": [
+          "personal-home:opened:v1"
+        ]
+      },
+      "upgrade": {
+        "id": "personal-upgrade",
+        "target": 1,
+        "contributed": 1,
+        "buildMs": 0,
+        "readyAt": 2235600000,
+        "openedAt": 2235600000,
+        "openedObservedAt": 2235600000,
+        "receipts": [
+          "upgrade-materials:v1"
+        ],
+        "openingReceipts": [
+          "personal-upgrade:opened:v1"
+        ]
+      },
+      "weeklyScore": 0
+    }
+  },
+  "groups": [
+    {
+      "policy": "current-rules",
+      "size": 1,
+      "target": 3,
+      "buildHours": 0,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 45.00138888888889,
+      "readyHours": 45.00138888888889,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 1,
+      "contributionCounts": {
+        "resident-1": 3
+      },
+      "lateJoinerContributions": 3,
+      "attemptedKitsAfterCompletion": 80,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "teaching-kit-candidate",
+      "size": 1,
+      "target": 3,
+      "buildHours": 6,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 45,
+      "readyHours": 51,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 1,
+      "contributionCounts": {
+        "resident-1": 3
+      },
+      "lateJoinerContributions": 3,
+      "attemptedKitsAfterCompletion": 80,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "teaching-60s-candidate",
+      "size": 1,
+      "target": 3,
+      "buildHours": 6,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 45,
+      "readyHours": 51,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 1,
+      "contributionCounts": {
+        "resident-1": 3
+      },
+      "lateJoinerContributions": 3,
+      "attemptedKitsAfterCompletion": 80,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "paid-maintenance-candidate",
+      "size": 1,
+      "target": 3,
+      "buildHours": 6,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 33.018055555555556,
+      "readyHours": 39.018055555555556,
+      "orientationContributions": 1,
+      "kitContributions": 2,
+      "contributors": 1,
+      "contributionCounts": {
+        "resident-1": 3
+      },
+      "lateJoinerContributions": 3,
+      "attemptedKitsAfterCompletion": 81,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "current-rules",
+      "size": 1,
+      "target": 3,
+      "buildHours": 0,
+      "lateJoinDay": 0,
+      "absentFirstWeek": true,
+      "materialsCompleteHours": 213.0013888888889,
+      "readyHours": 213.0013888888889,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 1,
+      "contributionCounts": {
+        "resident-1": 3
+      },
+      "lateJoinerContributions": 3,
+      "attemptedKitsAfterCompletion": 66,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "current-rules",
+      "size": 1,
+      "target": 3,
+      "buildHours": 0,
+      "lateJoinDay": 14,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 381.00138888888887,
+      "readyHours": 381.00138888888887,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 1,
+      "contributionCounts": {
+        "resident-1": 3
+      },
+      "lateJoinerContributions": 3,
+      "attemptedKitsAfterCompletion": 52,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "current-rules",
+      "size": 3,
+      "target": 3,
+      "buildHours": 0,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 21.00138888888889,
+      "readyHours": 21.00138888888889,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 3,
+      "contributionCounts": {
+        "resident-1": 1,
+        "resident-2": 1,
+        "resident-3": 1
+      },
+      "lateJoinerContributions": 1,
+      "attemptedKitsAfterCompletion": 246,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "teaching-kit-candidate",
+      "size": 3,
+      "target": 3,
+      "buildHours": 6,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 9.084722222222222,
+      "readyHours": 15.084722222222222,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 3,
+      "contributionCounts": {
+        "resident-1": 1,
+        "resident-2": 1,
+        "resident-3": 1
+      },
+      "lateJoinerContributions": 1,
+      "attemptedKitsAfterCompletion": 246,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "teaching-60s-candidate",
+      "size": 3,
+      "target": 3,
+      "buildHours": 6,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 9.018055555555556,
+      "readyHours": 15.018055555555556,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 3,
+      "contributionCounts": {
+        "resident-1": 1,
+        "resident-2": 1,
+        "resident-3": 1
+      },
+      "lateJoinerContributions": 1,
+      "attemptedKitsAfterCompletion": 246,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "paid-maintenance-candidate",
+      "size": 3,
+      "target": 3,
+      "buildHours": 6,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 9.018055555555556,
+      "readyHours": 15.018055555555556,
+      "orientationContributions": 3,
+      "kitContributions": 0,
+      "contributors": 3,
+      "contributionCounts": {
+        "resident-1": 1,
+        "resident-2": 1,
+        "resident-3": 1
+      },
+      "lateJoinerContributions": 1,
+      "attemptedKitsAfterCompletion": 249,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "current-rules",
+      "size": 3,
+      "target": 3,
+      "buildHours": 0,
+      "lateJoinDay": 0,
+      "absentFirstWeek": true,
+      "materialsCompleteHours": 33.00138888888889,
+      "readyHours": 33.00138888888889,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 2,
+      "contributionCounts": {
+        "resident-1": 0,
+        "resident-2": 2,
+        "resident-3": 1
+      },
+      "lateJoinerContributions": 1,
+      "attemptedKitsAfterCompletion": 232,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "current-rules",
+      "size": 3,
+      "target": 3,
+      "buildHours": 0,
+      "lateJoinDay": 14,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 33.00138888888889,
+      "readyHours": 33.00138888888889,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 2,
+      "contributionCounts": {
+        "resident-1": 2,
+        "resident-2": 1,
+        "resident-3": 0
+      },
+      "lateJoinerContributions": 0,
+      "attemptedKitsAfterCompletion": 218,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "current-rules",
+      "size": 12,
+      "target": 3,
+      "buildHours": 0,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 21.00138888888889,
+      "readyHours": 21.00138888888889,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 3,
+      "contributionCounts": {
+        "resident-1": 1,
+        "resident-2": 0,
+        "resident-3": 0,
+        "resident-4": 0,
+        "resident-5": 0,
+        "resident-6": 0,
+        "resident-7": 0,
+        "resident-8": 0,
+        "resident-9": 0,
+        "resident-10": 1,
+        "resident-11": 1,
+        "resident-12": 0
+      },
+      "lateJoinerContributions": 0,
+      "attemptedKitsAfterCompletion": 993,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "teaching-kit-candidate",
+      "size": 12,
+      "target": 3,
+      "buildHours": 6,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 9.084722222222222,
+      "readyHours": 15.084722222222222,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 3,
+      "contributionCounts": {
+        "resident-1": 1,
+        "resident-2": 0,
+        "resident-3": 0,
+        "resident-4": 0,
+        "resident-5": 0,
+        "resident-6": 0,
+        "resident-7": 0,
+        "resident-8": 0,
+        "resident-9": 0,
+        "resident-10": 1,
+        "resident-11": 1,
+        "resident-12": 0
+      },
+      "lateJoinerContributions": 0,
+      "attemptedKitsAfterCompletion": 993,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "teaching-60s-candidate",
+      "size": 12,
+      "target": 3,
+      "buildHours": 6,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 9.018055555555556,
+      "readyHours": 15.018055555555556,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 3,
+      "contributionCounts": {
+        "resident-1": 1,
+        "resident-2": 0,
+        "resident-3": 0,
+        "resident-4": 0,
+        "resident-5": 0,
+        "resident-6": 0,
+        "resident-7": 0,
+        "resident-8": 0,
+        "resident-9": 0,
+        "resident-10": 1,
+        "resident-11": 1,
+        "resident-12": 0
+      },
+      "lateJoinerContributions": 0,
+      "attemptedKitsAfterCompletion": 993,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "paid-maintenance-candidate",
+      "size": 12,
+      "target": 3,
+      "buildHours": 6,
+      "lateJoinDay": 0,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 9.018055555555556,
+      "readyHours": 15.018055555555556,
+      "orientationContributions": 3,
+      "kitContributions": 0,
+      "contributors": 3,
+      "contributionCounts": {
+        "resident-1": 1,
+        "resident-2": 0,
+        "resident-3": 0,
+        "resident-4": 0,
+        "resident-5": 0,
+        "resident-6": 0,
+        "resident-7": 0,
+        "resident-8": 0,
+        "resident-9": 0,
+        "resident-10": 1,
+        "resident-11": 1,
+        "resident-12": 0
+      },
+      "lateJoinerContributions": 0,
+      "attemptedKitsAfterCompletion": 1005,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "current-rules",
+      "size": 12,
+      "target": 3,
+      "buildHours": 0,
+      "lateJoinDay": 0,
+      "absentFirstWeek": true,
+      "materialsCompleteHours": 21.00138888888889,
+      "readyHours": 21.00138888888889,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 3,
+      "contributionCounts": {
+        "resident-1": 0,
+        "resident-2": 0,
+        "resident-3": 0,
+        "resident-4": 0,
+        "resident-5": 0,
+        "resident-6": 0,
+        "resident-7": 0,
+        "resident-8": 0,
+        "resident-9": 0,
+        "resident-10": 1,
+        "resident-11": 1,
+        "resident-12": 1
+      },
+      "lateJoinerContributions": 1,
+      "attemptedKitsAfterCompletion": 979,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    },
+    {
+      "policy": "current-rules",
+      "size": 12,
+      "target": 3,
+      "buildHours": 0,
+      "lateJoinDay": 14,
+      "absentFirstWeek": false,
+      "materialsCompleteHours": 21.00138888888889,
+      "readyHours": 21.00138888888889,
+      "orientationContributions": 0,
+      "kitContributions": 3,
+      "contributors": 3,
+      "contributionCounts": {
+        "resident-1": 1,
+        "resident-2": 0,
+        "resident-3": 0,
+        "resident-4": 0,
+        "resident-5": 0,
+        "resident-6": 0,
+        "resident-7": 0,
+        "resident-8": 0,
+        "resident-9": 0,
+        "resident-10": 1,
+        "resident-11": 1,
+        "resident-12": 0
+      },
+      "lateJoinerContributions": 0,
+      "attemptedKitsAfterCompletion": 965,
+      "openingCount": 1,
+      "interpretation": "Separate project-demand experiment. Production supply is replayed as potential donations before personal purchases; do not combine these donation totals with the personal housing ledger. No per-person contribution cap is imposed."
+    }
+  ],
+  "maintenanceAlternatives": [
+    {
+      "policy": "paid-maintenance-with-upkeep-candidate",
+      "size": 12,
+      "lateJoinDay": 0,
+      "constructionTarget": 3,
+      "constructionCredits": 3,
+      "upkeepCredits": 9,
+      "firstSessionLessonsCompleted": 12,
+      "recognizedResidents": 12,
+      "lateJoinerKind": "upkeep",
+      "projectReadyGlobalHours": 15.018055555555556,
+      "openingCount": 1,
+      "lessonMaterialsSpent": {
+        "scrap": 12,
+        "timber": 12,
+        "supplies": 12
+      },
+      "inventoryKitsCreatedByLessons": 0,
+      "duplicateCharges": 0,
+      "allPersonalLedgersConserve": true,
+      "receipts": [
+        {
+          "playerId": "resident-1",
+          "receipt": "orientation:resident-1:v1",
+          "kind": "construction",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-10",
+          "receipt": "orientation:resident-10:v1",
+          "kind": "construction",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-11",
+          "receipt": "orientation:resident-11:v1",
+          "kind": "construction",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-12",
+          "receipt": "orientation:resident-12:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-2",
+          "receipt": "orientation:resident-2:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-3",
+          "receipt": "orientation:resident-3:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-4",
+          "receipt": "orientation:resident-4:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-5",
+          "receipt": "orientation:resident-5:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-6",
+          "receipt": "orientation:resident-6:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-7",
+          "receipt": "orientation:resident-7:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-8",
+          "receipt": "orientation:resident-8:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-9",
+          "receipt": "orientation:resident-9:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        }
+      ],
+      "interpretation": "Candidate only: first three paid lesson credits advance construction; later once-only lessons record upkeep/inspection separately. Routing spends the already-paid nontradeable credit, never charges materials twice, creates kits or changes construction target/deadline. Future server must commit lesson/player/project/quest migration atomically."
+    },
+    {
+      "policy": "paid-maintenance-with-upkeep-candidate",
+      "size": 12,
+      "lateJoinDay": 14,
+      "constructionTarget": 3,
+      "constructionCredits": 3,
+      "upkeepCredits": 9,
+      "firstSessionLessonsCompleted": 12,
+      "recognizedResidents": 12,
+      "lateJoinerKind": "upkeep",
+      "projectReadyGlobalHours": 15.018055555555556,
+      "openingCount": 1,
+      "lessonMaterialsSpent": {
+        "scrap": 12,
+        "timber": 12,
+        "supplies": 12
+      },
+      "inventoryKitsCreatedByLessons": 0,
+      "duplicateCharges": 0,
+      "allPersonalLedgersConserve": true,
+      "receipts": [
+        {
+          "playerId": "resident-1",
+          "receipt": "orientation:resident-1:v1",
+          "kind": "construction",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-10",
+          "receipt": "orientation:resident-10:v1",
+          "kind": "construction",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-11",
+          "receipt": "orientation:resident-11:v1",
+          "kind": "construction",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-2",
+          "receipt": "orientation:resident-2:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-3",
+          "receipt": "orientation:resident-3:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-4",
+          "receipt": "orientation:resident-4:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-5",
+          "receipt": "orientation:resident-5:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-6",
+          "receipt": "orientation:resident-6:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-7",
+          "receipt": "orientation:resident-7:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-8",
+          "receipt": "orientation:resident-8:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-9",
+          "receipt": "orientation:resident-9:v1",
+          "kind": "upkeep",
+          "recordedAt": 32465000
+        },
+        {
+          "playerId": "resident-12",
+          "receipt": "orientation:resident-12:v1",
+          "kind": "upkeep",
+          "recordedAt": 1242065000
+        }
+      ],
+      "interpretation": "Candidate only: first three paid lesson credits advance construction; later once-only lessons record upkeep/inspection separately. Routing spends the already-paid nontradeable credit, never charges materials twice, creates kits or changes construction target/deadline. Future server must commit lesson/player/project/quest migration atomically."
+    }
+  ],
+  "onboarding": [
+    {
+      "id": "direct-first-visit",
+      "arrival": 45,
+      "gather": 45,
+      "workshopTravel": 30,
+      "planter": 5,
+      "placement": 25,
+      "bridgeTravel": 30,
+      "lessonSeconds": 60,
+      "firstContributionMinutes": 4,
+      "insideFiveMinuteTarget": true,
+      "insideTenMinuteVisit": true,
+      "usefulParallelActivitySeconds": 60,
+      "unallocatedLessonSeconds": 0,
+      "assumption": "During the job: free furniture arrangement and journal reading budgeted at60seconds total; no rewards or forced tasks. Travel/reading values are design estimates, not playtest measurements. Character creation is outside this first-playable-input budget."
+    },
+    {
+      "id": "direct-first-visit",
+      "arrival": 45,
+      "gather": 45,
+      "workshopTravel": 30,
+      "planter": 5,
+      "placement": 25,
+      "bridgeTravel": 30,
+      "lessonSeconds": 300,
+      "firstContributionMinutes": 8,
+      "insideFiveMinuteTarget": false,
+      "insideTenMinuteVisit": true,
+      "usefulParallelActivitySeconds": 60,
+      "unallocatedLessonSeconds": 240,
+      "assumption": "During the job: free furniture arrangement and journal reading budgeted at60seconds total; no rewards or forced tasks. Travel/reading values are design estimates, not playtest measurements. Character creation is outside this first-playable-input budget."
+    },
+    {
+      "id": "direct-first-visit",
+      "arrival": 45,
+      "gather": 45,
+      "workshopTravel": 30,
+      "planter": 5,
+      "placement": 25,
+      "bridgeTravel": 30,
+      "lessonSeconds": 43200,
+      "firstContributionMinutes": 723,
+      "insideFiveMinuteTarget": false,
+      "insideTenMinuteVisit": false,
+      "usefulParallelActivitySeconds": 60,
+      "unallocatedLessonSeconds": 43140,
+      "assumption": "During the job: free furniture arrangement and journal reading budgeted at60seconds total; no rewards or forced tasks. Travel/reading values are design estimates, not playtest measurements. Character creation is outside this first-playable-input budget."
+    },
+    {
+      "id": "slower-phone-reading",
+      "arrival": 75,
+      "gather": 90,
+      "workshopTravel": 60,
+      "planter": 5,
+      "placement": 45,
+      "bridgeTravel": 60,
+      "lessonSeconds": 60,
+      "firstContributionMinutes": 6.583,
+      "insideFiveMinuteTarget": false,
+      "insideTenMinuteVisit": true,
+      "usefulParallelActivitySeconds": 60,
+      "unallocatedLessonSeconds": 0,
+      "assumption": "During the job: free furniture arrangement and journal reading budgeted at60seconds total; no rewards or forced tasks. Travel/reading values are design estimates, not playtest measurements. Character creation is outside this first-playable-input budget."
+    },
+    {
+      "id": "slower-phone-reading",
+      "arrival": 75,
+      "gather": 90,
+      "workshopTravel": 60,
+      "planter": 5,
+      "placement": 45,
+      "bridgeTravel": 60,
+      "lessonSeconds": 300,
+      "firstContributionMinutes": 10.583,
+      "insideFiveMinuteTarget": false,
+      "insideTenMinuteVisit": false,
+      "usefulParallelActivitySeconds": 60,
+      "unallocatedLessonSeconds": 240,
+      "assumption": "During the job: free furniture arrangement and journal reading budgeted at60seconds total; no rewards or forced tasks. Travel/reading values are design estimates, not playtest measurements. Character creation is outside this first-playable-input budget."
+    },
+    {
+      "id": "slower-phone-reading",
+      "arrival": 75,
+      "gather": 90,
+      "workshopTravel": 60,
+      "planter": 5,
+      "placement": 45,
+      "bridgeTravel": 60,
+      "lessonSeconds": 43200,
+      "firstContributionMinutes": 725.583,
+      "insideFiveMinuteTarget": false,
+      "insideTenMinuteVisit": false,
+      "usefulParallelActivitySeconds": 60,
+      "unallocatedLessonSeconds": 43140,
+      "assumption": "During the job: free furniture arrangement and journal reading budgeted at60seconds total; no rewards or forced tasks. Travel/reading values are design estimates, not playtest measurements. Character creation is outside this first-playable-input budget."
+    }
+  ],
+  "recovery": [
+    {
+      "id": "inkwood-near-trail",
+      "travel": 8,
+      "interruption": 0,
+      "downtime": 0,
+      "reachable": true,
+      "arrivalMinutes": 8,
+      "hard30StatusAtArrival": "corpse-recovered",
+      "hard30FinalLoss": 0,
+      "softStatusAtArrival": "corpse-recovered",
+      "softFinalLoss": 0,
+      "softRecoveryMinutes": 8,
+      "longer60Status": "corpse-recovered",
+      "outageGraceStatus": "corpse-recovered",
+      "protectedAlwaysRetained": 4
+    },
+    {
+      "id": "pumpworks-dungeon",
+      "travel": 20,
+      "interruption": 12,
+      "downtime": 0,
+      "reachable": true,
+      "arrivalMinutes": 32,
+      "hard30StatusAtArrival": "expired-loss",
+      "hard30FinalLoss": 10,
+      "softStatusAtArrival": "lost-found-wait",
+      "softFinalLoss": 0,
+      "softRecoveryMinutes": 390,
+      "longer60Status": "corpse-recovered",
+      "outageGraceStatus": "expired-loss",
+      "protectedAlwaysRetained": 4
+    },
+    {
+      "id": "inkwood-mossbank-approach-phone-interruption",
+      "travel": 18,
+      "interruption": 15,
+      "downtime": 0,
+      "reachable": true,
+      "arrivalMinutes": 33,
+      "hard30StatusAtArrival": "expired-loss",
+      "hard30FinalLoss": 10,
+      "softStatusAtArrival": "lost-found-wait",
+      "softFinalLoss": 0,
+      "softRecoveryMinutes": 390,
+      "longer60Status": "corpse-recovered",
+      "outageGraceStatus": "expired-loss",
+      "protectedAlwaysRetained": 4
+    },
+    {
+      "id": "bellwether-quay-disconnect",
+      "travel": 8,
+      "interruption": 31,
+      "downtime": 0,
+      "reachable": true,
+      "arrivalMinutes": 39,
+      "hard30StatusAtArrival": "expired-loss",
+      "hard30FinalLoss": 10,
+      "softStatusAtArrival": "lost-found-wait",
+      "softFinalLoss": 0,
+      "softRecoveryMinutes": 390,
+      "longer60Status": "corpse-recovered",
+      "outageGraceStatus": "expired-loss",
+      "protectedAlwaysRetained": 4
+    },
+    {
+      "id": "inkwood-service-outage",
+      "travel": 15,
+      "interruption": 0,
+      "downtime": 20,
+      "reachable": true,
+      "arrivalMinutes": 35,
+      "hard30StatusAtArrival": "expired-loss",
+      "hard30FinalLoss": 10,
+      "softStatusAtArrival": "lost-found-wait",
+      "softFinalLoss": 0,
+      "softRecoveryMinutes": 390,
+      "longer60Status": "corpse-recovered",
+      "outageGraceStatus": "corpse-recovered",
+      "protectedAlwaysRetained": 4
+    },
+    {
+      "id": "pumpworks-instance-closed",
+      "travel": 18,
+      "interruption": 0,
+      "downtime": 0,
+      "reachable": false,
+      "arrivalMinutes": 18,
+      "hard30StatusAtArrival": "inaccessible-instance",
+      "hard30FinalLoss": 10,
+      "softStatusAtArrival": "inaccessible-instance",
+      "softFinalLoss": 0,
+      "softRecoveryMinutes": 390,
+      "longer60Status": "inaccessible-instance",
+      "outageGraceStatus": "inaccessible-instance",
+      "protectedAlwaysRetained": 4
+    }
+  ],
+  "audit": {
+    "allLedgersConserve": true,
+    "candidateTeachingUsesAtMostOne": true,
+    "candidateOrientationUsesAtMostOne": true,
+    "noWeeklyAssetDeletion": true
+  }
+}

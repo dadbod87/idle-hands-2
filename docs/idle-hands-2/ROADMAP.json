@@ -295,11 +295,41 @@
       "owner_branch": "feat/town-rhythm"
     },
     {
+      "id": "IH2-054",
+      "title": "Expanded world design, art coverage and pacing foundation",
+      "status": "done",
+      "depends_on": [
+        "IH2-051"
+      ],
+      "goal": "Turn the new exploration, social, combat, recovery and onboarding direction into an implementable design package before the next home slice.",
+      "acceptance": [
+        "All recent owner directions are preserved with direct requirements separate from reversible defaults and unresolved release decisions; current prototype capabilities remain honest.",
+        "Coherent first-region/world, construction, combat/death, character opening and social/chat contracts define state ownership, phone interaction, failure/retry and staged rollout.",
+        "Machine-readable candidate catalog and art/animation coverage distinguish existing runtime art, gaps, concept art and unproduced assets; original/free policy and identity preservation remain explicit.",
+        "Reproducible cohort/spending/construction/recovery design experiments expose bottlenecks and alternatives without real player data, grants or claims of implemented mechanics.",
+        "Readable world map and phone storyboards, cross-document review, required repository checks, exact-head CI and artifact inspection support the next executable IH2-052 task."
+      ],
+      "exclusions": [
+        "No new runtime rooms, combat, public chat, purchases, real identities, hosting or production deployment. No bulk final art library or paid assets."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/README.md",
+        "docs/idle-hands-2/design/CONTENT_CATALOG.json",
+        "docs/evidence/IH2-054/REPORT.md",
+        "docs/evidence/IH2-054/INDEPENDENT_REVIEW.md",
+        "docs/evidence/IH2-054/pacing-experiment.json",
+        "docs/evidence/IH2-054/design-documents.json",
+        "docs/idle-hands-2/handoffs/2026-11-10-expanded-world-design.md"
+      ],
+      "owner_branch": "design/expanded-world-foundation"
+    },
+    {
       "id": "IH2-052",
       "title": "Starter homes, return visits and fair first-session progression",
       "status": "queued",
       "depends_on": [
-        "IH2-051"
+        "IH2-051",
+        "IH2-054"
       ],
       "goal": "Implement physical owner/visitor home entry, one persistent expansion/decorating path and reconcile the first-session loop with slower progression.",
       "acceptance": [
@@ -322,13 +352,14 @@
       ],
       "goal": "Turn the bridge into one useful shared exploration/restoration loop before integrated neighborhood acceptance.",
       "acceptance": [
-        "Bridge completion opens a short safe trail and visibly changes scenery, interactions and authored resident reactions.",
+        "One material-funded bridge construction stage records an immutable readyAt and later opening; grandfather existing restored bridges. Opening adds a short safe useful trail with visible scenery, interactions and authored resident reactions.",
         "One modest earned cosmetic discovery has a deterministic fallback; no luck-gated required access or repeated reward exploit.",
         "Newcomers have a useful follow-on contribution after bridge completion; durable rewards and safe positional/content migration are tested.",
         "Two-client fresh/resume/rollover, phone/keyboard/short layouts, regression/provenance and exact-head CI artifacts pass."
       ],
       "exclusions": [
-        "No broad city, market, guilds, paid content or new public deployment."
+        "No broad city, market, guilds, paid content or new public deployment.",
+        "Use existing three resources/two recipes. New wood species, tool or recipe economy follows integrated IH2-050; no combat/chat expansion in this task."
       ],
       "evidence": []
     },

@@ -1,0 +1,13 @@
+policy,cohort,produced,orientation_credit_spent,bridge_spent,plot_spent,upgrade_spent,balance,first_project_contribution_hours,first_kit_hours,plot_paid_hours,home_ready_hours,upgrade_paid_hours,upgrade_ready_hours
+current-rules,idle,41,0,1,12,24,4,24,24,312,312,888,888
+current-rules,regular,83,0,1,12,24,46,12.0014,12.0014,156.0014,156.0014,444.0014,444.0014
+current-rules,active,83,0,1,12,24,46,12.0014,12.0014,156.0014,156.0014,444.0014,444.0014
+teaching-kit-candidate,idle,41,0,1,12,24,4,0.0847,0.0847,312,318,888,900
+teaching-kit-candidate,regular,83,0,1,12,24,46,0.0847,0.0847,156,162,444,456
+teaching-kit-candidate,active,83,0,1,12,24,46,0.0847,0.0847,156,162,444,456
+teaching-60s-candidate,idle,41,0,1,12,24,4,0.0181,0.0181,312,318,888,900
+teaching-60s-candidate,regular,83,0,1,12,24,46,0.0181,0.0181,156,162,444,456
+teaching-60s-candidate,active,83,0,1,12,24,46,0.0181,0.0181,156,162,444,456
+paid-maintenance-candidate,idle,41,1,0,12,24,5,0.0181,24,288,294,864,876
+paid-maintenance-candidate,regular,83,1,0,12,24,47,0.0181,12.0181,144.0181,150.0181,432.0181,444.0181
+paid-maintenance-candidate,active,83,1,0,12,24,47,0.0181,12.0181,144.0181,150.0181,432.0181,444.0181

@@ -1,0 +1,22 @@
+{
+  "method": "Headless browser rendering of static original SVG DESIGN CONCEPTS. Not gameplay, interactive controls, physical-phone, zoom or accessibility certification. Target dimensions are design pixels, not device measurements.",
+  "measurements": [
+    {
+      "file": "WORLD_CONCEPT.svg",
+      "width": 1480,
+      "height": 1000,
+      "groups": 5,
+      "conceptTargetCount": 0,
+      "clippedText": []
+    },
+    {
+      "file": "PHONE_STORYBOARDS.svg",
+      "width": 1200,
+      "height": 950,
+      "groups": 3,
+      "conceptTargetCount": 12,
+      "clippedText": []
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="950" viewBox="0 0 1200 950" role="img" aria-labelledby="title description">
+<title id="title">Idle Hands 2 candidate phone storyboards</title><desc id="description">Three original vector design concepts: character creation and waking, exploration combat, and town chat with corpse recovery journal. These are unimplemented concepts, not game screenshots. Device interiors are360 by640 design units; controls are at least44 units.</desc>
+<defs><g id="person"><ellipse cx="0" cy="0" rx="16" ry="5" fill="#343c3628"/><path d="M-9-5v-24M9-5v-24" stroke="#48535a" stroke-width="8"/><rect x="-17" y="-57" width="34" height="32" rx="6" fill="#587d79" stroke="#343c36" stroke-width="2"/><path d="M-19-51v25M19-51v25" stroke="#d8ae89" stroke-width="7" stroke-linecap="round"/><ellipse cx="0" cy="-71" rx="15" ry="17" fill="#e4ba92" stroke="#343c36" stroke-width="2"/><path d="M-15-73q-4-22 16-18l14 9-5 2-10-3-9 9Z" fill="#5d5143"/><path d="M-7-71h2M5-71h2M-4-62q4 3 8 0" stroke="#343c36" stroke-width="2"/></g><g id="tree"><path d="M-6 0l1-35h10L7 0Z" fill="#947457" stroke="#343c36" stroke-width="2"/><path d="M-33-34q-16-26 4-39-4-22 21-17 18-15 30 6 27-2 22 24 16 23-9 32-14 13-29 2-25 14-39-8Z" fill="#7d996c" stroke="#343c36" stroke-width="2"/><path d="M-28-63q16-24 27-11 15-18 29 5" fill="none" stroke="#a8bd8d" stroke-width="12" stroke-linecap="round"/></g></defs>
+<g font-family="Georgia,serif"><rect x="0" y="0" width="1200" height="950" rx="0" fill="#d9d2c4" stroke="none" stroke-width="2"/>
+<text x="30" y="38" font-size="15" font-weight="bold" fill="#343c36">IDLE HANDS 2 · DESIGN FOUNDATION</text>
+<text x="30" y="78" font-size="32" font-weight="bold" fill="#343c36">A phone-sized world, with room to play.</text>
+<text x="30" y="110" font-size="17" font-weight="normal" fill="#343c36">CANDIDATE CONCEPTS · UNIMPLEMENTED · Original vector diagrams, not screenshots or purchase flows.</text>
+<g data-screen-id="arrival" transform="translate(30 145)">
+<rect x="0" y="0" width="360" height="640" rx="12" fill="#f8f1df" stroke="#343c36" stroke-width="2"/>
+<rect x="0" y="0" width="360" height="76" rx="12" fill="#f8f1df" stroke="#343c36" stroke-width="2"/>
+<text x="16" y="24" font-size="12" font-weight="bold" fill="#343c36">01 · CHARACTER OPENING</text>
+<text x="16" y="54" font-size="19" font-weight="bold" fill="#343c36">Make an arrival.</text>
+<path d="M0 76h360" stroke="#343c36" stroke-width="2"/>
+<rect x="2" y="78" width="356" height="272" rx="0" fill="#dfc69c" stroke="none" stroke-width="2"/>
+<path d="M2 115h356" stroke="#c6aa7c"/>
+<path d="M2 160h356" stroke="#c6aa7c"/>
+<path d="M2 205h356" stroke="#c6aa7c"/>
+<path d="M2 250h356" stroke="#c6aa7c"/>
+<path d="M2 295h356" stroke="#c6aa7c"/>
+<path d="M2 340h356" stroke="#c6aa7c"/>
+<rect x="226" y="99" width="88" height="72" rx="3" fill="#85aab0" stroke="#343c36" stroke-width="2"/><path d="M270 99v72M226 135h88" stroke="#f8f1df" stroke-width="3"/>
+<rect x="47" y="168" width="174" height="93" rx="5" fill="#947457" stroke="#343c36" stroke-width="2"/><rect x="53" y="174" width="162" height="79" rx="4" fill="#aebc92" stroke="#343c36" stroke-width="2"/><rect x="61" y="181" width="54" height="57" rx="6" fill="#f8f1df" stroke="#343c36" stroke-width="2"/><path d="M120 178v70" stroke="#48685f" stroke-width="3"/>
+<rect x="54" y="100" width="145" height="48" rx="2" fill="#f8f1df" stroke="#343c36" stroke-width="2"/><text x="65" y="120" font-size="13" font-weight="normal" fill="#343c36">Welcome. HR is</text><text x="65" y="139" font-size="13" font-weight="normal" fill="#343c36">still asleep.</text>
+<use href="#person" transform="translate(275 311)"/>
+<text x="20" y="337" font-size="14" font-weight="normal" fill="#343c36">Appearance preview · safe bed exit</text>
+<rect x="2" y="351" width="356" height="287" rx="0" fill="#f8f1df" stroke="none" stroke-width="2"/>
+<text x="16" y="374" font-size="14" font-weight="bold" fill="#343c36">Name · editable preview</text><rect x="16" y="385" width="328" height="44" rx="3" fill="#fffaf0" stroke="#343c36" stroke-width="2" data-ui-target="true"/><text x="28" y="414" font-size="18" font-weight="normal" fill="#343c36">Rowan</text>
+<text x="16" y="453" font-size="14" font-weight="bold" fill="#343c36">Backstory · flavor, no hidden stats</text><rect x="16" y="464" width="328" height="44" rx="3" fill="#fffaf0" stroke="#343c36" stroke-width="2" data-ui-target="true"/><text x="28" y="492" font-size="17" font-weight="normal" fill="#343c36">Former filing prodigy</text>
+<rect x="16" y="528" width="142" height="48" rx="5" fill="#f8f1df" stroke="#343c36" stroke-width="2" data-ui-target="true"/><text x="87.0" y="558" text-anchor="middle" font-size="16" font-weight="bold" fill="#343c36">Appearance</text><rect x="168" y="528" width="176" height="48" rx="5" fill="#48685f" stroke="#343c36" stroke-width="2" data-ui-target="true"/><text x="256.0" y="558" text-anchor="middle" font-size="16" font-weight="bold" fill="#f8f1df">Confirm &amp; wake</text>
+<text x="16" y="600" font-size="14" font-weight="normal" fill="#343c36">Short wake scene; skip/replay safely.</text>
+</g>
+<g data-screen-id="combat" transform="translate(420 145)">
+<rect x="0" y="0" width="360" height="640" rx="12" fill="#f8f1df" stroke="#343c36" stroke-width="2"/>
+<rect x="0" y="0" width="360" height="76" rx="12" fill="#f8f1df" stroke="#343c36" stroke-width="2"/>
+<text x="16" y="24" font-size="12" font-weight="bold" fill="#343c36">02 · EXPLORATION / PvE</text>
+<text x="16" y="54" font-size="19" font-weight="bold" fill="#343c36">Inkwood · optional pocket</text>
+<path d="M0 76h360" stroke="#343c36" stroke-width="2"/>
+<rect x="16" y="83" width="328" height="40" rx="5" fill="#e5e8d6" stroke="#343c36" stroke-width="2"/><text x="28" y="109" font-size="17" font-weight="bold" fill="#343c36">♥  HP 68 / 100</text>
+<rect x="184" y="95" width="146" height="15" rx="3" fill="#d9d2c4" stroke="#343c36" stroke-width="2"/><rect x="184" y="95" width="99" height="15" rx="3" fill="#48685f" stroke="#343c36" stroke-width="2"/>
+<rect x="2" y="129" width="356" height="397" rx="0" fill="#aebc92" stroke="none" stroke-width="2"/>
+<path d="M114 129h115l-4 397H87Z" fill="#ded0ac"/><path d="M123 151l17-2M170 211h15M115 331l17-2M180 453h17" stroke="#c4b48c" stroke-width="2"/>
+<use href="#tree" transform="translate(58 264)"/><use href="#tree" transform="translate(306 387) scale(.85)"/>
+<ellipse cx="227" cy="303" rx="54" ry="37" fill="#e5bf6750" stroke="#8a6838" stroke-width="2" stroke-dasharray="7 5"/>
+<rect x="206" y="244" width="43" height="52" rx="5" fill="#f8f1df" stroke="#343c36" stroke-width="2"/><rect x="216" y="238" width="24" height="12" rx="3" fill="#e5bf67" stroke="#343c36" stroke-width="2"/><path d="M214 263h26M214 273h26M214 283h16M209 297l-8 15M245 297l7 15" stroke="#343c36" stroke-width="2"/>
+<text x="181" y="229" font-size="13" font-weight="bold" fill="#343c36">Paper mite · tell</text>
+<use href="#person" transform="translate(145 426)"/>
+<path d="M167 381l30-21" stroke="#947457" stroke-width="7" stroke-linecap="round"/>
+<text x="18" y="504" font-size="15" font-weight="normal" fill="#343c36">Tap clear ground to move.</text>
+<rect x="2" y="527" width="356" height="111" rx="0" fill="#f8f1df" stroke="none" stroke-width="2"/>
+<text x="16" y="550" font-size="12" font-weight="normal" fill="#343c36">Target symbols remain under reduced motion.</text>
+<rect x="12" y="566" width="104" height="48" rx="5" fill="#f8f1df" stroke="#343c36" stroke-width="2" data-ui-target="true"/><text x="64.0" y="596" text-anchor="middle" font-size="16" font-weight="bold" fill="#343c36">Journal</text><rect x="126" y="566" width="104" height="48" rx="5" fill="#48685f" stroke="#343c36" stroke-width="2" data-ui-target="true"/><text x="178.0" y="596" text-anchor="middle" font-size="16" font-weight="bold" fill="#f8f1df">Attack</text><rect x="240" y="566" width="108" height="48" rx="5" fill="#f8f1df" stroke="#343c36" stroke-width="2" data-ui-target="true"/><text x="294.0" y="596" text-anchor="middle" font-size="16" font-weight="bold" fill="#343c36">Retreat</text>
+</g>
+<g data-screen-id="journal" transform="translate(810 145)">
+<rect x="0" y="0" width="360" height="640" rx="12" fill="#f8f1df" stroke="#343c36" stroke-width="2"/>
+<rect x="0" y="0" width="360" height="76" rx="12" fill="#f8f1df" stroke="#343c36" stroke-width="2"/>
+<text x="16" y="24" font-size="12" font-weight="bold" fill="#343c36">03 · CHAT / RECOVERY</text>
+<text x="16" y="54" font-size="19" font-weight="bold" fill="#343c36">Ledgerwick · lodging</text>
+<path d="M0 76h360" stroke="#343c36" stroke-width="2"/>
+<rect x="2" y="78" width="356" height="252" rx="0" fill="#aebc92" stroke="none" stroke-width="2"/><path d="M113 78h120v252H96Z" fill="#ded0ac"/>
+<rect x="48" y="109" width="118" height="76" rx="4" fill="#dfc69c" stroke="#343c36" stroke-width="2"/><rect x="55" y="115" width="103" height="49" rx="5" fill="#f8f1df" stroke="#343c36" stroke-width="2" data-ui-target="true"/><rect x="55" y="147" width="103" height="31" rx="3" fill="#aebc92" stroke="#343c36" stroke-width="2"/>
+<use href="#person" transform="translate(222 290)"/>
+<rect x="104" y="91" width="228" height="62" rx="8" fill="#f8f1df" stroke="#343c36" stroke-width="2"/><text x="116" y="114" font-size="15" font-weight="normal" fill="#343c36">Town · Jun</text><text x="116" y="136" font-size="15" font-weight="normal" fill="#343c36">I left you a map.</text><path d="M210 153l13 14 4-14" fill="#f8f1df" stroke="#343c36" stroke-width="2"/>
+<text x="18" y="316" font-size="13" font-weight="normal" fill="#343c36">Safe town bed · belongings stay owner-bound</text>
+<rect x="2" y="332" width="356" height="306" rx="0" fill="#f8f1df" stroke="none" stroke-width="2"/><text x="16" y="357" font-size="14" font-weight="bold" fill="#343c36">TOWN JOURNAL  /  RECOVERY</text>
+<rect x="16" y="371" width="328" height="71" rx="4" fill="#e5e8d6" stroke="#343c36" stroke-width="2"/><text x="27" y="396" font-size="16" font-weight="bold" fill="#343c36">Belongings · Inkwood clearing</text><text x="27" y="423" font-size="14" font-weight="normal" fill="#343c36">24:08 left · example, not final tuning</text>
+<text x="16" y="466" font-size="14" font-weight="normal" fill="#343c36">11:03  You woke safely in Ledgerwick.</text><text x="16" y="489" font-size="14" font-weight="normal" fill="#343c36">11:02  Your recovery marker was saved.</text>
+<rect x="16" y="512" width="157" height="48" rx="5" fill="#48685f" stroke="#343c36" stroke-width="2" data-ui-target="true"/><text x="94.5" y="542" text-anchor="middle" font-size="16" font-weight="bold" fill="#f8f1df">Show route</text><rect x="183" y="512" width="161" height="48" rx="5" fill="#f8f1df" stroke="#343c36" stroke-width="2" data-ui-target="true"/><text x="263.5" y="542" text-anchor="middle" font-size="16" font-weight="bold" fill="#343c36">Recovery details</text>
+<rect x="16" y="575" width="254" height="46" rx="4" fill="#fffaf0" stroke="#343c36" stroke-width="2" data-ui-target="true"/><text x="27" y="604" font-size="16" font-weight="normal" fill="#343c36">Town · Write a message…</text><rect x="280" y="575" width="64" height="48" rx="5" fill="#48685f" stroke="#343c36" stroke-width="2" data-ui-target="true"/><text x="312" y="605" text-anchor="middle" font-size="16" font-weight="bold" fill="#f8f1df">Send</text>
+</g>
+<text x="30" y="818" font-size="20" font-weight="bold" fill="#343c36">Identity before animation</text>
+<text x="30" y="846" font-size="15" font-weight="normal" fill="#343c36">Preview appearance, name and flavor.</text><text x="30" y="869" font-size="15" font-weight="normal" fill="#343c36">Confirm once; waking presents saved state.</text><text x="30" y="892" font-size="15" font-weight="normal" fill="#343c36">Starting lodging is not house ownership.</text>
+<text x="420" y="818" font-size="20" font-weight="bold" fill="#343c36">Keep the encounter readable</text>
+<text x="420" y="846" font-size="15" font-weight="normal" fill="#343c36">Health, a tell and retreat stay visible.</text><text x="420" y="869" font-size="15" font-weight="normal" fill="#343c36">Optional marked pocket; safe route remains.</text><text x="420" y="892" font-size="15" font-weight="normal" fill="#343c36">Damage and loot need server receipts.</text>
+<text x="810" y="818" font-size="20" font-weight="bold" fill="#343c36">Journal outlives the bubble</text>
+<text x="810" y="846" font-size="15" font-weight="normal" fill="#343c36">One drawer; typing pauses movement keys.</text><text x="810" y="869" font-size="15" font-weight="normal" fill="#343c36">30-minute recovery is only a candidate.</text><text x="810" y="892" font-size="15" font-weight="normal" fill="#343c36">Private messages never appear overhead.</text>
+<text x="30" y="932" font-size="15" font-weight="normal" fill="#343c36">360 × 640 concept interiors · action targets ≥44 design px · real-device, short-view and200% testing still required.</text>
+</g></svg>

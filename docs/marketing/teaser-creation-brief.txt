@@ -1,0 +1,34 @@
+Built-in image generation. Initial generation prompt:
+
+Use case: ads-marketing.
+Create one polished, shareable landscape teaser poster for the office game IDLE HANDS 2, approximately 3:2 landscape. This is aspirational development concept art, not a screenshot or a finished-game claim.
+
+Visual direction: a distinctive original illustrated company town. Warm ivory paper, slate-ink outlines, sage greens, terracotta roofs, muted teal work clothes, brass and honey-colored evening light. Crisp, charming 2D storybook / editorial illustration, hand-authored-looking silhouettes, subtle grain, rich but restrained material detail. More finished and atmospheric than a simple prototype. No pixel art, no glossy 3D, no medieval combat or generic fantasy aesthetics.
+
+Scene: an inviting little town at golden dusk, viewed from an elevated game-like angle. An individual cozy cottage with a garden and a partially decorated porch, a timber workshop, and a taller plaster café with warm windows and a striped awning, each visibly different in shape and size. Varied oak, birch and fruit trees, cobbled and dirt paths, planted beds and a stream with a wooden footbridge being restored. Three or four small expressive adult residents with varied hair/skin/work clothes: one carrying timber, two lending a hand near the bridge, one tending a small garden. A partly revealed path beyond the trees hints at more to discover. Keep the world intimate and credible, not a vast completed city. Quiet civic humor in the mood; no joke overload or extra text on signs.
+
+Composition: premium game announcement poster, clean confident hierarchy, generous safe margins. Upper portion has uncluttered warm paper / sky space for large readable title and very little teaser copy. The town scene fills most of the lower area, visually inviting exploration. Professional typography reminiscent of handsome Georgia-style serif headings paired with small restrained typewriter labels. All text must remain legible when shared in Slack on a phone. No interface, HUD, currency counters, buttons, release date, link or QR code.
+
+Render exactly this text, no additional copy:
+Small brand line: "THE PATRON GROUP"
+Large main title: "IDLE HANDS 2"
+Small prominent status: "IN DEVELOPMENT"
+Teaser line: "A little town. A lot of unfinished business."
+Short supporting line: "Gather. Craft. Build something together."
+Small footer disclosure, still readable: "Development concept art · Final visuals may change"
+
+Deliver a finished beautiful teaser image, not a mockup of a poster on a wall. Opaque background. Original artwork only.
+
+Humorous revision prompt:
+
+Edit this Idle Hands 2 development teaser, preserving its polished original storybook illustration, warm dusk palette, paper texture, handsome typography, large title, cottage/workshop/café, four residents, stream and bridge. Keep it a beautiful landscape poster that reads on a phone. Preserve the brand line "THE PATRON GROUP", main title "IDLE HANDS 2", status "IN DEVELOPMENT", and footer "Development concept art · Final visuals may change".
+
+Make the office humor more obvious but friendly. Replace the two existing teaser lines with exactly:
+"New town. Same questionable work ethic."
+"Build. Explore. Try to look busy."
+Keep the first line elegant serif italic and the second smaller restrained typewriter style, both easy to read. Do not retain the previous two lines.
+
+Give one gentle hint of the bigger world: beyond the café, extend the existing winding path slightly into a richer layered forest, with distant tiny roof shapes through the trees suggesting another settlement. At the far-right forest edge include ONE small mischievous original woodland creature peeking out (a round mossy forest blob with bright curious eyes), furtively holding a stolen clipboard. Small enough to be an amusing discovery, clearly readable as a creature and not an extra human resident. This should feel playful and mysterious, not dangerous, bloody or childish. Do not turn the poster into a crowded fantasy battle, show weapons or spoil dungeons. No other added text, interface, date, link or QR code.
+
+This remains aspirational concept art for a game in development, not an actual game screenshot.
+

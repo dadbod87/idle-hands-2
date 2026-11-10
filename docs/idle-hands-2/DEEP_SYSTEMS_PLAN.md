@@ -8,13 +8,16 @@ User direction: a separate, slower, persistent game with humor, teamwork, explor
 
 Agent-selected defaults in this document are proposals, not final prices, balance or approved asset volume. The [vision](VISION.md), [living-town loop](LIVING_TOWN_SYSTEMS.md), [pacing and housing targets](PACING_AND_HOUSING.md) and [reuse review](SYSTEMS_REUSE_REVIEW.md) provide the governing context. In particular, simulate ordinary return visits rather than rewarding continuous clicking; expansion comes after one neighborhood works on phones.
 
+The [IH2-054 expanded-world foundation](design/README.md) now reconciles later owner directions: regional exploration, optional combat, bed/corpse recovery, chat/social cooperation, construction timers and opening/door animation. Its machine catalog is the current cross-system candidate inventory; this earlier document supplies depth and material/animation principles. Neither is executable balance. Design-only054 precedes052; no new wood/tool/recipe economy is included in053.
+
 ## Split the next work into reviewable slices
 
 | Slice | Scope | Completion evidence |
 |---|---|---|
 | IH2-051 · Town rhythm and first conversations | Cosmetic dawn/day/dusk/night, weather, three useful NPC conversations and this plan | Pure clock tests, readable overlays, reduced/hidden behavior, phone screenshots; no new production modifiers |
+| IH2-054 · Expanded-world foundation | Coherent systems/content/art design and pacing experiments | Catalog/runtime anchors, labelled world/phone concepts, deterministic experiments and exact-head source checks |
 | IH2-052 · Starter homes and return visits | Physical owner/visitor home, one preserved expansion/decorating path, first-session kit gap and offline summary | Durable ownership/migration/replay and six-week pacing fixtures, newcomer teaching without repeat income |
-| IH2-053 · Restored trail and discovery | A useful bridge/trail story, resident reactions, newcomer follow-on work and one earned cosmetic | Two-client restoration/reward safety, safe destination migration and no luck-gated essential access |
+| IH2-053 · Restored trail and discovery | One timed bridge stage with grandfathered existing completion, safe trail, resident reactions, newcomer follow-on work and one earned cosmetic using the existing catalog | Two-client restoration/reward safety, safe destination migration and no luck-gated essential access |
 | IH2-050 · Integrated neighborhood acceptance | Reconcile the original brief after the three smaller slices | Fresh/resumed/reconnected playthroughs, honest timing/return reasons and final UX evidence |
 
 The machine-readable roadmap controls ordering and completion. Deeper resource/growing/shop/equipment candidates below are later bounded selections, not hidden additions to these slices. Preserve the original parent acceptance; splitting work must not mark unimplemented homes or trails complete.

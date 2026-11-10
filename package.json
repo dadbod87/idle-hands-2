@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "tsc --noEmit && tsc -p tsconfig.server.json && vite build",
+    "build": "tsc --noEmit && tsc -p tsconfig.server.json && tsc -p tsconfig.design.json && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "test:browser": "playwright test",
@@ -16,7 +16,8 @@
     "town:db": "node --experimental-strip-types tools/town-db.ts start",
     "town:server": "node --experimental-strip-types tools/run-local-server.ts",
     "town:test-server": "node --experimental-strip-types tools/browser-server.ts",
-    "test:server": "node --experimental-strip-types tools/run-server-tests.ts"
+    "test:server": "node --experimental-strip-types tools/run-server-tests.ts",
+    "check:design": "tsc -p tsconfig.design.json && node --experimental-strip-types tools/check-design-plan.ts"
   },
   "dependencies": {
     "pg": "8.16.3",

@@ -1,0 +1,20 @@
+{
+  "domainTests": 82,
+  "domainFailed": 0,
+  "domainSkipped": 0,
+  "browserTests": 34,
+  "browserFailed": 0,
+  "browserMinutes": 3.3,
+  "build": "PASS",
+  "designCatalog": "PASS;45 entries/5 regions",
+  "plan": "PASS;18 tasks/10 tracker tests",
+  "pinnedToolkit": "PASS;40 files",
+  "diff": "PASS",
+  "actualImagesInspected": [
+    "world-concept.png",
+    "phone-storyboards.png",
+    "rhythm-narrow-night.png",
+    "shared-short-text-200.png"
+  ],
+  "disclosure": "Local synthetic fixtures and desktop viewport emulation; concepts are static original SVG diagrams. Not a public deployment or physical-device certification."
+}

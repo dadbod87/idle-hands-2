@@ -45,3 +45,10 @@
 - Actual day/night/dawn/dusk foliage pixels, unchanged HUD pixels, reachable doors, bright interiors, drizzle reduced/hidden resets and no added API work. Explicitly disclose visual-time, saved-position, queued-job and hidden-state fixtures.
 - NPC body/keyboard/directory access, menu input lock, safe one-shot arrivals, state-aware copy and no dialogue rewards; authored residents distinct from player presence.
 -66 domain/art/server checks,33 full browser cases, strict build, planning/integrity/diff. Both exact-head CI jobs plus actual final screenshots inspected before merge. No physical-phone/cloud-load/full accessibility claim.
+
+## IH2-054 design foundation
+- Keep owner directions, reversible defaults, open policies and existing runtime separate; reconcile canonical brief/vision/roadmap.
+- `npm run check:design` validates candidate IDs, runtime recipe anchors, ingredient phases, art gaps and safe no-luck routes. Build also type-checks design tools/tests; meaningful mutation tests reject drift.
+- Deterministic design-only cohort/construction/late-join/recovery experiments conserve materials, reproduce committed artifacts and expose hard-expiry/first-kit failures. Never present them as server implementation.
+- Render and inspect actual original SVG world/phone diagrams with labels and bounds; target dimensions are design pixels, not physical-phone/a11y certification. Inspect final CI images too.
+- Full domain/browser/build/plan/pinned-integrity/diff gates and both exact-head CI jobs before source merge. Verify runtime bundles/source unchanged. No game release or cloud provisioning in this task.

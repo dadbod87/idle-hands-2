@@ -1,5 +1,7 @@
 # History
 
+2026-11-10 — IH2-054: design-only expanded-world foundation connects owner directions for item/action art, construction timers, regional exploration, character opening, optional PvE/death recovery and social systems. Original world/phone concepts,45 candidate catalog entries with explicit art gaps, and reproducible six-week spending/late-join/construction/recovery experiments. Tests expose first-kit material trap and hard corpse-expiry interruption risks. Canonical brief/vision/roadmap reconciled;052 remains next runtime work. No runtime/economy/deployment changes.
+
 2026-11-10 — IH2-051: world-only compositor lighting and bounded raw-frame walking avoid smoothed-delta slowdown without changing domain movement steps or production clocks; shared walks now wait within acknowledged prediction, ignore obsolete identity recovery and confirm doorway approaches before entering; tiny frame tails preserve routes and DOM mouse origins cannot retarget the floor. All existing browser cases and CI deadlines remain required.
 
 2026-11-10 — IH2-051: bounded first-neighborhood slice adds48-minute cosmetic day/night, deterministic clear/overcast/drizzle, warm windows, real-time production clarification and three state-aware fictional conversations via body taps/keyboard/Places. World lighting never changes jobs, costs or weekly state; reduced/hidden/interior rain safeguards. Expanded discoverable deep-systems plan and split parent neighborhood acceptance into051/052/053/050. No crops/shops/equipment economy or physical homes/trail falsely claimed.

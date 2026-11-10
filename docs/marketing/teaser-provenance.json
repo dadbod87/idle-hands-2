@@ -1,0 +1,16 @@
+{
+  "purpose": "Approved office marketing concept; not runtime art or a gameplay screenshot",
+  "created": "2026-11-10",
+  "tool": "Built-in image generation; generation plus humorous edit",
+  "approval": "Owner approved the humorous second version in this conversation",
+  "image": "idle-hands-2-development-teaser-v2.png",
+  "sha256": "fddfc75d2bc805f9cd0c115bee6dc605b760b9ed32a4d1001e6c6467142a3adb",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "promptFile": "teaser-creation-brief.txt",
+  "runtimeUsage": false,
+  "thirdPartyAssetPack": false,
+  "disclosure": "Development concept art; final visuals may change. No launch date or finished-feature claim."
+}

@@ -1,5 +1,5 @@
 import {TOWN_PEOPLE} from './town-people.ts';
-export type Room = 'square' | 'workshop';
+export type Room = 'square' | 'workshop' | 'home' | 'home-expanded';
 export type Point = { x: number; y: number };
 export type Stop = { id: string; name: string; point: Point; text: string; transition?: Room; arrival?: Point; doorArea?: [number, number, number, number] };
 export type World = { width: number; height: number; blocked: [number, number, number, number][]; stops: Stop[] };
@@ -14,10 +14,19 @@ export const worlds: Record<Room, World> = {
       { id: 'supplies', name: 'Supply depot', point: {x:25,y:30}, doorArea:[24.5,27.5,2,2], text: 'The essentials. In a box marked non-essential.' },
       { id: 'workshop', name: 'Workshop', point: { x: 20, y: 22 }, transition: 'workshop', arrival: { x: 9, y: 11 }, doorArea: [19.25, 20, 1.5, 2.25], text: 'Your workshop. The desk is temporary. The paperwork is structural.' },
       { id: 'cafe', name: 'The Almost Open Café', point: { x: 30, y: 22 }, text: 'The opening date is pencilled in. The pencil has requested an extension.' },
+      {id:'home-front',name:'House front door',point:{x:30,y:35.5},doorArea:[29.25,34.75,1.5,2],text:'An earned home. Knock once; the paperwork stays outside.'},
       { id: 'plot', name: 'Future house plots', point: { x: 30, y: 29 }, text: 'Room to put down roots. The full game will let you acquire a plot, upgrade a house and make it yours. No plots are sold in this pilot.' },
       ...TOWN_PEOPLE.map(person=>({id:person.id,name:person.name+' · '+person.role.split(' · ')[0],point:person.point,doorArea:person.doorArea,text:'Talk to '+person.name+'.'})),
       { id: 'bridge', name: 'Bridge committee', point: { x: 24, y: 13 }, text: 'A future shared project: everyone contributes, everyone gets a new place to explore. Today the committee is only inspecting the concept of a bridge.' }
     ]
+  },
+  home: {
+    width: 18, height: 16, blocked: [[2,2,4,3]],
+    stops: [{id:'home-door',name:'Town square',point:{x:9,y:13},transition:'square',arrival:{x:30,y:35.5},doorArea:[8,13,3,2],text:'Your own threshold. The committee cannot claim credit for the curtains.'}]
+  },
+  'home-expanded': {
+    width: 24, height: 16, blocked: [[2,2,4,3]],
+    stops: [{id:'home-door',name:'Town square',point:{x:9,y:13},transition:'square',arrival:{x:30,y:35.5},doorArea:[8,13,3,2],text:'Back to the square. The extra room is still yours when you return.'}]
   },
   workshop: {
     width: 18, height: 16,

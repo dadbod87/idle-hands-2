@@ -48,3 +48,6 @@ Milestone gates: engine pilot → visual kit → local loop → durable two-play
 Use `docs/idle-hands-2/handoffs/` for dated closeouts and `CURRENT_SESSION.md` for the current pointer. Prototype screenshots/reports go in the sequel's `docs/evidence/<task>/`; test output may be ignored, but keep a small durable summary and selected screenshots with synthetic data disclosed. Task evidence links must be repository-relative, present, and immutable commits referenced when known. Never paste tokens or real-user payloads.
 
 Each task should revert independently. Save migrations need forward recovery and restore tests, not blind data rollback. Paid/server setup stays absent until its explicit gate. Changes in this planning directory do not bump the current game build.
+
+## Owner-authorized sequential run — 2026-11-10
+Nick explicitly requested continuing through successive sections while away until usage runs low. This supersedes the one-task-per-prompt stop for this active run: keep only one task active, finish its checks/CI/artifact review/merge/closeout, then select the next ready section. Preserve approximately10% weekly allowance, recheck at boundaries, no reset credits. Hosting, real accounts, spending and public release retain their gates; no timer or background automation is created.

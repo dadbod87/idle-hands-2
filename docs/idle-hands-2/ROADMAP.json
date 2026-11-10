@@ -326,7 +326,7 @@
     {
       "id": "IH2-052",
       "title": "Starter homes, return visits and fair first-session progression",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-051",
         "IH2-054"
@@ -341,7 +341,16 @@
       "exclusions": [
         "No whole resource/crop/shop economy or multiple districts; no real-player data or billed/public services."
       ],
-      "evidence": []
+      "evidence": [
+        "docs/evidence/IH2-052/REPORT.md",
+        "docs/evidence/IH2-052/INDEPENDENT_REVIEW.md",
+        "docs/evidence/IH2-052/local-checks.json",
+        "docs/evidence/IH2-052/homes-ownership.json",
+        "docs/evidence/IH2-052/maintenance-ui.json",
+        "docs/evidence/IH2-052/home-retry-fixture.json",
+        "docs/idle-hands-2/handoffs/2026-11-10-starter-homes.md"
+      ],
+      "owner_branch": "feat/starter-homes-returns"
     },
     {
       "id": "IH2-053",

@@ -4,10 +4,11 @@ import { Session } from '../src/game/session.ts';
 import { worlds, walkable, pathTo, canStand, clearSegment, routeTo, type Room } from '../src/game/world.ts';
 
 test('every named destination has a walkable route and never crosses blocked cells', () => {
- for (const room of ['square','workshop'] as Room[]) {
+ for (const room of Object.keys(worlds) as Room[]) {
   const start = room === 'square' ? {x:24,y:25} : {x:9,y:11};
   for (const stop of worlds[room].stops) {
-   const path=pathTo(room,start,stop.point); assert.ok(path.length);
+   if(!Number.isInteger(stop.point.x)||!Number.isInteger(stop.point.y)){const route=routeTo(room,start,stop.point);assert.ok(route.length,room+':'+stop.id);let previous=start;for(const point of route){assert.ok(clearSegment(room,previous,point));previous=point;}assert.deepEqual(previous,stop.point);continue;}
+   const path=pathTo(room,start,stop.point); assert.ok(path.length,room+':'+stop.id);
    let previous=start;
    for(const p of path){ assert.ok(walkable(room,p));assert.equal(Math.abs(previous.x-p.x)+Math.abs(previous.y-p.y),1);previous=p; }
    assert.deepEqual(previous,stop.point);
@@ -97,4 +98,8 @@ test('the visible lower edge of the bench approaches and opens like its upper ed
  let arrival;
  for(let i=0;i<100;i++){session.tick(50);arrival=session.takeArrival();if(arrival)break;}
  assert.equal(arrival?.id,'bench');assert.equal(session.takeArrival(),undefined);
+});
+
+test('fractional frame remainders preserve the route around the home plot corners',()=>{
+ for(const delta of [16.6667,50,16.7,10]){const session=new Session();session.enter('square',{x:30,y:29});assert.ok(session.point({x:30,y:35.5}));for(let frame=0;frame<1500&&session.path.length;frame++){const previous={...session.position};session.tick(delta);assert.ok(clearSegment('square',previous,session.position));}assert.deepEqual(session.position,{x:30,y:35.5});assert.equal(session.takeArrival()?.id,'home-front');assert.equal(session.takeArrival(),undefined);}
 });

@@ -76,3 +76,6 @@ Budget from measurements, not atlas counts alone: record compressed transfer, de
 3. Choose one supported first weapon/encounter and a clear retreat gesture before commissioning more creatures or weapon sheets.
 4. Validate character-body/clothing/tool combinations and touch legibility on a physical phone before multiplying equipment slots.
 5. Finalize chat audience/moderation/privacy separately from fictional local fixtures. No private-message bubble or fake online identity in an art sample.
+
+## IH2-052 production update
+Nineteen original vectors now cover starter/expanded exteriors and interiors, six furniture world/icon pairs and three material icons under public/art/homes; deterministic tools/create-home-art.py and exact provenance record them. Runtime furnishings now use their authored home-* forms and bag/selection icons. Both home rooms retain the original six placement IDs; expansion adds continuous floor to the right. The table above is the historical054 gap audit, not a claim these19assets are still absent. Future action/stage/equipped families remain incomplete; no full catalog family is marked final.

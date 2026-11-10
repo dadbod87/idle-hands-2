@@ -6,7 +6,8 @@ import './ui/style.css';
 import {questStep} from './game/workshop.ts';
 import {climateFixture} from './game/town-climate.ts';
 import {dialogueFor,type DialogueContext} from './game/town-people.ts';
-import {TownClient,TownUI} from './ui/town.ts';
+import {returnSummary,visitBaseline,parseVisit,type VisitBaseline} from './game/return-summary.ts';
+import {TownClient,TownUI,type TownSnapshot} from './ui/town.ts';
 import {WorkshopUI} from './ui/workshop.ts';
 import { renderStudy, renderVarietyStudy, guideContents } from './art/study.ts';
 if(new URLSearchParams(location.search).has('variety-study')) { renderVarietyStudy(); } else if(new URLSearchParams(location.search).has('art-study')) { renderStudy(); } else {
@@ -49,22 +50,35 @@ let lastContext = '';
 let portalIntent=0;
 function save() { if(townMode)return; try { localStorage.setItem(saveKey, JSON.stringify(session.save())); } catch { feedback.textContent = 'Position could not be saved in this browser. The pilot remains playable.'; } }
 function focusWorld() { document.querySelector('canvas')?.focus(); }
-function closePanel() { workshop.closed(); if (session.locked) session.lock(false); panel.close(); focusWorld(); }
+function unlockWorld(){if(session.locked&&!panel.open&&!transitionBusy&&(!townMode||!!town?.snapshot&&!needResync&&!town.retryAvailable))session.lock(false);}
+function closePanel() { workshop.closed(); panel.close();unlockWorld(); focusWorld(); }
 panel.addEventListener('submit', event => { event.preventDefault(); closePanel(); });
-panel.addEventListener('close', () => { workshop.closed(); if (session.locked) session.lock(false); focusWorld(); });
-panel.addEventListener('cancel', () => { session.lock(false); });
-function openPanel(heading: string) { portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal(); }
+panel.addEventListener('close', () => { workshop.closed();unlockWorld(); focusWorld(); });
+panel.addEventListener('cancel', event => {event.preventDefault();closePanel();});
+function openPanel(heading: string) { pendingHomePlotId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }
 let townUI:TownUI|undefined;
+let pendingHomePlotId:string|undefined;
+let homePlotId:string|undefined,transitionBusy=false;
+const contextKey=(room:string,plotId?:string)=>room+':'+(room.startsWith('home')?plotId??'':'');
+function rememberVisit(){if(!town?.snapshot)return;try{localStorage.setItem('ih2:visit:'+town.snapshot.playerId,JSON.stringify(visitBaseline(town.snapshot)));}catch{/* Optional view hint only; progress is saved by the server. */}}
+function previousVisit(id:string):VisitBaseline|null{try{return parseVisit(JSON.parse(localStorage.getItem('ih2:visit:'+id)??'null'),id);}catch{return null;}}
 let residentId='',serverInstance='',needResync=true,lastSent='',lastMove=0,moveBackoff=0;
 let movement:Promise<void>|null=null;
-let walkedDistance=0,confirmedDistance=0,movementEpoch=0,confirmedRoom=session.room;
+let walkedDistance=0,confirmedDistance=0,movementEpoch=0,confirmedContext=contextKey(session.room);
 // Predict a short visible walk, then wait for confirmation without cancelling the route.
 // Keep the existing server's two-tile burst limit and movement rate checks authoritative.
-scene.movementBudget=()=>!townMode?Infinity:!town?.snapshot||session.room!==confirmedRoom?0:Math.max(0,1.5-(walkedDistance-confirmedDistance));
+scene.movementBudget=()=>!townMode?Infinity:!town?.snapshot||town.retryAvailable||contextKey(session.room,homePlotId)!==confirmedContext?0:Math.max(0,1.5-(walkedDistance-confirmedDistance));
+scene.onSteer=()=>{pendingHomePlotId=undefined;};
 scene.onMovement=distance=>{if(townMode)walkedDistance+=distance;};
+function adoptTownPosition(snapshot:TownSnapshot){
+ portalIntent++;scene.residents=[];homePlotId=snapshot.position.homePlotId;session.enter(snapshot.position.room,snapshot.position.position);walkedDistance=0;confirmedDistance=0;confirmedContext=contextKey(snapshot.position.room,homePlotId);movementEpoch++;residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);scene.homePlotId=homePlotId;const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);unlockWorld();
+}
 const town=townMode?new TownClient({
- onSnapshot:snapshot=>{skyOffset=snapshot.serverTime-Date.now();if(residentId!==snapshot.playerId||needResync||(snapshot.serverInstance&&snapshot.serverInstance!==serverInstance)){scene.residents=[];session.enter(snapshot.position.room,snapshot.position.position);walkedDistance=0;confirmedDistance=0;confirmedRoom=snapshot.position.room;movementEpoch++;residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);if(!panel.open)session.lock(false);}scene.residentId=snapshot.playerId;scene.bridgeRestored=snapshot.bridge.restored;scene.refreshDecorations();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
+ onSnapshot:snapshot=>{skyOffset=snapshot.serverTime-Date.now();const identityChanged=residentId!==snapshot.playerId;const expandedInPlace=session.room==='home'&&snapshot.position.room==='home-expanded'&&snapshot.position.homePlotId===homePlotId;
+ // Ordinary snapshots can race acknowledged movement. Only explicit entry/resume or an in-place forward expansion adopts feet.
+ if(identityChanged||needResync||expandedInPlace||(snapshot.serverInstance&&snapshot.serverInstance!==serverInstance))adoptTownPosition(snapshot);
+ scene.homePlotId=homePlotId;const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.houseLevel=Number(snapshot.plot?.level??snapshot.plots[0]?.level??0);scene.residentId=snapshot.playerId;scene.bridgeRestored=snapshot.bridge.restored;scene.refreshDecorations();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
  onPresence:presence=>{scene.residents=Array.isArray(presence)?presence:[];},
  onConnection:message=>{feedback.textContent=message;if(message.includes('interrupted')){needResync=true;session.lock(true);}},
  beforeCommand:()=>flushMovement(true)
@@ -73,17 +87,17 @@ async function flushMovement(force=false):Promise<void>{
  if(!town?.snapshot)return;if(movement){if(!force)return;await movement;}
  if(!town.snapshot)return;
  if(!force&&(Date.now()-lastMove<150||Date.now()<moveBackoff))return;
- const value={room:session.room,position:{...session.position}},hash=JSON.stringify(value);if(hash===lastSent){if(!movement&&!needResync&&value.room===confirmedRoom)confirmedDistance=walkedDistance;return;}
+ const value={room:session.room,position:{...session.position},...(session.room.startsWith('home')&&homePlotId?{homePlotId}:{})},hash=JSON.stringify(value);if(hash===lastSent){if(!movement&&!needResync&&contextKey(value.room,homePlotId)===confirmedContext)confirmedDistance=walkedDistance;return;}
  const sentDistance=walkedDistance,epoch=movementEpoch,sentPlayerId=town.snapshot.playerId;
  lastMove=Date.now();
- const action=town.movement(value).then(()=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;lastSent=hash;confirmedDistance=Math.max(confirmedDistance,sentDistance);confirmedRoom=value.room;moveBackoff=0;}).catch(async error=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;moveBackoff=Date.now()+2000;needResync=true;session.lock(true);feedback.textContent='Movement could not be confirmed. Reconnecting to the local town…';try{const snapshot=await town.load();if(snapshot.playerId!==sentPlayerId||town.snapshot?.playerId!==sentPlayerId)return;session.enter(snapshot.position.room,snapshot.position.position);lastSent=JSON.stringify(snapshot.position);}catch{/* SSE reconnect reloads the authoritative position. */}if(force)throw error;}).finally(()=>{if(movement===action)movement=null;});
+ const action=town.movement(value).then(()=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;lastSent=hash;confirmedDistance=Math.max(confirmedDistance,sentDistance);confirmedContext=contextKey(value.room,value.homePlotId);moveBackoff=0;}).catch(async error=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;moveBackoff=Date.now()+2000;needResync=true;session.lock(true);feedback.textContent='Movement could not be confirmed. Reconnecting to the local town…';try{const snapshot=await town.load();if(snapshot.playerId!==sentPlayerId||town.snapshot?.playerId!==sentPlayerId)return;homePlotId=snapshot.position.homePlotId;session.enter(snapshot.position.room,snapshot.position.position);lastSent=JSON.stringify(snapshot.position);}catch{/* SSE reconnect reloads the authoritative position. */}if(force)throw error;}).finally(()=>{if(movement===action)movement=null;});
  movement=action;await action;
 }
 const remoteWorkshop=town?.workshopAdapter();
-const workshop=new WorkshopUI({open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>scene.refreshDecorations()},remoteWorkshop);
-if(town){townUI=new TownUI({open:openPanel,body,feedback:message=>feedback.textContent=message,changed:()=>scene.refreshDecorations()},town);document.querySelector('#resident')!.addEventListener('click',()=>void townUI!.showLogin(()=>closePanel()));}
-scene.decorations=()=>workshop.state.placements;
-document.querySelector('#bag')!.addEventListener('click',()=>workshop.showInventory());
+const workshop=new WorkshopUI({open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>scene.refreshDecorations(),...(town?{teaching:()=>townUI?.showLesson(),returns:()=>town?.snapshot&&townUI?.showReturns(returnSummary(town.snapshot,previousVisit(town.snapshot.playerId))),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
+if(town){townUI=new TownUI({open:openPanel,body,feedback:message=>feedback.textContent=message,changed:()=>scene.refreshDecorations(),enterHome},town);document.querySelector('#resident')!.addEventListener('click',()=>void townUI!.showLogin(()=>closePanel()));}
+scene.decorations=()=>session.room.startsWith('home')?(town?.snapshot?.plots.find(plot=>plot.id===homePlotId)?.placements??workshop.state.placements) as typeof workshop.state.placements:workshop.state.placements;
+document.querySelector('#bag')!.addEventListener('click',()=>{if(town?.retryAvailable){showPendingRequest();return;}workshop.showInventory();});
 document.querySelector('#field-guide')!.addEventListener('click',()=>{
   openPanel('Town field guide');body.innerHTML=guideContents(session.room==='workshop',townMode);if(scene.skyFixture){const live=document.createElement('a');live.className='destination live-clock';live.href=townMode?'/?town=1':'/';live.textContent='Return to the live town clock';body.prepend(live);}const objective=questStep(workshop.state);const note=paragraph(objective.title+' — '+objective.detail);note.className='quest-card';body.prepend(note);const climate=scene.climateState();if(climate){const clock=paragraph('Town time · '+String(Math.floor(climate.minute/60)).padStart(2,'0')+':'+String(climate.minute%60).padStart(2,'0')+' · '+climate.label+(climate.fixture?' · Lighting study':''));clock.id='guide-sky';body.prepend(clock);}
   body.querySelector('#guide-workshop')!.addEventListener('click',()=>{closePanel();const stop=worlds[session.room].stops.find(s=>s.id==='workshop'||s.id==='bench');if(stop)session.walk(stop.point);feedback.textContent=session.room==='square'?'Walking to your workshop.':'Your bench is right here.';});
@@ -94,29 +108,39 @@ document.querySelector('#places')!.addEventListener('click', () => {
   for (const stop of worlds[session.room].stops) {
     const button = document.createElement('button'); button.type = 'button'; button.className = 'destination';
     button.textContent = stop.name + ' →'; button.dataset.destination = stop.id;
-    button.addEventListener('click', () => { closePanel(); session.lock(false); session.walk(stop.point); feedback.textContent = `Walking to ${stop.name}.`; });
+    button.addEventListener('click', () => { closePanel(); session.walk(stop.point); feedback.textContent = `Walking to ${stop.name}.`; });
     body.append(button);
   }
 });
+function showPendingRequest(message='Resolve the previous request before walking.'){
+ if(!town)return;openPanel('Confirm pending request');body.append(paragraph(message),paragraph('The change may already be saved. Retrying uses the same request and cannot spend or enter twice.'));const retry=document.createElement('button');retry.type='button';retry.className='destination';retry.textContent=town.retryAvailable?'Retry the same request':'Refresh confirmed position';retry.onclick=()=>{retry.disabled=true;void(town.retryAvailable?town.retry():town.load()).then(snapshot=>{adoptTownPosition(snapshot);closePanel();feedback.textContent=town.lastMessage||'Confirmed position restored.';}).catch(error=>{retry.disabled=false;feedback.textContent=error.message;});};body.append(retry);
+}
+async function enterHome(plotId:string){
+ if(!town?.snapshot||needResync||transitionBusy)return;if(town.retryAvailable){showPendingRequest();return;}const front=worlds.square.stops.find(stop=>stop.id==='home-front')!;if(session.room==='square'&&Math.hypot(session.position.x-front.point.x,session.position.y-front.point.y)>1.25){closePanel();pendingHomePlotId=plotId;if(!session.point(front.point)){pendingHomePlotId=undefined;feedback.textContent='The house door could not be reached.';}else feedback.textContent='Walking to the house door.';return;}closePanel();const intent=++portalIntent,playerId=town.snapshot.playerId,epoch=movementEpoch;transitionBusy=true;session.lock(true);feedback.textContent='Confirming the house door…';
+ try{await flushMovement(true);if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||needResync)return;const snapshot=await town.command({kind:'enter-home',plotId});if(town.snapshot?.playerId===playerId&&snapshot.position.homePlotId===plotId){adoptTownPosition(snapshot);feedback.textContent=scene.homeOwnerName+'’s home. Owned work stays here through weekly scores.';focusWorld();}else feedback.textContent=town.lastMessage;}catch(error){
+  feedback.textContent='House entry could not be confirmed. Resolve the same request before walking.';showPendingRequest((error as Error).message);
+ }finally{transitionBusy=false;unlockWorld();}
+}
 async function enterRemotePortal(stop:Stop){
  if(!town?.snapshot||!stop.transition||needResync)return;
  const intent=++portalIntent,epoch=movementEpoch,playerId=town.snapshot.playerId,sourceRoom=session.room,targetRoom=stop.transition;
- session.lock(true);feedback.textContent='Confirming your arrival before entering…';
+ transitionBusy=true;session.lock(true);feedback.textContent='Confirming your arrival before entering…';
  try{
   // Confirm the final source-room approach before the separate portal request.
   await flushMovement(true);
   if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||session.room!==sourceRoom||panel.open||needResync)return;
-  session.enter(targetRoom,stop.arrival);save();focusWorld();
+  session.enter(targetRoom,stop.arrival);if(!targetRoom.startsWith('home')){homePlotId=undefined;scene.homePlotId=undefined;}save();focusWorld();
   feedback.textContent=targetRoom==='workshop'?'Your workshop. Tap the bench to make your first planter.':(scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
  }catch{
   if(intent===portalIntent&&epoch===movementEpoch&&town.snapshot?.playerId===playerId&&!needResync)feedback.textContent='Entry could not be confirmed. Try the door again.';
  }finally{
+  transitionBusy=false;
   if(intent===portalIntent&&epoch===movementEpoch&&town.snapshot?.playerId===playerId&&!panel.open&&!needResync)session.lock(false);
  }
 }
 function activate(stop: Stop) {
   const job=workshop.state.job,objective=questStep(workshop.state);
-  const dialogue=dialogueFor(stop.id,{room:session.room,questStage:objective.id as DialogueContext['questStage'],job:job?.recipe??'none',jobReady:!!job&&job.readyAt<=(remoteWorkshop?.now()??Date.now()),bridgeRestored:scene.bridgeRestored,shared:townMode,phase:scene.climateState()?.phase??'day'});
+  const dialogue=dialogueFor(stop.id,{room:session.room==='square'?'square':'workshop',questStage:objective.id as DialogueContext['questStage'],job:job?.recipe??'none',jobReady:!!job&&job.readyAt<=(remoteWorkshop?.now()??Date.now()),bridgeRestored:scene.bridgeRestored,shared:townMode,phase:scene.climateState()?.phase??'day'});
   if(dialogue){
     openPanel(dialogue.title);for(const line of dialogue.lines)body.append(paragraph(line));
     if(dialogue.action){const action=dialogue.action,button=document.createElement('button');button.type='button';button.className='destination';button.dataset.npcAction=action.destination;button.textContent=action.label;button.addEventListener('click',()=>{if(action.destination==='journal'){workshop.showInventory();return;}closePanel();const target=worlds[session.room].stops.find(s=>s.id===action.destination||(action.destination==='workshop'&&s.id==='bench'));if(target){session.walk(target.point);feedback.textContent='Walking to '+target.name+'.';}});body.append(button);}
@@ -124,6 +148,7 @@ function activate(stop: Stop) {
   }
   if(town&&stop.id==='bridge'){townUI!.showBridge();return;}
   if(town&&stop.id==='plot'){townUI!.showPlots();return;}
+  if(town&&stop.id==='home-front'){const target=pendingHomePlotId??town.snapshot?.plot?.id;pendingHomePlotId=undefined;if(target)void enterHome(target);else townUI!.showPlots();return;}
   if(['scrap','timber','supplies'].includes(stop.id)){workshop.showResource(stop.id as 'scrap'|'timber'|'supplies');return;}
   if(stop.id==='bench'){workshop.showBench();return;}
   if (stop.transition) {
@@ -155,10 +180,10 @@ scene.onFrame = () => {
   const arrival = session.takeArrival();
   if (arrival) activate(arrival);
   const stop = session.nearby();
-  const state = session.room + ':' + (stop?.id ?? '');
+  const state = contextKey(session.room,homePlotId)+':'+(stop?.id??'');
   if (state !== lastContext) {
     lastContext = state;
-    location.innerHTML = session.room === 'square' ? 'Town square<span>Under new mismanagement.</span>' : 'Your workshop<span>Great things take time.</span>';
+    location.innerHTML = session.room === 'square' ? 'Town square<span>Under new mismanagement.</span>' : session.room.startsWith('home')?scene.homeOwnerName+'’s home<span>'+(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved')+'</span>':'Your workshop<span>Great things take time.</span>';
     if(town){const label=document.createElement('small');label.className='fixture-label';label.textContent='Practice town · '+(town.snapshot?.name??'choose a resident');location.append(label);}
     interactButton.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : 'square'}` : 'Inspect') : 'Nothing nearby';
     interactButton.disabled = !stop;
@@ -166,8 +191,8 @@ scene.onFrame = () => {
   }
   const climate=scene.climateState();if(climate){let sky=document.querySelector<HTMLElement>('#town-sky');if(!sky){sky=document.createElement('small');sky.id='town-sky';sky.setAttribute('aria-label','Town time and weather');location.append(sky);}const hour=String(Math.floor(climate.minute/60)).padStart(2,'0'),minute=String(climate.minute%60).padStart(2,'0');const label=(climate.fixture?'Lighting study · ':'')+climate.label+' · '+hour+':'+minute;if(sky.textContent!==label)sky.textContent=label;if(panel.open){const guide=document.querySelector<HTMLElement>('#guide-sky');const clockLabel='Town time · '+hour+':'+minute+' · '+climate.label+(climate.fixture?' · Lighting study':'');if(guide&&guide.textContent!==clockLabel)guide.textContent=clockLabel;}}
 };
-window.addEventListener('pagehide', save);
-document.addEventListener('visibilitychange', () => { if(document.hidden)save();else if(town){needResync=true;session.lock(true);void town.load().catch(()=>{});} });
+window.addEventListener('pagehide',()=>{rememberVisit();save();});
+document.addEventListener('visibilitychange', () => { if(document.hidden){rememberVisit();save();}else if(town){needResync=true;session.lock(true);void town.load().catch(()=>{});} });
 window.addEventListener('pageshow',event=>{if(event.persisted&&town){needResync=true;session.lock(true);void town.load().catch(()=>{});}});
 // Read-only diagnostics for reproducible pilot checks; never an economy/debug mutation API.
 Object.defineProperty(window, '__pilot', { value: Object.freeze({

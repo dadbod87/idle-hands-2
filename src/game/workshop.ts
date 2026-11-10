@@ -16,9 +16,9 @@ export const RECIPES = {
 } as const;
 export type RecipeId = keyof typeof RECIPES;
 export const PROPS: Record<PropId, { name: string; art: string }> = {
-  planter: { name: 'Optimistic planter', art: 'tree' }, stool: { name: 'Committee stool', art: 'bench' },
-  rug: { name: 'Welcome-ish rug', art: 'home-plot' }, lamp: { name: 'Bright idea lamp', art: 'tree' },
-  crate: { name: 'Useful crate', art: 'crates' }, shelf: { name: 'Shelf of intentions', art: 'shelf' }
+  planter: { name: 'Optimistic planter', art: 'home-planter-world' }, stool: { name: 'Committee stool', art: 'home-stool-world' },
+  rug: { name: 'Welcome-ish rug', art: 'home-rug-world' }, lamp: { name: 'Bright idea lamp', art: 'home-lamp-world' },
+  crate: { name: 'Useful crate', art: 'home-crate-world' }, shelf: { name: 'Shelf of intentions', art: 'home-shelf-world' }
 };
 export const PLACEMENT_SLOTS = [
   { id: 'north-west', label: 'Near the bench', x: 7, y: 8 },

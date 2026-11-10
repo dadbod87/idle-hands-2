@@ -268,6 +268,101 @@
       "id": "variety-tree-oak-trunk",
       "path": "art/variety/tree-oak-trunk.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "home-crate-icon",
+      "path": "art/homes/home-crate-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-crate-world",
+      "path": "art/homes/home-crate-world.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-expanded-exterior",
+      "path": "art/homes/home-expanded-exterior.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-expanded-interior",
+      "path": "art/homes/home-expanded-interior.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-lamp-icon",
+      "path": "art/homes/home-lamp-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-lamp-world",
+      "path": "art/homes/home-lamp-world.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-planter-icon",
+      "path": "art/homes/home-planter-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-planter-world",
+      "path": "art/homes/home-planter-world.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-rug-icon",
+      "path": "art/homes/home-rug-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-rug-world",
+      "path": "art/homes/home-rug-world.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-scrap-icon",
+      "path": "art/homes/home-scrap-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-shelf-icon",
+      "path": "art/homes/home-shelf-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-shelf-world",
+      "path": "art/homes/home-shelf-world.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-starter-exterior",
+      "path": "art/homes/home-starter-exterior.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-starter-interior",
+      "path": "art/homes/home-starter-interior.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-stool-icon",
+      "path": "art/homes/home-stool-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-stool-world",
+      "path": "art/homes/home-stool-world.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-supplies-icon",
+      "path": "art/homes/home-supplies-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-timber-icon",
+      "path": "art/homes/home-timber-icon.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

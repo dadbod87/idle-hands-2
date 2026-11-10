@@ -1,0 +1,337 @@
+{
+  "version": 1,
+  "authoring": "Original deterministic SVGs; no imported media.",
+  "generator": "tools/create-home-art.py",
+  "assets": [
+    {
+      "id": "home-starter-exterior",
+      "file": "home-starter-exterior.svg",
+      "width": 208,
+      "height": 248,
+      "kind": "exterior",
+      "foot": {
+        "x": 104,
+        "y": 240
+      },
+      "doorFoot": {
+        "x": 104,
+        "y": 240
+      },
+      "occupiedBounds": {
+        "x": 24,
+        "y": 92,
+        "width": 160,
+        "height": 148
+      },
+      "lightingWindows": [
+        {
+          "x": 49,
+          "y": 124,
+          "width": 30,
+          "height": 43
+        },
+        {
+          "x": 95,
+          "y": 179,
+          "width": 18,
+          "height": 22
+        }
+      ],
+      "collisionNote": "Presentation envelope only. Do not replace existing plot/portal authority from art bounds."
+    },
+    {
+      "id": "home-expanded-exterior",
+      "file": "home-expanded-exterior.svg",
+      "width": 208,
+      "height": 248,
+      "kind": "exterior",
+      "foot": {
+        "x": 104,
+        "y": 240
+      },
+      "doorFoot": {
+        "x": 104,
+        "y": 240
+      },
+      "occupiedBounds": {
+        "x": 24,
+        "y": 92,
+        "width": 182,
+        "height": 148
+      },
+      "lightingWindows": [
+        {
+          "x": 49,
+          "y": 124,
+          "width": 30,
+          "height": 43
+        },
+        {
+          "x": 95,
+          "y": 179,
+          "width": 18,
+          "height": 22
+        },
+        {
+          "x": 156,
+          "y": 143,
+          "width": 30,
+          "height": 42
+        }
+      ],
+      "collisionNote": "Presentation envelope only. Do not replace existing plot/portal authority from art bounds."
+    },
+    {
+      "id": "home-starter-interior",
+      "file": "home-starter-interior.svg",
+      "width": 576,
+      "height": 512,
+      "kind": "interior",
+      "tiles": {
+        "width": 18,
+        "height": 16
+      },
+      "blockedTiles": [
+        [
+          2,
+          2,
+          4,
+          3
+        ]
+      ],
+      "doorCenter": {
+        "x": 304,
+        "y": 448
+      },
+      "decorationTilePoints": [
+        [
+          7,
+          8
+        ],
+        [
+          10,
+          8
+        ],
+        [
+          13,
+          8
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          13,
+          11
+        ]
+      ],
+      "lightingWindows": [],
+      "collisionNote": "Only bed is solid art: [2,2,4,3]. North-wall window/fireplace/pegboard are flat wall motifs; extension inlay is traversable. Keep authority in world.ts."
+    },
+    {
+      "id": "home-expanded-interior",
+      "file": "home-expanded-interior.svg",
+      "width": 768,
+      "height": 512,
+      "kind": "interior",
+      "tiles": {
+        "width": 24,
+        "height": 16
+      },
+      "blockedTiles": [
+        [
+          2,
+          2,
+          4,
+          3
+        ]
+      ],
+      "doorCenter": {
+        "x": 304,
+        "y": 448
+      },
+      "decorationTilePoints": [
+        [
+          7,
+          8
+        ],
+        [
+          10,
+          8
+        ],
+        [
+          13,
+          8
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          13,
+          11
+        ]
+      ],
+      "lightingWindows": [],
+      "collisionNote": "Only bed is solid art: [2,2,4,3]. North-wall window/fireplace/pegboard are flat wall motifs; extension inlay is traversable. Keep authority in world.ts."
+    },
+    {
+      "id": "home-planter-world",
+      "file": "home-planter-world.svg",
+      "width": 64,
+      "height": 80,
+      "kind": "owned-furniture-world",
+      "propId": "planter",
+      "foot": {
+        "x": 32,
+        "y": 75
+      },
+      "materialPolicy": "Preserve base outline, grain/diamond/brace/book motifs; recolor only intended material layers."
+    },
+    {
+      "id": "home-planter-icon",
+      "file": "home-planter-icon.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "owned-furniture-icon",
+      "propId": "planter"
+    },
+    {
+      "id": "home-stool-world",
+      "file": "home-stool-world.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "owned-furniture-world",
+      "propId": "stool",
+      "foot": {
+        "x": 32,
+        "y": 59
+      },
+      "materialPolicy": "Preserve base outline, grain/diamond/brace/book motifs; recolor only intended material layers."
+    },
+    {
+      "id": "home-stool-icon",
+      "file": "home-stool-icon.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "owned-furniture-icon",
+      "propId": "stool"
+    },
+    {
+      "id": "home-rug-world",
+      "file": "home-rug-world.svg",
+      "width": 96,
+      "height": 64,
+      "kind": "owned-furniture-world",
+      "propId": "rug",
+      "foot": {
+        "x": 48,
+        "y": 32
+      },
+      "materialPolicy": "Preserve base outline, grain/diamond/brace/book motifs; recolor only intended material layers."
+    },
+    {
+      "id": "home-rug-icon",
+      "file": "home-rug-icon.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "owned-furniture-icon",
+      "propId": "rug"
+    },
+    {
+      "id": "home-lamp-world",
+      "file": "home-lamp-world.svg",
+      "width": 64,
+      "height": 96,
+      "kind": "owned-furniture-world",
+      "propId": "lamp",
+      "foot": {
+        "x": 32,
+        "y": 91
+      },
+      "materialPolicy": "Preserve base outline, grain/diamond/brace/book motifs; recolor only intended material layers."
+    },
+    {
+      "id": "home-lamp-icon",
+      "file": "home-lamp-icon.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "owned-furniture-icon",
+      "propId": "lamp"
+    },
+    {
+      "id": "home-crate-world",
+      "file": "home-crate-world.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "owned-furniture-world",
+      "propId": "crate",
+      "foot": {
+        "x": 32,
+        "y": 60
+      },
+      "materialPolicy": "Preserve base outline, grain/diamond/brace/book motifs; recolor only intended material layers."
+    },
+    {
+      "id": "home-crate-icon",
+      "file": "home-crate-icon.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "owned-furniture-icon",
+      "propId": "crate"
+    },
+    {
+      "id": "home-shelf-world",
+      "file": "home-shelf-world.svg",
+      "width": 80,
+      "height": 96,
+      "kind": "owned-furniture-world",
+      "propId": "shelf",
+      "foot": {
+        "x": 40,
+        "y": 91
+      },
+      "materialPolicy": "Preserve base outline, grain/diamond/brace/book motifs; recolor only intended material layers."
+    },
+    {
+      "id": "home-shelf-icon",
+      "file": "home-shelf-icon.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "owned-furniture-icon",
+      "propId": "shelf"
+    },
+    {
+      "id": "home-scrap-icon",
+      "file": "home-scrap-icon.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "material-icon",
+      "resourceId": "scrap"
+    },
+    {
+      "id": "home-timber-icon",
+      "file": "home-timber-icon.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "material-icon",
+      "resourceId": "timber"
+    },
+    {
+      "id": "home-supplies-icon",
+      "file": "home-supplies-icon.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "material-icon",
+      "resourceId": "supplies"
+    }
+  ]
+}

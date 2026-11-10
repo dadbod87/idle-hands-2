@@ -3,3 +3,5 @@
 [data-job]{min-height:3em}#placement button{overflow-wrap:anywhere}
 /* Short windows keep feedback above a full-width action row, including enlarged text. */
 @media(max-height:480px) and (min-width:651px){footer{display:grid;grid-template-columns:1fr;gap:4px}.context{max-width:none}#feedback{display:block;min-height:0;max-height:2.6em;overflow:auto}nav{display:grid;grid-template-columns:1fr 1fr 1.4fr}nav button{min-width:0;font-size:.8rem}}
+
+.item-icon{vertical-align:middle;object-fit:contain;margin-inline-end:.45rem}.furniture-preview{object-fit:contain;display:block;max-width:100%}

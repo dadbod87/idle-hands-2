@@ -4,6 +4,9 @@
 
 The model supports slow permanent housing, but exposes two unfinished parts of the first session: the existing twelve-hour first contribution gap, and a shortage of scrap after a faster full-cost teaching kit. A separate paid maintenance lesson resolves those two arithmetic problems without making an inventory kit; its shared-project and quest migration still need design and runtime proof. The current three-kit bridge also provides useful work to at most three people before it closes. Neither a shorter lesson nor a build timer solves newcomer participation by itself.
 
+## IH2-052 adoption note
+The once-only paid maintenance path is now implemented in the bounded prototype. In this historical comparison, `current-rules` means the original ordinary-kit-only first contribution baseline; it is not a claim that052stillrequiresa12-hourwait to participate. Source fingerprints are refreshed, while sample home/build waits and all recovery cases remain design-only. Actual server/quest/receipt/restore proof is in [052 evidence](../../evidence/IH2-052/REPORT.md); the arithmetic model is not a substitute for it.
+
 ## Reproduce and inspect
 
 From the sequel repository:

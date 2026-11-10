@@ -1,6 +1,6 @@
 # History
 
-2026-11-10 — IH2-051: world-only compositor lighting and bounded raw-frame walking avoid smoothed-delta slowdown without changing domain movement steps or production clocks; all existing browser cases and CI deadlines remain required.
+2026-11-10 — IH2-051: world-only compositor lighting and bounded raw-frame walking avoid smoothed-delta slowdown without changing domain movement steps or production clocks; shared walks now wait within acknowledged prediction, ignore obsolete identity recovery and confirm doorway approaches before entering; tiny frame tails preserve routes and DOM mouse origins cannot retarget the floor. All existing browser cases and CI deadlines remain required.
 
 2026-11-10 — IH2-051: bounded first-neighborhood slice adds48-minute cosmetic day/night, deterministic clear/overcast/drizzle, warm windows, real-time production clarification and three state-aware fictional conversations via body taps/keyboard/Places. World lighting never changes jobs, costs or weekly state; reduced/hidden/interior rain safeguards. Expanded discoverable deep-systems plan and split parent neighborhood acceptance into051/052/053/050. No crops/shops/equipment economy or physical homes/trail falsely claimed.
 

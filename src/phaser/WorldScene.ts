@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import {TownSky} from './TownSky.ts';
 import {type TownClimate} from '../game/town-climate.ts';
 import {TOWN_PEOPLE} from '../game/town-people.ts';
-import { Session } from '../game/session.ts';
+import { Session, WALK_SPEED } from '../game/session.ts';
 import {movementFrameSteps} from '../game/movement-frame.ts';
 import { TILE, worlds } from '../game/world.ts';
 import { PLACEMENT_SLOTS, type WorkshopState } from '../game/workshop.ts';
@@ -47,6 +47,8 @@ export class WorldScene extends Phaser.Scene {
   frameSamples: number[] = [];
   onFrame?: () => void;
   onWalkFailure?:()=>void;
+  movementBudget?:()=>number;
+  onMovement?:(distance:number)=>void;
   constructor(public session: Session) { super('world'); }
   preload() {
     for (const key of ORIGINAL_STATIC) if(!['ground-square','workshop','cafe','tree'].includes(key))this.load.svg(key, `/art/original/${key}.svg`);
@@ -115,6 +117,8 @@ export class WorldScene extends Phaser.Scene {
     document.addEventListener('keydown', onDown); document.addEventListener('keyup', onUp);
     window.addEventListener('blur', clear); document.addEventListener('visibilitychange', clear);
     this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
+      // Phaser also receives window-level mouse events from HTML controls.
+      if(p.downElement!==this.game.canvas)return;
       const pos = this.cameras.main.getWorldPoint(p.x, p.y);
       const to = { x: pos.x / TILE - .5, y: pos.y / TILE - .5 };
       if(!this.session.locked&&!this.session.point(to))this.onWalkFailure?.();
@@ -144,7 +148,12 @@ export class WorldScene extends Phaser.Scene {
     const before={...this.session.position};
     // Phaser smooths/replaces delayed deltas; visible walking follows bounded real elapsed time.
     // Reuse the existing <=50ms collision-safe domain steps, never offline catch-up.
-    for(const step of movementFrameSteps(this.game.loop.rawDelta,!document.hidden,this.movementReset))this.session.tick(step,direction);
+    for(const step of movementFrameSteps(this.game.loop.rawDelta,!document.hidden,this.movementReset)){
+      const budget=this.movementBudget?.()??Infinity;
+      const allowedMs=budget>0.00001?Math.min(step,budget/WALK_SPEED*1000):0;
+      const prior={...this.session.position};this.session.tick(allowedMs,direction);
+      this.onMovement?.(Math.hypot(this.session.position.x-prior.x,this.session.position.y-prior.y));
+    }
     this.movementReset=document.hidden;
     const dx=this.session.position.x-before.x,dy=this.session.position.y-before.y;
     const moving=Math.hypot(dx,dy)>.00001;

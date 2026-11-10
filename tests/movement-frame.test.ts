@@ -35,3 +35,14 @@ test('bounded low-frame walking retains collision safety and one-shot arrival',(
  }
  assert.equal(arrivals,1);
 });
+
+test('floating tails near50ms boundaries never masquerade as blocked routes',()=>{
+ for(const elapsed of [50.001,100.001,150.001,200.001]){
+  const steps=movementFrameSteps(elapsed,true,false);
+  assert.deepEqual(steps,Array(Math.floor(elapsed/50)).fill(50));
+  const session=new Session();session.walk({x:24,y:13});
+  for(const step of steps)session.tick(step);
+  assert.equal(session.snapshot().walking,true);
+ }
+ assert.deepEqual(movementFrameSteps(.001,true,false),[0]);
+});

@@ -1,0 +1,47 @@
+{
+  "sourceRun": 42894185893,
+  "candidate": "182af65e293137b94581056aa85746dc0cab70d3",
+  "fixture": "Isolated fictional shared-town browser database; no real players. Extracts omit cookies/authentication.",
+  "acceptedMovement": {
+    "room": "square",
+    "position": {
+      "x": 24,
+      "y": 23.75
+    },
+    "httpStatus": 200
+  },
+  "nextMovement": {
+    "room": "square",
+    "position": {
+      "x": 24,
+      "y": 20
+    },
+    "httpStatus": 409,
+    "distanceFromConfirmed": 3.75,
+    "unchangedServerBurstCap": 2
+  },
+  "localOnlyFailure": {
+    "mode": "default browser save, no API requests",
+    "position": {
+      "x": 21.04521839831102,
+      "y": 23.285996501779398
+    },
+    "selectedDestination": "plot",
+    "walking": false
+  },
+  "pureReproduction": {
+    "inputMs": 100.001,
+    "oldSteps": [
+      50,
+      50,
+      0.001
+    ],
+    "problem": "Negligible positive movement triggers existing blocked/no-progress route cancellation.",
+    "correctedSteps": [
+      50,
+      50
+    ],
+    "discardedRemainderMaximumMs": 0.01
+  },
+  "inputHardening": "Canvas-origin guard independently covers window-forwarded HTML presses; original trace does not establish this as its cause."
+}

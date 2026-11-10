@@ -1,10 +1,10 @@
 {
   "method": "Python gzip.compress independent response sum for HTML/CSS/JS; estimate, not observed compressed delivery. Original art fingerprints unchanged. Short rolling frame metrics are not physical-device benchmarks.",
-  "clientGzipBytes": 409686,
+  "clientGzipBytes": 410101,
   "files": {
-    "dist/index.html": "8fc7fb7f37250d33e54c34974f9bf8c7994ff313a934103b24df4b28732cd9c4",
+    "dist/index.html": "96191ea2c1e5a07424df88aaccc7f37f388ccdcae8ba7e38e648040c50b3ecfb",
     "dist/assets/index-C7olP2bQ.css": "44cad0457a374a39b9bba32b136428240ded189b5a06b8f17fc205a96f2b5d79",
-    "dist/assets/index-Dv_ECy60.js": "ed7a3172ae59d2a5e8cacbc96c1d68074cac21e32b203c04cc329a89151800f9"
+    "dist/assets/index-BWr5XXyC.js": "8177abd21f084d2d58a63db91c2507030020951bea2499bbb5f6b0fe32b2653b"
   },
   "limits": "Vite raw engine chunk >500kB warning remains. No physical-phone/cloud-load/full accessibility claim."
 }

@@ -1,20 +1,21 @@
 {
   "domain": {
-    "passed": 65,
+    "passed": 66,
     "skipped": 0
   },
   "browser": {
-    "passed": 30,
-    "duration": "3.1min"
+    "passed": 33,
+    "duration": "3.3min"
   },
   "forcedSoftwareBrowser": {
-    "passed": 4,
-    "duration": "47.8sec",
-    "cooperationFlow": "36.2sec",
-    "method": "ANGLE SwiftShader, shared cooperation plus narrow rhythm/dawn/dusk/drizzle; isolated fixtures, no deadline changes"
+    "passed": 8,
+    "duration": "1.2min",
+    "cooperationFlow": "36.5sec",
+    "method": "ANGLE SwiftShader; shared cooperation, short pilot, three intercepted movement regressions and narrow rhythm/dawn/dusk/drizzle; no deadline changes"
   },
+  "identityNegativeControl": "Removing only the old-resident recovery guard causes the new regression to fail with one forbidden recovery GET; fixed source restored and positive cases pass.",
   "build": "strict TypeScript/server/Vite pass",
   "plan": "17 tasks and10 tracker checks pass",
   "pinnedSources": "40 files pass",
-  "limitations": "Emulated viewports and isolated synthetic data, not physical-phone/cloud-load acceptance. Exact final candidate CI/merge recorded in PR closeout."
+  "limitations": "Emulated viewports, synthetic native-origin events and isolated/intercepted data. No physical-phone/cloud-load acceptance. Exact final CI/merge is recorded in PR closeout."
 }

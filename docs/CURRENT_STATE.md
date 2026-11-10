@@ -6,7 +6,7 @@ Verified base main54153a2aabccfba6b709bb026589a7d7ea9b2e10 is PR #6's accepted c
 
 IH2-051 is locally accepted on feat/town-rhythm; both exact-head CI jobs and actual final images must pass before merge. This document precedes the final candidate; use its PR closeout for actual SHA/run/merge. Current playable slice: cosmetic day/night/weather, warm windows, three authored NPC conversations, real-hour production clarification and a readable enlarged-phone layout. No costs, jobs, progress/reset rules, collision geometry or schema changed.
 
-Local validation65 domain/art/server and30 browser cases plus four additional software-rendering cases, strict build/planning/integrity/diff. [Report](evidence/IH2-051/REPORT.md), [review](evidence/IH2-051/INDEPENDENT_REVIEW.md), [handoff](idle-hands-2/handoffs/2026-11-10-town-rhythm.md). Fixtures and emulation are disclosed; physical phones, cloud load and full accessibility remain later gates.
+Local validation66 domain/art/server and33 browser cases plus eight additional software-rendering cases, strict build/planning/integrity/diff. [Report](evidence/IH2-051/REPORT.md), [review](evidence/IH2-051/INDEPENDENT_REVIEW.md), [handoff](idle-hands-2/handoffs/2026-11-10-town-rhythm.md). Fixtures and emulation are disclosed; physical phones, cloud load and full accessibility remain later gates.
 
 The [deep-system plan](idle-hands-2/DEEP_SYSTEMS_PLAN.md) captures proposed wood/resources, crops/fruit, services, individual equipment, housing/town construction and distinct action animations. These broader catalogs remain unimplemented. Parent050 is split into051,052 starter housing/returns/first-kit teaching,053 trail/discovery, then050 integrated acceptance. Next bounded task is052.
 

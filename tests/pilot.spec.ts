@@ -27,6 +27,12 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  const world=await page.locator('.world-wrap').boundingBox();expect(world!.height).toBeGreaterThanOrEqual(shape.height*.5);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  for (const button of await page.locator('nav button').all()) { const bounds=await button.boundingBox();expect(bounds!.height).toBeGreaterThanOrEqual(44);expect(bounds!.x).toBeGreaterThanOrEqual(0);expect(bounds!.x+bounds!.width).toBeLessThanOrEqual(shape.width); }
+ // Synthetic native-origin regression: window-level mouse forwarding must not turn
+ // an HTML control press into a floor target, even when its reported point is inside canvas.
+ const beforeControl=await snapshot(page),controlPoint=await page.evaluate(()=>(window as any).__pilot.screenPoint(25,25)),controlCanvas=(await page.locator('canvas').boundingBox())!;
+ const controlEvent={clientX:controlCanvas.x+controlPoint.x,clientY:controlCanvas.y+controlPoint.y,button:0,buttons:1,bubbles:true};
+ await page.locator('#feedback').dispatchEvent('mousedown',controlEvent);await page.locator('#feedback').dispatchEvent('mouseup',{...controlEvent,buttons:0});await page.waitForTimeout(180);
+ expect((await snapshot(page)).position).toEqual(beforeControl.position);expect((await snapshot(page)).walking).toBe(false);
  // Actual keyboard moves the actor, not a debug mutator.
  const before=await snapshot(page);await page.keyboard.down('ArrowRight');await page.waitForTimeout(350);await page.keyboard.up('ArrowRight');
  expect((await snapshot(page)).position.x).toBeGreaterThan(before.position.x);

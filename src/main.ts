@@ -46,29 +46,37 @@ const worldResize=new ResizeObserver(entries=>{updateTextMode();const {width,hei
 worldResize.observe(worldContainer);
 let ready = false;
 let lastContext = '';
+let portalIntent=0;
 function save() { if(townMode)return; try { localStorage.setItem(saveKey, JSON.stringify(session.save())); } catch { feedback.textContent = 'Position could not be saved in this browser. The pilot remains playable.'; } }
 function focusWorld() { document.querySelector('canvas')?.focus(); }
 function closePanel() { workshop.closed(); if (session.locked) session.lock(false); panel.close(); focusWorld(); }
 panel.addEventListener('submit', event => { event.preventDefault(); closePanel(); });
 panel.addEventListener('close', () => { workshop.closed(); if (session.locked) session.lock(false); focusWorld(); });
 panel.addEventListener('cancel', () => { session.lock(false); });
-function openPanel(heading: string) { session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal(); }
+function openPanel(heading: string) { portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }
 let townUI:TownUI|undefined;
 let residentId='',serverInstance='',needResync=true,lastSent='',lastMove=0,moveBackoff=0;
 let movement:Promise<void>|null=null;
+let walkedDistance=0,confirmedDistance=0,movementEpoch=0,confirmedRoom=session.room;
+// Predict a short visible walk, then wait for confirmation without cancelling the route.
+// Keep the existing server's two-tile burst limit and movement rate checks authoritative.
+scene.movementBudget=()=>!townMode?Infinity:!town?.snapshot||session.room!==confirmedRoom?0:Math.max(0,1.5-(walkedDistance-confirmedDistance));
+scene.onMovement=distance=>{if(townMode)walkedDistance+=distance;};
 const town=townMode?new TownClient({
- onSnapshot:snapshot=>{skyOffset=snapshot.serverTime-Date.now();if(residentId!==snapshot.playerId||needResync||(snapshot.serverInstance&&snapshot.serverInstance!==serverInstance)){scene.residents=[];session.enter(snapshot.position.room,snapshot.position.position);residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);if(!panel.open)session.lock(false);}scene.residentId=snapshot.playerId;scene.bridgeRestored=snapshot.bridge.restored;scene.refreshDecorations();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
+ onSnapshot:snapshot=>{skyOffset=snapshot.serverTime-Date.now();if(residentId!==snapshot.playerId||needResync||(snapshot.serverInstance&&snapshot.serverInstance!==serverInstance)){scene.residents=[];session.enter(snapshot.position.room,snapshot.position.position);walkedDistance=0;confirmedDistance=0;confirmedRoom=snapshot.position.room;movementEpoch++;residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);if(!panel.open)session.lock(false);}scene.residentId=snapshot.playerId;scene.bridgeRestored=snapshot.bridge.restored;scene.refreshDecorations();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
  onPresence:presence=>{scene.residents=Array.isArray(presence)?presence:[];},
  onConnection:message=>{feedback.textContent=message;if(message.includes('interrupted')){needResync=true;session.lock(true);}},
  beforeCommand:()=>flushMovement(true)
 }):null;
 async function flushMovement(force=false):Promise<void>{
- if(!town?.snapshot)return;if(movement){await movement;if(!force)return;}
+ if(!town?.snapshot)return;if(movement){if(!force)return;await movement;}
+ if(!town.snapshot)return;
  if(!force&&(Date.now()-lastMove<150||Date.now()<moveBackoff))return;
- const value={room:session.room,position:{...session.position}},hash=JSON.stringify(value);if(hash===lastSent)return;
+ const value={room:session.room,position:{...session.position}},hash=JSON.stringify(value);if(hash===lastSent){if(!movement&&!needResync&&value.room===confirmedRoom)confirmedDistance=walkedDistance;return;}
+ const sentDistance=walkedDistance,epoch=movementEpoch,sentPlayerId=town.snapshot.playerId;
  lastMove=Date.now();
- const action=town.movement(value).then(()=>{lastSent=hash;moveBackoff=0;}).catch(async error=>{moveBackoff=Date.now()+2000;needResync=true;session.lock(true);feedback.textContent='Movement could not be confirmed. Reconnecting to the local town…';try{const snapshot=await town.load();session.enter(snapshot.position.room,snapshot.position.position);lastSent=JSON.stringify(snapshot.position);}catch{/* SSE reconnect reloads the authoritative position. */}if(force)throw error;}).finally(()=>movement=null);
+ const action=town.movement(value).then(()=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;lastSent=hash;confirmedDistance=Math.max(confirmedDistance,sentDistance);confirmedRoom=value.room;moveBackoff=0;}).catch(async error=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;moveBackoff=Date.now()+2000;needResync=true;session.lock(true);feedback.textContent='Movement could not be confirmed. Reconnecting to the local town…';try{const snapshot=await town.load();if(snapshot.playerId!==sentPlayerId||town.snapshot?.playerId!==sentPlayerId)return;session.enter(snapshot.position.room,snapshot.position.position);lastSent=JSON.stringify(snapshot.position);}catch{/* SSE reconnect reloads the authoritative position. */}if(force)throw error;}).finally(()=>{if(movement===action)movement=null;});
  movement=action;await action;
 }
 const remoteWorkshop=town?.workshopAdapter();
@@ -90,6 +98,22 @@ document.querySelector('#places')!.addEventListener('click', () => {
     body.append(button);
   }
 });
+async function enterRemotePortal(stop:Stop){
+ if(!town?.snapshot||!stop.transition||needResync)return;
+ const intent=++portalIntent,epoch=movementEpoch,playerId=town.snapshot.playerId,sourceRoom=session.room,targetRoom=stop.transition;
+ session.lock(true);feedback.textContent='Confirming your arrival before entering…';
+ try{
+  // Confirm the final source-room approach before the separate portal request.
+  await flushMovement(true);
+  if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||session.room!==sourceRoom||panel.open||needResync)return;
+  session.enter(targetRoom,stop.arrival);save();focusWorld();
+  feedback.textContent=targetRoom==='workshop'?'Your workshop. Tap the bench to make your first planter.':(scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
+ }catch{
+  if(intent===portalIntent&&epoch===movementEpoch&&town.snapshot?.playerId===playerId&&!needResync)feedback.textContent='Entry could not be confirmed. Try the door again.';
+ }finally{
+  if(intent===portalIntent&&epoch===movementEpoch&&town.snapshot?.playerId===playerId&&!panel.open&&!needResync)session.lock(false);
+ }
+}
 function activate(stop: Stop) {
   const job=workshop.state.job,objective=questStep(workshop.state);
   const dialogue=dialogueFor(stop.id,{room:session.room,questStage:objective.id as DialogueContext['questStage'],job:job?.recipe??'none',jobReady:!!job&&job.readyAt<=(remoteWorkshop?.now()??Date.now()),bridgeRestored:scene.bridgeRestored,shared:townMode,phase:scene.climateState()?.phase??'day'});
@@ -103,6 +127,7 @@ function activate(stop: Stop) {
   if(['scrap','timber','supplies'].includes(stop.id)){workshop.showResource(stop.id as 'scrap'|'timber'|'supplies');return;}
   if(stop.id==='bench'){workshop.showBench();return;}
   if (stop.transition) {
+    if(town){void enterRemotePortal(stop);return;}
     session.enter(stop.transition, stop.arrival); save(); focusWorld(); feedback.textContent = stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));

@@ -243,7 +243,7 @@
     {
       "id": "IH2-045",
       "title": "Distinct town silhouettes, materials and gentle life",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-040"
       ],
@@ -258,7 +258,13 @@
       "exclusions": [
         "No paid assets, huge city expansion or new multiplayer/economy scope."
       ],
-      "evidence": []
+      "evidence": [
+        "docs/evidence/IH2-045/REPORT.md",
+        "docs/evidence/IH2-045/INDEPENDENT_REVIEW.md",
+        "docs/evidence/IH2-045/build-metrics.json",
+        "docs/idle-hands-2/handoffs/2026-11-10-town-variety.md"
+      ],
+      "owner_branch": "feat/town-variety"
     },
     {
       "id": "IH2-050",

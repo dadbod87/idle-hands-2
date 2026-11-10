@@ -15,4 +15,4 @@ Run the checks listed in [release checklist](docs/RELEASE_CHECKLIST.md), includi
 
 [Planning home](docs/idle-hands-2/README.md) · [Current state](docs/CURRENT_STATE.md) · [Handoff](docs/idle-hands-2/CURRENT_SESSION.md) · [Licenses](licenses/README.md).
 
-Next art pass IH2-045 expands tree and resident variety, building shapes/materials, ground textures and restrained ambient animation while preserving the style Nick accepted. Real authentication, hosted play, physical house lots and wider neighborhood content remain later gates. Dependencies are pinned and original art provenance is recorded; no paid assets are required.
+IH2-045 adds tree/resident variety, distinct building shapes/materials, ground detail and restrained reduced-motion-aware animation. Open `/?variety-study=1` for the responsive art review. Next is first-neighborhood polish. Real authentication, hosted play, physical house lots and wider neighborhood content remain later gates. Dependencies are pinned and original art provenance is recorded; no paid assets are required.

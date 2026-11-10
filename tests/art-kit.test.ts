@@ -21,7 +21,7 @@ test('walk poses are distance-based, stop at idle and honor reduced motion',()=>
 });
 test('every selected/comparison asset matches its recorded source fingerprint and license',()=>{
  const p=JSON.parse(fs.readFileSync('licenses/asset-provenance.json','utf8'));
- assert.equal(p.original.length,39);
+ assert.equal(p.original.filter((a:any)=>a.source==='tools/create-original-art.py').length,39);assert.ok(p.original.filter((a:any)=>a.source==='tools/create-town-variety.py').length>=14);
  for(const asset of [...p.original,...p.comparison.files.map((x:any)=>({path:x.imported_path,sha256:x.sha256}))]){
   const b=fs.readFileSync(asset.path);assert.equal(crypto.createHash('sha256').update(b).digest('hex'),asset.sha256);
  }

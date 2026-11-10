@@ -6,6 +6,8 @@ root=Path(__file__).resolve().parents[1]
 original=[]
 for p in sorted((root/'public/art/original').glob('*.svg')):
  original.append({'id':p.stem,'path':str(p.relative_to(root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'creator':'Original code-authored for Idle Hands 2','license':'project-original','source':'tools/create-original-art.py','date':'2026-11-09','modifications':'Generated original vector illustration; no imported image source.'})
+for p in sorted((root/'public/art/variety').glob('*.svg')):
+ original.append({'id':'variety-'+p.stem,'path':str(p.relative_to(root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'creator':'Original code-authored for Idle Hands 2','license':'project-original','source':'tools/create-town-variety.py','date':'2026-11-10','modifications':'Original silhouette/material/pose illustration. No imported media.'})
 kenney=json.loads((root/'licenses/kenney-evaluation.json').read_text())
 kenney['usage']='Unmodified sheets and included notices; CSS sprite crops composed into a comparison scene. Not used by playable runtime.'
 (root/'licenses/asset-provenance.json').write_text(json.dumps({'schema_version':1,'selected_direction':'original illustrated company town','original':original,'comparison':kenney,'cost':'No paid assets/fonts/API services.','font_policy':'System Georgia/Times New Roman/Courier New; no font files imported.'},indent=2)+'\n')

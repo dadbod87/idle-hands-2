@@ -1,0 +1,484 @@
+{
+  "version": 1,
+  "authoring": "Original programmatic SVG artwork; no external assets.",
+  "generator": "tools/create-town-variety.py",
+  "palette": {
+    "ink": "#343c36",
+    "paper": "#f8f1df",
+    "sage": "#aebc92",
+    "slate": "#343f43",
+    "terracotta": "#b7795c"
+  },
+  "assets": [
+    {
+      "id": "tree-oak-trunk",
+      "file": "tree-oak-trunk.svg",
+      "width": 100,
+      "height": 112,
+      "kind": "tree-trunk",
+      "occlusion": {
+        "x": 38,
+        "y": 56,
+        "width": 24,
+        "height": 48
+      },
+      "foot": {
+        "x": 50,
+        "y": 104
+      },
+      "tree": "oak"
+    },
+    {
+      "id": "tree-oak-canopy",
+      "file": "tree-oak-canopy.svg",
+      "width": 100,
+      "height": 112,
+      "kind": "tree-canopy",
+      "occlusion": {
+        "x": 4,
+        "y": 2,
+        "width": 92,
+        "height": 85
+      },
+      "motion": {
+        "pivot": {
+          "x": 50,
+          "y": 104
+        },
+        "maxRotationDegrees": 1.2,
+        "periodMs": 5200
+      },
+      "foot": {
+        "x": 50,
+        "y": 104
+      },
+      "tree": "oak"
+    },
+    {
+      "id": "tree-birch-trunk",
+      "file": "tree-birch-trunk.svg",
+      "width": 80,
+      "height": 140,
+      "kind": "tree-trunk",
+      "occlusion": {
+        "x": 28,
+        "y": 84,
+        "width": 24,
+        "height": 48
+      },
+      "foot": {
+        "x": 40,
+        "y": 132
+      },
+      "tree": "birch"
+    },
+    {
+      "id": "tree-birch-canopy",
+      "file": "tree-birch-canopy.svg",
+      "width": 80,
+      "height": 140,
+      "kind": "tree-canopy",
+      "occlusion": {
+        "x": 4,
+        "y": 2,
+        "width": 72,
+        "height": 90
+      },
+      "motion": {
+        "pivot": {
+          "x": 40,
+          "y": 132
+        },
+        "maxRotationDegrees": 1.2,
+        "periodMs": 5200
+      },
+      "foot": {
+        "x": 40,
+        "y": 132
+      },
+      "tree": "birch"
+    },
+    {
+      "id": "tree-fruit-trunk",
+      "file": "tree-fruit-trunk.svg",
+      "width": 112,
+      "height": 104,
+      "kind": "tree-trunk",
+      "occlusion": {
+        "x": 44,
+        "y": 48,
+        "width": 24,
+        "height": 48
+      },
+      "foot": {
+        "x": 56,
+        "y": 96
+      },
+      "tree": "fruit"
+    },
+    {
+      "id": "tree-fruit-canopy",
+      "file": "tree-fruit-canopy.svg",
+      "width": 112,
+      "height": 104,
+      "kind": "tree-canopy",
+      "occlusion": {
+        "x": 4,
+        "y": 2,
+        "width": 104,
+        "height": 85
+      },
+      "motion": {
+        "pivot": {
+          "x": 56,
+          "y": 96
+        },
+        "maxRotationDegrees": 1.2,
+        "periodMs": 5200
+      },
+      "foot": {
+        "x": 56,
+        "y": 96
+      },
+      "tree": "fruit"
+    },
+    {
+      "id": "building-workshop",
+      "file": "building-workshop.svg",
+      "width": 208,
+      "height": 248,
+      "kind": "building",
+      "foot": {
+        "x": 104,
+        "y": 240
+      },
+      "doorFoot": {
+        "x": 104,
+        "y": 240
+      },
+      "occupiedBounds": {
+        "x": 8,
+        "y": 87,
+        "width": 192,
+        "height": 153
+      },
+      "occlusion": {
+        "x": 8,
+        "y": 85,
+        "width": 192,
+        "height": 155
+      }
+    },
+    {
+      "id": "building-cafe",
+      "file": "building-cafe.svg",
+      "width": 208,
+      "height": 280,
+      "kind": "building",
+      "foot": {
+        "x": 104,
+        "y": 272
+      },
+      "doorFoot": {
+        "x": 104,
+        "y": 272
+      },
+      "occupiedBounds": {
+        "x": 9,
+        "y": 59,
+        "width": 190,
+        "height": 213
+      },
+      "occlusion": {
+        "x": 9,
+        "y": 59,
+        "width": 190,
+        "height": 213
+      },
+      "chimneyMouth": {
+        "x": 162.5,
+        "y": 9
+      }
+    },
+    {
+      "id": "resident-aster",
+      "file": "resident-aster.svg",
+      "width": 1792,
+      "height": 80,
+      "kind": "resident-sheet",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "frameCount": 28,
+      "facings": {
+        "south": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "north": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "east": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "west": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ]
+      },
+      "poses": [
+        "idle",
+        "walk-1",
+        "walk-2",
+        "walk-3",
+        "walk-4",
+        "walk-5",
+        "walk-6"
+      ]
+    },
+    {
+      "id": "resident-bea",
+      "file": "resident-bea.svg",
+      "width": 1792,
+      "height": 80,
+      "kind": "resident-sheet",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "frameCount": 28,
+      "facings": {
+        "south": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "north": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "east": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "west": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ]
+      },
+      "poses": [
+        "idle",
+        "walk-1",
+        "walk-2",
+        "walk-3",
+        "walk-4",
+        "walk-5",
+        "walk-6"
+      ]
+    },
+    {
+      "id": "resident-casey",
+      "file": "resident-casey.svg",
+      "width": 1792,
+      "height": 80,
+      "kind": "resident-sheet",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "frameCount": 28,
+      "facings": {
+        "south": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "north": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "east": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "west": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ]
+      },
+      "poses": [
+        "idle",
+        "walk-1",
+        "walk-2",
+        "walk-3",
+        "walk-4",
+        "walk-5",
+        "walk-6"
+      ]
+    },
+    {
+      "id": "resident-devon",
+      "file": "resident-devon.svg",
+      "width": 1792,
+      "height": 80,
+      "kind": "resident-sheet",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "frameCount": 28,
+      "facings": {
+        "south": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "north": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "east": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "west": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ]
+      },
+      "poses": [
+        "idle",
+        "walk-1",
+        "walk-2",
+        "walk-3",
+        "walk-4",
+        "walk-5",
+        "walk-6"
+      ]
+    },
+    {
+      "id": "ground-square",
+      "file": "ground-square.svg",
+      "width": 1536,
+      "height": 1536,
+      "kind": "ground",
+      "geometry": {
+        "roadHorizontal": [
+          448,
+          704,
+          736,
+          224
+        ],
+        "roadVertical": [
+          736,
+          384,
+          96,
+          704
+        ],
+        "river": [
+          0,
+          318,
+          1536,
+          68
+        ]
+      },
+      "motion": "static"
+    },
+    {
+      "id": "comparison-sheet",
+      "file": "comparison-sheet.svg",
+      "width": 1120,
+      "height": 920,
+      "kind": "study",
+      "sampleOnly": true
+    }
+  ]
+}

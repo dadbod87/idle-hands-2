@@ -6,8 +6,8 @@ import './ui/style.css';
 import {questStep} from './game/workshop.ts';
 import {TownClient,TownUI} from './ui/town.ts';
 import {WorkshopUI} from './ui/workshop.ts';
-import { renderStudy, guideContents } from './art/study.ts';
-if(new URLSearchParams(location.search).has('art-study')) { renderStudy(); } else {
+import { renderStudy, renderVarietyStudy, guideContents } from './art/study.ts';
+if(new URLSearchParams(location.search).has('variety-study')) { renderVarietyStudy(); } else if(new URLSearchParams(location.search).has('art-study')) { renderStudy(); } else {
 
 const townMode=new URLSearchParams(window.location.search).has('town');
 const saveKey = 'ih2:pilot-position:v1';
@@ -28,7 +28,7 @@ const body = document.querySelector<HTMLDivElement>('#panel-body')!;
 const feedback = document.querySelector<HTMLElement>('#feedback')!;
 const interactButton = document.querySelector<HTMLButtonElement>('#interact')!;
 const location = document.querySelector<HTMLElement>('#location')!;
-const scene = new WorldScene(session);
+const scene = new WorldScene(session);scene.showTownfolk=!townMode;
 const game = new Phaser.Game({
   type: Phaser.AUTO, parent: 'world', backgroundColor: '#a3b090',
   scale: { mode: Phaser.Scale.RESIZE, autoCenter: Phaser.Scale.CENTER_BOTH },
@@ -53,7 +53,7 @@ let townUI:TownUI|undefined;
 let residentId='',serverInstance='',needResync=true,lastSent='',lastMove=0,moveBackoff=0;
 let movement:Promise<void>|null=null;
 const town=townMode?new TownClient({
- onSnapshot:snapshot=>{if(residentId!==snapshot.playerId||needResync||(snapshot.serverInstance&&snapshot.serverInstance!==serverInstance)){scene.residents=[];session.enter(snapshot.position.room,snapshot.position.position);residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);if(!panel.open)session.lock(false);}scene.bridgeRestored=snapshot.bridge.restored;scene.refreshDecorations();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
+ onSnapshot:snapshot=>{if(residentId!==snapshot.playerId||needResync||(snapshot.serverInstance&&snapshot.serverInstance!==serverInstance)){scene.residents=[];session.enter(snapshot.position.room,snapshot.position.position);residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);if(!panel.open)session.lock(false);}scene.residentId=snapshot.playerId;scene.bridgeRestored=snapshot.bridge.restored;scene.refreshDecorations();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
  onPresence:presence=>{scene.residents=Array.isArray(presence)?presence:[];},
  onConnection:message=>{feedback.textContent=message;if(message.includes('interrupted')){needResync=true;session.lock(true);}},
  beforeCommand:()=>flushMovement(true)

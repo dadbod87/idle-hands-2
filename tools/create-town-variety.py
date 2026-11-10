@@ -66,7 +66,7 @@ def trees():
              occlusion={'x':foot[0]-12, 'y':foot[1]-48, 'width':24, 'height':48}, **common)
         save('tree-' + name + '-canopy', w, h, canopy, 'tree-canopy',
              occlusion={'x':4, 'y':2, 'width':w-8, 'height':90 if name=='birch' else 85},
-             motion={'pivot': {'x':foot[0], 'y':foot[1]}, 'maxRotationDegrees': 1.2, 'periodMs': 5200}, **common)
+             motion={'pivot': {'x':foot[0], 'y':foot[1]}, 'maxOffsetX': .45, 'periodMs': 11424}, **common)
 
 
 def buildings():

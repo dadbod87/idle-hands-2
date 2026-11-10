@@ -8,3 +8,5 @@ Original-art authoring and phone/source integration checks were delegated under 
 - Reviewed desktop/narrow door approach, path readability, building/tree recognition and comparison-page phone reflow/sample disclosure. No remaining concrete blocker in those reviewed screenshots. Full test execution outcomes are root's evidence, not inferred from the review.
 
 Limits: emulated viewports, no physical-phone/cloud-load/full accessibility certification; broader NPC interactions and shared peer interpolation remain later work.
+
+Follow-up: actual Linux CI screenshots exposed canopy clipping after PR #5 merge. Independent pinned-source inspection found correct image matrices/UVs, without a proven engine cause. A new screenshot-pixel coverage check distinguishes healthy art from the known bad captures. Root reproduced failure with SwiftShader, replaced rotation with bounded axis-aligned sway and verified the positive software case. Review actual follow-up CI artifacts before merge; prior50/24 green was insufficient visual evidence.

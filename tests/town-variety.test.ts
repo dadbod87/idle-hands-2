@@ -11,8 +11,8 @@ test('resident identity and four-direction sheets retain shared foot and frame c
 });
 
 test('ambient transforms stay bounded and disabled motion is static independent of time',()=>{
- const frozen={rotation:0,steamAlpha:0,steamY:0,gesture:0};
- for(const t of [0,17,1000,60000,24*3600_000]){assert.deepEqual(ambientPose(t,false,3),frozen);const p=ambientPose(t,true,3);assert.ok(Math.abs(p.rotation)<=.009);assert.ok(p.steamAlpha>=.05&&p.steamAlpha<=.19);assert.ok(p.steamY>=-8&&p.steamY<=0);assert.ok(Math.abs(p.gesture)<=.45);}
+ const frozen={rotation:0,canopyX:0,steamAlpha:0,steamY:0,gesture:0};
+ for(const t of [0,17,1000,60000,24*3600_000]){assert.deepEqual(ambientPose(t,false,3),frozen);const p=ambientPose(t,true,3);assert.equal(p.rotation,0);assert.ok(Math.abs(p.canopyX)<=.45);assert.ok(p.steamAlpha>=.05&&p.steamAlpha<=.19);assert.ok(p.steamY>=-8&&p.steamY<=0);assert.ok(Math.abs(p.gesture)<=.45);}
  assert.notDeepEqual(ambientPose(500,true),ambientPose(1500,true));
 });
 

@@ -47,3 +47,5 @@ The current preview’s look is owner-accepted. Preserve that family while devel
 
 ## IH2-045 implemented variation
 `tools/create-town-variety.py` adds original oak/birch/fruit layers, four1792×80 resident pose sheets, timber workshop, tall plaster café and quiet ground detail. Feet, collision and door positions stay unchanged. Catalog metadata supplies dimensions/feet/occlusion; parse sheet frames on their existing texture keys. `/?variety-study=1` shows the explicit future-house sample. Default local townsfolk are passive fictional decoration; shared fixture identities have stable rigs. Canopy/steam/idle transforms are local, restrained, reset by reduced motion/hidden state and skipped offscreen. See IH2-045 evidence; physical-device and expanded district content remain later gates.
+
+Software-renderer correction: canopy motion is bounded ±.45px lateral translation, not rotation. Rotated SVG canopy quads clipped under ANGLE/SwiftShader despite valid texture metadata; actual compositor pixel coverage now protects this area. Keep trunks stationary and reset offsets for reduced/hidden states. Underlying driver/engine cause remains unproven.

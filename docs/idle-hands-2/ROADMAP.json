@@ -264,7 +264,7 @@
         "docs/evidence/IH2-045/build-metrics.json",
         "docs/idle-hands-2/handoffs/2026-11-10-town-variety.md"
       ],
-      "owner_branch": "feat/town-variety"
+      "owner_branch": "fix/canopy-rendering"
     },
     {
       "id": "IH2-050",

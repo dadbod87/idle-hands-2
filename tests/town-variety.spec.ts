@@ -35,6 +35,40 @@ async function point(page:Page,x:number,y:number,touch:boolean){
  if(touch)await page.touchscreen.tap(screen.x,screen.y);else await page.mouse.click(screen.x,screen.y);
 }
 
+// Compositor PNG pixels, not WebGL readback or DOM/texture metadata. The opaque
+// oak interior is clear of the player/labels at the synthetic door fixture.
+async function canopyCoverage(page:Page,shape:string){
+ const measurements:Array<{sample:number;coverage:number;leafPixels:number;totalPixels:number;clip:{x:number;y:number;width:number;height:number}}>=[];
+ for(let sample=0;sample<3;sample++){
+  if(sample)await page.waitForTimeout(200);
+  const foot=await page.evaluate(()=>(window as any).__pilot.screenPoint(17.5,27.625));
+  const canvas=(await page.locator('canvas').boundingBox())!,wrap=(await page.locator('.world-wrap').boundingBox())!;
+  // Authored oak:100x112, foot(50,104); interior rectangle(20,27,60,38).
+  const clip={x:Math.round(canvas.x+foot.x-30),y:Math.round(canvas.y+foot.y-77),width:60,height:38};
+  expect(clip.x).toBeGreaterThanOrEqual(wrap.x);expect(clip.x+clip.width).toBeLessThanOrEqual(wrap.x+wrap.width);
+  expect(clip.y).toBeGreaterThanOrEqual(wrap.y);expect(clip.y+clip.height).toBeLessThanOrEqual(wrap.y+wrap.height);
+  const png=await page.screenshot({clip,path:`${evidence}/variety-${shape}-canopy-pixels-${sample}.png`});
+  const counts=await page.evaluate(async data=>{
+   const image=new Image();image.src='data:image/png;base64,'+data;await image.decode();
+   const bitmap=document.createElement('canvas');bitmap.width=image.width;bitmap.height=image.height;
+   const context=bitmap.getContext('2d')!;context.drawImage(image,0,0);
+   const pixels=context.getImageData(0,0,bitmap.width,bitmap.height).data;
+   let leafPixels=0;
+   for(let offset=0;offset<pixels.length;offset+=4){
+    const r=pixels[offset],g=pixels[offset+1],b=pixels[offset+2];
+    // Allow antialiasing around the two authored leaf materials while excluding
+    // the tan path, sage grass, trunk and ink. No OS/font-sensitive golden diff.
+    const near=(red:number,green:number,blue:number)=>Math.abs(r-red)<15&&Math.abs(g-green)<15&&Math.abs(b-blue)<15;
+    if(g-r>=18&&(near(125,153,108)||near(168,189,141)))leafPixels++;
+   }
+   const totalPixels=pixels.length/4;return{leafPixels,totalPixels,coverage:leafPixels/totalPixels};
+  },png.toString('base64'));
+  measurements.push({sample,...counts,clip});
+ }
+ fs.writeFileSync(`${evidence}/variety-${shape}-canopy-coverage.json`,JSON.stringify({method:'Three compositor PNG crops, 200ms apart, decoded using a detached browser 2D canvas. Opaque oak interior at the isolated local door-position fixture. Healthy authored interior coverage98.7%; known broken CI captures0.35% desktop/62.8% narrow. Threshold85% tolerates minor motion/antialiasing but detects the missing triangular canopy regions.',measurements},null,2));
+ for(const result of measurements)expect(result.coverage,`oak canopy sample ${result.sample}: actual screenshot leaf coverage`).toBeGreaterThan(.85);
+}
+
 for(const shape of [{name:'desktop',width:1440,height:900},{name:'narrow',width:360,height:640},{name:'short',width:844,height:390}]){
  test.describe(`town variety ${shape.name}`,()=>{
   test.use({viewport:{width:shape.width,height:shape.height},hasTouch:shape.name!=='desktop'});
@@ -55,6 +89,7 @@ for(const shape of [{name:'desktop',width:1440,height:900},{name:'narrow',width:
    expect([...new Set(first.variety.treeKinds)]).toEqual(expect.arrayContaining(['oak','birch','fruit']));
    expect([...new Set(first.variety.buildingKinds)]).toEqual(expect.arrayContaining(['workshop','cafe']));
    await page.screenshot({path:`${evidence}/variety-${shape.name}-door-fixture.png`});
+   await canopyCoverage(page,shape.name);
    await point(page,19.5,21.5,shape.name!=='desktop');
    await expect.poll(async()=>(await session(page)).room,{timeout:arrivalTimeout}).toBe('workshop');
    await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
@@ -99,12 +134,12 @@ test('town variety: decorative motion runs locally and resets for reduced motion
  await expect.poll(async()=>JSON.stringify((await visual(page)).variety.ambient)).not.toBe(JSON.stringify(first));
  const observed=(await visual(page)).variety.ambient;
  expect(observed.canopies.length).toBeGreaterThan(0);
- for(const canopy of observed.canopies)expect(Math.abs(canopy.rotation)).toBeLessThanOrEqual(.0121);
+ for(const canopy of observed.canopies){expect(canopy.rotation).toBe(0);expect(Math.abs(canopy.offsetX)).toBeLessThanOrEqual(.451);}
  expect(observed.steam.alpha).toBeGreaterThanOrEqual(0);expect(observed.steam.alpha).toBeLessThanOrEqual(.21);
  await page.emulateMedia({reducedMotion:'reduce'});
  await expect.poll(async()=>(await visual(page)).variety.ambient.enabled).toBe(false);
  const reduced=(await visual(page)).variety.ambient;
- expect(reduced.canopies.every((canopy:any)=>canopy.rotation===0)).toBe(true);
+ expect(reduced.canopies.every((canopy:any)=>canopy.rotation===0&&canopy.offsetX===0)).toBe(true);
  expect(reduced.steam).toEqual({alpha:0,y:0});expect(reduced.gestureOffset).toBe(0);
  await page.waitForTimeout(200);expect((await visual(page)).variety.ambient).toEqual(reduced);
  await page.emulateMedia({reducedMotion:'no-preference'});
@@ -113,7 +148,7 @@ test('town variety: decorative motion runs locally and resets for reduced motion
  await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});Object.defineProperty(document,'visibilityState',{configurable:true,get:()=>'hidden'});document.dispatchEvent(new Event('visibilitychange'));});
  await expect.poll(async()=>(await visual(page)).variety.ambient.enabled).toBe(false);
  const hidden=(await visual(page)).variety.ambient;
- expect(hidden.canopies.every((canopy:any)=>canopy.rotation===0)).toBe(true);
+ expect(hidden.canopies.every((canopy:any)=>canopy.rotation===0&&canopy.offsetX===0)).toBe(true);
  expect(hidden.steam).toEqual({alpha:0,y:0});expect(hidden.gestureOffset).toBe(0);
  await page.waitForTimeout(200);expect((await visual(page)).variety.ambient).toEqual(hidden);
  await page.evaluate(()=>{delete(document as any).hidden;delete(document as any).visibilityState;document.dispatchEvent(new Event('visibilitychange'));});

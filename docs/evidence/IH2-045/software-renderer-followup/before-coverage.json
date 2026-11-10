@@ -1,0 +1,41 @@
+{
+  "method": "Three compositor PNG crops, 200ms apart, decoded using a detached browser 2D canvas. Opaque oak interior at the isolated local door-position fixture. Healthy authored interior coverage98.7%; known broken CI captures0.35% desktop/62.8% narrow. Threshold85% tolerates minor motion/antialiasing but detects the missing triangular canopy regions.",
+  "measurements": [
+    {
+      "sample": 0,
+      "leafPixels": 2193,
+      "totalPixels": 2280,
+      "coverage": 0.9618421052631579,
+      "clip": {
+        "x": 70,
+        "y": 360,
+        "width": 60,
+        "height": 38
+      }
+    },
+    {
+      "sample": 1,
+      "leafPixels": 1068,
+      "totalPixels": 2280,
+      "coverage": 0.46842105263157896,
+      "clip": {
+        "x": 70,
+        "y": 360,
+        "width": 60,
+        "height": 38
+      }
+    },
+    {
+      "sample": 2,
+      "leafPixels": 1610,
+      "totalPixels": 2280,
+      "coverage": 0.706140350877193,
+      "clip": {
+        "x": 70,
+        "y": 360,
+        "width": 60,
+        "height": 38
+      }
+    }
+  ]
+}

@@ -13,7 +13,7 @@
     "decodedGameSVGBytes": 314900
   },
   "frameSampleDelta": 45,
-  "p95RollingFrameMs": 16.80000000000001,
+  "p95RollingFrameMs": 16.700000000000045,
   "errors": [],
   "external": []
 }

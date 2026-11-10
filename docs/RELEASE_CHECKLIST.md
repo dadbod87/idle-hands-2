@@ -37,3 +37,5 @@
 - Review actual desktop/narrow/short/two-times-text canvas and study screenshots, distinct silhouettes/materials, door entry/exit and saved positions.
 - Decorative motion bounded, reduced/hidden/offscreen handling; no added API/database activity. Report sample method/bytes and physical-device limits.
 - 50 domain/art/server checks and24 browser cases, strict build, planning/integrity/diff; both exact-head CI jobs success before merge.
+
+- IH2-045 correction: inspect actual final CI images before merge, not only green assertions. Three canopy PNG crops per viewport must retain>85% authored leaf coverage under software rendering; reduced/hidden offsets zero. Keep rejected/accepted diagnostics clearly labeled.

@@ -13,7 +13,7 @@ export class WorldScene extends Phaser.Scene {
   bridgeRestored=false;
   residentId='devon';
   showTownfolk=true;
-  private canopies:Array<{key:string;image:Phaser.GameObjects.Image;phase:number}>=[];
+  private canopies:Array<{key:string;image:Phaser.GameObjects.Image;phase:number;baseX:number}>=[];
   private townfolk:Array<{id:string;image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text}>=[];
   private steam?:Phaser.GameObjects.Graphics;
   private steamBaseY=0;
@@ -74,7 +74,7 @@ export class WorldScene extends Phaser.Scene {
       for(const [index,[x,y,kind]] of plantings.entries()){
         const meta=art('tree-'+kind+'-canopy'),foot=meta.foot!,footX=(x+1)*TILE,footY=(y+2)*TILE+4;
         for(const layer of ['trunk','canopy']){const tree=this.add.image(footX,footY,'variety-tree-'+kind+'-'+layer).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(footY+(layer==='canopy'?.1:0));
-         if(layer==='canopy'){this.canopies.push({key:kind,image:tree,phase:index*1.7});const bounds=meta.occlusion??{x:4,y:0,width:meta.width-8,height:foot.y};this.occluders.push({image:tree,x:footX-foot.x+bounds.x,y:footY-foot.y+bounds.y+bounds.height,width:bounds.width,height:bounds.height});}}
+         if(layer==='canopy'){this.canopies.push({key:kind,image:tree,phase:index*1.7,baseX:footX});const bounds=meta.occlusion??{x:4,y:0,width:meta.width-8,height:foot.y};this.occluders.push({image:tree,x:footX-foot.x+bounds.x,y:footY-foot.y+bounds.y+bounds.height,width:bounds.width,height:bounds.height});}}
       }
       if(this.showTownfolk)for(const [id,role,x,y] of [['aster','Town clerk',18,24],['bea','Caretaker',32,24],['casey','Courier',26.2,25.2]] as const){const py=(y+.5)*TILE,px=(x+.5)*TILE;const person=this.add.image(px,py,'variety-resident-'+id,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale).setDepth(py);const tag=this.add.text(px,py-62,role,{fontFamily:'Georgia',fontSize:11,color:'#343c36',backgroundColor:'#f8f1df',padding:{x:3,y:2}}).setOrigin(.5,1).setDepth(py+1);this.townfolk.push({id,image:person,label:tag});}
     } else {
@@ -108,12 +108,13 @@ export class WorldScene extends Phaser.Scene {
     });
     this.events.once('shutdown', () => { this.reducedMotion.removeEventListener('change',motionChanged);document.removeEventListener('keydown', onDown); document.removeEventListener('keyup', onUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear); });
   }
-  visualState(){return {facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:this.room==='square'?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
+  visualState(){return {facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:this.room==='square'?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
   private updateAmbient(delta:number){
     this.ambientEnabled=!document.hidden&&!this.reducedMotion.matches;
     if(this.ambientEnabled)this.ambientMs+=Math.min(50,Math.max(0,delta));
     const camera=this.cameras.main,visible=(x:number,y:number)=>x>camera.worldView.left-120&&x<camera.worldView.right+120&&y>camera.worldView.top-160&&y<camera.worldView.bottom+120;
-    for(const canopy of this.canopies)canopy.image.setRotation(ambientPose(this.ambientMs,this.ambientEnabled&&visible(canopy.image.x,canopy.image.y),canopy.phase).rotation);
+    // Keep canopy quads axis-aligned: software rendering clipped rotated SVG quads in CI.
+    for(const canopy of this.canopies){const pose=ambientPose(this.ambientMs,this.ambientEnabled&&visible(canopy.baseX,canopy.image.y),canopy.phase);canopy.image.setRotation(0).setX(canopy.baseX+pose.canopyX);}
     const pose=ambientPose(this.ambientMs,this.ambientEnabled);this.gestureOffset=pose.gesture;
     if(this.steam){const active=this.ambientEnabled&&visible(this.steam.x,this.steamBaseY);this.steam.setAlpha(active?pose.steamAlpha:0).setY(this.steamBaseY+(active?pose.steamY:0));}
     for(const [index,person] of this.townfolk.entries()){const p=ambientPose(this.ambientMs,this.ambientEnabled&&visible(person.image.x,person.image.y),index*1.7);person.image.setScale(ART.actorScale,ART.actorScale+p.gesture*.004);const d=Math.hypot(person.image.x-this.actor.x,person.image.y-this.actor.y);person.label.setVisible(d<125);}

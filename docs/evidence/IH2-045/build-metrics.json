@@ -1,14 +1,14 @@
 {
   "method": "Python gzip.compress sums independent response estimates. Original source SVG headers give base RGBA texture estimate; excludes text/graphics/render targets/mipmaps/driver overhead and is not measured GPU allocation. Four sheets are parsed in place, no duplicate source upload.",
-  "clientGzipBytes": 404085,
+  "clientGzipBytes": 404110,
   "runtimeSVGCount": 20,
   "runtimeSVGDecodedBytes": 312852,
   "runtimeSVGGzipBytes": 16089,
   "baseRGBATextureEstimateBytes": 14019264,
   "files": {
-    "dist/index.html": "3a0ac1d9e9ca6c5bcb8466b7cbea81184f295c8916b2abf35cc1814943a3b1a5",
-    "dist/assets/index-h5JJTDUL.js": "7f8bb719e73485c80abbc0639919ed0d0e32433cc73c97318cbaa8d30a6cd938",
-    "dist/assets/index-CYxPEHaU.css": "74aab1da064834f8ca6fba869765dee7b90c1834fe79c8a4029dfc1ff98ecb28"
+    "dist/index.html": "78d0f119dbbf54e9a151fd06bb1749f4a2da15175a7586af4224292b9ef8455c",
+    "dist/assets/index-CYxPEHaU.css": "74aab1da064834f8ca6fba869765dee7b90c1834fe79c8a4029dfc1ff98ecb28",
+    "dist/assets/index-BUX56tln.js": "c699ee970f0d9cd1cc41ed3c73d4d38188d809fa22894ad307de0e737bd5ddaf"
   },
   "limits": "Visible Vite >500kB raw engine chunk warning remains. Local rolling samples are not physical-device or cloud/load certification."
 }

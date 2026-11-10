@@ -5,95 +5,113 @@
     "canopies": [
       {
         "key": "oak",
-        "rotation": 0.00022823652910020087
+        "rotation": 0,
+        "offsetX": 0.011719449810470906
       },
       {
         "key": "birch",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "fruit",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "oak",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "birch",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "fruit",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       }
     ],
     "steam": {
-      "alpha": 0.12258176097489483,
-      "y": -4.0737771495385005
+      "alpha": 0.12265133898330928,
+      "y": -4.075766135351159
     },
-    "gestureOffset": 0.014523177591569576
+    "gestureOffset": 0.014914618036464844
   },
   "observed": {
     "enabled": true,
     "canopies": [
       {
         "key": "oak",
-        "rotation": 0.0006901438359676604
+        "rotation": 0,
+        "offsetX": 0.03532641439858253
       },
       {
         "key": "birch",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "fruit",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "oak",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "birch",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "fruit",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       }
     ],
     "steam": {
-      "alpha": 0.12779913333851456,
-      "y": -4.223180040898967
+      "alpha": 0.1279838680520926,
+      "y": -4.228483567991475
     },
-    "gestureOffset": 0.04389150737992292
+    "gestureOffset": 0.04493220151531196
   },
   "reduced": {
     "enabled": false,
     "canopies": [
       {
         "key": "oak",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "birch",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "fruit",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "oak",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "birch",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "fruit",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       }
     ],
     "steam": {
@@ -107,27 +125,33 @@
     "canopies": [
       {
         "key": "oak",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "birch",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "fruit",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "oak",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "birch",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       },
       {
         "key": "fruit",
-        "rotation": 0
+        "rotation": 0,
+        "offsetX": 0
       }
     ],
     "steam": {
@@ -138,7 +162,7 @@
   },
   "requests": [
     "/",
-    "/assets/index-h5JJTDUL.js",
+    "/assets/index-BUX56tln.js",
     "/assets/index-CYxPEHaU.css",
     "/art/original/ground-workshop.svg",
     "/art/original/bench.svg",
@@ -160,25 +184,25 @@
     "/art/variety/resident-bea.svg",
     "/art/variety/resident-casey.svg",
     "/art/variety/resident-devon.svg",
-    "http://127.0.0.1:4198/f2dab2d8-bd10-4c1a-9d41-d94912a020ab",
-    "http://127.0.0.1:4198/18885bda-4c33-45ae-9e4f-06d4690ba5a4",
-    "http://127.0.0.1:4198/2f3d952e-b896-41dc-bfbf-41a9b5a83c28",
-    "http://127.0.0.1:4198/93abe5f1-b295-4a68-b831-604367da3b48",
-    "http://127.0.0.1:4198/aa0db824-e5cb-44af-bb5e-c980bf32a571",
-    "http://127.0.0.1:4198/e26e32f7-5716-474c-854c-e5facf88649a",
-    "http://127.0.0.1:4198/abaf0653-c231-4271-8c23-8cdf53155fbc",
-    "http://127.0.0.1:4198/08f89fa0-5117-4eb1-8503-d0b71f57ad70",
-    "http://127.0.0.1:4198/d4b8869b-a3b8-4a9a-95ca-622d9ec74cc9",
-    "http://127.0.0.1:4198/252036df-c3bd-496e-b864-55c02715bdb9",
-    "http://127.0.0.1:4198/28feea69-5f55-43bb-aaab-86e731ad370c",
-    "http://127.0.0.1:4198/bf45e578-30dd-4797-b0a6-a032847ab64a",
-    "http://127.0.0.1:4198/5de16e76-fabe-4fed-88d3-ef5f405f358d",
-    "http://127.0.0.1:4198/997c4b4b-2810-4ab1-a419-0a0c298e4624",
-    "http://127.0.0.1:4198/ac004b82-472c-4e2e-8d6a-9abae2a321cc",
-    "http://127.0.0.1:4198/6ad0b6e0-2cae-4dec-af81-d19388426ff1",
-    "http://127.0.0.1:4198/2fceed9e-4e2d-483f-9d54-d446496916c3",
-    "http://127.0.0.1:4198/12932860-b70c-4e19-80a2-7089a0abadc0",
-    "http://127.0.0.1:4198/8e9e5d0d-2024-411f-b05b-43b2631de4b7",
-    "http://127.0.0.1:4198/9053e823-0160-4637-b685-66654d6e5d58"
+    "http://127.0.0.1:4198/380195ab-6a64-446c-b89f-44af05d1b8af",
+    "http://127.0.0.1:4198/d884d3ac-15a6-4166-82f9-b3bea6004540",
+    "http://127.0.0.1:4198/00ff8754-72d4-474d-8bf9-b5338350d956",
+    "http://127.0.0.1:4198/70636baa-3471-43f0-ab07-639a335904ea",
+    "http://127.0.0.1:4198/edbdb789-01a9-43a6-b391-62d77441b4dd",
+    "http://127.0.0.1:4198/28d83bad-b339-4ce5-b899-05271c66ff61",
+    "http://127.0.0.1:4198/1dea8865-73c6-491d-a890-15c25118c572",
+    "http://127.0.0.1:4198/db01caba-f3c4-454d-99fd-fe71822925c0",
+    "http://127.0.0.1:4198/0159e8ad-5ed0-4ded-b26b-580ae192774c",
+    "http://127.0.0.1:4198/8f309641-11e6-4e41-a699-860844eef096",
+    "http://127.0.0.1:4198/00acc985-9b6e-4a1b-97e4-5c2b52c87b27",
+    "http://127.0.0.1:4198/6d78bbc5-5b49-4f40-bbac-9ffeadf34508",
+    "http://127.0.0.1:4198/a4f73ff5-0498-42ca-82e8-d8bb8beda9ec",
+    "http://127.0.0.1:4198/8553430c-cf55-46f9-945d-6afaa868ccfa",
+    "http://127.0.0.1:4198/76ccf67b-8e7c-4176-9c2d-37075c6614cf",
+    "http://127.0.0.1:4198/a94b4e31-2219-48ee-a2a3-1a828f96f60f",
+    "http://127.0.0.1:4198/34a54bda-1e72-41f2-88dc-eecd92e31ed9",
+    "http://127.0.0.1:4198/94972a2b-c3bc-4b9a-b1d3-87680891010d",
+    "http://127.0.0.1:4198/9b461311-f3b5-4631-9db5-ced53f7d7148",
+    "http://127.0.0.1:4198/e83d9de1-82c5-4f04-8ce1-93c4bab44576"
   ]
 }

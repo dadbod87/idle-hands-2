@@ -12,8 +12,8 @@
     "uniqueGameSVGs": 21,
     "decodedGameSVGBytes": 314900
   },
-  "frameSampleDelta": 45,
-  "p95RollingFrameMs": 16.700000000000045,
+  "frameSampleDelta": 46,
+  "p95RollingFrameMs": 16.799999999999955,
   "errors": [],
   "external": []
 }

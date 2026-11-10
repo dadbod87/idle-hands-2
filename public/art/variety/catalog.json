@@ -45,8 +45,8 @@
           "x": 50,
           "y": 104
         },
-        "maxRotationDegrees": 1.2,
-        "periodMs": 5200
+        "maxOffsetX": 0.45,
+        "periodMs": 11424
       },
       "foot": {
         "x": 50,
@@ -89,8 +89,8 @@
           "x": 40,
           "y": 132
         },
-        "maxRotationDegrees": 1.2,
-        "periodMs": 5200
+        "maxOffsetX": 0.45,
+        "periodMs": 11424
       },
       "foot": {
         "x": 40,
@@ -133,8 +133,8 @@
           "x": 56,
           "y": 96
         },
-        "maxRotationDegrees": 1.2,
-        "periodMs": 5200
+        "maxOffsetX": 0.45,
+        "periodMs": 11424
       },
       "foot": {
         "x": 56,

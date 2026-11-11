@@ -1,6 +1,6 @@
 # IH2-066 — working depth audit and resource plan
 
-Not accepted yet; required aggregate/browser/exact-head CI/artifact/source gates remain. No runtime/economy/server changes; the new original static material/flow study is a labelled design concept, not a shipped game asset. [Selected family](../../idle-hands-2/design/WOODLAND_FAMILY.md), [actual coverage](../../idle-hands-2/design/CURRENT_RUNTIME_COVERAGE.md), [model](woodland-model.json).
+Source accepted in PR16/merge3946d7b after exact final941956d CI43108409997bothSUCCESS184/54 and actual uploaded131-file build/image review. [Source closeout](source-closeout.json). No runtime/economy/server changes; the new original static material/flow study is a labelled design concept, not a shipped game asset. [Selected family](../../idle-hands-2/design/WOODLAND_FAMILY.md), [actual coverage](../../idle-hands-2/design/CURRENT_RUNTIME_COVERAGE.md), [model](woodland-model.json).
 
 The actual accepted0654175artifact was exercised in nine fresh/returning/saturated desktop/phone/short agent cases. Fresh follows normal UI, real5sfirstplanter, placement and paid12hkit; returning/saturated are explicit elapsed local-save/arrival fixtures constructed by valid pure commands. Garden actions preserve old job/material/property/skill state. No real identities, shared-practice login, API interception or database writes. This is not physical-phone or human enjoyment evidence.
 

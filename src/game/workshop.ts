@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import {SURVEY_IDS,SURVEY_CHOICES,SURVEYS} from './fieldwork.ts';
-import {gardenSchema,gardenActionSchema,createGarden,applyGarden} from './garden.ts';
+import {gardenSchema,gardenActionSchema,createGarden,applyGarden,migrateGarden} from './garden.ts';
 
 // Local synthetic prototype rules. This module does not establish server authority.
 export const RESOURCE_IDS = ['scrap', 'timber', 'supplies'] as const;
@@ -96,7 +96,11 @@ export function loadWorkshop(value: unknown, now: number): { state: WorkshopStat
   if (!validTime(now)) throw new Error('A valid integer clock is required.');
   if (value === null || value === undefined) return { state: createWorkshop(now), recovered: false };
   // Additive old-save migration only. Existing stock, jobs, history and receipts stay intact.
-  const migrated=value&&typeof value==='object'&&!Array.isArray(value)&&(value as {version?:unknown}).version===1&&!Object.hasOwn(value,'garden')?{...value,garden:createGarden(validTime((value as {observedAt:number}).observedAt)?(value as {observedAt:number}).observedAt:now)}:value;
+  let migrated=value;
+  if(value&&typeof value==='object'&&!Array.isArray(value)&&(value as {version?:unknown}).version===1){
+    const old=value as Record<string,unknown>;
+    migrated={...old,garden:Object.hasOwn(old,'garden')?migrateGarden(old.garden):createGarden(validTime(old.observedAt as number)?old.observedAt as number:now)};
+  }
   const parsed = stateSchema.safeParse(migrated);
   if (!parsed.success) return { state: createWorkshop(now), recovered: true };
   return {state:settleWorkshop(parsed.data,now),recovered:false};

@@ -34,11 +34,14 @@ const deadline=z.number().int().min(0).max(Number.MAX_SAFE_INTEGER);
 const seedsSchema=z.object({radish:boundedCount.max(2),marigold:boundedCount.max(1)}).strict();
 const produceSchema=z.object({radish:boundedCount.max(GARDEN_RULES.stack),marigold:boundedCount.max(GARDEN_RULES.stack)}).strict();
 const harvestedSchema=z.object({radish:boundedCount,marigold:boundedCount}).strict();
+// Each new use has its own ledger. Existing mixed requests never stand in for
+// crafting, and migrations must not rewrite the historical harvest counters.
+const consumedSchema=z.object({easels:harvestedSchema,hampers:harvestedSchema}).strict();
 const bedSchema=z.object({crop:z.enum(CROP_IDS),plantedAt:nowSchema,readyAt:deadline,cared:z.boolean()}).strict();
 const bank=(max:number)=>z.object({available:boundedCount.max(max),lastAt:nowSchema}).strict();
 const unique=<T>(values:T[])=>new Set(values).size===values.length;
 export const gardenSchema=z.object({
- version:z.literal(1),observedAt:nowSchema,seeds:seedsSchema,produce:produceSchema,
+ version:z.literal(2),observedAt:nowSchema,seeds:seedsSchema,produce:produceSchema,consumed:consumedSchema,
  beds:z.array(bedSchema.nullable()).length(GARDEN_RULES.beds),firstRadishUsed:z.boolean(),
  clippings:bank(GARDEN_RULES.clippingCap),rested:bank(GARDEN_RULES.restedCap),
  practice:boundedCount,bonusPractice:boundedCount,harvested:harvestedSchema,planted:boundedCount,
@@ -52,8 +55,9 @@ export const gardenSchema=z.object({
  if(s.practice!==total+s.bonusPractice||s.bonusPractice>total)issue('Garden practice does not match harvests.');
  for(const crop of CROP_IDS){
   if(s.seeds[crop]+active.filter(b=>b.crop===crop).length>CROP_DEFS[crop].seedQuota)issue('Bound seed entitlement exceeded.');
-  if(s.harvested[crop]!==s.produce[crop]+s.requests)issue('Produce history does not conserve harvests and requests.');
+  if(s.harvested[crop]!==s.produce[crop]+s.requests+s.consumed.easels[crop]+s.consumed.hampers[crop])issue('Produce history does not conserve harvests and uses.');
  }
+ if(s.consumed.easels.radish!==0||s.consumed.hampers.radish!==2*s.consumed.hampers.marigold)issue('Invalid fixed recipe consumption.');
  let teachingBeds=0;
  for(const b of active){
   const duration=b.readyAt-b.plantedAt,teaching=b.crop==='radish'&&duration===GARDEN_RULES.firstRadishMs;
@@ -71,7 +75,27 @@ export const gardenSchema=z.object({
 export type GardenState=z.infer<typeof gardenSchema>;
 export function createGarden(now:number):GardenState{
  nowSchema.parse(now);
- return {version:1,observedAt:now,seeds:{radish:2,marigold:1},produce:{radish:0,marigold:0},beds:[null,null,null],firstRadishUsed:false,clippings:{available:6,lastAt:now},rested:{available:2,lastAt:now},practice:0,bonusPractice:0,harvested:{radish:0,marigold:0},planted:0,requests:0,nextRequestAt:null,markers:[],selectedMarker:null,errand:{accepted:false,pieces:[],assembled:false}};
+ return {version:2,observedAt:now,seeds:{radish:2,marigold:1},produce:{radish:0,marigold:0},consumed:{easels:{radish:0,marigold:0},hampers:{radish:0,marigold:0}},beds:[null,null,null],firstRadishUsed:false,clippings:{available:6,lastAt:now},rested:{available:2,lastAt:now},practice:0,bonusPractice:0,harvested:{radish:0,marigold:0},planted:0,requests:0,nextRequestAt:null,markers:[],selectedMarker:null,errand:{accepted:false,pieces:[],assembled:false}};
+}
+/** Recognize only the exact old shape, then validate all old invariants using
+ * zero consumption. Unknown fields/versions remain unreadable, never repaired. */
+export function migrateGarden(value:unknown):unknown{
+ if(!value||typeof value!=='object'||Array.isArray(value))return value;
+ const old=value as Record<string,unknown>;
+ if(old.version!==1||Object.hasOwn(old,'consumed'))return value;
+ const candidate={...old,version:2,consumed:{easels:{radish:0,marigold:0},hampers:{radish:0,marigold:0}}};
+ return gardenSchema.safeParse(candidate).success?candidate:value;
+}
+/** Fixed internal recipe debit; callers still own UUID, revision, proximity and
+ * atomic persistence with the corresponding wood/job change. No arbitrary
+ * amounts or client-supplied ledger entries are accepted. */
+export function consumeGarden(input:GardenState,use:'easels'|'hampers',now:number):GardenState|null{
+ if(use!=='easels'&&use!=='hampers')return null;
+ const s=settleGarden(input,now),radishes=use==='hampers'?2:0;
+ if(s.produce.radish<radishes||s.produce.marigold<1)return null;
+ s.produce.radish-=radishes;s.produce.marigold--;
+ s.consumed[use].radish+=radishes;s.consumed[use].marigold++;
+ return gardenSchema.safeParse(s).success?s:null;
 }
 export function settleGarden(input:GardenState,now:number):GardenState{
  gardenSchema.parse(input);nowSchema.parse(now);if(now<input.observedAt)throw new Error('Garden time moved backwards.');

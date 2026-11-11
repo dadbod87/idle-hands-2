@@ -7,7 +7,7 @@ function planted(at=0){let s=createGarden(at);s=doIt(s,{action:'plant',bed:0,cro
 function earnProduce(s:GardenState,at:number){for(let bed=0;bed<3;bed++){const b=s.beds[bed];if(b&&b.readyAt<=at&&s.produce[b.crop]<12)s=doIt(s,{action:'harvest',bed},at);}return s;}
 test('garden version and closed schemas reject corrupt clocks, unknown fields, over-cap and invented history',()=>{
  const s=createGarden(100);assert.equal(gardenSchema.safeParse(s).success,true);
- for(const value of [{...s,version:2},{...s,extra:true},{...s,observedAt:NaN},{...s,seeds:{radish:3,marigold:1}},{...s,produce:{radish:1,marigold:0}},{...s,practice:1},{...s,markers:['sunburst','sunburst']},{...s,selectedMarker:'sunburst'},{...s,rested:{available:2,lastAt:101}},{...s,errand:{accepted:false,pieces:['forked'],assembled:false}}])assert.equal(gardenSchema.safeParse(value).success,false);
+ for(const value of [{...s,version:3},{...s,extra:true},{...s,observedAt:NaN},{...s,seeds:{radish:3,marigold:1}},{...s,produce:{radish:1,marigold:0}},{...s,practice:1},{...s,markers:['sunburst','sunburst']},{...s,selectedMarker:'sunburst'},{...s,rested:{available:2,lastAt:101}},{...s,errand:{accepted:false,pieces:['forked'],assembled:false}}])assert.equal(gardenSchema.safeParse(value).success,false);
  for(const at of [NaN,Infinity,-1,1.2,GARDEN_TIME_MAX+1])assert.throws(()=>createGarden(at));
  assert.throws(()=>settleGarden(s,99));assert.throws(()=>settleGarden(s,NaN));
 });

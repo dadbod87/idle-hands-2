@@ -64,3 +64,7 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 [Starter garden candidate](GARDEN_LOOP.md), IH2-064: two crops, independent rented beds/produce stacks, recoverable seeds, base practice plus a rested bonus, solo/cooperative requests and chosen visual expression. Thirty-six analytical cohorts expose capacity and activity gaps. [Growth concept](GARDEN_GROWTH_CONCEPT.svg) and [phone concept](GARDEN_PHONE_CONCEPT.svg) are original static studies, not implemented garden screens. IH2-065 is the next bounded runtime slice.
 
 [Actual starter garden runtime](../GARDEN_RUNTIME.md) tracks065separately from the historical064concepts: private beds, bound seeds, held harvests, finite marker/errand choices and owner-labelled public registry. The48entry candidate catalog still describes future herb/home-garden items; it does not falsely mark those broader families implemented. Runtime art/command mappings are in065evidence.
+
+## Current066depth audit
+
+[Actual runtime coverage](CURRENT_RUNTIME_COVERAGE.md) dates the48candidatecatalog against accepted065, including home icons/garden art and remaining equipped/tool gaps. [Woodland family](WOODLAND_FAMILY.md) selects a modelled pine/saw/easel/produce-service family with retained-item opt-in town help. It remains non-executable design;067owns its implementation. [Evidence](../../evidence/IH2-066/REPORT.md) separates real agent inputs, elapsed fixtures and analytical schedules.

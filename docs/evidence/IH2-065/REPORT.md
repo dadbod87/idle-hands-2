@@ -1,6 +1,6 @@
 # IH2-065 — starter garden verification
 
-Local integrated candidate. Exact-head source CI, actual uploaded artifact review and merge closeout remain separate gates; no hosted release is implied. [Runtime contract](../../idle-hands-2/GARDEN_RUNTIME.md), [local results](local-checks.json), [build manifest](build-proof.json).
+Source accepted in PR15/mergeb4438d3 after exact-head CI43099483367 both success179/53 and actual uploaded131-file build/image review. [Final closeout](source-closeout.json) and [actual local-preview verification](actual-preview-verification.json); no hosted release is implied. [Runtime contract](../../idle-hands-2/GARDEN_RUNTIME.md), [local results](local-checks.json), [build manifest](build-proof.json).
 
 ## Playable scope
 
@@ -29,3 +29,5 @@ All browser viewports/touch are emulated native Chrome on an M5, not physical ph
 [Phone allotment](garden-phone-empty.png), [stable planting controls](garden-phone-planted-controls.png), [other owner's chosen display](garden-shared-other-owner.png), [held crop fixture](garden-desktop-held-ready.png), [short200% text](garden-short-text-200.png), [original art inspection](garden-runtime-art-sheet.png).
 
 Source acceptance must record final candidate, both required CI jobs, downloaded actual build/images, matching merge tree and clean current main in the PR/outside closeout. Local preview migration needs a fresh backup and preservation check; do not replace practice or its key.
+
+Final local preview: actual accepted065artifact on4175, all131responses match,4186proxy200, backed-up additive welcome migration preserves all11oldpractice tables and signing key. Practice has0savedresidents. NativeChrome desktop/phone UI passes without injected state or shared-practice login. Copied source closeout and extra actual5m/runtime-schedule observations are from after the immutable065candidate; those do not change its code or required CI record.

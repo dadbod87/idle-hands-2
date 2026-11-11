@@ -1,0 +1,997 @@
+{
+  "classification": "IH2-066 actual agent UI observations on accepted065localartifact; not human retention, physical phone, hosted or server authority",
+  "base": "http://127.0.0.1:4175/",
+  "fixtureDisclosure": "Fresh is normal UI. Returning/saturated local saves and arrival are explicit disposable browser fixtures. No shared-practice login, API interception, real accounts or database writes. Known answers/automated input; action durations are not human enjoyment.",
+  "rows": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "scenario": "fresh",
+      "method": "Normal UI from donated starter furnishings/ordinary initial depots; real5secondfirstplanter then12hjob; no state/time/position grants.",
+      "actions": [
+        {
+          "action": "Collect available scrap",
+          "elapsedMs": 1439
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1467
+        },
+        {
+          "action": "Collect available timber",
+          "elapsedMs": 1665
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1700
+        },
+        {
+          "action": "Collect available supplies",
+          "elapsedMs": 2166
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 2200
+        },
+        {
+          "action": "Open field guide",
+          "elapsedMs": 2242
+        },
+        {
+          "action": "Walk to workshop",
+          "elapsedMs": 2284
+        },
+        {
+          "action": "Inspect workshop door after guide walk",
+          "elapsedMs": 4119
+        },
+        {
+          "action": "Make orientation planter",
+          "elapsedMs": 6170
+        },
+        {
+          "action": "Collect finished work",
+          "elapsedMs": 11223
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11249
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 11289
+        },
+        {
+          "action": "Preview planter placement",
+          "elapsedMs": 11333
+        },
+        {
+          "action": "Place here",
+          "elapsedMs": 11366
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11398
+        },
+        {
+          "action": "Make bridge supplies",
+          "elapsedMs": 11481
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11513
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 11547
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 11585
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 11614
+        },
+        {
+          "action": "Preview radish",
+          "elapsedMs": 15715
+        },
+        {
+          "action": "Cancel free preview",
+          "elapsedMs": 15748
+        },
+        {
+          "action": "Preview radish again",
+          "elapsedMs": 15781
+        },
+        {
+          "action": "Plant starter radish",
+          "elapsedMs": 15818
+        },
+        {
+          "action": "Inspect leaves without output bonus",
+          "elapsedMs": 15850
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 15946
+        }
+      ],
+      "elapsedMs": 16008,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794433289911,
+        "readyAt": 1794476489911
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · Radish with ambitions5:00 remaining",
+        "Bed 2 · EmptyChoose a seed to preview",
+        "Bed 3 · EmptyChoose a seed to preview",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Harvest selected bed · 1 produce + 1 seed",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "scenario": "returning",
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 296
+        },
+        {
+          "action": "Select returned radish",
+          "elapsedMs": 329
+        },
+        {
+          "action": "Harvest held radish",
+          "elapsedMs": 359
+        },
+        {
+          "action": "Select returned flower",
+          "elapsedMs": 391
+        },
+        {
+          "action": "Harvest held flower",
+          "elapsedMs": 424
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 459
+        },
+        {
+          "action": "Submit mixed personal request",
+          "elapsedMs": 1128
+        },
+        {
+          "action": "Return to your beds",
+          "elapsedMs": 1158
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1641
+        }
+      ],
+      "elapsedMs": 1696,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794382899538,
+        "readyAt": 1794426099538
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · EmptyChoose a seed to preview",
+        "Bed 2 · Radish with ambitionsReady · waits safely",
+        "Bed 3 · EmptyChoose a seed to preview",
+        "Preview planting · free",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Harvest selected bed · 1 produce + 1 seed",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "scenario": "saturated",
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 295
+        },
+        {
+          "action": "Inspect full held crop",
+          "elapsedMs": 330
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 407
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 493
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 526
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 558
+        },
+        {
+          "action": "Next request in 23h 59m",
+          "elapsedMs": 1206
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1244
+        }
+      ],
+      "elapsedMs": 1244,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794246096318,
+        "readyAt": 1794289296318
+      },
+      "produce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "markers": 4,
+      "completedSketches": 3,
+      "clippings": 0,
+      "enabled": [
+        "Bed 1 · Out-of-office marigold4h 0m remaining",
+        "Bed 2 · Radish with ambitions30:00 remaining",
+        "Bed 3 · Radish with ambitionsReady · waits safely",
+        "Inspect soil & leaves · no production bonus",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Harvest selected bed · 1 produce + 1 seed"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "scenario": "fresh",
+      "method": "Normal UI from donated starter furnishings/ordinary initial depots; real5secondfirstplanter then12hjob; no state/time/position grants.",
+      "actions": [
+        {
+          "action": "Collect available scrap",
+          "elapsedMs": 1270
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1314
+        },
+        {
+          "action": "Collect available timber",
+          "elapsedMs": 1478
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1529
+        },
+        {
+          "action": "Collect available supplies",
+          "elapsedMs": 1961
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 2012
+        },
+        {
+          "action": "Open field guide",
+          "elapsedMs": 2071
+        },
+        {
+          "action": "Walk to workshop",
+          "elapsedMs": 2114
+        },
+        {
+          "action": "Inspect workshop door after guide walk",
+          "elapsedMs": 3928
+        },
+        {
+          "action": "Make orientation planter",
+          "elapsedMs": 5283
+        },
+        {
+          "action": "Collect finished work",
+          "elapsedMs": 11164
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11212
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 11266
+        },
+        {
+          "action": "Preview planter placement",
+          "elapsedMs": 11317
+        },
+        {
+          "action": "Place here",
+          "elapsedMs": 11365
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11413
+        },
+        {
+          "action": "Make bridge supplies",
+          "elapsedMs": 11547
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11594
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 11648
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 11700
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 11756
+        },
+        {
+          "action": "Preview radish",
+          "elapsedMs": 15849
+        },
+        {
+          "action": "Cancel free preview",
+          "elapsedMs": 15894
+        },
+        {
+          "action": "Preview radish again",
+          "elapsedMs": 15945
+        },
+        {
+          "action": "Plant starter radish",
+          "elapsedMs": 15999
+        },
+        {
+          "action": "Inspect leaves without output bonus",
+          "elapsedMs": 16048
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 16161
+        }
+      ],
+      "elapsedMs": 16205,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794433309215,
+        "readyAt": 1794476509215
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · Radish with ambitions5:00 remaining",
+        "Bed 2 · EmptyChoose a seed to preview",
+        "Bed 3 · EmptyChoose a seed to preview",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Harvest selected bed · 1 produce + 1 seed",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "scenario": "returning",
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 396
+        },
+        {
+          "action": "Select returned radish",
+          "elapsedMs": 442
+        },
+        {
+          "action": "Harvest held radish",
+          "elapsedMs": 494
+        },
+        {
+          "action": "Select returned flower",
+          "elapsedMs": 542
+        },
+        {
+          "action": "Harvest held flower",
+          "elapsedMs": 592
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 641
+        },
+        {
+          "action": "Submit mixed personal request",
+          "elapsedMs": 1328
+        },
+        {
+          "action": "Return to your beds",
+          "elapsedMs": 1377
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1843
+        }
+      ],
+      "elapsedMs": 1887,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794382918999,
+        "readyAt": 1794426118999
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · EmptyChoose a seed to preview",
+        "Bed 2 · Radish with ambitionsReady · waits safely",
+        "Bed 3 · EmptyChoose a seed to preview",
+        "Preview planting · free",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Harvest selected bed · 1 produce + 1 seed",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "scenario": "saturated",
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 354
+        },
+        {
+          "action": "Inspect full held crop",
+          "elapsedMs": 418
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 500
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 587
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 634
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 687
+        },
+        {
+          "action": "Next request in 23h 59m",
+          "elapsedMs": 1296
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1354
+        }
+      ],
+      "elapsedMs": 1354,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794246115998,
+        "readyAt": 1794289315998
+      },
+      "produce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "markers": 4,
+      "completedSketches": 3,
+      "clippings": 0,
+      "enabled": [
+        "Bed 1 · Out-of-office marigold4h 0m remaining",
+        "Bed 2 · Radish with ambitions30:00 remaining",
+        "Bed 3 · Radish with ambitionsReady · waits safely",
+        "Inspect soil & leaves · no production bonus",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Harvest selected bed · 1 produce + 1 seed"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "short",
+        "width": 844,
+        "height": 390,
+        "touch": true
+      },
+      "scenario": "fresh",
+      "method": "Normal UI from donated starter furnishings/ordinary initial depots; real5secondfirstplanter then12hjob; no state/time/position grants.",
+      "actions": [
+        {
+          "action": "Collect available scrap",
+          "elapsedMs": 1304
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1346
+        },
+        {
+          "action": "Collect available timber",
+          "elapsedMs": 1514
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1562
+        },
+        {
+          "action": "Collect available supplies",
+          "elapsedMs": 1997
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 2046
+        },
+        {
+          "action": "Open field guide",
+          "elapsedMs": 2102
+        },
+        {
+          "action": "Walk to workshop",
+          "elapsedMs": 2148
+        },
+        {
+          "action": "Inspect workshop door after guide walk",
+          "elapsedMs": 3997
+        },
+        {
+          "action": "Make orientation planter",
+          "elapsedMs": 5531
+        },
+        {
+          "action": "Collect finished work",
+          "elapsedMs": 11201
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11244
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 11297
+        },
+        {
+          "action": "Preview planter placement",
+          "elapsedMs": 11347
+        },
+        {
+          "action": "Place here",
+          "elapsedMs": 11397
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11444
+        },
+        {
+          "action": "Make bridge supplies",
+          "elapsedMs": 11562
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11611
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 11662
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 11716
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 11761
+        },
+        {
+          "action": "Preview radish",
+          "elapsedMs": 15899
+        },
+        {
+          "action": "Cancel free preview",
+          "elapsedMs": 15949
+        },
+        {
+          "action": "Preview radish again",
+          "elapsedMs": 15998
+        },
+        {
+          "action": "Plant starter radish",
+          "elapsedMs": 16054
+        },
+        {
+          "action": "Inspect leaves without output bonus",
+          "elapsedMs": 16099
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 16212
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 16312
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 16363
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 16414
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 16612
+        }
+      ],
+      "elapsedMs": 16613,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794433329028,
+        "readyAt": 1794476529028
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · Radish with ambitions5:00 remaining",
+        "Bed 2 · EmptyChoose a seed to preview",
+        "Bed 3 · EmptyChoose a seed to preview",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Harvest selected bed · 1 produce + 1 seed",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "short",
+        "width": 844,
+        "height": 390,
+        "touch": true
+      },
+      "scenario": "returning",
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 290
+        },
+        {
+          "action": "Select returned radish",
+          "elapsedMs": 355
+        },
+        {
+          "action": "Harvest held radish",
+          "elapsedMs": 409
+        },
+        {
+          "action": "Select returned flower",
+          "elapsedMs": 456
+        },
+        {
+          "action": "Harvest held flower",
+          "elapsedMs": 505
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 555
+        },
+        {
+          "action": "Submit mixed personal request",
+          "elapsedMs": 1242
+        },
+        {
+          "action": "Return to your beds",
+          "elapsedMs": 1294
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1771
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 1873
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 1922
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 1971
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 2155
+        }
+      ],
+      "elapsedMs": 2155,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794382939178,
+        "readyAt": 1794426139178
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · EmptyChoose a seed to preview",
+        "Bed 2 · Radish with ambitionsReady · waits safely",
+        "Bed 3 · EmptyChoose a seed to preview",
+        "Preview planting · free",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Harvest selected bed · 1 produce + 1 seed",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "short",
+        "width": 844,
+        "height": 390,
+        "touch": true
+      },
+      "scenario": "saturated",
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 293
+        },
+        {
+          "action": "Inspect full held crop",
+          "elapsedMs": 357
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 440
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 526
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 573
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 625
+        },
+        {
+          "action": "Next request in 23h 59m",
+          "elapsedMs": 1273
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1327
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 1377
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 1427
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 1476
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1991
+        }
+      ],
+      "elapsedMs": 1991,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794246136420,
+        "readyAt": 1794289336420
+      },
+      "produce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "markers": 4,
+      "completedSketches": 3,
+      "clippings": 0,
+      "enabled": [
+        "Bed 1 · Out-of-office marigold4h 0m remaining",
+        "Bed 2 · Radish with ambitions30:00 remaining",
+        "Bed 3 · Radish with ambitionsReady · waits safely",
+        "Inspect soil & leaves · no production bonus",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Harvest selected bed · 1 produce + 1 seed"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    }
+  ]
+}

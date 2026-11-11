@@ -129,3 +129,11 @@ Localkeyv2migration uses the same writer lock, reads legacyv1only whilev2absent 
 ## A047 — independent finite verbs, not an hours-of-content claim
 
 Garden adds two crop families, three hand-made markers, one finite three-comparison stakes errand/fourthmarker and solo-completable shared welcome bed. No old-currency/kit conversion or universal output multiplier. Preview/status controls keep their space; no action waits for its animation. Thirty-one original SVGs and96four-facing action frames reuse original resident identities/feet. More ingredient uses/practical quests require IH2-066activity audit and bounded resource/tool plan; the current lanes can still saturate.
+
+## A048 — one useful pine family, explicit goals and retained-item town help
+
+IH2-066 agent-selected candidate, not runtime economy. Actual fresh/returning/saturated agent audits and36policy/schedule/absence cohorts select a bound equipped hand saw, one personal pine pool, a kept pressed-flower easel on an independent finishing rack, optional produce hampers and anonymous opt-in craft recording for one fixed-deadline noticeboard. Existing timber/crop/bench/property rules remain unchanged until067's versioned implementation. Goal-reservation addresses daily-request-first personal-craft starvation; it is a visible planning aid, not hidden inventory locks or automatic spending. Kept-item recording has no unique-helper gate and reveals no private owner counts. Literal prices/errors/cooldowns stay separate from authored punchlines. Models do not establish human enjoyment or hours of activity.
+
+## A049 — dated runtime coverage and measured phone friction
+
+The48-entry candidate catalog is not a complete runtime inventory. CURRENT_RUNTIME_COVERAGE dates accepted065's117originalSVGs/131buildfiles and explicit remaining gear/species/ingredient/art gaps;054baseline text remains historical. Nine actual agent viewport cases preserve old jobs/materials/skills/properties. Phone panels have excess blank status/intro space and the guide requires an extra Inspect at the workshop; record these as focused usability work, not failed production authority or permission to silently rewrite the current task. New family controls must start action-first with stable44pxtargets/feedback.

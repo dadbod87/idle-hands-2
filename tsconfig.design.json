@@ -8,7 +8,12 @@
     "tools/simulate-garden-plan.ts",
     "tests/design-garden.spec.ts",
     "tests/garden*.test.ts",
-    "tests/garden.spec.ts"
+    "tests/garden.spec.ts",
+    "tools/neighborhood-fixtures.ts",
+    "tools/observe-neighborhood.ts",
+    "tools/woodland-plan.ts",
+    "tools/simulate-woodland-plan.ts",
+    "tests/design-woodland.spec.ts"
   ],
   "compilerOptions": {
     "types": [

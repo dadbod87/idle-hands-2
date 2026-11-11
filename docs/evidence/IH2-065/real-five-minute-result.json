@@ -1,0 +1,101 @@
+{
+  "classification": "Additional real-elapsed manual automation, not required CI or human playtest",
+  "disclosure": "Fresh isolated browser local practice, ordinary starting seed/clipping entitlements only. No injected state, clock, positions, inventory, time acceleration or API interception. Chrome phone/touch emulation, not physical phone. UI-only quest, field crafting and first actual5mharvest.",
+  "plantedAt": 1794430677037,
+  "readyAt": 1794430977037,
+  "harvestedAt": 1794430978394,
+  "finiteGardenErrandAndMarkersFinishedAfterMs": 19117,
+  "quietRemainingBeforeReadyMs": 280883,
+  "actions": [
+    {
+      "name": "Your allotment · crops, markers & quests",
+      "at": 1794430674427
+    },
+    {
+      "name": "Walk to the beds",
+      "at": 1794430674454
+    },
+    {
+      "name": "Actual first radish planted",
+      "at": 1794430677037,
+      "deadline": 1794430977037
+    },
+    {
+      "name": "Visit the allotment attendant",
+      "at": 1794430677071
+    },
+    {
+      "name": "Find the forked stake",
+      "at": 1794430677724
+    },
+    {
+      "name": "Return to the allotment attendant",
+      "at": 1794430680808
+    },
+    {
+      "name": "Find the marked stake",
+      "at": 1794430683520
+    },
+    {
+      "name": "Return to the allotment attendant",
+      "at": 1794430684406
+    },
+    {
+      "name": "Find the notched stake",
+      "at": 1794430685203
+    },
+    {
+      "name": "Return to the allotment attendant",
+      "at": 1794430689171
+    },
+    {
+      "name": "Three comparisons complete and fourth marker assembled",
+      "at": 1794430692976
+    },
+    {
+      "name": "Preview owned markers",
+      "at": 1794430693006
+    },
+    {
+      "name": "Make a design at the field",
+      "at": 1794430693103
+    },
+    {
+      "name": "Made sunburst",
+      "at": 1794430694425
+    },
+    {
+      "name": "Made leaf-fan",
+      "at": 1794430694494
+    },
+    {
+      "name": "Made little-pennant",
+      "at": 1794430694560
+    },
+    {
+      "name": "See owned markers",
+      "at": 1794430694588
+    },
+    {
+      "name": "Ask about the stake errand",
+      "at": 1794430694620
+    },
+    {
+      "name": "Return to your beds",
+      "at": 1794430695790
+    }
+  ],
+  "harvested": {
+    "radish": 1,
+    "marigold": 0
+  },
+  "practice": 2,
+  "markers": [
+    "almost-straight",
+    "sunburst",
+    "leaf-fan",
+    "little-pennant"
+  ],
+  "protectedOldKeysUnchanged": true,
+  "errors": []
+}

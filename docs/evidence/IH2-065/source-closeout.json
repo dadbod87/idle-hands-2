@@ -1,0 +1,133 @@
+{
+  "task": "IH2-065",
+  "status": "SOURCE_ACCEPTED",
+  "candidate": "d53c5c3a5e55244d2c849c9f92a1e7be88864b98",
+  "base": "c0ce17e76c2038ab75b6475b6eb584e0456215e5",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/15",
+  "ciRun": 43099483367,
+  "event": "workflow_dispatch",
+  "attempt": 1,
+  "originalQueuedRun": 43098383452,
+  "domain": {
+    "job": 130786029647,
+    "conclusion": "success",
+    "passed": 179,
+    "skipped": 0,
+    "durationMs": 61355.577937,
+    "databaseRestartProof": true
+  },
+  "browser": {
+    "job": 130786053365,
+    "conclusion": "success",
+    "status": "completed",
+    "passed": 53,
+    "minutes": 12.5,
+    "artifactId": 13892346563,
+    "reviewed": [
+      "garden-phone-empty.png",
+      "garden-shared-other-owner.png",
+      "garden-short-text-200.png",
+      "desktop-square.png",
+      "garden-runtime-art-sheet.png",
+      "narrow-workshop.png",
+      "variety-narrow-canopy-pixels-1.png"
+    ],
+    "activePlayP95Ms": {
+      "desktop": 83.30000000000291,
+      "phone": 33.30000000000109,
+      "narrow": 16.800000000000182,
+      "short": 33.30000000000109
+    },
+    "minimumCanopyCoverage": 0.9859649122807017
+  },
+  "artifact": {
+    "buildId": 13890328443,
+    "serverId": 13890542895,
+    "actualBuildFiles": 131,
+    "candidateByteMismatches": []
+  },
+  "ciLoad": {
+    "commandP95Ms": 89.63464100000056,
+    "elapsedMs": 27172.899938,
+    "sql": {
+      "setup": {
+        "count": 18,
+        "verbs": {
+          "DROP": 1,
+          "BEGIN": 1,
+          "SELECT": 6,
+          "CREATE": 1,
+          "--": 4,
+          "INSERT": 4,
+          "COMMIT": 1
+        },
+        "latencyMs": {
+          "count": 18,
+          "p50": 0.5623009999999908,
+          "p95": 12.355130999999972,
+          "p99": 12.355130999999972,
+          "max": 12.355130999999972
+        }
+      },
+      "load": {
+        "count": 3740,
+        "verbs": {
+          "INSERT": 200,
+          "BEGIN": 280,
+          "UPDATE": 380,
+          "COMMIT": 280,
+          "SELECT": 2440,
+          "SET": 160
+        },
+        "latencyMs": {
+          "count": 3740,
+          "p50": 0.9630339999998796,
+          "p95": 2.5433310000007623,
+          "p99": 5.996467999999368,
+          "max": 255.98415799999975
+        }
+      },
+      "verification": {
+        "count": 3,
+        "verbs": {
+          "SELECT": 3
+        },
+        "latencyMs": {
+          "count": 3,
+          "p50": 1.7308329999978014,
+          "p95": 2.489701000002242,
+          "p99": 2.489701000002242,
+          "max": 2.489701000002242
+        }
+      }
+    },
+    "disclosure": "Actual loopback Node HTTP/SSE +dedicated disposable ih2_load PostgreSQL;20unique ordinary zero-progress residents. Legal continuous route/ACK movement, real5splanter and12hqueued job. No stock/time/position grants, real accounts or cloud. This is20protocol clients, not20rendered browsers or a physical-phone/WAN/soak/capacity guarantee."
+  },
+  "merge": "b4438d3c1b98f04113e8ad3c47ab30e516741302",
+  "tree": "c136cff9d1f11d72e6c2b944a3d1b5ce113abac5",
+  "candidateMergeTreesEqual": true,
+  "cleanMainEqualsRemoteVerified": true,
+  "classification": "Private local sequel source acceptance; not hosted release",
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "actualCiArtifact": true,
+    "responseFiles": 131,
+    "mismatches": [],
+    "apiProxy": 200,
+    "actualNativeBrowserDesktopPhone": true,
+    "dataAndKeyPreserved": true,
+    "savedPracticeResidents": 0,
+    "backup": "pre-garden-update-practice.dump",
+    "classification": "Local fictional practice only; not hosted production"
+  },
+  "additionalRealTimeHarvest": "real-five-minute-result.json",
+  "runtimeScheduleObservation": "garden-runtime-observation.json",
+  "originalQueuedRunCancellation": "CLI refused cancellation; original still reported queued/no jobs. Identical exact-head dispatch bothsuccess accepted.",
+  "mainCi": {
+    "run": 43101691657,
+    "head": "b4438d3c1b98f04113e8ad3c47ab30e516741302",
+    "domain": "success",
+    "browser": "success",
+    "separateFromPremergeGate": true
+  }
+}

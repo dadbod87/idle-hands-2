@@ -1,6 +1,6 @@
 # The starter allotment
 
-IH2-065 working implementation, November 11, 2026. **Local development candidate; full regression and exact-head source acceptance are still required.** This file describes the implemented slice; [the earlier design study](design/GARDEN_LOOP.md) remains a historical candidate/model, not its release record. No hosted game, real identity or current-game account is involved.
+IH2-065 source accepted, November 11, 2026: PR15/mergeb4438d3. Exact-head both CI jobs pass179/53; [source and actual local-preview closeout](../evidence/IH2-065/source-closeout.json). **Local fictional practice, not a hosted release.** This file describes the implemented slice; [the earlier design study](design/GARDEN_LOOP.md) remains a historical candidate/model, not its release record. No hosted game, real identity or current-game account is involved.
 
 ## A useful personal lane
 

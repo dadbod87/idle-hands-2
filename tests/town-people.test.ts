@@ -60,3 +60,9 @@ test('all context branches are pure, return fresh dialogue and unknown residents
 test('resident reactions distinguish construction, safe discovery and earned appearance without speeding jobs',()=>{
  const shared={...base,shared:true,questStage:'bridge' as const};assert.match(say('clerk',shared).lines.join(' '),/sixty real seconds/);assert.match(say('clerk',{...shared,maintenanceSatisfied:true}).lines.join(' '),/participation is already recorded/);const building=say('caretaker',{...shared,bridgePhase:'building'}).lines.join(' ');assert.match(building,/six-hour construction deadline/);assert.match(building,/cannot restart or shorten/);assert.match(say('caretaker',{...shared,bridgeRestored:true,trailStamps:2}).lines.join(' '),/2 of three/);assert.match(say('caretaker',{...shared,bridgeRestored:true,pennantOwned:true}).lines.join(' '),/home wall/);
 });
+
+test('shared clerk and cafe retain unfinished maintenance guidance while ordinary work is queued',()=>{
+ const guidance={id:'collect-maintenance',title:'Your maintenance credit is ready',detail:'Collect the paid credit at your bench. Your ordinary job keeps its own deadline.',destination:'bench' as const,complete:false};
+ for(const id of ['clerk','cafe']){const context={...base,questStage:'complete' as const,job:'bridge-kit' as const,shared:true,guidance},before=structuredClone(context);const result=say(id,context);assert.match(result.lines.join(' '),/paid credit/);assert.equal(result.action!.destination,'workshop');assert.deepEqual(context,before);}
+ const cafe=say('cafe',{...base,shared:true,guidance});assert.match(cafe.lines.join(' '),/No shop or indoor service is open yet/);assert.match(cafe.lines.join(' '),/no attendance window/);
+});

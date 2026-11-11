@@ -4,6 +4,8 @@ import { worlds,TRAIL_LANDMARK_IDS,type Stop } from './game/world.ts';
 import { WorldScene } from './phaser/WorldScene.ts';
 import './ui/style.css';
 import {questStep} from './game/workshop.ts';
+import {sharedObjective} from './game/shared-guidance.ts';
+import {PLOT_CLAIM_KITS,PLOT_UPGRADE_KITS} from './game/town-rules.ts';
 import {climateFixture} from './game/town-climate.ts';
 import {dialogueFor,type DialogueContext} from './game/town-people.ts';
 import {returnSummary,visitBaseline,parseVisit,type VisitBaseline} from './game/return-summary.ts';
@@ -40,23 +42,44 @@ const game = new Phaser.Game({
   render: { antialias: true, antialiasGL: false, pixelArt: false }, audio: { noAudio: true },
   fps: { target: 60 }, scene: [scene]
 });
+let renderedFrames=0;game.events.on(Phaser.Core.Events.POST_RENDER,()=>{renderedFrames++;if(menuRenderPaused&&menuFrameBudget>0&&--menuFrameBudget===0)pauseMenuRender();});
 scene.onWalkFailure=()=>feedback.textContent='That spot cannot be reached. Try a clear patch of ground or tap a named prop.';
 const worldContainer=document.querySelector<HTMLElement>('#world')!;
 const updateTextMode=()=>app.querySelector('.shell')?.classList.toggle('large-text',parseFloat(getComputedStyle(document.documentElement).fontSize)>20);
 updateTextMode();
-const worldResize=new ResizeObserver(entries=>{updateTextMode();const {width,height}=entries[0].contentRect;if(game.isBooted&&width>0&&height>0&&(Math.abs(game.scale.width-width)>.5||Math.abs(game.scale.height-height)>.5))game.scale.setParentSize(width,height);});
+const worldResize=new ResizeObserver(entries=>{
+ updateTextMode();const {width,height}=entries[0].contentRect;
+ if(game.isBooted&&width>0&&height>0){
+  if(Math.abs(game.scale.width-width)>.5||Math.abs(game.scale.height-height)>.5)game.scale.setParentSize(width,height);
+  // Phaser RESIZE may already have changed the canvas before this observer.
+  // Its cleared target still needs repainting while the modal owns the pause.
+  refreshMenuFrame(2);
+ }
+});
 worldResize.observe(worldContainer);
 let ready = false;
 let lastContext = '';
 let portalIntent=0;
+let menuRenderPaused=false,menuFrameBudget=0;
+function pauseMenuRender(){if(!ready||!panel.open)return;menuRenderPaused=true;scene.resetPresentationFrame(false);game.pause();}
+function resumeMenuRender(){if(!menuRenderPaused)return;menuRenderPaused=false;menuFrameBudget=0;scene.resetPresentationFrame();game.resume();}
+function refreshMenuFrame(frames=1){
+  if(!menuRenderPaused||!panel.open||document.hidden)return;
+  // Resize can recreate WebGL targets; allow its resize/update cycle plus complete
+  // subsequent renders. Ordinary menu clock updates need only one frame.
+  menuFrameBudget=Math.max(menuFrameBudget,frames);scene.resetPresentationFrame(false);game.resume();
+}
+// DOM clocks and authoritative requests keep running. Only the noninteractive
+// backdrop redraws once a second while a modal covers the locked world.
+window.setInterval(()=>refreshMenuFrame(),1000);
 function save() { if(townMode)return; try { localStorage.setItem(saveKey, JSON.stringify(session.save())); } catch { feedback.textContent = 'Position could not be saved in this browser. The pilot remains playable.'; } }
 function focusWorld() { document.querySelector('canvas')?.focus(); }
 function unlockWorld(){if(session.locked&&!panel.open&&!transitionBusy&&(!townMode||!!town?.snapshot&&!needResync&&!town.retryAvailable))session.lock(false);}
-function closePanel() { workshop.closed(); panel.close();unlockWorld(); focusWorld(); }
+function closePanel() { workshop.closed(); panel.close();resumeMenuRender();unlockWorld(); focusWorld(); }
 panel.addEventListener('submit', event => { event.preventDefault(); closePanel(); });
-panel.addEventListener('close', () => { workshop.closed();unlockWorld(); focusWorld(); });
+panel.addEventListener('close', () => { workshop.closed();resumeMenuRender();unlockWorld(); focusWorld(); });
 panel.addEventListener('cancel', event => {event.preventDefault();closePanel();});
-function openPanel(heading: string) { pendingHomePlotId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal(); }
+function openPanel(heading: string) { workshop.closed();body.removeAttribute('aria-busy');pendingHomePlotId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal();pauseMenuRender(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }
 let townUI:TownUI|undefined;
 let pendingHomePlotId:string|undefined;
@@ -79,7 +102,7 @@ const town=townMode?new TownClient({
  onSnapshot:snapshot=>{skyOffset=snapshot.serverTime-Date.now();const identityChanged=residentId!==snapshot.playerId;const expandedInPlace=session.room==='home'&&snapshot.position.room==='home-expanded'&&snapshot.position.homePlotId===homePlotId;
  // Ordinary snapshots can race acknowledged movement. Only explicit entry/resume or an in-place forward expansion adopts feet.
  if(identityChanged||needResync||expandedInPlace||(snapshot.serverInstance&&snapshot.serverInstance!==serverInstance))adoptTownPosition(snapshot);
- scene.homePlotId=homePlotId;const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;scene.houseLevel=Number(snapshot.plot?.level??snapshot.plots[0]?.level??0);scene.residentId=snapshot.playerId;scene.bridgeRestored=snapshot.bridge.restored;scene.bridgePhase=snapshot.bridge.phase;scene.bridgeReadyAt=snapshot.bridge.readyAt??null;scene.refreshDecorations();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
+ scene.homePlotId=homePlotId;const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;scene.houseLevel=Number(snapshot.plot?.level??snapshot.plots[0]?.level??0);scene.residentId=snapshot.playerId;scene.bridgeRestored=snapshot.bridge.restored;scene.bridgePhase=snapshot.bridge.phase;scene.bridgeReadyAt=snapshot.bridge.readyAt??null;scene.refreshDecorations();paintGuideObjective();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
  onPresence:presence=>{scene.residents=Array.isArray(presence)?presence:[];},
  onConnection:message=>{feedback.textContent=message;if(message.includes('interrupted')){needResync=true;session.lock(true);}},
  beforeCommand:()=>flushMovement(true)
@@ -95,12 +118,15 @@ async function flushMovement(force=false):Promise<void>{
  movement=action;await action;
 }
 const remoteWorkshop=town?.workshopAdapter();
-const workshop=new WorkshopUI({open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>scene.refreshDecorations(),...(town?{teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(returnSummary(town.snapshot,previousVisit(town.snapshot.playerId))),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
+const workshop=new WorkshopUI({open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>scene.refreshDecorations(),...(town?{objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(returnSummary(town.snapshot,previousVisit(town.snapshot.playerId))),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
 if(town){townUI=new TownUI({open:openPanel,body,feedback:message=>feedback.textContent=message,changed:()=>scene.refreshDecorations(),enterHome,enterTrail:()=>{if(!town.snapshot?.bridge.restored){feedback.textContent='The bridge is still under inspection.';return;}if(session.room!=='square'){feedback.textContent='You are already beyond the town bridge. Use Places for the local landmarks.';return;}closePanel();const gate=worlds.square.stops.find(stop=>stop.id==='trail-gate')!;session.point(gate.point);feedback.textContent='Walking into Inkwood trail.';}},town);document.querySelector('#resident')!.addEventListener('click',()=>void townUI!.showLogin(()=>closePanel()));}
 scene.decorations=()=>session.room.startsWith('home')?(town?.snapshot?.plots.find(plot=>plot.id===homePlotId)?.placements??workshop.state.placements) as typeof workshop.state.placements:workshop.state.placements;
 document.querySelector('#bag')!.addEventListener('click',()=>{if(town?.retryAvailable){showPendingRequest();return;}workshop.showInventory();});
+function currentObjective(){return town?.snapshot?sharedObjective(town.snapshot,town.serverNow()):questStep(workshop.state);}
+function paintGuideObjective(){const note=body.querySelector<HTMLElement>('[data-guide-objective]');if(!note)return;const objective=currentObjective(),text=objective.title+' — '+objective.detail;if(note.textContent!==text)note.textContent=text;}
+let guidanceSecond=-1;
 document.querySelector('#field-guide')!.addEventListener('click',()=>{
-  openPanel('Town field guide');body.innerHTML=guideContents(session.room==='workshop',townMode,session.room!=='square'&&session.room!=='workshop');if(scene.skyFixture){const live=document.createElement('a');live.className='destination live-clock';live.href=townMode?'/?town=1':'/';live.textContent='Return to the live town clock';body.prepend(live);}const objective=questStep(workshop.state);const note=paragraph(objective.title+' — '+objective.detail);note.className='quest-card';body.prepend(note);const climate=scene.climateState();if(climate){const clock=paragraph('Town time · '+String(Math.floor(climate.minute/60)).padStart(2,'0')+':'+String(climate.minute%60).padStart(2,'0')+' · '+climate.label+(climate.fixture?' · Lighting study':''));clock.id='guide-sky';body.prepend(clock);}
+  openPanel('Town field guide');body.innerHTML=guideContents(session.room==='workshop',townMode,session.room!=='square'&&session.room!=='workshop');if(scene.skyFixture){const live=document.createElement('a');live.className='destination live-clock';live.href=townMode?'/?town=1':'/';live.textContent='Return to the live town clock';body.prepend(live);}const objective=currentObjective();const note=paragraph(objective.title+' — '+objective.detail);note.className='quest-card';note.dataset.guideObjective='';body.prepend(note);const climate=scene.climateState();if(climate){const clock=paragraph('Town time · '+String(Math.floor(climate.minute/60)).padStart(2,'0')+':'+String(climate.minute%60).padStart(2,'0')+' · '+climate.label+(climate.fixture?' · Lighting study':''));clock.id='guide-sky';body.prepend(clock);}
   body.querySelector('#guide-workshop')!.addEventListener('click',()=>{closePanel();const stop=worlds[session.room].stops.find(s=>s.id==='workshop'||s.id==='bench'||s.id==='home-door'||s.id==='trail-exit');if(stop){if(stop.transition&&session.room!=='square')session.point(stop.point);else session.walk(stop.point);}feedback.textContent=session.room==='square'?'Walking to your workshop.':session.room==='workshop'?'Your bench is right here.':'Walking back to the square.';});
 });
 document.querySelector('#places')!.addEventListener('click', () => {
@@ -141,7 +167,7 @@ async function enterRemotePortal(stop:Stop){
 }
 function activate(stop: Stop) {
   const job=workshop.state.job,objective=questStep(workshop.state);
-  const dialogue=dialogueFor(stop.id,{room:session.room==='square'?'square':'workshop',questStage:objective.id as DialogueContext['questStage'],job:job?.recipe??'none',jobReady:!!job&&job.readyAt<=(remoteWorkshop?.now()??Date.now()),bridgeRestored:scene.bridgeRestored,bridgePhase:scene.bridgePhase,trailStamps:town?.snapshot?.trail?.stamps.length??0,pennantOwned:town?.snapshot?.trail?.pennantOwned??false,maintenanceSatisfied:!!(town?.snapshot?.lesson?.redeemed||town?.snapshot?.lesson?.legacySatisfied),shared:townMode,phase:scene.climateState()?.phase??'day'});
+  const dialogue=dialogueFor(stop.id,{room:session.room==='square'?'square':'workshop',questStage:objective.id as DialogueContext['questStage'],job:job?.recipe??'none',jobReady:!!job&&job.readyAt<=(remoteWorkshop?.now()??Date.now()),bridgeRestored:scene.bridgeRestored,bridgePhase:scene.bridgePhase,trailStamps:town?.snapshot?.trail?.stamps.length??0,pennantOwned:town?.snapshot?.trail?.pennantOwned??false,maintenanceSatisfied:!!(town?.snapshot?.lesson?.redeemed||town?.snapshot?.lesson?.legacySatisfied),...(town?.snapshot?{guidance:sharedObjective(town.snapshot,town.serverNow())}:{}),shared:townMode,phase:scene.climateState()?.phase??'day'});
   if(dialogue){
     openPanel(dialogue.title);for(const line of dialogue.lines)body.append(paragraph(line));
     if(dialogue.action){const action=dialogue.action,button=document.createElement('button');button.type='button';button.className='destination';button.dataset.npcAction=action.destination;button.textContent=action.label;button.addEventListener('click',()=>{if(action.destination==='journal'){workshop.showInventory();return;}closePanel();const target=worlds[session.room].stops.find(s=>s.id===action.destination||(action.destination==='workshop'&&s.id==='bench'));if(target){session.walk(target.point);feedback.textContent='Walking to '+target.name+'.';}});body.append(button);}
@@ -174,6 +200,7 @@ document.addEventListener('keydown', e => {
   e.preventDefault(); interact();
 });
 scene.onFrame = () => {
+  if(panel.open){const second=Math.floor((town?.serverNow()??Date.now())/1000);if(second!==guidanceSecond){guidanceSecond=second;paintGuideObjective();}}
   if(town&&!document.hidden)void flushMovement().catch(()=>{});
   if (!ready) {
     ready = true; document.querySelector('#boot')?.remove();
@@ -205,7 +232,7 @@ Object.defineProperty(window, '__pilot', { value: Object.freeze({
   workshop:()=>workshop.snapshot(),
   metrics: () => {
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);
-    return { climate:scene.climateState(), ready, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };
+    return { climate:scene.climateState(), ready, presentation:{menuBackdropPaused:menuRenderPaused,renderedFrames}, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };
   },
   screenPoint: (x: number, y: number) => { const c = scene.cameras.main; return { x: (x + .5) * 32 - c.scrollX, y: (y + .5) * 32 - c.scrollY }; }
 }), writable: false });

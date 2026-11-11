@@ -1,3 +1,4 @@
+import type {SharedObjective} from './shared-guidance.ts';
 /** Authored fictional residents. Dialogue describes progress; it never mutates it. */
 export type TownPersonId = 'clerk' | 'caretaker' | 'courier';
 export type TownPerson = {
@@ -19,6 +20,7 @@ export type DialogueContext = {
   job: 'none' | 'planter' | 'bridge-kit';
   jobReady: boolean;
   bridgeRestored: boolean;
+  guidance?:SharedObjective;
   bridgePhase?:'collecting'|'building'|'open';trailStamps?:number;pennantOwned?:boolean;maintenanceSatisfied?:boolean;
   shared: boolean;
   phase: string;
@@ -64,6 +66,7 @@ export function dialogueFor(id: string, context: DialogueContext): TownDialogue 
       lines: ['A planter. Excellent. We now have evidence that something can be completed here.', 'Inside your workshop, open Bag & journal, choose the planter and preview an empty nook. Confirm Place here when you are happy. Previewing, cancelling and moving furniture cost no materials.'],
       action: journal()
     };
+    if(context.shared&&context.guidance)return{title,lines:[context.guidance.title+'. The memo has been stapled to itself.',context.guidance.detail],action:context.guidance.destination==='bridge'?bridge():context.guidance.destination==='bench'?bench(context):journal()};
     if (context.questStage === 'bridge') return {
       title,
       lines: context.shared?[context.maintenanceSatisfied?'Your participation is already recorded. Your next ordinary kit can go toward a home.':'The bench offers a once-only maintenance lesson: one of each material and sixty real seconds. It earns participation, not an inventory kit.','An ordinary kit takes twelve hours. Queue it at the bench, then return later to collect it. Keeping the game open does not make it finish sooner.']:['Your next bench recipe is a bridge repair kit. The committee has approved useful work in principle.', 'A kit takes twelve hours. Queue it at the bench, then return later to collect it. Keeping the game open does not make it finish sooner.'],
@@ -106,6 +109,7 @@ export function dialogueFor(id: string, context: DialogueContext): TownDialogue 
       action: context.jobReady ? bench(context) : bridge()
     };
   }
+  if(id==='cafe')return{title:'The Almost Open Café',lines:['The menu has passed its review. The kitchen has requested a second opinion. No shop or indoor service is open yet.',context.shared&&context.guidance?context.guidance.detail:'The three square depots hold scrap, timber and supplies. Your workshop bench makes a first planter in five seconds; later work uses real hours.','Town time changes the light, not your production. There is no attendance window or penalty for leaving your work here.'],action:context.shared&&context.guidance?(context.guidance.destination==='bridge'?bridge():context.guidance.destination==='bench'?bench(context):journal()):bench(context)};
   if (id === 'courier') return {
     title: 'Pip · Town courier',
     lines: [shiftGreeting(context.phase), 'Officially, I deliver the post. Unofficially, opinions travel faster.',

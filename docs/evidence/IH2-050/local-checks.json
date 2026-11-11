@@ -1,0 +1,51 @@
+{
+  "domainTests": 114,
+  "skipped": 0,
+  "authoritativeServerTests": 39,
+  "browserTests": 43,
+  "browserMinutes": 5.8,
+  "strictBuild": "PASS",
+  "catalog": "PASS;48entries/5candidate regions",
+  "planner": "PASS;18tasks/10tracker tests",
+  "toolkit": "PASS;40pinned files",
+  "diff": "PASS",
+  "previewRoster": "Default3unchanged;4186restartedafterbackup, workshopstate digest unchanged",
+  "timings": {
+    "queueMs": 14777,
+    "upkeepMs": 81733
+  },
+  "timingLimits": "Automated first input\u2192action with real5s/60s clocks; not human reading, fun/retention or physical-device proof.",
+  "fixtureDisclosure": "Fresh Drew: actual ordinary stock/real5s+60s, no HTTP/SQL/clock/position/grant overrides. Menu-only graphics case proves normal clocks first, then disables recorded1swindow timers in that disposable page to isolate resize repaint. Existing older fixtures retain their separate disclosures.",
+  "actualDatabaseRestart": "PASS;PG16.15, session/home/job/opening/award retained",
+  "actualFinalImagesReviewed": [
+    "first-visit-phone-guide.png",
+    "first-visit-phone-cafe-exterior.png",
+    "first-visit-phone-journal.png",
+    "first-visit-phone-lesson-running.png",
+    "first-visit-phone-upkeep-recorded.png",
+    "first-visit-short-text200.png",
+    "menu-backdrop-short-live-clock.png"
+  ],
+  "nameBoundary": "Trimmed40accepted atrealDBlogin,41/65startupreject;server39/aggregate114rerun",
+  "menuBackdrop": {
+    "disclosure": "Disposable local browser-only mode. Normal clock/redraw proof first; then recorded one-second window timers are stopped in this page to prove resize repaint independently of periodic fallback. No HTTP/stock/position overrides or grants. Desktop then844x390viewport emulation, not a physical device.",
+    "redraws": 2,
+    "windowMs": 2400,
+    "position": {
+      "x": 24,
+      "y": 25
+    },
+    "clock": "Town time \u00b7 15:16 \u00b7 Day \u00b7 Light drizzle",
+    "visibleFraction": 1,
+    "resizeRecoveryMs": 87,
+    "resizeSamples": [
+      {
+        "ms": 85,
+        "frames": 19,
+        "visible": 1
+      }
+    ],
+    "framePolicy": "Modal backdrop only: one redraw/second plus two-frame resize refresh. Timers and authority continue; modal frame intervals do not enter active-play samples."
+  },
+  "canopyMinimum": 0.9850877192982456
+}

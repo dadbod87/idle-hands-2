@@ -1,5 +1,7 @@
 # History
 
+2026-11-10 — IH2-050: shared first-visit objectives stay useful through queued ordinary work, paid maintenance, held credit, upkeep and return visits. Bag/guide/clerk/café use current state; café door inspects an exterior clue. Correct later-planter/funded-kit copy and panel control ownership. Optional bounded synthetic roster supports a genuinely fresh, ungranted phone walkthrough without changing ordinary residents or production rules. No hosted/auth/economy/real-player change.
+
 2026-11-10 — IH2-053: new bridge funding records one fixed6h construction deadline and one permanent opening; forward migration preserves earlier repaired access. One safe Inkwood trail, personal three-stamp notebook, deterministic permanent owner-home pennant and authored reactions;10original SVGs with shared doorway anchors. Server-only access/reward, replay/race/restore/privacy checks and early-snapshot input-lock correction. Existing three resources/two recipes, costs and normal timers retained. No hosted release, real-player or original-game change.
 
 2026-11-10 — IH2-052: physical instanced starter homes and one workroom expansion preserve existing plot/furniture ownership; owner/visitor entry, correct doorway exit and reconnect/upgrade context. Paid once-only60s maintenance teaches participation without fast inventory kits, with explicit quotes/upkeep and legacy compatibility. Optional truthful return summary;19 original home/furniture/material SVGs and exact provenance. Focused reviews fix pending entry/retry, stale summaries, scoped peers, double-close walk cancellation and fractional corner tails. Normal production/economy/reset rules remain; timed bridge/trail follows053. Private local sequel only.
@@ -33,3 +35,5 @@
 2026-11-09 — Separate local source created from planning at current-game merge 9904bde24e01cec344e6c5f4a753d53cf43396d7.
 
 2026-11-10 — IH2-053 validation follow-up: rejected CI found a first-intent test hold incorrectly capturing a later doorway retry. Scoped transport fixture and added deterministic one-checkpoint regression without weakening authority/input checks. Measured context-only MSAA reduction preserves smooth SVG textures and improves local software frame interval; full41case and exact CI gate remain required. No game economy or ordinary timer change.
+
+2026-11-10 — IH2-050 validation follow-up: measured modal backdrop rendering reduction keeps menu controls responsive while DOM/server timers continue. One-second refresh, complete resize redraw and close-to-walk input/frame reset; actual PNG assertion follows visual rejection of a blank resized backdrop. Preserve all prior tests and20minute CI gate; rejected cancelled attempts remain disclosed.

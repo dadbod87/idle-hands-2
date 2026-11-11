@@ -1,0 +1,137 @@
+{
+  "method": "Actual isolated ih2_browser ordinary fresh Drew,360×640 touch emulation and844×390 with200%DOM text. No interceptions, SQL, clock/position overrides or progress grants. Existing ordered tests opened the bridge; first-input timings are automated UI execution, not owner reading/playtest or physical-device evidence.",
+  "timings": {
+    "queueMs": 14777,
+    "upkeepMs": 81733
+  },
+  "guidance": {
+    "fresh": "Orientation: Something from almost nothing — Tap a material bin in the square. Gather scrap, timber and supplies for your first planter.",
+    "placed": "Orientation: Leave useful work on the bench — Queue ordinary bridge supplies: 3 scrap, 2 timber and 1 supplies, twelve real hours. Keep one of each material for the once-only maintenance lesson. Finished work waits for collection.",
+    "queued": "Orientation: One small job for the town — At your bench, open Orientation maintenance. Once only: 1 scrap, 1 timber, 1 supplies and sixty real seconds for a participation credit. Your ordinary job runs separately; this creates no inventory kit.",
+    "preparing": "Orientation: Maintenance is underway — Your paid one-minute preparation keeps running while you are away. Your ordinary job keeps its own deadline. Arrange a furnishing or read your notes; no extra payment is needed.",
+    "guide": "Maintenance is underway — Your paid one-minute preparation keeps running while you are away. Your ordinary job keeps its own deadline. Arrange a furnishing or read your notes; no extra payment is needed.",
+    "clerk": "TOWN INFORMATION SERVICESMarlow · Town clerk×Maintenance is underway. The memo has been stapled to itself.Your paid one-minute preparation keeps running while you are away. Your ordinary job keeps its own deadline. Arrange a furnishing or read your notes; no extra payment is needed.Open bag & journal",
+    "cafe": "TOWN INFORMATION SERVICESThe Almost Open Café×The menu has passed its review. The kitchen has requested a second opinion. No shop or indoor service is open yet.Your paid one-minute preparation keeps running while you are away. Your ordinary job keeps its own deadline. Arrange a furnishing or read your notes; no extra payment is needed.Town time changes the light, not your production. There is no attendance window or penalty for leaving your work here.Open bag & journal",
+    "resumed": "Orientation: Maintenance is underway — Your paid one-minute preparation keeps running while you are away. Your ordinary job keeps its own deadline. Arrange a furnishing or read your notes; no extra payment is needed.",
+    "ready": "Orientation: Your maintenance credit is ready — Collect the credit at the workshop bench’s Orientation maintenance note, then record it with the bridge committee. Your ordinary job keeps its own deadline.",
+    "credit": "Orientation: Record your participation — Bring your paid credit to the bridge committee for a separate upkeep inspection. No second payment and no change to construction time.",
+    "afterDiscovery": "Orientation: A useful reason to return — Your ordinary job is queued. It finishes while you are away and waits for collection; no automatic repeat. Inkwood is open now: its three personal field notes earn a permanent home pennant."
+  },
+  "queuedJob": {
+    "recipe": "bridge-kit",
+    "startedAt": 1794365579392,
+    "readyAt": 1794408779392
+  },
+  "lesson": {
+    "startedAt": 1794365579839,
+    "readyAt": 1794365639839,
+    "completed": true,
+    "redeemed": true,
+    "route": "upkeep",
+    "legacySatisfied": false
+  },
+  "inventory": {
+    "scrap": 0,
+    "timber": 1,
+    "supplies": 3
+  },
+  "outputKits": 0,
+  "unchangedBridge": {
+    "contributed": 3,
+    "target": 3,
+    "restored": true,
+    "phase": "open",
+    "startedAt": 1794343869237,
+    "readyAt": 1794365469237,
+    "openedAt": 1794365469237,
+    "grandfathered": false
+  },
+  "commands": [
+    {
+      "kind": "gather",
+      "resource": "scrap",
+      "id": "0b9b1922-a133-4578-9f38-a77a3ba2767b",
+      "expectedRevision": 0
+    },
+    {
+      "kind": "gather",
+      "resource": "timber",
+      "id": "c5148e23-bfa9-42e0-bcb1-2906a8463c30",
+      "expectedRevision": 1
+    },
+    {
+      "kind": "gather",
+      "resource": "supplies",
+      "id": "fea60ee1-bb53-49c5-a672-8437d8630638",
+      "expectedRevision": 2
+    },
+    {
+      "kind": "craft",
+      "recipe": "planter",
+      "id": "fae4058a-91ac-4777-8ef5-62f51082eb19",
+      "expectedRevision": 3
+    },
+    {
+      "kind": "claim",
+      "id": "09ed16f3-22da-4d59-b350-c8ec310b833e",
+      "expectedRevision": 4
+    },
+    {
+      "kind": "place",
+      "prop": "planter",
+      "slot": "north-west",
+      "id": "83b188e6-cb5b-4783-9bd5-7413e5f38d35",
+      "expectedRevision": 5
+    },
+    {
+      "kind": "craft",
+      "recipe": "bridge-kit",
+      "id": "bc7982c1-3c91-433d-94ab-52ed9ab9dc57",
+      "expectedRevision": 6
+    },
+    {
+      "kind": "start-lesson",
+      "route": "upkeep",
+      "expectedBridgeContributed": 3,
+      "id": "c046182d-26c9-40c1-8c1d-29fc64d170fb",
+      "expectedRevision": 7
+    },
+    {
+      "kind": "complete-lesson",
+      "id": "e7229497-4c20-46bf-8f53-2db31d0c3f7a",
+      "expectedRevision": 8
+    },
+    {
+      "kind": "redeem-lesson",
+      "route": "upkeep",
+      "expectedBridgeContributed": 3,
+      "id": "1e60b256-5b4a-44c3-ade3-16a4d5760f33",
+      "expectedRevision": 9
+    },
+    {
+      "kind": "stamp-trail",
+      "landmarkId": "trailhead",
+      "id": "eed56581-4315-405e-aabb-a8eb938fc898",
+      "expectedRevision": 10
+    }
+  ],
+  "errors": [],
+  "expectedInitialGuest401": [
+    "/api/town/snapshot",
+    "/api/town/snapshot"
+  ],
+  "findings": [
+    {
+      "area": "phone first visit",
+      "result": "real five-second planter and real sixty-second lesson; ordinary twelve-hour job preserved"
+    },
+    {
+      "area": "late arrival",
+      "result": "quoted upkeep, no project/deadline mutation or kit reward"
+    },
+    {
+      "area": "short text200",
+      "result": "scrolling journal, reachable close and world>100px"
+    }
+  ]
+}

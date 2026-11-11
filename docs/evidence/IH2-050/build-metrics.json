@@ -1,0 +1,12 @@
+{
+  "method": "SHA256 and independent gzip.compress of HTML/JS/CSS; estimate, not observed CDN delivery. Actual4175responses compared byte-for-byte;82original SVGs matched source. Headless metrics are not physical-device proof.",
+  "files": {
+    "dist/index.html": "5d3a7d08931c3dc76e799ab8aa33592f362650ed9ddb80a99d99a575a58fe79f",
+    "dist/assets/index-BunPS2IJ.js": "7bd693dee624095cb80107ec5de579c767de6504e207b4c704263b766c8f68da",
+    "dist/assets/index-BBShWDam.css": "ccbe6268741da4879a69cc2a50eb9380959590c11996e20efe4deec83cc929b7"
+  },
+  "clientGzipBytes": 420588,
+  "originalSvgCount": 82,
+  "actual4175HtmlJsCssMatch": true,
+  "limits": "Raw engine chunk warning remains; real phones/Safari/hosted load/auth/cost/fullaccessibility pending."
+}

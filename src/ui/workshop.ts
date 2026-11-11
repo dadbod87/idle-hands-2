@@ -4,7 +4,7 @@ const SAVE_KEY='ih2:workshop:v1';
 const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',planter:'Orientation planter',stool:'Break-time stool',rug:'Welcome rug',lamp:'Optimism lamp',crate:'Useful crate',shelf:'Almost level shelf'};
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 export type RemoteWorkshopAdapter={allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>)=>Promise<{state:WorkshopState;message:string}>;retry:()=>Promise<{state:WorkshopState;message:string}>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean};
+type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string};kitUse?:()=>string};
 export class WorkshopUI {
  state:WorkshopState;
  private serialized='';
@@ -107,10 +107,10 @@ export class WorkshopUI {
   for(const el of b.querySelectorAll<HTMLElement>('[data-node]')){const node=this.state.nodes[el.dataset.node as typeof RESOURCE_IDS[number]];el.textContent=`${node.stock} available · ${node.stock>=6?'depot full':`next unit in ${duration(node.lastAt+4*3600_000-now)}`}`;}
   for(const button of b.querySelectorAll<HTMLButtonElement>('[data-collect]'))button.disabled=!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry())||this.state.nodes[button.dataset.collect as typeof RESOURCE_IDS[number]].stock===0||Object.values(this.state.inventory).reduce((a,v)=>a+v,0)>=60;
   const claim=b.querySelector<HTMLButtonElement>('[data-claim]');if(claim)claim.disabled=!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry())||!this.state.job||this.state.job.readyAt>now;
-  for(const button of b.querySelectorAll<HTMLButtonElement>('[data-craft]'))button.disabled=!!this.state.job||!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry());
+  for(const button of b.querySelectorAll<HTMLButtonElement>('[data-craft]')){button.disabled=!!this.state.job||!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry());if(button.dataset.craft==='planter')button.textContent=this.state.stats.plantersCrafted?'Make another planter · 8 real hours':'Make orientation planter';}
   const job=b.querySelector('[data-job]');if(job)job.textContent=this.state.job?`${this.state.job.recipe==='planter'?'Planter':'Bridge supplies'} · ${this.state.job.readyAt<=now?'ready to collect':duration(this.state.job.readyAt-now)+' remaining'}`:'Bench is free. Choose a recipe.';
-  const quest=b.querySelector('[data-quest]');if(quest)quest.textContent='Orientation: '+questStep(this.state).title+' — '+questStep(this.state).detail;
+  const quest=b.querySelector('[data-quest]');if(quest){const objective=this.host.objective?.()??questStep(this.state);quest.textContent='Orientation: '+objective.title+' — '+objective.detail;}
   const skills=b.querySelector('[data-skills]');if(skills)skills.textContent=`Gathering L${skillLevel(this.state.skills.gathering)} (${this.state.skills.gathering} XP) · Making L${skillLevel(this.state.skills.making)} (${this.state.skills.making} XP). Skills are persistent practice progress; no speed bonus yet.`;
-  const kits=b.querySelector('[data-kits]');if(kits)kits.textContent=`Bridge supplies in storage: ${this.state.bridgeKits}. ${this.remote?'Visit the bridge committee to contribute.':'Shared practice has separate resources and bridge donations; stock from this browser is not imported.'}`;
+  const kits=b.querySelector('[data-kits]');if(kits)kits.textContent=`Bridge supplies in storage: ${this.state.bridgeKits}. ${this.host.kitUse?.()??(this.remote?'Visit the bridge committee to contribute.':'Shared practice has separate resources and bridge donations; stock from this browser is not imported.')}`;
  }
 }

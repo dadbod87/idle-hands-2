@@ -36,7 +36,8 @@ let skyOffset=0;scene.skyNow=()=>Date.now()+skyOffset;scene.skyFixture=climateFi
 const game = new Phaser.Game({
   type: Phaser.AUTO, parent: 'world', backgroundColor: '#a3b090',
   scale: { mode: Phaser.Scale.RESIZE, autoCenter: Phaser.Scale.CENTER_BOTH },
-  render: { antialias: true, pixelArt: false }, audio: { noAudio: true },
+  // SVG textures keep LINEAR smoothing; skip costly multisampling of their rectangular quads.
+  render: { antialias: true, antialiasGL: false, pixelArt: false }, audio: { noAudio: true },
   fps: { target: 60 }, scene: [scene]
 });
 scene.onWalkFailure=()=>feedback.textContent='That spot cannot be reached. Try a clear patch of ground or tap a named prop.';
@@ -204,7 +205,7 @@ Object.defineProperty(window, '__pilot', { value: Object.freeze({
   workshop:()=>workshop.snapshot(),
   metrics: () => {
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);
-    return { climate:scene.climateState(), ready, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, phaser: Phaser.VERSION, visual:scene.visualState() };
+    return { climate:scene.climateState(), ready, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };
   },
   screenPoint: (x: number, y: number) => { const c = scene.cameras.main; return { x: (x + .5) * 32 - c.scrollX, y: (y + .5) * 32 - c.scrollY }; }
 }), writable: false });

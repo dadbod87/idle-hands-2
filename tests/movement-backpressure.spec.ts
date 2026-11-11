@@ -104,10 +104,13 @@ test('intercepted movement fixture: switching residents while a movement is held
  await expect(page.locator('.fixture-label')).toContainText('Bea');
 });
 
-test('intercepted movement fixture: automatic doors confirm the source approach and cancel superseded entry',async({page})=>{
- let loggedIn=false;
+for(const approach of ['frame-dependent','one-checkpoint'] as const){
+test('intercepted movement fixture: automatic doors confirm the source approach and cancel superseded entry'+(approach==='one-checkpoint'?' (deterministic one-checkpoint approach)':''),async({page})=>{
+ let loggedIn=false,holdFirstApproach=true;
  type Position={room:string;position:{x:number;y:number}};
- let position:Position={room:'square',position:{x:20,y:23.95}};
+ // The nearer variant guarantees the first checkpoint is already within the
+ // portal radius, regardless of software-rendered frame duration.
+ let position:Position={room:'square',position:{x:20,y:approach==='one-checkpoint'?23.1:23.95}};
  const sources:Array<{route:Route;value:Position}>=[],rooms:Position[]=[],rejected:string[]=[];
  const state=createWorkshop(Date.now());
  const snapshot=()=>({playerId:'aster',name:'Aster',workshop:state,position,quest:{contentVersion:1,awarded:[]},bridge:{contributed:0,target:3,restored:false},plot:null,plots:[],seasonKey:'2026-11-06',scores:[],serverTime:Date.now(),serverInstance:'automatic-portal-fixture'});
@@ -123,7 +126,7 @@ test('intercepted movement fixture: automatic doors confirm the source approach 
    if(!valid){rejected.push(JSON.stringify(value));return route.fulfill({status:409,json:{message:'Fixture portal/endpoint outside unchanged authority limits.'}});}
    const transition=value.room!==position.room;position=value;
    if(transition)rooms.push(value);
-   else if(sources.length<2){sources.push({route,value});return;}
+   else if(holdFirstApproach&&sources.length<2){sources.push({route,value});return;}
    return route.fulfill({json:{ok:true,position:value}});
   }
   return route.fulfill({status:400,json:{message:'Unexpected isolated automatic-portal fixture request.'}});
@@ -139,10 +142,15 @@ test('intercepted movement fixture: automatic doors confirm the source approach 
   await finalSource.route.fulfill({json:{ok:true,position:finalSource.value}});await expect.poll(()=>sources.length).toBe(2);finalSource=sources[1];
  }
  expect(Math.hypot(finalSource.value.position.x-20,finalSource.value.position.y-22)).toBeLessThanOrEqual(1.25);
+ if(approach==='one-checkpoint')expect(sources).toHaveLength(1);
  expect(await page.evaluate(()=>(window as any).__pilot.snapshot().room)).toBe('square');expect(rooms).toEqual([]);
  // A deliberate new menu/destination intent must cancel the old pending portal.
- await page.getByRole('button',{name:'Open field guide'}).click();await finalSource.route.fulfill({json:{ok:true,position:finalSource.value}});await page.waitForTimeout(100);
+ await page.getByRole('button',{name:'Open field guide'}).click();await finalSource.route.fulfill({json:{ok:true,position:finalSource.value}});
+ // This release ends the first intent's transport fixture. A new approach must
+ // receive its ACK rather than consuming an unused second first-intent hold.
+ holdFirstApproach=false;await page.waitForTimeout(100);
  await expect(page.getByRole('dialog')).toBeVisible();expect(await page.evaluate(()=>(window as any).__pilot.snapshot().room)).toBe('square');expect(rooms).toEqual([]);
  await page.keyboard.press('Escape');await tapDoor();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().room)).toBe('workshop');await expect.poll(()=>rooms.length).toBe(1);
  expect(rejected).toEqual([]);
 });
+}

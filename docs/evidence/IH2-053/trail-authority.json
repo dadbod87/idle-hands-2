@@ -5,32 +5,32 @@
     "target": 3,
     "restored": false,
     "phase": "building",
-    "startedAt": 1794356423011,
-    "readyAt": 1794378023011,
+    "startedAt": 1794358206431,
+    "readyAt": 1794379806431,
     "openedAt": null,
     "grandfathered": false
   },
   "projectTimeFixture": {
     "phase": "building",
-    "started_at": "1794334887323",
-    "ready_at": "1794356487323"
+    "started_at": "1794336671051",
+    "ready_at": "1794358271051"
   },
   "openedBridge": {
     "contributed": 3,
     "target": 3,
     "restored": true,
     "phase": "open",
-    "startedAt": 1794334887323,
-    "readyAt": 1794356487323,
-    "openedAt": 1794356487323,
+    "startedAt": 1794336671051,
+    "readyAt": 1794358271051,
+    "openedAt": 1794358271051,
     "grandfathered": false
   },
   "openingJournal": [
     {
       "id": "bridge-opened-v2",
       "kind": "opened",
-      "effectiveAt": 1794356487323,
-      "recordedAt": 1794356488343
+      "effectiveAt": 1794358271051,
+      "recordedAt": 1794358272070
     }
   ],
   "ownerStamps": {
@@ -46,25 +46,25 @@
     {
       "kind": "stamp-trail",
       "landmarkId": "trailhead",
-      "id": "99c3e23a-bcde-4174-8bc5-b306065b8f93",
+      "id": "75bbb900-41e8-4352-8468-2d43b4ed92e6",
       "expectedRevision": 7
     },
     {
       "kind": "stamp-trail",
       "landmarkId": "old-sign",
-      "id": "95aac0ef-3981-4cc8-85f6-b64df9febac2",
+      "id": "503d84e9-028f-4ef9-af92-38d46f01873f",
       "expectedRevision": 8
     },
     {
       "kind": "stamp-trail",
       "landmarkId": "lookout",
-      "id": "2f3d938b-fc05-4afb-8580-1dd3db5ab3c3",
+      "id": "8233fa78-d8a8-44f6-964b-ab56a2cfe47f",
       "expectedRevision": 9
     },
     {
       "kind": "stamp-trail",
       "landmarkId": "trailhead",
-      "id": "dfea5d18-c49e-474c-a0ba-fc3a6d975da4",
+      "id": "672d4804-6e29-4d7f-93ea-27c04a5e034e",
       "expectedRevision": 2
     }
   ],

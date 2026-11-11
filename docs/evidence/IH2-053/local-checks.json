@@ -9,7 +9,7 @@
   "databaseRestart": "PASS;actual isolated PG16.15container, home/job/opening/award/session retained",
   "advisory": "Hosted-specific lint unavailable: local plainPG has no anon role. SQLcatalog RLS/grants and real migrations tested instead.",
   "fixtureLimits": "All fictional/local. Full fixture disclosure and physical-device limits in REPORT/individual JSON.",
-  "browserTests": 40,
+  "browserTests": 41,
   "browserMinutes": 4.3,
   "diff": "PASS",
   "actualFinalImagesReviewed": [
@@ -23,5 +23,11 @@
     "trail-short-text200-world.png",
     "trail-desktop-entry.png",
     "client-ready-early-snapshot-fixture.png"
-  ]
+  ],
+  "renderer": {
+    "textureSmoothing": true,
+    "contextAntialias": false,
+    "source": "Actualfinal desktopmetrics"
+  },
+  "reproducibleRendererProbe": "PASS;actualcurrenttoolnative/software1/3contextsverifiedrequestedattributes,independentmeasures~24/28%lowermeaninterval"
 }

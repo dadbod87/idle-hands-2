@@ -1,11 +1,11 @@
 {
   "method": "SHA256 and independent gzip.compress of built HTML/CSS/JS; estimate, not observed network transfer. Original SVGs separate; emulation not physical-device benchmark.",
   "files": {
-    "dist/index.html": "6582e0d71a2a51c1f39d1978cb4cd2067b5bc323ebdb4a58c1f7221ab4c02e7d",
-    "dist/assets/index-D3BTXJeU.js": "ac49250e4e3b6ce6a5d0d399565e05748c264b7811c7161040915b4dbd7817bc",
+    "dist/index.html": "5e568c0850fbd75703bfc1ded4be1203b86d7e4f7803e1fa757c121867df86eb",
+    "dist/assets/index-C4CVhqt-.js": "8593c69c15d333224e2502e3cb0989b12d80475de3ef7d85cfa2ea5ca7fee154",
     "dist/assets/index-BBShWDam.css": "ccbe6268741da4879a69cc2a50eb9380959590c11996e20efe4deec83cc929b7"
   },
-  "clientGzipBytes": 418678,
+  "clientGzipBytes": 418748,
   "newTrailSvgRawBytes": 23058,
   "newTrailSvgGzipBytes": 5324,
   "originalSvgCount": 82,

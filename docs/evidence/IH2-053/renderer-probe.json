@@ -1,0 +1,314 @@
+{
+  "classification": "Local synthetic isolated renderer diagnostic; not a CI/real-phone performance claim",
+  "method": "Same built game on loopback4175, native AppleM5/ANGLE Metal baseline and forced ANGLE Vulkan SwiftShader; one or three simultaneous1440x900contexts. Only WebGL context creation antialias attribute overridden; LINEAR SVG texture filtering and canvas dimensions unchanged. Four-second requestAnimationFrame windows after one-second settle; actual sample counts retained per context. Reduced-motion day actual canvas comparison1404x697. No backend, identity, stock or time mutation.",
+  "samples": [
+    {
+      "spec": {
+        "id": "native-default",
+        "args": [],
+        "aa": true,
+        "n": 1
+      },
+      "samples": [
+        {
+          "count": 240,
+          "p50": 16.699999999999818,
+          "p95": 16.799999999999955,
+          "mean": 16.66624999999999,
+          "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+          "attrs": {
+            "alpha": false,
+            "antialias": true,
+            "depth": true,
+            "desynchronized": false,
+            "failIfMajorPerformanceCaveat": false,
+            "powerPreference": "default",
+            "premultipliedAlpha": true,
+            "preserveDrawingBuffer": false,
+            "stencil": true,
+            "xrCompatible": false
+          },
+          "size": [
+            1404,
+            697
+          ],
+          "metrics": 16.799999999999955,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "spec": {
+        "id": "software-default",
+        "args": [
+          "--use-gl=angle",
+          "--use-angle=swiftshader",
+          "--enable-unsafe-swiftshader"
+        ],
+        "aa": true,
+        "n": 1
+      },
+      "samples": [
+        {
+          "count": 150,
+          "p50": 33.29999999999973,
+          "p95": 33.40000000000009,
+          "mean": 26.665333333333333,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "attrs": {
+            "alpha": false,
+            "antialias": true,
+            "depth": true,
+            "desynchronized": false,
+            "failIfMajorPerformanceCaveat": false,
+            "powerPreference": "default",
+            "premultipliedAlpha": true,
+            "preserveDrawingBuffer": false,
+            "stencil": true,
+            "xrCompatible": false
+          },
+          "size": [
+            1404,
+            697
+          ],
+          "metrics": 33.40000000000009,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "spec": {
+        "id": "software-no-msaa",
+        "args": [
+          "--use-gl=angle",
+          "--use-angle=swiftshader",
+          "--enable-unsafe-swiftshader"
+        ],
+        "aa": false,
+        "n": 1
+      },
+      "samples": [
+        {
+          "count": 201,
+          "p50": 16.699999999999818,
+          "p95": 33.399999999999636,
+          "mean": 19.982587064676615,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "attrs": {
+            "alpha": false,
+            "antialias": false,
+            "depth": true,
+            "desynchronized": false,
+            "failIfMajorPerformanceCaveat": false,
+            "powerPreference": "default",
+            "premultipliedAlpha": true,
+            "preserveDrawingBuffer": false,
+            "stencil": true,
+            "xrCompatible": false
+          },
+          "size": [
+            1404,
+            697
+          ],
+          "metrics": 33.399999999999636,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "spec": {
+        "id": "software-three-default",
+        "args": [
+          "--use-gl=angle",
+          "--use-angle=swiftshader",
+          "--enable-unsafe-swiftshader"
+        ],
+        "aa": true,
+        "n": 3
+      },
+      "samples": [
+        {
+          "count": 50,
+          "p50": 99.90000000000146,
+          "p95": 133.39999999999964,
+          "mean": 82.66600000000003,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "attrs": {
+            "alpha": false,
+            "antialias": true,
+            "depth": true,
+            "desynchronized": false,
+            "failIfMajorPerformanceCaveat": false,
+            "powerPreference": "default",
+            "premultipliedAlpha": true,
+            "preserveDrawingBuffer": false,
+            "stencil": true,
+            "xrCompatible": false
+          },
+          "size": [
+            1404,
+            697
+          ],
+          "metrics": 116.70000000000073,
+          "hidden": false
+        },
+        {
+          "count": 49,
+          "p50": 99.89999999999964,
+          "p95": 116.79999999999927,
+          "mean": 82.64693877551018,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "attrs": {
+            "alpha": false,
+            "antialias": true,
+            "depth": true,
+            "desynchronized": false,
+            "failIfMajorPerformanceCaveat": false,
+            "powerPreference": "default",
+            "premultipliedAlpha": true,
+            "preserveDrawingBuffer": false,
+            "stencil": true,
+            "xrCompatible": false
+          },
+          "size": [
+            1404,
+            697
+          ],
+          "metrics": 116.70000000000073,
+          "hidden": false
+        },
+        {
+          "count": 48,
+          "p50": 133.29999999999927,
+          "p95": 150,
+          "mean": 81.93958333333332,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "attrs": {
+            "alpha": false,
+            "antialias": true,
+            "depth": true,
+            "desynchronized": false,
+            "failIfMajorPerformanceCaveat": false,
+            "powerPreference": "default",
+            "premultipliedAlpha": true,
+            "preserveDrawingBuffer": false,
+            "stencil": true,
+            "xrCompatible": false
+          },
+          "size": [
+            1404,
+            697
+          ],
+          "metrics": 150.10000000000036,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "spec": {
+        "id": "software-three-no-msaa",
+        "args": [
+          "--use-gl=angle",
+          "--use-angle=swiftshader",
+          "--enable-unsafe-swiftshader"
+        ],
+        "aa": false,
+        "n": 3
+      },
+      "samples": [
+        {
+          "count": 68,
+          "p50": 66.59999999999854,
+          "p95": 83.39999999999964,
+          "mean": 58.82058823529413,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "attrs": {
+            "alpha": false,
+            "antialias": false,
+            "depth": true,
+            "desynchronized": false,
+            "failIfMajorPerformanceCaveat": false,
+            "powerPreference": "default",
+            "premultipliedAlpha": true,
+            "preserveDrawingBuffer": false,
+            "stencil": true,
+            "xrCompatible": false
+          },
+          "size": [
+            1404,
+            697
+          ],
+          "metrics": 83.39999999999964,
+          "hidden": false
+        },
+        {
+          "count": 68,
+          "p50": 66.5,
+          "p95": 83.30000000000018,
+          "mean": 58.8220588235294,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "attrs": {
+            "alpha": false,
+            "antialias": false,
+            "depth": true,
+            "desynchronized": false,
+            "failIfMajorPerformanceCaveat": false,
+            "powerPreference": "default",
+            "premultipliedAlpha": true,
+            "preserveDrawingBuffer": false,
+            "stencil": true,
+            "xrCompatible": false
+          },
+          "size": [
+            1404,
+            697
+          ],
+          "metrics": 83.40000000000055,
+          "hidden": false
+        },
+        {
+          "count": 68,
+          "p50": 83.30000000000018,
+          "p95": 100.10000000000036,
+          "mean": 59.31029411764706,
+          "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+          "attrs": {
+            "alpha": false,
+            "antialias": false,
+            "depth": true,
+            "desynchronized": false,
+            "failIfMajorPerformanceCaveat": false,
+            "powerPreference": "default",
+            "premultipliedAlpha": true,
+            "preserveDrawingBuffer": false,
+            "stencil": true,
+            "xrCompatible": false
+          },
+          "size": [
+            1404,
+            697
+          ],
+          "metrics": 100.10000000000036,
+          "hidden": false
+        }
+      ]
+    }
+  ],
+  "visual": {
+    "dimensions": [
+      1404,
+      697
+    ],
+    "meanRgbDifference": 0.03406200225903717,
+    "maxChannelDifference": 128,
+    "pixelFractionChangedMoreThan3": 0.0005886031710995843
+  },
+  "decision": "render.antialiasGL=false while antialias=true andpixelArt=false. Native and software final regression/actual CI images remain required.",
+  "limits": "One local machine/process sequence, not controlled CI hardware. CI old artifacts record renderer type2 but not driver; cannot assert their actual driver from that metadata.",
+  "baselineCandidate": "98f99eadfe62a56bb2f72f2ad84eade0c38d8be4",
+  "reproduction": {
+    "command": "node tools/probe-renderer.mjs",
+    "toolSha256": "42d4c7fbb420b2dede6b08d46c8bfc7d544a1d6e8c467f610c125216b81141c0",
+    "note": "Reproduction explicitly selects MSAAtrue/false independent of the app default; outputs ignoredtest-results/renderer-probe.json."
+  }
+}

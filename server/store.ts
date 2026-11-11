@@ -1,4 +1,5 @@
 import {surveyId} from '../src/game/fieldwork.ts';
+import {gardenActionSchema,gardenActionLocations,MARKER_IDS,type MarkerId} from '../src/game/garden.ts';
 import { createHash } from 'node:crypto';
 import type { Pool, PoolClient } from 'pg';
 import { z } from 'zod';
@@ -16,10 +17,11 @@ export type TownSnapshot = {
   projectJournal:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;
   trail:{stamps:string[];pennantOwned:boolean};
   plot: TownPlot | null; plots: TownPlot[];
+  gardenTown:{credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};
   lesson:MaintenanceLesson; lessonQuote:{route:'construction'|'upkeep';expectedBridgeContributed:number};
   seasonKey: string; scores: { playerId: string; name: string; points: number }[]; serverTime: number;
 };
-export type TownResult = { ok: boolean; message: string; replayed: boolean; revision: number; snapshot: TownSnapshot };
+export type TownResult = { ok: boolean; message: string; replayed: boolean; revision: number; snapshot: TownSnapshot; publicChanged?:boolean };
 type Receipt = Omit<TownResult, 'snapshot' | 'replayed'>;
 type PlayerRow = { id: string; name: string; workshop: WorkshopState; position: TownPosition; quest_content_version: number };
 const idSchema = z.string().regex(/^[a-zA-Z0-9:_-]{1,80}$/);
@@ -107,7 +109,10 @@ export class TownStore {
     const { rows } = await client.query<PlayerRow>('select id,name,workshop,position,quest_content_version from ih2.players where id=$1', [id]);
     const player = rows[0]; if (!player) throw new Error('Unknown synthetic player.');
     const plots = (await client.query('select p.id::text,p.owner_id,p.level,p.placements,u.name,exists(select 1 from ih2.quest_awards q where q.player_id=p.owner_id and q.quest_id=\'trail-pennant-v1\') as pennant_owned from ih2.plots p join ih2.players u on u.id=p.owner_id order by p.id')).rows.map(p => ({ id: p.id, ownerId: p.owner_id, ownerName: p.name, level: p.level as 1 | 2, placements: p.placements,pennantOwned:p.pennant_owned }));
-    const bridgeRow = (await client.query('select * from ih2.bridge where id=1')).rows[0];
+    const bridgeRow = (await client.query('select b.*,g.credits as welcome_credits from ih2.bridge b cross join ih2.garden_welcome g where b.id=1 and g.id=1')).rows[0];
+    // Explicit projection only: never select other residents' private garden JSON.
+    const markerRows=(await client.query("select id,name,workshop->'garden'->>'selectedMarker' as marker from ih2.players where workshop->'garden'->'markers' ? (workshop->'garden'->>'selectedMarker') order by id")).rows;
+    const gardenTown:TownSnapshot['gardenTown']={credits:bridgeRow.welcome_credits,target:6,markers:markerRows.filter(row=>(MARKER_IDS as readonly string[]).includes(row.marker)).map(row=>({ownerId:row.id,ownerName:row.name,marker:row.marker as MarkerId}))};
     const awarded = (await client.query('select quest_id from ih2.quest_awards where player_id=$1 order by quest_id', [id])).rows.map(r => r.quest_id);
     const lessonRow=(await client.query('select * from ih2.maintenance_lessons where player_id=$1',[id])).rows[0];
     const lesson:MaintenanceLesson={startedAt:lessonRow?.started_at===null||!lessonRow?null:Number(lessonRow.started_at),readyAt:lessonRow?.ready_at===null||!lessonRow?null:Number(lessonRow.ready_at),completed:!!lessonRow?.completed,redeemed:!!lessonRow?.redeemed,route:lessonRow?.route??null,legacySatisfied:!!lessonRow?.legacy_satisfied};
@@ -115,7 +120,7 @@ export class TownStore {
     const projectJournal=(await client.query('select * from ih2.project_events order by recorded_at,id')).rows.map(row=>({id:row.id,kind:row.kind as 'opened'|'grandfathered',effectiveAt:row.effective_at===null?null:Number(row.effective_at),recordedAt:Number(row.recorded_at)}));
     const key = seasonKey(now);
     const scores = (await client.query('select s.player_id,u.name,s.points from ih2.season_scores s join ih2.players u on u.id=s.player_id where s.season_key=$1 order by s.points desc,s.player_id', [key])).rows.map(r => ({ playerId: r.player_id, name: r.name, points: r.points }));
-    return { playerId: id, name: player.name, workshop: this.readState(player, now), position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    return {gardenTown, playerId: id, name: player.name, workshop: this.readState(player, now), position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string): Promise<TownSnapshot> {
     const client = await this.pool.connect();
@@ -254,7 +259,10 @@ export class TownStore {
         }
       } else {
         let allowed = false;
-        if(cmd.kind==='survey')allowed=typeof cmd.station==='string'&&!!surveyId(cmd.station)&&near(position,'square','survey-'+cmd.station);
+        if(cmd.kind==='garden'){
+          const action=gardenActionSchema.safeParse(cmd.gardenAction);
+          allowed=action.success&&gardenActionLocations(action.data).some(location=>near(position,location.room,location.stopId));
+        }else if(cmd.kind==='survey')allowed=typeof cmd.station==='string'&&!!surveyId(cmd.station)&&near(position,'square','survey-'+cmd.station);
         else if (cmd.kind === 'gather') allowed = typeof cmd.resource === 'string' && near(position, 'square', cmd.resource);
         else if (cmd.kind === 'craft' || cmd.kind === 'claim') allowed = near(position, 'workshop', 'bench');
         else if (cmd.kind === 'place' || cmd.kind === 'remove') allowed = position.room === 'workshop';
@@ -267,7 +275,16 @@ export class TownStore {
           else {
             const owned = state.owned; state = applied.state;
             if (cmd.kind === 'place') state.owned = owned;
-            result = { ok: true, message: applied.message, revision: state.revision };
+            if(cmd.kind==='garden'){
+              let publicChanged=state.garden.selectedMarker!==virtual.garden.selectedMarker;
+              if((cmd.gardenAction as {action?:unknown})?.action==='submit-request'){
+                const welcome=await client.query('update ih2.garden_welcome set credits=credits+1 where id=1 and credits<6 returning credits');
+                publicChanged=welcome.rows.length>0;
+                if(!publicChanged){applied.message='The welcome bed is already complete. Your personal request is recorded; no further public credit was needed.';state.lastMessage=applied.message;}
+              }
+              result.publicChanged=publicChanged;
+            }
+            result = { ok: true, message: applied.message, revision: state.revision,...(cmd.kind==='garden'?{publicChanged:result.publicChanged}: {}) };
           }
         }
       }

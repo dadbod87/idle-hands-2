@@ -1,0 +1,345 @@
+{
+  "disclosure": "Actual loopback Node HTTP/SSE +dedicated disposable ih2_load PostgreSQL;20unique ordinary zero-progress residents. Legal continuous route/ACK movement, real5splanter and12hqueued job. No stock/time/position grants, real accounts or cloud. This is20protocol clients, not20rendered browsers or a physical-phone/WAN/soak/capacity guarantee.",
+  "method": "Same Node process runs server and load generators: CPU/RSS include both, exclude PostgreSQL/browser/OS; CPU average includes10sidle, RSS sampled every100ms. Event-loop delay resolution20ms. Full-response-body HTTP latency; independent small-body loopback RTT. Body/SSE bytes omit HTTP/TLS/TCP framing. SQL instrumentation wraps each real client.query once including callback pool.query; setup/verification separated from load/idle.",
+  "environment": {
+    "node": "v26.7.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "poolMaximum": 5
+  },
+  "cleanup": {
+    "completed": true,
+    "activeStreamsAfter": 0,
+    "activeRequestsAfter": 0
+  },
+  "elapsedMs": 26587.68125,
+  "latencyMs": {
+    "smallBodyLoopbackRtt": {
+      "count": 20,
+      "p50": 0.3871669999999767,
+      "p95": 1.2257079999999974,
+      "p99": 8.945333000000005,
+      "max": 8.945333000000005
+    },
+    "login": {
+      "count": 20,
+      "p50": 63.83937500000002,
+      "p95": 73.23429099999998,
+      "p99": 73.323208,
+      "max": 73.323208
+    },
+    "eventsHeaders": {
+      "count": 40,
+      "p50": 2.4713330000000155,
+      "p95": 3.1132089999991877,
+      "p99": 3.3690000000005966,
+      "max": 3.3690000000005966
+    },
+    "movement": {
+      "count": 760,
+      "p50": 5.57091599999967,
+      "p95": 12.775707999999213,
+      "p99": 25.09145800000033,
+      "max": 25.885999999999967
+    },
+    "command": {
+      "count": 140,
+      "p50": 36.637415999999575,
+      "p95": 59.07425000000012,
+      "p99": 61.898249999999734,
+      "max": 62.45658400000002
+    },
+    "replay": {
+      "count": 20,
+      "p50": 25.94116699999904,
+      "p95": 35.55395800000042,
+      "p99": 35.65899999999965,
+      "max": 35.65899999999965
+    },
+    "snapshot": {
+      "count": 20,
+      "p50": 11.210000000000946,
+      "p95": 20.498332999999548,
+      "p99": 20.57129199999872,
+      "max": 20.57129199999872
+    }
+  },
+  "http": {
+    "requests": 1020,
+    "sseConnections": 40,
+    "requestBodyBytes": 60580,
+    "responseBodyBytes": 593900
+  },
+  "sse": {
+    "receivedBytes": 1119520,
+    "events": 770,
+    "presence": 730,
+    "heartbeats": 20,
+    "errors": []
+  },
+  "server": {
+    "commands": 160,
+    "snapshots": 20,
+    "movementAccepted": 760,
+    "movementRejected": 0,
+    "presenceEvents": 730,
+    "positionCheckpoints": 20,
+    "transport": {
+      "rejectedRate": 0,
+      "rejectedCapacity": 0,
+      "activeRequests": 0,
+      "peakRequests": 20,
+      "activeStreams": 20,
+      "peakStreams": 40
+    },
+    "sseSubmittedBytes": 1119520,
+    "sseSubmittedFrames": 790,
+    "sseSuppressedPresence": 350,
+    "sseExpired": 0,
+    "sseBackpressure": 0,
+    "sseOversize": 0
+  },
+  "sql": {
+    "setup": {
+      "count": 18,
+      "verbs": {
+        "DROP": 1,
+        "BEGIN": 1,
+        "SELECT": 6,
+        "CREATE": 1,
+        "--": 4,
+        "INSERT": 4,
+        "COMMIT": 1
+      },
+      "latencyMs": {
+        "count": 18,
+        "p50": 1.2551670000000001,
+        "p95": 27.26637500000001,
+        "p99": 27.26637500000001,
+        "max": 27.26637500000001
+      }
+    },
+    "load": {
+      "count": 3740,
+      "verbs": {
+        "INSERT": 200,
+        "BEGIN": 280,
+        "UPDATE": 380,
+        "COMMIT": 280,
+        "SELECT": 2440,
+        "SET": 160
+      },
+      "latencyMs": {
+        "count": 3740,
+        "p50": 0.4430839999986347,
+        "p95": 1.7150000000001455,
+        "p99": 4.083999999999833,
+        "max": 8.425833000000011
+      }
+    },
+    "verification": {
+      "count": 3,
+      "verbs": {
+        "SELECT": 3
+      },
+      "latencyMs": {
+        "count": 3,
+        "p50": 2.782833000001119,
+        "p95": 3.737334000001283,
+        "p99": 3.737334000001283,
+        "max": 3.737334000001283
+      }
+    }
+  },
+  "resources": {
+    "cpuUserMs": 1509.269,
+    "cpuSystemMs": 201.019,
+    "cpuPercentOfOneCore": 6.432633157883973,
+    "rssPeakBytes": 171081728,
+    "eventLoopP95Ms": 21.364735
+  },
+  "postgresSamples": [
+    {
+      "phase": "load",
+      "cpuPercent": "4.46%",
+      "memory": "54.57MiB / 7.748GiB"
+    },
+    {
+      "phase": "load",
+      "cpuPercent": "1.13%",
+      "memory": "55.54MiB / 7.748GiB"
+    },
+    {
+      "phase": "load",
+      "cpuPercent": "8.70%",
+      "memory": "56.62MiB / 7.748GiB"
+    },
+    {
+      "phase": "load",
+      "cpuPercent": "12.16%",
+      "memory": "56.71MiB / 7.748GiB"
+    },
+    {
+      "phase": "idle",
+      "cpuPercent": "0.04%",
+      "memory": "56.48MiB / 7.748GiB"
+    },
+    {
+      "phase": "idle",
+      "cpuPercent": "6.09%",
+      "memory": "57.03MiB / 7.748GiB"
+    }
+  ],
+  "postgresSampleMethod": "Docker cgroup snapshots every5s,1sCLImeasurement windows; not peak database CPU or hosted capacity. No SQL/stat resets; unavailable samples explicitly flagged.",
+  "storage": [
+    {
+      "relname": "bridge",
+      "bytes": "32768"
+    },
+    {
+      "relname": "bridge_contributions",
+      "bytes": "16384"
+    },
+    {
+      "relname": "command_receipts",
+      "bytes": "131072"
+    },
+    {
+      "relname": "garden_welcome",
+      "bytes": "24576"
+    },
+    {
+      "relname": "maintenance_events",
+      "bytes": "16384"
+    },
+    {
+      "relname": "maintenance_lessons",
+      "bytes": "32768"
+    },
+    {
+      "relname": "players",
+      "bytes": "180224"
+    },
+    {
+      "relname": "plots",
+      "bytes": "24576"
+    },
+    {
+      "relname": "project_events",
+      "bytes": "16384"
+    },
+    {
+      "relname": "quest_awards",
+      "bytes": "32768"
+    },
+    {
+      "relname": "season_scores",
+      "bytes": "24576"
+    },
+    {
+      "relname": "trail_stamps",
+      "bytes": "16384"
+    }
+  ],
+  "storageBefore": [
+    {
+      "relname": "bridge",
+      "bytes": "32768"
+    },
+    {
+      "relname": "bridge_contributions",
+      "bytes": "16384"
+    },
+    {
+      "relname": "command_receipts",
+      "bytes": "16384"
+    },
+    {
+      "relname": "garden_welcome",
+      "bytes": "24576"
+    },
+    {
+      "relname": "maintenance_events",
+      "bytes": "16384"
+    },
+    {
+      "relname": "maintenance_lessons",
+      "bytes": "16384"
+    },
+    {
+      "relname": "players",
+      "bytes": "16384"
+    },
+    {
+      "relname": "plots",
+      "bytes": "24576"
+    },
+    {
+      "relname": "project_events",
+      "bytes": "16384"
+    },
+    {
+      "relname": "quest_awards",
+      "bytes": "16384"
+    },
+    {
+      "relname": "season_scores",
+      "bytes": "24576"
+    },
+    {
+      "relname": "trail_stamps",
+      "bytes": "16384"
+    }
+  ],
+  "storageGrowthBytes": 311296,
+  "conservation": {
+    "residents": 20,
+    "uniqueCommands": 140,
+    "replayedCommands": 20,
+    "receiptRows": 140,
+    "inventoryEach": {
+      "scrap": 1,
+      "timber": 2,
+      "supplies": 4
+    },
+    "outputKits": 0,
+    "realJobHours": 12,
+    "firstPlanterSeconds": 5
+  },
+  "privacy": {
+    "initialPublicPeers": [
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19
+    ],
+    "privateTenHidden": true,
+    "reconnectedPrivatePeers": 0
+  },
+  "idle": {
+    "seconds": 10,
+    "sqlQueries": 0,
+    "presenceEvents": 0
+  },
+  "budgets": {
+    "commandP95TargetMs": 500,
+    "commandP95Pass": true,
+    "physicalPhoneAndHostedProof": "PENDING"
+  }
+}

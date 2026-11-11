@@ -1,0 +1,21 @@
+{
+  "disclosure": "Actual local input, real first5m/four-hour deadlines observed without waiting for harvest. No time, position or inventory grants. Emulated touch/short200%, not a physical phone.",
+  "action": {
+    "action": "sow",
+    "renderedFrames": 2,
+    "frames": [
+      6
+    ]
+  },
+  "protectedKeys": [
+    "inventory",
+    "owned",
+    "placements",
+    "job",
+    "stats",
+    "skills",
+    "bridgeKits"
+  ],
+  "errors": [],
+  "external": []
+}

@@ -1,0 +1,136 @@
+{
+  "viewport": {
+    "name": "phone",
+    "width": 390,
+    "height": 844
+  },
+  "metrics": {
+    "climate": {
+      "phase": "night",
+      "minute": 125,
+      "dayIndex": 623065,
+      "weather": "overcast",
+      "tint": {
+        "color": 2899036,
+        "alpha": 0.38239999999999996
+      },
+      "lampStrength": 1,
+      "label": "Night · Overcast",
+      "effectiveAlpha": 0.38239999999999996,
+      "fixture": false,
+      "interior": false,
+      "precipitation": {
+        "enabled": false,
+        "offset": 0
+      }
+    },
+    "ready": true,
+    "presentation": {
+      "menuBackdropPaused": false,
+      "renderedFrames": 691
+    },
+    "frameSamples": 600,
+    "p95FrameMs": 16.700000000000728,
+    "renderer": 2,
+    "renderOptions": {
+      "textureSmoothing": true,
+      "contextAntialias": false
+    },
+    "phaser": "4.2.1",
+    "visual": {
+      "garden": {
+        "room": "square",
+        "lastAction": null,
+        "bedTextures": [],
+        "action": null,
+        "actorTexture": "variety-resident-devon",
+        "welcomeTexture": "garden-welcome-collecting"
+      },
+      "bridge": {
+        "phase": "collecting",
+        "texture": "trail-bridge-collecting",
+        "readyAt": null
+      },
+      "home": {
+        "pennantVisible": false,
+        "pennantTexture": null,
+        "pennantPosition": null,
+        "room": "square",
+        "plotId": null,
+        "ownerName": "Resident",
+        "level": 1,
+        "decorations": null,
+        "interiorTexture": null
+      },
+      "facing": "east",
+      "frame": 0,
+      "anchor": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "scale": 0.9,
+      "variety": {
+        "actorId": "devon",
+        "actorTexture": "variety-resident-devon",
+        "actorFrame": 14,
+        "actorSize": {
+          "width": 64,
+          "height": 80
+        },
+        "residentFramesReady": true,
+        "treeKinds": [
+          "oak",
+          "birch",
+          "fruit"
+        ],
+        "buildingKinds": [
+          "workshop",
+          "cafe"
+        ],
+        "ambient": {
+          "enabled": true,
+          "canopies": [
+            {
+              "key": "oak",
+              "rotation": 0,
+              "offsetX": 0
+            },
+            {
+              "key": "birch",
+              "rotation": 0,
+              "offsetX": -0.4429309162453592
+            },
+            {
+              "key": "fruit",
+              "rotation": 0,
+              "offsetX": 0
+            },
+            {
+              "key": "oak",
+              "rotation": 0,
+              "offsetX": 0.40792222802519973
+            },
+            {
+              "key": "birch",
+              "rotation": 0,
+              "offsetX": 0
+            },
+            {
+              "key": "fruit",
+              "rotation": 0,
+              "offsetX": -0.3458260292898103
+            }
+          ],
+          "steam": {
+            "alpha": 0,
+            "y": 0
+          },
+          "gestureOffset": -0.3575420993391977
+        }
+      }
+    }
+  },
+  "errors": [],
+  "external": [],
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/157.0.0.0 Safari/537.36"
+}

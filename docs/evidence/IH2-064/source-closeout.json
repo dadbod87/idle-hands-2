@@ -1,0 +1,97 @@
+{
+  "task": "IH2-064",
+  "status": "SOURCE_ACCEPTED",
+  "classification": "Private source/design acceptance only; not runtime garden/hosted release",
+  "candidate": "351266de4e50bc405d058df8ad94933342e0b031",
+  "base": "9baf7575b07bf1c3629610ea0518725409cdcd01",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/14",
+  "ciRun": 43082162661,
+  "domain": {
+    "job": 130737204782,
+    "conclusion": "success",
+    "aggregatePassed": 151,
+    "skipped": 0,
+    "aggregateDurationMs": 59134.607746,
+    "databaseRestartProof": true
+  },
+  "browser": {
+    "job": 130737205306,
+    "status": "completed",
+    "conclusion": "success",
+    "passed": 48,
+    "minutes": 16.3,
+    "reviewed": [
+      "GARDEN_GROWTH_CONCEPT.png",
+      "GARDEN_PHONE_CONCEPT.png",
+      "desktop-square.png",
+      "phone-workshop.png",
+      "shared-short-text-200.png",
+      "variety-narrow-canopy-pixels-0.png"
+    ],
+    "canopySamples": 9,
+    "minimumCanopyCoverage": 0.9964912280701754,
+    "softwareRendererP95Ms": {
+      "desktop": 133.4,
+      "phone": 50.1,
+      "narrow": 33.4,
+      "short": 33.4
+    },
+    "physicalPhone": false
+  },
+  "build": {
+    "files": 99,
+    "actual064CiEqualsLocal": true,
+    "actual4175EqualsLocal": true,
+    "actual064CiEquals062Ci": true,
+    "localManifestEvidence": "docs/evidence/IH2-064/build-proof.json",
+    "manifestEvidenceSha256": "274086f69ac156da8f86df4743a5f24dba4fa9ff6405fbbcb6149185f7f942d9"
+  },
+  "local": {
+    "tests": 151,
+    "skipped": 0,
+    "browser": 48,
+    "browserMinutes": 6.4,
+    "nativeActiveP95Ms": 16.8,
+    "canopySamples": 9,
+    "canopyMinimum": 0.9859649122807017,
+    "physicalPhone": false
+  },
+  "ciLoad": {
+    "protocolClients": 20,
+    "commandP95Ms": 108.615960000001,
+    "sqlQueries": 3520,
+    "elapsedMs": 26976.068901,
+    "cpuPercentOneCoreServerAndGenerator": 10.371244269383844,
+    "runtimeSourceChanged": false,
+    "warning": "Test scheduling changed. No causal runtime speedup or hosted/WAN/soak/capacity claim."
+  },
+  "practice": {
+    "changed": false,
+    "previewDbReset": false,
+    "apiRestarted": false,
+    "reason": "No runtime/server/migration change; unchanged99-file actual4175build verified. Existing4186service/key retained."
+  },
+  "fixtures": [
+    "Pure analytical garden model, not imported by runtime",
+    "Existing disclosed seeded local browser and CaseysharedSQLfixture; isolated disposable DBs",
+    "Existing API/time fixtures retain disclosures"
+  ],
+  "limits": [
+    "No garden runtime or action animation implemented",
+    "Fixedgreedystrategy/accounting conservation; no human fun/retention/full economy or atomicity proof",
+    "Emulated phones not physical devices",
+    "No cloud/cost/realaccount/currentgame changes"
+  ],
+  "next": "IH2-065 as specified; outside-source065-preparation.md and065-social-references.md await promotion into next task",
+  "merge": "c0ce17e76c2038ab75b6475b6eb584e0456215e5",
+  "candidateTree": "4d07de906f9c859aceba14145723a3011f3ed0e5",
+  "mergeTree": "4d07de906f9c859aceba14145723a3011f3ed0e5",
+  "cleanMainMatchesRemote": true,
+  "mergedAt": "2026-11-11T19:12:50Z",
+  "mainCi": {
+    "run": 43085089353,
+    "head": "c0ce17e76c2038ab75b6475b6eb584e0456215e5",
+    "bothJobs": "success",
+    "verifiedIn065": true
+  }
+}

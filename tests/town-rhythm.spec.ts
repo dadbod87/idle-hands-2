@@ -10,7 +10,7 @@ const economy=(page:Page)=>page.evaluate(()=>{const state=(window as any).__pilo
 async function installFixture(page:Page,job=true){
  const state=createWorkshop(Date.now());
  if(job)state.job={recipe:'bridge-kit',startedAt:state.observedAt,readyAt:state.observedAt+12*3600_000};
- await page.addInitScript(value=>{if(!localStorage.getItem('ih2:workshop:v1'))localStorage.setItem('ih2:workshop:v1',JSON.stringify(value));if(!localStorage.getItem('ih2:pilot-position:v1'))localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:20,y:23.5}}));},state);
+ await page.addInitScript(value=>{if(!localStorage.getItem('ih2:workshop:v2'))localStorage.setItem('ih2:workshop:v2',JSON.stringify(value));if(!localStorage.getItem('ih2:pilot-position:v1'))localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:20,y:23.5}}));},state);
 }
 async function ready(page:Page){await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await expect(page.locator('canvas')).toBeVisible();}
 async function openSky(page:Page,phase:string,weather='clear'){

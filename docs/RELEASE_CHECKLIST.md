@@ -95,3 +95,10 @@
 - Check selected always-base practice/rested bonus, family seed recovery, reserved output capacity and solo-completable request; document rejected policies. Real SQL ownership/replay/atomicity is065work.
 - Required aggregate151checks/zero skips,48browser cases including static concept rendering, strict build/design/plan/pinned/diff; review actual desktop/phone/short/canopy and concept PNGs, unchanged99-file client artifact. Both exact-head jobs and actual uploaded artifacts before merge.
 - Sequential Node test files isolate design/restore CPU work from protocol load; preserve intentional case concurrency and all deadlines/assertions. No runtime performance claim from this scheduling change.
+
+## IH2-065 starter garden
+- Strict seed/plant/produce/practice conservation, first5monce/normal30m/four-hourflower, full-stack held harvests, recovery counting active plants, empty-bonus base practice and raw-bank deadline derivation. No ordinary job/cost/kit/property change.
+- Actual HTTP movement/proximity, private presence, explicit selected-owned public projection, UUID/stale/concurrent/replay/failure rollback, six-credit cap/postfunding recognition, weekly return and concrete garden/job/property dump/restore plus actual PostgreSQLrestart.
+- v1→v2namespace migration underexistingwriterlock, legacycopyunchanged by migration, simulatedoldwriterisolation, unsupportedcurrentdataread-only, quota/cache/second-tab regressions. Disclose all synthetic state/clock/position/static-document fixtures.
+- Original117-vector manifest/31newSVGs/96actionposes; actual directphone/privategate/guideexit, previewcancel/stablecontrols, fullstorage/readytimer, publicowner switch and short200% scroll/focus. Runtime art/frame bounds and actual final screenshots, not assertions alone.
+- Required aggregate/build/design/plan/40pinned/diff and full53browser cases; both exact-head CIjobs plus actual uploaded build/server/browser evidence before merge. Preserve all existing deadlines/assertions. Sourceacceptance is not hosted release.

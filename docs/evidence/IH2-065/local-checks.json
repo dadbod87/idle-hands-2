@@ -1,0 +1,80 @@
+{
+  "classification": "Local integrated065 candidate; source CI/merge and hosted release not implied",
+  "date": "2026-11-11",
+  "aggregate": {
+    "passed": 179,
+    "skipped": 0,
+    "durationMs": 39988.404333,
+    "log": "/tmp/ih2-065-tests-final.log",
+    "databases": [
+      "ih2_test",
+      "ih2_http_test",
+      "ih2_restore",
+      "ih2_load"
+    ],
+    "practiceReset": false
+  },
+  "build": {
+    "passed": true,
+    "log": "/tmp/ih2-065-build-final.log",
+    "files": 131
+  },
+  "design": {
+    "passed": true,
+    "candidateEntries": 48,
+    "regions": 5
+  },
+  "planning": {
+    "tasks": 22,
+    "checks": 10,
+    "passed": true
+  },
+  "pinnedFiles": 40,
+  "diffCheck": true,
+  "browser": {
+    "status": "passed",
+    "expected": 53,
+    "log": "/tmp/ih2-065-browser-corrected.log",
+    "previousAttempt": "52passed/1failed, wrong new-test #guide selector corrected to actual #field-guide; assertions/deadlines unchanged",
+    "device": "Headless native Chrome157 on M5; emulated viewports/touch, not physical phone",
+    "passed": 53,
+    "minutes": 7.1,
+    "reviewed": [
+      "garden phone empty/planted/other owner/short200",
+      "all31 original assets/96frames",
+      "desktop square",
+      "phone workshop",
+      "short square",
+      "narrow canopy crop"
+    ],
+    "activePlayP95Ms": {
+      "desktop": 16.700000000000728,
+      "phone": 16.700000000000728,
+      "narrow": 16.700000000000728,
+      "short": 16.799999999999272
+    },
+    "minimumCanopyCoverage": 0.9964912280701754
+  },
+  "databaseRestart": {
+    "passed": true,
+    "populatedGarden": true,
+    "isolatedRestore": true,
+    "practiceSavedResidents": 0
+  },
+  "load": {
+    "protocolClients": 20,
+    "commandP95Ms": 59.07425000000012,
+    "elapsedMs": 26587.68125,
+    "disclosure": "Actual loopback Node HTTP/SSE +dedicated disposable ih2_load PostgreSQL;20unique ordinary zero-progress residents. Legal continuous route/ACK movement, real5splanter and12hqueued job. No stock/time/position grants, real accounts or cloud. This is20protocol clients, not20rendered browsers or a physical-phone/WAN/soak/capacity guarantee."
+  },
+  "review": {
+    "phone": "Read-only review caught missing garden-exit in guide route; fixed and actual phone exit assertion retained",
+    "domain": "Read-only review found no remaining concrete blocker after v2-key/raw-bank fixes; does not replace tests"
+  },
+  "limits": [
+    "Finite activities can saturate; not proof of hours of content or fun",
+    "Explicit isolated elapsed/legacy/old-property fixtures; real shared garden UI has no API interception",
+    "Local single-process loopback only, not hosted authentication/WAN/capacity/physical phone",
+    "Preview remains064 until exact-head source acceptance"
+  ]
+}

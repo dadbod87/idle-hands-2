@@ -861,6 +861,316 @@
       "source": "tools/create-fieldwork-art.py",
       "date": "2026-11-11",
       "modifications": "Original journal frames/certificate and composed original tree layers; no imported media."
+    },
+    {
+      "id": "garden-actions-aster",
+      "path": "public/art/garden/garden-actions-aster.svg",
+      "sha256": "6d5ca5a94ba2a23f42fae6200182b60a3a5ff895f7160c5ba6e1fa9e49324ef9",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-actions-bea",
+      "path": "public/art/garden/garden-actions-bea.svg",
+      "sha256": "51d921b4b9caf8f1a71b33a57a0e0b2933490d4051c16e4a935bb7bf0390581d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-actions-casey",
+      "path": "public/art/garden/garden-actions-casey.svg",
+      "sha256": "b811dd44519af995cbbf76cdbece4e7af2c3ec13ea9810fe7530012698e7f289",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-actions-devon",
+      "path": "public/art/garden/garden-actions-devon.svg",
+      "sha256": "20e54145e6238dd7491a6031130468c37d9ced5aaa53faebbd4d25003b090b57",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-attendant",
+      "path": "public/art/garden/garden-attendant.svg",
+      "sha256": "269dd5bfbedd6746a324c18ae67a9cda4a43ff0c72415a128136fe53fd8db1fa",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-bed-empty",
+      "path": "public/art/garden/garden-bed-empty.svg",
+      "sha256": "4e2e8e41633c8fcb6fdc908e33ba82f4ffc78733f5a8a79a4fb05346a544aace",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-field",
+      "path": "public/art/garden/garden-field.svg",
+      "sha256": "ab696921d8643c8aee3312e160057a9fc04b454f241fae99a8cefd3d839903e7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-gate",
+      "path": "public/art/garden/garden-gate.svg",
+      "sha256": "27c026d073fdd4e0fabbc3bbf0972776c2292a517abbd843b5b9c28a0b1389f1",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-ground",
+      "path": "public/art/garden/garden-ground.svg",
+      "sha256": "8343339a474478edf586f5e2b1af26b38d5a91084e8e86d40df9caf8e7af76a1",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-marigold-growing",
+      "path": "public/art/garden/garden-marigold-growing.svg",
+      "sha256": "8b48f6c276059a69a2f2798f433ec4477cace59c4095da31910d84a4fbf178e7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-marigold-produce",
+      "path": "public/art/garden/garden-marigold-produce.svg",
+      "sha256": "7a635937951561384f237b153a1512f51bf83c843d6c0e8be338cada9faff597",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-marigold-ready",
+      "path": "public/art/garden/garden-marigold-ready.svg",
+      "sha256": "e54347e049d77937442f5c7d5886d8874db0cba0a29eae44450801dc6612d129",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-marigold-seed",
+      "path": "public/art/garden/garden-marigold-seed.svg",
+      "sha256": "4a8c65b9c39defc6d024af47dd71cb7df1495fe88577c571998751ee7d6deed9",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-marigold-sow",
+      "path": "public/art/garden/garden-marigold-sow.svg",
+      "sha256": "d15a7eaf112072ff4eda1f981b6a3480b045b2590afed3661694637236261be9",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-marigold-sprout",
+      "path": "public/art/garden/garden-marigold-sprout.svg",
+      "sha256": "db9a48302f65f38f10126bb42c1dd3b0f59ba069c91ae84515271d18daaf1e0b",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-marker-almost-straight",
+      "path": "public/art/garden/garden-marker-almost-straight.svg",
+      "sha256": "a6f193f60a498f0f8d5a6809227101969d9e27bc94987040651998b591cc7fab",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-marker-leaf-fan",
+      "path": "public/art/garden/garden-marker-leaf-fan.svg",
+      "sha256": "1a0360f9f68ed27ce26056fb78ed693af3154cabcbbcd1384e25e2815fb19b2d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-marker-little-pennant",
+      "path": "public/art/garden/garden-marker-little-pennant.svg",
+      "sha256": "bed822ce0bfab268cf2876c1627bd326ebbf634743fe34a985b5f548f861636a",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-marker-sunburst",
+      "path": "public/art/garden/garden-marker-sunburst.svg",
+      "sha256": "9531a913e55f3c968a20a61f77e61406791139e31c373ffd052278eddf285a49",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-radish-growing",
+      "path": "public/art/garden/garden-radish-growing.svg",
+      "sha256": "e30e062e7e5e52a2ef0812d4a2cde5afaa5e490fbcb541d0af4a361233f6d67a",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-radish-produce",
+      "path": "public/art/garden/garden-radish-produce.svg",
+      "sha256": "c15e29a55b820152258c5abdc2223e6a119a581d1320dcd4e290ead7078ee542",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-radish-ready",
+      "path": "public/art/garden/garden-radish-ready.svg",
+      "sha256": "dcc5801b6b1325d097294d6b2894546cc85e329d12000037d7238172082d1332",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-radish-seed",
+      "path": "public/art/garden/garden-radish-seed.svg",
+      "sha256": "cdca4b674b1c9b92a73bd92ab6cf497c44cb6a7f6f292b2ad22fca9a8152291c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-radish-sow",
+      "path": "public/art/garden/garden-radish-sow.svg",
+      "sha256": "86b1127dbbc0883e0aae8b365cd722a84affaa548b8f220c6444672e9788be2c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-radish-sprout",
+      "path": "public/art/garden/garden-radish-sprout.svg",
+      "sha256": "0c17b100e43ab23b563e409a0693700f0326fcc8808c01332a7018d4387e711c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-registry",
+      "path": "public/art/garden/garden-registry.svg",
+      "sha256": "74cb1532d5899046740e0a9a4152f4f3c6f5b6be54efe0648c06eeaaf4fffca2",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-stake-forked",
+      "path": "public/art/garden/garden-stake-forked.svg",
+      "sha256": "44cd71bfd7f19115e364e6940b708379fa6627a033a704459dc4e67ab8cf1d88",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-stake-notched",
+      "path": "public/art/garden/garden-stake-notched.svg",
+      "sha256": "ab07af47583eb92babc8f7f654f9e1793ba19b3c1157278ab945e9b9f3a01703",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-stake-striped",
+      "path": "public/art/garden/garden-stake-striped.svg",
+      "sha256": "94a5f8f7de11c56b1928c814adb1bd1705ef51d966c1087d083dacdd69c744e4",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-welcome-collecting",
+      "path": "public/art/garden/garden-welcome-collecting.svg",
+      "sha256": "3038c02ec1b6d79d25f3df8ad49d3f42c682cc66ed5222e5d81935af5c3de6a2",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "garden-welcome-open",
+      "path": "public/art/garden/garden-welcome-open.svg",
+      "sha256": "001bd869b79e3fb235e75b70665a14d164a651a8090912640c50d2fde5438bba",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
     }
   ],
   "comparison": {

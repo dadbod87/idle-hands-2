@@ -115,3 +115,17 @@ November11, agent-selected candidate under the owner’s depth/teamwork/solo/exp
 ## A044 — controlled aggregate test scheduling
 
 November11. Run Node test files with --test-concurrency=1 so analytical design simulations and database dump/restore workers do not overlap the twenty-client load measurement. All cases, assertions, budgets and intentional within-case concurrency remain intact; CI workflow and its deadlines are unchanged. This isolates a measurement, not a runtime speed improvement. Node documents this option as the maximum number of test files executed concurrently: https://nodejs.org/docs/latest-v24.x/api/test.html.
+
+## A045 — private allotments and chosen public registry
+
+November11, IH2-065 agent refinement. One personal18x18garden instance at a shared square gate; existing private-room presence filtering excludes it. Public registry rows project only persistent ownerID/name plus a selected owned marker. This deliberately replaces064candidate at-plot display: do not draw twenty patches across the phone square or reuse own-or-firsthouse selection for another resident’s marker. The registry is labelled as a registry, not physical plot placement. Housing routes/ownership remain independent.
+
+## A046 — additive progress and versioned local save boundary
+
+Reuse workshop revision/UUID/transaction and immutable crop deadlines. New GardenState is private JSON with strict conservation; one private SQL welcome row caps at6. Postfunding requests retain personal recognition and spend the disclosed produce but emit no new public credit/invalidation. Raw bank timestamps support derived UI; rendering never awards output. Legacy epoch uses last confirmed workshop timestamp; capped banks keep no hidden fractional reserve while full.
+
+Localkeyv2migration uses the same writer lock, reads legacyv1only whilev2absent and never writesv1. Unsupportedcurrentdata is read-only and retained. This prevents a cachedolderclient’s strictschema/recovery path overwriting new progress. Simulated older-writer protocol and explicit raw fixtures are disclosed, not called execution of the old compiled app.
+
+## A047 — independent finite verbs, not an hours-of-content claim
+
+Garden adds two crop families, three hand-made markers, one finite three-comparison stakes errand/fourthmarker and solo-completable shared welcome bed. No old-currency/kit conversion or universal output multiplier. Preview/status controls keep their space; no action waits for its animation. Thirty-one original SVGs and96four-facing action frames reuse original resident identities/feet. More ingredient uses/practical quests require IH2-066activity audit and bounded resource/tool plan; the current lanes can still saturate.

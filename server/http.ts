@@ -6,7 +6,7 @@ import {TransportAdmission,BoundedStream} from './transport.ts';
 import {TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './store.ts';
 import {canStand,routeTo,worlds} from '../src/game/world.ts';
 const DEFAULT_FIXTURES=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}];
-const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail']),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(value=>isHome(value.room)?!!value.homePlotId:value.homePlotId===undefined);
+const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden']),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(value=>isHome(value.room)?!!value.homePlotId:value.homePlotId===undefined);
 const COOKIE='ih2_fixture';
 function json(res:ServerResponse,status:number,data:unknown){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(data));}
 async function body(req:IncomingMessage){let text='';for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>16384)throw new Error('Body too large');}return JSON.parse(text||'{}') as unknown;}
@@ -84,7 +84,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     return await serial(id,res,async()=>{
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
     const command=await body(req);if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});metrics.commands++;const result=await store.execute(id,command,current.value);cacheHomes(result.snapshot);if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(command as {kind?:unknown}).kind==='enter-home'){current.value=result.snapshot.position;current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;}result.snapshot.position=current.value;
-    if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(['contribute','claim-plot','upgrade-plot','edit-plot','redeem-lesson'].includes(String((command as {kind?:unknown}).kind))||((command as {kind?:unknown}).kind==='stamp-trail'&&result.snapshot.trail.pennantOwned)))invalidate(id);
+    if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(['contribute','claim-plot','upgrade-plot','edit-plot','redeem-lesson'].includes(String((command as {kind?:unknown}).kind))||((command as {kind?:unknown}).kind==='stamp-trail'&&result.snapshot.trail.pennantOwned)||((command as {kind?:unknown}).kind==='garden'&&result.publicChanged)))invalidate(id);
     return json(res,200,{...result,snapshot:{...result.snapshot,serverInstance}});
     });
    }

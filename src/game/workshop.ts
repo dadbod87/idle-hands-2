@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import {SURVEY_IDS,SURVEY_CHOICES,SURVEYS} from './fieldwork.ts';
+import {gardenSchema,gardenActionSchema,createGarden,applyGarden} from './garden.ts';
 
 // Local synthetic prototype rules. This module does not establish server authority.
 export const RESOURCE_IDS = ['scrap', 'timber', 'supplies'] as const;
@@ -42,6 +43,7 @@ const placementSchema = z.object(Object.fromEntries(slotIds.map(id => [id, propV
 const stateSchema = z.object({
   version: z.literal(1), revision: count, observedAt: timestamp,
   sketches: z.array(z.enum(SURVEY_IDS)).max(3).refine(ids=>new Set(ids).size===ids.length).default([]),
+  garden:gardenSchema,
   inventory: materialSchema, owned: ownedSchema, placements: placementSchema,
   nodes: z.object({ scrap: nodeSchema, timber: nodeSchema, supplies: nodeSchema }).strict(),
   job: z.object({ recipe: z.enum(['planter', 'bridge-kit']), startedAt: timestamp, readyAt: timestamp }).strict().nullable(),
@@ -65,6 +67,7 @@ const stateSchema = z.object({
 export type WorkshopState = z.infer<typeof stateSchema>;
 const baseCommand = { id: receiptSchema.shape.id, expectedRevision: count };
 const commandSchema = z.discriminatedUnion('kind', [
+  z.object({...baseCommand,kind:z.literal('garden'),gardenAction:gardenActionSchema}).strict(),
   z.object({...baseCommand,kind:z.literal('survey'),station:z.enum(SURVEY_IDS),choice:z.enum(SURVEY_CHOICES)}).strict(),
   z.object({ ...baseCommand, kind: z.literal('gather'), resource: z.enum(RESOURCE_IDS) }).strict(),
   z.object({ ...baseCommand, kind: z.literal('craft'), recipe: z.enum(['planter', 'bridge-kit']) }).strict(),
@@ -78,7 +81,7 @@ function validTime(now: number): boolean { return timestamp.safeParse(now).succe
 export function createWorkshop(now: number): WorkshopState {
   if (!validTime(now)) throw new Error('A valid integer clock is required.');
   return {
-    version: 1, revision: 0, observedAt: now, sketches: [],
+    version: 1, revision: 0, observedAt: now, sketches: [], garden:createGarden(now),
     inventory: { scrap: 0, timber: 0, supplies: 0 },
     owned: { planter: 0, stool: 1, rug: 1, lamp: 1, crate: 1, shelf: 1 },
     placements: Object.fromEntries(slotIds.map(id => [id, null])) as WorkshopState['placements'],
@@ -92,9 +95,11 @@ export function createWorkshop(now: number): WorkshopState {
 export function loadWorkshop(value: unknown, now: number): { state: WorkshopState; recovered: boolean } {
   if (!validTime(now)) throw new Error('A valid integer clock is required.');
   if (value === null || value === undefined) return { state: createWorkshop(now), recovered: false };
-  const parsed = stateSchema.safeParse(value);
+  // Additive old-save migration only. Existing stock, jobs, history and receipts stay intact.
+  const migrated=value&&typeof value==='object'&&!Array.isArray(value)&&(value as {version?:unknown}).version===1&&!Object.hasOwn(value,'garden')?{...value,garden:createGarden(validTime((value as {observedAt:number}).observedAt)?(value as {observedAt:number}).observedAt:now)}:value;
+  const parsed = stateSchema.safeParse(migrated);
   if (!parsed.success) return { state: createWorkshop(now), recovered: true };
-  return { state: settleWorkshop(parsed.data, now), recovered: false };
+  return {state:settleWorkshop(parsed.data,now),recovered:false};
 }
 export function settleWorkshop(input: WorkshopState, now: number): WorkshopState {
   if (!validTime(now) || now < input.observedAt) return input;
@@ -134,7 +139,11 @@ export function applyWorkshop(input: WorkshopState, raw: unknown, now: number): 
   if (input.revision >= 1_000_000) return fail('This prototype has reached its command limit. Your progress is safe; no change was made.');
   const next = structuredClone(settleWorkshop(input, now));
   let message = '';
-  if(cmd.kind==='survey'){
+  if(cmd.kind==='garden'){
+    const applied=applyGarden(next.garden,cmd.gardenAction,now);
+    if(!applied.ok)return fail(applied.message);
+    next.garden=applied.state;message=applied.message;
+  }else if(cmd.kind==='survey'){
     if(next.sketches.includes(cmd.station))return fail('Already recorded. Your sketch is still here; the tree has nothing to add.');
     if(cmd.choice!==SURVEYS[cmd.station].answer)return fail('Take another look at the tree or read the observation hint. Nothing was spent or changed.');
     next.sketches.push(cmd.station);

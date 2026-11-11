@@ -1,0 +1,19 @@
+{
+  "disclosure": "Isolated browser localStorage legacy job fixture built with pure ordinary commands. A blank same-origin document and localStorage data are controlled fixtures. Writer coordination is real; an old-version recovery write to v1 is simulated, not execution of the old compiled app. Unsupported future data intentionally injected; no real account.",
+  "legacyJob": {
+    "recipe": "bridge-kit",
+    "startedAt": 1794426121879,
+    "readyAt": 1794469321879
+  },
+  "protectedKeys": [
+    "inventory",
+    "owned",
+    "placements",
+    "job",
+    "stats",
+    "skills",
+    "bridgeKits",
+    "receipts"
+  ],
+  "unsupportedRetained": true
+}

@@ -433,6 +433,161 @@
       "id": "fieldwork-study-oak",
       "path": "art/fieldwork/study-oak.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "garden-actions-aster",
+      "path": "art/garden/garden-actions-aster.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-actions-bea",
+      "path": "art/garden/garden-actions-bea.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-actions-casey",
+      "path": "art/garden/garden-actions-casey.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-actions-devon",
+      "path": "art/garden/garden-actions-devon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-attendant",
+      "path": "art/garden/garden-attendant.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-bed-empty",
+      "path": "art/garden/garden-bed-empty.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-field",
+      "path": "art/garden/garden-field.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-gate",
+      "path": "art/garden/garden-gate.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-ground",
+      "path": "art/garden/garden-ground.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-marigold-growing",
+      "path": "art/garden/garden-marigold-growing.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-marigold-produce",
+      "path": "art/garden/garden-marigold-produce.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-marigold-ready",
+      "path": "art/garden/garden-marigold-ready.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-marigold-seed",
+      "path": "art/garden/garden-marigold-seed.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-marigold-sow",
+      "path": "art/garden/garden-marigold-sow.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-marigold-sprout",
+      "path": "art/garden/garden-marigold-sprout.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-marker-almost-straight",
+      "path": "art/garden/garden-marker-almost-straight.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-marker-leaf-fan",
+      "path": "art/garden/garden-marker-leaf-fan.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-marker-little-pennant",
+      "path": "art/garden/garden-marker-little-pennant.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-marker-sunburst",
+      "path": "art/garden/garden-marker-sunburst.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-radish-growing",
+      "path": "art/garden/garden-radish-growing.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-radish-produce",
+      "path": "art/garden/garden-radish-produce.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-radish-ready",
+      "path": "art/garden/garden-radish-ready.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-radish-seed",
+      "path": "art/garden/garden-radish-seed.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-radish-sow",
+      "path": "art/garden/garden-radish-sow.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-radish-sprout",
+      "path": "art/garden/garden-radish-sprout.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-registry",
+      "path": "art/garden/garden-registry.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-stake-forked",
+      "path": "art/garden/garden-stake-forked.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-stake-notched",
+      "path": "art/garden/garden-stake-notched.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-stake-striped",
+      "path": "art/garden/garden-stake-striped.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-welcome-collecting",
+      "path": "art/garden/garden-welcome-collecting.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "garden-welcome-open",
+      "path": "art/garden/garden-welcome-open.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

@@ -6,7 +6,9 @@
     "tests/design-*.test.ts",
     "tests/design-documents.spec.ts",
     "tools/simulate-garden-plan.ts",
-    "tests/design-garden.spec.ts"
+    "tests/design-garden.spec.ts",
+    "tests/garden*.test.ts",
+    "tests/garden.spec.ts"
   ],
   "compilerOptions": {
     "types": [

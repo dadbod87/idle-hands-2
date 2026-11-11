@@ -54,3 +54,7 @@ These are dependency gates, not promised dates. The task file contains full acce
 - Current game: [state](../CURRENT_STATE.md), [art direction](../ART_DIRECTION.md), [history](../CHANGELOG.md)
 
 Root README, AGENTS and CURRENT_STATE point here. Direct user decisions and agent defaults are distinguished in DECISIONS. Keep dated closeouts, exact check/artifact evidence, discovered follow-ups and a next task. Implementation/planning now lives in this private sequel repository; the original game keeps a discovery pointer. Keep source and handoff authoritative here. Never rely on this chat as the only record.
+
+## Private-preview readiness
+
+Read [PRIVATE_PREVIEW_PLAN](PRIVATE_PREVIEW_PLAN.md) and [060evidence](../evidence/IH2-060/REPORT.md) before any cloud setup. Local load/recovery checks are separate from hosted identity, physical-phone acceptance and the owner cost/access gate.

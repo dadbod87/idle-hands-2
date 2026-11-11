@@ -1,0 +1,11 @@
+{
+  "method": "SHA256 and independent gzip compression of built HTML/JS/CSS; actual4175responses compared.82SVGs match source; estimate not observed CDNtransfer.",
+  "files": {
+    "dist/index.html": "aaf5413cd2667187e999402d71be81a775e3d13dc1236487b44a5aba363038e5",
+    "dist/assets/index-DMaY5xun.js": "10b131523d8401261e21185c4f0091a7b9b249518eb9d4680714bf003b63c350",
+    "dist/assets/index-BBShWDam.css": "ccbe6268741da4879a69cc2a50eb9380959590c11996e20efe4deec83cc929b7"
+  },
+  "clientGzipBytes": 421269,
+  "svgCount": 82,
+  "actual4175Matches": true
+}

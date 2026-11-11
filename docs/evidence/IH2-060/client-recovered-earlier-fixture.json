@@ -1,0 +1,96 @@
+{
+  "disclosure": "Fictional intercepted town HTTP and EventSource fixture only. Same resident changes from boot-one revision10/open bridge to boot-two revision5/older confirmed server time/collecting bridge/workshop feet9,11. No real database or backup is modified.",
+  "town": {
+    "playerId": "aster",
+    "name": "Aster",
+    "workshop": {
+      "version": 1,
+      "revision": 5,
+      "observedAt": 1794368270552,
+      "inventory": {
+        "scrap": 0,
+        "timber": 0,
+        "supplies": 0
+      },
+      "owned": {
+        "planter": 0,
+        "stool": 1,
+        "rug": 1,
+        "lamp": 1,
+        "crate": 1,
+        "shelf": 1
+      },
+      "placements": {
+        "north-west": null,
+        "north-middle": null,
+        "north-east": null,
+        "south-west": null,
+        "south-middle": null,
+        "south-east": null
+      },
+      "nodes": {
+        "scrap": {
+          "stock": 6,
+          "lastAt": 1794368270552
+        },
+        "timber": {
+          "stock": 6,
+          "lastAt": 1794368270552
+        },
+        "supplies": {
+          "stock": 6,
+          "lastAt": 1794368270552
+        }
+      },
+      "job": null,
+      "bridgeKits": 0,
+      "stats": {
+        "gathered": 0,
+        "crafted": 0,
+        "plantersCrafted": 0,
+        "placed": 0,
+        "planterPlacedAfterCraft": false,
+        "bridgeJobsStarted": 0
+      },
+      "skills": {
+        "gathering": 0,
+        "making": 0
+      },
+      "receipts": [],
+      "lastMessage": "Five donated furnishings. One very empty planter-shaped gap. Gather three materials to get started."
+    },
+    "position": {
+      "room": "workshop",
+      "position": {
+        "x": 9,
+        "y": 11
+      }
+    },
+    "quest": {
+      "contentVersion": 1,
+      "awarded": []
+    },
+    "bridge": {
+      "contributed": 0,
+      "target": 3,
+      "restored": false
+    },
+    "plot": null,
+    "plots": [],
+    "seasonKey": "2026-11-06",
+    "scores": [],
+    "serverTime": 1794368270995,
+    "serverInstance": "boot-two"
+  },
+  "actor": {
+    "version": 1,
+    "room": "workshop",
+    "position": {
+      "x": 9,
+      "y": 11
+    },
+    "locked": false,
+    "walking": false,
+    "nearby": null
+  }
+}

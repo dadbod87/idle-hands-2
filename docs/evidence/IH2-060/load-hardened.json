@@ -1,0 +1,291 @@
+{
+  "disclosure": "Actual loopback Node HTTP/SSE +dedicated disposable ih2_load PostgreSQL;20unique ordinary zero-progress residents. Legal continuous route/ACK movement, real5splanter and12hqueued job. No stock/time/position grants, real accounts or cloud. This is20protocol clients, not20rendered browsers or a physical-phone/WAN/soak/capacity guarantee.",
+  "method": "Same Node process runs server and load generators: CPU/RSS include both, exclude PostgreSQL/browser/OS. Full-response-body HTTP latency; independent small-body loopback RTT. Body/SSE bytes omit HTTP/TLS/TCP framing. SQL instrumentation wraps each real client.query once including callback pool.query; setup/verification separated from load/idle.",
+  "environment": {
+    "node": "v26.7.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "poolMaximum": 5
+  },
+  "elapsedMs": 27043.2345,
+  "latencyMs": {
+    "smallBodyLoopbackRtt": {
+      "count": 20,
+      "p50": 0.30716699999999264,
+      "p95": 1.068125000000009,
+      "p99": 9.833167000000003,
+      "max": 9.833167000000003
+    },
+    "login": {
+      "count": 20,
+      "p50": 61.754459000000026,
+      "p95": 71.48429100000001,
+      "p99": 71.55966599999999,
+      "max": 71.55966599999999
+    },
+    "movement": {
+      "count": 760,
+      "p50": 7.5492080000000215,
+      "p95": 26.73991599999954,
+      "p99": 29.832000000000335,
+      "max": 29.941957999999886
+    },
+    "command": {
+      "count": 140,
+      "p50": 31.99987500000134,
+      "p95": 53.516625000000204,
+      "p99": 57.55779200000006,
+      "max": 58.086125000000266
+    },
+    "replay": {
+      "count": 20,
+      "p50": 21.397417000000132,
+      "p95": 25.48554199999853,
+      "p99": 25.962166999997862,
+      "max": 25.962166999997862
+    },
+    "snapshot": {
+      "count": 20,
+      "p50": 22.623708999999508,
+      "p95": 35.36020899999858,
+      "p99": 35.38441600000078,
+      "max": 35.38441600000078
+    }
+  },
+  "http": {
+    "requests": 980,
+    "requestBodyBytes": 60580,
+    "responseBodyBytes": 485900
+  },
+  "sse": {
+    "receivedBytes": 1119520,
+    "events": 770,
+    "presence": 730,
+    "heartbeats": 20,
+    "errors": []
+  },
+  "server": {
+    "commands": 160,
+    "snapshots": 20,
+    "movementAccepted": 760,
+    "movementRejected": 0,
+    "presenceEvents": 730,
+    "positionCheckpoints": 20,
+    "transport": {
+      "rejectedRate": 0,
+      "rejectedCapacity": 0,
+      "activeRequests": 0,
+      "peakRequests": 20,
+      "activeStreams": 20,
+      "peakStreams": 40
+    },
+    "sseSubmittedBytes": 1119520,
+    "sseSubmittedFrames": 790,
+    "sseSuppressedPresence": 330,
+    "sseExpired": 0,
+    "sseBackpressure": 0,
+    "sseOversize": 0
+  },
+  "sql": {
+    "setup": {
+      "count": 15,
+      "verbs": {
+        "DROP": 1,
+        "BEGIN": 1,
+        "SELECT": 5,
+        "CREATE": 1,
+        "--": 3,
+        "INSERT": 3,
+        "COMMIT": 1
+      },
+      "latencyMs": {
+        "count": 15,
+        "p50": 0.8719589999999755,
+        "p95": 19.906291999999993,
+        "p99": 19.906291999999993,
+        "max": 19.906291999999993
+      }
+    },
+    "load": {
+      "count": 3520,
+      "verbs": {
+        "INSERT": 200,
+        "BEGIN": 280,
+        "UPDATE": 380,
+        "COMMIT": 280,
+        "SELECT": 2220,
+        "SET": 160
+      },
+      "latencyMs": {
+        "count": 3520,
+        "p50": 0.4827910000021802,
+        "p95": 1.5394589999999937,
+        "p99": 3.3912090000003445,
+        "max": 9.313416999999987
+      }
+    },
+    "verification": {
+      "count": 3,
+      "verbs": {
+        "SELECT": 3
+      },
+      "latencyMs": {
+        "count": 3,
+        "p50": 3.651041000000987,
+        "p95": 3.899915999998484,
+        "p99": 3.899915999998484,
+        "max": 3.899915999998484
+      }
+    }
+  },
+  "resources": {
+    "cpuUserMs": 1224.823,
+    "cpuSystemMs": 177.624,
+    "cpuPercentOfOneCore": 5.18594401124614,
+    "rssPeakBytes": 161415168,
+    "eventLoopP95Ms": 22.347775
+  },
+  "storage": [
+    {
+      "relname": "bridge",
+      "bytes": "32768"
+    },
+    {
+      "relname": "bridge_contributions",
+      "bytes": "16384"
+    },
+    {
+      "relname": "command_receipts",
+      "bytes": "106496"
+    },
+    {
+      "relname": "maintenance_events",
+      "bytes": "16384"
+    },
+    {
+      "relname": "maintenance_lessons",
+      "bytes": "32768"
+    },
+    {
+      "relname": "players",
+      "bytes": "188416"
+    },
+    {
+      "relname": "plots",
+      "bytes": "24576"
+    },
+    {
+      "relname": "project_events",
+      "bytes": "16384"
+    },
+    {
+      "relname": "quest_awards",
+      "bytes": "32768"
+    },
+    {
+      "relname": "season_scores",
+      "bytes": "24576"
+    },
+    {
+      "relname": "trail_stamps",
+      "bytes": "16384"
+    }
+  ],
+  "storageBefore": [
+    {
+      "relname": "bridge",
+      "bytes": "32768"
+    },
+    {
+      "relname": "bridge_contributions",
+      "bytes": "16384"
+    },
+    {
+      "relname": "command_receipts",
+      "bytes": "16384"
+    },
+    {
+      "relname": "maintenance_events",
+      "bytes": "16384"
+    },
+    {
+      "relname": "maintenance_lessons",
+      "bytes": "16384"
+    },
+    {
+      "relname": "players",
+      "bytes": "16384"
+    },
+    {
+      "relname": "plots",
+      "bytes": "24576"
+    },
+    {
+      "relname": "project_events",
+      "bytes": "16384"
+    },
+    {
+      "relname": "quest_awards",
+      "bytes": "16384"
+    },
+    {
+      "relname": "season_scores",
+      "bytes": "24576"
+    },
+    {
+      "relname": "trail_stamps",
+      "bytes": "16384"
+    }
+  ],
+  "storageGrowthBytes": 294912,
+  "conservation": {
+    "residents": 20,
+    "uniqueCommands": 140,
+    "replayedCommands": 20,
+    "receiptRows": 140,
+    "inventoryEach": {
+      "scrap": 1,
+      "timber": 2,
+      "supplies": 4
+    },
+    "outputKits": 0,
+    "realJobHours": 12,
+    "firstPlanterSeconds": 5
+  },
+  "privacy": {
+    "initialPublicPeers": [
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19
+    ],
+    "privateTenHidden": true,
+    "reconnectedPrivatePeers": 0
+  },
+  "idle": {
+    "seconds": 10,
+    "sqlQueries": 0,
+    "presenceEvents": 0
+  },
+  "budgets": {
+    "commandP95TargetMs": 500,
+    "commandP95Pass": true,
+    "physicalPhoneAndHostedProof": "PENDING"
+  }
+}

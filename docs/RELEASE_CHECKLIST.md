@@ -75,3 +75,10 @@
 -114domain/server/art/design tests (zero skips), full42browser cases, exact CI jobs and actual final images/build before merge; record real automated timings without a human-time/fun/physical-phone claim. No new recipes/costs/timers, original-game or hosted release.
 
 - 050modal-render follow-up: require full43cases including actual retained-backdrop pixels afterresize, advancing guide/production clocks, boot/pending-request/cache/close-to-walk regressions and unchanged active-play metrics. Keep20minute CI budget and every preexisting assertion. Rejectedf5runs and visually blank one-frame resize remain separately disclosed; exact final CI gain is measured, never inferred from local software probe.
+
+## IH2-060 local readiness
+
+- 135zero-skipchecks,20ordinary-clientlegalHTTP/SSEload,140unique/20replay conservation, privacy/reconnect/idle/cleanup, p95<=500mswithquery/event/bodybyte/CPU/RSS/storage scopes. Never targetih2_previeworremote/routing-query URLs.
+- 43fullbrowsercases, including earlier-backup recoveredstate/feet/notice and actualcanvas/phone/short captures. Preserve all deadlines/assertions; exact-headCI both jobs and actual artifacts beforemerge.
+- Actual localPGrestart/dumprestore/newprocess, practice-state preservation, checksum/receipt/persistence proof. Hostedrole/auth/backup/advisor/WAN/physicalphone checks remain separate.
+- Concrete provider/account/access/cost approval before070resources; no real-account imports, invitations, publicdomains or expense inferred from source merge.

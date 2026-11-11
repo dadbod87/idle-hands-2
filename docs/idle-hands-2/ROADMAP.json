@@ -417,7 +417,7 @@
     {
       "id": "IH2-060",
       "title": "Cost, performance and isolated release readiness",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-050"
       ],
@@ -431,12 +431,20 @@
       "exclusions": [
         "No unapproved cloud billing, real-player writes, public release or 1.0 account import."
       ],
-      "evidence": []
+      "evidence": [
+        "docs/evidence/IH2-060/REPORT.md",
+        "docs/evidence/IH2-060/local-checks.json",
+        "docs/evidence/IH2-060/load-monitored.json",
+        "docs/evidence/IH2-060/provider-metadata.json",
+        "docs/idle-hands-2/PRIVATE_PREVIEW_PLAN.md",
+        "docs/idle-hands-2/handoffs/2026-11-10-release-readiness.md"
+      ],
+      "owner_branch": "feat/release-readiness"
     },
     {
       "id": "IH2-070",
       "title": "Invited beta on approved isolated hosting",
-      "status": "queued",
+      "status": "blocked",
       "depends_on": [
         "IH2-060"
       ],
@@ -450,7 +458,8 @@
       "exclusions": [
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
-      "evidence": []
+      "evidence": [],
+      "blocked_reason": "Owner review/approval of the concrete PRIVATE_PREVIEW_PLAN account/ownership/access and conditional cost ceiling is required before hosting resources or invitations. No cloud provisioning or real-account authorization yet;060exact source closeout must also complete."
     },
     {
       "id": "IH2-080",

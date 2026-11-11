@@ -1,0 +1,9 @@
+{
+  "cpu": "Apple M5",
+  "logicalCpus": 10,
+  "totalMemoryBytes": 17179869184,
+  "platform": "darwin",
+  "architecture": "arm64",
+  "release": "25.5.0",
+  "node": "v26.7.0"
+}

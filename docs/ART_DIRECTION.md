@@ -69,3 +69,7 @@ Renderer follow-up: smooth rasterized SVG textures remain LINEAR, while only Web
 ## IH2-062 illustrated fieldwork
 
 Four original reproducible SVGs from tools/create-fieldwork-art.py compose our existing tree layers into distinct framed study pages and an original Naturalist journal certificate. Keep all86originalvectors fingerprinted. Tree silhouettes match the actual oak/birch/fruit subjects; visible square labels and existing tree hit targets support direct approach. The keepsake is a journal illustration, not yet a wall furnishing. Future public trophies and wardrobe must retain recognizable earned silhouettes, not erase them under finishes.
+
+## IH2-064 — garden concept boundary
+
+Two original static sheets in docs/idle-hands-2/design show two crops at four stages and three phone states. Reproducible generator: tools/create-garden-study.py; exact hashes and zero purchased/imported media in garden-art-provenance.json. These sheets are documentation, outside the runtime manifest and client build. World/bag/menu/public display variants and four-facing sow/inspect/harvest actions remain IH2-065 work. Preserve common foot anchors, recognizable crop/material silhouettes and still reduced-motion results; never let action animation own settlement.

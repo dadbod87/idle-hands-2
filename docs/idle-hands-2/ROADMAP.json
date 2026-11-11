@@ -471,7 +471,7 @@
     {
       "id": "IH2-064",
       "title": "Independent garden loop design and pacing proof",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-062"
       ],
@@ -484,6 +484,33 @@
       ],
       "exclusions": [
         "No live garden economy, undisclosed progress grants, paid assets, cloud resources, crop death or required weather attendance."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/GARDEN_LOOP.md",
+        "docs/evidence/IH2-064/REPORT.md",
+        "docs/evidence/IH2-064/garden-model.json",
+        "docs/evidence/IH2-064/local-checks.json",
+        "docs/evidence/IH2-064/build-proof.json",
+        "docs/idle-hands-2/handoffs/2026-11-11-garden-design.md"
+      ],
+      "owner_branch": "design/garden-loop"
+    },
+    {
+      "id": "IH2-065",
+      "title": "Playable starter garden and independent field errand",
+      "status": "queued",
+      "depends_on": [
+        "IH2-064"
+      ],
+      "goal": "Implement the selected small garden with useful independent activity, chosen public expression and authoritative persistence.",
+      "acceptance": [
+        "Implement three owned rented beds, two crops, bound seed recovery, independent produce capacity and ready-without-withering real deadlines. Preserve existing workshop costs, clocks, inventory and housing progress.",
+        "Every harvest earns practice; a bounded rested bonus never gates base progress. Implement the specified almost-straight-stakes errand: three unique illustrated comparisons, quest-bound pieces and once-only fourth marker, no ordinary resources/bench/timer/XP. Mixed requests support a solo-completable shared visual goal and recognition after funding. No old-currency conversion.",
+        "Original seed/produce/growth/action art, stable narrow/short phone controls, keyboard/direct/Places paths, free preview/cancel and explicit chosen public marker. Keep private stock private; preserve material silhouettes.",
+        "Versioned old-save defaults, server proximity/ownership, UUID replay/revision/concurrent atomic harvest/recovery/request, full storage, absence, restart/backup and existing-job preservation pass using isolated fixtures. Required local checks and exact-head both CI/artifact review before source merge."
+      ],
+      "exclusions": [
+        "No extra crop families, caf\u00e9 economy, trade, combat, chat, paid assets, hosted accounts, real-player data or weather production bonus. No claim of continuous hours of activity or physical-phone validation from emulation."
       ],
       "evidence": []
     },

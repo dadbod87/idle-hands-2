@@ -78,7 +78,7 @@
 
 ## IH2-060 local readiness
 
-- 135zero-skipchecks,20ordinary-clientlegalHTTP/SSEload,140unique/20replay conservation, privacy/reconnect/idle/cleanup, p95<=500mswithquery/event/bodybyte/CPU/RSS/storage scopes. Never targetih2_previeworremote/routing-query URLs.
+- 136zero-skipchecks,20ordinary-clientlegalHTTP/SSEload,140unique/20replay conservation, privacy/reconnect/idle/cleanup, p95<=500mswithquery/event/bodybyte/CPU/RSS/storage scopes. Never targetih2_previeworremote/routing-query URLs.
 - 43fullbrowsercases, including earlier-backup recoveredstate/feet/notice and actualcanvas/phone/short captures. Preserve all deadlines/assertions; exact-headCI both jobs and actual artifacts beforemerge.
 - Actual localPGrestart/dumprestore/newprocess, practice-state preservation, checksum/receipt/persistence proof. Hostedrole/auth/backup/advisor/WAN/physicalphone checks remain separate.
 - Concrete provider/account/access/cost approval before070resources; no real-account imports, invitations, publicdomains or expense inferred from source merge.

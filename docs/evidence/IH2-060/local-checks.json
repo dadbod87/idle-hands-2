@@ -1,11 +1,11 @@
 {
-  "domainServerArtDesign": 135,
+  "domainServerArtDesign": 136,
   "skipped": 0,
   "authoritativeFunctional": 43,
   "pureTransport": 7,
-  "deterministicClient": 8,
-  "browserCases": 43,
-  "browserMinutes": 5.8,
+  "deterministicClient": 9,
+  "browserCases": 44,
+  "browserMinutes": 5.9,
   "strictBuild": "PASS",
   "design": "PASS;48entries/5regions",
   "plan": "PASS;18tasks/10tracker tests",
@@ -13,8 +13,8 @@
   "diff": "PASS",
   "localDesktopNativeFrameP95Ms": {
     "desktop": 16.799999999999272,
-    "phone": 16.799999999999272,
-    "narrow": 16.700000000000728,
+    "phone": 16.700000000000728,
+    "narrow": 16.799999999999272,
     "short": 16.799999999999272
   },
   "frameLimits": "Scene frame-interval samples from actual headless nativeChrome/M5, no CPU/GPUthrottle; viewport emulation is not a phone. Desktop target20ms; physical phone>=30fps remains pending. Modal intervals excluded.",
@@ -32,13 +32,16 @@
     "idleConnectionInterruptionObserved": false,
     "limits": "Local single-process/isolated container recovery, not cloud HA or a real-player drill."
   },
-  "previewWorkshopDigestPreserved": true,
   "actualImagesReviewed": [
     "client-recovered-earlier-fixture.png",
     "phone-upkeep-regression.png",
     "short-text200-regression.png",
-    "homes-desktop-owner-expanded.png"
+    "homes-desktop-owner-expanded.png",
+    "stream-native-429-recovered.png",
+    "first-visit-phone-guide.png",
+    "trail-short-text200-world.png"
   ],
-  "fixtureDisclosure": "Recovery browser HTTP/EventSource/older-server-state fixture is intercepted, no actual backup/player changed. FreshDrew and20protocol load use ordinary stock/real5s+60s(or12hqueued), no progress/position/time grants. Older browserstock/race/project-time fixtures retain separate disclosures.",
-  "finalBoundary": "All135zero skips rerun after database URLquery/fragment guard. Full43browser passed on samefrontend/normalHTTPbehavior before that backend-only invalid-URLrejection change. Final exact-head CI must rerun full135/43 and actual artifacts before merge. No assertion/deadline/workflow change."
+  "fixtureDisclosure": "Recovery browser HTTP/EventSource/older-server-state fixture is intercepted, no actual backup/player changed. FreshDrew and20protocol load use ordinary stock/real5s+60s(or12hqueued), no progress/position/time grants. Older browserstock/race/project-time fixtures retain separate disclosures. Native429 test observes real EventSource/5sclock; all HTTP is intercepted and successful finite stream EOF can produce subsequent native reconnect.",
+  "finalBoundary": "Full136 zero skips and full44 browser cases pass after the final CLOSED-stream retry and invalid-URL guard. No assertion/deadline/workflow changes. Both exact-head CI jobs and actual uploaded artifacts must pass before merge.",
+  "practicePreservation": "Full COPY table-block comparison against pre060 dump matches; zero saved practice residents. Separate populated fixtures prove progress preservation."
 }

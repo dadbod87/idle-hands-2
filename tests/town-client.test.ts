@@ -12,19 +12,19 @@ function fixture(){
  const oldNow=Date.now;Date.now=()=>2_000_000;
  class Document extends EventTarget{hidden=false;}
  class Events extends EventTarget{
-  static all:Events[]=[];onopen:((event:Event)=>void)|null=null;onerror:((event:Event)=>void)|null=null;closed=false;
+  static all:Events[]=[];onopen:((event:Event)=>void)|null=null;onerror:((event:Event)=>void)|null=null;closed=false;readyState:number|undefined=undefined;
   constructor(){super();Events.all.push(this);}close(){this.closed=true;}
   emit(type:string,data:unknown){this.dispatchEvent(new MessageEvent(type,{data:JSON.stringify(data)}));}
  }
  const requests:Array<{path:string;body:any;signal:AbortSignal|undefined}>=[],messages:string[]=[],accepted:TownSnapshot[]=[],presence:unknown[]=[];
  let current=value(),handler:((request:typeof requests[number])=>Response|Promise<Response>)|null=null,timer=0;
- const timers=new Map<number,()=>void>();
+ const timers=new Map<number,()=>void>(),delays:number[]=[];
  Object.defineProperties(globalThis,{
-  document:{configurable:true,value:new Document()},window:{configurable:true,value:{setTimeout:(callback:()=>void)=>{timers.set(++timer,callback);return timer;},clearTimeout:(id:number)=>timers.delete(id)}},EventSource:{configurable:true,value:Events},
+  document:{configurable:true,value:new Document()},window:{configurable:true,value:{setTimeout:(callback:()=>void,delay:number)=>{delays.push(delay);timers.set(++timer,callback);return timer;},clearTimeout:(id:number)=>timers.delete(id)}},EventSource:{configurable:true,value:Events},
   fetch:{configurable:true,value:async(url:string,options:RequestInit)=>{const request={path:url.split('/').at(-1)!,body:options.body?JSON.parse(String(options.body)):undefined,signal:options.signal??undefined};requests.push(request);return handler?handler(request):json({snapshot:structuredClone(current)});}}
  });
  const client=new TownClient({onSnapshot:s=>accepted.push(structuredClone(s)),onConnection:m=>messages.push(m),onPresence:p=>presence.push(p)});
- return{client,requests,messages,accepted,presence,Events,set:(s:TownSnapshot)=>current=s,handle:(next:typeof handler)=>handler=next,stream:()=>Events.all.at(-1)!,async close(){client.close();await drain();Date.now=oldNow;for(const key of keys){const descriptor=originals.get(key);if(descriptor)Object.defineProperty(globalThis,key,descriptor);else delete(globalThis as any)[key];}}};
+ return{client,requests,messages,accepted,presence,Events,timers,delays,fire:()=>{assert.equal(timers.size,1);const[id,callback]=timers.entries().next().value!;timers.delete(id);callback();},set:(s:TownSnapshot)=>current=s,handle:(next:typeof handler)=>handler=next,stream:()=>Events.all.at(-1)!,async close(){client.close();await drain();Date.now=oldNow;for(const key of keys){const descriptor=originals.get(key);if(descriptor)Object.defineProperty(globalThis,key,descriptor);else delete(globalThis as any)[key];}}};
 }
 
 test('new confirmed boot accepts older saved state, while same-boot stale state and retired stream events cannot regress it',async()=>{
@@ -85,5 +85,29 @@ test('retired storage stays bounded while very old HTTP replies and markerless m
   const move=f.client.movement({room:'square',position:{x:24.5,y:25}}),failure=assert.rejects(move,/service changed/);await sent.promise;const command=f.client.command({kind:'gather',resource:'scrap'}),commandFailure=assert.rejects(command,/service changed/);await commandSent.promise;
   for(let i=0;i<20;i++){f.set(value('boot-'+i,5,500));f.handle(request=>request.path==='movement'?held.promise:request.path==='command'?oldCommand.promise:json({snapshot:value('boot-'+i,5,500)}));await f.client.load();await drain();}
   assert.equal((f.client as any).retiredBoots.size,16);assert.equal((f.client as any).retiredBoots.has('A'),false);oldCommand.resolve(json({ok:true,message:'EVICTED OLD SUCCESS',snapshot:value('A',999,9999)}));await commandFailure;assert.equal(f.client.retryAvailable,true);assert.equal(f.messages.some(m=>m.includes('EVICTED OLD SUCCESS')),false);held.resolve(json({ok:true,position:{room:'square',position:{x:24.5,y:25}}}));await failure;assert.equal(f.client.snapshot!.serverInstance,'boot-19');
+ }finally{await f.close();}
+});
+
+test('terminally closed EventSource retries once with bounded backoff, preserves pending requests and cancels obsolete timers',async()=>{
+ const f=fixture();try{
+  await f.client.login('aster');const native=f.stream();native.readyState=0;native.onerror?.(new Event('error'));assert.equal(f.timers.size,0);
+  const held=deferred<Response>(),sent=deferred<void>();f.handle(request=>{if(request.path==='command'){sent.resolve();return held.promise;}return json({snapshot:value()});});
+  const command=f.client.command({kind:'gather',resource:'scrap'}),failed=assert.rejects(command,/lost fixture reply/);await sent.promise;const original=f.requests.find(r=>r.path==='command')!.body;
+  const pendingMessage=f.messages.at(-1);native.readyState=2;native.onerror?.(new Event('error'));native.onerror?.(new Event('error'));assert.equal(native.closed,true);assert.equal(f.timers.size,1);assert.equal(f.messages.at(-1),pendingMessage);assert.equal(f.delays.at(-1),5000);
+  held.reject(new Error('lost fixture reply'));await failed;assert.equal(f.client.retryAvailable,true);const retryNotice=f.messages.at(-1);
+  for(const delay of [10_000,20_000,30_000,30_000]){f.fire();const stream=f.stream();stream.readyState=2;stream.onerror?.(new Event('error'));stream.onerror?.(new Event('error'));assert.equal(f.timers.size,1);assert.equal(f.delays.at(-1),delay);assert.equal(f.messages.at(-1),retryNotice);assert.equal(f.client.retryAvailable,true);}
+  f.fire();const opened=f.stream();opened.readyState=1;opened.onopen?.(new Event('open'));await drain();assert.equal(f.timers.size,0);assert.equal(f.messages.at(-1),retryNotice);assert.equal(f.client.retryAvailable,true);
+  opened.readyState=2;opened.onerror?.(new Event('error'));assert.equal(f.delays.at(-1),5000);assert.equal(f.timers.size,1);
+  f.handle(request=>{assert.equal(request.path,'command');assert.deepEqual(request.body,original);return json({ok:true,replayed:true,message:'Same request confirmed',snapshot:value('A',11,1100)});});await f.client.retry();assert.equal(f.client.retryAvailable,false);assert.equal(f.requests.filter(r=>r.path==='command').length,2);
+  // Hiding cancels rather than waking an obsolete stream in the background.
+  (document as any).hidden=true;document.dispatchEvent(new Event('visibilitychange'));assert.equal(f.timers.size,0);
+  (document as any).hidden=false;document.dispatchEvent(new Event('visibilitychange'));f.stream().readyState=2;f.stream().onerror?.(new Event('error'));assert.equal(f.timers.size,1);
+  // Explicit reconnect replaces the scheduled retry without duplicating it.
+  const count=f.Events.all.length;f.client.connect();assert.equal(f.timers.size,0);assert.equal(f.Events.all.length,count+1);
+  f.stream().readyState=2;f.stream().onerror?.(new Event('error'));assert.equal(f.timers.size,1);
+  const obsoleteRetry=f.timers.values().next().value!;f.handle(()=>json({snapshot:value('B',5,500)}));await f.client.load();await drain();assert.equal(f.timers.size,0);
+  f.stream().readyState=2;f.stream().onerror?.(new Event('error'));assert.equal(f.delays.at(-1),5000);const afterBoot=f.Events.all.length;obsoleteRetry();assert.equal(f.timers.size,1);assert.equal(f.Events.all.length,afterBoot);
+  f.handle(()=>json({snapshot:value('B',1,500,'bea')}));await f.client.login('bea');assert.equal(f.timers.size,0);assert.equal(f.client.snapshot!.playerId,'bea');
+  f.stream().readyState=2;f.stream().onerror?.(new Event('error'));assert.equal(f.delays.at(-1),5000);assert.equal(f.timers.size,1);f.client.close();assert.equal(f.timers.size,0);
  }finally{await f.close();}
 });

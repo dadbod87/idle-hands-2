@@ -58,3 +58,5 @@ Root README, AGENTS and CURRENT_STATE point here. Direct user decisions and agen
 ## Private-preview readiness
 
 Read [PRIVATE_PREVIEW_PLAN](PRIVATE_PREVIEW_PLAN.md) and [060evidence](../evidence/IH2-060/REPORT.md) before any cloud setup. Local load/recovery checks are separate from hosted identity, physical-phone acceptance and the owner cost/access gate.
+
+For the owner-facing review and next decision, start with [OWNER_REVIEW](OWNER_REVIEW.md). Source/CI closeout remains separate from a hosted release.

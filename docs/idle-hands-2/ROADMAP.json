@@ -437,7 +437,10 @@
         "docs/evidence/IH2-060/load-monitored.json",
         "docs/evidence/IH2-060/provider-metadata.json",
         "docs/idle-hands-2/PRIVATE_PREVIEW_PLAN.md",
-        "docs/idle-hands-2/handoffs/2026-11-10-release-readiness.md"
+        "docs/idle-hands-2/handoffs/2026-11-10-release-readiness.md",
+        "docs/evidence/IH2-060/stream-native-429.json",
+        "docs/evidence/IH2-060/practice-preservation.json",
+        "docs/idle-hands-2/OWNER_REVIEW.md"
       ],
       "owner_branch": "feat/release-readiness"
     },

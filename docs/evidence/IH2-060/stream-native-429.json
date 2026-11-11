@@ -1,0 +1,29 @@
+{
+  "disclosure": "Native Chromium EventSource is only observed. All town HTTP endpoints are intercepted fictional fixtures: first events response429, later finite200event-stream with empty presence. Real retry clock, no page reload or progress grant; finite fixture EOF may trigger ordinary native reconnect afterward. Not hosted/server-capacity or real-account proof.",
+  "attempts": 2,
+  "snapshots": 3,
+  "retryObservedMs": 5007,
+  "events": [
+    {
+      "kind": "error",
+      "readyState": 2,
+      "at": 1794370455267
+    },
+    {
+      "kind": "open",
+      "readyState": 1,
+      "at": 1794370460274
+    },
+    {
+      "kind": "presence",
+      "readyState": 1,
+      "at": 1794370460274
+    },
+    {
+      "kind": "error",
+      "readyState": 0,
+      "at": 1794370460274
+    }
+  ],
+  "errors": []
+}

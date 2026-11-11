@@ -6,7 +6,7 @@
     "workshop": {
       "version": 1,
       "revision": 5,
-      "observedAt": 1794368270552,
+      "observedAt": 1794370349086,
       "inventory": {
         "scrap": 0,
         "timber": 0,
@@ -31,15 +31,15 @@
       "nodes": {
         "scrap": {
           "stock": 6,
-          "lastAt": 1794368270552
+          "lastAt": 1794370349086
         },
         "timber": {
           "stock": 6,
-          "lastAt": 1794368270552
+          "lastAt": 1794370349086
         },
         "supplies": {
           "stock": 6,
-          "lastAt": 1794368270552
+          "lastAt": 1794370349086
         }
       },
       "job": null,
@@ -79,7 +79,7 @@
     "plots": [],
     "seasonKey": "2026-11-06",
     "scores": [],
-    "serverTime": 1794368270995,
+    "serverTime": 1794370349511,
     "serverInstance": "boot-two"
   },
   "actor": {

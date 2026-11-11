@@ -25,7 +25,7 @@
       ],
       "housing": "Modest plaster and timber homes",
       "risk": "Safe town; no hostile roaming enemies",
-      "currentBoundary": "The current square exists; this name, rental-bed opening and physical housing design are proposed."
+      "currentBoundary": "The current square, workshop and053bounded trail route exist;052physical starter-home/visitor interiors and one workroom expansion are implemented. This regional name, lodging/bed opening and complete city/services remain proposals."
     },
     {
       "id": "inkwood",
@@ -47,7 +47,7 @@
       ],
       "housing": "No first-slice housing requirement",
       "risk": "Safe main trail, clearly marked optional creature pockets",
-      "currentBoundary": "Not implemented; first trail remains IH2-053 work."
+      "currentBoundary": "053implements only one safe18x26trail with three personal landmarks and an earned cosmetic pennant after the authoritative bridge opens. The full woodland region, resource species, services, PvE pockets and additional routes remain candidate design."
     },
     {
       "id": "pumpworks",

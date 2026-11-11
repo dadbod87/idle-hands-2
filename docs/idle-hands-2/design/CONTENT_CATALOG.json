@@ -2,7 +2,7 @@
   "schema_version": 1,
   "status": "CANDIDATE-DESIGN-ONLY",
   "as_of": "2026-11-10",
-  "runtime_base": "IH2-052 working candidate; see CURRENT_SESSION and exact PR closeout",
+  "runtime_base": "IH2-053 working candidate; exact source/CI acceptance remains in CURRENT_SESSION and PR closeout",
   "not_executable_economy": true,
   "scope": "Bounded first production set; every catalog row is a design entry, including coverage work for existing definitions. Existing-definition does not mean final item art exists. No new runtime content, grants, prices or build timers are introduced. Entry region_ids are first proposed availability/location, not a phase-wide union or a limit on where owned portable items may later be carried.",
   "identity_policy": "Catalog IDs index design; runtime_ref preserves current IDs. Do not rename or convert durable scrap/timber/supplies or item instances from this file. Null recipe amounts/durations are unresolved and must never execute.",
@@ -13,7 +13,8 @@
     },
     "inkwood": {
       "status": "candidate-name",
-      "runtime_region": false
+      "runtime_region": false,
+      "runtime_boundary": "Only the bounded18\u00d726 trail room exists in053; Inkwood remains a candidate region/name. No woodland gathering, combat, new materials, tools, recipes or further exits are implemented."
     },
     "pumpworks": {
       "status": "candidate-name",
@@ -72,7 +73,7 @@
       "Housing and furnishings are protected from prank/combat destruction; no damage-state mechanic is implied for homes."
     ]
   },
-  "count": 45,
+  "count": 48,
   "entries": [
     {
       "id": "material:scrap",
@@ -1653,7 +1654,7 @@
           "content_id": "recipe:bridge-kit"
         }
       ],
-      "use": "Current durable repair is real. The timed construction/ready/first-opening family is selected design coverage for053 new projects; grandfather already-repaired bridges rather than regress earned state or impose a retroactive timer.",
+      "use": "Authoritative four-phase shared project: collecting, building, ready, open. The final of three accepted credits fixes a six-real-hour deadline once; first observation after readiness records opening once. Extra/replayed contributions do not charge or restart. Previously restored bridges remain open with grandfathered provenance.",
       "recipe": null,
       "implementation": {
         "status": "existing-definition",
@@ -1666,13 +1667,23 @@
       "art": {
         "existing_evidence": [
           {
-            "file": "public/art/original/bridge-neglected.svg",
-            "scope": "current before state",
+            "file": "public/art/trail/trail-bridge-collecting.svg",
+            "scope": "053 original anchored collecting stage; server phase governs access",
             "status": "runtime-world-art"
           },
           {
-            "file": "public/art/original/bridge-restored.svg",
-            "scope": "current repaired state; trail still closed",
+            "file": "public/art/trail/trail-bridge-building.svg",
+            "scope": "053 original anchored building stage; server phase governs access",
+            "status": "runtime-world-art"
+          },
+          {
+            "file": "public/art/trail/trail-bridge-ready.svg",
+            "scope": "053 original anchored ready stage; server phase governs access",
+            "status": "runtime-world-art"
+          },
+          {
+            "file": "public/art/trail/trail-bridge-open.svg",
+            "scope": "053 original anchored open stage; server phase governs access",
             "status": "runtime-world-art"
           }
         ],
@@ -1687,13 +1698,12 @@
           {
             "view": "world-and-preview",
             "states": [
-              "proposed",
-              "contributing",
+              "collecting",
               "building",
               "ready",
-              "opened"
+              "open"
             ],
-            "status": "not-produced-complete-family"
+            "status": "runtime-original-four-phase-family"
           },
           {
             "view": "opening",
@@ -1702,11 +1712,17 @@
               "static-reduced-motion",
               "journal-replay-card"
             ],
-            "status": "not-produced"
+            "status": "bounded-runtime-opening-receipt; richer-celebration-unproduced"
           }
         ],
         "final_item_family_complete": false
-      }
+      },
+      "runtime_states": [
+        "collecting",
+        "building",
+        "ready",
+        "open"
+      ]
     },
     {
       "id": "town:trail",
@@ -1720,18 +1736,28 @@
       ],
       "source": [
         {
-          "kind": "candidate-shared-project",
-          "id": "ledgerwick:trail-survey"
+          "kind": "authoritative-shared-project-access",
+          "content_id": "town:bridge"
         }
       ],
-      "use": "One useful woodland destination after actual access is implemented; no fake open path.",
+      "use": "Bounded18\u00d726 trail behind the server-opened bridge, with three persistent discovery stamps and one cosmetic award. Future extension stays fenced. It adds no resource, tool, recipe or combat economy.",
       "recipe": null,
       "implementation": {
-        "status": "not-implemented",
-        "runtime_ref": null
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/world.ts",
+          "kind": "room",
+          "id": "trail"
+        }
       },
       "art": {
-        "existing_evidence": [],
+        "existing_evidence": [
+          {
+            "file": "public/art/trail/trail-ground.svg",
+            "scope": "053 bounded trail ground; existing original layered trees reused",
+            "status": "runtime-world-art"
+          }
+        ],
         "requirements": [
           {
             "view": "inventory-icon",
@@ -1750,7 +1776,7 @@
               "ready",
               "opened"
             ],
-            "status": "not-produced-complete-family"
+            "status": "bounded-runtime-trail-only; wider-region-unproduced"
           },
           {
             "view": "opening",
@@ -2373,44 +2399,61 @@
       "name": "Earnestly earned pennant",
       "kind": "decoration",
       "catalog_status": "candidate",
-      "phase": "food-combat",
+      "phase": "first-woodland",
       "region_ids": [
-        "inkwood",
-        "pumpworks"
+        "inkwood"
       ],
       "source": [
         {
-          "kind": "candidate-optional-rare-drop",
-          "id": "inkwood:marked-encounter-pocket"
+          "kind": "authoritative-three-landmark-award",
+          "content_id": "landmark:trailhead"
         },
         {
-          "kind": "candidate-optional-rare-drop",
-          "id": "pumpworks:records-vault"
+          "kind": "authoritative-three-landmark-award",
+          "content_id": "landmark:old-sign"
+        },
+        {
+          "kind": "authoritative-three-landmark-award",
+          "content_id": "landmark:lookout"
         }
       ],
-      "use": "Optional d\u00e9cor only. Essential access never requires this drop.",
+      "use": "Permanent home-wall cosmetic awarded once after all three trail stamps. Not a rare drop, not PvE, no currency/material reward, and not erased by weekly scores. This catalog does not execute the award.",
       "recipe": null,
       "implementation": {
-        "status": "not-implemented",
-        "runtime_ref": null
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/town-rules.ts",
+          "kind": "quest-award",
+          "id": "trail-pennant-v1"
+        }
       },
       "art": {
-        "existing_evidence": [],
+        "existing_evidence": [
+          {
+            "file": "public/art/trail/trail-pennant-world.svg",
+            "scope": "Original permanent home-wall pennant",
+            "status": "runtime-world-art"
+          },
+          {
+            "file": "public/art/trail/trail-pennant-icon.svg",
+            "scope": "Original pennant journal icon",
+            "status": "runtime-world-art"
+          }
+        ],
         "requirements": [
           {
             "view": "inventory-icon",
             "states": [
-              "default"
+              "earned"
             ],
-            "status": "not-produced-item-specific"
+            "status": "runtime-original-item-icon"
           },
           {
-            "view": "world",
+            "view": "home-wall",
             "states": [
-              "recognizable-object",
-              "dropped-or-presented"
+              "owned-static"
             ],
-            "status": "not-produced-final-item-family"
+            "status": "runtime-original-cosmetic; no dropped-state-needed"
           }
         ],
         "final_item_family_complete": false
@@ -2562,6 +2605,162 @@
               "static-reduced-motion"
             ],
             "status": "not-produced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "landmark:trailhead",
+      "name": "Annual stump inspection",
+      "kind": "landmark",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "inkwood"
+      ],
+      "source": [
+        {
+          "kind": "bounded-trail-location",
+          "content_id": "town:trail"
+        }
+      ],
+      "use": "Approach and inspect to record one persistent server-validated stamp; repeated requests cannot duplicate the award. No resource gathering or combat.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/world.ts",
+          "kind": "stop",
+          "id": "trailhead"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "public/art/trail/trail-landmark-trailhead.svg",
+            "scope": "053 original landmark: clipboard and growth rings",
+            "status": "runtime-world-art"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "world",
+            "states": [
+              "recognizable-static-landmark"
+            ],
+            "status": "runtime-original-landmark"
+          },
+          {
+            "view": "journal-stamp",
+            "states": [
+              "recorded"
+            ],
+            "status": "bounded-dom-receipt; bespoke-stamp-icon-unproduced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "landmark:old-sign",
+      "name": "Retired wayfinding post",
+      "kind": "landmark",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "inkwood"
+      ],
+      "source": [
+        {
+          "kind": "bounded-trail-location",
+          "content_id": "town:trail"
+        }
+      ],
+      "use": "Approach and inspect to record one persistent server-validated stamp; repeated requests cannot duplicate the award. No resource gathering or combat.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/world.ts",
+          "kind": "stop",
+          "id": "old-sign"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "public/art/trail/trail-landmark-old-sign.svg",
+            "scope": "053 original landmark: opposed wooden arrows",
+            "status": "runtime-world-art"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "world",
+            "states": [
+              "recognizable-static-landmark"
+            ],
+            "status": "runtime-original-landmark"
+          },
+          {
+            "view": "journal-stamp",
+            "states": [
+              "recorded"
+            ],
+            "status": "bounded-dom-receipt; bespoke-stamp-icon-unproduced"
+          }
+        ],
+        "final_item_family_complete": false
+      }
+    },
+    {
+      "id": "landmark:lookout",
+      "name": "Quiet birdwatching lookout",
+      "kind": "landmark",
+      "catalog_status": "candidate",
+      "phase": "first-woodland",
+      "region_ids": [
+        "inkwood"
+      ],
+      "source": [
+        {
+          "kind": "bounded-trail-location",
+          "content_id": "town:trail"
+        }
+      ],
+      "use": "Approach and inspect to record one persistent server-validated stamp; repeated requests cannot duplicate the award. No resource gathering or combat.",
+      "recipe": null,
+      "implementation": {
+        "status": "existing-definition",
+        "runtime_ref": {
+          "file": "src/game/world.ts",
+          "kind": "stop",
+          "id": "lookout"
+        }
+      },
+      "art": {
+        "existing_evidence": [
+          {
+            "file": "public/art/trail/trail-landmark-lookout.svg",
+            "scope": "053 original landmark: bird silhouette on two-post sign",
+            "status": "runtime-world-art"
+          }
+        ],
+        "requirements": [
+          {
+            "view": "world",
+            "states": [
+              "recognizable-static-landmark"
+            ],
+            "status": "runtime-original-landmark"
+          },
+          {
+            "view": "journal-stamp",
+            "states": [
+              "recorded"
+            ],
+            "status": "bounded-dom-receipt; bespoke-stamp-icon-unproduced"
           }
         ],
         "final_item_family_complete": false

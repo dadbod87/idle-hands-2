@@ -721,6 +721,106 @@
       "source": "tools/create-home-art.py",
       "date": "2026-11-10",
       "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "trail-bridge-building",
+      "path": "public/art/trail/trail-bridge-building.svg",
+      "sha256": "797d9eeea516800db65896073a2bba847e7e27871a02221e3ad30219a4bcce56",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-trail-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original trail ground, landmark stamps, cosmetic pennant and anchored bridge construction phases. No imported media."
+    },
+    {
+      "id": "trail-bridge-collecting",
+      "path": "public/art/trail/trail-bridge-collecting.svg",
+      "sha256": "3d3bcdab97195ecd27562988f09187a5614ae28435c2dae1db8867a76868456b",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-trail-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original trail ground, landmark stamps, cosmetic pennant and anchored bridge construction phases. No imported media."
+    },
+    {
+      "id": "trail-bridge-open",
+      "path": "public/art/trail/trail-bridge-open.svg",
+      "sha256": "c5ab91e348506ba8c6d72031afed64b304fea00def4280136658d766ae5803ff",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-trail-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original trail ground, landmark stamps, cosmetic pennant and anchored bridge construction phases. No imported media."
+    },
+    {
+      "id": "trail-bridge-ready",
+      "path": "public/art/trail/trail-bridge-ready.svg",
+      "sha256": "ac040ee4e683d1d684325ac67bae35a01d2a67413185558f67307822af946a7b",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-trail-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original trail ground, landmark stamps, cosmetic pennant and anchored bridge construction phases. No imported media."
+    },
+    {
+      "id": "trail-ground",
+      "path": "public/art/trail/trail-ground.svg",
+      "sha256": "2238f46d864c1ab7945a8550282a21d587b7adcd689500a2858a821f4060b726",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-trail-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original trail ground, landmark stamps, cosmetic pennant and anchored bridge construction phases. No imported media."
+    },
+    {
+      "id": "trail-landmark-lookout",
+      "path": "public/art/trail/trail-landmark-lookout.svg",
+      "sha256": "c4aa8f1688a8e02b63b85b4309246d08a69bc5538dd7610afff63d0a071cf59d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-trail-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original trail ground, landmark stamps, cosmetic pennant and anchored bridge construction phases. No imported media."
+    },
+    {
+      "id": "trail-landmark-old-sign",
+      "path": "public/art/trail/trail-landmark-old-sign.svg",
+      "sha256": "17d5910c86bf82263e5fe4efe4bfff48f4cf1893d90967e6d528526b91037c54",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-trail-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original trail ground, landmark stamps, cosmetic pennant and anchored bridge construction phases. No imported media."
+    },
+    {
+      "id": "trail-landmark-trailhead",
+      "path": "public/art/trail/trail-landmark-trailhead.svg",
+      "sha256": "a32ce1422329b35d70cac8cecb917fe49e2278b17e7502225fe688767974116c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-trail-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original trail ground, landmark stamps, cosmetic pennant and anchored bridge construction phases. No imported media."
+    },
+    {
+      "id": "trail-pennant-icon",
+      "path": "public/art/trail/trail-pennant-icon.svg",
+      "sha256": "55bf0277b26228cd89384bff389dbd4db2a1874b1d910770a3425eb752b33160",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-trail-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original trail ground, landmark stamps, cosmetic pennant and anchored bridge construction phases. No imported media."
+    },
+    {
+      "id": "trail-pennant-world",
+      "path": "public/art/trail/trail-pennant-world.svg",
+      "sha256": "5527338d13e796e03bd3765b582369ab28a67d0d8abef9ece88a94be979a7623",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-trail-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original trail ground, landmark stamps, cosmetic pennant and anchored bridge construction phases. No imported media."
     }
   ],
   "comparison": {

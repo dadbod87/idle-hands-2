@@ -1,0 +1,159 @@
+{
+  "disclosure": "Actual disposable loopback ih2_browser backend, fictional browser-server residents and stock; shared-town/starter-homes tests earn initial project funding and Casey home. No HTTP/EventSource interception or player inventory/stamp/property mutation. The sole SQL write moves both project timestamps six hours earlier while preserving duration; a real snapshot settles opening. Explicit day/clear and phone night/clear sky-study URLs are cosmetic only; Date.now, player production and scores are unchanged. Desktop/touch viewport emulation is not a physical-device test.",
+  "initialBridge": {
+    "contributed": 3,
+    "target": 3,
+    "restored": false,
+    "phase": "building",
+    "startedAt": 1794356423011,
+    "readyAt": 1794378023011,
+    "openedAt": null,
+    "grandfathered": false
+  },
+  "projectTimeFixture": {
+    "phase": "building",
+    "started_at": "1794334887323",
+    "ready_at": "1794356487323"
+  },
+  "openedBridge": {
+    "contributed": 3,
+    "target": 3,
+    "restored": true,
+    "phase": "open",
+    "startedAt": 1794334887323,
+    "readyAt": 1794356487323,
+    "openedAt": 1794356487323,
+    "grandfathered": false
+  },
+  "openingJournal": [
+    {
+      "id": "bridge-opened-v2",
+      "kind": "opened",
+      "effectiveAt": 1794356487323,
+      "recordedAt": 1794356488343
+    }
+  ],
+  "ownerStamps": {
+    "stamps": [
+      "lookout",
+      "old-sign",
+      "trailhead"
+    ],
+    "pennantOwned": true
+  },
+  "ownerEconomyUnchanged": true,
+  "stampCommands": [
+    {
+      "kind": "stamp-trail",
+      "landmarkId": "trailhead",
+      "id": "99c3e23a-bcde-4174-8bc5-b306065b8f93",
+      "expectedRevision": 7
+    },
+    {
+      "kind": "stamp-trail",
+      "landmarkId": "old-sign",
+      "id": "95aac0ef-3981-4cc8-85f6-b64df9febac2",
+      "expectedRevision": 8
+    },
+    {
+      "kind": "stamp-trail",
+      "landmarkId": "lookout",
+      "id": "2f3d938b-fc05-4afb-8580-1dd3db5ab3c3",
+      "expectedRevision": 9
+    },
+    {
+      "kind": "stamp-trail",
+      "landmarkId": "trailhead",
+      "id": "dfea5d18-c49e-474c-a0ba-fc3a6d975da4",
+      "expectedRevision": 2
+    }
+  ],
+  "duplicateReplayed": true,
+  "homeVisual": {
+    "pennantVisible": true,
+    "pennantTexture": "trail-pennant-world",
+    "pennantPosition": {
+      "x": 480,
+      "y": 176
+    },
+    "room": "home-expanded",
+    "plotId": "2",
+    "ownerName": "Casey",
+    "level": 2,
+    "decorations": {
+      "north-east": null,
+      "north-west": "planter",
+      "south-east": null,
+      "south-west": null,
+      "north-middle": null,
+      "south-middle": "rug"
+    },
+    "interiorTexture": "home-expanded-interior"
+  },
+  "newcomerTrail": {
+    "stamps": [
+      "trailhead"
+    ],
+    "pennantOwned": false
+  },
+  "newcomerEconomyUnchanged": true,
+  "nightClimate": {
+    "phase": "night",
+    "minute": 60,
+    "dayIndex": 0,
+    "weather": "clear",
+    "tint": {
+      "color": 2504281,
+      "alpha": 0.36
+    },
+    "lampStrength": 1,
+    "label": "Night · Clear skies",
+    "effectiveAlpha": 0.36,
+    "fixture": true,
+    "interior": false,
+    "precipitation": {
+      "enabled": false,
+      "offset": 0
+    }
+  },
+  "shortLayout": {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "rootText": "200%",
+    "world": {
+      "x": 2,
+      "y": 65,
+      "width": 840,
+      "height": 204.8125
+    },
+    "controls": [
+      {
+        "x": 784,
+        "y": 10.5,
+        "width": 44,
+        "height": 44
+      },
+      {
+        "x": 14,
+        "y": 314,
+        "width": 234.703125,
+        "height": 67
+      },
+      {
+        "x": 257.703125,
+        "y": 314,
+        "width": 234.703125,
+        "height": 67
+      },
+      {
+        "x": 501.40625,
+        "y": 314,
+        "width": 328.578125,
+        "height": 67
+      }
+    ]
+  },
+  "errors": []
+}

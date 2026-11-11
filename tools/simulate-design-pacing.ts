@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import { RECIPES, RESOURCE_IDS, NODE_CAPACITY, REGEN_MS, OFFLINE_CAP_MS, STORAGE_LIMIT, ITEM_LIMIT, type ResourceId } from '../src/game/workshop.ts';
-import { PLOT_CLAIM_KITS, PLOT_UPGRADE_KITS } from '../src/game/town-rules.ts';
+import { PLOT_CLAIM_KITS, PLOT_UPGRADE_KITS, MAINTENANCE_MS, MAINTENANCE_COST, BRIDGE_BUILD_MS } from '../src/game/town-rules.ts';
 
 /** DESIGN EXPERIMENT ONLY. Imports constants; never sends commands or writes game/account state. */
 export const HOUR = 3_600_000, DAY = 24 * HOUR;
@@ -294,14 +294,16 @@ export function designReport() {
   const sourcePaths = ['src/game/workshop.ts', 'src/game/town-rules.ts', 'server/store.ts'];
   return {
     schemaVersion: 1, classification: 'DESIGN-ONLY; no runtime/state/database changes', simulatedDays: 42,
+    modelBaseline: 'Historical ordinary-kit-only baseline and unselected comparison policies; current-rules is a stable scenario ID, not a claim to simulate the entire053 runtime.',
+    selectedRuntime: {asOf:'IH2-053 working candidate; acceptance tracked separately',physicalHomes:true,homeClaimKits:PLOT_CLAIM_KITS,homeUpgradeAdditionalKits:PLOT_UPGRADE_KITS,homeBuildWaitMs:0,homeUpgradeWaitMs:0,maintenanceLessonMs:MAINTENANCE_MS,maintenanceCost:MAINTENANCE_COST,maintenanceCreatesInventoryKit:false,completedBridgeRoute:'upkeep; no extra material charge',bridgeBuildMs:BRIDGE_BUILD_MS,bridgePhases:['collecting','building','open'],readyArtIsPresentationOnly:true,grandfatheredOpenBridgesKeepAccess:true,townClockChangesProduction:false},
     sourceHashes: Object.fromEntries(sourcePaths.map(path => [path, createHash('sha256').update(readFileSync(path)).digest('hex')])),
     implementedConstantsUsed: { nodeCapacity: NODE_CAPACITY, unitRecoveryHours: REGEN_MS / HOUR, offlineAccrualCapHours: OFFLINE_CAP_MS / HOUR, materialStorage: STORAGE_LIMIT, kitStorage: ITEM_LIMIT, normalKitHours: RECIPES['bridge-kit'].durationMs / HOUR, firstPlanterSeconds: RECIPES.planter.tutorialDurationMs / 1000, claimKits: PLOT_CLAIM_KITS, upgradeAdditionalKits: PLOT_UPGRADE_KITS },
     assumptions: [
       'Independent model imports current constants; it does not execute production transactions. Gathering, costs, single queued job and caps mirror source rules; movement/travel/click overhead is omitted in the cohort model.',
       'Sessions occur at fixed hour offsets and can wait for a job that becomes ready within that visit’s time budget. Daily minutes label visit opportunities, not an income multiplier.',
       'Personal ledger is one participant with one accepted project contribution (one inventory kit, or one separate paid-maintenance credit in that candidate), then actual12-kit plot spending and24additional-kit upgrade spending. The current3-kit bridge cannot accept a donation from every member of a12-person group; group experiment exposes this separately.',
-      'The current-rules row models immediate plot/upgrade records; physical homes are not yet playable. Candidate rows add6h home/bridge construction and12h upgrade construction; these durations are not implemented or final.',
-      'The separate paid-maintenance candidate consumes1scrap/1timber/1supplies once at60seconds, makes a nontradeable orientation/project credit instead of an inventory kit, and keeps all ordinary kit inputs/time unchanged. Already-restored project routing is not solved by this arithmetic model.',
+      'The historical current-rules row models immediate plot/upgrade spending, matching052 immediate physical home/upgrade availability. Candidate rows add6h HOME construction and12h HOME upgrade waits; those personal timers remain unimplemented.053 separately implements a six-real-hour SHARED bridge deadline. Historical group rows with build_hours0 remain baseline comparisons, not current runtime bridge timing.',
+      'The paid-maintenance comparison consumes1scrap/1timber/1supplies once at60seconds and creates a separate credit, never an inventory kit.052 adopted that bounded lesson with explicit construction/upkeep routing and migration. This historical arithmetic model does not execute or prove those authoritative transactions; its candidate home waits were not adopted.',
       'Candidate teaching kits compare60seconds and300seconds, consume the normal3scrap/2timber/1supplies exactly once and supply no extra grant. All subsequent kits take12hours. Neither candidate is a runtime rule.',
       'Inventory management gathers a material only below18held units to reserve capacity for all types; this is a model strategy, not a new runtime restriction.',
       'Seven-day observation checkpoints clear only the model weekly score. Actual Friday16:00Pacific scheduling is covered by existing server tests, not reimplemented here.',

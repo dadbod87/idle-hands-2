@@ -355,7 +355,7 @@
     {
       "id": "IH2-053",
       "title": "Restored trail, resident reactions and cosmetic discovery",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-052"
       ],
@@ -370,7 +370,16 @@
         "No broad city, market, guilds, paid content or new public deployment.",
         "Use existing three resources/two recipes. New wood species, tool or recipe economy follows integrated IH2-050; no combat/chat expansion in this task."
       ],
-      "evidence": []
+      "evidence": [
+        "docs/evidence/IH2-053/REPORT.md",
+        "docs/evidence/IH2-053/INDEPENDENT_REVIEW.md",
+        "docs/evidence/IH2-053/local-checks.json",
+        "docs/evidence/IH2-053/trail-authority.json",
+        "docs/evidence/IH2-053/client-ready-early-snapshot-fixture.json",
+        "docs/evidence/IH2-053/database-restart.json",
+        "docs/idle-hands-2/handoffs/2026-11-10-timed-bridge-trail.md"
+      ],
+      "owner_branch": "feat/timed-bridge-trail"
     },
     {
       "id": "IH2-050",

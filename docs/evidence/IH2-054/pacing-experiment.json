@@ -2,10 +2,36 @@
   "schemaVersion": 1,
   "classification": "DESIGN-ONLY; no runtime/state/database changes",
   "simulatedDays": 42,
+  "modelBaseline": "Historical ordinary-kit-only baseline and unselected comparison policies; current-rules is a stable scenario ID, not a claim to simulate the entire053 runtime.",
+  "selectedRuntime": {
+    "asOf": "IH2-053 working candidate; acceptance tracked separately",
+    "physicalHomes": true,
+    "homeClaimKits": 12,
+    "homeUpgradeAdditionalKits": 24,
+    "homeBuildWaitMs": 0,
+    "homeUpgradeWaitMs": 0,
+    "maintenanceLessonMs": 60000,
+    "maintenanceCost": {
+      "scrap": 1,
+      "timber": 1,
+      "supplies": 1
+    },
+    "maintenanceCreatesInventoryKit": false,
+    "completedBridgeRoute": "upkeep; no extra material charge",
+    "bridgeBuildMs": 21600000,
+    "bridgePhases": [
+      "collecting",
+      "building",
+      "open"
+    ],
+    "readyArtIsPresentationOnly": true,
+    "grandfatheredOpenBridgesKeepAccess": true,
+    "townClockChangesProduction": false
+  },
   "sourceHashes": {
     "src/game/workshop.ts": "19071a722e8613c2124138dc1a9dd45ede7fe4e4602d024d76ea766de4e26edf",
-    "src/game/town-rules.ts": "39969c6c7bf1bf3c22bb6c6a1402b5892c614b525cb660d2aa5731fd48661b05",
-    "server/store.ts": "7acd7adcf804c57df123b3b8fc8727b9959013a2d92b74b306a24b3caf69bc47"
+    "src/game/town-rules.ts": "ec21ce6a1b5ed3ae0824e6e141e78080b6cf4955d1b1173fd30bdd25062d457e",
+    "server/store.ts": "76fe941966e5a622c01e8a9ba62e0b4ce879a0147c21ea5934c6527d0a745d5e"
   },
   "implementedConstantsUsed": {
     "nodeCapacity": 6,
@@ -22,8 +48,8 @@
     "Independent model imports current constants; it does not execute production transactions. Gathering, costs, single queued job and caps mirror source rules; movement/travel/click overhead is omitted in the cohort model.",
     "Sessions occur at fixed hour offsets and can wait for a job that becomes ready within that visit’s time budget. Daily minutes label visit opportunities, not an income multiplier.",
     "Personal ledger is one participant with one accepted project contribution (one inventory kit, or one separate paid-maintenance credit in that candidate), then actual12-kit plot spending and24additional-kit upgrade spending. The current3-kit bridge cannot accept a donation from every member of a12-person group; group experiment exposes this separately.",
-    "The current-rules row models immediate plot/upgrade records; physical homes are not yet playable. Candidate rows add6h home/bridge construction and12h upgrade construction; these durations are not implemented or final.",
-    "The separate paid-maintenance candidate consumes1scrap/1timber/1supplies once at60seconds, makes a nontradeable orientation/project credit instead of an inventory kit, and keeps all ordinary kit inputs/time unchanged. Already-restored project routing is not solved by this arithmetic model.",
+    "The historical current-rules row models immediate plot/upgrade spending, matching052 immediate physical home/upgrade availability. Candidate rows add6h HOME construction and12h HOME upgrade waits; those personal timers remain unimplemented.053 separately implements a six-real-hour SHARED bridge deadline. Historical group rows with build_hours0 remain baseline comparisons, not current runtime bridge timing.",
+    "The paid-maintenance comparison consumes1scrap/1timber/1supplies once at60seconds and creates a separate credit, never an inventory kit.052 adopted that bounded lesson with explicit construction/upkeep routing and migration. This historical arithmetic model does not execute or prove those authoritative transactions; its candidate home waits were not adopted.",
     "Candidate teaching kits compare60seconds and300seconds, consume the normal3scrap/2timber/1supplies exactly once and supply no extra grant. All subsequent kits take12hours. Neither candidate is a runtime rule.",
     "Inventory management gathers a material only below18held units to reserve capacity for all types; this is a model strategy, not a new runtime restriction.",
     "Seven-day observation checkpoints clear only the model weekly score. Actual Friday16:00Pacific scheduling is covered by existing server tests, not reimplemented here.",

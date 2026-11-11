@@ -4,8 +4,11 @@
 
 The model supports slow permanent housing, but exposes two unfinished parts of the first session: the existing twelve-hour first contribution gap, and a shortage of scrap after a faster full-cost teaching kit. A separate paid maintenance lesson resolves those two arithmetic problems without making an inventory kit; its shared-project and quest migration still need design and runtime proof. The current three-kit bridge also provides useful work to at most three people before it closes. Neither a shorter lesson nor a build timer solves newcomer participation by itself.
 
-## IH2-052 adoption note
-The once-only paid maintenance path is now implemented in the bounded prototype. In this historical comparison, `current-rules` means the original ordinary-kit-only first contribution baseline; it is not a claim that052stillrequiresa12-hourwait to participate. Source fingerprints are refreshed, while sample home/build waits and all recovery cases remain design-only. Actual server/quest/receipt/restore proof is in [052 evidence](../../evidence/IH2-052/REPORT.md); the arithmetic model is not a substitute for it.
+## IH2-052/053 adoption and historical-model boundary
+
+052 implements physical starter homes and one physical upgrade, available immediately after the actual12/24-kit payment; there is no personal house construction timer. It also implements the once-only paid1/1/1-material,60-real-second maintenance lesson, with a separate nontradeable credit and explicit construction/upkeep routing.053 adds a fixed **six-real-hour shared bridge** deadline and authoritative collecting → building → ready → open phases; previously restored bridges remain open. No town-clock acceleration applies.
+
+The tables and comparison policies below retain their original scenario IDs. `current-rules` is the historical ordinary-kit-only baseline, **not** the complete current runtime; group rows with `build_hours=0` are historical comparisons. `paid-maintenance-candidate` models the adopted lesson idea but also includes unselected six-hour HOME and twelve-hour HOME-UPGRADE waits. Those personal waits remain future candidates. Fast inventory-kit variants and every recovery policy remain unimplemented. The generated report now separates `selectedRuntime` facts from these historical calculations. Source fingerprints refresh without silently changing historical cohort ledgers. Runtime/receipt/reload proof lives in task evidence; this simulation cannot supply it.
 
 ## Reproduce and inspect
 
@@ -34,7 +37,7 @@ The executable is [simulate-design-pacing.ts](../../../tools/simulate-design-pac
 | First planter costs 2 scrap, 2 timber, 1 supplies and takes five seconds | Same costs; make and place once before kit production. |
 | Bridge kit costs 3 scrap, 2 timber, 1 supplies and takes twelve hours | Every ordinary job uses those constants. Completed work waits until a visit collects it. |
 | One contribution spends one completed kit; current shared bridge accepts three total | Personal spending row assumes **one accepted contribution**. Separate group rows show why this is not available to every member of a twelve-person town. |
-| A plot costs 12 kits and the one upgrade costs 24 additional kits | Actual deductions, not the earlier cumulative-stock proxies. Ownership/upgrades are existing records; a physical playable house is still future work. |
+| A plot costs 12 kits and the one upgrade costs 24 additional kits | Actual deductions, not the earlier cumulative-stock proxies. 052 physical homes and upgrades are playable immediately after payment; model candidate personal build waits are not runtime rules. |
 | Permanent property, inventory and jobs survive weekly score turnover | The experiment clears only its score at seven-day observation checkpoints. Exact Friday 4 PM Pacific scheduling remains the existing server test's responsibility. |
 
 The model independently applies these rules using source constants; it does **not** execute database commands. It is economic/design evidence, not a second authority implementation or proof of concurrent server correctness.
@@ -122,7 +125,7 @@ All three cohorts finish the first modeled session with the ordinary **12-hour**
 
 Compared with an accepted one-kit donation, one fewer inventory kit is spent because the player paid three raw materials for the maintenance contribution instead. That moves plot/upgrade payment forward by about one daily visit or half a regular day; it does not create compounding income or collapse housing into the first afternoon. It is an optimistic scheduled model, not proof that these final durations feel right.
 
-This is the strongest **candidate** for IH2-052: it resolves the empty-bench arithmetic while teaching a visible contribution. It is not yet the runtime design. The current shared bridge accepts inventory kits only. Before charging for the lesson, define the maintenance-credit transaction and project stage, its stable quest-content migration, and what happens when the bridge is already restored. A completed bridge must remain completed. A personal maintenance errand or follow-on target may provide equivalent visible credit, but neither is silently assumed implemented. A three-unit project still closes after three accepted contributors, so the wider newcomer issue remains open for053.
+Historical recommendation: the paid lesson was subsequently adopted in052 with server transactions, migration and already-funded upkeep routing. The three-credit bridge still has bounded construction demand; upkeep records participation without pretending to create a kit or reopen a completed bridge. The candidate home build waits in this table were not adopted.
 
 ## Materials plus construction, once only
 
@@ -157,7 +160,7 @@ A second paid-maintenance comparison makes the late-join contract concrete witho
 
 The day14 resident records upkeep instead of being told to repair an already-repaired bridge. A stable resident/content-version receipt allows only one recognition: retries move no second credit and spend no second materials. The model routes an **already-paid** credit, so it never debits the three materials a second time. There are no inventory kits, currency or competition-score rewards from this routing step. Tests retain exact construction state during building and after opening, and conserve each resident's material and kit ledger.
 
-This is a candidate transaction/quest contract for052/053, not an implemented solution. The future server must decide the route before presenting the paid lesson, validate the resident and materials, and atomically commit lesson completion, nontradeable credit redemption, the correct construction/upkeep entry and quest progress. Existing completed bridge state and previous orientation receipts need an explicit content-version migration, with no repeat charge or reset. A once-only inspection solves a first-session recognition gap, not the whole long-term demand for useful newcomer work; further restoration and personal goals are still needed.
+This paragraph records the historical transaction design.052 now validates quoted construction/upkeep routing, materials, completion and redemption on the server, with content migration and no duplicate charge/reset.053 adds construction/ready/open receipts. A once-only inspection addresses first-session recognition; further projects are still needed for durable demand. The arithmetic helper does not prove concurrent runtime correctness.
 
 ## Corpse recovery: thirty minutes is not automatically phone-friendly
 

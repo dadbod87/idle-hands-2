@@ -4,7 +4,7 @@ const SAVE_KEY='ih2:workshop:v1';
 const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',planter:'Orientation planter',stool:'Break-time stool',rug:'Welcome rug',lamp:'Optimism lamp',crate:'Useful crate',shelf:'Almost level shelf'};
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 export type RemoteWorkshopAdapter={allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>)=>Promise<{state:WorkshopState;message:string}>;retry:()=>Promise<{state:WorkshopState;message:string}>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean};
+type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean};
 export class WorkshopUI {
  state:WorkshopState;
  private serialized='';
@@ -84,7 +84,7 @@ export class WorkshopUI {
   const quest=this.p('');quest.dataset.quest='';quest.className='quest-card';b.append(quest);
   const skill=this.p('');skill.dataset.skills='';b.append(skill);
   const kits=this.p('');kits.dataset.kits='';b.append(kits);
-  if(this.host.home&&this.host.homeAvailable?.())b.append(this.button('Inspect or arrange a house',()=>this.host.home?.(),'destination'));if(this.host.returns)b.append(this.button('Since your last visit',()=>this.host.returns?.(),'destination'));b.append(this.p('Your starter furnishings were donated by the previous tenant. Check your orientation note above for the next step.'));
+  if(this.host.discoveries)b.append(this.button('Trail field notebook',()=>this.host.discoveries?.(),'destination'));if(this.host.home&&this.host.homeAvailable?.())b.append(this.button('Inspect or arrange a house',()=>this.host.home?.(),'destination'));if(this.host.returns)b.append(this.button('Since your last visit',()=>this.host.returns?.(),'destination'));b.append(this.p('Your starter furnishings were donated by the previous tenant. Check your orientation note above for the next step.'));
   if(!this.host.inside())b.append(this.p('Enter your workshop to arrange furniture.'));
   const select=document.createElement('select');select.setAttribute('aria-label','Furniture to place');
   for(const id of PROP_IDS){const opt=document.createElement('option');opt.value=id;opt.textContent=names[id];select.append(opt);}select.value=this.selected;select.onchange=()=>{this.selected=select.value;this.preview=null;this.renderPlacement();};b.append(select);

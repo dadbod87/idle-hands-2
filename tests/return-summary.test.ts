@@ -10,3 +10,5 @@ test('missing, corrupt, other-resident or future baselines never invent offline 
  const now=snapshot(1000);for(const input of [null,{}, {...visitBaseline(now),playerId:'bea'},{...visitBaseline(now),serverTime:-1},{...visitBaseline(now),homeId:'<script>'}])assert.equal(parseVisit(input,'aster'),null);
  assert.match(returnSummary(now,{...visitBaseline(now),serverTime:2000}).join(' '),/No earlier/);assert.match(returnSummary(now,null).join(' '),/No earlier/);assert.ok(parseVisit(visitBaseline(now),'aster'));
 });
+
+test('return summary recognizes opening after funding without inventing another contribution',()=>{const prior=snapshot(1000);prior.bridge.contributed=3;const baseline=visitBaseline(prior),now=snapshot(22_000_000);now.bridge.contributed=3;now.bridge.restored=true;const text=returnSummary(now,baseline).join(' ');assert.match(text,/bridge opened/);assert.doesNotMatch(text,/advanced from/);assert.deepEqual(now.workshop.inventory,{scrap:0,timber:0,supplies:0});});

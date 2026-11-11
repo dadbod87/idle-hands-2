@@ -99,3 +99,11 @@ Agent-selected implementation of D-015: original layered tree SVGs and four comp
 ## A040 — reconnect permanently closed native streams
 
 2026-11-10. Native EventSource treats a non-200 response such as HTTP429 as a failed CLOSED connection, rather than the CONNECTING reconnect state. Schedule exactly one explicit 5/10/20/30-second bounded backoff only for CLOSED, reset after open, and cancel obsolete timers on identity, boot, visibility, explicit connect and close. Preserve uncertain commands and existing notices. Deterministic timer tests and an observed native Chromium/real-clock fixture cover this boundary. [WHATWG processing model](https://html.spec.whatwg.org/multipage/server-sent-events.html). The earlier e0c981c CI run is superseded, not accepted.
+
+## A041 — owner-authorized independent activity layer
+
+November11: owner explicitly authorized continued local content and asked for useful activities during long work; this supersedes the older 'no independent ready task' stop for local content, not the070hosting/access/cost gate. IH2-062 is bounded to square-tree observation, original illustrated collection pages, strict persistent completion and a non-economic journal keepsake. No recipe/cost/time/XP/output/score changes. Old saves default an empty sketchbook without a reset. This finite chapter does not claim to occupy a twelve-hour wait.
+
+## A042 — parallel progress and social expression
+
+Owner explicitly makes humor, teamwork, solo progress and visible homes/equipment central. Official game references and agent-selected adaptation/next-lane plan are in ACTIVITY_DEPTH. Favor multiple verbs and independent capacities, clear ingredient/unlock chains, recognizable earned art and shared projects with newcomer roles. No proprietary code/art, monetization, punishment for absence or forced co-op schedule is adopted. Garden/trophy/wardrobe work is planned, not implemented by062.

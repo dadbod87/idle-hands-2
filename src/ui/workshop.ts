@@ -1,10 +1,11 @@
+import {SURVEY_IDS,SURVEYS,SURVEY_CHOICES,CHOICE_LABELS,type SurveyId} from '../game/fieldwork.ts';
 import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, skillLevel } from '../game/workshop.ts';
 import './workshop.css';
 const SAVE_KEY='ih2:workshop:v1';
 const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',planter:'Orientation planter',stool:'Break-time stool',rug:'Welcome rug',lamp:'Optimism lamp',crate:'Useful crate',shelf:'Almost level shelf'};
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 export type RemoteWorkshopAdapter={allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>)=>Promise<{state:WorkshopState;message:string}>;retry:()=>Promise<{state:WorkshopState;message:string}>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string};kitUse?:()=>string};
+type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string};walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
 export class WorkshopUI {
  state:WorkshopState;
  private serialized='';
@@ -65,6 +66,23 @@ export class WorkshopUI {
  }
  private disclosure(){return this.p(this.remote?'Shared practice town · fictional residents. Confirmed changes are saved here.':'Local practice save · this browser only. No account, trading or shared town progress.','disclosure');}
  private resources(){const list=document.createElement('dl');list.className='resource-list';for(const id of RESOURCE_IDS){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=names[id];const icon=document.createElement('img');icon.src='/art/homes/home-'+id+'-icon.svg';icon.alt='';icon.width=32;icon.height=32;icon.className='item-icon';dt.prepend(icon);dd.dataset.quantity=id;dd.textContent=String(this.state.inventory[id]);list.append(dt,dd);}return list;}
+ showSketchbook(station?:SurveyId){const render=()=>{
+  const b=this.host.body;b.replaceChildren();
+  b.append(this.p('The grounds committee needs three observations. Trees cannot fill out forms. Apparently that makes it your job. Explore the square in any order; looking is free, and your bench keeps working.'));
+  const progress=this.p('');progress.dataset.sketchProgress='';progress.className='quest-card';b.append(progress);
+  const job=this.p('');job.dataset.job='';b.append(job);
+  if(station){const study=SURVEYS[station];b.append(this.p(study.question),this.p(study.hint,'disclosure'));
+   for(const choice of SURVEY_CHOICES){const answer=this.button(CHOICE_LABELS[choice],()=>this.dispatch({kind:'survey',station,choice}),'destination');answer.dataset.surveyChoice=station;b.append(answer);}
+   b.append(this.button('Back to town sketchbook',()=>this.showSketchbook(),'destination'));
+  }
+  for(const id of station?[station]:SURVEY_IDS){const section=document.createElement('section');section.className='sketch-card';
+   const image=document.createElement('img');image.src='/art/fieldwork/study-'+id+'.svg';image.alt=SURVEYS[id].name+' — earned field sketch';image.width=160;image.height=192;image.dataset.sketchImage=id;
+   const note=this.p('');note.dataset.sketchRecord=id;section.append(image,note);
+   if(!station&&this.host.walkToStudy)section.append(this.button('Find '+SURVEYS[id].name,()=>this.host.walkToStudy?.(id),'destination'));b.append(section);
+  }
+  const certificate=document.createElement('img');certificate.src='/art/fieldwork/naturalist-keepsake.svg';certificate.alt='Neighborhood Naturalist — honorary department of looking at things';certificate.width=240;certificate.height=160;certificate.dataset.sketchKeepsake='';certificate.className='sketch-keepsake';b.append(certificate);
+  b.append(this.p('Three studies earn a keepsake for your journal. It stays saved; it is not furniture or a production bonus. No weather window or bridge access needed. When your fieldwork is done, redecorate, meet the residents, or head home. The trees will manage.','disclosure'));this.notice();b.append(this.disclosure());this.updateClocks();
+ };this.begin(station?SURVEYS[station].name:'Town sketchbook',render);}
  showResource(resource:typeof RESOURCE_IDS[number]){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.append(this.p('Rescued from the company’s extremely ambitious disposal policy.'),this.resources());
   const stock=this.p('');stock.dataset.node=resource;b.append(stock);
@@ -77,10 +95,11 @@ export class WorkshopUI {
   const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';b.append(claim);
   const recipes=[{id:'planter',label:'Make orientation planter',text:'2 scrap + 2 timber + 1 supplies. First planter: 5 seconds, once. Later planters: 8 real hours.'},{id:'bridge-kit',label:'Make bridge supplies',text:'3 scrap + 2 timber + 1 supplies. 12 real hours. '+(this.remote?'Bring the finished kit to the bridge committee.':'Crafting practice stock stays in this browser’s workshop.')}];
   for(const recipe of recipes){const section=document.createElement('section');section.className='recipe';const craft=this.button(recipe.label,()=>this.dispatch({kind:'craft',recipe:recipe.id}),'destination');craft.dataset.craft=recipe.id;section.append(this.p(recipe.text),craft);b.append(section);}
+  b.append(this.button('While work runs · town sketchbook',()=>this.showSketchbook(),'destination'));
   if(this.host.teaching)b.append(this.button('Orientation maintenance · one-time contribution',()=>this.host.teaching?.(),'destination'));this.notice();b.append(this.p('A queued job finishes while you are away and waits for collection. No automatic repeat jobs or hidden lost output.','disclosure'),this.disclosure());this.updateClocks();
  };this.begin('Your work bench',render);}
  showInventory(){const render=()=>{
-  const b=this.host.body;b.replaceChildren();b.append(this.resources());
+  const b=this.host.body;b.replaceChildren();b.append(this.resources(),this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));
   const quest=this.p('');quest.dataset.quest='';quest.className='quest-card';b.append(quest);
   const skill=this.p('');skill.dataset.skills='';b.append(skill);
   const kits=this.p('');kits.dataset.kits='';b.append(kits);
@@ -103,6 +122,12 @@ export class WorkshopUI {
  private updateClocks(){if(!this.active)return;
   if(this.remote){const blocked=this.remoteBusy||!!this.remoteError||this.remote.canRetry();this.host.body.setAttribute('aria-busy',String(this.remoteBusy));this.host.body.querySelectorAll<HTMLButtonElement>('button:not(.remote-retry)').forEach(button=>{if(blocked){if(button.dataset.remoteDisabled===undefined)button.dataset.remoteDisabled=String(button.disabled);button.disabled=true;}else if(button.dataset.remoteDisabled!==undefined){button.disabled=button.dataset.remoteDisabled==='true';delete button.dataset.remoteDisabled;}});this.remoteNotice();}
   const now=this.remote?.now()??Date.now(),b=this.host.body;
+  const sketches=this.state.sketches??[];
+  const sketchProgress=b.querySelector('[data-sketch-progress]');if(sketchProgress)sketchProgress.textContent=sketches.length+' / 3 tree studies recorded'+(sketches.length===3?' · keepsake earned':' · choose your own order');
+  for(const el of b.querySelectorAll<HTMLElement>('[data-sketch-record]')){const id=el.dataset.sketchRecord as SurveyId;el.textContent=sketches.includes(id)?'Recorded · '+SURVEYS[id].note:'Not recorded · '+SURVEYS[id].name;}
+  for(const el of b.querySelectorAll<HTMLElement>('[data-sketch-image]'))el.hidden=!sketches.includes(el.dataset.sketchImage as SurveyId);
+  const keepsake=b.querySelector<HTMLElement>('[data-sketch-keepsake]');if(keepsake)keepsake.hidden=sketches.length!==3;
+  for(const button of b.querySelectorAll<HTMLButtonElement>('[data-survey-choice]'))button.disabled=sketches.includes(button.dataset.surveyChoice as SurveyId)||!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry());
   if(this.remote){for(const el of b.querySelectorAll<HTMLElement>('[data-owned]'))el.textContent=`${names[this.selected]} · ${this.state.owned[this.selected as typeof PROP_IDS[number]]} owned. Preview and moving are free.`;for(const el of b.querySelectorAll<HTMLButtonElement>('[data-slot]')){const slot=PLACEMENT_SLOTS.find(slot=>slot.id===el.dataset.slot);if(slot)el.textContent=`${slot.label}: ${this.state.placements[slot.id]?names[this.state.placements[slot.id]!]:'empty'}${this.preview===slot.id?' · preview '+names[this.selected]:''}`;}}
   for(const el of b.querySelectorAll<HTMLElement>('[data-node]')){const node=this.state.nodes[el.dataset.node as typeof RESOURCE_IDS[number]];el.textContent=`${node.stock} available · ${node.stock>=6?'depot full':`next unit in ${duration(node.lastAt+4*3600_000-now)}`}`;}
   for(const button of b.querySelectorAll<HTMLButtonElement>('[data-collect]'))button.disabled=!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry())||this.state.nodes[button.dataset.collect as typeof RESOURCE_IDS[number]].stock===0||Object.values(this.state.inventory).reduce((a,v)=>a+v,0)>=60;

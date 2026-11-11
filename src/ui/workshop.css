@@ -5,3 +5,7 @@
 @media(max-height:480px) and (min-width:651px){footer{display:grid;grid-template-columns:1fr;gap:4px}.context{max-width:none}#feedback{display:block;min-height:0;max-height:2.6em;overflow:auto}nav{display:grid;grid-template-columns:1fr 1fr 1.4fr}nav button{min-width:0;font-size:.8rem}}
 
 .item-icon{vertical-align:middle;object-fit:contain;margin-inline-end:.45rem}.furniture-preview{object-fit:contain;display:block;max-width:100%}
+
+.sketch-card {border-top:1px solid #b7a98b;padding:1rem 0;}
+.sketch-card img,.sketch-keepsake {display:block;max-width:100%;height:auto;margin:.5rem auto;}
+.sketch-card img[hidden],.sketch-keepsake[hidden] {display:none;}

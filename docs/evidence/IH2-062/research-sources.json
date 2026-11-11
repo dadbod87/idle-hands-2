@@ -1,0 +1,32 @@
+{
+  "checked": "2026-11-11",
+  "scope": "Public primary-source descriptions, not firsthand playtesting or causal success/retention analysis. No code/art/price/timer copied.",
+  "sources": [
+    {
+      "game": "Stardew Valley",
+      "url": "https://www.stardewvalley.net/about/",
+      "kind": "developer overview",
+      "observed": "Several skills unlock recipes and areas; restoration, fishing and home customization are parallel activities."
+    },
+    {
+      "game": "Graveyard Keeper",
+      "url": "https://store.steampowered.com/app/599140/Graveyard_Keeper/",
+      "kind": "developer/publisher store description",
+      "observed": "Management connects gathering, crafting, quests, other ventures and dungeon exploration."
+    },
+    {
+      "game": "Farm Together 2",
+      "url": "https://store.steampowered.com/app/2418520/Farm_Together_2/",
+      "kind": "developer/publisher store description",
+      "observed": "Offline time, town requests, expansion, decoration and house activities coexist."
+    },
+    {
+      "game": "Palia",
+      "url": "https://www.palia.com/news/the-skills-of-palia",
+      "kind": "developer skills article, dated June6,2023",
+      "observed": "Skills supply other activities and practice opens ideas, recipes and tools; furnishing and cooperative cooking are described."
+    }
+  ],
+  "designInference": "Independent capacities and different active/creative/social verbs alongside safe offline jobs; transparent ingredient/unlock chains and persistent visible expression.",
+  "implementationBoundary": "062implements only a finite non-economic sketchbook. Garden, services, public trophies, wardrobe and cooperative systems remain later staged slices."
+}

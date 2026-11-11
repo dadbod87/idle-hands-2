@@ -1,0 +1,30 @@
+{
+  "disclosure": "Actual local UI→HTTP→PostgreSQL→snapshot→reload path in disposable ih2_browser. Existing Casey fixture has48kits/2planters; this test adds no stock/time/position override. Uses real movement/proximity; no intercepts or production data. Normal rental/square before bridge access.",
+  "request": {
+    "kind": "survey",
+    "station": "oak",
+    "id": "2791eddf-b8d1-42b2-84bf-8d845470aa78",
+    "expectedRevision": 0
+  },
+  "response": {
+    "ok": true,
+    "revision": 1
+  },
+  "stored": {
+    "playerId": "casey",
+    "sketches": [
+      "oak"
+    ],
+    "inventory": {
+      "scrap": 0,
+      "timber": 0,
+      "supplies": 0
+    },
+    "job": null,
+    "skills": {
+      "gathering": 0,
+      "making": 0
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,13 @@
+{
+  "method": "All built files SHA256-compared against actual loopback4175responses; separate gzip sum for HTML/JS/CSS only, not observed CDN transfer.",
+  "clientGzipBytes": 423447,
+  "allBuiltFileCount": 99,
+  "originalSvgCount": 86,
+  "actual4175Matches": true,
+  "clientFiles": {
+    "dist/index.html": "4d57de9779bb4db49f1b12a93bdf87f8a4102923fbed5deaeaf38d6a235f964a",
+    "dist/assets/index-XN680qTG.js": "bec0d33823ca905618a189a2a95d0ed5c643d9036cf3f3dc6e4c28aacb28f815",
+    "dist/assets/index-BFaV3GVc.css": "ed0ee617f9c6ac5dc5f40bf04afc0b766029f70ad2d3cc43adac1c2dbf8cdd4d"
+  },
+  "designSimulationOutcomesUnchanged": true
+}

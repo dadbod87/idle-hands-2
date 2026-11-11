@@ -1,0 +1,27 @@
+{
+  "aggregate": 141,
+  "skipped": 0,
+  "fullBrowserCases": 47,
+  "fullBrowserLocalMinutes": 6.4,
+  "finalSupplementalHttpCases": 19,
+  "finalSupplementalSharedBrowserCases": 1,
+  "strictBuild": "PASS",
+  "design": "PASS;48candidateentries/5regions",
+  "plan": "PASS;20tasks/10trackerchecks",
+  "pinnedSkills": "PASS;40files",
+  "diff": "PASS",
+  "nativeChromeM5FrameP95Ms": {
+    "desktop": 16.799999999999272,
+    "phone": 16.700000000000728,
+    "narrow": 16.799999999999272,
+    "short": 16.799999999999272
+  },
+  "frameLimits": "Active-play native headlessChrome/M5; no device/GPU/CPU throttle. Viewport/touch emulation is not physical-phone performance. Menu intervals excluded.",
+  "canopySamples": 9,
+  "canopyMinimum": 0.9964912280701754,
+  "originalVectors": 86,
+  "newArtReproducibleByteForByte": 4,
+  "initialFailure": "First aggregate correctly rejected stale source-fingerprinted pacing evidence; regenerated with identical modeled outcomes, all141passed afterward. No assertions/deadlines reduced.",
+  "finalValidationBoundary": "Full47passed on final runtime. Subsequent test-only strengthening adds shared wrong-answer recovery and first-record concurrency;19HTTP/1sharedcase pass afterward. Exact-head CI must rerun all141/47 plus actual artifact review before merge.",
+  "fixtureDisclosure": "Browser local prequeued12hjob is seeded fictional progress built via pure commands at pasttimestamps, not a fresh/live timer proof. Shared UI uses actual localSQL/API and existing48kit/2planterCaseyfixture, no new grant/interception/position override. HTTP proof uses ordinary cost/proximity commands with injected5s and8day clock advances. No real accounts or ih2_preview reset."
+}

@@ -1,3 +1,4 @@
+import {surveyId} from '../src/game/fieldwork.ts';
 import { createHash } from 'node:crypto';
 import type { Pool, PoolClient } from 'pg';
 import { z } from 'zod';
@@ -253,7 +254,8 @@ export class TownStore {
         }
       } else {
         let allowed = false;
-        if (cmd.kind === 'gather') allowed = typeof cmd.resource === 'string' && near(position, 'square', cmd.resource);
+        if(cmd.kind==='survey')allowed=typeof cmd.station==='string'&&!!surveyId(cmd.station)&&near(position,'square','survey-'+cmd.station);
+        else if (cmd.kind === 'gather') allowed = typeof cmd.resource === 'string' && near(position, 'square', cmd.resource);
         else if (cmd.kind === 'craft' || cmd.kind === 'claim') allowed = near(position, 'workshop', 'bench');
         else if (cmd.kind === 'place' || cmd.kind === 'remove') allowed = position.room === 'workshop';
         if (!allowed) reject('Walk to the right place before using that action.');

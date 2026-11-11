@@ -4,7 +4,9 @@
     "tools/check-design-plan.ts",
     "tools/simulate-design-pacing.ts",
     "tests/design-*.test.ts",
-    "tests/design-documents.spec.ts"
+    "tests/design-documents.spec.ts",
+    "tools/simulate-garden-plan.ts",
+    "tests/design-garden.spec.ts"
   ],
   "compilerOptions": {
     "types": [

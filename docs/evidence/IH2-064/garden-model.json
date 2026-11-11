@@ -1,0 +1,1838 @@
+{
+  "classification": "CANDIDATE DESIGN ONLY; no live crops, rewards, clocks, storage, trade or public displays",
+  "sources": {
+    "src/game/workshop.ts": "c53670d6eeeb5412ccb53874cc23cce63f709907e1e287eb4d5e2d5d28a4b54e",
+    "src/game/town-rules.ts": "ec21ce6a1b5ed3ae0824e6e141e78080b6cf4955d1b1173fd30bdd25062d457e",
+    "tools/simulate-garden-plan.ts": "52854a50cd3a549e8740552423b1364dd8077add993ad2a7476c245d0484c429"
+  },
+  "candidate": {
+    "beds": 3,
+    "seedTotalCap": 3,
+    "cropBagCap": 24,
+    "cropStackCap": 12,
+    "fiberCap": 6,
+    "fiberRefill": 900000,
+    "markerCost": 2,
+    "markerCatalog": 3,
+    "insightCap": 6,
+    "initialInsights": 2,
+    "insightRefill": 43200000,
+    "requestCooldown": 86400000,
+    "firstRadish": 300000,
+    "crops": {
+      "radish": {
+        "name": "Radish with ambitions",
+        "duration": 1800000,
+        "use": "A future café request ingredient"
+      },
+      "marigold": {
+        "name": "Out-of-office marigold",
+        "duration": 14400000,
+        "use": "A future rented-plot floral display"
+      }
+    },
+    "selectedPractice": "rested-bonus",
+    "selectedStorage": "reserved-stacks",
+    "seedRecovery": "Restore missing bound family entitlements up to2radish/1marigold, including active plants. No trade/sale or instant outputs.",
+    "ordinaryMaterialBootstrapCost": {
+      "scrap": 0,
+      "timber": 0,
+      "supplies": 0
+    },
+    "benchSlotsUsed": 0,
+    "earnedHouseRequired": false,
+    "cropToKitOrScrapConversion": 0,
+    "publicDisplay": "Chosen rented-plot markers only; private bag never exposed",
+    "community": "Any player may contribute produce requests to a6-credit visual welcome bed; solo eventually completes it, no absent specific person required. Personal recognition remains available after funding."
+  },
+  "ordinaryBounds": {
+    "houseBenchHoursLowerBound": 144,
+    "idealScrapPerDay": 6,
+    "limits": "A lower bound, not an exact housing forecast or runtime garden integration test."
+  },
+  "cohorts": [
+    {
+      "checkinsPerDay": 1,
+      "days": 7,
+      "policy": "uncapped-practice",
+      "storage": "shared-bag",
+      "harvested": 22,
+      "xp": 22,
+      "practiceBank": 6,
+      "level2Hours": 24,
+      "level3Hours": 96,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 0,
+      "bag": {
+        "radish": 8,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 7,
+      "policy": "uncapped-practice",
+      "storage": "shared-bag",
+      "harvested": 38,
+      "xp": 38,
+      "practiceBank": 6,
+      "level2Hours": 8,
+      "level3Hours": 32,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 21,
+        "marigold": 3
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 7,
+      "policy": "uncapped-practice",
+      "storage": "shared-bag",
+      "harvested": 34,
+      "xp": 34,
+      "practiceBank": 6,
+      "level2Hours": 4,
+      "level3Hours": 10,
+      "requests": 5,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000
+      ]
+    },
+    {
+      "checkinsPerDay": 1,
+      "days": 7,
+      "policy": "uncapped-practice",
+      "storage": "reserved-stacks",
+      "harvested": 22,
+      "xp": 22,
+      "practiceBank": 6,
+      "level2Hours": 24,
+      "level3Hours": 96,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 0,
+      "bag": {
+        "radish": 8,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 7,
+      "policy": "uncapped-practice",
+      "storage": "reserved-stacks",
+      "harvested": 38,
+      "xp": 38,
+      "practiceBank": 6,
+      "level2Hours": 8,
+      "level3Hours": 32,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 7,
+      "policy": "uncapped-practice",
+      "storage": "reserved-stacks",
+      "harvested": 38,
+      "xp": 38,
+      "practiceBank": 6,
+      "level2Hours": 4,
+      "level3Hours": 10,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000,
+        446400000,
+        532800000
+      ]
+    },
+    {
+      "checkinsPerDay": 1,
+      "days": 7,
+      "policy": "banked-practice",
+      "storage": "shared-bag",
+      "harvested": 22,
+      "xp": 16,
+      "practiceBank": 0,
+      "level2Hours": 24,
+      "level3Hours": 120,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 0,
+      "bag": {
+        "radish": 8,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 7,
+      "policy": "banked-practice",
+      "storage": "shared-bag",
+      "harvested": 38,
+      "xp": 14,
+      "practiceBank": 2,
+      "level2Hours": 24,
+      "level3Hours": 128,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 21,
+        "marigold": 3
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 7,
+      "policy": "banked-practice",
+      "storage": "shared-bag",
+      "harvested": 34,
+      "xp": 10,
+      "practiceBank": 6,
+      "level2Hours": 28,
+      "level3Hours": null,
+      "requests": 5,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000
+      ]
+    },
+    {
+      "checkinsPerDay": 1,
+      "days": 7,
+      "policy": "banked-practice",
+      "storage": "reserved-stacks",
+      "harvested": 22,
+      "xp": 16,
+      "practiceBank": 0,
+      "level2Hours": 24,
+      "level3Hours": 120,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 0,
+      "bag": {
+        "radish": 8,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 7,
+      "policy": "banked-practice",
+      "storage": "reserved-stacks",
+      "harvested": 38,
+      "xp": 14,
+      "practiceBank": 2,
+      "level2Hours": 24,
+      "level3Hours": 120,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 7,
+      "policy": "banked-practice",
+      "storage": "reserved-stacks",
+      "harvested": 38,
+      "xp": 14,
+      "practiceBank": 2,
+      "level2Hours": 24,
+      "level3Hours": 124,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000,
+        446400000,
+        532800000
+      ]
+    },
+    {
+      "checkinsPerDay": 1,
+      "days": 7,
+      "policy": "rested-bonus",
+      "storage": "shared-bag",
+      "harvested": 22,
+      "xp": 38,
+      "practiceBank": 0,
+      "level2Hours": 24,
+      "level3Hours": 48,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 0,
+      "bag": {
+        "radish": 8,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 7,
+      "policy": "rested-bonus",
+      "storage": "shared-bag",
+      "harvested": 38,
+      "xp": 52,
+      "practiceBank": 2,
+      "level2Hours": 8,
+      "level3Hours": 24,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 21,
+        "marigold": 3
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 7,
+      "policy": "rested-bonus",
+      "storage": "shared-bag",
+      "harvested": 34,
+      "xp": 44,
+      "practiceBank": 6,
+      "level2Hours": 2,
+      "level3Hours": 8,
+      "requests": 5,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000
+      ]
+    },
+    {
+      "checkinsPerDay": 1,
+      "days": 7,
+      "policy": "rested-bonus",
+      "storage": "reserved-stacks",
+      "harvested": 22,
+      "xp": 38,
+      "practiceBank": 0,
+      "level2Hours": 24,
+      "level3Hours": 48,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 0,
+      "bag": {
+        "radish": 8,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 7,
+      "policy": "rested-bonus",
+      "storage": "reserved-stacks",
+      "harvested": 38,
+      "xp": 52,
+      "practiceBank": 2,
+      "level2Hours": 8,
+      "level3Hours": 24,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 7,
+      "policy": "rested-bonus",
+      "storage": "reserved-stacks",
+      "harvested": 38,
+      "xp": 52,
+      "practiceBank": 2,
+      "level2Hours": 2,
+      "level3Hours": 8,
+      "requests": 7,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000,
+        446400000,
+        532800000
+      ]
+    },
+    {
+      "checkinsPerDay": 1,
+      "days": 42,
+      "policy": "uncapped-practice",
+      "storage": "shared-bag",
+      "harvested": 66,
+      "xp": 66,
+      "practiceBank": 6,
+      "level2Hours": 24,
+      "level3Hours": 96,
+      "requests": 21,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000,
+        691200000,
+        777600000,
+        864000000,
+        950400000,
+        1036800000,
+        1123200000,
+        1209600000,
+        1296000000,
+        1382400000,
+        1468800000,
+        1555200000,
+        1641600000,
+        1728000000,
+        1814400000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 42,
+      "policy": "uncapped-practice",
+      "storage": "shared-bag",
+      "harvested": 44,
+      "xp": 44,
+      "practiceBank": 6,
+      "level2Hours": 8,
+      "level3Hours": 32,
+      "requests": 10,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000,
+        633600000,
+        720000000,
+        806400000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 42,
+      "policy": "uncapped-practice",
+      "storage": "shared-bag",
+      "harvested": 34,
+      "xp": 34,
+      "practiceBank": 6,
+      "level2Hours": 4,
+      "level3Hours": 10,
+      "requests": 5,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000
+      ]
+    },
+    {
+      "checkinsPerDay": 1,
+      "days": 42,
+      "policy": "uncapped-practice",
+      "storage": "reserved-stacks",
+      "harvested": 96,
+      "xp": 96,
+      "practiceBank": 6,
+      "level2Hours": 24,
+      "level3Hours": 96,
+      "requests": 42,
+      "markers": 3,
+      "readyHeld": 1,
+      "bag": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000,
+        691200000,
+        777600000,
+        864000000,
+        950400000,
+        1036800000,
+        1123200000,
+        1209600000,
+        1296000000,
+        1382400000,
+        1468800000,
+        1555200000,
+        1641600000,
+        1728000000,
+        1814400000,
+        1900800000,
+        1987200000,
+        2073600000,
+        2160000000,
+        2246400000,
+        2332800000,
+        2419200000,
+        2505600000,
+        2592000000,
+        2678400000,
+        2764800000,
+        2851200000,
+        2937600000,
+        3024000000,
+        3110400000,
+        3196800000,
+        3283200000,
+        3369600000,
+        3456000000,
+        3542400000,
+        3628800000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 42,
+      "policy": "uncapped-practice",
+      "storage": "reserved-stacks",
+      "harvested": 108,
+      "xp": 108,
+      "practiceBank": 6,
+      "level2Hours": 8,
+      "level3Hours": 32,
+      "requests": 42,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000,
+        633600000,
+        720000000,
+        806400000,
+        892800000,
+        979200000,
+        1065600000,
+        1152000000,
+        1238400000,
+        1324800000,
+        1411200000,
+        1497600000,
+        1584000000,
+        1670400000,
+        1756800000,
+        1843200000,
+        1929600000,
+        2016000000,
+        2102400000,
+        2188800000,
+        2275200000,
+        2361600000,
+        2448000000,
+        2534400000,
+        2620800000,
+        2707200000,
+        2793600000,
+        2880000000,
+        2966400000,
+        3052800000,
+        3139200000,
+        3225600000,
+        3312000000,
+        3398400000,
+        3484800000,
+        3571200000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 42,
+      "policy": "uncapped-practice",
+      "storage": "reserved-stacks",
+      "harvested": 108,
+      "xp": 108,
+      "practiceBank": 6,
+      "level2Hours": 4,
+      "level3Hours": 10,
+      "requests": 42,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000,
+        446400000,
+        532800000,
+        619200000,
+        705600000,
+        792000000,
+        878400000,
+        964800000,
+        1051200000,
+        1137600000,
+        1224000000,
+        1310400000,
+        1396800000,
+        1483200000,
+        1569600000,
+        1656000000,
+        1742400000,
+        1828800000,
+        1915200000,
+        2001600000,
+        2088000000,
+        2174400000,
+        2260800000,
+        2347200000,
+        2433600000,
+        2520000000,
+        2606400000,
+        2692800000,
+        2779200000,
+        2865600000,
+        2952000000,
+        3038400000,
+        3124800000,
+        3211200000,
+        3297600000,
+        3384000000,
+        3470400000,
+        3556800000
+      ]
+    },
+    {
+      "checkinsPerDay": 1,
+      "days": 42,
+      "policy": "banked-practice",
+      "storage": "shared-bag",
+      "harvested": 66,
+      "xp": 46,
+      "practiceBank": 6,
+      "level2Hours": 24,
+      "level3Hours": 120,
+      "requests": 21,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000,
+        691200000,
+        777600000,
+        864000000,
+        950400000,
+        1036800000,
+        1123200000,
+        1209600000,
+        1296000000,
+        1382400000,
+        1468800000,
+        1555200000,
+        1641600000,
+        1728000000,
+        1814400000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 42,
+      "policy": "banked-practice",
+      "storage": "shared-bag",
+      "harvested": 44,
+      "xp": 20,
+      "practiceBank": 6,
+      "level2Hours": 24,
+      "level3Hours": 128,
+      "requests": 10,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000,
+        633600000,
+        720000000,
+        806400000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 42,
+      "policy": "banked-practice",
+      "storage": "shared-bag",
+      "harvested": 34,
+      "xp": 10,
+      "practiceBank": 6,
+      "level2Hours": 28,
+      "level3Hours": null,
+      "requests": 5,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000
+      ]
+    },
+    {
+      "checkinsPerDay": 1,
+      "days": 42,
+      "policy": "banked-practice",
+      "storage": "reserved-stacks",
+      "harvested": 96,
+      "xp": 86,
+      "practiceBank": 0,
+      "level2Hours": 24,
+      "level3Hours": 120,
+      "requests": 42,
+      "markers": 3,
+      "readyHeld": 1,
+      "bag": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000,
+        691200000,
+        777600000,
+        864000000,
+        950400000,
+        1036800000,
+        1123200000,
+        1209600000,
+        1296000000,
+        1382400000,
+        1468800000,
+        1555200000,
+        1641600000,
+        1728000000,
+        1814400000,
+        1900800000,
+        1987200000,
+        2073600000,
+        2160000000,
+        2246400000,
+        2332800000,
+        2419200000,
+        2505600000,
+        2592000000,
+        2678400000,
+        2764800000,
+        2851200000,
+        2937600000,
+        3024000000,
+        3110400000,
+        3196800000,
+        3283200000,
+        3369600000,
+        3456000000,
+        3542400000,
+        3628800000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 42,
+      "policy": "banked-practice",
+      "storage": "reserved-stacks",
+      "harvested": 108,
+      "xp": 84,
+      "practiceBank": 2,
+      "level2Hours": 24,
+      "level3Hours": 120,
+      "requests": 42,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000,
+        633600000,
+        720000000,
+        806400000,
+        892800000,
+        979200000,
+        1065600000,
+        1152000000,
+        1238400000,
+        1324800000,
+        1411200000,
+        1497600000,
+        1584000000,
+        1670400000,
+        1756800000,
+        1843200000,
+        1929600000,
+        2016000000,
+        2102400000,
+        2188800000,
+        2275200000,
+        2361600000,
+        2448000000,
+        2534400000,
+        2620800000,
+        2707200000,
+        2793600000,
+        2880000000,
+        2966400000,
+        3052800000,
+        3139200000,
+        3225600000,
+        3312000000,
+        3398400000,
+        3484800000,
+        3571200000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 42,
+      "policy": "banked-practice",
+      "storage": "reserved-stacks",
+      "harvested": 108,
+      "xp": 84,
+      "practiceBank": 2,
+      "level2Hours": 24,
+      "level3Hours": 124,
+      "requests": 42,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000,
+        446400000,
+        532800000,
+        619200000,
+        705600000,
+        792000000,
+        878400000,
+        964800000,
+        1051200000,
+        1137600000,
+        1224000000,
+        1310400000,
+        1396800000,
+        1483200000,
+        1569600000,
+        1656000000,
+        1742400000,
+        1828800000,
+        1915200000,
+        2001600000,
+        2088000000,
+        2174400000,
+        2260800000,
+        2347200000,
+        2433600000,
+        2520000000,
+        2606400000,
+        2692800000,
+        2779200000,
+        2865600000,
+        2952000000,
+        3038400000,
+        3124800000,
+        3211200000,
+        3297600000,
+        3384000000,
+        3470400000,
+        3556800000
+      ]
+    },
+    {
+      "checkinsPerDay": 1,
+      "days": 42,
+      "policy": "rested-bonus",
+      "storage": "shared-bag",
+      "harvested": 66,
+      "xp": 112,
+      "practiceBank": 6,
+      "level2Hours": 24,
+      "level3Hours": 48,
+      "requests": 21,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000,
+        691200000,
+        777600000,
+        864000000,
+        950400000,
+        1036800000,
+        1123200000,
+        1209600000,
+        1296000000,
+        1382400000,
+        1468800000,
+        1555200000,
+        1641600000,
+        1728000000,
+        1814400000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 42,
+      "policy": "rested-bonus",
+      "storage": "shared-bag",
+      "harvested": 44,
+      "xp": 64,
+      "practiceBank": 6,
+      "level2Hours": 8,
+      "level3Hours": 24,
+      "requests": 10,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000,
+        633600000,
+        720000000,
+        806400000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 42,
+      "policy": "rested-bonus",
+      "storage": "shared-bag",
+      "harvested": 34,
+      "xp": 44,
+      "practiceBank": 6,
+      "level2Hours": 2,
+      "level3Hours": 8,
+      "requests": 5,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 24,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000
+      ]
+    },
+    {
+      "checkinsPerDay": 1,
+      "days": 42,
+      "policy": "rested-bonus",
+      "storage": "reserved-stacks",
+      "harvested": 96,
+      "xp": 182,
+      "practiceBank": 0,
+      "level2Hours": 24,
+      "level3Hours": 48,
+      "requests": 42,
+      "markers": 3,
+      "readyHeld": 1,
+      "bag": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        86400000,
+        172800000,
+        259200000,
+        345600000,
+        432000000,
+        518400000,
+        604800000,
+        691200000,
+        777600000,
+        864000000,
+        950400000,
+        1036800000,
+        1123200000,
+        1209600000,
+        1296000000,
+        1382400000,
+        1468800000,
+        1555200000,
+        1641600000,
+        1728000000,
+        1814400000,
+        1900800000,
+        1987200000,
+        2073600000,
+        2160000000,
+        2246400000,
+        2332800000,
+        2419200000,
+        2505600000,
+        2592000000,
+        2678400000,
+        2764800000,
+        2851200000,
+        2937600000,
+        3024000000,
+        3110400000,
+        3196800000,
+        3283200000,
+        3369600000,
+        3456000000,
+        3542400000,
+        3628800000
+      ]
+    },
+    {
+      "checkinsPerDay": 3,
+      "days": 42,
+      "policy": "rested-bonus",
+      "storage": "reserved-stacks",
+      "harvested": 108,
+      "xp": 192,
+      "practiceBank": 2,
+      "level2Hours": 8,
+      "level3Hours": 24,
+      "requests": 42,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        28800000,
+        115200000,
+        201600000,
+        288000000,
+        374400000,
+        460800000,
+        547200000,
+        633600000,
+        720000000,
+        806400000,
+        892800000,
+        979200000,
+        1065600000,
+        1152000000,
+        1238400000,
+        1324800000,
+        1411200000,
+        1497600000,
+        1584000000,
+        1670400000,
+        1756800000,
+        1843200000,
+        1929600000,
+        2016000000,
+        2102400000,
+        2188800000,
+        2275200000,
+        2361600000,
+        2448000000,
+        2534400000,
+        2620800000,
+        2707200000,
+        2793600000,
+        2880000000,
+        2966400000,
+        3052800000,
+        3139200000,
+        3225600000,
+        3312000000,
+        3398400000,
+        3484800000,
+        3571200000
+      ]
+    },
+    {
+      "checkinsPerDay": 12,
+      "days": 42,
+      "policy": "rested-bonus",
+      "storage": "reserved-stacks",
+      "harvested": 108,
+      "xp": 192,
+      "practiceBank": 2,
+      "level2Hours": 2,
+      "level3Hours": 8,
+      "requests": 42,
+      "markers": 3,
+      "readyHeld": 3,
+      "bag": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedStock": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "seedCopiesIncludingBeds": 3,
+      "lostHarvests": 0,
+      "cropAccounting": true,
+      "requestTimes": [
+        14400000,
+        100800000,
+        187200000,
+        273600000,
+        360000000,
+        446400000,
+        532800000,
+        619200000,
+        705600000,
+        792000000,
+        878400000,
+        964800000,
+        1051200000,
+        1137600000,
+        1224000000,
+        1310400000,
+        1396800000,
+        1483200000,
+        1569600000,
+        1656000000,
+        1742400000,
+        1828800000,
+        1915200000,
+        2001600000,
+        2088000000,
+        2174400000,
+        2260800000,
+        2347200000,
+        2433600000,
+        2520000000,
+        2606400000,
+        2692800000,
+        2779200000,
+        2865600000,
+        2952000000,
+        3038400000,
+        3124800000,
+        3211200000,
+        3297600000,
+        3384000000,
+        3470400000,
+        3556800000
+      ]
+    }
+  ],
+  "stateCoverage": [
+    {
+      "name": "fresh",
+      "actions": [
+        "gather fibers and hand-make a new marker",
+        "choose and plant a seed"
+      ],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ],
+      "creativeIsNewProgression": false,
+      "limits": "Free rearrangement is creative; menus, navigation, waiting and rereading are not counted as new progression."
+    },
+    {
+      "name": "busy bench / exhausted ordinary depots / no house",
+      "actions": [
+        "gather fibers and hand-make a new marker",
+        "choose and plant a seed"
+      ],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ],
+      "creativeIsNewProgression": false,
+      "limits": "Free rearrangement is creative; menus, navigation, waiting and rereading are not counted as new progression."
+    },
+    {
+      "name": "all seeds planted / bridge building",
+      "actions": [
+        "gather fibers and hand-make a new marker"
+      ],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ],
+      "creativeIsNewProgression": false,
+      "limits": "Free rearrangement is creative; menus, navigation, waiting and rereading are not counted as new progression."
+    },
+    {
+      "name": "full crop storage",
+      "actions": [
+        "gather fibers and hand-make a new marker",
+        "fulfill a produce request"
+      ],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ],
+      "creativeIsNewProgression": false,
+      "limits": "Free rearrangement is creative; menus, navigation, waiting and rereading are not counted as new progression."
+    },
+    {
+      "name": "all lanes saturated: known gap",
+      "actions": [],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ],
+      "creativeIsNewProgression": false,
+      "limits": "Free rearrangement is creative; menus, navigation, waiting and rereading are not counted as new progression."
+    },
+    {
+      "name": "all seeds missing",
+      "actions": [
+        "gather fibers and hand-make a new marker",
+        "recover the missing bound starter seeds"
+      ],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ],
+      "creativeIsNewProgression": false,
+      "limits": "Free rearrangement is creative; menus, navigation, waiting and rereading are not counted as new progression."
+    }
+  ],
+  "firstHourBurst": [
+    {
+      "minute": 0,
+      "actions": [
+        "gather fibers and hand-make a new marker",
+        "choose and plant a seed"
+      ],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 5,
+      "actions": [
+        "gather fibers and hand-make a new marker",
+        "harvest ready crop"
+      ],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 10,
+      "actions": [
+        "gather fibers and hand-make a new marker"
+      ],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 15,
+      "actions": [],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 20,
+      "actions": [],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 25,
+      "actions": [],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 30,
+      "actions": [
+        "harvest ready crop"
+      ],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 35,
+      "actions": [
+        "harvest ready crop"
+      ],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 40,
+      "actions": [],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 45,
+      "actions": [],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 50,
+      "actions": [],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 55,
+      "actions": [],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    },
+    {
+      "minute": 60,
+      "actions": [
+        "harvest ready crop"
+      ],
+      "creative": [
+        "preview or rearrange bed order, border and chosen marker for free"
+      ]
+    }
+  ],
+  "community": [
+    {
+      "neighbors": 1,
+      "target": 6,
+      "openedHours": 144,
+      "noUniqueContributorRequirement": true
+    },
+    {
+      "neighbors": 3,
+      "target": 6,
+      "openedHours": 48,
+      "noUniqueContributorRequirement": true
+    },
+    {
+      "neighbors": 6,
+      "target": 6,
+      "openedHours": 24,
+      "noUniqueContributorRequirement": true
+    }
+  ],
+  "acceptance": {
+    "seedConservation": true,
+    "noPlantLossInModel": true,
+    "ordinaryEconomyIntegration": "NOT IMPLEMENTED; design prohibits conversions/costs but runtime needs transactional proof",
+    "gardenOnlyAlwaysActive": false,
+    "remainingGap": "When all beds are growing/cared, marker catalog complete, bags full and request on cooldown, only creative activity remains. Add practical quest/service depth before claiming continuous active play.",
+    "playtime": "No human fun/play-duration/retention claim. Visit counts are simulated actions, not minutes played."
+  }
+}

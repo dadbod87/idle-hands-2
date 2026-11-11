@@ -1,0 +1,63 @@
+{
+  "task": "IH2-062",
+  "status": "source/local accepted; no hosted deployment",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/13",
+  "candidate": "91fa83f0e68f66634591750925e9e68d25c740d4",
+  "merge": "9baf7575b07bf1c3629610ea0518725409cdcd01",
+  "candidateAndMergeTree": "a4743ce038a12958396a08945ecea58c563d7207",
+  "ciRun": 43070273150,
+  "ciAttempt": 1,
+  "jobs": {
+    "domain-build-plan": "success",
+    "browser-playtest": "success"
+  },
+  "checks": 141,
+  "skipped": 0,
+  "browserCases": 47,
+  "ciBrowserMinutes": 16.7,
+  "localBrowserMinutes": 6.4,
+  "ciBuildActual99FilesMatchLocalAnd4175": true,
+  "originalVectors": 86,
+  "canopySamples": 9,
+  "canopyMinimum": 0.9859649122807017,
+  "ciSoftwareFrameP95Ms": {
+    "desktop": 133.5,
+    "phone": 50.00000000000091,
+    "narrow": 33.400000000000546,
+    "short": 33.400000000001455
+  },
+  "limits": "CIsoftware rendering is substantially slower than nativeChromeM5~16.8ms; no physical-phone/WAN/hosted/soak claim. New book is a finite collection chapter, journal-only keepsake, not hours of active play or a public trophy.",
+  "ciCommandP95Ms": 499.62759899999946,
+  "loadNote": "Pass narrowly below500ms; no spare capacity/causal regression claim. Local and hosted performance stay separate.",
+  "actualCiImagesReviewed": {
+    "sketchbook-phone-study.png": "376e404cc157306b0fcb13e80ac99aa64ff4cec2897d6107e1093d9a5ba08a1c",
+    "sketchbook-desktop-earned.png": "b29eff1ff3780c30329a0f5c89cf9681b4411f05370cffc0af181e9aebf103ce",
+    "sketchbook-phone-short200.png": "7a228445dced067ea1857edf02ee304e9b9fb987451ba6c1c004850784a09679",
+    "sketchbook-shared-confirmed.png": "ac4dfdca90b7cb69b35bbe013dbd356d45ca08d144247a5e056e492bbd64cf8e",
+    "desktop-square.png": "24f148ca31650dbf0bfe897eaa8ed7e6ca246134881efc38525eb3dae95f9879",
+    "homes-desktop-owner-expanded.png": "d896df97ad82696099717933fcdab6172385d70060493ce6cbc6d54be2c98f26",
+    "first-visit-phone-guide.png": "28222bca04fbc07c5760fcd7c0ddd72870f65bd950c5aab6cdaf13780b9af0d1",
+    "menu-backdrop-short-live-clock.png": "9e7cb59828189b683b9a609b80202fb354f1092304fe97b86be4346e35a05bce",
+    "variety-narrow-canopy-pixels-0.png": "4fcf6cd5e9177a15eb625875fea461c83997702286505b35ca039b78952ac1a3"
+  },
+  "practiceUpdate": {
+    "source": "9baf7575b07bf1c3629610ea0518725409cdcd01",
+    "sameSigningKey": true,
+    "allTableRowsUnchanged": true,
+    "practiceResidentCount": 0,
+    "defaultFixtureIds": [
+      "aster",
+      "bea",
+      "casey"
+    ],
+    "actual4175CiFileMatches": 99,
+    "localApi": 4186,
+    "fixtureOnly": true,
+    "limits": "No login or player creation in smoke check. Zero saved residents is unchanged empty practice data, not proof of populated workshop preservation; isolated tests provide that proof."
+  },
+  "cleanMain": true,
+  "next": "IH2-064 independent starter-garden/resource-loop design and pacing proof is ready; cloud070still requires account/access/cost gate.",
+  "originalGameChanged": false,
+  "cloudCreated": false,
+  "fixtureDisclosure": "See committed062REPORT: seeded local long-job progress, existing Casey48kit/2planter shared fixture, injected HTTP clocks; no real-player tests or practice reset."
+}

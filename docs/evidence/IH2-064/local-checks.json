@@ -1,0 +1,69 @@
+{
+  "classification": "Local design verification; no gardening runtime or hosted release",
+  "date": "2026-11-11",
+  "aggregate": {
+    "passed": 151,
+    "skipped": 0,
+    "durationMs": 37848.907791,
+    "log": "/tmp/ih2-064-tests-all.log",
+    "databases": [
+      "ih2_test",
+      "ih2_http_test",
+      "ih2_restore",
+      "ih2_load"
+    ],
+    "practiceDatabaseReset": false
+  },
+  "build": {
+    "passed": true,
+    "files": 99,
+    "previous062CiAndActual4175ByteEqual": true,
+    "log": "/tmp/ih2-064-build.log"
+  },
+  "designAudit": {
+    "passed": true,
+    "entries": 48,
+    "regions": 5
+  },
+  "planning": {
+    "tasks": 21,
+    "trackerChecks": 10,
+    "passed": true
+  },
+  "pinnedFiles": 40,
+  "gardenModel": {
+    "cohorts": 36,
+    "pureTests": 10,
+    "selected": "rested-bonus/reserved-stacks",
+    "humanPlaytest": false
+  },
+  "browser": {
+    "passed": 48,
+    "minutes": 6.4,
+    "log": "/tmp/ih2-064-browser.log",
+    "evidence": "/tmp/ih2-064-browser",
+    "staticConceptChecks": 1,
+    "reviewed": [
+      "both final garden concepts",
+      "desktop square",
+      "phone workshop",
+      "short square",
+      "narrow canopy crop"
+    ],
+    "activePlayP95Ms": 16.8,
+    "canopySamples": 9,
+    "minimumCanopyCoverage": 0.9859649122807017,
+    "device": "Headless native Chrome on M5; emulated viewports/touch, not physical phone"
+  },
+  "review": {
+    "scope": "Read-only model/blueprint review; no edits or tests by reviewer",
+    "resolution": "Concrete independent stake-sorting errand added with objective/input/output/repeat/acceptance states; outside cohort model."
+  },
+  "limits": [
+    "Concept targets measured in design pixels only",
+    "Seed conservation is accounting, not concurrency/atomic proof",
+    "Fixed greedy schedule, not all strategies or full economy integration",
+    "No hosted auth, physical phone, WAN load or gardening runtime"
+  ],
+  "diffCheck": true
+}

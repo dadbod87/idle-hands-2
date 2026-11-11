@@ -10,7 +10,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc --noEmit && tsc -p tsconfig.server.json && tsc -p tsconfig.design.json && vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test": "node --experimental-strip-types --test --test-concurrency=1 tests/*.test.ts",
     "test:browser": "playwright test",
     "check:plan": "python3 tools/idle-hands-2.py check && python3 tests/idle-hands-2-tracker.test.py",
     "town:db": "node --experimental-strip-types tools/town-db.ts start",

@@ -89,3 +89,9 @@
 - Actual tree tap, keyboard choices, Places/book alternatives, reduced-motion, narrow phone, short200%text, visible original sketch/keepsake art and reload. Seeded browser saves are disclosed as fictional progress, not fresh-player or actual live-timer proof; server tests use ordinary legal gather/craft actions.
 - Regenerate source-fingerprinted pacing artifacts; outcomes must remain unchanged. Reproduce four new original SVGs and all86fingerprints. Full aggregate/browser/build/design/plan/pinned/diff and both exact-head CI jobs plus actual artifacts before merge.
 - Keep comparative source facts separate from our inferred design, future activity targets separate from measured playtime, and journal-only keepsakes separate from unimplemented public displays. No hosting or original-game changes.
+
+## IH2-064 garden design boundary
+- Reproduce36cohorts and both original static concepts; disclose fixed strategy, accounting-only conservation, collapsed action time, capacity saturation and first-hour activity gaps. No runtime gardening or composed economy claim.
+- Check selected always-base practice/rested bonus, family seed recovery, reserved output capacity and solo-completable request; document rejected policies. Real SQL ownership/replay/atomicity is065work.
+- Required aggregate151checks/zero skips,48browser cases including static concept rendering, strict build/design/plan/pinned/diff; review actual desktop/phone/short/canopy and concept PNGs, unchanged99-file client artifact. Both exact-head jobs and actual uploaded artifacts before merge.
+- Sequential Node test files isolate design/restore CPU work from protocol load; preserve intentional case concurrency and all deadlines/assertions. No runtime performance claim from this scheduling change.

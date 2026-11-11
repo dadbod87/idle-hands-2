@@ -107,3 +107,11 @@ November11: owner explicitly authorized continued local content and asked for us
 ## A042 — parallel progress and social expression
 
 Owner explicitly makes humor, teamwork, solo progress and visible homes/equipment central. Official game references and agent-selected adaptation/next-lane plan are in ACTIVITY_DEPTH. Favor multiple verbs and independent capacities, clear ingredient/unlock chains, recognizable earned art and shared projects with newcomer roles. No proprietary code/art, monetization, punishment for absence or forced co-op schedule is adopted. Garden/trophy/wardrobe work is planned, not implemented by062.
+
+## A043 — starter garden before earned housing
+
+November11, agent-selected candidate under the owner’s depth/teamwork/solo/expression direction. Three rented beds with two radish/one marigold bound seed entitlements, independent produce stacks, safe held harvests, no ordinary resource/bench cost or crop-to-kit conversion. Seed recovery counts active plants. Every harvest earns base practice; a replenishing rested bank adds a bonus and never gates activity. Reject shared produce storage and bank-only XP. A solo-completable public request goal preserves newcomer recognition; only an explicitly chosen marker is shared. See design/GARDEN_LOOP.md for exact modeled limits and unresolved active-play gaps. No gardening implemented by064.
+
+## A044 — controlled aggregate test scheduling
+
+November11. Run Node test files with --test-concurrency=1 so analytical design simulations and database dump/restore workers do not overlap the twenty-client load measurement. All cases, assertions, budgets and intentional within-case concurrency remain intact; CI workflow and its deadlines are unchanged. This isolates a measurement, not a runtime speed improvement. Node documents this option as the maximum number of test files executed concurrently: https://nodejs.org/docs/latest-v24.x/api/test.html.

@@ -1,0 +1,18 @@
+{
+  "status": "original static design concepts; not runtime sprites or animation library",
+  "creator": "Original code-authored for Idle Hands 2",
+  "source": "tools/create-garden-study.py",
+  "license": "project-original",
+  "date": "2026-11-11",
+  "cost": "No imported or paid assets",
+  "files": [
+    {
+      "path": "docs/idle-hands-2/design/GARDEN_GROWTH_CONCEPT.svg",
+      "sha256": "63c8bf3873eff677e51c639c349e66ddf5b29edb729766327d08cb9b7fc04e82"
+    },
+    {
+      "path": "docs/idle-hands-2/design/GARDEN_PHONE_CONCEPT.svg",
+      "sha256": "14e34bb510db60b2bc5cadaf729c655a16d69274672991ce9dd09d6d629f1d65"
+    }
+  ]
+}

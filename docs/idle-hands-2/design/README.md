@@ -60,3 +60,5 @@ World/city names, region layout, item prices, project waits, drop probabilities,
 First evaluate the design model, then the prototype, then real phones and a realistic shared workload. Keep the next executable task and actual acceptance in [the roadmap](../ROADMAP.json).
 
 November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-job gaps, compares four developer-described game loops, and stages useful solo/cooperative/creative activities. Humor and visible acquired/equipped identity are core. The062sketchbook is a small local collection chapter, not implemented gardening, shops or public trophy display.
+
+[Starter garden candidate](GARDEN_LOOP.md), IH2-064: two crops, independent rented beds/produce stacks, recoverable seeds, base practice plus a rested bonus, solo/cooperative requests and chosen visual expression. Thirty-six analytical cohorts expose capacity and activity gaps. [Growth concept](GARDEN_GROWTH_CONCEPT.svg) and [phone concept](GARDEN_PHONE_CONCEPT.svg) are original static studies, not implemented garden screens. IH2-065 is the next bounded runtime slice.

@@ -11,7 +11,7 @@ function json(res:ServerResponse,status:number,data:unknown){res.writeHead(statu
 async function body(req:IncomingMessage){let text='';for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>16384)throw new Error('Body too large');}return JSON.parse(text||'{}') as unknown;}
 export function createTownServer(options:{pool:Pool;secret:string;now?:()=>number;port?:number;allowedOrigins?:string[];fixtureResidents?:ReadonlyArray<{id:string;name:string}>}){
  if(options.secret.length<32)throw new Error('Use an isolated synthetic signing key of at least32 characters.');
- const rosterSchema=z.array(z.object({id:z.string().regex(/^[a-z][a-z0-9-]{0,31}$/),name:z.string().trim().min(1).max(64)}).strict()).min(1).max(32).refine(rows=>new Set(rows.map(row=>row.id)).size===rows.length,'Fixture resident IDs must be unique.');
+ const rosterSchema=z.array(z.object({id:z.string().regex(/^[a-z][a-z0-9-]{0,31}$/),name:z.string().trim().min(1).max(40)}).strict()).min(1).max(32).refine(rows=>new Set(rows.map(row=>row.id)).size===rows.length,'Fixture resident IDs must be unique.');
  const fixtures=Object.freeze(rosterSchema.parse(options.fixtureResidents??DEFAULT_FIXTURES).map(row=>Object.freeze({...row})));
  const serverInstance=randomUUID();
  const now=options.now??Date.now,store=new TownStore(options.pool,{now});

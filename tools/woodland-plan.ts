@@ -14,6 +14,9 @@ export function simulateWoodland(days:7|42,visitsPerDay:1|3|12,policy:WoodPolicy
  const harvest=()=>{let n=0;for(let bed=0;bed<3;bed++){const b=beds[bed];if(b&&b.readyAt<=now&&produce[b.crop]<GARDEN_RULES.stack){produce[b.crop]++;harvested[b.crop]++;seeds[b.crop]++;beds[bed]=null;n++;}}return n;};
  const consume=(radish:number,marigold:number)=>{produce.radish-=radish;produce.marigold-=marigold;spent.radish+=radish;spent.marigold+=marigold;};
  const refill=()=>{if(node===WOOD_PLAN.nodeCap){nodeAt=now;return;}const ticks=Math.floor((now-nodeAt)/WOOD_PLAN.nodeRefillMs);if(ticks){node=Math.min(WOOD_PLAN.nodeCap,node+ticks);nodeAt=node===WOOD_PLAN.nodeCap?now:nodeAt+ticks*WOOD_PLAN.nodeRefillMs;}};
+ // reserve-goal is a bundled player strategy: reserve the next craft AND stop
+ // voluntary welcome requests after six as a solo funded-goal proxy. It is not
+ // a proposed runtime limit; continuing personal requests changes these results.
  const request=(reserve:number)=>{if(produce.radish&&produce.marigold>reserve&&requestAt<=now&&(policy==='legacy-first'||requests<6)){consume(1,1);requests++;requestAt=now+GARDEN_RULES.requestMs;requestTimes.push(now);return 1;}return 0;};
  plant();
  for(let visit=0;visit<=days*visitsPerDay;visit++){

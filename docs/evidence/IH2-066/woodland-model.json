@@ -1,7 +1,7 @@
 {
   "classification": "IH2-066 non-executable resource/ingredient design experiment; no runtime changes",
   "version": 1,
-  "selected": "reserve-goal / four-hour optional NPC orders",
+  "selected": "reserve next craft / stop voluntary welcome requests after six / four-hour optional NPC orders",
   "rules": {
     "pineCap": 24,
     "nodeCap": 6,
@@ -15,17 +15,18 @@
     "orderFlowers": 1,
     "installationMs": 86400000
   },
-  "method": "Independent mass-balanced crop ledger reuses current065 deadlines, seed quotas, held harvests and12-slot stacks. Candidate pine bank6,1/4h,24carried; free bound saw lesson assumed completed. Day0setup is included. Uniform known-strategy visits; one disclosed14–21dayabsence cohort. Claim/gather/harvest, optional firstsix easels, optional six welcome requests, spare-ingredient order, reharvest/replant. Finishing is independent of the existing ordinary bench. Models assume opt-in anonymous recording on each claim; players retain the item.",
+  "method": "Independent mass-balanced crop ledger reuses current065 deadlines, seed quotas, held harvests and12-slot stacks. Candidate pine bank6,1/4h,24carried; free bound saw lesson assumed completed. Day0setup is included. Uniform known-strategy visits; one disclosed14–21dayabsence cohort. Claim/gather/harvest, optional firstsix easels, optional welcome requests stopped after six as a solo funded-goal proxy, spare-ingredient order, reharvest/replant. Finishing is independent of the existing ordinary bench. Models assume opt-in anonymous recording on each claim; players retain the item.",
   "limits": [
     "Not actual game state, valid save, network authority, player preference or human enjoyment",
     "No auto craft/order/harvest is proposed; greedy strategy stands for deliberate preview/confirm inputs",
+    "Selected versus legacy-first bundles reservation AND stopping voluntary welcome requests at six; do not attribute all differences to reservation alone. Runtime continues to allow personal requests; choosing them changes the candidate outcomes",
     "Current GardenStatev1 cannot represent new ingredient sinks: implementation needs explicit versioned spent-by-use conservation, not forged request counts",
     "No tool-lesson duration, travel, dialogue/quests, art action duration, modular gear, making/gardening XP or full housing/currency economy modeled",
     "Public six-credit arithmetic is not concurrency/UUID/permission proof; server transactions still required",
     "Several visits can remain quiet and finite goals saturate; this family does not certify a full evening of content"
   ],
   "sourceSha256": {
-    "tools/woodland-plan.ts": "ad0598c13c393ef3532c8ff775285207d7381a8d07ffb61c336e74daada05b75",
+    "tools/woodland-plan.ts": "d3a408129b3eac585af1b0aed01b496eefed6b282b4d728eb8fba68d4ec811a6",
     "src/game/garden.ts": "35bc9aed5af19a84925dd48c1b9839ef23e75a22e839314eeff0ae686b890160"
   },
   "cohorts": [

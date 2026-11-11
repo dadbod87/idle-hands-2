@@ -4,13 +4,15 @@ import type {Pool} from 'pg';
 import {z} from 'zod';
 import {TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './store.ts';
 import {canStand,routeTo,worlds} from '../src/game/world.ts';
-const FIXTURES=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}];
+const DEFAULT_FIXTURES=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}];
 const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail']),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(value=>isHome(value.room)?!!value.homePlotId:value.homePlotId===undefined);
 const COOKIE='ih2_fixture';
 function json(res:ServerResponse,status:number,data:unknown){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(data));}
 async function body(req:IncomingMessage){let text='';for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>16384)throw new Error('Body too large');}return JSON.parse(text||'{}') as unknown;}
-export function createTownServer(options:{pool:Pool;secret:string;now?:()=>number;port?:number;allowedOrigins?:string[]}){
+export function createTownServer(options:{pool:Pool;secret:string;now?:()=>number;port?:number;allowedOrigins?:string[];fixtureResidents?:ReadonlyArray<{id:string;name:string}>}){
  if(options.secret.length<32)throw new Error('Use an isolated synthetic signing key of at least32 characters.');
+ const rosterSchema=z.array(z.object({id:z.string().regex(/^[a-z][a-z0-9-]{0,31}$/),name:z.string().trim().min(1).max(64)}).strict()).min(1).max(32).refine(rows=>new Set(rows.map(row=>row.id)).size===rows.length,'Fixture resident IDs must be unique.');
+ const fixtures=Object.freeze(rosterSchema.parse(options.fixtureResidents??DEFAULT_FIXTURES).map(row=>Object.freeze({...row})));
  const serverInstance=randomUUID();
  const now=options.now??Date.now,store=new TownStore(options.pool,{now});
  const homes=new Map<string,TownPlot>();let bridgeOpen=false;
@@ -28,12 +30,12 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  const metrics={commands:0,snapshots:0,movementAccepted:0,movementRejected:0,presenceEvents:0,positionCheckpoints:0};
  const sign=(value:string)=>createHmac('sha256',options.secret).update(value).digest('base64url');
  function cookie(id:string){const payload=Buffer.from(JSON.stringify({id,expires:now()+24*3600_000})).toString('base64url');return payload+'.'+sign(payload);}
- function identity(req:IncomingMessage){try{const token=req.headers.cookie?.split(';').map(s=>s.trim()).find(s=>s.startsWith(COOKIE+'='))?.slice(COOKIE.length+1);if(!token)return null;const[payload,mac]=token.split('.');if(!payload||!mac)return null;const expected=Buffer.from(sign(payload)),actual=Buffer.from(mac);if(expected.length!==actual.length||!timingSafeEqual(expected,actual))return null;const data=JSON.parse(Buffer.from(payload,'base64url').toString());return FIXTURES.some(f=>f.id===data.id)&&data.expires>now()?data.id as string:null;}catch{return null;}}
+ function identity(req:IncomingMessage){try{const token=req.headers.cookie?.split(';').map(s=>s.trim()).find(s=>s.startsWith(COOKIE+'='))?.slice(COOKIE.length+1);if(!token)return null;const[payload,mac]=token.split('.');if(!payload||!mac)return null;const expected=Buffer.from(sign(payload)),actual=Buffer.from(mac);if(expected.length!==actual.length||!timingSafeEqual(expected,actual))return null;const data=JSON.parse(Buffer.from(payload,'base64url').toString());return fixtures.some(f=>f.id===data.id)&&data.expires>now()?data.id as string:null;}catch{return null;}}
  function rate(id:string,kind:string,max:number,window:number){const key=id+':'+kind,t=now(),recent=(limits.get(key)??[]).filter(v=>t-v<window);if(recent.length>=max)return false;recent.push(t);limits.set(key,recent);return true;}
  async function resident(id:string){const existing=residents.get(id);if(existing)return existing;let pending=residentLoads.get(id);if(!pending){pending=store.snapshot(id).then(snapshot=>{cacheHomes(snapshot);const entry={value:snapshot.position,at:now(),credit:1};residents.set(id,entry);return entry;}).finally(()=>residentLoads.delete(id));residentLoads.set(id,pending);}return pending;}
  function event(res:ServerResponse,name:string,data:unknown){if(res.writableEnded||res.destroyed)return;res.write(`event: ${name}\ndata: ${JSON.stringify(data)}\n\n`);}
  function invalidate(except:string){for(const item of connections)if(item.id!==except)event(item.res,'invalidate',{});}
- function presence(){if(!dirty)return;dirty=false;const active=new Set([...connections].map(c=>c.id));for(const item of connections){const own=residents.get(item.id);if(!own)continue;const others=[...residents].filter(([id,entry])=>id!==item.id&&active.has(id)&&((['square','trail'].includes(entry.value.room)&&entry.value.room===own.value.room)||isHome(entry.value.room)&&entry.value.room===own.value.room&&entry.value.homePlotId===own.value.homePlotId)).map(([id,entry])=>({id,name:FIXTURES.find(f=>f.id===id)!.name,...entry.value}));event(item.res,'presence',others);metrics.presenceEvents++;}}
+ function presence(){if(!dirty)return;dirty=false;const active=new Set([...connections].map(c=>c.id));for(const item of connections){const own=residents.get(item.id);if(!own)continue;const others=[...residents].filter(([id,entry])=>id!==item.id&&active.has(id)&&((['square','trail'].includes(entry.value.room)&&entry.value.room===own.value.room)||isHome(entry.value.room)&&entry.value.room===own.value.room&&entry.value.homePlotId===own.value.homePlotId)).map(([id,entry])=>({id,name:fixtures.find(f=>f.id===id)!.name,...entry.value}));event(item.res,'presence',others);metrics.presenceEvents++;}}
  const ticker=setInterval(presence,200);ticker.unref();const heartbeat=setInterval(()=>{for(const item of connections)item.res.write(': local fixture heartbeat\n\n');},15000);heartbeat.unref();
  const server=createServer(async(req,res)=>{
   try{
@@ -45,9 +47,9 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(!req.headers.origin||!allowed.has(req.headers.origin))return json(res,403,{message:'This fixture request must come from the local game.'});
     if(!req.headers['content-type']?.startsWith('application/json'))return json(res,415,{message:'JSON required.'});
    }
-   if(path==='/api/town/fixtures'&&req.method==='GET')return json(res,200,{fixtures:FIXTURES,disclosure:'Local synthetic players. No real accounts.'});
+   if(path==='/api/town/fixtures'&&req.method==='GET')return json(res,200,{fixtures,disclosure:'Local synthetic players. No real accounts.'});
    if(path==='/api/town/login'&&req.method==='POST'){
-    const data=z.object({fixtureId:z.enum(['aster','bea','casey'])}).strict().parse(await body(req));const fixture=FIXTURES.find(f=>f.id===data.fixtureId)!;const snapshot=await store.ensurePlayer(fixture.id,fixture.name);cacheHomes(snapshot);const current=await resident(fixture.id);snapshot.position=current.value;res.setHeader('Set-Cookie',`${COOKIE}=${cookie(fixture.id)}; HttpOnly; SameSite=Strict; Path=/api/town; Max-Age=86400`);return json(res,200,{snapshot:{...snapshot,serverInstance}});
+    const data=z.object({fixtureId:z.string().refine(id=>fixtures.some(f=>f.id===id))}).strict().parse(await body(req));const fixture=fixtures.find(f=>f.id===data.fixtureId)!;const snapshot=await store.ensurePlayer(fixture.id,fixture.name);cacheHomes(snapshot);const current=await resident(fixture.id);snapshot.position=current.value;res.setHeader('Set-Cookie',`${COOKIE}=${cookie(fixture.id)}; HttpOnly; SameSite=Strict; Path=/api/town; Max-Age=86400`);return json(res,200,{snapshot:{...snapshot,serverInstance}});
    }
    const id=identity(req);if(!id)return json(res,401,{message:'Choose a synthetic practice resident to continue.'});
    const current=await resident(id);

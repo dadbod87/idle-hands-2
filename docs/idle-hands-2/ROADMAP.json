@@ -384,7 +384,7 @@
     {
       "id": "IH2-050",
       "title": "Polished first neighborhood",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-053"
       ],
@@ -400,7 +400,15 @@
       "exclusions": [
         "No broad expansion, marketplace, PvP, guild politics, public chat or monetization."
       ],
-      "evidence": []
+      "evidence": [
+        "docs/evidence/IH2-050/REPORT.md",
+        "docs/evidence/IH2-050/INDEPENDENT_REVIEW.md",
+        "docs/evidence/IH2-050/local-checks.json",
+        "docs/evidence/IH2-050/first-visit-authority.json",
+        "docs/evidence/IH2-050/database-restart.json",
+        "docs/idle-hands-2/handoffs/2026-11-10-first-neighborhood.md"
+      ],
+      "owner_branch": "feat/neighborhood-first-visit"
     },
     {
       "id": "IH2-060",

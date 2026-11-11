@@ -1,0 +1,67 @@
+{
+  "task": "IH2-053",
+  "candidate": "17a88f9722c81392e92a16e1c0feb540522a89c4",
+  "ciRun": 42935075216,
+  "requiredJobs": {
+    "domain-build-plan": "SUCCESS",
+    "browser-playtest": "SUCCESS"
+  },
+  "domainTests": 103,
+  "skipped": 0,
+  "browserTests": 41,
+  "browserMinutes": 12.9,
+  "actualFinalImagesReviewed": [
+    "trail-desktop-entry.png",
+    "trail-desktop-home-wall-pennant.png",
+    "trail-phone-night-outdoor.png",
+    "trail-short-text200-notebook.png",
+    "trail-desktop-opening-journal.png"
+  ],
+  "ciBuildMatchesLocal": true,
+  "originalSvgCount": 82,
+  "canopySamples": 9,
+  "minimumLeafCoverage": 0.9850877192982456,
+  "renderer": {
+    "desktop-metrics": {
+      "textureSmoothing": true,
+      "contextAntialias": false
+    },
+    "phone-metrics": {
+      "textureSmoothing": true,
+      "contextAntialias": false
+    },
+    "short-metrics": {
+      "textureSmoothing": true,
+      "contextAntialias": false
+    },
+    "narrow-metrics": {
+      "textureSmoothing": true,
+      "contextAntialias": false
+    }
+  },
+  "ciP95FrameMs": {
+    "desktop-metrics": 83.40000000000146,
+    "phone-metrics": 33.400000000001455,
+    "short-metrics": 33.399999999999636,
+    "narrow-metrics": 33.399999999999636
+  },
+  "performanceLimits": "One final CI observation, not controlled causal attribution or physical-phone/hostedscale proof. Prior rejectedrun distinct.",
+  "fixtures": "Actual isolated seededbackend; solebridgeSQLtimestampadvance; client/asset/EventSource fixtures explicitlydisclosed. No originalgame/realaccounts/cloud/publicrelease.",
+  "mergeCommit": "7ee4700b719896e0560f35d4970d00b203ed30fe",
+  "mergeTreeMatchesCandidate": true,
+  "worktreeClean": true,
+  "actual4175HtmlJsCssMatchesCI": true,
+  "automaticMainRun": {
+    "id": 42937060661,
+    "statusAtCloseout": "queued"
+  },
+  "laterAutomaticMainVerification": {
+    "id": 42937060661,
+    "status": "completed",
+    "conclusion": "SUCCESS",
+    "jobs": {
+      "domain-build-plan": "SUCCESS",
+      "browser-playtest": "SUCCESS"
+    }
+  }
+}

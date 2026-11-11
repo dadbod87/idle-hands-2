@@ -14,7 +14,7 @@ export const worlds: Record<Room, World> = {
       { id: 'timber', name: 'Timber depot', point: {x:23,y:30}, doorArea:[22.5,27.5,2,2], text: 'Locally sourced. The source was a badly assembled shelf.' },
       { id: 'supplies', name: 'Supply depot', point: {x:25,y:30}, doorArea:[24.5,27.5,2,2], text: 'The essentials. In a box marked non-essential.' },
       { id: 'workshop', name: 'Workshop', point: { x: 20, y: 22 }, transition: 'workshop', arrival: { x: 9, y: 11 }, doorArea: [19.25, 20, 1.5, 2.25], text: 'Your workshop. The desk is temporary. The paperwork is structural.' },
-      { id: 'cafe', name: 'The Almost Open Café', point: { x: 30, y: 22 }, text: 'The opening date is pencilled in. The pencil has requested an extension.' },
+      { id: 'cafe', name: 'The Almost Open Café', point: { x: 30, y: 22 }, doorArea:[30.25,20,1.5,2.25], text: 'The opening date is pencilled in. The pencil has requested an extension.' },
       {id:'home-front',name:'House front door',point:{x:30,y:35.5},doorArea:[29.25,34.75,1.5,2],text:'An earned home. Knock once; the paperwork stays outside.'},
       { id: 'plot', name: 'Future house plots', point: { x: 30, y: 29 }, text: 'Room to put down roots. The full game will let you acquire a plot, upgrade a house and make it yours. No plots are sold in this pilot.' },
       ...TOWN_PEOPLE.map(person=>({id:person.id,name:person.name+' · '+person.role.split(' · ')[0],point:person.point,doorArea:person.doorArea,text:'Talk to '+person.name+'.'})),

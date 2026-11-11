@@ -1,5 +1,5 @@
 import type {WorkshopState} from './workshop.ts';
-export type VisitSnapshot={playerId:string;serverTime:number;workshop:WorkshopState;plot:{id:string;level?:number;tier?:number}|null;bridge:{contributed:number;target:number;restored:boolean}};
+export type VisitSnapshot={playerId:string;serverTime:number;workshop:WorkshopState;plot:{id:string;level?:number;tier?:number}|null;bridge:{contributed:number;target:number;restored:boolean};lesson?:{startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;legacySatisfied:boolean}};
 export type VisitBaseline={version:1;playerId:string;serverTime:number;jobReadyAt:number|null;jobRecipe:string|null;homeId:string|null;homeLevel:number;bridgeCount:number;bridgeOpen?:boolean};
 export function visitBaseline(snapshot:VisitSnapshot):VisitBaseline{return{version:1,playerId:snapshot.playerId,serverTime:snapshot.serverTime,jobReadyAt:snapshot.workshop.job?.readyAt??null,jobRecipe:snapshot.workshop.job?.recipe??null,homeId:snapshot.plot?.id??null,homeLevel:snapshot.plot?.level??snapshot.plot?.tier??0,bridgeCount:snapshot.bridge.contributed,bridgeOpen:snapshot.bridge.restored};}
 export function parseVisit(value:unknown,playerId:string):VisitBaseline|null{
@@ -12,6 +12,16 @@ export function returnSummary(current:VisitSnapshot,previous:VisitBaseline|null)
  else{const minutes=Math.floor((current.serverTime-previous.serverTime)/60_000);lines.push('Since the last confirmed check'+(minutes>=60?' · '+Math.floor(minutes/60)+'h '+minutes%60+'m':minutes?' · '+minutes+'m':'')+'.');if(current.plot&&previous.homeId===current.plot.id&&(current.plot.level??current.plot.tier??0)>previous.homeLevel)lines.push('Your home expansion is saved, with its existing furnishings.');if(current.bridge.contributed>previous.bridgeCount)lines.push('The town project advanced from '+previous.bridgeCount+' to '+current.bridge.contributed+' contributions.');if(previous.bridgeOpen===false&&current.bridge.restored)lines.push('The bridge opened. Your access to the restored trail stays saved.');}
  const job=current.workshop.job;
  lines.push(job?(job.readyAt<=current.serverTime?'Your '+(job.recipe==='planter'?'planter':'bridge kit')+' is ready to collect. It has not been added to your bag.':'Your bench job is still running. The bench uses real time and never repeats automatically.'):'No bench job is queued. Queue one when you next visit the workshop.');
+ const lesson=current.lesson;
+ if(lesson){
+  if(lesson.legacySatisfied)lines.push('Your earlier bridge participation already satisfies orientation maintenance.');
+  else if(lesson.redeemed)lines.push('Your orientation maintenance participation is recorded with the bridge committee.');
+  else if(lesson.completed)lines.push('Your paid maintenance credit is ready to record with the bridge committee. It has not been recorded there yet.');
+  else if(lesson.startedAt!==null&&lesson.readyAt!==null){
+   if(lesson.readyAt<=current.serverTime)lines.push('Your paid orientation maintenance is ready to collect at the workbench. Collect its participation credit before visiting the bridge committee.');
+   else{const seconds=Math.ceil((lesson.readyAt-current.serverTime)/1000);lines.push('Your paid orientation maintenance is preparing: '+(seconds>=60?Math.floor(seconds/60)+'m '+seconds%60+'s':seconds+'s')+' remaining. Its materials are already paid; your bench job keeps its own timer.');}
+  }else lines.push('Orientation maintenance has not started. Review its quote at the workbench before paying.');
+ }
  lines.push('Personal depots recover one unit every 4 real hours, up to 6 each and at most 24 hours per absence. Completed work waits for collection.');
  lines.push('No currency or items are awarded by this summary. Your bag shows the server-confirmed quantities.');return lines;
 }

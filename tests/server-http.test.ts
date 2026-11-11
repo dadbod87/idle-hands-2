@@ -1,4 +1,6 @@
 import {test} from 'node:test';
+import {createHmac} from 'node:crypto';
+import {createWorkshop} from '../src/game/workshop.ts';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {spawn,type ChildProcess} from 'node:child_process';
@@ -26,6 +28,21 @@ test('local authoritative HTTP lifecycle and isolation',{skip:!enabled},async t=
  async function fixtureKits(id:string,kits=8){const s=await app.store.snapshot(id);s.workshop.bridgeKits=kits;s.workshop.owned.planter=2;await pool.query('update ih2.players set workshop=$2 where id=$1',[id,s.workshop]);}
  t.beforeEach(async()=>{await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');await migrate(pool);clock=Date.UTC(2026,10,10,12);await start();});
  t.afterEach(async context=>{caseMetrics.push({case:context.name,...app.metrics});await app.close();});
+ await t.test('fixture configuration rejects invalid rosters and preserves the default three identities',async()=>{
+  for(const fixtureResidents of [[],Array.from({length:33},(_,n)=>({id:'resident-'+n,name:'Resident'})),[{id:'drew',name:'Drew'},{id:'drew',name:'Other'}],[{id:'Drew',name:'Drew'}],[{id:'../drew',name:'Drew'}],[{id:'a'.repeat(33),name:'Drew'}],[{id:'drew',name:'   '}],[{id:'drew',name:'x'.repeat(65)}]])assert.throws(()=>createTownServer({pool,secret,fixtureResidents}),/./);
+  const listed=await(await fetch(base+'/api/town/fixtures')).json();assert.deepEqual(listed.fixtures,[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}]);
+  assert.equal((await post('login',{fixtureId:'drew'})).status,400);assert.equal((await pool.query('select count(*)::int as count from ih2.players')).rows[0].count,0);
+ });
+ await t.test('configured roster is copied and governs fresh progress, signed membership and presence names',async()=>{
+  await app.close();const roster=[{id:'aster',name:'  Custom Aster  '},{id:'drew',name:'  Drew  '}];app=createTownServer({pool,secret,now:()=>clock,port:0,fixtureResidents:roster});base='http://127.0.0.1:'+await app.listen();roster[1].id='outsider';roster[1].name='Changed';roster.push({id:'forged',name:'Forged'});
+  const listed=await(await fetch(base+'/api/town/fixtures')).json();assert.deepEqual(listed.fixtures,[{id:'aster',name:'Custom Aster'},{id:'drew',name:'Drew'}]);assert.equal((await pool.query('select count(*)::int as count from ih2.players')).rows[0].count,0,'Listing fixtures must not create any resident.');
+  for(const fixtureId of ['bea','outsider','forged','arbitrary'])assert.equal((await post('login',{fixtureId})).status,400);
+  const d=await login('drew');assert.equal(d.snapshot.name,'Drew');assert.deepEqual(d.snapshot.workshop,createWorkshop(clock));assert.equal(d.snapshot.plot,null);assert.deepEqual(d.snapshot.trail.stamps,[]);assert.equal(d.snapshot.trail.pennantOwned,false);assert.deepEqual(d.snapshot.quest.awarded,[]);
+  // Even a correctly signed payload is not an identity unless it belongs to this roster.
+  const payload=Buffer.from(JSON.stringify({id:'bea',expires:clock+10000})).toString('base64url');const mac=createHmac('sha256',secret).update(payload).digest('base64url');assert.equal((await fetch(base+'/api/town/snapshot',{headers:{Cookie:'ih2_fixture='+payload+'.'+mac}})).status,401);
+  const a=await login('aster'),controllers=[new AbortController(),new AbortController()];const streams=await Promise.all([a,d].map((actor,i)=>fetch(base+'/api/town/events',{headers:{Cookie:actor.cookie},signal:controllers[i].signal})));const reader=streams[0].body!.getReader();let text='';try{for(let n=0;n<6&&!text.includes('Drew');n++)text+=new TextDecoder().decode((await reader.read()).value);assert.match(text,/"id":"drew","name":"Drew"/);assert.doesNotMatch(text,/Changed|outsider/);}finally{for(const controller of controllers)controller.abort();await reader.cancel().catch(()=>{});await streams[1].body?.cancel().catch(()=>{});}
+  await app.close();await start();assert.equal((await fetch(base+'/api/town/snapshot',{headers:{Cookie:d.cookie}})).status,401,'A valid cookie for a removed roster member must be refused.');
+ });
  await t.test('identity, origin and payload boundaries reject forged client authority',async()=>{
   assert.equal((await fetch(base+'/api/town/snapshot')).status,401);assert.equal((await post('login',{fixtureId:'administrator'})).status,400);
   const a=await login();assert.match(a.cookie,/ih2_fixture=/);const forged=a.cookie.slice(0,-1)+(a.cookie.endsWith('a')?'b':'a');assert.equal((await fetch(base+'/api/town/snapshot',{headers:{Cookie:forged}})).status,401);

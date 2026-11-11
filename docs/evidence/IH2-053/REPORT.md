@@ -36,3 +36,6 @@ Separate local software rendering probe measures25–28%lower mean frame interva
 Reproduce the bounded renderer measurement against the local built preview with `node tools/probe-renderer.mjs`; output goes to ignored test-results/renderer-probe.json. It explicitly sets context MSAA true/false so comparison remains valid after the default changes; loopback-only browser practice, no backend or real progress.
 
 The committed diagnostic was also executed against the optimized artifact: native16.67ms; software single25.97→19.79ms, three-context means~83.3→59.6ms. Requested context attributes were verified in every case. [Reproduced raw sample](renderer-probe-reproduced.json). This corroborates the same-machine observation; it is not a hosted causal comparison.
+
+## Closed source gate
+PR#10 merged as7ee4700b719896e0560f35d4970d00b203ed30fe after exactcandidate17a88f9722c81392e92a16e1c0feb540522a89c4 /CI42935075216 passed103zero skips/41browser cases12.9min. Actual final CI images,9canopy samples(min98.5088%), build82SVGhashes and actual4175responses reviewed; merge tree equal/localmainclean. [Exact closeout](source-closeout.json). Later automaticmain run status is separate, not inferred from the PR. Next050owns integrated guidance; no hosted release.

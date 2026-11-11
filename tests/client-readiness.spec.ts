@@ -2,6 +2,48 @@ import {test,expect} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {createWorkshop} from '../src/game/workshop.ts';
 
+test('menu backdrop redraw is bounded while clocks, resize and close-to-walk remain live',async({page})=>{
+ const evidence=process.env.QA_EVIDENCE_DIR??'test-results/browser';
+ await page.addInitScript(()=>{
+  const interval=window.setInterval;const ids:number[]=[];(window as any).__menuIntervals=ids;
+  window.setInterval=function(handler:TimerHandler,delay?:number,...args:unknown[]){const id=interval.call(window,handler,delay,...args);if(delay===1000)ids.push(id);return id;} as typeof window.setInterval;
+ });
+ await page.goto('/');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+ await page.getByRole('button',{name:'Open field guide'}).click();
+ await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.metrics().presentation.menuBackdropPaused)).toBe(true);
+ const initial=await page.evaluate(()=>(window as any).__pilot.metrics().presentation.renderedFrames);
+ const position=await page.evaluate(()=>(window as any).__pilot.snapshot().position);
+ const clock=await page.locator('#guide-sky').textContent();
+ await page.keyboard.down('ArrowRight');await page.waitForTimeout(2400);
+ const redraws=await page.evaluate(()=>(window as any).__pilot.metrics().presentation.renderedFrames)-initial;
+ expect(redraws).toBeGreaterThanOrEqual(1);expect(redraws).toBeLessThanOrEqual(4);
+ await expect.poll(()=>page.locator('#guide-sky').textContent()).not.toBe(clock);
+ expect(await page.evaluate(()=>(window as any).__pilot.snapshot().position)).toEqual(position);
+ // Only after proving the normal clocks: isolate resize-triggered rendering
+ // from periodic refreshes in this disposable local graphics-only page.
+ await page.evaluate(()=>{for(const id of (window as any).__menuIntervals)window.clearInterval(id);});
+ const resizeAt=Date.now();await page.setViewportSize({width:844,height:390});
+ await expect.poll(async()=>{const canvas=(await page.locator('canvas').boundingBox())!,world=(await page.locator('.world-wrap').boundingBox())!;return Math.abs(canvas.width-world.width)+Math.abs(canvas.height-world.height);}).toBeLessThan(3);
+ await expect(page.getByRole('button',{name:'Close panel'})).toBeInViewport();
+ // Actual compositor pixels outside the modal must retain the world after a
+ // canvas resize, rather than merely reporting correct DOM dimensions.
+ let visibleFraction=0;const resizeSamples:Array<{ms:number;frames:number;visible:number}>=[];
+ await expect.poll(async()=>{
+  const canvas=(await page.locator('canvas').boundingBox())!;
+  const png=await page.screenshot({clip:{x:canvas.x+12,y:canvas.y+80,width:100,height:80}});
+  visibleFraction=await page.evaluate(async data=>{const image=new Image();image.src='data:image/png;base64,'+data;await image.decode();const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;const context=canvas.getContext('2d')!;context.drawImage(image,0,0);const pixels=context.getImageData(0,0,canvas.width,canvas.height).data;let visible=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i+1]>45&&pixels[i]>25)visible++;return visible/(pixels.length/4);},png.toString('base64'));
+  resizeSamples.push({ms:Date.now()-resizeAt,frames:await page.evaluate(()=>(window as any).__pilot.metrics().presentation.renderedFrames),visible:visibleFraction});
+  return visibleFraction;
+ }).toBeGreaterThan(.85);
+ const resizeRecoveryMs=Date.now()-resizeAt;
+ mkdirSync(evidence,{recursive:true});await page.screenshot({path:evidence+'/menu-backdrop-short-live-clock.png'});
+ await page.getByRole('button',{name:'Close panel'}).click();await page.waitForTimeout(150);await page.keyboard.up('ArrowRight');
+ expect(await page.evaluate(()=>(window as any).__pilot.snapshot().position)).toEqual(position);
+ await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.metrics().presentation.menuBackdropPaused)).toBe(false);
+ await page.keyboard.down('ArrowRight');try{await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().position.x)).toBeGreaterThan(position.x+.1);}finally{await page.keyboard.up('ArrowRight');}
+ writeFileSync(evidence+'/menu-backdrop.json',JSON.stringify({disclosure:'Disposable local browser-only mode. Normal clock/redraw proof first; then recorded one-second window timers are stopped in this page to prove resize repaint independently of periodic fallback. No HTTP/stock/position overrides or grants. Desktop then844x390viewport emulation, not a physical device.',redraws,windowMs:2400,position,clock,visibleFraction,resizeRecoveryMs,resizeSamples,framePolicy:'Modal backdrop only: one redraw/second plus two-frame resize refresh. Timers and authority continue; modal frame intervals do not enter active-play samples.'},null,2));
+});
+
 test('intercepted boot fixture: a saved resident arriving before art unlocks movement without opening a menu',async({page})=>{
  const evidence=process.env.QA_EVIDENCE_DIR??'test-results/browser',workshop=createWorkshop(Date.now());
  let releaseGround!:()=>void;const groundHeld=new Promise<void>(resolve=>releaseGround=resolve);

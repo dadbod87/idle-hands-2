@@ -1,0 +1,29 @@
+{
+  "candidate": "f5f1dba0e3857ed151f45fc5f068e058be224369",
+  "run": 42941245436,
+  "attempts": [
+    {
+      "attempt": 1,
+      "domain": "SUCCESS;114zero skips",
+      "browserJob": "CANCELLED20minute deadline",
+      "browserCases": "42PASS19.1minutes; command finished as total job budget expired",
+      "assertionFailures": 0
+    },
+    {
+      "attempt": 2,
+      "reason": "Single evidence-justified rerun after all42passed at job boundary",
+      "domain": "Prior same-head SUCCESS retained",
+      "browserJob": "CANCELLED20minute deadline",
+      "browserCases": "41PASS; final fresh case interrupted, outcome unknown",
+      "assertionFailuresLogged": 0
+    }
+  ],
+  "acceptance": "Neither cancelled job satisfies required success; no merge. Preserve assertions,20minute workflow and test deadlines. No further unchanged rerun.",
+  "artifacts": "Both attempts archived separately outside Git; same-name artifact uploads are attempt-scoped and both artifactIDs remain accessible.",
+  "localIntermediateValidation": {
+    "initialMenuVersion": "43functional PASS5.8m, actual resize screenshot rejected blank backdrop",
+    "conditionalObserverVersion": "42PASS, final gameplay assertions completed but context trace cleanup failed ENOENT",
+    "cause": "Root ran a separate diagnostic Playwright configuration using the default test-results outputDir while a full suite was active; diagnostic cleanup removed its trace files. This is a test orchestration error, not accepted gameplay/CI proof.",
+    "correction": "Separate diagnostic output directories; final complete suite runs alone against corrected observer. No assertions or timeouts removed."
+  }
+}

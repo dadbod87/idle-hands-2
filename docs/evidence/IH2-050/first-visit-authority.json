@@ -1,8 +1,8 @@
 {
   "method": "Actual isolated ih2_browser ordinary fresh Drew,360×640 touch emulation and844×390 with200%DOM text. No interceptions, SQL, clock/position overrides or progress grants. Existing ordered tests opened the bridge; first-input timings are automated UI execution, not owner reading/playtest or physical-device evidence.",
   "timings": {
-    "queueMs": 14949,
-    "upkeepMs": 82252
+    "queueMs": 14777,
+    "upkeepMs": 81733
   },
   "guidance": {
     "fresh": "Orientation: Something from almost nothing — Tap a material bin in the square. Gather scrap, timber and supplies for your first planter.",
@@ -19,12 +19,12 @@
   },
   "queuedJob": {
     "recipe": "bridge-kit",
-    "startedAt": 1794360678924,
-    "readyAt": 1794403878924
+    "startedAt": 1794365579392,
+    "readyAt": 1794408779392
   },
   "lesson": {
-    "startedAt": 1794360679458,
-    "readyAt": 1794360739458,
+    "startedAt": 1794365579839,
+    "readyAt": 1794365639839,
     "completed": true,
     "redeemed": true,
     "route": "upkeep",
@@ -41,77 +41,77 @@
     "target": 3,
     "restored": true,
     "phase": "open",
-    "startedAt": 1794338969152,
-    "readyAt": 1794360569152,
-    "openedAt": 1794360569152,
+    "startedAt": 1794343869237,
+    "readyAt": 1794365469237,
+    "openedAt": 1794365469237,
     "grandfathered": false
   },
   "commands": [
     {
       "kind": "gather",
       "resource": "scrap",
-      "id": "5f8848ef-4362-482f-a982-654d7220a521",
+      "id": "0b9b1922-a133-4578-9f38-a77a3ba2767b",
       "expectedRevision": 0
     },
     {
       "kind": "gather",
       "resource": "timber",
-      "id": "2c4c901f-9cc0-4420-83ca-0b8ce719de22",
+      "id": "c5148e23-bfa9-42e0-bcb1-2906a8463c30",
       "expectedRevision": 1
     },
     {
       "kind": "gather",
       "resource": "supplies",
-      "id": "007bf1d2-a245-4283-b664-89b9f4f7abf8",
+      "id": "fea60ee1-bb53-49c5-a672-8437d8630638",
       "expectedRevision": 2
     },
     {
       "kind": "craft",
       "recipe": "planter",
-      "id": "ecc7bda7-cedc-46b9-b7ac-ff885e60152c",
+      "id": "fae4058a-91ac-4777-8ef5-62f51082eb19",
       "expectedRevision": 3
     },
     {
       "kind": "claim",
-      "id": "57b3daad-4991-4312-92c2-77d916f8cc81",
+      "id": "09ed16f3-22da-4d59-b350-c8ec310b833e",
       "expectedRevision": 4
     },
     {
       "kind": "place",
       "prop": "planter",
       "slot": "north-west",
-      "id": "b2843bf9-d54b-4569-85ea-c91c99e5a10c",
+      "id": "83b188e6-cb5b-4783-9bd5-7413e5f38d35",
       "expectedRevision": 5
     },
     {
       "kind": "craft",
       "recipe": "bridge-kit",
-      "id": "0f035193-55ec-4444-b30c-9d8e1929f81f",
+      "id": "bc7982c1-3c91-433d-94ab-52ed9ab9dc57",
       "expectedRevision": 6
     },
     {
       "kind": "start-lesson",
       "route": "upkeep",
       "expectedBridgeContributed": 3,
-      "id": "3715b71e-7bc2-4f84-9475-bf70b09b71eb",
+      "id": "c046182d-26c9-40c1-8c1d-29fc64d170fb",
       "expectedRevision": 7
     },
     {
       "kind": "complete-lesson",
-      "id": "25183036-26aa-435b-8178-a7c8aff2a687",
+      "id": "e7229497-4c20-46bf-8f53-2db31d0c3f7a",
       "expectedRevision": 8
     },
     {
       "kind": "redeem-lesson",
       "route": "upkeep",
       "expectedBridgeContributed": 3,
-      "id": "c7eea80d-8de0-498b-9a28-e7f0e3325219",
+      "id": "1e60b256-5b4a-44c3-ade3-16a4d5760f33",
       "expectedRevision": 9
     },
     {
       "kind": "stamp-trail",
       "landmarkId": "trailhead",
-      "id": "b7199759-fa49-4f88-9ebe-901d668b496d",
+      "id": "eed56581-4315-405e-aabb-a8eb938fc898",
       "expectedRevision": 10
     }
   ],

@@ -27,6 +27,10 @@ export class WorldScene extends Phaser.Scene {
   skyFixture:TownClimate|null=null;
   private sky?:TownSky;
   climateState(){return this.sky?.snapshot()??null;}
+  // A menu can retain a quiet world frame without accumulating held input or
+  // counting its intentional redraw interval as playable-world frame latency.
+  private samplePresentationFrames=true;
+  resetPresentationFrame(activePlay=true){this.samplePresentationFrames=activePlay;this.keys.clear();this.movementReset=true;this.lastFrame=0;}
   private canopies:Array<{key:string;image:Phaser.GameObjects.Image;phase:number;baseX:number}>=[];
   private townfolk:Array<{id:string;image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text}>=[];
   private steam?:Phaser.GameObjects.Graphics;
@@ -189,8 +193,8 @@ export class WorldScene extends Phaser.Scene {
     this.updateAmbient(delta);
     this.sky?.update(this.skyNow(),delta,this.room==='workshop'||this.room.startsWith('home'),this.ambientEnabled,this.skyFixture);
     for(const item of this.occluders){const hidden=x>item.x&&x<item.x+item.width&&y<item.y&&y>item.y-item.height;item.image.setAlpha(hidden?.55:1);}
-    if (this.lastFrame && !document.hidden) { this.frameSamples.push(time - this.lastFrame); if (this.frameSamples.length > 600) this.frameSamples.shift(); }
-    this.lastFrame = time;
+    if (this.samplePresentationFrames && this.lastFrame && !document.hidden) { this.frameSamples.push(time - this.lastFrame); if (this.frameSamples.length > 600) this.frameSamples.shift(); }
+    this.lastFrame = this.samplePresentationFrames?time:0;
     if((this.room==='workshop'||this.room.startsWith('home'))&&this.decorations){
       const placements=this.decorations(),key=JSON.stringify(placements);
       if(key!==this.decorationKey){

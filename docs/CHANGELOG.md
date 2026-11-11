@@ -35,3 +35,5 @@
 2026-11-09 — Separate local source created from planning at current-game merge 9904bde24e01cec344e6c5f4a753d53cf43396d7.
 
 2026-11-10 — IH2-053 validation follow-up: rejected CI found a first-intent test hold incorrectly capturing a later doorway retry. Scoped transport fixture and added deterministic one-checkpoint regression without weakening authority/input checks. Measured context-only MSAA reduction preserves smooth SVG textures and improves local software frame interval; full41case and exact CI gate remain required. No game economy or ordinary timer change.
+
+2026-11-10 — IH2-050 validation follow-up: measured modal backdrop rendering reduction keeps menu controls responsive while DOM/server timers continue. One-second refresh, complete resize redraw and close-to-walk input/frame reset; actual PNG assertion follows visual rejection of a blank resized backdrop. Preserve all prior tests and20minute CI gate; rejected cancelled attempts remain disclosed.

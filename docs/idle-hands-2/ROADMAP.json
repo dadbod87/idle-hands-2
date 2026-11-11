@@ -406,7 +406,11 @@
         "docs/evidence/IH2-050/local-checks.json",
         "docs/evidence/IH2-050/first-visit-authority.json",
         "docs/evidence/IH2-050/database-restart.json",
-        "docs/idle-hands-2/handoffs/2026-11-10-first-neighborhood.md"
+        "docs/idle-hands-2/handoffs/2026-11-10-first-neighborhood.md",
+        "docs/evidence/IH2-050/menu-backdrop.json",
+        "docs/evidence/IH2-050/menu-backdrop-probe.json",
+        "docs/evidence/IH2-050/resize-observer-probe.json",
+        "docs/evidence/IH2-050/rejected-ci.json"
       ],
       "owner_branch": "feat/neighborhood-first-visit"
     },

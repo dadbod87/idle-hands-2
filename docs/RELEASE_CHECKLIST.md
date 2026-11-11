@@ -73,3 +73,5 @@
 - Current Bag/guide/clerk/café goals preserve paid preparation/ready/held/recorded/legacy distinctions, no duplicate charge or auto-award. Café is exterior inspect-only; direct door, real workshop return, reachable short200%scrolling UI.
 - Default3synthetic residents unchanged; bounded copied/frozen test roster rejects invalid/duplicate IDs, unknown logins/signed nonmembers and input mutation. Selectable local identity is not production auth.
 -114domain/server/art/design tests (zero skips), full42browser cases, exact CI jobs and actual final images/build before merge; record real automated timings without a human-time/fun/physical-phone claim. No new recipes/costs/timers, original-game or hosted release.
+
+- 050modal-render follow-up: require full43cases including actual retained-backdrop pixels afterresize, advancing guide/production clocks, boot/pending-request/cache/close-to-walk regressions and unchanged active-play metrics. Keep20minute CI budget and every preexisting assertion. Rejectedf5runs and visually blank one-frame resize remain separately disclosed; exact final CI gain is measured, never inferred from local software probe.

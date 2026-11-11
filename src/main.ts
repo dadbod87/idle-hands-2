@@ -42,23 +42,44 @@ const game = new Phaser.Game({
   render: { antialias: true, antialiasGL: false, pixelArt: false }, audio: { noAudio: true },
   fps: { target: 60 }, scene: [scene]
 });
+let renderedFrames=0;game.events.on(Phaser.Core.Events.POST_RENDER,()=>{renderedFrames++;if(menuRenderPaused&&menuFrameBudget>0&&--menuFrameBudget===0)pauseMenuRender();});
 scene.onWalkFailure=()=>feedback.textContent='That spot cannot be reached. Try a clear patch of ground or tap a named prop.';
 const worldContainer=document.querySelector<HTMLElement>('#world')!;
 const updateTextMode=()=>app.querySelector('.shell')?.classList.toggle('large-text',parseFloat(getComputedStyle(document.documentElement).fontSize)>20);
 updateTextMode();
-const worldResize=new ResizeObserver(entries=>{updateTextMode();const {width,height}=entries[0].contentRect;if(game.isBooted&&width>0&&height>0&&(Math.abs(game.scale.width-width)>.5||Math.abs(game.scale.height-height)>.5))game.scale.setParentSize(width,height);});
+const worldResize=new ResizeObserver(entries=>{
+ updateTextMode();const {width,height}=entries[0].contentRect;
+ if(game.isBooted&&width>0&&height>0){
+  if(Math.abs(game.scale.width-width)>.5||Math.abs(game.scale.height-height)>.5)game.scale.setParentSize(width,height);
+  // Phaser RESIZE may already have changed the canvas before this observer.
+  // Its cleared target still needs repainting while the modal owns the pause.
+  refreshMenuFrame(2);
+ }
+});
 worldResize.observe(worldContainer);
 let ready = false;
 let lastContext = '';
 let portalIntent=0;
+let menuRenderPaused=false,menuFrameBudget=0;
+function pauseMenuRender(){if(!ready||!panel.open)return;menuRenderPaused=true;scene.resetPresentationFrame(false);game.pause();}
+function resumeMenuRender(){if(!menuRenderPaused)return;menuRenderPaused=false;menuFrameBudget=0;scene.resetPresentationFrame();game.resume();}
+function refreshMenuFrame(frames=1){
+  if(!menuRenderPaused||!panel.open||document.hidden)return;
+  // Resize can recreate WebGL targets; allow its resize/update cycle plus complete
+  // subsequent renders. Ordinary menu clock updates need only one frame.
+  menuFrameBudget=Math.max(menuFrameBudget,frames);scene.resetPresentationFrame(false);game.resume();
+}
+// DOM clocks and authoritative requests keep running. Only the noninteractive
+// backdrop redraws once a second while a modal covers the locked world.
+window.setInterval(()=>refreshMenuFrame(),1000);
 function save() { if(townMode)return; try { localStorage.setItem(saveKey, JSON.stringify(session.save())); } catch { feedback.textContent = 'Position could not be saved in this browser. The pilot remains playable.'; } }
 function focusWorld() { document.querySelector('canvas')?.focus(); }
 function unlockWorld(){if(session.locked&&!panel.open&&!transitionBusy&&(!townMode||!!town?.snapshot&&!needResync&&!town.retryAvailable))session.lock(false);}
-function closePanel() { workshop.closed(); panel.close();unlockWorld(); focusWorld(); }
+function closePanel() { workshop.closed(); panel.close();resumeMenuRender();unlockWorld(); focusWorld(); }
 panel.addEventListener('submit', event => { event.preventDefault(); closePanel(); });
-panel.addEventListener('close', () => { workshop.closed();unlockWorld(); focusWorld(); });
+panel.addEventListener('close', () => { workshop.closed();resumeMenuRender();unlockWorld(); focusWorld(); });
 panel.addEventListener('cancel', event => {event.preventDefault();closePanel();});
-function openPanel(heading: string) { workshop.closed();body.removeAttribute('aria-busy');pendingHomePlotId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal(); }
+function openPanel(heading: string) { workshop.closed();body.removeAttribute('aria-busy');pendingHomePlotId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal();pauseMenuRender(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }
 let townUI:TownUI|undefined;
 let pendingHomePlotId:string|undefined;
@@ -211,7 +232,7 @@ Object.defineProperty(window, '__pilot', { value: Object.freeze({
   workshop:()=>workshop.snapshot(),
   metrics: () => {
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);
-    return { climate:scene.climateState(), ready, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };
+    return { climate:scene.climateState(), ready, presentation:{menuBackdropPaused:menuRenderPaused,renderedFrames}, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };
   },
   screenPoint: (x: number, y: number) => { const c = scene.cameras.main; return { x: (x + .5) * 32 - c.scrollX, y: (y + .5) * 32 - c.scrollY }; }
 }), writable: false });

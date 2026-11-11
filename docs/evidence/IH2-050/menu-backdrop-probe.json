@@ -1,0 +1,149 @@
+{
+  "method": "Same machine, fixed baseline then candidate order; actual prior CI client artifact vs local candidate, three1440x900software ANGLE SwiftShader contexts with actual DOM field guide open. Four-second browser rAF/CDP TaskDuration windows; not physical-device or CI timing proof. No API or progress grants.",
+  "results": [
+    {
+      "label": "baseline",
+      "samples": [
+        {
+          "raf": {
+            "count": 72,
+            "mean": 55.55277777777777,
+            "p95": 83.39999999999964
+          },
+          "taskSeconds": 0.030493,
+          "scriptSeconds": 0.018464,
+          "position": {
+            "version": 1,
+            "room": "square",
+            "position": {
+              "x": 24,
+              "y": 25
+            },
+            "locked": true,
+            "walking": false,
+            "nearby": null
+          },
+          "dialog": true
+        },
+        {
+          "raf": {
+            "count": 72,
+            "mean": 55.55277777777778,
+            "p95": 83.40000000000055
+          },
+          "taskSeconds": 0.031363,
+          "scriptSeconds": 0.019357,
+          "position": {
+            "version": 1,
+            "room": "square",
+            "position": {
+              "x": 24,
+              "y": 25
+            },
+            "locked": true,
+            "walking": false,
+            "nearby": null
+          },
+          "dialog": true
+        },
+        {
+          "raf": {
+            "count": 72,
+            "mean": 53.47083333333333,
+            "p95": 100
+          },
+          "taskSeconds": 0.058358,
+          "scriptSeconds": 0.022863,
+          "position": {
+            "version": 1,
+            "room": "square",
+            "position": {
+              "x": 24,
+              "y": 25
+            },
+            "locked": true,
+            "walking": false,
+            "nearby": null
+          },
+          "dialog": true
+        }
+      ],
+      "fourMenuRoundTripsMs": 966.523083
+    },
+    {
+      "label": "candidate",
+      "samples": [
+        {
+          "raf": {
+            "count": 241,
+            "mean": 16.666390041493777,
+            "p95": 16.799999999999272
+          },
+          "taskSeconds": 0.026854,
+          "scriptSeconds": 0.006807,
+          "position": {
+            "version": 1,
+            "room": "square",
+            "position": {
+              "x": 24,
+              "y": 25
+            },
+            "locked": true,
+            "walking": false,
+            "nearby": null
+          },
+          "dialog": true
+        },
+        {
+          "raf": {
+            "count": 240,
+            "mean": 16.666249999999973,
+            "p95": 16.799999999999727
+          },
+          "taskSeconds": 0.030543999999999998,
+          "scriptSeconds": 0.010776,
+          "position": {
+            "version": 1,
+            "room": "square",
+            "position": {
+              "x": 24,
+              "y": 25
+            },
+            "locked": true,
+            "walking": false,
+            "nearby": null
+          },
+          "dialog": true
+        },
+        {
+          "raf": {
+            "count": 235,
+            "mean": 16.665957446808456,
+            "p95": 16.700000000000728
+          },
+          "taskSeconds": 0.053237999999999994,
+          "scriptSeconds": 0.01288,
+          "position": {
+            "version": 1,
+            "room": "square",
+            "position": {
+              "x": 24,
+              "y": 25
+            },
+            "locked": true,
+            "walking": false,
+            "nearby": null
+          },
+          "dialog": true
+        }
+      ],
+      "fourMenuRoundTripsMs": 255.56933299999946
+    }
+  ],
+  "baselineSource": "f5f1dba0e3857ed151f45fc5f068e058be224369 actual archived CI client artifact",
+  "candidateBuild": {
+    "dist/index.html": "5d3a7d08931c3dc76e799ab8aa33592f362650ed9ddb80a99d99a575a58fe79f",
+    "dist/assets/index-BunPS2IJ.js": "7bd693dee624095cb80107ec5de579c767de6504e207b4c704263b766c8f68da",
+    "dist/assets/index-BBShWDam.css": "ccbe6268741da4879a69cc2a50eb9380959590c11996e20efe4deec83cc929b7"
+  }
+}

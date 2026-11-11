@@ -1,0 +1,18 @@
+{
+  "disclosure": "Isolated graphics diagnostic: all one-second window intervals disabled before boot in local browser-only mode to isolate resize-triggered redraws from periodic refresh. No API or real-player data; not a clock correctness test.",
+  "rows": [
+    {
+      "label": "conditional observer; no resize redraw",
+      "visible": 0,
+      "elapsedMs": 354,
+      "frames": 0
+    },
+    {
+      "label": "corrected observer; two resize redraws",
+      "visible": 1,
+      "elapsedMs": 331,
+      "frames": 2
+    }
+  ],
+  "finding": "Phaser RESIZE had already changed the canvas dimensions before our observer; refresh must occur even when no manual setParentSize call is needed."
+}

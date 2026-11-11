@@ -1,0 +1,56 @@
+{
+  "disclosure": "Real UI→HTTP→isolatedSQL→reload and different signed fictional resident. No API/time/position interceptions or new grants. Uses existing browser Casey/Bea48kit/2planter fixtures; not real accounts or hosted authentication.",
+  "requests": [
+    {
+      "kind": "garden",
+      "action": "accept-errand",
+      "id": "545fd6cc-21db-4b43-beb2-331e7eb75ead"
+    },
+    {
+      "kind": "garden",
+      "action": "inspect-stake",
+      "id": "d10ab722-a337-41da-a931-b0813cab58f8"
+    },
+    {
+      "kind": "garden",
+      "action": "inspect-stake",
+      "id": "6a374f7d-2d6a-4247-8109-ecbdcb9acc8b"
+    },
+    {
+      "kind": "garden",
+      "action": "inspect-stake",
+      "id": "2dfbe6c9-ee81-425c-8ce5-be989e2c978c"
+    },
+    {
+      "kind": "garden",
+      "action": "inspect-stake",
+      "id": "30400abc-9cf1-4b66-9328-835bba31a9bc"
+    },
+    {
+      "kind": "garden",
+      "action": "assemble-marker",
+      "id": "6c3ab7a3-c1fb-4971-87e1-ffd6d391cd77"
+    },
+    {
+      "kind": "garden",
+      "action": "display-marker",
+      "id": "ac5d64b6-9434-4b4b-8e7f-005173e610e7"
+    },
+    {
+      "kind": "garden",
+      "action": "make-marker",
+      "id": "557acff7-7bf0-4954-8e11-9334f48c305a"
+    }
+  ],
+  "protectedKeys": [
+    "inventory",
+    "owned",
+    "placements",
+    "job",
+    "skills",
+    "stats",
+    "bridgeKits",
+    "sketches"
+  ],
+  "errors": []
+}

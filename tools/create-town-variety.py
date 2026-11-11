@@ -129,7 +129,7 @@ RESIDENTS = {
 }
 
 
-def resident(c, facing, pose):
+def resident(c, facing, pose, action=None, action_phase=0):
     phase = 2*pi*(pose-1)/6 if pose else 0
     swing = sin(phase)*4 if pose else 0
     bob = abs(sin(phase))*0.8 if pose else 0
@@ -166,7 +166,28 @@ def resident(c, facing, pose):
             b += path('M32 37v20M22 47h6v5h-6M36 47h6v5h-6', stroke='#c1c4b3', sw=1.2)
         elif facing == 'north':
             b += path('M24 43q8-3 16 0', stroke='#8490a2', sw=1.5)
-    if not side:
+    if action:
+        # Original garden actions reuse the same identity/feet; default walk output is unchanged.
+        phase = action_phase
+        hx = 44 if side else right+1
+        hy = (41-phase*5) if facing == 'north' else (49+phase*9 if action == 'sow' else 42-phase*3 if action == 'inspect' else 51-phase*4)
+        sx = 35 if side else right-2
+        b += path(f'M{sx} 37Q{hx+3} 42 {hx} {hy}', stroke=c['sleeve'], sw=6)
+        b += ellipse(hx,hy,3.2,3.6,c['skin'],INK,1.2)
+        if not side:
+            b += path(f'M{left+2} 37Q{left-3} 44 {left+3} 49', stroke=c['sleeve'], sw=6)
+            b += ellipse(left+3,49,3.2,3.6,c['skin'],INK,1.2)
+        if action == 'sow':
+            b += path(f'M{hx-3} {hy-2}l6 2-2 8-6-2Z', PAPER, INK, 1)
+            b += ellipse(hx-2,hy+11+phase*2,1.7,1.2,'#b87c67')
+        elif action == 'inspect':
+            b += path(f'M{hx} {hy}l3-7', stroke='#9c7850', sw=3)
+            b += ellipse(hx+5,hy-11,5,5,'#b9d0c7',INK,1.2)
+        else:
+            b += path('M22 48h22l-3 12H25Z','#b89665',INK,1.5)
+            b += path('M26 49q7-13 14 0',stroke='#7d6348',sw=2)
+            b += path('M30 49l-4-7 6 4 5-7 1 10Z','#8fa578',INK,1)
+    elif not side:
         for x, s in [(left-1, swing), (right-5, -swing)]:
             b += f'<g transform="rotate({s*4:.2f} {x+3} 37)">' + rect(x, 35, 6, 18, c['sleeve'], 3, INK, 1.4) + ellipse(x+3, 55, 3.2, 4, c['skin'], INK, 1.2) + '</g>'
     else:

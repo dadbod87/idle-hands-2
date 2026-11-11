@@ -1,9 +1,12 @@
+import {applyGarden} from '../src/game/garden.ts';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {TownClient,type TownSnapshot} from '../src/ui/town-client.ts';
 import {createWorkshop} from '../src/game/workshop.ts';
 
-const value=(boot:string|undefined='A',revision=10,time=1000,playerId='aster'):TownSnapshot=>({serverInstance:boot,playerId,name:playerId,serverTime:time,workshop:{...createWorkshop(time),revision},position:{room:'square',position:{x:24,y:25}},quest:{contentVersion:1,awarded:[]},bridge:{contributed:3,target:3,restored:true,phase:'open'},plots:[],plot:null,seasonKey:'fixture',scores:[]});
+// Transport-only fixtures have full garden banks and no pending economy deadlines.
+// A separate test below covers real garden deadline and retry-timer coexistence.
+const value=(boot:string|undefined='A',revision=10,time=1000,playerId='aster'):TownSnapshot=>{const workshop=createWorkshop(time);workshop.garden.rested.available=6;return{serverInstance:boot,playerId,name:playerId,serverTime:time,workshop:{...workshop,revision},position:{room:'square',position:{x:24,y:25}},quest:{contentVersion:1,awarded:[]},bridge:{contributed:3,target:3,restored:true,phase:'open'},plots:[],plot:null,seasonKey:'fixture',scores:[]};};
 const json=(data:unknown,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json'}});
 const deferred=<T>()=>{let resolve!:(value:T)=>void,reject!:(error:Error)=>void;const promise=new Promise<T>((r,j)=>{resolve=r;reject=j;});return{promise,resolve,reject};};
 const drain=async()=>{for(let i=0;i<12;i++)await Promise.resolve();};
@@ -109,5 +112,15 @@ test('terminally closed EventSource retries once with bounded backoff, preserves
   f.stream().readyState=2;f.stream().onerror?.(new Event('error'));assert.equal(f.delays.at(-1),5000);const afterBoot=f.Events.all.length;obsoleteRetry();assert.equal(f.timers.size,1);assert.equal(f.Events.all.length,afterBoot);
   f.handle(()=>json({snapshot:value('B',1,500,'bea')}));await f.client.login('bea');assert.equal(f.timers.size,0);assert.equal(f.client.snapshot!.playerId,'bea');
   f.stream().readyState=2;f.stream().onerror?.(new Event('error'));assert.equal(f.delays.at(-1),5000);assert.equal(f.timers.size,1);f.client.close();assert.equal(f.timers.size,0);
+ }finally{await f.close();}
+});
+
+
+test('garden crop/refill clocks coexist with closed-stream retries and cancel when hidden or switching identity',async()=>{
+ const f=fixture();try{
+  const s=value();s.workshop.garden.rested.available=0;s.workshop.garden=applyGarden(s.workshop.garden,{action:'make-marker',marker:'sunburst'},1000).state;s.workshop.garden=applyGarden(s.workshop.garden,{action:'plant',bed:0,crop:'radish'},1000).state;f.set(s);await f.client.login('aster');assert.equal(f.timers.size,1);assert.equal(f.delays.at(-1),300050);const clockEntry=[...f.timers.entries()][0];
+  const closed=f.stream();closed.readyState=2;closed.onerror?.(new Event('error'));assert.equal(f.timers.size,2);assert.equal(f.delays.at(-1),5000);const retry=[...f.timers.entries()].at(-1)!;f.timers.delete(retry[0]);retry[1]();assert.equal(f.timers.size,1);assert.equal(f.timers.get(clockEntry[0]),clockEntry[1],'Stream reconnect must retain the independent crop timer.');
+  const next={...s,serverTime:301000};f.set(next);const before=f.requests.filter(r=>r.path==='snapshot').length;f.fire();await drain();assert.equal(f.requests.filter(r=>r.path==='snapshot').length,before+1);assert.equal(f.timers.size,1);assert.equal(f.delays.at(-1),600050,'Ready crops are held; the next fetch is a clipping refill, not repeated crop polling.');assert.equal(f.client.snapshot!.workshop.garden.harvested.radish,0);
+  (document as any).hidden=true;document.dispatchEvent(new Event('visibilitychange'));assert.equal(f.timers.size,0);(document as any).hidden=false;document.dispatchEvent(new Event('visibilitychange'));f.set(value('A',0,1000,'bea'));await f.client.login('bea');assert.equal(f.timers.size,0);assert.equal(f.client.snapshot!.playerId,'bea');
  }finally{await f.close();}
 });

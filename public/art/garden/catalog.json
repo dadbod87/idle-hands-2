@@ -1,0 +1,402 @@
+{
+  "version": 1,
+  "authoring": "Project-original SVG artwork; existing original resident rig reused, no external media.",
+  "generator": "tools/create-garden-art.py",
+  "assets": [
+    {
+      "id": "garden-bed-empty",
+      "width": 96,
+      "height": 112,
+      "kind": "bed",
+      "foot": {
+        "x": 48,
+        "y": 96
+      }
+    },
+    {
+      "id": "garden-radish-sow",
+      "width": 96,
+      "height": 112,
+      "kind": "crop",
+      "foot": {
+        "x": 48,
+        "y": 96
+      },
+      "crop": "radish",
+      "stage": "sow"
+    },
+    {
+      "id": "garden-radish-sprout",
+      "width": 96,
+      "height": 112,
+      "kind": "crop",
+      "foot": {
+        "x": 48,
+        "y": 96
+      },
+      "crop": "radish",
+      "stage": "sprout"
+    },
+    {
+      "id": "garden-radish-growing",
+      "width": 96,
+      "height": 112,
+      "kind": "crop",
+      "foot": {
+        "x": 48,
+        "y": 96
+      },
+      "crop": "radish",
+      "stage": "growing"
+    },
+    {
+      "id": "garden-radish-ready",
+      "width": 96,
+      "height": 112,
+      "kind": "crop",
+      "foot": {
+        "x": 48,
+        "y": 96
+      },
+      "crop": "radish",
+      "stage": "ready"
+    },
+    {
+      "id": "garden-radish-seed",
+      "width": 64,
+      "height": 64,
+      "kind": "seed",
+      "foot": {
+        "x": 32,
+        "y": 59
+      }
+    },
+    {
+      "id": "garden-radish-produce",
+      "width": 64,
+      "height": 64,
+      "kind": "produce",
+      "foot": {
+        "x": 32,
+        "y": 59
+      }
+    },
+    {
+      "id": "garden-marigold-sow",
+      "width": 96,
+      "height": 112,
+      "kind": "crop",
+      "foot": {
+        "x": 48,
+        "y": 96
+      },
+      "crop": "marigold",
+      "stage": "sow"
+    },
+    {
+      "id": "garden-marigold-sprout",
+      "width": 96,
+      "height": 112,
+      "kind": "crop",
+      "foot": {
+        "x": 48,
+        "y": 96
+      },
+      "crop": "marigold",
+      "stage": "sprout"
+    },
+    {
+      "id": "garden-marigold-growing",
+      "width": 96,
+      "height": 112,
+      "kind": "crop",
+      "foot": {
+        "x": 48,
+        "y": 96
+      },
+      "crop": "marigold",
+      "stage": "growing"
+    },
+    {
+      "id": "garden-marigold-ready",
+      "width": 96,
+      "height": 112,
+      "kind": "crop",
+      "foot": {
+        "x": 48,
+        "y": 96
+      },
+      "crop": "marigold",
+      "stage": "ready"
+    },
+    {
+      "id": "garden-marigold-seed",
+      "width": 64,
+      "height": 64,
+      "kind": "seed",
+      "foot": {
+        "x": 32,
+        "y": 59
+      }
+    },
+    {
+      "id": "garden-marigold-produce",
+      "width": 64,
+      "height": 64,
+      "kind": "produce",
+      "foot": {
+        "x": 32,
+        "y": 59
+      }
+    },
+    {
+      "id": "garden-marker-sunburst",
+      "width": 96,
+      "height": 96,
+      "kind": "marker",
+      "foot": {
+        "x": 48,
+        "y": 86
+      },
+      "marker": "sunburst"
+    },
+    {
+      "id": "garden-marker-leaf-fan",
+      "width": 96,
+      "height": 96,
+      "kind": "marker",
+      "foot": {
+        "x": 48,
+        "y": 86
+      },
+      "marker": "leaf-fan"
+    },
+    {
+      "id": "garden-marker-little-pennant",
+      "width": 96,
+      "height": 96,
+      "kind": "marker",
+      "foot": {
+        "x": 48,
+        "y": 86
+      },
+      "marker": "little-pennant"
+    },
+    {
+      "id": "garden-marker-almost-straight",
+      "width": 96,
+      "height": 96,
+      "kind": "marker",
+      "foot": {
+        "x": 48,
+        "y": 86
+      },
+      "marker": "almost-straight"
+    },
+    {
+      "id": "garden-stake-forked",
+      "width": 96,
+      "height": 112,
+      "kind": "errand",
+      "foot": {
+        "x": 48,
+        "y": 101
+      },
+      "station": "forked"
+    },
+    {
+      "id": "garden-stake-striped",
+      "width": 96,
+      "height": 112,
+      "kind": "errand",
+      "foot": {
+        "x": 48,
+        "y": 101
+      },
+      "station": "striped"
+    },
+    {
+      "id": "garden-stake-notched",
+      "width": 96,
+      "height": 112,
+      "kind": "errand",
+      "foot": {
+        "x": 48,
+        "y": 101
+      },
+      "station": "notched"
+    },
+    {
+      "id": "garden-ground",
+      "width": 576,
+      "height": 576,
+      "kind": "ground"
+    },
+    {
+      "id": "garden-gate",
+      "width": 144,
+      "height": 128,
+      "kind": "entrance",
+      "foot": {
+        "x": 72,
+        "y": 116
+      }
+    },
+    {
+      "id": "garden-registry",
+      "width": 96,
+      "height": 112,
+      "kind": "registry",
+      "foot": {
+        "x": 48,
+        "y": 101
+      }
+    },
+    {
+      "id": "garden-field",
+      "width": 112,
+      "height": 80,
+      "kind": "field",
+      "foot": {
+        "x": 56,
+        "y": 72
+      }
+    },
+    {
+      "id": "garden-attendant",
+      "width": 64,
+      "height": 80,
+      "kind": "attendant",
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "garden-welcome-collecting",
+      "width": 144,
+      "height": 112,
+      "kind": "welcome",
+      "foot": {
+        "x": 72,
+        "y": 101
+      },
+      "phase": "collecting"
+    },
+    {
+      "id": "garden-welcome-open",
+      "width": 144,
+      "height": 112,
+      "kind": "welcome",
+      "foot": {
+        "x": 72,
+        "y": 101
+      },
+      "phase": "open"
+    },
+    {
+      "id": "garden-actions-aster",
+      "width": 1536,
+      "height": 80,
+      "kind": "action-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 24,
+      "resident": "aster",
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "actions": [
+        "sow",
+        "inspect",
+        "harvest"
+      ],
+      "poses": 2
+    },
+    {
+      "id": "garden-actions-bea",
+      "width": 1536,
+      "height": 80,
+      "kind": "action-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 24,
+      "resident": "bea",
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "actions": [
+        "sow",
+        "inspect",
+        "harvest"
+      ],
+      "poses": 2
+    },
+    {
+      "id": "garden-actions-casey",
+      "width": 1536,
+      "height": 80,
+      "kind": "action-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 24,
+      "resident": "casey",
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "actions": [
+        "sow",
+        "inspect",
+        "harvest"
+      ],
+      "poses": 2
+    },
+    {
+      "id": "garden-actions-devon",
+      "width": 1536,
+      "height": 80,
+      "kind": "action-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 24,
+      "resident": "devon",
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "actions": [
+        "sow",
+        "inspect",
+        "harvest"
+      ],
+      "poses": 2
+    }
+  ]
+}

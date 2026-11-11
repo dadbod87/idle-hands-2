@@ -498,7 +498,7 @@
     {
       "id": "IH2-065",
       "title": "Playable starter garden and independent field errand",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-064"
       ],
@@ -511,6 +511,26 @@
       ],
       "exclusions": [
         "No extra crop families, caf\u00e9 economy, trade, combat, chat, paid assets, hosted accounts, real-player data or weather production bonus. No claim of continuous hours of activity or physical-phone validation from emulation."
+      ],
+      "evidence": [],
+      "owner_branch": "feat/starter-garden"
+    },
+    {
+      "id": "IH2-066",
+      "title": "Neighborhood activity-depth audit and first resource/tool plan",
+      "status": "queued",
+      "depends_on": [
+        "IH2-065"
+      ],
+      "goal": "Play through the integrated neighborhood and select one useful resource/tool/quest family from observed gaps before adding more timers.",
+      "acceptance": [
+        "Audit fresh, returning and saturated states with busy bench, full produce, exhausted depots, all starter markers/quests complete and absent coworkers. Record actual agent actions/waits on desktop/phone/short; no human retention or full evening claim.",
+        "Select a small first wood/resource/tool family and practical ingredient/decor use with explicit solo/team/visible-expression purpose. Model costs, independent capacity, renewable supply, recovery and1/3/12dailyvisits for7/42days before runtime economy changes.",
+        "Specify original item/action art and phone interactions, authored humor, ownership/privacy and server transaction requirements. Preserve persistent homes/gardens and existing ordinary jobs; reject inflationary conversions or forced attendance.",
+        "Reconcile current candidate catalog/actual runtime, record next bounded implementation task and required source checks/CI/artifact review. No hosted accounts, paid assets, real-player changes or public release."
+      ],
+      "exclusions": [
+        "No broad city/combat/chat rollout, more unmeasured timer lanes, current-game mutations, new paid hosting or claims that simulated action counts prove fun."
       ],
       "evidence": []
     },

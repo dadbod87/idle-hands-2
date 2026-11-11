@@ -2,6 +2,8 @@
 
 IH2-064, November 11, 2026. **Selected design candidate; gardening is not implemented.** This package adds a reproducible design experiment and original concept art. It adds no game commands, resource grants, database migration, production clock, shop, public display or hosted service. The playable preview remains IH2-062. Read [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) for the researched comparisons and remaining activity gaps.
 
+Current implementation is documented in [GARDEN_RUNTIME](../GARDEN_RUNTIME.md). IH2-065 refines the display location to an owner-labelled public registry and makes full-bank refill semantics explicit; this historical thirty-six-cohort model remains separate from integration or human play evidence.
+
 ## The point of the garden
 
 Humor, teamwork, satisfying solo progress and visible personal expression are equally important. A player should be able to finish a small useful visit alone, help a town project without requiring a particular coworker, and choose something distinctive to display. Avoid optimizing everything into one income multiplier. Planting is one lane alongside exploration, making things and decorating; three countdowns cannot supply a full evening of play.

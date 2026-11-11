@@ -8,7 +8,7 @@ for(const shape of [{name:'desktop',width:1440,height:900},{name:'phone',width:3
  const start=Date.now()-20_000;let state=createWorkshop(start),sequence=0;
  const act=(command:Record<string,unknown>,now=start)=>{const r=applyWorkshop(state,{...command,id:'seed-'+(++sequence),expectedRevision:state.revision},now);if(!r.ok)throw new Error(r.message);state=r.state;};
  for(const resource of ['scrap','timber','supplies'])act({kind:'gather',resource});act({kind:'craft',recipe:'planter'});act({kind:'claim'},start+5000);act({kind:'place',prop:'planter',slot:'north-west'},start+5000);act({kind:'craft',recipe:'bridge-kit'},start+5000);
- await page.addInitScript(seed=>{if(!sessionStorage.getItem('sketch-fixture')){localStorage.setItem('ih2:workshop:v1',JSON.stringify(seed));sessionStorage.setItem('sketch-fixture','1');}},state);
+ await page.addInitScript(seed=>{if(!sessionStorage.getItem('sketch-fixture')){localStorage.setItem('ih2:workshop:v2',JSON.stringify(seed));sessionStorage.setItem('sketch-fixture','1');}},state);
  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));await page.setViewportSize(shape);await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
  const workshop=()=>page.evaluate(()=>(window as any).__pilot.workshop());const snapshot=()=>page.evaluate(()=>(window as any).__pilot.snapshot());
  expect((await workshop()).job).toEqual(state.job);

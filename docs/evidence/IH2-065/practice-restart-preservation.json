@@ -1,0 +1,7 @@
+{
+  "allCanonicalPracticeTablesUnchanged": true,
+  "sameKey": true,
+  "savedResidents": 0,
+  "previewApiProxy": 200,
+  "disclosure": "Existing practice has zero saved residents, not a populated-garden restore proof. Populated Garden/house/job restore and actual PostgreSQLrestart are tested separately in disposable ih2_restore."
+}

@@ -1,11 +1,14 @@
+import type {GardenAction} from '../game/garden.ts';
 import {SURVEY_IDS,SURVEYS,SURVEY_CHOICES,CHOICE_LABELS,type SurveyId} from '../game/fieldwork.ts';
 import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, skillLevel } from '../game/workshop.ts';
 import './workshop.css';
-const SAVE_KEY='ih2:workshop:v1';
+export const WORKSHOP_SAVE_KEY='ih2:workshop:v2';
+const SAVE_KEY=WORKSHOP_SAVE_KEY,LEGACY_SAVE_KEY='ih2:workshop:v1';
 const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',planter:'Orientation planter',stool:'Break-time stool',rug:'Welcome rug',lamp:'Optimism lamp',crate:'Useful crate',shelf:'Almost level shelf'};
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
-export type RemoteWorkshopAdapter={allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>)=>Promise<{state:WorkshopState;message:string}>;retry:()=>Promise<{state:WorkshopState;message:string}>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string};walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
+export type RemoteWorkshopAdapter={allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>)=>Promise<{state:WorkshopState;message:string;ok?:boolean}>;retry:()=>Promise<{state:WorkshopState;message:string;ok?:boolean}>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
+type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string};garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
+export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
  private serialized='';
@@ -14,6 +17,7 @@ export class WorkshopUI {
  private preview:string|null=null;
  private status:HTMLElement|null=null;
  private ownsSave=false;
+ private localReadOnlyReason='';
  private releaseLock:(()=>void)|null=null;
  private saved=true;
  private lastSlot:string|null=null;
@@ -30,16 +34,16 @@ export class WorkshopUI {
    if(!remote.initial){this.remoteBusy=true;void remote.load().then(state=>this.acceptRemote(state)).catch(error=>{this.remoteError=error.message;this.host.feedback(error.message);}).finally(()=>{this.remoteBusy=false;this.updateClocks();});}
    return;
   }
-  let raw:unknown=null;try{raw=JSON.parse(localStorage.getItem(SAVE_KEY)??'null');}catch{raw='invalid';}
+  let raw:unknown=null;try{raw=JSON.parse(localStorage.getItem(SAVE_KEY)??localStorage.getItem(LEGACY_SAVE_KEY)??'null');}catch{raw='invalid';}
   const loaded=raw===null?{state:createWorkshop(Date.now()),recovered:false}:loadWorkshop(raw,Date.now());this.state=loaded.state;
-  if(loaded.recovered)host.feedback('The local workshop save was invalid. A fresh practice workshop is open; no online account is connected.');
-  const acquire=()=>{if(!navigator.locks){this.host.feedback('This browser cannot coordinate local saves. Workshop actions are read-only here.');return;}
+  if(loaded.recovered)this.freezeLocalSave();
+  const acquire=()=>{if(this.localReadOnlyReason)return;if(!navigator.locks){this.host.feedback('This browser cannot coordinate local saves. Workshop actions are read-only here.');return;}
    void navigator.locks.request('ih2:workshop-writer',{ifAvailable:true},async lock=>{
     if(!lock){this.host.feedback('Workshop open in another tab. This tab is read-only; close the other tab and reload to continue.');return;}
-    this.ownsSave=true;this.synchronize();this.persist();await new Promise<void>(resolve=>this.releaseLock=resolve);
+    this.ownsSave=true;this.synchronize();if(!this.ownsSave)return;this.persist();await new Promise<void>(resolve=>this.releaseLock=resolve);
    });
   };acquire();
-  window.addEventListener('storage',event=>{if(event.key===SAVE_KEY)this.synchronize();});
+  window.addEventListener('storage',event=>{if(event.key===SAVE_KEY||event.key===LEGACY_SAVE_KEY&&localStorage.getItem(SAVE_KEY)===null)this.synchronize();});
   window.addEventListener('pageshow',event=>{if(event.persisted)acquire();});
   this.ticker=window.setInterval(()=>{const before=JSON.stringify(this.state);if(!this.ownsSave){this.updateClocks();return;}this.state=settleWorkshop(this.state,Date.now());if(JSON.stringify(this.state)!==before){this.persist();this.host.changed();}this.updateClocks();},1000);
   window.addEventListener('pagehide',()=>{this.persist();this.ownsSave=false;this.releaseLock?.();this.releaseLock=null;});
@@ -49,8 +53,29 @@ export class WorkshopUI {
  closed(){this.active=null;this.status=null;this.preview=null;}
  private acceptRemote(state:WorkshopState){this.state=state;if(!this.remote?.canRetry())this.remoteError='';this.host.changed();this.updateClocks();this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>el.textContent=String(state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]));}
  private remoteNotice(){if(!this.remote||!this.status)return;if(this.remoteBusy||this.remoteError)this.status.textContent=this.remoteBusy?'Waiting for server confirmation…':this.remoteError;let retry=this.host.body.querySelector<HTMLButtonElement>('.remote-retry');if(!retry){retry=this.button('Retry the same request',()=>void this.remoteDispatch(null),'remote-retry');this.status.after(retry);}retry.hidden=!this.remoteError;retry.disabled=this.remoteBusy;}
- private async remoteDispatch(command:Record<string,unknown>|null){if(!this.remote||this.remoteBusy)return;if(command&&this.remote.canRetry()){this.remoteError='Retry the previous request before making another change.';this.remoteNotice();return;}this.remoteBusy=true;this.remoteError='';this.updateClocks();try{const receipt=command?await this.remote.command(command):this.remote.canRetry()?await this.remote.retry():{state:await this.remote.load(),message:'Town state refreshed.'};this.acceptRemote(receipt.state);this.host.feedback(receipt.message);if(this.status)this.status.textContent=receipt.message;this.preview=null;if(this.host.body.querySelector('#placement'))this.renderPlacement();}catch(error){this.remoteError=(error as Error).message;this.host.feedback(this.remoteError);}finally{this.remoteBusy=false;this.updateClocks();if(this.remoteError)this.remoteNotice();}}
- private synchronize(){try{const raw=localStorage.getItem(SAVE_KEY);if(!raw||raw===this.serialized)return;const loaded=loadWorkshop(JSON.parse(raw),Date.now());if(loaded.recovered)return;this.state=loaded.state;this.serialized=raw;this.host.changed();this.active?.();}catch{/* Existing in-memory progress remains available; persist reports any write failure. */}}
+ private async remoteDispatch(command:Record<string,unknown>|null):Promise<WorkshopCommandResult>{
+  const failed=(message:string):WorkshopCommandResult=>({ok:false,state:this.state,message,retry:!!this.remote?.canRetry()});
+  if(!this.remote||this.remoteBusy)return failed('A change is still being confirmed.');
+  if(command&&this.remote.canRetry()){this.remoteError='Retry the previous request before making another change.';this.remoteNotice();return failed(this.remoteError);}
+  const before=this.state.revision;this.remoteBusy=true;this.remoteError='';this.updateClocks();
+  try{
+   const receipt=command?await this.remote.command(command):this.remote.canRetry()?await this.remote.retry():{state:await this.remote.load(),message:'Town state refreshed.',ok:false};
+   this.acceptRemote(receipt.state);this.host.feedback(receipt.message);if(this.status)this.status.textContent=receipt.message;this.preview=null;if(this.host.body.querySelector('#placement'))this.renderPlacement();
+   return{ok:receipt.ok??receipt.state.revision>before,state:this.state,message:receipt.message,retry:false};
+  }catch(error){this.remoteError=(error as Error).message;this.host.feedback(this.remoteError);return failed(this.remoteError);}
+  finally{this.remoteBusy=false;this.updateClocks();if(this.remoteError)this.remoteNotice();}
+ }
+ public async runGarden(action:GardenAction):Promise<WorkshopCommandResult>{
+  if(this.remote)return this.remoteDispatch({kind:'garden',gardenAction:action});
+  const result=this.dispatch({kind:'garden',gardenAction:action});return{ok:result?.ok??false,message:result?.message??'No change was made.',state:this.state,retry:false};
+ }
+ public async retryGarden():Promise<WorkshopCommandResult>{return this.remote?this.remoteDispatch(null):{ok:false,message:'There is no shared request to retry.',state:this.state,retry:false};}
+ public gardenClock(){return Math.floor(this.remote?.now()??Date.now());}
+ public gardenSaveStatus(){return{busy:this.remoteBusy,canRetry:!!this.remote?.canRetry(),readOnly:!this.remote&&!this.ownsSave,error:this.remoteError||this.localReadOnlyReason||(!this.remote&&!this.ownsSave?'This tab is read-only while another tab owns the save, or this browser cannot coordinate saves. Reload after closing other game tabs.':'')};}
+
+ private freezeLocalSave(){this.saved=false;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent='Saved data kept · read-only';this.localReadOnlyReason='This local save could not be read safely. It has been kept unchanged; actions are read-only.';this.ownsSave=false;this.releaseLock?.();this.releaseLock=null;this.host.feedback(this.localReadOnlyReason);}
+ private synchronize(){try{const raw=localStorage.getItem(SAVE_KEY)??localStorage.getItem(LEGACY_SAVE_KEY);if(!raw||raw===this.serialized)return;const loaded=loadWorkshop(JSON.parse(raw),Date.now());if(loaded.recovered){this.freezeLocalSave();return;}this.state=loaded.state;this.serialized=raw;this.host.changed();this.active?.();}catch{this.freezeLocalSave();}}
+
  private persist(){if(this.remote)return true;if(!this.ownsSave)return this.saved;const next=JSON.stringify(this.state);if(next===this.serialized)return this.saved;try{localStorage.setItem(SAVE_KEY,next);this.serialized=next;this.saved=true;}catch{this.saved=false;this.host.feedback('Local save failed. Keep this tab open; new progress will be lost on reload.');}const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=this.saved?'Local workshop · saved here':'Unsaved practice · keep tab open';return this.saved;}
  private button(text:string,handler:()=>void,className=''){const b=document.createElement('button');b.type='button';b.textContent=text;b.className=className;b.onclick=handler;return b;}
  private p(text:string,className=''){const p=document.createElement('p');p.textContent=text;p.className=className;return p;}
@@ -58,11 +83,12 @@ export class WorkshopUI {
  private notice(){this.status=this.p('','workshop-status');this.status.setAttribute('role','status');this.host.body.append(this.status);this.remoteNotice();}
  private dispatch(command:Record<string,unknown>){
   if(this.remote){void this.remoteDispatch(command);return;}
-  if(!this.ownsSave){const message='Workshop open in another tab, or local-save coordination unavailable. Close other game tabs and reload this one to continue.';this.host.feedback(message);if(this.status)this.status.textContent=message;return;}
+  if(!this.ownsSave){const message=this.localReadOnlyReason||'Workshop open in another tab, or local-save coordination unavailable. Close other game tabs and reload this one to continue.';this.host.feedback(message);if(this.status)this.status.textContent=message;return{ok:false,message};}
   const receipt=applyWorkshop(this.state,{...command,id:crypto.randomUUID(),expectedRevision:this.state.revision} as WorkshopCommand,Date.now());this.state=receipt.state;this.persist();const message=receipt.message+(this.saved?'':' Local save failed; this progress will be lost on reload.');this.host.feedback(message);this.host.changed();
   // Keep the action controls stable: update quantities/timers without rebuilding the form.
   this.updateClocks();if(this.status)this.status.textContent=message;
   this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>{el.textContent=String(this.state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]);});
+  return{ok:receipt.ok,message};
  }
  private disclosure(){return this.p(this.remote?'Shared practice town · fictional residents. Confirmed changes are saved here.':'Local practice save · this browser only. No account, trading or shared town progress.','disclosure');}
  private resources(){const list=document.createElement('dl');list.className='resource-list';for(const id of RESOURCE_IDS){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=names[id];const icon=document.createElement('img');icon.src='/art/homes/home-'+id+'-icon.svg';icon.alt='';icon.width=32;icon.height=32;icon.className='item-icon';dt.prepend(icon);dd.dataset.quantity=id;dd.textContent=String(this.state.inventory[id]);list.append(dt,dd);}return list;}
@@ -95,11 +121,11 @@ export class WorkshopUI {
   const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';b.append(claim);
   const recipes=[{id:'planter',label:'Make orientation planter',text:'2 scrap + 2 timber + 1 supplies. First planter: 5 seconds, once. Later planters: 8 real hours.'},{id:'bridge-kit',label:'Make bridge supplies',text:'3 scrap + 2 timber + 1 supplies. 12 real hours. '+(this.remote?'Bring the finished kit to the bridge committee.':'Crafting practice stock stays in this browser’s workshop.')}];
   for(const recipe of recipes){const section=document.createElement('section');section.className='recipe';const craft=this.button(recipe.label,()=>this.dispatch({kind:'craft',recipe:recipe.id}),'destination');craft.dataset.craft=recipe.id;section.append(this.p(recipe.text),craft);b.append(section);}
-  b.append(this.button('While work runs · town sketchbook',()=>this.showSketchbook(),'destination'));
+  b.append(this.button('While work runs · town sketchbook',()=>this.showSketchbook(),'destination'));if(this.host.garden)b.append(this.button('While work runs · your allotment',()=>this.host.garden?.(),'destination'));
   if(this.host.teaching)b.append(this.button('Orientation maintenance · one-time contribution',()=>this.host.teaching?.(),'destination'));this.notice();b.append(this.p('A queued job finishes while you are away and waits for collection. No automatic repeat jobs or hidden lost output.','disclosure'),this.disclosure());this.updateClocks();
  };this.begin('Your work bench',render);}
  showInventory(){const render=()=>{
-  const b=this.host.body;b.replaceChildren();b.append(this.resources(),this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));
+  const b=this.host.body;b.replaceChildren();b.append(this.resources(),this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.garden)b.append(this.button('Your allotment · crops, markers & quests',()=>this.host.garden?.(),'destination'));
   const quest=this.p('');quest.dataset.quest='';quest.className='quest-card';b.append(quest);
   const skill=this.p('');skill.dataset.skills='';b.append(skill);
   const kits=this.p('');kits.dataset.kits='';b.append(kits);

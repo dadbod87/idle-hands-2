@@ -1,0 +1,11 @@
+{
+  "classification": "Actual local4175 response verification of accepted065CIartifact; not hosted production",
+  "files": 131,
+  "mismatches": [],
+  "apiProxyStatus": 200,
+  "fixtureListReadOnly": true,
+  "candidate": "d53c5c3a5e55244d2c849c9f92a1e7be88864b98",
+  "merge": "b4438d3c1b98f04113e8ad3c47ab30e516741302",
+  "apiPort": 4186,
+  "practiceDataAndKeyPreservation": "practice-garden-update-result.json"
+}

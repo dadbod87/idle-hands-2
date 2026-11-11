@@ -498,7 +498,7 @@
     {
       "id": "IH2-065",
       "title": "Playable starter garden and independent field errand",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-064"
       ],
@@ -512,13 +512,20 @@
       "exclusions": [
         "No extra crop families, caf\u00e9 economy, trade, combat, chat, paid assets, hosted accounts, real-player data or weather production bonus. No claim of continuous hours of activity or physical-phone validation from emulation."
       ],
-      "evidence": [],
+      "evidence": [
+        "docs/idle-hands-2/GARDEN_RUNTIME.md",
+        "docs/evidence/IH2-065/REPORT.md",
+        "docs/evidence/IH2-065/local-checks.json",
+        "docs/evidence/IH2-065/source-closeout.json",
+        "docs/evidence/IH2-065/actual-preview-verification.json",
+        "docs/idle-hands-2/handoffs/2026-11-11-starter-garden.md"
+      ],
       "owner_branch": "feat/starter-garden"
     },
     {
       "id": "IH2-066",
       "title": "Neighborhood activity-depth audit and first resource/tool plan",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-065"
       ],
@@ -531,6 +538,55 @@
       ],
       "exclusions": [
         "No broad city/combat/chat rollout, more unmeasured timer lanes, current-game mutations, new paid hosting or claims that simulated action counts prove fun."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/WOODLAND_FAMILY.md",
+        "docs/idle-hands-2/design/CURRENT_RUNTIME_COVERAGE.md",
+        "docs/evidence/IH2-066/REPORT.md",
+        "docs/evidence/IH2-066/activity-audit.json",
+        "docs/evidence/IH2-066/woodland-model.json",
+        "docs/evidence/IH2-066/local-checks.json",
+        "docs/evidence/IH2-066/build-proof.json",
+        "docs/idle-hands-2/handoffs/2026-11-11-depth-plan.md"
+      ],
+      "owner_branch": "design/neighborhood-depth"
+    },
+    {
+      "id": "IH2-067",
+      "title": "Pine hand tool, kept easel and useful produce service",
+      "status": "queued",
+      "depends_on": [
+        "IH2-066"
+      ],
+      "goal": "Implement one practical original resource/tool/recipe family connecting private progress, visible d\u00e9cor and optional town help.",
+      "acceptance": [
+        "Implement bound recoverable/equippable saw, one renewable personal pine pool/reserved stock, one independent12hfinishing job and recognizable kept easel. Preserve original timber/material IDs, costs, bench jobs, skills and property. No auto-repeat or old-currency conversion.",
+        "Add versioned explicit garden consumed-by-use accounting for easel/optional hamper, cumulative private carpentry progress and deliberate cost/goal preview. Daily requests cannot invisibly consume the saved craft goal. Retain literal storage/cooldown/retry/recovery explanations.",
+        "Opt-in anonymous recording counts each completed craft once while retaining its item. Six capped records open a separate noticeboard after one fixed24hinstallation. No unique helper requirement; after funding keep personal progress without claiming further public credit. Private stock/equipment not projected; public furniture placement remains owner-chosen.",
+        "Produce original representative pine/wood/saw/easel/hamper/project state art and allfourrig/four-direction equipped/action coverage. World/direct/named/keyboard/touch paths,44pxtargets, stable feedback/confirmation and phone/short/text200 layouts; preserve item silhouette, camera and existing doors.",
+        "Actual isolated authority/save/UUID/revision/proximity/ownership/concurrency/full/absence/old-writer/restart/restore and existing-job tests; compare actual active/casual play with066model. Required repository checks, exact-head bothCI/downloaded build+image review/merge/equal-tree/cleanmain before next section."
+      ],
+      "exclusions": [
+        "No second species, shop/trade/chat/combat, broad city or clothing rollout, paid assets, hosted resources, real-player data, production release or claims of a full evening of fun."
+      ],
+      "evidence": []
+    },
+    {
+      "id": "IH2-068",
+      "title": "Phone activity clarity and updated-loop playtest",
+      "status": "queued",
+      "depends_on": [
+        "IH2-067"
+      ],
+      "goal": "Address observed panel/navigation friction and re-audit the combined garden/woodland loop before further content expansion.",
+      "acceptance": [
+        "Make current actions/capacity/next useful choice reachable on narrow and short phones with compact reserved feedback, stable confirm/cancel,44pxtargets and keyboard/text200 access. Preserve explanations/recovery and no shifting action targets.",
+        "Make direct, guide and named-door expectations clear; cancel superseded routes and report arrival rather than stale walking text. Preserve authoritative context, existing doorway-front arrivals and input locks.",
+        "Audit actual fresh/returning/saturated/busy/full/no-helper flows after067 and distinguish agent timing/fixtures from human enjoyment or physical devices. Record remaining finite-content/retention gaps and next bounded authored-quest slice without claiming the whole expanded game finished.",
+        "Required local checks, exact-head bothCI, downloaded artifact/screenshots, source closeout and unchanged existing progress/permissions. No new economy, broad city, chat/combat, paid asset, cloud or real-account change."
+      ],
+      "exclusions": [
+        "No silent timer/rate/cost change, mandatory attendance, real-player tests or public launch."
       ],
       "evidence": []
     },
@@ -552,7 +608,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required; new explicit local content direction is independently authorized as IH2-062. No cloud resources or invitations."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local content/design through062\u2013068 is authorized; no cloud resources, invitations or public release."
     },
     {
       "id": "IH2-080",

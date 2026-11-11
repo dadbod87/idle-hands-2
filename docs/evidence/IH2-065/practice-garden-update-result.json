@@ -1,0 +1,23 @@
+{
+  "classification": "Additive local practice update, not hosted release or populated-save proof",
+  "checkedAt": "2026-11-11T21:17:35.553Z",
+  "oldTablesUnchanged": [
+    "bridge",
+    "bridge_contributions",
+    "command_receipts",
+    "maintenance_events",
+    "maintenance_lessons",
+    "players",
+    "plots",
+    "project_events",
+    "quest_awards",
+    "season_scores",
+    "trail_stamps"
+  ],
+  "sameKey": true,
+  "savedResidents": 0,
+  "newWelcomeRows": 1,
+  "newMigration": "20261111192445_garden_welcome.sql",
+  "backup": "pre-garden-update-practice.dump",
+  "populatedProof": "Separate disposableHTTP/restore/restart evidence in065, not this empty practice"
+}

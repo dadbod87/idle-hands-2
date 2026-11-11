@@ -1,0 +1,26 @@
+{
+  "classification": "Actual4175acceptedCIartifact nativeChrome verification; local fictional browser-only practice, not hosted production or real phone",
+  "disclosure": "Fresh isolated browser contexts, ordinary initial seeds only; no injected clock/state/stock/position or API interception. No shared-practice login or real-player changes.",
+  "results": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "errors": [],
+      "bad": [],
+      "room": "garden"
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 390,
+        "height": 844
+      },
+      "errors": [],
+      "bad": [],
+      "room": "garden"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "classification": "Additional deterministic actual-runtime greedy schedule observation, not a human or authority test and not066 acceptance",
+  "candidate": "d53c5c3a5e55244d2c849c9f92a1e7be88864b98",
+  "sourceSha256": "35bc9aed5af19a84925dd48c1b9839ef23e75a22e839314eeff0ae686b890160",
+  "method": "Day0 normal bound entitlements/all finite markers via valid pure commands. At1/3/12uniform visits/day for7/42days: harvest available space, submit one eligible mixed request, harvest newly freed space, replant flower then radish. No trading/other loops/mini-visits, time is analytical not a browser or server clock grant. Quiet means no productive garden command under this strategy, not no possible action anywhere in the game. Markers/rearrangements/observations are not repeated for economic output.",
+  "rows": [
+    {
+      "days": 7,
+      "scheduledVisitsPerDay": 1,
+      "dayZeroSetupSeparate": true,
+      "productiveScheduledVisits": 7,
+      "quietScheduledVisits": 0,
+      "firstQuietDay": null,
+      "visitsWithFullHeldCrop": 0,
+      "harvests": 21,
+      "practice": 37,
+      "restedBonus": 16,
+      "requests": 7,
+      "produce": {
+        "radish": 7,
+        "marigold": 0
+      },
+      "markers": 4
+    },
+    {
+      "days": 7,
+      "scheduledVisitsPerDay": 3,
+      "dayZeroSetupSeparate": true,
+      "productiveScheduledVisits": 19,
+      "quietScheduledVisits": 2,
+      "firstQuietDay": 6.666666666666667,
+      "visitsWithFullHeldCrop": 14,
+      "harvests": 38,
+      "practice": 52,
+      "restedBonus": 14,
+      "requests": 7,
+      "produce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "markers": 4
+    },
+    {
+      "days": 7,
+      "scheduledVisitsPerDay": 12,
+      "dayZeroSetupSeparate": true,
+      "productiveScheduledVisits": 23,
+      "quietScheduledVisits": 61,
+      "firstQuietDay": 0.75,
+      "visitsWithFullHeldCrop": 78,
+      "harvests": 38,
+      "practice": 52,
+      "restedBonus": 14,
+      "requests": 7,
+      "produce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "markers": 4
+    },
+    {
+      "days": 42,
+      "scheduledVisitsPerDay": 1,
+      "dayZeroSetupSeparate": true,
+      "productiveScheduledVisits": 42,
+      "quietScheduledVisits": 0,
+      "firstQuietDay": null,
+      "visitsWithFullHeldCrop": 30,
+      "harvests": 96,
+      "practice": 182,
+      "restedBonus": 86,
+      "requests": 42,
+      "produce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "markers": 4
+    },
+    {
+      "days": 42,
+      "scheduledVisitsPerDay": 3,
+      "dayZeroSetupSeparate": true,
+      "productiveScheduledVisits": 54,
+      "quietScheduledVisits": 72,
+      "firstQuietDay": 6.666666666666667,
+      "visitsWithFullHeldCrop": 119,
+      "harvests": 108,
+      "practice": 192,
+      "restedBonus": 84,
+      "requests": 42,
+      "produce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "markers": 4
+    },
+    {
+      "days": 42,
+      "scheduledVisitsPerDay": 12,
+      "dayZeroSetupSeparate": true,
+      "productiveScheduledVisits": 58,
+      "quietScheduledVisits": 446,
+      "firstQuietDay": 0.75,
+      "visitsWithFullHeldCrop": 498,
+      "harvests": 108,
+      "practice": 192,
+      "restedBonus": 84,
+      "requests": 42,
+      "produce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "markers": 4
+    }
+  ]
+}

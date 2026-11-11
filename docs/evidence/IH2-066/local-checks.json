@@ -1,0 +1,82 @@
+{
+  "classification": "Local066design/audit checks, not source acceptance or runtime feature release",
+  "aggregate": {
+    "passed": 184,
+    "skipped": 0,
+    "durationMs": 39731.667792,
+    "log": "/tmp/ih2-066-tests.log"
+  },
+  "build": {
+    "passed": true,
+    "files": 131,
+    "byteEqualAccepted065Ci": true
+  },
+  "design": {
+    "passed": true,
+    "candidateEntries": 48,
+    "regions": 5
+  },
+  "plan": {
+    "tasks": 24,
+    "trackerChecks": 10,
+    "passed": true
+  },
+  "pinnedFiles": 40,
+  "browser": {
+    "existingFullRegression": {
+      "passed": 53,
+      "minutes": 7.2,
+      "log": "/tmp/ih2-066-browser.log"
+    },
+    "newStaticConceptFocused": {
+      "passed": 1,
+      "seconds": 2.0,
+      "log": "/tmp/ih2-066-concept-final.log"
+    },
+    "finalCiMustRunAll54": true,
+    "nativeActivePlayP95Ms": {
+      "desktop": 16.799999999999272,
+      "phone": 16.799999999999272,
+      "narrow": 16.799999999999272,
+      "short": 16.799999999999272
+    },
+    "minimumCanopyCoverage": 0.9859649122807017,
+    "method": "Native headlessChrome/M5, emulated viewports/touch; not physical phone/Safari"
+  },
+  "activityAudit": {
+    "cases": 9,
+    "freshNormalUi": true,
+    "returningSaturatedElapsedFixtures": true,
+    "sharedLogin": false,
+    "apiInterception": false,
+    "databaseWrites": false,
+    "oldJobStockPropertySkillsPreserved": true
+  },
+  "candidateModels": {
+    "cohorts": 36,
+    "groupCases": 18,
+    "pureTests": 5,
+    "nonExecutableLedger": true,
+    "humanFunClaim": false
+  },
+  "protocolLoad": {
+    "clients": 20,
+    "commandP95Ms": 53.036749999999984,
+    "sqlQueries": 3740,
+    "method": "Actual loopback Node HTTP/SSE +dedicated disposable ih2_load PostgreSQL;20unique ordinary zero-progress residents. Legal continuous route/ACK movement, real5splanter and12hqueued job. No stock/time/position grants, real accounts or cloud. This is20protocol clients, not20rendered browsers or a physical-phone/WAN/soak/capacity guarantee."
+  },
+  "diffCheck": true,
+  "limits": [
+    "Local53existing+1focused, not one54case local run; exact-head CI must run all54",
+    "No pine/tool/easel/service economy in runtime",
+    "Known-answer agent automation, explicit elapsed fixtures and analytical schedules are separate from human enjoyment/server authority",
+    "Hosted/device/WAN gates unchanged"
+  ],
+  "review": {
+    "phone": "Read-only source/images: no blocker or material mislabel; no commands/edits",
+    "model": "Clarified selected bundle reserves craft AND stops voluntary welcome requests at six; no reservation-only causal claim or proposed runtime limit",
+    "afterClarificationFocusedPassed": 5,
+    "afterClarificationStrictDesignPlanDiffPassed": true,
+    "finalExactHeadCiMustRepeatAll184And54": true
+  }
+}

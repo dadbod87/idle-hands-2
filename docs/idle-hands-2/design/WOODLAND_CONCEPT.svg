@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">Pine, with paperwork — candidate first woodland family</title>
+<desc id="desc">Original vector material and interface study for IH2-066. Not implemented gameplay, prices or equipped animation. Pine bundles and a bound hand saw lead to a kept pressed-flower easel, optional produce delivery and anonymous town recording.</desc>
+<defs>
+ <style>text{fill:#343c36;font-family:Georgia,serif}.small{font:15px Georgia,serif}.body{font:18px Georgia,serif}.label{font:bold 22px Georgia,serif}.headline{font:bold 34px Georgia,serif}.card{fill:#fff8e8;stroke:#8d9a7c;stroke-width:2}.edge{stroke:#343c36;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}.mono{font:14px monospace}</style>
+ <g id="pine" class="edge"><path fill="#b68560" d="M-7 0h14v-100H-7z"/><path fill="#68846e" d="M0-155L-47-73h25l-36 54h116L22-73h25z"/><path d="M-28-58l16-6m28 18l22 3M-6-14l4-11" fill="none" stroke="#a5b794" stroke-width="2"/></g>
+ <g id="bundle" class="edge"><path fill="#b68560" d="M-39-14L30-34 40-15-29 8zM-34 6l74-7 1 20-74 6z"/><path d="M-10-25l9 48 14-2-9-48z" fill="#d4b56c"/><path d="M-26-7l13-4M17-17l12-3M-22 15l12-1M17 11l12-1" fill="none" stroke="#e3c494" stroke-width="2"/></g>
+ <g id="saw" class="edge"><path fill="#b68560" d="M-48-28q-10 0-10 10V9q0 10 10 10h19v-47z"/><path fill="#f6eed8" d="M-47-16h8V6h-8z"/><path fill="#b8c4bd" d="M-28-23L53-9 43 16l-5-7-6 7-5-7-6 7-5-7-6 7-5-7-6 7-5-7-6 7-5-7z"/></g>
+ <g id="flower"><path d="M0 20V-15M0 12l-15-12M0 4L15-7" fill="none" stroke="#68846e" stroke-width="3"/><g fill="#d4ae5e" stroke="#8b734e" stroke-width="1.5"><ellipse cy="-23" rx="7" ry="11"/><ellipse cy="-23" rx="7" ry="11" transform="rotate(60 0 -14)"/><ellipse cy="-23" rx="7" ry="11" transform="rotate(120 0 -14)"/><ellipse cy="-23" rx="7" ry="11" transform="rotate(180 0 -14)"/><ellipse cy="-23" rx="7" ry="11" transform="rotate(240 0 -14)"/><ellipse cy="-23" rx="7" ry="11" transform="rotate(300 0 -14)"/></g><circle cy="-14" r="8" fill="#8b734e"/></g>
+ <g id="easel" class="edge"><path d="M-25-58L-40 35h8l18-93M14-58l18 93h8L25-58" fill="#b68560"/><path d="M-41-102h82v95h-82z" fill="#c89c70"/><path d="M-31-92h62v75h-62z" fill="#f3ead4"/><path d="M-43-3h86v9h-86z" fill="#b68560"/><path d="M-37-83v24M36-75v22M-28 17l-2 9M29 14l2 10" fill="none" stroke="#e3c494" stroke-width="2"/><use href="#flower" transform="translate(0 -47) scale(.85)"/></g>
+</defs>
+<rect width="1200" height="900" rx="16" fill="#f8f1df"/>
+<text x="32" y="35" class="mono">IH2-066 · ORIGINAL MATERIAL / FLOW STUDY · NOT IMPLEMENTED</text>
+<text x="32" y="82" class="headline">Pine, with paperwork.</text>
+<text x="32" y="116" class="body">A useful tool. Something worth keeping. A town that notices.</text>
+<rect x="30" y="145" width="750" height="330" rx="10" class="card"/>
+<text x="50" y="178" class="label">One small, recognizable family</text>
+<use href="#pine" transform="translate(122 383) scale(1.05)"/><use href="#bundle" transform="translate(151 425) scale(.7)"/>
+<text x="58" y="453" class="small">Pine deadfall · personal pool</text>
+<use href="#saw" transform="translate(362 296) scale(1.4)"/>
+<text x="267" y="359" class="label">A bound hand saw</text>
+<text x="265" y="386" class="small">Owned first. Explicitly equipped.</text>
+<text x="265" y="412" class="small">“Divides one problem into two.”</text>
+<use href="#easel" transform="translate(650 388) scale(1.25)"/>
+<text x="541" y="453" class="small">Garden study easel · kept item</text>
+<rect x="30" y="493" width="750" height="165" rx="10" class="card"/>
+<text x="50" y="526" class="label">Private progress can also help the town</text>
+<text x="50" y="563" class="body">4 pine + 1 marigold → 12h finishing → claim your easel</text>
+<text x="50" y="598" class="body">Then choose: record a craft, keep the item.</text>
+<text x="50" y="632" class="small">Six opted-in records → 24h installation. One resident can finish it.</text>
+<rect x="30" y="678" width="750" height="185" rx="10" class="card"/>
+<text x="50" y="712" class="label">Useful work between longer jobs</text>
+<text x="50" y="747" class="body">Optional hamper: 1 pine + 2 radishes + 1 marigold</text>
+<text x="50" y="781" class="small">“Locally sourced. Extensively documented.”</text>
+<text x="50" y="815" class="small">Literal price/cooldown; no currency or universal output bonus.</text>
+<text x="50" y="845" class="small">Goal aid warns before spending the last crafting ingredient.</text>
+<rect x="810" y="145" width="360" height="718" rx="22" fill="#a8b593" stroke="#343c36" stroke-width="3"/>
+<rect x="824" y="160" width="332" height="688" rx="12" fill="#f8f1df" stroke="#343c36" stroke-width="2"/>
+<text x="841" y="191" class="mono">CANDIDATE PHONE PANEL</text>
+<text x="841" y="226" class="label">Your finishing rack</text>
+<rect x="840" y="246" width="300" height="72" class="card"/>
+<text x="853" y="275" class="body">✓ Hand saw · owned</text>
+<text x="853" y="302" class="small">Equipped by your choice</text>
+<use href="#easel" transform="translate(990 448) scale(1.15)"/>
+<text x="853" y="521" class="label">Garden study easel</text>
+<text x="853" y="552" class="body">Cost: 4 pine + 1 flower</text>
+<text x="853" y="580" class="body">12 real hours · one job</text>
+<rect x="840" y="602" width="300" height="50" rx="5" fill="#48685f"/>
+<text x="990" y="634" text-anchor="middle" style="fill:#fff8e8;font-size:19px">Preview making</text>
+<rect x="840" y="664" width="300" height="50" rx="5" class="card"/>
+<text x="990" y="696" text-anchor="middle" class="body">Cancel · free</text>
+<rect x="840" y="733" width="300" height="92" rx="5" class="card"/>
+<text x="853" y="760" class="small">Reserved feedback · stable controls</text>
+<text x="853" y="789" class="small">Old workshop job stays separate.</text>
+<text x="853" y="814" class="small">No automatic repeat or purchase.</text>
+</svg>

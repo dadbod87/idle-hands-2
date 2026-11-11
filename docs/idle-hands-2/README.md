@@ -1,6 +1,6 @@
 # Idle Hands 2.0 — planning and build home
 
-Status: **private local shared-town prototype with original visual kit; first-neighborhood slices in progress** (2026-11-10). Separate game, with an isolated local command service and fictional practice identities. No hosted sequel, real accounts or paid assets. The original Idle Hands remains separate.
+Status: **private local shared-town prototype with original visual kit; first neighborhood accepted; independent activity slice in progress** (2026-11-11). Separate game, with an isolated local command service and fictional practice identities. No hosted sequel, real accounts or paid assets. The original Idle Hands remains separate.
 
 Nick has delegated routine design and technical choices, asked for free assets and a system that can progress one prompt at a time. The agent selects reasonable defaults, tests them and records decisions. No large upfront questionnaire is required.
 
@@ -60,3 +60,5 @@ Root README, AGENTS and CURRENT_STATE point here. Direct user decisions and agen
 Read [PRIVATE_PREVIEW_PLAN](PRIVATE_PREVIEW_PLAN.md) and [060evidence](../evidence/IH2-060/REPORT.md) before any cloud setup. Local load/recovery checks are separate from hosted identity, physical-phone acceptance and the owner cost/access gate.
 
 For the owner-facing review and next decision, start with [OWNER_REVIEW](OWNER_REVIEW.md). Source/CI closeout remains separate from a hosted release.
+
+[Activity-depth research and current gaps](ACTIVITY_DEPTH.md): parallel goals, humorous teamwork and personal expression. IH2-062 is the first finite off-bench collection layer; future garden/services/equipment are still planned.

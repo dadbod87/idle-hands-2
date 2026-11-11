@@ -21,3 +21,7 @@ The next section is a small invited beta with a separate database and verified G
 The proposed starting cost is about **$17 per month additional**, conditional on suitable existing Vercel hosting and a single-administrator Render workspace. The concrete proposal is a **$25 per month additional ceiling**. If account eligibility or administrator collaboration raises that cost, re-quote before creating anything. Players remain free and no paid art is proposed.
 
 [Review the hosting, ownership, access and backup plan](PRIVATE_PREVIEW_PLAN.md). Approval of that concrete setup/cap is needed before the hosted section. Actual hosted authentication, permissions, backups, recovery, desktop and physical-phone testing must pass before invitations. Public launch remains a separate later decision.
+
+November11 update: Nick explicitly authorized continued independent local content and comparative progression research. [Activity-depth plan](ACTIVITY_DEPTH.md) records the wait gap and core humor/teamwork/solo-expression pillars. IH2-062 is the first small sketchbook layer; this local-build authorization does not approve hosted resources or charges.
+
+The current local checkpoint adds three square-tree observation challenges and four original journal illustrations. Refresh the preview, open Bag & journal → Town sketchbook, or choose a Sketch study in Places. The keepsake is currently journal-only. Next local work is the starter-garden/resource-loop design; hosting approval is a separate later choice. Exact source acceptance remains in the task PR closeout.

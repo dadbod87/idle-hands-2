@@ -1,0 +1,92 @@
+{
+  "task": "IH2-060",
+  "status": "source accepted; local only; no hosted deployment",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/12",
+  "candidate": "35296632900a510139bf652e495e14c31f71f5b4",
+  "merge": "ebfb8c9effde018dbd0a016bf2cbbe926520220e",
+  "candidateAndMergeTree": "d7b089bb032877f6bb35221ac4e2b53cad631eb3",
+  "requiredRun": 42958473123,
+  "requiredRunAttempt": 1,
+  "requiredJobs": {
+    "domain-build-plan": "success",
+    "browser-playtest": "success"
+  },
+  "aggregateChecks": 136,
+  "skipped": 0,
+  "browserChecks": 44,
+  "browserCiMinutes": 15.7,
+  "browserLocalMinutes": 5.9,
+  "uploadedBuildFilesCompared": 95,
+  "originalSvgsCompared": 82,
+  "actual4175ResponseFilesCompared": 95,
+  "canopySamples": 9,
+  "canopyMin": 0.9815789473684211,
+  "native429RecoveryMs": 5302,
+  "menuEvidence": {
+    "disclosure": "Disposable local browser-only mode. Normal clock/redraw proof first; then recorded one-second window timers are stopped in this page to prove resize repaint independently of periodic fallback. No HTTP/stock/position overrides or grants. Desktop then844x390viewport emulation, not a physical device.",
+    "redraws": 3,
+    "windowMs": 2400,
+    "position": {
+      "x": 24,
+      "y": 25
+    },
+    "clock": "Town time \u00b7 13:56 \u00b7 Day \u00b7 Overcast",
+    "visibleFraction": 1,
+    "resizeRecoveryMs": 246,
+    "resizeSamples": [
+      {
+        "ms": 239,
+        "frames": 25,
+        "visible": 1
+      }
+    ],
+    "framePolicy": "Modal backdrop only: one redraw/second plus two-frame resize refresh. Timers and authority continue; modal frame intervals do not enter active-play samples."
+  },
+  "ciLoadCommandP95Ms": 104.70261399999981,
+  "practiceUpdate": {
+    "mergedSource": "ebfb8c9effde018dbd0a016bf2cbbe926520220e",
+    "practicePort": 4186,
+    "clientPort": 4175,
+    "newNodeProcess": true,
+    "sameSigningKey": true,
+    "allPracticeTableRowsMatchPre060Dump": true,
+    "practiceResidentCount": 0,
+    "defaultThreeFixtureIds": [
+      "aster",
+      "bea",
+      "casey"
+    ],
+    "actual4175CiBuildFileMatches": 95,
+    "limits": "Local loopback only. No sign-in or synthetic resident creation performed during this smoke check. Empty practice state is not populated progress-preservation proof."
+  },
+  "ciSoftwareRenderedActiveFrameP95Ms": {
+    "desktop": 133.40000000000146,
+    "phone": 50.099999999998545,
+    "narrow": 33.400000000000546,
+    "short": 33.400000000001455
+  },
+  "frameLimits": "Software-rendered CI is substantially slower than nativeChrome/M5 (~16.8ms). Neither viewport emulation nor this CI proves physical-phone performance. Physical phone >=30fps remains a hosted-beta gate.",
+  "actualCiImagesReviewed": {
+    "stream-native-429-recovered.png": "cd4b29e0b2dbeaf6935833c236e35dd51b091c58b07c8e89fe8c1a028dff020c",
+    "client-recovered-earlier-fixture.png": "51eefca9c0721d7bc7d2315361a528db7620e123af51bc281ddf1000c7cd1f27",
+    "homes-desktop-owner-expanded.png": "1beaf4381457cc65d5f317f9563dbeaaa859523e04cb926ee9c5667109fe5ed3",
+    "first-visit-phone-guide.png": "af6b44fb83e1b6973c6bd0e085d22806a7602a70e254d67394f41fef47df0503",
+    "first-visit-phone-upkeep-recorded.png": "2b9ad08270b8560241864e00da74b5b6fce7a9f66c851669345f058788044e14",
+    "first-visit-short-text200.png": "ebad4a405bbf5bd7d3703e466b344209484dbde945fee09b28834bbd87edd99d",
+    "variety-narrow-canopy-pixels-0.png": "084424d80db3817b03b16a7e5f2cb55c106871d037f87fad209571cc5725e7c8",
+    "menu-backdrop-short-live-clock.png": "d5ff016906273578158d5d424646f9049a40bc1b26f5ffae4e29c27b77bfd8d9"
+  },
+  "supersededRun": {
+    "id": 42956498045,
+    "candidate": "e0c981cfafa54920ed0077d1e26551a148dff138",
+    "domain": "success",
+    "browser": "cancelled by root when CLOSED-stream gap was identified",
+    "acceptance": false
+  },
+  "cleanMain": true,
+  "next": "IH2-070 blocked on concrete owner target/access/ownership/cost approval. No independent ready task.",
+  "hostingCreated": false,
+  "realPlayerDataTouched": false,
+  "expenseCreated": false,
+  "fixtureLimits": "Native429/earlier-backup browser HTTP responses are intercepted fictional fixtures; finite successful stream EOF is disclosed. Ordinary20protocol clients/freshDrew use actual stock/clocks with no grants; older race/stock/project-clock fixtures retain disclosures. Empty practice data remains zero-resident, populated restore proofs separate."
+}

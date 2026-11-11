@@ -1,3 +1,4 @@
+import {SURVEY_IDS,SURVEYS} from '../src/game/fieldwork.ts';
 import {test} from 'node:test';
 import {createHmac} from 'node:crypto';
 import {request as httpRequest} from 'node:http';
@@ -91,6 +92,24 @@ test('local authoritative HTTP lifecycle and isolation',{skip:!enabled},async t=
   const a=await login();let r=await post('command',{kind:'gather',resource:'scrap',id:'too-far',expectedRevision:0},a.cookie);assert.equal((await r.json()).ok,false);
   await move(a.cookie,{room:'square',position:{x:21,y:30}});const command={kind:'gather',resource:'scrap',id:'gather-once',expectedRevision:0};r=await post('command',command,a.cookie);assert.equal((await r.json()).ok,true);r=await post('command',command,a.cookie);assert.equal((await r.json()).replayed,true);assert.equal((await snapshot(a.cookie)).workshop.inventory.scrap,6);
   r=await post('command',{...command,resource:'timber'},a.cookie);assert.equal((await r.json()).ok,false);assert.equal((await snapshot(a.cookie)).workshop.revision,1);
+ });
+ await t.test('off-bench studies require real proximity, reject wrong choices, replay once and survive login/weekly return',async()=>{
+  const a=await login(),b=await login('bea');const command={id:'study-oak',expectedRevision:0,kind:'survey',station:'oak',choice:'broad-crown'};
+  assert.equal((await(await post('command',command,a.cookie)).json()).ok,false);
+  const act=async(value:Record<string,unknown>)=>{const current=await snapshot(a.cookie);const response=await(await post('command',{...value,id:'queued-'+current.workshop.revision,expectedRevision:current.workshop.revision},a.cookie)).json();assert.equal(response.ok,true,response.message);return response.snapshot;};
+  for(const resource of ['scrap','timber','supplies']){await move(a.cookie,{room:'square',position:{x:resource==='scrap'?21:resource==='timber'?23:25,y:30}});await act({kind:'gather',resource});}
+  await move(a.cookie,{room:'square',position:{x:20,y:22}});await move(a.cookie,{room:'workshop',position:{x:9,y:11}});await move(a.cookie,{room:'workshop',position:{x:5,y:5}});
+  await act({kind:'craft',recipe:'planter'});clock+=5000;await act({kind:'claim'});await act({kind:'place',prop:'planter',slot:'north-west'});const queued=await act({kind:'craft',recipe:'bridge-kit'});const originalJob=queued.workshop.job;
+  await move(a.cookie,{room:'workshop',position:{x:9,y:13}});await move(a.cookie,{room:'square',position:{x:19.5,y:22.3}});command.expectedRevision=queued.workshop.revision;
+  await move(a.cookie,{room:'square',position:SURVEYS.oak.point});
+  const wrong=await(await post('command',{...command,id:'wrong-study',choice:'pale-bark'},a.cookie)).json();assert.equal(wrong.ok,false);assert.equal(wrong.snapshot.workshop.revision,queued.workshop.revision);
+  const result=await(await post('command',{...command,id:'correct-study'},a.cookie)).json();assert.equal(result.ok,true);assert.deepEqual(result.snapshot.workshop.sketches,['oak']);assert.deepEqual(result.snapshot.workshop.skills,queued.workshop.skills);assert.deepEqual(result.snapshot.workshop.job,originalJob);
+  const replay=await(await post('command',{...command,id:'correct-study'},a.cookie)).json();assert.equal(replay.replayed,true);assert.equal(replay.snapshot.workshop.revision,queued.workshop.revision+1);
+  const other=await snapshot(b.cookie);assert.deepEqual(other.workshop.sketches,[]);
+  // A different UUID cannot record the same study a second time, including concurrent requests.
+  const replies=await Promise.all(['duplicate-a','duplicate-b'].map(id=>post('command',{...command,id,expectedRevision:queued.workshop.revision+1},a.cookie).then(r=>r.json())));assert.ok(replies.every(r=>!r.ok));
+  for(const station of SURVEY_IDS.slice(1)){await move(a.cookie,{room:'square',position:SURVEYS[station].point});const current=await snapshot(a.cookie);if(station==='birch'){const raced=await Promise.all(['first-a','first-b'].map(id=>post('command',{kind:'survey',station,choice:SURVEYS[station].answer,id,expectedRevision:current.workshop.revision},a.cookie).then(r=>r.json())));assert.equal(raced.filter(r=>r.ok).length,1);assert.equal(raced.filter(r=>!r.ok).length,1);}else{const r=await(await post('command',{kind:'survey',station,choice:SURVEYS[station].answer,id:'study-'+station,expectedRevision:current.workshop.revision},a.cookie)).json();assert.equal(r.ok,true,r.message);}}
+  await app.close();await start();clock+=8*86400_000;const returned=await login();assert.deepEqual(returned.snapshot.workshop.sketches,[...SURVEY_IDS]);assert.deepEqual(returned.snapshot.workshop.inventory,queued.workshop.inventory);assert.deepEqual(returned.snapshot.workshop.job,originalJob);assert.equal(returned.snapshot.workshop.revision,queued.workshop.revision+3);
  });
  await t.test('scoped presence omits private workshop residents and performs no movement database checkpoints',async()=>{
   const a=await login(),b=await login('bea'),controller=new AbortController();const response=await fetch(base+'/api/town/events',{headers:{Cookie:a.cookie},signal:controller.signal});const reader=response.body!.getReader();

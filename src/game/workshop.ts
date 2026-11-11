@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import {SURVEY_IDS,SURVEY_CHOICES,SURVEYS} from './fieldwork.ts';
 
 // Local synthetic prototype rules. This module does not establish server authority.
 export const RESOURCE_IDS = ['scrap', 'timber', 'supplies'] as const;
@@ -40,6 +41,7 @@ const propValueSchema = z.enum(PROP_IDS).nullable();
 const placementSchema = z.object(Object.fromEntries(slotIds.map(id => [id, propValueSchema])) as Record<SlotId, typeof propValueSchema>).strict();
 const stateSchema = z.object({
   version: z.literal(1), revision: count, observedAt: timestamp,
+  sketches: z.array(z.enum(SURVEY_IDS)).max(3).refine(ids=>new Set(ids).size===ids.length).default([]),
   inventory: materialSchema, owned: ownedSchema, placements: placementSchema,
   nodes: z.object({ scrap: nodeSchema, timber: nodeSchema, supplies: nodeSchema }).strict(),
   job: z.object({ recipe: z.enum(['planter', 'bridge-kit']), startedAt: timestamp, readyAt: timestamp }).strict().nullable(),
@@ -63,6 +65,7 @@ const stateSchema = z.object({
 export type WorkshopState = z.infer<typeof stateSchema>;
 const baseCommand = { id: receiptSchema.shape.id, expectedRevision: count };
 const commandSchema = z.discriminatedUnion('kind', [
+  z.object({...baseCommand,kind:z.literal('survey'),station:z.enum(SURVEY_IDS),choice:z.enum(SURVEY_CHOICES)}).strict(),
   z.object({ ...baseCommand, kind: z.literal('gather'), resource: z.enum(RESOURCE_IDS) }).strict(),
   z.object({ ...baseCommand, kind: z.literal('craft'), recipe: z.enum(['planter', 'bridge-kit']) }).strict(),
   z.object({ ...baseCommand, kind: z.literal('claim') }).strict(),
@@ -75,7 +78,7 @@ function validTime(now: number): boolean { return timestamp.safeParse(now).succe
 export function createWorkshop(now: number): WorkshopState {
   if (!validTime(now)) throw new Error('A valid integer clock is required.');
   return {
-    version: 1, revision: 0, observedAt: now,
+    version: 1, revision: 0, observedAt: now, sketches: [],
     inventory: { scrap: 0, timber: 0, supplies: 0 },
     owned: { planter: 0, stool: 1, rug: 1, lamp: 1, crate: 1, shelf: 1 },
     placements: Object.fromEntries(slotIds.map(id => [id, null])) as WorkshopState['placements'],
@@ -131,7 +134,12 @@ export function applyWorkshop(input: WorkshopState, raw: unknown, now: number): 
   if (input.revision >= 1_000_000) return fail('This prototype has reached its command limit. Your progress is safe; no change was made.');
   const next = structuredClone(settleWorkshop(input, now));
   let message = '';
-  if (cmd.kind === 'gather') {
+  if(cmd.kind==='survey'){
+    if(next.sketches.includes(cmd.station))return fail('Already recorded. Your sketch is still here; the tree has nothing to add.');
+    if(cmd.choice!==SURVEYS[cmd.station].answer)return fail('Take another look at the tree or read the observation hint. Nothing was spent or changed.');
+    next.sketches.push(cmd.station);
+    message=next.sketches.length===SURVEY_IDS.length?'Three studies recorded. Your Neighborhood Naturalist keepsake is saved in your sketchbook. The trees have issued you a reference.':'Tree study recorded. A useful observation. The committee is visibly relieved.';
+  } else if (cmd.kind === 'gather') {
     const node = next.nodes[cmd.resource];
     const room = STORAGE_LIMIT - RESOURCE_IDS.reduce((n, id) => n + next.inventory[id], 0);
     const quantity = Math.min(node.stock, room);

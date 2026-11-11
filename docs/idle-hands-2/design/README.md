@@ -58,3 +58,5 @@ The corpse window is provisionally 30 real minutes for experimentation. Equipped
 World/city names, region layout, item prices, project waits, drop probabilities, buff strength, chat-history retention and additional-property limits are reversible design defaults. No permanent-loss rule or regional economy is finalized by a picture or a number in a candidate catalog.
 
 First evaluate the design model, then the prototype, then real phones and a realistic shared workload. Keep the next executable task and actual acceptance in [the roadmap](../ROADMAP.json).
+
+November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-job gaps, compares four developer-described game loops, and stages useful solo/cooperative/creative activities. Humor and visible acquired/equipped identity are core. The062sketchbook is a small local collection chapter, not implemented gardening, shops or public trophy display.

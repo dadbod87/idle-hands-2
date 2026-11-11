@@ -413,6 +413,26 @@
       "id": "trail-pennant-world",
       "path": "art/trail/trail-pennant-world.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "fieldwork-naturalist-keepsake",
+      "path": "art/fieldwork/naturalist-keepsake.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "fieldwork-study-birch",
+      "path": "art/fieldwork/study-birch.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "fieldwork-study-fruit",
+      "path": "art/fieldwork/study-fruit.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "fieldwork-study-oak",
+      "path": "art/fieldwork/study-oak.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

@@ -79,6 +79,13 @@
 ## IH2-060 local readiness
 
 - 136zero-skipchecks,20ordinary-clientlegalHTTP/SSEload,140unique/20replay conservation, privacy/reconnect/idle/cleanup, p95<=500mswithquery/event/bodybyte/CPU/RSS/storage scopes. Never targetih2_previeworremote/routing-query URLs.
-- 43fullbrowsercases, including earlier-backup recoveredstate/feet/notice and actualcanvas/phone/short captures. Preserve all deadlines/assertions; exact-headCI both jobs and actual artifacts beforemerge.
+- 44fullbrowsercases, including earlier-backup recoveredstate/feet/notice and actualcanvas/phone/short captures. Preserve all deadlines/assertions; exact-headCI both jobs and actual artifacts beforemerge.
 - Actual localPGrestart/dumprestore/newprocess, practice-state preservation, checksum/receipt/persistence proof. Hostedrole/auth/backup/advisor/WAN/physicalphone checks remain separate.
 - Concrete provider/account/access/cost approval before070resources; no real-account imports, invitations, publicdomains or expense inferred from source merge.
+
+## IH2-062 independent activity
+
+- Legacy saves retain inventory, furniture, receipts and exact queued-job timestamps; default empty sketches. Strict/unique/capped observations, wrong choice/stale/replay/duplicate/concurrency/proximity/identity/restart/weekly-return checks. No costs, XP, score, output or speed bonus.
+- Actual tree tap, keyboard choices, Places/book alternatives, reduced-motion, narrow phone, short200%text, visible original sketch/keepsake art and reload. Seeded browser saves are disclosed as fictional progress, not fresh-player or actual live-timer proof; server tests use ordinary legal gather/craft actions.
+- Regenerate source-fingerprinted pacing artifacts; outcomes must remain unchanged. Reproduce four new original SVGs and all86fingerprints. Full aggregate/browser/build/design/plan/pinned/diff and both exact-head CI jobs plus actual artifacts before merge.
+- Keep comparative source facts separate from our inferred design, future activity targets separate from measured playtime, and journal-only keepsakes separate from unimplemented public displays. No hosting or original-game changes.

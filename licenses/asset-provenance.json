@@ -821,6 +821,46 @@
       "source": "tools/create-trail-art.py",
       "date": "2026-11-10",
       "modifications": "Original trail ground, landmark stamps, cosmetic pennant and anchored bridge construction phases. No imported media."
+    },
+    {
+      "id": "fieldwork-naturalist-keepsake",
+      "path": "public/art/fieldwork/naturalist-keepsake.svg",
+      "sha256": "5235e75ca0cc162a231dc51ae2daf794822319f034edbc60994e43f8d774b73f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-fieldwork-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original journal frames/certificate and composed original tree layers; no imported media."
+    },
+    {
+      "id": "fieldwork-study-birch",
+      "path": "public/art/fieldwork/study-birch.svg",
+      "sha256": "59e980155eb1198eaee832f48ec18d8bbe9638bd6f7abfe5c77064279a49f253",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-fieldwork-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original journal frames/certificate and composed original tree layers; no imported media."
+    },
+    {
+      "id": "fieldwork-study-fruit",
+      "path": "public/art/fieldwork/study-fruit.svg",
+      "sha256": "4d11d5894beaf1b97826ce50967ab7f3f1b479a0bf4ef8ef08a964339034f840",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-fieldwork-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original journal frames/certificate and composed original tree layers; no imported media."
+    },
+    {
+      "id": "fieldwork-study-oak",
+      "path": "public/art/fieldwork/study-oak.svg",
+      "sha256": "dcd0da9cd4251fe473d6fe896b263d757a8a6ab20f6cc96afa25ebacccadb07f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-fieldwork-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original journal frames/certificate and composed original tree layers; no imported media."
     }
   ],
   "comparison": {

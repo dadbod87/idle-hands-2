@@ -30,3 +30,11 @@ The owner did not finalize which equipped items drop, what happens at corpse exp
 ## Continuity boundary
 
 The original game's accounts, rules and art do not silently carry over. Current sequel workshop/bridge/plot proof remains intact. New ideas are design input for future slices, not permission to mark combat, shops, chat, native packaging or multiple cities implemented. Preserve persistent homes and creative work through weekly competition. Keep private-message authorization and real accounts behind their actual implementation/security gates.
+
+## November 11 — active play, humor, teamwork and visible identity
+
+Direct owner direction: long production must leave useful things to do; research comparable successful games and use their loop/progression ideas as groundwork. Humor is core, alongside working together, worthwhile solo progress, and other players seeing a distinctive home, acquired items and equipped appearance.
+
+Interpretation for implementation: maintain parallel activity lanes; make cooperation improve choices without requiring everyone online; develop recognizable displayable trophies, furniture, clothing and tools. Reward variety and expression, not a single exponential number. Use original fictional bureaucracy, item descriptions and consequences for humor; no real coworker details or humiliating targeted jokes. Those tone choices are agent-selected editorial defaults. See [activity research and sequencing](../ACTIVITY_DEPTH.md).
+
+The062sketchbook is the first small off-bench collection chapter; its keepsake is currently journal-only. It does not implement public trophy mounting, wardrobe, co-op errands, gardening or a complete active-play loop. Those remain explicit later slices. Public identity/audience and hosted accounts retain their actual gates. New local content authorization does not approve paid services or public deployment.

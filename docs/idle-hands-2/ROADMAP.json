@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-10",
+  "updated": "2026-11-11",
   "authority": "docs/idle-hands-2/README.md",
   "tasks": [
     {
@@ -445,6 +445,49 @@
       "owner_branch": "feat/release-readiness"
     },
     {
+      "id": "IH2-062",
+      "title": "Off-bench activity and town sketchbook",
+      "status": "done",
+      "depends_on": [
+        "IH2-060"
+      ],
+      "goal": "Give early players one useful optional exploration activity while a long bench job runs, and audit the remaining content gap.",
+      "acceptance": [
+        "Audit available first-session/return activities and remaining wait gaps; record an activity-depth plan without promising unlimited content.",
+        "Three square tree observation challenges work before bridge/home access, consume no materials, award no XP/output/score, and retain one illustrated journal keepsake. Existing jobs/depot clocks remain authoritative and unchanged.",
+        "Old local/server saves retain progress; strict choices, once-only records, replay/stale/concurrent/proximity/identity and weekly/restart preservation are tested using isolated data.",
+        "Original reproducible art, reachable direct taps and Places/book alternatives, keyboard/touch/narrow/short/reduced-motion checks, required checks and exact-head CI/artifact review pass before merge."
+      ],
+      "exclusions": [
+        "No hosting/billing/real accounts, new resource economy, paid art, production speedups, mandatory weather windows or claim of hours of new content."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/ACTIVITY_DEPTH.md",
+        "docs/evidence/IH2-062/REPORT.md",
+        "docs/idle-hands-2/handoffs/2026-11-11-off-bench.md"
+      ],
+      "owner_branch": "feat/off-bench-sketchbook"
+    },
+    {
+      "id": "IH2-064",
+      "title": "Independent garden loop design and pacing proof",
+      "status": "queued",
+      "depends_on": [
+        "IH2-062"
+      ],
+      "goal": "Specify one useful starter garden and practical gathering loop before adding its resource economy to runtime.",
+      "acceptance": [
+        "Choose a small original crop/seed/output set and a rented allotment accessible before earned housing. Costs, renewable seeds, independent capacities, ready-without-withering rules and exact ownership are explicit.",
+        "Model brief, regular and highly active schedules alongside a busy bench, exhausted depots, limited storage and absent coworkers; identify blocking bottlenecks and closed/inflationary loops before runtime integration.",
+        "Specify useful solo/cooperative/creative goals, authored humor, visible growth/action art requirements and a preview/cancel/harvest phone interaction; separate candidate decisions from implemented systems.",
+        "Record next bounded runtime task, documentation, required checks and exact-head CI/artifact review; preserve current game and no cloud/real-account changes."
+      ],
+      "exclusions": [
+        "No live garden economy, undisclosed progress grants, paid assets, cloud resources, crop death or required weather attendance."
+      ],
+      "evidence": []
+    },
+    {
       "id": "IH2-070",
       "title": "Invited beta on approved isolated hosting",
       "status": "blocked",
@@ -462,7 +505,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Owner review/approval of the concrete PRIVATE_PREVIEW_PLAN account/ownership/access and conditional cost ceiling is required before hosting resources or invitations. No cloud provisioning or real-account authorization yet;060exact source closeout must also complete."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required; new explicit local content direction is independently authorized as IH2-062. No cloud resources or invitations."
     },
     {
       "id": "IH2-080",

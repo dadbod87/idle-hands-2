@@ -1,0 +1,18 @@
+{
+  "candidate": "98f99eadfe62a56bb2f72f2ad84eade0c38d8be4",
+  "run": 42931080208,
+  "domainBuildPlan": "SUCCESS;103zero skips/build82SVGmatches/restartPASS",
+  "browser": "CANCELLED20minutes;28passed/1failed/11uncompleted",
+  "failedCase": "automatic-door first-approach fixture gated the first2same-room requests globally; when firstattemptneeded1checkpoint, the2ndattempt consumedunusedholdandneverreceivedACK",
+  "traceEvidence": "First source POSTsquare20,23.2005 ACKafter3032ms. Second-intent POSTsquare20,22.617 at102036.598unanswered(status-1). Retapwasaccepted; screenshotfeedbackConfirmingarrival.",
+  "correction": "Scope hold to firstintent only; preserveallactualinputs/assertions/deadlines andadddeterministiconecheckpointvariant",
+  "runtimeSourceFixNeededForThisFailure": false,
+  "newTrailCase": "PASS2.7min",
+  "frameP95Ms": {
+    "desktop": 200,
+    "phone": 66.7,
+    "narrow": 50,
+    "short": 50.1
+  },
+  "limits": "UncompletedcasesnotclaimedPASS. Thisrejectedcandidateisnotmerged. Rendererprobe andnewfinalcandidatewillbesepa\u00adrateevidence."
+}

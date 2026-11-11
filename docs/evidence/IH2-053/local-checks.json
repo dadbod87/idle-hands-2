@@ -1,0 +1,33 @@
+{
+  "domainTests": 103,
+  "domainSkipped": 0,
+  "authoritativeServerTests": 37,
+  "strictBuild": "PASS",
+  "catalog": "PASS;48entries/5candidate regions",
+  "planner": "PASS;18tasks/10tracker tests",
+  "toolkit": "PASS;40pinned files",
+  "databaseRestart": "PASS;actual isolated PG16.15container, home/job/opening/award/session retained",
+  "advisory": "Hosted-specific lint unavailable: local plainPG has no anon role. SQLcatalog RLS/grants and real migrations tested instead.",
+  "fixtureLimits": "All fictional/local. Full fixture disclosure and physical-device limits in REPORT/individual JSON.",
+  "browserTests": 41,
+  "browserMinutes": 4.3,
+  "diff": "PASS",
+  "actualFinalImagesReviewed": [
+    "trail-desktop-home-wall-pennant.png",
+    "trail-desktop-opening-journal.png",
+    "trail-desktop-lookout-pennant-earned.png",
+    "trail-short-text200-notebook.png",
+    "trail-desktop-building.png",
+    "trail-phone-newcomer-stamp.png",
+    "trail-phone-night-outdoor.png",
+    "trail-short-text200-world.png",
+    "trail-desktop-entry.png",
+    "client-ready-early-snapshot-fixture.png"
+  ],
+  "renderer": {
+    "textureSmoothing": true,
+    "contextAntialias": false,
+    "source": "Actualfinal desktopmetrics"
+  },
+  "reproducibleRendererProbe": "PASS;actualcurrenttoolnative/software1/3contextsverifiedrequestedattributes,independentmeasures~24/28%lowermeaninterval"
+}

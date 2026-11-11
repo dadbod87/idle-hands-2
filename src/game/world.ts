@@ -1,9 +1,10 @@
 import {TOWN_PEOPLE} from './town-people.ts';
-export type Room = 'square' | 'workshop' | 'home' | 'home-expanded';
+export type Room = 'square' | 'workshop' | 'home' | 'home-expanded' | 'trail';
 export type Point = { x: number; y: number };
 export type Stop = { id: string; name: string; point: Point; text: string; transition?: Room; arrival?: Point; doorArea?: [number, number, number, number] };
 export type World = { width: number; height: number; blocked: [number, number, number, number][]; stops: Stop[] };
 export const TILE = 32;
+export const TRAIL_LANDMARK_IDS=['trailhead','old-sign','lookout'] as const;
 export const worlds: Record<Room, World> = {
   square: {
     width: 48, height: 48,
@@ -17,8 +18,13 @@ export const worlds: Record<Room, World> = {
       {id:'home-front',name:'House front door',point:{x:30,y:35.5},doorArea:[29.25,34.75,1.5,2],text:'An earned home. Knock once; the paperwork stays outside.'},
       { id: 'plot', name: 'Future house plots', point: { x: 30, y: 29 }, text: 'Room to put down roots. The full game will let you acquire a plot, upgrade a house and make it yours. No plots are sold in this pilot.' },
       ...TOWN_PEOPLE.map(person=>({id:person.id,name:person.name+' · '+person.role.split(' · ')[0],point:person.point,doorArea:person.doorArea,text:'Talk to '+person.name+'.'})),
+      {id:'trail-gate',name:'Inkwood trail',point:{x:25.5,y:12.25},transition:'trail',arrival:{x:9,y:22},doorArea:[24.5,9.5,3,3.6],text:'The first restored trail. Access follows the bridge inspection, not optimistic calendar math.'},
       { id: 'bridge', name: 'Bridge committee', point: { x: 24, y: 13 }, text: 'A future shared project: everyone contributes, everyone gets a new place to explore. Today the committee is only inspecting the concept of a bridge.' }
     ]
+  },
+  trail: {
+    width:18,height:26,blocked:[[1,1,3,5],[13,1,4,5],[1,7,2,10],[15,8,2,10],[1,20,4,4],[13,20,4,4],[7,1,4,3],[8,7,2,2]],
+    stops:[{id:'trail-exit',name:'Town square',point:{x:9,y:24},transition:'square',arrival:{x:25.5,y:12.6},doorArea:[8,23,3,2],text:'Back over the restored bridge.'},{id:'trailhead',name:'Inspection stump',point:{x:6,y:18},doorArea:[5.25,16.5,1.5,2],text:'A fully qualified stump. It has seniority.'},{id:'old-sign',name:'Retired wayfinding post',point:{x:12,y:12},doorArea:[11.25,10.5,1.5,2],text:'The arrows disagree. The post has been promoted.'},{id:'lookout',name:'Municipal birdwatching sign',point:{x:4,y:8},doorArea:[3.25,6.5,1.5,2],text:'Population unverified. Committee expanding.'}]
   },
   home: {
     width: 18, height: 16, blocked: [[2,2,4,3]],

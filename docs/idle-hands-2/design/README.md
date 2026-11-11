@@ -1,6 +1,6 @@
 # A living town, built one useful layer at a time
 
-IH2-054 design package, 2026-11-10. **Design candidates, not implemented features.** The design was recorded against the IH2-051 neighborhood. The design package itself adds no regions, combat, chat, purchases, real accounts or hosting. IH2-052 now implements its bounded home/teaching/return slice; see CURRENT_SESSION and exact task evidence, rather than treating every candidate as shipped.
+IH2-054 design package, 2026-11-10. **Design candidates, not implemented features.** The design was recorded against the IH2-051 neighborhood. The design package itself adds no regions, combat, chat, purchases, real accounts or hosting. IH2-052/053 now implement their bounded home/teaching/return and timed bridge/trail slices; see CURRENT_SESSION and exact task evidence, rather than treating every candidate as shipped.
 
 ## Read the design
 
@@ -24,7 +24,7 @@ Town creation and home ownership remain useful without mandatory combat. Wildern
 
 **IH2-052:** one physical starter-home/visitor path, one persistent expansion/decorating step, an honest return summary and a bounded first-kit teaching path. Use the art audit and pacing findings to make those choices concrete. Do not implement the whole candidate catalog as part of that task.
 
-**IH2-053:** the first useful restored trail, resident reactions, modest earned discovery and useful work for newcomers after a project finishes. Reconcile the owner's requested construction delay here; current bridge completion is immediate, so a timer needs a versioned project-state change and migration rather than a cosmetic countdown.
+**IH2-053:** one useful restored trail, authored resident reactions, three deterministic personal discoveries and a permanent home pennant. New funding starts one fixed six-real-hour bridge construction deadline; versioned authority and migration preserve already-open bridges. Paid newcomer upkeep remains available; no new resource/recipe or combat/chat economy. Exact checks/CI are recorded in its evidence and PR closeout.
 
 **IH2-050:** prove the first neighborhood together before expanding. Current limited claims and device/load gaps remain in the evidence; a design diagram does not close them.
 

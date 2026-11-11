@@ -363,6 +363,56 @@
       "id": "home-timber-icon",
       "path": "art/homes/home-timber-icon.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "trail-bridge-building",
+      "path": "art/trail/trail-bridge-building.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "trail-bridge-collecting",
+      "path": "art/trail/trail-bridge-collecting.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "trail-bridge-open",
+      "path": "art/trail/trail-bridge-open.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "trail-bridge-ready",
+      "path": "art/trail/trail-bridge-ready.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "trail-ground",
+      "path": "art/trail/trail-ground.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "trail-landmark-lookout",
+      "path": "art/trail/trail-landmark-lookout.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "trail-landmark-old-sign",
+      "path": "art/trail/trail-landmark-old-sign.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "trail-landmark-trailhead",
+      "path": "art/trail/trail-landmark-trailhead.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "trail-pennant-icon",
+      "path": "art/trail/trail-pennant-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "trail-pennant-world",
+      "path": "art/trail/trail-pennant-world.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

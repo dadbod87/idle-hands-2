@@ -19,6 +19,7 @@ export type DialogueContext = {
   job: 'none' | 'planter' | 'bridge-kit';
   jobReady: boolean;
   bridgeRestored: boolean;
+  bridgePhase?:'collecting'|'building'|'open';trailStamps?:number;pennantOwned?:boolean;maintenanceSatisfied?:boolean;
   shared: boolean;
   phase: string;
 };
@@ -65,7 +66,7 @@ export function dialogueFor(id: string, context: DialogueContext): TownDialogue 
     };
     if (context.questStage === 'bridge') return {
       title,
-      lines: ['Your next bench recipe is a bridge repair kit. The committee has approved useful work in principle.', 'A kit takes twelve hours. Queue it at the bench, then return later to collect it. Keeping the game open does not make it finish sooner.'],
+      lines: context.shared?[context.maintenanceSatisfied?'Your participation is already recorded. Your next ordinary kit can go toward a home.':'The bench offers a once-only maintenance lesson: one of each material and sixty real seconds. It earns participation, not an inventory kit.','An ordinary kit takes twelve hours. Queue it at the bench, then return later to collect it. Keeping the game open does not make it finish sooner.']:['Your next bench recipe is a bridge repair kit. The committee has approved useful work in principle.', 'A kit takes twelve hours. Queue it at the bench, then return later to collect it. Keeping the game open does not make it finish sooner.'],
       action: bench(context)
     };
     if (context.job === 'bridge-kit') return {
@@ -88,9 +89,10 @@ export function dialogueFor(id: string, context: DialogueContext): TownDialogue 
     };
     if (context.bridgeRestored) return {
       title,
-      lines: ['The bridge is repaired. I have framed the committee’s first accurate estimate.', 'The trail is still closed for inspection. Apparently we must establish whether the other side is sufficiently over there.'],
+      lines: ['The bridge is repaired. I have framed the committee’s first accurate estimate.',context.pennantOwned?'Three field notes. One pennant. It waits for your home wall, which is now more qualified than most of the committee.':context.trailStamps?'You have '+context.trailStamps+' of three field notes. The Inkwood trail has a stump, an old sign and a birdwatching board left to investigate.':'The Inkwood trail is open. Inspect its stump, retired sign and birdwatching board; your own field notebook earns a home pennant.'],
       action: bridge()
     };
+    if(context.bridgePhase==='building')return{title,lines:['The materials are funded. Now the crew must build the part that is not paperwork.','The committee shows a fixed six-hour construction deadline. It keeps running while you are away; extra donations cannot restart or shorten it.'],action:bridge()};
     if (context.job === 'bridge-kit' && !context.jobReady) return {
       title,
       lines: ['Your repair kit needs its twelve hours at the bench. The bridge is not going anywhere. That is part of the problem.', 'Once the kit is finished, collect it and bring it to the bridge committee. You can leave it working while you are away.'],
@@ -98,7 +100,7 @@ export function dialogueFor(id: string, context: DialogueContext): TownDialogue 
     };
     return {
       title,
-      lines: ['It takes three repair kits to fix this bridge. Each contribution uses one finished kit.', context.jobReady
+      lines: ['It takes three repair credits to fund this bridge. A finished kit counts as one, or your once-only paid maintenance lesson can help.', context.jobReady
         ? 'Your bench has finished work. Collect it before bringing a kit to the committee.'
         : 'If you have a completed kit, take it to the bridge committee. If not, your workshop bench lists the recipe. The committee accepts materials, not enthusiasm.'],
       action: context.jobReady ? bench(context) : bridge()
@@ -110,7 +112,7 @@ export function dialogueFor(id: string, context: DialogueContext): TownDialogue 
       context.shared
         ? 'Weekly scores start fresh, but your inventory, queued job and decoration stay with you.'
         : 'Browser practice and the shared town have separate saves; your practice work stays in this browser.',
-      'You can reserve a plot in the shared town, but the sample house in the art study is not ready to visit. Shops and deliveries will have to wait.'],
+      context.shared?'Your earned home and workroom can be visited. Trail discoveries add a pennant; wider shops and deliveries will have to wait.':'You can reserve a plot in the shared town, but the sample house in the art study is not ready to visit. Shops and deliveries will have to wait.'],
     action: context.questStage === 'place' ? journal() : bench(context)
   };
   return undefined;

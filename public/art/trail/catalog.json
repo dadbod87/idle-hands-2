@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "authoring": "Original deterministic SVG artwork; no external media.",
+  "generator": "tools/create-trail-art.py",
+  "treePlacements": [
+    {
+      "tileX": 1,
+      "tileY": 1,
+      "kind": "oak"
+    },
+    {
+      "tileX": 14,
+      "tileY": 1,
+      "kind": "birch"
+    },
+    {
+      "tileX": 1,
+      "tileY": 8,
+      "kind": "birch"
+    },
+    {
+      "tileX": 15,
+      "tileY": 10,
+      "kind": "oak"
+    },
+    {
+      "tileX": 1,
+      "tileY": 20,
+      "kind": "fruit"
+    },
+    {
+      "tileX": 14,
+      "tileY": 20,
+      "kind": "birch"
+    }
+  ],
+  "treePlacementNote": "Reuse existing trunk/canopy metadata and feet. Candidate edge plantings inside blocked envelopes; never expand collision from canopy bounds.",
+  "assets": [
+    {
+      "id": "trail-ground",
+      "file": "trail-ground.svg",
+      "width": 576,
+      "height": 832,
+      "kind": "ground",
+      "tiles": {
+        "width": 18,
+        "height": 26
+      },
+      "routeTilePoints": [
+        [
+          9,
+          23
+        ],
+        [
+          6,
+          18
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "collisionNote": "Ground is decorative. Fenced future extension is inside [7,1,4,3]; tree collision and landmark interaction remain authoritative world geometry."
+    },
+    {
+      "id": "trail-landmark-trailhead",
+      "file": "trail-landmark-trailhead.svg",
+      "width": 96,
+      "height": 112,
+      "kind": "landmark",
+      "landmarkId": "trailhead",
+      "foot": {
+        "x": 48,
+        "y": 104
+      },
+      "tilePoint": {
+        "x": 6,
+        "y": 18
+      },
+      "solid": false,
+      "motif": "Annual stump inspection: clipboard and checked growth rings."
+    },
+    {
+      "id": "trail-landmark-old-sign",
+      "file": "trail-landmark-old-sign.svg",
+      "width": 96,
+      "height": 112,
+      "kind": "landmark",
+      "landmarkId": "old-sign",
+      "foot": {
+        "x": 48,
+        "y": 104
+      },
+      "tilePoint": {
+        "x": 12,
+        "y": 12
+      },
+      "solid": false,
+      "motif": "Retired wayfinding: opposed arrows and bent post."
+    },
+    {
+      "id": "trail-landmark-lookout",
+      "file": "trail-landmark-lookout.svg",
+      "width": 96,
+      "height": 112,
+      "kind": "landmark",
+      "landmarkId": "lookout",
+      "foot": {
+        "x": 48,
+        "y": 104
+      },
+      "tilePoint": {
+        "x": 4,
+        "y": 8
+      },
+      "solid": false,
+      "motif": "Birdwatching lookout: unmistakable bird silhouette, two posts."
+    },
+    {
+      "id": "trail-pennant-world",
+      "file": "trail-pennant-world.svg",
+      "width": 96,
+      "height": 112,
+      "kind": "wall-cosmetic",
+      "foot": {
+        "x": 48,
+        "y": 106
+      },
+      "motif": "Three Inkwood discovery stamps: checked stump, arrow, bird.",
+      "solid": false
+    },
+    {
+      "id": "trail-pennant-icon",
+      "file": "trail-pennant-icon.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "cosmetic-icon"
+    },
+    {
+      "id": "trail-bridge-collecting",
+      "file": "trail-bridge-collecting.svg",
+      "width": 96,
+      "height": 112,
+      "kind": "bridge-stage",
+      "phase": "collecting",
+      "foot": {
+        "x": 48,
+        "y": 112
+      },
+      "collisionNote": "Shared visual threshold only. Server bridge phase controls passage; foot maps to832,408 for every phase. Ready retains inspection bar, opened removes it."
+    },
+    {
+      "id": "trail-bridge-building",
+      "file": "trail-bridge-building.svg",
+      "width": 96,
+      "height": 112,
+      "kind": "bridge-stage",
+      "phase": "building",
+      "foot": {
+        "x": 48,
+        "y": 112
+      },
+      "collisionNote": "Shared visual threshold only. Server bridge phase controls passage; foot maps to832,408 for every phase. Ready retains inspection bar, opened removes it."
+    },
+    {
+      "id": "trail-bridge-ready",
+      "file": "trail-bridge-ready.svg",
+      "width": 96,
+      "height": 112,
+      "kind": "bridge-stage",
+      "phase": "ready",
+      "foot": {
+        "x": 48,
+        "y": 112
+      },
+      "collisionNote": "Shared visual threshold only. Server bridge phase controls passage; foot maps to832,408 for every phase. Ready retains inspection bar, opened removes it."
+    },
+    {
+      "id": "trail-bridge-open",
+      "file": "trail-bridge-open.svg",
+      "width": 96,
+      "height": 112,
+      "kind": "bridge-stage",
+      "phase": "open",
+      "foot": {
+        "x": 48,
+        "y": 112
+      },
+      "collisionNote": "Shared visual threshold only. Server bridge phase controls passage; foot maps to832,408 for every phase. Ready retains inspection bar, opened removes it."
+    }
+  ]
+}

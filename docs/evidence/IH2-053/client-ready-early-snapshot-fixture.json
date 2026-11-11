@@ -1,0 +1,22 @@
+{
+  "disclosure": "Entire town HTTP API and EventSource are intercepted fictional fixtures. A real original ground SVG response is held until the saved resident snapshot has arrived while Phaser is not ready, then released unchanged. Real keyboard input must move without any menu/login interaction. No database or real account is used; this tests client boot ordering only.",
+  "snapshots": 3,
+  "logins": 0,
+  "moves": [
+    {
+      "room": "square",
+      "position": {
+        "x": 24.0835,
+        "y": 25
+      }
+    },
+    {
+      "room": "square",
+      "position": {
+        "x": 24.5,
+        "y": 25
+      }
+    }
+  ],
+  "errors": []
+}

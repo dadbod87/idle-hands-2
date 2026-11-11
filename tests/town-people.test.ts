@@ -36,8 +36,8 @@ test('caretaker distinguishes local preview, queued work, finished output and co
   const shared = { ...base, shared: true };
   const pending = say('caretaker', { ...shared, job: 'bridge-kit' }); assert.match(pending.lines.join(' '), /twelve hours/); assert.equal(pending.action!.destination, 'workshop');
   const finished = say('caretaker', { ...shared, job: 'bridge-kit', jobReady: true }); assert.match(finished.lines.join(' '), /Collect it before/); assert.equal(finished.action!.destination, 'workshop');
-  const project = say('caretaker', shared); assert.match(project.lines.join(' '), /three repair kits to fix this bridge/); assert.match(project.lines.join(' '), /Each contribution uses one finished kit/);
-  const restored = say('caretaker', { ...shared, bridgeRestored: true }); assert.match(restored.lines.join(' '), /bridge is repaired/); assert.match(restored.lines.join(' '), /trail is still closed for inspection/);
+  const project = say('caretaker', shared); assert.match(project.lines.join(' '), /three repair credits to fund this bridge/); assert.match(project.lines.join(' '), /finished kit counts as one/);
+  const restored = say('caretaker', { ...shared, bridgeRestored: true }); assert.match(restored.lines.join(' '), /bridge is repaired/); assert.match(restored.lines.join(' '), /Inkwood trail is open/);
 });
 test('courier recognizes cosmetic time without inventing closures, shops, rewards or available sample houses', () => {
   for (const [phase, expected] of [['night', 'Night shift'], ['dawn', 'Morning rounds'], ['morning', 'Morning rounds'], ['dusk', 'Evening rounds'], ['evening', 'Evening rounds'], ['day', 'Afternoon rounds'], ['unknown', 'Afternoon rounds']]) {
@@ -55,4 +55,8 @@ test('all context branches are pure, return fresh dialogue and unknown residents
     first.lines.push('test-only edit'); assert.notDeepEqual(first.lines, dialogueFor(id, context)!.lines);
 
   }
+});
+
+test('resident reactions distinguish construction, safe discovery and earned appearance without speeding jobs',()=>{
+ const shared={...base,shared:true,questStage:'bridge' as const};assert.match(say('clerk',shared).lines.join(' '),/sixty real seconds/);assert.match(say('clerk',{...shared,maintenanceSatisfied:true}).lines.join(' '),/participation is already recorded/);const building=say('caretaker',{...shared,bridgePhase:'building'}).lines.join(' ');assert.match(building,/six-hour construction deadline/);assert.match(building,/cannot restart or shorten/);assert.match(say('caretaker',{...shared,bridgeRestored:true,trailStamps:2}).lines.join(' '),/2 of three/);assert.match(say('caretaker',{...shared,bridgeRestored:true,pennantOwned:true}).lines.join(' '),/home wall/);
 });

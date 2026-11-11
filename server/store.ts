@@ -2,16 +2,18 @@ import { createHash } from 'node:crypto';
 import type { Pool, PoolClient } from 'pg';
 import { z } from 'zod';
 import { applyWorkshop, createWorkshop, loadWorkshop, questStep, PROP_IDS, PLACEMENT_SLOTS, type WorkshopState } from '../src/game/workshop.ts';
-import { canStand, worlds, type Point, type Room } from '../src/game/world.ts';
-import { PLOT_CLAIM_KITS, PLOT_UPGRADE_KITS, MAINTENANCE_MS, MAINTENANCE_COST } from '../src/game/town-rules.ts';
+import { canStand, worlds, TRAIL_LANDMARK_IDS, type Point, type Room } from '../src/game/world.ts';
+import { PLOT_CLAIM_KITS, PLOT_UPGRADE_KITS, MAINTENANCE_MS, MAINTENANCE_COST, BRIDGE_BUILD_MS, TRAIL_PENNANT_AWARD } from '../src/game/town-rules.ts';
 
 export type TownPosition = { room: Room; position: Point; homePlotId?: string };
-export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'] };
+export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements']; pennantOwned:boolean };
 export type MaintenanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot = {
   playerId: string; name: string; workshop: WorkshopState; position: TownPosition;
   quest: { contentVersion: 1; awarded: string[] };
-  bridge: { contributed: number; target: number; restored: boolean };
+  bridge: { contributed: number; target: number; restored: boolean;phase:'collecting'|'building'|'open';startedAt:number|null;readyAt:number|null;openedAt:number|null;grandfathered:boolean };
+  projectJournal:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;
+  trail:{stamps:string[];pennantOwned:boolean};
   plot: TownPlot | null; plots: TownPlot[];
   lesson:MaintenanceLesson; lessonQuote:{route:'construction'|'upkeep';expectedBridgeContributed:number};
   seasonKey: string; scores: { playerId: string; name: string; points: number }[]; serverTime: number;
@@ -24,6 +26,7 @@ const base = { id: idSchema, expectedRevision: z.number().int().min(0).max(1_000
 const slotSchema = z.enum(PLACEMENT_SLOTS.map(s => s.id) as [string, ...string[]]);
 const specialSchema = z.discriminatedUnion('kind', [
   z.object({ ...base, kind: z.literal('contribute') }).strict(),
+  z.object({...base,kind:z.literal('stamp-trail'),landmarkId:z.enum(TRAIL_LANDMARK_IDS)}).strict(),
   z.object({ ...base, kind: z.literal('enter-home'), plotId:z.string().regex(/^[1-9][0-9]{0,17}$/) }).strict(),
   z.object({ ...base, kind:z.literal('start-lesson'), route:z.enum(['construction','upkeep']),expectedBridgeContributed:z.number().int().min(0).max(3) }).strict(),
   z.object({ ...base, kind:z.literal('complete-lesson') }).strict(),
@@ -88,24 +91,34 @@ export class TownStore {
   }
   async savePosition(id: string, position: TownPosition): Promise<void> {
     if (!validPosition(position)) throw new Error('Invalid server-validated position.');
+    if(position.room==='trail'&&(await this.snapshot(id)).bridge.phase!=='open')throw new Error('The trail is not open.');
     if(isHome(position.room)){const plot=(await this.pool.query('select level from ih2.plots where id=$1',[position.homePlotId])).rows[0];if(!plot||(plot.level===2?'home-expanded':'home')!==position.room)throw new Error('Home instance is not valid.');}
     await this.pool.query('update ih2.players set position=$2,updated_at=now() where id=$1', [id, position]);
+  }
+  private async settleBridge(client:PoolClient,now:number){
+    const opened=await client.query("update ih2.bridge set phase='open',opened_at=ready_at where id=1 and phase='building' and ready_at<=$1 returning ready_at",[now]);
+    if(opened.rows.length)await client.query("insert into ih2.project_events(id,kind,effective_at,recorded_at) values('bridge-opened-v2','opened',$1,$2) on conflict do nothing",[opened.rows[0].ready_at,now]);
+  }
+  private async fundBridge(client:PoolClient,now:number){
+    await client.query("update ih2.bridge set contributed=contributed+1,phase=case when contributed+1=target then 'building' else phase end,started_at=case when contributed+1=target then $1 else started_at end,ready_at=case when contributed+1=target then $1+$2 else ready_at end where id=1",[now,BRIDGE_BUILD_MS]);
   }
   private async readSnapshot(client: PoolClient, id: string, now: number): Promise<TownSnapshot> {
     const { rows } = await client.query<PlayerRow>('select id,name,workshop,position,quest_content_version from ih2.players where id=$1', [id]);
     const player = rows[0]; if (!player) throw new Error('Unknown synthetic player.');
-    const plots = (await client.query('select p.id::text,p.owner_id,p.level,p.placements,u.name from ih2.plots p join ih2.players u on u.id=p.owner_id order by p.id')).rows.map(p => ({ id: p.id, ownerId: p.owner_id, ownerName: p.name, level: p.level as 1 | 2, placements: p.placements }));
-    const bridgeRow = (await client.query('select contributed,target from ih2.bridge where id=1')).rows[0];
+    const plots = (await client.query('select p.id::text,p.owner_id,p.level,p.placements,u.name,exists(select 1 from ih2.quest_awards q where q.player_id=p.owner_id and q.quest_id=\'trail-pennant-v1\') as pennant_owned from ih2.plots p join ih2.players u on u.id=p.owner_id order by p.id')).rows.map(p => ({ id: p.id, ownerId: p.owner_id, ownerName: p.name, level: p.level as 1 | 2, placements: p.placements,pennantOwned:p.pennant_owned }));
+    const bridgeRow = (await client.query('select * from ih2.bridge where id=1')).rows[0];
     const awarded = (await client.query('select quest_id from ih2.quest_awards where player_id=$1 order by quest_id', [id])).rows.map(r => r.quest_id);
     const lessonRow=(await client.query('select * from ih2.maintenance_lessons where player_id=$1',[id])).rows[0];
     const lesson:MaintenanceLesson={startedAt:lessonRow?.started_at===null||!lessonRow?null:Number(lessonRow.started_at),readyAt:lessonRow?.ready_at===null||!lessonRow?null:Number(lessonRow.ready_at),completed:!!lessonRow?.completed,redeemed:!!lessonRow?.redeemed,route:lessonRow?.route??null,legacySatisfied:!!lessonRow?.legacy_satisfied};
+    const stamps=(await client.query('select landmark_id from ih2.trail_stamps where player_id=$1 order by landmark_id',[id])).rows.map(row=>row.landmark_id);
+    const projectJournal=(await client.query('select * from ih2.project_events order by recorded_at,id')).rows.map(row=>({id:row.id,kind:row.kind as 'opened'|'grandfathered',effectiveAt:row.effective_at===null?null:Number(row.effective_at),recordedAt:Number(row.recorded_at)}));
     const key = seasonKey(now);
     const scores = (await client.query('select s.player_id,u.name,s.points from ih2.season_scores s join ih2.players u on u.id=s.player_id where s.season_key=$1 order by s.points desc,s.player_id', [key])).rows.map(r => ({ playerId: r.player_id, name: r.name, points: r.points }));
-    return { playerId: id, name: player.name, workshop: this.readState(player, now), position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.contributed >= bridgeRow.target }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    return { playerId: id, name: player.name, workshop: this.readState(player, now), position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string): Promise<TownSnapshot> {
     const client = await this.pool.connect();
-    try { await client.query('begin isolation level repeatable read read only'); const result = await this.readSnapshot(client, id, this.clock()); await client.query('commit'); return result; }
+    try { await client.query('begin');await this.settleBridge(client,this.clock());await client.query('commit');await client.query('begin isolation level repeatable read read only'); const result = await this.readSnapshot(client, id, this.clock()); await client.query('commit'); return result; }
     catch (error) { await client.query('rollback'); throw error; }
     finally { client.release(); }
   }
@@ -120,6 +133,7 @@ export class TownStore {
       const now = this.clock();
       const player = (await client.query<PlayerRow>('select * from ih2.players where id=$1 for update', [id])).rows[0];
       if (!player) throw new Error('Unknown synthetic player.');
+      await this.settleBridge(client,now);
       let state = this.readState(player, now);let authoritativePosition=position;
       const prior = (await client.query('select payload_hash,result from ih2.command_receipts where player_id=$1 and command_id=$2', [id, cmd.id])).rows[0];
       if (prior) {
@@ -130,9 +144,9 @@ export class TownStore {
       let result: Receipt = { ok: false, message: '', revision: state.revision };
       const ownPlot = (await client.query('select id::text,owner_id,level,placements from ih2.plots where owner_id=$1 for update', [id])).rows[0];
       const special = specialSchema.safeParse(raw);
-      const specialKinds = ['contribute', 'claim-plot', 'upgrade-plot', 'edit-plot','enter-home','start-lesson','complete-lesson','redeem-lesson'];
+      const specialKinds = ['contribute', 'claim-plot', 'upgrade-plot', 'edit-plot','enter-home','start-lesson','complete-lesson','redeem-lesson','stamp-trail'];
       const contextPlot=isHome(position.room)?(await client.query('select id::text,owner_id,level from ih2.plots where id=$1',[position.homePlotId])).rows[0]:null;
-      const validContext=!isHome(position.room)||!!contextPlot&&position.room===(contextPlot.level===2?'home-expanded':'home');
+      const validContext=(!isHome(position.room)||!!contextPlot&&position.room===(contextPlot.level===2?'home-expanded':'home'))&&(position.room!=='trail'||(await client.query('select phase from ih2.bridge where id=1')).rows[0].phase==='open');
       const reject = (message: string) => { result = { ok: false, message, revision: state.revision }; };
       if (cmd.expectedRevision !== state.revision) reject('Your town state changed. Review the refreshed bag and try again.');
       else if (!validPosition(position)||!validContext) reject('A valid server position is required.');
@@ -142,7 +156,15 @@ export class TownStore {
         if (!special.success) reject('Invalid town request. Nothing changed.');
         else {
           const action = special.data;
-          if(action.kind==='enter-home'){
+          if(action.kind==='stamp-trail'){
+            const bridge=(await client.query('select phase from ih2.bridge where id=1')).rows[0];
+            if(bridge.phase!=='open'||!near(position,'trail',action.landmarkId))reject('Walk to this landmark on the open trail before stamping your journal.');
+            else{
+              const stamp=await client.query('insert into ih2.trail_stamps(player_id,landmark_id,command_id,stamped_at) values($1,$2,$3,$4) on conflict do nothing returning landmark_id',[id,action.landmarkId,action.id,now]);
+              if(!stamp.rows.length)reject('This landmark is already in your permanent trail journal.');
+              else{const count=(await client.query('select count(*)::int as n from ih2.trail_stamps where player_id=$1',[id])).rows[0].n;if(count===TRAIL_LANDMARK_IDS.length)await client.query('insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing',[id,TRAIL_PENNANT_AWARD]);state.revision++;state.observedAt=now;state.lastMessage=count===TRAIL_LANDMARK_IDS.length?'All three landmarks recorded. Your permanent clipboard pennant is earned.':'Landmark recorded in your permanent trail journal.';result={ok:true,message:state.lastMessage,revision:state.revision};}
+            }
+          }else if(action.kind==='enter-home'){
             const target=(await client.query('select id::text,level from ih2.plots where id=$1',[action.plotId])).rows[0];
             if(!near(position,'square','plot')&&!near(position,'square','home-front'))reject('Walk to the home entrance before entering.');
             else if(!target)reject('That home does not exist.');
@@ -169,18 +191,18 @@ export class TownStore {
               if(!near(position,'square','bridge'))reject('Walk to the bridge committee to record your maintenance.');
               else if(!lesson.completed||lesson.redeemed)reject('You do not have an unused maintenance credit.');
               else if(action.route!==route||action.expectedBridgeContributed!==bridge.contributed)reject('The project changed. Your paid credit is safe; review its new route before recording it.');
-              else{if(route==='construction')await client.query('update ih2.bridge set contributed=contributed+1 where id=1');await client.query('insert into ih2.maintenance_events(player_id,command_id,route,recorded_at) values($1,$2,$3,$4)',[id,action.id,route,now]);await client.query('update ih2.maintenance_lessons set redeemed=true,route=$2 where player_id=$1',[id,route]);await client.query('insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing',[id,'maintenance-v1']);state.revision++;state.observedAt=now;state.lastMessage=route==='construction'?'Maintenance recorded toward the bridge. No kit or currency was created.':'Upkeep inspection recorded. The repaired bridge stays repaired; no extra materials were charged.';result={ok:true,message:state.lastMessage,revision:state.revision};}
+              else{if(route==='construction')await this.fundBridge(client,now);await client.query('insert into ih2.maintenance_events(player_id,command_id,route,recorded_at) values($1,$2,$3,$4)',[id,action.id,route,now]);await client.query('update ih2.maintenance_lessons set redeemed=true,route=$2 where player_id=$1',[id,route]);await client.query('insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing',[id,'maintenance-v1']);state.revision++;state.observedAt=now;state.lastMessage=route==='construction'?'Maintenance recorded toward the bridge. No kit or currency was created.':'Your upkeep inspection is recorded. No extra materials were charged.';result={ok:true,message:state.lastMessage,revision:state.revision};}
             }
           }else if (action.kind === 'contribute') {
             if (!near(position, 'square', 'bridge')) reject('Walk to the bridge committee before contributing.');
             else {
               const bridge = (await client.query('select * from ih2.bridge where id=1 for update')).rows[0];
-              if (bridge.contributed >= bridge.target) reject('The bridge is already restored. Keep your kit for what comes next.');
+              if (bridge.contributed >= bridge.target) reject('The bridge is fully funded. Keep your kit; construction or opening needs no extra payment.');
               else if (state.bridgeKits < 1) reject('You need one completed bridge kit. Nothing was spent.');
               else {
                 state.bridgeKits--; state.revision++; state.observedAt = now;
                 state.lastMessage = 'Contributed one bridge kit. The committee has recorded actual progress.';
-                await client.query('update ih2.bridge set contributed=contributed+1 where id=1');
+                await this.fundBridge(client,now);
                 await client.query('insert into ih2.bridge_contributions(player_id,command_id) values($1,$2)', [id, cmd.id]);
                 await client.query('insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing', [id, 'bridge-contributor-v1']);
                 // Participation satisfies an unpaid lesson, but never consumes or cancels an already-paid credit.

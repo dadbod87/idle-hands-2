@@ -25,11 +25,11 @@ test('desktop and narrow-phone residents cooperate, retain ownership and retry t
  await a.getByRole('button',{name:'Contribute one bridge kit',exact:true}).click();await expect(a.getByRole('button',{name:'Retry the same request'})).toBeVisible();
  await a.getByRole('button',{name:'Retry the same request'}).click();await expect.poll(async()=>(await snapshot(a)).bridge.contributed).toBe(1);expect(ids.length).toBe(2);expect(ids[0]).toBe(ids[1]);expect((await snapshot(a)).workshop.bridgeKits).toBe(47);
  await close(a);await visit(b,'bridge');await b.getByRole('button',{name:'Contribute one bridge kit',exact:true}).click();await expect.poll(async()=>(await snapshot(b)).bridge.contributed).toBe(2);await close(b);
- await visit(c,'bridge');await c.getByRole('button',{name:'Contribute one bridge kit',exact:true}).click();await expect.poll(async()=>(await snapshot(c)).bridge.restored).toBe(true);await expect.poll(async()=>(await snapshot(a)).bridge.restored).toBe(true);await expect.poll(async()=>(await snapshot(b)).bridge.restored).toBe(true);await close(c);
+ await visit(c,'bridge');await c.getByRole('button',{name:'Contribute one bridge kit',exact:true}).click();await expect.poll(async()=>(await snapshot(c)).bridge.phase).toBe('building');await expect.poll(async()=>(await snapshot(a)).bridge.phase).toBe('building');await expect.poll(async()=>(await snapshot(b)).bridge.phase).toBe('building');const building=(await snapshot(c)).bridge;expect(building.restored).toBe(false);expect(building.readyAt-building.startedAt).toBe(6*60*60*1000);expect(building.openedAt).toBeNull();await close(c);
  // Casey's contribution and all three restoration assertions are complete.
  // Stop the unused software-rendered canvas before the remaining ownership flow.
  await third.close();
- await a.screenshot({path:`${dir}/shared-bridge-restored.png`});
+ await a.screenshot({path:`${dir}/shared-bridge-funded.png`});
  // Each resident can acquire a fresh plot; a visitor sees ownership without edit controls.
  await visit(a,'plot');await a.getByRole('button',{name:'Claim your house plot · 12 bridge kits',exact:true}).click();await expect.poll(async()=>(await snapshot(a)).plot?.ownerId).toBe('aster');
  await a.getByRole('button',{name:'Upgrade plot · 24 bridge kits'}).click();await expect.poll(async()=>(await snapshot(a)).plot?.level).toBe(2);

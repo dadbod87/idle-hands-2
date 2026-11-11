@@ -1,0 +1,21 @@
+{
+  "asOf": "2026-11-10",
+  "method": "Connected organization/team/project METADATA ONLY; no tables/logs/credentials/environment values/billing changes/resources.",
+  "supabase": {
+    "organization": "The Patron Group",
+    "plan": "pro; verified get_organization",
+    "visibleProjectCount": 4,
+    "sequelProjectFound": false
+  },
+  "vercel": {
+    "team": "The Patron Group",
+    "billingPlan": "UNVERIFIED; both get_team and list_teams omit billing plan",
+    "visibleProjectCount": 4,
+    "sequelProjectFound": false,
+    "paginationComplete": true
+  },
+  "render": {
+    "accountWorkspacePlan": "UNVERIFIED; no account connected or provisioned"
+  },
+  "limits": "No actual bill, compute-credit allocation, provider cost quote, deployment/auth, invitations or cloud writes. Original game and Platform projects were excluded."
+}

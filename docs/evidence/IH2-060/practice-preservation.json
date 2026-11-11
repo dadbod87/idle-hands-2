@@ -1,0 +1,21 @@
+{
+  "fixtureOnly": true,
+  "method": "Canonical COPY table blocks from actual pre060 custom-format pg_dump, compared with current data-only pg_dump. Ignore dump headers; include all table rows. No restore or write to practice database.",
+  "allTableRowsEqual": true,
+  "tables": {
+    "ih2.bridge (id, contributed, target, phase, started_at, ready_at, opened_at, grandfathered)": 1,
+    "ih2.bridge_contributions (player_id, command_id, created_at)": 0,
+    "ih2.command_receipts (player_id, command_id, payload_hash, result, created_at)": 0,
+    "ih2.maintenance_events (player_id, command_id, route, recorded_at)": 0,
+    "ih2.maintenance_lessons (player_id, started_at, ready_at, completed, redeemed, route, legacy_satisfied)": 0,
+    "ih2.players (id, name, workshop, \"position\", quest_content_version, updated_at)": 0,
+    "ih2.plots (id, owner_id, level, placements)": 0,
+    "ih2.project_events (id, kind, effective_at, recorded_at)": 0,
+    "ih2.quest_awards (player_id, quest_id, content_version, awarded_at)": 0,
+    "ih2.season_scores (player_id, season_key, points)": 0,
+    "ih2.trail_stamps (player_id, landmark_id, command_id, stamped_at)": 0,
+    "ih2_meta.migrations (version, checksum)": 3
+  },
+  "practiceResidentCount": 0,
+  "limits": "Practice has zero saved residents, so this is unchanged empty-town data, not evidence of preserved player workshops. Separate populated restart/restore tests prove workshop/home/job/receipt preservation. Earlier blank per-player digest outputs were vacuous and are superseded by this full data-block comparison."
+}

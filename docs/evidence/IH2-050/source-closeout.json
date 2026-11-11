@@ -1,0 +1,59 @@
+{
+  "task": "IH2-050",
+  "candidate": "e894fdc953c250acc69d41a42c585bf314a4db27",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/11",
+  "ciRun": 42949447550,
+  "ciAttempt": 1,
+  "requiredJobs": {
+    "domain-build-plan": "SUCCESS;114tests,zero skips",
+    "browser-playtest": "SUCCESS;43cases,11.5minutes; evidence upload complete"
+  },
+  "merge": "59e237fd3b6931a9cec1af81a2c467bfebde4c82",
+  "candidateAndMergeTree": "2be8039cd5a121a0fcc683432551c8911b5447cf",
+  "actualCiHtmlJsCssAnd82SvgMatchLocal": true,
+  "actual4175ResponsesMatch": true,
+  "actualCiImagesReviewed": [
+    "menu-backdrop-short-live-clock.png",
+    "first-visit-phone-guide.png",
+    "first-visit-phone-cafe-exterior.png",
+    "first-visit-short-text200.png",
+    "first-visit-phone-upkeep-recorded.png",
+    "desktop-square.png",
+    "homes-desktop-owner-expanded.png",
+    "trail-desktop-entry.png"
+  ],
+  "ciCanopySampleCount": 9,
+  "ciCanopyMinimum": 0.9964912280701754,
+  "ciMenu": {
+    "disclosure": "Disposable local browser-only mode. Normal clock/redraw proof first; then recorded one-second window timers are stopped in this page to prove resize repaint independently of periodic fallback. No HTTP/stock/position overrides or grants. Desktop then844x390viewport emulation, not a physical device.",
+    "redraws": 3,
+    "windowMs": 2400,
+    "position": {
+      "x": 24,
+      "y": 25
+    },
+    "clock": "Town time \u00b7 19:04 \u00b7 Dusk \u00b7 Light drizzle",
+    "visibleFraction": 1,
+    "resizeRecoveryMs": 178,
+    "resizeSamples": [
+      {
+        "ms": 174,
+        "frames": 24,
+        "visible": 1
+      }
+    ],
+    "framePolicy": "Modal backdrop only: one redraw/second plus two-frame resize refresh. Timers and authority continue; modal frame intervals do not enter active-play samples."
+  },
+  "ciFreshTimings": {
+    "queueMs": 14944,
+    "upkeepMs": 82204
+  },
+  "limits": "Private source/local synthetic only. No hosted/public release or real-device/real-player claim. Local controlled menu probe and observed CI duration are separate evidence; runner hardware/weather may differ. Original game untouched.",
+  "rejectedEvidence": "docs/evidence/IH2-050/rejected-ci.json",
+  "automaticMainCI": {
+    "run": 42951039288,
+    "head": "59e237fd3b6931a9cec1af81a2c467bfebde4c82",
+    "domain-build-plan": "SUCCESS",
+    "browser-playtest": "SUCCESS"
+  }
+}

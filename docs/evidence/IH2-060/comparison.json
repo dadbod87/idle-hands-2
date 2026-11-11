@@ -1,0 +1,16 @@
+{
+  "method": "Fixed baseline then hardened local runs on the same machine; no randomized repeated trial/causal CPU or memory claim. Baseline had no transport caps or presence memoization. Final adds body-expiry fix and Docker cgroup sampling. Same20ordinary residents/760legal movements/140unique+20replay commands; no renders, grants or elapsed-time overrides.",
+  "baselineP95Ms": 51.291542000000845,
+  "hardenedP95Ms": 50.90179100000023,
+  "baselinePresenceEvents": 1080,
+  "hardenedPresenceEvents": 730,
+  "hardenedExplicitSuppressedEvents": 330,
+  "baselineReceivedSseBytes": 1137420,
+  "hardenedReceivedSseBytes": 1122560,
+  "queryCountsUnchanged": {
+    "baseline": 3520,
+    "hardened": 3520
+  },
+  "counterScopeCorrection": "Earlier baseline/hardened HTTPrequests omit40SSEhandshakes(980+40). Final monitored counter includes them(1020); body bytes/SSE bytes remain separate.",
+  "limits": "Node CPU/RSS includes generator+server; PostgreSQL sampled5s, not peak; localARM versus hosted hardware/WAN unverified. Idle10s and total~27s are not soak/memory-leak proof."
+}

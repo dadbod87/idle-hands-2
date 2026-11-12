@@ -1,0 +1,3982 @@
+{
+  "base": "http://127.0.0.1:49525/",
+  "htmlSha256": "065fd2f689198ae6c1d838526f69cb75deabaf30e5fafc94f8000d75379abfd1",
+  "classification": "Actual-input panel observations on compiled game; no human enjoyment or physical-phone claim",
+  "disclosure": "Independent contexts; fresh private progress or valid elapsed current-rule saves. Every case has an explicit saved arrival position for panel inspection, not a fresh walking/proximity proof. Captures wait for fonts, two animation frames, menu backdrop pause and1250msnative feedback/repaint settlement; no image retouching. No API, response interception or clock/resource changes during UI. Short200 is doubled DOM text. Actual fresh route/payment and shared authority are separate proofs.",
+  "rows": [
+    {
+      "name": "post-fresh-desktop",
+      "item": {
+        "panel": "post",
+        "name": "fresh",
+        "kind": "fresh"
+      },
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "fixture": "Empty isolated context; ordinary donated furnishings and bound starter seeds only. No state/time/position/stock/API fixture.",
+      "positionFixture": "square24,25",
+      "measured": {
+        "text": "The Post Must Go Somewhere. Three addressed parcels, no fee and no deadline. Your workbenches keep working.\n\nOptional free chapter. No house, open bridge, helper or spare bag space required.\n\nWalk to Pip\nAccept the three parcels \u00b7 free\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 1,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 492,
+          "y": 168.765625,
+          "width": 456,
+          "height": 642.453125,
+          "right": 948,
+          "bottom": 811.21875
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Walk to Pip",
+            "action": "walk-courier",
+            "disabled": false,
+            "y": 339.21875,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Accept the three parcels \u00b7 free",
+            "action": "accept",
+            "disabled": true,
+            "y": 389.609375,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 440,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 490.390625,
+            "height": 44,
+            "usefulViewport": true
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-fresh-phone",
+      "item": {
+        "panel": "post",
+        "name": "fresh",
+        "kind": "fresh"
+      },
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "fixture": "Empty isolated context; ordinary donated furnishings and bound starter seeds only. No state/time/position/stock/API fixture.",
+      "positionFixture": "square24,25",
+      "measured": {
+        "text": "The Post Must Go Somewhere. Three addressed parcels, no fee and no deadline. Your workbenches keep working.\n\nOptional free chapter. No house, open bridge, helper or spare bag space required.\n\nWalk to Pip\nAccept the three parcels \u00b7 free\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 1.47,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 21,
+          "y": 96,
+          "width": 318,
+          "height": 815.3125,
+          "right": 339,
+          "bottom": 911.3125
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Walk to Pip",
+            "action": "walk-courier",
+            "disabled": false,
+            "y": 335.09375,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Accept the three parcels \u00b7 free",
+            "action": "accept",
+            "disabled": true,
+            "y": 385.484375,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 435.875,
+            "height": 63,
+            "usefulViewport": true
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 505.265625,
+            "height": 63,
+            "usefulViewport": true
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-fresh-short200",
+      "item": {
+        "panel": "post",
+        "name": "fresh",
+        "kind": "fresh"
+      },
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "fixture": "Empty isolated context; ordinary donated furnishings and bound starter seeds only. No state/time/position/stock/API fixture.",
+      "positionFixture": "square24,25",
+      "measured": {
+        "text": "The Post Must Go Somewhere. Three addressed parcels, no fee and no deadline. Your workbenches keep working.\n\nOptional free chapter. No house, open bridge, helper or spare bag space required.\n\nWalk to Pip\nAccept the three parcels \u00b7 free\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 4.46,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 194,
+          "y": 115,
+          "width": 456,
+          "height": 1496.125,
+          "right": 650,
+          "bottom": 1611.125
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Walk to Pip",
+            "action": "walk-courier",
+            "disabled": false,
+            "y": 574.265625,
+            "height": 63,
+            "usefulViewport": false
+          },
+          {
+            "name": "Accept the three parcels \u00b7 free",
+            "action": "accept",
+            "disabled": true,
+            "y": 650.0625,
+            "height": 102,
+            "usefulViewport": false
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 764.859375,
+            "height": 102,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 879.65625,
+            "height": 102,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-card-only-desktop",
+      "item": {
+        "panel": "post",
+        "name": "card-only",
+        "kind": "saturated"
+      },
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "fixture": "Disposable elapsed local save: actual pure-command52hgarden history plus three24hpine returns/full12+12produce/24pine, finite errands and free route card. No physicalbox grant. Default square arrival position is separately injected. Not actual waits or SQL authority.",
+      "positionFixture": "square24,25",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 0/1.\n\nWalk to Pip\nOne Unreasonably Official Letterbox\nLeaf route\nSun route\nNight post\n\nCarried pine 24/24 \u00b7 harvested radishes 12/12. Owned letterbox 0/1.\n\nTwo pine have an eight-hour replenishment opportunity cost. Nothing is reserved.\n\nReview 2 pine + 1 radish \u00b7 no extra timer\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 1.26,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 492,
+          "y": 96,
+          "width": 456,
+          "height": 1014.703125,
+          "right": 948,
+          "bottom": 1110.703125
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Walk to Pip",
+            "action": "walk-courier",
+            "disabled": false,
+            "y": 157.8125,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Review 2 pine + 1 radish \u00b7 no extra timer",
+            "action": "review",
+            "disabled": false,
+            "y": 552.765625,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 682.484375,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 732.875,
+            "height": 44,
+            "usefulViewport": true
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-card-only-phone",
+      "item": {
+        "panel": "post",
+        "name": "card-only",
+        "kind": "saturated"
+      },
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "fixture": "Disposable elapsed local save: actual pure-command52hgarden history plus three24hpine returns/full12+12produce/24pine, finite errands and free route card. No physicalbox grant. Default square arrival position is separately injected. Not actual waits or SQL authority.",
+      "positionFixture": "square24,25",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 0/1.\n\nWalk to Pip\nOne Unreasonably Official Letterbox\nLeaf route\nSun route\nNight post\n\nCarried pine 24/24 \u00b7 harvested radishes 12/12. Owned letterbox 0/1.\n\nTwo pine have an eight-hour replenishment opportunity cost. Nothing is reserved.\n\nReview 2 pine + 1 radish \u00b7 no extra timer\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 2.07,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 21,
+          "y": 96,
+          "width": 318,
+          "height": 1179.671875,
+          "right": 339,
+          "bottom": 1275.671875
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Walk to Pip",
+            "action": "walk-courier",
+            "disabled": false,
+            "y": 157.8125,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Review 2 pine + 1 radish \u00b7 no extra timer",
+            "action": "review",
+            "disabled": false,
+            "y": 573.40625,
+            "height": 63,
+            "usefulViewport": false
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 743.234375,
+            "height": 63,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 812.625,
+            "height": 63,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-card-only-short200",
+      "item": {
+        "panel": "post",
+        "name": "card-only",
+        "kind": "saturated"
+      },
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "fixture": "Disposable elapsed local save: actual pure-command52hgarden history plus three24hpine returns/full12+12produce/24pine, finite errands and free route card. No physicalbox grant. Default square arrival position is separately injected. Not actual waits or SQL authority.",
+      "positionFixture": "square24,25",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 0/1.\n\nWalk to Pip\nLeaf route\nSun route\nNight post\n\nCarried pine 24/24 \u00b7 harvested radishes 12/12. Owned letterbox 0/1.\n\nTwo pine have an eight-hour replenishment opportunity cost. Nothing is reserved.\n\nReview 2 pine + 1 radish \u00b7 no extra timer\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 5.93,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 194,
+          "y": 115,
+          "width": 456,
+          "height": 2025.265625,
+          "right": 650,
+          "bottom": 2140.265625
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Walk to Pip",
+            "action": "walk-courier",
+            "disabled": false,
+            "y": 201.140625,
+            "height": 63,
+            "usefulViewport": true
+          },
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 280.125,
+            "height": 110.953125,
+            "usefulViewport": false
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 280.125,
+            "height": 110.953125,
+            "usefulViewport": false
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 280.125,
+            "height": 110.953125,
+            "usefulViewport": false
+          },
+          {
+            "name": "Review 2 pine + 1 radish \u00b7 no extra timer",
+            "action": "review",
+            "disabled": false,
+            "y": 752.03125,
+            "height": 102,
+            "usefulViewport": false
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 1136.234375,
+            "height": 102,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 1251.03125,
+            "height": 102,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-owned-desktop",
+      "item": {
+        "panel": "post",
+        "name": "owned",
+        "kind": "returning"
+      },
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 14habsence makes both held jobs/crops ready. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "square24,25",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 1/1.\n\nWalk to Pip\nOne Unreasonably Official Letterbox\nLeaf route\nSun route\nNight post\nSave chosen motif \u00b7 free\n\nCarried pine 3/24 \u00b7 harvested radishes 2/12. Owned letterbox 1/1.\n\nYour saved motif: Night post. Preview freely; Save chosen motif confirms one free change.\n\nShow my style at Pip\u2019s register\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 1.33,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 492,
+          "y": 96,
+          "width": 456,
+          "height": 1071.484375,
+          "right": 948,
+          "bottom": 1167.484375
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Walk to Pip",
+            "action": "walk-courier",
+            "disabled": false,
+            "y": 157.8125,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Save chosen motif \u00b7 free",
+            "action": "style",
+            "disabled": true,
+            "y": 425.65625,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Show my style at Pip\u2019s register",
+            "action": "publish",
+            "disabled": true,
+            "y": 609.546875,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 739.265625,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 789.65625,
+            "height": 44,
+            "usefulViewport": true
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-owned-phone",
+      "item": {
+        "panel": "post",
+        "name": "owned",
+        "kind": "returning"
+      },
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 14habsence makes both held jobs/crops ready. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "square24,25",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 1/1.\n\nWalk to Pip\nOne Unreasonably Official Letterbox\nLeaf route\nSun route\nNight post\nSave chosen motif \u00b7 free\n\nCarried pine 3/24 \u00b7 harvested radishes 2/12. Owned letterbox 1/1.\n\nYour saved motif: Night post. Preview freely; Save chosen motif confirms one free change.\n\nShow my style at Pip\u2019s register\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 2.13,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 21,
+          "y": 96,
+          "width": 318,
+          "height": 1217.453125,
+          "right": 339,
+          "bottom": 1313.453125
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Walk to Pip",
+            "action": "walk-courier",
+            "disabled": false,
+            "y": 157.8125,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 304.984375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Save chosen motif \u00b7 free",
+            "action": "style",
+            "disabled": true,
+            "y": 425.65625,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Show my style at Pip\u2019s register",
+            "action": "publish",
+            "disabled": true,
+            "y": 630.1875,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 781.015625,
+            "height": 63,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 850.40625,
+            "height": 63,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-owned-short200",
+      "item": {
+        "panel": "post",
+        "name": "owned",
+        "kind": "returning"
+      },
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 14habsence makes both held jobs/crops ready. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "square24,25",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 1/1.\n\nWalk to Pip\nLeaf route\nSun route\nNight post\nSave chosen motif \u00b7 free\n\nCarried pine 3/24 \u00b7 harvested radishes 2/12. Owned letterbox 1/1.\n\nYour saved motif: Night post. Preview freely; Save chosen motif confirms one free change.\n\nShow my style at Pip\u2019s register\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 6.18,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 194,
+          "y": 115,
+          "width": 456,
+          "height": 2113.859375,
+          "right": 650,
+          "bottom": 2228.859375
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Walk to Pip",
+            "action": "walk-courier",
+            "disabled": false,
+            "y": 201.140625,
+            "height": 63,
+            "usefulViewport": true
+          },
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 280.125,
+            "height": 110.953125,
+            "usefulViewport": false
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 280.125,
+            "height": 110.953125,
+            "usefulViewport": false
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 280.125,
+            "height": 110.953125,
+            "usefulViewport": false
+          },
+          {
+            "name": "Save chosen motif \u00b7 free",
+            "action": "style",
+            "disabled": true,
+            "y": 407.0625,
+            "height": 63,
+            "usefulViewport": false
+          },
+          {
+            "name": "Show my style at Pip\u2019s register",
+            "action": "publish",
+            "disabled": true,
+            "y": 840.625,
+            "height": 102,
+            "usefulViewport": false
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 1224.828125,
+            "height": 102,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 1339.625,
+            "height": 102,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-card-only-at-pip-desktop",
+      "item": {
+        "panel": "post",
+        "name": "card-only-at-pip",
+        "kind": "saturated",
+        "atPip": true
+      },
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "fixture": "Disposable elapsed local save: actual pure-command52hgarden history plus three24hpine returns/full12+12produce/24pine, finite errands and free route card. No physicalbox grant. Default square arrival position is separately injected. Not actual waits or SQL authority.",
+      "positionFixture": "square26,25 at Pip",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 0/1.\n\nOne Unreasonably Official Letterbox\nLeaf route\nSun route\nNight post\n\nCarried pine 24/24 \u00b7 harvested radishes 12/12. Owned letterbox 0/1.\n\nTwo pine have an eight-hour replenishment opportunity cost. Nothing is reserved.\n\nReview 2 pine + 1 radish \u00b7 no extra timer\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 1.2,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 492,
+          "y": 96,
+          "width": 456,
+          "height": 964.3125,
+          "right": 948,
+          "bottom": 1060.3125
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Review 2 pine + 1 radish \u00b7 no extra timer",
+            "action": "review",
+            "disabled": false,
+            "y": 502.375,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 632.09375,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 682.484375,
+            "height": 44,
+            "usefulViewport": true
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-card-only-at-pip-phone",
+      "item": {
+        "panel": "post",
+        "name": "card-only-at-pip",
+        "kind": "saturated",
+        "atPip": true
+      },
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "fixture": "Disposable elapsed local save: actual pure-command52hgarden history plus three24hpine returns/full12+12produce/24pine, finite errands and free route card. No physicalbox grant. Default square arrival position is separately injected. Not actual waits or SQL authority.",
+      "positionFixture": "square26,25 at Pip",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 0/1.\n\nOne Unreasonably Official Letterbox\nLeaf route\nSun route\nNight post\n\nCarried pine 24/24 \u00b7 harvested radishes 12/12. Owned letterbox 0/1.\n\nTwo pine have an eight-hour replenishment opportunity cost. Nothing is reserved.\n\nReview 2 pine + 1 radish \u00b7 no extra timer\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 1.99,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 21,
+          "y": 96,
+          "width": 318,
+          "height": 1129.28125,
+          "right": 339,
+          "bottom": 1225.28125
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Review 2 pine + 1 radish \u00b7 no extra timer",
+            "action": "review",
+            "disabled": false,
+            "y": 523.015625,
+            "height": 63,
+            "usefulViewport": false
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 692.84375,
+            "height": 63,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 762.234375,
+            "height": 63,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-card-only-at-pip-short200",
+      "item": {
+        "panel": "post",
+        "name": "card-only-at-pip",
+        "kind": "saturated",
+        "atPip": true
+      },
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "fixture": "Disposable elapsed local save: actual pure-command52hgarden history plus three24hpine returns/full12+12produce/24pine, finite errands and free route card. No physicalbox grant. Default square arrival position is separately injected. Not actual waits or SQL authority.",
+      "positionFixture": "square26,25 at Pip",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 0/1.\n\nLeaf route\nSun route\nNight post\n\nCarried pine 24/24 \u00b7 harvested radishes 12/12. Owned letterbox 0/1.\n\nTwo pine have an eight-hour replenishment opportunity cost. Nothing is reserved.\n\nReview 2 pine + 1 radish \u00b7 no extra timer\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 5.72,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 194,
+          "y": 115,
+          "width": 456,
+          "height": 1949.46875,
+          "right": 650,
+          "bottom": 2064.46875
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 204.328125,
+            "height": 110.953125,
+            "usefulViewport": true
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 204.328125,
+            "height": 110.953125,
+            "usefulViewport": true
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 204.328125,
+            "height": 110.953125,
+            "usefulViewport": true
+          },
+          {
+            "name": "Review 2 pine + 1 radish \u00b7 no extra timer",
+            "action": "review",
+            "disabled": false,
+            "y": 676.234375,
+            "height": 102,
+            "usefulViewport": false
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 1060.4375,
+            "height": 102,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 1175.234375,
+            "height": 102,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-owned-at-pip-desktop",
+      "item": {
+        "panel": "post",
+        "name": "owned-at-pip",
+        "kind": "returning",
+        "atPip": true
+      },
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 14habsence makes both held jobs/crops ready. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "square26,25 at Pip",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 1/1.\n\nOne Unreasonably Official Letterbox\nLeaf route\nSun route\nNight post\nSave chosen motif \u00b7 free\n\nCarried pine 3/24 \u00b7 harvested radishes 2/12. Owned letterbox 1/1.\n\nYour saved motif: Night post. Preview freely; Save chosen motif confirms one free change.\n\nShow my style at Pip\u2019s register\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 1.27,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 492,
+          "y": 96,
+          "width": 456,
+          "height": 1021.09375,
+          "right": 948,
+          "bottom": 1117.09375
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Save chosen motif \u00b7 free",
+            "action": "style",
+            "disabled": true,
+            "y": 375.265625,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Show my style at Pip\u2019s register",
+            "action": "publish",
+            "disabled": false,
+            "y": 559.15625,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 688.875,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 739.265625,
+            "height": 44,
+            "usefulViewport": true
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-owned-at-pip-phone",
+      "item": {
+        "panel": "post",
+        "name": "owned-at-pip",
+        "kind": "returning",
+        "atPip": true
+      },
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 14habsence makes both held jobs/crops ready. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "square26,25 at Pip",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 1/1.\n\nOne Unreasonably Official Letterbox\nLeaf route\nSun route\nNight post\nSave chosen motif \u00b7 free\n\nCarried pine 3/24 \u00b7 harvested radishes 2/12. Owned letterbox 1/1.\n\nYour saved motif: Night post. Preview freely; Save chosen motif confirms one free change.\n\nShow my style at Pip\u2019s register\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 2.05,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 21,
+          "y": 96,
+          "width": 318,
+          "height": 1167.0625,
+          "right": 339,
+          "bottom": 1263.0625
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 254.59375,
+            "height": 107.890625,
+            "usefulViewport": true
+          },
+          {
+            "name": "Save chosen motif \u00b7 free",
+            "action": "style",
+            "disabled": true,
+            "y": 375.265625,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Show my style at Pip\u2019s register",
+            "action": "publish",
+            "disabled": false,
+            "y": 579.796875,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 730.625,
+            "height": 63,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 800.015625,
+            "height": 63,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "post-owned-at-pip-short200",
+      "item": {
+        "panel": "post",
+        "name": "owned-at-pip",
+        "kind": "returning",
+        "atPip": true
+      },
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 14habsence makes both held jobs/crops ready. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "square26,25 at Pip",
+      "measured": {
+        "text": "Card kept \u00b7 letterbox 1/1.\n\nLeaf route\nSun route\nNight post\nSave chosen motif \u00b7 free\n\nCarried pine 3/24 \u00b7 harvested radishes 2/12. Owned letterbox 1/1.\n\nYour saved motif: Night post. Preview freely; Save chosen motif confirms one free change.\n\nShow my style at Pip\u2019s register\n\nOne owned furnishing across your workshop and home. Move or store it through Bag & journal; motif changes are free. This is NPC-post decoration, not a player inbox.\n\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nRevisit your route \u00b7 card & story\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nLocal browser practice \u00b7 a separate save from the shared town.",
+        "scrollPages": 5.97,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 194,
+          "y": 115,
+          "width": 456,
+          "height": 2038.0625,
+          "right": 650,
+          "bottom": 2153.0625
+        },
+        "beds": [],
+        "buttons": [
+          {
+            "name": "Leaf route",
+            "action": "preview-leaf",
+            "disabled": false,
+            "y": 204.328125,
+            "height": 110.953125,
+            "usefulViewport": true
+          },
+          {
+            "name": "Sun route",
+            "action": "preview-sun",
+            "disabled": false,
+            "y": 204.328125,
+            "height": 110.953125,
+            "usefulViewport": true
+          },
+          {
+            "name": "Night post",
+            "action": "preview-moth",
+            "disabled": false,
+            "y": 204.328125,
+            "height": 110.953125,
+            "usefulViewport": true
+          },
+          {
+            "name": "Save chosen motif \u00b7 free",
+            "action": "style",
+            "disabled": true,
+            "y": 331.265625,
+            "height": 63,
+            "usefulViewport": false
+          },
+          {
+            "name": "Show my style at Pip\u2019s register",
+            "action": "publish",
+            "disabled": false,
+            "y": 764.828125,
+            "height": 102,
+            "usefulViewport": false
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "action": "pine-help",
+            "disabled": false,
+            "y": 1149.03125,
+            "height": 102,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "action": "walk-garden-beds",
+            "disabled": false,
+            "y": 1263.828125,
+            "height": 102,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-fresh-desktop",
+      "item": {
+        "panel": "garden",
+        "name": "fresh",
+        "kind": "fresh"
+      },
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "fixture": "Empty isolated context; ordinary donated furnishings and bound starter seeds only. No state/time/position/stock/API fixture.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "Bed 1 \u00b7 Empty\nReady to plant\nBed 2 \u00b7 Empty\nReady to plant\nBed 3 \u00b7 Empty\nReady to plant\n\nRadish 0/12 \u00b7 Marigold 0/12\n\nEmpty \u00b7 choose a seed and preview planting.\n\nChoose a bound seed\nRadish with ambitions\n2 available\nOut-of-office marigold\n1 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nChoose a bed or preview an action. Your plants wait safely.",
+        "scrollPages": 1.1,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 492,
+          "y": 96,
+          "width": 456,
+          "height": 871.90625,
+          "right": 948,
+          "bottom": 967.90625
+        },
+        "beds": [
+          {
+            "x": 508,
+            "y": 115.984375,
+            "width": 137.0625,
+            "height": 112,
+            "right": 645.0625,
+            "bottom": 227.984375,
+            "text": {
+              "x": 524.09375,
+              "y": 167.859375,
+              "width": 104.859375,
+              "height": 37.84375,
+              "right": 628.953125,
+              "bottom": 205.703125
+            },
+            "heading": {
+              "x": 524.09375,
+              "y": 167.859375,
+              "width": 104.859375,
+              "height": 17.28125,
+              "right": 628.953125,
+              "bottom": 185.140625
+            }
+          },
+          {
+            "x": 651.453125,
+            "y": 115.984375,
+            "width": 137.078125,
+            "height": 112,
+            "right": 788.53125,
+            "bottom": 227.984375,
+            "text": {
+              "x": 667.5625,
+              "y": 167.859375,
+              "width": 104.859375,
+              "height": 37.84375,
+              "right": 772.421875,
+              "bottom": 205.703125
+            },
+            "heading": {
+              "x": 667.5625,
+              "y": 167.859375,
+              "width": 104.859375,
+              "height": 17.28125,
+              "right": 772.421875,
+              "bottom": 185.140625
+            }
+          },
+          {
+            "x": 794.921875,
+            "y": 115.984375,
+            "width": 137.078125,
+            "height": 112,
+            "right": 932,
+            "bottom": 227.984375,
+            "text": {
+              "x": 811.03125,
+              "y": 167.859375,
+              "width": 104.859375,
+              "height": 37.84375,
+              "right": 915.890625,
+              "bottom": 205.703125
+            },
+            "heading": {
+              "x": 811.03125,
+              "y": 167.859375,
+              "width": 104.859375,
+              "height": 17.28125,
+              "right": 915.890625,
+              "bottom": 185.140625
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Bed 1 \u00b7 Empty\nReady to plant",
+            "action": null,
+            "disabled": false,
+            "y": 115.984375,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 2 \u00b7 Empty\nReady to plant",
+            "action": null,
+            "disabled": false,
+            "y": 115.984375,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 3 \u00b7 Empty\nReady to plant",
+            "action": null,
+            "disabled": false,
+            "y": 115.984375,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": false,
+            "y": 463.9375,
+            "height": 64,
+            "usefulViewport": true
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": true,
+            "y": 463.9375,
+            "height": 64,
+            "usefulViewport": true
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": true,
+            "y": 537.9375,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": false,
+            "y": 910.125,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 648.125,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 702.125,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 756.125,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 810.125,
+            "height": 44,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-fresh-phone",
+      "item": {
+        "panel": "garden",
+        "name": "fresh",
+        "kind": "fresh"
+      },
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "fixture": "Empty isolated context; ordinary donated furnishings and bound starter seeds only. No state/time/position/stock/API fixture.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "Bed 1 \u00b7 Empty\nReady to plant\nBed 2 \u00b7 Empty\nReady to plant\nBed 3 \u00b7 Empty\nReady to plant\n\nRadish 0/12 \u00b7 Marigold 0/12\n\nEmpty \u00b7 choose a seed and preview planting.\n\nChoose a bound seed\nRadish with ambitions\n2 available\nOut-of-office marigold\n1 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nChoose a bed or preview an action. Your plants wait safely.",
+        "scrollPages": 1.69,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 21,
+          "y": 96,
+          "width": 318,
+          "height": 946.15625,
+          "right": 339,
+          "bottom": 1042.15625
+        },
+        "beds": [
+          {
+            "x": 37,
+            "y": 115.984375,
+            "width": 91.0625,
+            "height": 112,
+            "right": 128.0625,
+            "bottom": 227.984375,
+            "text": {
+              "x": 45.390625,
+              "y": 151.734375,
+              "width": 74.28125,
+              "height": 70.09375,
+              "right": 119.671875,
+              "bottom": 221.828125
+            },
+            "heading": {
+              "x": 45.390625,
+              "y": 151.734375,
+              "width": 74.28125,
+              "height": 34.5625,
+              "right": 119.671875,
+              "bottom": 186.296875
+            }
+          },
+          {
+            "x": 134.453125,
+            "y": 115.984375,
+            "width": 91.078125,
+            "height": 112,
+            "right": 225.53125,
+            "bottom": 227.984375,
+            "text": {
+              "x": 142.84375,
+              "y": 151.734375,
+              "width": 74.296875,
+              "height": 70.09375,
+              "right": 217.140625,
+              "bottom": 221.828125
+            },
+            "heading": {
+              "x": 142.84375,
+              "y": 151.734375,
+              "width": 74.296875,
+              "height": 34.5625,
+              "right": 217.140625,
+              "bottom": 186.296875
+            }
+          },
+          {
+            "x": 231.921875,
+            "y": 115.984375,
+            "width": 91.0625,
+            "height": 112,
+            "right": 322.984375,
+            "bottom": 227.984375,
+            "text": {
+              "x": 240.3125,
+              "y": 151.734375,
+              "width": 74.28125,
+              "height": 70.09375,
+              "right": 314.59375,
+              "bottom": 221.828125
+            },
+            "heading": {
+              "x": 240.3125,
+              "y": 151.734375,
+              "width": 74.28125,
+              "height": 34.5625,
+              "right": 314.59375,
+              "bottom": 186.296875
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Bed 1 \u00b7 Empty\nReady to plant",
+            "action": null,
+            "disabled": false,
+            "y": 115.984375,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 2 \u00b7 Empty\nReady to plant",
+            "action": null,
+            "disabled": false,
+            "y": 115.984375,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 3 \u00b7 Empty\nReady to plant",
+            "action": null,
+            "disabled": false,
+            "y": 115.984375,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": false,
+            "y": 496.90625,
+            "height": 74.1875,
+            "usefulViewport": true
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": true,
+            "y": 496.90625,
+            "height": 74.1875,
+            "usefulViewport": true
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": true,
+            "y": 581.09375,
+            "height": 58,
+            "usefulViewport": false
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": false,
+            "y": 1056.375,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 722.375,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 776.375,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 830.375,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 884.375,
+            "height": 44,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-fresh-short200",
+      "item": {
+        "panel": "garden",
+        "name": "fresh",
+        "kind": "fresh"
+      },
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "fixture": "Empty isolated context; ordinary donated furnishings and bound starter seeds only. No state/time/position/stock/API fixture.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "Bed 1\nEmpty\nBed 2\nEmpty\nBed 3\nEmpty\n\nRadish 0/12 \u00b7 Marigold 0/12\n\nEmpty \u00b7 choose a seed and preview planting.\n\nChoose a bound seed\nRadish with ambitions\n2 available\nOut-of-office marigold\n1 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nChoose a bed or preview an action. Your plants wait safely.",
+        "scrollPages": 4.8,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 194,
+          "y": 126,
+          "width": 456,
+          "height": 1609.703125,
+          "right": 650,
+          "bottom": 1735.703125
+        },
+        "beds": [
+          {
+            "x": 210,
+            "y": 134,
+            "width": 138.65625,
+            "height": 96,
+            "right": 348.65625,
+            "bottom": 230,
+            "text": {
+              "x": 244.296875,
+              "y": 150.015625,
+              "width": 70.046875,
+              "height": 63.96875,
+              "right": 314.34375,
+              "bottom": 213.984375
+            },
+            "heading": {
+              "x": 244.296875,
+              "y": 150.015625,
+              "width": 70.046875,
+              "height": 28.140625,
+              "right": 314.34375,
+              "bottom": 178.15625
+            }
+          },
+          {
+            "x": 352.65625,
+            "y": 134,
+            "width": 138.671875,
+            "height": 96,
+            "right": 491.328125,
+            "bottom": 230,
+            "text": {
+              "x": 385.21875,
+              "y": 150.015625,
+              "width": 73.546875,
+              "height": 63.96875,
+              "right": 458.765625,
+              "bottom": 213.984375
+            },
+            "heading": {
+              "x": 385.21875,
+              "y": 150.015625,
+              "width": 73.546875,
+              "height": 28.140625,
+              "right": 458.765625,
+              "bottom": 178.15625
+            }
+          },
+          {
+            "x": 495.328125,
+            "y": 134,
+            "width": 138.671875,
+            "height": 96,
+            "right": 634,
+            "bottom": 230,
+            "text": {
+              "x": 527.90625,
+              "y": 150.015625,
+              "width": 73.5,
+              "height": 63.96875,
+              "right": 601.40625,
+              "bottom": 213.984375
+            },
+            "heading": {
+              "x": 527.90625,
+              "y": 150.015625,
+              "width": 73.5,
+              "height": 28.140625,
+              "right": 601.40625,
+              "bottom": 178.15625
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Bed 1\nEmpty",
+            "action": null,
+            "disabled": false,
+            "y": 134,
+            "height": 96,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 2\nEmpty",
+            "action": null,
+            "disabled": false,
+            "y": 134,
+            "height": 96,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 3\nEmpty",
+            "action": null,
+            "disabled": false,
+            "y": 134,
+            "height": 96,
+            "usefulViewport": true
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": false,
+            "y": 783.234375,
+            "height": 147.375,
+            "usefulViewport": false
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": true,
+            "y": 783.234375,
+            "height": 147.375,
+            "usefulViewport": false
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": true,
+            "y": 946.609375,
+            "height": 94,
+            "usefulViewport": false
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": false,
+            "y": 1878.21875,
+            "height": 59,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 1196.21875,
+            "height": 59,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 1265.21875,
+            "height": 94,
+            "usefulViewport": false
+          },
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 1369.21875,
+            "height": 94,
+            "usefulViewport": false
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 1473.21875,
+            "height": 94,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-ready-desktop",
+      "item": {
+        "panel": "garden",
+        "name": "ready",
+        "kind": "returning"
+      },
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 14habsence makes both held jobs/crops ready. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "A harvest is ready. Nothing is collected until you confirm.\n\nReview ready harvest\nBed 1 \u00b7 Marigold\nReady\nBed 2 \u00b7 Radish\nReady\nBed 3 \u00b7 Radish\nReady\n\nRadish 2/12 \u00b7 Marigold 0/12\n\nReady \u00b7 harvest one produce, one seed and at least one practice point.\n\nChoose a bound seed\nRadish with ambitions\n0 available\nOut-of-office marigold\n0 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nA harvest is ready. Review its bed before collecting.",
+        "scrollPages": 1.21,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 492,
+          "y": 96,
+          "width": 456,
+          "height": 970.796875,
+          "right": 948,
+          "bottom": 1066.796875
+        },
+        "beds": [
+          {
+            "x": 508,
+            "y": 214.875,
+            "width": 137.0625,
+            "height": 112,
+            "right": 645.0625,
+            "bottom": 326.875,
+            "text": {
+              "x": 516.796875,
+              "y": 266.75,
+              "width": 119.453125,
+              "height": 37.84375,
+              "right": 636.25,
+              "bottom": 304.59375
+            },
+            "heading": {
+              "x": 516.796875,
+              "y": 266.75,
+              "width": 119.453125,
+              "height": 17.28125,
+              "right": 636.25,
+              "bottom": 284.03125
+            }
+          },
+          {
+            "x": 651.453125,
+            "y": 214.875,
+            "width": 137.078125,
+            "height": 112,
+            "right": 788.53125,
+            "bottom": 326.875,
+            "text": {
+              "x": 667.265625,
+              "y": 266.75,
+              "width": 105.4375,
+              "height": 37.84375,
+              "right": 772.703125,
+              "bottom": 304.59375
+            },
+            "heading": {
+              "x": 667.265625,
+              "y": 266.75,
+              "width": 105.4375,
+              "height": 17.28125,
+              "right": 772.703125,
+              "bottom": 284.03125
+            }
+          },
+          {
+            "x": 794.921875,
+            "y": 214.875,
+            "width": 137.078125,
+            "height": 112,
+            "right": 932,
+            "bottom": 326.875,
+            "text": {
+              "x": 810.75,
+              "y": 266.75,
+              "width": 105.40625,
+              "height": 37.84375,
+              "right": 916.15625,
+              "bottom": 304.59375
+            },
+            "heading": {
+              "x": 810.75,
+              "y": 266.75,
+              "width": 105.40625,
+              "height": 17.28125,
+              "right": 916.15625,
+              "bottom": 284.03125
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Review ready harvest",
+            "action": "review-harvest",
+            "disabled": false,
+            "y": 155.6875,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 1 \u00b7 Marigold\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 2 \u00b7 Radish\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 3 \u00b7 Radish\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": true,
+            "y": 562.828125,
+            "height": 64,
+            "usefulViewport": true
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": false,
+            "y": 562.828125,
+            "height": 64,
+            "usefulViewport": true
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": false,
+            "y": 636.828125,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": true,
+            "y": 1009.015625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 747.015625,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 801.015625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 855.015625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 909.015625,
+            "height": 44,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-ready-phone",
+      "item": {
+        "panel": "garden",
+        "name": "ready",
+        "kind": "returning"
+      },
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 14habsence makes both held jobs/crops ready. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "A harvest is ready. Nothing is collected until you confirm.\n\nReview ready harvest\nBed 1 \u00b7 Marigold\nReady\nBed 2 \u00b7 Radish\nReady\nBed 3 \u00b7 Radish\nReady\n\nRadish 2/12 \u00b7 Marigold 0/12\n\nReady \u00b7 harvest one produce, one seed and at least one practice point.\n\nChoose a bound seed\nRadish with ambitions\n0 available\nOut-of-office marigold\n0 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nA harvest is ready. Review its bed before collecting.",
+        "scrollPages": 1.85,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 21,
+          "y": 96,
+          "width": 318,
+          "height": 1045.046875,
+          "right": 339,
+          "bottom": 1141.046875
+        },
+        "beds": [
+          {
+            "x": 37,
+            "y": 214.875,
+            "width": 91.0625,
+            "height": 112,
+            "right": 128.0625,
+            "bottom": 326.875,
+            "text": {
+              "x": 45.390625,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 55.125,
+              "right": 119.671875,
+              "bottom": 313.234375
+            },
+            "heading": {
+              "x": 45.390625,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 34.5625,
+              "right": 119.671875,
+              "bottom": 292.671875
+            }
+          },
+          {
+            "x": 134.453125,
+            "y": 214.875,
+            "width": 91.078125,
+            "height": 112,
+            "right": 225.53125,
+            "bottom": 326.875,
+            "text": {
+              "x": 142.84375,
+              "y": 258.109375,
+              "width": 74.296875,
+              "height": 55.125,
+              "right": 217.140625,
+              "bottom": 313.234375
+            },
+            "heading": {
+              "x": 142.84375,
+              "y": 258.109375,
+              "width": 74.296875,
+              "height": 34.5625,
+              "right": 217.140625,
+              "bottom": 292.671875
+            }
+          },
+          {
+            "x": 231.921875,
+            "y": 214.875,
+            "width": 91.0625,
+            "height": 112,
+            "right": 322.984375,
+            "bottom": 326.875,
+            "text": {
+              "x": 240.3125,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 55.125,
+              "right": 314.59375,
+              "bottom": 313.234375
+            },
+            "heading": {
+              "x": 240.3125,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 34.5625,
+              "right": 314.59375,
+              "bottom": 292.671875
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Review ready harvest",
+            "action": "review-harvest",
+            "disabled": false,
+            "y": 155.6875,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 1 \u00b7 Marigold\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 2 \u00b7 Radish\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 3 \u00b7 Radish\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": true,
+            "y": 595.796875,
+            "height": 74.1875,
+            "usefulViewport": false
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": false,
+            "y": 595.796875,
+            "height": 74.1875,
+            "usefulViewport": false
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": false,
+            "y": 679.984375,
+            "height": 58,
+            "usefulViewport": false
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": true,
+            "y": 1155.265625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 821.265625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 875.265625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 929.265625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 983.265625,
+            "height": 44,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-ready-short200",
+      "item": {
+        "panel": "garden",
+        "name": "ready",
+        "kind": "returning"
+      },
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 14habsence makes both held jobs/crops ready. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "A harvest is ready. Nothing is collected until you confirm.\n\nReview ready harvest\nBed 1\nReady\nBed 2\nReady\nBed 3\nReady\n\nRadish 2/12 \u00b7 Marigold 0/12\n\nReady \u00b7 harvest one produce, one seed and at least one practice point.\n\nChoose a bound seed\nRadish with ambitions\n0 available\nOut-of-office marigold\n0 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nA harvest is ready. Review its bed before collecting.",
+        "scrollPages": 5.25,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 194,
+          "y": 126,
+          "width": 456,
+          "height": 1769.734375,
+          "right": 650,
+          "bottom": 1895.734375
+        },
+        "beds": [
+          {
+            "x": 210,
+            "y": 294.03125,
+            "width": 138.65625,
+            "height": 96,
+            "right": 348.65625,
+            "bottom": 390.03125,
+            "text": {
+              "x": 244.296875,
+              "y": 310.046875,
+              "width": 70.046875,
+              "height": 63.96875,
+              "right": 314.34375,
+              "bottom": 374.015625
+            },
+            "heading": {
+              "x": 244.296875,
+              "y": 310.046875,
+              "width": 70.046875,
+              "height": 28.140625,
+              "right": 314.34375,
+              "bottom": 338.1875
+            }
+          },
+          {
+            "x": 352.65625,
+            "y": 294.03125,
+            "width": 138.671875,
+            "height": 96,
+            "right": 491.328125,
+            "bottom": 390.03125,
+            "text": {
+              "x": 385.21875,
+              "y": 310.046875,
+              "width": 73.546875,
+              "height": 63.96875,
+              "right": 458.765625,
+              "bottom": 374.015625
+            },
+            "heading": {
+              "x": 385.21875,
+              "y": 310.046875,
+              "width": 73.546875,
+              "height": 28.140625,
+              "right": 458.765625,
+              "bottom": 338.1875
+            }
+          },
+          {
+            "x": 495.328125,
+            "y": 294.03125,
+            "width": 138.671875,
+            "height": 96,
+            "right": 634,
+            "bottom": 390.03125,
+            "text": {
+              "x": 527.90625,
+              "y": 310.046875,
+              "width": 73.5,
+              "height": 63.96875,
+              "right": 601.40625,
+              "bottom": 374.015625
+            },
+            "heading": {
+              "x": 527.90625,
+              "y": 310.046875,
+              "width": 73.5,
+              "height": 28.140625,
+              "right": 601.40625,
+              "bottom": 338.1875
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Review ready harvest",
+            "action": "review-harvest",
+            "disabled": false,
+            "y": 213.875,
+            "height": 59.359375,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 1\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 294.03125,
+            "height": 96,
+            "usefulViewport": false
+          },
+          {
+            "name": "Bed 2\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 294.03125,
+            "height": 96,
+            "usefulViewport": false
+          },
+          {
+            "name": "Bed 3\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 294.03125,
+            "height": 96,
+            "usefulViewport": false
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": true,
+            "y": 943.265625,
+            "height": 147.375,
+            "usefulViewport": false
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": false,
+            "y": 943.265625,
+            "height": 147.375,
+            "usefulViewport": false
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": false,
+            "y": 1106.640625,
+            "height": 94,
+            "usefulViewport": false
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": true,
+            "y": 2038.25,
+            "height": 59,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 1356.25,
+            "height": 59,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 1425.25,
+            "height": 94,
+            "usefulViewport": false
+          },
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 1529.25,
+            "height": 94,
+            "usefulViewport": false
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 1633.25,
+            "height": 94,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-busy-desktop",
+      "item": {
+        "panel": "garden",
+        "name": "busy",
+        "kind": "both-busy"
+      },
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 60sage leaves both ordinary/easel jobs and crops running. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "Plants wait safely. A field marker uses clippings, not produce.\n\nMake a marker at the field\nBed 1 \u00b7 Marigold\n3h 58m\nBed 2 \u00b7 Radish\n28:54\nBed 3 \u00b7 Radish\n28:54\n\nRadish 2/12 \u00b7 Marigold 0/12\n\nGrowing \u00b7 3h 58m left. Ready plants wait safely.\n\nChoose a bound seed\nRadish with ambitions\n0 available\nOut-of-office marigold\n0 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nSee chosen garden displays\nGarden notes & privacy\n\nPlants wait safely while you explore another activity.",
+        "scrollPages": 1.15,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 492,
+          "y": 96,
+          "width": 456,
+          "height": 916.796875,
+          "right": 948,
+          "bottom": 1012.796875
+        },
+        "beds": [
+          {
+            "x": 508,
+            "y": 214.875,
+            "width": 137.0625,
+            "height": 112,
+            "right": 645.0625,
+            "bottom": 326.875,
+            "text": {
+              "x": 516.796875,
+              "y": 266.75,
+              "width": 119.453125,
+              "height": 37.84375,
+              "right": 636.25,
+              "bottom": 304.59375
+            },
+            "heading": {
+              "x": 516.796875,
+              "y": 266.75,
+              "width": 119.453125,
+              "height": 17.28125,
+              "right": 636.25,
+              "bottom": 284.03125
+            }
+          },
+          {
+            "x": 651.453125,
+            "y": 214.875,
+            "width": 137.078125,
+            "height": 112,
+            "right": 788.53125,
+            "bottom": 326.875,
+            "text": {
+              "x": 667.265625,
+              "y": 266.75,
+              "width": 105.4375,
+              "height": 37.84375,
+              "right": 772.703125,
+              "bottom": 304.59375
+            },
+            "heading": {
+              "x": 667.265625,
+              "y": 266.75,
+              "width": 105.4375,
+              "height": 17.28125,
+              "right": 772.703125,
+              "bottom": 284.03125
+            }
+          },
+          {
+            "x": 794.921875,
+            "y": 214.875,
+            "width": 137.078125,
+            "height": 112,
+            "right": 932,
+            "bottom": 326.875,
+            "text": {
+              "x": 810.75,
+              "y": 266.75,
+              "width": 105.40625,
+              "height": 37.84375,
+              "right": 916.15625,
+              "bottom": 304.59375
+            },
+            "heading": {
+              "x": 810.75,
+              "y": 266.75,
+              "width": 105.40625,
+              "height": 17.28125,
+              "right": 916.15625,
+              "bottom": 284.03125
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 155.6875,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 1 \u00b7 Marigold\n3h 58m",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 2 \u00b7 Radish\n28:54",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 3 \u00b7 Radish\n28:54",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": true,
+            "y": 562.828125,
+            "height": 64,
+            "usefulViewport": true
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": true,
+            "y": 562.828125,
+            "height": 64,
+            "usefulViewport": true
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": false,
+            "y": 636.828125,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": false,
+            "y": 1009.015625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 747.015625,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 801.015625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 855.015625,
+            "height": 44,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-busy-phone",
+      "item": {
+        "panel": "garden",
+        "name": "busy",
+        "kind": "both-busy"
+      },
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 60sage leaves both ordinary/easel jobs and crops running. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "Plants wait safely. A field marker uses clippings, not produce.\n\nMake a marker at the field\nBed 1 \u00b7 Marigold\n3h 58m\nBed 2 \u00b7 Radish\n28:54\nBed 3 \u00b7 Radish\n28:54\n\nRadish 2/12 \u00b7 Marigold 0/12\n\nGrowing \u00b7 3h 58m left. Ready plants wait safely.\n\nChoose a bound seed\nRadish with ambitions\n0 available\nOut-of-office marigold\n0 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nSee chosen garden displays\nGarden notes & privacy\n\nPlants wait safely while you explore another activity.",
+        "scrollPages": 1.76,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 21,
+          "y": 96,
+          "width": 318,
+          "height": 991.046875,
+          "right": 339,
+          "bottom": 1087.046875
+        },
+        "beds": [
+          {
+            "x": 37,
+            "y": 214.875,
+            "width": 91.0625,
+            "height": 112,
+            "right": 128.0625,
+            "bottom": 326.875,
+            "text": {
+              "x": 45.390625,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 55.125,
+              "right": 119.671875,
+              "bottom": 313.234375
+            },
+            "heading": {
+              "x": 45.390625,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 34.5625,
+              "right": 119.671875,
+              "bottom": 292.671875
+            }
+          },
+          {
+            "x": 134.453125,
+            "y": 214.875,
+            "width": 91.078125,
+            "height": 112,
+            "right": 225.53125,
+            "bottom": 326.875,
+            "text": {
+              "x": 142.84375,
+              "y": 258.109375,
+              "width": 74.296875,
+              "height": 55.125,
+              "right": 217.140625,
+              "bottom": 313.234375
+            },
+            "heading": {
+              "x": 142.84375,
+              "y": 258.109375,
+              "width": 74.296875,
+              "height": 34.5625,
+              "right": 217.140625,
+              "bottom": 292.671875
+            }
+          },
+          {
+            "x": 231.921875,
+            "y": 214.875,
+            "width": 91.0625,
+            "height": 112,
+            "right": 322.984375,
+            "bottom": 326.875,
+            "text": {
+              "x": 240.3125,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 55.125,
+              "right": 314.59375,
+              "bottom": 313.234375
+            },
+            "heading": {
+              "x": 240.3125,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 34.5625,
+              "right": 314.59375,
+              "bottom": 292.671875
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 155.6875,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 1 \u00b7 Marigold\n3h 58m",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 2 \u00b7 Radish\n28:54",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 3 \u00b7 Radish\n28:54",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": true,
+            "y": 595.796875,
+            "height": 74.1875,
+            "usefulViewport": false
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": true,
+            "y": 595.796875,
+            "height": 74.1875,
+            "usefulViewport": false
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": false,
+            "y": 679.984375,
+            "height": 58,
+            "usefulViewport": false
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": false,
+            "y": 1155.265625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 821.265625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 875.265625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 929.265625,
+            "height": 44,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-busy-short200",
+      "item": {
+        "panel": "garden",
+        "name": "busy",
+        "kind": "both-busy"
+      },
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "fixture": "Disposable elapsed save generated entirely by current pure commands within a regular visit schedule, then 60sage leaves both ordinary/easel jobs and crops running. Same default square arrival is injected. Not actual waits, travel history or SQL authority.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "Plants wait safely. A field marker uses clippings, not produce.\n\nMake a marker at the field\nBed 1\n3h 58m\nBed 2\n28:54\nBed 3\n28:54\n\nRadish 2/12 \u00b7 Marigold 0/12\n\nGrowing \u00b7 3h 58m left. Ready plants wait safely.\n\nChoose a bound seed\nRadish with ambitions\n0 available\nOut-of-office marigold\n0 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nSee chosen garden displays\nGarden notes & privacy\n\nPlants wait safely while you explore another activity.",
+        "scrollPages": 5.06,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 194,
+          "y": 126,
+          "width": 456,
+          "height": 1701.09375,
+          "right": 650,
+          "bottom": 1827.09375
+        },
+        "beds": [
+          {
+            "x": 210,
+            "y": 329.390625,
+            "width": 138.65625,
+            "height": 96,
+            "right": 348.65625,
+            "bottom": 425.390625,
+            "text": {
+              "x": 239,
+              "y": 345.40625,
+              "width": 80.65625,
+              "height": 63.96875,
+              "right": 319.65625,
+              "bottom": 409.375
+            },
+            "heading": {
+              "x": 239,
+              "y": 345.40625,
+              "width": 80.65625,
+              "height": 28.140625,
+              "right": 319.65625,
+              "bottom": 373.546875
+            }
+          },
+          {
+            "x": 352.65625,
+            "y": 329.390625,
+            "width": 138.671875,
+            "height": 96,
+            "right": 491.328125,
+            "bottom": 425.390625,
+            "text": {
+              "x": 385.21875,
+              "y": 345.40625,
+              "width": 73.546875,
+              "height": 63.96875,
+              "right": 458.765625,
+              "bottom": 409.375
+            },
+            "heading": {
+              "x": 385.21875,
+              "y": 345.40625,
+              "width": 73.546875,
+              "height": 28.140625,
+              "right": 458.765625,
+              "bottom": 373.546875
+            }
+          },
+          {
+            "x": 495.328125,
+            "y": 329.390625,
+            "width": 138.671875,
+            "height": 96,
+            "right": 634,
+            "bottom": 425.390625,
+            "text": {
+              "x": 527.90625,
+              "y": 345.40625,
+              "width": 73.5,
+              "height": 63.96875,
+              "right": 601.40625,
+              "bottom": 409.375
+            },
+            "heading": {
+              "x": 527.90625,
+              "y": 345.40625,
+              "width": 73.5,
+              "height": 28.140625,
+              "right": 601.40625,
+              "bottom": 373.546875
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 213.875,
+            "height": 94.71875,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 1\n3h 58m",
+            "action": null,
+            "disabled": false,
+            "y": 329.390625,
+            "height": 96,
+            "usefulViewport": false
+          },
+          {
+            "name": "Bed 2\n28:54",
+            "action": null,
+            "disabled": false,
+            "y": 329.390625,
+            "height": 96,
+            "usefulViewport": false
+          },
+          {
+            "name": "Bed 3\n28:54",
+            "action": null,
+            "disabled": false,
+            "y": 329.390625,
+            "height": 96,
+            "usefulViewport": false
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": true,
+            "y": 978.625,
+            "height": 147.375,
+            "usefulViewport": false
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": true,
+            "y": 978.625,
+            "height": 147.375,
+            "usefulViewport": false
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": false,
+            "y": 1142,
+            "height": 94,
+            "usefulViewport": false
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": false,
+            "y": 2073.609375,
+            "height": 59,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 1391.609375,
+            "height": 59,
+            "usefulViewport": false
+          },
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 1460.609375,
+            "height": 94,
+            "usefulViewport": false
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 1564.609375,
+            "height": 94,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-full-desktop",
+      "item": {
+        "panel": "garden",
+        "name": "full",
+        "kind": "saturated"
+      },
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "fixture": "Disposable elapsed local save: actual pure-command52hgarden history plus three24hpine returns/full12+12produce/24pine, finite errands and free route card. No physicalbox grant. Default square arrival position is separately injected. Not actual waits or SQL authority.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "Your harvest stays safe. Review uses for full produce.\n\nVisit the allotment attendant\nBed 1 \u00b7 Marigold\nReady\nBed 2 \u00b7 Radish\nReady\nBed 3 \u00b7 Radish\nReady\n\nRadish 12/12 \u00b7 Marigold 12/12\n\nThis produce space is full. The plant and seed wait safely; use produce or tend another bed.\n\nChoose a bound seed\nRadish with ambitions\n0 available\nOut-of-office marigold\n0 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nThe plant and seed stay safe. Review produce uses or choose another bed.",
+        "scrollPages": 1.15,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 492,
+          "y": 96,
+          "width": 456,
+          "height": 916.796875,
+          "right": 948,
+          "bottom": 1012.796875
+        },
+        "beds": [
+          {
+            "x": 508,
+            "y": 214.875,
+            "width": 137.0625,
+            "height": 112,
+            "right": 645.0625,
+            "bottom": 326.875,
+            "text": {
+              "x": 516.796875,
+              "y": 266.75,
+              "width": 119.453125,
+              "height": 37.84375,
+              "right": 636.25,
+              "bottom": 304.59375
+            },
+            "heading": {
+              "x": 516.796875,
+              "y": 266.75,
+              "width": 119.453125,
+              "height": 17.28125,
+              "right": 636.25,
+              "bottom": 284.03125
+            }
+          },
+          {
+            "x": 651.453125,
+            "y": 214.875,
+            "width": 137.078125,
+            "height": 112,
+            "right": 788.53125,
+            "bottom": 326.875,
+            "text": {
+              "x": 667.265625,
+              "y": 266.75,
+              "width": 105.4375,
+              "height": 37.84375,
+              "right": 772.703125,
+              "bottom": 304.59375
+            },
+            "heading": {
+              "x": 667.265625,
+              "y": 266.75,
+              "width": 105.4375,
+              "height": 17.28125,
+              "right": 772.703125,
+              "bottom": 284.03125
+            }
+          },
+          {
+            "x": 794.921875,
+            "y": 214.875,
+            "width": 137.078125,
+            "height": 112,
+            "right": 932,
+            "bottom": 326.875,
+            "text": {
+              "x": 810.75,
+              "y": 266.75,
+              "width": 105.40625,
+              "height": 37.84375,
+              "right": 916.15625,
+              "bottom": 304.59375
+            },
+            "heading": {
+              "x": 810.75,
+              "y": 266.75,
+              "width": 105.40625,
+              "height": 17.28125,
+              "right": 916.15625,
+              "bottom": 284.03125
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 155.6875,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 1 \u00b7 Marigold\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 2 \u00b7 Radish\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 3 \u00b7 Radish\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": true,
+            "y": 562.828125,
+            "height": 64,
+            "usefulViewport": true
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": true,
+            "y": 562.828125,
+            "height": 64,
+            "usefulViewport": true
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": false,
+            "y": 636.828125,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": false,
+            "y": 1009.015625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 747.015625,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 801.015625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 855.015625,
+            "height": 44,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-full-phone",
+      "item": {
+        "panel": "garden",
+        "name": "full",
+        "kind": "saturated"
+      },
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "fixture": "Disposable elapsed local save: actual pure-command52hgarden history plus three24hpine returns/full12+12produce/24pine, finite errands and free route card. No physicalbox grant. Default square arrival position is separately injected. Not actual waits or SQL authority.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "Your harvest stays safe. Review uses for full produce.\n\nVisit the allotment attendant\nBed 1 \u00b7 Marigold\nReady\nBed 2 \u00b7 Radish\nReady\nBed 3 \u00b7 Radish\nReady\n\nRadish 12/12 \u00b7 Marigold 12/12\n\nThis produce space is full. The plant and seed wait safely; use produce or tend another bed.\n\nChoose a bound seed\nRadish with ambitions\n0 available\nOut-of-office marigold\n0 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nThe plant and seed stay safe. Review produce uses or choose another bed.",
+        "scrollPages": 1.76,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 21,
+          "y": 96,
+          "width": 318,
+          "height": 991.046875,
+          "right": 339,
+          "bottom": 1087.046875
+        },
+        "beds": [
+          {
+            "x": 37,
+            "y": 214.875,
+            "width": 91.0625,
+            "height": 112,
+            "right": 128.0625,
+            "bottom": 326.875,
+            "text": {
+              "x": 45.390625,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 55.125,
+              "right": 119.671875,
+              "bottom": 313.234375
+            },
+            "heading": {
+              "x": 45.390625,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 34.5625,
+              "right": 119.671875,
+              "bottom": 292.671875
+            }
+          },
+          {
+            "x": 134.453125,
+            "y": 214.875,
+            "width": 91.078125,
+            "height": 112,
+            "right": 225.53125,
+            "bottom": 326.875,
+            "text": {
+              "x": 142.84375,
+              "y": 258.109375,
+              "width": 74.296875,
+              "height": 55.125,
+              "right": 217.140625,
+              "bottom": 313.234375
+            },
+            "heading": {
+              "x": 142.84375,
+              "y": 258.109375,
+              "width": 74.296875,
+              "height": 34.5625,
+              "right": 217.140625,
+              "bottom": 292.671875
+            }
+          },
+          {
+            "x": 231.921875,
+            "y": 214.875,
+            "width": 91.0625,
+            "height": 112,
+            "right": 322.984375,
+            "bottom": 326.875,
+            "text": {
+              "x": 240.3125,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 55.125,
+              "right": 314.59375,
+              "bottom": 313.234375
+            },
+            "heading": {
+              "x": 240.3125,
+              "y": 258.109375,
+              "width": 74.28125,
+              "height": 34.5625,
+              "right": 314.59375,
+              "bottom": 292.671875
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 155.6875,
+            "height": 44,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 1 \u00b7 Marigold\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 2 \u00b7 Radish\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 3 \u00b7 Radish\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 214.875,
+            "height": 112,
+            "usefulViewport": true
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": true,
+            "y": 595.796875,
+            "height": 74.1875,
+            "usefulViewport": false
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": true,
+            "y": 595.796875,
+            "height": 74.1875,
+            "usefulViewport": false
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": false,
+            "y": 679.984375,
+            "height": 58,
+            "usefulViewport": false
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": false,
+            "y": 1155.265625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 821.265625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 875.265625,
+            "height": 44,
+            "usefulViewport": false
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 929.265625,
+            "height": 44,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    },
+    {
+      "name": "garden-full-short200",
+      "item": {
+        "panel": "garden",
+        "name": "full",
+        "kind": "saturated"
+      },
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "fixture": "Disposable elapsed local save: actual pure-command52hgarden history plus three24hpine returns/full12+12produce/24pine, finite errands and free route card. No physicalbox grant. Default square arrival position is separately injected. Not actual waits or SQL authority.",
+      "positionFixture": "garden9,13",
+      "measured": {
+        "text": "Your harvest stays safe. Review uses for full produce.\n\nVisit the allotment attendant\nBed 1\nReady\nBed 2\nReady\nBed 3\nReady\n\nRadish 12/12 \u00b7 Marigold 12/12\n\nThis produce space is full. The plant and seed wait safely; use produce or tend another bed.\n\nChoose a bound seed\nRadish with ambitions\n0 available\nOut-of-office marigold\n0 available\nPreview planting \u00b7 free\nHarvest \u00b7 1 produce + 1 seed\nInspect soil & leaves \u00b7 no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nThe plant and seed stay safe. Review produce uses or choose another bed.",
+        "scrollPages": 5.06,
+        "horizontalOverflow": false,
+        "panelBounds": {
+          "x": 194,
+          "y": 126,
+          "width": 456,
+          "height": 1701.09375,
+          "right": 650,
+          "bottom": 1827.09375
+        },
+        "beds": [
+          {
+            "x": 210,
+            "y": 329.390625,
+            "width": 138.65625,
+            "height": 96,
+            "right": 348.65625,
+            "bottom": 425.390625,
+            "text": {
+              "x": 244.296875,
+              "y": 345.40625,
+              "width": 70.046875,
+              "height": 63.96875,
+              "right": 314.34375,
+              "bottom": 409.375
+            },
+            "heading": {
+              "x": 244.296875,
+              "y": 345.40625,
+              "width": 70.046875,
+              "height": 28.140625,
+              "right": 314.34375,
+              "bottom": 373.546875
+            }
+          },
+          {
+            "x": 352.65625,
+            "y": 329.390625,
+            "width": 138.671875,
+            "height": 96,
+            "right": 491.328125,
+            "bottom": 425.390625,
+            "text": {
+              "x": 385.21875,
+              "y": 345.40625,
+              "width": 73.546875,
+              "height": 63.96875,
+              "right": 458.765625,
+              "bottom": 409.375
+            },
+            "heading": {
+              "x": 385.21875,
+              "y": 345.40625,
+              "width": 73.546875,
+              "height": 28.140625,
+              "right": 458.765625,
+              "bottom": 373.546875
+            }
+          },
+          {
+            "x": 495.328125,
+            "y": 329.390625,
+            "width": 138.671875,
+            "height": 96,
+            "right": 634,
+            "bottom": 425.390625,
+            "text": {
+              "x": 527.90625,
+              "y": 345.40625,
+              "width": 73.5,
+              "height": 63.96875,
+              "right": 601.40625,
+              "bottom": 409.375
+            },
+            "heading": {
+              "x": 527.90625,
+              "y": 345.40625,
+              "width": 73.5,
+              "height": 28.140625,
+              "right": 601.40625,
+              "bottom": 373.546875
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "name": "Visit the allotment attendant",
+            "action": null,
+            "disabled": false,
+            "y": 213.875,
+            "height": 94.71875,
+            "usefulViewport": true
+          },
+          {
+            "name": "Bed 1\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 329.390625,
+            "height": 96,
+            "usefulViewport": false
+          },
+          {
+            "name": "Bed 2\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 329.390625,
+            "height": 96,
+            "usefulViewport": false
+          },
+          {
+            "name": "Bed 3\nReady",
+            "action": null,
+            "disabled": false,
+            "y": 329.390625,
+            "height": 96,
+            "usefulViewport": false
+          },
+          {
+            "name": "Preview planting \u00b7 free",
+            "action": "preview-plant",
+            "disabled": true,
+            "y": 978.625,
+            "height": 147.375,
+            "usefulViewport": false
+          },
+          {
+            "name": "Harvest \u00b7 1 produce + 1 seed",
+            "action": "harvest",
+            "disabled": true,
+            "y": 978.625,
+            "height": 147.375,
+            "usefulViewport": false
+          },
+          {
+            "name": "Inspect soil & leaves \u00b7 no production bonus",
+            "action": "observe",
+            "disabled": false,
+            "y": 1142,
+            "height": 94,
+            "usefulViewport": false
+          },
+          {
+            "name": "",
+            "action": "swap-beds",
+            "disabled": false,
+            "y": 2073.609375,
+            "height": 59,
+            "usefulViewport": false
+          },
+          {
+            "name": "Walk to the beds",
+            "action": null,
+            "disabled": false,
+            "y": 1391.609375,
+            "height": 59,
+            "usefulViewport": false
+          },
+          {
+            "name": "Make a marker at the field",
+            "action": null,
+            "disabled": false,
+            "y": 1460.609375,
+            "height": 94,
+            "usefulViewport": false
+          },
+          {
+            "name": "See chosen garden displays",
+            "action": null,
+            "disabled": false,
+            "y": 1564.609375,
+            "height": 94,
+            "usefulViewport": false
+          }
+        ]
+      },
+      "statePreserved": true,
+      "errors": [],
+      "api": []
+    }
+  ],
+  "interactionGeometry": [
+    {
+      "name": "post-card-only-desktop-disclosure-focus",
+      "summary": {
+        "x": 508,
+        "y": 789.875,
+        "width": 424,
+        "height": 44
+      },
+      "header": {
+        "x": 492,
+        "y": 16,
+        "width": 456,
+        "height": 80
+      },
+      "footer": {
+        "x": 508,
+        "y": 836,
+        "width": 424,
+        "height": 48
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "post-card-only-phone-disclosure-focus",
+      "summary": {
+        "x": 37,
+        "y": 433.625,
+        "width": 286,
+        "height": 44
+      },
+      "header": {
+        "x": 21,
+        "y": 16,
+        "width": 318,
+        "height": 80
+      },
+      "footer": {
+        "x": 37,
+        "y": 576,
+        "width": 286,
+        "height": 48
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "post-card-only-short200-disclosure-focus",
+      "summary": {
+        "x": 210,
+        "y": 200.03125,
+        "width": 424,
+        "height": 121.5625
+      },
+      "header": {
+        "x": 194,
+        "y": 16,
+        "width": 456,
+        "height": 99
+      },
+      "footer": {
+        "x": 210,
+        "y": 330,
+        "width": 424,
+        "height": 44
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "post-owned-desktop-disclosure-focus",
+      "summary": {
+        "x": 508,
+        "y": 783.65625,
+        "width": 424,
+        "height": 44
+      },
+      "header": {
+        "x": 492,
+        "y": 16,
+        "width": 456,
+        "height": 80
+      },
+      "footer": {
+        "x": 508,
+        "y": 836,
+        "width": 424,
+        "height": 48
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "post-owned-phone-disclosure-focus",
+      "summary": {
+        "x": 37,
+        "y": 433.40625,
+        "width": 286,
+        "height": 44
+      },
+      "header": {
+        "x": 21,
+        "y": 16,
+        "width": 318,
+        "height": 80
+      },
+      "footer": {
+        "x": 37,
+        "y": 576,
+        "width": 286,
+        "height": 48
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "post-owned-short200-disclosure-focus",
+      "summary": {
+        "x": 210,
+        "y": 200.625,
+        "width": 424,
+        "height": 121.5625
+      },
+      "header": {
+        "x": 194,
+        "y": 16,
+        "width": 456,
+        "height": 99
+      },
+      "footer": {
+        "x": 210,
+        "y": 330,
+        "width": 424,
+        "height": 44
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "post-card-only-at-pip-desktop-disclosure-focus",
+      "summary": {
+        "x": 508,
+        "y": 739.484375,
+        "width": 424,
+        "height": 44
+      },
+      "header": {
+        "x": 492,
+        "y": 16,
+        "width": 456,
+        "height": 80
+      },
+      "footer": {
+        "x": 508,
+        "y": 836,
+        "width": 424,
+        "height": 48
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "post-card-only-at-pip-phone-disclosure-focus",
+      "summary": {
+        "x": 37,
+        "y": 434.234375,
+        "width": 286,
+        "height": 44
+      },
+      "header": {
+        "x": 21,
+        "y": 16,
+        "width": 318,
+        "height": 80
+      },
+      "footer": {
+        "x": 37,
+        "y": 576,
+        "width": 286,
+        "height": 48
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "post-card-only-at-pip-short200-disclosure-focus",
+      "summary": {
+        "x": 210,
+        "y": 200.234375,
+        "width": 424,
+        "height": 121.5625
+      },
+      "header": {
+        "x": 194,
+        "y": 16,
+        "width": 456,
+        "height": 99
+      },
+      "footer": {
+        "x": 210,
+        "y": 330,
+        "width": 424,
+        "height": 44
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "post-owned-at-pip-desktop-disclosure-focus",
+      "summary": {
+        "x": 508,
+        "y": 784.265625,
+        "width": 424,
+        "height": 44
+      },
+      "header": {
+        "x": 492,
+        "y": 16,
+        "width": 456,
+        "height": 80
+      },
+      "footer": {
+        "x": 508,
+        "y": 836,
+        "width": 424,
+        "height": 48
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "post-owned-at-pip-phone-disclosure-focus",
+      "summary": {
+        "x": 37,
+        "y": 434.015625,
+        "width": 286,
+        "height": 44
+      },
+      "header": {
+        "x": 21,
+        "y": 16,
+        "width": 318,
+        "height": 80
+      },
+      "footer": {
+        "x": 37,
+        "y": 576,
+        "width": 286,
+        "height": 48
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "post-owned-at-pip-short200-disclosure-focus",
+      "summary": {
+        "x": 210,
+        "y": 200.828125,
+        "width": 424,
+        "height": 121.5625
+      },
+      "header": {
+        "x": 194,
+        "y": 16,
+        "width": 456,
+        "height": 99
+      },
+      "footer": {
+        "x": 210,
+        "y": 330,
+        "width": 424,
+        "height": 44
+      },
+      "nativeTab": true
+    },
+    {
+      "name": "garden-fresh-desktop-quote-focus",
+      "selection": {
+        "text": "",
+        "anchor": "BUTTON",
+        "focus": "BUTTON"
+      },
+      "quote": {
+        "x": 519.59375,
+        "y": 212.125,
+        "width": 400.8125,
+        "height": 112
+      },
+      "header": {
+        "x": 492,
+        "y": 16,
+        "width": 456,
+        "height": 80
+      }
+    },
+    {
+      "name": "garden-fresh-phone-quote-focus",
+      "selection": {
+        "text": "",
+        "anchor": "BUTTON",
+        "focus": "BUTTON"
+      },
+      "quote": {
+        "x": 48.59375,
+        "y": 104.28125,
+        "width": 262.8125,
+        "height": 112
+      },
+      "header": {
+        "x": 21,
+        "y": 16,
+        "width": 318,
+        "height": 80
+      }
+    },
+    {
+      "name": "garden-fresh-short200-quote-focus",
+      "selection": {
+        "text": "",
+        "anchor": "BUTTON",
+        "focus": "BUTTON"
+      },
+      "quote": {
+        "x": 231.1875,
+        "y": 133.984375,
+        "width": 381.625,
+        "height": 224
+      },
+      "header": {
+        "x": 194,
+        "y": 16,
+        "width": 456,
+        "height": 110
+      }
+    }
+  ]
+}

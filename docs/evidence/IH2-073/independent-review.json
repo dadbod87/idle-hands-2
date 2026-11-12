@@ -1,0 +1,43 @@
+{
+  "classification": "Independent read-only source/image review; root executed all tests",
+  "sourceReviewer": "workshop_domain",
+  "sourceFindings": [
+    {
+      "issue": "Cancel may try to focus a disabled planting preview after authoritative state change",
+      "resolution": "Same-owner/current-panel guard and enabled-preview or selected-bed fallback."
+    },
+    {
+      "issue": "Definite failed planting retry could later reveal a false seed-spent receipt",
+      "resolution": "Same-panel retry callback clears the local receipt marker on definite failure; uncertain state retained. Actual isolated HTTP stale-retry/free-swap regression passes."
+    }
+  ],
+  "otherSourceConclusions": [
+    "No domain, cost, timer, ownership or API calculation changed",
+    "Queued programmatic closes do not steal later reading focus; old close events consumed before reopened-panel guard",
+    "Receipt completion/focus and retry callbacks remain tied to same owner and mounted panel",
+    "Keyboard-only focus uncover preserves pointer down/up targets"
+  ],
+  "imageReviewer": "phone_visual_review",
+  "imageFindings": [
+    {
+      "issue": "Apparent third-bed clipping in immediate captures",
+      "resolution": "All91pxbuttons and74pxtext children fit inside318pxpanel; fresh1250msrepaint shows all3. No persistent geometry overflow established."
+    },
+    {
+      "issue": "Focused route summary partly under sticky header in reading capture",
+      "resolution": "Observer had explicitly scrolled card after toggling. Native Tab/Enter summaryy434..478 is inside header96/footer576; observer now separates subsequent reading scroll."
+    },
+    {
+      "issue": "Gray title fragment in immediate short quote capture",
+      "resolution": "Final settled short200 quote capture is clean; no root cause claimed for immediate paint fragment."
+    },
+    {
+      "issue": "Additional at-Pip short200 probe hid navigation but left motif choices covered",
+      "resolution": "Short-only thumbnail/margin compaction and concise kept summary; leaf204.33..315.28 above330footer. Final independent review of owned/card-only at-Pip short and phone captures finds no remaining clipping. Save/review requires deliberate short-screen scrolling."
+    }
+  ],
+  "limits": [
+    "Fixture-based captures only; no physical-device or human enjoyment proof",
+    "Source reviewers did not execute tests or edit files"
+  ]
+}

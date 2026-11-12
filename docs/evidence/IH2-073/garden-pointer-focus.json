@@ -1,0 +1,19 @@
+{
+  "disclosure": "Fresh private progress with explicit garden position. Deliberate user scroll leaves an existing free preview partly below the sticky heading; actual mouse down/up, no state/time/API mutation.",
+  "box": {
+    "x": 37,
+    "y": 71.90625,
+    "width": 139,
+    "height": 74.1875
+  },
+  "held": {
+    "x": 37,
+    "y": 71.90625,
+    "width": 139,
+    "height": 74.1875
+  },
+  "edge": {
+    "x": 106.5,
+    "y": 100
+  }
+}

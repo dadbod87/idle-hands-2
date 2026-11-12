@@ -133,3 +133,9 @@ IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclos
 - Owner home’s unpublished actual motif visible to visitors, live motif cache invalidation, opt-in register/remove without duplicate props, corrupt ownership does not create a public display.
 - Fourteen original promoted vectors/provenance/anchors, actual desktop/phone/short200focusedmake/cancel/result and placed prop images. Explicitly distinguish receipt/flap presentation from missing new actor animations.
 - Full required checks, both exact-final-headCI jobs, actual downloaded build/server/browser artifacts and images, matching merge tree/cleanmain/sourcecloseout; back up and preserve existing fictional practice/key before coordinated client/API preview update. No hosted/real-account/original-game change.
+
+## IH2-073 current actions first
+- Paired27views including owned/card-only beside Pip, fresh/ready/busy/full gardens, desktop/narrow/short200; retain declared elapsed/arrival fixtures and separate fresh actual-time proof. Review actual selected images, overflow and current-action bounds.
+- Old compiled hierarchy regressions fail at existing leaf/attendant bounds. Mouse down/up must not move preview, passive clocks preserve targets, native Tab/Enter keeps revisit accessible. Explicit quotes/free cancel and paid receipt controls remain stable.
+- Definite rejected planting retry clears paid receipt marker, uncertain results preserve retry, late callbacks stay with owner/current panel. No seed/produce/job mutation for free inspection/navigation.
+-256domain/SQL zero skips,75browser cases, strictbuild/design/plan/pinned40/diff and both exact-head CI jobs. Review actual uploaded artifact/images, fresh actual300000msphone crop/payment/placement/reload on final artifact, matching merge tree and clean main. Preserve all13practice tables/key/migrations before local4175static swap; unchanged4186API does not need restart. No hosted/current-game change.

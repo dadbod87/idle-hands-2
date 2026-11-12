@@ -1,0 +1,37 @@
+{
+  "classification": "Meaningful compiled old-build and candidate input regressions, not source acceptance",
+  "oldArtifact": {
+    "acceptedGame": "IH2-071 artifact also byte-identical to accepted072game",
+    "files": 174,
+    "postExistingLeafChoiceBottom": 1000.8125,
+    "gardenExistingAttendantRouteBottom": 1087.15625,
+    "phoneUsableBottomLimit": 577,
+    "bothTestsFailAtExistingActionGeometry": true,
+    "raw": "old-artifact-regressions.log"
+  },
+  "pointerBeforeGuard": {
+    "raw": "pointer-before-guard/test-results/browser/current-garden-pointer-focus.json",
+    "previewYBefore": 71.90625,
+    "previewYHeld": 103.90625,
+    "movementPixels": 32
+  },
+  "pointerAfterGuard": {
+    "raw": "focused-receipt-pass/test-results/browser/current-garden-pointer-focus.json",
+    "previewYBefore": 71.90625,
+    "previewYHeld": 71.90625,
+    "movementPixels": 0
+  },
+  "limits": [
+    "Native Chrome input and narrow/short emulation, not physical phone",
+    "Initial or failed candidate phases are retained externally; final full source gates pending"
+  ],
+  "atPipShort200": {
+    "disclosure": "Explicit26,25 arrival and valid elapsed saves; no during-UI time/stock/API mutation. Initial probe rawlog retained; its PNGs were superseded by recaptures.",
+    "beforeLeafBottom": 428.875,
+    "beforeFooterTop": 330,
+    "afterLeafTop": 204.328125,
+    "afterLeafBottom": 315.28125,
+    "afterFooterTop": 330,
+    "bothOwnedAndCardOnlyFit": true
+  }
+}

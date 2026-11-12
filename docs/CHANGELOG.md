@@ -1,5 +1,8 @@
 # History
 
+2026-11-12 — IH2-073 working presentation candidate: current Pip choices/navigation before kept-card revisit; useful full/busy garden routes and compact inactive quotes. Stable paid receipts, keyboard-only uncover, definite retry/focus guards, short200at-Pip choice coverage. Paired27views preserve progress;256domain/SQL0skips pass, final75browser/CI/artifact/preview gates pending. No domain/server/economy/art change. [Evidence](evidence/IH2-073/REPORT.md).
+
+
 2026-11-12 — IH2-072 source accepted: PR21/mergec72c3a7, exact2ac20e1CI43195544470bothSUCCESS256/72(15.5m). Actual174unchanged game files, server restart evidence and eight selected CI images reviewed; matching tree/cleanmain.073current-actions-first starts as presentation only. [Closeout](evidence/IH2-072/source-closeout.json).
 
 

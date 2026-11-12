@@ -118,9 +118,10 @@
   "candidateAndMergeTree": "acb85bef8302c278a8b3c72d3430b8a1d9c1d4bd",
   "postMergeAutomaticCI": [
     {
-      "conclusion": "",
       "databaseId": 43198315192,
-      "status": "in_progress"
+      "status": "completed",
+      "conclusion": "success",
+      "bothJobsSuccessIndependentlyObserved": true
     }
   ]
 }

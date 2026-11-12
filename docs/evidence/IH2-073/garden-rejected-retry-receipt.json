@@ -1,0 +1,33 @@
+{
+  "classification": "Actual isolated ih2_browser HTTP/SQL plus explicit uncommitted-request interception",
+  "disclosure": "Fictional ordinary Rowan. First planting request aborted before server; another legal same-resident API planting advances revision. Identical retry is definitively stale, then actual free UI swap must not fabricate a receipt. No practice/real accounts or grants.",
+  "commands": [
+    {
+      "kind": "garden",
+      "gardenAction": {
+        "action": "plant",
+        "bed": 0,
+        "crop": "radish"
+      },
+      "id": "a1ce5ea0-8813-4601-ba35-922b2161371f",
+      "expectedRevision": 0
+    },
+    {
+      "kind": "garden",
+      "gardenAction": {
+        "action": "plant",
+        "bed": 0,
+        "crop": "radish"
+      },
+      "id": "a1ce5ea0-8813-4601-ba35-922b2161371f",
+      "expectedRevision": 0
+    }
+  ],
+  "planted": 1,
+  "seeds": {
+    "radish": 1,
+    "marigold": 1
+  },
+  "receiptHidden": true,
+  "errors": []
+}

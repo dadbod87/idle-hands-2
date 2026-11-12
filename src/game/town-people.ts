@@ -87,7 +87,7 @@ export function dialogueFor(id: string, context: DialogueContext): TownDialogue 
     const title = 'Jun · Grounds caretaker';
     if (!context.shared) return {
       title,
-      lines: ['I look after the grounds. The grounds have declined to provide a reference.', 'This bridge is only a preview in browser practice. To help repair the town’s bridge, use the shared town.', 'The three depots have materials you can gather today. The woods, crops and fruit trees will have to wait; the trail is still closed.'],
+      lines: ['I look after the grounds. The grounds have declined to provide a reference.', 'This bridge is only a preview in browser practice. To help repair the town’s bridge, use the shared town.', 'Your rented allotment grows radishes and marigolds. Nella’s free saw lesson opens fallen pine work. Shared practice keeps the separate bridge and trail; fruit harvesting is not open.'],
       action: context.questStage === 'gather' ? journal() : bridge()
     };
     if (context.bridgeRestored) return {
@@ -116,7 +116,7 @@ export function dialogueFor(id: string, context: DialogueContext): TownDialogue 
       context.shared
         ? 'Weekly scores start fresh, but your inventory, queued job and decoration stay with you.'
         : 'Browser practice and the shared town have separate saves; your practice work stays in this browser.',
-      context.shared?'Your earned home and workroom can be visited. Trail discoveries add a pennant; wider shops and deliveries will have to wait.':'You can reserve a plot in the shared town, but the sample house in the art study is not ready to visit. Shops and deliveries will have to wait.'],
+      context.shared?'Your earned home and workroom can be visited. Trail discoveries add a pennant. My optional addressed route and letterbox plan are available now; wider shops are not.':'Housing belongs to the separate shared town; the sample house in the art study is not ready to visit. Here, your browser keeps your workshop, allotment, pine work and my optional addressed route. Shops are not open.'],
     action: context.questStage === 'place' ? journal() : bench(context)
   };
   return undefined;

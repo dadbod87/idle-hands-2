@@ -1,3 +1,4 @@
+import {preCommissionWorkshop} from './legacy-workshop.ts';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {createGarden,applyGarden,gardenSchema,migrateGarden,consumeGarden,GARDEN_HOUR as H,GARDEN_DAY as D,GARDEN_TIME_MAX,type GardenState,type GardenAction} from '../src/game/garden.ts';
@@ -34,7 +35,7 @@ test('full-bank time is not hidden reserve; fractional recovery survives reload 
 });
 test('fixed easel recipe conserves old crop history, spends literal inputs once and holds its independent twelve-hour job',()=>{
  let p=ready();const before=structuredClone(p.garden),raw={action:'start-easel'} as const;
- p=use(p,raw,4*H);assert.equal(p.state.pine.carried,2);assert.equal(p.state.pine.spent,4);assert.deepEqual(p.garden.consumed,{easels:{radish:0,marigold:1},hampers:{radish:0,marigold:0}});
+ p=use(p,raw,4*H);assert.equal(p.state.pine.carried,2);assert.equal(p.state.pine.spent,4);assert.deepEqual(p.garden.consumed,{easels:{radish:0,marigold:1},hampers:{radish:0,marigold:0},commission:{radish:0,marigold:0}});
  for(const k of ['seeds','beds','harvested','requests','nextRequestAt','practice','bonusPractice','markers','errand']as const)assert.deepEqual(p.garden[k],before[k],k);
  assert.deepEqual(p.state.job,{startedAt:4*H,readyAt:16*H});reject(p,raw,4*H);reject(p,{action:'claim-easel'},16*H-1);
  const held=settleCarpentry(p.state,90*D);assert.deepEqual(held.job,p.state.job);assert.equal(held.produced,0);const r=applyCarpentry(held,p.garden,{action:'claim-easel'},90*D);assert.equal(r.ok,true);assert.equal(r.awardEasel,true);assert.equal(r.recordIntent,false);assert.equal(r.state.produced,1);assert.equal(r.state.practice,3);assert.equal(r.state.job,null);reject({state:r.state,garden:r.garden},{action:'claim-easel'},90*D);
@@ -76,7 +77,7 @@ test('deadline selector returns only future wakeups and never auto-claims a held
 test('strict actions, invalid clocks and corrupted counters reject atomically without an award or public credit',()=>{
  const p=ready();for(const a of [{action:'learn-saw',amount:3},{action:'equip-saw',equipped:'true'},{action:'gather-pine',station:'unknown'},{action:'start-easel',cost:0},{action:'record-easel',ownerId:'other'},{action:'deliver-hamper',reward:100},{action:'set-easel-goal',enabled:true,spend:true},{action:'speed-up'},null])reject(p,a,4*H);
  for(const t of [-1,NaN,Infinity,.5,4*H-1,GARDEN_TIME_MAX+1])reject(p,{action:'start-easel'},t);
- for(const bad of [{...p.state,version:2},{...p.state,extra:true},{...p.state,produced:1},{...p.state,practice:1},{...p.state,recorded:1},{...p.state,saw:{owned:false,equipped:true}},{...p.state,pine:{...p.state.pine,carried:25}},{...p.state,job:{startedAt:0,readyAt:1}}])assert.equal(carpentrySchema.safeParse(bad).success,false);
+ for(const bad of [{...p.state,version:9},{...p.state,extra:true},{...p.state,produced:1},{...p.state,practice:1},{...p.state,recorded:1},{...p.state,saw:{owned:false,equipped:true}},{...p.state,pine:{...p.state.pine,carried:25}},{...p.state,job:{startedAt:0,readyAt:1}}])assert.equal(carpentrySchema.safeParse(bad).success,false);
  const broken=structuredClone(p);broken.garden.consumed.easels.marigold=1;reject(broken,{action:'start-easel'},4*H);
 });
 test('exhausted, missing ingredient and storage/counter bounds fail without changing the queued job or either ledger',()=>{
@@ -88,14 +89,14 @@ test('exhausted, missing ingredient and storage/counter bounds fail without chan
 test('strict garden v1 migration is deterministic, preserves populated history and refuses future, extra or forged consumption',()=>{
  let g=ready().garden;g=garden(g,{action:'submit-request'},4*H);g=garden(g,{action:'make-marker',marker:'sunburst'},4*H);
  const old=JSON.parse(JSON.stringify(g));old.version=1;delete old.consumed;const before=JSON.stringify(old),converted=migrateGarden(old) as GardenState;
- assert.equal(converted.version,2);assert.equal(gardenSchema.safeParse(converted).success,true);assert.equal(JSON.stringify(old),before);assert.deepEqual(migrateGarden(old),converted);
- const {version,consumed,...rest}=converted;const {version:_,...legacy}=old;assert.deepEqual(rest,legacy);assert.deepEqual(consumed,{easels:{radish:0,marigold:0},hampers:{radish:0,marigold:0}});
+ assert.equal(converted.version,3);assert.equal(gardenSchema.safeParse(converted).success,true);assert.equal(JSON.stringify(old),before);assert.deepEqual(migrateGarden(old),converted);
+ const {version,consumed,...rest}=converted;const {version:_,...legacy}=old;assert.deepEqual(rest,legacy);assert.deepEqual(consumed,{easels:{radish:0,marigold:0},hampers:{radish:0,marigold:0},commission:{radish:0,marigold:0}});
  for(const bad of [{...old,version:3},{...old,extra:true},{...old,consumed:{easels:{radish:0,marigold:1}}},{...old,requests:99},{...old,produce:{radish:12,marigold:12}}])assert.equal(migrateGarden(bad),bad);
 });
 test('workshop v1 garden migration retains ordinary job, inventory, furniture, revisions and receipts without changing the old input',()=>{
  let s=createWorkshop(0);for(const resource of ['scrap','timber','supplies'])s=applyWorkshop(s,{id:resource,expectedRevision:s.revision,kind:'gather',resource},0).state;
- s=applyWorkshop(s,{id:'old-job',expectedRevision:s.revision,kind:'craft',recipe:'planter'},0).state;const old=JSON.parse(JSON.stringify(s));old.garden.version=1;delete old.garden.consumed;const before=JSON.stringify(old);
- const migrated=loadWorkshop(old,0);assert.equal(migrated.recovered,false);assert.equal(migrated.state.garden.version,2);for(const key of Object.keys(s).filter(k=>k!=='garden'))assert.deepEqual((migrated.state as any)[key],(s as any)[key],key);assert.equal(JSON.stringify(old),before);
+ s=applyWorkshop(s,{id:'old-job',expectedRevision:s.revision,kind:'craft',recipe:'planter'},0).state;const old=preCommissionWorkshop(s);delete old.carpentry;delete old.owned.easel;old.garden.version=1;delete old.garden.consumed;const before=JSON.stringify(old);
+ const migrated=loadWorkshop(old,0);assert.equal(migrated.recovered,false);assert.equal(migrated.state.garden.version,3);for(const key of Object.keys(s).filter(k=>k!=='garden'))assert.deepEqual((migrated.state as any)[key],(s as any)[key],key);assert.equal(JSON.stringify(old),before);
  old.garden.extra='do not discard';assert.equal(loadWorkshop(old,0).recovered,true);assert.equal(old.garden.extra,'do not discard');
 });
 test('garden consumed-by-use conservation rejects mismatched recipes and never invents old requests',()=>{

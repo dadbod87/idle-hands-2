@@ -7,8 +7,8 @@
     "Only4hhamper configuration is implemented;12h remains an historical comparison"
   ],
   "sourceSha256": {
-    "src/game/garden.ts": "aa438b4db1bbaa3d2af76317f2b77af8ba8c9260fcc811c1c81fd44fae760156",
-    "src/game/carpentry.ts": "44c6219baceded14e327b9cd1a65b2921b0fb97082cf0980c16e7a36464d0394",
+    "src/game/garden.ts": "4bcad76311fb65b44609b0af37a45f3cf022e68f0ef4ccef6837234fafbc5991",
+    "src/game/carpentry.ts": "7eba4bd2ef18eb8c2d5d000ba73be6e6fd7ac70eaef054a79b54d6ab4c5e9ce0",
     "tools/woodland-plan.ts": "d3a408129b3eac585af1b0aed01b496eefed6b282b4d728eb8fba68d4ec811a6",
     "tools/simulate-carpentry-rules.ts": "13992d8e93e0f8daec1d7c1436b4a6596a56817ae68617746ac47c16c98cd090"
   },
@@ -57,6 +57,10 @@
           "marigold": 0
         },
         "hampers": {
+          "radish": 0,
+          "marigold": 0
+        },
+        "commission": {
           "radish": 0,
           "marigold": 0
         }
@@ -115,6 +119,10 @@
           "marigold": 6
         },
         "hampers": {
+          "radish": 0,
+          "marigold": 0
+        },
+        "commission": {
           "radish": 0,
           "marigold": 0
         }
@@ -190,6 +198,10 @@
         "hampers": {
           "radish": 16,
           "marigold": 8
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -263,6 +275,10 @@
         "hampers": {
           "radish": 18,
           "marigold": 9
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -357,6 +373,10 @@
         "hampers": {
           "radish": 62,
           "marigold": 31
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 4,
@@ -443,6 +463,10 @@
         "hampers": {
           "radish": 44,
           "marigold": 22
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -535,6 +559,10 @@
         "hampers": {
           "radish": 0,
           "marigold": 0
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 0,
@@ -618,6 +646,10 @@
           "marigold": 0
         },
         "hampers": {
+          "radish": 0,
+          "marigold": 0
+        },
+        "commission": {
           "radish": 0,
           "marigold": 0
         }
@@ -714,6 +746,10 @@
         "hampers": {
           "radish": 60,
           "marigold": 30
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -801,6 +837,10 @@
         "hampers": {
           "radish": 46,
           "marigold": 23
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -979,6 +1019,10 @@
         "hampers": {
           "radish": 156,
           "marigold": 78
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -1136,6 +1180,10 @@
         "hampers": {
           "radish": 126,
           "marigold": 63
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -1314,6 +1362,10 @@
         "hampers": {
           "radish": 228,
           "marigold": 114
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -1471,6 +1523,10 @@
         "hampers": {
           "radish": 186,
           "marigold": 93
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -1775,6 +1831,10 @@
         "hampers": {
           "radish": 408,
           "marigold": 204
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -2037,6 +2097,10 @@
         "hampers": {
           "radish": 336,
           "marigold": 168
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -2333,6 +2397,10 @@
         "hampers": {
           "radish": 464,
           "marigold": 232
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,
@@ -2587,6 +2655,10 @@
         "hampers": {
           "radish": 380,
           "marigold": 190
+        },
+        "commission": {
+          "radish": 0,
+          "marigold": 0
         }
       },
       "recordedKept": 6,

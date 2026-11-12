@@ -1,5 +1,15 @@
 # History
 
+2026-11-12 — IH2-071 final Cancel visibility follow-up: actual fresh touch found Review hidden by sticky header; post-click uncover and exact returned-control bounds fix it. Focused4/actualfreshphone and final247domain47.307s/72browser9.3m pass;13runtime plus before/aftercaptures reviewed. SupersededacdbCI43172849126bothSUCCESS247/72(13.0m); exact new final-head gate pending.
+
+2026-11-12 — IH2-071 revised final local: actualCI43168759654rejected71/72browser due pointer-focus scrolling. Keyboard-only uncover and direct partial-target regression fix it; same test rejects actual oldcompiledartifact325→433px. Hidden NPC links also fixed. All247domain/zero skips47.664s and72browser9.3m,13runtimeimages pass; revised exact-headCI/artifact/source/preview gates pending.
+
+2026-11-12 — IH2-071 pre-merge follow-up: scoped hidden presentation to commission links in NPC dialogs, preserving existing services before acceptance/after completion. Actual-input focused4case regression passes46.2s; revised full/exact-head gates pending.
+
+2026-11-12 — IH2-071 working integration: explicit Pip deliveries/private card-plan, once-only2pine1radish letterbox, strict new sinks/ownership/migrations/schema3 and private/public motif display. Fourteen original vectors promoted; focused phone/shared retry/visitor/fresh actual5m and populated restart pass.247checks/zero skips46.971s; all72browser9.2m pass; finalCI/artifact/source gates pending. Accepted4175/API/originalgame remain unchanged.
+
+2026-11-12 — IH2-069 source/design accepted: PR19/merge15fc340, exactcecb8c7CI43158628633bothSUCCESS224/68, actualunchanged159gamefiles/sevenconceptimages reviewed, matchingtree/cleanmain. Immutable18filestudy49523reverified;4175/API/practice unchanged.071playablecommission startsnext; no hosted/currentgamechange.
+
 2026-11-12 — IH2-069 candidate design: optional addressed Pip commission, free private order-card/plan and proposed2pine/1radish uniqueletterbox/noextra timer.128analyticalcohorts expose conditional easel/hamper/request costs;14originalvectors/threebase-preservingmotifs and standalone fictional phone study. All224local checks/zero skips and68browser8.6m pass; actual18studyresponses/desktop+phone UI and unchanged159gamebuildfiles verified. Exact-headCI/artifact/source gates pending. No runtime quest, price, ownership, messaging or hosting change. [Design](idle-hands-2/design/NEIGHBORHOOD_COMMISSION.md).
 
 2026-11-12 — IH2-068 source/local preview accepted: PR18/mergec0565b5, exact109d9a8CI43149639492bothSUCCESS217/65; actual159files/sixCIimages reviewed, matchingtree/cleanmain. Client-only4175update passed actual responses/native desktop+phone; all13canonicalpractice tables/one resident/key/migrations preserved and4186API unchanged.069commission design starts next. No hosted/current-game/real-account change. [Closeout](evidence/IH2-068/source-closeout.json).

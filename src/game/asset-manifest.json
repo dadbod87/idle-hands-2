@@ -723,6 +723,76 @@
       "id": "saw-equipped-devon",
       "path": "art/carpentry/saw-equipped-devon.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "letterbox-leaf-closed",
+      "path": "art/commission/letterbox-leaf-closed.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "letterbox-leaf-open",
+      "path": "art/commission/letterbox-leaf-open.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "letterbox-moth-closed",
+      "path": "art/commission/letterbox-moth-closed.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "letterbox-moth-open",
+      "path": "art/commission/letterbox-moth-open.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "letterbox-sun-closed",
+      "path": "art/commission/letterbox-sun-closed.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "letterbox-sun-open",
+      "path": "art/commission/letterbox-sun-open.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "parcel-jun",
+      "path": "art/commission/parcel-jun.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "parcel-marlow",
+      "path": "art/commission/parcel-marlow.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "parcel-nella",
+      "path": "art/commission/parcel-nella.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pip-work-surface",
+      "path": "art/commission/pip-work-surface.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "receipt-jun",
+      "path": "art/commission/receipt-jun.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "receipt-marlow",
+      "path": "art/commission/receipt-marlow.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "receipt-nella",
+      "path": "art/commission/receipt-nella.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "route-card",
+      "path": "art/commission/route-card.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

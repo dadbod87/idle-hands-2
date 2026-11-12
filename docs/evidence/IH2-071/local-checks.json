@@ -1,0 +1,51 @@
+{
+  "classification": "Final local candidate verification; exact-head CI/artifact/source gate pending",
+  "domain": {
+    "passed": 247,
+    "skipped": 0,
+    "durationMs": 47307.381792,
+    "pureCommissionChecks": 8,
+    "isolatedCommissionTransactionScenarios": 9,
+    "presentationGuardCases": 3
+  },
+  "browser": {
+    "passed": 72,
+    "reportedMinutes": 9.3,
+    "driver": "Native headless Chrome, desktop/touch/narrow/short200 emulation",
+    "newCommissionCases": 4,
+    "allThirteenNewRuntimeImagesReviewed": true,
+    "pointerFocusRegressionAndKeyboard200": true,
+    "hiddenNpcLinksBeforeAndAfterRoute": true,
+    "pointerCancelReturnsReviewVisible": true
+  },
+  "build": true,
+  "design": {
+    "passed": true,
+    "candidateEntries": 48,
+    "regions": 5
+  },
+  "plan": {
+    "tasks": 26,
+    "checks": 10
+  },
+  "pinnedFiles": 40,
+  "whitespace": true,
+  "originalSvgAssets": 158,
+  "builtClientFiles": 174,
+  "actualOldCompiledWriterProof": true,
+  "actualFreshFiveMinuteNoFixturePaidCraft": true,
+  "actualPopulatedPostgresRestart": true,
+  "actualSeparateNodeProcessRestart": true,
+  "acceptedPractice13TablesOneResidentKeyAndMigrationsPreserved": true,
+  "acceptedApiProcessUnchanged": 22288,
+  "noHostedOrOriginalGameRelease": true,
+  "limits": [
+    "Chrome/Chromium emulation, not physical-phone/Safari/human retention",
+    "Fresh actual-time proof is browser-only; shared flows include individually disclosed valid past-command/crop/position/house fixtures",
+    "Existing20ordinary-protocol load proves its declared local scope, not20rendered browsers or cloud capacity",
+    "Illustrated receipt/flap presentation is not a new actor handover/assembly rig",
+    "Source/CI and coordinated accepted-preview update still pending"
+  ],
+  "compiledRejectedBuildNegativeControl": "New direct pointer assertion rejects old d7e artifact: scrollTop325\u2192433 during mousedown",
+  "actualFreshPhoneTouchCancelNoFixtures": true
+}

@@ -1,0 +1,74 @@
+{
+  "classification": "Actual fresh phone touch follow-up; existing candidate pending final source acceptance",
+  "beforeSource": "acdb7c1578f0587f40a3a1450deb8681f0ab2bba",
+  "before": {
+    "review": {
+      "x": 37,
+      "y": 34.34375,
+      "width": 286,
+      "height": 63
+    },
+    "head": {
+      "x": 21,
+      "y": 16,
+      "width": 318,
+      "height": 80
+    },
+    "status": {
+      "x": 37,
+      "y": 576,
+      "width": 286,
+      "height": 48
+    },
+    "focused": true
+  },
+  "disclosure": "New empty360x640nativeChrome context, actual touches/travel/free route/quote/cancel. No saved-state/stock/time/position/API fixture or shared login.",
+  "failure": "Pointer Cancel correctly kept state but focused Review behind the sticky header.",
+  "fix": "Explicit ensureVisible(review) after Cancel onclick hides quote and focuses Review; pointerdown focus remains keyboard-only.",
+  "regression": "Existing elapsed paid phone case now asserts returned Review fully below header and above status, retaining pointer-stability and keyboard200%checks.",
+  "after": {
+    "review": {
+      "x": 37,
+      "y": 104.34375,
+      "width": 286,
+      "height": 63
+    },
+    "head": {
+      "x": 21,
+      "y": 16,
+      "width": 318,
+      "height": 80
+    },
+    "status": {
+      "x": 37,
+      "y": 576,
+      "width": 286,
+      "height": 48
+    },
+    "focused": true
+  },
+  "focused": {
+    "passed": 4,
+    "seconds": 47.2
+  },
+  "actualFreshTouchResult": "Pass: Reviewy104.34 is fully below header96 and above feedback576; free route/reload/ordinary progress unchanged, no errors or API requests",
+  "pending": "Exact-new-headbothCI/artifact/source/preview gates",
+  "finalLocal": {
+    "domain": 247,
+    "skipped": 0,
+    "domainDurationMs": 47307.381792,
+    "browser": 72,
+    "browserMinutes": 9.3,
+    "runtimeImagesReviewed": 13
+  },
+  "priorCommittedCI": {
+    "candidate": "acdb7c1578f0587f40a3a1450deb8681f0ab2bba",
+    "run": 43172849126,
+    "bothSuccess": true,
+    "domain": 247,
+    "skipped": 0,
+    "browser": 72,
+    "browserMinutes": 13.0,
+    "supersededForAcceptanceBy": "explicit Cancel return visibility follow-up"
+  }
+}

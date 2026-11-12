@@ -1,0 +1,22 @@
+{
+  "classification": "Read-only failure trace/PNG diagnosis and stronger test readiness; no movement/game geometry change",
+  "rejectedRun": "full-browser-3.log:71passed/1failed8.9m",
+  "expectedRoom": "trail",
+  "receivedRoom": "square",
+  "measuredTargetAfterReload": {
+    "x": 832,
+    "y": 376
+  },
+  "earlierSettledBridgeTarget": {
+    "x": 750,
+    "y": 292.5
+  },
+  "interpretation": "The helper measured before its test waited for game/authoritative/render readiness. Initial unscrolled projection raced the resumed follow camera; no position fixture or movement shortcut is introduced.",
+  "correction": "Wait ready+input unlocked+rendered room matches session, then a subsequent POST_RENDER count before screenPoint measurement. Original direct doorway point and arrival assertions retained.",
+  "focused": {
+    "cases": 4,
+    "passed": 4,
+    "minutes": 1.4
+  },
+  "budgetsChanged": false
+}

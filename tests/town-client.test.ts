@@ -138,3 +138,21 @@ test('carpentry/project wakeups stay finite and same-boot public project state c
  s={...value('A',11,86400000),noticeboard:{credits:6,phase:'open',startedAt:0,readyAt:86400000,openedAt:86400000}};f.handle(()=>json({snapshot:s}));await f.client.load();assert.equal(f.timers.size,0);f.handle(()=>json({snapshot:{...value('A',12,86400100),noticeboard:{credits:0,phase:'collecting',startedAt:null,readyAt:null,openedAt:null}}}));await f.client.load();assert.equal(f.client.snapshot?.noticeboard?.phase,'open');
  }finally{await f.close();}
 });
+
+for(const result of ['success','network','definite'] as const)test('obsolete panel '+result+' presentation never changes receipt authority or same-request retry',async()=>{
+ const f=fixture();try{
+  await f.client.login('aster');const held=deferred<Response>(),sent=deferred<void>();let present=true;
+  f.handle(request=>{assert.equal(request.path,'command');sent.resolve();return held.promise;});const pending=f.client.command({kind:'commission',commissionAction:{action:'accept'}},()=>present);const failure=result==='success'?null:assert.rejects(pending);await sent.promise;const first=f.requests.at(-1)!.body;present=false;
+  if(result==='success')held.resolve(json({ok:true,message:'OBSOLETE PANEL SUCCESS',snapshot:value('A',11,1100)}));
+  else if(result==='network')held.reject(new TypeError('OBSOLETE PANEL NETWORK'));
+  else held.resolve(json({message:'OBSOLETE PANEL REJECTION'},409));
+  if(failure)await failure;else await pending;
+  assert.equal(f.messages.some(message=>message.includes('OBSOLETE PANEL')),false);
+  if(result==='success'){assert.equal(f.client.snapshot!.workshop.revision,11);assert.equal(f.client.retryAvailable,false);assert.match(f.client.lastMessage,/OBSOLETE PANEL SUCCESS/);}
+  else if(result==='definite')assert.equal(f.client.retryAvailable,false);
+  else{
+   assert.equal(f.client.retryAvailable,true);f.handle(request=>{assert.deepEqual(request.body,first);return json({ok:true,replayed:true,message:'Visible same receipt',snapshot:value('A',11,1100)});});
+   await f.client.retry(()=>true);assert.equal(f.client.retryAvailable,false);assert.equal(f.client.snapshot!.workshop.revision,11);assert.match(f.messages.at(-1)!,/Visible same receipt/);
+  }
+ }finally{await f.close();}
+});

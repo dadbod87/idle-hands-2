@@ -1,3 +1,4 @@
+import {preCommissionWorkshop} from './legacy-workshop.ts';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {Pool} from 'pg';
@@ -22,7 +23,7 @@ test('root carpentry receipts, exact kept ownership, cross-use conservation and 
  for(const allocations of [{easel:-1},{easel:2},{easel:.5},{easel:NaN},{unknown:1}])assert.equal(applyWorkshop(s,{id:'bad-allocation',expectedRevision:s.revision,kind:'place',prop:'easel',slot:'south-east'},now,allocations).ok,false);
 });
 test('actual old root defaults add carpentry and zero easel without resetting old inventory, garden history or production',()=>{
- const current=createWorkshop(100),legacy=JSON.parse(JSON.stringify(current));delete legacy.carpentry;delete legacy.owned.easel;legacy.garden.version=1;delete legacy.garden.consumed;
+ const current=createWorkshop(100),legacy=preCommissionWorkshop(current);delete legacy.carpentry;delete legacy.owned.easel;legacy.garden.version=1;delete legacy.garden.consumed;
  const before=JSON.stringify(legacy),loaded=loadWorkshop(legacy,100);assert.equal(loaded.recovered,false);assert.deepEqual(loaded.state.carpentry,current.carpentry);assert.equal(loaded.state.owned.easel,0);assert.deepEqual(loaded.state.inventory,legacy.inventory);assert.deepEqual(loaded.state.job,legacy.job);assert.equal(JSON.stringify(legacy),before);
  const unknown=structuredClone(legacy);unknown.carpentry={version:9};assert.equal(loadWorkshop(unknown,100).recovered,true);
 });

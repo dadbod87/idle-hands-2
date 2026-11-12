@@ -1,0 +1,35 @@
+{
+  "classification": "Actual isolated ih2_browser HTTP/SQL; dedicated valid past-commands fixture gives Jules route/plan/6pine/1radish, then real UI charges once. No practice or real account changed.",
+  "interception": "First committed make response dropped, then two committed style replies deliberately held across panel reopen and a blocked resident-switch attempt. The existing pending-request gate is preserved; switching succeeds only after settlement.",
+  "commands": [
+    {
+      "kind": "commission",
+      "commissionAction": {
+        "action": "make",
+        "motif": "moth"
+      },
+      "expectedRevision": 10,
+      "id": "fff02f33-4106-44be-ba56-cb04d15280e7"
+    },
+    {
+      "kind": "commission",
+      "commissionAction": {
+        "action": "make",
+        "motif": "moth"
+      },
+      "expectedRevision": 10,
+      "id": "fff02f33-4106-44be-ba56-cb04d15280e7"
+    }
+  ],
+  "ownedAfterRetry": 1,
+  "pineAfterRetry": 4,
+  "radishAfterRetry": 0,
+  "reopenedPanelFeedbackProtected": true,
+  "pendingResidentSwitchBlocked": true,
+  "otherResidentStateProtected": true,
+  "errors": [],
+  "limits": [
+    "Elapsed crop/route fixture, not fresh5min paid flow",
+    "Chrome emulation, not physical phone or hosted auth"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "classification": "Actual fresh browser-only five-minute paid craft, native Chrome actual input and real wall clock",
+  "origin": "http://127.0.0.1:4178",
+  "disclosure": "New isolated empty browser context. No addInitScript, saved-state fixture, position/clock/stock grant, route interception or API/database/real account. Actual walking, free route, saw lesson/equip/pine,300000mscrop,harvest,review/payment,placement/reload. Known-answer agent flow is not human reading or retention evidence.",
+  "timeline": [
+    {
+      "event": "fresh-zero-progress",
+      "at": 1794462322433
+    },
+    {
+      "event": "first-real-five-minute-radish-planted",
+      "at": 1794462325567
+    },
+    {
+      "event": "free-route-accepted",
+      "at": 1794462328648
+    },
+    {
+      "event": "delivered-carpentry-desk",
+      "at": 1794462333641
+    },
+    {
+      "event": "actual-saw-lesson-equipped-and-six-pine-gathered",
+      "at": 1794462335843
+    },
+    {
+      "event": "delivered-clerk",
+      "at": 1794462338930
+    },
+    {
+      "event": "delivered-caretaker",
+      "at": 1794462342076
+    },
+    {
+      "event": "free-route-card-plan-completed",
+      "at": 1794462343147
+    },
+    {
+      "event": "actual-time-radish-harvested",
+      "at": 1794462626457
+    },
+    {
+      "event": "actual-fresh-letterbox-paid-once",
+      "at": 1794462629663
+    },
+    {
+      "event": "reload-kept-paid-ownership-and-placement",
+      "at": 1794462632600
+    }
+  ],
+  "crop": {
+    "crop": "radish",
+    "plantedAt": 1794462325538,
+    "readyAt": 1794462625538,
+    "cared": false
+  },
+  "paid": {
+    "owned": 1,
+    "made": 1,
+    "pineCarried": 4,
+    "pineSpent": 2,
+    "radishConsumed": 1,
+    "motif": "moth"
+  },
+  "ordinaryJobInventorySkillsUnchanged": true,
+  "errors": [],
+  "bad": [],
+  "api": [],
+  "limits": [
+    "Browser-only local-save authority; real SQL/HTTP/restart proof is separate",
+    "Emulated desktop/phone, not physical phone/Safari",
+    "No hosted game or real-player change"
+  ],
+  "testedWorkingBuild": {
+    "files": 174,
+    "indexSha256": "62d6fce890acb9d2d73aaba52ac0682784b09684772e2264ab8ffd0f076f50f0",
+    "assets": {
+      "index-Bv8i6v6A.js": "826de868ce35681b5083c2af98a1f58b1a8197a41aa280deec32c099034f0574",
+      "index-C2zdJFJa.css": "0d3e986bfcf8678faeff73a9b26612ea48c3f4f3229f2b165981ac1dc2ae8b86"
+    },
+    "classification": "Working candidate served throughout this fresh run; final source/CI artifact verification remains separate."
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "classification": "Independent complete-build file accounting, not network/load/device performance",
+  "baseline": {
+    "files": 159,
+    "rawBytes": 3207291,
+    "sumIndependentGzipBytes": 563595
+  },
+  "candidate": {
+    "files": 174,
+    "rawBytes": 3263961,
+    "sumIndependentGzipBytes": 580749
+  },
+  "method": "Python gzip level9/mtime0 per file; all optional assets included. No CDN/TLS/cache/header/active-frame claim. Existing actual browser checks enforce selective actor rig loading, idle/menu redraw and input.",
+  "runtimePolicy": "Existing10Hzidle/normalinput and1Hzmodal backdrop; no new animation or per-frame API writes. Three closed letterbox motifs are world-preloaded; other commission pictures load when their panel needs them.",
+  "difference": {
+    "files": 15,
+    "rawBytes": 56670,
+    "sumIndependentGzipBytes": 17154
+  },
+  "existing20ClientProtocolLoad": {
+    "latencyMs": {
+      "smallBodyLoopbackRtt": {
+        "count": 20,
+        "p50": 0.3202500000000157,
+        "p95": 1.2612080000000105,
+        "p99": 8.757125000000002,
+        "max": 8.757125000000002
+      },
+      "login": {
+        "count": 20,
+        "p50": 62.85891700000002,
+        "p95": 73.399167,
+        "p99": 73.522625,
+        "max": 73.522625
+      },
+      "eventsHeaders": {
+        "count": 40,
+        "p50": 2.1837500000000034,
+        "p95": 3.054415999999037,
+        "p99": 3.305000000000291,
+        "max": 3.305000000000291
+      },
+      "movement": {
+        "count": 760,
+        "p50": 6.880291999999827,
+        "p95": 19.99766600000021,
+        "p99": 22.28045800000018,
+        "max": 22.542749999999614
+      },
+      "command": {
+        "count": 140,
+        "p50": 35.18058299999939,
+        "p95": 60.0832089999999,
+        "p99": 62.260125000000244,
+        "max": 63.06362500000023
+      },
+      "replay": {
+        "count": 20,
+        "p50": 20.916999999997643,
+        "p95": 30.59137499999997,
+        "p99": 30.924999999999272,
+        "max": 30.924999999999272
+      },
+      "snapshot": {
+        "count": 20,
+        "p50": 25.417999999997846,
+        "p95": 42.233916000001045,
+        "p99": 42.242583999999624,
+        "max": 42.242583999999624
+      }
+    },
+    "conservation": {
+      "residents": 20,
+      "uniqueCommands": 140,
+      "replayedCommands": 20,
+      "receiptRows": 140,
+      "inventoryEach": {
+        "scrap": 1,
+        "timber": 2,
+        "supplies": 4
+      },
+      "outputKits": 0,
+      "realJobHours": 12,
+      "firstPlanterSeconds": 5
+    },
+    "privacy": {
+      "initialPublicPeers": [
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "privateTenHidden": true,
+      "reconnectedPrivatePeers": 0
+    },
+    "idle": {
+      "seconds": 10,
+      "sqlQueries": 0,
+      "presenceEvents": 0
+    },
+    "budgets": {
+      "commandP95TargetMs": 500,
+      "commandP95Pass": true,
+      "physicalPhoneAndHostedProof": "PENDING"
+    },
+    "scope": "Existing ordinary-protocol fixture, not20renderedbrowsers or newcommission-stress/hosted-capacity benchmark."
+  }
+}

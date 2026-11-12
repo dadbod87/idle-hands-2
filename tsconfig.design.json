@@ -27,7 +27,15 @@
     "tools/simulate-commission-plan.ts",
     "tools/build-commission-concept.ts",
     "tests/commission-design.test.ts",
-    "tests/design-commission.spec.ts"
+    "tests/design-commission.spec.ts",
+    "src/game/commission.ts",
+    "tests/commission.test.ts",
+    "tests/commission-store.test.ts",
+    "tests/commission-art.test.ts",
+    "tests/commission.spec.ts",
+    "tools/prove-commission-ledger-upgrade.ts",
+    "tools/prove-fresh-commission.ts",
+    "tools/prove-commission-process-restart.ts"
   ],
   "compilerOptions": {
     "types": [

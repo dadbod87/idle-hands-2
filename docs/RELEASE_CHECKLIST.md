@@ -124,3 +124,12 @@ IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclos
 - Reproduce128analyticalcohorts/CSV with exact source hashes, separate proposed consumption ledgers, conditional opportunity cost, solo/depleted/full/running/late cases and explicit no-human-duration/no-authority limits. Showcase counts are arithmetic, not private acceleration or extra tests.
 - Check original14vectors/provenance, body identity/pose bounds, source-consistent standalone concept, all six route captions, explicit wrong/correct handovers, keyboard continuation, stock warnings/no hidden reservation, unique sample placement and public remove/privacy, normalphone and short200%focus. No real API/storage/account changes from the study.
 - Required full repository checks plus both exact-final-headCI; actual identical client build and uploaded concept/gameplay images reviewed, matching merge tree/cleanmain. Create the next bounded implementation task after acceptance; runtime transactions/migration/real walking are not proved by this design.
+
+## IH2-071 playable commission
+
+- Exact historical root/garden/carpentry tuple migration, unreadable raw preservation and actual accepted compiled-old-writer/storage-event/lock/pagehide proof; shared schema3 refusal before old HTTP/EventSource access. No original SQL migration is edited.
+- Six explicit NPC orders, wrong-address/pause/full/busy behavior, separate free card/plan and paid0/1physical ownership. Exact2pine/1radish/0flower new sinks; UUID/revision/payment rollback/concurrency/allocation/visitor permission and privacy.
+- Actual local fresh real5mharvest/pay/place/reload with no grants or interception, separately disclosed elapsed shared fixtures, lost committed response exact-body retry, stale panel feedback and unchanged pending-resident gate.
+- Owner home’s unpublished actual motif visible to visitors, live motif cache invalidation, opt-in register/remove without duplicate props, corrupt ownership does not create a public display.
+- Fourteen original promoted vectors/provenance/anchors, actual desktop/phone/short200focusedmake/cancel/result and placed prop images. Explicitly distinguish receipt/flap presentation from missing new actor animations.
+- Full required checks, both exact-final-headCI jobs, actual downloaded build/server/browser artifacts and images, matching merge tree/cleanmain/sourcecloseout; back up and preserve existing fictional practice/key before coordinated client/API preview update. No hosted/real-account/original-game change.

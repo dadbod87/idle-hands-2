@@ -1,0 +1,23 @@
+{
+  "disclosure": "Actual UI/HTTP/isolated ih2_browser PostgreSQL with a dedicated ordinary-zero-progress fictional Rowan. First successful committed planting response deliberately aborted. Same exact command body/UUID retried; one seed debit, no position/time/inventory grants, no queued exit. Emulated touch, not a physical phone or hosted test.",
+  "commands": [
+    {
+      "id": "1d55f1af-cd13-416d-968c-25d50b18291c",
+      "body": "{\"kind\":\"garden\",\"gardenAction\":{\"action\":\"plant\",\"bed\":0,\"crop\":\"radish\"},\"id\":\"1d55f1af-cd13-416d-968c-25d50b18291c\",\"expectedRevision\":0}"
+    },
+    {
+      "id": "1d55f1af-cd13-416d-968c-25d50b18291c",
+      "body": "{\"kind\":\"garden\",\"gardenAction\":{\"action\":\"plant\",\"bed\":0,\"crop\":\"radish\"},\"id\":\"1d55f1af-cd13-416d-968c-25d50b18291c\",\"expectedRevision\":0}"
+    }
+  ],
+  "position": {
+    "x": 9,
+    "y": 14
+  },
+  "planted": 1,
+  "seeds": {
+    "radish": 1,
+    "marigold": 1
+  },
+  "errors": []
+}

@@ -104,8 +104,8 @@ test('intercepted movement fixture: switching residents while a movement is held
  await expect(page.locator('.fixture-label')).toContainText('Bea');
 });
 
-for(const approach of ['frame-dependent','one-checkpoint'] as const){
-test('intercepted movement fixture: automatic doors confirm the source approach and cancel superseded entry'+(approach==='one-checkpoint'?' (deterministic one-checkpoint approach)':''),async({page})=>{
+for(const approach of ['frame-dependent','one-checkpoint','guide'] as const){
+test('intercepted movement fixture: automatic doors confirm the source approach and cancel superseded entry'+(approach==='one-checkpoint'?' (deterministic one-checkpoint approach)':approach==='guide'?' (guide approach waits for final source ACK)':''),async({page})=>{
  let loggedIn=false,holdFirstApproach=true;
  type Position={room:string;position:{x:number;y:number}};
  // The nearer variant guarantees the first checkpoint is already within the
@@ -132,7 +132,7 @@ test('intercepted movement fixture: automatic doors confirm the source approach 
   return route.fulfill({status:400,json:{message:'Unexpected isolated automatic-portal fixture request.'}});
  });
  await page.goto('/?town=1');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await page.getByRole('dialog').getByRole('button',{name:'Aster',exact:true}).click();await expect(page.getByRole('dialog')).not.toBeVisible();
- const tapDoor=async()=>{await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));const door=await page.evaluate(()=>(window as any).__pilot.screenPoint(19.5,21.5)),canvas=(await page.locator('canvas').boundingBox())!;await page.mouse.click(canvas.x+door.x,canvas.y+door.y);};
+ const tapDoor=async()=>{if(approach==='guide'){await page.locator('#field-guide').click();await page.locator('#guide-workshop').click();return;}await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));const door=await page.evaluate(()=>(window as any).__pilot.screenPoint(19.5,21.5)),canvas=(await page.locator('canvas').boundingBox())!;await page.mouse.click(canvas.x+door.x,canvas.y+door.y);};
  await tapDoor();await expect.poll(()=>sources.length).toBe(1);await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().locked)).toBe(true);
  expect(await page.evaluate(()=>(window as any).__pilot.snapshot().room)).toBe('square');expect(rooms).toEqual([]);
  // A delayed software-rendered frame may reach the final source in one step.

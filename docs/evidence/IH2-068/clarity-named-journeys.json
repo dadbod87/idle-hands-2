@@ -1,0 +1,33 @@
+{
+  "disclosure": "Fresh actual local browser UI and real walking/doors/manual cancellation, no state/time/position grants or API interception. Desktop framing emulation, not device proof.",
+  "canvas": {
+    "x": 18,
+    "y": 96,
+    "width": 1404,
+    "height": 697
+  },
+  "origin": {
+    "x": 414,
+    "y": 92.5
+  },
+  "entry": {
+    "x": 9,
+    "y": 11
+  },
+  "gardenExit": {
+    "x": 17,
+    "y": 36.3
+  },
+  "cancelled": {
+    "version": 1,
+    "room": "square",
+    "position": {
+      "x": 16.083000000000002,
+      "y": 36.3
+    },
+    "locked": false,
+    "walking": false,
+    "nearby": "allotment"
+  },
+  "errors": []
+}

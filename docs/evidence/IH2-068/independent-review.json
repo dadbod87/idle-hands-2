@@ -1,0 +1,28 @@
+{
+  "reviewer": "phone_visual_review",
+  "kind": "Independent read-only source and actual saved screenshot review; no independent execution",
+  "result": "No blockers found",
+  "scope": [
+    "Garden DOM/CSS and measured focus clearance",
+    "Named/Places route semantics and cancellation",
+    "WorldScene small-room centering and reading input",
+    "Actual360phone/844x390text200/1440desktop screenshots",
+    "Same-body UUID retry and pending-navigation test sources"
+  ],
+  "limits": [
+    "Not physical-device or hosted proof",
+    "Focused confirm screenshot has quote above viewport; separate test asserts quote/header clearance"
+  ],
+  "authorityReview": {
+    "reviewer": "workshop_domain",
+    "result": "No concrete blocker found",
+    "scope": "Read-only named-route/owner/context/ACK/manual/pending/identity/resync and mutation authority review",
+    "limits": "No independent execution or physical-phone proof"
+  },
+  "placesOverlapReview": {
+    "reviewer": "workshop_domain",
+    "result": "Minimal target-agreement fix confirmed",
+    "detail": "Session.nearby selects the first authored stop in range, so Places fast path must agree with that actual Inspect target. Explicit named autoactivation remains range based. No geometry/authority change.",
+    "limits": "Read-only source review; execution belongs to root focused/full checks"
+  }
+}

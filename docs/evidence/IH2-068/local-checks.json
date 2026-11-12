@@ -1,0 +1,32 @@
+{
+  "classification": "Final local IH2-068 validation; exact-head CI/source acceptance pending",
+  "baseline": "7af9a3296ec21c9120567c36f195f6e7a4e01014",
+  "domain": {
+    "passed": 217,
+    "skipped": 0,
+    "durationMs": 43119.492333,
+    "method": "Actual isolated PostgreSQL test/http/load/restore fixtures, unchanged18server/domain/migration sources"
+  },
+  "browser": {
+    "passed": 65,
+    "reportedMinutes": 8.6,
+    "method": "Native headless Chrome viewport/touch emulation, workers1; original timeouts/assertions/workflow retained"
+  },
+  "build": true,
+  "design": true,
+  "tracker": {
+    "tasks": 25,
+    "checks": 10
+  },
+  "pinnedFiles": 40,
+  "whitespace": true,
+  "actualPopulatedDatabaseRestart": true,
+  "independentSourceScreenshotReviews": 2,
+  "combinedActivityRoutes": 9,
+  "limits": [
+    "Not physical phone/Safari or human enjoyment proof",
+    "No hosted/current-game release",
+    "Elapsed saves, intercepted transport and donated browser fixtures disclosed in per-flow evidence",
+    "Accepted067preview/API remain pinned until exact-head source gates pass"
+  ]
+}

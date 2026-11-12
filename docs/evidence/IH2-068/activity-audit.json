@@ -1,0 +1,1534 @@
+{
+  "classification": "IH2-068 actual agent UI observations on candidate068localartifact; not human retention, physical phone, hosted or server authority",
+  "base": "http://127.0.0.1:4178/",
+  "fixtureDisclosure": "Fresh is normal UI. Returning/saturated local saves and arrival are explicit disposable browser fixtures. No shared-practice login, API interception, real accounts or database writes. Known answers/automated input; action durations are not human enjoyment.",
+  "rows": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "scenario": "fresh",
+      "pineQuote": "Spend 4 pine + 1 harvested marigold. Receive 1 Garden study easel after 12 real hours, then collect it explicitly. The ordinary bench is independent. Need 4 pine and 1 harvested marigold.",
+      "canStart": false,
+      "independentPineJob": null,
+      "carriedPine": 6,
+      "method": "Normal UI from donated starter furnishings/ordinary initial depots; real5secondfirstplanter then12hjob; no state/time/position grants.",
+      "actions": [
+        {
+          "action": "Collect available scrap",
+          "elapsedMs": 1359
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1386
+        },
+        {
+          "action": "Collect available timber",
+          "elapsedMs": 1584
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1616
+        },
+        {
+          "action": "Collect available supplies",
+          "elapsedMs": 2074
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 2103
+        },
+        {
+          "action": "Open field guide",
+          "elapsedMs": 2142
+        },
+        {
+          "action": "Walk to workshop",
+          "elapsedMs": 2171
+        },
+        {
+          "action": "Make orientation planter",
+          "elapsedMs": 4970
+        },
+        {
+          "action": "Collect finished work",
+          "elapsedMs": 10205
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 10237
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 10276
+        },
+        {
+          "action": "Preview planter placement",
+          "elapsedMs": 10321
+        },
+        {
+          "action": "Place here",
+          "elapsedMs": 10354
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 10386
+        },
+        {
+          "action": "Make bridge supplies",
+          "elapsedMs": 10466
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 10499
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 10534
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 10578
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 10616
+        },
+        {
+          "action": "Preview radish",
+          "elapsedMs": 14672
+        },
+        {
+          "action": "Cancel free preview",
+          "elapsedMs": 14703
+        },
+        {
+          "action": "Preview radish again",
+          "elapsedMs": 14736
+        },
+        {
+          "action": "Plant starter radish",
+          "elapsedMs": 14774
+        },
+        {
+          "action": "Inspect leaves without output bonus",
+          "elapsedMs": 14816
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 14928
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 15018
+        },
+        {
+          "action": "Pine workshop · tools, easels & hampers",
+          "elapsedMs": 15051
+        },
+        {
+          "action": "Walk to Nella",
+          "elapsedMs": 15084
+        },
+        {
+          "action": "learn-saw preview",
+          "elapsedMs": 17556
+        },
+        {
+          "action": "learn-saw confirmation",
+          "elapsedMs": 17588
+        },
+        {
+          "action": "equip-saw preview",
+          "elapsedMs": 17620
+        },
+        {
+          "action": "equip-saw confirmation",
+          "elapsedMs": 17655
+        },
+        {
+          "action": "Find fallen pine",
+          "elapsedMs": 17686
+        },
+        {
+          "action": "gather-pine preview",
+          "elapsedMs": 19370
+        },
+        {
+          "action": "gather-pine confirmation",
+          "elapsedMs": 19405
+        },
+        {
+          "action": "Use the finishing rack",
+          "elapsedMs": 19437
+        },
+        {
+          "action": "Preview independent12heasel",
+          "elapsedMs": 23120
+        },
+        {
+          "action": "Cancel unavailable easel; crops retained",
+          "elapsedMs": 23155
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 23250
+        }
+      ],
+      "elapsedMs": 23250,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794452958933,
+        "readyAt": 1794496158933
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · Radish5:005:00",
+        "Bed 2 · EmptyReady to plantEmpty",
+        "Bed 3 · EmptyReady to plantEmpty",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Harvest · 1 produce + 1 seed",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "scenario": "returning",
+      "pineQuote": "Spend 4 pine + 1 harvested marigold. Receive 1 Garden study easel after 12 real hours, then collect it explicitly. The ordinary bench is independent. Need 4 pine and 1 harvested marigold.",
+      "canStart": false,
+      "independentPineJob": null,
+      "carriedPine": 6,
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 302
+        },
+        {
+          "action": "Select returned radish",
+          "elapsedMs": 333
+        },
+        {
+          "action": "Harvest held radish",
+          "elapsedMs": 366
+        },
+        {
+          "action": "Select returned flower",
+          "elapsedMs": 397
+        },
+        {
+          "action": "Harvest held flower",
+          "elapsedMs": 430
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 465
+        },
+        {
+          "action": "Submit mixed personal request",
+          "elapsedMs": 1114
+        },
+        {
+          "action": "Return to your beds",
+          "elapsedMs": 1146
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1612
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 1697
+        },
+        {
+          "action": "Pine workshop · tools, easels & hampers",
+          "elapsedMs": 1730
+        },
+        {
+          "action": "Walk to Nella",
+          "elapsedMs": 1763
+        },
+        {
+          "action": "learn-saw preview",
+          "elapsedMs": 4368
+        },
+        {
+          "action": "learn-saw confirmation",
+          "elapsedMs": 4402
+        },
+        {
+          "action": "equip-saw preview",
+          "elapsedMs": 4433
+        },
+        {
+          "action": "equip-saw confirmation",
+          "elapsedMs": 4467
+        },
+        {
+          "action": "Find fallen pine",
+          "elapsedMs": 4500
+        },
+        {
+          "action": "gather-pine preview",
+          "elapsedMs": 6165
+        },
+        {
+          "action": "gather-pine confirmation",
+          "elapsedMs": 6200
+        },
+        {
+          "action": "Use the finishing rack",
+          "elapsedMs": 6234
+        },
+        {
+          "action": "Preview independent12heasel",
+          "elapsedMs": 9902
+        },
+        {
+          "action": "Cancel unavailable easel; crops retained",
+          "elapsedMs": 9933
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 10029
+        }
+      ],
+      "elapsedMs": 10029,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794402576875,
+        "readyAt": 1794445776875
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · EmptyReady to plantEmpty",
+        "Bed 2 · RadishReadyReady",
+        "Bed 3 · EmptyReady to plantEmpty",
+        "Preview planting · free",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Harvest · 1 produce + 1 seed",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "scenario": "saturated",
+      "pineQuote": "Spend 4 pine + 1 harvested marigold. Receive 1 Garden study easel after 12 real hours, then collect it explicitly. The ordinary bench is independent.",
+      "canStart": true,
+      "independentPineJob": {
+        "startedAt": 1794452991628,
+        "readyAt": 1794496191628
+      },
+      "carriedPine": 2,
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 294
+        },
+        {
+          "action": "Inspect full held crop",
+          "elapsedMs": 326
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 406
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 491
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 524
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 558
+        },
+        {
+          "action": "Next request in 23h 59m",
+          "elapsedMs": 1195
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1224
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 1261
+        },
+        {
+          "action": "Pine workshop · tools, easels & hampers",
+          "elapsedMs": 1293
+        },
+        {
+          "action": "Walk to Nella",
+          "elapsedMs": 1327
+        },
+        {
+          "action": "learn-saw preview",
+          "elapsedMs": 4077
+        },
+        {
+          "action": "learn-saw confirmation",
+          "elapsedMs": 4115
+        },
+        {
+          "action": "equip-saw preview",
+          "elapsedMs": 4147
+        },
+        {
+          "action": "equip-saw confirmation",
+          "elapsedMs": 4175
+        },
+        {
+          "action": "Find fallen pine",
+          "elapsedMs": 4207
+        },
+        {
+          "action": "gather-pine preview",
+          "elapsedMs": 5881
+        },
+        {
+          "action": "gather-pine confirmation",
+          "elapsedMs": 5912
+        },
+        {
+          "action": "Use the finishing rack",
+          "elapsedMs": 5944
+        },
+        {
+          "action": "Preview independent12heasel",
+          "elapsedMs": 9595
+        },
+        {
+          "action": "Start independent12heasel",
+          "elapsedMs": 9630
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 9739
+        }
+      ],
+      "elapsedMs": 9739,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794265782004,
+        "readyAt": 1794308982004
+      },
+      "produce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "markers": 4,
+      "completedSketches": 3,
+      "clippings": 0,
+      "enabled": [
+        "Bed 1 · Marigold4h 0m4h 0m",
+        "Bed 2 · Radish30:0030:00",
+        "Bed 3 · RadishReadyReady",
+        "Inspect soil & leaves · no production bonus",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Harvest · 1 produce + 1 seed",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "scenario": "fresh",
+      "pineQuote": "Spend 4 pine + 1 harvested marigold. Receive 1 Garden study easel after 12 real hours, then collect it explicitly. The ordinary bench is independent. Need 4 pine and 1 harvested marigold.",
+      "canStart": false,
+      "independentPineJob": null,
+      "carriedPine": 6,
+      "method": "Normal UI from donated starter furnishings/ordinary initial depots; real5secondfirstplanter then12hjob; no state/time/position grants.",
+      "actions": [
+        {
+          "action": "Collect available scrap",
+          "elapsedMs": 1310
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1353
+        },
+        {
+          "action": "Collect available timber",
+          "elapsedMs": 1522
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1570
+        },
+        {
+          "action": "Collect available supplies",
+          "elapsedMs": 2006
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 2053
+        },
+        {
+          "action": "Open field guide",
+          "elapsedMs": 2106
+        },
+        {
+          "action": "Walk to workshop",
+          "elapsedMs": 2152
+        },
+        {
+          "action": "Make orientation planter",
+          "elapsedMs": 5007
+        },
+        {
+          "action": "Collect finished work",
+          "elapsedMs": 10191
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 10239
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 10295
+        },
+        {
+          "action": "Preview planter placement",
+          "elapsedMs": 10357
+        },
+        {
+          "action": "Place here",
+          "elapsedMs": 10407
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 10455
+        },
+        {
+          "action": "Make bridge supplies",
+          "elapsedMs": 10593
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 10654
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 10706
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 10762
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 10803
+        },
+        {
+          "action": "Preview radish",
+          "elapsedMs": 14855
+        },
+        {
+          "action": "Cancel free preview",
+          "elapsedMs": 14904
+        },
+        {
+          "action": "Preview radish again",
+          "elapsedMs": 14988
+        },
+        {
+          "action": "Plant starter radish",
+          "elapsedMs": 15037
+        },
+        {
+          "action": "Inspect leaves without output bonus",
+          "elapsedMs": 15086
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 15167
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 15253
+        },
+        {
+          "action": "Pine workshop · tools, easels & hampers",
+          "elapsedMs": 15304
+        },
+        {
+          "action": "Walk to Nella",
+          "elapsedMs": 15354
+        },
+        {
+          "action": "learn-saw preview",
+          "elapsedMs": 17805
+        },
+        {
+          "action": "learn-saw confirmation",
+          "elapsedMs": 17857
+        },
+        {
+          "action": "equip-saw preview",
+          "elapsedMs": 17906
+        },
+        {
+          "action": "equip-saw confirmation",
+          "elapsedMs": 17956
+        },
+        {
+          "action": "Find fallen pine",
+          "elapsedMs": 18005
+        },
+        {
+          "action": "gather-pine preview",
+          "elapsedMs": 19689
+        },
+        {
+          "action": "gather-pine confirmation",
+          "elapsedMs": 19739
+        },
+        {
+          "action": "Use the finishing rack",
+          "elapsedMs": 19786
+        },
+        {
+          "action": "Preview independent12heasel",
+          "elapsedMs": 23504
+        },
+        {
+          "action": "Cancel unavailable easel; crops retained",
+          "elapsedMs": 23555
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 23652
+        }
+      ],
+      "elapsedMs": 23652,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794453002424,
+        "readyAt": 1794496202424
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · Radish5:005:00",
+        "Bed 2 · EmptyReady to plantEmpty",
+        "Bed 3 · EmptyReady to plantEmpty",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Harvest · 1 produce + 1 seed",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "scenario": "returning",
+      "pineQuote": "Spend 4 pine + 1 harvested marigold. Receive 1 Garden study easel after 12 real hours, then collect it explicitly. The ordinary bench is independent. Need 4 pine and 1 harvested marigold.",
+      "canStart": false,
+      "independentPineJob": null,
+      "carriedPine": 6,
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 325
+        },
+        {
+          "action": "Select returned radish",
+          "elapsedMs": 371
+        },
+        {
+          "action": "Harvest held radish",
+          "elapsedMs": 421
+        },
+        {
+          "action": "Select returned flower",
+          "elapsedMs": 468
+        },
+        {
+          "action": "Harvest held flower",
+          "elapsedMs": 519
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 569
+        },
+        {
+          "action": "Submit mixed personal request",
+          "elapsedMs": 1225
+        },
+        {
+          "action": "Return to your beds",
+          "elapsedMs": 1269
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1770
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 1878
+        },
+        {
+          "action": "Pine workshop · tools, easels & hampers",
+          "elapsedMs": 1920
+        },
+        {
+          "action": "Walk to Nella",
+          "elapsedMs": 1968
+        },
+        {
+          "action": "learn-saw preview",
+          "elapsedMs": 4586
+        },
+        {
+          "action": "learn-saw confirmation",
+          "elapsedMs": 4641
+        },
+        {
+          "action": "equip-saw preview",
+          "elapsedMs": 4685
+        },
+        {
+          "action": "equip-saw confirmation",
+          "elapsedMs": 4737
+        },
+        {
+          "action": "Find fallen pine",
+          "elapsedMs": 4785
+        },
+        {
+          "action": "gather-pine preview",
+          "elapsedMs": 6471
+        },
+        {
+          "action": "gather-pine confirmation",
+          "elapsedMs": 6522
+        },
+        {
+          "action": "Use the finishing rack",
+          "elapsedMs": 6571
+        },
+        {
+          "action": "Preview independent12heasel",
+          "elapsedMs": 10269
+        },
+        {
+          "action": "Cancel unavailable easel; crops retained",
+          "elapsedMs": 10319
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 10420
+        }
+      ],
+      "elapsedMs": 10420,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794402620585,
+        "readyAt": 1794445820585
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · EmptyReady to plantEmpty",
+        "Bed 2 · RadishReadyReady",
+        "Bed 3 · EmptyReady to plantEmpty",
+        "Preview planting · free",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Harvest · 1 produce + 1 seed",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "scenario": "saturated",
+      "pineQuote": "Spend 4 pine + 1 harvested marigold. Receive 1 Garden study easel after 12 real hours, then collect it explicitly. The ordinary bench is independent.",
+      "canStart": true,
+      "independentPineJob": {
+        "startedAt": 1794453036077,
+        "readyAt": 1794496236077
+      },
+      "carriedPine": 2,
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 310
+        },
+        {
+          "action": "Inspect full held crop",
+          "elapsedMs": 354
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 437
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 524
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 572
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 622
+        },
+        {
+          "action": "Next request in 23h 59m",
+          "elapsedMs": 1237
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1290
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 1342
+        },
+        {
+          "action": "Pine workshop · tools, easels & hampers",
+          "elapsedMs": 1394
+        },
+        {
+          "action": "Walk to Nella",
+          "elapsedMs": 1441
+        },
+        {
+          "action": "learn-saw preview",
+          "elapsedMs": 4239
+        },
+        {
+          "action": "learn-saw confirmation",
+          "elapsedMs": 4292
+        },
+        {
+          "action": "equip-saw preview",
+          "elapsedMs": 4340
+        },
+        {
+          "action": "equip-saw confirmation",
+          "elapsedMs": 4393
+        },
+        {
+          "action": "Find fallen pine",
+          "elapsedMs": 4437
+        },
+        {
+          "action": "gather-pine preview",
+          "elapsedMs": 6126
+        },
+        {
+          "action": "gather-pine confirmation",
+          "elapsedMs": 6175
+        },
+        {
+          "action": "Use the finishing rack",
+          "elapsedMs": 6222
+        },
+        {
+          "action": "Preview independent12heasel",
+          "elapsedMs": 9924
+        },
+        {
+          "action": "Start independent12heasel",
+          "elapsedMs": 9975
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 10072
+        }
+      ],
+      "elapsedMs": 10072,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794265826106,
+        "readyAt": 1794309026106
+      },
+      "produce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "markers": 4,
+      "completedSketches": 3,
+      "clippings": 0,
+      "enabled": [
+        "Bed 1 · Marigold4h 0m4h 0m",
+        "Bed 2 · Radish30:0030:00",
+        "Bed 3 · RadishReadyReady",
+        "Inspect soil & leaves · no production bonus",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Harvest · 1 produce + 1 seed",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "short",
+        "width": 844,
+        "height": 390,
+        "touch": true
+      },
+      "scenario": "fresh",
+      "pineQuote": "Spend 4 pine + 1 harvested marigold. Receive 1 Garden study easel after 12 real hours, then collect it explicitly. The ordinary bench is independent. Need 4 pine and 1 harvested marigold.",
+      "canStart": false,
+      "independentPineJob": null,
+      "carriedPine": 6,
+      "method": "Normal UI from donated starter furnishings/ordinary initial depots; real5secondfirstplanter then12hjob; no state/time/position grants.",
+      "actions": [
+        {
+          "action": "Collect available scrap",
+          "elapsedMs": 1246
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1290
+        },
+        {
+          "action": "Collect available timber",
+          "elapsedMs": 1460
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1508
+        },
+        {
+          "action": "Collect available supplies",
+          "elapsedMs": 1957
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 2005
+        },
+        {
+          "action": "Open field guide",
+          "elapsedMs": 2065
+        },
+        {
+          "action": "Walk to workshop",
+          "elapsedMs": 2104
+        },
+        {
+          "action": "Make orientation planter",
+          "elapsedMs": 5160
+        },
+        {
+          "action": "Collect finished work",
+          "elapsedMs": 11227
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11273
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 11331
+        },
+        {
+          "action": "Preview planter placement",
+          "elapsedMs": 11392
+        },
+        {
+          "action": "Place here",
+          "elapsedMs": 11440
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11491
+        },
+        {
+          "action": "Make bridge supplies",
+          "elapsedMs": 11608
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 11656
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 11708
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 11767
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 11823
+        },
+        {
+          "action": "Preview radish",
+          "elapsedMs": 16023
+        },
+        {
+          "action": "Cancel free preview",
+          "elapsedMs": 16074
+        },
+        {
+          "action": "Preview radish again",
+          "elapsedMs": 16210
+        },
+        {
+          "action": "Plant starter radish",
+          "elapsedMs": 16262
+        },
+        {
+          "action": "Inspect leaves without output bonus",
+          "elapsedMs": 16394
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 16510
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 16588
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 16638
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 16690
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 16820
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 16873
+        },
+        {
+          "action": "Pine workshop · tools, easels & hampers",
+          "elapsedMs": 16925
+        },
+        {
+          "action": "Walk to Nella",
+          "elapsedMs": 16975
+        },
+        {
+          "action": "learn-saw preview",
+          "elapsedMs": 19442
+        },
+        {
+          "action": "learn-saw confirmation",
+          "elapsedMs": 19492
+        },
+        {
+          "action": "equip-saw preview",
+          "elapsedMs": 19540
+        },
+        {
+          "action": "equip-saw confirmation",
+          "elapsedMs": 19593
+        },
+        {
+          "action": "Find fallen pine",
+          "elapsedMs": 19640
+        },
+        {
+          "action": "gather-pine preview",
+          "elapsedMs": 21341
+        },
+        {
+          "action": "gather-pine confirmation",
+          "elapsedMs": 21390
+        },
+        {
+          "action": "Use the finishing rack",
+          "elapsedMs": 21439
+        },
+        {
+          "action": "Preview independent12heasel",
+          "elapsedMs": 25141
+        },
+        {
+          "action": "Cancel unavailable easel; crops retained",
+          "elapsedMs": 25189
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 25288
+        }
+      ],
+      "elapsedMs": 25288,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794453047878,
+        "readyAt": 1794496247878
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · Radish5:005:00",
+        "Bed 2 · EmptyReady to plantEmpty",
+        "Bed 3 · EmptyReady to plantEmpty",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Harvest · 1 produce + 1 seed",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "short",
+        "width": 844,
+        "height": 390,
+        "touch": true
+      },
+      "scenario": "returning",
+      "pineQuote": "Spend 4 pine + 1 harvested marigold. Receive 1 Garden study easel after 12 real hours, then collect it explicitly. The ordinary bench is independent. Need 4 pine and 1 harvested marigold.",
+      "canStart": false,
+      "independentPineJob": null,
+      "carriedPine": 6,
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 318
+        },
+        {
+          "action": "Select returned radish",
+          "elapsedMs": 361
+        },
+        {
+          "action": "Harvest held radish",
+          "elapsedMs": 497
+        },
+        {
+          "action": "Select returned flower",
+          "elapsedMs": 544
+        },
+        {
+          "action": "Harvest held flower",
+          "elapsedMs": 678
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 728
+        },
+        {
+          "action": "Submit mixed personal request",
+          "elapsedMs": 1397
+        },
+        {
+          "action": "Return to your beds",
+          "elapsedMs": 1446
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1928
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 2032
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 2080
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 2131
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 2276
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 2329
+        },
+        {
+          "action": "Pine workshop · tools, easels & hampers",
+          "elapsedMs": 2382
+        },
+        {
+          "action": "Walk to Nella",
+          "elapsedMs": 2430
+        },
+        {
+          "action": "learn-saw preview",
+          "elapsedMs": 5048
+        },
+        {
+          "action": "learn-saw confirmation",
+          "elapsedMs": 5100
+        },
+        {
+          "action": "equip-saw preview",
+          "elapsedMs": 5148
+        },
+        {
+          "action": "equip-saw confirmation",
+          "elapsedMs": 5200
+        },
+        {
+          "action": "Find fallen pine",
+          "elapsedMs": 5248
+        },
+        {
+          "action": "gather-pine preview",
+          "elapsedMs": 6912
+        },
+        {
+          "action": "gather-pine confirmation",
+          "elapsedMs": 6964
+        },
+        {
+          "action": "Use the finishing rack",
+          "elapsedMs": 7013
+        },
+        {
+          "action": "Preview independent12heasel",
+          "elapsedMs": 10682
+        },
+        {
+          "action": "Cancel unavailable easel; crops retained",
+          "elapsedMs": 10730
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 10827
+        }
+      ],
+      "elapsedMs": 10827,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794402666654,
+        "readyAt": 1794445866654
+      },
+      "produce": {
+        "radish": 0,
+        "marigold": 0
+      },
+      "markers": 0,
+      "completedSketches": 0,
+      "clippings": 6,
+      "enabled": [
+        "Bed 1 · EmptyReady to plantEmpty",
+        "Bed 2 · RadishReadyReady",
+        "Bed 3 · EmptyReady to plantEmpty",
+        "Preview planting · free",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Harvest · 1 produce + 1 seed",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free",
+        "Inspect soil & leaves · no production bonus"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    },
+    {
+      "shape": {
+        "name": "short",
+        "width": 844,
+        "height": 390,
+        "touch": true
+      },
+      "scenario": "saturated",
+      "pineQuote": "Spend 4 pine + 1 harvested marigold. Receive 1 Garden study easel after 12 real hours, then collect it explicitly. The ordinary bench is independent.",
+      "canStart": true,
+      "independentPineJob": {
+        "startedAt": 1794453083050,
+        "readyAt": 1794496283050
+      },
+      "carriedPine": 2,
+      "method": "Explicit isolated local elapsed save generated through valid pure commands at past timestamps, plus garden arrival fixture. Not an actual14/52hwait or server-authority test.",
+      "actions": [
+        {
+          "action": "Inspect garden beds",
+          "elapsedMs": 319
+        },
+        {
+          "action": "Inspect full held crop",
+          "elapsedMs": 362
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 445
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 549
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 596
+        },
+        {
+          "action": "Visit the allotment attendant",
+          "elapsedMs": 647
+        },
+        {
+          "action": "Next request in 23h 59m",
+          "elapsedMs": 1257
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1316
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 1368
+        },
+        {
+          "action": "Your allotment · crops, markers & quests",
+          "elapsedMs": 1417
+        },
+        {
+          "action": "Walk to the beds",
+          "elapsedMs": 1463
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 1978
+        },
+        {
+          "action": "Bag & journal",
+          "elapsedMs": 2031
+        },
+        {
+          "action": "Pine workshop · tools, easels & hampers",
+          "elapsedMs": 2084
+        },
+        {
+          "action": "Walk to Nella",
+          "elapsedMs": 2130
+        },
+        {
+          "action": "learn-saw preview",
+          "elapsedMs": 4749
+        },
+        {
+          "action": "learn-saw confirmation",
+          "elapsedMs": 4800
+        },
+        {
+          "action": "equip-saw preview",
+          "elapsedMs": 4849
+        },
+        {
+          "action": "equip-saw confirmation",
+          "elapsedMs": 4900
+        },
+        {
+          "action": "Find fallen pine",
+          "elapsedMs": 4948
+        },
+        {
+          "action": "gather-pine preview",
+          "elapsedMs": 6634
+        },
+        {
+          "action": "gather-pine confirmation",
+          "elapsedMs": 6683
+        },
+        {
+          "action": "Use the finishing rack",
+          "elapsedMs": 6734
+        },
+        {
+          "action": "Preview independent12heasel",
+          "elapsedMs": 10432
+        },
+        {
+          "action": "Start independent12heasel",
+          "elapsedMs": 10483
+        },
+        {
+          "action": "Close panel",
+          "elapsedMs": 10577
+        }
+      ],
+      "elapsedMs": 10578,
+      "jobWaiting": {
+        "recipe": "bridge-kit",
+        "startedAt": 1794265872570,
+        "readyAt": 1794309072570
+      },
+      "produce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "markers": 4,
+      "completedSketches": 3,
+      "clippings": 0,
+      "enabled": [
+        "Bed 1 · Marigold4h 0m4h 0m",
+        "Bed 2 · Radish30:0030:00",
+        "Bed 3 · RadishReadyReady",
+        "Inspect soil & leaves · no production bonus",
+        "Swap the two beds · free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field",
+        "See chosen garden displays",
+        "Retry the same request"
+      ],
+      "disabled": [
+        "Preview planting · free",
+        "Harvest · 1 produce + 1 seed",
+        "Confirm planting · 1 bound seed",
+        "Cancel preview · free"
+      ],
+      "protectedOldKeysUnchanged": true,
+      "errors": [],
+      "badResponses": []
+    }
+  ]
+}

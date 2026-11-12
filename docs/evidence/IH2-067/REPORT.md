@@ -1,5 +1,7 @@
 # IH2-067 — working integration and foundation history
 
+Accepted-status pointer:067source/local preview gates subsequently closed in [source-closeout.json](source-closeout.json), PR17/merge7af9a32; both exact1683a7dCI jobs and automaticmainCIpassed. The paragraphs below are dated intermediate working evidence, retained as history rather than current status.
+
 November 11, 2026. **In progress; not a completed playable feature, source acceptance or release.** Work is isolated on `feat/pine-workshop` from accepted main `3946d7b1f5f5d18529e274935f70fd35bb5cb50b`/PR16. The actual accepted065CIartifact remains on4175 with its existing4186API/key/practice; this checkpoint does not replace either process. No original-game, real-player, hosting, paid-asset or invitation changes.
 
 ## Current integrated working candidate

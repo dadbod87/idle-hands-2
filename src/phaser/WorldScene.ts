@@ -199,17 +199,19 @@ export class WorldScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor(this.room === 'square' ? '#aebc92' : this.room==='trail'?'#87966f':'#c5b28d');
     this.cameras.main.setBounds(0, 0, w.width * TILE, w.height * TILE);
     // Small interiors and the bounded trail stay centred on large screens; phones retain follow-and-pan.
-    const homeBounds=(size?:{width:number;height:number})=>{if(!this.room.startsWith('home')&&this.room!=='trail'&&this.room!=='garden')return;const width=size?.width??this.scale.gameSize.width,height=size?.height??this.scale.gameSize.height;const worldWidth=w.width*TILE,worldHeight=w.height*TILE;this.cameras.main.setBounds(-Math.max(0,(width-worldWidth)/2),-Math.max(0,(height-worldHeight)/2),Math.max(width,worldWidth),Math.max(height,worldHeight));};
-    homeBounds();this.scale.on(Phaser.Scale.Events.RESIZE,homeBounds);this.events.once('shutdown',()=>this.scale.off(Phaser.Scale.Events.RESIZE,homeBounds));
+    const roomBounds=(size?:{width:number;height:number})=>{if(this.room==='square')return;const width=size?.width??this.scale.gameSize.width,height=size?.height??this.scale.gameSize.height;const worldWidth=w.width*TILE,worldHeight=w.height*TILE;this.cameras.main.setBounds(-Math.max(0,(width-worldWidth)/2),-Math.max(0,(height-worldHeight)/2),Math.max(width,worldWidth),Math.max(height,worldHeight));};
+    roomBounds();this.scale.on(Phaser.Scale.Events.RESIZE,roomBounds);this.events.once('shutdown',()=>this.scale.off(Phaser.Scale.Events.RESIZE,roomBounds));
     this.cameras.main.startFollow(this.actor, true, 1, 1);
     this.sky=new TownSky(this,litWindows);this.sky.update(this.skyNow(),0,this.room==='workshop'||this.room.startsWith('home'),!document.hidden&&!this.reducedMotion.matches,this.skyFixture);
     const onDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLElement && e.target.closest('button,input,dialog')) return;
+      if (e.target instanceof HTMLElement && e.target.closest('button,input,select,dialog,[data-ui-scroll]')) return;
       const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd'].includes(key)) {if(!this.session.locked)this.onSteer?.(); this.keys.add(key); e.preventDefault(); }
     };
     const onUp = (e: KeyboardEvent) => this.keys.delete(e.key.length === 1 ? e.key.toLowerCase() : e.key);
     const clear = () => { this.gardenMotion=null;this.carpentryMotion=null;this.noticeReveal=0;this.noticeboardView?.setAlpha(1);this.movementReset=true;this.keys.clear(); this.session.stop();this.updateAmbient(0); };
+    const readingFocus=(event:FocusEvent)=>{if(event.target instanceof HTMLElement&&event.target.closest('[data-ui-scroll]')){this.keys.clear();this.movementReset=true;}};
+    document.addEventListener('focusin',readingFocus);
     const motionChanged=()=>this.updateAmbient(0);this.reducedMotion.addEventListener('change',motionChanged);
     document.addEventListener('keydown', onDown); document.addEventListener('keyup', onUp);
     window.addEventListener('blur', clear); document.addEventListener('visibilitychange', clear);
@@ -220,7 +222,7 @@ export class WorldScene extends Phaser.Scene {
       const to = { x: pos.x / TILE - .5, y: pos.y / TILE - .5 };
       if(!this.session.locked){this.onSteer?.();if(!this.session.point(to))this.onWalkFailure?.();}
     });
-    this.events.once('shutdown', () => { this.reducedMotion.removeEventListener('change',motionChanged);document.removeEventListener('keydown', onDown); document.removeEventListener('keyup', onUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear); });
+    this.events.once('shutdown', () => { this.reducedMotion.removeEventListener('change',motionChanged);document.removeEventListener('focusin',readingFocus);document.removeEventListener('keydown', onDown); document.removeEventListener('keyup', onUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear); });
   }
   visualState(){return {carpentry:{pineTextures:this.pineViews.map(v=>v.image.texture.key),rackTexture:this.rackView?.texture.key??null,noticeboardTexture:this.noticeboardView?.texture.key??null,equipped:this.carpentryState?.()?.saw.equipped??false,lastAction:this.lastCarpentryAction,action:this.carpentryMotion?.action??null},garden:{room:this.room,lastAction:this.lastGardenAction,bedTextures:this.gardenViews.map(v=>v.texture.key),action:this.gardenMotion?.action??null,actorTexture:this.actor?.texture.key??null,welcomeTexture:this.gardenWelcomeView?.texture.key??null},bridge:{phase:this.bridgePhase??(this.bridgeRestored?'open':'collecting'),texture:this.bridgeView?.texture.key??null,readyAt:this.bridgeReadyAt},home:{pennantVisible:this.pennantView?.visible??false,pennantTexture:this.pennantView?.texture.key??null,pennantPosition:this.pennantView?{x:this.pennantView.x,y:this.pennantView.y}:null,room:this.room,plotId:this.loadedHomePlotId??null,ownerName:this.homeOwnerName,level:this.homeLevel,decorations:this.room.startsWith('home')&&this.decorations?this.decorations():null,interiorTexture:this.room==='home'?HOME_ART.starterInterior:this.room==='home-expanded'?HOME_ART.expandedInterior:null},facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:this.room==='square'?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
   private updateAmbient(delta:number){

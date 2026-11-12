@@ -1,0 +1,34 @@
+{
+  "disclosure": "Isolated browser save and garden starting-position fixture built with valid pure commands at past times; last six seconds of radish deadline pass in actual UI. Not a real four-hour wait or shared/server proof. Actual harvest and explicit goal-flower request; no real player or accepted practice modified.",
+  "deadline": 1794454245596,
+  "before": {
+    "x": 134.453125,
+    "y": 115.984375,
+    "width": 91.078125,
+    "height": 112
+  },
+  "after": {
+    "x": 134.453125,
+    "y": 115.984375,
+    "width": 91.078125,
+    "height": 112
+  },
+  "requestBefore": {
+    "x": 37,
+    "y": 290.25,
+    "width": 286,
+    "height": 60
+  },
+  "requestAfter": {
+    "x": 37,
+    "y": 290.25,
+    "width": 286,
+    "height": 60
+  },
+  "oldJob": {
+    "recipe": "bridge-kit",
+    "startedAt": 1794439843593,
+    "readyAt": 1794483043593
+  },
+  "goalRetained": true
+}

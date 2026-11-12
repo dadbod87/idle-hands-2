@@ -5,7 +5,7 @@ import {gardenActionLocations,STAKE_IDS,type StakeId} from './game/garden.ts';
 import {surveyId,SURVEYS,type SurveyId} from './game/fieldwork.ts';
 import Phaser from 'phaser';
 import { Session } from './game/session.ts';
-import { worlds,TRAIL_LANDMARK_IDS,type Stop } from './game/world.ts';
+import { worlds,TRAIL_LANDMARK_IDS,type Stop,type Room } from './game/world.ts';
 import { WorldScene } from './phaser/WorldScene.ts';
 import './ui/style.css';
 import {questStep} from './game/workshop.ts';
@@ -29,13 +29,14 @@ app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
  <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">NEIGHBORHOOD STUDY<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
  <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
- <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite">Tap the three material depots below you. Your first planter starts here.</p></div><nav aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag">Bag & journal</button><button id="interact" class="primary" disabled>Nothing nearby</button></nav></footer>
+ <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag">Bag & journal</button><button id="interact" class="primary" disabled>Nothing nearby</button></nav></footer>
 </main>
 <dialog id="panel" aria-labelledby="panel-title"><form method="dialog"><header class="dialog-head"><div><p class="eyebrow">TOWN INFORMATION SERVICES</p><h2 id="panel-title">Places to go</h2></div><button aria-label="Close panel" value="close">×</button></header><div id="panel-body"></div></form></dialog>`;
 const panel = document.querySelector<HTMLDialogElement>('#panel')!;
 const title = document.querySelector<HTMLElement>('#panel-title')!;
 const body = document.querySelector<HTMLDivElement>('#panel-body')!;
 const feedback = document.querySelector<HTMLElement>('#feedback')!;
+new MutationObserver(()=>{feedback.scrollTop=0;}).observe(feedback,{childList:true,characterData:true,subtree:true});
 const interactButton = document.querySelector<HTMLButtonElement>('#interact')!;
 const location = document.querySelector<HTMLElement>('#location')!;
 const scene = new WorldScene(session);
@@ -57,7 +58,7 @@ window.addEventListener('pointerdown',wakeRender,{capture:true,passive:true});
 window.addEventListener('keydown',wakeRender,{capture:true});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)wakeRender();});
 let renderedFrames=0;game.events.on(Phaser.Core.Events.POST_RENDER,()=>{renderedFrames++;if(menuRenderPaused&&menuFrameBudget>0&&--menuFrameBudget===0)pauseMenuRender();});
-scene.onWalkFailure=()=>feedback.textContent='That spot cannot be reached. Try a clear patch of ground or tap a named prop.';
+scene.onWalkFailure=()=>{namedWalk=null;placeWalk=null;feedback.textContent='That spot cannot be reached. Try a clear patch of ground or tap a named prop.';};
 const worldContainer=document.querySelector<HTMLElement>('#world')!;
 const updateTextMode=()=>app.querySelector('.shell')?.classList.toggle('large-text',parseFloat(getComputedStyle(document.documentElement).fontSize)>20);
 updateTextMode();
@@ -72,7 +73,8 @@ const worldResize=new ResizeObserver(entries=>{
 });
 worldResize.observe(worldContainer);
 let gardenUI:GardenUI|undefined;let carpentryUI:CarpentryUI|undefined;
-let gardenWalk:{room:'square'|'garden'|'workshop';stopId:string;startedRoom:string;owner:string}|null=null;
+let namedWalk:{room:Room;stopId:string;startedRoom:string;owner:string}|null=null;
+let placeWalk:{room:Room;stopId:string;owner:string}|null=null;
 let ready = false;
 let lastContext = '';
 let portalIntent=0;
@@ -93,9 +95,9 @@ function focusWorld() { document.querySelector('canvas')?.focus(); }
 function unlockWorld(){if(session.locked&&!panel.open&&!transitionBusy&&!gardenUI?.isSaving&&!carpentryUI?.isSaving&&(!townMode||!!town?.snapshot&&!needResync&&!town.retryAvailable))session.lock(false);}
 function closePanel() { gardenUI?.closed();carpentryUI?.closed();workshop.closed(); panel.close();resumeMenuRender();unlockWorld(); focusWorld(); }
 panel.addEventListener('submit', event => { event.preventDefault(); closePanel(); });
-panel.addEventListener('close', () => { gardenUI?.closed();carpentryUI?.closed();workshop.closed();resumeMenuRender();unlockWorld(); focusWorld(); });
+panel.addEventListener('close', () => {if(panel.open)return; gardenUI?.closed();carpentryUI?.closed();workshop.closed();resumeMenuRender();unlockWorld(); focusWorld(); });
 panel.addEventListener('cancel', event => {event.preventDefault();closePanel();});
-function openPanel(heading: string) { gardenWalk=null;gardenUI?.closed();carpentryUI?.closed();workshop.closed();body.classList.remove('garden-panel','carpentry-panel');body.removeAttribute('aria-busy');pendingHomePlotId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal();pauseMenuRender(); }
+function openPanel(heading: string) { namedWalk=null;placeWalk=null;gardenUI?.closed();carpentryUI?.closed();workshop.closed();body.classList.remove('garden-panel','carpentry-panel');body.removeAttribute('aria-busy');pendingHomePlotId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal();panel.scrollTop=0;pauseMenuRender(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }
 let townUI:TownUI|undefined;
 let pendingHomePlotId:string|undefined;
@@ -109,10 +111,10 @@ let walkedDistance=0,confirmedDistance=0,movementEpoch=0,confirmedContext=contex
 // Predict a short visible walk, then wait for confirmation without cancelling the route.
 // Keep the existing server's two-tile burst limit and movement rate checks authoritative.
 scene.movementBudget=()=>!townMode?Infinity:!town?.snapshot||town.retryAvailable||contextKey(session.room,homePlotId)!==confirmedContext?0:Math.max(0,1.5-(walkedDistance-confirmedDistance));
-scene.onSteer=()=>{gardenWalk=null;pendingHomePlotId=undefined;};
+scene.onSteer=()=>{namedWalk=null;placeWalk=null;pendingHomePlotId=undefined;};
 scene.onMovement=distance=>{if(townMode)walkedDistance+=distance;};
 function adoptTownPosition(snapshot:TownSnapshot){
- gardenWalk=null;
+ namedWalk=null;placeWalk=null;
  portalIntent++;scene.residents=[];homePlotId=snapshot.position.homePlotId;session.enter(snapshot.position.room,snapshot.position.position);walkedDistance=0;confirmedDistance=0;confirmedContext=contextKey(snapshot.position.room,homePlotId);movementEpoch++;residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);scene.homePlotId=homePlotId;const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;unlockWorld();
 }
 const town=townMode?new TownClient({
@@ -135,20 +137,54 @@ async function flushMovement(force=false):Promise<void>{
  movement=action;await action;
 }
 const remoteWorkshop=town?.workshopAdapter();
-const workshop=new WorkshopUI({carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>{closePanel();if(session.room!=='square'){const exit=worlds[session.room].stops.find(stop=>stop.transition==='square');if(exit)session.point(exit.point);feedback.textContent='Walking back to the square. Then choose a tree from Places or the sketchbook.';return;}session.walk(SURVEYS[id].point);feedback.textContent='Walking to '+SURVEYS[id].name+'. Inspect the tree when you arrive.';},open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();gardenUI?.refresh();carpentryUI?.refresh();},...(town?{objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(returnSummary(town.snapshot,previousVisit(town.snapshot.playerId))),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
-gardenUI=new GardenUI({open:openPanel,body,feedback:message=>feedback.textContent=message,shared:townMode,owner:()=>town?.snapshot?.playerId??'local',publicState:()=>town?.snapshot?.gardenTown,changed:()=>{scene.refreshGarden();refreshMenuFrame(2);unlockWorld();},canUse:action=>gardenActionLocations(action).some(location=>{const stop=worlds[location.room].stops.find(s=>s.id===location.stopId);return session.room===location.room&&!!stop&&Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.4;}),go:goGardenDestination,accepted:action=>{if(action.action==='plant')scene.playGardenAction('sow');else if(action.action==='harvest')scene.playGardenAction('harvest');else if(action.action==='observe')scene.playGardenAction('inspect');}},workshop);
+const workshop=new WorkshopUI({carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();gardenUI?.refresh();carpentryUI?.refresh();},...(town?{objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(returnSummary(town.snapshot,previousVisit(town.snapshot.playerId))),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
+gardenUI=new GardenUI({open:openPanel,body,feedback:message=>feedback.textContent=message,shared:townMode,owner:()=>town?.snapshot?.playerId??'local',publicState:()=>town?.snapshot?.gardenTown,changed:()=>{scene.refreshGarden();refreshMenuFrame(2);unlockWorld();},canUse:action=>gardenActionLocations(action).some(location=>{const stop=worlds[location.room].stops.find(s=>s.id===location.stopId);return session.room===location.room&&!!stop&&Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.4;}),go:goNamedDestination,accepted:action=>{if(action.action==='plant')scene.playGardenAction('sow');else if(action.action==='harvest')scene.playGardenAction('harvest');else if(action.action==='observe')scene.playGardenAction('inspect');}},workshop);
 scene.gardenState=()=>workshop.state.garden;scene.gardenNow=()=>workshop.gardenClock();scene.welcomeCredits=()=>town?.snapshot?.gardenTown?.credits??Math.min(6,workshop.state.garden?.requests??0);
 function currentNoticeboard():NoticeboardState|undefined{if(town)return town.snapshot?.noticeboard;const s=workshop.state.carpentry;return s.recorded<6?{...createNoticeboard(),credits:s.recorded}:settleNoticeboard({credits:6,phase:'installing',startedAt:s.sixthRecordAt,readyAt:s.sixthRecordAt!+24*3600_000,openedAt:null},Math.max(workshop.gardenClock(),s.sixthRecordAt!));}
-carpentryUI=new CarpentryUI({open:openPanel,body,feedback:message=>feedback.textContent=message,shared:townMode,owner:()=>town?.snapshot?.playerId??'local',publicState:currentNoticeboard,changed:()=>{scene.refreshCarpentry();refreshMenuFrame(2);unlockWorld();},canUse:action=>carpentryActionLocations(action).some(location=>{const stop=worlds[location.room].stops.find(s=>s.id===location.stopId);return session.room===location.room&&!!stop&&Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.4;}),go:goGardenDestination,accepted:action=>{if(action.action==='gather-pine')scene.playCarpentryAction('saw');else if(action.action==='start-easel'||action.action==='claim-easel')scene.playCarpentryAction('finish');else if(action.action==='deliver-hamper')scene.playCarpentryAction('deliver');for(const ms of [250,500])window.setTimeout(()=>refreshMenuFrame(2),ms);}},workshop);
+carpentryUI=new CarpentryUI({open:openPanel,body,feedback:message=>feedback.textContent=message,shared:townMode,owner:()=>town?.snapshot?.playerId??'local',publicState:currentNoticeboard,changed:()=>{scene.refreshCarpentry();refreshMenuFrame(2);unlockWorld();},canUse:action=>carpentryActionLocations(action).some(location=>{const stop=worlds[location.room].stops.find(s=>s.id===location.stopId);return session.room===location.room&&!!stop&&Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.4;}),go:goNamedDestination,accepted:action=>{if(action.action==='gather-pine')scene.playCarpentryAction('saw');else if(action.action==='start-easel'||action.action==='claim-easel')scene.playCarpentryAction('finish');else if(action.action==='deliver-hamper')scene.playCarpentryAction('deliver');for(const ms of [250,500])window.setTimeout(()=>refreshMenuFrame(2),ms);}},workshop);
 scene.carpentryState=()=>workshop.state.carpentry;scene.noticeboardState=currentNoticeboard;
-function goGardenDestination(room:'square'|'garden'|'workshop',stopId:string){if(gardenUI?.isSaving||carpentryUI?.isSaving){feedback.textContent='Finish confirming the current change before walking.';return;}closePanel();gardenWalk={room,stopId,startedRoom:'',owner:town?.snapshot?.playerId??'local'};followGardenWalk();}
-function followGardenWalk(){
- if(!gardenWalk||!ready||panel.open||session.locked||transitionBusy||townMode&&(!town?.snapshot||needResync||contextKey(session.room,homePlotId)!==confirmedContext))return;
- if(gardenWalk.owner!==(town?.snapshot?.playerId??'local')){gardenWalk=null;return;}
- if(gardenWalk.startedRoom===session.room)return;
- const stop=session.room===gardenWalk.room?worlds[session.room].stops.find(s=>s.id===gardenWalk!.stopId):session.room==='square'&&gardenWalk.room!=='square'?worlds.square.stops.find(s=>s.id===(gardenWalk!.room==='garden'?'allotment':'workshop')):worlds[session.room].stops.find(s=>s.transition==='square');
- if(!stop||!session.approach(stop.id)){gardenWalk=null;feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
- gardenWalk.startedRoom=session.room;feedback.textContent='Walking to '+stop.name+'.';
+function routeAvailable(){
+ if(town&&(town.retryAvailable||needResync||transitionBusy||!town.snapshot)){showPendingRequest('Confirm your current location or pending request before walking.');return false;}
+ if(gardenUI?.isSaving||carpentryUI?.isSaving){feedback.textContent='Finish confirming the current change before walking.';return false;}
+ return true;
+}
+function goNamedDestination(room:Room,stopId:string){
+ if(!routeAvailable())return;closePanel();placeWalk=null;
+ namedWalk={room,stopId,startedRoom:'',owner:town?.snapshot?.playerId??'local'};followNamedWalk();
+}
+function followNamedWalk(){
+ if(!namedWalk||!ready||panel.open||session.locked||transitionBusy||townMode&&(!town?.snapshot||needResync||contextKey(session.room,homePlotId)!==confirmedContext))return;
+ if(namedWalk.owner!==(town?.snapshot?.playerId??'local')){namedWalk=null;return;}
+ if(namedWalk.startedRoom===session.room)return;
+ const target=namedWalk,portal=target.room==='garden'?'allotment':target.room==='workshop'?'workshop':null;
+ const stop=session.room===target.room?worlds[session.room].stops.find(s=>s.id===target.stopId):session.room==='square'?(portal?worlds.square.stops.find(s=>s.id===portal):undefined):worlds[session.room].stops.find(s=>s.transition==='square');
+ if(!stop){namedWalk=null;feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
+ if(Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.25){
+  if(session.room===target.room&&stop.id===target.stopId)namedWalk=null;
+  activate(stop);return;
+ }
+ if(!session.approach(stop.id)){namedWalk=null;feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
+ target.startedRoom=session.room;feedback.textContent='Walking to '+stop.name+'.';
+}
+function placeArrival(stop:Stop){
+ const next=stop.id==='trail-gate'&&!scene.bridgeRestored?'Inspect the bridge committee':stop.transition?'Enter':'Inspect';
+ feedback.textContent='At '+stop.name+'. Choose '+next+'.';
+}
+function walkToPlace(stop:Stop){
+ if(!routeAvailable())return;closePanel();namedWalk=null;
+ const owner=town?.snapshot?.playerId??'local',room=session.room;
+ // Interaction ranges overlap: arrival must agree with the Inspect target.
+ if(session.nearby()?.id===stop.id&&Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.25){placeArrival(stop);return;}
+ if(!session.walk(stop.point)){feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
+ placeWalk={room,stopId:stop.id,owner};feedback.textContent='Walking to '+stop.name+'.';
+}
+function paintPlaceArrival(){
+ if(!placeWalk)return;
+ if(placeWalk.room!==session.room||placeWalk.owner!==(town?.snapshot?.playerId??'local')){placeWalk=null;return;}
+ if(session.snapshot().walking)return;
+ const stop=worlds[session.room].stops.find(s=>s.id===placeWalk!.stopId);placeWalk=null;
+ if(stop&&session.nearby()?.id===stop.id&&Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.25)placeArrival(stop);
+ else feedback.textContent='The walk stopped before the destination. Choose a clear nearby stop.';
 }
 if(town){townUI=new TownUI({open:openPanel,body,feedback:message=>feedback.textContent=message,changed:()=>scene.refreshDecorations(),enterHome,enterTrail:()=>{if(!town.snapshot?.bridge.restored){feedback.textContent='The bridge is still under inspection.';return;}if(session.room!=='square'){feedback.textContent='You are already beyond the town bridge. Use Places for the local landmarks.';return;}closePanel();const gate=worlds.square.stops.find(stop=>stop.id==='trail-gate')!;session.point(gate.point);feedback.textContent='Walking into Inkwood trail.';}},town);document.querySelector('#resident')!.addEventListener('click',()=>void townUI!.showLogin(()=>closePanel()));}
 scene.decorations=()=>session.room.startsWith('home')?(town?.snapshot?.plots.find(plot=>plot.id===homePlotId)?.placements??workshop.state.placements) as typeof workshop.state.placements:workshop.state.placements;
@@ -158,15 +194,19 @@ function paintGuideObjective(){const note=body.querySelector<HTMLElement>('[data
 let guidanceSecond=-1;
 document.querySelector('#field-guide')!.addEventListener('click',()=>{
   openPanel('Town field guide');body.innerHTML=guideContents(session.room==='workshop',townMode,session.room!=='square'&&session.room!=='workshop');if(scene.skyFixture){const live=document.createElement('a');live.className='destination live-clock';live.href=townMode?'/?town=1':'/';live.textContent='Return to the live town clock';body.prepend(live);}const objective=currentObjective();const note=paragraph(objective.title+' — '+objective.detail);note.className='quest-card';note.dataset.guideObjective='';body.prepend(note);const climate=scene.climateState();if(climate){const clock=paragraph('Town time · '+String(Math.floor(climate.minute/60)).padStart(2,'0')+':'+String(climate.minute%60).padStart(2,'0')+' · '+climate.label+(climate.fixture?' · Lighting study':''));clock.id='guide-sky';body.prepend(clock);}
-  body.querySelector('#guide-workshop')!.addEventListener('click',()=>{closePanel();const stop=worlds[session.room].stops.find(s=>s.id==='workshop'||s.id==='bench'||s.id==='home-door'||s.id==='trail-exit'||s.id==='garden-exit');if(stop){if(stop.transition&&session.room!=='square')session.point(stop.point);else session.walk(stop.point);}feedback.textContent=session.room==='square'?'Walking to your workshop.':session.room==='workshop'?'Your bench is right here.':'Walking back to the square.';});
+  body.querySelector('#guide-workshop')!.addEventListener('click',()=>{
+   if(session.room==='square'){goNamedDestination('square','workshop');return;}
+   if(session.room==='workshop'){goNamedDestination('workshop','bench');return;}
+   const exit=worlds[session.room].stops.find(stop=>stop.transition==='square');if(exit)goNamedDestination(session.room,exit.id);
+  });
 });
 document.querySelector('#places')!.addEventListener('click', () => {
   openPanel('Places to go');
-  body.append(paragraph('Pick a stop. Your employee will walk there; you can inspect it when you arrive.'));
+  body.append(paragraph('Choose a stop to walk nearby. Then choose Inspect or Enter when you arrive.'));
   for (const stop of worlds[session.room].stops) {
     const button = document.createElement('button'); button.type = 'button'; button.className = 'destination';
-    button.textContent = stop.name + ' →'; button.dataset.destination = stop.id;
-    button.addEventListener('click', () => { closePanel(); session.walk(stop.point); feedback.textContent = `Walking to ${stop.name}.`; });
+    button.textContent = 'Walk to '+stop.name + ' →'; button.dataset.destination = stop.id;
+    button.addEventListener('click', () => walkToPlace(stop));
     body.append(button);
   }
 });
@@ -197,6 +237,7 @@ async function enterRemotePortal(stop:Stop){
  }
 }
 function activate(stop: Stop) {
+  feedback.textContent='At '+stop.name+'.';
   if(stop.id==='carpentry-desk'){carpentryUI!.showDesk();return;}
   if(stop.id==='finishing-rack'){carpentryUI!.showRack();return;}
   if(stop.id.startsWith('pine-')&&(PINE_STATIONS as readonly string[]).includes(stop.id.slice(5))){carpentryUI!.showPine(stop.id.slice(5) as typeof PINE_STATIONS[number]);return;}
@@ -212,7 +253,7 @@ function activate(stop: Stop) {
   const dialogue=dialogueFor(stop.id,{room:session.room==='square'?'square':'workshop',questStage:objective.id as DialogueContext['questStage'],job:job?.recipe??'none',jobReady:!!job&&job.readyAt<=(remoteWorkshop?.now()??Date.now()),bridgeRestored:scene.bridgeRestored,bridgePhase:scene.bridgePhase,trailStamps:town?.snapshot?.trail?.stamps.length??0,pennantOwned:town?.snapshot?.trail?.pennantOwned??false,maintenanceSatisfied:!!(town?.snapshot?.lesson?.redeemed||town?.snapshot?.lesson?.legacySatisfied),...(town?.snapshot?{guidance:sharedObjective(town.snapshot,town.serverNow())}:{}),shared:townMode,phase:scene.climateState()?.phase??'day'});
   if(dialogue){
     openPanel(dialogue.title);for(const line of dialogue.lines)body.append(paragraph(line));
-    if(dialogue.action){const action=dialogue.action,button=document.createElement('button');button.type='button';button.className='destination';button.dataset.npcAction=action.destination;button.textContent=action.label;button.addEventListener('click',()=>{if(action.destination==='journal'){workshop.showInventory();return;}closePanel();const target=worlds[session.room].stops.find(s=>s.id===action.destination||(action.destination==='workshop'&&s.id==='bench'));if(target){session.walk(target.point);feedback.textContent='Walking to '+target.name+'.';}});body.append(button);}
+    if(dialogue.action){const action=dialogue.action,button=document.createElement('button');button.type='button';button.className='destination';button.dataset.npcAction=action.destination;button.textContent=action.label;button.addEventListener('click',()=>{if(action.destination==='journal'){workshop.showInventory();return;}const target=worlds[session.room].stops.find(s=>s.id===action.destination||(action.destination==='workshop'&&s.id==='bench'));if(target)walkToPlace(target);});body.append(button);}
     return;
   }
   const study=stop.id.startsWith('survey-')?surveyId(stop.id.slice(7)):undefined;if(study){workshop.showSketchbook(study);return;}
@@ -234,12 +275,12 @@ function activate(stop: Stop) {
 function interact() {
   if (session.locked) return;
   const stop = session.nearby();
-  if (stop) activate(stop);
+  if (stop){namedWalk=null;placeWalk=null;session.stop();activate(stop);}
 }
 interactButton.addEventListener('click', interact);
 document.addEventListener('keydown', e => {
   if (e.repeat || session.locked || !(e.key === 'e' || e.key === 'E' || e.key === 'Enter')) return;
-  if (e.target instanceof HTMLElement && e.target.closest('button,input,dialog')) return;
+  if (e.target instanceof HTMLElement && e.target.closest('button,input,dialog,[data-ui-scroll]')) return;
   e.preventDefault(); interact();
 });
 scene.onFrame = () => {
@@ -252,8 +293,8 @@ scene.onFrame = () => {
     if(town){needResync=true;session.lock(true);void town.load().then(()=>town.connect()).catch(()=>townUI!.showLogin(()=>closePanel()));}
   }
   const arrival = session.takeArrival();
-  if (arrival) activate(arrival);
-  followGardenWalk();
+  if(arrival){if(namedWalk?.room===session.room&&namedWalk.stopId===arrival.id)namedWalk=null;activate(arrival);}
+  followNamedWalk();paintPlaceArrival();
   const stop = session.nearby();
   const state = contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored));
   if (state !== lastContext) {

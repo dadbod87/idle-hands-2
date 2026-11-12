@@ -1,0 +1,24 @@
+{
+  "classification": "Additive local practice update, not hosted release or populated-save proof",
+  "checkedAt": "2026-11-12T01:49:13.340Z",
+  "oldTablesUnchanged": [
+    "bridge",
+    "bridge_contributions",
+    "command_receipts",
+    "garden_welcome",
+    "maintenance_events",
+    "maintenance_lessons",
+    "players",
+    "plots",
+    "project_events",
+    "quest_awards",
+    "season_scores",
+    "trail_stamps"
+  ],
+  "sameKey": true,
+  "savedResidents": 1,
+  "newNoticeboardRows": 1,
+  "newMigration": "20261111233505_pine_noticeboard.sql",
+  "backup": "pre-pine-update-practice.dump",
+  "populatedProof": "Separate disposable populated garden/carpentry/home/job HTTP/restore/restart proof in067; this hash check only shows unchanged existing practice rows"
+}

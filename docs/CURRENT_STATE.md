@@ -1,8 +1,10 @@
 # Idle Hands 2 — current state
 
-November 11, 2026. Separate private dadbod87/idle-hands-2; local fictional practice only. The original game and its real accounts are unchanged.
+November 12, 2026. Separate private dadbod87/idle-hands-2; local fictional practice only. The original game and its real accounts are unchanged.
 
-IH2-067 is active on `feat/pine-workshop`. The working candidate now integrates pine/saw/easel/hamper/noticeboard rules, root ownership/authority, original256pose art and phone controls.217local domain/server checks and populated database restart passed; focused controls/art checks passed after correcting a clipped carry pose. Full58browser/exact-headCI/artifact/source gates remain pending. Accepted preview/API below are unchanged. [Working contract](idle-hands-2/CARPENTRY_RUNTIME.md), [evidence](evidence/IH2-067/REPORT.md).
+IH2-067 is source accepted: PR17, merge `7af9a3296ec21c9120567c36f195f6e7a4e01014`. Exact candidate `1683a7dd85b9ba8e7f0ea0230c7c713c51d6f969` passed both CI jobs (217 checks, zero skips; 59 browser cases in12.1m). Actual159-file build and selected uploaded images reviewed, matching tree and clean main verified. Local4175 now serves that immutable CI artifact; API4186 applied one additive noticeboard migration, preserving all12old canonical tables, one fictional resident and the signing key. Actual159responses plus desktop/phone UI pass. [Closeout](evidence/IH2-067/source-closeout.json). No hosted release or physical-device claim.
+
+IH2-068 is active on `feat/phone-activity-clarity`: compact garden actions/feedback, clear named travel and arrival, combined-loop audit. Accepted preview/API remain pinned while this task develops. [Current handoff](idle-hands-2/handoffs/2026-11-12-phone-clarity.md).
 
 Accepted garden runtime is b4438d3c1b98f04113e8ad3c47ab30e516741302 (PR15). Latest accepted planning main is3946d7b1f5f5d18529e274935f70fd35bb5cb50b (PR16): exact941956d CI43108409997bothSUCCESS184/54, actual unchanged131-file build and concept/gameplay images reviewed. [066closeout](evidence/IH2-066/source-closeout.json). Exact candidate d53c5c3a5e55244d2c849c9f92a1e7be88864b98 passed both jobs in CI43099483367 attempt1:179 checks/zero skips and53 browser cases12.5minutes. Actual131-file build and uploaded images reviewed; candidate/merge treec136cff9d1f11d72e6c2b944a3d1b5ce113abac5 matches and cleanmain=remoteverified. [065closeout](evidence/IH2-065/source-closeout.json).
 

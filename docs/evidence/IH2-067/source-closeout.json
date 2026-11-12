@@ -1,0 +1,86 @@
+{
+  "task": "IH2-067",
+  "status": "SOURCE_ACCEPTED_LOCAL_PREVIEW_VERIFIED",
+  "candidate": "1683a7dd85b9ba8e7f0ea0230c7c713c51d6f969",
+  "base": "3946d7b1f5f5d18529e274935f70fd35bb5cb50b",
+  "tree": "4ccbedbf8d19e03ff82ba8114af2b574647efe29",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/17",
+  "ciRun": 43134973845,
+  "domain": {
+    "job": 130908026942,
+    "conclusion": "success",
+    "passed": 217,
+    "skipped": 0,
+    "durationMs": 72437.390383,
+    "databaseRestartProof": true
+  },
+  "browser": {
+    "job": 130908026613,
+    "conclusion": "success",
+    "passed": 59,
+    "minutes": 12.1,
+    "actualArtifactImagesReviewed": [
+      "pine-phone-equipped-world.png",
+      "pine-short-text-200.png",
+      "pine-shared-owned-house-easel.png",
+      "pine-equipped-action-coverage.png",
+      "pine-desktop-ready-rack.png",
+      "activity-art-switched-rig.png",
+      "first-visit-short-text200.png"
+    ],
+    "originalAssertionsAndBudgetsRetained": true
+  },
+  "local": {
+    "aggregatePassed": 217,
+    "skipped": 0,
+    "browserPassed": 59,
+    "browserMinutes": 8.1,
+    "actualPgRestart": true,
+    "originalSvgCount": 144,
+    "newSvgCount": 27,
+    "newEquippedActionFrames": 256
+  },
+  "actualCiBuild": {
+    "files": 159,
+    "byteEqualFinalLocal": true
+  },
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "sharedPractice": "http://127.0.0.1:4175/?town=1",
+    "servedArtifact": "actual CI43134973845 sequel-client-build; frozen ci-final/build",
+    "responseFiles": 159,
+    "mismatches": [],
+    "apiPort": 4186,
+    "sameKey": true,
+    "oldCanonicalTablesPreserved": 12,
+    "savedResidentsPreserved": 1,
+    "additiveMigration": "20261111233505_pine_noticeboard.sql",
+    "nativeChromeDesktopPhone": true,
+    "fixtures": "Fresh isolated browser-only contexts; ordinary starting stock, no clock/state/position injection, no API interception/shared-practice login. Explicit time/SQL/housing-kit fixtures remain in separate regression evidence.",
+    "reviewedActualImages": [
+      "actual-preview-desktop-carpentry.png",
+      "actual-preview-phone-carpentry.png",
+      "actual-preview-phone-pine-world.png"
+    ],
+    "captureCorrection": "First Nella shot awaited stale hidden title while walking; final helper requires open dialog, correct nearby stop and stopped movement. Original diagnostic retained; no source change."
+  },
+  "limits": [
+    "No hosted release or real players",
+    "No physical-phone/Safari claim",
+    "Explicit synthetic time/state/housing kits and lostresponse fixtures; normal starting progress unchanged"
+  ],
+  "superseded": {
+    "candidate": "b9294bac135fb66d554ee366adf584a2aaafc5f4",
+    "run": 43128903705,
+    "reason": "Domain217success, browser budget cancellation after57/58; no assertion reduction or limit change."
+  },
+  "presentation": "Current-rig3sheets, keyed load/retry/reload; idle10Hz/normal input, no rules or validation-budget change",
+  "merge": "7af9a3296ec21c9120567c36f195f6e7a4e01014",
+  "matchingCandidateMergeTree": true,
+  "cleanMainEqualsRemote": true,
+  "automaticMainCi": {
+    "run": 43136701949,
+    "status": "in_progress; not required exact PR result"
+  },
+  "next": "Close067tracker with this evidence on next isolated branch, then068phone clarity and combined-loop audit. No hosted resources or real-account changes."
+}

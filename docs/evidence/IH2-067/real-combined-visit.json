@@ -1,0 +1,68 @@
+{
+  "classification": "Actual fresh local browser-only candidate visit; real five-minute radish, no fixture clock/state/stock/position or server/practice writes. Known automated actions are not human enjoyment.",
+  "steps": [
+    {
+      "action": "Your allotment · crops, markers & quests",
+      "elapsedMs": 387
+    },
+    {
+      "action": "Walk to the beds",
+      "elapsedMs": 416
+    },
+    {
+      "action": "Plant first radish through ordinary UI",
+      "elapsedMs": 2955,
+      "readyAt": 1794444709830
+    },
+    {
+      "action": "Close panel",
+      "elapsedMs": 2983
+    },
+    {
+      "action": "Pine workshop · tools, easels & hampers",
+      "elapsedMs": 3054
+    },
+    {
+      "action": "Walk to Nella",
+      "elapsedMs": 3083
+    },
+    {
+      "action": "learn-saw",
+      "elapsedMs": 5856
+    },
+    {
+      "action": "equip-saw",
+      "elapsedMs": 5916
+    },
+    {
+      "action": "Close panel",
+      "elapsedMs": 5951
+    },
+    {
+      "action": "Prepare pine without changing garden deadline",
+      "elapsedMs": 7989
+    },
+    {
+      "action": "Close panel",
+      "elapsedMs": 8081
+    },
+    {
+      "action": "Your allotment · crops, markers & quests",
+      "elapsedMs": 8150
+    },
+    {
+      "action": "Walk to the beds",
+      "elapsedMs": 8185
+    },
+    {
+      "action": "Harvest first radish after actual five-minute deadline",
+      "elapsedMs": 303146
+    }
+  ],
+  "errors": [],
+  "final": {
+    "radish": 1,
+    "pine": 6,
+    "equipped": true
+  }
+}

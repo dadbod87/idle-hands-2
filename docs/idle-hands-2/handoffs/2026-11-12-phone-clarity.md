@@ -1,0 +1,11 @@
+# IH2-068 — action clarity and phone playtest
+
+Active November12,2026 on feat/phone-activity-clarity from067acceptedmain7af9a3296ec21c9120567c36f195f6e7a4e01014.067source/CI/actualartifact/local-preview/preservation gates are closed; see its source-closeout. Both required exact1683a7dCI jobs success217/59; original20minbudget retained, browser12.1m. Automaticmain43136701949pending separately. Cleanmain=remote/matchingtree verified before this branch. Current preview4175/API4186pinned; no currentgame, hosted, real-account or paid-asset change.
+
+Baseline: actual fresh360x640garden first bed begins407pxdown; blankfeedback96px. Short844x390at200%has117pxfeedback and3585pxbody. Actual five-minute radish/pine visit succeeds but its feedback is far above the current action. Guide uses an extra Inspect; named arrival can retain stale Walking text. Existing left-aligned rental-workshop framing remains an audit observation.067carpentry quote/header/pose/hidden/reduced-motion issues are closed; do not rewrite that family unnecessarily.
+
+Selected work: compact action-first garden overview/current action and reserved nearby feedback; stable DOM/focus/selection across clocks; literal costs, full/ready/growing reasons and accessible optional explanations/rearrangement/recovery. Keep all existing economy and controls. Guide may use guarded named workshop approach; Places can retain explicit Walk+Inspect if verbs/arrival are truthful. Preserve exact door-front context, pending UUID/revision/input locks and all supersession/identity/resync/manual cancellations.
+
+Validation: meaningful fresh/ready/full/other-family/goalflower/previewcancel/retry flows; normal360phone and844x390text200quote/footer/close/focus geometry; guide/direct/Places/heldACKcancellation. Re-audit fresh/returning/saturated/busy/full/no-helper actual combined loop with explicit elapsed fixture disclosures and finite-content limits. Full requiredchecks and both exact-head CI, downloaded actualbuild/images, merge/equaltree/cleanmain before closure. Record next bounded authored-quest slice; no silent scope expansion.
+
+Preparation read-only review and baseline captures are outside source at ../idle-hands-2-artifacts/phone-clarity-2026-11-12/. No068implementation yet. Continue under CURRENT_SESSION stop rule; preserve all practice and accepted artifact processes.

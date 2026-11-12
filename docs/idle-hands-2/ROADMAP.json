@@ -555,7 +555,7 @@
     {
       "id": "IH2-067",
       "title": "Pine hand tool, kept easel and useful produce service",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-066"
       ],
@@ -575,14 +575,18 @@
         "docs/evidence/IH2-067/pure-rule-schedules.json",
         "docs/evidence/IH2-067/ledger-browser/report.json",
         "docs/idle-hands-2/handoffs/2026-11-11-pine-workshop.md",
-        "docs/evidence/IH2-067/intermediate-checks.json"
+        "docs/evidence/IH2-067/intermediate-checks.json",
+        "docs/evidence/IH2-067/source-closeout.json",
+        "docs/evidence/IH2-067/integrated-local-checks.json",
+        "docs/evidence/IH2-067/presentation-cost.json",
+        "docs/evidence/IH2-067/actual-preview-verification.json"
       ],
       "owner_branch": "feat/pine-workshop"
     },
     {
       "id": "IH2-068",
       "title": "Phone activity clarity and updated-loop playtest",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-067"
       ],
@@ -596,7 +600,10 @@
       "exclusions": [
         "No silent timer/rate/cost change, mandatory attendance, real-player tests or public launch."
       ],
-      "evidence": []
+      "evidence": [
+        "docs/idle-hands-2/handoffs/2026-11-12-phone-clarity.md"
+      ],
+      "owner_branch": "feat/phone-activity-clarity"
     },
     {
       "id": "IH2-070",

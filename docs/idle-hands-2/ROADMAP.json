@@ -642,7 +642,7 @@
     {
       "id": "IH2-071",
       "title": "Playable Pip commission and unique letterbox",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-069"
       ],
@@ -674,9 +674,36 @@
         "docs/evidence/IH2-071/presentation-cost.json",
         "docs/evidence/IH2-071/independent-review.json",
         "docs/evidence/IH2-071/pointer-focus-regression.json",
-        "docs/evidence/IH2-071/cancel-return-regression.json"
+        "docs/evidence/IH2-071/cancel-return-regression.json",
+        "docs/evidence/IH2-071/source-closeout.json"
       ],
       "owner_branch": "feat/neighborhood-commission"
+    },
+    {
+      "id": "IH2-072",
+      "title": "Combined neighborhood progression and creative expression audit",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-071"
+      ],
+      "goal": "Evaluate the combined accepted neighborhood for meaningful active choices, useful returns, material opportunity costs and visible personal/cooperative expression before selecting another bounded expansion.",
+      "acceptance": [
+        "Use exact accepted071artifact and current rules. Observe fresh, returning, both-jobs-busy, full-capacity/saturated, late-newcomer and owned-home situations across desktop/narrow/short200views, disclosing each elapsed/position/house fixture and preserving practice.",
+        "Record actual short return and10\u201320minute active observation timelines, meaningful verbs and persistent choices, NPC first/repeat reactions, route/scroll/wait/next-goal burden. Agent speed is not human enjoyment; three handovers are not three new verbs.",
+        "Execute coupled ordinary/garden/pine/commission/easel/hamper/welcome-request policies for daily/regular/active/absence schedules; conserve all ledgers and quantify housing pace, optional reward opportunity costs and finite-content limits without changing rates.",
+        "Review no-helper/already-funded newcomer purpose and owner\u2192visitor arrangement/motif/register/remove/reload visibility using isolated fixtures. Keep actual ownership and recognizable item identity separate from a gallery sample.",
+        "Publish ranked reproducible findings/current-runtime-versus-candidate coverage, screenshot/evidence links and one bounded next recommendation. Keep older reports dated; do not claim candidate shops/food/chat/regions are implemented.",
+        "Required checks plus both exact-final-headCI/artifact/source gates; unchanged game build174files verified. No automatic economy/runtime/art/hosting feature in this audit."
+      ],
+      "exclusions": [
+        "No production/original-game changes, real players, hosted resources, expenses, grants into practice, new balance/currencies, shops/food/combat/chat/regions or implementation of the next recommendation before audit closure."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/COMBINED_NEIGHBORHOOD_AUDIT.md",
+        "docs/idle-hands-2/handoffs/2026-11-12-combined-neighborhood-audit.md",
+        "docs/evidence/IH2-072/REPORT.md"
+      ],
+      "owner_branch": "feat/neighborhood-progression-audit"
     },
     {
       "id": "IH2-070",
@@ -696,7 +723,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. The owner explicitly authorized successive independent local design/content tasks while away;069 is the bounded follow-up to068. No cloud resources, invitations or public release."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Owner authorized successive independent local tasks while away;072audits the combined accepted neighborhood before another bounded expansion. No cloud resources, invitations or public release."
     },
     {
       "id": "IH2-080",

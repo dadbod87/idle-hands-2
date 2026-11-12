@@ -1,5 +1,7 @@
 # IH2-071 — playable Pip commission, revised source gate
 
+**Closed/accepted:** PR20/merge3fc2cfe, exactef6340aCI43175976771bothSUCCESS247/72(15.3m); actualartifact/images/source and preserved local4175/4186preview verified. [071closeout](../../evidence/IH2-071/source-closeout.json). [Current072handoff](2026-11-12-combined-neighborhood-audit.md). The paragraphs below retain the pre-acceptance phase history.
+
 November12,2026. Branch `feat/neighborhood-commission`, based on accepted069 main `15fc3404c6972b1b1803d23709317c781b3fc9ff` / PR19. PR20 is open. Checkpointc3fa6ae records069closure/071start. Initial d7e3684CI43168759654rejected pointer-focus scrolling. Revised committed acdb7c1578f0587f40a3a1450deb8681f0ab2bba/run43172849126passedbothCI247/72(13.0m), but a final explicit Cancel visibility follow-up supersedes it for acceptance. Final local247/72pass; commit/push and exact-new-headCI/artifact/source/preview gate are next. One writable checkout; root owns execution; reviewers read-only.
 
 Read AGENTS and required state/release/build/experience/art docs, tracker and [runtime contract](../COMMISSION_RUNTIME.md). [Working evidence](../../evidence/IH2-071/REPORT.md). Tracker069done,071in_progress,070blocked,080queued. Do not start the next task before071full acceptance.069closeout is docs/evidence/IH2-069/source-closeout.json;069automaticmain43160261921also bothSUCCESS. Frozen standalone069concept49523/session40786 remains in-memory fiction with no game/API/storage authority.

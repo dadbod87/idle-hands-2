@@ -1,0 +1,106 @@
+{
+  "task": "IH2-071",
+  "classification": "Accepted private source and local preview; no hosted or original-game release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/20",
+  "candidate": "ef6340a1f64135fe47b9f46ddf56187739ddc9ae",
+  "merge": "3fc2cfed6f30837a62b7c8cdf95126595586d3a6",
+  "mergedAt": "2026-11-12T07:50:35Z",
+  "candidateAndMergeTree": "3c576e33235499f9ff713b9be15cdab908742c36",
+  "cleanMainEqualsRemoteVerified": true,
+  "ci": {
+    "run": 43175976771,
+    "exactHead": true,
+    "bothJobsSuccess": true,
+    "domain": {
+      "job": 131040201119,
+      "passed": 247,
+      "skipped": 0,
+      "durationMs": 83462.287381
+    },
+    "browser": {
+      "job": 131040200227,
+      "passed": 72,
+      "minutes": 15.3
+    },
+    "actualArtifactsDownloaded": [
+      "sequel-client-build",
+      "sequel-server-evidence",
+      "sequel-browser-evidence"
+    ],
+    "actualCompiledFilesCompared": 174,
+    "allEqualFinalLocalBuild": true,
+    "actualUploadedRuntimeImagesReviewed": 13
+  },
+  "local": {
+    "domain": 247,
+    "skipped": 0,
+    "durationMs": 47307.381792,
+    "browser": 72,
+    "browserMinutes": 9.3,
+    "designCandidates": 48,
+    "regions": 5,
+    "trackerTasks": 26,
+    "trackerTests": 10,
+    "pinnedFiles": 40,
+    "build": true,
+    "whitespace": true
+  },
+  "artifact": {
+    "htmlSha256": "15e94f934918c3e7cd71ae02c76ace06d556137c293eb26d4ef55d7bda65f93d",
+    "originalSvgAssets": 158,
+    "files": 174,
+    "independentGzipDeltaBytes": 17154,
+    "freshPaidCraft": "Actual fresh nativeChrome/real300000mscrop/payment/placement/reload, no grants/clock/position/state/API fixtures; immutable final CI artifact on isolated49524staging while CI ran. Four captures reviewed. Later actual4175all174responses match those exact bytes; normal desktop and phone complete free route/reload verified separately.",
+    "noDuplicateFiveMinuteRepeat": "Same immutable bytes proved after update; staging is disclosed and never represented as hosted authority."
+  },
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "sharedUrl": "http://127.0.0.1:4175/?town=1",
+    "clientSession": 60736,
+    "clientPid": 51347,
+    "apiPort": 4186,
+    "apiSession": 31409,
+    "apiPid": 51317,
+    "protocol": 3,
+    "all174ActualResponsesMatch": true,
+    "currentAnonymousSnapshot401": true,
+    "actualNativeDesktopAnd360TouchFreeRouteAndReload": true,
+    "actualPreviewImagesReviewed": 6,
+    "noSharedLoginOrProgressWrites": true,
+    "canonicalTablesPreserved": 13,
+    "fictionalResidentsPreserved": 1,
+    "signingKeyPreserved": true,
+    "fiveMigrationChecksumsPreserved": true,
+    "privateDatabaseAndKeyBackupBeforeUpdate": true,
+    "backupPermissions": "directory0700/files0600; no key or raw player rows printed or committed",
+    "sqlMigrationFilesAdded": 0,
+    "staging49524StoppedAfterProof": true,
+    "cachedHttpSchemas1And2Refused": true,
+    "cachedEventSchema2Refused": true
+  },
+  "rejectedOrSuperseded": [
+    {
+      "candidate": "d7e3684870d3a2e85f6de94d58899698d4c0ce41",
+      "run": 43168759654,
+      "result": "247domain/71browser pass, one pointer-focus scrolling failure; negative control on actual old artifact rejects108pxmovement"
+    },
+    {
+      "candidate": "acdb7c1578f0587f40a3a1450deb8681f0ab2bba",
+      "run": 43172849126,
+      "result": "bothSUCCESS247/72(13.0m), superseded by explicitly uncovered Cancel\u2192Review after actual fresh touch probe"
+    }
+  ],
+  "automaticMainCI": {
+    "run": 43178251963,
+    "head": "3fc2cfed6f30837a62b7c8cdf95126595586d3a6",
+    "domain": "success",
+    "browser": "in_progress at closeout; candidate exact-head gates already passed"
+  },
+  "limits": [
+    "Chrome/Chromium desktop/touch emulation, not physical phone/Safari or human retention",
+    "Fresh local browser-only and elapsed isolated SQL/home fixtures remain separately disclosed",
+    "Existing20ordinary-protocolclients are not20renderedbrowsers or hosted capacity",
+    "No new actor handover/assembly rig; bounded receipt/flap treatment only",
+    "No cloud provisioning, expense, real accounts, invitations or original-game mutation"
+  ]
+}

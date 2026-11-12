@@ -1,6 +1,6 @@
-# Pip’s post — working runtime contract
+# Pip’s post — accepted runtime contract
 
-IH2-071, November 12, 2026. This is an unaccepted local candidate on `feat/neighborhood-commission`, following accepted design PR19 / merge `15fc3404c6972b1b1803d23709317c781b3fc9ff`. Final repository checks, exact-head CI, artifact review and source merge remain required. The accepted game at port 4175 and its practice API remain unchanged.
+IH2-071 source/local preview accepted November12,2026: PR20/merge `3fc2cfed6f30837a62b7c8cdf95126595586d3a6`, exactef6340aCI43175976771bothSUCCESS247/72(15.3m), actual174files/images reviewed and matchingtree verified. Protected4175/4186protocol3nowserve this implementation; practice/key/migrations preserved. [Sourcecloseout](../evidence/IH2-071/source-closeout.json). No hosted or original-game release.
 
 ## Free chapter and physical reward
 

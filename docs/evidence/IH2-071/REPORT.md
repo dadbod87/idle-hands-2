@@ -1,4 +1,6 @@
-# IH2-071 — playable commission, working evidence
+# IH2-071 — playable commission, accepted source/local preview
+
+**Accepted:** PR20/merge3fc2cfed6f30837a62b7c8cdf95126595586d3a6; exactef6340aCI43175976771bothSUCCESS247/72(15.3m), actual174files/13uploadedimages reviewed, matchingtree/cleanmain verified. Actual4175/4186protocol3update preserves13canonicaltables/onefictionalresident/key/fivemigrationchecksums;174responses/native desktop+360touch free route/reload pass. Same immutableCIartifact fresh real5minpaid craft passed in disclosed isolated staging;4captures reviewed. [Sourcecloseout](source-closeout.json). Earlier pending statements below are chronological phase history.
 
 **Final Cancel-follow-up local result:**247passed/zero skips47.307381792s; all72browser9.3m;13runtime captures plus actual fresh touch Cancel before/after reviewed. Build/design/plan/pinned40/diff pass. Prior acdbCI43172849126also bothSUCCESS247/72(13.0m), but the exact new head/artifact/source/preview gate remains pending. Earlier paragraphs retain phase history.
 

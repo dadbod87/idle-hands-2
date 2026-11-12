@@ -940,6 +940,28 @@
       ]
     },
     {
+      "id": "IH2-083",
+      "title": "Illustrated bag with truthful item stacks",
+      "status": "in_progress",
+      "owner_branch": "feat/visual-bag",
+      "depends_on": [
+        "IH2-082"
+      ],
+      "goal": "Make carried items visible as illustrated stack slots in the existing bag without creating a second inventory ledger.",
+      "acceptance": [
+        "Read-only pure projection of actual materials, claimed crafted items, unplaced furniture, seeds/produce and kept tool/marker entitlements. Subtract workshop/home placements, reject invalid allocations, never count unclaimed jobs or history as held items.",
+        "Original illustrated satchel panel and existing original item icons, stable pocket controls/count nodes, no new asset/economy/save/authority/timer/poll. Preserve notebook, routes, quantities, skills, furniture controls and truthful unresolved/unsaved states.",
+        "Native craft collect stacking, place/remove/reload and shared home allocation/identity changes with explicit fixtures; desktop320/360/short200/phone200, keyboard/tap44px/fallback and Terra review.",
+        "Required local and exact-final-head CI full suites, actual client/screens/recovery review, matching merge tree and static-only actual preview update with protected13table/key/checksum/API/studies preservation."
+      ],
+      "exclusions": [
+        "No drag/drop, new capacity, trading, new items/recipes, automatic craft collection, shared state mutation from inspection, current-game/cloud/accounts/expense."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-083/PLAN.md"
+      ]
+    },
+    {
       "id": "IH2-070",
       "title": "Invited beta on approved isolated hosting",
       "status": "blocked",

@@ -13,7 +13,7 @@ export type TownClimate = {
 const minuteMs = 60_000;
 const weatherLabels: Record<TownWeather, string> = { clear: 'Clear skies', overcast: 'Overcast', drizzle: 'Light drizzle' };
 const phaseLabels: Record<TownPhase, string> = { dawn: 'Dawn', day: 'Day', dusk: 'Dusk', night: 'Night' };
-const weatherAlpha: Record<TownWeather, number> = { clear: 0, overcast: .035, drizzle: .06 };
+const weatherAlpha: Record<TownWeather, number> = { clear: 0, overcast: .012, drizzle: .025 };
 const mod = (n: number, period: number) => ((n % period) + period) % period;
 const safeTime = (n: number) => Number.isFinite(n) && Math.abs(n) <= Number.MAX_SAFE_INTEGER ? (n === 0 ? 0 : n) : 0;
 
@@ -38,7 +38,7 @@ function compositeTint(color: number, alpha: number, weather: TownWeather) {
     const component = (((grey >>> shift) & 255) * greyAlpha + ((color >>> shift) & 255) * alpha * (1 - greyAlpha)) / combined;
     result |= Math.round(component) << shift;
   }
-  return { color: result, alpha: Math.min(.40, combined) };
+  return { color: result, alpha: Math.min(.28, combined) };
 }
 
 function blendColor(from: number, to: number, amount: number) {
@@ -52,9 +52,9 @@ function appearance(phase: TownPhase, progress: number, weather: TownWeather) {
   // Dusk first warms, then blends into blue; the last quarter of night fades
   // toward dawn. Equal endpoint composites avoid a visible phase-boundary snap.
   const lateDusk = Math.max(0, (progress - .5) * 2);
-  const base = phase === 'dawn' ? { color: 0xf0b97b, alpha: Math.sin(progress * Math.PI) * .09, lamps: 1 - progress }
-    : phase === 'dusk' ? { color: blendColor(0xd29a7f, nightColor, lateDusk), alpha: progress <= .5 ? Math.sin(progress * Math.PI) * .18 : .18 + .18 * lateDusk, lamps: progress }
-      : phase === 'night' ? { color: nightColor, alpha: .36 * Math.min(1, (1 - progress) / .25), lamps: 1 }
+  const base = phase === 'dawn' ? { color: 0xf0b97b, alpha: Math.sin(progress * Math.PI) * .055, lamps: 1 - progress }
+    : phase === 'dusk' ? { color: blendColor(0xd29a7f, nightColor, lateDusk), alpha: progress <= .5 ? Math.sin(progress * Math.PI) * .11 : .11 + .13 * lateDusk, lamps: progress }
+      : phase === 'night' ? { color: nightColor, alpha: .24 * Math.min(1, (1 - progress) / .25), lamps: 1 }
         : { color: 0xf8f1df, alpha: 0, lamps: 0 };
   return {
     tint: compositeTint(base.color, base.alpha, weather),

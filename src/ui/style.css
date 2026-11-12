@@ -21,3 +21,5 @@
 /* Keep changing field notes from resizing the playfield. Longer notes scroll. */
 #feedback{height:2.6em;min-height:2.6em;overflow:auto;display:block}
 #feedback:focus-visible{outline:3px solid #b8653e;outline-offset:-3px}
+
+.sky-notes{margin-top:16px;border-top:1px solid var(--line);padding-top:8px}.sky-notes summary{min-height:44px;padding:12px 0;font-weight:bold;cursor:pointer}.sky-notes summary:focus-visible{outline:3px solid #b8653e;outline-offset:2px}

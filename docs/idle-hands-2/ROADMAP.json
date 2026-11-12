@@ -988,6 +988,28 @@
       ]
     },
     {
+      "id": "IH2-085",
+      "title": "Noticeable ambient weather with clearer town colors",
+      "status": "in_progress",
+      "owner_branch": "feat/readable-town-weather",
+      "depends_on": [
+        "IH2-084"
+      ],
+      "goal": "Make existing tree sway, drizzle and daylight recognizable without a heavy wash or added gameplay cost.",
+      "acceptance": [
+        "Reduce cosmetic weather/daylight wash while preserving continuous48minute phases and12minute deterministic weather. Keep original art, colors/geometry, untinted HUD and readable interiors; no production-clock or economy change.",
+        "Bounded visible canopy translation with no rotation/crop regression. Cosmetic deltas keep idle10fps and active60fps motion at the same rate, bound resume gaps and malformed deltas; rain clearly visible without extra objects/timers/requests.",
+        "Reduced-motion/hidden/indoor behavior remains safe. Guide explains existing sky pace and active reduced-motion preference. Real native screenshots/motion observations on desktop/phone with explicitly labelled sky fixtures; Terra visual/motion recheck.",
+        "Required local/exact-headCI full browser/artifact/image/recovery/merge gates. Static-only accepted preview and native checks preserve protected13tables/key/sixchecksums/API/studies."
+      ],
+      "exclusions": [
+        "No weather economy, growth bonus, new day/weather schedule, global image filter, paid/new asset family, current-game/account/cloud/expense."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-085/PLAN.md"
+      ]
+    },
+    {
       "id": "IH2-070",
       "title": "Invited beta on approved isolated hosting",
       "status": "blocked",

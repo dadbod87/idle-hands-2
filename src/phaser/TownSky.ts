@@ -1,4 +1,5 @@
 import type Phaser from 'phaser';
+import {cosmeticStep} from '../art/variety.ts';
 import {climateAt,type TownClimate} from '../game/town-climate.ts';
 
 /** Disposable compositor layers. No progress, commands, clocks or network writes. */
@@ -28,10 +29,10 @@ export class TownSky {
    const edge=document.createElement('div');edge.style.cssText=`position:absolute;left:${box.x-2.5}px;top:${box.y-2.5}px;width:${box.width+5}px;height:${box.height+5}px;border:3px solid var(--lamp-edge);box-sizing:border-box;`;
    this.lamps.append(fill,edge);
   }
-  this.rain=document.createElement('div');
-  const pattern='<svg xmlns="http://www.w3.org/2000/svg" width="216" height="96" viewBox="0 0 216 96"><path d="M18 0l-2 7M101 0l-2 7M184 0l-2 7" fill="none" stroke="#c2d0d1" stroke-opacity=".22" stroke-width="1"/></svg>';
+  this.rain=document.createElement('div');this.rain.dataset.weatherRain='';
+  const pattern='<svg xmlns="http://www.w3.org/2000/svg" width="192" height="96" viewBox="0 0 192 96"><path d="M15 3l-3 11M53 38l-3 10M89 11l-3 12M125 64l-3 10M162 28l-3 11M185 80l-3 12" fill="none" stroke="#425b65" stroke-opacity=".22" stroke-width="2.2"/><path d="M15 3l-3 11M53 38l-3 10M89 11l-3 12M125 64l-3 10M162 28l-3 11M185 80l-3 12" fill="none" stroke="#edf4ed" stroke-opacity=".58" stroke-width="1.2"/></svg>';
   // One cached repeating bitmap; only its compositor transform changes per frame.
-  this.rain.style.cssText=`position:absolute;left:0;right:0;top:-96px;bottom:-96px;background-image:url("data:image/svg+xml,${encodeURIComponent(pattern)}");background-repeat:repeat;background-size:216px 96px;visibility:hidden;will-change:transform;`;
+  this.rain.style.cssText=`position:absolute;left:0;right:0;top:-96px;bottom:-96px;background-image:url("data:image/svg+xml,${encodeURIComponent(pattern)}");background-repeat:repeat;background-size:192px 96px;visibility:hidden;will-change:transform;`;
   this.overlay.append(this.shade,this.lamps,this.rain);
   scene.game.canvas.parentElement!.append(this.overlay);
   scene.events.once('shutdown',()=>this.overlay.remove());
@@ -55,7 +56,7 @@ export class TownSky {
  }
  motion(delta:number,motion:boolean){
   this.enabled=motion&&!this.interior&&this.state.weather==='drizzle';
-  if(this.enabled)this.offset=(this.offset+Math.max(0,Math.min(50,delta))*.055)%96;else this.offset=0;
+  if(this.enabled)this.offset=(this.offset+cosmeticStep(delta)*.085)%96;else this.offset=0;
   this.rain.style.visibility=this.enabled?'visible':'hidden';this.rain.style.transform=`translateY(${this.offset}px)`;
  }
  snapshot(){return {...this.state,tint:{...this.state.tint},effectiveAlpha:this.effectiveAlpha,fixture:this.fixture,interior:this.interior,precipitation:{enabled:this.enabled,offset:this.offset}};}

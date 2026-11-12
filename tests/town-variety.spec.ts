@@ -143,7 +143,7 @@ test('town variety: decorative motion runs locally and resets for reduced motion
  await expect.poll(async()=>JSON.stringify((await visual(page)).variety.ambient)).not.toBe(JSON.stringify(first));
  const observed=(await visual(page)).variety.ambient;
  expect(observed.canopies.length).toBeGreaterThan(0);
- for(const canopy of observed.canopies){expect(canopy.rotation).toBe(0);expect(Math.abs(canopy.offsetX)).toBeLessThanOrEqual(.451);}
+ for(const canopy of observed.canopies){expect(canopy.rotation).toBe(0);expect(Math.abs(canopy.offsetX)).toBeLessThanOrEqual(2.201);}
  expect(observed.steam.alpha).toBeGreaterThanOrEqual(0);expect(observed.steam.alpha).toBeLessThanOrEqual(.21);
  await page.emulateMedia({reducedMotion:'reduce'});
  await expect.poll(async()=>(await visual(page)).variety.ambient.enabled).toBe(false);

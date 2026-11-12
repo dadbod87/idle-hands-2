@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-085 candidate improves weather visibility and reduces dulling overlays while preserving original art,48minute cosmetic day,12minute weather schedule and real work clocks. Acceptance pending. [Evidence](evidence/IH2-085/REPORT.md).
+
 2026-11-12 — Accepted IH2-084 separate Bag and Journal: belongings versus goal/work/progress panels, labelled toolbar controls, guarded B/J play shortcuts and direct focus-safe switching. PR32 merged as `8a6c60d`;291system and96browser checks pass exact-headCI. Actual local preview updated; rules/progress/API preserved. [Evidence](evidence/IH2-084/source-closeout.json).
 
 2026-11-12 — IH2-084 candidate separates Bag and Journal, puts goals first in the journal and adds compact direct controls/B-J play shortcuts. Rules and progress unchanged; acceptance pending. [Evidence](evidence/IH2-084/REPORT.md).

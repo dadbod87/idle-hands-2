@@ -1014,7 +1014,7 @@
     {
       "id": "IH2-086",
       "title": "Anchor moving rain to the town world",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "fix/world-anchored-rain",
       "depends_on": [
         "IH2-085"
@@ -1029,7 +1029,91 @@
         "No new weather type, asset, request/timer, world geometry, progression or hosting."
       ],
       "evidence": [
-        "docs/evidence/IH2-086/PLAN.md"
+        "docs/evidence/IH2-086/PLAN.md",
+        "docs/evidence/IH2-086/REPORT.md",
+        "docs/evidence/IH2-086/source-closeout.json"
+      ]
+    },
+    {
+      "id": "IH2-087",
+      "title": "First-city capacity, neighborhood layout and housing blueprint",
+      "status": "in_progress",
+      "owner_branch": "feat/ledgerwick-neighborhood-plan",
+      "depends_on": [
+        "IH2-086"
+      ],
+      "goal": "First-city capacity, neighborhood layout and housing blueprint.",
+      "acceptance": [
+        "Audit actual housing capacity/visiting and city art/menu gaps. Record coherent first-city and distinct later-town plans with implemented versus candidate labels.",
+        "Executable24-address block geometry, stable expandable bigint addresses, collision-safe public routes and under20second unobstructed gate routes at existing speed.",
+        "Separate interactive original-art layout study, keyboard/touch desktop/narrow/short and enlarged-text review; no game/protected-preview bytes or economy changes. Required source/CI/artifact/preservation gates."
+      ],
+      "exclusions": [
+        "No original-game/real accounts/cloud/expenses or undisclosed economy change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-087/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-088",
+      "title": "Playable addressed neighborhood and individual home doors",
+      "status": "queued",
+      "depends_on": [
+        "IH2-087",
+        "IH2-089"
+      ],
+      "goal": "Playable addressed neighborhood and individual home doors.",
+      "acceptance": [
+        "Implement expandable residential blocks with truthful individual exteriors/addresses, native/direct/directory approach and correct door-front exit.",
+        "Server validates correct plot door/block/instance, scoped presence and read-only visiting; preserve saved identities, ownership, placements, clocks and durable retries.",
+        "Isolated24-home/later-block/owner/visitor coverage; old saves and actual desktop/phone flows. Exact-head CI/artifact/preview and protected practice gates."
+      ],
+      "exclusions": [
+        "No original-game/real accounts/cloud/expenses or undisclosed economy change."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/FIRST_CITY_LAYOUT.md"
+      ]
+    },
+    {
+      "id": "IH2-089",
+      "title": "Clear crafting actions and calmer menus",
+      "status": "queued",
+      "depends_on": [
+        "IH2-087"
+      ],
+      "goal": "Clear crafting actions and calmer menus.",
+      "acceptance": [
+        "Use independent Terra desktop/phone first-use/return audit to lead with action, output, material cost, duration and readiness; optional flavor/details.",
+        "Stable focus and controls, truthful disabled reasons, explicit once-only claim and pending-request recovery. No economy/timer/ownership changes.",
+        "Actual ordinary-input desktop/phone/short/doubled-text checks and full exact-head source/CI/artifact/preview preservation gates."
+      ],
+      "exclusions": [
+        "No original-game/real accounts/cloud/expenses or undisclosed economy change."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/FIRST_CITY_LAYOUT.md"
+      ]
+    },
+    {
+      "id": "IH2-090",
+      "title": "Distinct residential exteriors and purposeful ambient life",
+      "status": "queued",
+      "depends_on": [
+        "IH2-088"
+      ],
+      "goal": "Distinct residential exteriors and purposeful ambient life.",
+      "acceptance": [
+        "Original starter/expanded exterior family with distinct silhouettes/shared feet/recognizable upgrades and coherent vegetation/streets.",
+        "Purposeful bounded cosmetic life preserves collision, occlusion, reduced/hidden/offscreen controls and all clocks/state.",
+        "Art/provenance, actual camera/phone/visitor screenshots, payload/frame evidence and full required gates."
+      ],
+      "exclusions": [
+        "No original-game/real accounts/cloud/expenses or undisclosed economy change."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/FIRST_CITY_LAYOUT.md"
       ]
     },
     {

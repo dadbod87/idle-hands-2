@@ -1,0 +1,39 @@
+{
+  "actualFinalCIClientFiles": 191,
+  "allBytesEqualReviewedBuild": true,
+  "oldArtByteIdentical": 185,
+  "selectedImages": [
+    {
+      "file": "rain-world-desktop-before.png",
+      "sha256": "efe19984d1e4102df23b3129d5fe52972ce7dd50cb5dfe5f5f2f9432b7a28811",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "rain-world-desktop-after.png",
+      "sha256": "878cf95d3a9e8c00c616b5099325ebb251e471a2e53e74cf723ac5b4c7de1bf8",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "rain-world-desktop-resize.png",
+      "sha256": "8262db2c1b598b46b0c2c07ba2aa94cf32321d4ae4a2e02501e1ef76feecde5c",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "rain-world-phone-before.png",
+      "sha256": "166150d7c95347ab39e9837d33acf65d8789e24456218c87977f394e49768310",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "rain-world-phone-after.png",
+      "sha256": "4d527c0174412cd2d85407e9779533a1a4bf62ef3ae481f2ccc76d70f3e9da18",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "rain-world-phone-resize.png",
+      "sha256": "7e489039eb59c23e3c88e5f4c03bbe8a7e8a500231f7a242b895417e3b6219c3",
+      "actualUploadedCIImageReviewed": true
+    }
+  ],
+  "actualWorldPhaseAndFallProofReviewed": true,
+  "actualPopulatedRestartProofReviewed": true
+}

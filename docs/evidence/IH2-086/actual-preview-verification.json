@@ -1,0 +1,645 @@
+{
+  "classification": "Actual finalCI191file client on4175, native ordinary gathers/real5secondcraft/door exit and keyboard+touch walking. Explicit drizzle appearance URL and reduced-media only; no state/position/stock/production-clock or response fixture. Emulation is not physical phone.",
+  "all191ResponsesEqualCI": true,
+  "htmlSha256": "6a0962f1a3697d27e4b55e2bcd31d846fafb15e4a45e21cb1f4053a9bfc7a8a2",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "samples": [
+        {
+          "camera": {
+            "x": 0,
+            "y": 381.1
+          },
+          "fall": 2.6639000000000004,
+          "enabled": true,
+          "phase": {
+            "x": 0,
+            "y": 288
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 0,
+            "y": 381.1
+          },
+          "fall": 26.62738333333333,
+          "enabled": true,
+          "phase": {
+            "x": 0,
+            "y": 288.0000166666667
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 1.9999999999998863,
+            "y": 381.1
+          },
+          "fall": 43.601883333333326,
+          "enabled": true,
+          "phase": {
+            "x": -1.1368683772161603e-13,
+            "y": 288.0000166666667
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 33.999999999999886,
+            "y": 381.1
+          },
+          "fall": 60.577516666666654,
+          "enabled": true,
+          "phase": {
+            "x": -1.1368683772161603e-13,
+            "y": 287.9999833333334
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 65.99999999999989,
+            "y": 381.1
+          },
+          "fall": 77.55428333333334,
+          "enabled": true,
+          "phase": {
+            "x": -1.1368683772161603e-13,
+            "y": 288.0000166666667
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 100.67200000000003,
+            "y": 381.1
+          },
+          "fall": 95.94148333333334,
+          "enabled": true,
+          "phase": {
+            "x": 2.842170943040401e-14,
+            "y": 287.9999966666667
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 103.34400000000005,
+            "y": 413.1
+          },
+          "fall": 19.74421666666665,
+          "enabled": true,
+          "phase": {
+            "x": 5.684341886080802e-14,
+            "y": 384.0000033333334
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 103.34400000000005,
+            "y": 447.75599999999986
+          },
+          "fall": 38.12914999999997,
+          "enabled": true,
+          "phase": {
+            "x": 5.684341886080802e-14,
+            "y": 383.9999499999999
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 103.34400000000005,
+            "y": 479.75599999999986
+          },
+          "fall": 55.10421666666662,
+          "enabled": true,
+          "phase": {
+            "x": 5.684341886080802e-14,
+            "y": 383.99998333333326
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 103.34400000000005,
+            "y": 511.7560000000003
+          },
+          "fall": 72.09089999999995,
+          "enabled": true,
+          "phase": {
+            "x": 5.684341886080802e-14,
+            "y": 480.00000000000034
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 103.34400000000005,
+            "y": 543.7560000000004
+          },
+          "fall": 89.08834999999995,
+          "enabled": true,
+          "phase": {
+            "x": 5.684341886080802e-14,
+            "y": 479.9999500000005
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 68.68799999999999,
+            "y": 543.7560000000004
+          },
+          "fall": 12.91884999999995,
+          "enabled": true,
+          "phase": {
+            "x": -1.4210854715202004e-14,
+            "y": 479.99995000000047
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 36.68799999999976,
+            "y": 543.7560000000004
+          },
+          "fall": 29.921399999999956,
+          "enabled": true,
+          "phase": {
+            "x": -2.4158453015843406e-13,
+            "y": 480.00000000000045
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 4.687999999999761,
+            "y": 543.7560000000004
+          },
+          "fall": 46.918849999999956,
+          "enabled": true,
+          "phase": {
+            "x": -2.389199948993337e-13,
+            "y": 479.9999500000004
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 0,
+            "y": 543.7560000000004
+          },
+          "fall": 63.919699999999956,
+          "enabled": true,
+          "phase": {
+            "x": 0,
+            "y": 480.0000000000004
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 0,
+            "y": 543.7560000000004
+          },
+          "fall": 80.91544999999995,
+          "enabled": true,
+          "phase": {
+            "x": 0,
+            "y": 480.00005000000044
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 0,
+            "y": 511.75600000000054
+          },
+          "fall": 3.3340999999999514,
+          "enabled": true,
+          "phase": {
+            "x": 0,
+            "y": 480.00000000000057
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 0,
+            "y": 479.7400000000007
+          },
+          "fall": 20.334949999999957,
+          "enabled": true,
+          "phase": {
+            "x": 0,
+            "y": 383.99995000000075
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 0,
+            "y": 447.75600000000065
+          },
+          "fall": 37.33324999999996,
+          "enabled": true,
+          "phase": {
+            "x": 0,
+            "y": 383.9999500000007
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 0,
+            "y": 415.7560000000003
+          },
+          "fall": 54.330699999999936,
+          "enabled": true,
+          "phase": {
+            "x": 0,
+            "y": 384.0000000000004
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 0,
+            "y": 383.75599999999986
+          },
+          "fall": 71.33324999999994,
+          "enabled": true,
+          "phase": {
+            "x": 0,
+            "y": 287.9999499999999
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 158.0319999999998,
+            "y": 504.75599999999986
+          },
+          "fall": 6.488299999999967,
+          "enabled": true,
+          "phase": {
+            "x": -1.9895196601282805e-13,
+            "y": 479.9999999999999
+          },
+          "coverage": true
+        }
+      ],
+      "realCraftJob": {
+        "recipe": "planter",
+        "startedAt": 1794522176222,
+        "readyAt": 1794522181222
+      },
+      "jobDeadlineAndHeldFieldsPreserved": true,
+      "liveModeRestored": true,
+      "reducedMotionVerified": true,
+      "noProtectedIdentitySelected": true,
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "samples": [
+        {
+          "camera": {
+            "x": 462,
+            "y": 502.69375
+          },
+          "fall": 2.5664333236058554,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 480.0000166763942
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 494.0157122965737,
+            "y": 502.82947819536105
+          },
+          "fall": 25.201088990272517,
+          "enabled": true,
+          "phase": {
+            "x": 383.9997122965737,
+            "y": 479.9999992050885
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 526.0154247369272,
+            "y": 502.9651385605398
+          },
+          "fall": 42.17332232360585,
+          "enabled": true,
+          "phase": {
+            "x": 384.00042473692724,
+            "y": 480.00001623693396
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 557.9991373210605,
+            "y": 503.10073109553593
+          },
+          "fall": 59.148388990272515,
+          "enabled": true,
+          "phase": {
+            "x": 384.0001373210605,
+            "y": 480.0000421052634
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 558,
+            "y": 503.1007347527982
+          },
+          "fall": 73.29352232360584,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 480.0000124291924
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 558,
+            "y": 503.1007347527982
+          },
+          "fall": 93.07132232360584,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 480.00001242919234
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 558,
+            "y": 535.1007347527986
+          },
+          "fall": 23.915455656939244,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 479.99997909585943
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 558,
+            "y": 567.116734752799
+          },
+          "fall": 40.89108899027263,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 480.0000457625263
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 558,
+            "y": 599.1167347527992
+          },
+          "fall": 57.86048899027265,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 576.0000457625265
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 558,
+            "y": 599.6799026051367
+          },
+          "fall": 72.00250565693933,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 575.9999969481973
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 558,
+            "y": 599.6799026051367
+          },
+          "fall": 91.83130565693934,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 575.9999969481973
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 526.0162874482567,
+            "y": 599.8155027800956
+          },
+          "fall": 22.744005656939336,
+          "enabled": true,
+          "phase": {
+            "x": 384.0002874482567,
+            "y": 575.9999971231563
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 494.01657504030936,
+            "y": 599.951170789059
+          },
+          "fall": 39.741455656939344,
+          "enabled": true,
+          "phase": {
+            "x": 383.99957504030937,
+            "y": 576.0000151321196
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 462.01686263236206,
+            "y": 600.0868387980225
+          },
+          "fall": 56.742305656939344,
+          "enabled": true,
+          "phase": {
+            "x": 383.99996263236204,
+            "y": 576.0000331410831
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 462,
+            "y": 600.0869102899076
+          },
+          "fall": 70.90755565693935,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 575.9999546329682
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 462,
+            "y": 600.0869102899076
+          },
+          "fall": 87.90755565693935,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 575.9999546329682
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 462,
+            "y": 568.0709102899073
+          },
+          "fall": 8.90925565693935,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 479.9999546329679
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 462,
+            "y": 536.0869102899073
+          },
+          "fall": 25.90670565693936,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 480.00000463296794
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 462,
+            "y": 504.32170728131905
+          },
+          "fall": 42.905005656939366,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 480.0000016243797
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 462,
+            "y": 504.32170728131905
+          },
+          "fall": 57.073655656939366,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 479.99995162437966
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 462,
+            "y": 504.32170728131905
+          },
+          "fall": 75.49060565693937,
+          "enabled": true,
+          "phase": {
+            "x": 384,
+            "y": 480.0000016243797
+          },
+          "coverage": true
+        },
+        {
+          "camera": {
+            "x": 220,
+            "y": 598.227957281319
+          },
+          "fall": 9.233805656939367,
+          "enabled": true,
+          "phase": {
+            "x": 192,
+            "y": 575.9999516243797
+          },
+          "coverage": true
+        }
+      ],
+      "realCraftJob": {
+        "recipe": "planter",
+        "startedAt": 1794522188411,
+        "readyAt": 1794522193411
+      },
+      "jobDeadlineAndHeldFieldsPreserved": true,
+      "liveModeRestored": true,
+      "reducedMotionVerified": true,
+      "noProtectedIdentitySelected": true,
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

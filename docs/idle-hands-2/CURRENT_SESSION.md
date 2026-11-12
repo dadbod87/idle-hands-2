@@ -1,3 +1,5 @@
-# IH2-086 — world-anchored rain in progress
+# IH2-087 — first-city plan and blueprint in progress
 
-Owner explicitly requests correcting rain following player movement. Branch fix/world-anchored-rain from retained085closeout0443cc4; acceptedmainef5a796. [Plan](../evidence/IH2-086/PLAN.md). Only world-relative cosmetic rain projection and regression checks. Actual4175still immutable085PID47625/session75556; API4186PID83080/session34638unchanged. Preserve protected13tables/key/sixchecksums and all historical studies. No hosted/original-game/account/cloud changes. Required final gates pending.
+Owner authorizes continued consecutive bounded local sections until near10%shared weekly reserve, with larger coherent first city, visible/enterable neighbor homes, lively art and clear crafting/menus. Newest instruction supersedes earlier one-task-per-prompt limit for this session; verification/release gates remain. Branch feat/ledgerwick-neighborhood-plan from retained086closeout29b5b95. [Plan](../evidence/IH2-087/PLAN.md), [city plan](design/FIRST_CITY_LAYOUT.md).
+
+Current game4175immutable086client/static72060/session69523; API4186PID83080/session34638unchanged. Protect13tables/key/sixchecksums and historical studies.087study is separate, no game/economy changes.088real residential block/doors,089crafting clarity and090art/life queued under own gates. Terra auditing accepted086local crafting/menu comprehension, no protected shared identities. Latest usage37%used/63%remaining,no resets;10%reserve. No cloud/original-game/real-account/expense approval.

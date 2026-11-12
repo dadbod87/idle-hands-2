@@ -1,0 +1,64 @@
+{
+  "classification": "Candidate layout study, no runtime or economy integration",
+  "block": {
+    "width": 64,
+    "height": 64
+  },
+  "homes": 24,
+  "streets": [
+    "Clover Court",
+    "Copper Row",
+    "Birch Bend",
+    "Larkspur Lane"
+  ],
+  "files": [
+    {
+      "source": "public/art/homes/home-starter-exterior.svg",
+      "file": "art/home-starter-exterior.svg",
+      "sha256": "7cff4118776b04127e17f9d9b5b2faa3ca6848d7d4268be133c3c661f411e8bd",
+      "license": "Original accepted repository art, reused unchanged for candidate layout."
+    },
+    {
+      "source": "public/art/homes/home-expanded-exterior.svg",
+      "file": "art/home-expanded-exterior.svg",
+      "sha256": "c6680ceecc64cf805a14fe7a7070834a8081ae9b5b447469323462fe21b62c65",
+      "license": "Original accepted repository art, reused unchanged for candidate layout."
+    },
+    {
+      "source": "public/art/variety/tree-oak-trunk.svg",
+      "file": "art/tree-oak-trunk.svg",
+      "sha256": "71ba673ac11dfc610a4fb509e30cde25804f2da0cf882c74d190c5cce66b42aa",
+      "license": "Original accepted repository art, reused unchanged for candidate layout."
+    },
+    {
+      "source": "public/art/variety/tree-oak-canopy.svg",
+      "file": "art/tree-oak-canopy.svg",
+      "sha256": "5171c9ef3b13bba0b398390637043e201f3ce4743eafe548a375723dc58acf2e",
+      "license": "Original accepted repository art, reused unchanged for candidate layout."
+    },
+    {
+      "source": "public/art/variety/tree-birch-trunk.svg",
+      "file": "art/tree-birch-trunk.svg",
+      "sha256": "bb3feff780663ffd678dfe1318ed64d87fe88ad03f477ce4d7eb28024b752b46",
+      "license": "Original accepted repository art, reused unchanged for candidate layout."
+    },
+    {
+      "source": "public/art/variety/tree-birch-canopy.svg",
+      "file": "art/tree-birch-canopy.svg",
+      "sha256": "23438973e085bc39d01216359d27bea7d8c3c7f93173e0e45adf9c843a7057a2",
+      "license": "Original accepted repository art, reused unchanged for candidate layout."
+    },
+    {
+      "source": "public/art/variety/tree-fruit-trunk.svg",
+      "file": "art/tree-fruit-trunk.svg",
+      "sha256": "67684dc81fc049aaa5755eba818d0125c6ddc744703a2739d91bd503b63dda1f",
+      "license": "Original accepted repository art, reused unchanged for candidate layout."
+    },
+    {
+      "source": "public/art/variety/tree-fruit-canopy.svg",
+      "file": "art/tree-fruit-canopy.svg",
+      "sha256": "a8ce3f124244c873a9036cffd423c70b1927f311de0a315d202e6eb536431d34",
+      "license": "Original accepted repository art, reused unchanged for candidate layout."
+    }
+  ]
+}

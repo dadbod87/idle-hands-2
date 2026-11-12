@@ -1,0 +1,74 @@
+{
+  "classification": "Actual fresh browser-only five-minute paid craft, native Chrome actual input and real wall clock",
+  "origin": "http://127.0.0.1:49526/",
+  "disclosure": "New isolated empty browser context. No addInitScript, saved-state fixture, position/clock/stock grant, route interception or API/database/real account. Actual walking, free route, saw lesson/equip/pine,300000mscrop,harvest,review/payment,placement/reload. Known-answer agent flow is not human reading or retention evidence.",
+  "timeline": [
+    {
+      "event": "fresh-zero-progress",
+      "at": 1794483867580
+    },
+    {
+      "event": "first-real-five-minute-radish-planted",
+      "at": 1794483870717
+    },
+    {
+      "event": "free-route-accepted",
+      "at": 1794483873798
+    },
+    {
+      "event": "delivered-carpentry-desk",
+      "at": 1794483878815
+    },
+    {
+      "event": "actual-saw-lesson-equipped-and-six-pine-gathered",
+      "at": 1794483881015
+    },
+    {
+      "event": "delivered-clerk",
+      "at": 1794483884079
+    },
+    {
+      "event": "delivered-caretaker",
+      "at": 1794483887161
+    },
+    {
+      "event": "free-route-card-plan-completed",
+      "at": 1794483888230
+    },
+    {
+      "event": "actual-time-radish-harvested",
+      "at": 1794484171639
+    },
+    {
+      "event": "actual-fresh-letterbox-paid-once",
+      "at": 1794484174835
+    },
+    {
+      "event": "reload-kept-paid-ownership-and-placement",
+      "at": 1794484177780
+    }
+  ],
+  "crop": {
+    "crop": "radish",
+    "plantedAt": 1794483870690,
+    "readyAt": 1794484170690,
+    "cared": false
+  },
+  "paid": {
+    "owned": 1,
+    "made": 1,
+    "pineCarried": 4,
+    "pineSpent": 2,
+    "radishConsumed": 1,
+    "motif": "moth"
+  },
+  "ordinaryJobInventorySkillsUnchanged": true,
+  "errors": [],
+  "bad": [],
+  "api": [],
+  "limits": [
+    "Browser-only local-save authority; real SQL/HTTP/restart proof is separate",
+    "Emulated desktop/phone, not physical phone/Safari",
+    "No hosted game or real-player change"
+  ]
+}

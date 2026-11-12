@@ -1,0 +1,656 @@
+{
+  "htmlSha256": "ea712d623c626f75ac55cfd66c04853caf2fe11993468f0e07dbbd397885d5d5",
+  "base": "http://127.0.0.1:49525/",
+  "classification": "Compiled game actual desktop/phone/short input and captures; not physical phone or human-recognition proof",
+  "disclosure": "Independent fresh empty contexts, no injected save/position/stock/production clock or response interception. Explicit cosmetic sky-study day/night only; actual job clocks stay real. Doubled DOM text and touch are emulation. Actual normal body taps and collection, no Places directory.",
+  "rows": [
+    {
+      "name": "desktop-day",
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "phase": "day",
+      "depots": [
+        {
+          "resource": "scrap",
+          "key": "depot-scrap",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 660,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 671,
+            "y": 880.4447265625,
+            "width": 34,
+            "height": 18.310546875
+          },
+          "label": "Scrap"
+        },
+        {
+          "resource": "timber",
+          "key": "depot-timber",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 724,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 731,
+            "y": 880.4447265625,
+            "width": 42,
+            "height": 18.310546875
+          },
+          "label": "Timber"
+        },
+        {
+          "resource": "supplies",
+          "key": "depot-supplies",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 788,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 792,
+            "y": 880.4447265625,
+            "width": 48,
+            "height": 18.310546875
+          },
+          "label": "Supplies"
+        }
+      ],
+      "labelFrames": [
+        {
+          "resource": "scrap",
+          "top": 412.9447265625,
+          "bottom": 431.2552734375,
+          "canvasHeight": 697
+        },
+        {
+          "resource": "timber",
+          "top": 412.9447265625,
+          "bottom": 431.2552734375,
+          "canvasHeight": 697
+        },
+        {
+          "resource": "supplies",
+          "top": 412.9447265625,
+          "bottom": 431.2552734375,
+          "canvasHeight": 697
+        }
+      ],
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": [
+        "/art/depots/depot-scrap.svg",
+        "/art/depots/depot-timber.svg",
+        "/art/depots/depot-supplies.svg"
+      ]
+    },
+    {
+      "name": "desktop-night",
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "phase": "night",
+      "depots": [
+        {
+          "resource": "scrap",
+          "key": "depot-scrap",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 660,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 671,
+            "y": 880.4447265625,
+            "width": 34,
+            "height": 18.310546875
+          },
+          "label": "Scrap"
+        },
+        {
+          "resource": "timber",
+          "key": "depot-timber",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 724,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 731,
+            "y": 880.4447265625,
+            "width": 42,
+            "height": 18.310546875
+          },
+          "label": "Timber"
+        },
+        {
+          "resource": "supplies",
+          "key": "depot-supplies",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 788,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 792,
+            "y": 880.4447265625,
+            "width": 48,
+            "height": 18.310546875
+          },
+          "label": "Supplies"
+        }
+      ],
+      "labelFrames": [
+        {
+          "resource": "scrap",
+          "top": 412.9447265625,
+          "bottom": 431.2552734375,
+          "canvasHeight": 697
+        },
+        {
+          "resource": "timber",
+          "top": 412.9447265625,
+          "bottom": 431.2552734375,
+          "canvasHeight": 697
+        },
+        {
+          "resource": "supplies",
+          "top": 412.9447265625,
+          "bottom": 431.2552734375,
+          "canvasHeight": 697
+        }
+      ],
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": [
+        "/art/depots/depot-scrap.svg",
+        "/art/depots/depot-timber.svg",
+        "/art/depots/depot-supplies.svg"
+      ]
+    },
+    {
+      "name": "phone-day",
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "phase": "day",
+      "depots": [
+        {
+          "resource": "scrap",
+          "key": "depot-scrap",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 660,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 671,
+            "y": 880.4447265625,
+            "width": 34,
+            "height": 18.310546875
+          },
+          "label": "Scrap"
+        },
+        {
+          "resource": "timber",
+          "key": "depot-timber",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 724,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 731,
+            "y": 880.4447265625,
+            "width": 42,
+            "height": 18.310546875
+          },
+          "label": "Timber"
+        },
+        {
+          "resource": "supplies",
+          "key": "depot-supplies",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 788,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 792,
+            "y": 880.4447265625,
+            "width": 48,
+            "height": 18.310546875
+          },
+          "label": "Supplies"
+        }
+      ],
+      "labelFrames": [
+        {
+          "resource": "scrap",
+          "top": 271.3509765625,
+          "bottom": 289.6615234375,
+          "canvasHeight": 413
+        },
+        {
+          "resource": "timber",
+          "top": 271.3509765625,
+          "bottom": 289.6615234375,
+          "canvasHeight": 413
+        },
+        {
+          "resource": "supplies",
+          "top": 271.3509765625,
+          "bottom": 289.6615234375,
+          "canvasHeight": 413
+        }
+      ],
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": [
+        "/art/depots/depot-scrap.svg",
+        "/art/depots/depot-timber.svg",
+        "/art/depots/depot-supplies.svg"
+      ]
+    },
+    {
+      "name": "phone-night",
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "phase": "night",
+      "depots": [
+        {
+          "resource": "scrap",
+          "key": "depot-scrap",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 660,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 671,
+            "y": 880.4447265625,
+            "width": 34,
+            "height": 18.310546875
+          },
+          "label": "Scrap"
+        },
+        {
+          "resource": "timber",
+          "key": "depot-timber",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 724,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 731,
+            "y": 880.4447265625,
+            "width": 42,
+            "height": 18.310546875
+          },
+          "label": "Timber"
+        },
+        {
+          "resource": "supplies",
+          "key": "depot-supplies",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 788,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 792,
+            "y": 880.4447265625,
+            "width": 48,
+            "height": 18.310546875
+          },
+          "label": "Supplies"
+        }
+      ],
+      "labelFrames": [
+        {
+          "resource": "scrap",
+          "top": 271.3509765625,
+          "bottom": 289.6615234375,
+          "canvasHeight": 413
+        },
+        {
+          "resource": "timber",
+          "top": 271.3509765625,
+          "bottom": 289.6615234375,
+          "canvasHeight": 413
+        },
+        {
+          "resource": "supplies",
+          "top": 271.3509765625,
+          "bottom": 289.6615234375,
+          "canvasHeight": 413
+        }
+      ],
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": [
+        "/art/depots/depot-scrap.svg",
+        "/art/depots/depot-timber.svg",
+        "/art/depots/depot-supplies.svg"
+      ]
+    },
+    {
+      "name": "short200-day",
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "touch": true
+      },
+      "phase": "day",
+      "depots": [
+        {
+          "resource": "scrap",
+          "key": "depot-scrap",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 660,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 671,
+            "y": 880.4447265625,
+            "width": 34,
+            "height": 18.310546875
+          },
+          "label": "Scrap"
+        },
+        {
+          "resource": "timber",
+          "key": "depot-timber",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 724,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 731,
+            "y": 880.4447265625,
+            "width": 42,
+            "height": 18.310546875
+          },
+          "label": "Timber"
+        },
+        {
+          "resource": "supplies",
+          "key": "depot-supplies",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 788,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 792,
+            "y": 880.4447265625,
+            "width": 48,
+            "height": 18.310546875
+          },
+          "label": "Supplies"
+        }
+      ],
+      "labelFrames": [
+        {
+          "resource": "scrap",
+          "top": 184.94472656250002,
+          "bottom": 203.25527343750002,
+          "canvasHeight": 241
+        },
+        {
+          "resource": "timber",
+          "top": 184.94472656250002,
+          "bottom": 203.25527343750002,
+          "canvasHeight": 241
+        },
+        {
+          "resource": "supplies",
+          "top": 184.94472656250002,
+          "bottom": 203.25527343750002,
+          "canvasHeight": 241
+        }
+      ],
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": [
+        "/art/depots/depot-scrap.svg",
+        "/art/depots/depot-timber.svg",
+        "/art/depots/depot-supplies.svg"
+      ]
+    },
+    {
+      "name": "short200-night",
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "touch": true
+      },
+      "phase": "night",
+      "depots": [
+        {
+          "resource": "scrap",
+          "key": "depot-scrap",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 660,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 671,
+            "y": 880.4447265625,
+            "width": 34,
+            "height": 18.310546875
+          },
+          "label": "Scrap"
+        },
+        {
+          "resource": "timber",
+          "key": "depot-timber",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 724,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 731,
+            "y": 880.4447265625,
+            "width": 42,
+            "height": 18.310546875
+          },
+          "label": "Timber"
+        },
+        {
+          "resource": "supplies",
+          "key": "depot-supplies",
+          "depth": 928,
+          "bounds": {
+            "type": 5,
+            "x": 788,
+            "y": 888,
+            "width": 56,
+            "height": 48
+          },
+          "labelBounds": {
+            "type": 5,
+            "x": 792,
+            "y": 880.4447265625,
+            "width": 48,
+            "height": 18.310546875
+          },
+          "label": "Supplies"
+        }
+      ],
+      "labelFrames": [
+        {
+          "resource": "scrap",
+          "top": 184.94472656250002,
+          "bottom": 203.25527343750002,
+          "canvasHeight": 241
+        },
+        {
+          "resource": "timber",
+          "top": 184.94472656250002,
+          "bottom": 203.25527343750002,
+          "canvasHeight": 241
+        },
+        {
+          "resource": "supplies",
+          "top": 184.94472656250002,
+          "bottom": 203.25527343750002,
+          "canvasHeight": 241
+        }
+      ],
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": [
+        "/art/depots/depot-scrap.svg",
+        "/art/depots/depot-timber.svg",
+        "/art/depots/depot-supplies.svg"
+      ]
+    }
+  ]
+}

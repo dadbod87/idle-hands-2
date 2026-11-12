@@ -63,3 +63,5 @@ Read [PRIVATE_PREVIEW_PLAN](PRIVATE_PREVIEW_PLAN.md) and [060evidence](../eviden
 For the owner-facing review and next decision, start with [OWNER_REVIEW](OWNER_REVIEW.md). Source/CI closeout remains separate from a hosted release.
 
 [Activity-depth research and current gaps](ACTIVITY_DEPTH.md): parallel goals, humorous teamwork and personal expression. IH2-062 is the first finite off-bench collection layer; future garden/services/equipment are still planned.
+
+November12:073source/localpreviewaccepted;074material-depotartactive. [Current handoff](CURRENT_SESSION.md), [073closeout](../evidence/IH2-073/source-closeout.json). No hostedrelease.

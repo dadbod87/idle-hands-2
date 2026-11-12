@@ -1,6 +1,6 @@
 # IH2-073 — current actions first
 
-Working UI candidate, November 12, 2026. Branch `feat/current-actions-first` from accepted audit merge `c72c3a7`; initial checkpoint `141844a`. [Contract](../../idle-hands-2/CURRENT_ACTIONS_FIRST.md). This task is not source accepted or installed in the protected preview yet.
+Source/local-preview accepted, November12,2026. Branch `feat/current-actions-first` from accepted audit merge `c72c3a7`; initial checkpoint `141844a`. [Contract](../../idle-hands-2/CURRENT_ACTIONS_FIRST.md). PR22 merged as `a353f84`; exact candidate`e4f54a1`passed CI43210519289bothSUCCESS256/75. [Closeout](source-closeout.json). Immutable finalCIartifact now serves protected4175; all13practice tables/key/migrations preserved. No hosted or original-game change.
 
 ## Current change
 
@@ -18,7 +18,7 @@ No gameplay rule, cost, timer, item identity, ownership calculation, server, mig
 
 A held-pointer case additionally reproduced 32 px of preview-button movement before mouse-up. The keyboard-only focus guard reduces that measured movement to zero while retaining explicit quote/cancel and native keyboard uncovering. [Pointer result](garden-pointer-focus.json).
 
-Fourteen focused checks passed, including the existing commission, garden, phone, wrong-recipient, paid quote, lost committed response, stale panel, visitor and stable-planting flows. The post regression also makes an actual free motif save at Pip and verifies one owned item through reload. Subsequent receipt-retry handling has its own passing real-server case; a complete75-case run passed in9.8minutes before the final short-at-Pip CSS refinement. Final expanded checks remain pending.
+Fourteen focused checks passed, including the existing commission, garden, phone, wrong-recipient, paid quote, lost committed response, stale panel, visitor and stable-planting flows. The post regression also makes an actual free motif save at Pip and verifies one owned item through reload. Subsequent receipt-retry handling has its own passing real-server case; a complete75-case run passed in9.8minutes before the final short-at-Pip CSS refinement. The final expanded75-case run also passed9.8minutes.
 
 [Rejected retry regression](garden-rejected-retry-receipt.json): a fictional ordinary resident's first request is intercepted before reaching the server. A second legal same-resident API planting advances revision. The identical retry is definitively stale; a later actual free UI bed swap must not fabricate a paid receipt. Exactly one planting and one seed debit remain. This is disposable `ih2_browser`, not the protected town or a real account. The first probe omitted the required Origin and was correctly refused before mutation; the corrected request uses the current local game's Origin.
 
@@ -28,8 +28,8 @@ Before/after observation covers five post situations (fresh, card-only, owned, p
 
 The additional short200 proximity probe found that hiding the already-unneeded Walk control still left motif choices partly covered. Compact short-only thumbnails/margins and a concise kept-card summary now keep the whole choice above feedback (204.33–315.28px, footer330px). An independent image reviewer confirms both0/1 and1/1 states; short-screen Save/review still requires scrolling. The original probe log survives; its initial PNGs were superseded by recaptures. Tests now include both completed proximity states.
 
-## Verification and remaining gates
+## Final verification
 
-Final source domain/SQL suite passes256with zero skips in48.561seconds. Strict build/design/plan checks,10tracker checks,40pinned skills and diff check pass. The final75browser run is active after the proximity refinement. [Payload](presentation-cost.json):174files,168unchangedoriginalartfiles,+4,061rawbytes/+1,080gzip-each-file bytes. Domain/server/migration/dependency/workflow source is identical to accepted072. Remaining: final75browser result; both exact-final-head CI jobs and actual uploaded build/images; matching-tree merge and preserved local preview update. Required checks are not yet claimed as complete for this task.
+Final source domain/SQL suite passes256with zero skips in48.561seconds. Strict build/design/plan checks,10tracker checks,40pinned skills and diff check pass. The final expanded75browser run passes9.8minutes after the proximity refinement. [Payload](presentation-cost.json):174files,168unchangedoriginalartfiles,+4,061rawbytes/+1,080gzip-each-file bytes. Domain/server/migration/dependency/workflow source is identical to accepted072. Both exact-final-headCIjobs passed:256domain/zero skips68.453s,75browser14.6m. Actual client/server/browser artifacts and7uploadedCIimages inspected;174files equal reviewed local. Candidate/merge trees match; clean main=remote verified. Actual finalartifact fresh300000msradish→paid2pine+1radish→oneletterbox→placement/reload passes without fixtures/interception. Actual4175all174responses and native desktop/360fresh free route/reload pass; selectedimages reviewed. All13practice tables/onefictionalresident/key/migrations unchanged, API not restarted. Required task gates are complete.
 
-The accepted preview remains on port 4175 with the unchanged protocol-3 API on 4186. Port 49525 is a local candidate study only. No hosted, original-game, account or paid-service change.
+The accepted073preview is on4175with unchanged protocol3API4186. Port 49525 is a local candidate study only. No hosted, original-game, account or paid-service change.

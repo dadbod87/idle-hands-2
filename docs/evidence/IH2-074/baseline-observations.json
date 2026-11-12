@@ -1,0 +1,146 @@
+{
+  "htmlSha256": "065fd2f689198ae6c1d838526f69cb75deabaf30e5fafc94f8000d75379abfd1",
+  "base": "http://127.0.0.1:4175/",
+  "classification": "Compiled game actual desktop/phone/short input and captures; not physical phone or human-recognition proof",
+  "disclosure": "Independent fresh empty contexts, no injected save/position/stock/production clock or response interception. Explicit cosmetic sky-study day/night only; actual job clocks stay real. Doubled DOM text and touch are emulation. Actual normal body taps and collection, no Places directory.",
+  "rows": [
+    {
+      "name": "desktop-day",
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "phase": "day",
+      "depots": null,
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": []
+    },
+    {
+      "name": "desktop-night",
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "phase": "night",
+      "depots": null,
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": []
+    },
+    {
+      "name": "phone-day",
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "phase": "day",
+      "depots": null,
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": []
+    },
+    {
+      "name": "phone-night",
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "phase": "night",
+      "depots": null,
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": []
+    },
+    {
+      "name": "short200-day",
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "touch": true
+      },
+      "phase": "day",
+      "depots": null,
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": []
+    },
+    {
+      "name": "short200-night",
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "touch": true
+      },
+      "phase": "night",
+      "depots": null,
+      "initialRevision": 0,
+      "finalRevision": 3,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "otherProgressPreserved": true,
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "depotAssets": []
+    }
+  ]
+}

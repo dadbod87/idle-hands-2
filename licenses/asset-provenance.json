@@ -1581,6 +1581,36 @@
       "source": "tools/promote-commission-art.py",
       "date": "2026-11-12",
       "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "depot-scrap",
+      "path": "public/art/depots/depot-scrap.svg",
+      "sha256": "154806f1bcac576cc9e1837e1cbf18616974c411a4cdaac0d314c3ad2f515156",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-depot-art.py",
+      "date": "2026-11-12",
+      "modifications": "Original static scrap bin, sawn timber and stationery crate. Decorative contents are not exact stock quantities. No imported media."
+    },
+    {
+      "id": "depot-supplies",
+      "path": "public/art/depots/depot-supplies.svg",
+      "sha256": "176b051f48cf27aa533748711942cf172c4644cc6cd0b1a5405abd772227939b",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-depot-art.py",
+      "date": "2026-11-12",
+      "modifications": "Original static scrap bin, sawn timber and stationery crate. Decorative contents are not exact stock quantities. No imported media."
+    },
+    {
+      "id": "depot-timber",
+      "path": "public/art/depots/depot-timber.svg",
+      "sha256": "e60fc4a7ffcf3b217e684056228ff9fe2e76e18aa54594659b42e190f6f1adc6",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-depot-art.py",
+      "date": "2026-11-12",
+      "modifications": "Original static scrap bin, sawn timber and stationery crate. Decorative contents are not exact stock quantities. No imported media."
     }
   ],
   "comparison": {

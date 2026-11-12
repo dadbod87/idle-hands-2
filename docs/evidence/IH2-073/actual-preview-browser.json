@@ -1,0 +1,46 @@
+{
+  "classification": "Actual4175acceptedCIartifact nativeChrome verification; local fictional browser-only practice, not hosted production or physical phone",
+  "candidate": "e4f54a1cc6acfc0c97703ff3fbba8c2b052dc26c",
+  "htmlSha256": "065fd2f689198ae6c1d838526f69cb75deabaf30e5fafc94f8000d75379abfd1",
+  "disclosure": "Fresh isolated browser contexts. Actual pointer on desktop/touch taps on360phone and normal travel/handovers. No injected clock/state/stock/position, API interception, shared login or real-player changes.",
+  "results": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "order": [
+        "clerk",
+        "caretaker",
+        "carpentry-desk"
+      ],
+      "freeCard": true,
+      "physicalBox": 0,
+      "earlierProgressUnchanged": true,
+      "reload": true,
+      "errors": [],
+      "bad": [],
+      "api": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "order": [
+        "clerk",
+        "caretaker",
+        "carpentry-desk"
+      ],
+      "freeCard": true,
+      "physicalBox": 0,
+      "earlierProgressUnchanged": true,
+      "reload": true,
+      "errors": [],
+      "bad": [],
+      "api": []
+    }
+  ]
+}

@@ -1,6 +1,10 @@
 # Idle Hands 2 — current state
 
-IH2-072 audit source accepted: PR21/merge `c72c3a7`, exact `2ac20e1`, CI43195544470 both SUCCESS (256 domain/zero skips,72 browser15.5m). Actual174unchanged game files/eight selected CI captures reviewed, matching tree and clean main=remote. Eighteen disclosed situation/viewports and real15minute/3minute-absence observation support ranked findings. [Closeout](evidence/IH2-072/source-closeout.json). IH2-073 current actions first is active on `feat/current-actions-first`; accepted071 protected preview/practice stays unchanged until its gates pass.
+IH2-073source/localpreviewaccepted: PR22/mergea353f84, exacte4f54a1CI43210519289bothSUCCESS256/75(14.6m). Actual174files/7CIimages, freshactual300000mscrop→paiduniqueletterbox→placement/reload, matchingtree/cleanmain and all13practice tables/key/migrations preserved.4175nowserves073immutableCIartifact;4186unchangedprotocol3. [Closeout](evidence/IH2-073/source-closeout.json). IH2-074materialdepotsactive on`feat/material-depots`. [Current handoff](idle-hands-2/CURRENT_SESSION.md).
+
+Earlier milestone records below are historical; use the current handoff for active work.
+
+IH2-072 audit source accepted: PR21/merge `c72c3a7`, exact `2ac20e1`, CI43195544470 both SUCCESS (256 domain/zero skips,72 browser15.5m). Actual174unchanged game files/eight selected CI captures reviewed, matching tree and clean main=remote. Eighteen disclosed situation/viewports and real15minute/3minute-absence observation support ranked findings. [Closeout](evidence/IH2-072/source-closeout.json). The later073accepted layout/preview and074activeart task are recorded above.
 
 
 November 12, 2026. Separate private dadbod87/idle-hands-2; local fictional practice only. The original game and its real accounts are unchanged.

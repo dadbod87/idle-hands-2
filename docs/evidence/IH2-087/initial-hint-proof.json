@@ -1,0 +1,58 @@
+[
+  {
+    "shape": {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000
+    },
+    "box": {
+      "x": 974.625,
+      "y": 256.515625,
+      "width": 133.375,
+      "height": 29.5
+    },
+    "fullyVisibleOnInitialView": true
+  },
+  {
+    "shape": {
+      "name": "phone",
+      "width": 360,
+      "height": 740
+    },
+    "box": {
+      "x": 206.234375,
+      "y": 378.296875,
+      "width": 133.375,
+      "height": 29.5
+    },
+    "fullyVisibleOnInitialView": true
+  },
+  {
+    "shape": {
+      "name": "narrow",
+      "width": 320,
+      "height": 640
+    },
+    "box": {
+      "x": 166.234375,
+      "y": 392.296875,
+      "width": 133.375,
+      "height": 29.5
+    },
+    "fullyVisibleOnInitialView": true
+  },
+  {
+    "shape": {
+      "name": "short",
+      "width": 844,
+      "height": 390
+    },
+    "box": {
+      "x": 428.625,
+      "y": 242.53125,
+      "width": 133.375,
+      "height": 29.5
+    },
+    "fullyVisibleOnInitialView": true
+  }
+]

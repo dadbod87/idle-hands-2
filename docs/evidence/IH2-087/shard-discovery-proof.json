@@ -1,0 +1,8 @@
+{
+  "all": 100,
+  "shard1": 50,
+  "shard2": 50,
+  "disjoint": true,
+  "unionExactlyFullSuite": true,
+  "unchangedWorkersAndRealWaits": true
+}

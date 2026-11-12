@@ -1,0 +1,61 @@
+{
+  "classification": "Separate candidate blueprint with original reused art and fictional addresses, not runtime/game progression. Native viewport/touch emulation, not physical phone.",
+  "measurements": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1000
+      },
+      "addresses": 24,
+      "nativeLocateAndKeyboard": true,
+      "panChanged": true,
+      "noHorizontalOverflow": true,
+      "controlMinimum": 44,
+      "errors": [],
+      "http": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 740
+      },
+      "addresses": 24,
+      "nativeLocateAndKeyboard": true,
+      "panChanged": true,
+      "noHorizontalOverflow": true,
+      "controlMinimum": 44,
+      "errors": [],
+      "http": []
+    },
+    {
+      "shape": {
+        "name": "narrow",
+        "width": 320,
+        "height": 640
+      },
+      "addresses": 24,
+      "nativeLocateAndKeyboard": true,
+      "panChanged": true,
+      "noHorizontalOverflow": true,
+      "controlMinimum": 44,
+      "errors": [],
+      "http": []
+    },
+    {
+      "shape": {
+        "name": "short",
+        "width": 844,
+        "height": 390
+      },
+      "addresses": 24,
+      "nativeLocateAndKeyboard": true,
+      "panChanged": true,
+      "noHorizontalOverflow": true,
+      "controlMinimum": 44,
+      "errors": [],
+      "http": []
+    }
+  ]
+}

@@ -1037,7 +1037,7 @@
     {
       "id": "IH2-087",
       "title": "First-city capacity, neighborhood layout and housing blueprint",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/ledgerwick-neighborhood-plan",
       "depends_on": [
         "IH2-086"
@@ -1052,7 +1052,9 @@
         "No original-game/real accounts/cloud/expenses or undisclosed economy change."
       ],
       "evidence": [
-        "docs/evidence/IH2-087/PLAN.md"
+        "docs/evidence/IH2-087/PLAN.md",
+        "docs/evidence/IH2-087/REPORT.md",
+        "docs/evidence/IH2-087/source-closeout.json"
       ]
     },
     {

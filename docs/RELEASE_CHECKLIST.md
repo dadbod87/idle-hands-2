@@ -139,3 +139,10 @@ IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclos
 - Old compiled hierarchy regressions fail at existing leaf/attendant bounds. Mouse down/up must not move preview, passive clocks preserve targets, native Tab/Enter keeps revisit accessible. Explicit quotes/free cancel and paid receipt controls remain stable.
 - Definite rejected planting retry clears paid receipt marker, uncertain results preserve retry, late callbacks stay with owner/current panel. No seed/produce/job mutation for free inspection/navigation.
 -256domain/SQL zero skips,75browser cases, strictbuild/design/plan/pinned40/diff and both exact-head CI jobs. Review actual uploaded artifact/images, fresh actual300000msphone crop/payment/placement/reload on final artifact, matching merge tree and clean main. Preserve all13practice tables/key/migrations before local4175static swap; unchanged4186API does not need restart. No hosted/current-game change.
+
+
+## IH2-075 expanded-home workroom
+- Strict separate two-key map/additive legacy migration, empty level1 restriction and cached3HTTP/SSE refusal; preserve original six maps and all economy/progression.
+- Locked atomic old/extra moves, rental allocations, unique box/easel, visitor denial, retry/revision/placed stats and home-planter orientation exception. Populated process/container restart and dump/restore must include both extra furnishings.
+- Native owner/visitor desktop/phone/short200 placement/move/live motif/reload plus malformed current snapshot rejection; disclose SQL/elapsed/intercepted fixtures and occlusion/device limits.
+- Both exact-head CI jobs SUCCESS, actual artifacts/images, matching merge tree/cleanmain. Before protected migration: private dump/key backup and old-column hashes across all13canonical tables; only sixth checksum/two-null map additions allowed. Preserve identities/key; never seed protected practice.

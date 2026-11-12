@@ -1,3 +1,4 @@
+import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {Pool} from 'pg';
@@ -56,7 +57,7 @@ test('a definite failed planting retry cannot become a paid receipt after a late
   await expect(page.locator('[data-garden-action=retry]')).toBeEnabled();
   // Simulate a second same-resident client with a real legal HTTP command.
   // The intercepted first request never reached SQL; this advances revision once.
-  const other=await page.request.post('/api/town/command',{headers:{Origin:new URL(page.url()).origin,'X-IH2-Schema':'3'},data:{id:randomUUID(),expectedRevision:before.revision,kind:'garden',gardenAction:{action:'plant',bed:1,crop:'radish'}}});
+  const other=await page.request.post('/api/town/command',{headers:{Origin:new URL(page.url()).origin,'X-IH2-Schema':TOWN_SCHEMA},data:{id:randomUUID(),expectedRevision:before.revision,kind:'garden',gardenAction:{action:'plant',bed:1,crop:'radish'}}});
   expect(other.status()).toBe(200);
   await page.locator('[data-garden-action=retry]').click();
   await expect(page.locator('[data-garden-action=retry]')).toBeHidden();

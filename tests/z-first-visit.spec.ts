@@ -1,3 +1,4 @@
+import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
 
@@ -21,7 +22,7 @@ async function point(page:Page,x:number,y:number){
  await page.touchscreen.tap(canvas.x+screen.x,canvas.y+screen.y);
 }
 async function bag(page:Page){await page.getByRole('button',{name:'Bag & journal',exact:true}).tap();await expect(page.locator('[data-quest]')).toBeVisible();}
-async function snapshot(page:Page){const response=await page.request.get('/api/town/snapshot',{headers:{'X-IH2-Schema':'3'}});expect(response.status()).toBe(200);return(await response.json()).snapshot;}
+async function snapshot(page:Page){const response=await page.request.get('/api/town/snapshot',{headers:{'X-IH2-Schema':TOWN_SCHEMA}});expect(response.status()).toBe(200);return(await response.json()).snapshot;}
 
 test('fresh phone resident: real first planter, queued return job, sixty-second upkeep and independent trail discovery',async({browser})=>{
  test.setTimeout(process.env.CI?300_000:120_000);

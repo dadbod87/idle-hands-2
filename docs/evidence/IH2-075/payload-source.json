@@ -1,0 +1,13 @@
+{
+  "classification": "Local built candidate versus accepted074 CI artifact; no hosted performance claim",
+  "files": 178,
+  "beforeFiles": 178,
+  "rawBytes": 3275925,
+  "beforeRawBytes": 3274197,
+  "perFileGzipBytes": 583865,
+  "beforePerFileGzipBytes": 583849,
+  "oldArtFiles": 172,
+  "unchangedOldArtFiles": 172,
+  "htmlSha256": "f719b650b93abce6c57bd5fcf3c2756ca3ad9d2a6dcc0902d62c2aed50a9139b",
+  "newArtOrPolling": false
+}

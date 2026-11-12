@@ -1,3 +1,4 @@
+import {homeSlots,type HomeSlotId} from '../game/home-layout.ts';
 import {DEPOT_ASSETS,depotArt} from '../art/depots.ts';
 import {settleCarpentry,type CarpentryState,type NoticeboardState} from '../game/carpentry.ts';
 import {CARPENTRY_ASSETS,carpentryArt,carpentryActionFrame,type CarpentryAnimation} from '../art/carpentry.ts';
@@ -13,7 +14,7 @@ import {TOWN_PEOPLE} from '../game/town-people.ts';
 import { Session, WALK_SPEED } from '../game/session.ts';
 import {movementFrameSteps} from '../game/movement-frame.ts';
 import { TILE, worlds } from '../game/world.ts';
-import { PLACEMENT_SLOTS, type WorkshopState } from '../game/workshop.ts';
+import { PLACEMENT_SLOTS, type WorkshopState,type PropId } from '../game/workshop.ts';
 import { ORIGINAL_STATIC, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 import catalog from '../../public/art/variety/catalog.json';
 import {RESIDENT_IDS,TREE_KINDS,BUILDING_KINDS,residentArt,residentFrame,ambientPose} from '../art/variety.ts';
@@ -48,7 +49,7 @@ export class WorldScene extends Phaser.Scene {
   residents:Array<{id:string;name:string;room:string;homePlotId?:string;position:{x:number;y:number}}>=[];
   private residentViews=new Map<string,{image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text}>();
   private bridgeView?:Phaser.GameObjects.Image;
-  decorations?:()=>WorkshopState['placements'];
+  decorations?:()=>Partial<Record<HomeSlotId,PropId|null>>;
   letterboxMotif?:()=> 'leaf'|'sun'|'moth'|null;
   gardenState?:()=>GardenState|undefined;
   gardenNow:()=>number=Date.now;
@@ -290,7 +291,7 @@ export class WorldScene extends Phaser.Scene {
       const placements=this.decorations(),selectedMotif=this.letterboxMotif?.(),motif=selectedMotif??'leaf',key=JSON.stringify([placements,selectedMotif]);
       if(key!==this.decorationKey){
         this.decorationKey=key;for(const view of this.decorationViews)view.destroy();this.decorationViews=[];
-        for(const slot of PLACEMENT_SLOTS){const prop=placements[slot.id];if(!prop||prop==='letterbox'&&this.room.startsWith('home')&&selectedMotif===null)continue;const x=(slot.x+.5)*TILE,y=(slot.y+.5)*TILE;
+        for(const slot of this.room.startsWith('home')?homeSlots(this.homeLevel):PLACEMENT_SLOTS){const prop=placements[slot.id];if(!prop||prop==='letterbox'&&this.room.startsWith('home')&&selectedMotif===null)continue;const x=(slot.x+.5)*TILE,y=(slot.y+.5)*TILE;
           const meta=HOME_ART.furniture[prop],view=this.add.image(x,y,prop==='letterbox'?'letterbox-'+motif+'-closed':meta.world).setOrigin(meta.foot.x/meta.width,meta.foot.y/meta.height).setDepth(prop==='rug'?-2:y);this.decorationViews.push(view);
         }
       }

@@ -1,3 +1,5 @@
+import {emptyWorkroom} from '../src/game/home-layout.ts';
+import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {test,expect,type Page} from '@playwright/test';
 import fs from 'node:fs';
 
@@ -43,7 +45,7 @@ test('real isolated town fixtures: physical home ownership, visiting, upgrade, r
   const visitorStarter=await capture(visitor,'phone-visitor-starter');await housePanel(visitor,true);await expect(visitor.getByRole('dialog')).toContainText('only the owner can change');await expect(visitor.getByRole('button',{name:'Place owned furniture here'})).toHaveCount(0);await expect(visitor.getByRole('button',{name:'Upgrade plot · 24 bridge kits'})).toHaveCount(0);await pageCloseWithTouch(visitor);
 
   await housePanel(owner);await owner.getByRole('button',{name:'Upgrade plot · 24 bridge kits',exact:true}).click();await expect.poll(async()=>(await town(owner)).plot.level).toBe(2);expect((await town(owner)).workshop.bridgeKits).toBe(starting-36);expect((await town(owner)).plot.placements).toEqual(placed);await close(owner);
-  await expect.poll(async()=>(await actor(owner)).room).toBe('home-expanded');await expect.poll(async()=>(await home(owner)).interiorTexture).toBe('home-expanded-interior');await expect.poll(async()=>(await actor(visitor)).room).toBe('home-expanded');await expect.poll(async()=>(await home(visitor)).decorations).toEqual(placed);
+  await expect.poll(async()=>(await actor(owner)).room).toBe('home-expanded');await expect.poll(async()=>(await home(owner)).interiorTexture).toBe('home-expanded-interior');await expect.poll(async()=>(await actor(visitor)).room).toBe('home-expanded');await expect.poll(async()=>(await home(visitor)).decorations).toEqual({...placed,...emptyWorkroom()});
   await point(owner,20,11);await expect.poll(async()=>(await actor(owner)).walking,{timeout:arrivalTimeout}).toBe(false);expect((await actor(owner)).position.x).toBeCloseTo(20,4);
   const expanded=await capture(owner,'desktop-owner-expanded'),visitorExpanded=await capture(visitor,'phone-visitor-expanded');
 
@@ -52,8 +54,8 @@ test('real isolated town fixtures: physical home ownership, visiting, upgrade, r
   // Restore normal short text before actual doorway input; no game state mutation.
   await owner.evaluate(()=>document.documentElement.style.fontSize='100%');await expect.poll(async()=>{const canvas=(await owner.locator('canvas').boundingBox())!,world=(await owner.locator('.world-wrap').boundingBox())!;return Math.abs(canvas.height-world.height);}).toBeLessThan(2);
   await point(owner,9,13.5);await expect.poll(async()=>(await actor(owner)).room,{timeout:arrivalTimeout}).toBe('square');expect((await actor(owner)).position).toEqual({x:30,y:35.5});
-  await expect.poll(async()=>{const response=await owner.request.get('/api/town/snapshot',{headers:{'X-IH2-Schema':'3'}});return(await response.json()).snapshot.position.room;},{timeout:arrivalTimeout}).toBe('square');
-  const confirmedFront=(await(await owner.request.get('/api/town/snapshot',{headers:{'X-IH2-Schema':'3'}})).json()).snapshot.position;expect(confirmedFront.position).toEqual({x:30,y:35.5});expect(confirmedFront.homePlotId).toBeUndefined();
+  await expect.poll(async()=>{const response=await owner.request.get('/api/town/snapshot',{headers:{'X-IH2-Schema':TOWN_SCHEMA}});return(await response.json()).snapshot.position.room;},{timeout:arrivalTimeout}).toBe('square');
+  const confirmedFront=(await(await owner.request.get('/api/town/snapshot',{headers:{'X-IH2-Schema':TOWN_SCHEMA}})).json()).snapshot.position;expect(confirmedFront.position).toEqual({x:30,y:35.5});expect(confirmedFront.homePlotId).toBeUndefined();
   const front=await capture(owner,'short-house-front');await point(owner,30,34.5);await expect.poll(async()=>(await actor(owner)).room,{timeout:arrivalTimeout}).toBe('home-expanded');expect((await town(owner)).position.homePlotId).toBe(plotId);expect((await town(owner)).plot.placements).toEqual(placed);
   expect(homeRequests.length).toBeGreaterThan(0);for(const path of homeRequests)expect(approved.has(path),`original home asset ${path} is manifest-backed`).toBe(true);expect(errors).toEqual([]);
   fs.writeFileSync(`${evidence}/homes-ownership.json`,JSON.stringify({method:'Actual isolated ih2_browser backend and fictional seeded Casey/Bea contexts; no HTTP interception, clock overrides, SQL resets or real player grants. Starting fixture balance may reflect the preceding shared bridge test. Viewports are headless emulation, not physical-device evidence.',startingFixtureKits:starting,claimKits:12,upgradeKits:24,plotId,ownerStarter,visitorStarter,expanded,visitorExpanded,shortPanel,front,homeRequests:[...new Set(homeRequests)],expectedInitialGuest401:expectedGuest401,errors},null,2));

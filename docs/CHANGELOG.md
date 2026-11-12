@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-075 working candidate: two level2workroom furnishing nooks, additive strict map, atomic moves and protocol4boundary. Existing six maps/prices/progression preserved. Local262checks/zero skips, focused3browser; full gates pending. [Evidence](evidence/IH2-075/REPORT.md).
+
 2026-11-12 — IH2-074 accepted: PR23/merge3c64173, exact82e68f8CI43216529180bothSUCCESS257/76(14.4m). Three original material depots/raised labels, unchanged targets/rules/168oldartfiles. Actual178files/sixCIimages and preserved4175desktop/phone live-clock collection/reload verified.075workroom furnishing capacity starts independently. [Closeout](evidence/IH2-074/source-closeout.json).
 
 2026-11-12 — IH2-074 working art candidate: three original static salvage/timber/stationery depots replace placeholders with unchanged bounds, targets and authority. Raised labels resolve the short200 starting edge; six fresh day/night direct-collection pairs and 257 domain checks pass. Final browser/CI/artifact/preview gates pending. [Evidence](evidence/IH2-074/REPORT.md).

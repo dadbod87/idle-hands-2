@@ -18,3 +18,5 @@ November 12, 2026. Accepted through IH2-068/PR18/merge `c0565b5930634dc09655766b
 WOODLAND_FAMILY remains the dated design/model rationale; CARPENTRY_RUNTIME records the accepted implementation and actual limits. New content requires explicit IDs, ingredients, authority, representative art and validation. Existing property, material IDs, ordinary jobs and weekly-separated creative progress remain persistent.
 
 IH2-068 closed measured phone/arrival friction and nine combined activity passes. IH2-069 now designs one bounded optional authored commission and useful-return path; it does not add runtime content. Source/CI and local preview acceptance remain separate from hosted release or owner enjoyment.
+
+069working design now contains an addressed Pip commission, private order-card/plan, proposed2pine/1radish uniqueletterbox and optional style sample. Fourteen original candidate studies and a standalone in-memory phone concept do not add runtime IDs, prices, actual ownership or human messaging. All159currentclientfiles still match accepted068. See NEIGHBORHOOD_COMMISSION for exact selection/model limits and future promotion contract.

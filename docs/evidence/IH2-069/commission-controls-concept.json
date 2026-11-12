@@ -1,0 +1,35 @@
+{
+  "classification": "Standalone fictional design interaction through intercepted local files; not an implemented game economy, owned account, public service or authority test",
+  "touchViewport": {
+    "width": 360,
+    "height": 640
+  },
+  "shortViewport": {
+    "width": 844,
+    "height": 390
+  },
+  "rootText": "200%",
+  "confirm": {
+    "x": 169.59375,
+    "y": 166.859375,
+    "width": 504.8125,
+    "height": 81.59375
+  },
+  "scrollRegion": {
+    "x": 144,
+    "y": 140.125,
+    "width": 556,
+    "height": 135.875
+  },
+  "footer": {
+    "x": 144,
+    "y": 276,
+    "width": 556,
+    "height": 112
+  },
+  "privateProjectionExample": true,
+  "oneSampleCopyRetained": true,
+  "api": [],
+  "errors": [],
+  "limits": "Browser emulation; stock choices are authored examples, not real prices/transactions. No localStorage writes."
+}

@@ -1,0 +1,9 @@
+{
+  "classification": "Independent file gzip accounting, not network/active-frame/device benchmark",
+  "gameRuntimeUnchangedFiles": 159,
+  "conceptFiles": 18,
+  "conceptRawBytes": 85571,
+  "conceptSumIndependentGzipBytes": 20244,
+  "method": "Python gzip level9/default per file, sum includes all optional candidate art and one existing room copy; no CDN/cache/header measurement. None is loaded by the accepted game page.",
+  "runtimeFramePolicy": "Existing accepted06810Hzidle/normalinput and modal redraw policy unchanged; no new performance claim."
+}

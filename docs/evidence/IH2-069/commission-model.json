@@ -1,0 +1,5007 @@
+{
+  "classification": "IH2-069 candidate analytical schedules only; no runtime commands, saved accounts, grants or authority proof",
+  "asOf": "2026-11-12",
+  "horizonHours": 1008,
+  "method": "128 independent price/schedule/start/policy combinations. Abstract known-answer free delivery chapter completes in the first modeled visit: no walking/reading/human-duration claim. Current pine/crop/easel constants are imported; proposed box payments use separate model ledgers, never a forged current WorkshopState. No ordinary materials/job changes. Actual hamper/welcome-request choices are omitted: this is an easel-oriented strategy comparison, not a full economy optimum.",
+  "assumptions": [
+    "Free Nella lesson/equipment and personal supply access are available in the modeled visit; not measured lesson/travel time.",
+    "Two radish beds and one flower bed; harvest only at a visit and only with family capacity; ready plants wait.",
+    "Pine has6supply/one per4h/carried24; gathering uses the shared personal pool; no gift/assistant material transfer.",
+    "A claimed easel may be followed by a new explicit start at the same visit. No offline auto-repeat.",
+    "Initial depleted/running/full states are hand-authored relative analytical histories, not real accounts or actual saved fixtures.",
+    "The ordinary12hjob is a protected constant, not modeled housing/production output.",
+    "Box-first versus reserve-next-easel is a voluntary modeled strategy, never a hidden player-stock lock.",
+    "The free route card/plan is separate from physical box ownership. Route-card-only never mints a box.",
+    "Three public showcase group sizes below are simple independent-owner count projections, not additional playtests, cooperation acceleration or server/privacy verification."
+  ],
+  "options": [
+    {
+      "id": "route-card-only",
+      "pine": 0,
+      "radish": 0,
+      "marigold": 0,
+      "waitMs": 0,
+      "physical": false
+    },
+    {
+      "id": "pine-and-lunch",
+      "pine": 2,
+      "radish": 1,
+      "marigold": 0,
+      "waitMs": 0,
+      "physical": true
+    },
+    {
+      "id": "flower-fee",
+      "pine": 4,
+      "radish": 0,
+      "marigold": 1,
+      "waitMs": 0,
+      "physical": true
+    },
+    {
+      "id": "another-wait",
+      "pine": 2,
+      "radish": 1,
+      "marigold": 0,
+      "waitMs": 21600000,
+      "physical": true
+    }
+  ],
+  "sources": [
+    {
+      "path": "tools/commission-plan.ts",
+      "sha256": "59f80429382ba3e77fa89667b94e4953784882389451172db3e31ecb19d28dce"
+    },
+    {
+      "path": "tools/simulate-commission-plan.ts",
+      "sha256": "99b093a235dd98f1752efb7459fe551854e428e781896b463154abc4549a4201"
+    },
+    {
+      "path": "src/game/carpentry.ts",
+      "sha256": "44c6219baceded14e327b9cd1a65b2921b0fb97082cf0980c16e7a36464d0394"
+    },
+    {
+      "path": "src/game/garden.ts",
+      "sha256": "aa438b4db1bbaa3d2af76317f2b77af8ba8c9260fcc811c1c81fd44fae760156"
+    }
+  ],
+  "rows": [
+    {
+      "option": "route-card-only",
+      "schedule": "hourly-with-teaching",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 14400000,
+      "firstEaselStartAt": 14400000,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "hourly-with-teaching",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 14400000,
+      "firstEaselStartAt": 14400000,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "hourly-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 57600000,
+      "firstEaselStartAt": 57600000,
+      "easelsStarted": 63,
+      "easelsClaimed": 62,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "hourly-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 57600000,
+      "firstEaselStartAt": 57600000,
+      "easelsStarted": 63,
+      "easelsClaimed": 62,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "hourly-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 43200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "hourly-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 43200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "hourly-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 70,
+      "easelsClaimed": 69,
+      "remainingPine": 1,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "hourly-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 70,
+      "easelsClaimed": 69,
+      "remainingPine": 1,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "daily-with-teaching",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "daily-with-teaching",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "daily-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "daily-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "daily-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "daily-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "daily-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "daily-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "every-three-days",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "every-three-days",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "every-three-days",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "every-three-days",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "every-three-days",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "every-three-days",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "every-three-days",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "every-three-days",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "missed-first-week",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "missed-first-week",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "missed-first-week",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "missed-first-week",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "missed-first-week",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "missed-first-week",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "missed-first-week",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "route-card-only",
+      "schedule": "missed-first-week",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": null,
+      "boxReadyAt": null,
+      "boxClaimedAt": null,
+      "boxOwned": 0,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "hourly-with-teaching",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 300000,
+      "boxClaimedAt": 300000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 14400000,
+      "firstEaselStartAt": 14400000,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 300000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "hourly-with-teaching",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 300000,
+      "boxClaimedAt": 300000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 14400000,
+      "firstEaselStartAt": 14400000,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 300000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "hourly-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 28800000,
+      "boxReadyAt": 28800000,
+      "boxClaimedAt": 28800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 62,
+      "easelsClaimed": 61,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 28800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 28800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 28800000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "hourly-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 86400000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 57600000,
+      "firstEaselStartAt": 57600000,
+      "easelsStarted": 62,
+      "easelsClaimed": 61,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "hourly-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 300000,
+      "boxClaimedAt": 300000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 57600000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 300000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 14400000,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "hourly-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 57600000,
+      "boxReadyAt": 57600000,
+      "boxClaimedAt": 57600000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 43200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 57600000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 57600000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "hourly-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 69,
+      "easelsClaimed": 69,
+      "remainingPine": 3,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "hourly-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 69,
+      "easelsClaimed": 69,
+      "remainingPine": 3,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "daily-with-teaching",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 300000,
+      "boxClaimedAt": 300000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 300000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "daily-with-teaching",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 300000,
+      "boxClaimedAt": 300000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 300000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "daily-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 86400000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "daily-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 86400000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "daily-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 300000,
+      "boxClaimedAt": 300000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 300000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "daily-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 86400000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "daily-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "daily-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "every-three-days",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 259200000,
+      "boxClaimedAt": 259200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "every-three-days",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 259200000,
+      "boxClaimedAt": 259200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "every-three-days",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 259200000,
+      "boxClaimedAt": 259200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "every-three-days",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 259200000,
+      "boxClaimedAt": 259200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "every-three-days",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 259200000,
+      "boxClaimedAt": 259200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "every-three-days",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 259200000,
+      "boxClaimedAt": 259200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "every-three-days",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "every-three-days",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "missed-first-week",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 604800000,
+      "boxClaimedAt": 604800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "missed-first-week",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 604800000,
+      "boxClaimedAt": 604800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "missed-first-week",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 604800000,
+      "boxClaimedAt": 604800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "missed-first-week",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 604800000,
+      "boxClaimedAt": 604800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "missed-first-week",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 604800000,
+      "boxClaimedAt": 604800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "missed-first-week",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 604800000,
+      "boxClaimedAt": 604800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "missed-first-week",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "pine-and-lunch",
+      "schedule": "missed-first-week",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "hourly-with-teaching",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 14400000,
+      "boxReadyAt": 14400000,
+      "boxClaimedAt": 14400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 28800000,
+      "firstEaselStartAt": 28800000,
+      "easelsStarted": 63,
+      "easelsClaimed": 62,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 14400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 14400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 14400000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "hourly-with-teaching",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 28800000,
+      "boxReadyAt": 28800000,
+      "boxClaimedAt": 28800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 14400000,
+      "firstEaselStartAt": 14400000,
+      "easelsStarted": 63,
+      "easelsClaimed": 62,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 28800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 28800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "hourly-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 57600000,
+      "boxReadyAt": 57600000,
+      "boxClaimedAt": 57600000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 115200000,
+      "firstEaselStartAt": 115200000,
+      "easelsStarted": 62,
+      "easelsClaimed": 61,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 57600000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 57600000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 57600000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "hourly-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 115200000,
+      "boxReadyAt": 115200000,
+      "boxClaimedAt": 115200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 57600000,
+      "firstEaselStartAt": 57600000,
+      "easelsStarted": 62,
+      "easelsClaimed": 61,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 115200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 115200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "hourly-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 28800000,
+      "boxReadyAt": 28800000,
+      "boxClaimedAt": 28800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 63,
+      "easelsClaimed": 62,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 28800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 28800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 43200000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "hourly-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 86400000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 43200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 63,
+      "easelsClaimed": 62,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "hourly-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 69,
+      "easelsClaimed": 68,
+      "remainingPine": 1,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "hourly-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 69,
+      "easelsClaimed": 68,
+      "remainingPine": 1,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "daily-with-teaching",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 86400000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 172800000,
+      "firstEaselStartAt": 172800000,
+      "easelsStarted": 41,
+      "easelsClaimed": 40,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 86400000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "daily-with-teaching",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 172800000,
+      "boxReadyAt": 172800000,
+      "boxClaimedAt": 172800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 41,
+      "easelsClaimed": 40,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 172800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 172800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "daily-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 86400000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 172800000,
+      "firstEaselStartAt": 172800000,
+      "easelsStarted": 41,
+      "easelsClaimed": 40,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 86400000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "daily-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 172800000,
+      "boxReadyAt": 172800000,
+      "boxClaimedAt": 172800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 41,
+      "easelsClaimed": 40,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 172800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 172800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "daily-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 86400000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 172800000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 86400000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "daily-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 172800000,
+      "boxReadyAt": 172800000,
+      "boxClaimedAt": 172800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 172800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 172800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "daily-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 11
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "daily-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 11
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "every-three-days",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 259200000,
+      "boxClaimedAt": 259200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 518400000,
+      "firstEaselStartAt": 518400000,
+      "easelsStarted": 13,
+      "easelsClaimed": 12,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 259200000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "every-three-days",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 518400000,
+      "boxReadyAt": 518400000,
+      "boxClaimedAt": 518400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 13,
+      "easelsClaimed": 12,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "every-three-days",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 259200000,
+      "boxClaimedAt": 259200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 518400000,
+      "firstEaselStartAt": 518400000,
+      "easelsStarted": 13,
+      "easelsClaimed": 12,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 259200000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "every-three-days",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 518400000,
+      "boxReadyAt": 518400000,
+      "boxClaimedAt": 518400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 13,
+      "easelsClaimed": 12,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "every-three-days",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 259200000,
+      "boxClaimedAt": 259200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 518400000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 259200000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "every-three-days",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 518400000,
+      "boxReadyAt": 518400000,
+      "boxClaimedAt": 518400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "every-three-days",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 11
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "every-three-days",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 11
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "missed-first-week",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 604800000,
+      "boxClaimedAt": 604800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 691200000,
+      "firstEaselStartAt": 691200000,
+      "easelsStarted": 35,
+      "easelsClaimed": 34,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 86400000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "missed-first-week",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 691200000,
+      "boxReadyAt": 691200000,
+      "boxClaimedAt": 691200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 35,
+      "easelsClaimed": 34,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "missed-first-week",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 604800000,
+      "boxClaimedAt": 604800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 691200000,
+      "firstEaselStartAt": 691200000,
+      "easelsStarted": 35,
+      "easelsClaimed": 34,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 86400000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "missed-first-week",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 691200000,
+      "boxReadyAt": 691200000,
+      "boxClaimedAt": 691200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 35,
+      "easelsClaimed": 34,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "missed-first-week",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 604800000,
+      "boxClaimedAt": 604800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 691200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 86400000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "missed-first-week",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 691200000,
+      "boxReadyAt": 691200000,
+      "boxClaimedAt": 691200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "missed-first-week",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 11
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "flower-fee",
+      "schedule": "missed-first-week",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 0,
+      "boxClaimedAt": 0,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 11
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 0,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "hourly-with-teaching",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 21900000,
+      "boxClaimedAt": 25200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 14400000,
+      "firstEaselStartAt": 14400000,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 25200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "hourly-with-teaching",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 21900000,
+      "boxClaimedAt": 25200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 14400000,
+      "firstEaselStartAt": 14400000,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 25200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "hourly-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 28800000,
+      "boxReadyAt": 50400000,
+      "boxClaimedAt": 50400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 62,
+      "easelsClaimed": 61,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 28800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 50400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 28800000,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "another-wait",
+      "schedule": "hourly-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 108000000,
+      "boxClaimedAt": 108000000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 57600000,
+      "firstEaselStartAt": 57600000,
+      "easelsStarted": 62,
+      "easelsClaimed": 61,
+      "remainingPine": 2,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 108000000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": -1
+    },
+    {
+      "option": "another-wait",
+      "schedule": "hourly-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 21900000,
+      "boxClaimedAt": 25200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 57600000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 25200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 14400000,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "hourly-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 57600000,
+      "boxReadyAt": 79200000,
+      "boxClaimedAt": 79200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 43200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 64,
+      "easelsClaimed": 63,
+      "remainingPine": 0,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 57600000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 79200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "hourly-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 21600000,
+      "boxClaimedAt": 21600000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 69,
+      "easelsClaimed": 69,
+      "remainingPine": 3,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 21600000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "hourly-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 21600000,
+      "boxClaimedAt": 21600000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 69,
+      "easelsClaimed": 69,
+      "remainingPine": 3,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 21600000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "daily-with-teaching",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 21900000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "daily-with-teaching",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 21900000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "daily-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 108000000,
+      "boxClaimedAt": 172800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 172800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "daily-with-teaching",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 108000000,
+      "boxClaimedAt": 172800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 86400000,
+      "easelsStarted": 42,
+      "easelsClaimed": 41,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 172800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "daily-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 300000,
+      "boxReadyAt": 21900000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 300000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "daily-with-teaching",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 86400000,
+      "boxReadyAt": 108000000,
+      "boxClaimedAt": 172800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 86400000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 172800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "daily-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 21600000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "daily-with-teaching",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 21600000,
+      "boxClaimedAt": 86400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 43,
+      "easelsClaimed": 42,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 86400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "every-three-days",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 280800000,
+      "boxClaimedAt": 518400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "every-three-days",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 280800000,
+      "boxClaimedAt": 518400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "every-three-days",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 280800000,
+      "boxClaimedAt": 518400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "every-three-days",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 280800000,
+      "boxClaimedAt": 518400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 259200000,
+      "easelsStarted": 14,
+      "easelsClaimed": 13,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "every-three-days",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 280800000,
+      "boxClaimedAt": 518400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "every-three-days",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 259200000,
+      "boxReadyAt": 280800000,
+      "boxClaimedAt": 518400000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 259200000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 518400000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "every-three-days",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 21600000,
+      "boxClaimedAt": 259200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "every-three-days",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 21600000,
+      "boxClaimedAt": 259200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 15,
+      "easelsClaimed": 14,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 259200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "missed-first-week",
+      "start": "fresh",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 626400000,
+      "boxClaimedAt": 691200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "missed-first-week",
+      "start": "fresh",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 626400000,
+      "boxClaimedAt": 691200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "missed-first-week",
+      "start": "empty-pine-pool",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 626400000,
+      "boxClaimedAt": 691200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "missed-first-week",
+      "start": "empty-pine-pool",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 626400000,
+      "boxClaimedAt": 691200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 604800000,
+      "easelsStarted": 36,
+      "easelsClaimed": 35,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "missed-first-week",
+      "start": "easel-already-finishing",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 626400000,
+      "boxClaimedAt": 691200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "missed-first-week",
+      "start": "easel-already-finishing",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 604800000,
+      "boxReadyAt": 626400000,
+      "boxClaimedAt": 691200000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 604800000,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 0
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-paid"
+        },
+        {
+          "at": 691200000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "missed-first-week",
+      "start": "full-produce-and-pine",
+      "policy": "box-first",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 21600000,
+      "boxClaimedAt": 604800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    },
+    {
+      "option": "another-wait",
+      "schedule": "missed-first-week",
+      "start": "full-produce-and-pine",
+      "policy": "reserve-next-easel",
+      "end": 3628800000,
+      "routeCardAt": 0,
+      "boxPaidAt": 0,
+      "boxReadyAt": 21600000,
+      "boxClaimedAt": 604800000,
+      "boxOwned": 1,
+      "nextEaselStartAt": 0,
+      "firstEaselStartAt": 0,
+      "easelsStarted": 37,
+      "easelsClaimed": 36,
+      "remainingPine": 20,
+      "remainingProduce": {
+        "radish": 12,
+        "marigold": 12
+      },
+      "seedEntitlementRetained": true,
+      "oldJobUnchanged": true,
+      "events": [
+        {
+          "at": 0,
+          "kind": "free-route-card"
+        },
+        {
+          "at": 0,
+          "kind": "box-paid"
+        },
+        {
+          "at": 604800000,
+          "kind": "box-claimed"
+        }
+      ],
+      "nextEaselDelayMs": 0,
+      "easelsClaimedDelta": 0
+    }
+  ],
+  "inputChoiceProbes": [
+    {
+      "stock": {
+        "pine": 6,
+        "radish": 1,
+        "marigold": 0
+      },
+      "option": "pine-and-lunch",
+      "affordable": true,
+      "after": {
+        "pine": 4,
+        "radish": 0,
+        "marigold": 0
+      },
+      "beforeEligibility": {
+        "easel": false,
+        "hamper": false,
+        "welcomeRequest": false
+      },
+      "afterEligibility": {
+        "easel": false,
+        "hamper": false,
+        "welcomeRequest": false
+      },
+      "displacedGoals": [],
+      "limits": "Input sufficiency only; actual cooldown, location, tool, jobs and player choice remain separate. Preview spends nothing."
+    },
+    {
+      "stock": {
+        "pine": 4,
+        "radish": 1,
+        "marigold": 1
+      },
+      "option": "pine-and-lunch",
+      "affordable": true,
+      "after": {
+        "pine": 2,
+        "radish": 0,
+        "marigold": 1
+      },
+      "beforeEligibility": {
+        "easel": true,
+        "hamper": false,
+        "welcomeRequest": true
+      },
+      "afterEligibility": {
+        "easel": false,
+        "hamper": false,
+        "welcomeRequest": false
+      },
+      "displacedGoals": [
+        "easel",
+        "welcomeRequest"
+      ],
+      "limits": "Input sufficiency only; actual cooldown, location, tool, jobs and player choice remain separate. Preview spends nothing."
+    },
+    {
+      "stock": {
+        "pine": 2,
+        "radish": 2,
+        "marigold": 1
+      },
+      "option": "pine-and-lunch",
+      "affordable": true,
+      "after": {
+        "pine": 0,
+        "radish": 1,
+        "marigold": 1
+      },
+      "beforeEligibility": {
+        "easel": false,
+        "hamper": true,
+        "welcomeRequest": true
+      },
+      "afterEligibility": {
+        "easel": false,
+        "hamper": false,
+        "welcomeRequest": true
+      },
+      "displacedGoals": [
+        "hamper"
+      ],
+      "limits": "Input sufficiency only; actual cooldown, location, tool, jobs and player choice remain separate. Preview spends nothing."
+    },
+    {
+      "stock": {
+        "pine": 2,
+        "radish": 1,
+        "marigold": 1
+      },
+      "option": "pine-and-lunch",
+      "affordable": true,
+      "after": {
+        "pine": 0,
+        "radish": 0,
+        "marigold": 1
+      },
+      "beforeEligibility": {
+        "easel": false,
+        "hamper": false,
+        "welcomeRequest": true
+      },
+      "afterEligibility": {
+        "easel": false,
+        "hamper": false,
+        "welcomeRequest": false
+      },
+      "displacedGoals": [
+        "welcomeRequest"
+      ],
+      "limits": "Input sufficiency only; actual cooldown, location, tool, jobs and player choice remain separate. Preview spends nothing."
+    },
+    {
+      "stock": {
+        "pine": 0,
+        "radish": 0,
+        "marigold": 0
+      },
+      "option": "pine-and-lunch",
+      "affordable": false,
+      "after": null,
+      "beforeEligibility": {
+        "easel": false,
+        "hamper": false,
+        "welcomeRequest": false
+      },
+      "afterEligibility": {
+        "easel": false,
+        "hamper": false,
+        "welcomeRequest": false
+      },
+      "displacedGoals": [],
+      "limits": "Input sufficiency only; actual cooldown, location, tool, jobs and player choice remain separate. Preview spends nothing."
+    },
+    {
+      "stock": {
+        "pine": 24,
+        "radish": 12,
+        "marigold": 12
+      },
+      "option": "pine-and-lunch",
+      "affordable": true,
+      "after": {
+        "pine": 22,
+        "radish": 11,
+        "marigold": 12
+      },
+      "beforeEligibility": {
+        "easel": true,
+        "hamper": true,
+        "welcomeRequest": true
+      },
+      "afterEligibility": {
+        "easel": true,
+        "hamper": true,
+        "welcomeRequest": true
+      },
+      "displacedGoals": [],
+      "limits": "Input sufficiency only; actual cooldown, location, tool, jobs and player choice remain separate. Preview spends nothing."
+    }
+  ],
+  "showcaseCounts": [
+    {
+      "residents": 1,
+      "helpersRequired": 0,
+      "privateCompletionSpeedMultiplier": 1,
+      "examplesWhenEveryOwnerHasCraftedAndExplicitlyPublishes": 1,
+      "noNewOwnedCopyPerPublication": true
+    },
+    {
+      "residents": 3,
+      "helpersRequired": 0,
+      "privateCompletionSpeedMultiplier": 1,
+      "examplesWhenEveryOwnerHasCraftedAndExplicitlyPublishes": 3,
+      "noNewOwnedCopyPerPublication": true
+    },
+    {
+      "residents": 12,
+      "helpersRequired": 0,
+      "privateCompletionSpeedMultiplier": 1,
+      "examplesWhenEveryOwnerHasCraftedAndExplicitlyPublishes": 12,
+      "noNewOwnedCopyPerPublication": true
+    }
+  ],
+  "opportunityInputs": {
+    "pine-and-lunch": {
+      "pine": 2,
+      "radish": 1,
+      "flower": 0,
+      "potentialPineReplenishmentHoursFromEmpty": 8,
+      "ordinaryMaterials": 0,
+      "warning": "Initial6pine→4only if that stock is still untouched. Depleted or already-committed supplies can delay a later easel. Two pine are also inputs for two hamper wood portions; one radish is half a hamper radish requirement or one welcome-request radish portion, not complete lost deliveries."
+    }
+  },
+  "limits": [
+    "No human enjoyment/retention or active-play duration proof",
+    "No player messaging, actual shared helper/gift flow or production migration",
+    "No physical device, live service, persistent state or server permissions exercised",
+    "No recommendation to alter accepted current-game or sequel timers"
+  ]
+}

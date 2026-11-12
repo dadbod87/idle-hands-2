@@ -1,0 +1,161 @@
+{
+  "classification": "IH2-069 original candidate art; not loaded by accepted runtime",
+  "as_of": "2026-11-12",
+  "license": "Original project-authored vectors; no external assets",
+  "generator": "tools/create-commission-art.py",
+  "generator_sha256": "0022b450d3e4e00f2be187a1c3c76df712c6d0e037bf50d0d4dd4d106c23f1cf",
+  "new_asset_count": 14,
+  "assets": [
+    {
+      "id": "letterbox-leaf-closed",
+      "file": "art/letterbox-leaf-closed.svg",
+      "kind": "proposed-furnishing-pose",
+      "width": 80,
+      "height": 112,
+      "anchor": [
+        40,
+        106
+      ],
+      "sha256": "a8c8377d83535d16b46b841b0146ee4097c95cf332764b90ecf6541da780aee4"
+    },
+    {
+      "id": "letterbox-leaf-open",
+      "file": "art/letterbox-leaf-open.svg",
+      "kind": "proposed-furnishing-pose",
+      "width": 80,
+      "height": 112,
+      "anchor": [
+        40,
+        106
+      ],
+      "sha256": "e3ddcf96bbc34a2660d66b81bb1eacd76ba744b7f85358a20821fa493750fa0e"
+    },
+    {
+      "id": "letterbox-sun-closed",
+      "file": "art/letterbox-sun-closed.svg",
+      "kind": "proposed-furnishing-pose",
+      "width": 80,
+      "height": 112,
+      "anchor": [
+        40,
+        106
+      ],
+      "sha256": "4082428ffdf7c37e7b7aaf51b8a57d88c053c2598ba5a45bb25edcdf4809ba79"
+    },
+    {
+      "id": "letterbox-sun-open",
+      "file": "art/letterbox-sun-open.svg",
+      "kind": "proposed-furnishing-pose",
+      "width": 80,
+      "height": 112,
+      "anchor": [
+        40,
+        106
+      ],
+      "sha256": "3e20484ed36efef1715ef176b3520f242f9dd11f38f76779bf47ba6ae0ceb147"
+    },
+    {
+      "id": "letterbox-moth-closed",
+      "file": "art/letterbox-moth-closed.svg",
+      "kind": "proposed-furnishing-pose",
+      "width": 80,
+      "height": 112,
+      "anchor": [
+        40,
+        106
+      ],
+      "sha256": "9b0bc253cbcbf9c487859cb9f66f12d8615307a4938b02ffe273ea36b40a5b31"
+    },
+    {
+      "id": "letterbox-moth-open",
+      "file": "art/letterbox-moth-open.svg",
+      "kind": "proposed-furnishing-pose",
+      "width": 80,
+      "height": 112,
+      "anchor": [
+        40,
+        106
+      ],
+      "sha256": "d6be673e8ebd832d77537c709df695aad9c1bc80f91b77b8165835c9b1747bad"
+    },
+    {
+      "id": "parcel-marlow",
+      "file": "art/parcel-marlow.svg",
+      "kind": "proposed-quest-parcel",
+      "width": 80,
+      "height": 80,
+      "anchor": null,
+      "sha256": "91fd698c8dde26a45d6b6da8ac790e9df6a87926165657a5392700771f767ba0"
+    },
+    {
+      "id": "receipt-marlow",
+      "file": "art/receipt-marlow.svg",
+      "kind": "proposed-quest-receipt",
+      "width": 80,
+      "height": 80,
+      "anchor": null,
+      "sha256": "d8710cd51900d5af8243e406e2ab5978a6754adeb05ce87ac3ff57e1439444ac"
+    },
+    {
+      "id": "parcel-jun",
+      "file": "art/parcel-jun.svg",
+      "kind": "proposed-quest-parcel",
+      "width": 80,
+      "height": 80,
+      "anchor": null,
+      "sha256": "c0da272920ccde83fccedeced70325c64f025cb189643c155753cac39b1dd766"
+    },
+    {
+      "id": "receipt-jun",
+      "file": "art/receipt-jun.svg",
+      "kind": "proposed-quest-receipt",
+      "width": 80,
+      "height": 80,
+      "anchor": null,
+      "sha256": "7c895001968e4d7d46fe31656fa87d0099e75b75b0515314e41dfb5ba94d1eeb"
+    },
+    {
+      "id": "parcel-nella",
+      "file": "art/parcel-nella.svg",
+      "kind": "proposed-quest-parcel",
+      "width": 80,
+      "height": 80,
+      "anchor": null,
+      "sha256": "0fbccb01e92b7fb3e360a2b610a0bef3288015ef2bc617c45efc888c4e5a741d"
+    },
+    {
+      "id": "receipt-nella",
+      "file": "art/receipt-nella.svg",
+      "kind": "proposed-quest-receipt",
+      "width": 80,
+      "height": 80,
+      "anchor": null,
+      "sha256": "044bc6327cb7b8ca3b94e33262f902562141482c6d3ba286fc2fb2f1e2643ef1"
+    },
+    {
+      "id": "route-card",
+      "file": "art/route-card.svg",
+      "kind": "proposed-journal-card",
+      "width": 320,
+      "height": 200,
+      "anchor": null,
+      "sha256": "e75349c4269af2f9d2e103b3932d3f689b5446fc55990585b916cf3e9397f4d4"
+    },
+    {
+      "id": "pip-work-surface",
+      "file": "art/pip-work-surface.svg",
+      "kind": "proposed-quest-prop",
+      "width": 160,
+      "height": 112,
+      "anchor": null,
+      "sha256": "7fbbcce974362ac8c98f8c710c1ee43266ebb62b127fa8e6b89fd65c0c145a47"
+    }
+  ],
+  "existing_room_copy": {
+    "source": "public/art/homes/home-starter-interior.svg",
+    "file": "art/sample-room.svg",
+    "sha256": "233336299d0801f6fa845f039c7c1fc6085cf38f06ddfcfa68385ec16ae755b7",
+    "purpose": "Illustrative owned-room sample only, not an account or ownership grant"
+  },
+  "limits": "Two poses are candidate frames, not integrated animation. Quest art does not implement state, prices, permissions or messaging."
+}

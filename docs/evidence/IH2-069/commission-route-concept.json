@@ -1,0 +1,52 @@
+{
+  "classification": "Intercepted standalone design HTML/SVG only; fictional in-memory parcels, no game API/state/actual walking/server/persistence proof",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "wrongRecipientButtonStable": true,
+  "orders": [
+    [
+      "clerk",
+      "caretaker",
+      "carpentry-desk"
+    ],
+    [
+      "clerk",
+      "carpentry-desk",
+      "caretaker"
+    ],
+    [
+      "caretaker",
+      "clerk",
+      "carpentry-desk"
+    ],
+    [
+      "caretaker",
+      "carpentry-desk",
+      "clerk"
+    ],
+    [
+      "carpentry-desk",
+      "clerk",
+      "caretaker"
+    ],
+    [
+      "carpentry-desk",
+      "caretaker",
+      "clerk"
+    ]
+  ],
+  "captions": [
+    "Administration, vegetation, fabrication. An unusually complete department.",
+    "Approved, assembled, then planted. The route has requested an exception.",
+    "The grass got the memo first. It is trying to remain grounded.",
+    "Fieldwork before paperwork. Please whisper this part.",
+    "Measure twice. File once. Water eventually.",
+    "Work first. Forms last. Marlow has requested a meeting."
+  ],
+  "freeCardIsNotFurniture": true,
+  "api": [],
+  "errors": [],
+  "limits": "Emulated browser, not physical-phone or human-duration proof"
+}

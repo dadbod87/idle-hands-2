@@ -22,7 +22,12 @@
     "tests/carpentry.spec.ts",
     "tests/client-readiness.spec.ts",
     "tests/phone-clarity.spec.ts",
-    "tests/garden-recovery.spec.ts"
+    "tests/garden-recovery.spec.ts",
+    "tools/commission-plan.ts",
+    "tools/simulate-commission-plan.ts",
+    "tools/build-commission-concept.ts",
+    "tests/commission-design.test.ts",
+    "tests/design-commission.spec.ts"
   ],
   "compilerOptions": {
     "types": [

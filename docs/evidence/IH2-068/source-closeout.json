@@ -23,7 +23,7 @@
     "browserBudgetMinutesUnchanged": 20,
     "actualPopulatedPostgresRestart": true,
     "automaticMainRun": 43151441716,
-    "automaticMainStatus": "pending separately at closeout"
+    "automaticMainStatus": "both SUCCESS verified during069 design"
   },
   "actualArtifacts": {
     "buildFiles": 159,

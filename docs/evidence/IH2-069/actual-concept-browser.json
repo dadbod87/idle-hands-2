@@ -1,0 +1,29 @@
+{
+  "classification": "Actual loopback49523 standalone design-file nativeChrome UI; no HTTP interception. Not game authority or implemented quests.",
+  "url": "http://127.0.0.1:49523/",
+  "disclosure": "All parcel/stock/craft/publication states are fictional in-memory concept examples. No game/API/database/localStorage/account changes or real walking. Desktop/touch emulation is not a physical-device or human-retention test.",
+  "results": [
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "storageWrites": false
+    },
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "errors": [],
+      "bad": [],
+      "api": [],
+      "storageWrites": false
+    }
+  ]
+}

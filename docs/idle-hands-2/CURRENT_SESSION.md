@@ -1,3 +1,7 @@
+# IH2-079 — collection receipt visibility active
+
+Resumed under explicit owner continuation. Active feat/collection-receipt-visibility from c00b2ec closing checkpoint/accepted9608e39.079in_progress. Separate prototype/authority audit only; preserve every178game byte and172runtimeart, all13practice tables/key/sixchecksums and4175/49529/49530. Terra6.1read-only review authorized, source contract review in progress. Root owns all edits/runners. No new cutoff requested; approximately10%weeklyremaining/noresets.
+
 # Idle Hands 2 — accepted collection family and next task
 
 November12,2026. Accepted source main9608e39a65622ce5f3bdc2a43fe61bd0d9016d72, PR27. Current chore/gathering-family-closeout-2026-11-12contains closeout evidence and queued079design, not another runtime release. Preserve this documentation checkpoint when branching next; do not discard it by blindly switching to older main docs. Read AGENTS/required state/build/design docs, then tracker status/check/prompt.

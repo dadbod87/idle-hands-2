@@ -866,7 +866,7 @@
     {
       "id": "IH2-079",
       "title": "Prove visible confirmed collection receipts",
-      "status": "queued",
+      "status": "in_progress",
       "owner_branch": "feat/collection-receipt-visibility",
       "depends_on": [
         "IH2-078"
@@ -883,7 +883,8 @@
       ],
       "evidence": [
         "docs/idle-hands-2/design/COLLECTION_RECEIPT_VISIBILITY.md",
-        "docs/evidence/IH2-079/PLAN.md"
+        "docs/evidence/IH2-079/PLAN.md",
+        "docs/evidence/IH2-079/REPORT.md"
       ]
     },
     {

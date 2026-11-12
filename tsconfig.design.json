@@ -56,7 +56,11 @@
     "tests/gathering-study.test.ts",
     "tests/gathering-study.spec.ts",
     "tests/gathering-family.test.ts",
-    "tests/gathering-family.spec.ts"
+    "tests/gathering-family.spec.ts",
+    "tools/create-receipt-study.ts",
+    "tools/collection-receipt-model.ts",
+    "tests/collection-receipt.test.ts",
+    "tests/collection-receipt.spec.ts"
   ],
   "compilerOptions": {
     "types": [

@@ -166,3 +166,10 @@ IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclos
 - Accepted077Aster8SVG/HTMLbytes unchanged; record explicit provenance-only source-hash refresh. All178game build bytes equal077; no runtime/API/server/domain/migration change.
 - Self-contained gallery character/material/facing changes cancel old replay;44pxcontrols, phone/short doubled text, keyboard/tap, reduced/hidden and zero-network checks. Disclose synthetic hidden and emulation.
 - Required local checks, both exact-final-head CI jobs, actual uploaded21study/178game files and screenshots/restart evidence, matching merge tree/cleanmain. Preserve13practice tables/key/sixchecksums and both existing previews. No physical-phone/Safari/hosted or gameplay-integration claim.
+
+## IH2-079 receipt visibility design gate
+
+- Separate explicit synthetic study, exact accepted078art/source provenance; current shared APIquantity gap and future locked immutable grant documented. No runtime/public/API/progress changes.
+- Original command/player/resource/panel/rig, passive updates, rejected/legacy/mismatched grants, once-only lost retry, stale identity/view and reduced/hidden cancellation. Text confirmation independent of asset readiness/failure; no late replay.
+- Held Collect/Retry and Close rectangles, focus retained, reopen and keyboard controls below sticky header at320/360/short200/phone200. Long status keyboard-scrollable when overflow; no horizontal overflow and44pxcontrols. Explicit fake replies/media/text/hidden fixtures disclosed.
+- Measure CIheadroom, preserve every meaningful assertion/actual-clock proof/20mdeadline. Required local checks and both exact-headCIjobs, actual14study/178unchangedgame artifact files/images/restart evidence, matching merge tree/cleanmain and protected13tables/key/checksums/previews. No real-device/authority/gameplay claim.

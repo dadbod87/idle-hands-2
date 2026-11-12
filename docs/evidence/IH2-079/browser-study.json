@@ -1,0 +1,55 @@
+{
+  "classification": "Separate synthetic authority/asset/receipt prototype; no runtime integration",
+  "layouts": [
+    {
+      "shape": {
+        "name": "phone320",
+        "w": 320,
+        "h": 568,
+        "text": 100
+      },
+      "heldCollectRectStable": true,
+      "reopenedFocusClearOfHeader": true
+    },
+    {
+      "shape": {
+        "name": "phone360",
+        "w": 360,
+        "h": 640,
+        "text": 100
+      },
+      "heldCollectRectStable": true,
+      "reopenedFocusClearOfHeader": true
+    },
+    {
+      "shape": {
+        "name": "short200",
+        "w": 844,
+        "h": 390,
+        "text": 200
+      },
+      "heldCollectRectStable": true,
+      "reopenedFocusClearOfHeader": true
+    },
+    {
+      "shape": {
+        "name": "phone200",
+        "w": 320,
+        "h": 640,
+        "text": 200
+      },
+      "heldCollectRectStable": true,
+      "reopenedFocusClearOfHeader": true
+    }
+  ],
+  "initialAssetRequests": 1,
+  "artRequests": [
+    "file:///Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2/docs/evidence/IH2-079/study/art/aster-timber.svg",
+    "file:///Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2/docs/evidence/IH2-079/study/art/casey-timber.svg",
+    "file:///Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2/docs/evidence/IH2-079/study/art/casey-supplies.svg",
+    "file:///Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2/docs/evidence/IH2-079/study/art/bea-supplies.svg"
+  ],
+  "errors": [],
+  "http": [],
+  "disclosure": "Native pointer held during explicit fake-reply activation, keyboard and viewport/text/media emulation. Fake replies, passive inventory, identities, lost replies and assets are declared study fixtures, not intercepted game data. Hidden-page cancellation explicitly synthesizes document.hidden. No database/API/storage or real progress."
+}

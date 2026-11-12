@@ -1,0 +1,7 @@
+# IH2-079 — collection receipt visibility active
+
+feat/collection-receipt-visibility from c00b2ec closeout/accepted9608e39. Pure synthetic presentation model, original14-file study and authority audit outside game/public. Current real APIhas no exact typed grant; future locked immutable result metadata is proposed, not implemented. See079REPORT/authority-audit/TERRA_REVIEW/ci-preflight.
+
+First274domain/zero skips52.615spassed; final-source274rerun active. Five focused checks and corrected browser4.6s(6.8swhole) pass; strictbuild/design/plan10/pinned40/diff. Full83browser/exact-headCI/artifact/merge pending. Terra first found narrow reopened focus behind header; corrected49533recheck no blocker, actual keyboard status scroll/held Retry and true200% pass. All reviewer browsers closed. Native emulation/synthetic results are not actual server/device/motion-quality proof.
+
+Preserve4175immutable076/178bytes(equal078),4186protocol4/static/key/13tables/sixchecksums; old49529/49530galleries untouched. Readonlybefore captured; disposabletestDBsonly, never reset/seed practice/sharedDockerrestart. Current test-results is focused079study; accepted078full82archived externally. No root browser runner active. Need archive final focused before full83. Prior078main43250716906bothSUCCESSindependently verified; wholebrowser16m29svs20m1spriorcandidate, variablehost evidence. Retain all assertions/deadlines, no automatic budget change. Owner authorizes Terra/continued work, approximately10%weeklyremaining/noresets/no new time cutoff.

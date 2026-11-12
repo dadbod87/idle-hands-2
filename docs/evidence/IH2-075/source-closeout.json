@@ -1,0 +1,97 @@
+{
+  "task": "IH2-075",
+  "classification": "Accepted private source and preserved local fictional preview; no hosted/original-game release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/24",
+  "candidate": "9626bb831e7e256994d9e80d69297d1ea67b69a7",
+  "ci": {
+    "run": 43226178072,
+    "domainJob": 131210017576,
+    "browserJob": 131210017949,
+    "bothSuccess": true,
+    "domainCount": 262,
+    "domainSkipped": 0,
+    "domainDurationMs": 79268.207773,
+    "browserCount": 78,
+    "browserMinutes": 13.8,
+    "actualArtifacts": [
+      "sequel-client-build",
+      "sequel-server-evidence",
+      "sequel-browser-evidence"
+    ],
+    "files": 178,
+    "allByteEqualReviewedLocal": true,
+    "htmlSha256": "f719b650b93abce6c57bd5fcf3c2756ca3ad9d2a6dcc0902d62c2aed50a9139b",
+    "populatedExtraBoxEaselContainerRestartAndSignedSessionReviewed": true,
+    "selectedImages": [
+      {
+        "file": "workroom-desktop-eight-families.png",
+        "sha256": "488d64a4dfc6d588f390d33eb319952307edbce58f3228f864d44d77fcf635b3",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "workroom-phone-visitor.png",
+        "sha256": "368b31d6d592bfbdaaea9ea325cc520ecfc830d25c704e7810c9dcafb9242b87",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "workroom-phone-live-motif.png",
+        "sha256": "bc9b2e397fece9f0b19b94e1beb609334eeb60ca02bd37cc4b63baf3027d9fbd",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "workroom-short200-arrangement.png",
+        "sha256": "a737bb447a4b2a8cf52d4bfcd4a8901f9777d722f2988836ef13e4d2f8671beb",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "home-retry-resolved-fixture.png",
+        "sha256": "a1cffefc963e97cc6d6d985dc14317eea8b4e53ee0c5de435f8ec3c2e7f60d90",
+        "actualUploadedCIImageReviewed": true
+      }
+    ]
+  },
+  "local": {
+    "domainCount": 262,
+    "domainSkipped": 0,
+    "domainDurationMs": 49056.326417,
+    "browserCount": 78,
+    "browserMinutes": 10.1,
+    "strictBuildDesignPlanPinned40DiffPass": true,
+    "oldArtFilesUnchanged": 172
+  },
+  "merge": "00563d30f46c03de0da490caa18b298ab27b9c9c",
+  "candidateTree": "54756ef3b42429827edd2605b25e605777b91a12",
+  "mergeTree": "54756ef3b42429827edd2605b25e605777b91a12",
+  "matchingTreeAndCleanMainEqualsRemoteVerified": true,
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "immutableArtifact": "home-workroom-2026-11-12/ci-final/build",
+    "actualMatchingResponses": 178,
+    "nativeDesktopPhoneWorkshopNavigationReloadAndAnonymousChooser": true,
+    "noSharedIdentitySelectionOrFixtureGrants": true,
+    "protocol": 4,
+    "cached1to3HTTPAndSSERefused": true,
+    "all13OldTableFieldsRowsPreserved": true,
+    "fictionalResidents": 1,
+    "plots": 0,
+    "signingKeyPreserved": true,
+    "oldFiveChecksumsPreserved": true,
+    "oneAdditiveMigrationAndExactEmptyDefaults": true,
+    "privateDumpKeyBackupPermissions": "0700directory/0600files",
+    "apiPid": 79862,
+    "apiSession": 16429,
+    "staticPid": 79885,
+    "staticSession": 34406
+  },
+  "automaticMainCI": {
+    "run": 43228964846,
+    "status": "in_progress at closeout; required exact candidate gates passed"
+  },
+  "limits": [
+    "SQL/elapsed fixtures for populated homes; actual protected practice has no plots and was never seeded",
+    "Malformed snapshot and home retry are fully intercepted fixtures",
+    "Native/touch/text-size emulation, not physical phone/Safari",
+    "Tall furniture may obscure actors; fixed placard can cover prop edges as camera moves",
+    "No hosted, expense, real account or original-game change"
+  ]
+}

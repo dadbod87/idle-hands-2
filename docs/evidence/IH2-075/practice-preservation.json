@@ -1,0 +1,13 @@
+{
+  "classification": "Actual protected fictional practice additive migration; populated home save recovery is a separate disposable test",
+  "at": "2026-11-12T13:37:35.222Z",
+  "canonicalTables": 13,
+  "allOldColumnsAndRowsPreserved": true,
+  "residents": 1,
+  "plots": 0,
+  "signingKeyPreserved": true,
+  "oldFiveChecksumsPreserved": true,
+  "oneExpectedMigrationAdded": true,
+  "newMapsExactNull": true,
+  "noFixtureGrants": true
+}

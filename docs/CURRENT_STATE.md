@@ -1,5 +1,9 @@
 # Idle Hands 2 — current state
 
+IH2-076working presentation candidate prioritizes inside-owner arrangement and preserves selections/held-pointer targets/retries/panel context. Local262checks/zero skips, focused UI cases pass; full80browser/CI/artifact gates pending. Accepted075preview/API remain intact. [Evidence](evidence/IH2-076/REPORT.md).
+
+IH2-075accepted: PR24/merge00563d3/exact9626bb8CI43226178072bothSUCCESS262/78. Actual178files/fiveCIimages/populated recovery and13oldpractice-table fields/key preserved through protocol4/additive migration.4175immutable075preview verified. [Closeout](evidence/IH2-075/source-closeout.json).076phonehome arrangement active independently; current handoff authoritative.
+
 IH2-075 working candidate adds two permanent expanded-home nooks with strict separate maps, atomic owned-copy conservation and cached3client refusal. Local262checks/zero skips and focused3browser pass; fullbrowser/CI/artifact/protectedmigration gates pending. Accepted074preview remains intact. [Evidence](evidence/IH2-075/REPORT.md).
 
 IH2-074 source/local preview accepted: PR23/merge3c64173, exact82e68f8CI43216529180bothSUCCESS257/76(14.4m). Actual178files/sixCIimages, live-clock desktop/phone direct collection/reload, matchingtree/cleanmain and13practice tables/key/migrations preserved.4175serves074immutableartifact,4186protocol3unchanged. [Closeout](evidence/IH2-074/source-closeout.json). IH2-075two expanded-workroom nooks active on`feat/home-workroom-nooks`; [current handoff](idle-hands-2/CURRENT_SESSION.md) is authoritative.

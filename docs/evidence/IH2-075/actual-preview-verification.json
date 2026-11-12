@@ -1,0 +1,97 @@
+{
+  "classification": "Actual accepted075artifact responses/native Chrome empty contexts; local original workshop navigation and shared anonymous chooser, not a claimed populated-home live drill",
+  "files": 178,
+  "allBytesMatch": true,
+  "htmlSha256": "f719b650b93abce6c57bd5fcf3c2756ca3ad9d2a6dcc0902d62c2aed50a9139b",
+  "requiredSchema": 4,
+  "cachedProtocols": [
+    {
+      "schema": "1",
+      "path": "snapshot",
+      "status": 426
+    },
+    {
+      "schema": "1",
+      "path": "events?schema=1",
+      "status": 426
+    },
+    {
+      "schema": "2",
+      "path": "snapshot",
+      "status": 426
+    },
+    {
+      "schema": "2",
+      "path": "events?schema=2",
+      "status": 426
+    },
+    {
+      "schema": "3",
+      "path": "snapshot",
+      "status": 426
+    },
+    {
+      "schema": "3",
+      "path": "events?schema=3",
+      "status": 426
+    }
+  ],
+  "stale3LoginRefused": 426,
+  "currentAnonymous": 401,
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "normalPlacesWorkshopEntryAndReload": true,
+      "currentSharedChooser": true,
+      "noIdentitySelected": true,
+      "noInterceptionOrStatePositionClockFixtures": true,
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "normalPlacesWorkshopEntryAndReload": true,
+      "currentSharedChooser": true,
+      "noIdentitySelected": true,
+      "noInterceptionOrStatePositionClockFixtures": true,
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

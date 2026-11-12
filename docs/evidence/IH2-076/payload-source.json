@@ -1,0 +1,13 @@
+{
+  "classification": "Local076compiled candidate versus accepted075CIartifact; no performance/capacity claim",
+  "files": 178,
+  "oldFiles": 178,
+  "rawBytes": 3279579,
+  "rawDelta": 3654,
+  "perFileGzipBytes": 584912,
+  "gzipDelta": 1047,
+  "artFilesUnchanged": 172,
+  "serverDomainPhaserMigrationsUnchanged": true,
+  "htmlSha256": "0ea23ef6b1557b7f7408fb174259b18316f0467f329e3c49e399954b9134ed64",
+  "newArtOrPolling": false
+}

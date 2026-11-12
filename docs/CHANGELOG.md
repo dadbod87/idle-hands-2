@@ -1,5 +1,9 @@
 # History
 
+2026-11-12 — IH2-076 working candidate: inside-home arrangement first, retained choices and scoped retry/late-response handling. Outside navigation/visitor restrictions and all server/domain/art rules preserved. Local262checks/zero skips; full gates pending. [Evidence](evidence/IH2-076/REPORT.md).
+
+2026-11-12 — IH2-075 accepted PR24/merge00563d3, exact9626bb8CI43226178072bothSUCCESS262/78. Two permanent workroom nooks; actual artifact/preview and old-field/key preservation verified.076inside-home phone arrangement begins. [Closeout](evidence/IH2-075/source-closeout.json).
+
 2026-11-12 — IH2-075 working candidate: two level2workroom furnishing nooks, additive strict map, atomic moves and protocol4boundary. Existing six maps/prices/progression preserved. Local262checks/zero skips, focused3browser; full gates pending. [Evidence](evidence/IH2-075/REPORT.md).
 
 2026-11-12 — IH2-074 accepted: PR23/merge3c64173, exact82e68f8CI43216529180bothSUCCESS257/76(14.4m). Three original material depots/raised labels, unchanged targets/rules/168oldartfiles. Actual178files/sixCIimages and preserved4175desktop/phone live-clock collection/reload verified.075workroom furnishing capacity starts independently. [Closeout](evidence/IH2-074/source-closeout.json).

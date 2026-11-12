@@ -701,7 +701,18 @@
       "evidence": [
         "docs/idle-hands-2/COMBINED_NEIGHBORHOOD_AUDIT.md",
         "docs/idle-hands-2/handoffs/2026-11-12-combined-neighborhood-audit.md",
-        "docs/evidence/IH2-072/REPORT.md"
+        "docs/evidence/IH2-072/REPORT.md",
+        "docs/evidence/IH2-072/coupled-schedules.json",
+        "docs/evidence/IH2-072/runtime-coverage.json",
+        "docs/evidence/IH2-072/local-observations.json",
+        "docs/evidence/IH2-072/shared-observations.json",
+        "docs/evidence/IH2-072/build-identity.json",
+        "docs/evidence/IH2-072/independent-review.json",
+        "docs/evidence/IH2-072/practice-preservation.json",
+        "docs/evidence/IH2-072/rejected-phases.json",
+        "docs/evidence/IH2-072/local-checks.json",
+        "docs/evidence/IH2-072/screens-reviewed.json",
+        "docs/evidence/IH2-072/timed-observations.json"
       ],
       "owner_branch": "feat/neighborhood-progression-audit"
     },

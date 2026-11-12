@@ -94,7 +94,8 @@
     "run": 43178251963,
     "head": "3fc2cfed6f30837a62b7c8cdf95126595586d3a6",
     "domain": "success",
-    "browser": "in_progress at closeout; candidate exact-head gates already passed"
+    "browser": "success",
+    "bothSuccessVerified": true
   },
   "limits": [
     "Chrome/Chromium desktop/touch emulation, not physical phone/Safari or human retention",

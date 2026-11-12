@@ -1,0 +1,40 @@
+{
+  "classification": "Audit history; corrected phases are separate. Raw artifacts outside repository are retained locally.",
+  "phases": [
+    {
+      "rawPath": "local-observations-phase1/local-observations.json",
+      "exists": true,
+      "sha256": "10217334584fd97352eeeea221ecafe8503596fa353aeaaeba6cd1f50e630edd",
+      "classification": "Rejected observer/model evidence, not an accepted game defect",
+      "reason": "Offscreen bench target in one phone return;11completed,1rejected."
+    },
+    {
+      "rawPath": "shared-phase1.log",
+      "exists": true,
+      "sha256": "e0bd33f4feaa2ac315b2cf9379733728aef04f3ee8c44fcb5fda93ceb6adfb8d",
+      "classification": "Rejected observer/model evidence, not an accepted game defect",
+      "reason": "Functional shared flow completed; final classifier incorrectly rejected pre-login snapshot401."
+    },
+    {
+      "rawPath": "timed-phase1/timed-observations.json",
+      "exists": true,
+      "sha256": "e03eb8f694a1d428c24f641b37abe10d044c316d2aa49298f58882a71192e4a5",
+      "classification": "Rejected observer/model evidence, not an accepted game defect",
+      "reason": "Read kit job before accepted server reply; null state read at40s, no game error."
+    },
+    {
+      "rawPath": "phone-return-probe",
+      "exists": true,
+      "sha256": null,
+      "classification": "Rejected observer/model evidence, not an accepted game defect",
+      "reason": "Corrected visible tap opened bench; observer then wrongly waited for unlocked state."
+    },
+    {
+      "rawPath": "rejected-model-selective-events",
+      "exists": true,
+      "sha256": null,
+      "classification": "Rejected observer/model evidence, not an accepted game defect",
+      "reason": "Omitted some within-visit pine/cooldown events; inaccurate alternating policy label, superseded."
+    }
+  ]
+}

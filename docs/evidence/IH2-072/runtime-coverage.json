@@ -1,0 +1,581 @@
+{
+  "classification": "IH2-072 current definitions/source coverage review against accepted071; not new gameplay or final-art acceptance",
+  "acceptedMerge": "3fc2cfed6f30837a62b7c8cdf95126595586d3a6",
+  "sourceSha256": {
+    "docs/idle-hands-2/design/CONTENT_CATALOG.json": "1e76f996401111e6c6a4a78f191b9db4cfee5d68ee8cbd6a30e00199871ade56",
+    "src/game/workshop.ts": "8158a199b7e1a647fb93cefad98c6ee4515cd02194c1e8bcc205aa1d404a443d",
+    "src/game/garden.ts": "4bcad76311fb65b44609b0af37a45f3cf022e68f0ef4ccef6837234fafbc5991",
+    "src/game/carpentry.ts": "7eba4bd2ef18eb8c2d5d000ba73be6e6fd7ac70eaef054a79b54d6ab4c5e9ce0",
+    "src/game/commission.ts": "882a78203ba26d6c1f8697ff576823f2320d0ff76a4f37c9ce30594c4b137d92",
+    "src/game/town-climate.ts": "bde6022c1ef20118634478849f0ced52807adf0e099628d853f8789869e5244c",
+    "src/game/world.ts": "11134114686c13c159f140c935d354e3639d234e581f9eae318dd2e0033bcb5f",
+    "src/game/asset-manifest.json": "b058f1de898c743948494412afb6724b29b7bda7ae3e40d00e17dd769ce11f87",
+    "server/store.ts": "89b02130ab8d0d0cf5c23f1f4e3ed7d6be4a456193762f89f16014aebfa6d8cd"
+  },
+  "candidateCatalogIsStillCandidate": true,
+  "statusCounts": {
+    "bounded-runtime": 21,
+    "partial-foundation": 3,
+    "design-only": 24
+  },
+  "entries": [
+    {
+      "candidateId": "material:scrap",
+      "name": "Reclaimed scrap",
+      "kind": "material",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Actual personal bag (60 total across three materials) and depot rules; world depots remain colored rectangle/text placeholders, not final item-specific art.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "material:timber",
+      "name": "Reclaimed timber",
+      "kind": "material",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Actual personal bag (60 total across three materials) and depot rules; world depots remain colored rectangle/text placeholders, not final item-specific art.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "material:supplies",
+      "name": "Workshop supplies",
+      "kind": "material",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Actual personal bag (60 total across three materials) and depot rules; world depots remain colored rectangle/text placeholders, not final item-specific art.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "wood:pine",
+      "name": "Pine",
+      "kind": "material",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "partial-foundation",
+      "sourceRefs": [
+        "src/game/carpentry.ts"
+      ],
+      "scope": "Bound personal fallen-pine supply, one shared pool across three square points; no new forest region or multiple wood species.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "wood:birch",
+      "name": "Birch",
+      "kind": "material",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "wood:oak",
+      "name": "Oak",
+      "kind": "material",
+      "catalogPhase": "regional-cities",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "stone:salvaged",
+      "name": "Salvaged stone",
+      "kind": "material",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "part:fastener",
+      "name": "A jar of fasteners",
+      "kind": "material",
+      "catalogPhase": "starter-home",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "cloth:plain",
+      "name": "Plain cloth",
+      "kind": "material",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "seed:herb",
+      "name": "Herb seed packet",
+      "kind": "seed",
+      "catalogPhase": "food-combat",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "crop:herb",
+      "name": "Kitchen herbs",
+      "kind": "crop",
+      "catalogPhase": "food-combat",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "fruit:orchard",
+      "name": "Orchard fruit",
+      "kind": "crop",
+      "catalogPhase": "food-combat",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "equipment:hand-tool",
+      "name": "Starter hand tool",
+      "kind": "tool",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "partial-foundation",
+      "sourceRefs": [
+        "src/game/carpentry.ts"
+      ],
+      "scope": "Recoverable/equippable bound hand saw foundation; no general gear slots, tool tiers or wardrobe.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "equipment:axe",
+      "name": "Practical axe",
+      "kind": "tool",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "equipment:watering-can",
+      "name": "Watering can",
+      "kind": "tool",
+      "catalogPhase": "food-combat",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "equipment:work-gloves",
+      "name": "Work gloves",
+      "kind": "equipment",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "weapon:practice-club",
+      "name": "A thoroughly inspected club",
+      "kind": "weapon",
+      "catalogPhase": "food-combat",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "food:herb-soup",
+      "name": "Committee soup",
+      "kind": "food",
+      "catalogPhase": "food-combat",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "food:orchard-snack",
+      "name": "Orchard snack",
+      "kind": "food",
+      "catalogPhase": "food-combat",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "furniture:planter",
+      "name": "Orientation planter",
+      "kind": "furniture",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Owned/placeable original furnishing. Planter is crafted; the other five are starting donations, not unlockable paid recipes.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "furniture:stool",
+      "name": "Committee stool",
+      "kind": "furniture",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Owned/placeable original furnishing. Planter is crafted; the other five are starting donations, not unlockable paid recipes.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "furniture:rug",
+      "name": "Welcome-ish rug",
+      "kind": "furniture",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Owned/placeable original furnishing. Planter is crafted; the other five are starting donations, not unlockable paid recipes.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "furniture:lamp",
+      "name": "Bright idea lamp",
+      "kind": "furniture",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Owned/placeable original furnishing. Planter is crafted; the other five are starting donations, not unlockable paid recipes.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "furniture:crate",
+      "name": "Useful crate",
+      "kind": "furniture",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Owned/placeable original furnishing. Planter is crafted; the other five are starting donations, not unlockable paid recipes.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "furniture:shelf",
+      "name": "Shelf of intentions",
+      "kind": "furniture",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Owned/placeable original furnishing. Planter is crafted; the other five are starting donations, not unlockable paid recipes.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "home:starter",
+      "name": "Starter house",
+      "kind": "home",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "server/store.ts"
+      ],
+      "scope": "One local persistent owner/visitor starter home;12kit claim, actual interior and owned-copy arrangement.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "home:workroom",
+      "name": "Workroom extension",
+      "kind": "home",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "server/store.ts"
+      ],
+      "scope": "One24additional-kit home expansion; permanent property/placements, not multiple towns or homes.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "home:garden-bed",
+      "name": "Garden bed",
+      "kind": "home",
+      "catalogPhase": "food-combat",
+      "currentStatus": "partial-foundation",
+      "sourceRefs": [
+        "src/game/garden.ts"
+      ],
+      "scope": "Private rented three-bed allotment and shared welcome-bed cosmetic exist; not a buildable/expandable owned-home garden.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "lodging:boarding-bed",
+      "name": "Boarding-room bed",
+      "kind": "home",
+      "catalogPhase": "starter-home",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "town:bridge",
+      "name": "The committee bridge",
+      "kind": "project",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "server/store.ts"
+      ],
+      "scope": "Bounded shared bridge/paid teaching/upkeep and six-hour construction; permanent trail access.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "town:trail",
+      "name": "Inkwood approach",
+      "kind": "project",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/world.ts"
+      ],
+      "scope": "One bounded traversable trail and three discoveries. This does not implement the broad Inkwood region.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "town:orchard",
+      "name": "Community orchard",
+      "kind": "project",
+      "catalogPhase": "food-combat",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "service:workshop",
+      "name": "Timber workshop",
+      "kind": "service-building",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/world.ts"
+      ],
+      "scope": "Actual rental workshop, ordinary bench and separate pine finishing rack; no general market.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "service:outfitter",
+      "name": "The Almost Fitting Outfitter",
+      "kind": "service-building",
+      "catalogPhase": "regional-cities",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "recipe:planter",
+      "name": "Make an orientation planter",
+      "kind": "recipe",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Actual one-time5second teaching planter, later8h; exact material costs.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "recipe:bridge-kit",
+      "name": "Make bridge supplies",
+      "kind": "recipe",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Actual12h single queued ordinary kit recipe; no offline repeat queue.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "part:bridge-kit",
+      "name": "Bridge repair kit",
+      "kind": "material",
+      "catalogPhase": "starter-home",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/workshop.ts"
+      ],
+      "scope": "Actual held kit count used in bridge/housing authority, not a general tradable stack.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "recipe:pine-crate",
+      "name": "Make a pine crate",
+      "kind": "recipe",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "recipe:birch-stool",
+      "name": "Make a birch stool",
+      "kind": "recipe",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "recipe:herb-soup",
+      "name": "Prepare committee soup",
+      "kind": "recipe",
+      "catalogPhase": "food-combat",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "recipe:practice-club",
+      "name": "Shape a practice club",
+      "kind": "recipe",
+      "catalogPhase": "food-combat",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "decor:clipboard-pennant",
+      "name": "Earnestly earned pennant",
+      "kind": "decoration",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "server/store.ts"
+      ],
+      "scope": "Permanent three-discovery quest award displayed on an owned home wall; not a freely positioned PROP_IDS item.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "decor:quay-lantern",
+      "name": "Quay lantern",
+      "kind": "decoration",
+      "catalogPhase": "regional-cities",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "service:quay-market",
+      "name": "Quay exchange hall",
+      "kind": "service-building",
+      "catalogPhase": "regional-cities",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "creature:paper-mite",
+      "name": "Paper mite",
+      "kind": "creature",
+      "catalogPhase": "food-combat",
+      "currentStatus": "design-only",
+      "sourceRefs": [],
+      "scope": "No implemented item/recipe/service/entity with this identity in accepted071. Decorative art or a generic related furnishing does not implement this candidate.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "landmark:trailhead",
+      "name": "Annual stump inspection",
+      "kind": "landmark",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/world.ts"
+      ],
+      "scope": "Actual bounded trail landmark/journal discovery, not a new city or resource node.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "landmark:old-sign",
+      "name": "Retired wayfinding post",
+      "kind": "landmark",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/world.ts"
+      ],
+      "scope": "Actual bounded trail landmark/journal discovery, not a new city or resource node.",
+      "finalArtFamilyClaim": false
+    },
+    {
+      "candidateId": "landmark:lookout",
+      "name": "Quiet birdwatching lookout",
+      "kind": "landmark",
+      "catalogPhase": "first-woodland",
+      "currentStatus": "bounded-runtime",
+      "sourceRefs": [
+        "src/game/world.ts"
+      ],
+      "scope": "Actual bounded trail landmark/journal discovery, not a new city or resource node.",
+      "finalArtFamilyClaim": false
+    }
+  ],
+  "additionalAcceptedFamiliesOutsideOriginal48": [
+    {
+      "family": "starter garden",
+      "scope": "Two crops(radish/marigold), bound seeds, three rented beds, four markers/free stake errand, explicit produce uses/rested practice and a capped six-credit shared welcome-bed outcome; no herbs, fruit or food."
+    },
+    {
+      "family": "pine services",
+      "scope": "One bound saw, three equivalent personal deadfall points, one independent12heasel, kept/placed crafts, optional hamper and six-credit noticeboard with fixed24hinstallation. Recording is opt-in and keeps the owned easel; this is not a general quest board."
+    },
+    {
+      "family": "Pip post",
+      "scope": "Free addressed chapter/private card-plan and once-only2pine1radish letterbox; three free motifs/explicit style register. Not player mail/chat/trade."
+    },
+    {
+      "family": "sketchbook",
+      "scope": "Three finite tree observations and private keepsake; decorative oak/birch/fruit silhouettes do not grant those resources."
+    },
+    {
+      "family": "town life",
+      "scope": "Four original resident rigs, varied trees/buildings and bounded action art;48minute cosmetic day and clear/overcast/drizzle. No production weather bonus or full character creator/wardrobe."
+    }
+  ],
+  "crossSystemLimits": [
+    "No hosted identity/accounts or public sequel URL; local fictional signed sessions only",
+    "No shops, cooking/eating, weapons, health/combat/death/corpses, player chat/DM/gifts/buffs/pranks or extra cities",
+    "Only letterbox three motifs and marker choice are current finish/expression variants; original-game paid recoloring does not transfer to this separate sequel",
+    "Existing plant/harvest/saw/easel action families and bounded flap/receipt reveal are not complete handover/assembly/door/grand-opening animation coverage",
+    "Generic ordinary depots and in-world explanatory labels remain visible prototype presentation gaps; actual UI observations rank their impact"
+  ],
+  "statusCountMeaning": "Catalog mapping counts only, not a percentage of game completion or an art-certification score."
+}

@@ -1,0 +1,104 @@
+[
+  {
+    "path": "screens/desktop-fresh-world.png",
+    "source": "local-observations-final/desktop-fresh-world.png",
+    "sha256": "b56f055f89a4a6a8ac17f5469b5e8b682d743f12a40f910103f17764da3bf233",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/phone-saturated-garden.png",
+    "source": "local-observations-final/phone-saturated-garden.png",
+    "sha256": "1974de4915c1146aa31813ddf7b872ed90bfb7954cebf97bca1bcdfbb3026756",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/short-both-busy-garden-text200.png",
+    "source": "local-observations-final/short-both-busy-garden-text200.png",
+    "sha256": "b703eb5aec0818f534acf61e96b0515d94949f967349376088914b57bf356ba0",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/phone-returning-post.png",
+    "source": "local-observations-final/phone-returning-post.png",
+    "sha256": "13f82585506f7f4a00e7ed2f88e27687d82e06889e65515ab16e295211a4243d",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/phone-owned-home-world.png",
+    "source": "shared-final/phone-owned-home-world.png",
+    "sha256": "0741e1f30c44219cedab15a7d977e131b8defa4855d35d9db4d2c949cf29a419",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/desktop-expanded-home-world.png",
+    "source": "shared-final/desktop-expanded-home-world.png",
+    "sha256": "4a81ba32c53ac13ba1d810289c1b5e4e239c3d5873c0a2a5840ab032a7dbcd4d",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/short200-owned-home-controls.png",
+    "source": "shared-final/short200-owned-home-controls.png",
+    "sha256": "1ec918b5f8d4c818c31994a9714c86c42883c1a9ad45e060d9e60c8d2d8bd55d",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/phone-visitor-readonly.png",
+    "source": "shared-final/phone-visitor-readonly.png",
+    "sha256": "5919656f20ba46408fd7c74fa8657d05babaa6091ee628065733d98d6f8a0e93",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/phone-late-newcomer-housing.png",
+    "source": "shared-final/phone-late-newcomer-housing.png",
+    "sha256": "d2ad43ce3ead604d6560561f780dfcc5945229f16dc51a1d228799e941f95593",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/short200-late-newcomer-bridge.png",
+    "source": "shared-final/short200-late-newcomer-bridge.png",
+    "sha256": "45c1106c408552c7e5a519e6f89a14da3f83a39071197d0ec61b2776eab4caa5",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/phone-owned-home-controls.png",
+    "source": "shared-final/phone-owned-home-controls.png",
+    "sha256": "66c3703ef3e44f69f98816b5d2130efd868b859e90bfa1109541acc3da9475db",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/phone-first-crop.png",
+    "source": "timed-phase2/phone-first-crop.png",
+    "sha256": "423eb1d6c54f3855d064af880509f444c012f09ef794b351a73b0d54336a418a",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/phone-paid-choice.png",
+    "source": "timed-phase2/phone-paid-choice.png",
+    "sha256": "625dfafbb9c79381b973e54c362fa2dd5c8a9bf2e7a7ed24744abaa9e787a362",
+    "review": "Root inspected actual image; emulated viewport, disclosed fixture in source report"
+  },
+  {
+    "path": "screens/phone-trail-exploration.png",
+    "source": "timed-phase2/phone-trail-exploration.png",
+    "sha256": "d367f75c08106e645f6cb96f15bf59686c1e1c05e2213241f10ba10778a7f14b",
+    "review": "Root inspected actual image; real-time native touch-emulated fictional newcomer"
+  },
+  {
+    "path": "screens/phone-before-absence.png",
+    "source": "timed-phase2/phone-before-absence.png",
+    "sha256": "274c3057b797d9f7dc73a1bd8eaddbf6f1380b1f50b984262721f2fc95791c73",
+    "review": "Root inspected actual image; real-time native touch-emulated fictional newcomer"
+  },
+  {
+    "path": "screens/phone-short-return.png",
+    "source": "timed-phase2/phone-short-return.png",
+    "sha256": "ffbf70abf6c0875f88213756f18aded9a805bc83f99700834a26649e1b54e518",
+    "review": "Root inspected actual image; real-time native touch-emulated fictional newcomer"
+  },
+  {
+    "path": "screens/phone-return-post.png",
+    "source": "timed-phase2/phone-return-post.png",
+    "sha256": "8635aafc66ce34a41d83b6a0b11788ad53634cdb97932cb566bde4f7398af53c",
+    "review": "Root inspected actual image; real-time native touch-emulated fictional newcomer"
+  }
+]

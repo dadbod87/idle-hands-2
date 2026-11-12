@@ -1,6 +1,6 @@
 # Idle Hands 2.0 — planning and build home
 
-Status: **private local shared-town prototype with original visual kit; first neighborhood accepted; independent activity slice in progress** (2026-11-11). Separate game, with an isolated local command service and fictional practice identities. No hosted sequel, real accounts or paid assets. The original Idle Hands remains separate.
+Status: **private local shared-town prototype; garden, pine and Pip activity slices accepted; combined neighborhood audit in progress** (2026-11-12). Separate game, with an isolated local command service and fictional practice identities. No hosted sequel, real accounts or paid assets. The original Idle Hands remains separate.
 
 Nick has delegated routine design and technical choices, asked for free assets and a system that can progress one prompt at a time. The agent selects reasonable defaults, tests them and records decisions. No large upfront questionnaire is required.
 
@@ -12,6 +12,7 @@ Nick has delegated routine design and technical choices, asked for free assets a
 
 The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/dependencies/acceptance/evidence. The script is read-only and validates the records; an agent must inspect the actual evidence and update them honestly. A fresh session must inspect the current local source, handoff and any newly added remote before acting. Canonical private remote is https://github.com/dadbod87/idle-hands-2, main; fetch current source/PR checks before work.
 
+- [Combined neighborhood audit and ranked follow-ups](../evidence/IH2-072/REPORT.md)
 - [Expanded-world design package: systems, world map, content/art catalog, phone storyboards and pacing experiments](design/README.md)
 - [Approved development teaser and provenance](../marketing/teaser-provenance.json)
 - [Deep resource, growing, equipment, home and animation plan](DEEP_SYSTEMS_PLAN.md)

@@ -1,0 +1,69 @@
+{
+  "classification": "Read-only independent source and image review; no delegated edits or browser runners",
+  "reviews": [
+    {
+      "reviewer": "workshop_domain",
+      "scope": "Coupled current pure-rule model source, not independently executed numeric reproduction",
+      "findings": [
+        "Missing within-visit pine/cooldown events",
+        "Request-priority policy inaccurately named alternating"
+      ],
+      "resolution": "Corrected events and literal request-aware name. Follow-up found no further concrete source defect. Root executed deterministic reproduction."
+    },
+    {
+      "reviewer": "reuse_systems_review",
+      "scope": "Current runtime/candidate source coverage",
+      "findings": [
+        "Personal60-total materials cap, not player-shared",
+        "Include six-credit welcome bed",
+        "Noticeboard24h installation and optional record preserves owned easel"
+      ],
+      "resolution": "Coverage and model method wording corrected; no runtime changes."
+    },
+    {
+      "reviewer": "phone_visual_review",
+      "scope": "Selected actual local/shared captures and recorded metrics, read-only Chrome emulation",
+      "findings": [
+        "Current post actions below completed story/card",
+        "Full garden lacks visible useful next route",
+        "Short200 nested scroll burden",
+        "Repeated long return explanation",
+        "Expanded house still six positions, empty workroom",
+        "Short home panel obscures arrangement purpose",
+        "Upgrade value insufficiently explained"
+      ],
+      "positive": [
+        "No hard horizontal overflow found",
+        "Recognizable furnishing/letterbox art",
+        "Clear visitor denial, no editing controls"
+      ],
+      "resolution": "Evidence-ranked report; recommendation limited to current actions in Pip/garden. Home/art changes deferred."
+    },
+    {
+      "reviewer": "reuse_systems_review",
+      "scope": "Working audit conclusions and evidence labels",
+      "findings": [
+        "37\u21921 is cumulative claim12 plus upgrade24, not upgrade24 alone",
+        "Upgrade capture has five occupied positions after letterbox move, though initial starter capture has six"
+      ],
+      "resolution": "Report says six legal positions; shared helper/report label cumulative debit36 separately from upgrade24. Raw report retained unchanged."
+    },
+    {
+      "reviewer": "reuse_systems_review",
+      "scope": "Completed actual-time audit report and return ledgers, read-only",
+      "findings": [],
+      "confirmed": [
+        "258147+574586=832733ms waiting in900004mswindow;67271msresidual known-answer execution",
+        "Other finite activities explicitly unexhausted",
+        "Ownership/placements/commission and original12hjob timestamps equal before/after return; revision26 unchanged",
+        "Last-confirmed-check interval not falsely attributed solely to3minute absence"
+      ],
+      "limits": "No independent browser/test execution or human-enjoyment claim"
+    }
+  ],
+  "limits": [
+    "No physical phone, Safari, human enjoyment or retention claim",
+    "Model numeric reproduction performed by root, not independent reviewer",
+    "Fictional world/history fixtures and resized identities disclosed in observation reports"
+  ]
+}

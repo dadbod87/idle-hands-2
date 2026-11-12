@@ -1,0 +1,75 @@
+{
+  "status": "local checks passed; exact-final-headCI/artifact/merge pending",
+  "gameBuildUnchangedFiles": 174,
+  "domain": {
+    "command": "IH2_TEST_DATABASE_URL=local ih2_test IH2_HTTP_TEST_DATABASE_URL=local ih2_http_test IH2_PG_DOCKER=1 npm run test",
+    "passed": 256,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 48597.937875
+  },
+  "supersededEnvironmentFreeRun": {
+    "passed": 186,
+    "skippedServerSuites": 6,
+    "acceptedFinalCheck": false
+  },
+  "strictBuild": "passed",
+  "design": "passed48candidate5region",
+  "plan": "passed27tasks10tests",
+  "pinned": "passed40",
+  "diff": "passed",
+  "coupledReproduction": "passed72cohorts48pairs",
+  "browser": {
+    "passed": 72,
+    "failed": 0,
+    "minutes": 9.3,
+    "engine": "Native Chrome; emulation, not physical phone",
+    "actualSelectedScreensReviewed": [
+      {
+        "name": "commission-runtime-desktop-placed-letterbox.png",
+        "sha256": "4f363709a9f9e3c71ed869aee1c61be635d1d75954f1592e5fc6e78aab7907f0"
+      },
+      {
+        "name": "commission-runtime-phone-paid-quote.png",
+        "sha256": "ffedd56d41305a2b4c965af230327ef52e632ef6ef0a377d75f08cecc58ef963"
+      },
+      {
+        "name": "commission-runtime-short200-cancel.png",
+        "sha256": "beae5eaada4434d47ed66007398ab1d595dcdcf652944e59e9699f7255335b3c"
+      },
+      {
+        "name": "homes-desktop-owner-expanded.png",
+        "sha256": "b86bef829484e13a58c16d6d17950d6fa41d91d6e682073c2b0ec98f2a7d8d41"
+      },
+      {
+        "name": "clarity-phone-first-actions.png",
+        "sha256": "1fbae2633fcfdc7adb5f987865c4e7c70aa0b25e5424d73d1df85ee80e362c4d"
+      },
+      {
+        "name": "clarity-short-text200-confirm.png",
+        "sha256": "d910c966eec05bcf17a76e8630c41d4c8dc8e03a8c99e63c2e953831c4b58546"
+      },
+      {
+        "name": "first-visit-phone-journal.png",
+        "sha256": "68c60b81cc1fd7f764d1ce2a30bef923b8375226e1f2dd9b0aab89ce33c77910"
+      },
+      {
+        "name": "first-visit-short-text200.png",
+        "sha256": "78d13785dee8c61cdd4eaec89f54ffe928ba457caaf1deb85d4387dfed1f1514"
+      }
+    ]
+  },
+  "finalExactHeadCI": "pending",
+  "protectedPractice": "all13canonicaltables/key/migrations unchanged; original API process not restarted",
+  "hosting": "none",
+  "timed": {
+    "completed": true,
+    "actualWindowMs": 900004,
+    "actualAbsenceMs": 180003,
+    "acceptedCommands": 26,
+    "unexpectedErrors": 0,
+    "waitingMs": 832733,
+    "remainingExecutionMsApprox": 67271,
+    "otherFiniteActivitiesNotExhausted": true
+  }
+}

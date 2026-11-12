@@ -1,5 +1,9 @@
 # Idle Hands 2 — current state
 
+IH2-084 candidate separates Bag belongings/arrangement from Journal goals/work/progress, with dedicated toolbar controls and guarded shortcuts. Local291system/zero skips and focused tool/regression checks pass; TerraV3 recheck has no bounded blocker. Full96/CI/artifact/preview gates pending. [Evidence](evidence/IH2-084/REPORT.md).
+
+IH2-083 accepted: visual bag with original item illustrations, pocket groups and quantity badges. PR31/merge `0300adf`, exact `b468207` CI43299023223 all four jobs SUCCESS (291 system checks, zero skips;93 browser cases). Actual191-file local preview verified with native collection/placement/reload; protected13table/key/checksum/API and studies unchanged. [Closeout](evidence/IH2-083/source-closeout.json). Candidate notes below are historical; current handoff is authoritative.
+
 IH2-083 working visual bag presents original item icons and truthful stack counts with furniture allocation, three pockets and preserved notebook/controls. Local291system checks/zero skips and focused14browser pass; final Terra/full93/CI/artifact/preview gates pending. [Evidence](evidence/IH2-083/REPORT.md).
 
 IH2-082 accepted: PR30/merge `7d6fc48`, exact `c3966cf` CI43293385446 all four jobs SUCCESS (285 system checks, zero skips;88 browser cases across disjoint44+44 shards). The actual191-file preview4175 now includes the activity notebook; all13 practice tables/key/checksums/API and historical studies are preserved. Terra6.1 desktop/mobile review and native final-artifact checks passed. [Closeout](evidence/IH2-082/source-closeout.json). Current handoff is authoritative; candidate notes below are historical.

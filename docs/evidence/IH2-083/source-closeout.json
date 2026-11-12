@@ -1,0 +1,153 @@
+{
+  "task": "IH2-083",
+  "classification": "Accepted private source and actual local visual bag; no hosted/current-game release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/31",
+  "candidate": "b4682079189e7f2ae64519ef5a336aeb3725ff51",
+  "candidateTree": "f28a9c473f0bdb701c54e4c9e000d1a29ecb8709",
+  "merge": "0300adf3c3ab4561d50361f61beb6dbc86b851e4",
+  "mergeTree": "f28a9c473f0bdb701c54e4c9e000d1a29ecb8709",
+  "matchingTreeAndCleanMainEqualsRemoteVerifiedBeforeCloseout": true,
+  "ci": {
+    "run": 43299023223,
+    "attempt": 1,
+    "exactHeadAllFourJobsSuccess": true,
+    "jobs": [
+      {
+        "id": 131464900513,
+        "name": "domain-build-plan",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T20:18:46Z",
+        "completedAt": "2026-11-12T20:20:49Z"
+      },
+      {
+        "id": 131464900835,
+        "name": "browser-shard (1/2)",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T20:18:46Z",
+        "completedAt": "2026-11-12T20:27:31Z"
+      },
+      {
+        "id": 131464900856,
+        "name": "browser-shard (2/2)",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T20:18:46Z",
+        "completedAt": "2026-11-12T20:32:17Z"
+      },
+      {
+        "id": 131472816461,
+        "name": "browser-playtest",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T20:32:20Z",
+        "completedAt": "2026-11-12T20:32:23Z"
+      }
+    ],
+    "domainCount": 291,
+    "domainSkipped": 0,
+    "domainDurationMs": 85307.857111,
+    "browserCount": 93,
+    "browserShards": [
+      {
+        "count": 47,
+        "minutes": 7.6
+      },
+      {
+        "count": 46,
+        "minutes": 12.4
+      }
+    ],
+    "disjointUnionExactlyFullSuite": true,
+    "oneWorkerPerIsolatedRunner": true,
+    "perBrowserRunnerDeadlineMinutes": 20,
+    "actualArtifacts": [
+      "sequel-client-build",
+      "sequel-server-evidence",
+      "sequel-browser-evidence-1",
+      "sequel-browser-evidence-2"
+    ],
+    "all191BuildBytesEqualReviewedLocal": true,
+    "all185OldArtUnchanged": true,
+    "sixUploadedBagImagesInspected": true,
+    "populatedDatabaseRestartProofInspected": true
+  },
+  "local": {
+    "domainCount": 291,
+    "domainSkipped": 0,
+    "domainDurationMs": 54134.354375,
+    "browserCount": 93,
+    "browserMinutes": 11.0,
+    "strictBuildDesignPlan10Pinned40DiffPass": true,
+    "focusedPrevious14BrowserPassed": true,
+    "terraModel": "gpt-6.1-terra",
+    "terraReviews": "V1 found narrow/enlarged label fragmentation; intrinsic wrapping fixes it. V2 desktop/phone/short/root200/text-only200 found no remaining bounded blocker; controls/focus/shortcuts/item counts reviewed."
+  },
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "sharedUrl": "http://127.0.0.1:4175/?town=1",
+    "immutableClientArtifact": "visual-bag-2026-11-12/ci-final/build",
+    "all191ResponsesEqualCI": true,
+    "actualNativeDesktopAndPhoneGatherCraftClaimPlaceRemovePocketsReloadPassed": true,
+    "fiveSecondCraftActuallyWaited": true,
+    "mobilePocketAndShortcutTaps": true,
+    "unclaimedQuantity": 0,
+    "claimedQuantity": 1,
+    "placedAvailable": 0,
+    "returnedAvailable": 1,
+    "nativeScreensInspected": 4,
+    "apiPid": 83080,
+    "apiSession": 34638,
+    "apiRestarted": false,
+    "protocol": 4,
+    "staticPid": 69007,
+    "staticSession": 96100,
+    "all13PracticeTableColumnsRowsKeySixChecksumsPreserved": true,
+    "fictionalResidents": 1,
+    "plots": 0,
+    "oldStudiesPorts": [
+      49529,
+      49530,
+      49534
+    ],
+    "all9And21And14ResponsesUnchanged": true,
+    "temporary49541_49542_49543And4197Stopped": true,
+    "previous082ClientAnd081ServerAndPrivateBackupRetained": true
+  },
+  "payload": {
+    "classification": "Accepted083 versus082; actual final CI bytes match reviewed local",
+    "oldFiles": 191,
+    "newFiles": 191,
+    "all185OldArtUnchanged": true,
+    "rawDelta": 9311,
+    "gzipEachFileDelta": 2287,
+    "newAssets": 0,
+    "sourceScope": "Pure read-only inventory projection and DOM bag; original art reused; existing WorkshopUI tick only. No backend/schema/rule/recipe/cost/poll/timer change."
+  },
+  "automaticMainCI": {
+    "run": 43301487304,
+    "status": "in progress at closeout; separate from passed required exact candidate gates"
+  },
+  "superseded": [
+    "An unconfigured local system run skipped7database suites; rerun with dedicated database settings passed291with zero skips.",
+    "Initial test-only elapsed craft fixture included a craft-only recipe field on a claim; strict schema correctly refused it. Fixture corrected to assert every original command succeeds; initial5pass/1fail retained as rejected evidence.",
+    "Terra V1 P2 narrow/text-only200 labels split inside words; intrinsic wrapping corrected and explicit word-range regression assertion added before final candidate."
+  ],
+  "fixtureDisclosure": [
+    "Elapsed second-craft local save is built from successful original pure commands; native UI claim/place/remove/reload verifies stack1\u21922 and conservation.",
+    "Actual disposable shared Mira/Sol start at ordinary zero; Aster48kits/2planters is an explicit existing test baseline, no new protected grant. Native identity/pocket/inspector drill uses no response interception and sends zero game commands.",
+    "Home-allocation case explicitly intercepts fictional shared snapshots/EventSource; workshop/home placement subtraction and returned copy update retain existing slot nodes.",
+    "Responsive test deliberately fails one original stool artwork; local quota test deliberately fails local persistence. Those fixture failures are not normal production behavior.",
+    "Actual4175 desktop and touch-emulated phone use ordinary three collections and native real five-second craft/claim/place/remove/pocket actions, no state/position/clock/inventory/interception fixtures or protected shared identity.",
+    "A phone capture was repeated after400ms to clear transient native tap highlighting; gameplay assertions remained unchanged.",
+    "CI recovery uses actual isolated PostgreSQL restart and declared equal observation time; protected container never restarted."
+  ],
+  "limits": [
+    "Loopback preview only, no remote-phone/public-hosting promise.",
+    "Chrome/Chromium viewport/touch/text emulation, not physical phone/Safari/full accessibility or enjoyment certification.",
+    "Enlarged text and long inventory deliberately scroll; screenshots show visible portions.",
+    "No capacity, ownership, economy, recipes/costs, timers, backend/schema/protocol/migrations, dependencies, art assets, current-game/accounts/cloud/expense change."
+  ],
+  "usage": {
+    "freshWeeklyUsedPercent": 33,
+    "remainingPercent": 67,
+    "noResetUsed": true
+  }
+}

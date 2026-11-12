@@ -38,3 +38,7 @@ Direct owner direction: long production must leave useful things to do; research
 Interpretation for implementation: maintain parallel activity lanes; make cooperation improve choices without requiring everyone online; develop recognizable displayable trophies, furniture, clothing and tools. Reward variety and expression, not a single exponential number. Use original fictional bureaucracy, item descriptions and consequences for humor; no real coworker details or humiliating targeted jokes. Those tone choices are agent-selected editorial defaults. See [activity research and sequencing](../ACTIVITY_DEPTH.md).
 
 The062sketchbook is the first small off-bench collection chapter; its keepsake is currently journal-only. It does not implement public trophy mounting, wardrobe, co-op errands, gardening or a complete active-play loop. Those remain explicit later slices. Public identity/audience and hosted accounts retain their actual gates. New local content authorization does not approve paid services or public deployment.
+
+## November12 — clear RPG/MMO-lite personal tools
+
+Owner wants the eventual game to feel like a little RPG/MMO lite and finds the combined bag/journal cluttered. Keep inventory/belongings separate from goals, work notes and progress. IH2-084 implements only the bounded navigation split; this direction does not claim new equipment, combat, human chat, account security or a hosted MMO. Preserve the own art style, phone usability and persistent creative work.

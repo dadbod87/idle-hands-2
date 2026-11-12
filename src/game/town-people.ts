@@ -30,7 +30,7 @@ export type TownDialogue = {
   lines: string[];
   action?: { label: string; destination: 'workshop' | 'bench' | 'bridge' | 'journal' };
 };
-const journal = () => ({ label: 'Open bag & journal', destination: 'journal' as const });
+const journal = () => ({ label: 'Open journal', destination: 'journal' as const });
 const bench = (context: DialogueContext) => context.room === 'workshop'
   ? { label: 'Walk to your bench', destination: 'bench' as const }
   : { label: 'Walk to your workshop', destination: 'workshop' as const };
@@ -63,7 +63,7 @@ export function dialogueFor(id: string, context: DialogueContext): TownDialogue 
     };
     if (context.questStage === 'place') return {
       title,
-      lines: ['A planter. Excellent. We now have evidence that something can be completed here.', 'Inside your workshop, open Bag & journal, choose the planter and preview an empty nook. Confirm Place here when you are happy. Previewing, cancelling and moving furniture cost no materials.'],
+      lines: ['A planter. Excellent. We now have evidence that something can be completed here.', 'Inside your workshop, open Bag, choose the planter and preview an empty nook. Confirm Place here when you are happy. Previewing, cancelling and moving furniture cost no materials.'],
       action: journal()
     };
     if(context.shared&&context.guidance)return{title,lines:[context.guidance.title+'. The memo has been stapled to itself.',context.guidance.detail],action:context.guidance.destination==='bridge'?bridge():context.guidance.destination==='bench'?bench(context):journal()};

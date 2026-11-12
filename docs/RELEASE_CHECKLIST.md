@@ -198,3 +198,9 @@ IH2-082CIcapacity correction: the stable browser-playtest gate now requires both
 - Read-only stack projection: claimed outputs only, separate carried resources, seeds/produce and protected kept entitlements; subtract workshop and home placements without a new ledger. Invalid allocation must never fabricate negative availability.
 - Stable pocket/count DOM, explicit save/confirmation status, artwork fallback, native collect/place/remove/reload and identity/snapshot changes. Preserve notebook and original routes/controls; no command on inspection.
 - Desktop/narrow/short200/phone200 keyboard/tap44px and word-boundary control labels; Terra actual frozen-build review. Full local and exact-final-head CI suites plus actual images/build/recovery before merge, static-only accepted preview update and protected state/key/checksum/API/study preservation. Disclose intercepted/elapsed/unsaved/artwork fixtures and emulation limits.
+
+## IH2-084 separate personal tools
+
+- Bag and Journal have independent controls/content, direct focus-safe cross-links and guarded play-only shortcuts. Preserve all routes, counts, objectives, skills and return summaries; disclose arrangement/progress without hiding their access.
+- Seven desktop/narrow/short/root200/text-only200 HUD/panel shapes: whole-word label containment, nonoverlap,44px controls, world>100 and unobscured focus. Terra actual frozen-build recheck; no original assertion, real wait or deadline removed when migrating routes.
+- Full local/exact-headCI/disjoint suite/actual client/screens/recovery/tree gates before static-only preview; protected13tables/key/sixchecksums/API/studies preserved. Disclose isolated fixtures and device limits.

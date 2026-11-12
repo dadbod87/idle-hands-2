@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "include": [
+    "tests/personal-tools.spec.ts",
     "tests/bag.test.ts",
     "tests/bag.spec.ts",
     "tests/activity-notebook.test.ts",
@@ -66,7 +67,8 @@
     "tests/collection-receipt.test.ts",
     "tests/collection-receipt.spec.ts",
     "tests/collection-grant.test.ts",
-    "tests/collection-runtime.spec.ts"
+    "tests/collection-runtime.spec.ts",
+    "tests/z-first-visit.spec.ts"
   ],
   "compilerOptions": {
     "types": [

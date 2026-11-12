@@ -194,3 +194,7 @@ Owner explicitly requests playable integration of accepted079. Persist optional 
 ## 2026-11-12 — IH2-082 existing activities before another economy
 
 Owner explicitly delegates the next useful section. Select a compact returning-player notebook in existing Bag & journal: current bench/rack/crop readiness and capacity, fixed links to existing inspectors, then independent sketch/Pip/wood routes. This addresses long parallel waits without another currency, recipe or reward. Projection is presentation only using existing private state/server clock, never a command, implicit harvest or settlement source. Preserve useful holdings/arranging/quests and stable controls under passive updates. No new HUD, polling, save schema or backend changes. Actual Terra desktop/mobile review and all acceptance gates remain required.
+
+## November12 — a visible bag over the existing inventory
+
+Owner requests illustrated carried items with stack badges now. IH2-083 reuses existing authoritative held fields rather than introducing inventory slots/capacity as a new rule. Furniture availability subtracts workshop and house placement while ownership remains visible. Seeds and produce remain distinct; protected equipped tools/displayed markers are labelled kept entitlements. Readiness alone never claims a craft. A CSS satchel and existing original item illustrations keep the visual family consistent. Drag/drop, trading and broader equipment/container systems remain separate future decisions. Exact acceptance is recorded in083evidence.

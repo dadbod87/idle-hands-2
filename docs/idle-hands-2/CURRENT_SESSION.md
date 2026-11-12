@@ -1,3 +1,7 @@
+# IH2-081 — actual collection receipt integration active
+
+Owner explicitly authorizes runtime integration/Terra review. Active feat/collection-receipts-runtime from2da9786retained closeout/accepted10adfa9.081in_progress. Preserve practice13tables/key/sixchecksums and all old studies; accepted4175/API remain until final source/CI/artifact gates. No economy/rates/timers/realaccounts/hosting/expense/currentgame changes. Root owns edits/runners; Terra read-only source/layout review authorized.
+
 # Idle Hands 2 — accepted receipt study and next integration
 
 November12,2026. Accepted source main10adfa9171c5a912af5e5f88c87a0bc9bc46f511/PR28. Current chore/collection-receipt-closeout-2026-11-12retains closing evidence and queued081contract, not another runtime release. Preserve this checkpoint when branching next; do not discard it by blindly switching to older main docs. Read AGENTS/required state/build/design docs, then tracker status/check/prompt.

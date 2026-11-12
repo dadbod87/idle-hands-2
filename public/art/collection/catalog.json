@@ -1,0 +1,189 @@
+{
+  "classification": "Original078sheets promoted byte-for-byte for081DOMreceipt; source acceptance recorded separately",
+  "generator": "tools/promote-collection-art.py",
+  "sourceGenerator": "tools/create-gathering-family.py",
+  "license": "project-original",
+  "assets": [
+    {
+      "id": "collection-aster-scrap",
+      "file": "aster-scrap.svg",
+      "sha256": "81966e9b9048077daf3926b7bccd0e8a1bedc687f90b2daf0c23a97d86c78dfe",
+      "source": "docs/evidence/IH2-078/study/aster-scrap-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "collection-aster-timber",
+      "file": "aster-timber.svg",
+      "sha256": "5142a7fa3736f60357b9a807ce57f630746dbed792f8004d37420b6d640402e2",
+      "source": "docs/evidence/IH2-078/study/aster-timber-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "collection-aster-supplies",
+      "file": "aster-supplies.svg",
+      "sha256": "48fb0095a00d44072f42a8761b7e945dbe345de1fd37a12bb05799b83c69291c",
+      "source": "docs/evidence/IH2-078/study/aster-supplies-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "collection-bea-scrap",
+      "file": "bea-scrap.svg",
+      "sha256": "dbb97234a2f386ade848ddd52823660c615a054f9fc146e71c764a6372d8f664",
+      "source": "docs/evidence/IH2-078/study/bea-scrap-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "collection-bea-timber",
+      "file": "bea-timber.svg",
+      "sha256": "2cc68d1cba6cdf26fefb8a11423238ecec1fdf256f2f1c0f436d1aad37d408d3",
+      "source": "docs/evidence/IH2-078/study/bea-timber-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "collection-bea-supplies",
+      "file": "bea-supplies.svg",
+      "sha256": "e7d7418273184f284f289dcfe2e9c0a4055f5e7b44e05936c0d8b9ea46362cbd",
+      "source": "docs/evidence/IH2-078/study/bea-supplies-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "collection-casey-scrap",
+      "file": "casey-scrap.svg",
+      "sha256": "db42bb74f8021ea25986055f46a5ac7e11201a2381fc570785b49173bfabae6d",
+      "source": "docs/evidence/IH2-078/study/casey-scrap-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "collection-casey-timber",
+      "file": "casey-timber.svg",
+      "sha256": "000e6523543281469ee541bc44820c270452b87cf499e889b812d2903a34dde5",
+      "source": "docs/evidence/IH2-078/study/casey-timber-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "collection-casey-supplies",
+      "file": "casey-supplies.svg",
+      "sha256": "2dbae0b4e229a39ac7e06bd7c6f2b13ceccddc0c6f65452532f21d6156fcd5a8",
+      "source": "docs/evidence/IH2-078/study/casey-supplies-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "collection-devon-scrap",
+      "file": "devon-scrap.svg",
+      "sha256": "cef832a7ddf478a49e907e95d2ed51c376bca256d33f8feac8b8f3f57d5dbe6e",
+      "source": "docs/evidence/IH2-078/study/devon-scrap-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "collection-devon-timber",
+      "file": "devon-timber.svg",
+      "sha256": "543edaf0bf26a6ebd2f5c4952e6accf0c462494a304dc2a333950ad94bfd6d53",
+      "source": "docs/evidence/IH2-078/study/devon-timber-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "collection-devon-supplies",
+      "file": "devon-supplies.svg",
+      "sha256": "873b60c47f2afc2ca0d034a565600ffc9b90040535e912b84b2fdc6b917c384d",
+      "source": "docs/evidence/IH2-078/study/devon-supplies-collection.svg",
+      "width": 256,
+      "height": 320,
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "displayScale": 0.9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    }
+  ],
+  "loading": "Current character/material only; front-facing modal illustration. No world animation or state authority."
+}

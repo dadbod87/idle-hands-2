@@ -173,3 +173,12 @@ IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclos
 - Original command/player/resource/panel/rig, passive updates, rejected/legacy/mismatched grants, once-only lost retry, stale identity/view and reduced/hidden cancellation. Text confirmation independent of asset readiness/failure; no late replay.
 - Held Collect/Retry and Close rectangles, focus retained, reopen and keyboard controls below sticky header at320/360/short200/phone200. Long status keyboard-scrollable when overflow; no horizontal overflow and44pxcontrols. Explicit fake replies/media/text/hidden fixtures disclosed.
 - Measure CIheadroom, preserve every meaningful assertion/actual-clock proof/20mdeadline. Required local checks and both exact-headCIjobs, actual14study/178unchangedgame artifact files/images/restart evidence, matching merge tree/cleanmain and protected13tables/key/checksums/previews. No real-device/authority/gameplay claim.
+
+
+## IH2-081 playable receipt gate
+
+- Exact positive original grant persisted in existing locked result; partial/full/reject/replay-after-spend/legacy/wrong payload/client-forgery checked. No economy/schema/query/write change.
+- Original promise outcome remains paired through subscription/retry/closed panel/identity; local unsaved warning never claims Saved.
+- Actual current-rig art is lazy and byte-identical; failed/late decode, reduced/hidden motion and reload cannot replay rewards. Preserve resource counts and fixed held/focused controls at desktop/320/360/short200/phone200.
+- Run all required checks and exact-final-headCI under unchanged deadline; inspect actual uploaded images/client/recovery evidence, match merge tree.
+- Privately back up quiescent protected practice before API replacement; preserve every13table column/row/key/sixchecksums, frozen studies and previous artifact. Verify actual served final bytes/native local receipts and anonymous shared chooser without protected grants. Disclose all fixtures and device limitations.

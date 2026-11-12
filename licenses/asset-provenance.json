@@ -1611,6 +1611,126 @@
       "source": "tools/create-depot-art.py",
       "date": "2026-11-12",
       "modifications": "Original static scrap bin, sawn timber and stationery crate. Decorative contents are not exact stock quantities. No imported media."
+    },
+    {
+      "id": "collection-aster-scrap",
+      "path": "public/art/collection/aster-scrap.svg",
+      "sha256": "81966e9b9048077daf3926b7bccd0e8a1bedc687f90b2daf0c23a97d86c78dfe",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "collection-aster-supplies",
+      "path": "public/art/collection/aster-supplies.svg",
+      "sha256": "48fb0095a00d44072f42a8761b7e945dbe345de1fd37a12bb05799b83c69291c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "collection-aster-timber",
+      "path": "public/art/collection/aster-timber.svg",
+      "sha256": "5142a7fa3736f60357b9a807ce57f630746dbed792f8004d37420b6d640402e2",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "collection-bea-scrap",
+      "path": "public/art/collection/bea-scrap.svg",
+      "sha256": "dbb97234a2f386ade848ddd52823660c615a054f9fc146e71c764a6372d8f664",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "collection-bea-supplies",
+      "path": "public/art/collection/bea-supplies.svg",
+      "sha256": "e7d7418273184f284f289dcfe2e9c0a4055f5e7b44e05936c0d8b9ea46362cbd",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "collection-bea-timber",
+      "path": "public/art/collection/bea-timber.svg",
+      "sha256": "2cc68d1cba6cdf26fefb8a11423238ecec1fdf256f2f1c0f436d1aad37d408d3",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "collection-casey-scrap",
+      "path": "public/art/collection/casey-scrap.svg",
+      "sha256": "db42bb74f8021ea25986055f46a5ac7e11201a2381fc570785b49173bfabae6d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "collection-casey-supplies",
+      "path": "public/art/collection/casey-supplies.svg",
+      "sha256": "2dbae0b4e229a39ac7e06bd7c6f2b13ceccddc0c6f65452532f21d6156fcd5a8",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "collection-casey-timber",
+      "path": "public/art/collection/casey-timber.svg",
+      "sha256": "000e6523543281469ee541bc44820c270452b87cf499e889b812d2903a34dde5",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "collection-devon-scrap",
+      "path": "public/art/collection/devon-scrap.svg",
+      "sha256": "cef832a7ddf478a49e907e95d2ed51c376bca256d33f8feac8b8f3f57d5dbe6e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "collection-devon-supplies",
+      "path": "public/art/collection/devon-supplies.svg",
+      "sha256": "873b60c47f2afc2ca0d034a565600ffc9b90040535e912b84b2fdc6b917c384d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "collection-devon-timber",
+      "path": "public/art/collection/devon-timber.svg",
+      "sha256": "543edaf0bf26a6ebd2f5c4952e6accf0c462494a304dc2a333950ad94bfd6d53",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-collection-art.py",
+      "date": "2026-11-12",
+      "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
     }
   ],
   "comparison": {

@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-081 candidate wires confirmed receipts into actual depot collection, retaining original immutable grants on retry, truthful local-save failures and current-rig art fallback. Rules/progress unchanged. Acceptance gates pending. [Evidence](evidence/IH2-081/REPORT.md).
+
 2026-11-12 — IH2-079 accepted PR28/merge10adfa9, exact8b392b9CI43257514774bothSUCCESS274/83. Fixed visible receipt prototype/once-only synthetic confirmation and authority gap documented; actual14study/178unchangedgame files/images verified, practice/key preserved.081actual integration queued, no runtime receipt yet. [Closeout](evidence/IH2-079/source-closeout.json).
 
 2026-11-12 — IH2-079 working design study: visible fixed receipt area, original-intent confirmation/retry model and selected-sheet loading; corrected narrow reopen focus and doubled-text dialog width. Terra6.1recheck finds no blocker. Full source/CI/artifact gates pending; no game/API/progress change. [Evidence](evidence/IH2-079/REPORT.md).

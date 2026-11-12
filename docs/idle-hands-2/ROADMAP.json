@@ -891,7 +891,7 @@
     {
       "id": "IH2-081",
       "title": "Integrate confirmed collection receipts",
-      "status": "queued",
+      "status": "in_progress",
       "owner_branch": "feat/collection-receipts-runtime",
       "depends_on": [
         "IH2-079"

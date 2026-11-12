@@ -1,3 +1,6 @@
+import {collectionGrant,type CollectionGrant} from '../game/collection-receipt.ts';
+import {CollectionReceiptView} from './collection-receipt.ts';
+import {residentArt} from '../art/variety.ts';
 import type {CommissionAction} from '../game/commission.ts';
 import type {CarpentryAction} from '../game/carpentry.ts';
 import type {GardenAction} from '../game/garden.ts';
@@ -8,8 +11,9 @@ export const WORKSHOP_SAVE_KEY='ih2:workshop:v2';
 const SAVE_KEY=WORKSHOP_SAVE_KEY,LEGACY_SAVE_KEY='ih2:workshop:v1';
 const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',planter:'Orientation planter',stool:'Break-time stool',rug:'Welcome rug',lamp:'Optimism lamp',crate:'Useful crate',shelf:'Almost level shelf',easel:'Garden study easel',letterbox:'Unreasonably Official Letterbox'};
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
-export type RemoteWorkshopAdapter={allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<{state:WorkshopState;message:string;ok?:boolean}>;retry:(present?:()=>boolean)=>Promise<{state:WorkshopState;message:string;ok?:boolean}>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string};commission?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
+type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Record<string,unknown>;playerId?:string;collection?:CollectionGrant};
+export type RemoteWorkshopAdapter={busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
+type PanelHost={owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string};commission?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -24,6 +28,8 @@ export class WorkshopUI {
  private saved=true;
  private lastSlot:string|null=null;
  private ticker:number;
+ private collectionView:CollectionReceiptView|null=null;
+ private collectionIntent:{id:string;owner:string;rig:string;view:CollectionReceiptView}|null=null;
  private remoteBusy=false;
  private remoteError='';
  constructor(private host:PanelHost,private remote?:RemoteWorkshopAdapter){
@@ -52,20 +58,20 @@ export class WorkshopUI {
   document.addEventListener('visibilitychange',()=>{if(!document.hidden){this.state=settleWorkshop(this.state,Date.now());this.persist();this.updateClocks();}});
  }
  snapshot(){return JSON.parse(JSON.stringify(this.state));}
- closed(){this.active=null;this.status=null;this.preview=null;}
+ closed(){this.collectionView?.destroy();this.collectionView=null;this.host.body.classList.remove('collection-panel');this.host.body.closest('dialog')?.classList.remove('collection-dialog');this.active=null;this.status=null;this.preview=null;}
  private acceptRemote(state:WorkshopState){this.state=state;if(!this.remote?.canRetry())this.remoteError='';this.host.changed();this.updateClocks();this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>el.textContent=String(state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]));}
- private remoteNotice(){if(!this.remote||!this.status)return;if(this.remoteBusy||this.remoteError)this.status.textContent=this.remoteBusy?'Waiting for server confirmation…':this.remoteError;let retry=this.host.body.querySelector<HTMLButtonElement>('.remote-retry');if(!retry){retry=this.button('Retry the same request',()=>void this.remoteDispatch(null),'remote-retry');this.status.after(retry);}retry.hidden=!this.remoteError;retry.disabled=this.remoteBusy;}
+ private remoteNotice(){if(!this.remote||!this.status)return;if(this.collectionView){const busy=this.remoteBusy||this.remote.busy?.();this.collectionView.retry.textContent=this.remote.canRetry()?'Retry the same request':'Refresh town state';if(busy||this.remoteError)this.collectionView.message(busy?'Waiting for server confirmation…':this.remoteError+(this.remote.canRetry()?' The request may have saved. Retry the same request.':''));else if(!this.collectionView.started)this.collectionView.message(this.remote.canRetry()?'A request is unresolved. Retry the same request before collecting.':'Choose Collect to gather the available material.');return;}if(this.remoteBusy||this.remoteError)this.status.textContent=this.remoteBusy?'Waiting for server confirmation…':this.remoteError;let retry=this.host.body.querySelector<HTMLButtonElement>('.remote-retry');if(!retry){retry=this.button('Retry the same request',()=>void this.remoteDispatch(null),'remote-retry');this.status.after(retry);}retry.hidden=!this.remoteError;retry.disabled=this.remoteBusy;}
  private async remoteDispatch(command:Record<string,unknown>|null,present:()=>boolean=()=>true):Promise<WorkshopCommandResult>{
   const failed=(message:string):WorkshopCommandResult=>({ok:false,state:this.state,message,retry:!!this.remote?.canRetry()});
   if(!this.remote||this.remoteBusy)return failed('A change is still being confirmed.');
   if(command&&this.remote.canRetry()){this.remoteError='Retry the previous request before making another change.';this.remoteNotice();return failed(this.remoteError);}
   const before=this.state.revision;this.remoteBusy=true;this.remoteError='';this.updateClocks();
   try{
-   const receipt=command?await this.remote.command(command,present):this.remote.canRetry()?await this.remote.retry(present):{state:await this.remote.load(),message:'Town state refreshed.',ok:false};
-   if(!present())return failed('The submitting panel changed. Confirmed state is kept.');
-   this.acceptRemote(receipt.state);this.host.feedback(receipt.message);if(this.status)this.status.textContent=receipt.message;this.preview=null;if(this.host.body.querySelector('#placement'))this.renderPlacement();
+   const receipt:RemoteOutcome=command?await this.remote.command(command,this.collectionView?()=>false:present):this.remote.canRetry()?await this.remote.retry(this.collectionView?()=>false:present):{state:await this.remote.load(),message:'Town state refreshed.',ok:false};
+   if(!present()){this.finishCollection(receipt);return failed('The submitting panel changed. Confirmed state is kept.');}
+   this.acceptRemote(receipt.state);const shown=this.finishCollection(receipt);if(this.collectionView&&!shown)this.collectionView.message(receipt.command?.kind==='gather'?'Original request resolved. '+receipt.message:receipt.message);this.host.feedback(receipt.message);if(this.status&&!this.collectionView)this.status.textContent=receipt.message;this.preview=null;if(this.host.body.querySelector('#placement'))this.renderPlacement();
    return{ok:receipt.ok??receipt.state.revision>before,state:this.state,message:receipt.message,retry:false};
-  }catch(error){if(!present())return failed('The submitting panel changed. Confirmed state is kept.');this.remoteError=(error as Error).message;this.host.feedback(this.remoteError);return failed(this.remoteError);}
+  }catch(error){if(!this.remote.canRetry())this.collectionIntent=null;if(!present())return failed('The submitting panel changed. Confirmed state is kept.');this.remoteError=(error as Error).message;this.host.feedback(this.remoteError+(this.collectionView&&this.remote.canRetry()?' The request may have saved. Retry the same request.':''));return failed(this.remoteError);}
   finally{this.remoteBusy=false;this.updateClocks();if(this.remoteError)this.remoteNotice();}
  }
  public async runCommission(action:CommissionAction,expectedRevision?:number,present:()=>boolean=()=>true):Promise<WorkshopCommandResult>{
@@ -84,9 +90,9 @@ export class WorkshopUI {
  public gardenSaveStatus(){return{busy:this.remoteBusy,canRetry:!!this.remote?.canRetry(),readOnly:!this.remote&&!this.ownsSave,error:this.remoteError||this.localReadOnlyReason||(!this.remote&&!this.ownsSave?'This tab is read-only while another tab owns the save, or this browser cannot coordinate saves. Reload after closing other game tabs.':'')};}
 
  private freezeLocalSave(){this.saved=false;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent='Saved data kept · read-only';this.localReadOnlyReason='This local save could not be read safely. It has been kept unchanged; actions are read-only.';this.ownsSave=false;this.releaseLock?.();this.releaseLock=null;this.host.feedback(this.localReadOnlyReason);}
- private synchronize(){try{const raw=localStorage.getItem(SAVE_KEY)??localStorage.getItem(LEGACY_SAVE_KEY);if(!raw||raw===this.serialized)return;const loaded=loadWorkshop(JSON.parse(raw),Date.now());if(loaded.recovered){this.freezeLocalSave();return;}this.state=loaded.state;this.serialized=raw;this.host.changed();this.active?.();}catch{this.freezeLocalSave();}}
+ private synchronize(){try{const raw=localStorage.getItem(SAVE_KEY)??localStorage.getItem(LEGACY_SAVE_KEY);if(!raw||raw===this.serialized)return;const loaded=loadWorkshop(JSON.parse(raw),Date.now());if(loaded.recovered){this.freezeLocalSave();return;}this.state=loaded.state;this.serialized=raw;this.host.changed();if(this.collectionView){this.updateClocks();this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>el.textContent=String(this.state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]));}else this.active?.();}catch{this.freezeLocalSave();}}
 
- private persist(){if(this.remote)return true;if(!this.ownsSave)return this.saved;const next=JSON.stringify(this.state);if(next===this.serialized)return this.saved;try{localStorage.setItem(SAVE_KEY,next);this.serialized=next;this.saved=true;}catch{this.saved=false;this.host.feedback('Local save failed. Keep this tab open; new progress will be lost on reload.');}const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=this.saved?'Local workshop · saved here':'Unsaved practice · keep tab open';return this.saved;}
+ private persist(quiet=false){if(this.remote)return true;if(!this.ownsSave)return this.saved;const next=JSON.stringify(this.state);if(next===this.serialized)return this.saved;try{localStorage.setItem(SAVE_KEY,next);this.serialized=next;this.saved=true;}catch{this.saved=false;if(!quiet)this.host.feedback('Local save failed. Keep this tab open; new progress will be lost on reload.');}const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=this.saved?'Local workshop · saved here':'Unsaved practice · keep tab open';return this.saved;}
  private button(text:string,handler:()=>void,className=''){const b=document.createElement('button');b.type='button';b.textContent=text;b.className=className;b.onclick=handler;return b;}
  private p(text:string,className=''){const p=document.createElement('p');p.textContent=text;p.className=className;return p;}
  private begin(title:string,render:()=>void){if(!this.remote)this.state=settleWorkshop(this.state,Date.now());this.persist();this.host.open(title);this.active=render;this.status=null;if(this.remote)this.remoteBusy=true;render();if(this.remote){void this.remote.load().then(state=>this.acceptRemote(state)).catch(error=>{this.remoteError=error.message;this.host.feedback(error.message);}).finally(()=>{this.remoteBusy=false;this.updateClocks();});}}
@@ -94,9 +100,12 @@ export class WorkshopUI {
  private dispatch(command:Record<string,unknown>){
   if(this.remote){void this.remoteDispatch(command);return;}
   if(!this.ownsSave){const message=this.localReadOnlyReason||'Workshop open in another tab, or local-save coordination unavailable. Close other game tabs and reload this one to continue.';this.host.feedback(message);if(this.status)this.status.textContent=message;return{ok:false,message};}
-  const receipt=applyWorkshop(this.state,{...command,id:crypto.randomUUID(),expectedRevision:typeof command.expectedRevision==='number'?command.expectedRevision:this.state.revision} as WorkshopCommand,Date.now());this.state=receipt.state;this.persist();const message=receipt.message+(this.saved?'':' Local save failed; this progress will be lost on reload.');this.host.feedback(message);this.host.changed();
+  const before=this.state,id=typeof command.id==='string'?command.id:crypto.randomUUID();
+  const receipt=applyWorkshop(this.state,{...command,id,expectedRevision:typeof command.expectedRevision==='number'?command.expectedRevision:this.state.revision} as WorkshopCommand,Date.now());this.state=receipt.state;this.persist(command.kind==='gather');const message=receipt.message+(this.saved?'':' Local save failed; this progress will be lost on reload.');this.host.feedback(message);this.host.changed();
   // Keep the action controls stable: update quantities/timers without rebuilding the form.
-  this.updateClocks();if(this.status)this.status.textContent=message;
+  const grant=receipt.ok&&!receipt.replayed&&command.kind==='gather'?collectionGrant(id,this.host.owner?.()??'local',command.resource,before,this.state):undefined;
+  this.finishCollection({state:this.state,message,ok:receipt.ok,command:{...command,id},playerId:this.host.owner?.()??'local',collection:grant},this.saved);
+  this.updateClocks();if(this.status&&!this.collectionView)this.status.textContent=message;
   this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>{el.textContent=String(this.state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]);});
   return{ok:receipt.ok,message};
  }
@@ -119,12 +128,30 @@ export class WorkshopUI {
   const certificate=document.createElement('img');certificate.src='/art/fieldwork/naturalist-keepsake.svg';certificate.alt='Neighborhood Naturalist — honorary department of looking at things';certificate.width=240;certificate.height=160;certificate.dataset.sketchKeepsake='';certificate.className='sketch-keepsake';b.append(certificate);
   b.append(this.p('Three studies earn a keepsake for your journal. It stays saved; it is not furniture or a production bonus. No weather window or bridge access needed. When your fieldwork is done, redecorate, meet the residents, or head home. The trees will manage.','disclosure'));this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin(station?SURVEYS[station].name:'Town sketchbook',render);}
+ private collectionCurrent(view:CollectionReceiptView,owner:string,rig:string){return this.collectionView===view&&view.root.isConnected&&(this.host.owner?.()??'local')===owner&&residentArt(this.host.rig?.()??'devon')===rig;}
+ private gather(resource:CollectionGrant['resource'],view:CollectionReceiptView){
+  if(!view.usable||this.collectionView!==view||this.remote?.busy?.()||this.remoteBusy||this.remoteError||this.remote?.canRetry()||!this.state.nodes[resource].stock||Object.values(this.state.inventory).reduce((a,v)=>a+v,0)>=60)return;
+  const owner=this.host.owner?.()??'local',rig=residentArt(this.host.rig?.()??'devon');
+  if(!this.remote&&!this.ownsSave){view.begin('');this.dispatch({kind:'gather',resource});return;}
+  const id=crypto.randomUUID();this.collectionIntent={id,owner,rig,view};view.begin(id);this.host.feedback('Confirming collection…');
+  if(this.remote)void this.remoteDispatch({kind:'gather',resource,id},()=>this.collectionCurrent(view,owner,rig));else this.dispatch({kind:'gather',resource,id});
+ }
+ private finishCollection(receipt:RemoteOutcome,saved=true){
+  const intent=this.collectionIntent;if(!intent)return false;
+  if(receipt.command?.id!==intent.id){if(!this.remote?.canRetry())this.collectionIntent=null;return false;}
+  this.collectionIntent=null;
+  if(!this.collectionCurrent(intent.view,intent.owner,intent.rig))return false;
+  const g=receipt.collection;
+  if(receipt.ok&&g&&g.commandId===intent.id&&g.playerId===intent.owner&&g.resource===intent.view.resource)intent.view.confirm(g,saved,receipt.message);else intent.view.message(receipt.message);return true;
+ }
  showResource(resource:typeof RESOURCE_IDS[number]){const render=()=>{
-  const b=this.host.body;b.replaceChildren();b.append(this.p('Rescued from the company’s extremely ambitious disposal policy.'),this.resources());
-  const stock=this.p('');stock.dataset.node=resource;b.append(stock);
-  const collect=this.button('Collect available '+names[resource].toLowerCase(),()=>this.dispatch({kind:'gather',resource}),'primary');collect.dataset.collect=resource;b.append(collect);
-  this.notice();b.append(this.p('Each depot holds at most 6. One unit returns every 4 real hours, for up to 24 real hours per absence. Bag capacity: 60 materials. Returning often does not speed it up.','disclosure'),this.disclosure());this.updateClocks();
+  this.collectionView?.destroy();const b=this.host.body;b.replaceChildren();b.classList.add('collection-panel');b.closest('dialog')?.classList.add('collection-dialog');b.append(this.p('Rescued from the company’s extremely ambitious disposal policy.'),this.resources());
+  const stock=this.p('');stock.dataset.node=resource;b.append(stock);const owner=this.host.owner?.()??'local',rig=residentArt(this.host.rig?.()??'devon');
+  const view=new CollectionReceiptView(resource,rig,()=>this.collectionCurrent(view,owner,rig),()=>this.gather(resource,view),()=>void this.remoteDispatch(null,()=>this.collectionCurrent(view,owner,rig)));
+  this.collectionView=view;view.retry.hidden=!this.remote;b.append(view.root);this.status=view.status;
+  b.append(this.p('Each depot holds at most 6. One unit returns every 4 real hours, for up to 24 real hours per absence. Bag capacity: 60 materials. Returning often does not speed it up.','disclosure'),this.disclosure());this.updateClocks();queueMicrotask(()=>{if(this.collectionCurrent(view,owner,rig))view.focus();});
  };this.begin(names[resource]+' depot',render);}
+
  showBench(){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.append(this.p('Useful work. Unnecessary forms. One job at a time. All durations use real time, not the town’s day/night clock.'),this.resources());
   const job=this.p('');job.dataset.job='';b.append(job);
@@ -158,7 +185,7 @@ export class WorkshopUI {
   if(restoreFocus){const next=area.querySelector<HTMLButtonElement>(`[data-slot="${this.lastSlot??PLACEMENT_SLOTS[0].id}"]`);next?.focus({preventScroll:true});if(next){next.scrollIntoView({block:'nearest'});const dialog=next.closest('dialog'),head=dialog?.querySelector('header');if(dialog&&head){const hidden=head.getBoundingClientRect().bottom+8-next.getBoundingClientRect().top;if(hidden>0)dialog.scrollTop-=hidden;}}}
  }
  private updateClocks(){if(!this.active)return;
-  if(this.remote){const blocked=this.remoteBusy||!!this.remoteError||this.remote.canRetry();this.host.body.setAttribute('aria-busy',String(this.remoteBusy));this.host.body.querySelectorAll<HTMLButtonElement>('button:not(.remote-retry)').forEach(button=>{if(blocked){if(button.dataset.remoteDisabled===undefined)button.dataset.remoteDisabled=String(button.disabled);button.disabled=true;}else if(button.dataset.remoteDisabled!==undefined){button.disabled=button.dataset.remoteDisabled==='true';delete button.dataset.remoteDisabled;}});this.remoteNotice();}
+  if(this.remote){const blocked=this.remoteBusy||!!this.remoteError||this.remote.canRetry();this.host.body.setAttribute('aria-busy',String(this.remoteBusy));this.host.body.querySelectorAll<HTMLButtonElement>('button:not(.remote-retry):not(.collection-control)').forEach(button=>{if(blocked){if(button.dataset.remoteDisabled===undefined)button.dataset.remoteDisabled=String(button.disabled);button.disabled=true;}else if(button.dataset.remoteDisabled!==undefined){button.disabled=button.dataset.remoteDisabled==='true';delete button.dataset.remoteDisabled;}});this.remoteNotice();}
   const now=this.remote?.now()??Date.now(),b=this.host.body;
   const sketches=this.state.sketches??[];
   const sketchProgress=b.querySelector('[data-sketch-progress]');if(sketchProgress)sketchProgress.textContent=sketches.length+' / 3 tree studies recorded'+(sketches.length===3?' · keepsake earned':' · choose your own order');
@@ -168,7 +195,8 @@ export class WorkshopUI {
   for(const button of b.querySelectorAll<HTMLButtonElement>('[data-survey-choice]'))button.disabled=sketches.includes(button.dataset.surveyChoice as SurveyId)||!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry());
   if(this.remote){for(const el of b.querySelectorAll<HTMLElement>('[data-owned]'))el.textContent=`${names[this.selected]} · ${this.state.owned[this.selected as typeof PROP_IDS[number]]} owned. Preview and moving are free.`;for(const el of b.querySelectorAll<HTMLButtonElement>('[data-slot]')){const slot=PLACEMENT_SLOTS.find(slot=>slot.id===el.dataset.slot);if(slot)el.textContent=`${slot.label}: ${this.state.placements[slot.id]?names[this.state.placements[slot.id]!]:'empty'}${this.preview===slot.id?' · preview '+names[this.selected]:''}`;}}
   for(const el of b.querySelectorAll<HTMLElement>('[data-node]')){const node=this.state.nodes[el.dataset.node as typeof RESOURCE_IDS[number]];el.textContent=`${node.stock} available · ${node.stock>=6?'depot full':`next unit in ${duration(node.lastAt+4*3600_000-now)}`}`;}
-  for(const button of b.querySelectorAll<HTMLButtonElement>('[data-collect]'))button.disabled=!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry())||this.state.nodes[button.dataset.collect as typeof RESOURCE_IDS[number]].stock===0||Object.values(this.state.inventory).reduce((a,v)=>a+v,0)>=60;
+  for(const button of b.querySelectorAll<HTMLButtonElement>('[data-collect]:not(.collection-control)'))button.disabled=!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry())||this.state.nodes[button.dataset.collect as typeof RESOURCE_IDS[number]].stock===0||Object.values(this.state.inventory).reduce((a,v)=>a+v,0)>=60;
+  if(this.collectionView)this.collectionView.blocked(!!this.remote&&(this.remoteBusy||!!this.remote.busy?.()||!!this.remoteError||this.remote.canRetry())||!this.collectionView.usable||this.state.nodes[this.collectionView.resource].stock===0||Object.values(this.state.inventory).reduce((a,v)=>a+v,0)>=60,!this.remote||this.remoteBusy||!!this.remote?.busy?.()||(!this.remoteError&&!this.remote?.canRetry()));
   const claim=b.querySelector<HTMLButtonElement>('[data-claim]');if(claim)claim.disabled=!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry())||!this.state.job||this.state.job.readyAt>now;
   for(const button of b.querySelectorAll<HTMLButtonElement>('[data-craft]')){button.disabled=!!this.state.job||!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry());if(button.dataset.craft==='planter')button.textContent=this.state.stats.plantersCrafted?'Make another planter · 8 real hours':'Make orientation planter';}
   const job=b.querySelector('[data-job]');if(job)job.textContent=this.state.job?`${this.state.job.recipe==='planter'?'Planter':'Bridge supplies'} · ${this.state.job.readyAt<=now?'ready to collect':duration(this.state.job.readyAt-now)+' remaining'}`:'Bench is free. Choose a recipe.';

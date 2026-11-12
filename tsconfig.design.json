@@ -1,6 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "include": [
+    "tests/activity-notebook.test.ts",
+    "tests/activity-notebook.spec.ts",
     "tools/check-design-plan.ts",
     "tools/simulate-design-pacing.ts",
     "tests/design-*.test.ts",

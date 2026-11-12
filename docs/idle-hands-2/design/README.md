@@ -85,4 +85,6 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 
 [Visible confirmed collection receipt](COLLECTION_RECEIPT_VISIBILITY.md): accepted079separate design/prototype; audit intent/retry provenance, reserve visible modal art and held controls before any runtime promotion. Includes observed CIheadroom preflight.
 
-[Actual collection receipt integration](COLLECTION_RECEIPT_RUNTIME.md): queued081; locked original grant metadata, exact transport/retry/presentation scope and truthful local persistence before runtime promotion.
+[Actual collection receipt integration](COLLECTION_RECEIPT_RUNTIME.md): accepted081actual local/shared game; locked original grant metadata, exact transport/retry/presentation scope and truthful local persistence before runtime promotion.
+
+[Returning-player activity notebook](../../evidence/IH2-082/PLAN.md):082working integration connects existing workbench/rack/crops, without a new economy or automatic claims. Acceptance remains in its evidence.

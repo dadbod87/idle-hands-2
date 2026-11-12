@@ -915,6 +915,29 @@
       ]
     },
     {
+      "id": "IH2-082",
+      "title": "Useful returning-player activity notebook",
+      "status": "in_progress",
+      "owner_branch": "feat/activity-notebook",
+      "depends_on": [
+        "IH2-081"
+      ],
+      "goal": "Put current bench/rack/garden readiness and useful independent activities first in Bag & journal without changing rules or spending on navigation.",
+      "acceptance": [
+        "Pure nonmutating projection from actual workshop state and its existing real/server clock: idle/running/ready/storage-blocked bench and rack, per-crop ready/collectable/full/growing garden; exact deadline boundaries and no auto-claim.",
+        "Integrate one compact stable notebook in existing Bag & journal, preserving materials, all existing useful routes, objective/skills/holdings and furniture controls. Open existing inspectors only; no extra request/poll/write/timer or new HUD overlay.",
+        "Stable ordered cards/buttons/focus through passive deadline and snapshot updates; keyboard/focus/touch44px and readable desktop320/360/short200/phone200. Stale/unconfirmed/read-only/unsaved states never claim saved progress or confirmed collection.",
+        "Actual local and isolated shared native navigation, live transition, held-target/no commands on free inspection, reopened panel/identity, full storage and long text with explicit fixtures. Terra desktop/mobile review and actual final artifact/images.",
+        "Required local checks, both exact-final-headCIjobs under unchanged20mdeadline, matching merge tree/clean main. Actual protected static preview update preserves all13table rows/columns/key/sixchecksums/API and historical studies."
+      ],
+      "exclusions": [
+        "No new quest/reward/economy/recipes/resources/timers, backend/schema/protocol/migration, paid claim from notebook, real accounts/current game/cloud/expense/public launch."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-082/PLAN.md"
+      ]
+    },
+    {
       "id": "IH2-070",
       "title": "Invited beta on approved isolated hosting",
       "status": "blocked",

@@ -1,3 +1,7 @@
+# IH2-082 — activity notebook active
+
+Owner authorizes next useful section. Active feat/activity-notebook from retained3fb40f4/accepted a7dd24a. See docs/evidence/IH2-082/PLAN.md and tracker. Preserve0814175/API4186/privatepractice/studies until acceptance; no backend/economy change. Root owns source/runners; Terra read-only review will be delegated for actual layouts. Fresh usage26%used/74%remaining; preserve10%reserve, no resets. Automatic081mainCI43274055991still in_progress on startup.
+
 # Idle Hands 2 — playable collection receipts accepted
 
 November12,2026. Runtime accepted PR29/merge `a7dd24ab90c74393eae988eb7cece1f491fbfaa3`; exact candidate `7aff73fc5c8bee095ef37ce5b91ad0eec1e7b2e0`, matching tree `510cc6a3d623ddefa77cbad79e618397df62906d`. Clean main=origin/main verified before this `chore/collection-runtime-closeout-2026-11-12` evidence branch. Preserve this closing checkpoint on the next isolated branch rather than discarding accepted evidence by switching blindly to older main docs. [Source closeout](../evidence/IH2-081/source-closeout.json) and [report](../evidence/IH2-081/REPORT.md) are authoritative.

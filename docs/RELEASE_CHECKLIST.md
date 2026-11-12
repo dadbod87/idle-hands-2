@@ -182,3 +182,11 @@ IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclos
 - Actual current-rig art is lazy and byte-identical; failed/late decode, reduced/hidden motion and reload cannot replay rewards. Preserve resource counts and fixed held/focused controls at desktop/320/360/short200/phone200.
 - Run all required checks and exact-final-headCI under unchanged deadline; inspect actual uploaded images/client/recovery evidence, match merge tree.
 - Privately back up quiescent protected practice before API replacement; preserve every13table column/row/key/sixchecksums, frozen studies and previous artifact. Verify actual served final bytes/native local receipts and anonymous shared chooser without protected grants. Disclose all fixtures and device limitations.
+
+
+## IH2-082 activity notebook
+
+- Read-only projection, exact ready boundary, independent jobs/output caps and per-crop room; no automatic claim, settlement, new clock/poll/write or economy change.
+- Preserve every old useful material/holding/skill/objective/furniture/route control. Stable card/button geometry, keyboard status/details access, all3labels contained,44pxcontrols and unobscured focus at320/360/short200/phone200.
+- Native actual five-second UI craft under held pointer; real isolated shared free inspection with no command; explicit elapsed/local fixture and physical-device limits. Terra actual-build review and corrected recheck.
+- All required local/exact-final-headCI/actualartifact/image/recovery/tree gates under unchanged deadline. Static-only protected preview swap preserves all13table columns/rows/key/sixchecksums, API and historical studies; verify actual native desktop/phone notebook/navigation/reload on served artifact.

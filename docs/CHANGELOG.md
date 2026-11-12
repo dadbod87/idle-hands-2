@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-082 candidate adds a read-only activity notebook with real-time readiness, storage-aware crops and fixed free inspector routes. Full source/CI/actual-preview acceptance remains pending. [Evidence](evidence/IH2-082/REPORT.md).
+
 2026-11-12 — IH2-081 accepted PR29/mergea7dd24a/exact7aff73fCI43271107909bothSUCCESS279/85. Collection receipts now work in local/shared game, with exact original quantities/retries, fixed controls and original current-rig art. Actual191-filepreview/API and desktop/phone flow verified; practice/key preserved. [Closeout](evidence/IH2-081/source-closeout.json).
 
 2026-11-12 — IH2-081 candidate wires confirmed receipts into actual depot collection, retaining original immutable grants on retry, truthful local-save failures and current-rig art fallback. Rules/progress unchanged. Acceptance gates pending. [Evidence](evidence/IH2-081/REPORT.md).

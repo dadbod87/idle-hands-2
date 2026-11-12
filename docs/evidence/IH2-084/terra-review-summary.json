@@ -1,0 +1,14 @@
+{
+  "model": "gpt-6.1-terra",
+  "classification": "Independent frozen actual local runtime review; no source edits or protected identities",
+  "v1": "P2 enlarged short HUD offscreen control, cross-panel focus fell to body; local shortcuts initially no-op (confirmed root guard bug).",
+  "v2": "Play shortcuts and cross-focus corrected; constrained boxes still allowed text-only200 HUD label collision.",
+  "v3": "Intrinsic whole-label wrapping resolves prior issues. Short text-only200 HUD wraps to two rows without overlap and leaves a visible playfield. Distinct Bag/Journal, ordinary320/360, root200, shortcuts/open-panel guards, cross-link Close focus/scroll reset and arrangement disclosure pass bounded recheck. No remaining P1/P2.",
+  "screens": "review-v3/terra-review",
+  "finalRouteFollowup": "Nonvisual preserving links: NPC journal opens Journal; direct crafting-station arrangement expands bag disclosure. Covered by retained final full regressions.",
+  "browsersClosed": true,
+  "limits": [
+    "Fresh ordinary local contexts; no protected shared identities or writes.",
+    "Viewport/root-text/precomputed text-only scaling is emulation, not physical device/Safari/full accessibility or enjoyment certification."
+  ]
+}

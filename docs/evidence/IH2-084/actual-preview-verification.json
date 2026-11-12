@@ -1,0 +1,84 @@
+{
+  "classification": "Actual final CIartifact on existing4175; native fresh local contexts independent Bag/Journal/HUD and ordinary gather/5second craft/claim/place/remove/pockets/reload; anonymous shared chooser; no protected writes or fixtures",
+  "files": 191,
+  "allBytesEqualCI": true,
+  "htmlSha256": "e860b6992dc5af92996e46a16aebae548f10605469794a3bbec789e26cf40715",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "ordinaryNativeThreeCollectionsAndUICraft": true,
+      "actualFiveSecondDeadline": true,
+      "unclaimedQuantity": 0,
+      "claimedQuantity": 1,
+      "placedAvailable": 0,
+      "returnedAvailable": 1,
+      "allPockets": true,
+      "independentToolsAndCrossLinks": true,
+      "desktopPlayShortcuts": true,
+      "mobilePocketAndShortcutTaps": false,
+      "revision": 7,
+      "reloadConserved": true,
+      "anonymousSharedChooser": true,
+      "noSharedIdentitySelected": true,
+      "noInterceptionStatePositionClockOrInventoryFixtures": true,
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "ordinaryNativeThreeCollectionsAndUICraft": true,
+      "actualFiveSecondDeadline": true,
+      "unclaimedQuantity": 0,
+      "claimedQuantity": 1,
+      "placedAvailable": 0,
+      "returnedAvailable": 1,
+      "allPockets": true,
+      "independentToolsAndCrossLinks": true,
+      "desktopPlayShortcuts": false,
+      "mobilePocketAndShortcutTaps": true,
+      "revision": 7,
+      "reloadConserved": true,
+      "anonymousSharedChooser": true,
+      "noSharedIdentitySelected": true,
+      "noInterceptionStatePositionClockOrInventoryFixtures": true,
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

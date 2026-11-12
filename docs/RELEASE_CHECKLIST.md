@@ -204,3 +204,9 @@ IH2-082CIcapacity correction: the stable browser-playtest gate now requires both
 - Bag and Journal have independent controls/content, direct focus-safe cross-links and guarded play-only shortcuts. Preserve all routes, counts, objectives, skills and return summaries; disclose arrangement/progress without hiding their access.
 - Seven desktop/narrow/short/root200/text-only200 HUD/panel shapes: whole-word label containment, nonoverlap,44px controls, world>100 and unobscured focus. Terra actual frozen-build recheck; no original assertion, real wait or deadline removed when migrating routes.
 - Full local/exact-headCI/disjoint suite/actual client/screens/recovery/tree gates before static-only preview; protected13tables/key/sixchecksums/API/studies preserved. Disclose isolated fixtures and device limits.
+
+## IH2-085 weather readability
+
+- Preserve48minute phases/12minute deterministic weather and all real production clocks; continuous lower washes, untinted HUD, readable windows/interiors and unchanged original art.
+- Visible bounded no-rotation canopy motion, equal10/60fpscosmetic elapsed progression, bounded resume gaps and same cached drizzle layer. Native timed frames/metrics and actual images; no added timer/request/object family.
+- Keep original crop/silhouette/reduced/hidden/economy assertions; explicit appearance fixtures and media/viewport limits. Full local/exact-headCI/artifact/recovery/merge gates before static-only preview, preserving13tables/key/checksums/API/studies.

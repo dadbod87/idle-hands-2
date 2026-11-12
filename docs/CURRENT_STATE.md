@@ -1,5 +1,9 @@
 # Idle Hands 2 — current state
 
+IH2-085 candidate reduces sky haze and makes existing sway/drizzle more visible, correcting idle cosmetic timing.293system/zero skips and12focusedbrowser pass; Terra sees clear rain/readable day/night with no clear blocker. Full98/CI/artifact/preview gates pending. [Evidence](evidence/IH2-085/REPORT.md).
+
+IH2-084 accepted: independent Bag and Journal, compact labelled toolbar, guarded B/J and focus-safe cross-links. Bag holds belongings/arrangement; Journal puts goals/work/progress first. PR32/merge `8a6c60d`, exact `cfb72ea` CI43306122595 all four jobs SUCCESS (291system/zero skips,96browser). Actual191-file local preview and native desktop/phone checks passed; protected13tables/key/checksums/API/studies preserved. [Closeout](evidence/IH2-084/source-closeout.json). Current handoff authoritative; candidate notes below historical.
+
 IH2-084 candidate separates Bag belongings/arrangement from Journal goals/work/progress, with dedicated toolbar controls and guarded shortcuts. Local291system/zero skips and focused tool/regression checks pass; TerraV3 recheck has no bounded blocker. Full96/CI/artifact/preview gates pending. [Evidence](evidence/IH2-084/REPORT.md).
 
 IH2-083 accepted: visual bag with original item illustrations, pocket groups and quantity badges. PR31/merge `0300adf`, exact `b468207` CI43299023223 all four jobs SUCCESS (291 system checks, zero skips;93 browser cases). Actual191-file local preview verified with native collection/placement/reload; protected13table/key/checksum/API and studies unchanged. [Closeout](evidence/IH2-083/source-closeout.json). Candidate notes below are historical; current handoff is authoritative.

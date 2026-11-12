@@ -1,0 +1,51 @@
+{
+  "classification": "Actual final CI client49547/frozen server on disposable ih2_browser4197. Native desktop/mobile independent tools, free routes and identity changes, no interception or protected writes. Mira/Sol ordinary zero; Aster48kits/2planters is explicit existing test baseline.",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "separateTools": true,
+      "closedBagDetached": true,
+      "threeFreeInspectors": true,
+      "identitySequence": [
+        "Mira",
+        "Aster",
+        "Sol"
+      ],
+      "kitCounts": [
+        0,
+        48,
+        0
+      ],
+      "commandRequests": [],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "separateTools": true,
+      "closedBagDetached": true,
+      "threeFreeInspectors": true,
+      "identitySequence": [
+        "Mira",
+        "Aster",
+        "Sol"
+      ],
+      "kitCounts": [
+        0,
+        48,
+        0
+      ],
+      "commandRequests": [],
+      "errors": []
+    }
+  ]
+}

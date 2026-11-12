@@ -68,7 +68,8 @@
     "tests/collection-receipt.spec.ts",
     "tests/collection-grant.test.ts",
     "tests/collection-runtime.spec.ts",
-    "tests/z-first-visit.spec.ts"
+    "tests/z-first-visit.spec.ts",
+    "tests/weather-readability.spec.ts"
   ],
   "compilerOptions": {
     "types": [

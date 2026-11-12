@@ -1,0 +1,154 @@
+{
+  "task": "IH2-084",
+  "classification": "Accepted private source and actual local separate Bag/Journal preview; no hosted/current-game release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/32",
+  "candidate": "cfb72ea01b3c3be8efc0db24aec22291a35a7de4",
+  "candidateTree": "bceaa93109a1a6be1dc1959d3e81100d31621d8c",
+  "merge": "8a6c60d7838e46beaee7f81d9d681c72e400fddf",
+  "mergeTree": "bceaa93109a1a6be1dc1959d3e81100d31621d8c",
+  "matchingTreeAndCleanMainEqualsRemoteVerifiedBeforeCloseout": true,
+  "ci": {
+    "run": 43306122595,
+    "attempt": 1,
+    "exactHeadAllFourJobsSuccess": true,
+    "jobs": [
+      {
+        "id": 131490042559,
+        "name": "browser-shard (2/2)",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T21:02:18Z",
+        "completedAt": "2026-11-12T21:15:00Z"
+      },
+      {
+        "id": 131490042857,
+        "name": "domain-build-plan",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T21:02:19Z",
+        "completedAt": "2026-11-12T21:04:26Z"
+      },
+      {
+        "id": 131490043168,
+        "name": "browser-shard (1/2)",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T21:02:19Z",
+        "completedAt": "2026-11-12T21:11:35Z"
+      },
+      {
+        "id": 131497536636,
+        "name": "browser-playtest",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T21:15:04Z",
+        "completedAt": "2026-11-12T21:15:08Z"
+      }
+    ],
+    "domainCount": 291,
+    "domainSkipped": 0,
+    "domainDurationMs": 88597.976782,
+    "browserCount": 96,
+    "browserShards": [
+      {
+        "count": 49,
+        "minutes": 8.1
+      },
+      {
+        "count": 47,
+        "minutes": 11.6
+      }
+    ],
+    "disjointUnionExactlyFullSuite": true,
+    "oneWorkerPerIsolatedRunner": true,
+    "perBrowserRunnerDeadlineMinutes": 20,
+    "all191ActualClientBytesEqualFinalRootAndFrozenBuild": true,
+    "all185OldArtByteIdentical": true,
+    "sixActualUploadedScreensAndPopulatedRecoveryInspected": true
+  },
+  "local": {
+    "fullDomainCount": 291,
+    "fullDomainSkipped": 0,
+    "navigationCandidateDomainMs": 57057.260834,
+    "exactFinalFrozenSourceDomainMs": 70201.223959,
+    "fullBrowserCount": 96,
+    "fullBrowserMinutes": 11.5,
+    "fullBrowserSource": "bae58bfdd5b23002c35181a4e79556c3a32cf624 before two text-only NPC/letterbox cleanup strings",
+    "exactFinalCopyFocusedBrowserCount": 2,
+    "exactFinalCopyFocusedBrowserSeconds": 16.2,
+    "earlierFocusedMigratedRegressionCount": 15,
+    "focusedPersonalToolsCount": 3,
+    "sevenResponsiveShapesIncludingRootAndTextOnly200": true,
+    "strictBuildDesignPlan10Pinned40DiffPass": true,
+    "terraModel": "gpt-6.1-terra",
+    "terraRechecks": "V1 shortcut/focus/offscreen controls and V2 enlarged-label collision fixed; V3 no bounded P1/P2. Nonvisual existing-route follow-up preserved direct arrangement and NPC Journal routing."
+  },
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "sharedUrl": "http://127.0.0.1:4175/?town=1",
+    "immutableArtifact": "separate-tools-2026-11-12/ci-final/build",
+    "actual191ResponsesEqualCI": true,
+    "nativeDesktopPhoneSeparateToolsCrossLinksCraftPlaceRemovePocketsReloadPass": true,
+    "desktopNativePlayShortcutsVerified": true,
+    "phoneNativeToolAndPocketTaps": true,
+    "realFiveSecondCraftActuallyWaited": true,
+    "actualFinalNativeScreensReviewed": 10,
+    "unclaimed": 0,
+    "claimed": 1,
+    "placedAvailable": 0,
+    "returnedAvailable": 1,
+    "apiPid": 83080,
+    "apiSession": 34638,
+    "apiRestarted": false,
+    "protocol": 4,
+    "staticPid": 8636,
+    "staticSession": 50480,
+    "protectedAll13TableColumnsRowsKeySixChecksumsPreserved": true,
+    "fictionalResidents": 1,
+    "plots": 0,
+    "oldStudiesPorts": [
+      49529,
+      49530,
+      49534
+    ],
+    "all9And21And14ResponsesUnchanged": true,
+    "temporary49544_49545_49546_49547And4197Stopped": true,
+    "previous083Client081ServerPrivateBackupRetained": true
+  },
+  "payload": {
+    "classification": "Accepted084 versus083; actual final CI bytes equal final local builds",
+    "oldFiles": 191,
+    "newFiles": 191,
+    "all185OldArtUnchanged": true,
+    "rawDelta": 3812,
+    "gzipEachFileDelta": 737,
+    "newAssets": 0,
+    "sourceScope": "Presentation/navigation split, guarded shortcuts, existing one-second clock and explicit-panel snapshot refresh. No background poll/timer, rule, schema, migration or backend change."
+  },
+  "automaticMainCI": {
+    "run": 43308580411,
+    "status": "in progress at closeout, separate from successful required exact candidate gates"
+  },
+  "superseded": [
+    "V1 local shortcut guard incorrectly required shared resync in local mode; native test caught it. HUD enlarged boxes overflowed and panel switches lost focus; Terra caught these.",
+    "V2 width constraint contained boxes but enlarged label content still collided; intrinsic wrapping plus whole-word assertions across root/text-only200 fixed it.",
+    "Initial focused first-visit selection omitted its explicit ordered shared/home/trail setup; prerequisite assertion correctly failed, never waived. Full ordered96run later passed.",
+    "Two partial full runs cancelled to apply layout/direct-arrangement fixes after9passes each; never accepted as full runs. Leftover exact disposable4197/4198listeners stopped before rerun.",
+    "bae58bf CI43305282768superseded/cancelled for two text-only copy corrections; finalcfb72ea reran every required check and all96cases."
+  ],
+  "fixtureDisclosure": [
+    "New tool cases use ordinary local defaults and actual disposable shared residents; earlier suite commands may have left legal isolated progress. Aster48kits/2planters is a labelled existing baseline, no new grant.",
+    "Responsive root200 and controlled text-only200 use fresh native contexts; text-only doubles precomputed font sizes. No state/position/clock/inventory/response fixture in the three new tool tests.",
+    "Historical full-suite intercepted, elapsed, quota, artwork and pending-request fixtures retain their original assertions and disclosures.",
+    "Actual final4175 play uses ordinary native gather, real5second craft, explicit claim, placement/return, tools/pockets/reload and anonymous shared chooser. No state/position/clock/inventory/interception fixtures or protected shared identity.",
+    "Actual final shared probe uses fresh disposable ih2_browser Mira/Sol defaults and labelled Aster baseline; native desktop/phone links/inspectors/identity, zero game commands/interception/protected writes.",
+    "CI populated recovery uses actual isolated container restart and declared equal observation time; protected container never restarted."
+  ],
+  "limits": [
+    "Loopback local preview only; no remote-phone/public hosting claim.",
+    "Chrome/Chromium viewport/touch/root/text-only emulation, not physical phone/Safari/full accessibility or fun certification.",
+    "Enlarged text and long journal deliberately scroll; captures show visible portions.",
+    "No economy, capacity, ownership, recipe/cost/timer/save/protocol/schema/backend/migration/dependency/asset/current-game/account/cloud/expense changes."
+  ],
+  "usage": {
+    "freshWeeklyUsedPercent": 34,
+    "remainingPercent": 66,
+    "noResetUsed": true
+  }
+}

@@ -124,3 +124,7 @@ IH2-083 candidate: cloth/sage canvas satchel, inset stitched pockets and origina
 IH2-083 accepted: original reused icons inside a CSS canvas satchel with inset cloth pockets and literal stack badges. Intrinsic control wrapping preserves whole words at narrow/text200 sizes. Terra6.1v2, six actual CI captures and four native final screenshots inspected; no new assets.
 
 IH2-084 candidate separates canvas satchel belongings from a paper journal, with labelled code-native bag/notebook toolbar icons and intrinsic-width enlarged-text wrapping. No new art assets; retain existing illustrated office-town family and keep world usable. Exact Terra/CI acceptance in084evidence.
+
+IH2-084 accepted: distinct satchel and paper journal, small original code-native toolbar icons, whole-label intrinsic wrapping and explicit cross-panel focus. TerraV3, six actual CI captures and ten native final local/shared captures inspected. Existing185art files unchanged; physical-device/Safari review remains open.
+
+IH2-085 candidate: clearer authored colors through lower phase/weather washes, bounded2.2pxtranslated crowns without rotation, and visible staggered cached drizzle. Original185art files unchanged. Keep day/night/windows distinct and respect reduced/hidden/interior views. Terra still-frame versus actual measured-motion limits are recorded in085evidence.

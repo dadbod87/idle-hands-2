@@ -1,0 +1,26 @@
+{
+  "noServerRestartOrMutation": true,
+  "sets": [
+    {
+      "port": 49529,
+      "dir": "gathering-study-2026-11-12/ci-final/browser/test-results/browser/gathering-study",
+      "count": 9,
+      "everyResponseByteEqualPriorAcceptedCI": true
+    },
+    {
+      "port": 49530,
+      "dir": "gathering-family-2026-11-12/ci-final/browser/test-results/browser/gathering-family",
+      "count": 21,
+      "everyResponseByteEqualPriorAcceptedCI": true
+    },
+    {
+      "port": 49534,
+      "dir": "collection-receipts-2026-11-12/ci-final/browser/test-results/browser/collection-receipt-study",
+      "count": 14,
+      "everyResponseByteEqualPriorAcceptedCI": true
+    }
+  ],
+  "reverifiedAfter082StaticUpdate": true,
+  "reverifiedAfter083StaticUpdate": true,
+  "reverifiedAfter084StaticUpdate": true
+}

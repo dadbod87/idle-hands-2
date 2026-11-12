@@ -39,7 +39,7 @@ test('long absences and malformed clocks produce bounded finite presentation val
     assert.ok(PHASES.includes(c.phase));assert.ok(WEATHER.includes(c.weather));
     assert.ok(Number.isSafeInteger(c.dayIndex));assert.ok(Number.isInteger(c.minute)&&c.minute>=0&&c.minute<1440);
     assert.ok(Number.isInteger(c.tint.color)&&c.tint.color>=0&&c.tint.color<=0xffffff);
-    assert.ok(c.tint.alpha>=0&&c.tint.alpha<=.40);
+    assert.ok(c.tint.alpha>=0&&c.tint.alpha<=.28);
     assert.ok(c.lampStrength>=0&&c.lampStrength<=1);
   }
   for(const invalid of [NaN,Infinity,-Infinity,Number.MAX_SAFE_INTEGER+1])assert.deepEqual(climateAt(invalid),climateAt(0));
@@ -48,7 +48,7 @@ test('long absences and malformed clocks produce bounded finite presentation val
 test('fixture overrides are explicitly gated, enum-only and do not touch the clock', () => {
   assert.equal(climateFixture(new URLSearchParams('phase=night&weather=drizzle')),null);
   assert.equal(climateFixture(new URLSearchParams('sky-study=true&phase=night')),null);
-  for(const phase of PHASES)for(const weather of WEATHER){const c=climateFixture(new URLSearchParams({ 'sky-study':'1',phase,weather }))!;assert.equal(c.phase,phase);assert.equal(c.weather,weather);assert.ok(c.tint.alpha<=.40);assert.ok(c.label.includes(phase[0].toUpperCase()+phase.slice(1)));}
+  for(const phase of PHASES)for(const weather of WEATHER){const c=climateFixture(new URLSearchParams({ 'sky-study':'1',phase,weather }))!;assert.equal(c.phase,phase);assert.equal(c.weather,weather);assert.ok(c.tint.alpha<=.28);assert.ok(c.label.includes(phase[0].toUpperCase()+phase.slice(1)));}
   const fallback=climateFixture(new URLSearchParams('sky-study=1&phase=unknown&weather=storm'))!;
   assert.equal(fallback.phase,'day');assert.equal(fallback.weather,'clear');
   const before=climateAt(123456789);climateFixture(new URLSearchParams('sky-study=1&phase=night&weather=drizzle'));assert.deepEqual(climateAt(123456789),before);
@@ -75,10 +75,13 @@ test('phase transitions preserve composited color and lamp continuity with uncha
 
 test('night reads as blue darkness, holds through its midpoint and fades before dawn', () => {
   const fixture=climateFixture(new URLSearchParams('sky-study=1&phase=night&weather=clear'))!;
-  assert.equal(fixture.tint.color,0x263659);assert.equal(fixture.tint.alpha,.36);
-  assert.ok(climateFixture(new URLSearchParams('sky-study=1&phase=night&weather=drizzle'))!.tint.alpha<=.40);
+  assert.equal(fixture.tint.color,0x263659);assert.equal(fixture.tint.alpha,.24);
+  assert.ok(climateFixture(new URLSearchParams('sky-study=1&phase=night&weather=drizzle'))!.tint.alpha<=.28);
   // Clear-weather fixtures isolate the visual phase; runtime weather remains bounded.
   const early=climateAt(37*60_000),late=climateAt(47.9*60_000);
-  assert.ok(early.tint.alpha>.3);assert.ok(late.tint.alpha<.08);
-  for(let minute=0;minute<48;minute+=.1){const c=climateAt(minute*60_000);assert.ok(c.tint.alpha>=0&&c.tint.alpha<=.40);}
+  assert.ok(early.tint.alpha>.22);assert.ok(late.tint.alpha<.08);
+  for(let minute=0;minute<48;minute+=.1){const c=climateAt(minute*60_000);assert.ok(c.tint.alpha>=0&&c.tint.alpha<=.28);}
 });
+
+
+test('daylight remains clear and weather no longer adds a heavy grey wash',()=>{const sky=(phase:string,weather:string)=>climateFixture(new URLSearchParams({'sky-study':'1',phase,weather}))!;assert.equal(sky('day','clear').tint.alpha,0);assert.ok(sky('day','drizzle').tint.alpha<=.025);assert.ok(sky('dusk','drizzle').tint.alpha<.15);assert.ok(sky('night','drizzle').tint.alpha<.28);assert.equal(sky('night','clear').lampStrength,1);});

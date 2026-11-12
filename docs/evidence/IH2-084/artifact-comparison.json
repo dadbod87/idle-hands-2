@@ -1,0 +1,43 @@
+{
+  "classification": "Actual final CI artifacts; six uploaded tool screenshots and populated recovery evidence inspected",
+  "gameFiles": 191,
+  "allBytesEqualReviewedLocal": true,
+  "oldArtFiles": 185,
+  "allOldArtByteIdentical": true,
+  "selectedImages": [
+    {
+      "file": "tools-desktop-bag.png",
+      "sha256": "9275fa80dc05b9577171b0db99e800ad4b0391d75b5565644f4a573ceae82301",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "tools-desktop-journal.png",
+      "sha256": "3473dc8ea488a821c5cfa051cd6ff5d8ab3f06fdc138818944e43d10428f5e77",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "tools-phone360-bag.png",
+      "sha256": "ccc920fbdd700e3aa34a698b42c07cdebb420b94cfbb8862909b01fbf65a7136",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "tools-phone360-journal.png",
+      "sha256": "1d435037bbe0f29ae118c0fe4f3495b91d0b01062649b5d2cb5bc7487a05b90e",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "tools-short-text200-hud.png",
+      "sha256": "30b53364ed84c28ba0b60c0ac334cac270580a1209628ef47f09df12042f9a06",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "tools-phone200-journal.png",
+      "sha256": "833d55064792e4c68e61ab663e79948e2033570dcff55efec30661a3116b1c1c",
+      "actualUploadedCIImageReviewed": true
+    }
+  ],
+  "sharedFreeSwitchingCommands": 0,
+  "sevenResponsiveShapes": true,
+  "populatedRestartEvidenceReviewed": true,
+  "htmlSha256": "e860b6992dc5af92996e46a16aebae548f10605469794a3bbec789e26cf40715"
+}

@@ -1441,6 +1441,146 @@
       "source": "tools/create-carpentry-art.py",
       "date": "2026-11-11",
       "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "letterbox-leaf-closed",
+      "path": "public/art/commission/letterbox-leaf-closed.svg",
+      "sha256": "ede6f65301ced9b6bafb4f42e70772b628aa25d2fe2e33bb2f1e1f1a65ed06c7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "letterbox-leaf-open",
+      "path": "public/art/commission/letterbox-leaf-open.svg",
+      "sha256": "d75da4f8129d6385232c9ff83b07266d2de4bb8322fab228663db607cb10cfbf",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "letterbox-moth-closed",
+      "path": "public/art/commission/letterbox-moth-closed.svg",
+      "sha256": "fe02684ba8c27bbc2317a7ca80f6ef8528fc514e9533e49e634f7a71bbf4afac",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "letterbox-moth-open",
+      "path": "public/art/commission/letterbox-moth-open.svg",
+      "sha256": "507a8e01c99f0e57a60f722f2d8f260644180188e252097922daf947f1f65d3c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "letterbox-sun-closed",
+      "path": "public/art/commission/letterbox-sun-closed.svg",
+      "sha256": "dbcfaf1bbc670e86a0b59eb6a254c029f80d06ea1ba15148cb461e65530a0f19",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "letterbox-sun-open",
+      "path": "public/art/commission/letterbox-sun-open.svg",
+      "sha256": "0a14dca980f8c6b5e9f77e40e726fd8ff43c73c7b01b39ce325f81c2f1311237",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "parcel-jun",
+      "path": "public/art/commission/parcel-jun.svg",
+      "sha256": "d6483c2ff9c180a2f7ec301cdb0c98f873fb638bfaba66cb0e98648bb86acb29",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "parcel-marlow",
+      "path": "public/art/commission/parcel-marlow.svg",
+      "sha256": "6cceac6135d275897c95b320bab2470398c930746dc0c323bac2e73abd8c68bf",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "parcel-nella",
+      "path": "public/art/commission/parcel-nella.svg",
+      "sha256": "b1fd75dd96b4e68bcd519d42e0e6f78b194769e684ee7c3ef396523c8fedef37",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "pip-work-surface",
+      "path": "public/art/commission/pip-work-surface.svg",
+      "sha256": "df6759297c4e9f92d5df194a0ef183e81beb9c1e88179cf1b670d17fe9dd9353",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "receipt-jun",
+      "path": "public/art/commission/receipt-jun.svg",
+      "sha256": "60bfd196582a0b39799ac5970326a7af5300ec42a6c92ffcba09d3960df914b7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "receipt-marlow",
+      "path": "public/art/commission/receipt-marlow.svg",
+      "sha256": "3cd9431e5f4ed8db4fe761c5e89673d7f8397c689899ee84f892e3fe8a66d2ee",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "receipt-nella",
+      "path": "public/art/commission/receipt-nella.svg",
+      "sha256": "8bd5e87f1b6699bf1c8f1291d5900cd3d77566bb324df3b0725e7efd250979f5",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
+    },
+    {
+      "id": "route-card",
+      "path": "public/art/commission/route-card.svg",
+      "sha256": "2f126261d0d1e14e619b60b366bc71129b2f9d36231f78b16434e06f7c523b2c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-commission-art.py",
+      "date": "2026-11-12",
+      "modifications": "Promoted original069letterbox/parcel/receipt/card/work-surface geometry; candidate title removed. No imported media."
     }
   ],
   "comparison": {

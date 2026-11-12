@@ -41,7 +41,7 @@ test('caretaker distinguishes local preview, queued work, finished output and co
 });
 test('courier recognizes cosmetic time without inventing closures, shops, rewards or available sample houses', () => {
   for (const [phase, expected] of [['night', 'Night shift'], ['dawn', 'Morning rounds'], ['morning', 'Morning rounds'], ['dusk', 'Evening rounds'], ['evening', 'Evening rounds'], ['day', 'Afternoon rounds'], ['unknown', 'Afternoon rounds']]) {
-    const text = say('courier', { ...base, phase }).lines.join(' '); assert.ok(text.includes(expected)); assert.match(text, /Browser practice and the shared town have separate saves/); assert.match(text, /sample house.*not ready to visit/); assert.match(text, /Shops and deliveries will have to wait/); assert.doesNotMatch(text, /closed until|open at|come back at|you received|rewarded|claimed/);
+    const text = say('courier', { ...base, phase }).lines.join(' '); assert.ok(text.includes(expected)); assert.match(text, /Browser practice and the shared town have separate saves/); assert.match(text, /sample house.*not ready to visit/); assert.match(text, /optional addressed route.*Shops are not open/); assert.doesNotMatch(text, /closed until|open at|come back at|you received|rewarded|claimed/);
   }
   const shared = say('courier', { ...base, shared: true, questStage: 'place' }); assert.match(shared.lines.join(' '), /Weekly scores start fresh, but your inventory, queued job and decoration stay/); assert.equal(shared.action!.destination, 'journal');
 });

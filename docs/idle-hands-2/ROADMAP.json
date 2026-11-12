@@ -660,7 +660,19 @@
       ],
       "evidence": [
         "docs/idle-hands-2/design/NEIGHBORHOOD_COMMISSION.md",
-        "docs/idle-hands-2/handoffs/2026-11-12-playable-commission.md"
+        "docs/idle-hands-2/handoffs/2026-11-12-playable-commission.md",
+        "docs/idle-hands-2/COMMISSION_RUNTIME.md",
+        "docs/evidence/IH2-071/REPORT.md",
+        "docs/evidence/IH2-071/ledger-browser/report.json",
+        "docs/evidence/IH2-071/fresh-paid-browser/report.json",
+        "docs/evidence/IH2-071/database-restart.json",
+        "docs/evidence/IH2-071/commission-process-restart.json",
+        "docs/evidence/IH2-071/local-checks.json",
+        "docs/evidence/IH2-071/commission-shared-retry-generation.json",
+        "docs/evidence/IH2-071/commission-shared-home-visibility.json",
+        "docs/evidence/IH2-071/historical-model-equivalence.json",
+        "docs/evidence/IH2-071/presentation-cost.json",
+        "docs/evidence/IH2-071/independent-review.json"
       ],
       "owner_branch": "feat/neighborhood-commission"
     },

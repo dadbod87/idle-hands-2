@@ -1,0 +1,17 @@
+{
+  "classification": "Actual browser-only fresh route; real input/walking, no saved-state/clock/resource/API interception or grants",
+  "order": [
+    "clerk",
+    "caretaker",
+    "carpentry-desk"
+  ],
+  "card": true,
+  "physicalBox": 0,
+  "errors": [],
+  "bad": [],
+  "limits": [
+    "Chrome emulation, not physical phone",
+    "Known-answer agent duration is not human playtime",
+    "No paid-craft or server authority claim in this fresh free route"
+  ]
+}

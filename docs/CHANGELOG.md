@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-071 working integration: explicit Pip deliveries/private card-plan, once-only2pine1radish letterbox, strict new sinks/ownership/migrations/schema3 and private/public motif display. Fourteen original vectors promoted; focused phone/shared retry/visitor/fresh actual5m and populated restart pass.247checks/zero skips46.971s; all72browser9.2m pass; finalCI/artifact/source gates pending. Accepted4175/API/originalgame remain unchanged.
+
 2026-11-12 — IH2-069 source/design accepted: PR19/merge15fc340, exactcecb8c7CI43158628633bothSUCCESS224/68, actualunchanged159gamefiles/sevenconceptimages reviewed, matchingtree/cleanmain. Immutable18filestudy49523reverified;4175/API/practice unchanged.071playablecommission startsnext; no hosted/currentgamechange.
 
 2026-11-12 — IH2-069 candidate design: optional addressed Pip commission, free private order-card/plan and proposed2pine/1radish uniqueletterbox/noextra timer.128analyticalcohorts expose conditional easel/hamper/request costs;14originalvectors/threebase-preservingmotifs and standalone fictional phone study. All224local checks/zero skips and68browser8.6m pass; actual18studyresponses/desktop+phone UI and unchanged159gamebuildfiles verified. Exact-headCI/artifact/source gates pending. No runtime quest, price, ownership, messaging or hosting change. [Design](idle-hands-2/design/NEIGHBORHOOD_COMMISSION.md).

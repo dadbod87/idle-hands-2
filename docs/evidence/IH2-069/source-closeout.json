@@ -22,7 +22,8 @@
     "browserReportedMinutes": 12.5,
     "browserBudgetMinutesUnchanged": 20,
     "existingPopulatedPostgresRestart": true,
-    "automaticMainStatus": "pending separately"
+    "automaticMainStatus": "both SUCCESS verified during071 integration",
+    "automaticMainRun": 43160261921
   },
   "actualArtifacts": {
     "buildFiles": 159,

@@ -17,6 +17,12 @@ async function ready(page:Page,name:string){
  await expect(page.getByRole('dialog')).not.toBeVisible();
 }
 async function point(page:Page,x:number,y:number,touch=false){
+ // A transport snapshot can precede Phaser boot/authoritative feet adoption.
+ // Measure against one actually rendered camera frame after input unlocks,
+ // keeping the original direct canvas target and arrival assertions intact.
+ await expect.poll(()=>page.evaluate(()=>{const p=(window as any).__pilot;return !!p?.metrics().ready&&!p.snapshot().locked&&p.metrics().visual.home.room===p.snapshot().room;})).toBe(true);
+ const frame=await page.evaluate(()=>(window as any).__pilot.metrics().presentation.renderedFrames);
+ await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.metrics().presentation.renderedFrames)).toBeGreaterThan(frame);
  const screen=await page.evaluate(value=>(window as any).__pilot.screenPoint(value.x,value.y),{x,y}),canvas=(await page.locator('canvas').boundingBox())!;
  expect(screen.x).toBeGreaterThan(0);expect(screen.x).toBeLessThan(canvas.width);expect(screen.y).toBeGreaterThan(0);expect(screen.y).toBeLessThan(canvas.height);
  if(touch)await page.touchscreen.tap(canvas.x+screen.x,canvas.y+screen.y);else await page.mouse.click(canvas.x+screen.x,canvas.y+screen.y);
@@ -33,8 +39,8 @@ async function leaveInterior(page:Page,touch=false){
  if(room==='home'||room==='home-expanded'){await point(page,9,13.5,touch);await expect.poll(async()=>(await actor(page)).room,{timeout:arrivalTimeout}).toBe('square');}
  else if(room==='workshop'){await point(page,9,13.5,touch);await expect.poll(async()=>(await actor(page)).room,{timeout:arrivalTimeout}).toBe('square');}
 }
-async function apiSnapshot(page:Page){const response=await page.request.get('/api/town/snapshot',{headers:{'X-IH2-Schema':'2'}});expect(response.status()).toBe(200);return(await response.json()).snapshot;}
-async function post(page:Page,endpoint:string,data:unknown){return page.request.post('/api/town/'+endpoint,{headers:{Origin:new URL(page.url()).origin,'X-IH2-Schema':'2'},data});}
+async function apiSnapshot(page:Page){const response=await page.request.get('/api/town/snapshot',{headers:{'X-IH2-Schema':'3'}});expect(response.status()).toBe(200);return(await response.json()).snapshot;}
+async function post(page:Page,endpoint:string,data:unknown){return page.request.post('/api/town/'+endpoint,{headers:{Origin:new URL(page.url()).origin,'X-IH2-Schema':'3'},data});}
 
 test('real isolated town: timed opening, personal trail journal and permanent home pennant',async({browser})=>{
  test.setTimeout(process.env.CI?300_000:120_000);

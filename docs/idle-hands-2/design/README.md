@@ -74,3 +74,5 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 ## First neighborhood commission candidate
 
 [The Post Must Go Somewhere](NEIGHBORHOOD_COMMISSION.md), IH2-069: addressed NPC handovers while work waits, a free private route card/plan and optional unique letterbox. [Standalone design study](../../evidence/IH2-069/concept/index.html), [original candidate art](../../evidence/IH2-069/concept/art-coverage.svg), [model and limits](../../evidence/IH2-069/commission-model.json). These14studies extend the dated48entrycatalog; they do not add runtime IDs, prices, ownership, a quest board or human messaging. The actual068game still contains144originalSVGs/159buildfiles. See CURRENT_SESSION for design/source acceptance and the later bounded implementation gate.
+
+[IH2-071 working runtime](../COMMISSION_RUNTIME.md) promotes the accepted commission design into strict saved NPC handovers and one physical letterbox with explicit paid sinks, free motifs and deliberate display. It remains a candidate until exact-head CI/artifact/source acceptance; it does not implement human messaging or the broader future catalog.

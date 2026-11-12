@@ -1,3 +1,4 @@
+import type {CommissionAction} from '../game/commission.ts';
 import type {CarpentryAction} from '../game/carpentry.ts';
 import type {GardenAction} from '../game/garden.ts';
 import {SURVEY_IDS,SURVEYS,SURVEY_CHOICES,CHOICE_LABELS,type SurveyId} from '../game/fieldwork.ts';
@@ -5,10 +6,10 @@ import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep,
 import './workshop.css';
 export const WORKSHOP_SAVE_KEY='ih2:workshop:v2';
 const SAVE_KEY=WORKSHOP_SAVE_KEY,LEGACY_SAVE_KEY='ih2:workshop:v1';
-const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',planter:'Orientation planter',stool:'Break-time stool',rug:'Welcome rug',lamp:'Optimism lamp',crate:'Useful crate',shelf:'Almost level shelf',easel:'Garden study easel'};
+const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',planter:'Orientation planter',stool:'Break-time stool',rug:'Welcome rug',lamp:'Optimism lamp',crate:'Useful crate',shelf:'Almost level shelf',easel:'Garden study easel',letterbox:'Unreasonably Official Letterbox'};
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
-export type RemoteWorkshopAdapter={allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>)=>Promise<{state:WorkshopState;message:string;ok?:boolean}>;retry:()=>Promise<{state:WorkshopState;message:string;ok?:boolean}>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string};carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
+export type RemoteWorkshopAdapter={allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<{state:WorkshopState;message:string;ok?:boolean}>;retry:(present?:()=>boolean)=>Promise<{state:WorkshopState;message:string;ok?:boolean}>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
+type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string};commission?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -54,23 +55,30 @@ export class WorkshopUI {
  closed(){this.active=null;this.status=null;this.preview=null;}
  private acceptRemote(state:WorkshopState){this.state=state;if(!this.remote?.canRetry())this.remoteError='';this.host.changed();this.updateClocks();this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>el.textContent=String(state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]));}
  private remoteNotice(){if(!this.remote||!this.status)return;if(this.remoteBusy||this.remoteError)this.status.textContent=this.remoteBusy?'Waiting for server confirmation…':this.remoteError;let retry=this.host.body.querySelector<HTMLButtonElement>('.remote-retry');if(!retry){retry=this.button('Retry the same request',()=>void this.remoteDispatch(null),'remote-retry');this.status.after(retry);}retry.hidden=!this.remoteError;retry.disabled=this.remoteBusy;}
- private async remoteDispatch(command:Record<string,unknown>|null):Promise<WorkshopCommandResult>{
+ private async remoteDispatch(command:Record<string,unknown>|null,present:()=>boolean=()=>true):Promise<WorkshopCommandResult>{
   const failed=(message:string):WorkshopCommandResult=>({ok:false,state:this.state,message,retry:!!this.remote?.canRetry()});
   if(!this.remote||this.remoteBusy)return failed('A change is still being confirmed.');
   if(command&&this.remote.canRetry()){this.remoteError='Retry the previous request before making another change.';this.remoteNotice();return failed(this.remoteError);}
   const before=this.state.revision;this.remoteBusy=true;this.remoteError='';this.updateClocks();
   try{
-   const receipt=command?await this.remote.command(command):this.remote.canRetry()?await this.remote.retry():{state:await this.remote.load(),message:'Town state refreshed.',ok:false};
+   const receipt=command?await this.remote.command(command,present):this.remote.canRetry()?await this.remote.retry(present):{state:await this.remote.load(),message:'Town state refreshed.',ok:false};
+   if(!present())return failed('The submitting panel changed. Confirmed state is kept.');
    this.acceptRemote(receipt.state);this.host.feedback(receipt.message);if(this.status)this.status.textContent=receipt.message;this.preview=null;if(this.host.body.querySelector('#placement'))this.renderPlacement();
    return{ok:receipt.ok??receipt.state.revision>before,state:this.state,message:receipt.message,retry:false};
-  }catch(error){this.remoteError=(error as Error).message;this.host.feedback(this.remoteError);return failed(this.remoteError);}
+  }catch(error){if(!present())return failed('The submitting panel changed. Confirmed state is kept.');this.remoteError=(error as Error).message;this.host.feedback(this.remoteError);return failed(this.remoteError);}
   finally{this.remoteBusy=false;this.updateClocks();if(this.remoteError)this.remoteNotice();}
+ }
+ public async runCommission(action:CommissionAction,expectedRevision?:number,present:()=>boolean=()=>true):Promise<WorkshopCommandResult>{
+  const command={kind:'commission',commissionAction:action,...(expectedRevision===undefined?{}:{expectedRevision})};
+  if(this.remote)return this.remoteDispatch(command,present);
+  const result=this.dispatch(command);return{ok:result?.ok??false,message:result?.message??'No change was made.',state:this.state,retry:false};
  }
  public async runCarpentry(action:CarpentryAction):Promise<WorkshopCommandResult>{if(this.remote)return this.remoteDispatch({kind:'carpentry',carpentryAction:action});const result=this.dispatch({kind:'carpentry',carpentryAction:action});return{ok:result?.ok??false,message:result?.message??'No change was made.',state:this.state,retry:false};}
  public async runGarden(action:GardenAction):Promise<WorkshopCommandResult>{
   if(this.remote)return this.remoteDispatch({kind:'garden',gardenAction:action});
   const result=this.dispatch({kind:'garden',gardenAction:action});return{ok:result?.ok??false,message:result?.message??'No change was made.',state:this.state,retry:false};
  }
+ public async retryCommission(present:()=>boolean):Promise<WorkshopCommandResult>{return this.remote?this.remoteDispatch(null,present):{ok:false,message:'There is no shared request to retry.',state:this.state,retry:false};}
  public async retryGarden():Promise<WorkshopCommandResult>{return this.remote?this.remoteDispatch(null):{ok:false,message:'There is no shared request to retry.',state:this.state,retry:false};}
  public gardenClock(){return Math.floor(this.remote?.now()??Date.now());}
  public gardenSaveStatus(){return{busy:this.remoteBusy,canRetry:!!this.remote?.canRetry(),readOnly:!this.remote&&!this.ownsSave,error:this.remoteError||this.localReadOnlyReason||(!this.remote&&!this.ownsSave?'This tab is read-only while another tab owns the save, or this browser cannot coordinate saves. Reload after closing other game tabs.':'')};}
@@ -86,7 +94,7 @@ export class WorkshopUI {
  private dispatch(command:Record<string,unknown>){
   if(this.remote){void this.remoteDispatch(command);return;}
   if(!this.ownsSave){const message=this.localReadOnlyReason||'Workshop open in another tab, or local-save coordination unavailable. Close other game tabs and reload this one to continue.';this.host.feedback(message);if(this.status)this.status.textContent=message;return{ok:false,message};}
-  const receipt=applyWorkshop(this.state,{...command,id:crypto.randomUUID(),expectedRevision:this.state.revision} as WorkshopCommand,Date.now());this.state=receipt.state;this.persist();const message=receipt.message+(this.saved?'':' Local save failed; this progress will be lost on reload.');this.host.feedback(message);this.host.changed();
+  const receipt=applyWorkshop(this.state,{...command,id:crypto.randomUUID(),expectedRevision:typeof command.expectedRevision==='number'?command.expectedRevision:this.state.revision} as WorkshopCommand,Date.now());this.state=receipt.state;this.persist();const message=receipt.message+(this.saved?'':' Local save failed; this progress will be lost on reload.');this.host.feedback(message);this.host.changed();
   // Keep the action controls stable: update quantities/timers without rebuilding the form.
   this.updateClocks();if(this.status)this.status.textContent=message;
   this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>{el.textContent=String(this.state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]);});
@@ -123,12 +131,13 @@ export class WorkshopUI {
   const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';b.append(claim);
   const recipes=[{id:'planter',label:'Make orientation planter',text:'2 scrap + 2 timber + 1 supplies. First planter: 5 seconds, once. Later planters: 8 real hours.'},{id:'bridge-kit',label:'Make bridge supplies',text:'3 scrap + 2 timber + 1 supplies. 12 real hours. '+(this.remote?'Bring the finished kit to the bridge committee.':'Crafting practice stock stays in this browser’s workshop.')}];
   for(const recipe of recipes){const section=document.createElement('section');section.className='recipe';const craft=this.button(recipe.label,()=>this.dispatch({kind:'craft',recipe:recipe.id}),'destination');craft.dataset.craft=recipe.id;section.append(this.p(recipe.text),craft);b.append(section);}
+  if(this.host.commission)b.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));
   b.append(this.button('While work runs · town sketchbook',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)b.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!()));
   if(this.host.garden)b.append(this.button('While work runs · your allotment',()=>this.host.garden?.(),'destination'));
   if(this.host.teaching)b.append(this.button('Orientation maintenance · one-time contribution',()=>this.host.teaching?.(),'destination'));this.notice();b.append(this.p('A queued job finishes while you are away and waits for collection. No automatic repeat jobs or hidden lost output.','disclosure'),this.disclosure());this.updateClocks();
  };this.begin('Your work bench',render);}
  showInventory(){const render=()=>{
-  const b=this.host.body;b.replaceChildren();b.append(this.resources(),this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)b.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!()));if(this.host.garden)b.append(this.button('Your allotment · crops, markers & quests',()=>this.host.garden?.(),'destination'));
+  const b=this.host.body;b.replaceChildren();if(this.host.commission)b.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));b.append(this.resources(),this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)b.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!()));if(this.host.garden)b.append(this.button('Your allotment · crops, markers & quests',()=>this.host.garden?.(),'destination'));
   const quest=this.p('');quest.dataset.quest='';quest.className='quest-card';b.append(quest);
   const skill=this.p('');skill.dataset.skills='';b.append(skill);
   const kits=this.p('');kits.dataset.kits='';b.append(kits);
@@ -140,7 +149,7 @@ export class WorkshopUI {
  };this.begin('Bag & journal',render);}
  private renderPlacement(){
   const area=this.host.body.querySelector('#placement');if(!area)return;const restoreFocus=area.contains(document.activeElement);area.replaceChildren();
-  const count=this.state.owned[this.selected as typeof PROP_IDS[number]];const owned=this.p(`${names[this.selected]} · ${count} owned. Preview and moving are free.`);owned.dataset.owned=this.selected;const picture=document.createElement('img');picture.src='/art/homes/home-'+this.selected+'-icon.svg';picture.alt=names[this.selected];picture.width=64;picture.height=64;picture.className='furniture-preview';area.append(picture,owned);
+  const count=this.state.owned[this.selected as typeof PROP_IDS[number]];const owned=this.p(`${names[this.selected]} · ${count} owned. Preview and moving are free.`);owned.dataset.owned=this.selected;const picture=document.createElement('img');picture.src=this.selected==='letterbox'?'/art/commission/letterbox-'+this.state.commission.motif+'-closed.svg':'/art/homes/home-'+this.selected+'-icon.svg';picture.alt=names[this.selected];picture.width=64;picture.height=64;picture.className='furniture-preview';area.append(picture,owned);
   const grid=document.createElement('div');grid.className='placement-grid';grid.setAttribute('aria-label','Workshop furniture positions');
   for(const slot of PLACEMENT_SLOTS){const prop=this.state.placements[slot.id];const button=this.button(`${slot.label}: ${prop?names[prop]:'empty'}${this.preview===slot.id?' · preview '+names[this.selected]:''}`,()=>{this.preview=slot.id;this.lastSlot=slot.id;this.renderPlacement();});button.disabled=!this.host.inside();button.dataset.slot=slot.id;if(this.preview===slot.id)button.classList.add('preview');grid.append(button);}area.append(grid);
   const apply=this.button('Place here',()=>{if(!this.preview)return;const placed=Object.entries(this.state.placements).filter(([,prop])=>prop===this.selected);const available=this.state.owned[this.selected as typeof PROP_IDS[number]]-(this.remote?.allocatedElsewhere?.(this.selected)??0);if(this.remote&&available<=0){const message=this.state.owned[this.selected as typeof PROP_IDS[number]]===0?'Make or acquire this furniture before placing it.':'All copies are in your house plot. Return one to the bag there before placing it here.';this.host.feedback(message);if(this.status)this.status.textContent=message;return;}const fromSlot=placed.length>=available?placed[0]?.[0]:undefined;this.dispatch({kind:'place',prop:this.selected,slot:this.preview,...(fromSlot?{fromSlot}:{})});if(!this.remote){this.preview=null;this.renderPlacement();}},'primary');apply.disabled=!this.preview||!this.host.inside();

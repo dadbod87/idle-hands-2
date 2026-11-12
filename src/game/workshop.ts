@@ -1,12 +1,13 @@
 import { z } from 'zod';
+import {commissionSchema,commissionActionSchema,createCommission,applyCommission,commissionLedgerMatches} from './commission.ts';
 import {SURVEY_IDS,SURVEY_CHOICES,SURVEYS} from './fieldwork.ts';
-import {carpentrySchema,carpentryActionSchema,createCarpentry,applyCarpentry,carpentryLedgerMatches} from './carpentry.ts';
+import {carpentrySchema,carpentryActionSchema,createCarpentry,applyCarpentry,carpentryLedgerMatches,migrateCarpentry} from './carpentry.ts';
 import {gardenSchema,gardenActionSchema,createGarden,applyGarden,migrateGarden} from './garden.ts';
 
 // Local synthetic prototype rules. This module does not establish server authority.
 export const RESOURCE_IDS = ['scrap', 'timber', 'supplies'] as const;
 export type ResourceId = typeof RESOURCE_IDS[number];
-export const PROP_IDS = ['planter', 'stool', 'rug', 'lamp', 'crate', 'shelf', 'easel'] as const;
+export const PROP_IDS = ['planter', 'stool', 'rug', 'lamp', 'crate', 'shelf', 'easel','letterbox'] as const;
 export type PropId = typeof PROP_IDS[number];
 export const NODE_CAPACITY = 6;
 export const REGEN_MS = 4 * 60 * 60 * 1000;
@@ -21,7 +22,7 @@ export type RecipeId = keyof typeof RECIPES;
 export const PROPS: Record<PropId, { name: string; art: string }> = {
   planter: { name: 'Optimistic planter', art: 'home-planter-world' }, stool: { name: 'Committee stool', art: 'home-stool-world' },
   rug: { name: 'Welcome-ish rug', art: 'home-rug-world' }, lamp: { name: 'Bright idea lamp', art: 'home-lamp-world' },
-  crate: { name: 'Useful crate', art: 'home-crate-world' }, shelf: { name: 'Shelf of intentions', art: 'home-shelf-world' }, easel:{name:'Garden study easel',art:'home-easel-world'}
+  crate: { name: 'Useful crate', art: 'home-crate-world' }, shelf: { name: 'Shelf of intentions', art: 'home-shelf-world' }, easel:{name:'Garden study easel',art:'home-easel-world'},letterbox:{name:'Unreasonably Official Letterbox',art:'letterbox-leaf-closed'}
 };
 export const PLACEMENT_SLOTS = [
   { id: 'north-west', label: 'Near the bench', x: 7, y: 8 },
@@ -36,13 +37,13 @@ const slotIds = PLACEMENT_SLOTS.map(s => s.id) as [SlotId, ...SlotId[]];
 const count = z.number().int().min(0).max(1_000_000);
 const timestamp = z.number().int().min(0).max(Number.MAX_SAFE_INTEGER - OFFLINE_CAP_MS);
 const materialSchema = z.object({ scrap: count, timber: count, supplies: count }).strict();
-const ownedSchema = z.object({ planter: count.max(ITEM_LIMIT), stool: count.max(ITEM_LIMIT), rug: count.max(ITEM_LIMIT), lamp: count.max(ITEM_LIMIT), crate: count.max(ITEM_LIMIT), shelf: count.max(ITEM_LIMIT), easel:count.max(ITEM_LIMIT) }).strict();
+const ownedSchema = z.object({ planter: count.max(ITEM_LIMIT), stool: count.max(ITEM_LIMIT), rug: count.max(ITEM_LIMIT), lamp: count.max(ITEM_LIMIT), crate: count.max(ITEM_LIMIT), shelf: count.max(ITEM_LIMIT), easel:count.max(ITEM_LIMIT),letterbox:count.max(1) }).strict();
 const nodeSchema = z.object({ stock: count.max(NODE_CAPACITY), lastAt: timestamp }).strict();
 const receiptSchema = z.object({ id: z.string().regex(/^[a-zA-Z0-9:_-]{1,80}$/), revision: count, message: z.string().max(240) }).strict();
 const propValueSchema = z.enum(PROP_IDS).nullable();
 const placementSchema = z.object(Object.fromEntries(slotIds.map(id => [id, propValueSchema])) as Record<SlotId, typeof propValueSchema>).strict();
 const stateSchema = z.object({
-  version: z.literal(1), revision: count, observedAt: timestamp,
+  version: z.literal(2), commission:commissionSchema, revision: count, observedAt: timestamp,
   sketches: z.array(z.enum(SURVEY_IDS)).max(3).refine(ids=>new Set(ids).size===ids.length).default([]),
   garden:gardenSchema,carpentry:carpentrySchema,
   inventory: materialSchema, owned: ownedSchema, placements: placementSchema,
@@ -55,6 +56,8 @@ const stateSchema = z.object({
 }).strict().superRefine((s, ctx) => {
   const issue = (message: string) => ctx.addIssue({ code: 'custom', message });
   if(s.garden.observedAt>s.observedAt||s.carpentry.observedAt>s.observedAt)issue('Activity clock is ahead of the save.');
+  if(!commissionLedgerMatches(s.commission,s.carpentry,s.garden)||s.owned.letterbox!==s.commission.madeCount)issue('Commission costs and single letterbox ownership do not agree.');
+  if(s.commission.acceptedAt!==null&&s.commission.acceptedAt>s.observedAt||s.commission.completedAt!==null&&s.commission.completedAt>s.observedAt)issue('Commission history is ahead of the save.');
   if(!carpentryLedgerMatches(s.carpentry,s.garden)||s.owned.easel!==s.carpentry.produced)issue('Craft, produce use and kept easel ownership do not agree.');
   if (RESOURCE_IDS.reduce((n, id) => n + s.inventory[id], 0) > STORAGE_LIMIT) issue('Material storage is over capacity.');
   for (const id of RESOURCE_IDS) if (s.nodes[id].lastAt > s.observedAt) issue('Node clock is ahead of the save.');
@@ -71,6 +74,7 @@ export const isCurrentWorkshop=(value:unknown):value is WorkshopState=>stateSche
 export type WorkshopState = z.infer<typeof stateSchema>;
 const baseCommand = { id: receiptSchema.shape.id, expectedRevision: count };
 const commandSchema = z.discriminatedUnion('kind', [
+  z.object({...baseCommand,kind:z.literal('commission'),commissionAction:commissionActionSchema}).strict(),
   z.object({...baseCommand,kind:z.literal('carpentry'),carpentryAction:carpentryActionSchema}).strict(),
   z.object({...baseCommand,kind:z.literal('garden'),gardenAction:gardenActionSchema}).strict(),
   z.object({...baseCommand,kind:z.literal('survey'),station:z.enum(SURVEY_IDS),choice:z.enum(SURVEY_CHOICES)}).strict(),
@@ -86,9 +90,9 @@ function validTime(now: number): boolean { return timestamp.safeParse(now).succe
 export function createWorkshop(now: number): WorkshopState {
   if (!validTime(now)) throw new Error('A valid integer clock is required.');
   return {
-    version: 1, revision: 0, observedAt: now, sketches: [], garden:createGarden(now),carpentry:createCarpentry(now),
+    version: 2, commission:createCommission(), revision: 0, observedAt: now, sketches: [], garden:createGarden(now),carpentry:createCarpentry(now),
     inventory: { scrap: 0, timber: 0, supplies: 0 },
-    owned: { planter: 0, stool: 1, rug: 1, lamp: 1, crate: 1, shelf: 1, easel:0 },
+    owned: { planter: 0, stool: 1, rug: 1, lamp: 1, crate: 1, shelf: 1, easel:0,letterbox:0 },
     placements: Object.fromEntries(slotIds.map(id => [id, null])) as WorkshopState['placements'],
     nodes: { scrap: { stock: 6, lastAt: now }, timber: { stock: 6, lastAt: now }, supplies: { stock: 6, lastAt: now } },
     job: null, bridgeKits: 0,
@@ -106,8 +110,18 @@ export function loadWorkshop(value: unknown, now: number): { state: WorkshopStat
     const old=value as Record<string,unknown>;
     const epoch=validTime(old.observedAt as number)?old.observedAt as number:now;
     const legacy=!Object.hasOwn(old,'carpentry');
-    const owned=legacy&&old.owned&&typeof old.owned==='object'&&!Array.isArray(old.owned)&&!Object.hasOwn(old.owned,'easel')?{...old.owned,easel:0}:old.owned;
-    migrated={...old,owned,garden:Object.hasOwn(old,'garden')?migrateGarden(old.garden):createGarden(epoch),carpentry:legacy?createCarpentry(epoch):old.carpentry};
+    const own=old.owned;
+    // Only recognized old roots may gain new zero ledgers. A purported current
+    // root with missing fields, or a partially upgraded old root, is preserved.
+    const oldGarden=old.garden as {version?:unknown}|undefined,oldCarpentry=old.carpentry as {version?:unknown}|undefined;
+    const gardenVersion=oldGarden&&typeof oldGarden==='object'&&!Array.isArray(oldGarden)?oldGarden.version:undefined;
+    const preGarden=legacy&&!Object.hasOwn(old,'garden');
+    const preCarpentry=legacy&&gardenVersion===1;
+    const previous=oldCarpentry?.version===1&&gardenVersion===2;
+    if((preGarden||preCarpentry||previous)&&!Object.hasOwn(old,'commission')&&own&&typeof own==='object'&&!Array.isArray(own)&&!Object.hasOwn(own,'letterbox')&&(legacy?!Object.hasOwn(own,'easel'):Object.hasOwn(own,'easel'))){
+      const owned=legacy?{...own,easel:0,letterbox:0}:{...own,letterbox:0};
+      migrated={...old,version:2,commission:createCommission(),owned,garden:Object.hasOwn(old,'garden')?migrateGarden(old.garden):createGarden(epoch),carpentry:legacy?createCarpentry(epoch):migrateCarpentry(old.carpentry)};
+    }
   }
   const parsed = stateSchema.safeParse(migrated);
   if (!parsed.success) return { state: createWorkshop(now), recovered: true };
@@ -153,7 +167,11 @@ export function applyWorkshop(input: WorkshopState, raw: unknown, now: number, a
   if (input.revision >= 1_000_000) return fail('This prototype has reached its command limit. Your progress is safe; no change was made.');
   const next = structuredClone(settleWorkshop(input, now));
   let message = '';
-  if(cmd.kind==='carpentry'){
+  if(cmd.kind==='commission'){
+    const applied=applyCommission(next.commission,next.carpentry,next.garden,cmd.commissionAction,now);
+    if(!applied.ok)return fail(applied.message);
+    next.commission=applied.state;next.carpentry=applied.carpentry;next.garden=applied.garden;next.owned.letterbox=applied.state.madeCount;message=applied.message;
+  }else if(cmd.kind==='carpentry'){
     const applied=applyCarpentry(next.carpentry,next.garden,cmd.carpentryAction,now);
     if(!applied.ok)return fail(applied.message);
     next.carpentry=applied.state;next.garden=applied.garden;

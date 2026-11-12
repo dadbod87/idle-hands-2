@@ -76,7 +76,7 @@ test('placement validates ownership, occupancy and atomic moves while cancel rem
 test('corrupt/unknown saves recover safely rather than importing unbounded or unowned progress', () => {
   const base = createWorkshop(start);
   for (const mutation of [
-    { ...base, version: 2 }, { ...base, inventory: { ...base.inventory, scrap: -1 } },
+    { ...base, version: 9 }, { ...base, inventory: { ...base.inventory, scrap: -1 } },
     { ...base, inventory: { ...base.inventory, scrap: Number.MAX_SAFE_INTEGER } },
     { ...base, placements: { ...base.placements, 'north-west': 'planter' } },
     { ...base, nodes: { ...base.nodes, scrap: { stock: 9, lastAt: start } } },

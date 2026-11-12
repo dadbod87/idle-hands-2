@@ -1,3 +1,4 @@
+import {preCommissionWorkshop} from './legacy-workshop.ts';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {Pool} from 'pg';
@@ -9,7 +10,7 @@ import {worlds} from '../src/game/world.ts';
 const url=process.env.IH2_TEST_DATABASE_URL;
 const at=(room:'square'|'garden'|'workshop',stop:string):TownPosition=>({room,position:{...worlds[room].stops.find(s=>s.id===stop)!.point}});
 test('legacy workshop migration is deterministic and preserves old jobs, stock and receipts',()=>{
- const old=createWorkshop(100);delete (old as any).garden;old.inventory={scrap:4,timber:3,supplies:2};old.job={recipe:'bridge-kit',startedAt:100,readyAt:100+12*H};
+ const old=preCommissionWorkshop(createWorkshop(100));delete old.garden;delete old.carpentry;delete old.owned.easel;old.inventory={scrap:4,timber:3,supplies:2};old.job={recipe:'bridge-kit',startedAt:100,readyAt:100+12*H};
  assert.equal(settleGarden(loadWorkshop(old,2*D).state.garden,2*D).rested.available,5);assert.equal(settleGarden(loadWorkshop(old,2*D+100).state.garden,2*D+100).rested.available,6);
  const a=loadWorkshop(old,3*D),b=loadWorkshop(old,3*D+100);assert.equal(a.recovered,false);assert.equal(b.recovered,false);assert.deepEqual(a.state.inventory,old.inventory);assert.deepEqual(a.state.job,old.job);assert.deepEqual(a.state.receipts,old.receipts);assert.equal(settleGarden(a.state.garden,3*D).rested.available,6);assert.equal(settleGarden(b.state.garden,3*D+100).rested.available,6);assert.equal(a.state.garden.firstRadishUsed,false);assert.equal(a.state.garden.planted,0);assert.equal(Object.hasOwn(old,'garden'),false);
 });

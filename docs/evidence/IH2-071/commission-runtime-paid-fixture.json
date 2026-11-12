@@ -1,0 +1,39 @@
+{
+  "classification": "Isolated elapsed localStorage fixture made using valid pure commands; 5mincrop history is synthetic, subsequent input/quote/payment/style/placement/reload are actual browser UI",
+  "seeded": {
+    "commission": {
+      "version": 1,
+      "quest": "pip-post-v1",
+      "acceptedAt": 1794464024350,
+      "paused": false,
+      "order": [
+        "clerk",
+        "caretaker",
+        "carpentry-desk"
+      ],
+      "completedAt": 1794464024350,
+      "madeCount": 0,
+      "motif": "leaf",
+      "published": false
+    },
+    "pine": {
+      "available": 0,
+      "lastAt": 1794464024350,
+      "carried": 6,
+      "gathered": 6,
+      "spent": 0
+    },
+    "radishes": 1
+  },
+  "paid": {
+    "pine": 4,
+    "radish": 0,
+    "owned": 1
+  },
+  "errors": [],
+  "bad": [],
+  "limits": [
+    "No real account or shared-practice grant",
+    "Not fresh real5min paid-craft, server durability or physical-device proof"
+  ]
+}

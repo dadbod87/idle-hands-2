@@ -51,7 +51,7 @@ export async function loadTown(options:{url:string;resetSynthetic:boolean;output
   samplePostgres();pgSampler=setInterval(samplePostgres,5000);pgSampler.unref();
   async function request(path:string,actor?:Actor,body?:unknown,label=path){
    const encoded=body===undefined?undefined:JSON.stringify(body),at=performance.now();http.requests++;http.requestBodyBytes+=encoded?Buffer.byteLength(encoded):0;
-   const response=await fetch(base+'/api/town/'+path,{method:body===undefined?'GET':'POST',headers:{'X-IH2-Schema':'2',...(encoded?{Origin:base,'Content-Type':'application/json'}:{}),...(actor?{Cookie:actor.cookie}:{})},body:encoded,signal:AbortSignal.timeout(5000)});
+   const response=await fetch(base+'/api/town/'+path,{method:body===undefined?'GET':'POST',headers:{'X-IH2-Schema':'3',...(encoded?{Origin:base,'Content-Type':'application/json'}:{}),...(actor?{Cookie:actor.cookie}:{})},body:encoded,signal:AbortSignal.timeout(5000)});
    const text=await response.text();http.responseBodyBytes+=Buffer.byteLength(text);(latencies[label]??=[]).push(performance.now()-at);assert.equal(response.status,200,path+' admission/status');return{response,data:JSON.parse(text)};
   }
   async function command(actor:Actor,action:Record<string,unknown>){const dto={...action,id:randomUUID(),expectedRevision:actor.snapshot.workshop.revision};const{data}=await request('command',actor,dto);assert.equal(data.ok,true,data.message);actor.snapshot=data.snapshot;actor.lastCommand=dto;}
@@ -64,7 +64,7 @@ export async function loadTown(options:{url:string;resetSynthetic:boolean;output
    }
   }
   async function events(actor:Actor){
-   http.requests++;http.sseConnections++;const connectionAt=performance.now();const abort=new AbortController(),response=await fetch(base+'/api/town/events',{headers:{'X-IH2-Schema':'2',Cookie:actor.cookie},signal:abort.signal});assert.equal(response.status,200);(latencies.eventsHeaders??=[]).push(performance.now()-connectionAt);
+   http.requests++;http.sseConnections++;const connectionAt=performance.now();const abort=new AbortController(),response=await fetch(base+'/api/town/events',{headers:{'X-IH2-Schema':'3',Cookie:actor.cookie},signal:abort.signal});assert.equal(response.status,200);(latencies.eventsHeaders??=[]).push(performance.now()-connectionAt);
    const reader=response.body!.getReader();actor.peers=null;
    const pump=(async()=>{let buffer='';const decoder=new TextDecoder();try{while(true){const chunk=await reader.read();if(chunk.done)break;sse.receivedBytes+=chunk.value.byteLength;buffer+=decoder.decode(chunk.value,{stream:true});assert.ok(buffer.length<65536,'SSE parser remains bounded');let end:number;while((end=buffer.indexOf('\n\n'))>=0){const frame=buffer.slice(0,end);buffer=buffer.slice(end+2);if(frame.startsWith(':')){sse.heartbeats++;continue;}sse.events++;const name=frame.match(/^event: (.+)$/m)?.[1],data=frame.match(/^data: (.+)$/m)?.[1];if(name==='presence'&&data){actor.peers=JSON.parse(data);sse.presence++;}}}}catch(error){if(!abort.signal.aborted)sse.errors.push((error as Error).message);}finally{await reader.cancel().catch(()=>{});}})();actor.stream={abort,pump};
   }

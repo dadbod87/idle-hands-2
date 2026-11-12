@@ -59,11 +59,11 @@
     },
     {
       "path": "src/game/carpentry.ts",
-      "sha256": "44c6219baceded14e327b9cd1a65b2921b0fb97082cf0980c16e7a36464d0394"
+      "sha256": "7eba4bd2ef18eb8c2d5d000ba73be6e6fd7ac70eaef054a79b54d6ab4c5e9ce0"
     },
     {
       "path": "src/game/garden.ts",
-      "sha256": "aa438b4db1bbaa3d2af76317f2b77af8ba8c9260fcc811c1c81fd44fae760156"
+      "sha256": "4bcad76311fb65b44609b0af37a45f3cf022e68f0ef4ccef6837234fafbc5991"
     }
   ],
   "rows": [

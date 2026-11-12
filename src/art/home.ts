@@ -8,6 +8,7 @@ export const HOME_ART={
  exteriorSize:{width:208,height:248},exteriorFoot:{x:104,y:240},
  interiorDoor:{x:304,y:448},bedBlockedTiles:[2,2,4,3] as const,
  furniture:{
+  letterbox:{world:'letterbox-leaf-closed',icon:'letterbox-leaf-closed',width:80,height:112,foot:{x:40,y:106}},
   planter:{world:'home-planter-world',icon:'home-planter-icon',width:64,height:80,foot:{x:32,y:75}},
   stool:{world:'home-stool-world',icon:'home-stool-icon',width:64,height:64,foot:{x:32,y:59}},
   rug:{world:'home-rug-world',icon:'home-rug-icon',width:96,height:64,foot:{x:48,y:32}},

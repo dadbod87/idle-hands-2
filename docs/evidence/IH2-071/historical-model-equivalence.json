@@ -1,0 +1,45 @@
+{
+  "classification": "Existing model outcomes preserved; only fingerprints and explicit zero commission sink representation changed",
+  "reports": [
+    {
+      "path": "docs/evidence/IH2-054/pacing-experiment.json",
+      "fingerprintsRefreshed": [
+        "sourceHashes"
+      ],
+      "allPriorOutcomesUnchanged": true,
+      "newCommissionUse": null
+    },
+    {
+      "path": "docs/evidence/IH2-064/garden-model.json",
+      "fingerprintsRefreshed": [
+        "sources"
+      ],
+      "allPriorOutcomesUnchanged": true,
+      "newCommissionUse": null
+    },
+    {
+      "path": "docs/evidence/IH2-066/woodland-model.json",
+      "fingerprintsRefreshed": [
+        "sourceSha256"
+      ],
+      "allPriorOutcomesUnchanged": true,
+      "newCommissionUse": null
+    },
+    {
+      "path": "docs/evidence/IH2-067/pure-rule-schedules.json",
+      "fingerprintsRefreshed": [
+        "sourceSha256"
+      ],
+      "allPriorOutcomesUnchanged": true,
+      "newCommissionUse": 0
+    },
+    {
+      "path": "docs/evidence/IH2-069/commission-model.json",
+      "fingerprintsRefreshed": [
+        "sources"
+      ],
+      "allPriorOutcomesUnchanged": true,
+      "newCommissionUse": null
+    }
+  ]
+}

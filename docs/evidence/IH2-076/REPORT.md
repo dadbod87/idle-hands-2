@@ -1,0 +1,5 @@
+# IH2-076 — owner home arrangement first
+
+Initial checkpoint from accepted075merge00563d3. No076runtime implementation/check claimed yet. [Contract](../../idle-hands-2/HOME_ARRANGEMENT_PANEL.md). Five [native baseline views](baseline/observations.json) use explicitly intercepted snapshots/EventSource/fixed-arrival movement acknowledgements and declared elapsed pure-command furnishings; no real commands or protected-town writes. Actual effective viewport is dialog bottom minus sticky header bottom; body scrollHeight divided by usable height. Do not compare ratios with older audit methods. Native phone owner initially sees only entry/upgrade/furnishing selector; short200sees no active control,6.44effective pages. Baseline images reviewed for expanded phone/short; remaining captures retained for paired validation.
+
+Rejected observer phases remain external: first forgot fixed-arrival movement acknowledgements; next measured the unclipped body rather than sticky-header effective viewport and captured before room art caught up. Corrected observer waits for exact room/art and excludes hidden zero-width controls. These rejected metrics are not accepted evidence.

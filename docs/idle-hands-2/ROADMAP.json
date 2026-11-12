@@ -769,7 +769,7 @@
     {
       "id": "IH2-075",
       "title": "Two permanent expanded-home workroom nooks",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/home-workroom-nooks",
       "depends_on": [
         "IH2-074"
@@ -786,7 +786,31 @@
       ],
       "evidence": [
         "docs/idle-hands-2/HOME_WORKROOM.md",
-        "docs/evidence/IH2-075/REPORT.md"
+        "docs/evidence/IH2-075/REPORT.md",
+        "docs/evidence/IH2-075/source-closeout.json"
+      ]
+    },
+    {
+      "id": "IH2-076",
+      "title": "Owner home arrangement first on phones",
+      "status": "in_progress",
+      "owner_branch": "feat/home-arrangement-panel",
+      "depends_on": [
+        "IH2-075"
+      ],
+      "goal": "Make inside-home furnishing controls easy to reach while preserving selection, feedback, ownership and all navigation/purchase behavior.",
+      "acceptance": [
+        "Inside owner home prioritize concise labelled furnishing/position selectors, preview and explicit Place/Return; entry/upgrade/context secondary. Outside claim/entry stay primary; visitors read-only without unrelated claim controls.",
+        "Retain chosen furnishing/slot through accepted/rejected action and explicit refresh. Pending/retry once-only and old-panel completion/focus safety; no held-pointer target shift from passive updates.",
+        "Paired native desktop/narrow/short200 owner starter/expanded and visitor captures, keyboard/focus/pending/retry/close/reopen; all old progress/maps preserved and fixtures disclosed.",
+        "Full required gates plus both exact-headCIjobs/actual artifacts/images/matching-tree merge and practice-preserving immutable preview swap. No incomplete release at07:00Pacific."
+      ],
+      "exclusions": [
+        "No server/domain/save/protocol/art/geometry, costs/timers/resources, hosting/expense/identity or original-game change."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/HOME_ARRANGEMENT_PANEL.md",
+        "docs/evidence/IH2-076/REPORT.md"
       ]
     },
     {
@@ -807,7 +831,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-075 improves persistent expanded-home furnishing capacity. No cloud resources, invitations or public release."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-076 improves inside-home phone arrangement. No cloud resources, invitations or public release."
     },
     {
       "id": "IH2-080",

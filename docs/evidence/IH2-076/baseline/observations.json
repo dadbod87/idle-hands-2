@@ -1,0 +1,344 @@
+{
+  "disclosure": "Fully intercepted current snapshot/EventSource, elapsed pure-command earned box/easel and fixed home/placements/arrival. Fixed-arrival movement acknowledgements are also intercepted. No real API or mutation commands, no housing pacing claim. Native Chrome with emulated touch/text sizing.",
+  "base": "http://127.0.0.1:49525",
+  "results": [
+    {
+      "shape": {
+        "name": "desktop-expanded",
+        "w": 1440,
+        "h": 900,
+        "level": 2,
+        "visitor": false,
+        "text": 1
+      },
+      "measurement": {
+        "body": {
+          "top": 96,
+          "bottom": 884,
+          "height": 788,
+          "clientHeight": 788,
+          "scrollHeight": 817,
+          "pages": 1.0368020304568528
+        },
+        "controls": [
+          {
+            "label": "Enter your house",
+            "tag": "BUTTON",
+            "top": 201,
+            "bottom": 247,
+            "visible": true
+          },
+          {
+            "label": "Upgrade plot \u00b7 24 bridge kits",
+            "tag": "BUTTON",
+            "top": 327,
+            "bottom": 373,
+            "visible": true
+          },
+          {
+            "label": "Owned furniture for plot",
+            "tag": "SELECT",
+            "top": 505,
+            "bottom": 551,
+            "visible": true
+          },
+          {
+            "label": "Plot furniture position",
+            "tag": "SELECT",
+            "top": 567,
+            "bottom": 613,
+            "visible": true
+          },
+          {
+            "label": "Place owned furniture here",
+            "tag": "BUTTON",
+            "top": 631,
+            "bottom": 677,
+            "visible": true
+          },
+          {
+            "label": "Return furniture to bag",
+            "tag": "BUTTON",
+            "top": 687,
+            "bottom": 733,
+            "visible": true
+          },
+          {
+            "label": "Refresh plot information",
+            "tag": "BUTTON",
+            "top": 757,
+            "bottom": 809,
+            "visible": true
+          }
+        ]
+      },
+      "errors": [],
+      "commands": 0
+    },
+    {
+      "shape": {
+        "name": "phone-expanded",
+        "w": 360,
+        "h": 640,
+        "level": 2,
+        "visitor": false,
+        "text": 1
+      },
+      "measurement": {
+        "body": {
+          "top": 96,
+          "bottom": 624,
+          "height": 528,
+          "clientHeight": 528,
+          "scrollHeight": 865,
+          "pages": 1.6382575757575757
+        },
+        "controls": [
+          {
+            "label": "Enter your house",
+            "tag": "BUTTON",
+            "top": 225,
+            "bottom": 271,
+            "visible": true
+          },
+          {
+            "label": "Upgrade plot \u00b7 24 bridge kits",
+            "tag": "BUTTON",
+            "top": 375,
+            "bottom": 421,
+            "visible": true
+          },
+          {
+            "label": "Owned furniture for plot",
+            "tag": "SELECT",
+            "top": 553,
+            "bottom": 599,
+            "visible": true
+          },
+          {
+            "label": "Plot furniture position",
+            "tag": "SELECT",
+            "top": 615,
+            "bottom": 661,
+            "visible": false
+          },
+          {
+            "label": "Place owned furniture here",
+            "tag": "BUTTON",
+            "top": 679,
+            "bottom": 725,
+            "visible": false
+          },
+          {
+            "label": "Return furniture to bag",
+            "tag": "BUTTON",
+            "top": 735,
+            "bottom": 781,
+            "visible": false
+          },
+          {
+            "label": "Refresh plot information",
+            "tag": "BUTTON",
+            "top": 805,
+            "bottom": 857,
+            "visible": false
+          }
+        ]
+      },
+      "errors": [],
+      "commands": 0
+    },
+    {
+      "shape": {
+        "name": "short200-expanded",
+        "w": 844,
+        "h": 390,
+        "level": 2,
+        "visitor": false,
+        "text": 2
+      },
+      "measurement": {
+        "body": {
+          "top": 154,
+          "bottom": 374,
+          "height": 220,
+          "clientHeight": 220,
+          "scrollHeight": 1416,
+          "pages": 6.4363636363636365
+        },
+        "controls": [
+          {
+            "label": "Enter your house",
+            "tag": "BUTTON",
+            "top": 403,
+            "bottom": 462,
+            "visible": false
+          },
+          {
+            "label": "Upgrade plot \u00b7 24 bridge kits",
+            "tag": "BUTTON",
+            "top": 638,
+            "bottom": 732,
+            "visible": false
+          },
+          {
+            "label": "Owned furniture for plot",
+            "tag": "SELECT",
+            "top": 963,
+            "bottom": 1021,
+            "visible": false
+          },
+          {
+            "label": "Plot furniture position",
+            "tag": "SELECT",
+            "top": 1037,
+            "bottom": 1095,
+            "visible": false
+          },
+          {
+            "label": "Place owned furniture here",
+            "tag": "BUTTON",
+            "top": 1113,
+            "bottom": 1207,
+            "visible": false
+          },
+          {
+            "label": "Return furniture to bag",
+            "tag": "BUTTON",
+            "top": 1217,
+            "bottom": 1276,
+            "visible": false
+          },
+          {
+            "label": "Refresh plot information",
+            "tag": "BUTTON",
+            "top": 1300,
+            "bottom": 1394,
+            "visible": false
+          }
+        ]
+      },
+      "errors": [],
+      "commands": 0
+    },
+    {
+      "shape": {
+        "name": "phone-starter",
+        "w": 360,
+        "h": 640,
+        "level": 1,
+        "visitor": false,
+        "text": 1
+      },
+      "measurement": {
+        "body": {
+          "top": 96,
+          "bottom": 624,
+          "height": 528,
+          "clientHeight": 528,
+          "scrollHeight": 865,
+          "pages": 1.6382575757575757
+        },
+        "controls": [
+          {
+            "label": "Enter your house",
+            "tag": "BUTTON",
+            "top": 225,
+            "bottom": 271,
+            "visible": true
+          },
+          {
+            "label": "Upgrade plot \u00b7 24 bridge kits",
+            "tag": "BUTTON",
+            "top": 375,
+            "bottom": 421,
+            "visible": true
+          },
+          {
+            "label": "Owned furniture for plot",
+            "tag": "SELECT",
+            "top": 553,
+            "bottom": 599,
+            "visible": true
+          },
+          {
+            "label": "Plot furniture position",
+            "tag": "SELECT",
+            "top": 615,
+            "bottom": 661,
+            "visible": false
+          },
+          {
+            "label": "Place owned furniture here",
+            "tag": "BUTTON",
+            "top": 679,
+            "bottom": 725,
+            "visible": false
+          },
+          {
+            "label": "Return furniture to bag",
+            "tag": "BUTTON",
+            "top": 735,
+            "bottom": 781,
+            "visible": false
+          },
+          {
+            "label": "Refresh plot information",
+            "tag": "BUTTON",
+            "top": 805,
+            "bottom": 857,
+            "visible": false
+          }
+        ]
+      },
+      "errors": [],
+      "commands": 0
+    },
+    {
+      "shape": {
+        "name": "phone-visitor",
+        "w": 360,
+        "h": 640,
+        "level": 2,
+        "visitor": true,
+        "text": 1
+      },
+      "measurement": {
+        "body": {
+          "top": 96,
+          "bottom": 624,
+          "height": 528,
+          "clientHeight": 528,
+          "scrollHeight": 581,
+          "pages": 1.1003787878787878
+        },
+        "controls": [
+          {
+            "label": "Claim your house plot \u00b7 12 bridge kits",
+            "tag": "BUTTON",
+            "top": 200,
+            "bottom": 258,
+            "visible": true
+          },
+          {
+            "label": "Visit Aster",
+            "tag": "BUTTON",
+            "top": 283,
+            "bottom": 329,
+            "visible": true
+          },
+          {
+            "label": "Refresh plot information",
+            "tag": "BUTTON",
+            "top": 521,
+            "bottom": 573,
+            "visible": true
+          }
+        ]
+      },
+      "errors": [],
+      "commands": 0
+    }
+  ],
+  "method": "Effective viewport is dialog bottom minus sticky header bottom; body scrollHeight divided by that usable height. Hidden zero-width controls excluded. All scene room/art ready before opening. Ratios compare only with the same method, not older audit definitions."
+}

@@ -1,0 +1,142 @@
+{
+  "classification": "Accepted private source and actual local preview; no hosted release",
+  "task": "IH2-086",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/34",
+  "candidate": "ef56506f0e9597455b35e782fef22ff50fabfbbb",
+  "merge": "1426b2b1f4bf4ba1e7ff1c0cab573d00378f7338",
+  "matchingCandidateAndMergeTree": "7976fae7c1aa333d06668bd0e1dc0ee98a22bfd0",
+  "cleanMainEqualOriginBeforeCloseout": true,
+  "ciRun": 43316779357,
+  "ciJobs": [
+    {
+      "databaseId": 131526739827,
+      "name": "browser-shard (2/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T22:06:38Z",
+      "completedAt": "2026-11-12T22:20:59Z"
+    },
+    {
+      "databaseId": 131526740134,
+      "name": "domain-build-plan",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T22:06:37Z",
+      "completedAt": "2026-11-12T22:08:43Z"
+    },
+    {
+      "databaseId": 131526740255,
+      "name": "browser-shard (1/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T22:06:38Z",
+      "completedAt": "2026-11-12T22:14:47Z"
+    },
+    {
+      "databaseId": 131534560126,
+      "name": "browser-playtest",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T22:21:02Z",
+      "completedAt": "2026-11-12T22:21:05Z"
+    }
+  ],
+  "checks": {
+    "domain": 294,
+    "skipped": 0,
+    "localDomainDurationMs": 60014.796,
+    "ciDomainDurationMs": 86266.41251,
+    "localBrowser": 99,
+    "localBrowserDuration": "11.7 minutes",
+    "ciShard1": 50,
+    "ciShard1Duration": "7.0 minutes",
+    "ciShard2": 49,
+    "ciShard2Duration": "13.2 minutes",
+    "disjointUnionExactly99": true,
+    "unchangedRunnerWorkers": 1,
+    "unchangedRunnerDeadlineMinutes": 20,
+    "strictBuildDesignPlan10Pinned40Diff": true
+  },
+  "payload": {
+    "files": 191,
+    "originalArtByteIdentical": 185,
+    "newAssets": 0,
+    "rawDelta": 252,
+    "gzipEachFileDelta": 89
+  },
+  "actualPreview": {
+    "url": "http://127.0.0.1:4175/",
+    "outDir": "../idle-hands-2-artifacts/world-rain-2026-11-12/ci-final/build",
+    "staticPid": 72060,
+    "staticSession": 69523,
+    "apiPort": 4186,
+    "apiPid": 83080,
+    "apiSession": 34638,
+    "protocol": 4,
+    "apiRestarted": false,
+    "all191ServedBytesEqualCI": true,
+    "nativeDesktopAndTouchMovementAndResize": true,
+    "nativeReal5SecondCraftDeadlineAndHeldFieldsPreserved": true,
+    "nativeScreenshotsReviewed": 8,
+    "uploadedCIScreenshotsReviewed": 6
+  },
+  "protectedPractice": {
+    "classification": "Actual read-only protected fictional practice across 085 static-only weather presentation update",
+    "canonicalTables": 13,
+    "allColumnsAndRowsPreserved": true,
+    "residents": 1,
+    "plots": 0,
+    "signingKeyPreserved": true,
+    "sixMigrationChecksumsPreserved": true,
+    "noDatabaseWrites": true,
+    "apiRestarted": false
+  },
+  "historicalStudies": {
+    "noServerRestartOrMutation": true,
+    "sets": [
+      {
+        "port": 49529,
+        "dir": "gathering-study-2026-11-12/ci-final/browser/test-results/browser/gathering-study",
+        "count": 9,
+        "everyResponseByteEqualPriorAcceptedCI": true
+      },
+      {
+        "port": 49530,
+        "dir": "gathering-family-2026-11-12/ci-final/browser/test-results/browser/gathering-family",
+        "count": 21,
+        "everyResponseByteEqualPriorAcceptedCI": true
+      },
+      {
+        "port": 49534,
+        "dir": "collection-receipts-2026-11-12/ci-final/browser/test-results/browser/collection-receipt-study",
+        "count": 14,
+        "everyResponseByteEqualPriorAcceptedCI": true
+      }
+    ],
+    "reverifiedAfter082StaticUpdate": true,
+    "reverifiedAfter083StaticUpdate": true,
+    "reverifiedAfter084StaticUpdate": true,
+    "reverifiedAfter086StaticUpdate": true
+  },
+  "incompleteRunsRetained": [
+    "Initial domain run lacked SQL environment and skipped7suites; not accepted.",
+    "Next run used incompatible host backup tool; dedicated fixture backup/restore failed. Rerun with PostgreSQL16 container tools passed all294/zero skips. No protected dump or container restart."
+  ],
+  "limits": [
+    "Only explicit appearance URL and reduced-motion media fixtures in new native cases; no position/state/stock/production-clock/response interception.",
+    "Existing full-regression fixtures keep their disclosures. Phone regression may end at a depot inspector through ordinary touch interaction; no collection issued there. Native final-build drill separately walks from the workshop door and retains an actual queued job.",
+    "Chrome desktop and touch emulation, not physical phones/Safari/full accessibility certification.",
+    "Prior085Terra visual review is historical; this narrow projection fix was verified by root native camera/DOM phase checks and actual images, with no new Terra review.",
+    "No original-game/real-account/cloud/hosted/expense changes."
+  ],
+  "prior085AutomaticMain": {
+    "run": 43315335927,
+    "conclusion": "success"
+  },
+  "automaticMergeMain": {
+    "run": 43319319967,
+    "status": "in_progress_at_closeout",
+    "distinctFromPassedRequiredCandidateGates": true
+  },
+  "usage": {
+    "weeklyUsedPercent": 36,
+    "remainingPercent": 64,
+    "noResetUsed": true
+  }
+}

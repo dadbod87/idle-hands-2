@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — Accepted IH2-086 world-anchored rain. PR34 merged`1426b2b`;294system/99browser checks passed, actual local preview and camera movement/resize verified. Rules/progress unchanged. [Evidence](evidence/IH2-086/source-closeout.json).
+
 2026-11-12 — IH2-086 candidate corrects viewport-fixed drizzle so the rain stays with the town during camera follow. Acceptance pending. [Evidence](evidence/IH2-086/REPORT.md).
 
 2026-11-12 — Accepted IH2-085: clearer town lighting, visible drizzle and gentle tree sway at correct idle speed. Field guide explains weather and reduced motion. PR33 merged`ef5a796`;293system/98browser checks pass, actual local preview verified. Rules/progress unchanged. [Evidence](evidence/IH2-085/source-closeout.json).

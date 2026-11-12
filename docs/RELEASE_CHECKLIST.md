@@ -212,3 +212,8 @@ IH2-082CIcapacity correction: the stable browser-playtest gate now requires both
 - Keep original crop/silhouette/reduced/hidden/economy assertions; explicit appearance fixtures and media/viewport limits. Full local/exact-headCI/artifact/recovery/merge gates before static-only preview, preserving13tables/key/checksums/API/studies.
 
 IH2-085 acceptance recorded: final8bb045e exact-headCI43313138618 all four jobs SUCCESS,293system/98browser; actual191-filepreview/images and protected-practice preservation verified. See docs/evidence/IH2-085/source-closeout.json; future changes must repeat applicable gates.
+
+## IH2-086 world rain
+
+- Assert actual world phase during native keyboard/touch camera travel on both axes, independent fall and viewport edge coverage through resize; retain reduced/hidden/interior behavior and held progress.
+- Final ef56506 CI43316779357 all four jobs SUCCESS:294system/zero skips,99browser. Actual191-filepreview, six uploadedCI/eight native captures and protected13tables/key/checksums/API/studies verified. See086source-closeout; future changes repeat applicable gates.

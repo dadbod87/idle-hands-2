@@ -1014,7 +1014,7 @@
     {
       "id": "IH2-086",
       "title": "Anchor moving rain to the town world",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "fix/world-anchored-rain",
       "depends_on": [
         "IH2-085"
@@ -1029,7 +1029,9 @@
         "No new weather type, asset, request/timer, world geometry, progression or hosting."
       ],
       "evidence": [
-        "docs/evidence/IH2-086/PLAN.md"
+        "docs/evidence/IH2-086/PLAN.md",
+        "docs/evidence/IH2-086/REPORT.md",
+        "docs/evidence/IH2-086/source-closeout.json"
       ]
     },
     {

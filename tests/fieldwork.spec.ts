@@ -1,3 +1,4 @@
+import{revealPlace}from'./helpers/places.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {test,expect} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
@@ -14,7 +15,7 @@ for(const shape of [{name:'desktop',width:1440,height:900},{name:'phone',width:3
  const workshop=()=>page.evaluate(()=>(window as any).__pilot.workshop());const snapshot=()=>page.evaluate(()=>(window as any).__pilot.snapshot());
  expect((await workshop()).job).toEqual(state.job);
  for(const id of SURVEY_IDS){
-  await page.locator('#places').click();await page.locator('[data-destination="survey-'+id+'"]').click();await expect.poll(async()=>(await snapshot()).walking,{timeout:process.env.CI?40000:15000}).toBe(false);await expect.poll(async()=>(await snapshot()).nearby).toBe('survey-'+id);
+  await page.locator('#places').click();await (await revealPlace(page,'[data-destination="survey-'+id+'"]')).click();await expect.poll(async()=>(await snapshot()).walking,{timeout:process.env.CI?40000:15000}).toBe(false);await expect.poll(async()=>(await snapshot()).nearby).toBe('survey-'+id);
   if(id==='oak'){
    // Actual canvas tap on the tree trunk; no position or interaction debug mutator.
    const point=await page.evaluate(()=> (window as any).__pilot.screenPoint(18,27.2));const box=(await page.locator('canvas').boundingBox())!;if(shape.name==='phone')await page.touchscreen.tap(box.x+point.x,box.y+point.y);else await page.mouse.click(box.x+point.x,box.y+point.y);
@@ -36,7 +37,7 @@ test('shared sketchbook: actual UI command persists through the local API and SQ
  test.setTimeout(process.env.CI?180000:90000);const evidence=process.env.QA_EVIDENCE_DIR??'test-results/browser';mkdirSync(evidence,{recursive:true});await page.setViewportSize({width:390,height:844});
  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));await page.goto('/?town=1');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await page.getByRole('dialog').getByRole('button',{name:'Casey',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.town()?.playerId)).toBe('casey');
  const before=await page.evaluate(()=>(window as any).__pilot.town());expect(before.workshop.sketches).toEqual([]);expect(before.bridge.restored).toBe(false);
- await page.locator('#places').click();await page.locator('[data-destination="survey-oak"]').click();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().walking),{timeout:process.env.CI?40000:15000}).toBe(false);await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().nearby)).toBe('survey-oak');await page.locator('#interact').click();
+ await page.locator('#places').click();await (await revealPlace(page,'[data-destination="survey-oak"]')).click();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().walking),{timeout:process.env.CI?40000:15000}).toBe(false);await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().nearby)).toBe('survey-oak');await page.locator('#interact').click();
  const rejectedReply=page.waitForResponse(response=>response.url().endsWith('/api/town/command')&&response.request().method()==='POST');
  await page.getByRole('button',{name:'A pale trunk with dark marks',exact:true}).click();const rejected=await(await rejectedReply).json();expect(rejected.ok).toBe(false);await expect(page.locator('.workshop-status')).toContainText('Take another look');await expect(page.getByRole('button',{name:'A broad, layered crown',exact:true})).toBeEnabled();expect(await page.evaluate(()=>(window as any).__pilot.town().workshop.sketches)).toEqual([]);
  const reply=page.waitForResponse(response=>response.url().endsWith('/api/town/command')&&response.request().method()==='POST');await page.getByRole('button',{name:'A broad, layered crown',exact:true}).click();const response=await reply;expect(response.status()).toBe(200);const command=response.request().postDataJSON(),data=await response.json();expect(data.ok).toBe(true);expect(command.kind).toBe('survey');expect(command.station).toBe('oak');

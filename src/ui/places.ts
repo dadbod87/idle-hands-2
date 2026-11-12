@@ -1,0 +1,7 @@
+import{placesView}from'../game/places-view.ts';import type{WorkshopState}from'../game/workshop.ts';import type{Room,Stop}from'../game/world.ts';
+export function renderPlaces(body:HTMLElement,options:{room:Room;stops:Stop[];state:WorkshopState;goal:{id:string;destination?:string};now:number;walk:(stop:Stop)=>void}){
+ const view=placesView(options.room,options.stops,options.state,options.goal,options.now),intro=document.createElement('p');intro.className='places-intro';intro.textContent='Choose a place to walk. Inspect or enter when you arrive.';body.append(intro);
+ const append=(host:HTMLElement,stops:Stop[])=>{for(const stop of stops){const b=document.createElement('button');b.type='button';b.className='destination';b.textContent='Walk to '+stop.name+' →';b.dataset.destination=stop.id;b.onclick=()=>options.walk(stop);host.append(b);}};
+ if(view.primary.length){const h=document.createElement('h3');h.textContent=view.heading;body.append(h);const section=document.createElement('section');section.className='places-primary';section.setAttribute('aria-label',view.heading);append(section,view.primary);body.append(section);}
+ for(const group of view.groups){const detail=document.createElement('details'),summary=document.createElement('summary');detail.className='places-group';detail.dataset.placesGroup=group.id;summary.textContent=group.title+' · '+group.stops.length;detail.append(summary);append(detail,group.stops);body.append(detail);}
+}

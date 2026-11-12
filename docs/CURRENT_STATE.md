@@ -1,5 +1,7 @@
 # Idle Hands 2 — current state
 
+IH2-089 candidate clarifies crafting output/cost/time and canonical names, keeps stable claim→Bag completion, and groups Places around useful stops.300system/zero skips and focused native/regression checks pass; final102/CI/preview gates pending. [Evidence](evidence/IH2-089/REPORT.md).
+
 IH2-087 accepted design/source: audited city capacity and home visiting, tested24-address expandable blocks and separate10-file blueprint. PR35/merge38ef23e, exactc789b69 CI43323897322 all four jobs SUCCESS;296system/100browser. All191game bytes/progress/API/studies unchanged.089craft/menu clarity next, then088physical doors and090art/life. [Proof](evidence/IH2-087/source-closeout.json). Candidate entries below historical.
 
 IH2-087 candidate audits city capacity/visits, records expandable24-home block geometry and separate interactive blueprint. Original191game files unchanged. Terra crafting/menu findings feed089before088runtime expansion. [Evidence](evidence/IH2-087/REPORT.md).

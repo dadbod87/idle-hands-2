@@ -1,3 +1,4 @@
+import {renderPlaces} from './ui/places.ts';
 import {homeDisplay} from './game/home-layout.ts';
 import {CommissionUI} from './ui/commission.ts';
 import {commissionLocation,type RecipientId} from './game/commission.ts';
@@ -212,13 +213,7 @@ document.querySelector('#field-guide')!.addEventListener('click',()=>{
 });
 document.querySelector('#places')!.addEventListener('click', () => {
   openPanel('Places to go');
-  body.append(paragraph('Choose a stop to walk nearby. Then choose Inspect or Enter when you arrive.'));
-  for (const stop of worlds[session.room].stops) {
-    const button = document.createElement('button'); button.type = 'button'; button.className = 'destination';
-    button.textContent = 'Walk to '+stop.name + ' →'; button.dataset.destination = stop.id;
-    button.addEventListener('click', () => walkToPlace(stop));
-    body.append(button);
-  }
+  renderPlaces(body,{room:session.room,stops:worlds[session.room].stops,state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),walk:walkToPlace});
 });
 function showPendingRequest(message='Resolve the previous request before walking.'){
  if(!town)return;openPanel('Confirm pending request');body.append(paragraph(message),paragraph('The change may already be saved. Retrying uses the same request and cannot spend or enter twice.'));const retry=document.createElement('button');retry.type='button';retry.className='destination';retry.textContent=town.retryAvailable?'Retry the same request':'Refresh confirmed position';retry.onclick=()=>{retry.disabled=true;void(town.retryAvailable?town.retry():town.load()).then(snapshot=>{adoptTownPosition(snapshot);closePanel();feedback.textContent=town.lastMessage||'Confirmed position restored.';}).catch(error=>{retry.disabled=false;feedback.textContent=error.message;});};body.append(retry);

@@ -1,10 +1,10 @@
-import {PROP_IDS,type PropId,type WorkshopState} from './workshop.ts';
+import {PROP_IDS,PROPS,type PropId,type WorkshopState} from './workshop.ts';
 import {MARKER_IDS,MARKER_DEFS} from './garden.ts';
 
 export const BAG_GROUPS=['furniture','materials','garden'] as const;
 export type BagGroup=typeof BAG_GROUPS[number];
 export type BagStack={id:string;group:BagGroup;name:string;icon:string;quantity:number|null;detail:string};
-const furnitureNames:Record<PropId,string>={planter:'Orientation planter',stool:'Break-time stool',rug:'Welcome rug',lamp:'Optimism lamp',crate:'Useful crate',shelf:'Almost level shelf',easel:'Garden study easel',letterbox:'Official letterbox'};
+const furnitureNames=Object.fromEntries(PROP_IDS.map(id=>[id,PROPS[id].name]))as Record<PropId,string>;
 /** Read-only carried counts, never settlement or an alternative ownership ledger. */
 export function bagStacks(state:WorkshopState,elsewhere:Partial<Record<PropId,number>>={}):BagStack[]{
  const stacks:BagStack[]=PROP_IDS.map(id=>{
@@ -14,7 +14,7 @@ export function bagStacks(state:WorkshopState,elsewhere:Partial<Record<PropId,nu
  });
  for(const id of ['scrap','timber','supplies'] as const)stacks.push({id,group:'materials',name:id==='scrap'?'Scrap':id==='timber'?'Timber':'Supplies',icon:'/art/homes/home-'+id+'-icon.svg',quantity:state.inventory[id],detail:'Carried material'});
  stacks.push({id:'pine',group:'materials',name:'Pine bundles',icon:'/art/carpentry/pine-bundle-icon.svg',quantity:state.carpentry.pine.carried,detail:'Carried wood'},
- {id:'bridge-kit',group:'materials',name:'Bridge supplies',icon:'/art/homes/home-crate-icon.svg',quantity:state.bridgeKits,detail:'Kept kits · projects & homes'});
+ {id:'bridge-kit',group:'materials',name:'Bridge repair kits',icon:'/art/homes/home-crate-icon.svg',quantity:state.bridgeKits,detail:'Kept kits · projects & homes'});
  for(const crop of ['radish','marigold'] as const){const name=crop==='radish'?'Radish':'Marigold';stacks.push({id:crop+'-seed',group:'garden',name:name+' seeds',icon:'/art/garden/garden-'+crop+'-seed.svg',quantity:state.garden.seeds[crop],detail:'Seeds ready to plant'},
  {id:crop+'-produce',group:'garden',name:crop==='radish'?'Harvested radishes':'Cut marigolds',icon:'/art/garden/garden-'+crop+'-produce.svg',quantity:state.garden.produce[crop],detail:'Harvested & kept'});}
  stacks.push({id:'saw',group:'garden',name:'Bound hand saw',icon:'/art/carpentry/bound-saw-icon.svg',quantity:state.carpentry.saw.owned?1:0,detail:state.carpentry.saw.equipped?'Equipped · kept tool':'Protected tool'});

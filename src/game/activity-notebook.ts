@@ -7,7 +7,7 @@ export function activityNotes(state:WorkshopState,now:number):ActivityNote[]{
  if(!Number.isSafeInteger(now)||now<0)throw new Error('Invalid notebook observation time.');
  now=Math.max(now,state.observedAt);
  const job=state.job,bench:ActivityNote={id:'bench',title:'Work bench',phase:'idle',summary:'Bench available',detail:'Choose a recipe. One job at a time; opening the bench spends nothing.',readyAt:null};
- if(job){const name=job.recipe==='planter'?'Planter':'Bridge supplies',full=job.recipe==='planter'?state.owned.planter>=ITEM_LIMIT:state.bridgeKits>=ITEM_LIMIT;bench.readyAt=job.readyAt;
+ if(job){const name=RECIPES[job.recipe].name,full=job.recipe==='planter'?state.owned.planter>=ITEM_LIMIT:state.bridgeKits>=ITEM_LIMIT;bench.readyAt=job.readyAt;
   if(job.readyAt>now){bench.phase='running';bench.summary=name+' in progress';bench.detail='Finishes by its real-time deadline. The finished job waits for you.';}
   else{bench.phase=full?'blocked':'ready';bench.summary=name+(full?' ready · storage full':' ready to collect');bench.detail=full?'Output stays safely on the bench. Open it to review storage; nothing is discarded.':'Open the bench to collect explicitly. This notebook never collects for you.';}
  }else if(state.inventory.scrap<RECIPES.planter.cost.scrap||state.inventory.timber<RECIPES.planter.cost.timber||state.inventory.supplies<RECIPES.planter.cost.supplies)bench.detail='Check recipes and your held materials. Depots recover on their own real-time schedule.';

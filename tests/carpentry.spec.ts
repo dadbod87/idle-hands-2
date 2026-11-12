@@ -1,3 +1,4 @@
+import{revealPlace}from'./helpers/places.ts';
 import {localDatabaseUrl} from '../server/db.ts';
 import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
@@ -11,7 +12,7 @@ const town=(p:Page)=>p.evaluate(()=>(window as any).__pilot.town());
 const arrival=process.env.CI?40000:15000;
 async function boot(p:Page,url='/'){await p.goto(url);await expect.poll(()=>p.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);}
 async function close(p:Page){await p.getByRole('button',{name:'Close panel',exact:true}).click();}
-async function visit(p:Page,id:string){await p.locator('#places').click();await p.locator('[data-destination="'+id+'"]').click();await expect.poll(async()=>(await feet(p)).walking,{timeout:arrival}).toBe(false);await expect.poll(async()=>(await feet(p)).nearby).toBe(id);await p.locator('#interact').click();}
+async function visit(p:Page,id:string){await p.locator('#places').click();await (await revealPlace(p,'[data-destination="'+id+'"]')).click();await expect.poll(async()=>(await feet(p)).walking,{timeout:arrival}).toBe(false);await expect.poll(async()=>(await feet(p)).nearby).toBe(id);await p.locator('#interact').click();}
 async function choose(p:Page,action:string){await p.locator('[data-carpentry-action="'+action+'"]').click();await expect(p.locator('[data-carpentry-quote]')).toBeFocused();}
 async function confirm(p:Page){const before=(await state(p)).revision;await p.locator('[data-carpentry-action=confirm]').click();await expect.poll(async()=>(await state(p)).revision).toBe(before+1);}
 async function desk(p:Page){await p.locator('#journal').click();await p.getByRole('button',{name:'Pine workshop · tools, easels & hampers',exact:true}).click();await expect(p.locator('#panel-body')).toHaveClass(/carpentry-panel/);}

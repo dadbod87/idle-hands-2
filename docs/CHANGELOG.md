@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-089 candidate improves bench/Bag naming, recipe and completion clarity, keyboard focus and grouped Places. Rules/progress unchanged; acceptance pending. [Evidence](evidence/IH2-089/REPORT.md).
+
 2026-11-12 — Accepted087Ledgerwick city/layout plan and separate interactive housing blueprint, PR35/merge38ef23e.296system/100browser checks and native immutable study pass. Actual game/progress unchanged; runtime home streets remain next-stage work. [Proof](evidence/IH2-087/source-closeout.json).
 
 2026-11-12 — IH2-087 candidate plans Ledgerwick addressed neighborhoods and clearer city/UX expansion. Separate original-art blueprint only; existing game/progress unchanged. [Evidence](evidence/IH2-087/REPORT.md).

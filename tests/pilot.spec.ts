@@ -1,3 +1,4 @@
+import{revealPlace}from'./helpers/places.ts';
 import { test, expect, type Page } from '@playwright/test';
 import fs from 'node:fs';
 import {clearSegment,worlds,type Room} from '../src/game/world.ts';
@@ -7,7 +8,7 @@ const shapes = [{name:'desktop',width:1440,height:900},{name:'phone',width:390,h
 const snapshot = (page:Page) => page.evaluate(() => (window as any).__pilot.snapshot());
 async function destination(page:Page,id:string) {
  await page.getByRole('button',{name:'Places',exact:false}).click();
- await page.locator(`[data-destination="${id}"]`).click();
+ await (await revealPlace(page,`[data-destination="${id}"]`)).click();
  await expect.poll(async()=> (await snapshot(page)).walking, {timeout: process.env.CI?30000:10000}).toBe(false);
  await expect.poll(async()=> (await snapshot(page)).nearby).toBe(id);
 }

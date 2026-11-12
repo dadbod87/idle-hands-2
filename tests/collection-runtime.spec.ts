@@ -1,6 +1,7 @@
+import{revealPlace}from'./helpers/places.ts';
 import{test,expect,type Page}from'@playwright/test';import{mkdirSync,writeFileSync}from'node:fs';
 const out='test-results/browser',view=(p:Page)=>p.locator('.collection-receipt'),town=(p:Page)=>p.evaluate(()=>(window as any).__pilot.town());
-async function visit(p:Page,id:string){await p.locator('#places').click();await p.locator('[data-destination="'+id+'"]').click();await expect.poll(()=>p.evaluate(()=>(window as any).__pilot.snapshot().walking),{timeout:process.env.CI?40000:12000}).toBe(false);await p.locator('#interact').click();await expect(p.locator('#panel-title')).toContainText('depot');}
+async function visit(p:Page,id:string){await p.locator('#places').click();await (await revealPlace(p,'[data-destination="'+id+'"]')).click();await expect.poll(()=>p.evaluate(()=>(window as any).__pilot.snapshot().walking),{timeout:process.env.CI?40000:12000}).toBe(false);await p.locator('#interact').click();await expect(p.locator('#panel-title')).toContainText('depot');}
 const cleanup=new WeakMap<Page,()=>void>();test.afterEach(({page})=>{cleanup.get(page)?.();});
 const close=(p:Page)=>p.getByRole('button',{name:'Close panel'}).click();
 test('actual shared collection: snapshot before lost reply, original retry, stale view and legacy/corrupt metadata',async({page})=>{

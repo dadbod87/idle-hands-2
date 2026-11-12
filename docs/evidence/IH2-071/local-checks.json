@@ -3,7 +3,7 @@
   "domain": {
     "passed": 247,
     "skipped": 0,
-    "durationMs": 47664.767625,
+    "durationMs": 47307.381792,
     "pureCommissionChecks": 8,
     "isolatedCommissionTransactionScenarios": 9,
     "presentationGuardCases": 3
@@ -15,7 +15,8 @@
     "newCommissionCases": 4,
     "allThirteenNewRuntimeImagesReviewed": true,
     "pointerFocusRegressionAndKeyboard200": true,
-    "hiddenNpcLinksBeforeAndAfterRoute": true
+    "hiddenNpcLinksBeforeAndAfterRoute": true,
+    "pointerCancelReturnsReviewVisible": true
   },
   "build": true,
   "design": {
@@ -45,5 +46,6 @@
     "Illustrated receipt/flap presentation is not a new actor handover/assembly rig",
     "Source/CI and coordinated accepted-preview update still pending"
   ],
-  "compiledRejectedBuildNegativeControl": "New direct pointer assertion rejects old d7e artifact: scrollTop325\u2192433 during mousedown"
+  "compiledRejectedBuildNegativeControl": "New direct pointer assertion rejects old d7e artifact: scrollTop325\u2192433 during mousedown",
+  "actualFreshPhoneTouchCancelNoFixtures": true
 }

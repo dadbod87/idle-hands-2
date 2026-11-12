@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-071 final Cancel visibility follow-up: actual fresh touch found Review hidden by sticky header; post-click uncover and exact returned-control bounds fix it. Focused4/actualfreshphone and final247domain47.307s/72browser9.3m pass;13runtime plus before/aftercaptures reviewed. SupersededacdbCI43172849126bothSUCCESS247/72(13.0m); exact new final-head gate pending.
+
 2026-11-12 — IH2-071 revised final local: actualCI43168759654rejected71/72browser due pointer-focus scrolling. Keyboard-only uncover and direct partial-target regression fix it; same test rejects actual oldcompiledartifact325→433px. Hidden NPC links also fixed. All247domain/zero skips47.664s and72browser9.3m,13runtimeimages pass; revised exact-headCI/artifact/source/preview gates pending.
 
 2026-11-12 — IH2-071 pre-merge follow-up: scoped hidden presentation to commission links in NPC dialogs, preserving existing services before acceptance/after completion. Actual-input focused4case regression passes46.2s; revised full/exact-head gates pending.

@@ -673,7 +673,8 @@
         "docs/evidence/IH2-071/historical-model-equivalence.json",
         "docs/evidence/IH2-071/presentation-cost.json",
         "docs/evidence/IH2-071/independent-review.json",
-        "docs/evidence/IH2-071/pointer-focus-regression.json"
+        "docs/evidence/IH2-071/pointer-focus-regression.json",
+        "docs/evidence/IH2-071/cancel-return-regression.json"
       ],
       "owner_branch": "feat/neighborhood-commission"
     },

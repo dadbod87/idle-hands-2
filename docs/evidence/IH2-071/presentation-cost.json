@@ -7,15 +7,15 @@
   },
   "candidate": {
     "files": 174,
-    "rawBytes": 3263939,
-    "sumIndependentGzipBytes": 580744
+    "rawBytes": 3263961,
+    "sumIndependentGzipBytes": 580749
   },
   "method": "Python gzip level9/mtime0 per file; all optional assets included. No CDN/TLS/cache/header/active-frame claim. Existing actual browser checks enforce selective actor rig loading, idle/menu redraw and input.",
   "runtimePolicy": "Existing10Hzidle/normalinput and1Hzmodal backdrop; no new animation or per-frame API writes. Three closed letterbox motifs are world-preloaded; other commission pictures load when their panel needs them.",
   "difference": {
     "files": 15,
-    "rawBytes": 56648,
-    "sumIndependentGzipBytes": 17149
+    "rawBytes": 56670,
+    "sumIndependentGzipBytes": 17154
   },
   "existing20ClientProtocolLoad": {
     "latencyMs": {

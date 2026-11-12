@@ -30,7 +30,7 @@ export type TownDialogue = {
   lines: string[];
   action?: { label: string; destination: 'workshop' | 'bench' | 'bridge' | 'journal' };
 };
-const journal = () => ({ label: 'Open bag & journal', destination: 'journal' as const });
+const journal = () => ({ label: 'Open journal', destination: 'journal' as const });
 const bench = (context: DialogueContext) => context.room === 'workshop'
   ? { label: 'Walk to your bench', destination: 'bench' as const }
   : { label: 'Walk to your workshop', destination: 'workshop' as const };

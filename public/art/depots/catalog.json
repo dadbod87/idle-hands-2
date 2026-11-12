@@ -1,0 +1,41 @@
+{
+  "classification": "Original static material-depot illustrations, not exact stock counters",
+  "assets": [
+    {
+      "id": "depot-scrap",
+      "resourceId": "scrap",
+      "file": "depot-scrap.svg",
+      "width": 56,
+      "height": 48,
+      "foot": {
+        "x": 28,
+        "y": 40
+      },
+      "description": "Open salvage bin with bent metal and washer"
+    },
+    {
+      "id": "depot-timber",
+      "resourceId": "timber",
+      "file": "depot-timber.svg",
+      "width": 56,
+      "height": 48,
+      "foot": {
+        "x": 28,
+        "y": 40
+      },
+      "description": "Bound sawn boards with end grain"
+    },
+    {
+      "id": "depot-supplies",
+      "resourceId": "supplies",
+      "file": "depot-supplies.svg",
+      "width": 56,
+      "height": 48,
+      "foot": {
+        "x": 28,
+        "y": 40
+      },
+      "description": "Open stationery crate with paper and rolled plan"
+    }
+  ]
+}

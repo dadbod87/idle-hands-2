@@ -1,0 +1,19 @@
+{
+  "classification": "Read-only independent image review plus root actual compiled negative/positive geometry proof",
+  "reviewer": "phone_visual_review",
+  "finalPhoneShortDayNightClear": true,
+  "resolvedFinding": {
+    "initial": "Nameplates below props cross the initial short200cameraedge",
+    "oldHtmlSha256": "859198cff8a13a7815e37ccb6501c9783eeb28be88b23829959c26948c474c19",
+    "negativeScrapLabelTop": 229.7447265625,
+    "negativeScrapLabelBottom": 248.0552734375,
+    "canvasHeight": 241,
+    "positiveAllLabelTop": 184.9447265625,
+    "positiveAllLabelBottom": 203.2552734375,
+    "correction": "Raise existing nameplates within original target area; no camera, feet or target change"
+  },
+  "limits": [
+    "Emulated native Chrome captures, not physical phone or user recognition study",
+    "Reviewer did not execute tests or edit source"
+  ]
+}

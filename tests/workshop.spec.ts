@@ -18,6 +18,15 @@ for(const shape of [{name:'desktop',width:1440,height:900},{name:'narrow',width:
   await page.setViewportSize(shape);const errors:string[]=[],external:string[]=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
   await page.route('**/*',route=>{const u=new URL(route.request().url());if(u.hostname==='127.0.0.1'||u.protocol==='data:')return route.continue();external.push(u.origin);return route.abort();});
   await page.goto('/');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+  const depotViews=await page.evaluate(()=>(window as any).__pilot.metrics().visual.depots);
+  expect(depotViews.map((d:any)=>d.key)).toEqual(['depot-scrap','depot-timber','depot-supplies']);
+  for(const [i,depot] of depotViews.entries()){
+   expect(depot.bounds).toMatchObject({x:(21+i*2+.5)*32-28,y:888,width:56,height:48});expect(depot.depth).toBe(928);
+   // Nameplates remain inside the original64px interaction area.
+   expect(depot.labelBounds.y).toBeGreaterThanOrEqual(880);expect(depot.labelBounds.y+depot.labelBounds.height).toBeLessThanOrEqual(944);
+  }
+  fs.writeFileSync(`${dir}/${shape.name}-material-depot-geometry.json`,JSON.stringify({disclosure:'Actual compiled scene, fresh ordinary progress and native body-input flow below. No stock or position fixture.',depotViews},null,2));
+  await page.screenshot({path:`${dir}/${shape.name}-material-depots.png`});
   // No destination directory. Actual direct clicks/taps approach the resource and open its panel.
   for(const [resource,x] of [['scrap',21],['timber',23],['supplies',25]] as const){await walkVisible(page,x,28);await expect.poll(async()=>{const s=await pos(page);return s.locked;},{timeout:process.env.CI?30000:10000}).toBe(true);await expect(page.locator('#panel-title')).toHaveText(resource[0].toUpperCase()+resource.slice(1)+' depot');await expect(page.getByRole('dialog')).toBeVisible();await page.getByRole('button',{name:'Collect available '+resource}).click();expect((await state(page)).inventory[resource]).toBe(6);await expect(page.locator('[data-collect]')).toBeDisabled();await page.keyboard.press('Escape');}
   await page.screenshot({path:`${dir}/${shape.name}-workshop-resources.png`});

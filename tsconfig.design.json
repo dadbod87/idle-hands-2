@@ -46,7 +46,10 @@
     "tools/observe-combined-shared.ts",
     "tools/observe-combined-timed.ts",
     "tests/current-actions.spec.ts",
-    "tools/observe-current-actions.ts"
+    "tools/observe-current-actions.ts",
+    "tests/depot-art.test.ts",
+    "tests/depot-art.spec.ts",
+    "tools/observe-material-depots.ts"
   ],
   "compilerOptions": {
     "types": [

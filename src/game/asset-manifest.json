@@ -793,6 +793,21 @@
       "id": "route-card",
       "path": "art/commission/route-card.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "depot-scrap",
+      "path": "art/depots/depot-scrap.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "depot-supplies",
+      "path": "art/depots/depot-supplies.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "depot-timber",
+      "path": "art/depots/depot-timber.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

@@ -129,6 +129,8 @@
   "automaticMainCI": {
     "run": 43212883847,
     "head": "a353f84c0f9c0db3d4f40b5109deb350f09778be",
-    "status": "in_progress at closeout; candidate gates passed before merge"
+    "domain": "success",
+    "browser": "success",
+    "bothSuccessIndependentlyVerified": true
   }
 }

@@ -1,0 +1,53 @@
+{
+  "classification": "Actual compiled-game captures; no raster edits; cosmetic day/night and text/touch emulation declared in observations",
+  "selected": [
+    {
+      "file": "screens/before-phone-day-fresh-world.png",
+      "source": "baseline/phone-day-fresh-world.png",
+      "sha256": "c4a74ac6ffcd1db888013fc122fcf8d66f60176603e52ff8fb91ce61ac85da17",
+      "review": "Root actual image review; final phone/short also independently reviewed"
+    },
+    {
+      "file": "screens/before-short200-day-fresh-world.png",
+      "source": "baseline/short200-day-fresh-world.png",
+      "sha256": "7cc619181b2fe81816a27f95fe479b3d3d6737cce3bca7d9182eabe22cd3f131",
+      "review": "Root actual image review; final phone/short also independently reviewed"
+    },
+    {
+      "file": "screens/after-desktop-day-fresh-world.png",
+      "source": "candidate-final/desktop-day-fresh-world.png",
+      "sha256": "34bf05a10661bf53c17d09ac2d9df81393d5ceda4d1bc5179711626c4e706ca0",
+      "review": "Root actual image review; final phone/short also independently reviewed"
+    },
+    {
+      "file": "screens/after-desktop-night-collected-world.png",
+      "source": "candidate-final/desktop-night-collected-world.png",
+      "sha256": "f8d2dbe8422a3a38eabe0e9a2f8e22117cc0772f4f1a1c7878afaa8dad19b322",
+      "review": "Root actual image review; final phone/short also independently reviewed"
+    },
+    {
+      "file": "screens/after-phone-day-fresh-world.png",
+      "source": "candidate-final/phone-day-fresh-world.png",
+      "sha256": "cf10db857849fc286addc6a6e1634f486f59b3d098512d41067f205b48dde1b9",
+      "review": "Root actual image review; final phone/short also independently reviewed"
+    },
+    {
+      "file": "screens/after-phone-night-fresh-world.png",
+      "source": "candidate-final/phone-night-fresh-world.png",
+      "sha256": "8bf9e4c82e3af8a5a1d6e4ac89cb0fa1f31886ac1c61871825d6dea183ee857a",
+      "review": "Root actual image review; final phone/short also independently reviewed"
+    },
+    {
+      "file": "screens/after-short200-day-fresh-world.png",
+      "source": "candidate-final/short200-day-fresh-world.png",
+      "sha256": "b418bd3e7fb9add2eba041788f28b7493b77a0e6031e98dfe2cb6584a1ad3329",
+      "review": "Root actual image review; final phone/short also independently reviewed"
+    },
+    {
+      "file": "screens/after-short200-night-fresh-world.png",
+      "source": "candidate-final/short200-night-fresh-world.png",
+      "sha256": "2838a3ff2c20b1bd5c8a4e307ccc9cbd8ae39fd7c428b16d816a89e9a87193c5",
+      "review": "Root actual image review; final phone/short also independently reviewed"
+    }
+  ]
+}

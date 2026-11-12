@@ -1,0 +1,78 @@
+{
+  "disclosure": "Actual browser SVG decode and56x48raster; alpha>150 excludes soft ground shadow. Structural difference is not a human-recognition score.",
+  "rasters": [
+    {
+      "resource": "scrap",
+      "width": 56,
+      "height": 48,
+      "bounds": {
+        "left": 4,
+        "top": 3,
+        "right": 51,
+        "bottom": 41
+      },
+      "solidPixels": 1353
+    },
+    {
+      "resource": "timber",
+      "width": 56,
+      "height": 48,
+      "bounds": {
+        "left": 4,
+        "top": 5,
+        "right": 51,
+        "bottom": 43
+      },
+      "solidPixels": 1323
+    },
+    {
+      "resource": "supplies",
+      "width": 56,
+      "height": 48,
+      "bounds": {
+        "left": 2,
+        "top": 2,
+        "right": 52,
+        "bottom": 42
+      },
+      "solidPixels": 1520
+    }
+  ],
+  "comparisons": [
+    {
+      "a": "scrap",
+      "b": "timber",
+      "iou": 0.7022900763358778
+    },
+    {
+      "a": "scrap",
+      "b": "supplies",
+      "iou": 0.800125313283208
+    },
+    {
+      "a": "timber",
+      "b": "supplies",
+      "iou": 0.7157513578756789
+    }
+  ],
+  "labelGeometry": [
+    {
+      "resource": "scrap",
+      "top": 184.94472656250002,
+      "bottom": 203.25527343750002,
+      "canvasHeight": 241
+    },
+    {
+      "resource": "timber",
+      "top": 184.94472656250002,
+      "bottom": 203.25527343750002,
+      "canvasHeight": 241
+    },
+    {
+      "resource": "supplies",
+      "top": 184.94472656250002,
+      "bottom": 203.25527343750002,
+      "canvasHeight": 241
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "classification": "Built static payload, not CPU/frame/hosting performance improvement",
+  "beforeFiles": 174,
+  "afterFiles": 178,
+  "oldArtFilesBytePreserved": 168,
+  "rawBefore": 3268022,
+  "rawAfter": 3274197,
+  "gzipEachBefore": 581829,
+  "gzipEachAfter": 583849,
+  "newStaticFiles": [
+    "art/depots/depot-scrap.svg",
+    "art/depots/depot-supplies.svg",
+    "art/depots/depot-timber.svg",
+    "art/depots/catalog.json"
+  ],
+  "htmlSha256": "ea712d623c626f75ac55cfd66c04853caf2fe11993468f0e07dbbd397885d5d5",
+  "ruleServerMigrationDependencyWorkflowChanges": [],
+  "manifestOnlySourceChange": true,
+  "rawDelta": 6175,
+  "gzipDelta": 2020
+}

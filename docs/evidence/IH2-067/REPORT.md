@@ -43,3 +43,15 @@ Full54case browser regression passed in7.2minutes. Actual desktop/phone/short200
 4. Actual composed UI/shared playtests including desktop/narrow/short200%, source required checks, exact-final-head bothCI success, downloaded actual artifact/canvas-image review, merge/equal tree/clean source. Only then replace the pinned preview/API through backed-up preservation and proceed068.
 
 This checkpoint does not close067 or certify continuous active play. Hosting070 retains its separate concrete permission/cost gate.
+
+
+## CI time-budget correction — in progress
+
+Candidate b9294bac135fb66d554ee366adf584a2aaafc5f4/PR17/run43128903705 passed217checks/zero skips72.204866996s and actual populatedPGrestart. Actual159CIbuild files equal final local. Browser job130887895751 passed57cases before the unchanged20minjob budget canceled it during the actual fresh final visit; no assertion failure preceded cancellation. Its actual partial screenshots/logs are archived under ci/browser-timeout; no source acceptance or preview replacement. First preliminary b99792e run was superseded to include the additive migration before final checks.
+
+Current correction loads the current resident’s3activity sheets instead of all12, warms/cache-checks other rigs on identity changes with safe ordinary-rig fallback, and avoids redundant actor texture assignment. Five fresh nativeChrome1440x900visits measured median boot288→240ms and12→3activityrequests; this local fixed-order observation is not a CI/device guarantee. A delayed-sheet identity-switch fixture retains all four rigs and verifies no old completion replaces current identity. Stricter type coverage now includes client-readiness.spec. A test evidence-path variable mistake was corrected, not an assertion removed.
+
+A controlled Canvas fallback was slower (one software view38.83vs18.35ms mean rAF; three~110vs55ms) and was rejected. WebGL/texture smoothing remains. Working idle policy redraws still worlds at10Hz, while native input, active travel/actions, opening effects and menu refresh restore the normal loop. DOM/authority clocks remain independent; no simulation rates/timers changed. Installed Phaser4.2setFPSLimit is applied after the current RAF stack. Full current checks and new exact-head CI/artifact review remain pending. No workflow, assertion or deadline was loosened.
+
+
+Revised final local source passes217checks/zero skips43.555170417s, actual populatedPGrestart/restore, full59browsercases8.1m, strictbuild/design/plan/pinned/diff. Final actual phone/easel-home/desktop-rack/short200/256frame images reviewed. [Selected images/fixture reports](integrated-browser/) and [local checks](integrated-local-checks.json) preserve durable evidence. Loader-failure count correction follows inspected Phaser4.2source: one queued file retains its existing two built-in retries (three requests), then never re-enqueues per frame and recovers on reload; test asserts that exact bound. No engine retry reduction or assertion removal. New exact-head bothCI/artifact/source acceptance still pending.

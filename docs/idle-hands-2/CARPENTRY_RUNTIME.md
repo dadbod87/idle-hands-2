@@ -52,3 +52,8 @@ Animations are bounded presentation after accepted results; never settle product
 ## Evidence boundaries
 
 The foundation's202checks/54browser cases are historical. The integrated candidate currently has217passing local domain/server checks, including new concurrent allocation and cached-stream guards; actual restored populated PostgreSQL restart and native Chrome art/phone/local/shared flows are recorded in current067evidence. Final full browser, exact-head CI/downloaded-artifact canvas review and source acceptance remain pending until explicitly closed out. Fixture times/positions/housing kits are disclosed; no simulated12hour wait is called a real elapsed wait, no emulation is a physical phone, and no pure schedule is server authority or human-fun evidence.
+
+
+### Presentation-cost correction pending source gate
+
+Current-rig activity sheets load3instead of12atboot; keyed asynchronous warming supports identity switches, safe ordinary-rig fallback, cache reuse and bounded failed-load recovery. The existing two loader retries remain; failed attempts are not re-enqueued each frame. All256frames still have independent gallery coverage. Still worlds redraw at10Hz with gentle scenery, normal input/travel/actions restore the normal loop, and locked-menu1Hzrefresh remains. No domain clock, effect, production or server rule changes. Rolling frame metrics explicitly include intentional idle intervals. [Measured diagnostic](../evidence/IH2-067/presentation-cost.json) retains the rejected slowerCanvasexperiment and method limitations.

@@ -1,3 +1,5 @@
+Current November12correction: b9294baexactdomainCI passed217; browser hit unchanged20minlimit after57/58passes. Revised current-rig loading/idle10Hzpresentation passes217/zero skips43.555s, actualPGrestart and full59browser8.1m, allrequiredchecks and actual final images. See067REPORT/presentation-cost; nextnewexactheadbothCI/downloadedartifact/merge gates. Accepted4175/API4186remainprotected; canonical12practice tables pluskey andonefictionalresident backedup before additive update.
+
 # IH2-067 — integrated source candidate
 
 Final integrated local validation: 217 domain/art/server checks passed, zero skipped (44.173440834s); all 58 browser cases passed (8.1m). Strict build, design (48 candidates/5 regions), tracker (24 tasks/10 checks), 40 pinned skill files and whitespace checks passed. Actual populated PostgreSQL restart/restore passed. Final desktop, 360px phone, short 200% text and all 256 action/equipment frames were inspected. Exact-head GitHub checks, downloaded artifact review and source merge remain pending; accepted preview/API are unchanged.

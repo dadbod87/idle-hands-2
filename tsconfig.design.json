@@ -18,7 +18,8 @@
     "tools/simulate-carpentry-rules.ts",
     "tools/prove-garden-ledger-upgrade.ts",
     "tests/carpentry*.test.ts",
-    "tests/carpentry.spec.ts"
+    "tests/carpentry.spec.ts",
+    "tests/client-readiness.spec.ts"
   ],
   "compilerOptions": {
     "types": [

@@ -63,6 +63,14 @@ export class WorldScene extends Phaser.Scene {
   private carpentryNextDraw=0;private carpentryKey='';private noticeReveal=0;
   private carpentryMotion:{action:CarpentryAnimation;started:number;facing:Facing}|null=null;
   private lastCarpentryAction:{action:CarpentryAnimation;renderedFrames:number;frames:number[]}|null=null;
+  private activityLoading=new Set<string>();
+  private activityPrefixes=['garden-actions-','saw-equipped-','carpentry-actions-'] as const;
+  private parseActivityTexture(key:string){if(!this.activityPrefixes.some(prefix=>key.startsWith(prefix))||!this.textures.exists(key))return;const texture=this.textures.get(key);if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});}
+  private warmActivityArt(){
+    const rig=residentArt(this.residentId);let queued=false;
+    for(const prefix of this.activityPrefixes){const key=prefix+rig;if(this.textures.exists(key)||this.activityLoading.has(key))continue;this.activityLoading.add(key);this.load.svg(key,'/art/'+(prefix==='garden-actions-'?'garden':'carpentry')+'/'+key+'.svg');queued=true;}
+    if(queued&&!this.load.isLoading())this.load.start();
+  }
   refreshCarpentry(){this.carpentryKey='';this.carpentryNextDraw=0;}
   playCarpentryAction(action:CarpentryAnimation){if(this.actor?.active){this.gardenMotion=null;this.carpentryMotion={action,started:performance.now(),facing:this.facing};this.lastCarpentryAction={action,renderedFrames:0,frames:[]};}}
   private drawCarpentry(){
@@ -86,6 +94,7 @@ export class WorldScene extends Phaser.Scene {
   private lastFrame = 0;
   private movementReset=true;
   frameSamples: number[] = [];
+  needsFullRate(){return this.keys.size>0||this.session.snapshot().walking||!!this.gardenMotion||!!this.carpentryMotion||this.noticeReveal>0&&performance.now()-this.noticeReveal<800;}
   onFrame?: () => void;
   onWalkFailure?:()=>void;
   movementBudget?:()=>number;
@@ -102,8 +111,11 @@ export class WorldScene extends Phaser.Scene {
   constructor(public session: Session) { super('world'); }
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
   preload() {
-    for(const key of CARPENTRY_ASSETS)this.load.svg(key,'/art/carpentry/'+key+'.svg');
-    for(const key of GARDEN_ASSETS)this.load.svg(key,'/art/garden/'+key+'.svg');
+    // Peer sprites use the four ordinary rigs. Activity/equipment sheets belong
+    // only to self; avoid rasterizing nine unused sheets on every fresh visit.
+    const rig=residentArt(this.residentId);
+    for(const key of CARPENTRY_ASSETS)if(!/^(saw-equipped-|carpentry-actions-)/.test(key)||key.endsWith('-'+rig)){if(/^(saw-equipped-|carpentry-actions-)/.test(key))this.activityLoading.add(key);this.load.svg(key,'/art/carpentry/'+key+'.svg');}
+    for(const key of GARDEN_ASSETS)if(!key.startsWith('garden-actions-')||key.endsWith('-'+rig)){if(key.startsWith('garden-actions-'))this.activityLoading.add(key);this.load.svg(key,'/art/garden/'+key+'.svg');}
     for(const key of TRAIL_ASSETS)this.load.svg(key,'/art/trail/'+key+'.svg');
     for(const key of HOME_ASSETS)this.load.svg(key,'/art/homes/'+key+'.svg');
     for (const key of ORIGINAL_STATIC) if(!['ground-square','workshop','cafe','tree'].includes(key))this.load.svg(key, `/art/original/${key}.svg`);
@@ -117,8 +129,12 @@ export class WorldScene extends Phaser.Scene {
     this.room = this.session.room;this.loadedHomePlotId=this.homePlotId;this.houseView=undefined;this.pennantView=undefined;
     this.canopies=[];this.townfolk=[];this.steam=undefined;this.ambientMs=0;
     for(const id of RESIDENT_IDS){const texture=this.textures.get('variety-resident-'+id);if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});}
-    for(const id of RESIDENT_IDS){const texture=this.textures.get('garden-actions-'+id);if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});}
-    for(const id of RESIDENT_IDS)for(const prefix of ['saw-equipped-','carpentry-actions-']){const texture=this.textures.get(prefix+id);if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});}
+    for(const id of RESIDENT_IDS)for(const prefix of this.activityPrefixes)this.parseActivityTexture(prefix+id);
+    const activityLoaded=(key:string)=>{this.activityLoading.delete(key);this.parseActivityTexture(key);};
+    // A failed asset keeps its attempt marker until scene restart; never retry
+    // a missing file on every frame or block progress/input on artwork.
+    this.load.on('filecomplete',activityLoaded);
+    this.events.once('shutdown',()=>{this.load.off('filecomplete',activityLoaded);this.activityLoading.clear();});
     this.decorationKey=''; this.decorationViews=[];this.residentViews=new Map();this.bridgeView=undefined;
     this.occluders = [];
     this.frame = 0; this.facing = 'south'; this.travelled = 0;
@@ -249,7 +265,10 @@ export class WorldScene extends Phaser.Scene {
     const motion=this.carpentryMotion,saw=this.carpentryState?.()?.saw.equipped;
     if(motion&&this.lastCarpentryAction){const frame=carpentryActionFrame(motion.facing,motion.action,performance.now()-motion.started,reduced);this.lastCarpentryAction.renderedFrames++;if(!this.lastCarpentryAction.frames.includes(frame))this.lastCarpentryAction.frames.push(frame);}
     const texture=motion?'carpentry-actions-':gardenMotion?'garden-actions-':saw?'saw-equipped-':'variety-resident-';
-    this.actor.setTexture(texture+residentArt(this.residentId),motion?carpentryActionFrame(motion.facing,motion.action,performance.now()-motion.started,reduced):gardenMotion?gardenActionFrame(gardenMotion.facing,gardenMotion.action,performance.now()-gardenMotion.started,reduced):residentFrame(this.facing,this.frame));
+    this.warmActivityArt();
+    const desiredKey=texture+residentArt(this.residentId),available=this.textures.exists(desiredKey),actorKey=available?desiredKey:'variety-resident-'+residentArt(this.residentId);
+    const actorFrame=available&&motion?carpentryActionFrame(motion.facing,motion.action,performance.now()-motion.started,reduced):available&&gardenMotion?gardenActionFrame(gardenMotion.facing,gardenMotion.action,performance.now()-gardenMotion.started,reduced):residentFrame(this.facing,this.frame);
+    if(this.actor.texture.key!==actorKey||String(this.actor.frame.name)!==String(actorFrame))this.actor.setTexture(actorKey,actorFrame);
     const x=(this.session.position.x+.5)*TILE,y=(this.session.position.y+.5)*TILE;
     this.actor.setPosition(x,y).setDepth(y);
     this.drawGarden();this.drawCarpentry();

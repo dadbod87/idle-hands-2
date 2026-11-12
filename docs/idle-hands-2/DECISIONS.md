@@ -142,3 +142,10 @@ The48-entry candidate catalog is not a complete runtime inventory. CURRENT_RUNTI
 ## A050 — explicit ownership, private equipment and additive shared progress
 
 IH2-067 implements the selected pine family with one private supply across three stations, a separate finishing job and produced/owned conservation. Trusted allocations across home/workshop never subtract actual owned copies. Recording an earned easel retains it; anonymous public credits cap at six with one immutable 24-hour opening deadline. Rendering and animation never award or settle production. Current shared schema2 rejects cached unversioned clients before login, mutation or stream allocation. Unsupported local saves remain intact/read-only. Original saw carry follows the actual wrist; action atlases use two rows within a 2048px maximum axis, with all256frames bounded and raster-reviewed. This is local/CI scope, not physical-device or hosted acceptance.
+
+
+## A051 — bounded idle redraw and self-only activity textures
+
+IH2-067 CI hit its unchanged20minbudget after57browserpasses; no acceptance from a timeout. Keep every assertion and deadline. Load the current rig’s3activity/equipment sheets rather than all12, warm keyed sheets on identity change, cache them and retain ordinary-rig fallback. Failed loads exhaust Phaser’s existing two retries once per scene; never enqueue on every frame. Reload/scene restart can recover. Independent gallery coverage still paints all256frames.
+
+A still world redraws at10Hz for gentle scenery; native input immediately restores the normal loop, and keys, routes, bounded actions and opening reveal keep it active. DOM/server clocks and rules remain independent. Use installed Phaser4.2setFPSLimit after the current RAF stack. Existing1Hzlocked-modal redraw remains. Frame metrics include deliberate idle intervals and must be labelled mixed-policy, not active-only. Controlled three-view software diagnostics improve browser cadence and retain actual movement/scenery; no cloud/physical-phone/whole-process CPU claim. A slower measuredCanvasfallback was rejected. See067presentation-cost.json.

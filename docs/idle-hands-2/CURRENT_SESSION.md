@@ -1,4 +1,6 @@
-# IH2-067 — integrated source candidate
+# IH2-067 — presentation correction under validation
+
+November11–12,2026. Current correction after b9294ba: required domain CI passed217/zero skips; browser run43128903705 canceled at the unchanged20minjob budget after57/58passes. Source unaccepted, accepted4175/API4186still protected. Self-only activity texture loading and bounded10Hzidle redraw preserve normal immediate input/active actions; independent review found no blocker and abort/reload fixture now checks bounded built-in retries. Revised217localchecks passed/zero skips43.555170417s; whole59browser passed8.1m; actual final images reviewed. New exact-head CI/artifact/source gates remain pending. Read067REPORT/presentation-cost for raw methods and earlier rejected diagnostics.
 
 November11,2026. Branch `feat/pine-workshop` from acceptedmain3946d7b1f5f5d18529e274935f70fd35bb5cb50b/PR16.067is **in_progress**; do not proceed068or mark067accepted. Carry-forward066closeout metadata is intentionally included with this checkpoint, not unrelated work. Read [067evidence](../evidence/IH2-067/REPORT.md) and [active handoff](handoffs/2026-11-11-pine-workshop.md).
 

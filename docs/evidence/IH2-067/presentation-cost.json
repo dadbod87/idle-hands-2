@@ -1,0 +1,137 @@
+{
+  "classification": "Controlled local presentation diagnostics, not CI/physical-device/whole-process CPU proof",
+  "startup": {
+    "method": "Five fresh nativeChrome1440x900 contexts on4178; request counts and navigation-to-ready wall time, not physical device or CI benchmark",
+    "beforeBootMs": [
+      416,
+      291,
+      288,
+      285,
+      283
+    ],
+    "afterBootMs": [
+      278,
+      240,
+      240,
+      240,
+      234
+    ],
+    "activitySheetRequests": {
+      "before": 12,
+      "after": 3
+    },
+    "limits": "Fixed before/after order, five fresh nativeChrome contexts; no statistical/device guarantee"
+  },
+  "threeSoftwareViews": {
+    "method": "Fixed order: immutable b9294baactualCIartifact4179 vs working4178. Three1440x900Chromecontexts forcedANGLESwiftShader, 1ssettle then4srAF/rendercount/CDP TaskDuration window and actual1skeyboardmovement in one view. Real decorative drizzle/dayfixture; no APIs/stock/time/positiongrants. CDP task time excludes GPU/wholeprocess/databaseCPU; local singletrial, not physical-device/CI/generalperformance guarantee.",
+    "results": [
+      {
+        "id": "before",
+        "port": 4179,
+        "samples": [
+          {
+            "renderedFrames": 65,
+            "frameLimit": 0,
+            "rafMean": 63.279687499999994,
+            "rafP95": 99.89999999999964,
+            "rendererTaskSeconds": 0.041123,
+            "positionUnchanged": true
+          },
+          {
+            "renderedFrames": 64,
+            "frameLimit": 0,
+            "rafMean": 62.96031746031746,
+            "rafP95": 100,
+            "rendererTaskSeconds": 0.04021,
+            "positionUnchanged": true
+          },
+          {
+            "renderedFrames": 65,
+            "frameLimit": 0,
+            "rafMean": 63.279687499999994,
+            "rafP95": 116.69999999999982,
+            "rendererTaskSeconds": 0.042801,
+            "positionUnchanged": true
+          }
+        ],
+        "sceneryStillChanges": true,
+        "movement": {
+          "from": {
+            "x": 24,
+            "y": 25
+          },
+          "to": {
+            "x": 28.41649999999999,
+            "y": 25
+          },
+          "distance": 4.4164999999999885,
+          "normalLimitAfterInput": 0
+        }
+      },
+      {
+        "id": "after",
+        "port": 4178,
+        "samples": [
+          {
+            "renderedFrames": 41,
+            "frameLimit": 10,
+            "rafMean": 16.665833333333335,
+            "rafP95": 16.800000000000182,
+            "rendererTaskSeconds": 0.037741,
+            "positionUnchanged": true
+          },
+          {
+            "renderedFrames": 40,
+            "frameLimit": 10,
+            "rafMean": 16.66625,
+            "rafP95": 16.700000000000728,
+            "rendererTaskSeconds": 0.03936,
+            "positionUnchanged": true
+          },
+          {
+            "renderedFrames": 40,
+            "frameLimit": 10,
+            "rafMean": 16.666249999999998,
+            "rafP95": 16.700000000000728,
+            "rendererTaskSeconds": 0.034165,
+            "positionUnchanged": true
+          }
+        ],
+        "sceneryStillChanges": true,
+        "movement": {
+          "from": {
+            "x": 24,
+            "y": 25
+          },
+          "to": {
+            "x": 28.916000000000007,
+            "y": 25
+          },
+          "distance": 4.9160000000000075,
+          "normalLimitAfterInput": 0
+        }
+      }
+    ]
+  },
+  "rejectedCanvasFallback": {
+    "method": "Same local Chrome forcedANGLESwiftShader, one/three1440x900views, four-second rAF; WebGL availability intercepted to exercise realCanvasfallback; reduced-motion dayfixture. Fixed order, no backend.",
+    "oneMeanMs": {
+      "webgl": 18.35,
+      "canvas": 38.83
+    },
+    "threeMeanMs": {
+      "webgl": [
+        54.86,
+        54.86,
+        54.95
+      ],
+      "canvas": [
+        109.72,
+        109.72,
+        110.18
+      ]
+    },
+    "decision": "Retain WebGL; no Canvas selector introduced"
+  },
+  "reporting": "Rolling render intervals include intentional10Hz idle. Do not compare them as active-only performance. CDP task duration excludes GPU/whole-process CPU. Original timers/economy/movement rules unchanged."
+}

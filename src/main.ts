@@ -47,6 +47,15 @@ const game = new Phaser.Game({
   render: { antialias: true, antialiasGL: false, pixelArt: false }, audio: { noAudio: true },
   fps: { target: 60 }, scene: [scene]
 });
+// Still worlds need gentle scenery, not sixty full canvas redraws a second.
+// Input and active travel/actions restore the normal loop; authority/DOM clocks
+// remain independent. Defer loop replacement until the current RAF completes.
+let requestedFrameLimit=0,wakeRenderUntil=performance.now()+750;
+function frameLimit(limit:number){if(requestedFrameLimit===limit)return;requestedFrameLimit=limit;queueMicrotask(()=>{if(game.isBooted&&game.loop.fpsLimit!==requestedFrameLimit)game.loop.setFPSLimit(requestedFrameLimit);});}
+function wakeRender(){wakeRenderUntil=performance.now()+750;frameLimit(0);}
+window.addEventListener('pointerdown',wakeRender,{capture:true,passive:true});
+window.addEventListener('keydown',wakeRender,{capture:true});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)wakeRender();});
 let renderedFrames=0;game.events.on(Phaser.Core.Events.POST_RENDER,()=>{renderedFrames++;if(menuRenderPaused&&menuFrameBudget>0&&--menuFrameBudget===0)pauseMenuRender();});
 scene.onWalkFailure=()=>feedback.textContent='That spot cannot be reached. Try a clear patch of ground or tap a named prop.';
 const worldContainer=document.querySelector<HTMLElement>('#world')!;
@@ -69,7 +78,7 @@ let lastContext = '';
 let portalIntent=0;
 let menuRenderPaused=false,menuFrameBudget=0;
 function pauseMenuRender(){if(!ready||!panel.open)return;menuRenderPaused=true;scene.resetPresentationFrame(false);game.pause();}
-function resumeMenuRender(){if(!menuRenderPaused)return;menuRenderPaused=false;menuFrameBudget=0;scene.resetPresentationFrame();game.resume();}
+function resumeMenuRender(){wakeRender();if(!menuRenderPaused)return;menuRenderPaused=false;menuFrameBudget=0;scene.resetPresentationFrame();game.resume();}
 function refreshMenuFrame(frames=1){
   if(!menuRenderPaused||!panel.open||document.hidden)return;
   // Resize can recreate WebGL targets; allow its resize/update cycle plus complete
@@ -234,6 +243,7 @@ document.addEventListener('keydown', e => {
   e.preventDefault(); interact();
 });
 scene.onFrame = () => {
+  frameLimit(!ready||panel.open||performance.now()<wakeRenderUntil||scene.needsFullRate()?0:10);
   if(panel.open){const second=Math.floor((town?.serverNow()??Date.now())/1000);if(second!==guidanceSecond){guidanceSecond=second;paintGuideObjective();}}
   if(town&&!document.hidden)void flushMovement().catch(()=>{});
   if (!ready) {
@@ -267,7 +277,7 @@ Object.defineProperty(window, '__pilot', { value: Object.freeze({
   workshop:()=>workshop.snapshot(),
   metrics: () => {
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);
-    return { climate:scene.climateState(), ready, presentation:{menuBackdropPaused:menuRenderPaused,renderedFrames}, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };
+    return { climate:scene.climateState(), ready, presentation:{menuBackdropPaused:menuRenderPaused,renderedFrames,idleFrameLimit:game.loop.fpsLimit,frameSamplePolicy:'Visible mixed normal and 10Hz idle intervals; modal gaps excluded'}, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };
   },
   screenPoint: (x: number, y: number) => { const c = scene.cameras.main; return { x: (x + .5) * 32 - c.scrollX, y: (y + .5) * 32 - c.scrollY }; }
 }), writable: false });

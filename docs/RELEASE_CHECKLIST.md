@@ -112,3 +112,9 @@ IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclos
 - Check private supply/tool state, close-range actions, concurrent final public credits, immutable24h opening, postfunding truth, explicit collect and no render grants. Reject cached unversioned HTTP/EventSource and incompatible replies without losing retry identity.
 - Actual local fresh phone, elapsed pure-command fixtures, goal flower override, preview/cancel/place/reload, lost committed response, peer invalidation and owner-home display. Housing kits/time advances are disposable fixture-only and disclosed; never grant current practice.
 -217 checks/zero skips,58 browser flows, populated actual PG restart, build/design/plan/pinned/diff; actual final desktop/phone/short200%/256frame images. Both exact-head CI jobs and downloaded actual artifacts/images before source merge, matching trees/clean main. Update client/API together only after backups/preservation. No hosted release or physical-device claim.
+
+## IH2-068 activity clarity
+- Preserve all authoritative rules, crop/wood/ordinary job deadlines, private stock and owned copies. No migration or protocol change.
+- Actual360phone and844×390text200: compact44pxactions, unobscured focused quote/confirm/cancel/close, stable selection/focus/action geometry across readiness, harvest, warning/cooldown and feedback updates. Explanations/rearrangement/recovery stay accessible.
+- Guide autoentry versus Places Walk+Inspect/Enter must be literal, report arrival, retain exact doorway fronts and cancel manual/identity/resync/superseded routes. A lost committed planting retries identical body/UUIDonce and cannot queue late navigation.
+- Inspect combined fresh/returning/saturated/busy/full/no-helper garden/pine activity, with explicit elapsed-fixture/agent/device/finite-content limits. Final217checks/fullbrowser/both exact-headCI/actualartifact+images/equaltree/cleanmain before acceptance or preview replacement.

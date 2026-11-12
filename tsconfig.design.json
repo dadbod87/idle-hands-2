@@ -11,6 +11,7 @@
     "tests/garden.spec.ts",
     "tools/neighborhood-fixtures.ts",
     "tools/observe-neighborhood.ts",
+    "tools/observe-phone-clarity.ts",
     "tools/woodland-plan.ts",
     "tools/simulate-woodland-plan.ts",
     "tests/design-woodland.spec.ts",
@@ -19,7 +20,9 @@
     "tools/prove-garden-ledger-upgrade.ts",
     "tests/carpentry*.test.ts",
     "tests/carpentry.spec.ts",
-    "tests/client-readiness.spec.ts"
+    "tests/client-readiness.spec.ts",
+    "tests/phone-clarity.spec.ts",
+    "tests/garden-recovery.spec.ts"
   ],
   "compilerOptions": {
     "types": [

@@ -1,0 +1,50 @@
+{
+  "disclosure": "Fresh browser-only UI; actual one starter-seed planting, cosmetic inspection and free swap. No clock/state/position or inventory grants. Only long field-note text is a declared presentation fixture; viewport/text scaling is emulation.",
+  "walk": {
+    "x": 37,
+    "y": 149.640625,
+    "width": 286,
+    "height": 44
+  },
+  "previewBox": {
+    "x": 37,
+    "y": 496.90625,
+    "width": 139,
+    "height": 74.1875
+  },
+  "statusBounds": {
+    "x": 37,
+    "y": 576,
+    "width": 286,
+    "height": 48
+  },
+  "dialogBounds": {
+    "x": 19,
+    "y": 14,
+    "width": 322,
+    "height": 612
+  },
+  "confirm": {
+    "box": {
+      "x": 231.1875,
+      "y": 175.984375,
+      "width": 381.625,
+      "height": 94
+    },
+    "head": {
+      "x": 194,
+      "y": 16,
+      "width": 456,
+      "height": 110
+    },
+    "feedback": {
+      "x": 210,
+      "y": 278,
+      "width": 424,
+      "height": 96
+    }
+  },
+  "deadline": 1794454607386,
+  "planted": 1,
+  "errors": []
+}

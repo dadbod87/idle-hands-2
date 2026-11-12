@@ -555,7 +555,7 @@
     {
       "id": "IH2-067",
       "title": "Pine hand tool, kept easel and useful produce service",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-066"
       ],
@@ -575,14 +575,18 @@
         "docs/evidence/IH2-067/pure-rule-schedules.json",
         "docs/evidence/IH2-067/ledger-browser/report.json",
         "docs/idle-hands-2/handoffs/2026-11-11-pine-workshop.md",
-        "docs/evidence/IH2-067/intermediate-checks.json"
+        "docs/evidence/IH2-067/intermediate-checks.json",
+        "docs/evidence/IH2-067/source-closeout.json",
+        "docs/evidence/IH2-067/integrated-local-checks.json",
+        "docs/evidence/IH2-067/presentation-cost.json",
+        "docs/evidence/IH2-067/actual-preview-verification.json"
       ],
       "owner_branch": "feat/pine-workshop"
     },
     {
       "id": "IH2-068",
       "title": "Phone activity clarity and updated-loop playtest",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-067"
       ],
@@ -596,7 +600,36 @@
       "exclusions": [
         "No silent timer/rate/cost change, mandatory attendance, real-player tests or public launch."
       ],
-      "evidence": []
+      "evidence": [
+        "docs/idle-hands-2/handoffs/2026-11-12-phone-clarity.md",
+        "docs/evidence/IH2-068/REPORT.md",
+        "docs/evidence/IH2-068/activity-audit.json",
+        "docs/evidence/IH2-068/authority-unchanged.json"
+      ],
+      "owner_branch": "feat/phone-activity-clarity"
+    },
+    {
+      "id": "IH2-069",
+      "title": "First neighborhood commission and useful-return design",
+      "status": "queued",
+      "depends_on": [
+        "IH2-068"
+      ],
+      "goal": "Design one bounded optional authored quest chain and visible personal reward that gives the finite neighborhood a useful next activity without shortening its economy or requiring another player.",
+      "acceptance": [
+        "Use the068actual fresh/returning/saturated audit and current runtime/plans as evidence. Compare a free observational first branch during busy/full waits with a later earned-resource restoration branch; choose and explain one small contract, with humor and distinct personal/public outcomes.",
+        "Keep the first branch accessible without house/open bridge/finished public board/coworker/ordinary bench or currency. Explicit opt-in costs, no hidden stock reservation, no compulsory attendance or repeatable production multipliers.",
+        "Specify persistent quest stages, inventory and unique reward ownership, cancellation/wrong-answer/capacity/absence/newcomer/already-open handling and migration/retry/authority boundaries. Compare solo, assisted, busy/full and low-frequency schedules using a reproducible bounded model; distinguish arithmetic from human enjoyment.",
+        "Create original free concept art for the actual proposed reward/props and a phone-first journal/choice/return concept. Maintain candidate versus runtime labels, provenance and exact runtime coverage.",
+        "Required repository checks, both exact-headCI jobs, actual artifact and concept/gameplay screenshots reviewed, matching merge tree and source closeout. Create a bounded implementation task only after the design is accepted; no runtime economy/migration/hosting in this design task."
+      ],
+      "exclusions": [
+        "No broad city, combat/chat, paid art, cloud, real accounts, shortened timers or invented human playtime."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-068/REPORT.md"
+      ],
+      "owner_branch": null
     },
     {
       "id": "IH2-070",
@@ -616,7 +649,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local content/design through062\u2013068 is authorized; no cloud resources, invitations or public release."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. The owner explicitly authorized successive independent local design/content tasks while away;069 is the bounded follow-up to068. No cloud resources, invitations or public release."
     },
     {
       "id": "IH2-080",

@@ -1,0 +1,14 @@
+{
+  "disclosure": "Isolated browser-only position fixture inside overlapping authored ranges. Actual touch Places walk and Inspect, no time/inventory/API grants. Emulated phone, not a real device or server-authority proof.",
+  "startedAt": {
+    "x": 24.6,
+    "y": 12.6
+  },
+  "initialNearby": "trail-gate",
+  "arrivedAt": {
+    "x": 24,
+    "y": 13
+  },
+  "finalNearby": "bridge",
+  "revisionUnchanged": true
+}

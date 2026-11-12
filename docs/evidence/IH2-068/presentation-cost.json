@@ -1,0 +1,34 @@
+{
+  "classification": "Local build byte accounting and native Chrome emulation; not network transfer, physical-device or active-only performance proof",
+  "files": 159,
+  "rawBytes": 3207291,
+  "sumIndependentGzipBytes": 563595,
+  "method": "gzip each of159static files independently using Python defaultlevel9; sum includes unrequested optional art/concepts, no CDN/headers/caching. Vite core-gzip report is separate. Build warning for the existing engine chunk remains.",
+  "framePolicy": "Rolling visible mixed normal and intentional10Hzidle intervals; excludes modal gaps. These p95values are not active-only FPS or a device performance guarantee. Existing bounded idle/menu/input checks are the targeted regression gate.",
+  "frames": [
+    {
+      "shape": "desktop",
+      "samples": 510,
+      "p95MixedIntervalMs": 83.40000000000146,
+      "renderedFrames": 528
+    },
+    {
+      "shape": "phone",
+      "samples": 510,
+      "p95MixedIntervalMs": 99.89999999999964,
+      "renderedFrames": 530
+    },
+    {
+      "shape": "narrow",
+      "samples": 504,
+      "p95MixedIntervalMs": 99.89999999999964,
+      "renderedFrames": 523
+    },
+    {
+      "shape": "short",
+      "samples": 507,
+      "p95MixedIntervalMs": 99.89999999999964,
+      "renderedFrames": 526
+    }
+  ]
+}

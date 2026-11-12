@@ -1,0 +1,78 @@
+{
+  "classification": "Source byte comparison, not runtime proof",
+  "baseline": "7af9a3296ec21c9120567c36f195f6e7a4e01014",
+  "unchanged": [
+    {
+      "path": "server/db.ts",
+      "sha256": "048b7acb44863e916451e6c495b6eddd9879524dc1cae73c4bde3b64d703f01e"
+    },
+    {
+      "path": "server/http.ts",
+      "sha256": "d47b99b0046a0751a4b9447cebefad7e8460495a7bfa764aae17a1589da401b0"
+    },
+    {
+      "path": "server/index.ts",
+      "sha256": "cd344cf931e143a3fa3dc07cc42fa67df74e42d6032116c1b05ad4b8beb10c62"
+    },
+    {
+      "path": "server/store.ts",
+      "sha256": "09466f7c38a6a32583e2823f06c8c25f8d80d5e6500409dce79a89a8dab7bec8"
+    },
+    {
+      "path": "server/transport.ts",
+      "sha256": "6f6e044366572de65941adf24adfd269830649433854d32df544eb2e1f0b067d"
+    },
+    {
+      "path": "src/game/carpentry.ts",
+      "sha256": "44c6219baceded14e327b9cd1a65b2921b0fb97082cf0980c16e7a36464d0394"
+    },
+    {
+      "path": "src/game/fieldwork.ts",
+      "sha256": "de70d0aea090aae189dc7769c034ca1a2985b0a0200d0815583981eebd2e14f5"
+    },
+    {
+      "path": "src/game/garden.ts",
+      "sha256": "aa438b4db1bbaa3d2af76317f2b77af8ba8c9260fcc811c1c81fd44fae760156"
+    },
+    {
+      "path": "src/game/movement-frame.ts",
+      "sha256": "2e76746bbfc6b79cc2955e23a85fbef0ea1f86fcbc0076a308265eeff926fe6b"
+    },
+    {
+      "path": "src/game/protocol-version.ts",
+      "sha256": "d3708e386dd51bb76bbf80abd3b7cc9816e439fa76be406e81c7cc19c2f68d75"
+    },
+    {
+      "path": "src/game/return-summary.ts",
+      "sha256": "572a287bf782d1572c372c0fd9812f12a6256225729f99fd465503c9a3a695c8"
+    },
+    {
+      "path": "src/game/session.ts",
+      "sha256": "9d1870f9e4448d1d8a70b1cf3c9cebf7e62cb3e5a9e9cec3486dae59fe2e7acf"
+    },
+    {
+      "path": "src/game/shared-guidance.ts",
+      "sha256": "917f1e2c0e369219b9edad3b0b87d8e6d1ad847f79350bb421cfd1da8507c95b"
+    },
+    {
+      "path": "src/game/town-climate.ts",
+      "sha256": "bde6022c1ef20118634478849f0ced52807adf0e099628d853f8789869e5244c"
+    },
+    {
+      "path": "src/game/town-people.ts",
+      "sha256": "d12b8fc44600b73bf95d01861021fbb1e9c04df8c744a8b712f17ad14d480ae7"
+    },
+    {
+      "path": "src/game/town-rules.ts",
+      "sha256": "ec21ce6a1b5ed3ae0824e6e141e78080b6cf4955d1b1173fd30bdd25062d457e"
+    },
+    {
+      "path": "src/game/workshop.ts",
+      "sha256": "6330312b29d8f617e4537e50c20eadde423c610a6001f5c222a38aaa10ab1ca4"
+    },
+    {
+      "path": "src/game/world.ts",
+      "sha256": "11134114686c13c159f140c935d354e3639d234e581f9eae318dd2e0033bcb5f"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # IH2-067 — working integration and foundation history
 
+Accepted-status pointer:067source/local preview gates subsequently closed in [source-closeout.json](source-closeout.json), PR17/merge7af9a32; both exact1683a7dCI jobs and automaticmainCIpassed. The paragraphs below are dated intermediate working evidence, retained as history rather than current status.
+
 November 11, 2026. **In progress; not a completed playable feature, source acceptance or release.** Work is isolated on `feat/pine-workshop` from accepted main `3946d7b1f5f5d18529e274935f70fd35bb5cb50b`/PR16. The actual accepted065CIartifact remains on4175 with its existing4186API/key/practice; this checkpoint does not replace either process. No original-game, real-player, hosting, paid-asset or invitation changes.
 
 ## Current integrated working candidate
@@ -55,3 +57,8 @@ A controlled Canvas fallback was slower (one software view38.83vs18.35ms mean rA
 
 
 Revised final local source passes217checks/zero skips43.555170417s, actual populatedPGrestart/restore, full59browsercases8.1m, strictbuild/design/plan/pinned/diff. Final actual phone/easel-home/desktop-rack/short200/256frame images reviewed. [Selected images/fixture reports](integrated-browser/) and [local checks](integrated-local-checks.json) preserve durable evidence. Loader-failure count correction follows inspected Phaser4.2source: one queued file retains its existing two built-in retries (three requests), then never re-enqueues per frame and recovers on reload; test asserts that exact bound. No engine retry reduction or assertion removal. New exact-head bothCI/artifact/source acceptance still pending.
+
+
+## Source and local-preview acceptance
+
+PR17merged7af9a3296ec21c9120567c36f195f6e7a4e01014on exact1683a7dd85b9ba8e7f0ea0230c7c713c51d6f969. Both CI43134973845jobsSUCCESS:217/zero skips72.437s;59browser12.1m. Actual159buildfiles equal final local; selected actual uploaded images reviewed; candidate/merge tree matches and cleanmain=remoteverified. Actual acceptedCIartifact serves4175; additive fifth migration/API4186preserves12old canonical practice tables, one resident and key.159responses/schema boundary/native desktop-phone UI pass. Nella capture initially awaited hidden stale title; image inspection caught it, and final capture requires open panel/correct stop/stopped walk. No source change or assertion reduction. [Final closeout](source-closeout.json), [practice preservation](practice-pine-update-result.json), [actual responses](actual-preview-verification.json), [native UI](actual-preview-browser.json), [actual five-minute visit](real-combined-visit.json). Automaticmain43136701949pending separately.068starts with these closeout documents; no hosted/physical-device/owner-fun acceptance claimed.

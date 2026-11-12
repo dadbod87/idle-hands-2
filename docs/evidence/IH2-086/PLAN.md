@@ -1,0 +1,3 @@
+# IH2-086 — world-anchored rain
+
+Owner reports screen-fixed rain moving with the character. Align the same cached repeating layer with the camera after render, as existing lamp glows do. Wrap camera offsets by192x96rain tiles and retain independent fall time; overscan covers all edges. No new effect, timer, asset, request or gameplay state. Add pure phase/wrap invariance and native desktop/phone movement/resize checks, retained weather/reduced/hidden/interior regressions. Full local/exact-headCI/artifact/image/recovery gates before static-only4175update, preserving protected13tables/key/API/checksums/studies.

@@ -1,0 +1,10 @@
+{
+  "reviewer": "gpt-6.1-terra",
+  "build": "review-v1/build on loopback49549",
+  "desktop": "1440x900",
+  "phone": "360x640 emulated touch",
+  "other": "short viewport and200percent text",
+  "findings": "No clear P1/P2. Drizzle visibly present without obscuring detail; clear day bright, night distinct/readable with warm windows. Desktop canopy silhouettes anchored without obvious clip; HUD remains legible.",
+  "limitations": "Paired still frames900ms apart cannot independently certify perceived live sway; root timed3.25second measurements separately prove motion bounds. Terra did not independently verify reduced motion/economy; root automated checks do. No physical-device/Safari/full accessibility certification.",
+  "browserClosed": true
+}

@@ -1,0 +1,41 @@
+{
+  "fixture": "Only explicitly labelled visual-only sky-study URL overrides in fresh local defaults. Real waits and idle renderer; no position/state/production clock/stock interception. Native touch/viewport emulation, not physical phone.",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "spans": [
+        1.8261645877287265,
+        2.7979760598575467,
+        1.3464884645881625,
+        2.6388091696803713,
+        1.013511282231491,
+        2.440830132761448
+      ],
+      "economyUnchanged": true,
+      "errors": [],
+      "apiRequests": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "spans": [
+        1.826705983338229,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "economyUnchanged": true,
+      "errors": [],
+      "apiRequests": []
+    }
+  ]
+}

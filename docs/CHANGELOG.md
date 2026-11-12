@@ -1,5 +1,9 @@
 # History
 
+2026-11-12 — IH2-086 candidate corrects viewport-fixed drizzle so the rain stays with the town during camera follow. Acceptance pending. [Evidence](evidence/IH2-086/REPORT.md).
+
+2026-11-12 — Accepted IH2-085: clearer town lighting, visible drizzle and gentle tree sway at correct idle speed. Field guide explains weather and reduced motion. PR33 merged`ef5a796`;293system/98browser checks pass, actual local preview verified. Rules/progress unchanged. [Evidence](evidence/IH2-085/source-closeout.json).
+
 2026-11-12 — IH2-085 candidate improves weather visibility and reduces dulling overlays while preserving original art,48minute cosmetic day,12minute weather schedule and real work clocks. Acceptance pending. [Evidence](evidence/IH2-085/REPORT.md).
 
 2026-11-12 — Accepted IH2-084 separate Bag and Journal: belongings versus goal/work/progress panels, labelled toolbar controls, guarded B/J play shortcuts and direct focus-safe switching. PR32 merged as `8a6c60d`;291system and96browser checks pass exact-headCI. Actual local preview updated; rules/progress/API preserved. [Evidence](evidence/IH2-084/source-closeout.json).

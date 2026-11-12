@@ -990,7 +990,7 @@
     {
       "id": "IH2-085",
       "title": "Noticeable ambient weather with clearer town colors",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/readable-town-weather",
       "depends_on": [
         "IH2-084"
@@ -1006,7 +1006,30 @@
         "No weather economy, growth bonus, new day/weather schedule, global image filter, paid/new asset family, current-game/account/cloud/expense."
       ],
       "evidence": [
-        "docs/evidence/IH2-085/PLAN.md"
+        "docs/evidence/IH2-085/PLAN.md",
+        "docs/evidence/IH2-085/REPORT.md",
+        "docs/evidence/IH2-085/source-closeout.json"
+      ]
+    },
+    {
+      "id": "IH2-086",
+      "title": "Anchor moving rain to the town world",
+      "status": "in_progress",
+      "owner_branch": "fix/world-anchored-rain",
+      "depends_on": [
+        "IH2-085"
+      ],
+      "goal": "Rain retains its place in the world as the camera follows native player movement.",
+      "acceptance": [
+        "World-relative rain phase follows both camera axes after render while independent falling animation continues. Bounded periodic compositor translation covers viewport edges and negative camera offsets.",
+        "Native desktop and touch-phone movement/resize screenshots and regression checks; reduced/hidden/indoor behavior unchanged. No economy, clocks, art or backend changes.",
+        "Required local and exact-head CI full gates, artifact review and static-only preview verification preserve protected practice/server/studies."
+      ],
+      "exclusions": [
+        "No new weather type, asset, request/timer, world geometry, progression or hosting."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-086/PLAN.md"
       ]
     },
     {

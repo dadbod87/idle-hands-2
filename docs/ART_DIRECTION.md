@@ -128,3 +128,5 @@ IH2-084 candidate separates canvas satchel belongings from a paper journal, with
 IH2-084 accepted: distinct satchel and paper journal, small original code-native toolbar icons, whole-label intrinsic wrapping and explicit cross-panel focus. TerraV3, six actual CI captures and ten native final local/shared captures inspected. Existing185art files unchanged; physical-device/Safari review remains open.
 
 IH2-085 candidate: clearer authored colors through lower phase/weather washes, bounded2.2pxtranslated crowns without rotation, and visible staggered cached drizzle. Original185art files unchanged. Keep day/night/windows distinct and respect reduced/hidden/interior views. Terra still-frame versus actual measured-motion limits are recorded in085evidence.
+
+IH2-085 accepted: final source PR33/mergeef5a796; nine CI images and fourteen actual-preview captures reviewed, Terra bounded desktop/phone review complete. Keep 48-minute daylight/12-minute weather cosmetic. Read the085report for measured motion and reduced-motion/physical-device limits.

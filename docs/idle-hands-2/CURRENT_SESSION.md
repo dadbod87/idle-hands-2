@@ -1,9 +1,3 @@
-# IH2-085 — clearer town weather in progress
+# IH2-086 — world-anchored rain in progress
 
-November12,2026. Owner authorizes continued work after haze explanation and reports no visible weather/tree/light motion. Current feat/readable-town-weather from retained084closeoutc1bb029; accepted main8a6c60d/PR32. [Plan](../evidence/IH2-085/PLAN.md), [report](../evidence/IH2-085/REPORT.md).
-
-Cosmetic-only: lower washes;2.2pxno-rotation sway;150mscosmetic step fixes half-speed10fpsidle; staggered two-tone85px/sdrizzle in same cached compositor layer. Guide explains48minuteday/12minuteweather and reduced preference. Original185art, schedule, production clocks/economy/server unchanged; no added request/timer.293domainzero skips59.266s,12focusedbrowser51.3s,strict build/design/plan10/pinned40/diff pass. Full98browser currently running; exact-headCI/artifact/screens/recovery/merge and static-only preview gates remain.
-
-Terra6.1bounded actual frozen49549review finds visible rain/readable night/warm windows/no clearP1/P2; cannot confidently judge live sway from900msstills. Native3.25secondidle canopy span>1px and <=2.201bounds measured; reduced/hidden/rootclock assertions independently tested. All fixtures/limits in report. Never present emulation as physical-phone/Safari or human enjoyment certification.
-
-Protected actual4175still immutable084/static8636/session50480; API4186protocol4PID83080/session34638unchanged. Baseline13tables/key/sixchecksums captured. No protected reset/grant/container restart. Previous084client/081server/privatebackup and old49529/30/34studies retained. Temporary49549rootlocal review proxies protectedAPI; no shared identities there. Tests4198/4197use disposableih2_browser. Finish085before another task;070/080still require concrete hosting/account/access/cost approval. No current-game/real-account/cloud/expense authorization.
+Owner explicitly requests correcting rain following player movement. Branch fix/world-anchored-rain from retained085closeout0443cc4; acceptedmainef5a796. [Plan](../evidence/IH2-086/PLAN.md). Only world-relative cosmetic rain projection and regression checks. Actual4175still immutable085PID47625/session75556; API4186PID83080/session34638unchanged. Preserve protected13tables/key/sixchecksums and all historical studies. No hosted/original-game/account/cloud changes. Required final gates pending.

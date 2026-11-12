@@ -210,3 +210,5 @@ IH2-082CIcapacity correction: the stable browser-playtest gate now requires both
 - Preserve48minute phases/12minute deterministic weather and all real production clocks; continuous lower washes, untinted HUD, readable windows/interiors and unchanged original art.
 - Visible bounded no-rotation canopy motion, equal10/60fpscosmetic elapsed progression, bounded resume gaps and same cached drizzle layer. Native timed frames/metrics and actual images; no added timer/request/object family.
 - Keep original crop/silhouette/reduced/hidden/economy assertions; explicit appearance fixtures and media/viewport limits. Full local/exact-headCI/artifact/recovery/merge gates before static-only preview, preserving13tables/key/checksums/API/studies.
+
+IH2-085 acceptance recorded: final8bb045e exact-headCI43313138618 all four jobs SUCCESS,293system/98browser; actual191-filepreview/images and protected-practice preservation verified. See docs/evidence/IH2-085/source-closeout.json; future changes must repeat applicable gates.

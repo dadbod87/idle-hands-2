@@ -1,0 +1,334 @@
+{
+  "method": "Observed CIbrowser test durations from uploaded job logs; no comparable active-only timing or hosting performance claim",
+  "cases": [
+    [
+      102.0,
+      "tests/shared-town.spec.ts:45:1 \u203a desktop and narrow-phone residents cooperate, retain ownership and retry the same committed request"
+    ],
+    [
+      90.0,
+      "tests/z-first-visit.spec.ts:58:1 \u203a fresh phone resident: real first planter, queued return job, sixty-second upkeep and independent trail discovery"
+    ],
+    [
+      78.0,
+      "tests/trail.spec.ts:111:1 \u203a real isolated town: timed opening, personal trail journal and permanent home pennant"
+    ],
+    [
+      47.0,
+      "tests/pilot.spec.ts:43:5 \u203a desktop \u203a desktop: walk, collision, UI lock, tap, transition and reload"
+    ],
+    [
+      39.5,
+      "tests/home-workroom.spec.ts:74:1 \u203a expanded workroom actual owner/visitor: eight families, atomic moves, live unique motif and phone/short layouts"
+    ],
+    [
+      39.2,
+      "tests/starter-homes.spec.ts:93:1 \u203a real isolated town fixtures: physical home ownership, visiting, upgrade, reload and safe door return"
+    ],
+    [
+      37.8,
+      "tests/garden.spec.ts:482:1 \u203a real shared garden: hand-made and quest markers, wrong-choice recovery, chosen owner projection and old property preservation"
+    ],
+    [
+      29.4,
+      "tests/commission.spec.ts:44:1 \u203a commission fresh phone: real route, wrong handover, keyboard receipt, pause and free saved card without stock grants"
+    ],
+    [
+      29.2,
+      "tests/current-actions.spec.ts:200:1 \u203a full and growing gardens offer an early useful route without consuming a crop or changing jobs"
+    ],
+    [
+      27.8,
+      "tests/pilot.spec.ts:43:5 \u203a phone \u203a phone: walk, collision, UI lock, tap, transition and reload"
+    ],
+    [
+      26.9,
+      "tests/pilot.spec.ts:43:5 \u203a short \u203a short: walk, collision, UI lock, tap, transition and reload"
+    ],
+    [
+      25.4,
+      "tests/pilot.spec.ts:43:5 \u203a narrow \u203a narrow: walk, collision, UI lock, tap, transition and reload"
+    ],
+    [
+      24.3,
+      "tests/carpentry.spec.ts:271:1 \u203a elapsed pure-command fixture: kept easel, explicit recording, goal-flower hamper, cooldown, free placement and old job survive reload"
+    ],
+    [
+      23.6,
+      "tests/workshop.spec.ts:60:5 \u203a short \u203a short: direct gather, craft, place, reload and queued job"
+    ],
+    [
+      23.6,
+      "tests/workshop.spec.ts:60:5 \u203a desktop \u203a desktop: direct gather, craft, place, reload and queued job"
+    ],
+    [
+      23.3,
+      "tests/carpentry.spec.ts:521:1 \u203a real shared carpentry: lost committed claim retries once, anonymous credit refreshes peer, kept easel is placed in an owned house"
+    ],
+    [
+      21.5,
+      "tests/phone-clarity.spec.ts:184:1 \u203a named journeys: guide enters once, rental room is centered, current-stop reopening stays active and Places announces arrival"
+    ],
+    [
+      21.3,
+      "tests/workshop.spec.ts:60:5 \u203a narrow \u203a narrow: direct gather, craft, place, reload and queued job"
+    ],
+    [
+      20.7,
+      "tests/carpentry.spec.ts:132:1 \u203a fresh phone carpentry: actual saw lesson, explicit equipment, direct pine tap, shared supply and safe workshop arrival"
+    ],
+    [
+      18.7,
+      "tests/fieldwork.spec.ts:18:3 \u203a desktop \u203a off-bench sketchbook desktop: direct tree, keyboard choice, reload and unchanged long job"
+    ],
+    [
+      18.7,
+      "tests/commission.spec.ts:580:1 \u203a shared letterbox visitor: unpublished placed motif is visible, updates live, and publication never creates a second prop"
+    ],
+    [
+      16.9,
+      "tests/current-actions.spec.ts:75:1 \u203a returned post puts current choices before the kept story; revisiting and previewing never spend"
+    ],
+    [
+      14.6,
+      "tests/movement-backpressure.spec.ts:3:1 \u203a intercepted movement fixture: delayed acknowledgments bound prediction and preserve the walk and portal arrival"
+    ],
+    [
+      13.2,
+      "tests/fieldwork.spec.ts:18:3 \u203a phone \u203a off-bench sketchbook phone: direct tree, keyboard choice, reload and unchanged long job"
+    ],
+    [
+      11.2,
+      "tests/gathering-family.spec.ts:10:1 \u203a collection family: all192actual cells, original feet and native gallery rig/material/facing changes"
+    ],
+    [
+      11.0,
+      "tests/client-readiness.spec.ts:287:1 \u203a activity artwork loads only the current rig and identity switches cannot apply an older tool sheet"
+    ],
+    [
+      10.1,
+      "tests/town-rhythm.spec.ts:433:3 \u203a town rhythm phone conversations \u203a body tap, keyboard action, all Places destinations and modal lock give no rewards"
+    ],
+    [
+      10.0,
+      "tests/garden.spec.ts:26:1 \u203a phone garden: direct beds, free preview/cancel, stable planting controls, original action and short enlarged layout"
+    ],
+    [
+      9.9,
+      "tests/home-panel.spec.ts:267:1 \u203a home panel phone/short: owner controls first, six/eight nooks and read-only visiting without a claim detour"
+    ],
+    [
+      9.7,
+      "tests/town-variety.spec.ts:154:5 \u203a town variety desktop \u203a original silhouettes, direct door targets, enlarged text and comparison sheet"
+    ],
+    [
+      8.9,
+      "tests/commission.spec.ts:234:1 \u203a commission paid elapsed fixture: exact review/cancel, one box, free motifs, opt-in style, short200 and actual placed world art"
+    ],
+    [
+      8.2,
+      "tests/stream-reconnect.spec.ts:4:1 \u203a native event stream recovers from a transient429 without reloading the page or changing progress"
+    ],
+    [
+      8.1,
+      "tests/town-rhythm.spec.ts:254:5 \u203a town rhythm desktop \u203a day/night preserve jobs, readable controls and direct doors"
+    ],
+    [
+      8.1,
+      "tests/garden-recovery.spec.ts:260:1 \u203a elapsed garden fixture: readiness does not steal bed focus, goal-flower confirmation stays fixed and old work survives"
+    ],
+    [
+      8.0,
+      "tests/town-variety.spec.ts:154:5 \u203a town variety short \u203a original silhouettes, direct door targets, enlarged text and comparison sheet"
+    ],
+    [
+      7.9,
+      "tests/workshop.spec.ts:339:1 \u203a second tab cannot overwrite local workshop progress"
+    ],
+    [
+      7.9,
+      "tests/visual-kit.spec.ts:22:3 \u203a visual kit desktop: direction, guide, text scaling, contrast and study"
+    ],
+    [
+      7.8,
+      "tests/phone-clarity.spec.ts:53:1 \u203a phone garden action layout: free previews, stable feedback, accessible arrangements and short text200 controls"
+    ],
+    [
+      7.6,
+      "tests/client-readiness.spec.ts:4:1 \u203a idle and menu redraw are bounded while clocks, resize and immediate movement remain live"
+    ],
+    [
+      7.4,
+      "tests/town-variety.spec.ts:154:5 \u203a town variety narrow \u203a original silhouettes, direct door targets, enlarged text and comparison sheet"
+    ],
+    [
+      7.4,
+      "tests/garden-recovery.spec.ts:12:1 \u203a pending garden save: lost committed planting is recovered once before a requested Places walk"
+    ],
+    [
+      7.0,
+      "tests/home-retry.spec.ts:7:1 \u203a intercepted home-entry fixture: a lost committed response stays locked and retries the identical request"
+    ],
+    [
+      6.3,
+      "tests/fieldwork.spec.ts:175:1 \u203a shared sketchbook: actual UI command persists through the local API and SQL snapshot"
+    ],
+    [
+      6.0,
+      "tests/visual-kit.spec.ts:22:3 \u203a visual kit short: direction, guide, text scaling, contrast and study"
+    ],
+    [
+      5.9,
+      "tests/town-rhythm.spec.ts:254:5 \u203a town rhythm narrow \u203a day/night preserve jobs, readable controls and direct doors"
+    ],
+    [
+      5.8,
+      "tests/visual-kit.spec.ts:22:3 \u203a visual kit narrow: direction, guide, text scaling, contrast and study"
+    ],
+    [
+      5.8,
+      "tests/movement-backpressure.spec.ts:376:3 \u203a intercepted movement fixture: automatic doors confirm the source approach and cancel superseded entry"
+    ],
+    [
+      5.7,
+      "tests/workshop.spec.ts:406:1 \u203a page cache lifecycle keeps job timer and single-writer ownership usable"
+    ],
+    [
+      5.7,
+      "tests/town-rhythm.spec.ts:254:5 \u203a town rhythm short \u203a day/night preserve jobs, readable controls and direct doors"
+    ],
+    [
+      5.7,
+      "tests/commission.spec.ts:415:1 \u203a shared commission: lost paid reply retries exactly once; reopened panels reject stale feedback and pending requests block resident switching"
+    ],
+    [
+      5.6,
+      "tests/movement-backpressure.spec.ts:376:3 \u203a intercepted movement fixture: automatic doors confirm the source approach and cancel superseded entry (deterministic one-checkpoint approach)"
+    ],
+    [
+      5.6,
+      "tests/garden.spec.ts:221:1 \u203a local save migration keeps legacy job and stock; a simulated old writer and unsupported current save cannot overwrite it"
+    ],
+    [
+      5.5,
+      "tests/movement-backpressure.spec.ts:194:1 \u203a intercepted movement fixture: switching residents while a movement is held cannot start old-resident recovery"
+    ],
+    [
+      5.5,
+      "tests/garden.spec.ts:337:1 \u203a isolated elapsed fixture: ready crops wait at full capacity, another family harvests, a request frees space and the old job remains exact"
+    ],
+    [
+      5.4,
+      "tests/movement-backpressure.spec.ts:376:3 \u203a intercepted movement fixture: automatic doors confirm the source approach and cancel superseded entry (guide approach waits for final source ACK)"
+    ],
+    [
+      5.4,
+      "tests/design-commission.spec.ts:101:1 \u203a commission phone concept: addressed handovers, lossless wrong recipient, all six route captions and free card stay separate from furniture"
+    ],
+    [
+      4.3,
+      "tests/depot-art.spec.ts:5:1 \u203a depot vectors rasterize into three distinct unclipped material silhouettes"
+    ],
+    [
+      4.1,
+      "tests/town-rhythm.spec.ts:333:1 \u203a town rhythm: dawn and dusk keep actual foliage intact with enlarged phone text"
+    ],
+    [
+      3.8,
+      "tests/shared-client.spec.ts:189:1 \u203a intercepted client fixture: old resident replies cannot replace a newer login"
+    ],
+    [
+      3.6,
+      "tests/shared-client.spec.ts:230:1 \u203a intercepted client fixture: returning after service restart uses the confirmed position"
+    ],
+    [
+      3.5,
+      "tests/shared-town.spec.ts:248:1 \u203a short shared-town menu scales text, preserves the playfield and switches residents safely"
+    ],
+    [
+      3.4,
+      "tests/home-panel.spec.ts:371:1 \u203a home choices survive reject/save/refresh/retry; passive updates and old panel replies cannot retarget actions"
+    ],
+    [
+      3.3,
+      "tests/garden-recovery.spec.ts:133:1 \u203a a definite failed planting retry cannot become a paid receipt after a later free bed swap"
+    ],
+    [
+      3.2,
+      "tests/shared-client.spec.ts:276:1 \u203a intercepted client fixture: an open bridge cannot regress within one server boot"
+    ],
+    [
+      3.1,
+      "tests/shared-client.spec.ts:212:1 \u203a intercepted client fixture: changes during a delayed snapshot trigger one fresh follow-up"
+    ],
+    [
+      3.1,
+      "tests/phone-clarity.spec.ts:279:1 \u203a phone Places in overlapping ranges walks to the requested Inspect target before reporting arrival"
+    ],
+    [
+      3.1,
+      "tests/home-workroom.spec.ts:305:1 \u203a intercepted current snapshot: missing, unknown and overallocated workroom maps never replace confirmed progress"
+    ],
+    [
+      3.1,
+      "tests/client-readiness.spec.ts:146:1 \u203a intercepted boot fixture: a saved resident arriving before art unlocks movement without opening a menu"
+    ],
+    [
+      3.0,
+      "tests/workshop.spec.ts:383:1 \u203a save failures remain visible after a successful practice action"
+    ],
+    [
+      3.0,
+      "tests/workshop.spec.ts:254:1 \u203a isolated elapsed-time fixture: queued kit survives absence and settles once"
+    ],
+    [
+      3.0,
+      "tests/carpentry.spec.ts:411:1 \u203a original carpentry gallery: equipped walking and three-stage action sheets fit all four rigs; pine and easel silhouettes remain distinct"
+    ],
+    [
+      2.8,
+      "tests/maintenance-ui.spec.ts:6:1 \u203a intercepted maintenance fixture: real-time countdown, unchanged queued work and explicit upkeep redemption"
+    ],
+    [
+      2.7,
+      "tests/town-variety.spec.ts:281:1 \u203a town variety: decorative motion runs locally and resets for reduced motion and synthetic hidden state"
+    ],
+    [
+      2.7,
+      "tests/town-rhythm.spec.ts:360:1 \u203a town rhythm: drizzle resets under reduced motion and synthetic hidden state without production changes"
+    ],
+    [
+      2.6,
+      "tests/visual-kit.spec.ts:128:1 \u203a reduced motion keeps the idle pose while movement and facing still work"
+    ],
+    [
+      2.6,
+      "tests/design-commission.spec.ts:177:1 \u203a commission touch/keyboard concept: honest stock choices, free motif, one owned/placed copy, private publication and short200 controls"
+    ],
+    [
+      2.1,
+      "tests/gathering-study.spec.ts:7:1 \u203a candidate gathering art: actual raster feet/silhouettes, bounded replay and native phone/reduced/short gallery"
+    ],
+    [
+      0.929,
+      "tests/design-commission.spec.ts:45:1 \u203a commission candidate art: fourteen original vectors and all motif/pose identities fit authored bounds"
+    ],
+    [
+      0.889,
+      "tests/garden.spec.ts:173:1 \u203a garden runtime art: all growth, seed, produce, marker and four-facing action frames render inside their authored bounds"
+    ],
+    [
+      0.768,
+      "tests/design-garden.spec.ts:3:1 \u203a garden design concepts: growth silhouettes, phone copy and proposed target bounds stay readable"
+    ],
+    [
+      0.589,
+      "tests/design-documents.spec.ts:5:1 \u203a design documents: candidate map and phone storyboards are labelled, legible and complete"
+    ],
+    [
+      0.33,
+      "tests/design-woodland.spec.ts:3:1 \u203a woodland design concept is labelled, complete and bounded without implying runtime gear"
+    ]
+  ],
+  "sumSeconds": 1118.3050000000003
+}

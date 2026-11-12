@@ -1,0 +1,20 @@
+{
+  "candidate": "4737f4429b1a89f0f791782aae1372fb795982e6",
+  "domain": {
+    "passed": 269,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 50877.197875
+  },
+  "browser": {
+    "passed": 82,
+    "failed": 0,
+    "minutes": 10.4
+  },
+  "strictClientServerDesignBuild": true,
+  "design": true,
+  "planTrackerTests": 10,
+  "pinnedFiles": 40,
+  "diff": true,
+  "readOnlyTerraReviewNoBlocker": true
+}

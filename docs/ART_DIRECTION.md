@@ -101,3 +101,5 @@ Three original static56×48SVGs replace the square's procedural material rectang
 ## IH2-078 candidate four-character collection family
 
 The separate [family study](idle-hands-2/design/ORDINARY_GATHERING_FAMILY.md) now covers all four original character identities with192frame cells. Keep their distinct apron/scarf/cap/head depth, exact32,72feet and mirrored hand slots. Existing077Aster SVG/HTML bytes remain unchanged; only its generator-source provenance hash is refreshed. This21-file study stays outside public/runtime, with native raster and Terra6.1bounded visual/interaction review. Small prop contrast remains a future refinement. No collection gameplay, loading-policy or human motion-quality claim. Runtime animation needs a separately observed visible confirmed-receipt contract.
+
+IH2-078 standalone art/source accepted PR27/9608e39, exact4737f44CI43246666644bothSUCCESS269/82. Actual uploaded21-file gallery49530and six CIimages reviewed. No runtime promotion;079separately proves visible confirmed modal receipts.

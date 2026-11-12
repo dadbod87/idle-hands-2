@@ -1,5 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
+import {emptyWorkroom} from '../src/game/home-layout.ts';
 import {createWorkshop} from '../src/game/workshop.ts';
 import type {TownPosition} from '../src/ui/town.ts';
 
@@ -9,7 +10,7 @@ test('intercepted home-entry fixture: a lost committed response stays locked and
  const started=Date.now(),workshop=createWorkshop(started),plotId='42';
  workshop.bridgeKits=7;workshop.owned.planter=1;workshop.stats.plantersCrafted=1;workshop.stats.planterPlacedAfterCraft=true;
  const placements={...workshop.placements,'north-east':'planter' as const};
- const plot={id:plotId,ownerId:'aster',ownerName:'Aster',level:1,placements};
+ const plot={id:plotId,ownerId:'aster',ownerName:'Aster',level:1,placements,workroomPlacements:emptyWorkroom()};
  let actor:string|null=null,position:TownPosition={room:'square',position:{x:30,y:35.5}};
  let firstPayload:string|null=null,commits=0,replays=0;
  const loginRequests:string[]=[],commandPayloads:string[]=[],moves:TownPosition[]=[],errors:string[]=[];

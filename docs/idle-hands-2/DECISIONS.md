@@ -198,3 +198,7 @@ Owner explicitly delegates the next useful section. Select a compact returning-p
 ## November12 — a visible bag over the existing inventory
 
 Owner requests illustrated carried items with stack badges now. IH2-083 reuses existing authoritative held fields rather than introducing inventory slots/capacity as a new rule. Furniture availability subtracts workshop and house placement while ownership remains visible. Seeds and produce remain distinct; protected equipped tools/displayed markers are labelled kept entitlements. Readiness alone never claims a craft. A CSS satchel and existing original item illustrations keep the visual family consistent. Drag/drop, trading and broader equipment/container systems remain separate future decisions. Exact acceptance is recorded in083evidence.
+
+## November12 — separate RPG-style personal tools
+
+Owner finds combined Bag & journal cluttered and wants an eventual little RPG/MMO-lite feel. IH2-084 makes Bag and Journal independent: inventory and disclosed arrangement versus current goal, work/activity/progress notes. Keep both directly reachable with labelled controls and guarded play-only shortcuts; cross-switches focus the new dialog and retain input lock. Preserve direct Arrange routes and all useful old activities. This is a navigation foundation, not new combat/equipment/chat/hosting scope. Exact acceptance is in084evidence.

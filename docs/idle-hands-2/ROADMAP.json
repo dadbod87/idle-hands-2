@@ -966,7 +966,7 @@
     {
       "id": "IH2-084",
       "title": "Separate bag and journal as clear personal tools",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/separate-bag-journal",
       "depends_on": [
         "IH2-083"
@@ -982,7 +982,9 @@
         "No new economy, capacity, recipes, rewards, account/hosting, public release, drag/drop, broad quest/equipment systems or paid assets."
       ],
       "evidence": [
-        "docs/evidence/IH2-084/PLAN.md"
+        "docs/evidence/IH2-084/PLAN.md",
+        "docs/evidence/IH2-084/REPORT.md",
+        "docs/evidence/IH2-084/source-closeout.json"
       ]
     },
     {

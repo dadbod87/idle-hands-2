@@ -90,3 +90,5 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 [Returning-player activity notebook](../../evidence/IH2-082/PLAN.md):082working integration connects existing workbench/rack/crops, without a new economy or automatic claims. Acceptance remains in its evidence.
 
 [Illustrated bag](../../evidence/IH2-083/PLAN.md): accepted083 presents existing held items as original illustrations with quantity badges, distinguishing unplaced furniture from owned/displayed/equipped items. It adds no capacity, economy or automatic craft collection; exact verification is in083evidence.
+
+[Separate personal tools](../../evidence/IH2-084/PLAN.md): accepted084 separates Bag belongings/arrangement from Journal goals/work/progress under the owner’s RPG/MMO-lite direction. Exact source, UX/CI/native validation and boundaries in084evidence.

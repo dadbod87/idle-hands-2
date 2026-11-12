@@ -1,0 +1,259 @@
+{
+  "fixture": "Fresh ordinary local defaults; viewport/touch/text emulation, no state/position/clock/interception/inventory fixture.",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "w": 1440,
+        "h": 900,
+        "text": 100
+      },
+      "buttons": [
+        {
+          "x": 939.546875,
+          "y": 815.5,
+          "width": 95.984375,
+          "height": 47
+        },
+        {
+          "x": 1042.53125,
+          "y": 815.5,
+          "width": 90.015625,
+          "height": 47
+        },
+        {
+          "x": 1139.546875,
+          "y": 815.5,
+          "width": 115.015625,
+          "height": 47
+        },
+        {
+          "x": 1261.5625,
+          "y": 815.5,
+          "width": 140.4375,
+          "height": 47
+        }
+      ],
+      "worldHeight": 698,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone320",
+        "w": 320,
+        "h": 568,
+        "text": 100
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 502,
+          "width": 58.421875,
+          "height": 56
+        },
+        {
+          "x": 75.421875,
+          "y": 502,
+          "width": 45.640625,
+          "height": 56
+        },
+        {
+          "x": 126.0625,
+          "y": 502,
+          "width": 66.96875,
+          "height": 56
+        },
+        {
+          "x": 198.03125,
+          "y": 502,
+          "width": 109.984375,
+          "height": 56
+        }
+      ],
+      "worldHeight": 381.8125,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone360",
+        "w": 360,
+        "h": 640,
+        "text": 100
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 574,
+          "width": 68.421875,
+          "height": 56
+        },
+        {
+          "x": 85.421875,
+          "y": 574,
+          "width": 55.640625,
+          "height": 56
+        },
+        {
+          "x": 146.0625,
+          "y": 574,
+          "width": 76.96875,
+          "height": 56
+        },
+        {
+          "x": 228.03125,
+          "y": 574,
+          "width": 119.984375,
+          "height": 56
+        }
+      ],
+      "worldHeight": 453.8125,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "short200",
+        "w": 844,
+        "h": 390,
+        "text": 200
+      },
+      "buttons": [
+        {
+          "x": 388.546875,
+          "y": 261,
+          "width": 147.296875,
+          "height": 65
+        },
+        {
+          "x": 542.84375,
+          "y": 261,
+          "width": 118.734375,
+          "height": 65
+        },
+        {
+          "x": 668.578125,
+          "y": 261,
+          "width": 161.40625,
+          "height": 65
+        },
+        {
+          "x": 388.546875,
+          "y": 333,
+          "width": 441.453125,
+          "height": 48
+        }
+      ],
+      "worldHeight": 188,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone200",
+        "w": 320,
+        "h": 640,
+        "text": 200
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 506,
+          "width": 98.15625,
+          "height": 71
+        },
+        {
+          "x": 115.15625,
+          "y": 506,
+          "width": 72.59375,
+          "height": 71
+        },
+        {
+          "x": 192.75,
+          "y": 506,
+          "width": 115.265625,
+          "height": 71
+        },
+        {
+          "x": 12,
+          "y": 582,
+          "width": 296,
+          "height": 48
+        }
+      ],
+      "worldHeight": 320.609375,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "short-text200",
+        "w": 844,
+        "h": 390,
+        "text": 100,
+        "textOnly": true
+      },
+      "buttons": [
+        {
+          "x": 388.546875,
+          "y": 261,
+          "width": 147.296875,
+          "height": 65
+        },
+        {
+          "x": 542.84375,
+          "y": 261,
+          "width": 118.734375,
+          "height": 65
+        },
+        {
+          "x": 668.578125,
+          "y": 261,
+          "width": 161.40625,
+          "height": 65
+        },
+        {
+          "x": 388.546875,
+          "y": 333,
+          "width": 441.453125,
+          "height": 48
+        }
+      ],
+      "worldHeight": 188,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone-text200",
+        "w": 320,
+        "h": 640,
+        "text": 100,
+        "textOnly": true
+      },
+      "buttons": [
+        {
+          "x": 12,
+          "y": 506,
+          "width": 98.15625,
+          "height": 71
+        },
+        {
+          "x": 115.15625,
+          "y": 506,
+          "width": 72.59375,
+          "height": 71
+        },
+        {
+          "x": 192.75,
+          "y": 506,
+          "width": 115.265625,
+          "height": 71
+        },
+        {
+          "x": 12,
+          "y": 582,
+          "width": 296,
+          "height": 48
+        }
+      ],
+      "worldHeight": 320.609375,
+      "errors": []
+    }
+  ]
+}

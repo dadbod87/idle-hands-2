@@ -1,5 +1,9 @@
 # History
 
+2026-11-12 — IH2-071 revised final local: actualCI43168759654rejected71/72browser due pointer-focus scrolling. Keyboard-only uncover and direct partial-target regression fix it; same test rejects actual oldcompiledartifact325→433px. Hidden NPC links also fixed. All247domain/zero skips47.664s and72browser9.3m,13runtimeimages pass; revised exact-headCI/artifact/source/preview gates pending.
+
+2026-11-12 — IH2-071 pre-merge follow-up: scoped hidden presentation to commission links in NPC dialogs, preserving existing services before acceptance/after completion. Actual-input focused4case regression passes46.2s; revised full/exact-head gates pending.
+
 2026-11-12 — IH2-071 working integration: explicit Pip deliveries/private card-plan, once-only2pine1radish letterbox, strict new sinks/ownership/migrations/schema3 and private/public motif display. Fourteen original vectors promoted; focused phone/shared retry/visitor/fresh actual5m and populated restart pass.247checks/zero skips46.971s; all72browser9.2m pass; finalCI/artifact/source gates pending. Accepted4175/API/originalgame remain unchanged.
 
 2026-11-12 — IH2-069 source/design accepted: PR19/merge15fc340, exactcecb8c7CI43158628633bothSUCCESS224/68, actualunchanged159gamefiles/sevenconceptimages reviewed, matchingtree/cleanmain. Immutable18filestudy49523reverified;4175/API/practice unchanged.071playablecommission startsnext; no hosted/currentgamechange.

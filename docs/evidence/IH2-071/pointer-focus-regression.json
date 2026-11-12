@@ -1,0 +1,50 @@
+{
+  "classification": "Actual rejected compiled CI artifact compared with corrected native-Chrome regression",
+  "rejectedCandidate": "d7e3684870d3a2e85f6de94d58899698d4c0ce41",
+  "ciRun": 43168759654,
+  "ciDomain": {
+    "passed": 247,
+    "skipped": 0,
+    "conclusion": "success"
+  },
+  "ciBrowser": {
+    "passed": 71,
+    "failed": 1,
+    "minutes": 17.8,
+    "failure": "Shared commission preview-leaf pointer click lost while focus handler synchronously scrolled; disabled style control then timed out."
+  },
+  "trace": {
+    "previewClickPoint": [
+      87.53,
+      774.5
+    ],
+    "dialogScrollTop": [
+      854,
+      149,
+      205
+    ]
+  },
+  "negativeControl": {
+    "artifact": "Actual downloaded d7e client build on isolated loopback49524",
+    "test": "same new paid elapsed phone test, no force clicks",
+    "expectedScrollTopOnPointerDown": 325,
+    "observedOldScrollTopOnPointerDown": 433,
+    "result": "Failed the unchanged-target assertion, as intended"
+  },
+  "correctedFocused": {
+    "passed": 4,
+    "seconds": 49.4,
+    "result": "Pass partial visible real mousedown/up, selected aria-pressed, free unchanged state, original keyboard short200 make/cancel, retry and visitor flows"
+  },
+  "fix": "Only keyboard :focus-visible focus triggers uncover. Resize observer and explicit quote scrolling remain. No test deadline/authority/assertion reduction.",
+  "supersededLocalRun": "Hidden-control full rerun interrupted after48passes when actual CI defect was confirmed; archive kept. Corrected full72rerun pending.",
+  "correctedFull": {
+    "passed": 72,
+    "minutes": 9.3
+  },
+  "correctedDomain": {
+    "passed": 247,
+    "skipped": 0,
+    "durationMs": 47664.767625
+  }
+}

@@ -8,8 +8,9 @@ export class CommissionUI{
  constructor(private host:Host,private workshop:WorkshopUI){
   const timer=setInterval(()=>{if(!document.hidden)this.refresh();},1000);
   const revealFocus=()=>{const focused=document.activeElement;if(this.active&&focused instanceof HTMLElement&&focused!==this.status&&host.body.contains(focused))this.ensureVisible(focused);};
-  host.body.addEventListener('focusin',revealFocus);const observer=new ResizeObserver(revealFocus),head=host.body.closest('dialog')?.querySelector('.dialog-head');if(head)observer.observe(head);
-  window.addEventListener('pagehide',e=>{if(!e.persisted){clearInterval(timer);observer.disconnect();host.body.removeEventListener('focusin',revealFocus);}});
+  const keyboardFocus=()=>{if(document.activeElement?.matches(':focus-visible'))revealFocus();};
+  host.body.addEventListener('focusin',keyboardFocus);const observer=new ResizeObserver(revealFocus),head=host.body.closest('dialog')?.querySelector('.dialog-head');if(head)observer.observe(head);
+  window.addEventListener('pagehide',e=>{if(!e.persisted){clearInterval(timer);observer.disconnect();host.body.removeEventListener('focusin',keyboardFocus);}});
  }
  private ensureVisible(element:HTMLElement){
   const dialog=this.host.body.closest('dialog');if(!dialog)return;

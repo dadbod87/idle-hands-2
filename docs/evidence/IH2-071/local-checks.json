@@ -3,17 +3,19 @@
   "domain": {
     "passed": 247,
     "skipped": 0,
-    "durationMs": 46971.497625,
+    "durationMs": 47664.767625,
     "pureCommissionChecks": 8,
     "isolatedCommissionTransactionScenarios": 9,
     "presentationGuardCases": 3
   },
   "browser": {
     "passed": 72,
-    "reportedMinutes": 9.2,
+    "reportedMinutes": 9.3,
     "driver": "Native headless Chrome, desktop/touch/narrow/short200 emulation",
     "newCommissionCases": 4,
-    "allTwelveNewRuntimeImagesReviewed": true
+    "allThirteenNewRuntimeImagesReviewed": true,
+    "pointerFocusRegressionAndKeyboard200": true,
+    "hiddenNpcLinksBeforeAndAfterRoute": true
   },
   "build": true,
   "design": {
@@ -42,5 +44,6 @@
     "Existing20ordinary-protocol load proves its declared local scope, not20rendered browsers or cloud capacity",
     "Illustrated receipt/flap presentation is not a new actor handover/assembly rig",
     "Source/CI and coordinated accepted-preview update still pending"
-  ]
+  ],
+  "compiledRejectedBuildNegativeControl": "New direct pointer assertion rejects old d7e artifact: scrollTop325\u2192433 during mousedown"
 }

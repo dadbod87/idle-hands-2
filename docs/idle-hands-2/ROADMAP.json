@@ -682,7 +682,7 @@
     {
       "id": "IH2-072",
       "title": "Combined neighborhood progression and creative expression audit",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-071"
       ],
@@ -712,9 +712,35 @@
         "docs/evidence/IH2-072/rejected-phases.json",
         "docs/evidence/IH2-072/local-checks.json",
         "docs/evidence/IH2-072/screens-reviewed.json",
-        "docs/evidence/IH2-072/timed-observations.json"
+        "docs/evidence/IH2-072/timed-observations.json",
+        "docs/evidence/IH2-072/source-closeout.json"
       ],
       "owner_branch": "feat/neighborhood-progression-audit"
+    },
+    {
+      "id": "IH2-073",
+      "title": "Current actions first in returning post and busy/full garden",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-072"
+      ],
+      "goal": "Make useful existing actions easy to reach on phones while preserving completed humor/art, explicit confirmations and every authority/economy rule.",
+      "acceptance": [
+        "Prioritize current Pip status, owned customization and navigation; preserve the free chapter, recipient services, route-order card/story behind deliberate revisit, motifs and opt-in register/removal.",
+        "Give busy/full beds an honest useful route and compact inactive planting review; preserve ready harvests, selected seeds/beds, deadlines, safe held crops, inspect/swap/markers and explicit paid confirmation.",
+        "Stable targets across passive countdown updates;44px controls, keyboard/touch/focus and free cancel/review at desktop/narrow/short200. Preserve pending retry, owner/panel-generation and quote protection.",
+        "Actual before/after fresh/card-only/owned-box/ready/both-busy/full observations and meaningful old-artifact hierarchy regressions. No progress mutation from navigation/disclosures/previews; keep one owned copy and ordinary/easel jobs exact.",
+        "Required full repository gates and both exact-final-headCI jobs, actual uploaded artifacts/images, matching merge tree, docs/source closeout and preserved local preview update. No original-game or hosted update."
+      ],
+      "exclusions": [
+        "No house-slot or price change, new recipe/resource/shop/timer/economy, social system, region, broad art family, real account or paid/hosted service."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/CURRENT_ACTIONS_FIRST.md",
+        "docs/evidence/IH2-073/REPORT.md",
+        "docs/idle-hands-2/handoffs/2026-11-12-current-actions-first.md"
+      ],
+      "owner_branch": "feat/current-actions-first"
     },
     {
       "id": "IH2-070",
@@ -734,7 +760,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Owner authorized successive independent local tasks while away;072audits the combined accepted neighborhood before another bounded expansion. No cloud resources, invitations or public release."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-073 improves existing activity presentation after the accepted combined audit. No cloud resources, invitations or public release."
     },
     {
       "id": "IH2-080",

@@ -1,5 +1,5 @@
 import {CROP_IDS,CROP_DEFS,CLIPPING_MARKERS,MARKER_IDS,MARKER_DEFS,STAKE_IDS,STAKE_CHOICES,STAKE_STUDIES,settleGarden,gardenStage,type GardenState,type GardenAction,type CropId,type MarkerId,type StakeId} from '../game/garden.ts';
-import {WorkshopUI,duration} from './workshop.ts';
+import {WorkshopUI,duration,type WorkshopCommandResult} from './workshop.ts';
 import './garden.css';
 type PublicGarden={credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};
 type GardenHost={open:(title:string)=>void;body:HTMLElement;feedback:(text:string)=>void;changed:()=>void;owner:()=>string;shared:boolean;publicState:()=>PublicGarden|undefined;canUse:(action:GardenAction)=>boolean;go:(room:'square'|'garden',stopId:string)=>void;accepted:(action:GardenAction)=>void};
@@ -11,7 +11,7 @@ export class GardenUI{
  private neutralFeedback=this.bedFeedback;
  private status:HTMLElement|null=null;private busy=false;private preview=false;private marker:MarkerId='sunburst';private saveError='';
  get isSaving(){return this.busy||this.workshop.gardenSaveStatus().canRetry;}
- constructor(private host:GardenHost,private workshop:WorkshopUI){const timer=window.setInterval(()=>this.refresh(),1000);const visible=()=>{if(!document.hidden)this.refresh();};document.addEventListener('visibilitychange',visible);this.host.body.addEventListener('focusin',event=>{const target=event.target;if(target instanceof HTMLElement&&target.matches('button,input,select,summary,[tabindex="0"]')&&!target.classList.contains('garden-status'))requestAnimationFrame(()=>{if(this.active&&this.host.body.contains(target)&&document.activeElement===target)this.ensureVisible(target);});});window.addEventListener('pagehide',e=>{if(!e.persisted){clearInterval(timer);document.removeEventListener('visibilitychange',visible);this.layoutObserver?.disconnect();}});}
+ constructor(private host:GardenHost,private workshop:WorkshopUI){const timer=window.setInterval(()=>this.refresh(),1000);const visible=()=>{if(!document.hidden)this.refresh();};document.addEventListener('visibilitychange',visible);this.host.body.addEventListener('focusin',event=>{const target=event.target;if(target instanceof HTMLElement&&target.matches(':focus-visible')&&target.matches('button,input,select,summary,[tabindex="0"]')&&!target.classList.contains('garden-status'))requestAnimationFrame(()=>{if(this.active&&this.host.body.contains(target)&&document.activeElement===target)this.ensureVisible(target);});});window.addEventListener('pagehide',e=>{if(!e.persisted){clearInterval(timer);document.removeEventListener('visibilitychange',visible);this.layoutObserver?.disconnect();}});}
  closed(){this.active=null;this.status=null;this.notes=null;this.preview=false;this.layoutObserver?.disconnect();this.layoutObserver=null;const dialog=this.host.body.closest('dialog');if(dialog){dialog.classList.remove('garden-dialog');dialog.style.scrollPaddingTop='';dialog.style.scrollPaddingBottom='';}}
  refresh(){if(document.hidden||!this.active)return;if(this.owner!==this.host.owner()){this.preview=false;this.host.body.querySelectorAll<HTMLButtonElement|HTMLInputElement|HTMLSelectElement>('button,input,select').forEach(e=>e.disabled=true);if(this.status)this.status.textContent='The resident changed. Reopen this panel to review the current resident’s garden.';return;}if(!this.workshop.state.garden){if(this.status)this.status.textContent='This local town service needs its garden update before these controls are available.';this.host.body.querySelectorAll<HTMLButtonElement|HTMLInputElement|HTMLSelectElement>('button,input,select').forEach(e=>e.disabled=true);return;}this.active();}
  private el<K extends keyof HTMLElementTagNameMap>(tag:K,text='',className=''){const e=document.createElement(tag);e.textContent=text;if(className)e.className=className;return e;}
@@ -39,11 +39,11 @@ export class GardenUI{
  }
  private focusQuote(quote:HTMLElement){quote.focus({preventScroll:true});this.ensureVisible(quote,'start');}
  private navigation(room:'square'|'garden',id:string,label:string){const button=this.button(label,()=>this.host.go(room,id));button.dataset.gardenNav='true';return button;}
- private retryRow(){const b=this.button('Retry the same request',()=>void this.retry(),'retry');b.classList.add('garden-retry');this.host.body.append(b);if(this.notes)this.host.body.append(this.notes);if(this.status)this.host.body.append(this.status);this.layoutObserver=new ResizeObserver(()=>{const target=document.activeElement;if(target instanceof HTMLElement&&target.hasAttribute('data-garden-quote')&&this.host.body.contains(target))this.ensureVisible(target,'start');});const header=this.host.body.closest('dialog')?.querySelector('.dialog-head');if(header)this.layoutObserver.observe(header);if(this.status)this.layoutObserver.observe(this.status);return b;}
- private async retry(){if(this.busy||this.owner!==this.host.owner())return;this.busy=true;this.refresh();try{const r=await this.workshop.retryGarden();if(this.status)this.status.textContent=r.message;}finally{this.busy=false;this.host.changed();this.refresh();}}
+ private retryRow(afterRetry?:(result:WorkshopCommandResult)=>void){const b=this.button('Retry the same request',()=>void this.retry(afterRetry),'retry');b.classList.add('garden-retry');this.host.body.append(b);if(this.notes)this.host.body.append(this.notes);if(this.status)this.host.body.append(this.status);this.layoutObserver=new ResizeObserver(()=>{const target=document.activeElement;if(target instanceof HTMLElement&&target.hasAttribute('data-garden-quote')&&this.host.body.contains(target))this.ensureVisible(target,'start');});const header=this.host.body.closest('dialog')?.querySelector('.dialog-head');if(header)this.layoutObserver.observe(header);if(this.status)this.layoutObserver.observe(this.status);return b;}
+ private async retry(afterRetry?:(result:WorkshopCommandResult)=>void){if(this.busy||this.owner!==this.host.owner())return;const status=this.status,owner=this.owner;this.busy=true;this.refresh();try{const r=await this.workshop.retryGarden();if(status===this.status&&owner===this.host.owner()&&this.active){afterRetry?.(r);if(r.ok)this.preview=false;if(status)status.textContent=r.message;}}finally{this.busy=false;this.host.changed();this.refresh();}}
  private async perform(action:GardenAction){
-  if(this.blocked(action))return;this.busy=true;if(this.status)this.status.textContent='Saving this change…';this.refresh();this.host.changed();
-  try{const result=await this.workshop.runGarden(action);if(this.status)this.status.textContent=result.message;this.host.feedback(result.message);if(result.ok){this.preview=false;this.host.accepted(action);}}
+  if(this.blocked(action))return false;this.busy=true;if(this.status)this.status.textContent='Saving this change…';this.refresh();this.host.changed();
+  try{const result=await this.workshop.runGarden(action);if(this.status)this.status.textContent=result.message;this.host.feedback(result.message);if(result.ok){this.preview=false;this.host.accepted(action);}return result.ok;}
   finally{this.busy=false;this.host.changed();this.refresh();}
  }
  private updateRetry(button:HTMLButtonElement){const s=this.workshop.gardenSaveStatus();button.hidden=!s.canRetry;button.disabled=this.busy||s.busy;this.host.body.querySelectorAll<HTMLButtonElement>('[data-garden-nav]').forEach(b=>b.disabled=this.isSaving);if(!this.view().clockOk&&this.status)this.status.textContent='The clock has not caught up with this saved garden. Your plants are kept; actions will be available when the time can be confirmed.';else if(s.error&&this.status&&!this.status.textContent)this.status.textContent=s.error;else if(!s.error&&this.status?.textContent===this.saveError)this.status.textContent=this.neutralFeedback;this.saveError=s.error;}
@@ -53,10 +53,12 @@ export class GardenUI{
   const walk=this.navigation('garden','garden-beds','Walk to the beds');
   const atBeds=this.host.canUse({action:'plant',bed:0,crop:'radish'});
   if(!atBeds)body.append(walk);else body.querySelector('.garden-scope')?.remove();
+  const next=this.el('section','','garden-next'),nextReason=this.el('p'),nextActions=this.el('div');next.append(nextReason,nextActions);body.append(next);
+  let layoutMode:'harvest'|'attendant'|'field'|null|undefined,layoutRevision=-1,layoutSelection=-1,receiptBed:number|null=null;
   const row=this.el('div','','garden-bed-list');
   const rows:Array<{button:HTMLButtonElement;img:HTMLImageElement;name:HTMLElement;crop:HTMLElement;time:HTMLElement;short:HTMLElement}>=[];
   for(let i=0;i<3;i++){
-   const button=this.button('',()=>{this.selected=i;this.preview=false;this.refresh();});button.dataset.gardenBed=String(i);
+   const button=this.button('',()=>{this.selected=i;this.preview=false;receiptBed=null;this.refresh();});button.dataset.gardenBed=String(i);
    const img=this.image('garden-bed-empty',24),name=this.el('strong','Bed '+(i+1)),crop=this.el('span','','garden-crop-name'),time=this.el('span','','garden-bed-time-full'),short=this.el('span','','garden-bed-time-short');short.setAttribute('aria-hidden','true');name.append(crop);
    const text=this.el('span');text.append(name,time,short);button.append(img,text);rows.push({button,img,name,crop,time,short});row.append(button);
   }
@@ -67,16 +69,29 @@ export class GardenUI{
   const radios:HTMLInputElement[]=[],counts:HTMLElement[]=[];
   for(const crop of CROP_IDS){
    const label=this.el('label','','garden-seed'),radio=this.el('input');radio.type='radio';radio.name='garden-seed';radio.value=crop;radio.checked=crop===this.crop;
-   radio.onchange=()=>{this.crop=crop;this.preview=false;this.refresh();};
+   radio.onchange=()=>{this.crop=crop;this.preview=false;receiptBed=null;this.refresh();};
    const count=this.el('span');counts.push(count);label.append(radio,this.image('garden-'+crop+'-seed',24),this.el('span',CROP_DEFS[crop].name),count);seedset.append(label);radios.push(radio);
   }
   body.append(seedset);
   const actions=this.el('div','','garden-primary-actions');
-  const preview=this.button('Preview planting · free',()=>{this.preview=true;this.refresh();this.focusQuote(previewText);},'preview-plant');
-  const harvest=this.button('Harvest · 1 produce + 1 seed',()=>void this.perform({action:'harvest',bed:this.selected??0}),'harvest');actions.append(preview,harvest);body.append(actions);
+  const preview=this.button('Preview planting · free',()=>{receiptBed=null;this.preview=true;this.refresh();this.focusQuote(previewText);},'preview-plant');
+  const harvest=this.button('Harvest · 1 produce + 1 seed',()=>{receiptBed=null;void this.perform({action:'harvest',bed:this.selected??0});},'harvest');actions.append(preview,harvest);body.append(actions);
   const previewBox=this.el('section','','garden-preview'),previewText=this.el('p');previewText.dataset.gardenQuote='true';previewText.tabIndex=-1;
-  const confirm=this.button('Confirm planting · 1 bound seed',()=>void this.perform({action:'plant',bed:this.selected??0,crop:this.crop}),'plant');
-  const cancel=this.button('Cancel preview · free',()=>{this.preview=false;this.refresh();},'cancel-preview');previewBox.append(previewText,confirm,cancel);body.append(previewBox);
+  const confirm=this.button('Confirm planting · 1 bound seed',()=>{
+   const selected=this.selected??0,owner=this.host.owner(),returnFocus=document.activeElement===confirm;
+   receiptBed=selected;
+   void this.perform({action:'plant',bed:selected,crop:this.crop}).then(ok=>{
+    if(!ok&&!this.workshop.gardenSaveStatus().canRetry)receiptBed=null;
+    if(ok&&returnFocus&&!this.preview&&owner===this.host.owner()&&body.contains(confirm)&&confirm.closest('dialog')?.open&&(document.activeElement===confirm||document.activeElement===document.body)){
+     this.status?.focus({preventScroll:true});
+    }
+   });
+  },'plant');
+  const cancel=this.button('Cancel preview · free',()=>{
+   if(!body.contains(cancel)||!cancel.closest('dialog')?.open||this.owner!==this.host.owner())return;
+   this.preview=false;receiptBed=null;this.refresh();const target=preview.disabled?rows[this.selected??0].button:preview;
+   target.focus({preventScroll:true});this.ensureVisible(target);
+  },'cancel-preview');previewBox.append(previewText,confirm,cancel);body.append(previewBox);
   const inspect=this.button('Inspect soil & leaves · no production bonus',()=>void this.perform({action:'observe',bed:this.selected??0}),'observe');body.append(inspect);
   const practice=this.el('p','','garden-practice');
   const swap=this.el('select');swap.setAttribute('aria-label','Other bed to swap with');
@@ -85,8 +100,10 @@ export class GardenUI{
   const arrange=this.el('details','','garden-options'),summary=this.el('summary','Practice, bed arrangement & growing notes');
   arrange.append(summary,practice,this.el('p','Three beds. No house, kit or workshop slot needed. Ready plants wait safely; there is no withering. Seeds return at harvest.'),this.el('p','Rearranging never restarts growth. Choose another bed:'),swap,swapButton);body.append(arrange);
   const nav=this.el('div','','garden-navigation');if(atBeds)nav.append(walk);
-  nav.append(this.navigation('garden','garden-desk','Visit the allotment attendant'),this.navigation('square','garden-field','Make a marker at the field'),this.navigation('square','garden-registry','See chosen garden displays'));body.append(nav);
-  const retry=this.retryRow();
+  const attendantNav=this.navigation('garden','garden-desk','Visit the allotment attendant'),fieldNav=this.navigation('square','garden-field','Make a marker at the field'),registryNav=this.navigation('square','garden-registry','See chosen garden displays');
+  const reviewHarvest=this.button('Review ready harvest',()=>{harvest.focus({preventScroll:true});this.ensureVisible(harvest);},'review-harvest');
+  nav.append(attendantNav,fieldNav,registryNav);body.append(nav);
+  const retry=this.retryRow(result=>{if(!result.ok&&!result.retry)receiptBed=null;});
   this.active=()=>{
    const {state:s,now}=this.view();if(!s)return;
    if(this.selected===null){const ready=s.beds.map((b,i)=>({b,i})).filter(v=>v.b&&v.b.readyAt<=now&&s.produce[v.b.crop]<12).sort((a,b)=>a.b!.readyAt-b.b!.readyAt);this.selected=ready[0]?.i??Math.max(0,s.beds.findIndex(b=>!b));}
@@ -102,10 +119,28 @@ export class GardenUI{
    practice.textContent=`Gardening practice: ${s.practice}. Every harvest +1; rested bonus +1 when available (${s.rested.available}/6). An empty bonus bank never blocks base progress.`;
    for(const[i,crop]of CROP_IDS.entries()){counts[i].textContent=s.seeds[crop]+' available';radios[i].disabled=this.busy;}
    const bed=s.beds[this.selected!],action:GardenAction={action:'plant',bed:this.selected!,crop:this.crop};
+   // Reorder only for an explicit selection or confirmed command, never a
+   // passive one-second countdown. The existing route keeps its identity.
+   if(layoutRevision!==this.workshop.state.revision||layoutSelection!==this.selected){
+    const mode=bed&&s.produce[bed.crop]>=12?'attendant':bed&&bed.readyAt<=now?'harvest':s.beds.every(Boolean)?'field':null;
+    if(mode!==layoutMode){
+     nav.append(attendantNav,fieldNav,registryNav);nextActions.replaceChildren();
+     if(mode==='attendant')nextActions.append(attendantNav);else if(mode==='field')nextActions.append(fieldNav);else if(mode==='harvest')nextActions.append(reviewHarvest);
+     next.hidden=mode===null;
+     nextReason.textContent=mode==='attendant'?'Your harvest stays safe. Review uses for full produce.':mode==='harvest'?'A harvest is ready. Nothing is collected until you confirm.':'Plants wait safely. A field marker uses clippings, not produce.';
+     layoutMode=mode;
+    }
+    layoutRevision=this.workshop.state.revision;layoutSelection=this.selected!;
+   }
+   reviewHarvest.disabled=this.isSaving;
+   const previousNeutral=this.neutralFeedback;
+   this.neutralFeedback=bed&&s.produce[bed.crop]>=12?'The plant and seed stay safe. Review produce uses or choose another bed.':bed&&bed.readyAt>now?'Plants wait safely while you explore another activity.':bed?'A harvest is ready. Review its bed before collecting.':this.bedFeedback;
+   if(this.status?.textContent===previousNeutral)this.status.textContent=this.neutralFeedback;
    const grow=this.crop==='radish'&&!s.firstRadishUsed?5*60000:CROP_DEFS[this.crop].durationMs;
    preview.disabled=this.busy||!!bed||s.seeds[this.crop]===0;
-   previewText.textContent=!this.preview?'Preview a seed and bed before planting. Nothing is spent until you confirm.':`Bed ${this.selected!+1} · ${CROP_DEFS[this.crop].name}. Cost: 1 seed. ${duration(grow)} real time.${this.host.canUse(action)?'':' Confirm at your beds.'}`;
-   confirm.disabled=!this.preview||this.blocked(action)||!!bed||s.seeds[this.crop]===0;cancel.disabled=this.busy||!this.preview;
+   previewBox.hidden=!this.preview&&receiptBed===null;
+   previewText.textContent=this.preview?`Bed ${this.selected!+1} · ${CROP_DEFS[this.crop].name}. Cost: 1 seed. ${duration(grow)} real time.${this.host.canUse(action)?'':' Confirm at your beds.'}`:receiptBed!==null?`Bed ${receiptBed+1} planted. One bound seed was spent. This receipt stays until you close it or choose another bed; your plant waits safely.`:'Preview a seed and bed before planting. Nothing is spent until you confirm.';
+   confirm.disabled=!this.preview||this.blocked(action)||!!bed||s.seeds[this.crop]===0;cancel.disabled=this.busy||!this.preview&&receiptBed===null;cancel.textContent=!this.preview&&receiptBed!==null?'Close planting receipt · free':'Cancel preview · free';
    bedNotice.textContent=!bed?(s.seeds[this.crop]>0?'Empty · choose a seed and preview planting.':'No selected seed in hand. Growing plants return theirs at harvest; the attendant replaces missing starter supply.'):
     s.produce[bed.crop]>=12?'This produce space is full. The plant and seed wait safely; use produce or tend another bed.':bed.readyAt>now?'Growing · '+duration(bed.readyAt-now)+' left. Ready plants wait safely.':'Ready · harvest one produce, one seed and at least one practice point.';
    harvest.disabled=this.blocked({action:'harvest',bed:this.selected!})||!bed||bed.readyAt>now||s.produce[bed.crop]>=12;

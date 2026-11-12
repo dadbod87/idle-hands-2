@@ -1,6 +1,6 @@
 # IH2-072 — combined neighborhood audit
 
-Working source audit, November 12, 2026. Audit implementation and documentation only; source acceptance remains pending exact-head CI and artifact review. No game, art, economy or hosting change is included.
+Accepted source audit, November 12, 2026. PR #21, merge `c72c3a705492275a2b7251a40ce76842df75750f`; [source closeout](source-closeout.json). Audit tools and documentation only. No game, art, economy or hosting change is included.
 
 The observed game is accepted IH2-071 merge `3fc2cfed6f30837a62b7c8cdf95126595586d3a6`, candidate `ef6340a1f64135fe47b9f46ddf56187739ddc9ae`, actual CI artifact `43175976771`. [Audit contract](../../idle-hands-2/COMBINED_NEIGHBORHOOD_AUDIT.md). [Prior source closeout](../IH2-071/source-closeout.json).
 
@@ -52,10 +52,10 @@ Read-only source coverage review corrected personal 60-total material capacity w
 
 ## Recommended next task
 
-**IH2-073: current actions first in returning Pip and full/busy garden panels.** [Candidate contract](../../idle-hands-2/CURRENT_ACTIONS_FIRST.md), not active implementation. Presentation only: prioritize concise current state, owned customization and useful navigation; keep the free route card/story under revisit. Give full/busy beds a truthful route rather than a generic preview prompt. Preserve all displayed deadlines, safe ready crops, costs, server authority, ownership, explicit confirmation, intro access, humor, keyboard focus and free preview/cancel behavior. Validate fresh/ready/busy/full desktop, native touch-emulated narrow and short doubled text against the audit baseline. Do not combine house-slot changes, new economy/content or a shop into this correction.
+**IH2-073: current actions first in returning Pip and full/busy garden panels.** [Follow-up contract](../../idle-hands-2/CURRENT_ACTIONS_FIRST.md), now tracked separately as IH2-073. Presentation only: prioritize concise current state, owned customization and useful navigation; keep the free route card/story under revisit. Give full/busy beds a truthful route rather than a generic preview prompt. Preserve all displayed deadlines, safe ready crops, costs, server authority, ownership, explicit confirmation, intro access, humor, keyboard focus and free preview/cancel behavior. Validate fresh/ready/busy/full desktop, native touch-emulated narrow and short doubled text against the audit baseline. Do not combine house-slot changes, new economy/content or a shop into this correction.
 
 ## Verification status
 
 Local: 256 tests passed, zero skipped, including real isolated SQL/HTTP/restore tests; strict build/design passed; all 174 game files identical; deterministic coupled reproduction passed; plan checker (27 tasks) and 10 tracker tests passed; 40 pinned files and diff checks passed. An initial environment-free run passed 186 and skipped six server suites; it is superseded by the configured full run, not counted as the final check.
 
-Timed observation completed and actual captures reviewed. All 72 browser checks passed in 9.3 minutes; eight selected actual regression captures reviewed across desktop, narrow and short screens with doubled text. Final docs/source review and local checks pass. Pending: exact-final-head both CI jobs, actual uploaded artifacts/images and matching-tree merge. Task remains in progress until these gates pass. No public deployment, original-game change, paid service or real-player update.
+Timed observation and actual captures reviewed. All 72 local browser checks passed in 9.3 minutes. Final candidate `2ac20e120f9c3dec722611b2f06ab4fe80691fed` passed both CI jobs in run `43195544470`: 256 domain tests with zero skips and 72 browser checks in 15.5 minutes. Actual uploaded client/server/browser artifacts inspected, all 174 game files match the accepted baseline, and eight selected CI captures reviewed. Candidate and merge trees match; clean main matched remote. The audit is complete. No public deployment, original-game change, paid service or real-player update.

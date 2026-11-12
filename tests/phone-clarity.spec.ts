@@ -19,7 +19,9 @@ async function settled(page:Page){
  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.metrics().presentation.menuBackdropPaused)).toBe(true);
 }
 async function visibleControl(page:Page,selector:string){
- const target=page.locator(selector);await target.focus();await settled(page);
+ const target=page.locator(selector);
+ for(let step=0;step<32;step++){if(await target.evaluate(e=>e===document.activeElement))break;await page.keyboard.press('Tab');expect(step).toBeLessThan(31);}
+ await settled(page);
  const box=(await target.boundingBox())!,head=(await page.locator('.dialog-head').boundingBox())!,feedback=(await page.locator('.garden-status').boundingBox())!;
  expect(box.height).toBeGreaterThanOrEqual(44);
  expect(box.y).toBeGreaterThanOrEqual(head.y+head.height-.5);

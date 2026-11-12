@@ -1,0 +1,323 @@
+{
+  "method": "Same27situations/viewports; explicit elapsed/position fixtures and1250mssettled capture before/after; no API or progress mutation",
+  "beforeHtmlSha256": "15e94f934918c3e7cd71ae02c76ace06d556137c293eb26d4ef55d7bda65f93d",
+  "afterHtmlSha256": "065fd2f689198ae6c1d838526f69cb75deabaf30e5fafc94f8000d75379abfd1",
+  "pairs": [
+    {
+      "name": "post-fresh-desktop",
+      "beforeScrollPages": 1,
+      "afterScrollPages": 1,
+      "visibleEnabledActions": [
+        "Walk to Pip",
+        "Find Nella \u00b7 free saw lesson & pine",
+        "Visit your crops \u00b7 seed, bed & harvest"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-fresh-phone",
+      "beforeScrollPages": 1.51,
+      "afterScrollPages": 1.47,
+      "visibleEnabledActions": [
+        "Walk to Pip",
+        "Find Nella \u00b7 free saw lesson & pine",
+        "Visit your crops \u00b7 seed, bed & harvest"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-fresh-short200",
+      "beforeScrollPages": 4.79,
+      "afterScrollPages": 4.46,
+      "visibleEnabledActions": [],
+      "statePreserved": true
+    },
+    {
+      "name": "post-card-only-desktop",
+      "beforeScrollPages": 1.8,
+      "afterScrollPages": 1.26,
+      "visibleEnabledActions": [
+        "Walk to Pip",
+        "Leaf route",
+        "Sun route",
+        "Night post",
+        "Review 2 pine + 1 radish \u00b7 no extra timer",
+        "Find Nella \u00b7 free saw lesson & pine",
+        "Visit your crops \u00b7 seed, bed & harvest"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-card-only-phone",
+      "beforeScrollPages": 3.06,
+      "afterScrollPages": 2.07,
+      "visibleEnabledActions": [
+        "Walk to Pip",
+        "Leaf route",
+        "Sun route",
+        "Night post"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-card-only-short200",
+      "beforeScrollPages": 9.53,
+      "afterScrollPages": 5.93,
+      "visibleEnabledActions": [
+        "Walk to Pip"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-owned-desktop",
+      "beforeScrollPages": 1.86,
+      "afterScrollPages": 1.33,
+      "visibleEnabledActions": [
+        "Walk to Pip",
+        "Leaf route",
+        "Sun route",
+        "Night post",
+        "Find Nella \u00b7 free saw lesson & pine",
+        "Visit your crops \u00b7 seed, bed & harvest"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-owned-phone",
+      "beforeScrollPages": 3.11,
+      "afterScrollPages": 2.13,
+      "visibleEnabledActions": [
+        "Walk to Pip",
+        "Leaf route",
+        "Sun route",
+        "Night post"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-owned-short200",
+      "beforeScrollPages": 9.74,
+      "afterScrollPages": 6.18,
+      "visibleEnabledActions": [
+        "Walk to Pip"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-card-only-at-pip-desktop",
+      "beforeScrollPages": 1.8,
+      "afterScrollPages": 1.2,
+      "visibleEnabledActions": [
+        "Leaf route",
+        "Sun route",
+        "Night post",
+        "Review 2 pine + 1 radish \u00b7 no extra timer",
+        "Find Nella \u00b7 free saw lesson & pine",
+        "Visit your crops \u00b7 seed, bed & harvest"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-card-only-at-pip-phone",
+      "beforeScrollPages": 3.06,
+      "afterScrollPages": 1.99,
+      "visibleEnabledActions": [
+        "Leaf route",
+        "Sun route",
+        "Night post"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-card-only-at-pip-short200",
+      "beforeScrollPages": 9.53,
+      "afterScrollPages": 5.72,
+      "visibleEnabledActions": [
+        "Leaf route",
+        "Sun route",
+        "Night post"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-owned-at-pip-desktop",
+      "beforeScrollPages": 1.86,
+      "afterScrollPages": 1.27,
+      "visibleEnabledActions": [
+        "Leaf route",
+        "Sun route",
+        "Night post",
+        "Show my style at Pip\u2019s register",
+        "Find Nella \u00b7 free saw lesson & pine",
+        "Visit your crops \u00b7 seed, bed & harvest"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-owned-at-pip-phone",
+      "beforeScrollPages": 3.11,
+      "afterScrollPages": 2.05,
+      "visibleEnabledActions": [
+        "Leaf route",
+        "Sun route",
+        "Night post"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "post-owned-at-pip-short200",
+      "beforeScrollPages": 9.74,
+      "afterScrollPages": 5.97,
+      "visibleEnabledActions": [
+        "Leaf route",
+        "Sun route",
+        "Night post"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-fresh-desktop",
+      "beforeScrollPages": 1.39,
+      "afterScrollPages": 1.1,
+      "visibleEnabledActions": [
+        "Bed 1 \u00b7 Empty\nReady to plant",
+        "Bed 2 \u00b7 Empty\nReady to plant",
+        "Bed 3 \u00b7 Empty\nReady to plant",
+        "Preview planting \u00b7 free",
+        "Walk to the beds",
+        "Visit the allotment attendant",
+        "Make a marker at the field"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-fresh-phone",
+      "beforeScrollPages": 2.13,
+      "afterScrollPages": 1.69,
+      "visibleEnabledActions": [
+        "Bed 1 \u00b7 Empty\nReady to plant",
+        "Bed 2 \u00b7 Empty\nReady to plant",
+        "Bed 3 \u00b7 Empty\nReady to plant",
+        "Preview planting \u00b7 free"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-fresh-short200",
+      "beforeScrollPages": 6.25,
+      "afterScrollPages": 4.8,
+      "visibleEnabledActions": [
+        "Bed 1\nEmpty",
+        "Bed 2\nEmpty",
+        "Bed 3\nEmpty"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-ready-desktop",
+      "beforeScrollPages": 1.39,
+      "afterScrollPages": 1.21,
+      "visibleEnabledActions": [
+        "Review ready harvest",
+        "Bed 1 \u00b7 Marigold\nReady",
+        "Bed 2 \u00b7 Radish\nReady",
+        "Bed 3 \u00b7 Radish\nReady",
+        "Harvest \u00b7 1 produce + 1 seed",
+        "Inspect soil & leaves \u00b7 no production bonus",
+        "Walk to the beds"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-ready-phone",
+      "beforeScrollPages": 2.13,
+      "afterScrollPages": 1.85,
+      "visibleEnabledActions": [
+        "Review ready harvest",
+        "Bed 1 \u00b7 Marigold\nReady",
+        "Bed 2 \u00b7 Radish\nReady",
+        "Bed 3 \u00b7 Radish\nReady"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-ready-short200",
+      "beforeScrollPages": 6.25,
+      "afterScrollPages": 5.25,
+      "visibleEnabledActions": [
+        "Review ready harvest"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-busy-desktop",
+      "beforeScrollPages": 1.39,
+      "afterScrollPages": 1.15,
+      "visibleEnabledActions": [
+        "Make a marker at the field",
+        "Bed 1 \u00b7 Marigold\n3h 58m",
+        "Bed 2 \u00b7 Radish\n28:54",
+        "Bed 3 \u00b7 Radish\n28:54",
+        "Inspect soil & leaves \u00b7 no production bonus",
+        "Walk to the beds"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-busy-phone",
+      "beforeScrollPages": 2.13,
+      "afterScrollPages": 1.76,
+      "visibleEnabledActions": [
+        "Make a marker at the field",
+        "Bed 1 \u00b7 Marigold\n3h 58m",
+        "Bed 2 \u00b7 Radish\n28:54",
+        "Bed 3 \u00b7 Radish\n28:54"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-busy-short200",
+      "beforeScrollPages": 6.25,
+      "afterScrollPages": 5.06,
+      "visibleEnabledActions": [
+        "Make a marker at the field"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-full-desktop",
+      "beforeScrollPages": 1.39,
+      "afterScrollPages": 1.15,
+      "visibleEnabledActions": [
+        "Visit the allotment attendant",
+        "Bed 1 \u00b7 Marigold\nReady",
+        "Bed 2 \u00b7 Radish\nReady",
+        "Bed 3 \u00b7 Radish\nReady",
+        "Inspect soil & leaves \u00b7 no production bonus",
+        "Walk to the beds"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-full-phone",
+      "beforeScrollPages": 2.13,
+      "afterScrollPages": 1.76,
+      "visibleEnabledActions": [
+        "Visit the allotment attendant",
+        "Bed 1 \u00b7 Marigold\nReady",
+        "Bed 2 \u00b7 Radish\nReady",
+        "Bed 3 \u00b7 Radish\nReady"
+      ],
+      "statePreserved": true
+    },
+    {
+      "name": "garden-full-short200",
+      "beforeScrollPages": 6.25,
+      "afterScrollPages": 5.06,
+      "visibleEnabledActions": [
+        "Visit the allotment attendant"
+      ],
+      "statePreserved": true
+    }
+  ]
+}

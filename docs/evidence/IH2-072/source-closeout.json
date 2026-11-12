@@ -1,0 +1,127 @@
+{
+  "task": "IH2-072",
+  "classification": "Accepted private source audit; game/art/economy unchanged; no hosted or original-game release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/21",
+  "candidate": "2ac20e120f9c3dec722611b2f06ab4fe80691fed",
+  "merge": "c72c3a705492275a2b7251a40ce76842df75750f",
+  "ci": {
+    "run": 43195544470,
+    "exactHead": "2ac20e120f9c3dec722611b2f06ab4fe80691fed",
+    "domainJob": 131105639506,
+    "browserJob": 131105639124,
+    "bothSuccess": true,
+    "domainCount": 256,
+    "browserCount": 72,
+    "actualArtifactsDownloaded": [
+      "sequel-client-build",
+      "sequel-server-evidence",
+      "sequel-browser-evidence"
+    ],
+    "actualFilesCompared": 174,
+    "allEqualAccepted071": true,
+    "actualSelectedCIImagesReviewed": 8,
+    "isolatedContainerRestartProofInspected": true,
+    "domainSkipped": 0,
+    "domainDurationMs": 84437.98173,
+    "browserMinutes": 15.5,
+    "selectedImages": [
+      {
+        "name": "commission-runtime-desktop-placed-letterbox.png",
+        "sha256": "43cb166d3bf2d87b2b49c0fb2c63a73c56c44cdc9ae43337d1ed8267a4d997f7"
+      },
+      {
+        "name": "commission-runtime-phone-paid-quote.png",
+        "sha256": "9462f7732ff33ea16d88bdcdeb3f99e58d20f375ec569850c38787f6b0db2e0f"
+      },
+      {
+        "name": "commission-runtime-short200-cancel.png",
+        "sha256": "68ade035904804018326989961dba4757def06905dcde3adf364b487d0d887ea"
+      },
+      {
+        "name": "homes-desktop-owner-expanded.png",
+        "sha256": "5241ae1fcafd26cad5b20fcaebb721f9ca463560043358051e98ec60ea9becad"
+      },
+      {
+        "name": "clarity-phone-first-actions.png",
+        "sha256": "7abec9e6674f8a701417a97ca79a5df737ae4bd6d2d46a3b615d06058d8fa4c8"
+      },
+      {
+        "name": "clarity-short-text200-confirm.png",
+        "sha256": "951b4fc133e258457008cecf62f9d2dcae411b3c0530441b985502ea2c9fa3b0"
+      },
+      {
+        "name": "first-visit-phone-journal.png",
+        "sha256": "2b86877da4d3e021852e9907b8bf45e1597a020e7a22e89076f5e8a81f11dd26"
+      },
+      {
+        "name": "first-visit-short-text200.png",
+        "sha256": "2f67aaddcc4ee223746fac4309e991f294465d44ae7bd9a573c8189cf46c8e98"
+      }
+    ]
+  },
+  "local": {
+    "domain": 256,
+    "skipped": 0,
+    "domainDurationMs": 48597.937875,
+    "browser": 72,
+    "browserMinutes": 9.3,
+    "selectedRegressionImagesReviewed": 8,
+    "strictBuildDesignPlanPinnedDiff": "passed",
+    "buildFilesUnchanged": 174
+  },
+  "audit": {
+    "situationViewports": 18,
+    "reviewedCaptures": 17,
+    "coupledCohorts": 72,
+    "pairedOptionalChoices": 48,
+    "actualWindowMs": 900004,
+    "waitingMs": 832733,
+    "actualAbsenceMs": 180003,
+    "humanEnjoymentClaim": false
+  },
+  "practice": {
+    "classification": "Read-only local fictional practice preservation across isolated072audit; not hosted or populated-save proof",
+    "checkedAt": "2026-11-12T09:52:12.457Z",
+    "unchangedTables": [
+      "bridge",
+      "bridge_contributions",
+      "command_receipts",
+      "garden_welcome",
+      "maintenance_events",
+      "maintenance_lessons",
+      "noticeboard",
+      "players",
+      "plots",
+      "project_events",
+      "quest_awards",
+      "season_scores",
+      "trail_stamps"
+    ],
+    "savedResidents": 1,
+    "keyPreserved": true,
+    "migrationsPreserved": true,
+    "apiRestarted": false,
+    "noDatabaseWrites": true
+  },
+  "runtimeArtEconomyServerMigrationDependencyWorkflowChanges": false,
+  "previewUpdateNeeded": false,
+  "hosting": "None; no original-game or real-account change",
+  "supersededCandidate": {
+    "head": "e9b74d1381157cf2fbffc6d504e132c1c39cc11e",
+    "run": 43195377287,
+    "reason": "Four-document final wording correction, no code/measurements changed"
+  },
+  "cleanMainEqualsRemote": true,
+  "mergeTreeMatchesCandidate": true,
+  "nextRecommended": "IH2-073 current actions first; activated after this source closure",
+  "mergedAt": "2026-11-12T10:12:35Z",
+  "candidateAndMergeTree": "acb85bef8302c278a8b3c72d3430b8a1d9c1d4bd",
+  "postMergeAutomaticCI": [
+    {
+      "databaseId": 43198315192,
+      "status": "completed",
+      "conclusion": "success",
+      "bothJobsSuccessIndependentlyObserved": true
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "classification": "Selected actual settled compiled-game browser captures. No image editing. Fixture/emulation disclosure in baseline/candidate reports.",
+  "selected": [
+    {
+      "file": "screens/before-post-owned-phone.png",
+      "source": "baseline-proximity-final/post-owned-phone.png",
+      "sha256": "895e6337c7ae67096d55d663a5720037394c7db496886279b2da3c26c8d4095c",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    },
+    {
+      "file": "screens/before-garden-full-phone.png",
+      "source": "baseline-proximity-final/garden-full-phone.png",
+      "sha256": "c4b89fa3e8727f7f9b8f9817200cbc6e6b6d3c0944361d656b13834b18d391c9",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    },
+    {
+      "file": "screens/before-post-owned-at-pip-short200.png",
+      "source": "baseline-proximity-final/post-owned-at-pip-short200.png",
+      "sha256": "229e3000cc214004c5259e4c2f5be08da56d70c69df7a9579e8a2fdf0c3bdc1d",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    },
+    {
+      "file": "screens/after-post-owned-phone.png",
+      "source": "candidate-proximity-final/post-owned-phone.png",
+      "sha256": "a3f8afbe6f0c5f919e37501996c5dbbb5a6c1a899b895af967655c6516b04e4d",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    },
+    {
+      "file": "screens/after-post-owned-desktop.png",
+      "source": "candidate-proximity-final/post-owned-desktop.png",
+      "sha256": "4caeee5b6e7c5b2921e9f410fc8cf75a672a7699635b661a6a86fa04738bd9e6",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    },
+    {
+      "file": "screens/after-garden-full-phone.png",
+      "source": "candidate-proximity-final/garden-full-phone.png",
+      "sha256": "585faeee4225c47a5013cff2c17c134414834133558f5b1d582781e57bef3b15",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    },
+    {
+      "file": "screens/after-garden-ready-phone.png",
+      "source": "candidate-proximity-final/garden-ready-phone.png",
+      "sha256": "b64a28dd6dd9459aeb6aded2d23b1eda4c318010a1d62c5fe73bfdab26d47804",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    },
+    {
+      "file": "screens/after-garden-busy-short200.png",
+      "source": "candidate-proximity-final/garden-busy-short200.png",
+      "sha256": "55e4e4f9b97c9b0f122e65ca8d04b43a16958707e1601f6192452e314488024d",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    },
+    {
+      "file": "screens/after-garden-fresh-short200-quote.png",
+      "source": "candidate-proximity-final/garden-fresh-short200-quote.png",
+      "sha256": "842bd787704d542eed549f468a8687247f964538da6505a2640741bc01afe457",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    },
+    {
+      "file": "screens/after-post-owned-phone-revisited.png",
+      "source": "candidate-proximity-final/post-owned-phone-revisited.png",
+      "sha256": "d22172544cc2cdff588fc3337c8a5d47416c7a99abc1aeeddf99ff0d0e7fdc75",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    },
+    {
+      "file": "screens/after-post-owned-at-pip-short200.png",
+      "source": "candidate-proximity-final/post-owned-at-pip-short200.png",
+      "sha256": "2aa49d21ef8c096ca49dc32a59b3305d27f6636f2af4e27fba8659e70a353e64",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    },
+    {
+      "file": "screens/after-post-card-only-at-pip-short200.png",
+      "source": "candidate-proximity-final/post-card-only-at-pip-short200.png",
+      "sha256": "630c60716fa29bab2ff425c33155fcdda1b9d8e91087b04cda328ac5579a68eb",
+      "review": "Root actual image review; at-Pip candidate also independently reviewed"
+    }
+  ]
+}

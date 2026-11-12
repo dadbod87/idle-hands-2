@@ -44,7 +44,9 @@
     "tests/combined-audit-fixtures.test.ts",
     "tools/run-combined-audit-server.ts",
     "tools/observe-combined-shared.ts",
-    "tools/observe-combined-timed.ts"
+    "tools/observe-combined-timed.ts",
+    "tests/current-actions.spec.ts",
+    "tools/observe-current-actions.ts"
   ],
   "compilerOptions": {
     "types": [

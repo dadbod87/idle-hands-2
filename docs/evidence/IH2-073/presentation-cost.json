@@ -1,0 +1,16 @@
+{
+  "classification": "Built static payload comparison, not CPU/frame/server-load improvement",
+  "filesBefore": 174,
+  "filesAfter": 174,
+  "rawBytesBefore": 3263961,
+  "rawBytesAfter": 3268022,
+  "gzipEachFileBytesBefore": 580749,
+  "gzipEachFileBytesAfter": 581829,
+  "rawDelta": 4061,
+  "gzipDelta": 1080,
+  "sameOriginalArtFiles": 168,
+  "artBytesUnchanged": true,
+  "domainServerMigrationsDependenciesWorkflowSourcesIdentical": true,
+  "newApiRequestsInPanelObservations": 0,
+  "limits": "System fonts/native Chrome emulator; no physical-device claim. Existing frame policy/render geometry unchanged."
+}

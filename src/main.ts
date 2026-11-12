@@ -95,9 +95,10 @@ window.setInterval(()=>refreshMenuFrame(),1000);
 function save() { if(townMode)return; try { localStorage.setItem(saveKey, JSON.stringify(session.save())); } catch { feedback.textContent = 'Position could not be saved in this browser. The pilot remains playable.'; } }
 function focusWorld() { document.querySelector('canvas')?.focus(); }
 function unlockWorld(){if(session.locked&&!panel.open&&!transitionBusy&&!gardenUI?.isSaving&&!carpentryUI?.isSaving&&!commissionUI?.isSaving&&(!townMode||!!town?.snapshot&&!needResync&&!town.retryAvailable))session.lock(false);}
-function closePanel() { gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed(); panel.close();resumeMenuRender();unlockWorld(); focusWorld(); }
+let pendingExplicitPanelCloses=0;
+function closePanel() { gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed(); if(panel.open)pendingExplicitPanelCloses++;panel.close();resumeMenuRender();unlockWorld(); focusWorld(); }
 panel.addEventListener('submit', event => { event.preventDefault(); closePanel(); });
-panel.addEventListener('close', () => {if(panel.open)return; gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();resumeMenuRender();unlockWorld(); focusWorld(); });
+panel.addEventListener('close', () => {const explicit=pendingExplicitPanelCloses>0;if(explicit)pendingExplicitPanelCloses--;if(panel.open)return; gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();resumeMenuRender();unlockWorld(); if(!explicit)focusWorld(); });
 panel.addEventListener('cancel', event => {event.preventDefault();closePanel();});
 function openPanel(heading: string) { namedWalk=null;placeWalk=null;gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();body.classList.remove('garden-panel','carpentry-panel','commission-panel');body.removeAttribute('aria-busy');pendingHomePlotId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal();panel.scrollTop=0;pauseMenuRender(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }

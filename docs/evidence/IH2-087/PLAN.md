@@ -1,0 +1,3 @@
+# IH2-087 — first-city capacity and layout
+
+Owner authorizes consecutive bounded local tasks while away, stopping near10%shared usage reserve. Start with an evidence-based first-city/housing/UX audit, expandable24-address blueprint and separate interactive study. See design/FIRST_CITY_LAYOUT.md. Preserve existing game/client191files, protected13tables/key/API/checksums and studies. Validate geometry/address stability, native prototype desktop/phone/short, required full checks/exact-headCI/artifacts and bounded independent review. No fake purchases or implemented housing claims from design.088physical doors/089crafting clarity/090residential art follow their own gates.

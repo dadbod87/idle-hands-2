@@ -1,5 +1,7 @@
 # Idle Hands 2 — current state
 
+IH2-087 candidate audits city capacity/visits, records expandable24-home block geometry and separate interactive blueprint. Original191game files unchanged. Terra crafting/menu findings feed089before088runtime expansion. [Evidence](evidence/IH2-087/REPORT.md).
+
 IH2-086 accepted: rain anchors to the world during camera movement, with bounded wrapping and full resize coverage. PR34/merge`1426b2b`, exact`ef56506` CI43316779357 all four jobs SUCCESS;294system/zero skips and99browser. Actual191-file preview/native desktop+touch movement verified; progress/protected practice/API/studies preserved. [Evidence](evidence/IH2-086/source-closeout.json). Candidate notes below historical; current handoff authoritative.
 
 IH2-086 candidate anchors rain to world camera movement with bounded tile wrapping and overscan; rules/progress unchanged. Full acceptance pending. [Evidence](evidence/IH2-086/REPORT.md).

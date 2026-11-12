@@ -69,7 +69,11 @@
     "tests/collection-grant.test.ts",
     "tests/collection-runtime.spec.ts",
     "tests/z-first-visit.spec.ts",
-    "tests/weather-readability.spec.ts"
+    "tests/weather-readability.spec.ts",
+    "tools/neighborhood-layout.ts",
+    "tools/create-neighborhood-study.ts",
+    "tests/neighborhood-layout.test.ts",
+    "tests/neighborhood-study.spec.ts"
   ],
   "compilerOptions": {
     "types": [

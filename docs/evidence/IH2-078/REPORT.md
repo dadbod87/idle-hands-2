@@ -1,6 +1,6 @@
 # IH2-078 — ordinary collection art family
 
-Candidate-only four-character collection art, extending accepted077 without changing the playable game. [Contract](../../idle-hands-2/design/ORDINARY_GATHERING_FAMILY.md), [gallery](study/index.html), [catalog](study/catalog.json), [Terra review](TERRA_REVIEW.md), [payload comparison](payload-source.json). Source acceptance and actual uploaded artifact gates are pending at this checkpoint.
+Candidate-only four-character collection art, extending accepted077 without changing the playable game. [Contract](../../idle-hands-2/design/ORDINARY_GATHERING_FAMILY.md), [gallery](study/index.html), [catalog](study/catalog.json), [Terra review](TERRA_REVIEW.md), [payload comparison](payload-source.json). Accepted private source/art study: PR27, merge9608e39; exact4737f44CI43246666644bothSUCCESS. [Closeout](source-closeout.json).
 
 ## What changed
 
@@ -12,7 +12,7 @@ A separate self-contained gallery uses short native character/material/facing la
 
 ## Verification and review
 
-Local269domain/SQL/HTTP checks pass, zero skips,50.877s. Focused new browser case passes10.9s end-to-end (7.9s test). Strict client/server/design build, design checker, plan/tracker10tests, pinned40and diff pass. Full82browser and final exact-head CI/artifact/source gates are pending.
+Local269domain/SQL/HTTP checks pass, zero skips,50.877s. Focused new browser case passes10.9s end-to-end (7.9s test). Strict client/server/design build, design checker, plan/tracker10tests, pinned40and diff pass. All82localbrowser checks pass10.4minutes. Exact4737f4429b1a89f0f791782aae1372fb795982e6CI43246666644passes both jobs:269domain/zero skips85.162s and82browser18.8minutes. Actual downloaded178game/21study files match accepted077/reviewed source, six uploaded CIimages plus populated restart evidence inspected. Candidate/merge tree3178b4bc683c073cb0dc1ef7a03c8cf013ca7a69matches; cleanmain=remote verified.
 
 Native Canvas decodes all192actual cells: ink remains strictly inside64×80bounds and the alpha centroid of the y64–79foot band remains within0.1pxof same-character/facing idle. Exact source foot hashes are separate from tolerant rasterization. All48character/material/facing selections use native DOM controls. Tests cover full replay, cancelled character switch,44pxcontrols, phone/short doubled-text overflow and closed-select label measurements. The hidden-page test explicitly synthesizes `document.hidden`; viewport/text/media emulation is not physical-device validation.
 
@@ -22,4 +22,4 @@ The separate21-file gallery totals2,302,408raw bytes /106,345sum of per-file gzi
 
 ## Protected surfaces and limits
 
-4175continues to serve immutable076game bytes (identical077); API4186protocol4is unchanged. Accepted Aster-only49529gallery is frozen. The new four-character review remains outside runtime/public and does not grant resources, alter progress or demonstrate a reachable collection interaction. Protected13table/key/six-migration preservation and actual final source/artifact checks will be recorded at closeout. No original-game, hosted, billed-service, real-account or public-release change.
+4175continues to serve immutable076game bytes (identical077); API4186protocol4is unchanged. Accepted Aster-only49529gallery is frozen. The new four-character review remains outside runtime/public and does not grant resources, alter progress or demonstrate a reachable collection interaction. All13protectedtable columns/rows, one fictional resident/zero plots, key andsixmigration checksums remain unchanged after checks/merge. The actual uploaded21-file gallery is served separately on49530; every response matchesCI. Native desktop/360touch-emulated replay, selection cancellation and reduced idle pass with no interception, state/clock/inventory/response fixtures or API calls. Three actual gallery images inspected. Independent CIbrowser job passed20m1s including setup/cleanup; its test step18.8m leaves very little deadline headroom. No budget/assertion was changed; measure this before adding runtime coverage. No original-game, hosted, billed-service, real-account or public-release change.

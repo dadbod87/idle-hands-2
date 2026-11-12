@@ -1,5 +1,9 @@
 # Idle Hands 2 — current state
 
+IH2-079 working separate receipt prototype: fixed controls, command-bound synthetic grants, once-only retry and current-rig artwork fallback. Terra6.1identified and rechecked the narrow reopen focus fix; no remaining bounded-review blocker. Five focused model/export checks and corrected native study pass; final274domain/83browser/exact-headCI/artifact gates pending. Every178game byte remains unchanged. [Evidence](evidence/IH2-079/REPORT.md). Previous078automaticmain43250716906bothSUCCESSindependently verified.
+
+IH2-078 accepted: PR27/merge9608e39, exact4737f44CI43246666644bothSUCCESS269/82. Four-character collection study49530verified from actual21-fileCIartifact; all178game files, protected4175/API/13tables/key and old49529gallery unchanged. Terra6.1found no blocker.079visible confirmed-receipt design queued; no runtime animation integration. CIbrowser18.8m has little deadline headroom; record/measure before adding coverage. [Closeout](evidence/IH2-078/source-closeout.json). Current handoff is authoritative; candidate entries below are historical.
+
 IH2-078 working candidate completes the four-character ordinary collection art study outside gameplay. Local269checks/zero skips and focused native192-cell raster/gallery pass; Terra6.1found no blocking visual/interaction issue. Full82browser and exact-headCI/artifact gates pending. All178game bytes/172runtimeart, protected4175/API and historical49529gallery remain unchanged. [Evidence](evidence/IH2-078/REPORT.md). Prior077automatic-mainCI43240666200is now independently verified bothSUCCESS.
 
 IH2-077accepted: PR26/merge49e7e77/exactf7f3921CI43237701257bothSUCCESS265/81. Original Aster collection study is separate from gameplay; actual nine-file gallery49529and all178unchanged game responses verified,13practice tables/key preserved. [Closeout](evidence/IH2-077/source-closeout.json).078remaining rig family queued; current handoff authoritative.

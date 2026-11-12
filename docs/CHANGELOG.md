@@ -1,5 +1,9 @@
 # History
 
+2026-11-12 — IH2-079 working design study: visible fixed receipt area, original-intent confirmation/retry model and selected-sheet loading; corrected narrow reopen focus and doubled-text dialog width. Terra6.1recheck finds no blocker. Full source/CI/artifact gates pending; no game/API/progress change. [Evidence](evidence/IH2-079/REPORT.md).
+
+2026-11-12 — IH2-078 accepted PR27/merge9608e39, exact4737f44CI43246666644bothSUCCESS269/82. Original four-character collection family and gallery49530verified; actual21study/178unchangedgame files and sixCIimages reviewed. Protected practice/key/API preserved.079visible modal receipt design queued, no runtime integration. [Closeout](evidence/IH2-078/source-closeout.json).
+
 2026-11-12 — IH2-078 candidate: original Bea/Casey/Devon collection family,192framecells/four-character standalone gallery, original feet/identities and exact accepted Aster assets preserved. Local269checks/zero skips; Terra6.1bounded review finds no blocker. Full browser/CI/artifact gates pending. No gameplay integration. [Evidence](evidence/IH2-078/REPORT.md).
 
 2026-11-12 — IH2-077 accepted PR26/merge49e7e77, exactf7f3921CI43237701257bothSUCCESS265/81. Aster-only collection art gallery49529verified; game4175/all178bytes/API/data/key unchanged.078remaining rigs queued, no runtime integration. [Closeout](evidence/IH2-077/source-closeout.json).

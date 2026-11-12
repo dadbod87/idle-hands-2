@@ -1,0 +1,169 @@
+{
+  "task": "IH2-078",
+  "classification": "Accepted private source/original four-character standalone art family; no playable behavior or hosted release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/27",
+  "candidate": "4737f4429b1a89f0f791782aae1372fb795982e6",
+  "ci": {
+    "run": 43246666644,
+    "domainJob": 131281507754,
+    "browserJob": 131281507326,
+    "domainSuccess": true,
+    "domainCount": 269,
+    "domainSkipped": 0,
+    "domainDurationMs": 85161.525197,
+    "browserStatus": "success",
+    "actualDownloadedCIArtifacts": true,
+    "gameFiles": 178,
+    "allGameBytesEqualAccepted077AndLocal": true,
+    "studyFiles": 21,
+    "allStudyBytesEqualReviewedSource": true,
+    "rasterCells": 192,
+    "maximumNativeFootCentroidDelta": 0,
+    "selectedImages": [
+      {
+        "file": "gathering-family-aster-sheet.png",
+        "sha256": "e508766a342d8a3729a374adf246fbd2ba9febc2f8518c3bdca8da4084d4c4a2",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "gathering-family-bea-sheet.png",
+        "sha256": "868696d47e61d46e9ebd713c61c3529f27ff7501da1270756f46fff34478f0b5",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "gathering-family-casey-sheet.png",
+        "sha256": "601db49a66a17164a6c2f9b1571739380875709d4bb656d3ac52497d9ab8c8ef",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "gathering-family-devon-sheet.png",
+        "sha256": "44e5afdc199c1c2bef62d95a6f34f28090ec963c2b5a31f353f49f41f62c0470",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "gathering-family-phone.png",
+        "sha256": "795f8b0697744efa9e07997c823cda72ecf1192077771c48a3943d31cc857c75",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "gathering-family-short200.png",
+        "sha256": "ceb9271c23d8e4c91d3f7baef51032f1348aa8130b2cbf96333488d24724c05e",
+        "actualUploadedCIImageReviewed": true
+      }
+    ],
+    "populatedRestartEvidenceReviewed": true,
+    "bothSuccess": true,
+    "browserCount": 82,
+    "browserMinutes": 18.8,
+    "browserJobDurationSeconds": 1201,
+    "browserBudgetMinutesUnchanged": 20,
+    "attempt": 1
+  },
+  "local": {
+    "candidate": "4737f4429b1a89f0f791782aae1372fb795982e6",
+    "domain": {
+      "passed": 269,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 50877.197875
+    },
+    "browser": {
+      "passed": 82,
+      "failed": 0,
+      "minutes": 10.4
+    },
+    "strictClientServerDesignBuild": true,
+    "design": true,
+    "planTrackerTests": 10,
+    "pinnedFiles": 40,
+    "diff": true,
+    "readOnlyTerraReviewNoBlocker": true
+  },
+  "protectedGame": {
+    "url": "http://127.0.0.1:4175/",
+    "all178ActualResponsesEqualAccepted077": true,
+    "apiRestarted": false,
+    "staticRestarted": false,
+    "classification": "Actual read-only protected fictional practice across candidate-only078",
+    "canonicalTables": 13,
+    "allColumnsAndRowsPreserved": true,
+    "residents": 1,
+    "plots": 0,
+    "signingKeyPreserved": true,
+    "sixMigrationChecksumsPreserved": true,
+    "noDatabaseWrites": true
+  },
+  "acceptedAsterStudy": {
+    "url": "http://127.0.0.1:49529/",
+    "eightAssetsUnchanged": true,
+    "catalogOnlyGeneratorSourceHashRefresh": true,
+    "frozenHistoricalArtifactUnchanged": true
+  },
+  "previousAutomaticMainCI": {
+    "run": 43240666200,
+    "bothSuccessIndependentlyVerified": true
+  },
+  "limits": [
+    "Candidate art only; no real modal/receipt/runtime collection integration",
+    "192framecells include repeated idle/reach geometry, not192unique drawings",
+    "Native still review and bounded replay do not establish perceived human motion continuity",
+    "Browser/touch/text/media emulation and explicit synthetic hidden fixture, not physical-phone/Safari testing",
+    "Tiny prop details/grips remain subtle at world scale; contrast refinement remains future work",
+    "No hosted infrastructure, paid assets, real accounts or original-game change",
+    "Independent browser job passed with very little deadline headroom; measure workload before adding runtime coverage, retain every assertion and the20minute budget."
+  ],
+  "merge": "9608e39a65622ce5f3bdc2a43fe61bd0d9016d72",
+  "candidateTree": "3178b4bc683c073cb0dc1ef7a03c8cf013ca7a69",
+  "mergeTree": "3178b4bc683c073cb0dc1ef7a03c8cf013ca7a69",
+  "matchingTreeAndCleanMainEqualsRemoteVerified": true,
+  "reviewGallery": {
+    "classification": "Actual uploaded CI study, standalone loopback static review; not an active game feature",
+    "url": "http://127.0.0.1:49530/",
+    "files": 21,
+    "allResponsesByteEqualActualCIArtifact": true,
+    "indexSha256": "3d2c6b60810fd380b839bdc4fe4261fe932cae41d165ccd61cfc9b0322bdd55e",
+    "observations": [
+      {
+        "shape": {
+          "name": "desktop",
+          "w": 1160,
+          "h": 820,
+          "touch": false
+        },
+        "orderedReplay": true,
+        "cancelledRigSwitch": true,
+        "reducedIdle": true,
+        "requests": [
+          "http://127.0.0.1:49530/"
+        ],
+        "errors": [],
+        "noInterceptionOrDataFixtures": true
+      },
+      {
+        "shape": {
+          "name": "phone",
+          "w": 360,
+          "h": 640,
+          "touch": true
+        },
+        "orderedReplay": true,
+        "cancelledRigSwitch": true,
+        "reducedIdle": true,
+        "requests": [
+          "http://127.0.0.1:49530/"
+        ],
+        "errors": [],
+        "noInterceptionOrDataFixtures": true
+      }
+    ],
+    "limits": "Native Chrome/touch/media emulation, not physical phone or gameplay integration. No state, position, production clock, stock or response fixtures.",
+    "pid": 16213,
+    "session": 32682,
+    "actualImagesReviewed": 3,
+    "artifact": "gathering-family-2026-11-12/ci-final/browser/test-results/browser/gathering-family"
+  },
+  "automaticMainCI": {
+    "run": 43250716906,
+    "status": "in_progress at closeout; exact candidate required gates passed before merge"
+  }
+}

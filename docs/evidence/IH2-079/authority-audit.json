@@ -1,0 +1,35 @@
+{
+  "classification": "Read-only accepted078source audit; proposed grant metadata is not implemented API behavior",
+  "sourceCommit": "9608e39a65622ce5f3bdc2a43fe61bd0d9016d72",
+  "sourceHashes": {
+    "src/ui/workshop.ts": "00a444ebccb5ca2395e2b67a3cfa23fd339b3116e2bc3fd6bfe3c681678fcf72",
+    "src/ui/town-client.ts": "e21915aeff8b658fbfa5ef8c4996d0284e0c588a75b71b1cfc40e2e51059d2ba",
+    "src/game/workshop.ts": "8158a199b7e1a647fb93cefad98c6ee4515cd02194c1e8bcc205aa1d404a443d",
+    "server/store.ts": "ef48adfee65548b2a7a137d0ff844fa219454ddc2a81ebb565487e39efbb11f8",
+    "server/http.ts": "1f62a33e590b552ee555f953b14bcc646591768dfc44b53d4c2869b014d5a60b",
+    "src/main.ts": "2f03ec3aa8f01a432af518d682bbc1231e0f0147dd2c343f3c7517ea1f9d9c7d"
+  },
+  "local": "applyWorkshop synchronously knows original command/id and exact before/after inventory; current private dispatch returns only ok/message. Extend a presentation result from the same successful pure action, not a global revision watcher.",
+  "shared": "Store locks the player, applies gather and persists immutable result keyed by command UUID/payload. Replayed result includes current snapshot, which can contain intervening changes. Current result only stores ok/message/revision; no exact typed resource quantity. TownClient adapter omits original command/replayed provenance and subscriptions may update UI before await completes.",
+  "selectedDesign": "Reserve modal art/status/retry dimensions from initial render. Announce literal result once; art is decorative. Use original command/player/resource/panel/rig scope and a positive exact grant. Keep text on missing/failed/late art; no late replay.",
+  "proposedFutureEnvelope": {
+    "commandId": "original UUID",
+    "playerId": "authenticated original player",
+    "resource": "original gather resource",
+    "quantity": "exact positive integer actually added by that command",
+    "revision": "original accepted command revision"
+  },
+  "futureAuthorityRequirements": [
+    "Compute grant from locked original before/after operation, persist in existing immutable result transaction; never accept quantity from client.",
+    "Retry returns original grant plus fresh snapshot; stale panel/player/rig can consume resolution without presenting it as new reward.",
+    "Legacy receipt without typed grant stays text-only. No parsing human messages or subtracting current mutable snapshots.",
+    "SSE/passive updates never trigger receipts. UI/animation completion never writes inventory, starts another command or delays authority.",
+    "Evaluate additive DTO and cached-client boundaries explicitly during runtime task. No protocol/schema change is made in079."
+  ],
+  "prototypeLimits": [
+    "Explicit synthetic authority/results/identities/art failures; not game data interception or proof of real API quantity binding",
+    "No game/public/server/domain/protocol/migration/economy change",
+    "Front-facing modal illustration only; no world actor/camera action",
+    "Native/touch/text/media emulation; no physical-device or human motion quality claim"
+  ]
+}

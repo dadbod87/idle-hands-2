@@ -1,0 +1,83 @@
+{
+  "classification": "Separate study export, not game loading/runtime performance evidence",
+  "files": {
+    "art/aster-scrap.svg": {
+      "bytes": 35749,
+      "gzipBytes": 1437,
+      "sha256": "81966e9b9048077daf3926b7bccd0e8a1bedc687f90b2daf0c23a97d86c78dfe"
+    },
+    "art/aster-supplies.svg": {
+      "bytes": 35128,
+      "gzipBytes": 1447,
+      "sha256": "48fb0095a00d44072f42a8761b7e945dbe345de1fd37a12bb05799b83c69291c"
+    },
+    "art/aster-timber.svg": {
+      "bytes": 35686,
+      "gzipBytes": 1458,
+      "sha256": "5142a7fa3736f60357b9a807ce57f630746dbed792f8004d37420b6d640402e2"
+    },
+    "art/bea-scrap.svg": {
+      "bytes": 44107,
+      "gzipBytes": 1579,
+      "sha256": "dbb97234a2f386ade848ddd52823660c615a054f9fc146e71c764a6372d8f664"
+    },
+    "art/bea-supplies.svg": {
+      "bytes": 43486,
+      "gzipBytes": 1590,
+      "sha256": "e7d7418273184f284f289dcfe2e9c0a4055f5e7b44e05936c0d8b9ea46362cbd"
+    },
+    "art/bea-timber.svg": {
+      "bytes": 44044,
+      "gzipBytes": 1607,
+      "sha256": "2cc68d1cba6cdf26fefb8a11423238ecec1fdf256f2f1c0f436d1aad37d408d3"
+    },
+    "art/casey-scrap.svg": {
+      "bytes": 39209,
+      "gzipBytes": 1484,
+      "sha256": "db42bb74f8021ea25986055f46a5ac7e11201a2381fc570785b49173bfabae6d"
+    },
+    "art/casey-supplies.svg": {
+      "bytes": 38588,
+      "gzipBytes": 1501,
+      "sha256": "2dbae0b4e229a39ac7e06bd7c6f2b13ceccddc0c6f65452532f21d6156fcd5a8"
+    },
+    "art/casey-timber.svg": {
+      "bytes": 39146,
+      "gzipBytes": 1504,
+      "sha256": "000e6523543281469ee541bc44820c270452b87cf499e889b812d2903a34dde5"
+    },
+    "art/devon-scrap.svg": {
+      "bytes": 38313,
+      "gzipBytes": 1493,
+      "sha256": "cef832a7ddf478a49e907e95d2ed51c376bca256d33f8feac8b8f3f57d5dbe6e"
+    },
+    "art/devon-supplies.svg": {
+      "bytes": 37692,
+      "gzipBytes": 1513,
+      "sha256": "873b60c47f2afc2ca0d034a565600ffc9b90040535e912b84b2fdc6b917c384d"
+    },
+    "art/devon-timber.svg": {
+      "bytes": 38250,
+      "gzipBytes": 1514,
+      "sha256": "543edaf0bf26a6ebd2f5c4952e6accf0c462494a304dc2a333950ad94bfd6d53"
+    },
+    "catalog.json": {
+      "bytes": 3682,
+      "gzipBytes": 1324,
+      "sha256": "021b538068e694d0c6acb6e981454739a4db01cd7b2cf64784b198de046305ed"
+    },
+    "index.html": {
+      "bytes": 16706,
+      "gzipBytes": 6025,
+      "sha256": "32a109d5dd666b86b6399431eed95cf6924e3161a5b9ff136f1e3e0ccacdfa8c"
+    }
+  },
+  "studyFiles": 14,
+  "rawBytes": 489786,
+  "perFileGzipBytes": 25476,
+  "gameFiles": 178,
+  "allGameBytesEqualAccepted078": true,
+  "runtimeArtFiles": 172,
+  "originalArtwork": "12sheets byte-identical078; no new raster or paid assets",
+  "initialAssetLoading": "Native test observed1selected sheet request, not12sheet bulk load. Text confirmation never waits for decode; late ready art shows still result without replay. Explicit cache resets/art failures are study fixtures."
+}

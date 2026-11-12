@@ -1,0 +1,11 @@
+# Terra 6.1 — collection receipt review
+
+Read-only source/layout review and two frozen native Chrome/Playwright passes. All results are explicit synthetic study fixtures, not gameplay or real-server verification. Reviewer scripts are retained externally under review-v1/terra-review and review-v2/terra-review. All browser instances closed before root runners.
+
+First pass found one blocker: after lost reply/retry/close/reopen at320/360, Collect retained keyboard focus but scrolled behind the sticky header. It also recommended less empty status space. Corrected candidate resets scroll on explicit open, focuses without implicit scroll and uncovers beneath the header; subsequent uncover is keyboard-only so pointer confirmation cannot move a held target. Literal status reserve is6.4rem, flavor follows the reserved retry row, and explicit max-width removes a browser default that narrowed the dialog with enlarged text.
+
+Recheck49533: original blocker resolved at320×568and360×640. Collect tops239/199pxwere below header bottom74px. True root32pxat844×390and320×568also kept focused Collect clear; doubled narrow Collect118.5px/header110.6px. A long literal status measured252pxcontent/203pxviewport; actual Tab focused it and End scrolled49pxafter native scrolling settled. Held Retry rectangle and dialog scroll remained unchanged during fake lost-reply delivery at all four sizes. No remaining blocker found.
+
+Other bounded checks: no premature receipt while pending; lost reply retained original intent and retry produced one matching six-unit receipt/one playback; unknown/mismatched receipts stayed text-only. Delayed art retained confirmed text and appeared later without replay. Keyboard Enter, user/system reduced motion and close/reopen behaved as designed. No page errors or horizontal overflow observed. The first quick review’s html200%rule was overridden by :root; only the later explicit :root32pxpass is doubled-text evidence. Root automated tests use inline root size and include320phone200.
+
+Still/state/lifecycle review does not establish human motion continuity, physical-phone/Safari, full accessibility or actual server authority. No protected game/gallery/API/database/progress was touched.

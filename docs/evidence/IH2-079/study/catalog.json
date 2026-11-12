@@ -1,0 +1,38 @@
+{
+  "classification": "Synthetic modal-receipt design prototype; no game/API/authority integration",
+  "files": {
+    "art/aster-scrap.svg": "81966e9b9048077daf3926b7bccd0e8a1bedc687f90b2daf0c23a97d86c78dfe",
+    "art/aster-timber.svg": "5142a7fa3736f60357b9a807ce57f630746dbed792f8004d37420b6d640402e2",
+    "art/aster-supplies.svg": "48fb0095a00d44072f42a8761b7e945dbe345de1fd37a12bb05799b83c69291c",
+    "art/bea-scrap.svg": "dbb97234a2f386ade848ddd52823660c615a054f9fc146e71c764a6372d8f664",
+    "art/bea-timber.svg": "2cc68d1cba6cdf26fefb8a11423238ecec1fdf256f2f1c0f436d1aad37d408d3",
+    "art/bea-supplies.svg": "e7d7418273184f284f289dcfe2e9c0a4055f5e7b44e05936c0d8b9ea46362cbd",
+    "art/casey-scrap.svg": "db42bb74f8021ea25986055f46a5ac7e11201a2381fc570785b49173bfabae6d",
+    "art/casey-timber.svg": "000e6523543281469ee541bc44820c270452b87cf499e889b812d2903a34dde5",
+    "art/casey-supplies.svg": "2dbae0b4e229a39ac7e06bd7c6f2b13ceccddc0c6f65452532f21d6156fcd5a8",
+    "art/devon-scrap.svg": "cef832a7ddf478a49e907e95d2ed51c376bca256d33f8feac8b8f3f57d5dbe6e",
+    "art/devon-timber.svg": "543edaf0bf26a6ebd2f5c4952e6accf0c462494a304dc2a333950ad94bfd6d53",
+    "art/devon-supplies.svg": "873b60c47f2afc2ca0d034a565600ffc9b90040535e912b84b2fdc6b917c384d",
+    "index.html": "32a109d5dd666b86b6399431eed95cf6924e3161a5b9ff136f1e3e0ccacdfa8c"
+  },
+  "sources": {
+    "docs/evidence/IH2-078/study/aster-scrap-collection.svg": "81966e9b9048077daf3926b7bccd0e8a1bedc687f90b2daf0c23a97d86c78dfe",
+    "docs/evidence/IH2-078/study/aster-timber-collection.svg": "5142a7fa3736f60357b9a807ce57f630746dbed792f8004d37420b6d640402e2",
+    "docs/evidence/IH2-078/study/aster-supplies-collection.svg": "48fb0095a00d44072f42a8761b7e945dbe345de1fd37a12bb05799b83c69291c",
+    "docs/evidence/IH2-078/study/bea-scrap-collection.svg": "dbb97234a2f386ade848ddd52823660c615a054f9fc146e71c764a6372d8f664",
+    "docs/evidence/IH2-078/study/bea-timber-collection.svg": "2cc68d1cba6cdf26fefb8a11423238ecec1fdf256f2f1c0f436d1aad37d408d3",
+    "docs/evidence/IH2-078/study/bea-supplies-collection.svg": "e7d7418273184f284f289dcfe2e9c0a4055f5e7b44e05936c0d8b9ea46362cbd",
+    "docs/evidence/IH2-078/study/casey-scrap-collection.svg": "db42bb74f8021ea25986055f46a5ac7e11201a2381fc570785b49173bfabae6d",
+    "docs/evidence/IH2-078/study/casey-timber-collection.svg": "000e6523543281469ee541bc44820c270452b87cf499e889b812d2903a34dde5",
+    "docs/evidence/IH2-078/study/casey-supplies-collection.svg": "2dbae0b4e229a39ac7e06bd7c6f2b13ceccddc0c6f65452532f21d6156fcd5a8",
+    "docs/evidence/IH2-078/study/devon-scrap-collection.svg": "cef832a7ddf478a49e907e95d2ed51c376bca256d33f8feac8b8f3f57d5dbe6e",
+    "docs/evidence/IH2-078/study/devon-timber-collection.svg": "543edaf0bf26a6ebd2f5c4952e6accf0c462494a304dc2a333950ad94bfd6d53",
+    "docs/evidence/IH2-078/study/devon-supplies-collection.svg": "873b60c47f2afc2ca0d034a565600ffc9b90040535e912b84b2fdc6b917c384d",
+    "tools/create-receipt-study.ts": "f7716895e27a99228bbdccac2ec873ccf98e7777e98a797a60c8c25b721c810e",
+    "tools/collection-receipt-model.ts": "9346b61e9af7139d6f038f430b5eb0f8dc5630710885c1d4a5dafe79b8b77cd3",
+    "tools/collection-receipt-template.html": "6c9776fe0c4c1a19694cf05ab163efb286e0cb753def40b0a61919cfac122d9e"
+  },
+  "loading": "Twelve accepted078sheets exported independently; browser requests only selected rig/material, caches successful decode; text fallback if failed or stale. No bulk prefetch.",
+  "originalArt": "All12SVGs byte-identical accepted078. No imported/paid media.",
+  "quantity": "Exact command-bound grant is synthetic proposed metadata; current shared API does not supply it. No live economy inferred."
+}

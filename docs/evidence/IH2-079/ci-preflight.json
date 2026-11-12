@@ -1,0 +1,16 @@
+{
+  "classification": "Observed CItest wall-clock comparison; not game CPU/runtime regression proof",
+  "baselineRun": 43237701257,
+  "familyRun": 43246666644,
+  "baselineCases": 81,
+  "familyCases": 82,
+  "sharedExactLabels": 81,
+  "baselineSumSeconds": 826.2109999999998,
+  "familySumSeconds": 1118.3050000000003,
+  "medianRatioSharedCasesAtLeast1second": 1.376923076923077,
+  "newCases": {
+    "tests/gathering-family.spec.ts:10:1 \u203a collection family: all192actual cells, original feet and native gallery rig/material/facing changes": 11.2
+  },
+  "method": "Parsed per-case durations from actual completed CIlogs. Setup excluded; variable shared software-rendered hosts and real-time waits not isolated. All checks and20minute deadline retained. Added family case costs11.2s; slower existing cases account for most of aggregate growth.",
+  "decision": "Add one bounded DOM-only receipt study case, measure local/CIactual overhead. No runtime optimization or test removal justified by these two variable observations alone; if exact-head fails, diagnose that evidence before accepting."
+}

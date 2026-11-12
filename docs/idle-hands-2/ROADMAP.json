@@ -841,7 +841,7 @@
     {
       "id": "IH2-078",
       "title": "Complete the ordinary collection art family",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/ordinary-gathering-family",
       "depends_on": [
         "IH2-077"
@@ -859,7 +859,32 @@
       "evidence": [
         "docs/idle-hands-2/design/ORDINARY_GATHERING_FAMILY.md",
         "docs/evidence/IH2-078/PLAN.md",
-        "docs/evidence/IH2-078/REPORT.md"
+        "docs/evidence/IH2-078/REPORT.md",
+        "docs/evidence/IH2-078/source-closeout.json"
+      ]
+    },
+    {
+      "id": "IH2-079",
+      "title": "Prove visible confirmed collection receipts",
+      "status": "in_progress",
+      "owner_branch": "feat/collection-receipt-visibility",
+      "depends_on": [
+        "IH2-078"
+      ],
+      "goal": "Design and observe a fixed visible modal collection receipt with once-only confirmed command provenance, without changing gameplay.",
+      "acceptance": [
+        "Audit current local/shared collection results, original intent, subscriptions, replayed receipts and retry identity; no reward inference from revision or message alone.",
+        "Separate original-art prototype: reserved receipt region, unchanged held controls/focus, bounded replay/static fallback and correct pending/rejected/uncertain/retry/closed/reduced/hidden/identity states.",
+        "Native desktop/narrow/short200 keyboard/tap and pointer-target measurements with explicit fixtures; exact provenance, no network/API/progress writes or public asset promotion.",
+        "Measure the observed078CIdeadline headroom before expanding coverage; retain all meaningful assertions/deadlines/actual-clock proofs. Required full local/exact-headCI/actual artifact/image/source gates and protected178game/172art/table/key preservation."
+      ],
+      "exclusions": [
+        "No runtime integration, modal auto-close, actor/camera/input/production change, new command schema/economy/migration, paid/hosted/real accounts or original-game changes."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/COLLECTION_RECEIPT_VISIBILITY.md",
+        "docs/evidence/IH2-079/PLAN.md",
+        "docs/evidence/IH2-079/REPORT.md"
       ]
     },
     {
@@ -880,7 +905,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-078 completes candidate collection art before runtime integration; no hosting/invitations/public release."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-079 designs visible confirmed collection receipts after accepted078art; no hosting/invitations/public release."
     },
     {
       "id": "IH2-080",

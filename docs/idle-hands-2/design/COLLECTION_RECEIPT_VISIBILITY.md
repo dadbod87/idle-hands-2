@@ -1,0 +1,17 @@
+# IH2-079 — visible ordinary collection receipt design
+
+Queued design/prototype only after accepted078. No runtime implementation or acceptance claimed. Recheck currentmain and the source paths below first.
+
+Choose a fixed reserved modal receipt illustration as the first visible presentation. Keep current Collect and Close controls, authoritative quantity/status and keyboard focus stable. The art never starts the request, awards output or gates another action. Do not auto-close, move the actor/camera, or reveal a hidden world action as a claimed improvement.
+
+Audit local and shared authority separately. Success requires the same submitted collection intent, positive authoritative result and a confirmed quantity delta tied to that original command, not merely a changed revision, snapshot, receipt string or global subscription. Observe subscription-before-response and lost committed reply/retry. A replayed response may confirm an unseen original command once; it cannot animate an old already-presented command or substitute the current selected material. Preserve original intent across retry, plus panel generation and player/rig identity. Reject and unavailable/full/read-only states remain text-first and do not show a reward.
+
+Prototype idle, pending, confirmed, rejected, uncertain, same-request retry and closed/reopened/hidden/reduced/identity-changed states outside gameplay. Reserve artwork dimensions from initial render, not after success. Show a truthful still fallback while assets load/fail. At most one bounded replay; no ambient loop. Current-rig/material caching and exact identity cancellation must be designed before any runtime promotion; the2.3MBself-contained gallery is not that loading plan.
+
+Measure pointer-target rectangles before/during/after status changes and consecutive input at desktop,320/360phones, short landscape and doubled root text. Test keyboard focus/tap, allowed scroll without unsolicited jumps, zero old callbacks after cancellation and stable receipts through passive updates. Expose accurate literal quantity/message separately from humor. No claim of physical-device or perceived animation continuity from emulation.
+
+Keep all178game files/172runtimeart/server/domain/protocol/migrations/key/tables and4175/49529/49530previews unchanged during the design study. Use explicit synthetic fixtures only in the separate prototype. Required source/CI/actual artifacts/images gates still apply. Runtime integration becomes another bounded task only after the visibility contract is observed and accepted.
+
+Source starting points: src/ui/workshop.ts showResource/dispatch/remoteDispatch, src/ui/town-client.ts sendPending/workshopAdapter, src/game/workshop.ts gather/receipts, server/store.ts execute and src/main.ts openPanel/closePanel. The adapter currently omits command identity/replayed fields; subscriptions can apply state before the awaited response. Confirm these facts on current source rather than treating a changed global revision as a new collection.
+
+CI preflight:078passed82browser cases18.8minutes; whole job20m1s against unchanged20minute configuration. Before growing coverage, measure where time is spent and retain every meaningful assertion and the existing deadline. Do not call a slower shared runner a runtime regression, enlarge the budget, remove actual-clock proofs or hide failures. The next design must account for this gate headroom and record an explicit bounded follow-up if measurement identifies a genuine harness/rendering issue.

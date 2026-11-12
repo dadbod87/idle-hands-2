@@ -1,3 +1,4 @@
+import {carpentryActionSchema,carpentryActionLocations,CARPENTRY_RULES,type NoticeboardState} from '../src/game/carpentry.ts';
 import {surveyId} from '../src/game/fieldwork.ts';
 import {gardenActionSchema,gardenActionLocations,MARKER_IDS,type MarkerId} from '../src/game/garden.ts';
 import { createHash } from 'node:crypto';
@@ -17,6 +18,7 @@ export type TownSnapshot = {
   projectJournal:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;
   trail:{stamps:string[];pennantOwned:boolean};
   plot: TownPlot | null; plots: TownPlot[];
+  noticeboard:NoticeboardState;
   gardenTown:{credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};
   lesson:MaintenanceLesson; lessonQuote:{route:'construction'|'upkeep';expectedBridgeContributed:number};
   seasonKey: string; scores: { playerId: string; name: string; points: number }[]; serverTime: number;
@@ -100,6 +102,7 @@ export class TownStore {
   }
   private async settleBridge(client:PoolClient,now:number){
     const opened=await client.query("update ih2.bridge set phase='open',opened_at=ready_at where id=1 and phase='building' and ready_at<=$1 returning ready_at",[now]);
+    await client.query("update ih2.noticeboard set phase='open',opened_at=ready_at where id=1 and phase='installing' and ready_at<=$1",[now]);
     if(opened.rows.length)await client.query("insert into ih2.project_events(id,kind,effective_at,recorded_at) values('bridge-opened-v2','opened',$1,$2) on conflict do nothing",[opened.rows[0].ready_at,now]);
   }
   private async fundBridge(client:PoolClient,now:number){
@@ -109,7 +112,7 @@ export class TownStore {
     const { rows } = await client.query<PlayerRow>('select id,name,workshop,position,quest_content_version from ih2.players where id=$1', [id]);
     const player = rows[0]; if (!player) throw new Error('Unknown synthetic player.');
     const plots = (await client.query('select p.id::text,p.owner_id,p.level,p.placements,u.name,exists(select 1 from ih2.quest_awards q where q.player_id=p.owner_id and q.quest_id=\'trail-pennant-v1\') as pennant_owned from ih2.plots p join ih2.players u on u.id=p.owner_id order by p.id')).rows.map(p => ({ id: p.id, ownerId: p.owner_id, ownerName: p.name, level: p.level as 1 | 2, placements: p.placements,pennantOwned:p.pennant_owned }));
-    const bridgeRow = (await client.query('select b.*,g.credits as welcome_credits from ih2.bridge b cross join ih2.garden_welcome g where b.id=1 and g.id=1')).rows[0];
+    const bridgeRow = (await client.query('select b.*,g.credits as welcome_credits,n.credits as notice_credits,n.phase as notice_phase,n.started_at as notice_started,n.ready_at as notice_ready,n.opened_at as notice_opened from ih2.bridge b cross join ih2.garden_welcome g cross join ih2.noticeboard n where b.id=1 and g.id=1 and n.id=1')).rows[0];
     // Explicit projection only: never select other residents' private garden JSON.
     const markerRows=(await client.query("select id,name,workshop->'garden'->>'selectedMarker' as marker from ih2.players where workshop->'garden'->'markers' ? (workshop->'garden'->>'selectedMarker') order by id")).rows;
     const gardenTown:TownSnapshot['gardenTown']={credits:bridgeRow.welcome_credits,target:6,markers:markerRows.filter(row=>(MARKER_IDS as readonly string[]).includes(row.marker)).map(row=>({ownerId:row.id,ownerName:row.name,marker:row.marker as MarkerId}))};
@@ -120,7 +123,8 @@ export class TownStore {
     const projectJournal=(await client.query('select * from ih2.project_events order by recorded_at,id')).rows.map(row=>({id:row.id,kind:row.kind as 'opened'|'grandfathered',effectiveAt:row.effective_at===null?null:Number(row.effective_at),recordedAt:Number(row.recorded_at)}));
     const key = seasonKey(now);
     const scores = (await client.query('select s.player_id,u.name,s.points from ih2.season_scores s join ih2.players u on u.id=s.player_id where s.season_key=$1 order by s.points desc,s.player_id', [key])).rows.map(r => ({ playerId: r.player_id, name: r.name, points: r.points }));
-    return {gardenTown, playerId: id, name: player.name, workshop: this.readState(player, now), position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    const noticeboard:NoticeboardState={credits:bridgeRow.notice_credits,phase:bridgeRow.notice_phase,startedAt:bridgeRow.notice_started===null?null:Number(bridgeRow.notice_started),readyAt:bridgeRow.notice_ready===null?null:Number(bridgeRow.notice_ready),openedAt:bridgeRow.notice_opened===null?null:Number(bridgeRow.notice_opened)};
+    return {noticeboard,gardenTown, playerId: id, name: player.name, workshop: this.readState(player, now), position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string): Promise<TownSnapshot> {
     const client = await this.pool.connect();
@@ -243,9 +247,9 @@ export class TownStore {
             else {
               const original = structuredClone(state);
               const virtual = structuredClone(state); virtual.placements = ownPlot.placements;
-              for (const prop of PROP_IDS) virtual.owned[prop] -= Object.values(original.placements).filter(p => p === prop).length;
+              const allocations=Object.fromEntries(PROP_IDS.map(prop=>[prop,Object.values(original.placements).filter(p=>p===prop).length]));
               const placement = action.action === 'place' ? { id: action.id, expectedRevision: action.expectedRevision, kind: 'place', prop: action.prop, slot: action.slot, ...(action.fromSlot ? { fromSlot: action.fromSlot } : {}) } : { id: action.id, expectedRevision: action.expectedRevision, kind: 'remove', slot: action.slot };
-              const applied = applyWorkshop(virtual, placement, now);
+              const applied = applyWorkshop(virtual, placement, now,allocations);
               if (!applied.ok) reject(applied.message);
               else {
                 await client.query('update ih2.plots set placements=$2 where owner_id=$1', [id, applied.state.placements]);
@@ -259,7 +263,10 @@ export class TownStore {
         }
       } else {
         let allowed = false;
-        if(cmd.kind==='garden'){
+        if(cmd.kind==='carpentry'){
+          const action=carpentryActionSchema.safeParse(cmd.carpentryAction);
+          allowed=action.success&&carpentryActionLocations(action.data).some(location=>near(position,location.room,location.stopId));
+        }else if(cmd.kind==='garden'){
           const action=gardenActionSchema.safeParse(cmd.gardenAction);
           allowed=action.success&&gardenActionLocations(action.data).some(location=>near(position,location.room,location.stopId));
         }else if(cmd.kind==='survey')allowed=typeof cmd.station==='string'&&!!surveyId(cmd.station)&&near(position,'square','survey-'+cmd.station);
@@ -269,8 +276,8 @@ export class TownStore {
         if (!allowed) reject('Walk to the right place before using that action.');
         else {
           const virtual = structuredClone(state);
-          if (cmd.kind === 'place' && ownPlot) for (const prop of PROP_IDS) virtual.owned[prop] -= Object.values(ownPlot.placements).filter(p => p === prop).length;
-          const applied = applyWorkshop(virtual, raw, now);
+          const allocations=cmd.kind==='place'&&ownPlot?Object.fromEntries(PROP_IDS.map(prop=>[prop,Object.values(ownPlot.placements).filter(p=>p===prop).length])):{};
+          const applied = applyWorkshop(virtual, raw, now,allocations);
           if (!applied.ok) reject(applied.message);
           else {
             const owned = state.owned; state = applied.state;
@@ -284,7 +291,17 @@ export class TownStore {
               }
               result.publicChanged=publicChanged;
             }
-            result = { ok: true, message: applied.message, revision: state.revision,...(cmd.kind==='garden'?{publicChanged:result.publicChanged}: {}) };
+            if(cmd.kind==='carpentry'){
+              result.publicChanged=false;
+              if((cmd.carpentryAction as {action?:unknown})?.action==='record-easel'){
+                const record=await client.query("update ih2.noticeboard set credits=credits+1,phase=case when credits+1=6 then 'installing' else phase end,started_at=case when credits+1=6 then $1 else started_at end,ready_at=case when credits+1=6 then $1+$2 else ready_at end where id=1 and credits<6 returning credits",[now,CARPENTRY_RULES.noticeMs]);
+                result.publicChanged=record.rows.length>0;
+                applied.message=result.publicChanged?'Craft recorded for the noticeboard. You keep your easel. Six records fund one twenty-four-hour installation.':'The noticeboard is already funded. Your personal craft record is kept; you retain the easel. No additional public credit was needed.';
+                state.lastMessage=applied.message;
+                const receipt=state.receipts.find(r=>r.id===cmd.id);if(receipt)receipt.message=applied.message;
+              }
+            }
+            result = { ok: true, message: applied.message, revision: state.revision,...(['garden','carpentry'].includes(cmd.kind)?{publicChanged:result.publicChanged}: {}) };
           }
         }
       }

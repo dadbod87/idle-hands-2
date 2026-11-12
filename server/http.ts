@@ -1,3 +1,4 @@
+import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {createServer,type IncomingMessage,type ServerResponse} from 'node:http';
 import {createHmac,timingSafeEqual,randomUUID} from 'node:crypto';
 import type {Pool} from 'pg';
@@ -51,6 +52,8 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(!req.headers['content-type']?.startsWith('application/json'))return json(res,415,{message:'JSON required.'});
    }
    if(path==='/api/town/fixtures'&&req.method==='GET'){if(!admission.rate('fixtures'))return throttled(res);return json(res,200,{fixtures,disclosure:'Local synthetic players. No real accounts.'});}
+   const schema=req.headers['x-ih2-schema']??(path==='/api/town/events'?new URL(req.url??'/',`http://${host}`).searchParams.get('schema'):null);
+   if(schema!==TOWN_SCHEMA)return json(res,426,{message:'This town service requires the updated game. Reload the game before continuing. Your saved progress has not been changed.',requiredSchema:TOWN_SCHEMA});
    if(path==='/api/town/login'&&req.method==='POST'){
     if(!admission.rate('login'))return throttled(res);const release=admission.acquire('login');if(!release)return throttled(res);try{
     const data=z.object({fixtureId:z.string().refine(id=>fixtures.some(f=>f.id===id))}).strict().parse(await body(req));const fixture=fixtures.find(f=>f.id===data.fixtureId)!;if(!admission.memberRate('login',fixture.id))return throttled(res);const snapshot=await store.ensurePlayer(fixture.id,fixture.name);cacheHomes(snapshot);const current=await resident(fixture.id);snapshot.position=current.value;res.setHeader('Set-Cookie',`${COOKIE}=${cookie(fixture.id)}; HttpOnly; SameSite=Strict; Path=/api/town; Max-Age=86400`);return json(res,200,{snapshot:{...snapshot,serverInstance}});
@@ -84,7 +87,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     return await serial(id,res,async()=>{
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
     const command=await body(req);if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});metrics.commands++;const result=await store.execute(id,command,current.value);cacheHomes(result.snapshot);if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(command as {kind?:unknown}).kind==='enter-home'){current.value=result.snapshot.position;current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;}result.snapshot.position=current.value;
-    if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(['contribute','claim-plot','upgrade-plot','edit-plot','redeem-lesson'].includes(String((command as {kind?:unknown}).kind))||((command as {kind?:unknown}).kind==='stamp-trail'&&result.snapshot.trail.pennantOwned)||((command as {kind?:unknown}).kind==='garden'&&result.publicChanged)))invalidate(id);
+    if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(['contribute','claim-plot','upgrade-plot','edit-plot','redeem-lesson'].includes(String((command as {kind?:unknown}).kind))||((command as {kind?:unknown}).kind==='stamp-trail'&&result.snapshot.trail.pennantOwned)||(['garden','carpentry'].includes(String((command as {kind?:unknown}).kind))&&result.publicChanged)))invalidate(id);
     return json(res,200,{...result,snapshot:{...result.snapshot,serverInstance}});
     });
    }

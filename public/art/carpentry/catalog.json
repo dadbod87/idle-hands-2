@@ -1,0 +1,433 @@
+{
+  "version": 1,
+  "authoring": "Project-original SVG family. Existing original resident rig and easel reused; no external media.",
+  "generator": "tools/create-carpentry-art.py",
+  "assets": [
+    {
+      "id": "pine-crooked-available",
+      "width": 112,
+      "height": 160,
+      "kind": "pine",
+      "foot": {
+        "x": 56,
+        "y": 152
+      },
+      "station": "crooked",
+      "state": "available",
+      "materialPolicy": "Evergreen silhouette, bark and fallen branches retained; personal availability never destroys a shared tree."
+    },
+    {
+      "id": "pine-crooked-exhausted",
+      "width": 112,
+      "height": 160,
+      "kind": "pine",
+      "foot": {
+        "x": 56,
+        "y": 152
+      },
+      "station": "crooked",
+      "state": "exhausted",
+      "materialPolicy": "Evergreen silhouette, bark and fallen branches retained; personal availability never destroys a shared tree."
+    },
+    {
+      "id": "pine-forked-available",
+      "width": 112,
+      "height": 144,
+      "kind": "pine",
+      "foot": {
+        "x": 56,
+        "y": 136
+      },
+      "station": "forked",
+      "state": "available",
+      "materialPolicy": "Evergreen silhouette, bark and fallen branches retained; personal availability never destroys a shared tree."
+    },
+    {
+      "id": "pine-forked-exhausted",
+      "width": 112,
+      "height": 144,
+      "kind": "pine",
+      "foot": {
+        "x": 56,
+        "y": 136
+      },
+      "station": "forked",
+      "state": "exhausted",
+      "materialPolicy": "Evergreen silhouette, bark and fallen branches retained; personal availability never destroys a shared tree."
+    },
+    {
+      "id": "pine-sheltered-available",
+      "width": 112,
+      "height": 176,
+      "kind": "pine",
+      "foot": {
+        "x": 56,
+        "y": 168
+      },
+      "station": "sheltered",
+      "state": "available",
+      "materialPolicy": "Evergreen silhouette, bark and fallen branches retained; personal availability never destroys a shared tree."
+    },
+    {
+      "id": "pine-sheltered-exhausted",
+      "width": 112,
+      "height": 176,
+      "kind": "pine",
+      "foot": {
+        "x": 56,
+        "y": 168
+      },
+      "station": "sheltered",
+      "state": "exhausted",
+      "materialPolicy": "Evergreen silhouette, bark and fallen branches retained; personal availability never destroys a shared tree."
+    },
+    {
+      "id": "pine-bundle-icon",
+      "width": 64,
+      "height": 64,
+      "kind": "item-icon"
+    },
+    {
+      "id": "bound-saw-icon",
+      "width": 64,
+      "height": 64,
+      "kind": "item-icon"
+    },
+    {
+      "id": "easel-preview",
+      "width": 96,
+      "height": 128,
+      "kind": "furnishing-preview",
+      "foot": {
+        "x": 48,
+        "y": 113
+      }
+    },
+    {
+      "id": "finishing-rack-empty",
+      "width": 128,
+      "height": 128,
+      "kind": "rack",
+      "foot": {
+        "x": 64,
+        "y": 114
+      },
+      "state": "empty"
+    },
+    {
+      "id": "finishing-rack-working",
+      "width": 128,
+      "height": 128,
+      "kind": "rack",
+      "foot": {
+        "x": 64,
+        "y": 114
+      },
+      "state": "working"
+    },
+    {
+      "id": "finishing-rack-ready",
+      "width": 128,
+      "height": 128,
+      "kind": "rack",
+      "foot": {
+        "x": 64,
+        "y": 114
+      },
+      "state": "ready"
+    },
+    {
+      "id": "hamper-icon",
+      "width": 64,
+      "height": 64,
+      "kind": "item-icon"
+    },
+    {
+      "id": "carpentry-attendant",
+      "width": 64,
+      "height": 80,
+      "kind": "attendant",
+      "foot": {
+        "x": 32,
+        "y": 72
+      }
+    },
+    {
+      "id": "noticeboard-collecting",
+      "width": 144,
+      "height": 160,
+      "kind": "noticeboard",
+      "foot": {
+        "x": 72,
+        "y": 144
+      },
+      "phase": "collecting"
+    },
+    {
+      "id": "noticeboard-installing",
+      "width": 144,
+      "height": 160,
+      "kind": "noticeboard",
+      "foot": {
+        "x": 72,
+        "y": 144
+      },
+      "phase": "installing"
+    },
+    {
+      "id": "noticeboard-open",
+      "width": 144,
+      "height": 160,
+      "kind": "noticeboard",
+      "foot": {
+        "x": 72,
+        "y": 144
+      },
+      "phase": "open"
+    },
+    {
+      "id": "saw-equipped-aster",
+      "width": 1792,
+      "height": 80,
+      "kind": "equipped-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "resident": "aster",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 28,
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "poses": [
+        "idle",
+        "walk-1",
+        "walk-2",
+        "walk-3",
+        "walk-4",
+        "walk-5",
+        "walk-6"
+      ]
+    },
+    {
+      "id": "carpentry-actions-aster",
+      "width": 1152,
+      "height": 160,
+      "kind": "action-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "resident": "aster",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 36,
+      "frameColumns": 18,
+      "frameRows": 2,
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "actions": [
+        "saw",
+        "finish",
+        "deliver"
+      ],
+      "poses": [
+        "prepare",
+        "contact",
+        "recovery"
+      ]
+    },
+    {
+      "id": "saw-equipped-bea",
+      "width": 1792,
+      "height": 80,
+      "kind": "equipped-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "resident": "bea",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 28,
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "poses": [
+        "idle",
+        "walk-1",
+        "walk-2",
+        "walk-3",
+        "walk-4",
+        "walk-5",
+        "walk-6"
+      ]
+    },
+    {
+      "id": "carpentry-actions-bea",
+      "width": 1152,
+      "height": 160,
+      "kind": "action-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "resident": "bea",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 36,
+      "frameColumns": 18,
+      "frameRows": 2,
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "actions": [
+        "saw",
+        "finish",
+        "deliver"
+      ],
+      "poses": [
+        "prepare",
+        "contact",
+        "recovery"
+      ]
+    },
+    {
+      "id": "saw-equipped-casey",
+      "width": 1792,
+      "height": 80,
+      "kind": "equipped-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "resident": "casey",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 28,
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "poses": [
+        "idle",
+        "walk-1",
+        "walk-2",
+        "walk-3",
+        "walk-4",
+        "walk-5",
+        "walk-6"
+      ]
+    },
+    {
+      "id": "carpentry-actions-casey",
+      "width": 1152,
+      "height": 160,
+      "kind": "action-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "resident": "casey",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 36,
+      "frameColumns": 18,
+      "frameRows": 2,
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "actions": [
+        "saw",
+        "finish",
+        "deliver"
+      ],
+      "poses": [
+        "prepare",
+        "contact",
+        "recovery"
+      ]
+    },
+    {
+      "id": "saw-equipped-devon",
+      "width": 1792,
+      "height": 80,
+      "kind": "equipped-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "resident": "devon",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 28,
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "poses": [
+        "idle",
+        "walk-1",
+        "walk-2",
+        "walk-3",
+        "walk-4",
+        "walk-5",
+        "walk-6"
+      ]
+    },
+    {
+      "id": "carpentry-actions-devon",
+      "width": 1152,
+      "height": 160,
+      "kind": "action-sheet",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "resident": "devon",
+      "frameWidth": 64,
+      "frameHeight": 80,
+      "frameCount": 36,
+      "frameColumns": 18,
+      "frameRows": 2,
+      "facings": [
+        "south",
+        "north",
+        "east",
+        "west"
+      ],
+      "actions": [
+        "saw",
+        "finish",
+        "deliver"
+      ],
+      "poses": [
+        "prepare",
+        "contact",
+        "recovery"
+      ]
+    }
+  ]
+}

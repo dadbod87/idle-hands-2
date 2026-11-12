@@ -1,3 +1,9 @@
+# IH2-067 — integrated source candidate
+
+Final integrated local validation: 217 domain/art/server checks passed, zero skipped (44.173440834s); all 58 browser cases passed (8.1m). Strict build, design (48 candidates/5 regions), tracker (24 tasks/10 checks), 40 pinned skill files and whitespace checks passed. Actual populated PostgreSQL restart/restore passed. Final desktop, 360px phone, short 200% text and all 256 action/equipment frames were inspected. Exact-head GitHub checks, downloaded artifact review and source merge remain pending; accepted preview/API are unchanged.
+
+Current implementation and authority: [CARPENTRY_RUNTIME](../CARPENTRY_RUNTIME.md). Full local evidence archived at ../idle-hands-2-artifacts/pine-workshop-2026-11-11/final-local. Finish exact-head CI/artifact/merge gates, then backed-up client/API preview replacement and067closeout before068. Continue under overnight usage/time stop rule in CURRENT_SESSION. The foundation-only notes below are historical, superseded by the integrated contract.
+
 # IH2-067 — active foundation checkpoint
 
 ## Authority and current source

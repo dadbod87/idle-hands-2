@@ -1,6 +1,20 @@
-# IH2-067 — intermediate rules and save foundation
+# IH2-067 — working integration and foundation history
 
 November 11, 2026. **In progress; not a completed playable feature, source acceptance or release.** Work is isolated on `feat/pine-workshop` from accepted main `3946d7b1f5f5d18529e274935f70fd35bb5cb50b`/PR16. The actual accepted065CIartifact remains on4175 with its existing4186API/key/practice; this checkpoint does not replace either process. No original-game, real-player, hosting, paid-asset or invitation changes.
+
+## Current integrated working candidate
+
+After foundationd5f613b, root/server/world/DOM now integrate the full selected family; newprivate noticeboard migration, sharedschema2gate and trustedcross-instancecounts preserve kept ownership. Original25carpentry+2homeSVGs cover256equipped/actionframes. Literal previews/goalflowerwarnings/cooldowns and actual named/direct/keyboard/touch routes are implemented. See [current contract](../../idle-hands-2/CARPENTRY_RUNTIME.md).
+
+Local217checks passed/zero skips43.521306s, including actualSQLconcurrentsole-easel allocation and cachedEventSource426/currentqueryguards suggested by independentread-onlydomainreview. Populated restoredPGrestart retains privatewood/tool/hamper, one owned/placed/recorded easel and a second queued easel beside the old ordinary job. Three focused control flows passed (freshphone, elapsedpurefixture, actualsharedAPI/SSE/lostresponse/houseplacement). Strictgallerybounds rejected a carrypose (65.287px, then64.881px in a64pxframe); following the hand whileholdingthebladeupright corrected it. Final native256framegallery/bounds passed. One first-pass shared test used an invented preview label; corrected to the existing actual Place owned furniture here control, retaining all ownership/placement assertions. No assertion, timer, workflow or deadline reduction.
+
+Final integrated local validation: 217 domain/art/server checks passed, zero skipped (44.173440834s); all 58 browser cases passed (8.1m). Strict build, design (48 candidates/5 regions), tracker (24 tasks/10 checks), 40 pinned skill files and whitespace checks passed. Actual populated PostgreSQL restart/restore passed. Final desktop, 360px phone, short 200% text and all 256 action/equipment frames were inspected. Exact-head GitHub checks, downloaded artifact review and source merge remain pending; accepted preview/API are unchanged.
+
+Raw phaseevidence: ../idle-hands-2-artifacts/pine-workshop-2026-11-11/integrated-first-pass/. The final58case suite and complete local checks passed; exactfinal-headbothCI, actualartifact/image review and merge remain pending. Do not replace preview/API or close067from these partial local results.
+
+## Earlier d5f613b foundation checkpoint
+
+The following foundation paragraphs and then-remaining gates are retained as history. The integrated working status above supersedes their implementation status; final source acceptance is still pending.
 
 ## Implemented in this checkpoint
 
@@ -9,7 +23,7 @@ November 11, 2026. **In progress; not a completed playable feature, source accep
 - Pure anonymous noticeboard rules cap records at6 and set one fixed24hdeadline. They emit intent for a future atomic store transaction, not an authority claim. No uniqueness-of-helper threshold.
 - Eighteen actual pure-rule schedule/absence cohorts match every relevant output/ingredient/deadline series in the independent066model. The selected policy remains a **bundle**: reserve next craft, voluntarily stop welcome requests aftersix, then spend spare ingredients. There is no runtime six-request cap. Six-craft stopping is a model goal, not the99owned cap. The42day cohorts retain seeds/crops and separate consumption ledgers. This is implementation agreement, not human enjoyment or server proof.
 
-The new carpentry library is intentionally **not yet wired** to WorkshopState/commands, server, furniture allocation, world stops, art, equipment or DOM controls. Garden schema2/migration is compiled and checked in the candidate; accepted preview/API stay on schema1. Do not point a new client at the old practice API or update only one side. Shared client/version gating belongs to the remaining integration work.
+At the earlier foundation checkpoint, the carpentry library was intentionally **not yet wired** to WorkshopState/commands, server, furniture allocation, world stops, art, equipment or DOM controls. Garden schema2/migration is compiled and checked in the candidate; accepted preview/API stay on schema1. Do not point a new client at the old practice API or update only one side. Shared client/version gating belongs to the remaining integration work.
 
 ## Verification
 

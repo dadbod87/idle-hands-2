@@ -15,9 +15,10 @@
     "tools/simulate-woodland-plan.ts",
     "tests/design-woodland.spec.ts",
     "src/game/carpentry.ts",
-    "tests/carpentry.test.ts",
     "tools/simulate-carpentry-rules.ts",
-    "tools/prove-garden-ledger-upgrade.ts"
+    "tools/prove-garden-ledger-upgrade.ts",
+    "tests/carpentry*.test.ts",
+    "tests/carpentry.spec.ts"
   ],
   "compilerOptions": {
     "types": [

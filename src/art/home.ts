@@ -13,6 +13,7 @@ export const HOME_ART={
   rug:{world:'home-rug-world',icon:'home-rug-icon',width:96,height:64,foot:{x:48,y:32}},
   lamp:{world:'home-lamp-world',icon:'home-lamp-icon',width:64,height:96,foot:{x:32,y:91}},
   crate:{world:'home-crate-world',icon:'home-crate-icon',width:64,height:64,foot:{x:32,y:60}},
+  easel:{world:'home-easel-world',icon:'home-easel-icon',width:80,height:112,foot:{x:40,y:106}},
   shelf:{world:'home-shelf-world',icon:'home-shelf-icon',width:80,height:96,foot:{x:40,y:91}}
  },
  materials:{scrap:'home-scrap-icon',timber:'home-timber-icon',supplies:'home-supplies-icon'}

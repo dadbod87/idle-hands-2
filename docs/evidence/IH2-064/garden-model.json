@@ -1,7 +1,7 @@
 {
   "classification": "CANDIDATE DESIGN ONLY; no live crops, rewards, clocks, storage, trade or public displays",
   "sources": {
-    "src/game/workshop.ts": "0358587e02d7d8d16dd2ca3cc045517cd605ccd1925afcbc792659fd6af62f3d",
+    "src/game/workshop.ts": "6330312b29d8f617e4537e50c20eadde423c610a6001f5c222a38aaa10ab1ca4",
     "src/game/town-rules.ts": "ec21ce6a1b5ed3ae0824e6e141e78080b6cf4955d1b1173fd30bdd25062d457e",
     "tools/simulate-garden-plan.ts": "52854a50cd3a549e8740552423b1364dd8077add993ad2a7476c245d0484c429"
   },

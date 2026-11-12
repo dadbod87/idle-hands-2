@@ -1,0 +1,38 @@
+{
+  "status": "local-verified; exact-head CI/source acceptance pending",
+  "domain": {
+    "passed": 217,
+    "skipped": 0,
+    "seconds": 44.173440834
+  },
+  "browser": {
+    "passed": 58,
+    "duration": "8.1m"
+  },
+  "otherChecks": [
+    "strict build",
+    "design 48/5",
+    "plan 24 tasks/10 tests",
+    "40 pinned skill files",
+    "actual populated PostgreSQL restart/restore",
+    "git diff --check"
+  ],
+  "build": {
+    "files": 159,
+    "rawBytes": 3195890,
+    "gzipBytesIndividually": 560950,
+    "method": "sum all final dist regular files, gzip each separately; not initial transfer or browser heap"
+  },
+  "screenshotsReviewed": [
+    "pine-short-text-200.png",
+    "pine-phone-equipped-world.png",
+    "pine-desktop-kept-easel.png",
+    "pine-equipped-action-coverage.png"
+  ],
+  "limitations": [
+    "Chrome desktop emulation; no physical phone/Safari",
+    "local-only, no hosted or real-account changes",
+    "full evidence and earlier rejected diagnostics outside source"
+  ],
+  "fixtures": "Fresh browser storage; declared elapsed pure-command state; dedicated isolated SQL fictional players; 12 housing kits only in disposable shared placement test; lost response interception. No current practice edits."
+}

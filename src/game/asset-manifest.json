@@ -280,6 +280,16 @@
       "kind": "original-svg"
     },
     {
+      "id": "home-easel-icon",
+      "path": "art/homes/home-easel-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-easel-world",
+      "path": "art/homes/home-easel-world.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "home-expanded-exterior",
       "path": "art/homes/home-expanded-exterior.svg",
       "kind": "original-svg"
@@ -587,6 +597,131 @@
     {
       "id": "garden-welcome-open",
       "path": "art/garden/garden-welcome-open.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "bound-saw-icon",
+      "path": "art/carpentry/bound-saw-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "carpentry-actions-aster",
+      "path": "art/carpentry/carpentry-actions-aster.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "carpentry-actions-bea",
+      "path": "art/carpentry/carpentry-actions-bea.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "carpentry-actions-casey",
+      "path": "art/carpentry/carpentry-actions-casey.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "carpentry-actions-devon",
+      "path": "art/carpentry/carpentry-actions-devon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "carpentry-attendant",
+      "path": "art/carpentry/carpentry-attendant.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "easel-preview",
+      "path": "art/carpentry/easel-preview.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "finishing-rack-empty",
+      "path": "art/carpentry/finishing-rack-empty.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "finishing-rack-ready",
+      "path": "art/carpentry/finishing-rack-ready.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "finishing-rack-working",
+      "path": "art/carpentry/finishing-rack-working.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "hamper-icon",
+      "path": "art/carpentry/hamper-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "noticeboard-collecting",
+      "path": "art/carpentry/noticeboard-collecting.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "noticeboard-installing",
+      "path": "art/carpentry/noticeboard-installing.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "noticeboard-open",
+      "path": "art/carpentry/noticeboard-open.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pine-bundle-icon",
+      "path": "art/carpentry/pine-bundle-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pine-crooked-available",
+      "path": "art/carpentry/pine-crooked-available.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pine-crooked-exhausted",
+      "path": "art/carpentry/pine-crooked-exhausted.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pine-forked-available",
+      "path": "art/carpentry/pine-forked-available.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pine-forked-exhausted",
+      "path": "art/carpentry/pine-forked-exhausted.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pine-sheltered-available",
+      "path": "art/carpentry/pine-sheltered-available.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pine-sheltered-exhausted",
+      "path": "art/carpentry/pine-sheltered-exhausted.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "saw-equipped-aster",
+      "path": "art/carpentry/saw-equipped-aster.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "saw-equipped-bea",
+      "path": "art/carpentry/saw-equipped-bea.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "saw-equipped-casey",
+      "path": "art/carpentry/saw-equipped-casey.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "saw-equipped-devon",
+      "path": "art/carpentry/saw-equipped-devon.svg",
       "kind": "original-svg"
     }
   ],

@@ -1,13 +1,14 @@
+import type {CarpentryAction} from '../game/carpentry.ts';
 import type {GardenAction} from '../game/garden.ts';
 import {SURVEY_IDS,SURVEYS,SURVEY_CHOICES,CHOICE_LABELS,type SurveyId} from '../game/fieldwork.ts';
 import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, skillLevel } from '../game/workshop.ts';
 import './workshop.css';
 export const WORKSHOP_SAVE_KEY='ih2:workshop:v2';
 const SAVE_KEY=WORKSHOP_SAVE_KEY,LEGACY_SAVE_KEY='ih2:workshop:v1';
-const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',planter:'Orientation planter',stool:'Break-time stool',rug:'Welcome rug',lamp:'Optimism lamp',crate:'Useful crate',shelf:'Almost level shelf'};
+const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',planter:'Orientation planter',stool:'Break-time stool',rug:'Welcome rug',lamp:'Optimism lamp',crate:'Useful crate',shelf:'Almost level shelf',easel:'Garden study easel'};
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 export type RemoteWorkshopAdapter={allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>)=>Promise<{state:WorkshopState;message:string;ok?:boolean}>;retry:()=>Promise<{state:WorkshopState;message:string;ok?:boolean}>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string};garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
+type PanelHost={open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string};carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -65,6 +66,7 @@ export class WorkshopUI {
   }catch(error){this.remoteError=(error as Error).message;this.host.feedback(this.remoteError);return failed(this.remoteError);}
   finally{this.remoteBusy=false;this.updateClocks();if(this.remoteError)this.remoteNotice();}
  }
+ public async runCarpentry(action:CarpentryAction):Promise<WorkshopCommandResult>{if(this.remote)return this.remoteDispatch({kind:'carpentry',carpentryAction:action});const result=this.dispatch({kind:'carpentry',carpentryAction:action});return{ok:result?.ok??false,message:result?.message??'No change was made.',state:this.state,retry:false};}
  public async runGarden(action:GardenAction):Promise<WorkshopCommandResult>{
   if(this.remote)return this.remoteDispatch({kind:'garden',gardenAction:action});
   const result=this.dispatch({kind:'garden',gardenAction:action});return{ok:result?.ok??false,message:result?.message??'No change was made.',state:this.state,retry:false};
@@ -121,11 +123,12 @@ export class WorkshopUI {
   const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';b.append(claim);
   const recipes=[{id:'planter',label:'Make orientation planter',text:'2 scrap + 2 timber + 1 supplies. First planter: 5 seconds, once. Later planters: 8 real hours.'},{id:'bridge-kit',label:'Make bridge supplies',text:'3 scrap + 2 timber + 1 supplies. 12 real hours. '+(this.remote?'Bring the finished kit to the bridge committee.':'Crafting practice stock stays in this browser’s workshop.')}];
   for(const recipe of recipes){const section=document.createElement('section');section.className='recipe';const craft=this.button(recipe.label,()=>this.dispatch({kind:'craft',recipe:recipe.id}),'destination');craft.dataset.craft=recipe.id;section.append(this.p(recipe.text),craft);b.append(section);}
-  b.append(this.button('While work runs · town sketchbook',()=>this.showSketchbook(),'destination'));if(this.host.garden)b.append(this.button('While work runs · your allotment',()=>this.host.garden?.(),'destination'));
+  b.append(this.button('While work runs · town sketchbook',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)b.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!()));
+  if(this.host.garden)b.append(this.button('While work runs · your allotment',()=>this.host.garden?.(),'destination'));
   if(this.host.teaching)b.append(this.button('Orientation maintenance · one-time contribution',()=>this.host.teaching?.(),'destination'));this.notice();b.append(this.p('A queued job finishes while you are away and waits for collection. No automatic repeat jobs or hidden lost output.','disclosure'),this.disclosure());this.updateClocks();
  };this.begin('Your work bench',render);}
  showInventory(){const render=()=>{
-  const b=this.host.body;b.replaceChildren();b.append(this.resources(),this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.garden)b.append(this.button('Your allotment · crops, markers & quests',()=>this.host.garden?.(),'destination'));
+  const b=this.host.body;b.replaceChildren();b.append(this.resources(),this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)b.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!()));if(this.host.garden)b.append(this.button('Your allotment · crops, markers & quests',()=>this.host.garden?.(),'destination'));
   const quest=this.p('');quest.dataset.quest='';quest.className='quest-card';b.append(quest);
   const skill=this.p('');skill.dataset.skills='';b.append(skill);
   const kits=this.p('');kits.dataset.kits='';b.append(kits);

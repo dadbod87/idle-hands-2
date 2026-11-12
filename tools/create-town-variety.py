@@ -129,7 +129,13 @@ RESIDENTS = {
 }
 
 
-def resident(c, facing, pose, action=None, action_phase=0):
+def held_saw(x,y,phase=0):
+    # Protected hand-slot art, no imported media. All teeth remain in-frame.
+    offset=[-2,1,-1][phase%3]
+    return f'<g transform="translate({x-2} {y+offset})">'+path('M0-3l6-1 2 5-4 4-5-3Z','#a17c56',INK,1.2)+path('M5 1l10 9-2 2-1-1-1 3-2-1-1 3-2-2-4-9Z','#bac6bd',INK,1)+path('M1-1l3 0 1 2-3 1Z','#f8f1df',INK,.8)+'</g>'
+
+
+def resident(c, facing, pose, action=None, action_phase=0, equipment=None):
     phase = 2*pi*(pose-1)/6 if pose else 0
     swing = sin(phase)*4 if pose else 0
     bob = abs(sin(phase))*0.8 if pose else 0
@@ -183,6 +189,14 @@ def resident(c, facing, pose, action=None, action_phase=0):
         elif action == 'inspect':
             b += path(f'M{hx} {hy}l3-7', stroke='#9c7850', sw=3)
             b += ellipse(hx+5,hy-11,5,5,'#b9d0c7',INK,1.2)
+        elif action == 'saw':
+            b += held_saw(hx-1,hy,phase)
+        elif action == 'finish':
+            b += path(f'M{hx-5} {hy-3}l10 1-2 8-9-2Z','#d7b887',INK,1)
+            b += path(f'M{hx-2} {hy+1}l5 1',stroke='#8f704e',sw=1)
+        elif action == 'deliver':
+            b += path('M23 45h22l-3 16H26Z','#b89665',INK,1.5)+path('M27 46q7-12 14 0',stroke='#7d6348',sw=2)
+            b += path('M29 46l-3-7 6 3 4-6 3 10Z','#8fa578',INK,1)+ellipse(38,44,4,4,'#d8ac54',INK,1)
         else:
             b += path('M22 48h22l-3 12H25Z','#b89665',INK,1.5)
             b += path('M26 49q7-13 14 0',stroke='#7d6348',sw=2)
@@ -192,6 +206,13 @@ def resident(c, facing, pose, action=None, action_phase=0):
             b += f'<g transform="rotate({s*4:.2f} {x+3} 37)">' + rect(x, 35, 6, 18, c['sleeve'], 3, INK, 1.4) + ellipse(x+3, 55, 3.2, 4, c['skin'], INK, 1.2) + '</g>'
     else:
         b += f'<g transform="rotate({-swing*5:.2f} 35 37)">' + rect(31, 35, 7, 19, c['sleeve'], 3, INK, 1.4) + ellipse(35, 55, 3.6, 4, c['skin'], INK, 1.2) + '</g>'
+    if equipment == 'saw' and not action:
+        # Follow the actual hand point while keeping the blade upright at the
+        # wrist. Rotating the long blade about the shoulder clips outward poses.
+        angle = -swing*(5 if side else 4)*pi/180
+        hx = (35 if side else right-2)-18*sin(angle)
+        hy = 37+18*cos(angle)
+        b += f'<g transform="rotate(20 {hx} {hy})">'+held_saw(hx,hy,0)+'</g>'
     b += ellipse(32, 21, c['head'], 14, c['skin'], INK, 1.6)
     style = c['style']
     if style == 'crop':

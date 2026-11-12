@@ -104,3 +104,11 @@
 - Required aggregate/build/design/plan/40pinned/diff and full53browser cases; both exact-head CIjobs plus actual uploaded build/server/browser evidence before merge. Preserve all existing deadlines/assertions. Sourceacceptance is not hosted release.
 
 IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclose nine local agent cases and elapsed fixtures separately from human/physical-phone/server proof. Reproduce36candidate resource-policy/absence cohorts and18opt-in group cases, including daily-request starvation, conserved ingredients/wood and solo/late-helper opening. New ingredient sinks require a real versioned accounting migration in067; model arithmetic is not authority. Full required checks, exact-head bothCI and actual downloaded artifact/image review remain mandatory even when the client131-file payload stays unchanged.
+
+
+## IH2-067 pine workshop
+
+- Preserve old jobs, garden ledgers, house rights, furniture and current practice rows/key through additive migration/restart/restore. Strict produced/owned and allocated-copy invariants; exact UUID replay and rollback.
+- Check private supply/tool state, close-range actions, concurrent final public credits, immutable24h opening, postfunding truth, explicit collect and no render grants. Reject cached unversioned HTTP/EventSource and incompatible replies without losing retry identity.
+- Actual local fresh phone, elapsed pure-command fixtures, goal flower override, preview/cancel/place/reload, lost committed response, peer invalidation and owner-home display. Housing kits/time advances are disposable fixture-only and disclosed; never grant current practice.
+-217 checks/zero skips,58 browser flows, populated actual PG restart, build/design/plan/pinned/diff; actual final desktop/phone/short200%/256frame images. Both exact-head CI jobs and downloaded actual artifacts/images before source merge, matching trees/clean main. Update client/API together only after backups/preservation. No hosted release or physical-device claim.

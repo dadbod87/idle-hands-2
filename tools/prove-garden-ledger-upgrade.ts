@@ -13,7 +13,7 @@ function command(a:Record<string,unknown>,at:number){const r=applyWorkshop(state
 for(const resource of ['scrap','timber','supplies'])command({kind:'gather',resource},now);
 command({kind:'craft',recipe:'planter'},now);command({kind:'claim'},now+5000);command({kind:'place',prop:'planter',slot:'north-west'},now+5000);command({kind:'craft',recipe:'bridge-kit'},now+5000);
 command({kind:'garden',gardenAction:{action:'plant',bed:0,crop:'radish'}},now+5000);
-const current=JSON.stringify(state),legacy=JSON.parse(current);legacy.garden.version=1;delete legacy.garden.consumed;const oldEncoded=JSON.stringify(legacy),oldJob=structuredClone(state.job);
+const current=JSON.stringify(state),legacy=JSON.parse(current);legacy.garden.version=1;delete legacy.garden.consumed;delete legacy.carpentry;delete legacy.owned.easel;const oldEncoded=JSON.stringify(legacy),oldJob=structuredClone(state.job);
 const browser=await chromium.launch({channel:'chrome',headless:true});const errors:string[]=[];
 async function boot(page:Page,origin:string,raw?:string){
  page.on('pageerror',e=>errors.push(e.message));

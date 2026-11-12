@@ -33,8 +33,8 @@ async function leaveInterior(page:Page,touch=false){
  if(room==='home'||room==='home-expanded'){await point(page,9,13.5,touch);await expect.poll(async()=>(await actor(page)).room,{timeout:arrivalTimeout}).toBe('square');}
  else if(room==='workshop'){await point(page,9,13.5,touch);await expect.poll(async()=>(await actor(page)).room,{timeout:arrivalTimeout}).toBe('square');}
 }
-async function apiSnapshot(page:Page){const response=await page.request.get('/api/town/snapshot');expect(response.status()).toBe(200);return(await response.json()).snapshot;}
-async function post(page:Page,endpoint:string,data:unknown){return page.request.post('/api/town/'+endpoint,{headers:{Origin:new URL(page.url()).origin},data});}
+async function apiSnapshot(page:Page){const response=await page.request.get('/api/town/snapshot',{headers:{'X-IH2-Schema':'2'}});expect(response.status()).toBe(200);return(await response.json()).snapshot;}
+async function post(page:Page,endpoint:string,data:unknown){return page.request.post('/api/town/'+endpoint,{headers:{Origin:new URL(page.url()).origin,'X-IH2-Schema':'2'},data});}
 
 test('real isolated town: timed opening, personal trail journal and permanent home pennant',async({browser})=>{
  test.setTimeout(process.env.CI?300_000:120_000);

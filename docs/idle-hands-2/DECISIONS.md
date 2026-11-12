@@ -137,3 +137,8 @@ IH2-066 agent-selected candidate, not runtime economy. Actual fresh/returning/sa
 ## A049 — dated runtime coverage and measured phone friction
 
 The48-entry candidate catalog is not a complete runtime inventory. CURRENT_RUNTIME_COVERAGE dates accepted065's117originalSVGs/131buildfiles and explicit remaining gear/species/ingredient/art gaps;054baseline text remains historical. Nine actual agent viewport cases preserve old jobs/materials/skills/properties. Phone panels have excess blank status/intro space and the guide requires an extra Inspect at the workshop; record these as focused usability work, not failed production authority or permission to silently rewrite the current task. New family controls must start action-first with stable44pxtargets/feedback.
+
+
+## A050 — explicit ownership, private equipment and additive shared progress
+
+IH2-067 implements the selected pine family with one private supply across three stations, a separate finishing job and produced/owned conservation. Trusted allocations across home/workshop never subtract actual owned copies. Recording an earned easel retains it; anonymous public credits cap at six with one immutable 24-hour opening deadline. Rendering and animation never award or settle production. Current shared schema2 rejects cached unversioned clients before login, mutation or stream allocation. Unsupported local saves remain intact/read-only. Original saw carry follows the actual wrist; action atlases use two rows within a 2048px maximum axis, with all256frames bounded and raster-reviewed. This is local/CI scope, not physical-device or hosted acceptance.

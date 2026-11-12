@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-076 accepted PR25/merged8edb0c, exact04b6848CI43231538226bothSUCCESS262/80. Inside-home controls/choice/pointer/retry stability, unchanged authority and preserved immutable preview.077collection art study starts independently. [Closeout](evidence/IH2-076/source-closeout.json).
+
 2026-11-12 — IH2-076 working candidate: inside-home arrangement first, retained choices and scoped retry/late-response handling. Outside navigation/visitor restrictions and all server/domain/art rules preserved. Local262checks/zero skips; full gates pending. [Evidence](evidence/IH2-076/REPORT.md).
 
 2026-11-12 — IH2-075 accepted PR24/merge00563d3, exact9626bb8CI43226178072bothSUCCESS262/78. Two permanent workroom nooks; actual artifact/preview and old-field/key preservation verified.076inside-home phone arrangement begins. [Closeout](evidence/IH2-075/source-closeout.json).

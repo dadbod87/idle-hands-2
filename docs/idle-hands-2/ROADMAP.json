@@ -793,7 +793,7 @@
     {
       "id": "IH2-076",
       "title": "Owner home arrangement first on phones",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/home-arrangement-panel",
       "depends_on": [
         "IH2-075"
@@ -810,7 +810,31 @@
       ],
       "evidence": [
         "docs/idle-hands-2/HOME_ARRANGEMENT_PANEL.md",
-        "docs/evidence/IH2-076/REPORT.md"
+        "docs/evidence/IH2-076/REPORT.md",
+        "docs/evidence/IH2-076/source-closeout.json"
+      ]
+    },
+    {
+      "id": "IH2-077",
+      "title": "Ordinary collection action art study",
+      "status": "in_progress",
+      "owner_branch": "feat/ordinary-gathering-art-study",
+      "depends_on": [
+        "IH2-076"
+      ],
+      "goal": "Author a reviewable original ordinary-depot collection action study on one existing rig, preserving all playable game bytes and authority.",
+      "acceptance": [
+        "Aster only: four facings, idle/reach/contact/recovery, scrap/timber/supplies hand props with exact attachment and32,72foot metadata; no clipped frames. Other three rigs explicitly unfinished.",
+        "Deterministic project-original source/provenance, phone-world-scale comparison and reduced-motion idle. Standalone gallery outside public/runtime; no game integration, rewards, clocks or controls.",
+        "Native desktop/phone/short gallery, bounded replay/reduced/hidden cancellation, raster bounds/foot-band/prop-silhouette tests; disclose candidate-only and device limits.",
+        "Full repository gates/exact-headCI/artifact/source-image review and matching merge tree. All178game files byte-identical076, protected preview/data/key remain unchanged; stop07:00Pacific even if incomplete."
+      ],
+      "exclusions": [
+        "No live animation integration or all-rig completion claim, new tools/resources/rewards, server/domain/art-runtime/economy, hosting/expense/identity or original-game change."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/ORDINARY_GATHERING_STUDY.md",
+        "docs/evidence/IH2-077/REPORT.md"
       ]
     },
     {
@@ -831,7 +855,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-076 improves inside-home phone arrangement. No cloud resources, invitations or public release."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-077 authors a collection art study outside runtime. No hosting/invitations/public release."
     },
     {
       "id": "IH2-080",

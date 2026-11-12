@@ -68,7 +68,12 @@ jobs:
           path: dist/
           retention-days: 7
           if-no-files-found: error
-  browser-playtest:
+  browser_shards:
+    name: browser-shard (${{ matrix.shard }}/2)
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     services:
@@ -99,16 +104,28 @@ jobs:
         run: node --experimental-strip-types tools/prepare-test-dbs.ts
       - run: npx playwright install --with-deps chromium
       - run: npm run build
-      - run: npm run test:browser
+      - name: Run assigned browser cases
+        run: npm run test:browser -- --shard=${{ matrix.shard }}/2
         env:
           IH2_BROWSER_DATABASE_URL: postgres://ih2:local-synthetic-only@127.0.0.1:5432/ih2_browser
       - name: Preserve synthetic playtest evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: sequel-browser-evidence
+          name: sequel-browser-evidence-${{ matrix.shard }}
           path: |
             test-results/
             playwright-report/
           retention-days: 7
           if-no-files-found: error
+  browser-playtest:
+    name: browser-playtest
+    if: ${{ always() }}
+    needs: [browser_shards]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    steps:
+      - name: Require both complete browser shards
+        env:
+          SHARD_RESULT: ${{ needs.browser_shards.result }}
+        run: test "$SHARD_RESULT" = success

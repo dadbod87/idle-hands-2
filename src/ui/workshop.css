@@ -26,3 +26,26 @@
 .collection-control.primary[aria-disabled=true]{background:#e1dbc8;color:#626955}
 .collection-status-wrap:focus-visible{outline:3px solid #b8653e;outline-offset:2px}
 @media(max-width:400px){.collection-action{gap:8px}}
+
+/* Ordered work notes do not move buttons when time or capacity changes. */
+.activity-notebook{border:1px solid var(--line);padding:12px;background:#eee6cf;margin-bottom:16px;min-width:0}
+.activity-notebook h3{margin:0 0 4px}.activity-notebook .notebook-intro{font-size:.85rem;margin:0 0 10px}
+.activity-note{border-block-start:1px solid var(--line);padding:10px 0 8px;min-width:0;overflow-wrap:anywhere}
+.activity-note h4{margin:0 0 4px;font-size:1rem}
+#panel-body .activity-status{font-weight:bold;margin:0;height:2.8em;line-height:1.4;overflow:auto;scrollbar-gutter:stable}
+#panel-body .activity-clock{font-family:'Courier New',monospace;font-size:.8rem;margin:3px 0 7px;height:1.4em;line-height:1.3;overflow:hidden}
+.activity-note button{display:block;width:100%;min-height:44px;height:3.4em;margin:0 0 8px;overflow-wrap:anywhere}
+.activity-notebook details{font-size:.85rem}.activity-notebook summary{min-height:44px;display:list-item;padding:10px 0;cursor:pointer}
+#panel-body .notebook-footnote{font-size:.8rem;margin:10px 0 0}
+.activity-note[data-phase=ready] h4::before{content:'✓ ';color:#315847}.activity-note[data-phase=blocked] h4::before{content:'! ';color:#834b27}
+.activity-status:focus-visible,.activity-clock:focus-visible{outline:3px solid #b8653e;outline-offset:2px}
+
+.activity-note h4::before{display:inline-block;width:1em;content:' ';}
+.activity-note[data-phase=ready] h4::before{content:'✓ '}.activity-note[data-phase=blocked] h4::before{content:'! '}
+.activity-status{min-height:44px}
+.notebook-dialog{max-width:calc(100vw - 16px)}
+.activity-note button{line-height:1.25;padding:8px}
+
+/* A fallback glyph must not alter the heading baseline or held action position. */
+.activity-note h4{position:relative;padding-inline-start:1em;line-height:1.4}
+.activity-note h4::before{position:absolute;inset-inline-start:0;top:0;display:block;width:1em;height:1.4em;line-height:1.4;pointer-events:none}

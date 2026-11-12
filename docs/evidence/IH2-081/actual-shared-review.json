@@ -1,0 +1,15 @@
+{
+  "classification": "Root visually reviewed actual downloaded finalCIbuild with frozen exact candidate server, isolated ordinary zero-default Mira/Sol",
+  "desktopImage": "actual-shared-desktop-collection.png",
+  "phoneImage": "actual-shared-phone-collection.png",
+  "retainedAllThreeMaterialCounts": true,
+  "literalExactQuantityVisible": true,
+  "noCutoffOrDuplicateStripInReviewedCaptures": true,
+  "controlsRemainReadable": true,
+  "noInterception": true,
+  "noProtectedWrites": true,
+  "limits": [
+    "Native Chrome viewport/touch emulation; not physical phone/Safari",
+    "Bounded visual review; no human-perceived motion certification"
+  ]
+}

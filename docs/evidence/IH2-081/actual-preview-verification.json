@@ -1,0 +1,106 @@
+{
+  "classification": "Actual accepted081CIartifact responses/native Chrome empty contexts; fresh local ordinary collection and anonymous shared chooser, no protected shared grants",
+  "files": 191,
+  "allBytesMatch": true,
+  "htmlSha256": "285625a57719bda92286d25e9abe32a0804595991832d66b07fc542affc233cd",
+  "requiredSchema": 4,
+  "cachedProtocols": [
+    {
+      "schema": "1",
+      "path": "snapshot",
+      "status": 426
+    },
+    {
+      "schema": "1",
+      "path": "events?schema=1",
+      "status": 426
+    },
+    {
+      "schema": "2",
+      "path": "snapshot",
+      "status": 426
+    },
+    {
+      "schema": "2",
+      "path": "events?schema=2",
+      "status": 426
+    },
+    {
+      "schema": "3",
+      "path": "snapshot",
+      "status": 426
+    },
+    {
+      "schema": "3",
+      "path": "events?schema=3",
+      "status": 426
+    }
+  ],
+  "currentAnonymous": 401,
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "normalPlacesAllThreeCollectionsAndReload": true,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "sharedChooser": true,
+      "noSharedIdentitySelected": true,
+      "noInterceptionOrStatePositionClockFixtures": true,
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "normalPlacesAllThreeCollectionsAndReload": true,
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "sharedChooser": true,
+      "noSharedIdentitySelected": true,
+      "noInterceptionOrStatePositionClockFixtures": true,
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

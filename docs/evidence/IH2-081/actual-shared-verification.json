@@ -1,0 +1,335 @@
+{
+  "classification": "Actual downloaded finalCIbuild49536 and frozen exact candidate server4197; real isolated ih2_browser ordinary commands from zero default fictional Mira/Sol. No interception, inventory/time/position fixtures or protected practice writes. Browser viewport/touch emulation, not physical phone.",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false,
+        "resident": "Mira",
+        "id": "receipt-maker"
+      },
+      "ordinaryOriginalGrants": [
+        {
+          "commandId": "614d7b8f-030a-4536-8744-9a985d84614f",
+          "playerId": "receipt-maker",
+          "resource": "scrap",
+          "quantity": 6,
+          "revision": 1
+        },
+        {
+          "commandId": "fddebc5e-c276-44cb-a9f8-078987ec5ab5",
+          "playerId": "receipt-maker",
+          "resource": "timber",
+          "quantity": 6,
+          "revision": 2
+        },
+        {
+          "commandId": "ed53aa73-27cc-4c28-adc1-f6801b0ed038",
+          "playerId": "receipt-maker",
+          "resource": "supplies",
+          "quantity": 6,
+          "revision": 3
+        }
+      ],
+      "inventoryAfterReload": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/login"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/events"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/command"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/command"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/command"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true,
+        "resident": "Sol",
+        "id": "receipt-other"
+      },
+      "ordinaryOriginalGrants": [
+        {
+          "commandId": "dc03a4c9-6baf-4bc9-956e-2fb8e870530c",
+          "playerId": "receipt-other",
+          "resource": "scrap",
+          "quantity": 6,
+          "revision": 1
+        },
+        {
+          "commandId": "9a3bfd13-758f-4996-bfd5-6a8666c25558",
+          "playerId": "receipt-other",
+          "resource": "timber",
+          "quantity": 6,
+          "revision": 2
+        },
+        {
+          "commandId": "ba1f9df9-a845-4c34-9670-3fddd4dda1dc",
+          "playerId": "receipt-other",
+          "resource": "supplies",
+          "quantity": 6,
+          "revision": 3
+        }
+      ],
+      "inventoryAfterReload": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/login"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/events"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/command"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/command"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/movement"
+        },
+        {
+          "method": "POST",
+          "path": "/api/town/command"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

@@ -189,3 +189,8 @@ Choose a reserved modal illustration rather than a hidden world animation or aut
 ## 2026-11-12 — IH2-081 actual receipt authority
 
 Owner explicitly requests playable integration of accepted079. Persist optional original gather metadata inside the existing locked receipt JSON; legacy results stay text-only, with no new schema/rules/queries/writes. Pair each transport promise with its exact result rather than mutable global last-result fields. Local pure action exposes actual persist success; failed saves retain recovery warnings. A disposable fixed DOM view scopes presentation to original owner/rig/material/panel/intent, lazily decodes exact accepted art, and never drives production or request timing. Preserve reserved Retry geometry and pointer targets, keyboard-only uncover and explicit reopen focus. Both exact-headCI jobs, actual artifacts and quiescent practice-preserving local update remain required. No hosting/current-game/account/expense authorization inferred.
+
+
+## 2026-11-12 — IH2-082 existing activities before another economy
+
+Owner explicitly delegates the next useful section. Select a compact returning-player notebook in existing Bag & journal: current bench/rack/crop readiness and capacity, fixed links to existing inspectors, then independent sketch/Pip/wood routes. This addresses long parallel waits without another currency, recipe or reward. Projection is presentation only using existing private state/server clock, never a command, implicit harvest or settlement source. Preserve useful holdings/arranging/quests and stable controls under passive updates. No new HUD, polling, save schema or backend changes. Actual Terra desktop/mobile review and all acceptance gates remain required.

@@ -1,0 +1,50 @@
+{
+  "classification": "Actual downloaded finalCIartifact; root image and recovery inspection completed",
+  "gameFiles": 191,
+  "allGameBytesEqualReviewedLocal": true,
+  "oldArtFiles": 172,
+  "oldArtAllIdentical": true,
+  "selectedImages": [
+    {
+      "file": "collection-shared-desktop.png",
+      "sha256": "220d8e4d6b19ba584b3f269dd1a82bedb6b8bf772bc33ed7fa728b7c72c76a94",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "collection-runtime-phone320.png",
+      "sha256": "f00f57170c8882bcb1a7c07d46e603758f5121410a05b4386b8629159ac19ff5",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "collection-runtime-phone360.png",
+      "sha256": "087446bb1af70776c28c459101fcede175a296c01f69ef238ebe1939e2c59e95",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "collection-runtime-short200.png",
+      "sha256": "22fef525d68951f6ed0aeadb9ac75c255e4fddf131370487d4b0086b0de2e647",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "collection-runtime-phone200.png",
+      "sha256": "ce969e2483519ef9638ae08ce23a6a795960de6e152df1e33475bc685da0684e",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "collection-local-unsaved-phone200.png",
+      "sha256": "3e2dd0b0796dc89df2f7e2d54127d8745656c3326a970b9732f6976f17412eb7",
+      "actualUploadedCIImageReviewed": true
+    }
+  ],
+  "sharedOriginalRetryGrant": {
+    "commandId": "b2161604-ef62-49f2-8c83-56cbf7270cc1",
+    "playerId": "receipt-maker",
+    "resource": "scrap",
+    "quantity": 6,
+    "revision": 1
+  },
+  "fourResponsiveLayouts": true,
+  "htmlSha256": "285625a57719bda92286d25e9abe32a0804595991832d66b07fc542affc233cd",
+  "populatedRestartEvidenceReviewed": true,
+  "visualLimits": "Enlarged-text status is deliberately internally scrollable; a capture shows only its visible portion. Viewport/text emulation is not physical-device or full accessibility certification."
+}

@@ -1,0 +1,495 @@
+{
+  "classification": "Actual accepted071client against isolated audit API/SQL, not protected practice, real people or earned global-history proof",
+  "base": "http://127.0.0.1:4198/",
+  "htmlSha256": "15e94f934918c3e7cd71ae02c76ace06d556137c293eb26d4ef55d7bda65f93d",
+  "acceptedMerge": "3fc2cfed6f30837a62b7c8cdf95126595586d3a6",
+  "fixtures": "Only disposable ih2_browser. Global bridge/garden/noticeboard were inserted as completed world fixtures, not earned group work or real timers. Ember private history is current pure-command19day modeled progress (37kits), not arbitrary stock or actual19day play. Actual UI spends12+24kits; same owner is resized across three views. Drew/Finch start ordinary defaults; no player-state/API interception. All identities fictional.",
+  "rows": [
+    {
+      "scenario": "owned-home",
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "level": 1,
+      "placementPositions": 6,
+      "detail": {
+        "text": "Practice town \u00b7 fictional residents and test supplies. Confirmed changes are saved here.\n\nEnter your house\n\nPlot 1 \u00b7 Ember \u00b7 level 1\n\nUpgrade plot \u00b7 24 bridge kits\nplanter \u00b7 1 owned\nstool \u00b7 1 owned\nrug \u00b7 1 owned\nlamp \u00b7 1 owned\ncrate \u00b7 1 owned\nshelf \u00b7 1 owned\neasel \u00b7 6 owned\nletterbox \u00b7 1 owned\nnorth-west \u00b7 lamp\nnorth-middle \u00b7 easel\nnorth-east \u00b7 shelf\nsouth-west \u00b7 stool\nsouth-middle \u00b7 rug\nsouth-east \u00b7 letterbox\nPlace owned furniture here\nReturn furniture to bag\nRefresh plot information",
+        "scrollPages": 1,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Enter your house",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Upgrade plot \u00b7 24 bridge kits",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Place owned furniture here",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Return furniture to bag",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Refresh plot information",
+            "disabled": false,
+            "height": 52
+          }
+        ]
+      },
+      "actualOwnedCopies": true
+    },
+    {
+      "scenario": "owned-home",
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "level": 1,
+      "placementPositions": 6,
+      "detail": {
+        "text": "Practice town \u00b7 fictional residents and test supplies. Confirmed changes are saved here.\n\nEnter your house\n\nPlot 1 \u00b7 Ember \u00b7 level 1\n\nUpgrade plot \u00b7 24 bridge kits\nplanter \u00b7 1 owned\nstool \u00b7 1 owned\nrug \u00b7 1 owned\nlamp \u00b7 1 owned\ncrate \u00b7 1 owned\nshelf \u00b7 1 owned\neasel \u00b7 6 owned\nletterbox \u00b7 1 owned\nnorth-west \u00b7 lamp\nnorth-middle \u00b7 easel\nnorth-east \u00b7 shelf\nsouth-west \u00b7 stool\nsouth-middle \u00b7 rug\nsouth-east \u00b7 letterbox\nPlace owned furniture here\nReturn furniture to bag\nRefresh plot information",
+        "scrollPages": 1.34,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Enter your house",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Upgrade plot \u00b7 24 bridge kits",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Place owned furniture here",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Return furniture to bag",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Refresh plot information",
+            "disabled": false,
+            "height": 52
+          }
+        ]
+      },
+      "actualOwnedCopies": true
+    },
+    {
+      "scenario": "owned-home",
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "level": 1,
+      "placementPositions": 6,
+      "detail": {
+        "text": "Practice town \u00b7 fictional residents and test supplies. Confirmed changes are saved here.\n\nEnter your house\n\nPlot 1 \u00b7 Ember \u00b7 level 1\n\nUpgrade plot \u00b7 24 bridge kits\nplanter \u00b7 1 owned\nstool \u00b7 1 owned\nrug \u00b7 1 owned\nlamp \u00b7 1 owned\ncrate \u00b7 1 owned\nshelf \u00b7 1 owned\neasel \u00b7 6 owned\nletterbox \u00b7 1 owned\nnorth-west \u00b7 lamp\nnorth-middle \u00b7 easel\nnorth-east \u00b7 shelf\nsouth-west \u00b7 stool\nsouth-middle \u00b7 rug\nsouth-east \u00b7 letterbox\nPlace owned furniture here\nReturn furniture to bag\nRefresh plot information",
+        "scrollPages": 3.58,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Enter your house",
+            "disabled": false,
+            "height": 59
+          },
+          {
+            "name": "Upgrade plot \u00b7 24 bridge kits",
+            "disabled": false,
+            "height": 94
+          },
+          {
+            "name": "Place owned furniture here",
+            "disabled": false,
+            "height": 94
+          },
+          {
+            "name": "Return furniture to bag",
+            "disabled": false,
+            "height": 59
+          },
+          {
+            "name": "Refresh plot information",
+            "disabled": false,
+            "height": 94
+          }
+        ]
+      },
+      "actualOwnedCopies": true
+    },
+    {
+      "scenario": "late-newcomer",
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "bridgeArrival": "At Bridge committee. Choose Inspect.",
+      "bridge": {
+        "text": "Practice town \u00b7 fictional residents and test supplies. Confirmed changes are saved here.\n\n3 / 3 repair credits funded. The bridge is open. Inkwood is ready.\n\nAccess saved. The trail stays open.\n\nYour bridge kits: 0. Keep ordinary stock for housing once repairs are funded.\n\nContribute one bridge kit\nWalk into Inkwood trail\nCheck bridge opening\n\nA newly funded bridge takes six real hours. Its deadline is fixed; more contributions cannot restart or shorten it. Nobody needs to attend its opening.\n\nCommittee minutes\n\nBridge opened \u00b7 11/12/2026, 12:14:38 AM. The path stays open.",
+        "scrollPages": 1,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Contribute one bridge kit",
+            "disabled": true,
+            "height": 52
+          },
+          {
+            "name": "Walk into Inkwood trail",
+            "disabled": false,
+            "height": 52
+          },
+          {
+            "name": "Check bridge opening",
+            "disabled": false,
+            "height": 52
+          }
+        ]
+      },
+      "housing": {
+        "text": "Practice town \u00b7 fictional residents and test supplies. Confirmed changes are saved here.\n\nClaim your house plot \u00b7 12 bridge kits\nVisit Ember\n\nPlot 1 \u00b7 Ember \u00b7 level 2\n\nVisiting \u00b7 only the owner can change this plot.\n\nRefresh plot information",
+        "scrollPages": 1,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Claim your house plot \u00b7 12 bridge kits",
+            "disabled": true,
+            "height": 52
+          },
+          {
+            "name": "Visit Ember",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Refresh plot information",
+            "disabled": false,
+            "height": 52
+          }
+        ]
+      },
+      "post": {
+        "text": "The Post Must Go Somewhere. Three addressed parcels, no fee and no deadline. Your workbenches keep working.\n\nOptional free chapter. No house, open bridge, helper or spare bag space required.\n\nAccept the three parcels \u00b7 free\nWalk to Pip \u00b7 confirm post actions\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nShared fictional practice \u00b7 the server confirms deliveries and ownership.",
+        "scrollPages": 1,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Accept the three parcels \u00b7 free",
+            "disabled": true,
+            "height": 44
+          },
+          {
+            "name": "Walk to Pip \u00b7 confirm post actions",
+            "disabled": false,
+            "height": 44
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "disabled": false,
+            "height": 44
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "disabled": false,
+            "height": 44
+          }
+        ]
+      },
+      "freePersonalChapterAvailable": true,
+      "openTrailAvailable": true,
+      "houseBudgetStillRequired": true
+    },
+    {
+      "scenario": "late-newcomer",
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "bridgeArrival": "At Bridge committee. Choose Inspect.",
+      "bridge": {
+        "text": "Practice town \u00b7 fictional residents and test supplies. Confirmed changes are saved here.\n\n3 / 3 repair credits funded. The bridge is open. Inkwood is ready.\n\nAccess saved. The trail stays open.\n\nYour bridge kits: 0. Keep ordinary stock for housing once repairs are funded.\n\nContribute one bridge kit\nWalk into Inkwood trail\nCheck bridge opening\n\nA newly funded bridge takes six real hours. Its deadline is fixed; more contributions cannot restart or shorten it. Nobody needs to attend its opening.\n\nCommittee minutes\n\nBridge opened \u00b7 11/12/2026, 12:14:38 AM. The path stays open.",
+        "scrollPages": 1.4,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Contribute one bridge kit",
+            "disabled": true,
+            "height": 52
+          },
+          {
+            "name": "Walk into Inkwood trail",
+            "disabled": false,
+            "height": 52
+          },
+          {
+            "name": "Check bridge opening",
+            "disabled": false,
+            "height": 52
+          }
+        ]
+      },
+      "housing": {
+        "text": "Practice town \u00b7 fictional residents and test supplies. Confirmed changes are saved here.\n\nClaim your house plot \u00b7 12 bridge kits\nVisit Ember\n\nPlot 1 \u00b7 Ember \u00b7 level 2\n\nVisiting \u00b7 only the owner can change this plot.\n\nRefresh plot information",
+        "scrollPages": 1,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Claim your house plot \u00b7 12 bridge kits",
+            "disabled": true,
+            "height": 58
+          },
+          {
+            "name": "Visit Ember",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Refresh plot information",
+            "disabled": false,
+            "height": 52
+          }
+        ]
+      },
+      "post": {
+        "text": "The Post Must Go Somewhere. Three addressed parcels, no fee and no deadline. Your workbenches keep working.\n\nOptional free chapter. No house, open bridge, helper or spare bag space required.\n\nAccept the three parcels \u00b7 free\nWalk to Pip \u00b7 confirm post actions\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nShared fictional practice \u00b7 the server confirms deliveries and ownership.",
+        "scrollPages": 1.51,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Accept the three parcels \u00b7 free",
+            "disabled": true,
+            "height": 44
+          },
+          {
+            "name": "Walk to Pip \u00b7 confirm post actions",
+            "disabled": false,
+            "height": 63
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "disabled": false,
+            "height": 63
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "disabled": false,
+            "height": 63
+          }
+        ]
+      },
+      "freePersonalChapterAvailable": true,
+      "openTrailAvailable": true,
+      "houseBudgetStillRequired": true
+    },
+    {
+      "scenario": "late-newcomer",
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "bridgeArrival": "At Bridge committee. Choose Inspect.",
+      "bridge": {
+        "text": "Practice town \u00b7 fictional residents and test supplies. Confirmed changes are saved here.\n\n3 / 3 repair credits funded. The bridge is open. Inkwood is ready.\n\nAccess saved. The trail stays open.\n\nYour bridge kits: 0. Keep ordinary stock for housing once repairs are funded.\n\nContribute one bridge kit\nWalk into Inkwood trail\nCheck bridge opening\n\nA newly funded bridge takes six real hours. Its deadline is fixed; more contributions cannot restart or shorten it. Nobody needs to attend its opening.\n\nCommittee minutes\n\nBridge opened \u00b7 11/12/2026, 12:14:38 AM. The path stays open.",
+        "scrollPages": 4.94,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Contribute one bridge kit",
+            "disabled": true,
+            "height": 94
+          },
+          {
+            "name": "Walk into Inkwood trail",
+            "disabled": false,
+            "height": 59
+          },
+          {
+            "name": "Check bridge opening",
+            "disabled": false,
+            "height": 59
+          }
+        ]
+      },
+      "housing": {
+        "text": "Practice town \u00b7 fictional residents and test supplies. Confirmed changes are saved here.\n\nClaim your house plot \u00b7 12 bridge kits\nVisit Ember\n\nPlot 1 \u00b7 Ember \u00b7 level 2\n\nVisiting \u00b7 only the owner can change this plot.\n\nRefresh plot information",
+        "scrollPages": 1.52,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Claim your house plot \u00b7 12 bridge kits",
+            "disabled": true,
+            "height": 52
+          },
+          {
+            "name": "Visit Ember",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Refresh plot information",
+            "disabled": false,
+            "height": 52
+          }
+        ]
+      },
+      "post": {
+        "text": "The Post Must Go Somewhere. Three addressed parcels, no fee and no deadline. Your workbenches keep working.\n\nOptional free chapter. No house, open bridge, helper or spare bag space required.\n\nAccept the three parcels \u00b7 free\nWalk to Pip \u00b7 confirm post actions\nFind Nella \u00b7 free saw lesson & pine\nVisit your crops \u00b7 seed, bed & harvest\nPip\u2019s style register\n\nOwners choose whether to show a name and motif. Route order, stock and parcel contents stay private. A sample is not an extra owned object.\n\nNo styles published yet. Publishing is optional.\n\nShared fictional practice \u00b7 the server confirms deliveries and ownership.",
+        "scrollPages": 2.06,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Accept the three parcels \u00b7 free",
+            "disabled": true,
+            "height": 44
+          },
+          {
+            "name": "Walk to Pip \u00b7 confirm post actions",
+            "disabled": false,
+            "height": 44
+          },
+          {
+            "name": "Find Nella \u00b7 free saw lesson & pine",
+            "disabled": false,
+            "height": 44
+          },
+          {
+            "name": "Visit your crops \u00b7 seed, bed & harvest",
+            "disabled": false,
+            "height": 44
+          }
+        ]
+      },
+      "freePersonalChapterAvailable": true,
+      "openTrailAvailable": true,
+      "houseBudgetStillRequired": true
+    }
+  ],
+  "timeline": [
+    {
+      "event": "actual housing arrival",
+      "arrival": "At Future house plots. Choose Inspect."
+    },
+    {
+      "event": "actual paid upgrade",
+      "heldKits": 1,
+      "basePositions": 6,
+      "expandedPositions": 6,
+      "expandedForm": {
+        "text": "Practice town \u00b7 fictional residents and test supplies. Confirmed changes are saved here.\n\nEnter your house\n\nPlot 1 \u00b7 Ember \u00b7 level 2\n\nUpgrade plot \u00b7 24 bridge kits\nplanter \u00b7 1 owned\nstool \u00b7 1 owned\nrug \u00b7 1 owned\nlamp \u00b7 1 owned\ncrate \u00b7 1 owned\nshelf \u00b7 1 owned\neasel \u00b7 6 owned\nletterbox \u00b7 1 owned\nnorth-west \u00b7 lamp\nnorth-middle \u00b7 easel\nnorth-east \u00b7 shelf\nsouth-west \u00b7 letterbox\nsouth-middle \u00b7 rug\nsouth-east \u00b7 empty\nPlace owned furniture here\nReturn furniture to bag\nRefresh plot information\n\nHome upgraded. Your furniture was not restructured.",
+        "scrollPages": 1,
+        "horizontalOverflow": false,
+        "buttons": [
+          {
+            "name": "Enter your house",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Upgrade plot \u00b7 24 bridge kits",
+            "disabled": true,
+            "height": 46
+          },
+          {
+            "name": "Place owned furniture here",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Return furniture to bag",
+            "disabled": false,
+            "height": 46
+          },
+          {
+            "name": "Refresh plot information",
+            "disabled": false,
+            "height": 52
+          }
+        ]
+      },
+      "visitorRoomAfterUpgrade": "home-expanded",
+      "cumulativeClaimAndUpgradeDebit": 36,
+      "upgradeDebit": 24
+    },
+    {
+      "event": "free move/style/register/remove/reload preserved ownership",
+      "level": 2,
+      "placements": {
+        "north-east": "shelf",
+        "north-west": "lamp",
+        "south-east": null,
+        "south-west": "letterbox",
+        "north-middle": "easel",
+        "south-middle": "rug"
+      },
+      "physicalBoxes": 1,
+      "visitorOwnKits": 0
+    }
+  ],
+  "owner": {
+    "initialKits": 37,
+    "finalKits": 1,
+    "level": 2,
+    "expandedPositions": 6,
+    "ownershipPreserved": true
+  },
+  "newcomer": {
+    "privateRevision": 0,
+    "stockUnchanged": true,
+    "postUnaccepted": true
+  },
+  "errors": [],
+  "bad": [],
+  "expectedAnonymousAuth": [
+    {
+      "url": "http://127.0.0.1:4198/api/town/snapshot",
+      "status": 401
+    },
+    {
+      "url": "http://127.0.0.1:4198/api/town/snapshot",
+      "status": 401
+    },
+    {
+      "url": "http://127.0.0.1:4198/api/town/snapshot",
+      "status": 401
+    },
+    {
+      "url": "http://127.0.0.1:4198/api/town/snapshot",
+      "status": 401
+    },
+    {
+      "url": "http://127.0.0.1:4198/api/town/snapshot",
+      "status": 401
+    },
+    {
+      "url": "http://127.0.0.1:4198/api/town/snapshot",
+      "status": 401
+    }
+  ],
+  "inputScope": "Shared cases use mouse activation at resized desktop/phone/short widths; local and separate timed journeys exercise native touch emulation.",
+  "limits": [
+    "Chrome emulation, not physical phone/Safari or enjoyment",
+    "Not an actual group construction/24hwait/19day playtest",
+    "Three viewport observations per shared situation are resizes of the same identities, not six independent populations"
+  ],
+  "reportCorrection": "Raw observation retained externally. Corrected ambiguous kitDebit36 label to cumulative claim12+upgrade24; actual upgrade is24. No measurement or command changed."
+}

@@ -1,0 +1,1692 @@
+{
+  "result": "completed",
+  "htmlSha256": "15e94f934918c3e7cd71ae02c76ace06d556137c293eb26d4ef55d7bda65f93d",
+  "base": "http://127.0.0.1:4198/",
+  "method": "Native Chrome 360x640 touch emulation, actual wall time and actual commands. Fifteen-minute active-window observation plus actual three-minute absence. Known-answer agent actions are not human reading, enjoyment or retention.",
+  "disclosure": "Drew starts zero private progress on disposable ih2_browser; already-open bridge/garden/noticeboard are inserted shared-world fixtures. Starting location is the ordinary fresh square default after the disposable world was reset. No response interception, clock/position/resource grant or protected practice writes. Waiting remainder is explicitly not gameplay content; other listed finite activities are not exhausted.",
+  "timeline": [
+    {
+      "event": "Fresh private progress; world already funded fixture",
+      "category": "baseline",
+      "at": "2026-11-12T09:22:34.222Z",
+      "elapsedMs": 2,
+      "detail": {
+        "initial": {
+          "version": 2,
+          "commission": {
+            "version": 1,
+            "quest": "pip-post-v1",
+            "acceptedAt": null,
+            "paused": false,
+            "order": [],
+            "completedAt": null,
+            "madeCount": 0,
+            "motif": "leaf",
+            "published": false
+          },
+          "revision": 0,
+          "observedAt": 1794475354114,
+          "sketches": [],
+          "garden": {
+            "version": 3,
+            "observedAt": 1794475354114,
+            "seeds": {
+              "radish": 2,
+              "marigold": 1
+            },
+            "produce": {
+              "radish": 0,
+              "marigold": 0
+            },
+            "consumed": {
+              "easels": {
+                "radish": 0,
+                "marigold": 0
+              },
+              "hampers": {
+                "radish": 0,
+                "marigold": 0
+              },
+              "commission": {
+                "radish": 0,
+                "marigold": 0
+              }
+            },
+            "beds": [
+              null,
+              null,
+              null
+            ],
+            "firstRadishUsed": false,
+            "clippings": {
+              "available": 6,
+              "lastAt": 1794475354114
+            },
+            "rested": {
+              "available": 2,
+              "lastAt": 1794475354114
+            },
+            "practice": 0,
+            "bonusPractice": 0,
+            "harvested": {
+              "radish": 0,
+              "marigold": 0
+            },
+            "planted": 0,
+            "requests": 0,
+            "nextRequestAt": null,
+            "markers": [],
+            "selectedMarker": null,
+            "errand": {
+              "accepted": false,
+              "pieces": [],
+              "assembled": false
+            }
+          },
+          "carpentry": {
+            "version": 2,
+            "commissionPine": 0,
+            "observedAt": 1794475354114,
+            "lessonAt": null,
+            "saw": {
+              "owned": false,
+              "equipped": false
+            },
+            "pine": {
+              "available": 6,
+              "lastAt": 1794475354114,
+              "carried": 0,
+              "gathered": 0,
+              "spent": 0
+            },
+            "job": null,
+            "started": 0,
+            "produced": 0,
+            "recorded": 0,
+            "sixthRecordAt": null,
+            "hampers": 0,
+            "nextHamperAt": null,
+            "practice": 0,
+            "keepEaselGoal": true
+          },
+          "inventory": {
+            "scrap": 0,
+            "timber": 0,
+            "supplies": 0
+          },
+          "owned": {
+            "planter": 0,
+            "stool": 1,
+            "rug": 1,
+            "lamp": 1,
+            "crate": 1,
+            "shelf": 1,
+            "easel": 0,
+            "letterbox": 0
+          },
+          "placements": {
+            "north-west": null,
+            "north-middle": null,
+            "north-east": null,
+            "south-west": null,
+            "south-middle": null,
+            "south-east": null
+          },
+          "nodes": {
+            "scrap": {
+              "stock": 6,
+              "lastAt": 1794475354114
+            },
+            "timber": {
+              "stock": 6,
+              "lastAt": 1794475354114
+            },
+            "supplies": {
+              "stock": 6,
+              "lastAt": 1794475354114
+            }
+          },
+          "job": null,
+          "bridgeKits": 0,
+          "stats": {
+            "gathered": 0,
+            "crafted": 0,
+            "plantersCrafted": 0,
+            "placed": 0,
+            "planterPlacedAfterCraft": false,
+            "bridgeJobsStarted": 0
+          },
+          "skills": {
+            "gathering": 0,
+            "making": 0
+          },
+          "receipts": [],
+          "lastMessage": "Five donated furnishings. One very empty planter-shaped gap. Gather three materials to get started."
+        }
+      }
+    },
+    {
+      "event": "Plant first radish and inspect its leaves",
+      "category": "growing-choice",
+      "at": "2026-11-12T09:22:37.529Z",
+      "elapsedMs": 3309,
+      "detail": {
+        "crop": {
+          "crop": "radish",
+          "plantedAt": 1794475357344,
+          "readyAt": 1794475657344,
+          "cared": false
+        }
+      }
+    },
+    {
+      "event": "Addressed handover: carpentry-desk",
+      "category": "delivery-instance",
+      "at": "2026-11-12T09:22:46.917Z",
+      "elapsedMs": 12697,
+      "detail": null
+    },
+    {
+      "event": "Learn/equip saw; prepare six fallen pine",
+      "category": "tool-and-gather",
+      "at": "2026-11-12T09:22:49.653Z",
+      "elapsedMs": 15433,
+      "detail": {
+        "pine": {
+          "available": 0,
+          "lastAt": 1794475369559,
+          "carried": 6,
+          "gathered": 6,
+          "spent": 0
+        }
+      }
+    },
+    {
+      "event": "Addressed handover: clerk",
+      "category": "delivery-instance",
+      "at": "2026-11-12T09:22:52.968Z",
+      "elapsedMs": 18748,
+      "detail": null
+    },
+    {
+      "event": "Addressed handover: caretaker",
+      "category": "delivery-instance",
+      "at": "2026-11-12T09:22:56.354Z",
+      "elapsedMs": 22134,
+      "detail": null
+    },
+    {
+      "event": "Keep free route card and letterbox plan",
+      "category": "persistent-collection",
+      "at": "2026-11-12T09:22:57.523Z",
+      "elapsedMs": 23303,
+      "detail": null
+    },
+    {
+      "event": "Collect three ordinary material types",
+      "category": "ordinary-gather",
+      "at": "2026-11-12T09:23:03.234Z",
+      "elapsedMs": 29014,
+      "detail": null
+    },
+    {
+      "event": "Craft/place first planter; queue unchanged twelve-hour kit",
+      "category": "craft-and-arrange",
+      "at": "2026-11-12T09:23:13.903Z",
+      "elapsedMs": 39683,
+      "detail": {
+        "ordinaryJob": {
+          "recipe": "bridge-kit",
+          "startedAt": 1794475393789,
+          "readyAt": 1794518593789
+        }
+      }
+    },
+    {
+      "event": "Pay for one-minute optional upkeep lesson",
+      "category": "upkeep-choice",
+      "at": "2026-11-12T09:23:14.122Z",
+      "elapsedMs": 39902,
+      "detail": {
+        "lesson": {
+          "startedAt": 1794475394008,
+          "readyAt": 1794475454008,
+          "completed": false,
+          "redeemed": false,
+          "route": null,
+          "legacySatisfied": false
+        }
+      }
+    },
+    {
+      "event": "Actual crop readiness wait",
+      "category": "waiting",
+      "at": "2026-11-12T09:23:19.204Z",
+      "elapsedMs": 44984,
+      "detail": {
+        "remainingMs": 258140
+      }
+    },
+    {
+      "event": "Actual crop readiness wait",
+      "category": "waiting",
+      "at": "2026-11-12T09:23:49.209Z",
+      "elapsedMs": 74989,
+      "detail": {
+        "remainingMs": 228135
+      }
+    },
+    {
+      "event": "Actual crop readiness wait",
+      "category": "waiting",
+      "at": "2026-11-12T09:24:19.216Z",
+      "elapsedMs": 104996,
+      "detail": {
+        "remainingMs": 198128
+      }
+    },
+    {
+      "event": "Actual crop readiness wait",
+      "category": "waiting",
+      "at": "2026-11-12T09:24:49.228Z",
+      "elapsedMs": 135008,
+      "detail": {
+        "remainingMs": 168116
+      }
+    },
+    {
+      "event": "Actual crop readiness wait",
+      "category": "waiting",
+      "at": "2026-11-12T09:25:19.237Z",
+      "elapsedMs": 165017,
+      "detail": {
+        "remainingMs": 138107
+      }
+    },
+    {
+      "event": "Actual crop readiness wait",
+      "category": "waiting",
+      "at": "2026-11-12T09:25:49.244Z",
+      "elapsedMs": 195024,
+      "detail": {
+        "remainingMs": 108100
+      }
+    },
+    {
+      "event": "Actual crop readiness wait",
+      "category": "waiting",
+      "at": "2026-11-12T09:26:19.251Z",
+      "elapsedMs": 225031,
+      "detail": {
+        "remainingMs": 78093
+      }
+    },
+    {
+      "event": "Actual crop readiness wait",
+      "category": "waiting",
+      "at": "2026-11-12T09:26:49.258Z",
+      "elapsedMs": 255038,
+      "detail": {
+        "remainingMs": 48087
+      }
+    },
+    {
+      "event": "Actual crop readiness wait",
+      "category": "waiting",
+      "at": "2026-11-12T09:27:19.265Z",
+      "elapsedMs": 285045,
+      "detail": {
+        "remainingMs": 18079
+      }
+    },
+    {
+      "event": "Actual crop readiness wait ended",
+      "category": "wait-summary",
+      "at": "2026-11-12T09:27:37.351Z",
+      "elapsedMs": 303131,
+      "detail": {
+        "durationMs": 258147
+      }
+    },
+    {
+      "event": "Harvest real five-minute radish",
+      "category": "harvest",
+      "at": "2026-11-12T09:27:37.660Z",
+      "elapsedMs": 303440,
+      "detail": null
+    },
+    {
+      "event": "Choose moth and pay two pine plus radish for one letterbox",
+      "category": "cosmetic-purchase",
+      "at": "2026-11-12T09:27:42.116Z",
+      "elapsedMs": 307896,
+      "detail": null
+    },
+    {
+      "event": "Record upkeep without changing funded project or ordinary timer",
+      "category": "personal-upkeep",
+      "at": "2026-11-12T09:27:51.889Z",
+      "elapsedMs": 317669,
+      "detail": null
+    },
+    {
+      "event": "Record trail stop trailhead",
+      "category": "exploration-instance",
+      "at": "2026-11-12T09:27:55.307Z",
+      "elapsedMs": 321087,
+      "detail": null
+    },
+    {
+      "event": "Record trail stop old-sign",
+      "category": "exploration-instance",
+      "at": "2026-11-12T09:27:57.424Z",
+      "elapsedMs": 323204,
+      "detail": null
+    },
+    {
+      "event": "Record trail stop lookout",
+      "category": "exploration-instance",
+      "at": "2026-11-12T09:27:59.543Z",
+      "elapsedMs": 325323,
+      "detail": null
+    },
+    {
+      "event": "Selected active loop complete; other finite sketches/stakes/markers remain unaudited in this timed run",
+      "category": "coverage-boundary",
+      "at": "2026-11-12T09:27:59.636Z",
+      "elapsedMs": 325416,
+      "detail": {
+        "remainingKnownChoices": [
+          "stake errand",
+          "field-clipping marker",
+          "sketchbook studies",
+          "additional seed choices"
+        ],
+        "activeMs": 325416
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:27:59.637Z",
+      "elapsedMs": 325417,
+      "detail": {
+        "remainingMs": 574583
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:28:29.641Z",
+      "elapsedMs": 355421,
+      "detail": {
+        "remainingMs": 544579
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:28:59.646Z",
+      "elapsedMs": 385426,
+      "detail": {
+        "remainingMs": 514574
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:29:29.653Z",
+      "elapsedMs": 415433,
+      "detail": {
+        "remainingMs": 484567
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:29:59.662Z",
+      "elapsedMs": 445442,
+      "detail": {
+        "remainingMs": 454559
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:30:29.667Z",
+      "elapsedMs": 475447,
+      "detail": {
+        "remainingMs": 424553
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:30:59.671Z",
+      "elapsedMs": 505452,
+      "detail": {
+        "remainingMs": 394549
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:31:29.679Z",
+      "elapsedMs": 535459,
+      "detail": {
+        "remainingMs": 364541
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:31:59.690Z",
+      "elapsedMs": 565470,
+      "detail": {
+        "remainingMs": 334531
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:32:29.699Z",
+      "elapsedMs": 595479,
+      "detail": {
+        "remainingMs": 304521
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:32:59.710Z",
+      "elapsedMs": 625491,
+      "detail": {
+        "remainingMs": 274510
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:33:29.718Z",
+      "elapsedMs": 655498,
+      "detail": {
+        "remainingMs": 244502
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:33:59.726Z",
+      "elapsedMs": 685506,
+      "detail": {
+        "remainingMs": 214495
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:34:29.732Z",
+      "elapsedMs": 715512,
+      "detail": {
+        "remainingMs": 184488
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:34:59.737Z",
+      "elapsedMs": 745517,
+      "detail": {
+        "remainingMs": 154483
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:35:29.744Z",
+      "elapsedMs": 775524,
+      "detail": {
+        "remainingMs": 124476
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:35:59.751Z",
+      "elapsedMs": 805531,
+      "detail": {
+        "remainingMs": 94469
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:36:29.757Z",
+      "elapsedMs": 835537,
+      "detail": {
+        "remainingMs": 64463
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:36:59.765Z",
+      "elapsedMs": 865545,
+      "detail": {
+        "remainingMs": 34455
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time",
+      "category": "waiting",
+      "at": "2026-11-12T09:37:29.779Z",
+      "elapsedMs": 895559,
+      "detail": {
+        "remainingMs": 4441
+      }
+    },
+    {
+      "event": "Observation idle remainder, not content time ended",
+      "category": "wait-summary",
+      "at": "2026-11-12T09:37:34.223Z",
+      "elapsedMs": 900004,
+      "detail": {
+        "durationMs": 574586
+      }
+    },
+    {
+      "event": "Leave tab for actual three-minute absence",
+      "category": "absence-start",
+      "at": "2026-11-12T09:37:34.296Z",
+      "elapsedMs": 900076,
+      "detail": {
+        "beforeAbsence": {
+          "version": 2,
+          "commission": {
+            "version": 1,
+            "quest": "pip-post-v1",
+            "acceptedAt": 1794475361709,
+            "paused": false,
+            "order": [
+              "carpentry-desk",
+              "clerk",
+              "caretaker"
+            ],
+            "completedAt": 1794475377539,
+            "madeCount": 1,
+            "motif": "moth",
+            "published": false
+          },
+          "revision": 26,
+          "observedAt": 1794475679560,
+          "sketches": [],
+          "garden": {
+            "version": 3,
+            "observedAt": 1794475662012,
+            "seeds": {
+              "radish": 2,
+              "marigold": 1
+            },
+            "produce": {
+              "radish": 0,
+              "marigold": 0
+            },
+            "consumed": {
+              "easels": {
+                "radish": 0,
+                "marigold": 0
+              },
+              "hampers": {
+                "radish": 0,
+                "marigold": 0
+              },
+              "commission": {
+                "radish": 1,
+                "marigold": 0
+              }
+            },
+            "beds": [
+              null,
+              null,
+              null
+            ],
+            "firstRadishUsed": true,
+            "clippings": {
+              "available": 6,
+              "lastAt": 1794475662012
+            },
+            "rested": {
+              "available": 1,
+              "lastAt": 1794475354114
+            },
+            "practice": 2,
+            "bonusPractice": 1,
+            "harvested": {
+              "radish": 1,
+              "marigold": 0
+            },
+            "planted": 1,
+            "requests": 0,
+            "nextRequestAt": null,
+            "markers": [],
+            "selectedMarker": null,
+            "errand": {
+              "accepted": false,
+              "pieces": [],
+              "assembled": false
+            }
+          },
+          "carpentry": {
+            "version": 2,
+            "commissionPine": 2,
+            "observedAt": 1794475662012,
+            "lessonAt": 1794475367176,
+            "saw": {
+              "owned": true,
+              "equipped": true
+            },
+            "pine": {
+              "available": 0,
+              "lastAt": 1794475369559,
+              "carried": 4,
+              "gathered": 6,
+              "spent": 2
+            },
+            "job": null,
+            "started": 0,
+            "produced": 0,
+            "recorded": 0,
+            "sixthRecordAt": null,
+            "hampers": 0,
+            "nextHamperAt": null,
+            "practice": 0,
+            "keepEaselGoal": true
+          },
+          "inventory": {
+            "scrap": 0,
+            "timber": 1,
+            "supplies": 3
+          },
+          "owned": {
+            "planter": 1,
+            "stool": 1,
+            "rug": 1,
+            "lamp": 1,
+            "crate": 1,
+            "shelf": 1,
+            "easel": 0,
+            "letterbox": 1
+          },
+          "placements": {
+            "north-west": "planter",
+            "north-middle": null,
+            "north-east": null,
+            "south-west": null,
+            "south-middle": null,
+            "south-east": "letterbox"
+          },
+          "nodes": {
+            "scrap": {
+              "stock": 0,
+              "lastAt": 1794475381569
+            },
+            "timber": {
+              "stock": 0,
+              "lastAt": 1794475382135
+            },
+            "supplies": {
+              "stock": 0,
+              "lastAt": 1794475383185
+            }
+          },
+          "job": {
+            "recipe": "bridge-kit",
+            "startedAt": 1794475393789,
+            "readyAt": 1794518593789
+          },
+          "bridgeKits": 0,
+          "stats": {
+            "gathered": 18,
+            "crafted": 1,
+            "plantersCrafted": 1,
+            "placed": 2,
+            "planterPlacedAfterCraft": true,
+            "bridgeJobsStarted": 1
+          },
+          "skills": {
+            "gathering": 18,
+            "making": 1
+          },
+          "receipts": [
+            {
+              "id": "32979d9d-4bb8-441f-a14e-a2bddaba5056",
+              "revision": 1,
+              "message": "First radish planted \u2014 five real minutes. Later radishes take thirty. The committee has approved having roots."
+            },
+            {
+              "id": "89dbf6a3-d0cb-4358-9976-e490e3187d6b",
+              "revision": 2,
+              "message": "Soil checked, leaves admired. No speed or yield bonus \u2014 just a well-informed gardener."
+            },
+            {
+              "id": "3f77c50a-c8a0-458c-8754-511f2bba454d",
+              "revision": 3,
+              "message": "Three addressed parcels accepted. No bag space, payment or deadline. The route is circular. For once, this is intentional."
+            },
+            {
+              "id": "fe4e9ffc-3fe5-4452-a4eb-ae63617e1d12",
+              "revision": 4,
+              "message": "Annual leave for a tree. I have approved the branching arrangement. Receipt kept."
+            },
+            {
+              "id": "6c6408b3-093f-4301-8d49-bb7c6f6a5cae",
+              "revision": 5,
+              "message": "Bound hand saw received. Equip it explicitly to prepare fallen pine. Certified to divide one problem into two smaller problems."
+            },
+            {
+              "id": "8ff5ff6b-54d5-4c69-a27e-beb5918c48f7",
+              "revision": 6,
+              "message": "Hand saw equipped. Fallen pine can now be prepared; no output multiplier."
+            },
+            {
+              "id": "3a4e4d65-6733-432c-b11f-42eaa3f27b9a",
+              "revision": 7,
+              "message": "Prepared 6 pine. 6/24 carried. The three deadfall points share one personal supply; other residents keep theirs."
+            },
+            {
+              "id": "fc88eaa1-f46e-4c47-9d48-d36b62e839ac",
+              "revision": 8,
+              "message": "A permit for a form. At last, a form with a future. Receipt kept."
+            },
+            {
+              "id": "0367dfa2-eab5-4e90-a419-03f7b42fd0d1",
+              "revision": 9,
+              "message": "The grass is growing. Management has asked it to be more specific. Receipt kept."
+            },
+            {
+              "id": "dbc7500b-3e7e-4c90-a810-31701fd64213",
+              "revision": 10,
+              "message": "Route card and letterbox plan saved. Everything arrived. The town is choosing to regard this as a precedent. A physical letterbox is optional and made separately."
+            },
+            {
+              "id": "f8664dac-5898-45b8-ae87-5f58ff5f434c",
+              "revision": 11,
+              "message": "Gathered 6 scrap. 0 left in the bin."
+            },
+            {
+              "id": "bf6e2c08-11c4-4c57-a9fe-303646f59d99",
+              "revision": 12,
+              "message": "Gathered 6 timber. 0 left in the bin."
+            },
+            {
+              "id": "1ce948ba-8b9f-4771-b55f-e6cd8a0e1763",
+              "revision": 13,
+              "message": "Gathered 6 supplies. 0 left in the bin."
+            },
+            {
+              "id": "8c8e8368-f7db-48c7-8832-38140ab77e03",
+              "revision": 14,
+              "message": "Optimistic planter started. Materials spent: 2 scrap, 2 timber, 1 supplies."
+            },
+            {
+              "id": "bd30b9a7-b768-48b1-a442-dee3907a6c3e",
+              "revision": 15,
+              "message": "Collected one optimistic planter. +1 Making experience."
+            },
+            {
+              "id": "6a48fd1b-60c2-45ca-8d95-5ddc2797e581",
+              "revision": 16,
+              "message": "Optimistic planter placed. No materials spent."
+            },
+            {
+              "id": "af080e4f-977d-4c60-8b52-4fb64c35a46d",
+              "revision": 17,
+              "message": "Bridge repair kit started. Materials spent: 3 scrap, 2 timber, 1 supplies."
+            },
+            {
+              "id": "0e516c59-8439-430a-919f-ec082f9ee184",
+              "revision": 19,
+              "message": "Harvested one produce and returned one bound seed. Promoted to vegetable management."
+            },
+            {
+              "id": "b4de3cb5-4b50-498e-a031-2eb4c3f4f4b0",
+              "revision": 20,
+              "message": "Made one Unreasonably Official Letterbox: 2 pine + 1 radish spent once. No new timer or production bonus. Motif changes and moving this same item are free."
+            },
+            {
+              "id": "7235a80b-e959-46fb-b35b-3ae82b0961b8",
+              "revision": 21,
+              "message": "Unreasonably Official Letterbox placed. No materials spent."
+            }
+          ],
+          "lastMessage": "All three landmarks recorded. Your permanent clipboard pennant is earned."
+        }
+      }
+    },
+    {
+      "event": "Actual absent interval",
+      "category": "waiting",
+      "at": "2026-11-12T09:37:34.345Z",
+      "elapsedMs": 900125,
+      "detail": {
+        "remainingMs": 180000
+      }
+    },
+    {
+      "event": "Actual absent interval",
+      "category": "waiting",
+      "at": "2026-11-12T09:38:04.351Z",
+      "elapsedMs": 930131,
+      "detail": {
+        "remainingMs": 149994
+      }
+    },
+    {
+      "event": "Actual absent interval",
+      "category": "waiting",
+      "at": "2026-11-12T09:38:34.360Z",
+      "elapsedMs": 960140,
+      "detail": {
+        "remainingMs": 119985
+      }
+    },
+    {
+      "event": "Actual absent interval",
+      "category": "waiting",
+      "at": "2026-11-12T09:39:04.365Z",
+      "elapsedMs": 990145,
+      "detail": {
+        "remainingMs": 89980
+      }
+    },
+    {
+      "event": "Actual absent interval",
+      "category": "waiting",
+      "at": "2026-11-12T09:39:34.375Z",
+      "elapsedMs": 1020155,
+      "detail": {
+        "remainingMs": 59970
+      }
+    },
+    {
+      "event": "Actual absent interval",
+      "category": "waiting",
+      "at": "2026-11-12T09:40:04.397Z",
+      "elapsedMs": 1050177,
+      "detail": {
+        "remainingMs": 29948
+      }
+    },
+    {
+      "event": "Actual absent interval ended",
+      "category": "wait-summary",
+      "at": "2026-11-12T09:40:34.348Z",
+      "elapsedMs": 1080128,
+      "detail": {
+        "durationMs": 180003
+      }
+    },
+    {
+      "event": "Actual short return keeps ownership/deadline; inspect journal and current post actions",
+      "category": "return-observation",
+      "at": "2026-11-12T09:40:35.049Z",
+      "elapsedMs": 1080829,
+      "detail": {
+        "returnText": "Practice town \u00b7 fictional residents and test supplies. Confirmed changes are saved here.\n\nYour town, home and creative work remain saved. Weekly scores never wipe them.\n\nSince the last confirmed check \u00b7 12m.\n\nYour bench job is still running. The bench uses real time and never repeats automatically.\n\nYour orientation maintenance participation is recorded with the bridge committee.\n\nPersonal depots recover one unit every 4 real hours, up to 6 each and at most 24 hours per absence. Completed work waits for collection.\n\nNo currency or items are awarded by this summary. Your bag shows the server-confirmed quantities.",
+        "beforeAbsence": {
+          "version": 2,
+          "commission": {
+            "version": 1,
+            "quest": "pip-post-v1",
+            "acceptedAt": 1794475361709,
+            "paused": false,
+            "order": [
+              "carpentry-desk",
+              "clerk",
+              "caretaker"
+            ],
+            "completedAt": 1794475377539,
+            "madeCount": 1,
+            "motif": "moth",
+            "published": false
+          },
+          "revision": 26,
+          "observedAt": 1794475679560,
+          "sketches": [],
+          "garden": {
+            "version": 3,
+            "observedAt": 1794475662012,
+            "seeds": {
+              "radish": 2,
+              "marigold": 1
+            },
+            "produce": {
+              "radish": 0,
+              "marigold": 0
+            },
+            "consumed": {
+              "easels": {
+                "radish": 0,
+                "marigold": 0
+              },
+              "hampers": {
+                "radish": 0,
+                "marigold": 0
+              },
+              "commission": {
+                "radish": 1,
+                "marigold": 0
+              }
+            },
+            "beds": [
+              null,
+              null,
+              null
+            ],
+            "firstRadishUsed": true,
+            "clippings": {
+              "available": 6,
+              "lastAt": 1794475662012
+            },
+            "rested": {
+              "available": 1,
+              "lastAt": 1794475354114
+            },
+            "practice": 2,
+            "bonusPractice": 1,
+            "harvested": {
+              "radish": 1,
+              "marigold": 0
+            },
+            "planted": 1,
+            "requests": 0,
+            "nextRequestAt": null,
+            "markers": [],
+            "selectedMarker": null,
+            "errand": {
+              "accepted": false,
+              "pieces": [],
+              "assembled": false
+            }
+          },
+          "carpentry": {
+            "version": 2,
+            "commissionPine": 2,
+            "observedAt": 1794475662012,
+            "lessonAt": 1794475367176,
+            "saw": {
+              "owned": true,
+              "equipped": true
+            },
+            "pine": {
+              "available": 0,
+              "lastAt": 1794475369559,
+              "carried": 4,
+              "gathered": 6,
+              "spent": 2
+            },
+            "job": null,
+            "started": 0,
+            "produced": 0,
+            "recorded": 0,
+            "sixthRecordAt": null,
+            "hampers": 0,
+            "nextHamperAt": null,
+            "practice": 0,
+            "keepEaselGoal": true
+          },
+          "inventory": {
+            "scrap": 0,
+            "timber": 1,
+            "supplies": 3
+          },
+          "owned": {
+            "planter": 1,
+            "stool": 1,
+            "rug": 1,
+            "lamp": 1,
+            "crate": 1,
+            "shelf": 1,
+            "easel": 0,
+            "letterbox": 1
+          },
+          "placements": {
+            "north-west": "planter",
+            "north-middle": null,
+            "north-east": null,
+            "south-west": null,
+            "south-middle": null,
+            "south-east": "letterbox"
+          },
+          "nodes": {
+            "scrap": {
+              "stock": 0,
+              "lastAt": 1794475381569
+            },
+            "timber": {
+              "stock": 0,
+              "lastAt": 1794475382135
+            },
+            "supplies": {
+              "stock": 0,
+              "lastAt": 1794475383185
+            }
+          },
+          "job": {
+            "recipe": "bridge-kit",
+            "startedAt": 1794475393789,
+            "readyAt": 1794518593789
+          },
+          "bridgeKits": 0,
+          "stats": {
+            "gathered": 18,
+            "crafted": 1,
+            "plantersCrafted": 1,
+            "placed": 2,
+            "planterPlacedAfterCraft": true,
+            "bridgeJobsStarted": 1
+          },
+          "skills": {
+            "gathering": 18,
+            "making": 1
+          },
+          "receipts": [
+            {
+              "id": "32979d9d-4bb8-441f-a14e-a2bddaba5056",
+              "revision": 1,
+              "message": "First radish planted \u2014 five real minutes. Later radishes take thirty. The committee has approved having roots."
+            },
+            {
+              "id": "89dbf6a3-d0cb-4358-9976-e490e3187d6b",
+              "revision": 2,
+              "message": "Soil checked, leaves admired. No speed or yield bonus \u2014 just a well-informed gardener."
+            },
+            {
+              "id": "3f77c50a-c8a0-458c-8754-511f2bba454d",
+              "revision": 3,
+              "message": "Three addressed parcels accepted. No bag space, payment or deadline. The route is circular. For once, this is intentional."
+            },
+            {
+              "id": "fe4e9ffc-3fe5-4452-a4eb-ae63617e1d12",
+              "revision": 4,
+              "message": "Annual leave for a tree. I have approved the branching arrangement. Receipt kept."
+            },
+            {
+              "id": "6c6408b3-093f-4301-8d49-bb7c6f6a5cae",
+              "revision": 5,
+              "message": "Bound hand saw received. Equip it explicitly to prepare fallen pine. Certified to divide one problem into two smaller problems."
+            },
+            {
+              "id": "8ff5ff6b-54d5-4c69-a27e-beb5918c48f7",
+              "revision": 6,
+              "message": "Hand saw equipped. Fallen pine can now be prepared; no output multiplier."
+            },
+            {
+              "id": "3a4e4d65-6733-432c-b11f-42eaa3f27b9a",
+              "revision": 7,
+              "message": "Prepared 6 pine. 6/24 carried. The three deadfall points share one personal supply; other residents keep theirs."
+            },
+            {
+              "id": "fc88eaa1-f46e-4c47-9d48-d36b62e839ac",
+              "revision": 8,
+              "message": "A permit for a form. At last, a form with a future. Receipt kept."
+            },
+            {
+              "id": "0367dfa2-eab5-4e90-a419-03f7b42fd0d1",
+              "revision": 9,
+              "message": "The grass is growing. Management has asked it to be more specific. Receipt kept."
+            },
+            {
+              "id": "dbc7500b-3e7e-4c90-a810-31701fd64213",
+              "revision": 10,
+              "message": "Route card and letterbox plan saved. Everything arrived. The town is choosing to regard this as a precedent. A physical letterbox is optional and made separately."
+            },
+            {
+              "id": "f8664dac-5898-45b8-ae87-5f58ff5f434c",
+              "revision": 11,
+              "message": "Gathered 6 scrap. 0 left in the bin."
+            },
+            {
+              "id": "bf6e2c08-11c4-4c57-a9fe-303646f59d99",
+              "revision": 12,
+              "message": "Gathered 6 timber. 0 left in the bin."
+            },
+            {
+              "id": "1ce948ba-8b9f-4771-b55f-e6cd8a0e1763",
+              "revision": 13,
+              "message": "Gathered 6 supplies. 0 left in the bin."
+            },
+            {
+              "id": "8c8e8368-f7db-48c7-8832-38140ab77e03",
+              "revision": 14,
+              "message": "Optimistic planter started. Materials spent: 2 scrap, 2 timber, 1 supplies."
+            },
+            {
+              "id": "bd30b9a7-b768-48b1-a442-dee3907a6c3e",
+              "revision": 15,
+              "message": "Collected one optimistic planter. +1 Making experience."
+            },
+            {
+              "id": "6a48fd1b-60c2-45ca-8d95-5ddc2797e581",
+              "revision": 16,
+              "message": "Optimistic planter placed. No materials spent."
+            },
+            {
+              "id": "af080e4f-977d-4c60-8b52-4fb64c35a46d",
+              "revision": 17,
+              "message": "Bridge repair kit started. Materials spent: 3 scrap, 2 timber, 1 supplies."
+            },
+            {
+              "id": "0e516c59-8439-430a-919f-ec082f9ee184",
+              "revision": 19,
+              "message": "Harvested one produce and returned one bound seed. Promoted to vegetable management."
+            },
+            {
+              "id": "b4de3cb5-4b50-498e-a031-2eb4c3f4f4b0",
+              "revision": 20,
+              "message": "Made one Unreasonably Official Letterbox: 2 pine + 1 radish spent once. No new timer or production bonus. Motif changes and moving this same item are free."
+            },
+            {
+              "id": "7235a80b-e959-46fb-b35b-3ae82b0961b8",
+              "revision": 21,
+              "message": "Unreasonably Official Letterbox placed. No materials spent."
+            }
+          ],
+          "lastMessage": "All three landmarks recorded. Your permanent clipboard pennant is earned."
+        },
+        "returned": {
+          "version": 2,
+          "commission": {
+            "version": 1,
+            "quest": "pip-post-v1",
+            "acceptedAt": 1794475361709,
+            "paused": false,
+            "order": [
+              "carpentry-desk",
+              "clerk",
+              "caretaker"
+            ],
+            "completedAt": 1794475377539,
+            "madeCount": 1,
+            "motif": "moth",
+            "published": false
+          },
+          "revision": 26,
+          "observedAt": 1794475679560,
+          "sketches": [],
+          "garden": {
+            "version": 3,
+            "observedAt": 1794475662012,
+            "seeds": {
+              "radish": 2,
+              "marigold": 1
+            },
+            "produce": {
+              "radish": 0,
+              "marigold": 0
+            },
+            "consumed": {
+              "easels": {
+                "radish": 0,
+                "marigold": 0
+              },
+              "hampers": {
+                "radish": 0,
+                "marigold": 0
+              },
+              "commission": {
+                "radish": 1,
+                "marigold": 0
+              }
+            },
+            "beds": [
+              null,
+              null,
+              null
+            ],
+            "firstRadishUsed": true,
+            "clippings": {
+              "available": 6,
+              "lastAt": 1794475662012
+            },
+            "rested": {
+              "available": 1,
+              "lastAt": 1794475354114
+            },
+            "practice": 2,
+            "bonusPractice": 1,
+            "harvested": {
+              "radish": 1,
+              "marigold": 0
+            },
+            "planted": 1,
+            "requests": 0,
+            "nextRequestAt": null,
+            "markers": [],
+            "selectedMarker": null,
+            "errand": {
+              "accepted": false,
+              "pieces": [],
+              "assembled": false
+            }
+          },
+          "carpentry": {
+            "version": 2,
+            "commissionPine": 2,
+            "observedAt": 1794475662012,
+            "lessonAt": 1794475367176,
+            "saw": {
+              "owned": true,
+              "equipped": true
+            },
+            "pine": {
+              "available": 0,
+              "lastAt": 1794475369559,
+              "carried": 4,
+              "gathered": 6,
+              "spent": 2
+            },
+            "job": null,
+            "started": 0,
+            "produced": 0,
+            "recorded": 0,
+            "sixthRecordAt": null,
+            "hampers": 0,
+            "nextHamperAt": null,
+            "practice": 0,
+            "keepEaselGoal": true
+          },
+          "inventory": {
+            "scrap": 0,
+            "timber": 1,
+            "supplies": 3
+          },
+          "owned": {
+            "planter": 1,
+            "stool": 1,
+            "rug": 1,
+            "lamp": 1,
+            "crate": 1,
+            "shelf": 1,
+            "easel": 0,
+            "letterbox": 1
+          },
+          "placements": {
+            "north-west": "planter",
+            "north-middle": null,
+            "north-east": null,
+            "south-west": null,
+            "south-middle": null,
+            "south-east": "letterbox"
+          },
+          "nodes": {
+            "scrap": {
+              "stock": 0,
+              "lastAt": 1794475381569
+            },
+            "timber": {
+              "stock": 0,
+              "lastAt": 1794475382135
+            },
+            "supplies": {
+              "stock": 0,
+              "lastAt": 1794475383185
+            }
+          },
+          "job": {
+            "recipe": "bridge-kit",
+            "startedAt": 1794475393789,
+            "readyAt": 1794518593789
+          },
+          "bridgeKits": 0,
+          "stats": {
+            "gathered": 18,
+            "crafted": 1,
+            "plantersCrafted": 1,
+            "placed": 2,
+            "planterPlacedAfterCraft": true,
+            "bridgeJobsStarted": 1
+          },
+          "skills": {
+            "gathering": 18,
+            "making": 1
+          },
+          "receipts": [
+            {
+              "id": "32979d9d-4bb8-441f-a14e-a2bddaba5056",
+              "revision": 1,
+              "message": "First radish planted \u2014 five real minutes. Later radishes take thirty. The committee has approved having roots."
+            },
+            {
+              "id": "89dbf6a3-d0cb-4358-9976-e490e3187d6b",
+              "revision": 2,
+              "message": "Soil checked, leaves admired. No speed or yield bonus \u2014 just a well-informed gardener."
+            },
+            {
+              "id": "3f77c50a-c8a0-458c-8754-511f2bba454d",
+              "revision": 3,
+              "message": "Three addressed parcels accepted. No bag space, payment or deadline. The route is circular. For once, this is intentional."
+            },
+            {
+              "id": "fe4e9ffc-3fe5-4452-a4eb-ae63617e1d12",
+              "revision": 4,
+              "message": "Annual leave for a tree. I have approved the branching arrangement. Receipt kept."
+            },
+            {
+              "id": "6c6408b3-093f-4301-8d49-bb7c6f6a5cae",
+              "revision": 5,
+              "message": "Bound hand saw received. Equip it explicitly to prepare fallen pine. Certified to divide one problem into two smaller problems."
+            },
+            {
+              "id": "8ff5ff6b-54d5-4c69-a27e-beb5918c48f7",
+              "revision": 6,
+              "message": "Hand saw equipped. Fallen pine can now be prepared; no output multiplier."
+            },
+            {
+              "id": "3a4e4d65-6733-432c-b11f-42eaa3f27b9a",
+              "revision": 7,
+              "message": "Prepared 6 pine. 6/24 carried. The three deadfall points share one personal supply; other residents keep theirs."
+            },
+            {
+              "id": "fc88eaa1-f46e-4c47-9d48-d36b62e839ac",
+              "revision": 8,
+              "message": "A permit for a form. At last, a form with a future. Receipt kept."
+            },
+            {
+              "id": "0367dfa2-eab5-4e90-a419-03f7b42fd0d1",
+              "revision": 9,
+              "message": "The grass is growing. Management has asked it to be more specific. Receipt kept."
+            },
+            {
+              "id": "dbc7500b-3e7e-4c90-a810-31701fd64213",
+              "revision": 10,
+              "message": "Route card and letterbox plan saved. Everything arrived. The town is choosing to regard this as a precedent. A physical letterbox is optional and made separately."
+            },
+            {
+              "id": "f8664dac-5898-45b8-ae87-5f58ff5f434c",
+              "revision": 11,
+              "message": "Gathered 6 scrap. 0 left in the bin."
+            },
+            {
+              "id": "bf6e2c08-11c4-4c57-a9fe-303646f59d99",
+              "revision": 12,
+              "message": "Gathered 6 timber. 0 left in the bin."
+            },
+            {
+              "id": "1ce948ba-8b9f-4771-b55f-e6cd8a0e1763",
+              "revision": 13,
+              "message": "Gathered 6 supplies. 0 left in the bin."
+            },
+            {
+              "id": "8c8e8368-f7db-48c7-8832-38140ab77e03",
+              "revision": 14,
+              "message": "Optimistic planter started. Materials spent: 2 scrap, 2 timber, 1 supplies."
+            },
+            {
+              "id": "bd30b9a7-b768-48b1-a442-dee3907a6c3e",
+              "revision": 15,
+              "message": "Collected one optimistic planter. +1 Making experience."
+            },
+            {
+              "id": "6a48fd1b-60c2-45ca-8d95-5ddc2797e581",
+              "revision": 16,
+              "message": "Optimistic planter placed. No materials spent."
+            },
+            {
+              "id": "af080e4f-977d-4c60-8b52-4fb64c35a46d",
+              "revision": 17,
+              "message": "Bridge repair kit started. Materials spent: 3 scrap, 2 timber, 1 supplies."
+            },
+            {
+              "id": "0e516c59-8439-430a-919f-ec082f9ee184",
+              "revision": 19,
+              "message": "Harvested one produce and returned one bound seed. Promoted to vegetable management."
+            },
+            {
+              "id": "b4de3cb5-4b50-498e-a031-2eb4c3f4f4b0",
+              "revision": 20,
+              "message": "Made one Unreasonably Official Letterbox: 2 pine + 1 radish spent once. No new timer or production bonus. Motif changes and moving this same item are free."
+            },
+            {
+              "id": "7235a80b-e959-46fb-b35b-3ae82b0961b8",
+              "revision": 21,
+              "message": "Unreasonably Official Letterbox placed. No materials spent."
+            }
+          ],
+          "lastMessage": "All three landmarks recorded. Your permanent clipboard pennant is earned."
+        }
+      }
+    }
+  ],
+  "commands": [
+    {
+      "kind": "garden",
+      "gardenAction": {
+        "action": "plant",
+        "bed": 0,
+        "crop": "radish"
+      },
+      "id": "32979d9d-4bb8-441f-a14e-a2bddaba5056",
+      "expectedRevision": 0
+    },
+    {
+      "kind": "garden",
+      "gardenAction": {
+        "action": "observe",
+        "bed": 0
+      },
+      "id": "89dbf6a3-d0cb-4358-9976-e490e3187d6b",
+      "expectedRevision": 1
+    },
+    {
+      "kind": "commission",
+      "commissionAction": {
+        "action": "accept"
+      },
+      "id": "3f77c50a-c8a0-458c-8754-511f2bba454d",
+      "expectedRevision": 2
+    },
+    {
+      "kind": "commission",
+      "commissionAction": {
+        "action": "handover",
+        "parcel": "carpentry-desk",
+        "recipient": "carpentry-desk"
+      },
+      "id": "fe4e9ffc-3fe5-4452-a4eb-ae63617e1d12",
+      "expectedRevision": 3
+    },
+    {
+      "kind": "carpentry",
+      "carpentryAction": {
+        "action": "learn-saw"
+      },
+      "id": "6c6408b3-093f-4301-8d49-bb7c6f6a5cae",
+      "expectedRevision": 4
+    },
+    {
+      "kind": "carpentry",
+      "carpentryAction": {
+        "action": "equip-saw",
+        "equipped": true
+      },
+      "id": "8ff5ff6b-54d5-4c69-a27e-beb5918c48f7",
+      "expectedRevision": 5
+    },
+    {
+      "kind": "carpentry",
+      "carpentryAction": {
+        "action": "gather-pine",
+        "station": "crooked"
+      },
+      "id": "3a4e4d65-6733-432c-b11f-42eaa3f27b9a",
+      "expectedRevision": 6
+    },
+    {
+      "kind": "commission",
+      "commissionAction": {
+        "action": "handover",
+        "parcel": "clerk",
+        "recipient": "clerk"
+      },
+      "id": "fc88eaa1-f46e-4c47-9d48-d36b62e839ac",
+      "expectedRevision": 7
+    },
+    {
+      "kind": "commission",
+      "commissionAction": {
+        "action": "handover",
+        "parcel": "caretaker",
+        "recipient": "caretaker"
+      },
+      "id": "0367dfa2-eab5-4e90-a419-03f7b42fd0d1",
+      "expectedRevision": 8
+    },
+    {
+      "kind": "commission",
+      "commissionAction": {
+        "action": "complete"
+      },
+      "id": "dbc7500b-3e7e-4c90-a810-31701fd64213",
+      "expectedRevision": 9
+    },
+    {
+      "kind": "gather",
+      "resource": "scrap",
+      "id": "f8664dac-5898-45b8-ae87-5f58ff5f434c",
+      "expectedRevision": 10
+    },
+    {
+      "kind": "gather",
+      "resource": "timber",
+      "id": "bf6e2c08-11c4-4c57-a9fe-303646f59d99",
+      "expectedRevision": 11
+    },
+    {
+      "kind": "gather",
+      "resource": "supplies",
+      "id": "1ce948ba-8b9f-4771-b55f-e6cd8a0e1763",
+      "expectedRevision": 12
+    },
+    {
+      "kind": "craft",
+      "recipe": "planter",
+      "id": "8c8e8368-f7db-48c7-8832-38140ab77e03",
+      "expectedRevision": 13
+    },
+    {
+      "kind": "claim",
+      "id": "bd30b9a7-b768-48b1-a442-dee3907a6c3e",
+      "expectedRevision": 14
+    },
+    {
+      "kind": "place",
+      "prop": "planter",
+      "slot": "north-west",
+      "id": "6a48fd1b-60c2-45ca-8d95-5ddc2797e581",
+      "expectedRevision": 15
+    },
+    {
+      "kind": "craft",
+      "recipe": "bridge-kit",
+      "id": "af080e4f-977d-4c60-8b52-4fb64c35a46d",
+      "expectedRevision": 16
+    },
+    {
+      "kind": "start-lesson",
+      "route": "upkeep",
+      "expectedBridgeContributed": 3,
+      "id": "cd25115c-ae5b-433f-b32d-a9e522613ca7",
+      "expectedRevision": 17
+    },
+    {
+      "kind": "garden",
+      "gardenAction": {
+        "action": "harvest",
+        "bed": 0
+      },
+      "id": "0e516c59-8439-430a-919f-ec082f9ee184",
+      "expectedRevision": 18
+    },
+    {
+      "kind": "commission",
+      "commissionAction": {
+        "action": "make",
+        "motif": "moth"
+      },
+      "expectedRevision": 19,
+      "id": "b4de3cb5-4b50-498e-a031-2eb4c3f4f4b0"
+    },
+    {
+      "kind": "place",
+      "prop": "letterbox",
+      "slot": "south-east",
+      "id": "7235a80b-e959-46fb-b35b-3ae82b0961b8",
+      "expectedRevision": 20
+    },
+    {
+      "kind": "complete-lesson",
+      "id": "cc9d35cb-b1b6-45b4-a798-f784759a1654",
+      "expectedRevision": 21
+    },
+    {
+      "kind": "redeem-lesson",
+      "route": "upkeep",
+      "expectedBridgeContributed": 3,
+      "id": "db8a6b4f-93b4-4812-be31-ff0a848e59f3",
+      "expectedRevision": 22
+    },
+    {
+      "kind": "stamp-trail",
+      "landmarkId": "trailhead",
+      "id": "4b01d8e3-32f7-468c-bd69-8538b7807d89",
+      "expectedRevision": 23
+    },
+    {
+      "kind": "stamp-trail",
+      "landmarkId": "old-sign",
+      "id": "12578449-c502-4175-8045-ac3f684cdba2",
+      "expectedRevision": 24
+    },
+    {
+      "kind": "stamp-trail",
+      "landmarkId": "lookout",
+      "id": "0e397430-09b4-4675-b011-bd574917a968",
+      "expectedRevision": 25
+    }
+  ],
+  "errors": [],
+  "bad": [],
+  "expectedGuest": [
+    "/api/town/snapshot",
+    "/api/town/snapshot"
+  ],
+  "reportCorrection": "Corrected stale starting-location sentence from phase1 helper wording. Phase2 followed full disposable server reset and ordinary fresh square spawn; no command/measurement changed. Raw retained externally.",
+  "measuredSummary": {
+    "acceptedCommands": 26,
+    "observationWindowMs": 900004,
+    "selectedLoopEndedMs": 325416,
+    "cropReadinessWaitMs": 258147,
+    "deliberateObservationIdleMs": 574586,
+    "allWaitingInsideWindowMs": 832733,
+    "remainingUIExecutionMsApprox": 67271,
+    "actualAbsenceMs": 180003,
+    "meaningfulChoices": [
+      "Optional NPC delivery order; three handovers are one delivery verb",
+      "Keep free route card separately from physical ownership",
+      "Learn/equip bound tool and gather pine; ordinary three-material gathering separately",
+      "Craft/place tutorial planter and queue one12h ordinary job",
+      "Optional paid upkeep recognition on already-funded world",
+      "Plant/inspect/harvest real5mincrop, then choose2pine1radish box instead of conserving ingredients",
+      "Choose moth motif and one furniture position",
+      "Discover three trail landmarks; one exploration/stamp verb"
+    ],
+    "notExhausted": [
+      "stake errand",
+      "field-clipping markers",
+      "sketchbook studies",
+      "additional seeds/beds"
+    ],
+    "interpretation": "About67s known-answer UI execution plus833s waiting in15minute window. Not15minutes of content, human reading/fun, all-activities exhaustion or ordinary production completion. Return summary uses last confirmed check, not solely3minute absence."
+  }
+}

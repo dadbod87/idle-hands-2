@@ -1,27 +1,29 @@
 # Idle Hands 2 — review when you return
 
-Prepared November 10, 2026. The separate sequel remains a local prototype. The original Idle Hands game and its players are untouched.
+Updated November 12, 2026. The sequel is a separate local prototype; the original Idle Hands game and real players are untouched. This page describes accepted features and a working audit, not a hosted launch.
 
-## What is ready to try
+## Try the accepted preview
 
-The first neighborhood now has a useful opening loop, your own expandable home, decorating, shared bridge construction, a short restored trail, resident conversations and an earned trail keepsake. The guide and bag explain what you can do now and what will be ready on a return visit. Menus stop unnecessary world drawing while keeping controls and timers responsive.
+[Open the game on this computer](http://127.0.0.1:4175/). [Shared practice](http://127.0.0.1:4175/?town=1) uses fictional residents and a local database. These links work on this computer; they are not an office beta or phone-accessible hosted address.
 
-The local preview is [on this computer](http://127.0.0.1:4175/). The optional [shared practice mode](http://127.0.0.1:4175/?town=1) uses selectable fictional residents. It is not a hosted account system and must remain local. Do not share these loopback links as an office beta.
+Alongside the square, workshop, ownable home and expansion, bridge and restored trail, you can now tend a rented allotment, solve an almost-straight-stake errand, make garden markers, learn the pine hand saw and work toward a kept easel. Ordinary production, garden and pine crafting have separate capacities and honest real-time waits. Ready plants and finished work wait safely.
 
-## What the reliability section proves
+Pip offers an optional free delivery chapter: three addressed NPC parcels, receipts and a route card whose wording follows your delivery order. Completing it keeps the card and a plan. An optional physical letterbox costs two carried pine and one harvested radish, with three free motif choices. The one owned item can be moved between workshop and house. A deliberately published style sample is optional; this is not player mail or chat.
 
-Twenty ordinary fictional residents can walk, gather, craft, decorate and reconnect without duplicated costs or rewards. Separate populated-town tests check saved work through service restart and database restore. The client recovers from a temporarily refused connection and tells you when the server recovered an older saved state. The full automated browser checks include desktop, narrow phones and short screens, but are browser emulation rather than physical-phone testing.
+The preview uses accepted IH2-071 source/CI artifact. [Exact source and preservation evidence](../evidence/IH2-071/source-closeout.json). Existing practice progress and signing key were preserved when it was updated. No new SQL migration or hosted account setup was added.
 
-[Measured findings and limits](../evidence/IH2-060/REPORT.md). Final source acceptance, exact commit and CI results belong in [PR 12](https://github.com/dadbod87/idle-hands-2/pull/12); a source merge does not deploy a game.
+## What the current audit is finding
 
-## The next decision
+[Read the ranked working audit](../evidence/IH2-072/REPORT.md). It compares fresh, returning, busy, full-capacity, already-funded newcomer and furnished-home situations across desktop, narrow phones and short screens with enlarged text. Data fixtures and modeled waits are identified; browser emulation is not a physical-phone or enjoyment test.
 
-The next section is a small invited beta with a separate database and verified Google login, an explicit invitation list, and you as the initial deploying administrator. No existing-game accounts or progress would be imported. No cloud resources, invitations or subscriptions have been created.
+The clearest next improvement is getting current actions near the top of phone panels. Pip's completed route card currently pushes customization down; full gardens explain storage but make useful alternate activities harder to find. The recommendation keeps stories and earned cards available to revisit.
 
-The proposed starting cost is about **$17 per month additional**, conditional on suitable existing Vercel hosting and a single-administrator Render workspace. The concrete proposal is a **$25 per month additional ceiling**. If account eligibility or administrator collaboration raises that cost, re-quote before creating anything. Players remain free and no paid art is proposed.
+A house expansion currently adds visible room but keeps the same six furniture positions. The upgrade should explain that better, and making the workroom furnishable deserves its own later task. Furniture and visitor restrictions otherwise remained clear in the observed arrangement/motif/reload flow.
 
-[Review the hosting, ownership, access and backup plan](PRIVATE_PREVIEW_PLAN.md). Approval of that concrete setup/cap is needed before the hosted section. Actual hosted authentication, permissions, backups, recovery, desktop and physical-phone testing must pass before invitations. Public launch remains a separate later decision.
+The current-rule schedule comparisons preserve ordinary kit production when choosing a letterbox. Pine/produce still compete with easels, hampers and requests, so choices have a real opportunity cost. These models are conditional strategies, not promised house dates or evidence of how much fun people will have. The actual-time first-session and three-minute absent-return check preserves belongings and the original job deadline. Its automated 15 minute window includes substantial waiting and does not establish enjoyment or exhaust every finite activity. All 256 domain/SQL and 72 browser checks pass locally. Exact-commit CI and artifact/source gates remain in progress.
 
-November11 update: Nick explicitly authorized continued independent local content and comparative progression research. [Activity-depth plan](ACTIVITY_DEPTH.md) records the wait gap and core humor/teamwork/solo-expression pillars. IH2-062 is the first small sketchbook layer; this local-build authorization does not approve hosted resources or charges.
+## What remains separate
 
-The current local checkpoint adds three square-tree observation challenges and four original journal illustrations. Refresh the preview, open Bag & journal → Town sketchbook, or choose a Sketch study in Places. The keepsake is currently journal-only. Next local work is the starter-garden/resource-loop design; hosting approval is a separate later choice. Exact source acceptance remains in the task PR closeout.
+The larger resource, clothing, home, town, quest, combat and social plans remain staged candidates, not finished features. [Long-term design package](design/README.md). Humor, teamwork, solo progress and visible creative ownership remain the core direction.
+
+Hosted identity, invitation access, physical-phone testing, backups, cost and public release still need their concrete gate. The [dated hosting proposal](PRIVATE_PREVIEW_PLAN.md) would need a fresh account/pricing check before provisioning; no new cloud resources, subscriptions or invitations were created. The active authorization is to keep developing and validating local sections while preserving roughly 10% weekly usage and stopping by November 12 at 7 AM Pacific.

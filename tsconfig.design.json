@@ -35,7 +35,16 @@
     "tests/commission.spec.ts",
     "tools/prove-commission-ledger-upgrade.ts",
     "tools/prove-fresh-commission.ts",
-    "tools/prove-commission-process-restart.ts"
+    "tools/prove-commission-process-restart.ts",
+    "tools/coupled-neighborhood-model.ts",
+    "tools/simulate-coupled-neighborhood.ts",
+    "tests/coupled-neighborhood.test.ts",
+    "tools/combined-audit-fixtures.ts",
+    "tools/observe-combined-local.ts",
+    "tests/combined-audit-fixtures.test.ts",
+    "tools/run-combined-audit-server.ts",
+    "tools/observe-combined-shared.ts",
+    "tools/observe-combined-timed.ts"
   ],
   "compilerOptions": {
     "types": [

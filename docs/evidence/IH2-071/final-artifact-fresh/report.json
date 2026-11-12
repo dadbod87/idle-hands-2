@@ -1,0 +1,84 @@
+{
+  "classification": "Actual fresh browser-only five-minute paid craft, native Chrome actual input and real wall clock",
+  "origin": "http://127.0.0.1:49524",
+  "disclosure": "New isolated empty browser context. No addInitScript, saved-state fixture, position/clock/stock grant, route interception or API/database/real account. Actual walking, free route, saw lesson/equip/pine,300000mscrop,harvest,review/payment,placement/reload. Known-answer agent flow is not human reading or retention evidence.",
+  "timeline": [
+    {
+      "event": "fresh-zero-progress",
+      "at": 1794468963518
+    },
+    {
+      "event": "first-real-five-minute-radish-planted",
+      "at": 1794468966662
+    },
+    {
+      "event": "free-route-accepted",
+      "at": 1794468969731
+    },
+    {
+      "event": "delivered-carpentry-desk",
+      "at": 1794468974719
+    },
+    {
+      "event": "actual-saw-lesson-equipped-and-six-pine-gathered",
+      "at": 1794468976920
+    },
+    {
+      "event": "delivered-clerk",
+      "at": 1794468980000
+    },
+    {
+      "event": "delivered-caretaker",
+      "at": 1794468983171
+    },
+    {
+      "event": "free-route-card-plan-completed",
+      "at": 1794468984239
+    },
+    {
+      "event": "actual-time-radish-harvested",
+      "at": 1794469267565
+    },
+    {
+      "event": "actual-fresh-letterbox-paid-once",
+      "at": 1794469270759
+    },
+    {
+      "event": "reload-kept-paid-ownership-and-placement",
+      "at": 1794469273696
+    }
+  ],
+  "crop": {
+    "crop": "radish",
+    "plantedAt": 1794468966631,
+    "readyAt": 1794469266631,
+    "cared": false
+  },
+  "paid": {
+    "owned": 1,
+    "made": 1,
+    "pineCarried": 4,
+    "pineSpent": 2,
+    "radishConsumed": 1,
+    "motif": "moth"
+  },
+  "ordinaryJobInventorySkillsUnchanged": true,
+  "errors": [],
+  "bad": [],
+  "api": [],
+  "limits": [
+    "Browser-only local-save authority; real SQL/HTTP/restart proof is separate",
+    "Emulated desktop/phone, not physical phone/Safari",
+    "No hosted game or real-player change"
+  ],
+  "artifact": {
+    "head": "ef6340a1f64135fe47b9f46ddf56187739ddc9ae",
+    "ciRun": 43175976771,
+    "compiledFiles": 174,
+    "allFilesMatchFinalLocal": true,
+    "htmlSha256": "15e94f934918c3e7cd71ae02c76ace06d556137c293eb26d4ef55d7bda65f93d",
+    "stagingOrigin": "http://127.0.0.1:49524",
+    "sourceAcceptance": "Both final CI jobs/source merge/actual4175 byte+native UI verification still pending at this proof; protected preview untouched",
+    "runtimeImagesReviewed": 4
+  }
+}

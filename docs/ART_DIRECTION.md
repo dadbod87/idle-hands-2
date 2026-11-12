@@ -107,3 +107,5 @@ IH2-078 standalone art/source accepted PR27/9608e39, exact4737f44CI43246666644bo
 ## IH2-079 receipt study
 
 Separate modal study reuses12accepted078sheets byte-for-byte, front-facing decorative57.6×72pxactor inside reserved72×96pxspace. Literal quantity never comes from the prop drawing. One bounded420msreach/contact/recovery/contact, static contact under reduced/late-art and no reward artwork before an exact matching synthetic grant. Selected character/material loading only, no bulk embed or runtime promotion. Original4rig identities/feet/palettes remain; Terra’s corrected phone/keyboard/held-target recheck finds no blocker. Physical-device and real integration remain separate.
+
+IH2-079separate study/source accepted PR28/10adfa9, exact8b392b9CI43257514774bothSUCCESS274/83. Actual14-file49534study and six uploaded images reviewed. No runtime promotion;081owns that integration.

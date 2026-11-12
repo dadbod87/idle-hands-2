@@ -866,7 +866,7 @@
     {
       "id": "IH2-079",
       "title": "Prove visible confirmed collection receipts",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/collection-receipt-visibility",
       "depends_on": [
         "IH2-078"
@@ -884,7 +884,32 @@
       "evidence": [
         "docs/idle-hands-2/design/COLLECTION_RECEIPT_VISIBILITY.md",
         "docs/evidence/IH2-079/PLAN.md",
-        "docs/evidence/IH2-079/REPORT.md"
+        "docs/evidence/IH2-079/REPORT.md",
+        "docs/evidence/IH2-079/source-closeout.json"
+      ]
+    },
+    {
+      "id": "IH2-081",
+      "title": "Integrate confirmed collection receipts",
+      "status": "queued",
+      "owner_branch": "feat/collection-receipts-runtime",
+      "depends_on": [
+        "IH2-079"
+      ],
+      "goal": "Wire the accepted receipt presentation to exact original local/shared collection outcomes, preserving all authority, economy, progress and controls.",
+      "acceptance": [
+        "Server computes optional exact command/player/material/quantity/revision grant from locked original gather and persists it with the original immutable result. No client-supplied grants or snapshot/message inference; retry/legacy/wrong-payload behavior explicit and original rules/query/write/rate counts retained.",
+        "Transport preserves original outcome through subscription/in-flight/retry/panel/identity races without a mutable global last-result shortcut. Local pure dispatch exposes exact quantity and actual persist success; never label unsaved progress Saved once.",
+        "Promote unchanged original078art with provenance and selected current-rig/material caching. Reserved DOM receipt/Collect/Retry, once-only bounded or static fallback, no late replay, input/camera/world/production delay or auto-close. Preserve useful existing resource information and game style.",
+        "Domain/real isolated shared/local browser: partial/full capacity, rejected/legacy/replay after intervening inventory, lost reply/subscription first, stale view/identity, reload, save failure, artwork failure and rig changes. Actual desktop/320/360/short200/phone200 focus/held-target and long-status checks with explicit fixture disclosure.",
+        "All required local/exact-headCI/actual artifacts/images/restart/matching tree gates under existing deadline. Quiescent protected preview/API update only after acceptance, preserving every13table column/row/key/sixchecksums and old study artifacts; no protected grants or resets."
+      ],
+      "exclusions": [
+        "No economy/rate/timer changes, currency grants, real accounts/current-game/hosting/expense/public release, world animation or new feature family."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/COLLECTION_RECEIPT_RUNTIME.md",
+        "docs/evidence/IH2-081/PLAN.md"
       ]
     },
     {
@@ -905,7 +930,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-079 designs visible confirmed collection receipts after accepted078art; no hosting/invitations/public release."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-081 integrates accepted collection receipt design; no hosting/invitations/public release."
     },
     {
       "id": "IH2-080",

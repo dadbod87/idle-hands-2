@@ -1,0 +1,46 @@
+{
+  "candidate": "82e68f8c4699ae6dab588848d5157b995597c741",
+  "htmlSha256": "ea712d623c626f75ac55cfd66c04853caf2fe11993468f0e07dbbd397885d5d5",
+  "classification": "Actual accepted local4175CIartifact, native desktop/phone input and live clock; not hosted production or physical phone",
+  "disclosure": "Fresh empty browser contexts. No injected state, stock, position, production or cosmetic clock; no intercepted response or shared identity. Actual body input/normal collection, expected18practice and reload.",
+  "rows": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "gatheringPractice": 18,
+      "unrelatedProgressPreserved": true,
+      "reload": true,
+      "errors": [],
+      "bad": [],
+      "api": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "inventory": {
+        "scrap": 6,
+        "timber": 6,
+        "supplies": 6
+      },
+      "gatheringPractice": 18,
+      "unrelatedProgressPreserved": true,
+      "reload": true,
+      "errors": [],
+      "bad": [],
+      "api": []
+    }
+  ]
+}

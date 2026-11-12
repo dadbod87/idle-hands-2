@@ -1,6 +1,6 @@
 # IH2-074 — recognizable material depots
 
-Working candidate from accepted 073 merge `a353f84`, November 12, 2026. Branch `feat/material-depots`, initial checkpoint `7716795`. [Contract](../../idle-hands-2/MATERIAL_DEPOTS.md). Not source accepted or installed in protected 4175 yet.
+Accepted source/local preview from accepted 073 merge `a353f84`, November 12, 2026. Branch `feat/material-depots`, initial checkpoint `7716795`. [Contract](../../idle-hands-2/MATERIAL_DEPOTS.md). PR23 merged as `3c64173`; exact `82e68f8` passed CI43216529180 both SUCCESS257/76. [Closeout](source-closeout.json). Immutable finalCIartifact now serves protected4175; all13practice tables/key/migrations preserved.
 
 Three original static SVGs replace colored rectangles: an open metal salvage bin, bound sawn boards and an open stationery crate. Stable resource IDs,56×48 bounds,28/40 foot, existing depth, collision/approach/interaction geometry and collection authority remain intact. Nameplates sit higher within the original 64px target areas so the short enlarged-text starting view retains readable names. No stock-count illustration, gathering animation, new resource or bonus. Inspect/feedback retains authoritative quantities; decorative contents stay static after collection.
 
@@ -12,7 +12,7 @@ Three original static SVGs replace colored rectangles: an open metal salvage bin
 
 Independent read-only review found the first lower nameplates clipped at the short200 camera edge. A frozen old candidate is rejected by the same geometry observer: label bottom 248.055 px exceeds 241 px. Raised plates fit 184.945–203.255 px. The final fresh phone/short day/night images are independently clear; no camera or target change was needed. [Review/regression](review-regression.json). A browser assertion now covers this exact starting layout.
 
-Eight focused browser cases passed before that final plate correction. Full final 257 domain/SQL checks pass with zero skips in 48.349 seconds; strict build/design/plan/pinned 40/diff pass. The final 76 browser suite is active. Source acceptance still requires its result, both exact-head CI jobs, actual uploaded artifact/images, matching-tree merge and preserved preview update.
+Eight focused browser cases passed before that final plate correction. Full final 257 domain/SQL checks pass with zero skips in 48.349 seconds; strict build/design/plan/pinned 40/diff pass. Final 76 browser cases pass in9.9minutes. Exact-head CI43216529180 passes257domain/zero skips69.663s and76browser14.4m. Actual178CIgamefiles match reviewed local, six uploaded CI images and isolated restart proof inspected. Candidate/merge tree matches; clean main=remote verified. Actual4175all178responses and native desktop/360live-clock body collection/reload pass without fixtures/API. All13practice tables, one fictional resident, signing key and five migrations unchanged; API not restarted. Required task gates complete.
 
 [Payload/source](payload-source.json):178 static files versus 174; three SVGs plus catalog, +6,175 raw bytes / +2,020 per-file-gzip bytes. All 168 old art files unchanged. Only three additional static image requests, zero new API requests in observations. No animation or polling added; current bounded idle/modal/resize policy remains covered by the existing browser checks. No CPU, hosted capacity or physical-device improvement claimed.
 

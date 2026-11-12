@@ -1,0 +1,16 @@
+{
+  "classification": "Actual accepted074CIartifact178responses on local4175 plus schema3 refusal boundary; local API only, no identity/login/progress writes",
+  "files": 178,
+  "mismatches": [],
+  "requiredProtocol": 3,
+  "cachedSchemasRefused": [
+    1,
+    2
+  ],
+  "cachedStreamRefused": 426,
+  "cachedLoginRefused": 426,
+  "apiFixtures": 200,
+  "cachedClient": 426,
+  "currentAnonymous": 401,
+  "htmlSha256": "ea712d623c626f75ac55cfd66c04853caf2fe11993468f0e07dbbd397885d5d5"
+}

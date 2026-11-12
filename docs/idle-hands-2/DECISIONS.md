@@ -164,3 +164,7 @@ Agent-selected under sequential local-build authorization, from accepted072audit
 
 ## 2026-11-12 — IH2-074 existing resource identity
 Agent-selected after accepted072audit and073layout acceptance: give the three existing ordinary depots recognizable original static silhouettes. Preserve geometry/IDs/rules, use the existing exact provenance system, keep labels inside their original targets and validate initial short200visibility. No extra animation or stock-state drawing; the existing inspector remains authoritative. This closes a bounded art gap, not the whole future item catalog. Home workroom value/placement remains separate.
+
+
+## 2026-11-12 — IH2-075 useful permanent workroom
+Agent-selected under sequential local-build authorization after accepted072capacity finding/074art. Two extra furnishing positions make the already paid level2workroom useful without changing housing prices, production or ownership. A separate strict plot map preserves original six-slot personal saves and old home positions. New protocol4fails closed for cached3clients. Owned copies are conserved across rental6/home6/workroom2 under locked transactions; original APIs/controls retain their semantics. Existing room art and traversal stay unchanged. Source/CI and protected migration gates are distinct; keep accepted074runtime until all pass.

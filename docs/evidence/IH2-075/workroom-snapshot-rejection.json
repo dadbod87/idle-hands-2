@@ -1,0 +1,9 @@
+{
+  "disclosure": "Fully intercepted snapshot/EventSource compatibility fixture; no real server/account/command. Current valid confirmed data retained after three malformed higher-revision replies.",
+  "rejected": [
+    "missing map",
+    "unknown key",
+    "owned-copy overallocation"
+  ],
+  "confirmedRetained": true
+}

@@ -1,0 +1,104 @@
+{
+  "task": "IH2-074",
+  "classification": "Accepted private source and preserved local preview; no hosted or original-game release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/23",
+  "candidate": "82e68f8c4699ae6dab588848d5157b995597c741",
+  "ci": {
+    "run": 43216529180,
+    "domainJob": 131177063620,
+    "browserJob": 131177062999,
+    "domainSuccess": true,
+    "domainCount": 257,
+    "domainSkipped": 0,
+    "actualDownloadedArtifacts": [
+      "sequel-client-build",
+      "sequel-server-evidence",
+      "sequel-browser-evidence"
+    ],
+    "actualFiles": 178,
+    "allByteEqualReviewedLocal": true,
+    "isolatedContainerRestartInspected": true,
+    "domainDurationMs": 69662.797789,
+    "htmlSha256": "ea712d623c626f75ac55cfd66c04853caf2fe11993468f0e07dbbd397885d5d5",
+    "bothSuccess": true,
+    "browserCount": 76,
+    "browserMinutes": 14.4,
+    "selectedImages": [
+      {
+        "file": "desktop-material-depots.png",
+        "sha256": "8894b1d727298dbd15ffb58fbff18598d71dae8ec45d446a177cd500d5186cde",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "narrow-material-depots.png",
+        "sha256": "984a48ef0e077976bbeb6b569b7ddcf50d4f0a2b0f21925dafb2d8fee6ee7f21",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "short-material-depots.png",
+        "sha256": "c957b0d12751372eebd583feb05d9b33e5529f1292ad6d9b090998c4e60fb829",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "narrow-workshop-resources.png",
+        "sha256": "cae5d662adc8a747540787a0a0cfca57c51acf8e69bc891aedcf84aa9ef686c6",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "short-workshop-text-200.png",
+        "sha256": "49a0d19fd9eeded446a2248d831f3c62227d8016181374161127e7faa29e5d29",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "current-post-at-pip-returning-short200.png",
+        "sha256": "b373f14d27ec0f50b8428b41e7685b90c4e22132d89e9d7c92de36f0b0fd0275",
+        "actualUploadedCIImageReviewed": true
+      }
+    ],
+    "actualSelectedImagesReviewed": 6
+  },
+  "local": {
+    "domainCount": 257,
+    "domainSkipped": 0,
+    "domainDurationMs": 48348.856542,
+    "browserCount": 76,
+    "browserMinutes": 9.9,
+    "beforeAfterFreshSituationsEach": 6,
+    "selectedReviewedImages": 8,
+    "allPriorArtFilesByteEqual": 168,
+    "strictBuildDesignPlanPinned40DiffPass": true
+  },
+  "limits": [
+    "Native Chrome/Chromium emulation, not physical phone or human-recognition proof",
+    "Paired observations inject only explicit cosmetic lighting, never production time/progress/position/responses",
+    "Three static illustrations do not display exact stock quantity",
+    "No hosting, original-game or real-account change"
+  ],
+  "candidateTree": "c323c2eaf96c7c5d6a2184cbca06f335aaa32f49",
+  "merge": "3c641731aeabe97f87eb0ccef137dc3414be3432",
+  "mergeTree": "c323c2eaf96c7c5d6a2184cbca06f335aaa32f49",
+  "matchingTreeVerified": true,
+  "cleanMainEqualsRemote": true,
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "immutableArtifact": "material-depots-2026-11-12/ci-final/build",
+    "actualMatchingResponses": 178,
+    "nativeDesktopAnd360PhoneCollectionReload": true,
+    "noStatePositionStockClockOrResponseFixtures": true,
+    "selectedActualImagesReviewed": 3,
+    "canonicalTablesPreserved": 13,
+    "fictionalResidentsPreserved": 1,
+    "signingKeyPreserved": true,
+    "fiveMigrationChecksumsPreserved": true,
+    "apiRestarted": false,
+    "apiPid": 51317,
+    "apiSession": 31409,
+    "staticPid": 73840,
+    "staticSession": 86943
+  },
+  "automaticMainCI": {
+    "run": 43219132741,
+    "head": "3c641731aeabe97f87eb0ccef137dc3414be3432",
+    "status": "in_progress at closeout; required candidate gates passed before merge"
+  }
+}

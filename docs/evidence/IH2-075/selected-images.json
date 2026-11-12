@@ -1,0 +1,22 @@
+[
+  {
+    "file": "workroom-desktop-eight-families.png",
+    "sha256": "addabdd3bf7829836175160bcfa0e054fb33c592b3706cd7ed19d439f5f820be",
+    "reviewed": true
+  },
+  {
+    "file": "workroom-phone-visitor.png",
+    "sha256": "7811746a72e28ccf899bd53e95a269cd13a657cd3967c805d40ade17b1c9d820",
+    "reviewed": true
+  },
+  {
+    "file": "workroom-phone-live-motif.png",
+    "sha256": "d348e2b68cf7e04a3eeeb23b8dddbd6df866551b7d1e0f3bd705ca3826a07bf3",
+    "reviewed": true
+  },
+  {
+    "file": "workroom-short200-arrangement.png",
+    "sha256": "29e22626c18fd6226193a06f710a0309294bb1fb311e5b3ff1a6f29b0df15058",
+    "reviewed": true
+  }
+]

@@ -1,3 +1,4 @@
+import {homeDisplay} from './game/home-layout.ts';
 import {CommissionUI} from './ui/commission.ts';
 import {commissionLocation,type RecipientId} from './game/commission.ts';
 import {CarpentryUI} from './ui/carpentry.ts';
@@ -192,7 +193,7 @@ function paintPlaceArrival(){
 }
 if(town){townUI=new TownUI({open:openPanel,body,feedback:message=>feedback.textContent=message,changed:()=>scene.refreshDecorations(),enterHome,enterTrail:()=>{if(!town.snapshot?.bridge.restored){feedback.textContent='The bridge is still under inspection.';return;}if(session.room!=='square'){feedback.textContent='You are already beyond the town bridge. Use Places for the local landmarks.';return;}closePanel();const gate=worlds.square.stops.find(stop=>stop.id==='trail-gate')!;session.point(gate.point);feedback.textContent='Walking into Inkwood trail.';}},town);document.querySelector('#resident')!.addEventListener('click',()=>void townUI!.showLogin(()=>closePanel()));}
 scene.letterboxMotif=()=>session.room.startsWith('home')?town?.snapshot?.plots.find(plot=>plot.id===homePlotId)?.letterboxMotif??null:workshop.state.commission.motif;
-scene.decorations=()=>session.room.startsWith('home')?(town?.snapshot?.plots.find(plot=>plot.id===homePlotId)?.placements??workshop.state.placements) as typeof workshop.state.placements:workshop.state.placements;
+scene.decorations=()=>{if(!session.room.startsWith('home'))return workshop.state.placements;const plot=town?.snapshot?.plots.find(plot=>plot.id===homePlotId);return plot?homeDisplay(plot):{};};
 document.querySelector('#bag')!.addEventListener('click',()=>{if(town?.retryAvailable){showPendingRequest();return;}workshop.showInventory();});
 function currentObjective(){return town?.snapshot?sharedObjective(town.snapshot,town.serverNow()):questStep(workshop.state);}
 function paintGuideObjective(){const note=body.querySelector<HTMLElement>('[data-guide-objective]');if(!note)return;const objective=currentObjective(),text=objective.title+' — '+objective.detail;if(note.textContent!==text)note.textContent=text;}

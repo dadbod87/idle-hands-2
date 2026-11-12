@@ -31,7 +31,7 @@
   "sourceHashes": {
     "src/game/workshop.ts": "8158a199b7e1a647fb93cefad98c6ee4515cd02194c1e8bcc205aa1d404a443d",
     "src/game/town-rules.ts": "ec21ce6a1b5ed3ae0824e6e141e78080b6cf4955d1b1173fd30bdd25062d457e",
-    "server/store.ts": "89b02130ab8d0d0cf5c23f1f4e3ed7d6be4a456193762f89f16014aebfa6d8cd"
+    "server/store.ts": "ef48adfee65548b2a7a137d0ff844fa219454ddc2a81ebb565487e39efbb11f8"
   },
   "implementedConstantsUsed": {
     "nodeCapacity": 6,

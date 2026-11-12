@@ -891,7 +891,7 @@
     {
       "id": "IH2-081",
       "title": "Integrate confirmed collection receipts",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/collection-receipts-runtime",
       "depends_on": [
         "IH2-079"
@@ -909,7 +909,9 @@
       ],
       "evidence": [
         "docs/idle-hands-2/design/COLLECTION_RECEIPT_RUNTIME.md",
-        "docs/evidence/IH2-081/PLAN.md"
+        "docs/evidence/IH2-081/PLAN.md",
+        "docs/evidence/IH2-081/REPORT.md",
+        "docs/evidence/IH2-081/source-closeout.json"
       ]
     },
     {
@@ -930,7 +932,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-081 integrates accepted collection receipt design; no hosting/invitations/public release."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-081 is accepted; no hosting/invitations/public release."
     },
     {
       "id": "IH2-080",

@@ -1,0 +1,138 @@
+{
+  "task": "IH2-081",
+  "classification": "Accepted private source and actual local/shared fictional game integration; no hosted/original-game release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/29",
+  "candidate": "7aff73fc5c8bee095ef37ce5b91ad0eec1e7b2e0",
+  "candidateTree": "510cc6a3d623ddefa77cbad79e618397df62906d",
+  "ci": {
+    "run": 43271107909,
+    "attempt": 1,
+    "headSha": "7aff73fc5c8bee095ef37ce5b91ad0eec1e7b2e0",
+    "domainJob": 131367766748,
+    "browserJob": 131367766278,
+    "bothSuccess": true,
+    "domainCount": 279,
+    "domainSkipped": 0,
+    "domainDurationMs": 86564.744701,
+    "browserCount": 85,
+    "browserMinutes": 14.0,
+    "wholeBrowserJobSeconds": 896,
+    "browserDeadlineMinutesUnchanged": 20,
+    "actualArtifacts": [
+      "sequel-client-build",
+      "sequel-server-evidence",
+      "sequel-browser-evidence"
+    ],
+    "actualArtifactComparison": {
+      "classification": "Actual downloaded finalCIartifact; root image and recovery inspection completed",
+      "gameFiles": 191,
+      "allGameBytesEqualReviewedLocal": true,
+      "oldArtFiles": 172,
+      "oldArtAllIdentical": true,
+      "selectedImages": [
+        {
+          "file": "collection-shared-desktop.png",
+          "sha256": "220d8e4d6b19ba584b3f269dd1a82bedb6b8bf772bc33ed7fa728b7c72c76a94",
+          "actualUploadedCIImageReviewed": true
+        },
+        {
+          "file": "collection-runtime-phone320.png",
+          "sha256": "f00f57170c8882bcb1a7c07d46e603758f5121410a05b4386b8629159ac19ff5",
+          "actualUploadedCIImageReviewed": true
+        },
+        {
+          "file": "collection-runtime-phone360.png",
+          "sha256": "087446bb1af70776c28c459101fcede175a296c01f69ef238ebe1939e2c59e95",
+          "actualUploadedCIImageReviewed": true
+        },
+        {
+          "file": "collection-runtime-short200.png",
+          "sha256": "22fef525d68951f6ed0aeadb9ac75c255e4fddf131370487d4b0086b0de2e647",
+          "actualUploadedCIImageReviewed": true
+        },
+        {
+          "file": "collection-runtime-phone200.png",
+          "sha256": "ce969e2483519ef9638ae08ce23a6a795960de6e152df1e33475bc685da0684e",
+          "actualUploadedCIImageReviewed": true
+        },
+        {
+          "file": "collection-local-unsaved-phone200.png",
+          "sha256": "3e2dd0b0796dc89df2f7e2d54127d8745656c3326a970b9732f6976f17412eb7",
+          "actualUploadedCIImageReviewed": true
+        }
+      ],
+      "sharedOriginalRetryGrant": {
+        "commandId": "b2161604-ef62-49f2-8c83-56cbf7270cc1",
+        "playerId": "receipt-maker",
+        "resource": "scrap",
+        "quantity": 6,
+        "revision": 1
+      },
+      "fourResponsiveLayouts": true,
+      "htmlSha256": "285625a57719bda92286d25e9abe32a0804595991832d66b07fc542affc233cd",
+      "populatedRestartEvidenceReviewed": true,
+      "visualLimits": "Enlarged-text status is deliberately internally scrollable; a capture shows only its visible portion. Viewport/text emulation is not physical-device or full accessibility certification."
+    },
+    "containerRestartStoredWorkshopAndOriginalGrantAndSignedSessionReviewed": true
+  },
+  "local": {
+    "domainCount": 279,
+    "domainSkipped": 0,
+    "domainDurationMs": 56668.486166,
+    "browserCount": 85,
+    "browserMinutes": 10.9,
+    "strictClientServerDesignBuildDesignPlan10Pinned40DiffPass": true,
+    "separateDisposableContainerRestartProof": true,
+    "protectedContainerNeverRestarted": true,
+    "terraModel": "gpt-6.1-terra",
+    "terraFrozenActualRuntimeDesktopPhoneKeyboardRetryQuotaReview": "No bounded-review blocker; source unchanged by reviewer"
+  },
+  "merge": "a7dd24ab90c74393eae988eb7cece1f491fbfaa3",
+  "mergeTree": "510cc6a3d623ddefa77cbad79e618397df62906d",
+  "matchingTreeAndCleanMainEqualsRemoteVerifiedBeforeCloseout": true,
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "sharedUrl": "http://127.0.0.1:4175/?town=1",
+    "immutableClientArtifact": "collection-runtime-2026-11-12/ci-final/build",
+    "frozenServerSource": "collection-runtime-2026-11-12/ci-final/runtime-source",
+    "actualAll191ResponsesEqualCI": true,
+    "protocol": 4,
+    "cachedProtocols1to3Refused": true,
+    "desktopAndPhoneActualOrdinaryAllThreeMaterialCollectionsAndReload": true,
+    "anonymousSharedChooserNoIdentitySelected": true,
+    "sharedFinalArtifactNativeZeroDefaultMiraSolOnDisposableDatabase": true,
+    "nativeActualFinalScreensReviewed": 4,
+    "protectedAll13TableColumnsRowsPreserved": true,
+    "fictionalResidents": 1,
+    "plots": 0,
+    "signingKeyAndSixMigrationChecksumsPreserved": true,
+    "privateQuiescentDumpKeyBackup": "collection-runtime-2026-11-12/private-practice-backup;0700directory/0600files; validated archive/key, contents never public",
+    "apiPid": 83080,
+    "apiSession": 34638,
+    "staticPid": 83260,
+    "staticSession": 85305,
+    "oldStudiesPorts": [
+      49529,
+      49530,
+      49534
+    ],
+    "oldStudy9And21And14ResponsesUnchanged": true,
+    "staging4197and49536Stopped": true,
+    "previousClientAndServerRetainedForRollback": true
+  },
+  "automaticMainCI": {
+    "run": 43274055991,
+    "status": "in_progress at closeout; separate from successful required exact candidate gates"
+  },
+  "superseded": [
+    "Initial local278/279due stale server-source fingerprint; deterministic report regenerated, only hash changed",
+    "Initial8524d36CI43270209353domain279passed but recovery snapshot observedAt differed across real clock; corrected declared observation clock plus new exact persisted JSON assertion. Superseded run cancelled, never counted as pass."
+  ],
+  "limits": [
+    "Loopback desktop preview only; no hosted/phone-remote promise",
+    "Tests deliberately abort/hold committed responses, corrupt/omit metadata, synthesize visibility and fail artwork/storage; documented fixtures never touch protected practice",
+    "Native Chromium/Chrome viewport/touch/text/media emulation; not physical phone, Safari, full accessibility or perceived-animation certification",
+    "Enlarged text uses deliberately scrollable long status; screenshots show visible portions",
+    "No economy/rates/timers/progress/migrations/current-game/accounts/cloud/expense changes"
+  ]
+}

@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-081 accepted PR29/mergea7dd24a/exact7aff73fCI43271107909bothSUCCESS279/85. Collection receipts now work in local/shared game, with exact original quantities/retries, fixed controls and original current-rig art. Actual191-filepreview/API and desktop/phone flow verified; practice/key preserved. [Closeout](evidence/IH2-081/source-closeout.json).
+
 2026-11-12 — IH2-081 candidate wires confirmed receipts into actual depot collection, retaining original immutable grants on retry, truthful local-save failures and current-rig art fallback. Rules/progress unchanged. Acceptance gates pending. [Evidence](evidence/IH2-081/REPORT.md).
 
 2026-11-12 — IH2-079 accepted PR28/merge10adfa9, exact8b392b9CI43257514774bothSUCCESS274/83. Fixed visible receipt prototype/once-only synthetic confirmation and authority gap documented; actual14study/178unchangedgame files/images verified, practice/key preserved.081actual integration queued, no runtime receipt yet. [Closeout](evidence/IH2-079/source-closeout.json).

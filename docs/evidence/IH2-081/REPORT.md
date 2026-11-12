@@ -1,5 +1,7 @@
 # IH2-081 — playable collection receipts
 
+**Accepted source/local game:** PR29/merge `a7dd24a`, exact `7aff73f` CI43271107909 bothSUCCESS279domain/zero skips and85browser14.0m. Actual191files/sixCIimages/recovery reviewed; matching tree and cleanmain=remote verified. Actual4175/API4186 updated after private quiescent backup; all13table columns/rows/key/sixchecksums preserved. Four actual desktop/phone local/shared images reviewed. [Closeout](source-closeout.json) is authoritative; earlier candidate text below records the phases.
+
 Runtime candidate on `feat/collection-receipts-runtime`, based on retained closeout `2da9786` / accepted `10adfa9`. [Contract](../../idle-hands-2/design/COLLECTION_RECEIPT_RUNTIME.md). Full local and exact-head CI/artifact/merge/preview gates are pending; the protected preview remains accepted076 until those pass.
 
 The successful locked gather now records optional original command/player/material/quantity/revision metadata in its existing immutable receipt JSON. No new table, migration, query, write, stock rule, rate, capacity, timer or reward calculation. Retry returns original metadata with fresh state; legacy results stay text-only. Client transport pairs each original promise with its immutable outcome, retaining the public snapshot API and coalescing behavior. It never infers grants from snapshot deltas or message parsing.

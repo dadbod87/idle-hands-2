@@ -1,0 +1,13 @@
+{
+  "classification": "Actual finalCIbuild byte-identical reviewed candidate vs immutable accepted076; counts and deltas verified",
+  "oldFiles": 178,
+  "newFiles": 191,
+  "oldArtFiles": 172,
+  "oldArtAllIdentical": true,
+  "newRuntimeArtFiles": 185,
+  "originalSVGs": 173,
+  "rawDelta": 486312,
+  "gzipEachFileDelta": 22610,
+  "collectionSheets": 12,
+  "allSelectedLazyOnly": true
+}

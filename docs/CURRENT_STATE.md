@@ -1,5 +1,7 @@
 # Idle Hands 2 — current state
 
+IH2-081 accepted playable receipt integration: PR29/mergea7dd24a, exact7aff73fCI43271107909bothSUCCESS279/85. Actual191-file4175preview/protocol4API updated after private backup; all13practice tables/key/sixchecksums and historical studies preserved. Terra6.1bounded review and actual local/shared desktop/phone captures inspected. [Closeout](evidence/IH2-081/source-closeout.json). No hosted/current-game release. Current handoff authoritative.
+
 IH2-081 runtime candidate integrates exact original local/shared collection receipts, optional persisted grant metadata, lazy original art and fixed focus-safe controls. Terra6.1bounded actual-build review finds no blocker; full local/exact-headCI/artifact/preview gates remain pending. Protected practice/API and old studies remain accepted/unchanged. [Evidence](evidence/IH2-081/REPORT.md).
 
 IH2-079 accepted design/source: PR28/merge10adfa9, exact8b392b9CI43257514774bothSUCCESS274/83. Frozen14-file receipt study49534verified with sixCIimages/native desktop+phone; Terra6.1rechecked narrow focus fix. Every178game byte/13practice tables/key/API and old galleries remain unchanged.081actual receipt integration queued; current APIstill lacks exact grant metadata. [Closeout](evidence/IH2-079/source-closeout.json). Current handoff authoritative; prior candidate entries below are historical.

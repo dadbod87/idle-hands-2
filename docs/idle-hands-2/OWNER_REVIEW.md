@@ -10,7 +10,7 @@ Alongside the square, workshop, ownable home and expansion, bridge and restored 
 
 Pip offers an optional free delivery chapter: three addressed NPC parcels, receipts and a route card whose wording follows your delivery order. Completing it keeps the card and a plan. An optional physical letterbox costs two carried pine and one harvested radish, with three free motif choices. The one owned item can be moved between workshop and house. A deliberately published style sample is optional; this is not player mail or chat.
 
-The preview uses accepted071 source/CI artifact. [Exact source and preservation evidence](../evidence/IH2-071/source-closeout.json). Existing practice progress and signing key were preserved when it was updated. No new SQL migration or hosted account setup was added.
+The preview uses accepted IH2-071 source/CI artifact. [Exact source and preservation evidence](../evidence/IH2-071/source-closeout.json). Existing practice progress and signing key were preserved when it was updated. No new SQL migration or hosted account setup was added.
 
 ## What the current audit is finding
 
@@ -20,7 +20,7 @@ The clearest next improvement is getting current actions near the top of phone p
 
 A house expansion currently adds visible room but keeps the same six furniture positions. The upgrade should explain that better, and making the workroom furnishable deserves its own later task. Furniture and visitor restrictions otherwise remained clear in the observed arrangement/motif/reload flow.
 
-The current-rule schedule comparisons preserve ordinary kit production when choosing a letterbox. Pine/produce still compete with easels, hampers and requests, so choices have a real opportunity cost. These models are conditional strategies, not promised house dates or evidence of how much fun people will have. The actual-time first-session and three-minute absent-return check preserves belongings and the original job deadline. Its automated15minute window includes substantial waiting and does not establish enjoyment or exhaust every finite activity. All256domain/SQL and72browser checks pass locally. Exact-commit CI and artifact/source gates remain in progress.
+The current-rule schedule comparisons preserve ordinary kit production when choosing a letterbox. Pine/produce still compete with easels, hampers and requests, so choices have a real opportunity cost. These models are conditional strategies, not promised house dates or evidence of how much fun people will have. The actual-time first-session and three-minute absent-return check preserves belongings and the original job deadline. Its automated 15 minute window includes substantial waiting and does not establish enjoyment or exhaust every finite activity. All 256 domain/SQL and 72 browser checks pass locally. Exact-commit CI and artifact/source gates remain in progress.
 
 ## What remains separate
 

@@ -18,8 +18,8 @@ The state summary and controls must be stable while a countdown updates. Do not 
 
 ## Acceptance
 
-- Compare accepted audit baseline and candidate on fresh, completed-card/no-box, owned-box, ready crops, both busy jobs and full produce. Desktop1440×900, native touch-emulated360×640, short844×390 with200%DOM text; inspect actual canvas/panel captures.
-- Useful enabled state-appropriate action/navigation is reachable near the start of returned/full/busy panels. Measure rather than assuming one fixed screen height; avoid replacing a long story with another tall summary. All44px controls, Close, quote and disclosures remain reachable without horizontal overflow.
+- Compare accepted audit baseline and candidate on fresh, completed-card/no-box, owned-box, ready crops, both busy jobs and full produce. Desktop 1440×900, native touch-emulated 360×640, short 844×390 with 200% DOM text; inspect actual canvas/panel captures.
+- Useful enabled state-appropriate action/navigation is reachable near the start of returned/full/busy panels. Measure rather than assuming one fixed screen height; avoid replacing a long story with another tall summary. All 44px controls, Close, quote and disclosures remain reachable without horizontal overflow.
 - Revisit preserves the earned card/art/order caption and humor. Fresh route and actual recipient handovers still work. Choose/cancel/save motifs and register/remove must preserve exactly one physical copy and old ownership/placements.
 - Garden deadlines, seed/produce/practice/consumed ledgers and ordinary/easel jobs stay unchanged for navigation, disclosures and previews. Full crops are never discarded, planted-over or claimed without capacity. No hidden auto-spend or inferred readiness.
 - Keyboard/focus, touch pointer down/up and passive countdown updates must retain stable targets. Regressions should fail the old artifact for the intended hierarchy issue, not merely mirror new implementation classes. Preserve prior pointer-focus/Cancel-return tests and pending/lost-response/identity protections.

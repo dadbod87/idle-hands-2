@@ -1,0 +1,9 @@
+# IH2-077 — ordinary collection action art study
+
+Active after076acceptance. Original actor action for the three already recognized074static depots. Candidate art only: Aster rig/four facings/idle-reach-contact-recovery with separate scrap/timber/supplies silhouettes and exact attachment/32,72foot. Other three rigs remain unfinished. Import guarded original rig; do not modify it or publish assets into public/runtime. Transparent vector sheets, deterministic catalog/source hashes, reduced-motion idle and actual0.9world-scale comparison.
+
+Standalone self-contained review gallery: bounded replay, no looping gameplay promise, reduced-motion and hidden cancellation, native desktop/360phone/short doubled text. Raster frame edges/foot band/prop silhouettes and reproducible export/provenance tests. Preserve all178game build files, server/economy/state/physics and172runtimeart files. No tools, inventory quantities, rewards or public/real identities. The prop is a visual bundle, not a claim to represent exact collected quantity.
+
+Later integration needs all four rigs and a separate accepted-collection receipt policy: once only after confirmed inventory delta; no replayed failed/duplicate reward animation; movement/menu/hidden/reduced cancel safely. Current collections use a modal, so receipt visibility/deferred reveal must be proved before runtime integration. This study must not silently close a menu, move the actor/camera, block input, change a timer or fabricate a resource. One bounded420ms candidate replay is presentation only, not gameplay delay.
+
+All required repository/source/CI/artifact/image gates apply. Actual uploaded study source files and native/raster images must be reviewed separately from unchanged game artifacts.07:00Pacific stop, no rushed release; retain accepted076preview on incomplete gates.

@@ -52,7 +52,9 @@
     "tools/observe-material-depots.ts",
     "tests/home-layout.test.ts",
     "tests/home-workroom.spec.ts",
-    "tests/home-panel.spec.ts"
+    "tests/home-panel.spec.ts",
+    "tests/gathering-study.test.ts",
+    "tests/gathering-study.spec.ts"
   ],
   "compilerOptions": {
     "types": [

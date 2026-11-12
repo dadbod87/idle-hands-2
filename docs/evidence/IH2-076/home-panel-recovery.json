@@ -1,0 +1,10 @@
+{
+  "disclosure": "All requests/SSE/positions and server replies intercepted; current pure home reducer models committed/replayed replies, not backend authority. Native pointer held across passive invalidation. Dedicated real owner/visitor home flows remain separate tests.",
+  "selectionPreserved": true,
+  "passiveTargetStable": true,
+  "identicalRetryPayload": true,
+  "commits": 3,
+  "replays": 1,
+  "oldPanelNotReopened": true,
+  "unchangedOwnedJobInventory": true
+}

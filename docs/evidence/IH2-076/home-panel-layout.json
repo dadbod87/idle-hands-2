@@ -1,0 +1,53 @@
+{
+  "disclosure": "Fully intercepted current snapshots/EventSource/fixed-arrival ACK; elapsed pure-command stock and declared owned home/layout. Native touch/text emulation; no real API, commands or housing pacing claim.",
+  "observations": [
+    {
+      "shape": {
+        "name": "phone-expanded",
+        "w": 360,
+        "h": 640,
+        "level": 2,
+        "visitor": false,
+        "text": 1
+      },
+      "commands": 0,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "short200-expanded",
+        "w": 844,
+        "h": 390,
+        "level": 2,
+        "visitor": false,
+        "text": 2
+      },
+      "commands": 0,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone-starter",
+        "w": 360,
+        "h": 640,
+        "level": 1,
+        "visitor": false,
+        "text": 1
+      },
+      "commands": 0,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone-visitor",
+        "w": 360,
+        "h": 640,
+        "level": 2,
+        "visitor": true,
+        "text": 1
+      },
+      "commands": 0,
+      "errors": []
+    }
+  ]
+}

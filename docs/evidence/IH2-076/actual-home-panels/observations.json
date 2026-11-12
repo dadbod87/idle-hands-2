@@ -1,0 +1,357 @@
+{
+  "disclosure": "Fully intercepted current snapshot/EventSource, elapsed pure-command earned box/easel and fixed home/placements/arrival. Fixed-arrival movement acknowledgements are also intercepted. No real API or mutation commands, no housing pacing claim. Native Chrome with emulated touch/text sizing.",
+  "base": "http://127.0.0.1:4175",
+  "results": [
+    {
+      "shape": {
+        "name": "desktop-expanded",
+        "w": 1440,
+        "h": 900,
+        "level": 2,
+        "visitor": false,
+        "text": 1
+      },
+      "measurement": {
+        "body": {
+          "top": 247.703125,
+          "bottom": 732.296875,
+          "height": 484.59375,
+          "clientHeight": 484.59375,
+          "scrollHeight": 485,
+          "pages": 1.000838331076288
+        },
+        "controls": [
+          {
+            "label": "Owned furniture for plot",
+            "tag": "SELECT",
+            "top": 281.703125,
+            "bottom": 327.703125,
+            "visible": true
+          },
+          {
+            "label": "Plot furniture position",
+            "tag": "SELECT",
+            "top": 353.703125,
+            "bottom": 399.703125,
+            "visible": true
+          },
+          {
+            "label": "Place owned furniture here",
+            "tag": "BUTTON",
+            "top": 417.703125,
+            "bottom": 463.703125,
+            "visible": true
+          },
+          {
+            "label": "Return furniture to bag",
+            "tag": "BUTTON",
+            "top": 481.703125,
+            "bottom": 527.703125,
+            "visible": true
+          },
+          {
+            "label": "House & expansion",
+            "tag": "SUMMARY",
+            "top": 550.703125,
+            "bottom": 596.703125,
+            "visible": true
+          },
+          {
+            "label": "Enter your house",
+            "tag": "BUTTON",
+            "top": 606.703125,
+            "bottom": 652.703125,
+            "visible": false
+          },
+          {
+            "label": "Upgrade plot · 24 bridge kits",
+            "tag": "BUTTON",
+            "top": 796.703125,
+            "bottom": 842.703125,
+            "visible": false
+          },
+          {
+            "label": "Refresh plot information",
+            "tag": "BUTTON",
+            "top": 606.703125,
+            "bottom": 658.703125,
+            "visible": false
+          }
+        ]
+      },
+      "errors": [],
+      "commands": 0
+    },
+    {
+      "shape": {
+        "name": "phone-expanded",
+        "w": 360,
+        "h": 640,
+        "level": 2,
+        "visitor": false,
+        "text": 1
+      },
+      "measurement": {
+        "body": {
+          "top": 117.703125,
+          "bottom": 602.296875,
+          "height": 484.59375,
+          "clientHeight": 484.59375,
+          "scrollHeight": 485,
+          "pages": 1.000838331076288
+        },
+        "controls": [
+          {
+            "label": "Owned furniture for plot",
+            "tag": "SELECT",
+            "top": 151.703125,
+            "bottom": 197.703125,
+            "visible": true
+          },
+          {
+            "label": "Plot furniture position",
+            "tag": "SELECT",
+            "top": 223.703125,
+            "bottom": 269.703125,
+            "visible": true
+          },
+          {
+            "label": "Place owned furniture here",
+            "tag": "BUTTON",
+            "top": 287.703125,
+            "bottom": 333.703125,
+            "visible": true
+          },
+          {
+            "label": "Return furniture to bag",
+            "tag": "BUTTON",
+            "top": 351.703125,
+            "bottom": 397.703125,
+            "visible": true
+          },
+          {
+            "label": "House & expansion",
+            "tag": "SUMMARY",
+            "top": 420.703125,
+            "bottom": 466.703125,
+            "visible": true
+          },
+          {
+            "label": "Enter your house",
+            "tag": "BUTTON",
+            "top": 476.703125,
+            "bottom": 522.703125,
+            "visible": false
+          },
+          {
+            "label": "Upgrade plot · 24 bridge kits",
+            "tag": "BUTTON",
+            "top": 714.703125,
+            "bottom": 760.703125,
+            "visible": false
+          },
+          {
+            "label": "Refresh plot information",
+            "tag": "BUTTON",
+            "top": 476.703125,
+            "bottom": 528.703125,
+            "visible": false
+          }
+        ]
+      },
+      "errors": [],
+      "commands": 0
+    },
+    {
+      "shape": {
+        "name": "short200-expanded",
+        "w": 844,
+        "h": 390,
+        "level": 2,
+        "visitor": false,
+        "text": 2
+      },
+      "measurement": {
+        "body": {
+          "top": 115,
+          "bottom": 374,
+          "height": 259,
+          "clientHeight": 259,
+          "scrollHeight": 693,
+          "pages": 2.675675675675676
+        },
+        "controls": [
+          {
+            "label": "Owned furniture for plot",
+            "tag": "SELECT",
+            "top": 165,
+            "bottom": 223,
+            "visible": true
+          },
+          {
+            "label": "Plot furniture position",
+            "tag": "SELECT",
+            "top": 265,
+            "bottom": 323,
+            "visible": true
+          },
+          {
+            "label": "Place owned furniture here",
+            "tag": "BUTTON",
+            "top": 341,
+            "bottom": 435,
+            "visible": false
+          },
+          {
+            "label": "Return furniture to bag",
+            "tag": "BUTTON",
+            "top": 453,
+            "bottom": 512,
+            "visible": false
+          },
+          {
+            "label": "House & expansion",
+            "tag": "SUMMARY",
+            "top": 535,
+            "bottom": 589,
+            "visible": false
+          },
+          {
+            "label": "Enter your house",
+            "tag": "BUTTON",
+            "top": 599,
+            "bottom": 658,
+            "visible": false
+          },
+          {
+            "label": "Upgrade plot · 24 bridge kits",
+            "tag": "BUTTON",
+            "top": 1042,
+            "bottom": 1136,
+            "visible": false
+          },
+          {
+            "label": "Refresh plot information",
+            "tag": "BUTTON",
+            "top": 599,
+            "bottom": 693,
+            "visible": false
+          }
+        ]
+      },
+      "errors": [],
+      "commands": 0
+    },
+    {
+      "shape": {
+        "name": "phone-starter",
+        "w": 360,
+        "h": 640,
+        "level": 1,
+        "visitor": false,
+        "text": 1
+      },
+      "measurement": {
+        "body": {
+          "top": 117.703125,
+          "bottom": 602.296875,
+          "height": 484.59375,
+          "clientHeight": 484.59375,
+          "scrollHeight": 485,
+          "pages": 1.000838331076288
+        },
+        "controls": [
+          {
+            "label": "Owned furniture for plot",
+            "tag": "SELECT",
+            "top": 151.703125,
+            "bottom": 197.703125,
+            "visible": true
+          },
+          {
+            "label": "Plot furniture position",
+            "tag": "SELECT",
+            "top": 223.703125,
+            "bottom": 269.703125,
+            "visible": true
+          },
+          {
+            "label": "Place owned furniture here",
+            "tag": "BUTTON",
+            "top": 287.703125,
+            "bottom": 333.703125,
+            "visible": true
+          },
+          {
+            "label": "Return furniture to bag",
+            "tag": "BUTTON",
+            "top": 351.703125,
+            "bottom": 397.703125,
+            "visible": true
+          },
+          {
+            "label": "House & expansion",
+            "tag": "SUMMARY",
+            "top": 420.703125,
+            "bottom": 466.703125,
+            "visible": true
+          },
+          {
+            "label": "Enter your house",
+            "tag": "BUTTON",
+            "top": 476.703125,
+            "bottom": 522.703125,
+            "visible": false
+          },
+          {
+            "label": "Upgrade plot · 24 bridge kits",
+            "tag": "BUTTON",
+            "top": 714.703125,
+            "bottom": 760.703125,
+            "visible": false
+          },
+          {
+            "label": "Refresh plot information",
+            "tag": "BUTTON",
+            "top": 476.703125,
+            "bottom": 528.703125,
+            "visible": false
+          }
+        ]
+      },
+      "errors": [],
+      "commands": 0
+    },
+    {
+      "shape": {
+        "name": "phone-visitor",
+        "w": 360,
+        "h": 640,
+        "level": 2,
+        "visitor": true,
+        "text": 1
+      },
+      "measurement": {
+        "body": {
+          "top": 161.203125,
+          "bottom": 558.796875,
+          "height": 397.59375,
+          "clientHeight": 397.59375,
+          "scrollHeight": 398,
+          "pages": 1.0010217715947496
+        },
+        "controls": [
+          {
+            "label": "Refresh plot information",
+            "tag": "BUTTON",
+            "top": 433.203125,
+            "bottom": 485.203125,
+            "visible": false
+          }
+        ]
+      },
+      "errors": [],
+      "commands": 0
+    }
+  ]
+}

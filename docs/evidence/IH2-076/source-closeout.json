@@ -1,0 +1,97 @@
+{
+  "task": "IH2-076",
+  "classification": "Accepted private source and preserved local preview; presentation only, no hosted release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/25",
+  "candidate": "04b6848f5b8f629a7bb00ee7a46815b9f0e730f0",
+  "ci": {
+    "run": 43231538226,
+    "domainJob": 131227826551,
+    "browserJob": 131227826013,
+    "bothSuccess": true,
+    "domainCount": 262,
+    "domainSkipped": 0,
+    "domainDurationMs": 83602.656882,
+    "browserCount": 80,
+    "browserMinutes": 13.6,
+    "actualArtifacts": [
+      "sequel-client-build",
+      "sequel-server-evidence",
+      "sequel-browser-evidence"
+    ],
+    "files": 178,
+    "allByteEqualReviewedLocal": true,
+    "populatedRestartEvidenceReviewed": true,
+    "selectedImages": [
+      {
+        "file": "home-panel-phone-expanded.png",
+        "sha256": "8ab0c7d06b795ad1c96acb70816cbfe2f850b99e795112f6349a5e50423b8d45",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "home-panel-short200-expanded.png",
+        "sha256": "0f9d8977f81ddb54b4005e84c3465c447c42707ae29eaa8361787064eb476ad9",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "home-panel-phone-starter.png",
+        "sha256": "efa17b5dfbe9486c4d101a1eaef0694245fd9443cbbcdf690deabc6c0bc3027e",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "workroom-short200-arrangement.png",
+        "sha256": "240d3ba31a1d83a5a639fbcb07004b58d44a1c681edd5832db192be573b404f7",
+        "actualUploadedCIImageReviewed": true
+      }
+    ],
+    "htmlSha256": "0ea23ef6b1557b7f7408fb174259b18316f0467f329e3c49e399954b9134ed64"
+  },
+  "local": {
+    "domainCount": 262,
+    "domainSkipped": 0,
+    "domainDurationMs": 48939.969125,
+    "browserCount": 80,
+    "browserMinutes": 10.1,
+    "strictBuildDesignPlanPinned40DiffPass": true,
+    "pairedSituationViews": 5,
+    "correctedVisibilityObserverReproducesRatiosAndControls": true,
+    "artFilesUnchanged": 172,
+    "serverDomainPhaserProtocolMigrationsUnchanged": true
+  },
+  "merge": "d8edb0c7a7afd45c5a7e43a54bd8eb8c38001b49",
+  "candidateTree": "20fd9ab3eb9ff0888925c4ed6b8f432e085566f0",
+  "mergeTree": "20fd9ab3eb9ff0888925c4ed6b8f432e085566f0",
+  "matchingTreeAndCleanMainEqualsRemoteVerified": true,
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "immutableArtifact": "home-arrangement-2026-11-12/ci-final/build",
+    "actualMatchingResponses": 178,
+    "protocol": 4,
+    "nativeDesktopPhoneRootNavigationReloadAnonymousChooser": true,
+    "actualServedHomePanelScreens": "Explicitly intercepted fictional current snapshots/SSE/fixed-arrival ACK; no real shared identity or grants",
+    "selectedActualImagesReviewed": 4,
+    "all13TableColumnsRowsPreserved": true,
+    "residents": 1,
+    "plots": 0,
+    "signingKeyAndSixChecksumsPreserved": true,
+    "apiRestarted": false,
+    "apiPid": 79862,
+    "apiSession": 16429,
+    "staticPid": 84028,
+    "staticSession": 59248
+  },
+  "automaticMainCI": {
+    "run": 43234270614,
+    "status": "in_progress at closeout; exact candidate gates complete"
+  },
+  "previousMainCI": {
+    "run": 43228964846,
+    "bothSuccessVerified": true
+  },
+  "limits": [
+    "Native Chromium/touch/text-size emulation, not physical-phone/Safari",
+    "Native select text may truncate; full picker/accessibility option text retained",
+    "Home UI recovery fixtures are intercepted; backend authority separately tested",
+    "Protected practice has zero plots and was never seeded",
+    "No real accounts, hosted infrastructure, expense or original-game change"
+  ]
+}

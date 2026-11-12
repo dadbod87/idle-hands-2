@@ -172,3 +172,7 @@ Agent-selected under sequential local-build authorization after accepted072capac
 
 ## 2026-11-12 — IH2-076 inside-home arranging
 Agent-selected after accepted075and072phone findings. Inside owner home, current furnishing choices precede property/expansion history; outside, entering/claiming remains primary. Preserve chosen prop/slot through save/reject/refresh and reserve passive Refresh space so a held pointer cannot retarget another control. Scope async results to the original connected panel; retry keeps its exact original DTO. No server/domain/art/economy change. Native select truncation at enlarged text remains a documented platform behavior, with full accessible/picker options. Acceptance requires full source/CI/artifact and protected-preview gates.
+
+
+## 2026-11-12 — IH2-077 art before collection integration
+Agent-selected under owner animation/art direction after076acceptance. Prove one original rig/three hand-prop silhouettes before bulk art or runtime hooks. Reuse guarded original body/feet/base arms, author a clearer recovery tuck after review, retain exact source provenance and tolerant native alpha-position checks rather than all-channel raster equality. Other rigs and current modal/receipt visibility remain separate gates. No new playable collection behavior is implied by the study.

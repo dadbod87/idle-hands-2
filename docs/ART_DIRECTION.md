@@ -93,3 +93,7 @@ Fourteen original069vectors are promoted without geometry changes through tools/
 
 ## IH2-074 ordinary material depots
 Three original static56×48SVGs replace the square's procedural material rectangles: salvage bin/washer, bound sawn boards and stationery crate. Shared28,40foot and old world bounds/depth remain; raised nameplates stay within the original interaction areas and clear the short enlarged-text starting camera. Decorative contents are not exact stock counters. Reproducible generator/provenance and actual day/night phone/short observations are in074evidence; acceptance is separate from this art contract. No resource/collision/animation/economy change or physical-device claim.
+
+
+## IH2-077 candidate collection study
+[Ordinary collection art study](idle-hands-2/design/ORDINARY_GATHERING_STUDY.md) authors three hand props and Aster-only four-facing reach/contact/recovery, reusing original body/base arms with a clearer recovery tuck. It stays outside runtime/public, with exact foot/provenance and native scale/reduced-motion review. Other three rigs and actual modal/receipt/animation integration remain unfinished; this does not close runtime gathering-animation coverage.

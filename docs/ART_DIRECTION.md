@@ -1,5 +1,7 @@
 # Idle Hands 2 — illustrated company-town kit
 
+IH2-082 accepted notebook uses the existing paper-panel visual language, three stable ordered cards and explicit state glyphs. Short route labels retain descriptive accessible names; doubled text scrolls deliberately. No new art assets. Final Terra6.1 review and six actual CI captures were inspected; physical phone/Safari remain unverified.
+
 IH2-020 working direction selected under delegated authority, 2026-11-09. Compare at `/?art-study=1`; owner can redirect later. This is a distinct town game, not a reskin of the original office. No current-game artwork, cast, photos or runtime copied.
 
 ## Selected visual language
@@ -116,3 +118,5 @@ IH2-079separate study/source accepted PR28/10adfa9, exact8b392b9CI43257514774bot
 Promote all twelve accepted078 collection SVG sheets byte-for-byte with reproducible provenance. The actual game uses current-rig/material lazy DOM decode only, the original57.6×72actor in a reserved72×96slot, and literal authoritative quantities. Art remains decorative, one420ms sequence or still; failed/late art never blocks confirmation or replays a reward. All three useful resource counts and original game typography/materials remain. No Phaser preload/world/camera/geometry changes. Terra6.1bounded desktop/phone review finds no blocker; full acceptance is separate.
 
 IH2-081runtime/source accepted PR29/a7dd24a, exact7aff73fCI43271107909bothSUCCESS279/85. Six actualCIimages and four actual local/shared preview images reviewed; original art identity and all resource counts retained. Physical-phone/Safari/perceived motion certification remains outside this bounded review.
+
+IH2-083 candidate: cloth/sage canvas satchel, inset stitched pockets and original runtime item illustrations with literal number badges. Reuse existing icons rather than adding a second art family; intrinsically wrapped pocket controls protect narrow/enlarged text. Terra/final acceptance in083evidence.

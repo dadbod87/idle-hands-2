@@ -192,3 +192,9 @@ IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclos
 - All required local/exact-final-headCI/actualartifact/image/recovery/tree gates under unchanged deadline. Static-only protected preview swap preserves all13table columns/rows/key/sixchecksums, API and historical studies; verify actual native desktop/phone notebook/navigation/reload on served artifact.
 
 IH2-082CIcapacity correction: the stable browser-playtest gate now requires both file-level shards, each with its own runner/PostgreSQL/API and unchanged20mceiling. Verify discovery disjoint/exhaustive and sum of actual passed cases equals the unsharded suite; inspect both artifacts. Local remains unsharded. Failfast on a failed CItest does not permit partial green coverage. No actual-clock proof/assertion is removed.
+
+## IH2-083 visual bag
+
+- Read-only stack projection: claimed outputs only, separate carried resources, seeds/produce and protected kept entitlements; subtract workshop and home placements without a new ledger. Invalid allocation must never fabricate negative availability.
+- Stable pocket/count DOM, explicit save/confirmation status, artwork fallback, native collect/place/remove/reload and identity/snapshot changes. Preserve notebook and original routes/controls; no command on inspection.
+- Desktop/narrow/short200/phone200 keyboard/tap44px and word-boundary control labels; Terra actual frozen-build review. Full local and exact-final-head CI suites plus actual images/build/recovery before merge, static-only accepted preview update and protected state/key/checksum/API/study preservation. Disclose intercepted/elapsed/unsaved/artwork fixtures and emulation limits.

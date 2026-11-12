@@ -1,0 +1,72 @@
+{
+  "classification": "Actual finalCIartifact on existing4175; native fresh local contexts ordinary collection/UI-created five-second job/read-only notebook/free inspectors/reload, anonymous shared chooser; no protected shared writes",
+  "files": 191,
+  "allBytesEqualCI": true,
+  "htmlSha256": "fb46925ccde471f59c9dd1f1e85fcfa749efd975e4f4f50aa82a2dfa2d801672",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "ordinaryThreeNativeCollectionsAndNativeUICraft": true,
+      "actualFiveSecondDeadline": true,
+      "outputNotClaimed": true,
+      "freeRackAndGardenRoutes": true,
+      "revision": 4,
+      "reloadKeptReadyJob": true,
+      "anonymousSharedChooser": true,
+      "noSharedIdentitySelected": true,
+      "noInterceptionOrStatePositionClockFixtures": true,
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "ordinaryThreeNativeCollectionsAndNativeUICraft": true,
+      "actualFiveSecondDeadline": true,
+      "outputNotClaimed": true,
+      "freeRackAndGardenRoutes": true,
+      "revision": 4,
+      "reloadKeptReadyJob": true,
+      "anonymousSharedChooser": true,
+      "noSharedIdentitySelected": true,
+      "noInterceptionOrStatePositionClockFixtures": true,
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

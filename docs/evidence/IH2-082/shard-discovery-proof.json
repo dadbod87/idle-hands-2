@@ -1,0 +1,10 @@
+{
+  "all": 88,
+  "shard1": 44,
+  "shard2": 44,
+  "disjoint": true,
+  "unionExactlyFullSuite": true,
+  "fileLevelGroupsRetained": true,
+  "oneWorkerPerIsolatedRunner": true,
+  "realTimeAssertionsAndBudgetUnchanged": true
+}

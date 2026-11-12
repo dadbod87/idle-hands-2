@@ -1,4 +1,5 @@
 import {collectionGrant,type CollectionGrant} from '../game/collection-receipt.ts';
+import {BagView} from './bag.ts';
 import {ActivityNotebook} from './activity-notebook.ts';
 import {CollectionReceiptView} from './collection-receipt.ts';
 import {residentArt} from '../art/variety.ts';
@@ -30,6 +31,7 @@ export class WorkshopUI {
  private lastSlot:string|null=null;
  private ticker:number;
  private notebook:ActivityNotebook|null=null;
+ private bag:BagView|null=null;
  private collectionView:CollectionReceiptView|null=null;
  private collectionIntent:{id:string;owner:string;rig:string;view:CollectionReceiptView}|null=null;
  private remoteBusy=false;
@@ -60,7 +62,7 @@ export class WorkshopUI {
   document.addEventListener('visibilitychange',()=>{if(!document.hidden){this.state=settleWorkshop(this.state,Date.now());this.persist();this.updateClocks();}});
  }
  snapshot(){return JSON.parse(JSON.stringify(this.state));}
- closed(){this.notebook?.destroy();this.notebook=null;this.host.body.closest('dialog')?.classList.remove('notebook-dialog');this.collectionView?.destroy();this.collectionView=null;this.host.body.classList.remove('collection-panel');this.host.body.closest('dialog')?.classList.remove('collection-dialog');this.active=null;this.status=null;this.preview=null;}
+ closed(){this.bag?.destroy();this.bag=null;this.notebook?.destroy();this.notebook=null;this.host.body.closest('dialog')?.classList.remove('notebook-dialog');this.collectionView?.destroy();this.collectionView=null;this.host.body.classList.remove('collection-panel');this.host.body.closest('dialog')?.classList.remove('collection-dialog');this.active=null;this.status=null;this.preview=null;}
  private acceptRemote(state:WorkshopState){this.state=state;if(!this.remote?.canRetry())this.remoteError='';this.host.changed();this.updateClocks();this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>el.textContent=String(state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]));}
  private remoteNotice(){if(!this.remote||!this.status)return;if(this.collectionView){const busy=this.remoteBusy||this.remote.busy?.();this.collectionView.retry.textContent=this.remote.canRetry()?'Retry the same request':'Refresh town state';if(busy||this.remoteError)this.collectionView.message(busy?'Waiting for server confirmation…':this.remoteError+(this.remote.canRetry()?' The request may have saved. Retry the same request.':''));else if(!this.collectionView.started)this.collectionView.message(this.remote.canRetry()?'A request is unresolved. Retry the same request before collecting.':'Choose Collect to gather the available material.');return;}if(this.remoteBusy||this.remoteError)this.status.textContent=this.remoteBusy?'Waiting for server confirmation…':this.remoteError;let retry=this.host.body.querySelector<HTMLButtonElement>('.remote-retry');if(!retry){retry=this.button('Retry the same request',()=>void this.remoteDispatch(null),'remote-retry');this.status.after(retry);}retry.hidden=!this.remoteError;retry.disabled=this.remoteBusy;}
  private async remoteDispatch(command:Record<string,unknown>|null,present:()=>boolean=()=>true):Promise<WorkshopCommandResult>{
@@ -166,8 +168,8 @@ export class WorkshopUI {
   if(this.host.teaching)b.append(this.button('Orientation maintenance · one-time contribution',()=>this.host.teaching?.(),'destination'));this.notice();b.append(this.p('A queued job finishes while you are away and waits for collection. No automatic repeat jobs or hidden lost output.','disclosure'),this.disclosure());this.updateClocks();
  };this.begin('Your work bench',render);}
  showInventory(){const render=()=>{
-  const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');this.notebook?.destroy();this.notebook=new ActivityNotebook({bench:{label:'Open work bench · jobs & recipes',open:()=>this.showBench()},rack:{label:'Open pine rack · finishing jobs & collection',open:()=>this.host.finishing?.()},garden:{label:'Your allotment · crops, markers & quests',open:()=>this.host.garden?.()}});b.append(this.notebook.root);
-  const other=document.createElement('section'),summary=document.createElement('h3');summary.textContent='While work runs';other.append(summary);if(this.host.commission)other.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));other.append(this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)other.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!()));b.append(other,this.resources());
+  const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');this.bag?.destroy();this.bag=new BagView(this.state);b.append(this.bag.root);this.notebook?.destroy();this.notebook=new ActivityNotebook({bench:{label:'Open work bench · jobs & recipes',open:()=>this.showBench()},rack:{label:'Open pine rack · finishing jobs & collection',open:()=>this.host.finishing?.()},garden:{label:'Your allotment · crops, markers & quests',open:()=>this.host.garden?.()}});b.append(this.notebook.root);
+  const other=document.createElement('section'),summary=document.createElement('h3');summary.textContent='While work runs';other.append(summary);if(this.host.commission)other.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));other.append(this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)other.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!()));b.append(other);
   const quest=this.p('');quest.dataset.quest='';quest.className='quest-card';b.append(quest);
   const skill=this.p('');skill.dataset.skills='';b.append(skill);
   const kits=this.p('');kits.dataset.kits='';b.append(kits);
@@ -188,6 +190,8 @@ export class WorkshopUI {
   if(restoreFocus){const next=area.querySelector<HTMLButtonElement>(`[data-slot="${this.lastSlot??PLACEMENT_SLOTS[0].id}"]`);next?.focus({preventScroll:true});if(next){next.scrollIntoView({block:'nearest'});const dialog=next.closest('dialog'),head=dialog?.querySelector('header');if(dialog&&head){const hidden=head.getBoundingClientRect().bottom+8-next.getBoundingClientRect().top;if(hidden>0)dialog.scrollTop-=hidden;}}}
  }
  private updateClocks(){
+  const allocations=Object.fromEntries(PROP_IDS.map(id=>[id,this.remote?.allocatedElsewhere?.(id)??0]));
+  this.bag?.update(this.state,allocations,this.remote?(this.remoteBusy?'Checking town contents…':this.remoteError||this.remote.canRetry()?'Last confirmed contents · request unresolved.':'Confirmed town contents.'):this.localReadOnlyReason?'Kept save · read-only.':!this.saved?'Unsaved contents · keep this tab open.':!this.ownsSave?'Read-only contents · another tab may update them.':'Local contents · saved in this browser.');
   this.notebook?.update(this.state,this.gardenClock());if(!this.active)return;
   if(this.remote){const blocked=this.remoteBusy||!!this.remoteError||this.remote.canRetry();this.host.body.setAttribute('aria-busy',String(this.remoteBusy));this.host.body.querySelectorAll<HTMLButtonElement>('button:not(.remote-retry):not(.collection-control)').forEach(button=>{if(blocked){if(button.dataset.remoteDisabled===undefined)button.dataset.remoteDisabled=String(button.disabled);button.disabled=true;}else if(button.dataset.remoteDisabled!==undefined){button.disabled=button.dataset.remoteDisabled==='true';delete button.dataset.remoteDisabled;}});this.remoteNotice();}
   const now=this.remote?.now()??Date.now(),b=this.host.body;

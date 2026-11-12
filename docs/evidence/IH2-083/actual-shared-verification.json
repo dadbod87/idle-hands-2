@@ -1,0 +1,49 @@
+{
+  "classification": "Actual finalCIclient49543/existing unchanged server on disposable ih2_browser4197; normal native free inspection and identity changes, no interception or protected writes. Mira/Sol zero-default; Aster is existing explicitly seeded baseline48kits/2planters, not a new grant or ordinary starting entitlement.",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "allThreeFreeInspectors": true,
+      "closedBagDetached": true,
+      "identitySequence": [
+        "receipt-maker",
+        "aster",
+        "receipt-other"
+      ],
+      "heldKitCounts": [
+        0,
+        48,
+        0
+      ],
+      "noCommands": true,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "allThreeFreeInspectors": true,
+      "closedBagDetached": true,
+      "identitySequence": [
+        "receipt-maker",
+        "aster",
+        "receipt-other"
+      ],
+      "heldKitCounts": [
+        0,
+        48,
+        0
+      ],
+      "noCommands": true,
+      "errors": []
+    }
+  ]
+}

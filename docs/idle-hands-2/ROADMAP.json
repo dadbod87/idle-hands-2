@@ -942,7 +942,7 @@
     {
       "id": "IH2-083",
       "title": "Illustrated bag with truthful item stacks",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/visual-bag",
       "depends_on": [
         "IH2-082"
@@ -958,7 +958,9 @@
         "No drag/drop, new capacity, trading, new items/recipes, automatic craft collection, shared state mutation from inspection, current-game/cloud/accounts/expense."
       ],
       "evidence": [
-        "docs/evidence/IH2-083/PLAN.md"
+        "docs/evidence/IH2-083/PLAN.md",
+        "docs/evidence/IH2-083/REPORT.md",
+        "docs/evidence/IH2-083/source-closeout.json"
       ]
     },
     {

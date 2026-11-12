@@ -1,0 +1,9 @@
+{
+  "all": 93,
+  "shard1": 47,
+  "shard2": 46,
+  "disjoint": true,
+  "unionExactlyFullSuite": true,
+  "oneWorkerPerIsolatedRunner": true,
+  "unchangedRealTimeAssertionsAnd20MinuteBudget": true
+}

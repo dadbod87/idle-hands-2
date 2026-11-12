@@ -1,0 +1,12 @@
+{
+  "model": "gpt-6.1-terra",
+  "classification": "Independent frozen actual local runtime review, no source edits or protected identities",
+  "v1": "P2 narrow/text-only200 shortcut and pocket labels split inside words; rejected captures retained.",
+  "v2": "Corrected intrinsic flex wrapping resolves P2; no remaining bounded blocker at desktop,320/360,short/root200/text-only200. First12keyboardstops clear sticky header; sampled buttons\u226544x44; both shortcuts transfer focus and scroll correctly; item/count/owned/placed labels legible.",
+  "screens": "review-v2/terra-review",
+  "browsersClosed": true,
+  "limits": [
+    "Fresh isolated local contexts with ordinary donated default furniture; no protected writes.",
+    "Viewport/text/touch emulation is not physical phone/Safari/fullaccessibility or fun certification."
+  ]
+}

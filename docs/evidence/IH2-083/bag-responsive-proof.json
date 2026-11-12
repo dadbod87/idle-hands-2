@@ -1,0 +1,30 @@
+{
+  "fixture": "Fresh ungranted local defaults; deliberately intercepted stool artwork failure only. Native keyboard/viewport/text emulation, not a physical phone.",
+  "layouts": [
+    {
+      "name": "phone320",
+      "w": 320,
+      "h": 568,
+      "text": 100
+    },
+    {
+      "name": "phone360",
+      "w": 360,
+      "h": 640,
+      "text": 100
+    },
+    {
+      "name": "short200",
+      "w": 844,
+      "h": 390,
+      "text": 200
+    },
+    {
+      "name": "phone200",
+      "w": 320,
+      "h": 640,
+      "text": 200
+    }
+  ],
+  "errors": []
+}

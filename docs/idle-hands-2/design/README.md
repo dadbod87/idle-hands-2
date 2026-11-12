@@ -88,3 +88,5 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 [Actual collection receipt integration](COLLECTION_RECEIPT_RUNTIME.md): accepted081actual local/shared game; locked original grant metadata, exact transport/retry/presentation scope and truthful local persistence before runtime promotion.
 
 [Returning-player activity notebook](../../evidence/IH2-082/PLAN.md):082working integration connects existing workbench/rack/crops, without a new economy or automatic claims. Acceptance remains in its evidence.
+
+[Illustrated bag](../../evidence/IH2-083/PLAN.md): accepted083 presents existing held items as original illustrations with quantity badges, distinguishing unplaced furniture from owned/displayed/equipped items. It adds no capacity, economy or automatic craft collection; exact verification is in083evidence.

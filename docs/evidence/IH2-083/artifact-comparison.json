@@ -1,0 +1,45 @@
+{
+  "classification": "Actual final CI artifacts; six uploaded bag screenshots and recovery evidence inspected",
+  "gameFiles": 191,
+  "allBytesEqualReviewedLocal": true,
+  "oldArtFiles": 185,
+  "allOldArtByteIdentical": true,
+  "selectedImages": [
+    {
+      "file": "bag-desktop-stacked.png",
+      "sha256": "c5caf6514a28fceccb486f00b31c00318902b684440d8c7c96e30c09e439b3b7",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "bag-shared-materials.png",
+      "sha256": "d420c282638c11e2cf944a4147130c535cb2d56576bdeb5485d5596064c01be0",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "bag-phone320.png",
+      "sha256": "e472da611749eef1ea11eca8f45fc57cfa066e1c2ae9f5779496eb601a283b97",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "bag-phone360.png",
+      "sha256": "0449dd27662abb2b70a73fd4154505a80d76c39741e1331ed2d3ff7713dd98f0",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "bag-short200.png",
+      "sha256": "cf8f182d8726e6d8832aa3b0e9d06d4523a26d91f256d186759c7c4c1e9ba25f",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "bag-phone200.png",
+      "sha256": "6311feeddd140684107837169fc41838706778d072611448354ee21493054a6f",
+      "actualUploadedCIImageReviewed": true
+    }
+  ],
+  "sharedPocketCommandRequests": 0,
+  "claimedCraftStackAndPlacementReturnReload": true,
+  "interceptedHomeAllocationStableSlots": true,
+  "fourResponsiveLayouts": true,
+  "populatedRestartEvidenceReviewed": true,
+  "htmlSha256": "1cd37b16f82a70a2afa333f162e9737de418bf43b8981e4fcd525b1da7e4d3dc"
+}

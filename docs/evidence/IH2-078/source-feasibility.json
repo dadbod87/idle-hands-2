@@ -1,0 +1,25 @@
+{
+  "classification": "Read-only original source geometry probe; no new family art or raster/acceptance proof",
+  "source": "tools/create-town-variety.py",
+  "sourceSha256": "00ba74f1551f0bd55d7d630e6489c7bed4315236da0fb94047d9e175e45f6040",
+  "rigs": [
+    {
+      "rig": "aster",
+      "originalHandSegmentsValidated": 12
+    },
+    {
+      "rig": "bea",
+      "originalHandSegmentsValidated": 12
+    },
+    {
+      "rig": "casey",
+      "originalHandSegmentsValidated": 12
+    },
+    {
+      "rig": "devon",
+      "originalHandSegmentsValidated": 12
+    }
+  ],
+  "noAssetsOrRuntimeWrites": true,
+  "remainingRigsStillUnimplemented": true
+}

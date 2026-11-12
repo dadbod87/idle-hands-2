@@ -1,0 +1,7 @@
+# Terra 6.1 — bounded collection-family review
+
+Read-only review of frozen first candidate on loopback49531. All four actual contact-sheet PNGs, phone and short doubled-text captures inspected. No blocking clipping, headgear/scarf/apron layering, west-hand mirroring or identity finding. Recovery is visibly distinct in the still sheets. Bea retains north apron ties; Casey retains bob/glasses/scarf; Devon retains cap/coat.
+
+The reviewer exercised installed Chrome/Playwright: keyboard changed character, touch-emulated replay/contact, character/material/facing changes each cancelled an in-flight replay to idle with zero timers. Completed replay reported reach/contact/recovery/idle. User static view and emulated OS reduced motion stayed idle. At360×844 and844×390with200%root text there was no document horizontal overflow; labels and controls remained reachable through scrolling. No page errors observed. Both browser instances were closed before the root full runner started.
+
+Future refinement: tiny scrap/timber details and grips are subtle at world scale; clearer contrast, especially supplies against Bea’s cream apron, could help. This was not a demonstrated blocker. Sampled interaction/state tests and still review do not establish human motion continuity, physical-phone/Safari behavior, full accessibility or gameplay integration. No protected game, API, database or progress was touched. Reviewer scripts/screens remain in external review-v1/terra-review evidence; no interception or game fixture.

@@ -1,6 +1,6 @@
 # IH2-078 — remaining ordinary collection art family
 
-Queued after accepted077. Its Aster pilot proved3props/4facings/4poses, clearer wrist/hip recovery, exact source feet and native alpha-position tests. Complete Bea, Casey and Devon before proposing live integration. Reuse the project-original body identities/palettes and accepted props; this is candidate art, not new equipment or currency. Expected192framecells include repeated idle/reach geometry, not192unique new illustrations.
+Working candidate after accepted077; see078REPORT for current gates. Its Aster pilot proved3props/4facings/4poses, clearer wrist/hip recovery, exact source feet and native alpha-position tests. Complete Bea, Casey and Devon before proposing live integration. Reuse the project-original body identities/palettes and accepted props; this is candidate art, not new equipment or currency. Expected192framecells include repeated idle/reach geometry, not192unique new illustrations.
 
 Factor a reusable rig/frame builder from077authoring, preserving default Aster SVG/HTML bytes. A source-refactor provenance hash may require an explicit catalog-only refresh; compare accepted Aster asset hashes, retain historical077commit and explain the refresh instead of silently rewriting evidence. Never modify the original resident generator or runtime/public assets to make study output fit. Preserve all178game bytes/172runtimeart files.
 

@@ -1,3 +1,11 @@
+# IH2-078 — complete collection art family
+
+Resumed November12 under owner continuation. Active branch feat/ordinary-gathering-family from ebd76f7 closeout; retain those records. Prior07:00Pacific run ended; this is a newly authorized continuation. Preserve approximately10%weeklyremaining, no resets/hosting/expense/real accounts. No new time cutoff was requested.
+
+Terra6.1is explicitly authorized for visual/usability review; the read-only Terra reviewer completed the frozen family review with no blocker. See078TERRA_REVIEW. Root full82browser is running; local269checks/zero skips pass. Root owns all edits/runners.
+
+078in_progress;077done;070blocked. Contract design/ORDINARY_GATHERING_FAMILY.md. Preserve accepted Aster8SVG/HTMLasset hashes; any catalog-only source-provenance hash refresh is explicit. Keep every178game byte and172runtimeart unchanged, protect4175/API/key/practice and old49529study. All4rig family remains candidate-only outside runtime. Full source/CI/artifact/image gates before acceptance.
+
 # Idle Hands 2 — overnight closeout and next task
 
 Prepared November12,2026for the owner's07:00Pacific stop(15:00UTC). Accepted source main49e7e771eea8eb49aa31b0256a963b6d846f4f62. Currentbranch chore/overnight-closeout-2026-11-12holds documentation closeout and queued078plan only; it is not another runtime release. Retain this checkpoint when creating the next feature branch; do not discard these records by blindly switching to older main docs. Read AGENTS/required state/build/design docs, then tracker status/check/prompt.078is queued, not implemented.
@@ -8,7 +16,7 @@ Prepared November12,2026for the owner's07:00Pacific stop(15:00UTC). Accepted sou
 
 077: Aster-only original collection art study outside runtime. Three resource handprops, fourfacings/idle/reach/contact/recovery with clearer wrist/hip tuck;48framecells include reused idle/reach geometry. Other3rigs and actual modal/receipt/runtime integration remain unfinished. PR26merged49e7e77; exactf7f392186affc0feeab2eb49cd0a2866259eb3f5CI43237701257bothSUCCESS265domain/zero skips82.193s and81browser13.9m. Local265/zero48.151s and81browser10.2m, strictbuild/design/plan/pinned40/diff pass. Actual178game files byte-identical076, all9uploaded studyfiles byte-identical reviewedsource; fourCIimages/raster/restart evidence and three actual galleryimages reviewed. Matchingtree3434eacab9a41bbcca7aa5c90eb8452e7bcd8225/cleanmain=remote verified.077source-closeout JSON is authoritative.
 
-076automaticmain43234270614bothSUCCESS independently verified.077automaticmain43240666200was stillrunning at closeout; required exactcandidate gates passed before merge. Check that follow-up separately next session, not infer it passed. No unfinished runtime change is on this documentation branch.
+076automaticmain43234270614bothSUCCESS independently verified.077automaticmain43240666200was stillrunning at closeout; at078resume it was independently verified bothSUCCESS. Historically, required exactcandidate gates passed before merge. Check that follow-up separately next session, not infer it passed. No unfinished runtime change is on this documentation branch.
 
 ## Local review surfaces and preserved practice
 

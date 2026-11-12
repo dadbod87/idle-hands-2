@@ -176,3 +176,7 @@ Agent-selected after accepted075and072phone findings. Inside owner home, current
 
 ## 2026-11-12 — IH2-077 art before collection integration
 Agent-selected under owner animation/art direction after076acceptance. Prove one original rig/three hand-prop silhouettes before bulk art or runtime hooks. Reuse guarded original body/feet/base arms, author a clearer recovery tuck after review, retain exact source provenance and tolerant native alpha-position checks rather than all-channel raster equality. Other rigs and current modal/receipt visibility remain separate gates. No new playable collection behavior is implied by the study.
+
+## 2026-11-12 — IH2-078 identities before runtime integration
+
+Complete the proven collection art for Bea/Casey/Devon through one reusable original-rig builder. Preserve eight accepted Aster asset bytes and make the catalog-only source-provenance refresh explicit. A separate four-character gallery uses short essential labels and optional full sheets so character/material choices remain usable on narrow/enlarged views. Exact foot geometry and tolerant native raster bounds are separate gates. Independent Terra6.1review supports this bounded family; subtle tiny grips remain refinement, not proof of perceptual continuity. Do not add hidden world animation behind the current modal or change control/production timing to display it. Confirmed once-only visible receipt integration remains a separate bounded task.

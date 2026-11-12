@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-078 candidate: original Bea/Casey/Devon collection family,192framecells/four-character standalone gallery, original feet/identities and exact accepted Aster assets preserved. Local269checks/zero skips; Terra6.1bounded review finds no blocker. Full browser/CI/artifact gates pending. No gameplay integration. [Evidence](evidence/IH2-078/REPORT.md).
+
 2026-11-12 — IH2-077 accepted PR26/merge49e7e77, exactf7f3921CI43237701257bothSUCCESS265/81. Aster-only collection art gallery49529verified; game4175/all178bytes/API/data/key unchanged.078remaining rigs queued, no runtime integration. [Closeout](evidence/IH2-077/source-closeout.json).
 
 2026-11-12 — IH2-077 working candidate: original collection props/Aster action study, refined recovery, exact foot geometry and standalone reduced-motion gallery. All178game bytes unchanged. Local265checks/zero skips; full gates pending. [Evidence](evidence/IH2-077/REPORT.md).

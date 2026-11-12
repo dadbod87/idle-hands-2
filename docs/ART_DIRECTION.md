@@ -97,3 +97,7 @@ Three original static56×48SVGs replace the square's procedural material rectang
 
 ## IH2-077 candidate collection study
 [Ordinary collection art study](idle-hands-2/design/ORDINARY_GATHERING_STUDY.md) authors three hand props and Aster-only four-facing reach/contact/recovery, reusing original body/base arms with a clearer recovery tuck. It stays outside runtime/public, with exact foot/provenance and native scale/reduced-motion review. Other three rigs and actual modal/receipt/animation integration remain unfinished; this does not close runtime gathering-animation coverage.
+
+## IH2-078 candidate four-character collection family
+
+The separate [family study](idle-hands-2/design/ORDINARY_GATHERING_FAMILY.md) now covers all four original character identities with192frame cells. Keep their distinct apron/scarf/cap/head depth, exact32,72feet and mirrored hand slots. Existing077Aster SVG/HTML bytes remain unchanged; only its generator-source provenance hash is refreshed. This21-file study stays outside public/runtime, with native raster and Terra6.1bounded visual/interaction review. Small prop contrast remains a future refinement. No collection gameplay, loading-policy or human motion-quality claim. Runtime animation needs a separately observed visible confirmed-receipt contract.

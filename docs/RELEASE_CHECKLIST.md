@@ -159,3 +159,10 @@ IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclos
 - Outside runtime/public: Aster-only4facings×4poses×3resources,3originalprops/exactfoot+attachment/source hashes; other3rigs unfinished. Distinct recovery and transparent frame bounds.
 - Deterministic export/refusal of public writes; native raster48cells/foot-vector hashes and alpha-centroid tolerance; actual tiny-scale prop/pose images reviewed. Bounded replay/reduced/hidden cancellation and phone/short controls; disclose synthetichidden/device/motion limits.
 - All178game files/172runtimeart unchanged, no HTTP/API/state or gameplay integration. Full required checks and both exact-headCIjobs, actual uploaded study/build files/images/recovery evidence, matching merge tree/cleanmain. Preserve4175/API/key/all13tables; no migration/restart.
+
+## IH2-078 collection art family gate
+
+- All four original identities,3materials/4facings/4poses=192cells; exact source feet and mirrored attachments, native alpha-centroid/bounds and distinct recovery review. Keep original generator and172runtimeart intact.
+- Accepted077Aster8SVG/HTMLbytes unchanged; record explicit provenance-only source-hash refresh. All178game build bytes equal077; no runtime/API/server/domain/migration change.
+- Self-contained gallery character/material/facing changes cancel old replay;44pxcontrols, phone/short doubled text, keyboard/tap, reduced/hidden and zero-network checks. Disclose synthetic hidden and emulation.
+- Required local checks, both exact-final-head CI jobs, actual uploaded21study/178game files and screenshots/restart evidence, matching merge tree/cleanmain. Preserve13practice tables/key/sixchecksums and both existing previews. No physical-phone/Safari/hosted or gameplay-integration claim.

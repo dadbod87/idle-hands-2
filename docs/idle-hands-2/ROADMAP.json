@@ -841,7 +841,7 @@
     {
       "id": "IH2-078",
       "title": "Complete the ordinary collection art family",
-      "status": "queued",
+      "status": "in_progress",
       "owner_branch": "feat/ordinary-gathering-family",
       "depends_on": [
         "IH2-077"
@@ -858,7 +858,8 @@
       ],
       "evidence": [
         "docs/idle-hands-2/design/ORDINARY_GATHERING_FAMILY.md",
-        "docs/evidence/IH2-078/PLAN.md"
+        "docs/evidence/IH2-078/PLAN.md",
+        "docs/evidence/IH2-078/REPORT.md"
       ]
     },
     {

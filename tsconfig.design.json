@@ -54,7 +54,9 @@
     "tests/home-workroom.spec.ts",
     "tests/home-panel.spec.ts",
     "tests/gathering-study.test.ts",
-    "tests/gathering-study.spec.ts"
+    "tests/gathering-study.spec.ts",
+    "tests/gathering-family.test.ts",
+    "tests/gathering-family.spec.ts"
   ],
   "compilerOptions": {
     "types": [

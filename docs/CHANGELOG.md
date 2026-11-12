@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-077 working candidate: original collection props/Aster action study, refined recovery, exact foot geometry and standalone reduced-motion gallery. All178game bytes unchanged. Local265checks/zero skips; full gates pending. [Evidence](evidence/IH2-077/REPORT.md).
+
 2026-11-12 — IH2-076 accepted PR25/merged8edb0c, exact04b6848CI43231538226bothSUCCESS262/80. Inside-home controls/choice/pointer/retry stability, unchanged authority and preserved immutable preview.077collection art study starts independently. [Closeout](evidence/IH2-076/source-closeout.json).
 
 2026-11-12 — IH2-076 working candidate: inside-home arrangement first, retained choices and scoped retry/late-response handling. Outside navigation/visitor restrictions and all server/domain/art rules preserved. Local262checks/zero skips; full gates pending. [Evidence](evidence/IH2-076/REPORT.md).

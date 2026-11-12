@@ -153,3 +153,9 @@ IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclos
 - Selection/disclosure survives accepted/rejected/refresh; native held pointer stable across passive update, identical retry/once-only, delayed old-panel response cannot replace guide. Keyboard controls/Close below sticky header on short200.
 - Paired native desktop/narrow/short owner starter/expanded/visitor with explicit intercepted-data/movement/clock disclosure. Count CSS-hidden/closed-details controls correctly; native picker/device limitations explicit.
 - Full required checks and both exact-headCIjobs/actual files/images/recovery/matching tree. Immutable preview swap preserves every current column/row of all13practice tables, key and six checksums; no APIrestart/migration.
+
+
+## IH2-077 candidate collection art
+- Outside runtime/public: Aster-only4facings×4poses×3resources,3originalprops/exactfoot+attachment/source hashes; other3rigs unfinished. Distinct recovery and transparent frame bounds.
+- Deterministic export/refusal of public writes; native raster48cells/foot-vector hashes and alpha-centroid tolerance; actual tiny-scale prop/pose images reviewed. Bounded replay/reduced/hidden cancellation and phone/short controls; disclose synthetichidden/device/motion limits.
+- All178game files/172runtimeart unchanged, no HTTP/API/state or gameplay integration. Full required checks and both exact-headCIjobs, actual uploaded study/build files/images/recovery evidence, matching merge tree/cleanmain. Preserve4175/API/key/all13tables; no migration/restart.

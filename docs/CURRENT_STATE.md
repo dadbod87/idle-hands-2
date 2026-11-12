@@ -1,5 +1,7 @@
 # Idle Hands 2 — current state
 
+IH2-077working candidate authors Aster-only ordinary collection study outside runtime:3handprops/fourfacings/reduced-motion gallery. Local265checks/zero skips and focused raster/browser pass; full81/CI/artifact gates pending. Every178game byte and protected076preview remain unchanged. [Evidence](evidence/IH2-077/REPORT.md).
+
 IH2-076accepted: PR25/merged8edb0c, exact04b6848CI43231538226bothSUCCESS262/80. Actual artifacts/native preview and13practice-table fields/key preserved;4175immutable076/protocol4APIunchanged. [Closeout](evidence/IH2-076/source-closeout.json).077ordinary gathering art study starts outside runtime; current handoff authoritative.
 
 IH2-076working presentation candidate prioritizes inside-owner arrangement and preserves selections/held-pointer targets/retries/panel context. Local262checks/zero skips, focused UI cases pass; full80browser/CI/artifact gates pending. Accepted075preview/API remain intact. [Evidence](evidence/IH2-076/REPORT.md).

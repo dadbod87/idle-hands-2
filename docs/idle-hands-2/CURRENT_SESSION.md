@@ -1,6 +1,6 @@
 # IH2-077 — ordinary collection action art study
 
-November12,2026. Activebranch feat/ordinary-gathering-art-study from accepted076merged8edb0c7a7afd45c5a7e43a54bd8eb8c38001b49. Tracker076done/077in_progress/070blocked/080queued. Read AGENTS/required state/design/art docs and design/ORDINARY_GATHERING_STUDY. Initial checkpoint: no077implementation/check claim.
+November12,2026. Activebranch feat/ordinary-gathering-art-study from accepted076merged8edb0c7a7afd45c5a7e43a54bd8eb8c38001b49. Tracker076done/077in_progress/070blocked/080queued. Read AGENTS/required state/design/art docs and design/ORDINARY_GATHERING_STUDY. 077candidate implemented outside runtime. Local265/zero skips48.151s, focused native raster/gallery4.3s and strictbuild/design/plan/pinned40/diff pass. Final81browser running session33457; CI/artifact/merge stillpending. EarlyRGBA/hash criteria and first fullrun rejected/superseded; refined recovery independently reviewed. All178game bytes unchanged.
 
 076accepted PR25/exact04b6848f5b8f629a7bb00ee7a46815b9f0e730f0, CI43231538226bothSUCCESS262/zero skips83.603s and80browser13.6m. Local262/zero48.940s and80browser10.1m; strictbuild/design/plan/pinned40/diff. Actual178CIgamefiles/fourCIimages/populated restart/recovery reviewed; matchingtree20fd9ab3eb9ff0888925c4ed6b8f432e085566f0/cleanmain=remote.075automaticmain43228964846bothSUCCESS independently verified;076main43234270614pending.076source-closeout authoritative.
 

@@ -128,7 +128,7 @@ for(const shape of [{name:'desktop',width:1440,height:900},{name:'narrow',width:
    await expect(page.getByRole('img',{name:/future house.*design sample/i})).toBeVisible();
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
    await page.screenshot({path:`${evidence}/variety-${shape.name}-study.png`,fullPage:true});
-   fs.writeFileSync(`${evidence}/variety-${shape.name}-measurements.json`,JSON.stringify({method:'Headless Chrome/Chromium viewport emulation; local synthetic position only; 750ms idle sample after boot/reload; rolling frame metric, not physical-device or isolated renderer benchmark. SVG bytes are decoded response bodies, not compressed transfer size. Study excluded from game asset counts.',viewport:shape,gameAssets,frameSampleDelta:metrics.frameSamples-beforeSample,p95RollingFrameMs:metrics.p95FrameMs,errors,external},null,2));
+   fs.writeFileSync(`${evidence}/variety-${shape.name}-measurements.json`,JSON.stringify({method:'Headless Chrome/Chromium viewport emulation; local synthetic position only; 750ms idle sample after boot/reload; rolling mixed normal/intentional10Hz idle intervals, not active-only, physical-device or isolated renderer benchmark. SVG bytes are decoded response bodies, not compressed transfer size. Study excluded from game asset counts.',viewport:shape,gameAssets,frameSampleDelta:metrics.frameSamples-beforeSample,p95RollingFrameMs:metrics.p95FrameMs,errors,external},null,2));
    expect(errors).toEqual([]);expect(external).toEqual([]);
   });
  });

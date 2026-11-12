@@ -1,0 +1,24 @@
+{
+  "classification": "Local intermediate IH2-067 ledger proof; not complete feature acceptance",
+  "disclosure": "Fresh isolated browser contexts, synthetic populated localStorage from paid pure workshop commands. A blank document injects valid v2 data to exercise actual accepted old compiled v1 code, storage events, locks, reload and pagehide. Current second tab takes ownership after writer close/reload and explicitly plants one bound seed. No API interception, shared-practice identity, real player or database writes.",
+  "oldOrigin": "http://127.0.0.1:4175",
+  "newOrigin": "http://127.0.0.1:4178",
+  "oldJob": {
+    "recipe": "bridge-kit",
+    "startedAt": 1794443058776,
+    "readyAt": 1794486258776
+  },
+  "oldCompiledGardenVersion": 1,
+  "newGardenVersion": 2,
+  "oldWriterRefusedNewData": true,
+  "oldWriterReleasedLock": true,
+  "pagehidePreservedRawBytes": true,
+  "newMigrationPreservedOldFields": true,
+  "secondCurrentTabReadOnly": true,
+  "reloadedSecondTabCommittedOnePlant": true,
+  "consoleErrors": [],
+  "limits": [
+    "Browser emulation, not physical phone",
+    "No new carpentry UI, server transaction, art, equipment or civic acceptance is claimed"
+  ]
+}

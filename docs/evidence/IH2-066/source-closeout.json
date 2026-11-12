@@ -1,0 +1,97 @@
+{
+  "task": "IH2-066",
+  "status": "SOURCE_ACCEPTED",
+  "candidate": "941956d9803a899640f7340469318a01b5814bf9",
+  "base": "b4438d3c1b98f04113e8ad3c47ab30e516741302",
+  "tree": "d6fb9ac38049cf67f3eab3bb3be18c63a07c83fb",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/16",
+  "ciRun": 43108409997,
+  "requiredCounts": {
+    "aggregate": 184,
+    "browser": 54
+  },
+  "local": {
+    "aggregatePassed": 184,
+    "skipped": 0,
+    "existingFullBrowser": 53,
+    "focusedConcept": 1,
+    "manualActivityCases": 9,
+    "models": 36,
+    "groupCases": 18,
+    "clientFiles": 131,
+    "byteEqualAccepted065": true
+  },
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "servedArtifact": "accepted065CI43099483367 unchanged",
+    "byteEqualActual066Ci": true,
+    "responseFiles": 131,
+    "mismatches": [],
+    "apiProxyStatus": 200,
+    "serverSourceUnchanged": true,
+    "apiRestartOrDataMigrationRequired": false,
+    "practiceAndKey": "Existing service retained; no key/table/real-player writes by066design task"
+  },
+  "next": "Both exact-headSUCCESS, download actual build/server/browser artifacts, inspect new concept + baseline images/metrics, merge matching tree/cleanmain; then067 starts with copied closeout.",
+  "superseded": {
+    "candidate": "fe6c17623f49f90510cac5eec1933ba4f9ad466d",
+    "ciRun": 43107781094,
+    "reason": "Read-only review clarified bundled strategy; numerical cohorts unchanged. Final exact-head checks required again."
+  },
+  "domain": {
+    "job": 130817845643,
+    "conclusion": "success",
+    "passed": 184,
+    "skipped": 0,
+    "durationMs": 61754.122712,
+    "databaseRestartProof": true
+  },
+  "browser": {
+    "job": 130817846004,
+    "status": "completed",
+    "conclusion": "success",
+    "passed": 54,
+    "minutes": 17.9,
+    "artifactId": 13896611200,
+    "softwareRendererActivePlayP95Ms": {
+      "desktop": 150,
+      "phone": 50,
+      "narrow": 33.399999999999636,
+      "short": 49.899999999999636
+    },
+    "minimumCanopyCoverage": 0.9964912280701754,
+    "reviewed": [
+      "WOODLAND_CONCEPT.png",
+      "desktop-square.png",
+      "narrow-workshop.png",
+      "shared-short-text-200.png",
+      "variety-narrow-canopy-pixels-1.png"
+    ]
+  },
+  "artifact": {
+    "buildId": 13894374112,
+    "serverId": 13894843483,
+    "actualFiles": 131,
+    "candidateAndAccepted065ByteMismatches": []
+  },
+  "ciLoad": {
+    "commandP95Ms": 114.67825400000038,
+    "sqlQueries": 3740,
+    "elapsedMs": 26989.418147,
+    "disclosure": "Actual loopback Node HTTP/SSE +dedicated disposable ih2_load PostgreSQL;20unique ordinary zero-progress residents. Legal continuous route/ACK movement, real5splanter and12hqueued job. No stock/time/position grants, real accounts or cloud. This is20protocol clients, not20rendered browsers or a physical-phone/WAN/soak/capacity guarantee."
+  },
+  "review": {
+    "model": "Clarified bundled strategy, same numerical results, no remaining concrete blocker; read-only",
+    "phone": "Concept legible and explicitly candidate; real phone captures support stated friction; no blocker; read-only"
+  },
+  "classification": "Private local sequel design acceptance; pine family remains non-executable, no hosted release",
+  "merge": "3946d7b1f5f5d18529e274935f70fd35bb5cb50b",
+  "candidateMergeTreesEqual": true,
+  "cleanMainEqualsRemoteVerified": true,
+  "mainCi": {
+    "run": 43111494799,
+    "head": "3946d7b1f5f5d18529e274935f70fd35bb5cb50b",
+    "status": "in_progress_at_closeout",
+    "separateFromFinalPremergeGate": true
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "status": "Final revised local candidate verified; exact-head GitHub checks pending",
+  "domain": {
+    "passed": 217,
+    "skipped": 0,
+    "seconds": 43.555170417
+  },
+  "browser": {
+    "passed": 59,
+    "duration": "8.1m"
+  },
+  "otherChecks": [
+    "strict build",
+    "design 48/5",
+    "plan 24 tasks/10 tests",
+    "40 pinned skill files",
+    "actual populated PostgreSQL restart/restore",
+    "git diff --check"
+  ],
+  "build": {
+    "files": 159,
+    "rawBytes": 3197717,
+    "gzipBytesIndividually": 561573,
+    "method": "sum all final dist regular files, gzip each separately; not initial transfer or browser heap"
+  },
+  "screenshotsReviewed": [
+    "pine-short-text-200.png",
+    "pine-phone-equipped-world.png",
+    "pine-desktop-kept-easel.png",
+    "pine-equipped-action-coverage.png",
+    "pine-shared-owned-house-easel.png",
+    "pine-desktop-ready-rack.png",
+    "activity-art-switched-rig.png"
+  ],
+  "limitations": [
+    "Chrome desktop emulation; no physical phone/Safari",
+    "local-only, no hosted or real-account changes",
+    "full evidence and earlier rejected diagnostics outside source"
+  ],
+  "fixtures": "Fresh browser storage; declared elapsed pure-command state; dedicated isolated SQL fictional players; 12 housing kits only in disposable shared placement test; lost response interception. No current practice edits.",
+  "presentation": "Current rig3vs12sheets, keyed delayed/failure/reload coverage, idle10Hz/immediate normal input with mixed-policy metrics. Original assertions/workflow/budgets retained."
+}

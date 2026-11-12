@@ -525,7 +525,7 @@
     {
       "id": "IH2-066",
       "title": "Neighborhood activity-depth audit and first resource/tool plan",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-065"
       ],
@@ -547,14 +547,15 @@
         "docs/evidence/IH2-066/woodland-model.json",
         "docs/evidence/IH2-066/local-checks.json",
         "docs/evidence/IH2-066/build-proof.json",
-        "docs/idle-hands-2/handoffs/2026-11-11-depth-plan.md"
+        "docs/idle-hands-2/handoffs/2026-11-11-depth-plan.md",
+        "docs/evidence/IH2-066/source-closeout.json"
       ],
       "owner_branch": "design/neighborhood-depth"
     },
     {
       "id": "IH2-067",
       "title": "Pine hand tool, kept easel and useful produce service",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-066"
       ],
@@ -569,7 +570,14 @@
       "exclusions": [
         "No second species, shop/trade/chat/combat, broad city or clothing rollout, paid assets, hosted resources, real-player data, production release or claims of a full evening of fun."
       ],
-      "evidence": []
+      "evidence": [
+        "docs/evidence/IH2-067/REPORT.md",
+        "docs/evidence/IH2-067/pure-rule-schedules.json",
+        "docs/evidence/IH2-067/ledger-browser/report.json",
+        "docs/idle-hands-2/handoffs/2026-11-11-pine-workshop.md",
+        "docs/evidence/IH2-067/intermediate-checks.json"
+      ],
+      "owner_branch": "feat/pine-workshop"
     },
     {
       "id": "IH2-068",

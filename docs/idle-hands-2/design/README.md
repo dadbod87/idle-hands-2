@@ -68,3 +68,5 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 ## Current066depth audit
 
 [Actual runtime coverage](CURRENT_RUNTIME_COVERAGE.md) dates the48candidatecatalog against accepted065, including home icons/garden art and remaining equipped/tool gaps. [Woodland family](WOODLAND_FAMILY.md) selects a modelled pine/saw/easel/produce-service family with retained-item opt-in town help. It remains non-executable design;067owns its implementation. [Evidence](../../evidence/IH2-066/REPORT.md) separates real agent inputs, elapsed fixtures and analytical schedules.
+
+[IH2-067 integrated working contract](../CARPENTRY_RUNTIME.md) maps the new pine/saw/easel/hamper/noticeboard family and256original equipped/action frames. It is distinct from the48-entry broader candidate catalog; source acceptance is pending in067evidence, and no living-tree chopping or new region is implied.

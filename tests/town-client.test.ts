@@ -124,3 +124,17 @@ test('garden crop/refill clocks coexist with closed-stream retries and cancel wh
   (document as any).hidden=true;document.dispatchEvent(new Event('visibilitychange'));assert.equal(f.timers.size,0);(document as any).hidden=false;document.dispatchEvent(new Event('visibilitychange'));f.set(value('A',0,1000,'bea'));await f.client.login('bea');assert.equal(f.timers.size,0);assert.equal(f.client.snapshot!.playerId,'bea');
  }finally{await f.close();}
 });
+
+test('shared client refuses old garden/carpentry snapshots before adopting or rendering them, retaining uncertain command identity',async()=>{
+ const f=fixture();try{await f.client.load();const before=f.client.snapshot!;const old=JSON.parse(JSON.stringify(before));old.workshop.garden.version=1;delete old.workshop.garden.consumed;delete old.workshop.carpentry;delete old.workshop.owned.easel;
+ f.handle(()=>json({snapshot:old}));await assert.rejects(()=>f.client.load(),/different save versions/);assert.equal(f.client.snapshot,before);await assert.rejects(()=>f.client.command({kind:'carpentry',carpentryAction:{action:'learn-saw'}}),/different save versions/);assert.equal(f.client.retryAvailable,true);const id=f.requests.at(-1)!.body.id;
+ f.handle(()=>json({ok:true,snapshot:value('A',11,1100)}));await f.client.retry();assert.equal(f.requests.at(-1)!.body.id,id);assert.equal(f.client.retryAvailable,false);assert.equal(f.client.snapshot!.workshop.revision,11);
+ }finally{await f.close();}
+});
+
+test('carpentry/project wakeups stay finite and same-boot public project state cannot regress',async()=>{
+ const f=fixture();try{let s=value('A',10,1000);s.noticeboard={credits:6,phase:'installing',startedAt:0,readyAt:86400000,openedAt:null};f.set(s);await f.client.load();assert.equal(f.timers.size,1);assert.equal(f.delays.at(-1),86400000-1000+50);
+ const malformed={...value('A',11,1100),noticeboard:{credits:7,phase:'collecting'}};f.handle(()=>json({snapshot:malformed}));await assert.rejects(()=>f.client.load(),/unreadable noticeboard/);assert.equal(f.client.snapshot?.noticeboard?.phase,'installing');
+ s={...value('A',11,86400000),noticeboard:{credits:6,phase:'open',startedAt:0,readyAt:86400000,openedAt:86400000}};f.handle(()=>json({snapshot:s}));await f.client.load();assert.equal(f.timers.size,0);f.handle(()=>json({snapshot:{...value('A',12,86400100),noticeboard:{credits:0,phase:'collecting',startedAt:null,readyAt:null,openedAt:null}}}));await f.client.load();assert.equal(f.client.snapshot?.noticeboard?.phase,'open');
+ }finally{await f.close();}
+});

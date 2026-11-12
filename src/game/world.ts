@@ -27,6 +27,10 @@ export const worlds: Record<Room, World> = {
       ,{id:'garden-field',name:'Field clippings',point:{x:12,y:37},doorArea:[10.75,35.5,2.5,2],text:'Gather two replenishing clippings and make a marker by hand. No workshop materials.'}
       ,{id:'stake-forked',name:'Forked stake',point:{x:11,y:26},doorArea:[10.25,24.5,1.5,2],text:'An urgent matter of almost-straight stakes. Inspect the usable end.'}
       ,{id:'stake-striped',name:'Marked stake',point:{x:18,y:39},doorArea:[17.25,37.5,1.5,2],text:'This stripe has been approved for lining things up.'}
+      ,{id:'carpentry-desk',name:'Nella · pine workshop & noticeboard',point:{x:5,y:35},doorArea:[4.25,31,6.5,5.5],text:'A free hand-saw lesson, practical hampers and a noticeboard with notably few notices.'}
+      ,{id:'pine-crooked',name:'Crooked pine deadfall',point:{x:6,y:26},doorArea:[4.75,21.75,3.5,5],text:'Prepare fallen pine with your bound saw. All three points share one personal renewable supply.'}
+      ,{id:'pine-forked',name:'Forked pine deadfall',point:{x:7,y:41},doorArea:[5.75,37.25,3.5,4.5],text:'Two trunks. One supply entitlement. The tree has declined to form a subsidiary.'}
+      ,{id:'pine-sheltered',name:'Sheltered pine deadfall',point:{x:40,y:41},doorArea:[38.75,36.25,3.5,5.5],text:'Fallen branches, not a license to demolish the forest. Your supply is personal.'}
       ,{id:'stake-notched',name:'Notched stake',point:{x:35,y:39},doorArea:[34.25,37.5,1.5,2],text:'A crosspiece goes here. Probably. Inspect it to be sure.'}
     ]
   },
@@ -52,6 +56,7 @@ export const worlds: Record<Room, World> = {
     blocked: [[3, 3, 5, 2], [11, 3, 4, 3], [3, 8, 2, 2]],
     stops: [
       { id: 'bench', name: 'Work bench', point: { x: 5, y: 5 }, doorArea:[3,3,5,3], text: 'Make useful things. Submit questionable paperwork.' },
+      {id:'finishing-rack',name:'Pine finishing rack',point:{x:12,y:6.5},doorArea:[10.75,3,3.5,3.75],text:'Garden study easels finish here on their own twelve-hour timer. The ordinary bench stays available.'},
       { id: 'door', name: 'Town square', point: { x: 9, y: 13 }, transition: 'square', arrival: { x: 19.5, y: 22.3 }, doorArea: [8, 13, 3, 2], text: 'Back to the square. Meetings are outdoors now. There was an incident with a flip chart.' }
     ]
   }

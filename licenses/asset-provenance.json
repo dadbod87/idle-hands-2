@@ -553,6 +553,26 @@
       "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
     },
     {
+      "id": "home-easel-icon",
+      "path": "public/art/homes/home-easel-icon.svg",
+      "sha256": "bba49f165130f7bea9527a312c89950f146c32b34ea5c307e8952441c7e3ebb6",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
+      "id": "home-easel-world",
+      "path": "public/art/homes/home-easel-world.svg",
+      "sha256": "8cd704be15293ad4bfcf423d2d7782072950c29b69a51242d8b783e9b05aeb5e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-home-art.py",
+      "date": "2026-11-10",
+      "modifications": "Original physical-home interiors/exteriors and item-specific furniture/material vectors. No imported media."
+    },
+    {
       "id": "home-expanded-exterior",
       "path": "public/art/homes/home-expanded-exterior.svg",
       "sha256": "c6680ceecc64cf805a14fe7a7070834a8081ae9b5b447469323462fe21b62c65",
@@ -1171,6 +1191,256 @@
       "source": "tools/create-garden-art.py",
       "date": "2026-11-11",
       "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "bound-saw-icon",
+      "path": "public/art/carpentry/bound-saw-icon.svg",
+      "sha256": "d2c8878244d86c5903547599197d788f98148462c7e36fbd78a5a1f8f46ee76a",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "carpentry-actions-aster",
+      "path": "public/art/carpentry/carpentry-actions-aster.svg",
+      "sha256": "c544f43771f44faadf4012a85e815833730f5523c87051e5567c3dcff70d15e4",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "carpentry-actions-bea",
+      "path": "public/art/carpentry/carpentry-actions-bea.svg",
+      "sha256": "02a5dd786789731bbe881f5e710d16e3c207d25696ad05e9adc4391940d5e68a",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "carpentry-actions-casey",
+      "path": "public/art/carpentry/carpentry-actions-casey.svg",
+      "sha256": "b786ae07c8e4d38df2b7fcb6bda72c3b32722c126e33be3470db54dc219b04d0",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "carpentry-actions-devon",
+      "path": "public/art/carpentry/carpentry-actions-devon.svg",
+      "sha256": "f94a16084fd0a33c869ccdb10eb45aa6c6ec41d808250511620206e1b78eb6c6",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "carpentry-attendant",
+      "path": "public/art/carpentry/carpentry-attendant.svg",
+      "sha256": "ed252ac41aa1c6e29807d88b31e3de1cc2287993f31be2e6e433363eca865973",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "easel-preview",
+      "path": "public/art/carpentry/easel-preview.svg",
+      "sha256": "517d2627e8654f6e40f395513e916ba8fdb30660ff9118024a9390ae7f4d1d4f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "finishing-rack-empty",
+      "path": "public/art/carpentry/finishing-rack-empty.svg",
+      "sha256": "27edfa15ee9480a2a4788f729796796ad8ea0cc5b053f85b1ddd75b7c0e24638",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "finishing-rack-ready",
+      "path": "public/art/carpentry/finishing-rack-ready.svg",
+      "sha256": "44ecb9fd1592c86390e933e41349e26d3c09141d422677250981d7e4894e0f7f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "finishing-rack-working",
+      "path": "public/art/carpentry/finishing-rack-working.svg",
+      "sha256": "dae253b16647cdc60f8cb16c10df1c52ee92ad37ba4149580cafef80dc88e486",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "hamper-icon",
+      "path": "public/art/carpentry/hamper-icon.svg",
+      "sha256": "b4edf7e376aaddd476818aa82726073eeee68d3dde23fd6d1ed336b0dd6243ba",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "noticeboard-collecting",
+      "path": "public/art/carpentry/noticeboard-collecting.svg",
+      "sha256": "1c0c0717c6c25da34567a26903ff3a1dccedbff151936963d74b50427c916f83",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "noticeboard-installing",
+      "path": "public/art/carpentry/noticeboard-installing.svg",
+      "sha256": "4d2e8a66d817456cbdc920e1cc2ecb28394179008a1612d57952e0617ebdf14e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "noticeboard-open",
+      "path": "public/art/carpentry/noticeboard-open.svg",
+      "sha256": "eae87f019f22cab0c17a52f6f47e55d04c5adb99fbca176bdccd97dfc8158b51",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "pine-bundle-icon",
+      "path": "public/art/carpentry/pine-bundle-icon.svg",
+      "sha256": "e136ddafd28fdd5f71ca6763b8d1cb4b8d91bf299f744764188113b9bd550afd",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "pine-crooked-available",
+      "path": "public/art/carpentry/pine-crooked-available.svg",
+      "sha256": "33d0646b3a09903905f7db52d685d5ef83f638fc27f2fba119c4431e0ff8ee66",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "pine-crooked-exhausted",
+      "path": "public/art/carpentry/pine-crooked-exhausted.svg",
+      "sha256": "0314ed19e26ab476aeb9dfb25eae948eb8d13204e5f97e2199b9c78f13a70bc1",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "pine-forked-available",
+      "path": "public/art/carpentry/pine-forked-available.svg",
+      "sha256": "fef229757970036148e1f917086a033f59d8e7b8e69144585e261932b004b07e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "pine-forked-exhausted",
+      "path": "public/art/carpentry/pine-forked-exhausted.svg",
+      "sha256": "804bc90961d8450e381ba7392ac37a98a60d946fcff5d8dd36cfea031191a99f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "pine-sheltered-available",
+      "path": "public/art/carpentry/pine-sheltered-available.svg",
+      "sha256": "5d15f931f887717221b26890d84a7254d743a7801e5b2545a7719d89cfcff62b",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "pine-sheltered-exhausted",
+      "path": "public/art/carpentry/pine-sheltered-exhausted.svg",
+      "sha256": "d3c1732573a189b1af3be7d727e3d93b66035158592d633f02d4591cdd9dac15",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "saw-equipped-aster",
+      "path": "public/art/carpentry/saw-equipped-aster.svg",
+      "sha256": "8af5a7d509681aaa655a7ad15d887e7c53deac49bd700dc359bdf64d5dc17824",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "saw-equipped-bea",
+      "path": "public/art/carpentry/saw-equipped-bea.svg",
+      "sha256": "6cac9f1fd7b8c93d31dbdb529293367603cf8905c38b49cf6280df13f35ba4df",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "saw-equipped-casey",
+      "path": "public/art/carpentry/saw-equipped-casey.svg",
+      "sha256": "a1f536f3afa2ad113780f2b24808e823eadfcac3a4784ee5ed2fece3ef34f420",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
+    },
+    {
+      "id": "saw-equipped-devon",
+      "path": "public/art/carpentry/saw-equipped-devon.svg",
+      "sha256": "5a212ed6bc0db2c119c0b3fea3c36c8cb99d5dae18281119347fc24788cf0af0",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-carpentry-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original pine/tool/easel/hamper/noticeboard vectors and bounded equipped/action sheets reuse the original resident rig. No imported media."
     }
   ],
   "comparison": {

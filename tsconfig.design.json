@@ -13,7 +13,13 @@
     "tools/observe-neighborhood.ts",
     "tools/woodland-plan.ts",
     "tools/simulate-woodland-plan.ts",
-    "tests/design-woodland.spec.ts"
+    "tests/design-woodland.spec.ts",
+    "src/game/carpentry.ts",
+    "tools/simulate-carpentry-rules.ts",
+    "tools/prove-garden-ledger-upgrade.ts",
+    "tests/carpentry*.test.ts",
+    "tests/carpentry.spec.ts",
+    "tests/client-readiness.spec.ts"
   ],
   "compilerOptions": {
     "types": [

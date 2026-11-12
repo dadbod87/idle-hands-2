@@ -1,0 +1,57 @@
+# IH2-067 — working integration and foundation history
+
+November 11, 2026. **In progress; not a completed playable feature, source acceptance or release.** Work is isolated on `feat/pine-workshop` from accepted main `3946d7b1f5f5d18529e274935f70fd35bb5cb50b`/PR16. The actual accepted065CIartifact remains on4175 with its existing4186API/key/practice; this checkpoint does not replace either process. No original-game, real-player, hosting, paid-asset or invitation changes.
+
+## Current integrated working candidate
+
+After foundationd5f613b, root/server/world/DOM now integrate the full selected family; newprivate noticeboard migration, sharedschema2gate and trustedcross-instancecounts preserve kept ownership. Original25carpentry+2homeSVGs cover256equipped/actionframes. Literal previews/goalflowerwarnings/cooldowns and actual named/direct/keyboard/touch routes are implemented. See [current contract](../../idle-hands-2/CARPENTRY_RUNTIME.md).
+
+Local217checks passed/zero skips43.521306s, including actualSQLconcurrentsole-easel allocation and cachedEventSource426/currentqueryguards suggested by independentread-onlydomainreview. Populated restoredPGrestart retains privatewood/tool/hamper, one owned/placed/recorded easel and a second queued easel beside the old ordinary job. Three focused control flows passed (freshphone, elapsedpurefixture, actualsharedAPI/SSE/lostresponse/houseplacement). Strictgallerybounds rejected a carrypose (65.287px, then64.881px in a64pxframe); following the hand whileholdingthebladeupright corrected it. Final native256framegallery/bounds passed. One first-pass shared test used an invented preview label; corrected to the existing actual Place owned furniture here control, retaining all ownership/placement assertions. No assertion, timer, workflow or deadline reduction.
+
+Final integrated local validation: 217 domain/art/server checks passed, zero skipped (44.173440834s); all 58 browser cases passed (8.1m). Strict build, design (48 candidates/5 regions), tracker (24 tasks/10 checks), 40 pinned skill files and whitespace checks passed. Actual populated PostgreSQL restart/restore passed. Final desktop, 360px phone, short 200% text and all 256 action/equipment frames were inspected. Exact-head GitHub checks, downloaded artifact review and source merge remain pending; accepted preview/API are unchanged.
+
+Raw phaseevidence: ../idle-hands-2-artifacts/pine-workshop-2026-11-11/integrated-first-pass/. The final58case suite and complete local checks passed; exactfinal-headbothCI, actualartifact/image review and merge remain pending. Do not replace preview/API or close067from these partial local results.
+
+## Earlier d5f613b foundation checkpoint
+
+The following foundation paragraphs and then-remaining gates are retained as history. The integrated working status above supersedes their implementation status; final source acceptance is still pending.
+
+## Implemented in this checkpoint
+
+- Garden schema2 explicitly conserves each crop as carried produce + old mixed requests + easel consumption + hamper consumption. Fixed recipes cannot forge old request counts. Strict deterministic schema1migration adds zero use counts and preserves existing crop deadlines, seeds, harvested/request/practice history, markers and errands. Unknown fields/versions/corrupt history remain unreadable; raw browser data is preserved.
+- A separate pure carpentry module implements a free once-only bound saw lesson, explicit equip/put-away and missing-only recovery; one personal pine pool6/one per4h/carried24 shared by three station IDs;4pine/1flower/12heasel with explicit claim/99cap;1pine/2radish/1flower/4hhamper; independent private practice; visible-goal selector without a hidden stock lock; and completed/recorded counts retaining the item.
+- Pure anonymous noticeboard rules cap records at6 and set one fixed24hdeadline. They emit intent for a future atomic store transaction, not an authority claim. No uniqueness-of-helper threshold.
+- Eighteen actual pure-rule schedule/absence cohorts match every relevant output/ingredient/deadline series in the independent066model. The selected policy remains a **bundle**: reserve next craft, voluntarily stop welcome requests aftersix, then spend spare ingredients. There is no runtime six-request cap. Six-craft stopping is a model goal, not the99owned cap. The42day cohorts retain seeds/crops and separate consumption ledgers. This is implementation agreement, not human enjoyment or server proof.
+
+At the earlier foundation checkpoint, the carpentry library was intentionally **not yet wired** to WorkshopState/commands, server, furniture allocation, world stops, art, equipment or DOM controls. Garden schema2/migration is compiled and checked in the candidate; accepted preview/API stay on schema1. Do not point a new client at the old practice API or update only one side. Shared client/version gating belongs to the remaining integration work.
+
+## Verification
+
+Intermediate local checks: **202 tests passed, zero skipped**,42.946875s with isolated real PostgreSQL; build passed; design check passed48candidate entries/5regions; tracker24tasks/10checks;40pinned skill files preserved; diff whitespace passed. These include existing HTTP transaction/retry/process restart/dump-restore/load tests; they do **not** test new carpentry server authority, which is not implemented yet.
+
+`pure-rule-schedules.json` reproduces from `tools/simulate-carpentry-rules.ts` using actual pure commands, with18cohorts and source hashes. Historical054/064/066reports were regenerated only for source fingerprints; all model values remain identical. Initial focused tests exposed two harness mistakes (expected unsettled pine time and harvesting a deliberately full radish stack); corrected to compare the settled bank and retain full ready plants. No rule, assertion, deadline or check was removed to pass.
+
+`ledger-browser/report.json` records real isolated Chrome execution of the actual accepted old compiled app and the candidate. An already-running old writer receives schema2 through a real same-origin storage event, freezes read-only, releases its writer lock, and preserves exact raw bytes through pagehide/reload. Current code migrates populated schema1data and retains a paid12hjob, stock, furniture, history/revision/receipts. A second current tab stays read-only and can take over after the writer closes/reloads. Fresh browser contexts and disclosed localStorage fixtures only; no API interception, shared-practice identity or database writes. Desktop/360×640images reviewed. The existing long garden panel/blank feedback region remains the recorded068issue; no visual redesign is claimed here.
+
+Full54case browser regression passed in7.2minutes. Actual desktop/phone/short200%canvas+DOMimages and final cached-writer images reviewed. Its mixed actual local API/UI and explicitly labelled intercepted boot/movement/retry fixtures are retained with individual disclosures; no real player/practice data. [Checkpoint checks](intermediate-checks.json). Full raw evidence archived outside source under ../idle-hands-2-artifacts/pine-workshop-2026-11-11/intermediate-ledger. All131accepted4175responses still equal its actual acceptedCIartifact, existing4186fixtures endpoint200; no APIrestart, migration, keyread or practicewrite. No final candidate CI, PR, main merge or actual new-family artifact review has occurred.
+
+## Remaining whole-task gates
+
+1. Integrate private carpentry/owned easel with root state and deterministic old-save defaults. Preserve ordinary job/material/skill/property state. Resolve workshop/home allocation using explicit trusted allocated-count input, rather than subtracting owned copies in virtual state and violating produced/owned conservation. Test current/cached writers and shared client/server version mismatch.
+2. Add local private noticeboard migration and atomic store transaction, strict proximity, signed identity, UUID/payload/revision, concurrent last record, output/full/failure/lost response, old-job, restart/restore and public projection tests. Never expose private wood/tool/counter state.
+3. Original pine/tool/easel/hamper/project artwork; allfour64×80rigs/fourfacings/equipped idle/walk/prepare-contact-recovery; DOM action-first cost/goal previews, explicit spending override, stable feedback/retry, named/direct/keyboard/touch navigation and accurate deadline wakeups. No animation settlement or steering lock.
+4. Actual composed UI/shared playtests including desktop/narrow/short200%, source required checks, exact-final-head bothCI success, downloaded actual artifact/canvas-image review, merge/equal tree/clean source. Only then replace the pinned preview/API through backed-up preservation and proceed068.
+
+This checkpoint does not close067 or certify continuous active play. Hosting070 retains its separate concrete permission/cost gate.
+
+
+## CI time-budget correction — in progress
+
+Candidate b9294bac135fb66d554ee366adf584a2aaafc5f4/PR17/run43128903705 passed217checks/zero skips72.204866996s and actual populatedPGrestart. Actual159CIbuild files equal final local. Browser job130887895751 passed57cases before the unchanged20minjob budget canceled it during the actual fresh final visit; no assertion failure preceded cancellation. Its actual partial screenshots/logs are archived under ci/browser-timeout; no source acceptance or preview replacement. First preliminary b99792e run was superseded to include the additive migration before final checks.
+
+Current correction loads the current resident’s3activity sheets instead of all12, warms/cache-checks other rigs on identity changes with safe ordinary-rig fallback, and avoids redundant actor texture assignment. Five fresh nativeChrome1440x900visits measured median boot288→240ms and12→3activityrequests; this local fixed-order observation is not a CI/device guarantee. A delayed-sheet identity-switch fixture retains all four rigs and verifies no old completion replaces current identity. Stricter type coverage now includes client-readiness.spec. A test evidence-path variable mistake was corrected, not an assertion removed.
+
+A controlled Canvas fallback was slower (one software view38.83vs18.35ms mean rAF; three~110vs55ms) and was rejected. WebGL/texture smoothing remains. Working idle policy redraws still worlds at10Hz, while native input, active travel/actions, opening effects and menu refresh restore the normal loop. DOM/authority clocks remain independent; no simulation rates/timers changed. Installed Phaser4.2setFPSLimit is applied after the current RAF stack. Full current checks and new exact-head CI/artifact review remain pending. No workflow, assertion or deadline was loosened.
+
+
+Revised final local source passes217checks/zero skips43.555170417s, actual populatedPGrestart/restore, full59browsercases8.1m, strictbuild/design/plan/pinned/diff. Final actual phone/easel-home/desktop-rack/short200/256frame images reviewed. [Selected images/fixture reports](integrated-browser/) and [local checks](integrated-local-checks.json) preserve durable evidence. Loader-failure count correction follows inspected Phaser4.2source: one queued file retains its existing two built-in retries (three requests), then never re-enqueues per frame and recovers on reload; test asserts that exact bound. No engine retry reduction or assertion removal. New exact-head bothCI/artifact/source acceptance still pending.

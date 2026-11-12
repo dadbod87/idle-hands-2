@@ -1,0 +1,79 @@
+{
+  "classification": "Intermediate foundation only; IH2-067 in_progress, no feature acceptance/merge/deployment",
+  "sourceParent": "3946d7b1f5f5d18529e274935f70fd35bb5cb50b",
+  "branch": "feat/pine-workshop",
+  "domain": {
+    "passed": 202,
+    "skipped": 0,
+    "failed": 0,
+    "durationMs": 42946.875375,
+    "database": "guarded loopback synthetic test databases only",
+    "log": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/pine-workshop-2026-11-11/intermediate-ledger/intermediate-domain.log"
+  },
+  "browser": {
+    "passed": 54,
+    "failed": 0,
+    "reportedDuration": "7.2m",
+    "exitCode": 0,
+    "log": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/pine-workshop-2026-11-11/intermediate-ledger/browser-regression.log",
+    "evidence": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/pine-workshop-2026-11-11/intermediate-ledger/full-browser-evidence",
+    "disclosure": "Mix of actual local UI/API cases and explicitly labelled intercepted boot/movement/retry fixture cases; no real player or accepted practice writes; Chrome emulation, not physical phone"
+  },
+  "build": {
+    "passed": true,
+    "existingLargeBundleWarning": true
+  },
+  "design": {
+    "passed": true,
+    "candidateEntries": 48,
+    "regions": 5
+  },
+  "plan": {
+    "passed": true,
+    "tasks": 24,
+    "trackerChecks": 10
+  },
+  "pinnedSkills": {
+    "passed": true,
+    "files": 40
+  },
+  "diffCheck": true,
+  "pureRuleSchedules": {
+    "cohorts": 18,
+    "matchedIndependentModel": true,
+    "notServerAuthority": true
+  },
+  "actualCachedOldWriterProof": "ledger-browser/report.json",
+  "imagesReviewed": [
+    "ledger-browser/cached-old-tab-readonly.png",
+    "ledger-browser/upgraded-garden-desktop.png",
+    "ledger-browser/upgraded-garden-phone.png",
+    "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/pine-workshop-2026-11-11/intermediate-ledger/full-browser-evidence/browser/garden-desktop-held-ready.png",
+    "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/pine-workshop-2026-11-11/intermediate-ledger/full-browser-evidence/browser/garden-phone-empty.png",
+    "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/pine-workshop-2026-11-11/intermediate-ledger/full-browser-evidence/browser/garden-short-text-200.png"
+  ],
+  "acceptedPreviewPreservation": {
+    "files": 131,
+    "allResponsesByteEqualAcceptedCi": true,
+    "apiStatus": 200,
+    "apiRestarted": false,
+    "practiceWrites": false,
+    "manifest": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/pine-workshop-2026-11-11/intermediate-ledger/accepted-preview-unchanged.json"
+  },
+  "previousAcceptedMainCi": {
+    "runId": 43111494799,
+    "domain-build-plan": "success",
+    "browser-playtest": "success"
+  },
+  "finalFeatureCi": "Not run: family integration/art/UI/authority still pending",
+  "sourceSha256": {
+    "src/game/garden.ts": "aa438b4db1bbaa3d2af76317f2b77af8ba8c9260fcc811c1c81fd44fae760156",
+    "src/game/carpentry.ts": "44c6219baceded14e327b9cd1a65b2921b0fb97082cf0980c16e7a36464d0394",
+    "src/game/workshop.ts": "0358587e02d7d8d16dd2ca3cc045517cd605ccd1925afcbc792659fd6af62f3d",
+    "tests/carpentry.test.ts": "8d12a13c391e2e179cf997c6df1044dfa40072e4a6bf534fa0cc67b748b59707",
+    "tests/garden.test.ts": "32eea4ab84de0e65c350cce090921d2ec1fb88e428ed05d585bf8a23acc2c2f1",
+    "tools/prove-garden-ledger-upgrade.ts": "c61dceb764089befdf099a95bd87192a683065eebfe618f6ebc3e7e0aac52c9d",
+    "tools/simulate-carpentry-rules.ts": "13992d8e93e0f8daec1d7c1436b4a6596a56817ae68617746ac47c16c98cd090",
+    "tsconfig.design.json": "226292756ff11c661fa50affb843b156001849323020f2178575bdff6c0c3d6d"
+  }
+}

@@ -310,6 +310,27 @@
       "propId": "shelf"
     },
     {
+      "id": "home-easel-world",
+      "file": "home-easel-world.svg",
+      "width": 80,
+      "height": 112,
+      "kind": "owned-furniture-world",
+      "propId": "easel",
+      "foot": {
+        "x": 40,
+        "y": 106
+      },
+      "materialPolicy": "Preserve base outline, grain/diamond/brace/book motifs; recolor only intended material layers."
+    },
+    {
+      "id": "home-easel-icon",
+      "file": "home-easel-icon.svg",
+      "width": 64,
+      "height": 64,
+      "kind": "owned-furniture-icon",
+      "propId": "easel"
+    },
+    {
       "id": "home-scrap-icon",
       "file": "home-scrap-icon.svg",
       "width": 64,

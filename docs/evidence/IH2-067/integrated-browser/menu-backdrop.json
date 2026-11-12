@@ -1,0 +1,24 @@
+{
+  "disclosure": "Disposable local browser-only mode. Normal clock/redraw proof first; then recorded one-second window timers are stopped in this page to prove resize repaint independently of periodic fallback. No HTTP/stock/position overrides or grants. Desktop then844x390viewport emulation, not a physical device.",
+  "idleFrames": 11,
+  "idleWindowMs": 1100,
+  "idleLimit": 10,
+  "inputRestoresNormalLoop": true,
+  "redraws": 2,
+  "windowMs": 2400,
+  "position": {
+    "x": 24.6665,
+    "y": 25
+  },
+  "clock": "Town time · 18:52 · Dusk · Light drizzle",
+  "visibleFraction": 1,
+  "resizeRecoveryMs": 124,
+  "resizeSamples": [
+    {
+      "ms": 122,
+      "frames": 74,
+      "visible": 1
+    }
+  ],
+  "framePolicy": "Modal backdrop only: one redraw/second plus two-frame resize refresh. Timers and authority continue; modal frame intervals do not enter active-play samples."
+}

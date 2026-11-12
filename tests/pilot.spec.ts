@@ -107,7 +107,7 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  expect(Math.abs(wrap!.width-cv!.width)).toBeLessThan(2);expect(Math.abs(wrap!.height-cv!.height)).toBeLessThan(2);
  await page.setViewportSize(shape);await page.waitForTimeout(2500);
  const metrics=await page.evaluate(()=>(window as any).__pilot.metrics());
- fs.writeFileSync(`${evidenceDir}/${shape.name}-metrics.json`,JSON.stringify({viewport:shape,metrics,errors,external,userAgent:await page.evaluate(()=>navigator.userAgent)},null,2)+'\n');
+ fs.writeFileSync(`${evidenceDir}/${shape.name}-metrics.json`,JSON.stringify({framePolicy:'Rolling intervals include intentional10Hz idle; normal input/travel/actions target60. Modal gaps excluded. Not an active-only or physical-device benchmark.',viewport:shape,metrics,errors,external,userAgent:await page.evaluate(()=>navigator.userAgent)},null,2)+'\n');
  expect(metrics.phaser).toBe('4.2.1');expect(metrics.frameSamples).toBeGreaterThan(60);
  expect(errors).toEqual([]);expect(external).toEqual([]);
 });

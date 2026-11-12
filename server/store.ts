@@ -1,4 +1,5 @@
 import {HOME_SLOTS,homeAllocation,homeAllocationValid,isCurrentHomeLayout,applyHomeArrangement,type HomeLayout} from '../src/game/home-layout.ts';
+import {collectionGrant,type CollectionGrant} from '../src/game/collection-receipt.ts';
 import {commissionActionSchema,commissionLocation,MOTIFS,type LetterboxMotif} from '../src/game/commission.ts';
 import {carpentryActionSchema,carpentryActionLocations,CARPENTRY_RULES,type NoticeboardState} from '../src/game/carpentry.ts';
 import {surveyId} from '../src/game/fieldwork.ts';
@@ -26,7 +27,7 @@ export type TownSnapshot = {
   lesson:MaintenanceLesson; lessonQuote:{route:'construction'|'upkeep';expectedBridgeContributed:number};
   seasonKey: string; scores: { playerId: string; name: string; points: number }[]; serverTime: number;
 };
-export type TownResult = { ok: boolean; message: string; replayed: boolean; revision: number; snapshot: TownSnapshot; publicChanged?:boolean };
+export type TownResult = { ok: boolean; message: string; replayed: boolean; revision: number; snapshot: TownSnapshot; publicChanged?:boolean;collection?:CollectionGrant };
 type Receipt = Omit<TownResult, 'snapshot' | 'replayed'>;
 type PlayerRow = { id: string; name: string; workshop: WorkshopState; position: TownPosition; quest_content_version: number };
 const idSchema = z.string().regex(/^[a-zA-Z0-9:_-]{1,80}$/);
@@ -323,7 +324,7 @@ export class TownStore {
                 const receipt=state.receipts.find(r=>r.id===cmd.id);if(receipt)receipt.message=applied.message;
               }
             }
-            result = { ok: true, message: applied.message, revision: state.revision,...(['garden','carpentry','commission'].includes(cmd.kind)?{publicChanged:result.publicChanged}: {}) };
+            result = { ok: true, message: applied.message, revision: state.revision,...(cmd.kind==='gather'?{collection:collectionGrant(cmd.id,id,cmd.resource,virtual,state)}:{}),...(['garden','carpentry','commission'].includes(cmd.kind)?{publicChanged:result.publicChanged}: {}) };
           }
         }
       }

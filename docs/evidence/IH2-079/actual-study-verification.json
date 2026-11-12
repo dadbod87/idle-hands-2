@@ -1,0 +1,43 @@
+{
+  "classification": "Actual uploaded CIartifact, explicit synthetic receipt study; not gameplay integration",
+  "url": "http://127.0.0.1:49534/",
+  "files": 14,
+  "allResponsesByteEqualCI": true,
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "w": 1160,
+        "h": 820,
+        "touch": false
+      },
+      "onceOnlyOriginalRetry": true,
+      "reopenedFocusClear": true,
+      "noReopenReplay": true,
+      "requests": [
+        "http://127.0.0.1:49534/",
+        "http://127.0.0.1:49534/art/aster-timber.svg",
+        "http://127.0.0.1:49534/art/casey-timber.svg"
+      ],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "w": 320,
+        "h": 568,
+        "touch": true
+      },
+      "onceOnlyOriginalRetry": true,
+      "reopenedFocusClear": true,
+      "noReopenReplay": true,
+      "requests": [
+        "http://127.0.0.1:49534/",
+        "http://127.0.0.1:49534/art/aster-timber.svg",
+        "http://127.0.0.1:49534/art/bea-timber.svg"
+      ],
+      "errors": []
+    }
+  ],
+  "limits": "Native Chrome/keyboard/touch emulation and labelled fake results. No game/API interception, database, storage, real identity or actual authority proof; not physical phone."
+}

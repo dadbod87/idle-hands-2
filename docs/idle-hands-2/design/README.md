@@ -83,4 +83,6 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 
 [Remaining collection art family](ORDINARY_GATHERING_FAMILY.md): accepted standalone078; preserve Aster pixels, cover the remaining3rigs, then choose a separate observed modal/receipt integration contract.
 
-[Visible confirmed collection receipt](COLLECTION_RECEIPT_VISIBILITY.md): queued079design/prototype; audit intent/retry provenance, reserve visible modal art and held controls before any runtime promotion. Includes observed CIheadroom preflight.
+[Visible confirmed collection receipt](COLLECTION_RECEIPT_VISIBILITY.md): accepted079separate design/prototype; audit intent/retry provenance, reserve visible modal art and held controls before any runtime promotion. Includes observed CIheadroom preflight.
+
+[Actual collection receipt integration](COLLECTION_RECEIPT_RUNTIME.md): queued081; locked original grant metadata, exact transport/retry/presentation scope and truthful local persistence before runtime promotion.

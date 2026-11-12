@@ -1,0 +1,17 @@
+{
+  "candidate": "8b392b969ac935e71773289008570a8440d3dbe7",
+  "localNode": "26.7.0",
+  "ciNodePinned": "24.22.2",
+  "domainCount": 274,
+  "domainSkipped": 0,
+  "domainDurationMs": 53615.306833,
+  "strictClientServerDesignBuild": true,
+  "designPlan10Pinned40DiffPass": true,
+  "focusedBrowserSeconds": 4.6,
+  "fullBrowser": "success",
+  "terraReadOnlyRecheckNoBlocker": true,
+  "gameFiles": 178,
+  "allGameBytesEqualAccepted078": true,
+  "browserCount": 83,
+  "browserMinutes": 10.8
+}

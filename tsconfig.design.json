@@ -60,7 +60,9 @@
     "tools/create-receipt-study.ts",
     "tools/collection-receipt-model.ts",
     "tests/collection-receipt.test.ts",
-    "tests/collection-receipt.spec.ts"
+    "tests/collection-receipt.spec.ts",
+    "tests/collection-grant.test.ts",
+    "tests/collection-runtime.spec.ts"
   ],
   "compilerOptions": {
     "types": [

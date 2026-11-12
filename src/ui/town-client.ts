@@ -1,3 +1,4 @@
+import {collectionGrantSchema,type CollectionGrant} from '../game/collection-receipt.ts';
 import {isCurrentHomeLayout,homeAllocation,homeAllocationValid,type HomeLayout} from '../game/home-layout.ts';
 import type {LetterboxMotif} from '../game/commission.ts';
 import {nextGardenDeadline,type MarkerId} from '../game/garden.ts';
@@ -12,6 +13,7 @@ export type TownLesson={startedAt:number|null;readyAt:number|null;completed:bool
 export type TownSnapshot={commissionTown?:{styles:Array<{ownerId:string;ownerName:string;motif:LetterboxMotif}>};serverInstance?:string;noticeboard?:NoticeboardState;playerId:string;name:string;workshop:WorkshopState;position:TownPosition;quest:{contentVersion:string|number;awarded:unknown};bridge:{contributed:number;target:number;restored:boolean;phase?:'collecting'|'building'|'open';startedAt?:number|null;readyAt?:number|null;openedAt?:number|null;grandfathered?:boolean};trail?:{stamps:string[];pennantOwned:boolean};projectJournal?:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;plot:TownPlot|null;plots:TownPlot[];seasonKey:string;scores:unknown;serverTime:number;gardenTown?:{credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};lesson?:TownLesson;lessonQuote?:{route:'construction'|'upkeep';expectedBridgeContributed:number}};
 export type TownCommand=Record<string,unknown>&{kind:string;id?:string;expectedRevision?:number};
 export type TownHooks={beforeCommand?:()=>Promise<void>;onSnapshot?:(snapshot:TownSnapshot)=>void;onPresence?:(presence:unknown)=>void;onConnection?:(state:string)=>void};
+type CommandOutcome={snapshot:TownSnapshot;message:string;ok:boolean;command:TownCommand;playerId:string;collection?:CollectionGrant};
 type Provenance={generation:number;epoch:number;playerId?:string};
 type TownRequestError=Error&{definite?:boolean;staleBoot?:boolean};
 const marker=(snapshot:TownSnapshot|null|undefined)=>typeof snapshot?.serverInstance==='string'&&snapshot.serverInstance.length>0?snapshot.serverInstance:null;
@@ -22,10 +24,10 @@ export class TownClient {
  private refreshDirty=false;
  private pending:TownCommand|null=null;
  private inFlight:Promise<TownSnapshot>|null=null;
+ private outcomes=new WeakMap<Promise<TownSnapshot>,Promise<CommandOutcome>>();
  private listeners=new Set<(snapshot:TownSnapshot)=>void>();
  private events:EventSource|null=null;
  private offset=0;
- private lastCommandOk=false;
  private generation=0;
  private bootEpoch=0;
  private retiredBoots=new Set<string>();
@@ -100,10 +102,24 @@ export class TownClient {
  private refreshFromEvent(){this.refreshDirty=true;if(this.loading||this.closed||document.hidden)return;this.refreshDirty=false;const generation=this.generation;void this.load().catch(error=>{if(generation===this.generation&&!this.pending)this.notify(error.message);});}
  command(command:TownCommand,present:()=>boolean=()=>true):Promise<TownSnapshot>{if(this.inFlight)return this.inFlight;if(this.pending)return Promise.reject(new Error('Retry the previous request before making another change.'));if(!this.snapshot)return Promise.reject(new Error('Choose a practice player first.'));this.pending={...command,id:command.id??crypto.randomUUID(),expectedRevision:command.expectedRevision??this.snapshot.workshop.revision};return this.sendPending(present);}
  retry(present:()=>boolean=()=>true){if(this.inFlight)return this.inFlight;if(!this.pending)return this.load();return this.sendPending(present);}
- private sendPending(present:()=>boolean){const command=this.pending!,generation=this.generation;if(present())this.notify('Saving…');const run=Promise.resolve().then(()=>this.hooks.beforeCommand?.()).then(()=>this.request('command',command,generation)).then(({data,context})=>{const snapshot=this.accept(data.snapshot??data,context);this.lastCommandOk=data.ok!==false;this.lastMessage=this.message(data.message??snapshot.workshop.lastMessage);this.pending=null;if(present())this.notify(data.message??'Saved to the local town server.');return snapshot;}).catch((error:Error&{definite?:boolean})=>{if(generation===this.generation){if(error.definite)this.pending=null;if(present())this.notify(error.message);}throw error;}).finally(()=>{if(this.inFlight===run)this.inFlight=null;});this.inFlight=run;return run;}
+ private sendPending(present:()=>boolean){
+  const command={...this.pending!},generation=this.generation;if(present())this.notify('Saving…');
+  const outcome=Promise.resolve().then(()=>this.hooks.beforeCommand?.()).then(()=>this.request('command',command,generation)).then(({data,context})=>{
+   const snapshot=this.accept(data.snapshot??data,context),ok=data.ok!==false,message=this.message(data.message??snapshot.workshop.lastMessage),parsed=collectionGrantSchema.safeParse(data.collection);
+   const collection=data.ok===true&&command.kind==='gather'&&parsed.success&&parsed.data.commandId===command.id&&parsed.data.playerId===snapshot.playerId&&parsed.data.resource===command.resource&&parsed.data.revision===data.revision?parsed.data:undefined;
+   this.lastMessage=message;this.pending=null;if(present())this.notify(data.message??'Saved to the local town server.');
+   return{snapshot,message,ok,command,playerId:snapshot.playerId,collection};
+  }).catch((error:Error&{definite?:boolean})=>{if(generation===this.generation){if(error.definite)this.pending=null;if(present())this.notify(error.message);}throw error;});
+  const run=outcome.then(result=>result.snapshot).finally(()=>{if(this.inFlight===run)this.inFlight=null;});this.inFlight=run;this.outcomes.set(run,outcome);return run;
+ }
+ private async workshopOutcome(operation:Promise<TownSnapshot>){
+  const snapshot=await operation,outcome=await this.outcomes.get(operation);
+  return outcome?{state:outcome.snapshot.workshop,message:outcome.message,ok:outcome.ok,command:outcome.command,playerId:outcome.playerId,collection:outcome.collection}:{state:snapshot.workshop,message:'Town state refreshed.',ok:false};
+ }
+
  async movement(position:TownPosition){const generation=this.generation;const {data,context}=await this.request('movement',position,generation);if(data.snapshot)this.accept(data.snapshot,context);return data;}
  async logout(){this.changeIdentity();await this.request('logout',{});this.close();this.snapshot=null;this.pending=null;}
  close(){this.closed=true;this.changeIdentity();}
  connect(){this.cancelStreamRetry();this.events?.close();this.events=null;if(this.closed||document.hidden)return;const generation=this.generation,epoch=this.bootEpoch;const source=new EventSource('/api/town/events?schema='+TOWN_SCHEMA,{withCredentials:true});this.events=source;const current=()=>generation===this.generation&&epoch===this.bootEpoch&&this.events===source;const reload=()=>{if(current())this.refreshFromEvent();};source.onopen=()=>{if(!current())return;this.cancelStreamRetry(true);if(!this.pending)this.notify('Connected · practice town');reload();};source.onerror=()=>{if(!current())return;if(!this.pending)this.notify('Connection interrupted. Reconnecting; changes require server confirmation.');if(source.readyState===2){source.close();this.events=null;this.retryClosedStream(generation,epoch);}};source.addEventListener('invalidate',reload);source.addEventListener('snapshot',event=>{if(!current())return;try{const data=JSON.parse((event as MessageEvent).data);this.accept(data.snapshot??data,{generation,epoch,playerId:this.snapshot?.playerId});}catch{reload();}});source.addEventListener('presence',event=>{if(!current())return;try{this.hooks.onPresence?.(JSON.parse((event as MessageEvent).data));}catch{/* Next presence update replaces this one. */}});}
- workshopAdapter():RemoteWorkshopAdapter{return{allocatedElsewhere:prop=>this.snapshot?.plot?homeAllocation(this.snapshot.plot,prop):0,initial:this.snapshot?.workshop,load:async()=>{try{return (await this.load()).workshop;}catch(error){if((error as Error).name==='AbortError'&&this.snapshot)return this.snapshot.workshop;throw error;}},command:async(command,present)=>{const snapshot=await this.command(command as TownCommand,present);return{state:snapshot.workshop,message:this.lastMessage||snapshot.workshop.lastMessage,ok:this.lastCommandOk};},retry:async(present)=>{const snapshot=await this.retry(present);return{state:snapshot.workshop,message:this.lastMessage||snapshot.workshop.lastMessage,ok:this.lastCommandOk};},canRetry:()=>this.retryAvailable,now:this.serverNow,subscribe:listener=>{const handle=(snapshot:TownSnapshot)=>listener(snapshot.workshop);this.listeners.add(handle);return()=>this.listeners.delete(handle);}};}
+ workshopAdapter():RemoteWorkshopAdapter{return{allocatedElsewhere:prop=>this.snapshot?.plot?homeAllocation(this.snapshot.plot,prop):0,initial:this.snapshot?.workshop,load:async()=>{try{return (await this.load()).workshop;}catch(error){if((error as Error).name==='AbortError'&&this.snapshot)return this.snapshot.workshop;throw error;}},command:(command,present)=>this.workshopOutcome(this.command(command as TownCommand,present)),retry:(present)=>this.workshopOutcome(this.retry(present)),busy:()=>!!this.inFlight,canRetry:()=>this.retryAvailable,now:this.serverNow,subscribe:listener=>{const handle=(snapshot:TownSnapshot)=>listener(snapshot.workshop);this.listeners.add(handle);return()=>this.listeners.delete(handle);}};}
 }

@@ -1,0 +1,19 @@
+{
+  "gameFiles": 178,
+  "allActualGameResponsesEqualAccepted078": true,
+  "gameUrl": "http://127.0.0.1:4175/",
+  "galleries": [
+    {
+      "port": 49529,
+      "files": 9,
+      "allBytesEqual": true
+    },
+    {
+      "port": 49530,
+      "files": 21,
+      "allBytesEqual": true
+    }
+  ],
+  "apiRequests": 0,
+  "restarted": false
+}

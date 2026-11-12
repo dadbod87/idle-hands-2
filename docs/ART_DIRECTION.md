@@ -107,3 +107,10 @@ IH2-078 standalone art/source accepted PR27/9608e39, exact4737f44CI43246666644bo
 ## IH2-079 receipt study
 
 Separate modal study reuses12accepted078sheets byte-for-byte, front-facing decorative57.6×72pxactor inside reserved72×96pxspace. Literal quantity never comes from the prop drawing. One bounded420msreach/contact/recovery/contact, static contact under reduced/late-art and no reward artwork before an exact matching synthetic grant. Selected character/material loading only, no bulk embed or runtime promotion. Original4rig identities/feet/palettes remain; Terra’s corrected phone/keyboard/held-target recheck finds no blocker. Physical-device and real integration remain separate.
+
+IH2-079separate study/source accepted PR28/10adfa9, exact8b392b9CI43257514774bothSUCCESS274/83. Actual14-file49534study and six uploaded images reviewed. No runtime promotion;081owns that integration.
+
+
+## IH2-081 playable collection receipts
+
+Promote all twelve accepted078 collection SVG sheets byte-for-byte with reproducible provenance. The actual game uses current-rig/material lazy DOM decode only, the original57.6×72actor in a reserved72×96slot, and literal authoritative quantities. Art remains decorative, one420ms sequence or still; failed/late art never blocks confirmation or replays a reward. All three useful resource counts and original game typography/materials remain. No Phaser preload/world/camera/geometry changes. Terra6.1bounded desktop/phone review finds no blocker; full acceptance is separate.

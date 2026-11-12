@@ -808,6 +808,66 @@
       "id": "depot-timber",
       "path": "art/depots/depot-timber.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "collection-aster-scrap",
+      "path": "art/collection/aster-scrap.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "collection-aster-supplies",
+      "path": "art/collection/aster-supplies.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "collection-aster-timber",
+      "path": "art/collection/aster-timber.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "collection-bea-scrap",
+      "path": "art/collection/bea-scrap.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "collection-bea-supplies",
+      "path": "art/collection/bea-supplies.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "collection-bea-timber",
+      "path": "art/collection/bea-timber.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "collection-casey-scrap",
+      "path": "art/collection/casey-scrap.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "collection-casey-supplies",
+      "path": "art/collection/casey-supplies.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "collection-casey-timber",
+      "path": "art/collection/casey-timber.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "collection-devon-scrap",
+      "path": "art/collection/devon-scrap.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "collection-devon-supplies",
+      "path": "art/collection/devon-supplies.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "collection-devon-timber",
+      "path": "art/collection/devon-timber.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

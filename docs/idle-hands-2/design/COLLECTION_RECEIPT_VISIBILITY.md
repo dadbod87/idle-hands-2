@@ -1,6 +1,6 @@
 # IH2-079 — visible ordinary collection receipt design
 
-Queued design/prototype only after accepted078. No runtime implementation or acceptance claimed. Recheck currentmain and the source paths below first.
+Accepted separate design/prototype PR28/10adfa9after078. Exact8b392b9CI43257514774bothSUCCESS274/83and actual49534artifact/native review. No runtime implementation is claimed;081COLLECTION_RECEIPT_RUNTIME owns that separate gate. Recheck currentmain/source paths.
 
 Choose a fixed reserved modal receipt illustration as the first visible presentation. Keep current Collect and Close controls, authoritative quantity/status and keyboard focus stable. The art never starts the request, awards output or gates another action. Do not auto-close, move the actor/camera, or reveal a hidden world action as a claimed improvement.
 
@@ -15,3 +15,5 @@ Keep all178game files/172runtimeart/server/domain/protocol/migrations/key/tables
 Source starting points: src/ui/workshop.ts showResource/dispatch/remoteDispatch, src/ui/town-client.ts sendPending/workshopAdapter, src/game/workshop.ts gather/receipts, server/store.ts execute and src/main.ts openPanel/closePanel. The adapter currently omits command identity/replayed fields; subscriptions can apply state before the awaited response. Confirm these facts on current source rather than treating a changed global revision as a new collection.
 
 CI preflight:078passed82browser cases18.8minutes; whole job20m1s against unchanged20minute configuration. Before growing coverage, measure where time is spent and retain every meaningful assertion and the existing deadline. Do not call a slower shared runner a runtime regression, enlarge the budget, remove actual-clock proofs or hide failures. The next design must account for this gate headroom and record an explicit bounded follow-up if measurement identifies a genuine harness/rendering issue.
+
+Runtime caveat from the local source audit: persist can fail after an in-memory successful action. The committed-grant study does not simulate that path.081must expose persistence outcome, retain existing quota/read-only warnings and never label unsaved progress Saved once.

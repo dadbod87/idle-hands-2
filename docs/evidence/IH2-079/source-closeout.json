@@ -1,0 +1,190 @@
+{
+  "task": "IH2-079",
+  "classification": "Accepted private source/synthetic collection receipt design study; not gameplay or API integration",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/28",
+  "candidate": "8b392b969ac935e71773289008570a8440d3dbe7",
+  "candidateTree": "c775a1eab83d6b48e455cbd0f96daaab5864b42a",
+  "ci": {
+    "run": 43257514774,
+    "attempt": 1,
+    "domainJob": 131319649999,
+    "browserJob": 131319649356,
+    "domainSuccess": true,
+    "domainCount": 274,
+    "domainSkipped": 0,
+    "domainDurationMs": 71582.798969,
+    "browserStatus": "success",
+    "actualGameFiles": 178,
+    "allGameBytesEqualAccepted078AndLocal": true,
+    "existingPopulatedRestartEvidenceReviewed": true,
+    "budgetMinutesUnchanged": 20,
+    "gameFiles": 178,
+    "studyFiles": 14,
+    "allStudyBytesEqualReviewedSource": true,
+    "selectedImages": [
+      {
+        "file": "collection-receipt-desktop.png",
+        "sha256": "4b920d85810f406d33e5f1d9a24c3f72e60df057e8c8bc6fa2d3faad2898c5c7",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "collection-receipt-phone320.png",
+        "sha256": "63ea815cff66267c5b8f85361f088db073f6dbb7eb8b1d88f6a76abd958ce084",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "collection-receipt-phone360.png",
+        "sha256": "4aad6d144a5a23a5ff8cf0235d64c94377350216024b535244d68c4aa6ef21b8",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "collection-receipt-short200.png",
+        "sha256": "c5e894af0323fe7af01524367564ba302733cc77d44a6a9a44c0dad8024e5faf",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "collection-receipt-phone200.png",
+        "sha256": "8c85ee1b647afb16ea03699979ac47bd7e208f39b9d1d6e90babc870d8768825",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "collection-receipt-phone200-status.png",
+        "sha256": "2583a4a90dc18ab91dc3a1207a38771e81ee3e0bddac7fa65b6c7682dc968fef",
+        "actualUploadedCIImageReviewed": true
+      }
+    ],
+    "fourResponsiveLayouts": true,
+    "initialSelectedAssetRequests": 1,
+    "populatedRestartEvidenceReviewed": true,
+    "classification": "Actual downloaded artifacts compared; six images and existing populated restart evidence reviewed",
+    "bothSuccess": true,
+    "browserCount": 83,
+    "browserMinutes": 14.8,
+    "wholeBrowserJobSeconds": 973,
+    "receiptStudyCaseSeconds": 5.2
+  },
+  "local": {
+    "candidate": "8b392b969ac935e71773289008570a8440d3dbe7",
+    "localNode": "26.7.0",
+    "ciNodePinned": "24.22.2",
+    "domainCount": 274,
+    "domainSkipped": 0,
+    "domainDurationMs": 53615.306833,
+    "strictClientServerDesignBuild": true,
+    "designPlan10Pinned40DiffPass": true,
+    "focusedBrowserSeconds": 4.6,
+    "fullBrowser": "success",
+    "terraReadOnlyRecheckNoBlocker": true,
+    "gameFiles": 178,
+    "allGameBytesEqualAccepted078": true,
+    "browserCount": 83,
+    "browserMinutes": 10.8
+  },
+  "previousAutomaticMainCI": {
+    "run": 43250716906,
+    "bothSuccessIndependentlyVerified": true,
+    "wholeBrowserJobSeconds": 989
+  },
+  "protectedPractice": {
+    "classification": "Actual read-only protected fictional practice across candidate-only079",
+    "canonicalTables": 13,
+    "allColumnsAndRowsPreserved": true,
+    "residents": 1,
+    "plots": 0,
+    "signingKeyPreserved": true,
+    "sixMigrationChecksumsPreserved": true,
+    "noDatabaseWrites": true,
+    "apiRestarted": false
+  },
+  "terraReview": {
+    "model": "gpt-6.1-terra",
+    "readOnly": true,
+    "firstBlocker": "Narrow reopened Collect focus obscured by sticky header",
+    "correctedRecheckNoBlocker": true,
+    "trueDoubledTextAndNativeStatusKeyboardScroll": true,
+    "heldRetryGeometryStable": true,
+    "allBrowsersClosedBeforeRootFullRun": true
+  },
+  "limits": [
+    "Explicit synthetic grants, identity, lost reply, unrelated inventory and art-failure fixtures; no actual API quantity binding",
+    "Current shared API lacks typed exact per-command grant; future transaction/adapter integration required",
+    "No real gameplay hook/public art promotion, game/server/domain/protocol/migration/economy change",
+    "Database recovery proof covers existing unchanged town features, not proposed grant metadata",
+    "Native/keyboard/touch/text/media emulation; synthetic document.hidden in automated case; not physical phone/Safari/full accessibility or human motion continuity",
+    "Local-save persistence failure is not simulated by this committed-grant study; runtime integration must preserve truthful unsaved warnings",
+    "No paid assets, hosted infrastructure, real accounts or original-game changes"
+  ],
+  "protectedSurfaces": {
+    "gameFiles": 178,
+    "allActualGameResponsesEqualAccepted078": true,
+    "gameUrl": "http://127.0.0.1:4175/",
+    "galleries": [
+      {
+        "port": 49529,
+        "files": 9,
+        "allBytesEqual": true
+      },
+      {
+        "port": 49530,
+        "files": 21,
+        "allBytesEqual": true
+      }
+    ],
+    "apiRequests": 0,
+    "restarted": false
+  },
+  "merge": "10adfa9171c5a912af5e5f88c87a0bc9bc46f511",
+  "mergeTree": "c775a1eab83d6b48e455cbd0f96daaab5864b42a",
+  "matchingTreeAndCleanMainEqualsRemoteVerified": true,
+  "reviewGallery": {
+    "classification": "Actual uploaded CIartifact, explicit synthetic receipt study; not gameplay integration",
+    "url": "http://127.0.0.1:49534/",
+    "files": 14,
+    "allResponsesByteEqualCI": true,
+    "observations": [
+      {
+        "shape": {
+          "name": "desktop",
+          "w": 1160,
+          "h": 820,
+          "touch": false
+        },
+        "onceOnlyOriginalRetry": true,
+        "reopenedFocusClear": true,
+        "noReopenReplay": true,
+        "requests": [
+          "http://127.0.0.1:49534/",
+          "http://127.0.0.1:49534/art/aster-timber.svg",
+          "http://127.0.0.1:49534/art/casey-timber.svg"
+        ],
+        "errors": []
+      },
+      {
+        "shape": {
+          "name": "phone",
+          "w": 320,
+          "h": 568,
+          "touch": true
+        },
+        "onceOnlyOriginalRetry": true,
+        "reopenedFocusClear": true,
+        "noReopenReplay": true,
+        "requests": [
+          "http://127.0.0.1:49534/",
+          "http://127.0.0.1:49534/art/aster-timber.svg",
+          "http://127.0.0.1:49534/art/bea-timber.svg"
+        ],
+        "errors": []
+      }
+    ],
+    "limits": "Native Chrome/keyboard/touch emulation and labelled fake results. No game/API interception, database, storage, real identity or actual authority proof; not physical phone.",
+    "pid": 34144,
+    "session": 14679,
+    "actualImagesReviewed": 2,
+    "artifact": "collection-receipts-2026-11-12/ci-final/browser/test-results/browser/collection-receipt-study"
+  },
+  "automaticMainCI": {
+    "run": 43260998736,
+    "status": "in_progress at closeout; required exact candidate gates complete before merge"
+  }
+}

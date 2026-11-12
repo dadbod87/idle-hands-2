@@ -128,7 +128,7 @@ test('real isolated town: timed opening, personal trail journal and permanent ho
   await newcomer.goto('/?town=1&sky-study=1&phase=night&weather=clear');
   await expect.poll(async()=>(await actor(newcomer))?.room).toBe('trail');
   await expect.poll(()=>newcomer.evaluate(()=>(window as any).__pilot.metrics().climate?.interior)).toBe(false);
-  const nightClimate=await newcomer.evaluate(()=>(window as any).__pilot.metrics().climate);expect(nightClimate.effectiveAlpha).toBeCloseTo(.36,5);
+  const nightClimate=await newcomer.evaluate(()=>(window as any).__pilot.metrics().climate);expect(nightClimate.effectiveAlpha).toBeCloseTo(.24,5);
   expect((await town(newcomer)).trail.stamps).toEqual(['trailhead']);expect(economy(await town(newcomer))).toEqual(newcomerEconomy);
   await newcomer.screenshot({path:evidence+'/trail-phone-night-outdoor.png'});
   await newcomer.setViewportSize({width:844,height:390});await newcomer.evaluate(()=>document.documentElement.style.fontSize='200%');

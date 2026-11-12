@@ -1,5 +1,7 @@
 # Idle Hands 2 — current state
 
+IH2-086 candidate anchors rain to world camera movement with bounded tile wrapping and overscan; rules/progress unchanged. Full acceptance pending. [Evidence](evidence/IH2-086/REPORT.md).
+
 IH2-085 accepted: more visible bounded sway/drizzle, corrected idle cosmetic timing and clearer sky color. PR33/merge`ef5a796`, final`8bb045e` CI43313138618 all four jobs SUCCESS;293system/zero skips and98browser. Actual191-file local preview and fourteen desktop/phone captures verified; original185art, production clocks and protected practice/API/studies preserved. [Evidence](evidence/IH2-085/source-closeout.json). Candidate history below is historical; current handoff authoritative.
 
 IH2-085 candidate reduces sky haze and makes existing sway/drizzle more visible, correcting idle cosmetic timing.293system/zero skips and12focusedbrowser pass; Terra sees clear rain/readable day/night with no clear blocker. Full98/CI/artifact/preview gates pending. [Evidence](evidence/IH2-085/REPORT.md).

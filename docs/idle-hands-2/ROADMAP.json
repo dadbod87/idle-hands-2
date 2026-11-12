@@ -1012,6 +1012,27 @@
       ]
     },
     {
+      "id": "IH2-086",
+      "title": "Anchor moving rain to the town world",
+      "status": "in_progress",
+      "owner_branch": "fix/world-anchored-rain",
+      "depends_on": [
+        "IH2-085"
+      ],
+      "goal": "Rain retains its place in the world as the camera follows native player movement.",
+      "acceptance": [
+        "World-relative rain phase follows both camera axes after render while independent falling animation continues. Bounded periodic compositor translation covers viewport edges and negative camera offsets.",
+        "Native desktop and touch-phone movement/resize screenshots and regression checks; reduced/hidden/indoor behavior unchanged. No economy, clocks, art or backend changes.",
+        "Required local and exact-head CI full gates, artifact review and static-only preview verification preserve protected practice/server/studies."
+      ],
+      "exclusions": [
+        "No new weather type, asset, request/timer, world geometry, progression or hosting."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-086/PLAN.md"
+      ]
+    },
+    {
       "id": "IH2-070",
       "title": "Invited beta on approved isolated hosting",
       "status": "blocked",

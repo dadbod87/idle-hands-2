@@ -720,7 +720,7 @@
     {
       "id": "IH2-073",
       "title": "Current actions first in returning post and busy/full garden",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-072"
       ],
@@ -738,9 +738,32 @@
       "evidence": [
         "docs/idle-hands-2/CURRENT_ACTIONS_FIRST.md",
         "docs/evidence/IH2-073/REPORT.md",
-        "docs/idle-hands-2/handoffs/2026-11-12-current-actions-first.md"
+        "docs/idle-hands-2/handoffs/2026-11-12-current-actions-first.md",
+        "docs/evidence/IH2-073/source-closeout.json"
       ],
       "owner_branch": "feat/current-actions-first"
+    },
+    {
+      "id": "IH2-074",
+      "title": "Recognizable ordinary material depots",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-073"
+      ],
+      "goal": "Replace three placeholder rectangles with readable original material silhouettes while preserving direct phone interactions and resource authority.",
+      "acceptance": [
+        "Three distinct reproducible original SVG depots, exact provenance/manifest and no unrelated art changes. Retain resource IDs, target/approach/collision/depth and authoritative stock rules. Decorative contents are not stock quantities.",
+        "Actual body taps/collection on desktop and narrow phone, retained labels and short200 controls; actual canvas screenshots and bounded art geometry. No added animation/API work.",
+        "Full repository gates, both exact-final-head CI jobs, actual uploaded artifact/images and matching-tree merge. Preserve13practice tables/key/migrations for local preview update."
+      ],
+      "exclusions": [
+        "No home slots, new resource/economy/timer, paid asset, hosted service or original-game/real-account change."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/MATERIAL_DEPOTS.md",
+        "docs/evidence/IH2-074/REPORT.md"
+      ],
+      "owner_branch": "feat/material-depots"
     },
     {
       "id": "IH2-070",
@@ -760,7 +783,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-073 improves existing activity presentation after the accepted combined audit. No cloud resources, invitations or public release."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-074 improves material-depot art after accepted073. No cloud resources, invitations or public release."
     },
     {
       "id": "IH2-080",

@@ -1,0 +1,134 @@
+{
+  "task": "IH2-073",
+  "classification": "Accepted private source and preserved local preview; no hosted or original-game release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/22",
+  "candidate": "e4f54a1cc6acfc0c97703ff3fbba8c2b052dc26c",
+  "candidateTree": "5dcd24fe8ffc91494e9eb371fa6643cbd80d9de3",
+  "ci": {
+    "run": 43210519289,
+    "domainJob": 131156617534,
+    "browserJob": 131156617750,
+    "domainCount": 256,
+    "domainSkipped": 0,
+    "domainDurationMs": 68453.185149,
+    "actualArtifactsDownloaded": [
+      "sequel-client-build",
+      "sequel-server-evidence",
+      "sequel-browser-evidence"
+    ],
+    "actualClientFiles": 174,
+    "allEqualReviewedLocal": true,
+    "htmlSha256": "065fd2f689198ae6c1d838526f69cb75deabaf30e5fafc94f8000d75379abfd1",
+    "isolatedContainerRestartProofInspected": true,
+    "domainSuccess": true,
+    "bothSuccess": true,
+    "browserCount": 75,
+    "browserMinutes": 14.6,
+    "actualSelectedImagesReviewed": 7,
+    "selectedImages": [
+      {
+        "file": "current-post-phone.png",
+        "sha256": "7fcdee490feaae24b83750746e64ec35ca78e1b56d4e9d92204d48b1c157dd25",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "current-post-at-pip-returning-short200.png",
+        "sha256": "3516d9e0b1cb45353b8c8414f702f90db53bc4f182afceee9199fe008cce67a8",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "current-post-at-pip-saturated-short200.png",
+        "sha256": "b207def4acfcad61f34f2e58645fc8b3903fedcb77c9970d641f3a045f6017e2",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "current-garden-saturated-phone.png",
+        "sha256": "f184e3ffc05374cdba9a5a72cbd0491a8306fbb96b4e6e93d5ecaf77550be540",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "current-garden-both-busy-short200.png",
+        "sha256": "c8d792a2951d4fba2ec780f9630e28ace59bd75adf58774b2d95d81c67441575",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "commission-runtime-phone-paid-quote.png",
+        "sha256": "7b345bb4ce6c86d50d932c1f4475e6627234e865210b80f57b066c0aebadec6a",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "commission-runtime-desktop-placed-letterbox.png",
+        "sha256": "e8f9b47fc74023a53e318174355df275b8c0d242a29c45b2ca42d8ad1177f89f",
+        "actualUploadedCIImageReviewed": true
+      }
+    ]
+  },
+  "local": {
+    "domainCount": 256,
+    "domainSkipped": 0,
+    "domainDurationMs": 48561.048291,
+    "pairedFixtureViews": 27,
+    "selectedReviewedImages": 12,
+    "strictBuildDesignPlanPinned40DiffPass": true,
+    "browserCount": 75,
+    "browserMinutes": 9.8,
+    "finalProximityCasesIncluded": true,
+    "finalBrowserLogSha256": "7362309237184a71850fd4ffd8e26a7c775ba0fd69f799bcb530e031dc28aae0",
+    "finalDomainLogSha256": "6adc28745f1be23dd14d9182fba62bd3f795d249e67d7fc77b02e5e06f0c8f24"
+  },
+  "limits": [
+    "Chrome/Chromium touch/text-scale emulation, not physical phone/Safari or human enjoyment",
+    "All layout observations use declared elapsed/arrival fixtures; real fresh-time proof separate",
+    "Rejected retry test uses pre-server abort plus one legal same-resident planting in disposable browser DB",
+    "Original game, real accounts, hosted services and all game rules unchanged"
+  ],
+  "presentation": {
+    "artFilesUnchanged": 168,
+    "gameFiles": 174,
+    "rawBytesDelta": 4061,
+    "gzipEachFileDelta": 1080,
+    "gameRulesServerMigrationsDependenciesWorkflowUnchanged": true
+  },
+  "freshFinalArtifact": {
+    "actualCiArtifact": true,
+    "emptyContextNoFixturesOrInterception": true,
+    "realCropDurationMs": 300000,
+    "ownedLetterbox": 1,
+    "madeCount": 1,
+    "pineCarried": 4,
+    "radishConsumed": 1,
+    "placementReload": true,
+    "ordinaryJobInventorySkillsUnchanged": true,
+    "errors": [],
+    "bad": [],
+    "api": [],
+    "threeActualQuoteWorldImagesReviewed": true
+  },
+  "merge": "a353f84c0f9c0db3d4f40b5109deb350f09778be",
+  "mergeTree": "5dcd24fe8ffc91494e9eb371fa6643cbd80d9de3",
+  "matchingTreeVerified": true,
+  "cleanMainEqualsRemote": true,
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "immutableCiArtifact": "current-actions-2026-11-12/ci-final/build",
+    "actualMatchingResponses": 174,
+    "desktopAnd360TouchFreshFreeRouteReload": true,
+    "noInjectedStateClockStockPositionOrResponses": true,
+    "fourSelectedActualPreviewImagesReviewed": true,
+    "canonicalTablesPreserved": 13,
+    "fictionalResidentsPreserved": 1,
+    "signingKeyPreserved": true,
+    "migrationChecksumsPreserved": true,
+    "privateBackupPermissions": "0700directory/0600dumpandkey",
+    "apiRestarted": false,
+    "apiPid": 51317,
+    "apiSession": 31409,
+    "staticPid": 69314,
+    "staticSession": 36214
+  },
+  "automaticMainCI": {
+    "run": 43212883847,
+    "head": "a353f84c0f9c0db3d4f40b5109deb350f09778be",
+    "status": "in_progress at closeout; candidate gates passed before merge"
+  }
+}

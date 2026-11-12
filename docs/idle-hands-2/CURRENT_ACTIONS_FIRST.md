@@ -1,6 +1,6 @@
 # Recommended IH2-073 — current actions first
 
-Active IH2-073 from accepted [IH2-072](../evidence/IH2-072/REPORT.md), November 12, 2026. Branch `feat/current-actions-first`, based on accepted audit merge `c72c3a7`. This contract records the bounded presentation change; implementation and its own source gates are not yet claimed.
+Accepted IH2-073 from accepted [IH2-072](../evidence/IH2-072/REPORT.md), November 12, 2026. Branch `feat/current-actions-first`, based on accepted audit merge `c72c3a7`. PR22/mergea353f84accepted; exact-headCI/artifact/preview gates in073closeout. This contract retains the bounded scope.
 
 ## Problem and result
 

@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-073 accepted:PR22/mergea353f84, exacte4f54a1CI43210519289bothSUCCESS256/75(14.6m),174actualCIgamefiles/7images reviewed, realfresh5minpaidcraft and preserved4175preview verified. Current actions first/Piprevisit/gardenroute/receipt/focusguards; allrule/art/server sources unchanged.074ordinarydepotartstarts independently. [Closeout](evidence/IH2-073/source-closeout.json).
+
 2026-11-12 — IH2-073 working presentation candidate: current Pip choices/navigation before kept-card revisit; useful full/busy garden routes and compact inactive quotes. Stable paid receipts, keyboard-only uncover, definite retry/focus guards, short200at-Pip choice coverage. Paired27views preserve progress;256domain/SQL0skips pass, final75browser/CI/artifact/preview gates pending. No domain/server/economy/art change. [Evidence](evidence/IH2-073/REPORT.md).
 
 

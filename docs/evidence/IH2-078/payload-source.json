@@ -1,0 +1,117 @@
+{
+  "classification": "Separate candidate gallery; playable payload unchanged",
+  "files": {
+    "aster-contact-sheet.svg": {
+      "bytes": 106901,
+      "gzipBytes": 2871,
+      "sha256": "59c86dde182252720d958557be625d536cf0c6ac0e5dff9e1711bafaf8d83642"
+    },
+    "aster-scrap-collection.svg": {
+      "bytes": 35749,
+      "gzipBytes": 1437,
+      "sha256": "81966e9b9048077daf3926b7bccd0e8a1bedc687f90b2daf0c23a97d86c78dfe"
+    },
+    "aster-supplies-collection.svg": {
+      "bytes": 35128,
+      "gzipBytes": 1447,
+      "sha256": "48fb0095a00d44072f42a8761b7e945dbe345de1fd37a12bb05799b83c69291c"
+    },
+    "aster-timber-collection.svg": {
+      "bytes": 35686,
+      "gzipBytes": 1458,
+      "sha256": "5142a7fa3736f60357b9a807ce57f630746dbed792f8004d37420b6d640402e2"
+    },
+    "bea-contact-sheet.svg": {
+      "bytes": 131975,
+      "gzipBytes": 3683,
+      "sha256": "b76c6d1ecdbd49a31880052f31801360751e0f7d007d614d834e7cfa15f0a518"
+    },
+    "bea-scrap-collection.svg": {
+      "bytes": 44107,
+      "gzipBytes": 1579,
+      "sha256": "dbb97234a2f386ade848ddd52823660c615a054f9fc146e71c764a6372d8f664"
+    },
+    "bea-supplies-collection.svg": {
+      "bytes": 43486,
+      "gzipBytes": 1590,
+      "sha256": "e7d7418273184f284f289dcfe2e9c0a4055f5e7b44e05936c0d8b9ea46362cbd"
+    },
+    "bea-timber-collection.svg": {
+      "bytes": 44044,
+      "gzipBytes": 1607,
+      "sha256": "2cc68d1cba6cdf26fefb8a11423238ecec1fdf256f2f1c0f436d1aad37d408d3"
+    },
+    "casey-contact-sheet.svg": {
+      "bytes": 117281,
+      "gzipBytes": 2993,
+      "sha256": "3380636ce339217acef256fede2552fc22ac10ef82c0a5f11e4946ea5e619349"
+    },
+    "casey-scrap-collection.svg": {
+      "bytes": 39209,
+      "gzipBytes": 1484,
+      "sha256": "db42bb74f8021ea25986055f46a5ac7e11201a2381fc570785b49173bfabae6d"
+    },
+    "casey-supplies-collection.svg": {
+      "bytes": 38588,
+      "gzipBytes": 1501,
+      "sha256": "2dbae0b4e229a39ac7e06bd7c6f2b13ceccddc0c6f65452532f21d6156fcd5a8"
+    },
+    "casey-timber-collection.svg": {
+      "bytes": 39146,
+      "gzipBytes": 1504,
+      "sha256": "000e6523543281469ee541bc44820c270452b87cf499e889b812d2903a34dde5"
+    },
+    "catalog.json": {
+      "bytes": 75531,
+      "gzipBytes": 3754,
+      "sha256": "9d39d50fe289f56677579569329355eaa15f0914345a6a638f75ad2dc5ce3343"
+    },
+    "devon-contact-sheet.svg": {
+      "bytes": 114593,
+      "gzipBytes": 2981,
+      "sha256": "cb4ba9abcb0130c9660c71ede2720712af40f136fcc5f7d4fc3787fe8e2dd84c"
+    },
+    "devon-scrap-collection.svg": {
+      "bytes": 38313,
+      "gzipBytes": 1493,
+      "sha256": "cef832a7ddf478a49e907e95d2ed51c376bca256d33f8feac8b8f3f57d5dbe6e"
+    },
+    "devon-supplies-collection.svg": {
+      "bytes": 37692,
+      "gzipBytes": 1513,
+      "sha256": "873b60c47f2afc2ca0d034a565600ffc9b90040535e912b84b2fdc6b917c384d"
+    },
+    "devon-timber-collection.svg": {
+      "bytes": 38250,
+      "gzipBytes": 1514,
+      "sha256": "543edaf0bf26a6ebd2f5c4952e6accf0c462494a304dc2a333950ad94bfd6d53"
+    },
+    "index.html": {
+      "bytes": 1284904,
+      "gzipBytes": 71103,
+      "sha256": "3d2c6b60810fd380b839bdc4fe4261fe932cae41d165ccd61cfc9b0322bdd55e"
+    },
+    "scrap-hand-prop.svg": {
+      "bytes": 637,
+      "gzipBytes": 273,
+      "sha256": "28e0a95605a805bba6ababe06dfbae7433612d4bff873cec6db9ca2e508f98ea"
+    },
+    "supplies-hand-prop.svg": {
+      "bytes": 559,
+      "gzipBytes": 287,
+      "sha256": "8840b5ce7388874ccd262c57aa52b8009544de34a13ad4da7d34009bf954051a"
+    },
+    "timber-hand-prop.svg": {
+      "bytes": 629,
+      "gzipBytes": 273,
+      "sha256": "be56de5d84eb688ac3beed40bc00883425ec78d0202e2f4f1dd15b3536e18fa9"
+    }
+  },
+  "studyFiles": 21,
+  "rawBytes": 2302408,
+  "perFileGzipBytes": 106345,
+  "gameFiles": 178,
+  "gameByteEqualAccepted077": true,
+  "runtimeArtFiles": 172,
+  "method": "Byte comparison of every dist file against downloaded accepted077CIartifact; gzip sums separate files, not a claimed delivery/compression configuration. No game payload/performance change."
+}

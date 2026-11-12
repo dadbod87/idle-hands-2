@@ -1,0 +1,40 @@
+{
+  "classification": "Actual uploaded CI study, standalone loopback static review; not an active game feature",
+  "url": "http://127.0.0.1:49529/",
+  "files": 9,
+  "allResponsesByteEqualActualCIArtifact": true,
+  "indexSha256": "5410c4f4267471b368d316748ebe150a225d2417bcb2678c95656becf41b2675",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "w": 1160,
+        "h": 820,
+        "touch": false
+      },
+      "orderedReplay": true,
+      "reducedIdle": true,
+      "requests": [
+        "http://127.0.0.1:49529/"
+      ],
+      "errors": [],
+      "noInterceptionOrDataFixtures": true
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "w": 360,
+        "h": 640,
+        "touch": true
+      },
+      "orderedReplay": true,
+      "reducedIdle": true,
+      "requests": [
+        "http://127.0.0.1:49529/"
+      ],
+      "errors": [],
+      "noInterceptionOrDataFixtures": true
+    }
+  ],
+  "limits": "Native Chrome/touch/media emulation, not physical phone or gameplay integration. No state, position, production clock, stock or response fixtures."
+}

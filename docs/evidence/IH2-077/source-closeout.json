@@ -1,0 +1,106 @@
+{
+  "task": "IH2-077",
+  "classification": "Accepted private source/original standalone art study; no new playable behavior or hosted release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/26",
+  "candidate": "f7f392186affc0feeab2eb49cd0a2866259eb3f5",
+  "ci": {
+    "run": 43237701257,
+    "domainJob": 131249420475,
+    "browserJob": 131249420128,
+    "bothSuccess": true,
+    "domainCount": 265,
+    "domainSkipped": 0,
+    "domainDurationMs": 82193.228418,
+    "browserCount": 81,
+    "browserMinutes": 13.9,
+    "actualArtifacts": [
+      "sequel-client-build",
+      "sequel-server-evidence",
+      "sequel-browser-evidence"
+    ],
+    "gameFiles": 178,
+    "gameFilesByteEqual076": true,
+    "studyFiles": 9,
+    "studyFilesByteEqualReviewedSource": true,
+    "populatedRestartEvidenceReviewed": true,
+    "selectedImages": [
+      {
+        "file": "gathering-study-contact-sheet.png",
+        "sha256": "1f4a7aff0ffafcdbdc6f3d602a324b9a8ae5688ececcabf6a7a5c7dec990e952",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "gathering-study-phone.png",
+        "sha256": "85d0b45ff31c4f19580e715003cea44e2c982e655166d741e53ea17a5fc047cc",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "gathering-study-reduced.png",
+        "sha256": "3ef798dca73138d981107e5b45529ebe008fab2a65181ec4ef8e970921fe0e12",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "gathering-study-short200.png",
+        "sha256": "bb382f5cef471e63354022ddbeaa34c7d08785e17446de7136a8c8586694957e",
+        "actualUploadedCIImageReviewed": true
+      }
+    ],
+    "rasterCells": 48,
+    "maximumNativeFootCentroidDelta": 0
+  },
+  "local": {
+    "domainCount": 265,
+    "domainSkipped": 0,
+    "domainDurationMs": 48151.137375,
+    "browserCount": 81,
+    "browserMinutes": 10.2,
+    "strictBuildDesignPlanPinned40DiffPass": true,
+    "exactSourceFootVectorsPerFacing": true,
+    "maximumNativeFootCentroidDelta": 0.0009311465065331198,
+    "independentRefinedRecoveryReview": true
+  },
+  "merge": "49e7e771eea8eb49aa31b0256a963b6d846f4f62",
+  "candidateTree": "3434eacab9a41bbcca7aa5c90eb8452e7bcd8225",
+  "mergeTree": "3434eacab9a41bbcca7aa5c90eb8452e7bcd8225",
+  "matchingTreeAndCleanMainEqualsRemoteVerified": true,
+  "reviewGallery": {
+    "url": "http://127.0.0.1:49529/",
+    "artifact": "gathering-study-2026-11-12/ci-final/browser/test-results/browser/gathering-study",
+    "actual9responsesByteEqual": true,
+    "nativeDesktopPhoneReplayAndReducedVerified": true,
+    "interceptionOrStateClockStockResponseFixtures": false,
+    "actualImagesReviewed": 3,
+    "pid": 88968,
+    "session": 10254
+  },
+  "protectedGame": {
+    "url": "http://127.0.0.1:4175/",
+    "immutableArtifact": "home-arrangement-2026-11-12/ci-final/build",
+    "all178actualResponsesEqual077CI": true,
+    "all13TableColumnsRowsKeySixChecksumsPreserved": true,
+    "residents": 1,
+    "plots": 0,
+    "apiRestarted": false,
+    "staticRestarted": false,
+    "apiPid": 79862,
+    "apiSession": 16429,
+    "staticPid": 84028,
+    "staticSession": 59248
+  },
+  "automaticMainCI": {
+    "run": 43240666200,
+    "status": "in_progress at closeout; exact candidate gates complete"
+  },
+  "previousMainCI": {
+    "run": 43234270614,
+    "bothSuccessIndependentlyVerified": true
+  },
+  "limits": [
+    "Aster-only candidate; Bea/Casey/Devon unfinished",
+    "No real collection/modal/receipt/runtime animation integration",
+    "Static-sheet review plus native replay lifecycle tests, not proven human motion quality",
+    "Gallery size comparison is not reachable interaction or exact resource count",
+    "Native/touch/text/media emulation; synthetichidden only in automated component test, not physical phone/Safari",
+    "No hosted infrastructure, paid assets, real accounts or original-game changes"
+  ]
+}

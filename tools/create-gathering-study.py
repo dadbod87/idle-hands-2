@@ -14,6 +14,29 @@ def prop(resource):
  return r(3,3,16,17,'#d8c9a7',1,rig.INK,1.2)+r(6,1,16,18,rig.PAPER,1,rig.INK,1.2)+p('M9 6h9M9 9h7M9 12h8',stroke='#8a927c',sw=1)+r(12,13,6,4,'#b7795c',.6,rig.INK,.8)
 def svg(w,h,body,title):return f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}"><title>{escape(title)}</title>{body}</svg>\n'
 def uri(data):return 'data:image/svg+xml;base64,'+base64.b64encode(data.encode()).decode()
+def build_sheet(resource,rig_name='aster'):
+ c=rig.RESIDENTS[rig_name];frames=[];body=''
+ for row,facing in enumerate(FACES):
+  for col,pose in enumerate(POSES):
+   attachment=None
+   if col==0:frame=rig.resident(c,facing,0)
+   else:
+    phase=col-1;hx=44 if facing in ['east','west']else 32+c['width']/2+1;hy=41-phase*5 if facing=='north'else 51-phase*4
+    old=rig.path(f'M{hx-5} {hy-3}l10 1-2 8-9-2Z','#d7b887',rig.INK,1)+rig.path(f'M{hx-2} {hy+1}l5 1',stroke='#8f704e',sw=1)
+    frame=rig.resident(c,facing,0,'finish',phase);assert frame.count(old)==1,'Original hand geometry changed; review rather than silently adapting.'
+    if col==3:
+     sx=35 if facing in ['east','west']else 32+c['width']/2-2
+     old_arm=rig.path(f'M{sx} 37Q{hx+3} 42 {hx} {hy}',stroke=c['sleeve'],sw=6)+rig.ellipse(hx,hy,3.2,3.6,c['skin'],rig.INK,1.2)
+     assert frame.count(old_arm)==1,'Original wrist geometry changed'
+     hx,hy=(43,50)if facing=='north'else(35,49)if facing in ['east','west']else(37,49)
+     new_arm=rig.path(f'M{sx} 37Q{sx+4} 44 {hx} {hy}',stroke=c['sleeve'],sw=6)+rig.ellipse(hx,hy,3.2,3.6,c['skin'],rig.INK,1.2)
+     frame=frame.replace(old_arm,new_arm)
+    held=''if col==1 else f'<g data-held="{resource}" transform="translate({hx-7} {hy-7}) scale(.6)">{prop(resource)}</g>'
+    frame=frame.replace(old,held);attachment={'x':64-hx if facing=='west'else hx,'y':hy,'propScale':.6,'hasProp':col>1}
+   foot_parts=re.split(r'<g transform="translate\(0 -?0\.00\)">',frame,maxsplit=1);assert len(foot_parts)==2,'Missing original torso boundary';foot_vector=foot_parts[0];assert 'stroke-width="5"' in foot_vector
+   frames.append({'footVectorSha256':hashlib.sha256(foot_vector.encode()).hexdigest(),'resource':resource,'facing':facing,'pose':pose,'index':row*4+col,'foot':{'x':32,'y':72},'attachment':attachment})
+   body+=f'<g data-frame="{row*4+col}" transform="translate({col*64} {row*80})">{frame}</g>'
+ return body,frames
 def create(out):
  out=out.resolve()
  if out.is_relative_to(ROOT/'public'):raise ValueError('Study export must remain outside public/runtime.')
@@ -23,26 +46,7 @@ def create(out):
  for resource in RESOURCES:
   save(resource+'-hand-prop.svg',24,24,prop(resource),resource+' candidate hand prop')
   body=''
-  for row,facing in enumerate(FACES):
-   for col,pose in enumerate(POSES):
-    attachment=None
-    if col==0:frame=rig.resident(c,facing,0)
-    else:
-     phase=col-1;hx=44 if facing in ['east','west']else 32+c['width']/2+1;hy=41-phase*5 if facing=='north'else 51-phase*4
-     old=rig.path(f'M{hx-5} {hy-3}l10 1-2 8-9-2Z','#d7b887',rig.INK,1)+rig.path(f'M{hx-2} {hy+1}l5 1',stroke='#8f704e',sw=1)
-     frame=rig.resident(c,facing,0,'finish',phase);assert frame.count(old)==1,'Original hand geometry changed; review rather than silently adapting.'
-     if col==3:
-      sx=35 if facing in ['east','west']else 32+c['width']/2-2
-      old_arm=rig.path(f'M{sx} 37Q{hx+3} 42 {hx} {hy}',stroke=c['sleeve'],sw=6)+rig.ellipse(hx,hy,3.2,3.6,c['skin'],rig.INK,1.2)
-      assert frame.count(old_arm)==1,'Original wrist geometry changed'
-      hx,hy=(43,50)if facing=='north'else(35,49)if facing in ['east','west']else(37,49)
-      new_arm=rig.path(f'M{sx} 37Q{sx+4} 44 {hx} {hy}',stroke=c['sleeve'],sw=6)+rig.ellipse(hx,hy,3.2,3.6,c['skin'],rig.INK,1.2)
-      frame=frame.replace(old_arm,new_arm)
-     held=''if col==1 else f'<g data-held="{resource}" transform="translate({hx-7} {hy-7}) scale(.6)">{prop(resource)}</g>'
-     frame=frame.replace(old,held);attachment={'x':64-hx if facing=='west'else hx,'y':hy,'propScale':.6,'hasProp':col>1}
-    foot_parts=re.split(r'<g transform="translate\(0 -?0\.00\)">',frame,maxsplit=1);assert len(foot_parts)==2,'Missing original torso boundary';foot_vector=foot_parts[0];assert 'stroke-width="5"' in foot_vector
-    frames.append({'footVectorSha256':hashlib.sha256(foot_vector.encode()).hexdigest(),'resource':resource,'facing':facing,'pose':pose,'index':row*4+col,'foot':{'x':32,'y':72},'attachment':attachment})
-    body+=f'<g data-frame="{row*4+col}" transform="translate({col*64} {row*80})">{frame}</g>'
+  body,entries=build_sheet(resource);frames.extend(entries)
   sheets[resource]=body;save('aster-'+resource+'-collection.svg',256,320,body,'Aster '+resource+' collection study; four facings, four poses')
  contact=rig.rect(0,0,808,384,rig.PAPER,0,'none',0)
  for i,resource in enumerate(RESOURCES):contact+=rig.text(20+i*264+128,25,resource.title()+' · Aster',18)+f'<g transform="translate({12+i*264} 44)">{sheets[resource]}</g>'

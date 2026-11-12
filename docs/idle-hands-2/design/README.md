@@ -79,3 +79,6 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 
 
 [Ordinary collection action art study](ORDINARY_GATHERING_STUDY.md): IH2-077candidate-only Aster poses/three handprops and review gallery. No runtime integration or all-rig coverage; exact acceptance in077evidence.
+
+
+[Remaining collection art family](ORDINARY_GATHERING_FAMILY.md): candidate078; preserve Aster pixels, cover the remaining3rigs, then choose a separate observed modal/receipt integration contract.

@@ -1,0 +1,2042 @@
+{
+  "classification": "Four existing rigs candidate art only; no gameplay integration",
+  "method": "Native SVG decode/Canvas192cells; same-rig/facing idle alpha-centroid comparison in y64–79, source foot vectors tested separately.",
+  "raster": [
+    {
+      "rig": "aster",
+      "resource": "scrap",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 1816,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 1842,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 1852,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0.00003123140939148958
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 1788,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 1826,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 1817,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 1854,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008400535402936258
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 1832,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 48,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1580,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1646,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1658,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1580,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1572,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1638,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1650,
+          "minX": 14,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1572,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        }
+      ]
+    },
+    {
+      "rig": "aster",
+      "resource": "timber",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 1816,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 1842,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 1855,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 1788,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 1826,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 1817,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.0009311465065331198
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 1861,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0.0009311465065331198
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 1838,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.0009311465065331198
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1580,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1646,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1667,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1580,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1572,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1638,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1658,
+          "minX": 13,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0.0005846735380809061
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1572,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        }
+      ]
+    },
+    {
+      "rig": "aster",
+      "resource": "supplies",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 1816,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 1842,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 1875,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 52,
+          "maxY": 76,
+          "footCentroidDelta": 0.0005413289313988006
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 1788,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 1826,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 1817,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.00003123140939148958
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 1894,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 52,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 1851,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1580,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1645,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1685,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1580,
+          "minX": 18,
+          "minY": 4,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1572,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1638,
+          "minX": 16,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1677,
+          "minX": 13,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1572,
+          "minX": 17,
+          "minY": 4,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        }
+      ]
+    },
+    {
+      "rig": "bea",
+      "resource": "scrap",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 2164,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 2190,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 2200,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 53,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 2132,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 2166,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 2156,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0.0004910211680239751
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 2197,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 53,
+          "maxY": 76,
+          "footCentroidDelta": 0.0004910211680239751
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 2151,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.0004814474786400715
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1930,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1944,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1931,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1944,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.00011969201650436135
+        }
+      ]
+    },
+    {
+      "rig": "bea",
+      "resource": "timber",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 2164,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 2190,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 2208,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 54,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 2132,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 2166,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 2156,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008400535402936258
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 2203,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 54,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 2155,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1930,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.00029368301131483436
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1953,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1931,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1952,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        }
+      ]
+    },
+    {
+      "rig": "bea",
+      "resource": "supplies",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 2164,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 2190,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 2223,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 54,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 2132,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 2166,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 2156,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008400535402936258
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 2238,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 54,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008400535402936258
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 2161,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008400535402936258
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1930,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1971,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.00029368301131483436
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1931,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1971,
+          "minX": 13,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1895,
+          "minX": 14,
+          "minY": 1,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        }
+      ]
+    },
+    {
+      "rig": "casey",
+      "resource": "scrap",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 1772,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 1800,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 48,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 1810,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 1747,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 1772,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 1765,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 48,
+          "maxY": 76,
+          "footCentroidDelta": 0.00003123140939148958
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 1787,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0.00003123140939148958
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 1789,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 48,
+          "maxY": 76,
+          "footCentroidDelta": 0.0004814474786400715
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1550,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1632,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1644,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1550,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1549,
+          "minX": 17,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1632,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0.00011969201650436135
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1643,
+          "minX": 14,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1549,
+          "minX": 17,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        }
+      ]
+    },
+    {
+      "rig": "casey",
+      "resource": "timber",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 1772,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 1800,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 48,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 1813,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0.00003123140939148958
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 1747,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 1772,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 1765,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 48,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008400535402936258
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 1796,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 1797,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.0004910211680239751
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1550,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1632,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1653,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1550,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1549,
+          "minX": 17,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1632,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1651,
+          "minX": 13,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1549,
+          "minX": 17,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        }
+      ]
+    },
+    {
+      "rig": "casey",
+      "resource": "supplies",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 1772,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 1800,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 48,
+          "maxY": 76,
+          "footCentroidDelta": 0.00003123140939148958
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 1833,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0.00003123140939148958
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 1747,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0.00003123140939148958
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 1772,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 1765,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 48,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008400535402936258
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 1818,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 51,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008400535402936258
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 1812,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008400535402936258
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1550,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1632,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1671,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1550,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 46,
+          "maxY": 76,
+          "footCentroidDelta": 0.00029368301131483436
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1549,
+          "minX": 17,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1632,
+          "minX": 16,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1670,
+          "minX": 13,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1549,
+          "minX": 17,
+          "minY": 6,
+          "maxX": 47,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        }
+      ]
+    },
+    {
+      "rig": "devon",
+      "resource": "scrap",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 1888,
+          "minX": 16,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 1914,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0.0009458439411881178
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 1924,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 52,
+          "maxY": 76,
+          "footCentroidDelta": 0.0009458439411881178
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 1856,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.0009458439411881178
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 1898,
+          "minX": 16,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 1888,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 1927,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 52,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 1892,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.0004910211680239751
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1637,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1686,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1700,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1637,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1637,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1687,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1700,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1637,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        }
+      ]
+    },
+    {
+      "rig": "devon",
+      "resource": "timber",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 1888,
+          "minX": 16,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 1914,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008168547322277145
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 1932,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 53,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008168547322277145
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 1856,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008168547322277145
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 1898,
+          "minX": 16,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 1888,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 1935,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 53,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 1897,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.0010395407476567868
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1637,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1686,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1709,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1637,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.0001196642303050315
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1637,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1687,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1708,
+          "minX": 13,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1637,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        }
+      ]
+    },
+    {
+      "rig": "devon",
+      "resource": "supplies",
+      "width": 256,
+      "height": 320,
+      "frames": [
+        {
+          "row": 0,
+          "col": 0,
+          "count": 1888,
+          "minX": 16,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 1,
+          "count": 1914,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 2,
+          "count": 1947,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 53,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 0,
+          "col": 3,
+          "count": 1856,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 0,
+          "count": 1898,
+          "minX": 16,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 1,
+          "col": 1,
+          "count": 1888,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008400535402936258
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "count": 1967,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 53,
+          "maxY": 76,
+          "footCentroidDelta": 0.0001059344477596369
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "count": 1906,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0.00008400535402936258
+        },
+        {
+          "row": 2,
+          "col": 0,
+          "count": 1637,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "count": 1686,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "count": 1727,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 50,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "count": 1637,
+          "minX": 18,
+          "minY": 5,
+          "maxX": 49,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 0,
+          "count": 1637,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 1,
+          "count": 1687,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 2,
+          "count": 1727,
+          "minX": 13,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        },
+        {
+          "row": 3,
+          "col": 3,
+          "count": 1637,
+          "minX": 14,
+          "minY": 5,
+          "maxX": 45,
+          "maxY": 76,
+          "footCentroidDelta": 0
+        }
+      ]
+    }
+  ],
+  "closedSelectLabels": [
+    {
+      "value": "Bea",
+      "width": 52.515625,
+      "available": 362
+    },
+    {
+      "value": "Timber",
+      "width": 103.859375,
+      "available": 362
+    },
+    {
+      "value": "West",
+      "width": 71.5625,
+      "available": 362
+    }
+  ],
+  "disclosure": "Self-contained file gallery; native pointer/keyboard controls and viewport/text/media emulation. Hidden cancellation uses explicit synthetic document.hidden. No game state, production time, position, inventory, API response or identity fixture.",
+  "errors": [],
+  "network": []
+}

@@ -795,7 +795,7 @@
     }
   ],
   "sources": {
-    "tools/create-gathering-study.py": "bed01485705b404f94e84815c79942e7fc2bbfcd6303cabe09bb932177f7d8c1",
+    "tools/create-gathering-study.py": "3dcd1dc70076df624fa0827bb22a2031d06e22522abd840800f39b60aac378c6",
     "tools/create-town-variety.py": "00ba74f1551f0bd55d7d630e6489c7bed4315236da0fb94047d9e175e45f6040",
     "public/art/depots/depot-scrap.svg": "154806f1bcac576cc9e1837e1cbf18616974c411a4cdaac0d314c3ad2f515156",
     "public/art/depots/depot-timber.svg": "e60fc4a7ffcf3b217e684056228ff9fe2e76e18aa54594659b42e190f6f1adc6",

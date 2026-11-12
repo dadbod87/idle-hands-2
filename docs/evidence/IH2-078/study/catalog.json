@@ -1,0 +1,3289 @@
+{
+  "classification": "Candidate four-rig art family only; not loaded by playable game",
+  "authoring": "Project-original hand props, original resident identities and base arm geometry; authored recovery tuck. No downloaded or paid media. Existing depots are scale references.",
+  "generator": "tools/create-gathering-family.py",
+  "coveredRigs": [
+    "aster",
+    "bea",
+    "casey",
+    "devon"
+  ],
+  "unfinishedRigs": [],
+  "frameWidth": 64,
+  "frameHeight": 80,
+  "frameColumns": 4,
+  "frameRows": 4,
+  "displayScale": 0.9,
+  "foot": {
+    "x": 32,
+    "y": 72
+  },
+  "facings": [
+    "south",
+    "north",
+    "east",
+    "west"
+  ],
+  "poses": [
+    "idle",
+    "reach",
+    "contact",
+    "recovery"
+  ],
+  "resources": [
+    "scrap",
+    "timber",
+    "supplies"
+  ],
+  "candidateReplayMs": 420,
+  "reducedMotion": "same-facing idle, no prop or timer",
+  "frames": [
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 45.5,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "aster",
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 48.0,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "bea",
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44.5,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "casey",
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "scrap",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "scrap",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "scrap",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "scrap",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "timber",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "timber",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "timber",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "timber",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "idle",
+      "index": 0,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "reach",
+      "index": 1,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "contact",
+      "index": 2,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "supplies",
+      "facing": "south",
+      "pose": "recovery",
+      "index": 3,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 37,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "idle",
+      "index": 4,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "reach",
+      "index": 5,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 41,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "contact",
+      "index": 6,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 47.0,
+        "y": 36,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "resource": "supplies",
+      "facing": "north",
+      "pose": "recovery",
+      "index": 7,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 43,
+        "y": 50,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "idle",
+      "index": 8,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "reach",
+      "index": 9,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "contact",
+      "index": 10,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 44,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "resource": "supplies",
+      "facing": "east",
+      "pose": "recovery",
+      "index": 11,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 35,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "idle",
+      "index": 12,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "reach",
+      "index": 13,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 51,
+        "propScale": 0.6,
+        "hasProp": false
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "contact",
+      "index": 14,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 20,
+        "y": 47,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    },
+    {
+      "rig": "devon",
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "resource": "supplies",
+      "facing": "west",
+      "pose": "recovery",
+      "index": 15,
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "attachment": {
+        "x": 29,
+        "y": 49,
+        "propScale": 0.6,
+        "hasProp": true
+      }
+    }
+  ],
+  "sources": {
+    "tools/create-gathering-family.py": "8ed18b2a7d1c1651d4bba5446c427fb735c6a4b978662d628f969acf53dbc95e",
+    "tools/gathering-family-template.html": "f9956600f61457905bf8b78f2cc0cef99a21807c3f2a1cb1f00676cfded29a34",
+    "tools/create-gathering-study.py": "3dcd1dc70076df624fa0827bb22a2031d06e22522abd840800f39b60aac378c6",
+    "tools/create-town-variety.py": "00ba74f1551f0bd55d7d630e6489c7bed4315236da0fb94047d9e175e45f6040",
+    "public/art/depots/depot-scrap.svg": "154806f1bcac576cc9e1837e1cbf18616974c411a4cdaac0d314c3ad2f515156",
+    "public/art/depots/depot-timber.svg": "e60fc4a7ffcf3b217e684056228ff9fe2e76e18aa54594659b42e190f6f1adc6",
+    "public/art/depots/depot-supplies.svg": "176b051f48cf27aa533748711942cf172c4644cc6cd0b1a5405abd772227939b"
+  },
+  "files": {
+    "aster-contact-sheet.svg": "59c86dde182252720d958557be625d536cf0c6ac0e5dff9e1711bafaf8d83642",
+    "aster-scrap-collection.svg": "81966e9b9048077daf3926b7bccd0e8a1bedc687f90b2daf0c23a97d86c78dfe",
+    "aster-supplies-collection.svg": "48fb0095a00d44072f42a8761b7e945dbe345de1fd37a12bb05799b83c69291c",
+    "aster-timber-collection.svg": "5142a7fa3736f60357b9a807ce57f630746dbed792f8004d37420b6d640402e2",
+    "bea-contact-sheet.svg": "b76c6d1ecdbd49a31880052f31801360751e0f7d007d614d834e7cfa15f0a518",
+    "bea-scrap-collection.svg": "dbb97234a2f386ade848ddd52823660c615a054f9fc146e71c764a6372d8f664",
+    "bea-supplies-collection.svg": "e7d7418273184f284f289dcfe2e9c0a4055f5e7b44e05936c0d8b9ea46362cbd",
+    "bea-timber-collection.svg": "2cc68d1cba6cdf26fefb8a11423238ecec1fdf256f2f1c0f436d1aad37d408d3",
+    "casey-contact-sheet.svg": "3380636ce339217acef256fede2552fc22ac10ef82c0a5f11e4946ea5e619349",
+    "casey-scrap-collection.svg": "db42bb74f8021ea25986055f46a5ac7e11201a2381fc570785b49173bfabae6d",
+    "casey-supplies-collection.svg": "2dbae0b4e229a39ac7e06bd7c6f2b13ceccddc0c6f65452532f21d6156fcd5a8",
+    "casey-timber-collection.svg": "000e6523543281469ee541bc44820c270452b87cf499e889b812d2903a34dde5",
+    "devon-contact-sheet.svg": "cb4ba9abcb0130c9660c71ede2720712af40f136fcc5f7d4fc3787fe8e2dd84c",
+    "devon-scrap-collection.svg": "cef832a7ddf478a49e907e95d2ed51c376bca256d33f8feac8b8f3f57d5dbe6e",
+    "devon-supplies-collection.svg": "873b60c47f2afc2ca0d034a565600ffc9b90040535e912b84b2fdc6b917c384d",
+    "devon-timber-collection.svg": "543edaf0bf26a6ebd2f5c4952e6accf0c462494a304dc2a333950ad94bfd6d53",
+    "index.html": "3d2c6b60810fd380b839bdc4fe4261fe932cae41d165ccd61cfc9b0322bdd55e",
+    "scrap-hand-prop.svg": "28e0a95605a805bba6ababe06dfbae7433612d4bff873cec6db9ca2e508f98ea",
+    "supplies-hand-prop.svg": "8840b5ce7388874ccd262c57aa52b8009544de34a13ad4da7d34009bf954051a",
+    "timber-hand-prop.svg": "be56de5d84eb688ac3beed40bc00883425ec78d0202e2f4f1dd15b3536e18fa9"
+  }
+}

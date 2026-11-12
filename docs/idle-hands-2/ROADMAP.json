@@ -817,7 +817,7 @@
     {
       "id": "IH2-077",
       "title": "Ordinary collection action art study",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/ordinary-gathering-art-study",
       "depends_on": [
         "IH2-076"
@@ -834,7 +834,32 @@
       ],
       "evidence": [
         "docs/idle-hands-2/design/ORDINARY_GATHERING_STUDY.md",
-        "docs/evidence/IH2-077/REPORT.md"
+        "docs/evidence/IH2-077/REPORT.md",
+        "docs/evidence/IH2-077/source-closeout.json"
+      ]
+    },
+    {
+      "id": "IH2-078",
+      "title": "Complete the ordinary collection art family",
+      "status": "in_progress",
+      "owner_branch": "feat/ordinary-gathering-family",
+      "depends_on": [
+        "IH2-077"
+      ],
+      "goal": "Extend the proven candidate collection study to the remaining three existing rigs without changing playable behavior or the accepted Aster pixels.",
+      "acceptance": [
+        "Parameterize reusable study authoring for Bea/Casey/Devon;192framecells total across4rigs/4facings/4poses/3resources, not192unique drawings. Retain original rig silhouettes/palettes and explicit mirrored attachments/foot32,72.",
+        "Keep accepted Aster SVG/HTML pixels/bytes; any required provenance-only catalog source-hash refresh must be explicit. All178game files/172runtimeart and server/domain unchanged. No public export or animation integration.",
+        "Actual raster/frame/foot-vector/alpha-centroid and native phone-world-scale review for every rig/resource/facing; scarf/apron/cap/face layering and distinct recovery. Reduced/hidden/replay cancellation and exact provenance/reproduction.",
+        "Full repository/exact-headCI/actual study+game artifacts/images/matching-tree gates; preserve protected preview/key/tables. Actual modal receipt integration remains a separate later contract."
+      ],
+      "exclusions": [
+        "No new clothing/equipment/economy/tools/resources, gameplay timer/input/camera/modal changes, server/protocol/migration, real accounts/hosting/expense or original-game changes."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/ORDINARY_GATHERING_FAMILY.md",
+        "docs/evidence/IH2-078/PLAN.md",
+        "docs/evidence/IH2-078/REPORT.md"
       ]
     },
     {
@@ -855,7 +880,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-077 authors a collection art study outside runtime. No hosting/invitations/public release."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-078 completes candidate collection art before runtime integration; no hosting/invitations/public release."
     },
     {
       "id": "IH2-080",

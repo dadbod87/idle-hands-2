@@ -1,0 +1,25 @@
+# IH2-078 — ordinary collection art family
+
+Candidate-only four-character collection art, extending accepted077 without changing the playable game. [Contract](../../idle-hands-2/design/ORDINARY_GATHERING_FAMILY.md), [gallery](study/index.html), [catalog](study/catalog.json), [Terra review](TERRA_REVIEW.md), [payload comparison](payload-source.json). Source acceptance and actual uploaded artifact gates are pending at this checkpoint.
+
+## What changed
+
+Extracted one reusable `build_sheet(resource, rig_name)` from the guarded077 generator. The original resident generator is unchanged. Bea, Casey and Devon use their original body, clothing, palettes and feet; all four characters share the accepted three resource props and authored contact-to-wrist/hip recovery. Twelve256×320transparent sheets contain192frame cells:4characters×3materials×4facings×4poses. Repeated idle/reach cells are coverage, not192unique illustrations. Same-character/facing foot vectors retain exact hashes and32,72anchors at0.9world scale. West attachments mirror explicitly.
+
+The [accepted Aster baseline](aster-baseline.json) records all eight077SVG/HTML hashes and its original source hash. Every one of those eight assets remains byte-identical. The077catalog refresh changes only the `tools/create-gathering-study.py` source hash because of the reusable-function refactor; no asset hash or historical frozen077review artifact changes. Aster’s new family sheets and contact sheet match077exactly (contact-sheet filename is namespaced).
+
+A separate self-contained gallery uses short native character/material/facing labels, wrapping flavor, preview-first phone layout and optional full sheets. It preserves bounded420ms replay, user/media static idle and hidden cancellation. A generation token cancels old selection timers before a new character/material/facing can be rendered. No network/API, game state, production clock, inventory, identity or resource fixture is needed to view it. Existing collection remains modal; actual confirmed once-only animation/receipt visibility belongs to a later task.
+
+## Verification and review
+
+Local269domain/SQL/HTTP checks pass, zero skips,50.877s. Focused new browser case passes10.9s end-to-end (7.9s test). Strict client/server/design build, design checker, plan/tracker10tests, pinned40and diff pass. Full82browser and final exact-head CI/artifact/source gates are pending.
+
+Native Canvas decodes all192actual cells: ink remains strictly inside64×80bounds and the alpha centroid of the y64–79foot band remains within0.1pxof same-character/facing idle. Exact source foot hashes are separate from tolerant rasterization. All48character/material/facing selections use native DOM controls. Tests cover full replay, cancelled character switch,44pxcontrols, phone/short doubled-text overflow and closed-select label measurements. The hidden-page test explicitly synthesizes `document.hidden`; viewport/text/media emulation is not physical-device validation.
+
+Terra6.1independently reviewed all four native sheets, world-scale phone/short images and exercised the frozen gallery through keyboard and touch emulation. No blocker: original apron/scarf/cap/head layers remain recognizable, recovery differs from contact, and changing character/material/facing cancels old timers. Tiny prop grip/contrast is a future refinement, particularly light supplies against Bea’s apron. Still review plus bounded replay/state checks do not establish human-perceived motion continuity, physical-phone/Safari behavior or full accessibility.
+
+The separate21-file gallery totals2,302,408raw bytes /106,345sum of per-file gzip bytes. Self-contained embedded art intentionally duplicates SVG data; this is not a runtime-loading design or measured performance improvement. All178game build files remain byte-identical accepted077; all172runtime-art files and server/domain/protocol/migrations remain unchanged.
+
+## Protected surfaces and limits
+
+4175continues to serve immutable076game bytes (identical077); API4186protocol4is unchanged. Accepted Aster-only49529gallery is frozen. The new four-character review remains outside runtime/public and does not grant resources, alter progress or demonstrate a reachable collection interaction. Protected13table/key/six-migration preservation and actual final source/artifact checks will be recorded at closeout. No original-game, hosted, billed-service, real-account or public-release change.

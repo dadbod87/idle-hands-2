@@ -1,6 +1,8 @@
-# IH2-082 — workflow permission needed to finish release
+# IH2-082 — workflow permission granted; complete isolated CI before release
 
 November12,2026. Runtime notebook is implemented and locally verified, but NOT merged or published. Current branch feat/activity-notebook. Prepared local5846abba8ca206e1cdd05b22cfb802e0448ff1cc adds isolated browser shards; remote PR30 remains d2d29b94a77b87abb00e34b8ee322ef9a414246e. Push rejected by GitHub: OAuth login has gist/read:org/repo, lacks workflow scope. No environment-provided token. User has been asked to run `gh auth refresh -h github.com -s workflow`, approve GitHub and reply done. Do not bypass this permission restriction, expose/copy credentials or merge around the required checks. Preserve the local prepared workflow and this handoff.
+
+User completed the official GitHub authorization flow in this session; same dadbod87keyring login now reports workflow scope. No credential/code was exposed. Push and final isolated CI can proceed; do not treat permission itself as test success. Earlier permission-denial text above is historical.
 
 ## Concrete work and evidence
 

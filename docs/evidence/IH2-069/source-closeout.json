@@ -1,0 +1,69 @@
+{
+  "task": "IH2-069",
+  "status": "complete",
+  "classification": "Private source/design accepted; standalone fictional study, no game-runtime or hosted release",
+  "candidate": "cecb8c7505f21eac351266c396d6802b05aff6f5",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/19",
+  "merge": "15fc3404c6972b1b1803d23709317c781b3fc9ff",
+  "mergedAt": "2026-11-12T05:16:14Z",
+  "candidateTree": "68ad4337b8c5f14484b1a823bd65f825888101da",
+  "mergeTree": "68ad4337b8c5f14484b1a823bd65f825888101da",
+  "cleanMainEqualsRemoteVerifiedBeforeNextBranch": true,
+  "ci": {
+    "run": 43158628633,
+    "exactHead": true,
+    "domainJob": 130984323661,
+    "browserJob": 130984323898,
+    "both": "SUCCESS",
+    "domainPassed": 224,
+    "domainSkipped": 0,
+    "domainDurationMs": 67982.840501,
+    "browserPassed": 68,
+    "browserReportedMinutes": 12.5,
+    "browserBudgetMinutesUnchanged": 20,
+    "existingPopulatedPostgresRestart": true,
+    "automaticMainStatus": "pending separately"
+  },
+  "actualArtifacts": {
+    "buildFiles": 159,
+    "allBytesEqualAccepted068": true,
+    "allSevenCommissionImagesReviewed": true,
+    "representativeActualGameImagesReviewed": [
+      "clarity-phone-first-actions.png",
+      "desktop-square.png",
+      "short-workshop-furnished.png"
+    ],
+    "directory": "../idle-hands-2-artifacts/commission-design-2026-11-12/ci-final/",
+    "selectedImages": "ci-screens/"
+  },
+  "local": {
+    "domainPassed": 224,
+    "skipped": 0,
+    "browserPassed": 68,
+    "browserMinutes": 8.6,
+    "buildDesignPlanPinnedWhitespace": true,
+    "analyticalCohorts": 128,
+    "originalCandidateVectors": 14,
+    "sixOrderCaptionsAndKeyboardFocusChecked": true
+  },
+  "preview": {
+    "gameUnchanged": "http://127.0.0.1:4175/",
+    "apiProcessUnchanged": 22288,
+    "standaloneDesign": "http://127.0.0.1:49523/",
+    "immutableConceptDirectory": "../idle-hands-2-artifacts/commission-design-2026-11-12/accepted-concept",
+    "staticSession": 40786,
+    "actualResponsesByteEqual": 18,
+    "actualNativeChromeDesktopPhoneUi": true,
+    "interception": false,
+    "conceptStates": "Fictional in-memory examples only; no API or localStorage writes",
+    "gameOrPracticeWrites": false
+  },
+  "limits": [
+    "Design model abstracts movement/read time and is not human enjoyment evidence",
+    "No new runtime quest, consumption, item ownership, messaging or authority implemented",
+    "Actual existing-game restart is not future parcel persistence proof",
+    "Emulated Chrome/Chromium, not physical phones/Safari",
+    "No original-game, cloud, real-account, invitation or cost changes"
+  ],
+  "nextTask": "IH2-071"
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-11",
+  "updated": "2026-11-12",
   "authority": "docs/idle-hands-2/README.md",
   "tasks": [
     {
@@ -613,7 +613,7 @@
     {
       "id": "IH2-069",
       "title": "First neighborhood commission and useful-return design",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-068"
       ],
@@ -634,9 +634,35 @@
         "docs/idle-hands-2/design/NEIGHBORHOOD_COMMISSION.md",
         "docs/evidence/IH2-069/REPORT.md",
         "docs/evidence/IH2-069/commission-model.json",
-        "docs/evidence/IH2-069/concept/art/catalog.json"
+        "docs/evidence/IH2-069/concept/art/catalog.json",
+        "docs/evidence/IH2-069/source-closeout.json"
       ],
       "owner_branch": "feat/neighborhood-commission-design"
+    },
+    {
+      "id": "IH2-071",
+      "title": "Playable Pip commission and unique letterbox",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-069"
+      ],
+      "goal": "Integrate the accepted bounded NPC delivery chapter, free journal card and optional unique physical letterbox without shortening or replacing existing progression.",
+      "acceptance": [
+        "Strict private quest/pause/unique delivery order/card-plan and0or1physical ownership; explicit 2pine1radish debit with new conserved commission sinks; preserve all old jobs, counters, stock, property, receipts and weekly-separated creativity.",
+        "Recognized exact-old saves migrate safely; cached old local writers release the same lock/key without overwriting newer data, unsupported/corrupt raw saves stay read-only, and old HTTP/EventSource clients are refused before mutation.",
+        "Actual recipient/Pip proximity, UUID/revision transactions, atomic same-request lost-response retry and concurrent debit/handover/placement tests. Public register projects owner/name/motif only by explicit opt-in; owner-home placed motif remains visible to visitors without leaking private inventory/order.",
+        "Original promoted art/provenance/anchors and honest bounded handover/reveal treatment; direct/Places/keyboard/touch route, stable44px actions, short200%review/cancel and existing NPC services retained. Correct stale Jun/Pip availability copy and link actual garden/pine resources.",
+        "All six orders, wrong recipient/free pause/full bag/both busy jobs/no helper/no house/already-open projects, one copy across workshop/home, visitor denial/reload and real service restart/restore; fresh ungranted paid-craft visit separate from disclosed elapsed fixtures.",
+        "Required repository checks, both exact-final-headCI jobs, actual uploaded build/images, matching merge tree/source closeout; update local preview only after preservation backups. No hosted or original-game release."
+      ],
+      "exclusions": [
+        "No human messaging/inbox/trade, general finish shop, new project/helper threshold, regional map/combat, cost/timer reduction, real accounts/cloud/provisioning/expense."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/NEIGHBORHOOD_COMMISSION.md",
+        "docs/idle-hands-2/handoffs/2026-11-12-playable-commission.md"
+      ],
+      "owner_branch": "feat/neighborhood-commission"
     },
     {
       "id": "IH2-070",

@@ -1,0 +1,15 @@
+# IH2-071 — playable Pip commission
+
+November12,2026. Active feat/neighborhood-commission from accepted069 main15fc3404c6972b1b1803d23709317c781b3fc9ff/PR19. Exactcecb8c7CI43158628633 bothSUCCESS224/68; actual159buildfiles andsevencommission/representativegameimages reviewed, equal tree68ad4337/cleanmain=remoteverified.069complete; [closeout](../../evidence/IH2-069/source-closeout.json). AutomaticmainCI pending separately.
+
+Read AGENTS/required docs and tracker; design authority is NEIGHBORHOOD_COMMISSION. One writable checkout. Scope: pip-post-v1 explicit three-NPC route/freecard-plan, optional once-only2pine1radish uniqueletterbox, three free motif choices, one placement and opt-in private/public projection. No player mail/chat/trade, new timer, broad economy or hosted service. Preserve original jobs, rates, capacities, property, receipts and all NPC services. Correct stale Jun/Pip guidance only where factual.
+
+Implement strict versioned commission/root/garden/carpentry ledgers and exact-old migration, SAME existinglocalstorage key/commonwriterlock, cached-oldcompiled refusal and HTTP/EventSource schema bump. New sinks must conserve2pine/1radish/0flower per physicalbox; nofakehamper/easel/request. Make requires explicit reviewedrevision/UUID and proximity; transaction/replay/rollback/allocation races preserve0or1owned copies. Homevisitor art receives only the placedowned motif even when galleryunpublished; rentals and private route remain private. Publication owner/name/motif only, no secondprop. No per-frame APIwrites.
+
+Promote original069vectors with reproducible runtime catalog/provenance and authored80x112/40,106anchor. Candidateposes do not prove actoractionanimation; select honest bounded reduced-motion-compatible reveal/idle treatment, never settlement fromanimation. Directbody/E/Places/guided travel and oldNPCservices retained. Sharedpending/identity/ACK locks must include newpanel.
+
+Tests: allsixorders/wrongrecipient/pause/resume/fullbags/bothjobs/nohelper/nohouse/alreadyopen; exact migration/rawcorrupt preservation/actualoldwriter; realHTTPproximity/UUID/concurrentpayment/onecopyallocation/visitorprivacy/restartrestore. Freshungranted paidflow requires actual5mradish; disclose separate elapsed valid fixtures for boundedCI. Required fullchecks/both exactheadCI/actualartifacts/images/merge/sourcecloseout before acceptance; preserve unchanged20minbrowserbudget and all regression assertions.
+
+Accepted4175static/session69766 immutable068artifact and4186API/session95621/PID22288 remain unchanged until fullacceptance/backup-preservation. Never seed or overwrite existingfictionalpractice/key. Mutable4178candidate only. Accepted designstudy49523/session40786 is frozen18files in externalaccepted-concept, not game/API.070hosting stillblocked concreteowneraccess/costgate.
+
+Ownerovernightinstruction continues: successive boundedtasks until~10%weeklyremaining orNov12 07:00Pacific(15:00UTC). Latestactualcheck88%remaining05:13UTC. No resets/expenses/currentgame/realaccounts. Rootownsimplementation; existingreviewersread-only. No runtimechangesyet at this checkpoint.

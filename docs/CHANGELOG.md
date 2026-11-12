@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-069 source/design accepted: PR19/merge15fc340, exactcecb8c7CI43158628633bothSUCCESS224/68, actualunchanged159gamefiles/sevenconceptimages reviewed, matchingtree/cleanmain. Immutable18filestudy49523reverified;4175/API/practice unchanged.071playablecommission startsnext; no hosted/currentgamechange.
+
 2026-11-12 — IH2-069 candidate design: optional addressed Pip commission, free private order-card/plan and proposed2pine/1radish uniqueletterbox/noextra timer.128analyticalcohorts expose conditional easel/hamper/request costs;14originalvectors/threebase-preservingmotifs and standalone fictional phone study. All224local checks/zero skips and68browser8.6m pass; actual18studyresponses/desktop+phone UI and unchanged159gamebuildfiles verified. Exact-headCI/artifact/source gates pending. No runtime quest, price, ownership, messaging or hosting change. [Design](idle-hands-2/design/NEIGHBORHOOD_COMMISSION.md).
 
 2026-11-12 — IH2-068 source/local preview accepted: PR18/mergec0565b5, exact109d9a8CI43149639492bothSUCCESS217/65; actual159files/sixCIimages reviewed, matchingtree/cleanmain. Client-only4175update passed actual responses/native desktop+phone; all13canonicalpractice tables/one resident/key/migrations preserved and4186API unchanged.069commission design starts next. No hosted/current-game/real-account change. [Closeout](evidence/IH2-068/source-closeout.json).

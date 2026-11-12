@@ -1,0 +1,10 @@
+{
+  "classification": "Accepted082 versus081; actual final CI client bytes equal reviewed local",
+  "oldFiles": 191,
+  "newFiles": 191,
+  "all185OldArtFilesUnchanged": true,
+  "rawDelta": 7720,
+  "gzipEachFileDelta": 2100,
+  "newAssets": 0,
+  "sourceScope": "Presentation-only game projection, DOM notebook, existing WorkshopUI ticker; no server/schema/domain-rule changes or new poll/timer"
+}

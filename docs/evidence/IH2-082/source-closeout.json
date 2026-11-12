@@ -1,0 +1,134 @@
+{
+  "task": "IH2-082",
+  "classification": "Accepted private source and actual local preview; no hosted or original-game release",
+  "pullRequest": "https://github.com/dadbod87/idle-hands-2/pull/30",
+  "candidate": "c3966cf4a4bb016dab8c12cb379ddbfda5ab4144",
+  "candidateTree": "f2bd84481373c3b1abb25da2770ed545b75a7021",
+  "merge": "7d6fc48e2ab2a822dab1084d05a6997cdbdb10c8",
+  "mergeTree": "f2bd84481373c3b1abb25da2770ed545b75a7021",
+  "matchingTreeAndCleanMainEqualsRemoteVerifiedBeforeCloseout": true,
+  "ci": {
+    "run": 43293385446,
+    "attempt": 1,
+    "exactHeadAllFourJobsSuccess": true,
+    "jobs": [
+      {
+        "id": 131445174794,
+        "name": "browser-shard (1/2)",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T19:45:21Z",
+        "completedAt": "2026-11-12T19:52:33Z"
+      },
+      {
+        "id": 131445175097,
+        "name": "browser-shard (2/2)",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T19:45:22Z",
+        "completedAt": "2026-11-12T19:58:20Z"
+      },
+      {
+        "id": 131445175298,
+        "name": "domain-build-plan",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T19:45:22Z",
+        "completedAt": "2026-11-12T19:47:38Z"
+      },
+      {
+        "id": 131452850592,
+        "name": "browser-playtest",
+        "conclusion": "success",
+        "startedAt": "2026-11-12T19:58:23Z",
+        "completedAt": "2026-11-12T19:58:26Z"
+      }
+    ],
+    "domainCount": 285,
+    "domainSkipped": 0,
+    "domainDurationMs": 88897.40539,
+    "browserCount": 88,
+    "browserShards": [
+      {
+        "count": 44,
+        "minutes": 6.2
+      },
+      {
+        "count": 44,
+        "minutes": 11.6
+      }
+    ],
+    "disjointUnionExactlyFullSuite": true,
+    "oneWorkerPerIsolatedRunner": true,
+    "perBrowserRunnerDeadlineMinutes": 20,
+    "actualArtifacts": [
+      "sequel-client-build",
+      "sequel-server-evidence",
+      "sequel-browser-evidence-1",
+      "sequel-browser-evidence-2"
+    ],
+    "all191BuildBytesEqualReviewedLocal": true,
+    "all185OldArtUnchanged": true,
+    "sixUploadedNotebookImagesInspected": true,
+    "populatedDatabaseRestartProofInspected": true
+  },
+  "local": {
+    "domainCount": 285,
+    "domainSkipped": 0,
+    "domainDurationMs": 52052,
+    "browserCount": 88,
+    "browserMinutes": 10.9,
+    "strictBuildDesignPlan10Pinned40DiffPass": true,
+    "terraModel": "gpt-6.1-terra",
+    "terraThreeBoundedReviews": "Initial doubled-text overflow corrected; final frozen actual runtime desktop/mobile/focus/held-target review found no remaining blocker. Final Linux CI independently passes exact held-target equality."
+  },
+  "preview": {
+    "url": "http://127.0.0.1:4175/",
+    "sharedUrl": "http://127.0.0.1:4175/?town=1",
+    "immutableClientArtifact": "activity-notebook-2026-11-12/ci-final/build",
+    "all191ResponsesEqualCI": true,
+    "actualNativeDesktopAndPhoneFiveSecondCraftRoutesReloadVerified": true,
+    "actualScreensReviewed": 5,
+    "apiPid": 83080,
+    "apiSession": 34638,
+    "apiRestarted": false,
+    "protocol": 4,
+    "staticPid": 47125,
+    "staticSession": 22802,
+    "all13PracticeTableColumnsRowsKeySixChecksumsPreserved": true,
+    "fictionalResidents": 1,
+    "plots": 0,
+    "oldStudiesPorts": [
+      49529,
+      49530,
+      49534
+    ],
+    "all9And21And14ResponsesReverifiedUnchanged": true,
+    "temporaryCandidateAndStagingServersStopped": true,
+    "previous081ClientAndServerAndPrivateBackupRetained": true
+  },
+  "automaticMainCI": {
+    "run": 43295868188,
+    "status": "in progress when closing began; separate from passed exact candidate gates"
+  },
+  "superseded": [
+    "Initial local85pass/3fail caught accessible-name mismatch; corrected visible-name prefix and added explicit containment assertion.",
+    "9da9ea8 CI43281463342 caught1px Linux glyph-baseline shift and later deadline; corrected permanently reserved absolute glyph gutter.",
+    "d2d29b9 CI43286288380 passed87completed cases including glyph fix but20mdeadline cut final case; split unchanged88case suite over two isolated runners retaining20mper-runner limits and all real-time assertions."
+  ],
+  "fixtureDisclosure": [
+    "Focused local readiness cases use declared valid gathered-material/workshop-spawn and elapsed garden saves.",
+    "Actual4175 native desktop/phone flow uses ordinary three collections and UI-created real five-second craft; no state/position/clock/interception fixtures or shared identity.",
+    "Shared final-artifact drill uses disposable ih2_browser with ordinary-zero Mira/Sol and declared existing Aster48kit/2planter fixture. All three free inspectors, identity teardown, zero command requests; no interception or protected writes.",
+    "Long-status test uses fresh valid local full99kit/ready12hjob fixture and native Tab/End; scrollTop89,scrollHeight179,clientHeight90.",
+    "CI database recovery uses declared comparison time and actual isolated container restart; protected database container never restarted."
+  ],
+  "limits": [
+    "Loopback preview only; no public hosting or remote-phone promise.",
+    "Chrome/Chromium viewport, touch and text emulation; no physical-phone, Safari, full accessibility or perceived enjoyment certification.",
+    "At200% text the panel and long status deliberately scroll; screenshots show visible portions.",
+    "No economy, rate, timer, progress, backend, schema, protocol, migration, asset, dependency, current-game, account, cloud or expense changes."
+  ],
+  "usage": {
+    "freshWeeklyUsedPercent": 31,
+    "remainingPercent": 69,
+    "noResetUsed": true
+  }
+}

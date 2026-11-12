@@ -917,7 +917,7 @@
     {
       "id": "IH2-082",
       "title": "Useful returning-player activity notebook",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/activity-notebook",
       "depends_on": [
         "IH2-081"
@@ -934,7 +934,9 @@
         "No new quest/reward/economy/recipes/resources/timers, backend/schema/protocol/migration, paid claim from notebook, real accounts/current game/cloud/expense/public launch."
       ],
       "evidence": [
-        "docs/evidence/IH2-082/PLAN.md"
+        "docs/evidence/IH2-082/PLAN.md",
+        "docs/evidence/IH2-082/REPORT.md",
+        "docs/evidence/IH2-082/source-closeout.json"
       ]
     },
     {

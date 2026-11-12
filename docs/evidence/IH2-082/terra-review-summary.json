@@ -1,0 +1,16 @@
+{
+  "model": "gpt-6.1-terra",
+  "classification": "Independent bounded actual frozen local runtime review; no source edits or protected shared identity",
+  "v1": "Real320/200% fixed-height action label overlap; rejected screenshots retained",
+  "v2": "No remaining P1/P2; all3labels inside102pxouterboxes, six status/action focus targets clear sticky header, no horizontal overflow/page errors, local touch routes correct",
+  "v2Screens": "review-v2/terra-review",
+  "note": "Existing axe found name mismatch and root corrected it; Linux CI later captured1px inline-glyph baseline shift and timed out. Exact assertion retained; absolute reserved gutter plus explicit heading line height fixes layout by construction, with decisive final Linux CI still required. Failfast only changes failed CI runs; success requires all88cases under the unchanged20m deadline.",
+  "limits": [
+    "Viewport/text/touch emulation, not physical phone",
+    "Valid local full-radish fixture; status fitted its region, so Terra did not independently exercise overflow End scroll",
+    "No full accessibility or perceived enjoyment certification"
+  ],
+  "browsersClosedAndSlotReleased": true,
+  "v3": "No bounded visual/focus blocker after fixed heading gutter. Actual five-second held completion x521,y296.484375,398x51 unchanged; scroll0/focus kept, output uncollected. All three labels fit at phone/short200; local inspector routes correct.",
+  "v3Screens": "review-v3/terra-review"
+}

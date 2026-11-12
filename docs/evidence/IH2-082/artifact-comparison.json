@@ -1,0 +1,44 @@
+{
+  "classification": "Actual downloaded final CI build; all six uploaded images and populated recovery evidence inspected",
+  "gameFiles": 191,
+  "allBytesEqualReviewedLocal": true,
+  "oldArtFiles": 185,
+  "allOldArtByteIdentical": true,
+  "selectedImages": [
+    {
+      "file": "notebook-desktop-ready.png",
+      "sha256": "9f6172687283b6c08fa509b47ca1fa26ffcec4f546ac6df8b7ba197cad84c4f9",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "notebook-shared-fresh.png",
+      "sha256": "d95784f9765de770e4049f56239da1eb7533bb4bd62f4a088773e7e914b3daa3",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "notebook-phone320.png",
+      "sha256": "44652b2ace7510f6ef7a20cb74c355af3c2ee1dddda38232ae193b21d561563b",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "notebook-phone360.png",
+      "sha256": "d72d10b325c5695277127339648e5ad1808cbe7a76c67e1b4ecd30f0a9860278",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "notebook-short200.png",
+      "sha256": "e77c4aa2d025aa7b37ae14ae15e64209496c49d351cf9d07ee3aa0eb575505fa",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "notebook-phone200.png",
+      "sha256": "5c0ef989b63e63038de2117540902a407790f4f809b2e6a5a4b59a99a3ebe117",
+      "actualUploadedCIImageReviewed": true
+    }
+  ],
+  "sharedFreeInspectorCommandRequests": 0,
+  "realFiveSecondJobUnclaimed": true,
+  "fourResponsiveLayouts": true,
+  "htmlSha256": "fb46925ccde471f59c9dd1f1e85fcfa749efd975e4f4f50aa82a2dfa2d801672",
+  "populatedRestartEvidenceReviewed": true
+}

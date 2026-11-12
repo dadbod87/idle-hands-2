@@ -1,5 +1,7 @@
 # Idle Hands 2 — current state
 
+IH2-082 accepted: PR30/merge `7d6fc48`, exact `c3966cf` CI43293385446 all four jobs SUCCESS (285 system checks, zero skips;88 browser cases across disjoint44+44 shards). The actual191-file preview4175 now includes the activity notebook; all13 practice tables/key/checksums/API and historical studies are preserved. Terra6.1 desktop/mobile review and native final-artifact checks passed. [Closeout](evidence/IH2-082/source-closeout.json). Current handoff is authoritative; candidate notes below are historical.
+
 IH2-082 working activity notebook connects current bench/rack/crop readiness and safe inspector routes inside Bag & journal.285domain/zero skips and focused3browser pass; Terra identified/corrected a phone200 label overflow, independent recheck/full gates pending. No backend/economy/timer or protected-preview change. [Evidence](evidence/IH2-082/REPORT.md).
 
 IH2-081 accepted playable receipt integration: PR29/mergea7dd24a, exact7aff73fCI43271107909bothSUCCESS279/85. Actual191-file4175preview/protocol4API updated after private backup; all13practice tables/key/sixchecksums and historical studies preserved. Terra6.1bounded review and actual local/shared desktop/phone captures inspected. [Closeout](evidence/IH2-081/source-closeout.json). No hosted/current-game release. Current handoff authoritative.

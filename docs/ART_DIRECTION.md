@@ -1,5 +1,7 @@
 # Idle Hands 2 — illustrated company-town kit
 
+IH2-082 accepted notebook uses the existing paper-panel visual language, three stable ordered cards and explicit state glyphs. Short route labels retain descriptive accessible names; doubled text scrolls deliberately. No new art assets. Final Terra6.1 review and six actual CI captures were inspected; physical phone/Safari remain unverified.
+
 IH2-020 working direction selected under delegated authority, 2026-11-09. Compare at `/?art-study=1`; owner can redirect later. This is a distinct town game, not a reskin of the original office. No current-game artwork, cast, photos or runtime copied.
 
 ## Selected visual language

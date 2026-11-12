@@ -1,0 +1,23 @@
+# IH2-082 — activity notebook accepted
+
+November 12, 2026. Separate private `dadbod87/idle-hands-2`; [PR30](https://github.com/dadbod87/idle-hands-2/pull/30) merged as `7d6fc48e2ab2a822dab1084d05a6997cdbdb10c8`. Candidate `c3966cf4a4bb016dab8c12cb379ddbfda5ab4144` and merge share tree `f2bd84481373c3b1abb25da2770ed545b75a7021`; clean main=origin/main verified before the documentation closeout branch. This closeout is retained on `chore/activity-notebook-closeout-2026-11-12` and must be preserved when continuing.
+
+Bag & journal begins with the ordinary bench, pine finishing rack and allotment. Real-time ready/running/storage status and free inspector routes preserve all materials, jobs, skills, furniture and existing activity links. No automatic collection/spending, new request/poll/timer, economy, schema, protocol, backend or asset change. Short labels and fixed glyph gutters preserve held targets and focus through readiness; long text scrolls deliberately.
+
+## Acceptance evidence
+
+Exact-head CI43293385446: domain-build-plan131445175298 SUCCESS,285 checks/zero skips88.897s. Isolated browser jobs131445174794 and131445175097 SUCCESS,44 cases each in6.2/11.6minutes; disjoint discovery union equals88. Stable browser-playtest131452850592 SUCCESS. One Playwright worker per runner, each own PostgreSQL;20-minute runner limit and real-time assertions unchanged. Required exact-head CI is accepted; automatic merge-main CI43295868188 is separate and was in progress when closing began.
+
+Local285/zero skips52.052s and full unsharded88browser10.9minutes; strict build/design/plan10/pinned40/diff pass. Actual191 downloaded client files match reviewed local,185artunchanged,+7720raw/+2100gzip-each-file bytes, zero new assets. Six actual uploaded CI images and populated restart evidence inspected. Terra6.1 three bounded reviews found and rechecked doubled-text overflow; final desktop/phone/short200/focus/held-target review has no remaining blocker. Final Linux CI independently passes exact held-target equality. Initial axe-name failure, Linux1pxglyph failure and87-case timeout remain documented as rejected results in REPORT, never counted as acceptance.
+
+## Existing local preview and preservation
+
+Open http://127.0.0.1:4175/ and select Bag & journal. Shared fictional practice remains http://127.0.0.1:4175/?town=1 . Static PID47125/session22802 serves immutable `../idle-hands-2-artifacts/activity-notebook-2026-11-12/ci-final/build`. All191responses verified byte-identical to CI. API4186 protocol4 PID83080/session34638 still runs frozen081 source and was not restarted. No migration needed. PostgreSQL `idle-hands-2-pg`, loopback55432, database ih2_preview: all13 canonical-table columns/rows, one fictional resident/zero plots, same signing key and six migration checksums preserved. Never print/copy the private key. Prior081 artifact/server/private0700backup retained. No protected grants, resets or container restart.
+
+Actual final4175 native desktop1440x900 and touch-emulated360x640 gathered three ordinary materials and created the real five-second job through UI, observed readiness without claim, opened free inspectors and kept the job on reload. No state/position/clock/interception fixtures or shared identity in this drill. Separate final-artifact shared drill used disposable ih2_browser: zero-default Mira/Sol and explicitly seeded existing Aster48kits/2planters; all3routes, identity teardown and zero command requests passed. Long-status explicit valid local full99kit/ready12hjob fixture at320/200% used native Tab/End and scrolled89/89pixels. All five final captures inspected. These are Chrome/Chromium emulations, not physical phone/Safari/full accessibility certification.
+
+Historical frozen studies49529/49530/49534 all9/21/14responses reverified unchanged. Temporary candidate49537/49538/49540 and staging4197/49539 stopped; keep actual4175/API4186 and historical studies. Full evidence under docs/evidence/IH2-082, plus raw logs/reports/traces in sibling activity-notebook-2026-11-12. No private backup/key/auth log copied into source.
+
+## Continue safely
+
+Read AGENTS and repository planning; fetch current branches/PRs and preserve this closeout.082 is done.070 remains blocked on concrete hosting/access/account/cost approval;080 depends on070. No hosted/current-game release, expense, real identity or invitation is implied. Select the next bounded useful local task only under the next continuation request; do not invent missing acceptance or bypass hosting gates. Fresh usage31%used/69%remaining at closeout, no reset used; retain owner's10%reserve.

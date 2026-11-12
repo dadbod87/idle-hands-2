@@ -28,4 +28,6 @@ The larger resource, clothing, home, town, quest, combat and social plans remain
 
 Hosted identity, invitation access, physical-phone testing, backups, cost and public release still need their concrete gate. The [dated hosting proposal](PRIVATE_PREVIEW_PLAN.md) would need a fresh account/pricing check before provisioning; no new cloud resources, subscriptions or invitations were created. The active authorization is to keep developing and validating local sections while preserving roughly 10% weekly usage and stopping by November 12 at 7 AM Pacific.
 
-November12:073source/localpreviewaccepted;074material-depotartactive. [Current handoff](CURRENT_SESSION.md), [073closeout](../evidence/IH2-073/source-closeout.json). No hostedrelease.
+November12:073source/localpreviewaccepted;075home-workroomruntimeactive. [Current handoff](CURRENT_SESSION.md), [073closeout](../evidence/IH2-073/source-closeout.json). No hostedrelease.
+
+Current November12checkpoint:074source/localpreviewaccepted;075two workroom nooks active. [Current handoff](CURRENT_SESSION.md), [074closeout](../evidence/IH2-074/source-closeout.json). No hosted release.

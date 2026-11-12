@@ -1,5 +1,7 @@
 # Idle Hands 2 — current state
 
+IH2-074 source/local preview accepted: PR23/merge3c64173, exact82e68f8CI43216529180bothSUCCESS257/76(14.4m). Actual178files/sixCIimages, live-clock desktop/phone direct collection/reload, matchingtree/cleanmain and13practice tables/key/migrations preserved.4175serves074immutableartifact,4186protocol3unchanged. [Closeout](evidence/IH2-074/source-closeout.json). IH2-075two expanded-workroom nooks active on`feat/home-workroom-nooks`; [current handoff](idle-hands-2/CURRENT_SESSION.md) is authoritative.
+
 IH2-073source/localpreviewaccepted: PR22/mergea353f84, exacte4f54a1CI43210519289bothSUCCESS256/75(14.6m). Actual174files/7CIimages, freshactual300000mscrop→paiduniqueletterbox→placement/reload, matchingtree/cleanmain and all13practice tables/key/migrations preserved.4175nowserves073immutableCIartifact;4186unchangedprotocol3. [Closeout](evidence/IH2-073/source-closeout.json). IH2-074materialdepotsactive on`feat/material-depots`. [Current handoff](idle-hands-2/CURRENT_SESSION.md).
 
 Earlier milestone records below are historical; use the current handoff for active work.

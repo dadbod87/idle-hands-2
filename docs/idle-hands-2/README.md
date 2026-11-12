@@ -64,4 +64,6 @@ For the owner-facing review and next decision, start with [OWNER_REVIEW](OWNER_R
 
 [Activity-depth research and current gaps](ACTIVITY_DEPTH.md): parallel goals, humorous teamwork and personal expression. IH2-062 is the first finite off-bench collection layer; future garden/services/equipment are still planned.
 
-November12:073source/localpreviewaccepted;074material-depotartactive. [Current handoff](CURRENT_SESSION.md), [073closeout](../evidence/IH2-073/source-closeout.json). No hostedrelease.
+November12:073source/localpreviewaccepted;075home-workroomruntimeactive. [Current handoff](CURRENT_SESSION.md), [073closeout](../evidence/IH2-073/source-closeout.json). No hostedrelease.
+
+Current November12checkpoint:074source/localpreviewaccepted;075two workroom nooks active. [Current handoff](CURRENT_SESSION.md), [074closeout](../evidence/IH2-074/source-closeout.json). No hosted release.

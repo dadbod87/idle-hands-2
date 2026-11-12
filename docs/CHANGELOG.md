@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-074 accepted: PR23/merge3c64173, exact82e68f8CI43216529180bothSUCCESS257/76(14.4m). Three original material depots/raised labels, unchanged targets/rules/168oldartfiles. Actual178files/sixCIimages and preserved4175desktop/phone live-clock collection/reload verified.075workroom furnishing capacity starts independently. [Closeout](evidence/IH2-074/source-closeout.json).
+
 2026-11-12 — IH2-074 working art candidate: three original static salvage/timber/stationery depots replace placeholders with unchanged bounds, targets and authority. Raised labels resolve the short200 starting edge; six fresh day/night direct-collection pairs and 257 domain checks pass. Final browser/CI/artifact/preview gates pending. [Evidence](evidence/IH2-074/REPORT.md).
 
 2026-11-12 — IH2-073 accepted:PR22/mergea353f84, exacte4f54a1CI43210519289bothSUCCESS256/75(14.6m),174actualCIgamefiles/7images reviewed, realfresh5minpaidcraft and preserved4175preview verified. Current actions first/Piprevisit/gardenroute/receipt/focusguards; allrule/art/server sources unchanged.074ordinarydepotartstarts independently. [Closeout](evidence/IH2-073/source-closeout.json).

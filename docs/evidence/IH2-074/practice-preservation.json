@@ -1,0 +1,24 @@
+{
+  "classification": "Read-only local fictional practice preservation across isolated074art/source verification; not hosted or populated-save proof",
+  "checkedAt": "2026-11-12T12:35:23.953Z",
+  "unchangedTables": [
+    "bridge",
+    "bridge_contributions",
+    "command_receipts",
+    "garden_welcome",
+    "maintenance_events",
+    "maintenance_lessons",
+    "noticeboard",
+    "players",
+    "plots",
+    "project_events",
+    "quest_awards",
+    "season_scores",
+    "trail_stamps"
+  ],
+  "savedResidents": 1,
+  "keyPreserved": true,
+  "migrationsPreserved": true,
+  "apiRestarted": false,
+  "noDatabaseWrites": true
+}

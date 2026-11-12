@@ -746,7 +746,7 @@
     {
       "id": "IH2-074",
       "title": "Recognizable ordinary material depots",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-073"
       ],
@@ -761,9 +761,33 @@
       ],
       "evidence": [
         "docs/idle-hands-2/MATERIAL_DEPOTS.md",
-        "docs/evidence/IH2-074/REPORT.md"
+        "docs/evidence/IH2-074/REPORT.md",
+        "docs/evidence/IH2-074/source-closeout.json"
       ],
       "owner_branch": "feat/material-depots"
+    },
+    {
+      "id": "IH2-075",
+      "title": "Two permanent expanded-home workroom nooks",
+      "status": "in_progress",
+      "owner_branch": "feat/home-workroom-nooks",
+      "depends_on": [
+        "IH2-074"
+      ],
+      "goal": "Make the existing paid workroom useful with two additional furnishing nooks while preserving property, owned-copy conservation and all existing progression.",
+      "acceptance": [
+        "Separate strict2key workroom map and additive legacy migration. Preserve old6slots/maps,12claim+24upgrade prices, physics and old progression. Validate current layout snapshots; level1extras remainempty.",
+        "Atomic explicit old/extra place/remove/move and rental allocation checks for every prop, including unique letterbox/easel. Preserve revision/receipt/stats/orientation sideeffects. Visitor denial and live motif/render invalidation.",
+        "Protocol4refuses cached3HTTP/SSE before mutation. Pure/SQL/HTTP/migration/concurrency/rollback/retry/restart/restore and owner/visitor desktop/phone/short physical/focus proofs.",
+        "All required repository gates, exact-headCI/actualartifacts/images, matching-tree merge and protected old-column/key/migration preservation before local runtime upgrade. No incomplete release at cutoff."
+      ],
+      "exclusions": [
+        "No price/timer/resource/recipe, new art family/room geometry, real identity/account, cloud/expense or original-game change."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/HOME_WORKROOM.md",
+        "docs/evidence/IH2-075/REPORT.md"
+      ]
     },
     {
       "id": "IH2-070",
@@ -783,7 +807,7 @@
         "No public launch, new paid plan, current-game migration or unbounded load test."
       ],
       "evidence": [],
-      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-074 improves material-depot art after accepted073. No cloud resources, invitations or public release."
+      "blocked_reason": "Concrete owner hosting/account/access/cost approval remains required. Independent local IH2-075 improves persistent expanded-home furnishing capacity. No cloud resources, invitations or public release."
     },
     {
       "id": "IH2-080",

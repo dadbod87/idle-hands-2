@@ -990,7 +990,7 @@
     {
       "id": "IH2-085",
       "title": "Noticeable ambient weather with clearer town colors",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/readable-town-weather",
       "depends_on": [
         "IH2-084"
@@ -1006,7 +1006,9 @@
         "No weather economy, growth bonus, new day/weather schedule, global image filter, paid/new asset family, current-game/account/cloud/expense."
       ],
       "evidence": [
-        "docs/evidence/IH2-085/PLAN.md"
+        "docs/evidence/IH2-085/PLAN.md",
+        "docs/evidence/IH2-085/REPORT.md",
+        "docs/evidence/IH2-085/source-closeout.json"
       ]
     },
     {

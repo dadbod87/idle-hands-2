@@ -1,0 +1,24 @@
+{
+  "fixtureOnly": true,
+  "postgres": "16.15",
+  "actualContainerRestart": true,
+  "originalCollectionGrantPreserved": true,
+  "persistedWorkshopExactlyPreserved": true,
+  "snapshotComparisonClock": {
+    "fixtureOnly": true,
+    "at": 1794519956604,
+    "reason": "Compare every virtual workshop field at the same declared observation time; actual container/service restart is real."
+  },
+  "serviceSurvived": true,
+  "checkedOutConnectionInterruptionHandled": true,
+  "sameSignedSession": true,
+  "expandedWorkroomUniqueLetterboxAndEaselPreserved": true,
+  "decoratedUpgradeAndQueuedJobPreserved": true,
+  "openedProjectJournalAndTrailCosmeticPreserved": true,
+  "gardenCropMarkerAndSharedWelcomePreserved": true,
+  "commissionPrivateRouteCardPaidLedgersUniquePlacedBoxAndPublicStylePreserved": true,
+  "carpentryToolWoodHamperQueuedEaselAndKeptPlacedRecordedEaselPreserved": true,
+  "gardenFixtureScope": "Restored real isolatedHTTPgardencommands with declared clock advance; existing donated house/material fixtures are not ordinary starting progress.",
+  "idleConnectionInterruptionObserved": false,
+  "limits": "Local single-process/isolated container recovery, not cloud HA or a real-player drill."
+}

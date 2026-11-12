@@ -1,0 +1,75 @@
+{
+  "classification": "Actual downloaded final CI client and all nine selected uploaded CI captures reviewed",
+  "gameFiles": 191,
+  "allBytesEqualReviewedLocal": true,
+  "oldArtFiles": 185,
+  "allOldArtByteIdentical": true,
+  "selectedImages": [
+    {
+      "file": "weather-desktop-clear.png",
+      "sha256": "1149a7cbd5410dd802398c22344f9fc8b89f71605729e70458ac532ae2c36db9",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "weather-desktop-drizzle-a.png",
+      "sha256": "16871fcd7149f516f72c9095f043165172df56c33511cd7b3a3dd07d8a5cf446",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "weather-desktop-drizzle-b.png",
+      "sha256": "0db3d51e79d58a815ffc3d2ae281338be4857be9b0058e1a3fd879c5e97eb464",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "weather-desktop-night.png",
+      "sha256": "67c0aaaf6099d1ddfac7c3e8a97eef8c6200687540a1f5bae91ec1ba3fe375ce",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "weather-phone-clear.png",
+      "sha256": "b3f88cec5d529877c4da16d9c11bd2d8fda02d5436c5146212c8c88bc59e66af",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "weather-phone-drizzle-a.png",
+      "sha256": "d3efd79ccd016e1dca9350df0d8cc534a7b00012d7c6e5b0f2021bf86865fc66",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "weather-phone-drizzle-b.png",
+      "sha256": "742dbd82b3d74bce280986fc7232e6ad2a04135efd343dd08e11056368174246",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "weather-phone-night.png",
+      "sha256": "6cdaf2350e7baa3507c0a6b32404191243c8c737def3663b43b56aa823085689",
+      "actualUploadedCIImageReviewed": true
+    },
+    {
+      "file": "weather-reduced-guide.png",
+      "sha256": "231eeac0c819743c4f0353775630e7d3cbed00e26b1799a297af9bf97efbe45f",
+      "actualUploadedCIImageReviewed": true
+    }
+  ],
+  "actualIdleCanopySpans": [
+    [
+      1.8261645877287265,
+      2.7979760598575467,
+      1.3464884645881625,
+      2.6388091696803713,
+      1.013511282231491,
+      2.440830132761448
+    ],
+    [
+      1.826705983338229,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "noApiOrEconomyChangesInNewCases": true,
+  "populatedRestartEvidenceReviewed": true,
+  "htmlSha256": "be3d8bfe496bd593b6fa5ca7afac539d9dfd70bd91255d1cfa8aafeaf45590f7"
+}

@@ -1,0 +1,153 @@
+{
+  "classification": "Accepted private source and actual local preview; no hosted release",
+  "task": "IH2-085",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/33",
+  "candidate": "8bb045e1b75aad89a08e05a75618d9394d13f4ce",
+  "merge": "ef5a796050ec2f43e9aa8f65097c4ab73c45c10d",
+  "candidateAndMergeTree": "7ec5f49707e72e876c8ee59056f9770045a3b014",
+  "cleanMainEqualsRemoteBeforeCloseout": true,
+  "ciRun": 43313138618,
+  "ciJobs": [
+    {
+      "databaseId": 131514128135,
+      "name": "browser-shard (2/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T21:44:04Z",
+      "completedAt": "2026-11-12T21:55:42Z"
+    },
+    {
+      "databaseId": 131514128648,
+      "name": "domain-build-plan",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T21:44:04Z",
+      "completedAt": "2026-11-12T21:46:06Z"
+    },
+    {
+      "databaseId": 131514128704,
+      "name": "browser-shard (1/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T21:44:05Z",
+      "completedAt": "2026-11-12T21:53:23Z"
+    },
+    {
+      "databaseId": 131520657331,
+      "name": "browser-playtest",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T21:55:45Z",
+      "completedAt": "2026-11-12T21:55:48Z"
+    }
+  ],
+  "ciDomain": {
+    "tests": 293,
+    "passed": 293,
+    "skipped": 0,
+    "durationMs": 84806.099119
+  },
+  "browser": {
+    "local": 98,
+    "localDuration": "11.4 minutes",
+    "ciShard1": 49,
+    "ciShard1Duration": "8.2 minutes",
+    "ciShard2": 49,
+    "ciShard2Duration": "10.7 minutes",
+    "fullDisjointUnion": 98,
+    "originalAssertionsAndRealWaitsPreserved": true,
+    "runnerWorkers": 1,
+    "runnerDeadlineMinutes": 20
+  },
+  "otherChecks": [
+    "strict build",
+    "candidate design check",
+    "plan10tests",
+    "pinned40files",
+    "git diff --check"
+  ],
+  "earlierRejected": {
+    "commit": "bf63a5770fc8e1b39139ea2df18207d0bafbdd73",
+    "ciRun": 43311759515,
+    "local": "97passed,1failed",
+    "cause": "Existing trail night check still expected previous0.36overlay; runtime intentionally now0.24. Updated exact expected appearance without removing economy, timing, crop, silhouette or scene assertions. Complete local98 and final exact-head CI rerun passed. Raw failed evidence retained separately."
+  },
+  "payload": {
+    "classification": "FinalCIclient matches reviewed root191files;185oldart byte-identical; no new assets",
+    "oldFiles": 191,
+    "newFiles": 191,
+    "all185OldArtByteIdentical": true,
+    "newAssets": 0,
+    "rawDelta": 1167,
+    "gzipEachFileDelta": 355,
+    "scope": "Bounded cosmetic rendering and existing climate appearance only; unchanged day/weather schedule, progression clocks/ownership/economy/server and no new request/timer."
+  },
+  "actualPreview": {
+    "url": "http://127.0.0.1:4175/",
+    "staticPid": 47625,
+    "staticSession": 75556,
+    "outDir": "../idle-hands-2-artifacts/town-weather-2026-11-12/ci-final/build",
+    "gameFiles": 191,
+    "allResponsesEqualCI": true,
+    "nativeScreenshots": 14,
+    "uploadedCIScreenshots": 9,
+    "allSelectedImagesInspected": true,
+    "apiPort": 4186,
+    "apiPid": 83080,
+    "apiSession": 34638,
+    "protocol": 4,
+    "apiRestarted": false
+  },
+  "protectedPractice": {
+    "classification": "Actual read-only protected fictional practice across 085 static-only weather presentation update",
+    "canonicalTables": 13,
+    "allColumnsAndRowsPreserved": true,
+    "residents": 1,
+    "plots": 0,
+    "signingKeyPreserved": true,
+    "sixMigrationChecksumsPreserved": true,
+    "noDatabaseWrites": true,
+    "apiRestarted": false
+  },
+  "studies": {
+    "noServerRestartOrMutation": true,
+    "sets": [
+      {
+        "port": 49529,
+        "dir": "gathering-study-2026-11-12/ci-final/browser/test-results/browser/gathering-study",
+        "count": 9,
+        "everyResponseByteEqualPriorAcceptedCI": true
+      },
+      {
+        "port": 49530,
+        "dir": "gathering-family-2026-11-12/ci-final/browser/test-results/browser/gathering-family",
+        "count": 21,
+        "everyResponseByteEqualPriorAcceptedCI": true
+      },
+      {
+        "port": 49534,
+        "dir": "collection-receipts-2026-11-12/ci-final/browser/test-results/browser/collection-receipt-study",
+        "count": 14,
+        "everyResponseByteEqualPriorAcceptedCI": true
+      }
+    ],
+    "reverifiedAfter082StaticUpdate": true,
+    "reverifiedAfter083StaticUpdate": true,
+    "reverifiedAfter084StaticUpdate": true,
+    "reverifiedAfter085StaticUpdate": true
+  },
+  "terra": {
+    "reviewer": "gpt-6.1-terra",
+    "build": "review-v1/build on loopback49549",
+    "desktop": "1440x900",
+    "phone": "360x640 emulated touch",
+    "other": "short viewport and200percent text",
+    "findings": "No clear P1/P2. Drizzle visibly present without obscuring detail; clear day bright, night distinct/readable with warm windows. Desktop canopy silhouettes anchored without obvious clip; HUD remains legible.",
+    "limitations": "Paired still frames900ms apart cannot independently certify perceived live sway; root timed3.25second measurements separately prove motion bounds. Terra did not independently verify reduced motion/economy; root automated checks do. No physical-device/Safari/full accessibility certification.",
+    "browserClosed": true
+  },
+  "limitations": [
+    "Desktop Chrome and emulated touch phone, not physical phone or Safari.",
+    "Explicit QA appearance URLs and reduced-motion media; synthetic hidden-state test. No new player state, stock, position, production clock or HTTP response interception in weather tests or native preview drill.",
+    "Native ordinary gathers/real5secondcraft retain exact job deadline, unclaimed output and stock across sky changes. Actual live sky mode restored.",
+    "Anonymous shared chooser GET only; no protected identity selected. Existing regression fixtures retain original disclosures.",
+    "Private source/local preview only. No cloud, real-account, original Idle Hands, hosted beta or expenses."
+  ],
+  "next": "Fetch current source and retain this closeout before selecting the next bounded task.070/080hosting approval gates remain."
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "shape": {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900
+    },
+    "appearanceURLAndMediaOnly": true,
+    "nativeGuideExpandedAndScrolled": true,
+    "reducedExplanationVisible": true,
+    "closeVisible": true
+  },
+  {
+    "shape": {
+      "name": "phone",
+      "width": 360,
+      "height": 640
+    },
+    "appearanceURLAndMediaOnly": true,
+    "nativeGuideExpandedAndScrolled": true,
+    "reducedExplanationVisible": true,
+    "closeVisible": true
+  }
+]

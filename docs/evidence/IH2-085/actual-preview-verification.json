@@ -1,0 +1,232 @@
+{
+  "classification": "Actual accepted191file client on4175; native ordinary gathers/real5secondcraft/door exit, explicit appearance-only day/drizzle/night study URLs, reduced motion and return to live sky. No protected writes or production-clock/state/stock/interception fixture.",
+  "files": 191,
+  "allBytesEqualCI": true,
+  "htmlSha256": "be3d8bfe496bd593b6fa5ca7afac539d9dfd70bd91255d1cfa8aafeaf45590f7",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false
+      },
+      "states": [
+        {
+          "name": "clear",
+          "climate": {
+            "phase": "day",
+            "minute": 780,
+            "dayIndex": 0,
+            "weather": "clear",
+            "tint": {
+              "color": 16314847,
+              "alpha": 0
+            },
+            "lampStrength": 0,
+            "label": "Day · Clear skies",
+            "effectiveAlpha": 0,
+            "fixture": true,
+            "interior": false,
+            "precipitation": {
+              "enabled": false,
+              "offset": 0
+            }
+          }
+        },
+        {
+          "name": "drizzle",
+          "climate": {
+            "phase": "dusk",
+            "minute": 1140,
+            "dayIndex": 0,
+            "weather": "drizzle",
+            "tint": {
+              "color": 12489598,
+              "alpha": 0.13225
+            },
+            "lampStrength": 0.5,
+            "label": "Dusk · Light drizzle",
+            "effectiveAlpha": 0.13225,
+            "fixture": true,
+            "interior": false,
+            "precipitation": {
+              "enabled": true,
+              "offset": 81.72580000000005
+            }
+          }
+        },
+        {
+          "name": "night",
+          "climate": {
+            "phase": "night",
+            "minute": 60,
+            "dayIndex": 0,
+            "weather": "clear",
+            "tint": {
+              "color": 2504281,
+              "alpha": 0.24
+            },
+            "lampStrength": 1,
+            "label": "Night · Clear skies",
+            "effectiveAlpha": 0.24,
+            "fixture": true,
+            "interior": false,
+            "precipitation": {
+              "enabled": false,
+              "offset": 0
+            }
+          }
+        }
+      ],
+      "spans": [
+        1.7992327110985116,
+        3.097668890621435,
+        1.318993922859761,
+        2.7501017950214646,
+        1.542441938557829,
+        2.4253604309469665
+      ],
+      "realUICreatedJob": {
+        "recipe": "planter",
+        "startedAt": 1794520676226,
+        "readyAt": 1794520681226
+      },
+      "jobDeadlineAndUnclaimedOutputPreserved": true,
+      "revision": 4,
+      "appearanceFixturesOnly": true,
+      "noStatePositionProductionClockInventoryOrResponseInterception": true,
+      "reducedMotionVerified": true,
+      "liveModeRestored": true,
+      "anonymousSharedChooser": true,
+      "noProtectedIdentitySelected": true,
+      "errors": [],
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ]
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true
+      },
+      "states": [
+        {
+          "name": "clear",
+          "climate": {
+            "phase": "day",
+            "minute": 780,
+            "dayIndex": 0,
+            "weather": "clear",
+            "tint": {
+              "color": 16314847,
+              "alpha": 0
+            },
+            "lampStrength": 0,
+            "label": "Day · Clear skies",
+            "effectiveAlpha": 0,
+            "fixture": true,
+            "interior": false,
+            "precipitation": {
+              "enabled": false,
+              "offset": 0
+            }
+          }
+        },
+        {
+          "name": "drizzle",
+          "climate": {
+            "phase": "dusk",
+            "minute": 1140,
+            "dayIndex": 0,
+            "weather": "drizzle",
+            "tint": {
+              "color": 12489598,
+              "alpha": 0.13225
+            },
+            "lampStrength": 0.5,
+            "label": "Dusk · Light drizzle",
+            "effectiveAlpha": 0.13225,
+            "fixture": true,
+            "interior": false,
+            "precipitation": {
+              "enabled": true,
+              "offset": 73.25413333333336
+            }
+          }
+        },
+        {
+          "name": "night",
+          "climate": {
+            "phase": "night",
+            "minute": 60,
+            "dayIndex": 0,
+            "weather": "clear",
+            "tint": {
+              "color": 2504281,
+              "alpha": 0.24
+            },
+            "lampStrength": 1,
+            "label": "Night · Clear skies",
+            "effectiveAlpha": 0.24,
+            "fixture": true,
+            "interior": false,
+            "precipitation": {
+              "enabled": false,
+              "offset": 0
+            }
+          }
+        }
+      ],
+      "spans": [
+        1.821662480287273,
+        0,
+        1.3400526687191245,
+        0,
+        1.5466554633712235,
+        0
+      ],
+      "realUICreatedJob": {
+        "recipe": "planter",
+        "startedAt": 1794520689773,
+        "readyAt": 1794520694773
+      },
+      "jobDeadlineAndUnclaimedOutputPreserved": true,
+      "revision": 4,
+      "appearanceFixturesOnly": true,
+      "noStatePositionProductionClockInventoryOrResponseInterception": true,
+      "reducedMotionVerified": true,
+      "liveModeRestored": true,
+      "anonymousSharedChooser": true,
+      "noProtectedIdentitySelected": true,
+      "errors": [],
+      "api": [
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "method": "GET",
+          "path": "/api/town/fixtures"
+        }
+      ]
+    }
+  ]
+}

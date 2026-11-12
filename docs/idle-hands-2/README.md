@@ -1,6 +1,6 @@
 # Idle Hands 2.0 — planning and build home
 
-Status: **private local shared-town prototype; garden, pine and Pip activity slices accepted; combined neighborhood audit in progress** (2026-11-12). Separate game, with an isolated local command service and fictional practice identities. No hosted sequel, real accounts or paid assets. The original Idle Hands remains separate.
+Status: **private local shared-town prototype; garden, pine and Pip activity slices accepted; combined audit accepted; phone action hierarchy in progress** (2026-11-12). Separate game, with an isolated local command service and fictional practice identities. No hosted sequel, real accounts or paid assets. The original Idle Hands remains separate.
 
 Nick has delegated routine design and technical choices, asked for free assets and a system that can progress one prompt at a time. The agent selects reasonable defaults, tests them and records decisions. No large upfront questionnaire is required.
 

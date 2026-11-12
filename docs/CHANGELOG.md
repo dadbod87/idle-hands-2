@@ -1,5 +1,8 @@
 # History
 
+2026-11-12 — IH2-072 source accepted: PR21/mergec72c3a7, exact2ac20e1CI43195544470bothSUCCESS256/72(15.5m). Actual174unchanged game files, server restart evidence and eight selected CI images reviewed; matching tree/cleanmain.073current-actions-first starts as presentation only. [Closeout](evidence/IH2-072/source-closeout.json).
+
+
 2026-11-12 — IH2-072 local audit complete, source gate pending:18disclosed situation/viewports, actual15minute/3minute-return observation,72coupled cohorts/48paired optional choices and17reviewed audit captures.256domain/SQL0skips and72browser9.3m pass; all174game build files identical to071. Ranked current-action hierarchy, home capacity/value and art/copy findings; recommend bounded073Pip/garden presentation only. No runtime/economy/art/hosting change. [Audit](evidence/IH2-072/REPORT.md).
 
 2026-11-12 — IH2-071 source/local-preview accepted: PR20/merge3fc2cfe, exactef6340aCI43175976771bothSUCCESS247/72(15.3m); actual174files/13CIimages reviewed, matchingtree/cleanmain. Protocol3client/API update preserves13practice tables/onefictionalresident/key/migrations; actualresponses/native desktop+360touch and sameartifact freshreal5minstagingproof pass.072combinedprogression/expression audit startsnext; no hosted/original-gamechange. [Closeout](evidence/IH2-071/source-closeout.json).

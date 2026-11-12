@@ -1,5 +1,8 @@
 # Idle Hands 2 — current state
 
+IH2-072 audit source accepted: PR21/merge `c72c3a7`, exact `2ac20e1`, CI43195544470 both SUCCESS (256 domain/zero skips,72 browser15.5m). Actual174unchanged game files/eight selected CI captures reviewed, matching tree and clean main=remote. Eighteen disclosed situation/viewports and real15minute/3minute-absence observation support ranked findings. [Closeout](evidence/IH2-072/source-closeout.json). IH2-073 current actions first is active on `feat/current-actions-first`; accepted071 protected preview/practice stays unchanged until its gates pass.
+
+
 November 12, 2026. Separate private dadbod87/idle-hands-2; local fictional practice only. The original game and its real accounts are unchanged.
 
 IH2-071 source/local preview accepted: PR20/merge3fc2cfed6f30837a62b7c8cdf95126595586d3a6; exactef6340aCI43175976771bothSUCCESS247/72(15.3m), actual174files/13CIimages reviewed, matchingtree/cleanmain.4175/4186protocol3updatedwith all13canonicalpractice tables/onefictionalresident/key/migrations preserved. Actualresponses/native desktop+360touch free route/reload pass; sameimmutableartifact actualfresh5minpaidcraft passed in disclosed staging. [071closeout](evidence/IH2-071/source-closeout.json). IH2-072 combined progression/expression audit is active; game/art/economy stay unchanged while it gathers evidence.

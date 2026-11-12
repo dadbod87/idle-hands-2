@@ -45,3 +45,7 @@
 .activity-status{min-height:44px}
 .notebook-dialog{max-width:calc(100vw - 16px)}
 .activity-note button{line-height:1.25;padding:8px}
+
+/* A fallback glyph must not alter the heading baseline or held action position. */
+.activity-note h4{position:relative;padding-inline-start:1em;line-height:1.4}
+.activity-note h4::before{position:absolute;inset-inline-start:0;top:0;display:block;width:1em;height:1.4em;line-height:1.4;pointer-events:none}

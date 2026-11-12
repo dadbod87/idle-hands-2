@@ -1,5 +1,7 @@
 # Idle Hands 2 — current state
 
+IH2-076working presentation candidate prioritizes inside-owner arrangement and preserves selections/held-pointer targets/retries/panel context. Local262checks/zero skips, focused UI cases pass; full80browser/CI/artifact gates pending. Accepted075preview/API remain intact. [Evidence](evidence/IH2-076/REPORT.md).
+
 IH2-075accepted: PR24/merge00563d3/exact9626bb8CI43226178072bothSUCCESS262/78. Actual178files/fiveCIimages/populated recovery and13oldpractice-table fields/key preserved through protocol4/additive migration.4175immutable075preview verified. [Closeout](evidence/IH2-075/source-closeout.json).076phonehome arrangement active independently; current handoff authoritative.
 
 IH2-075 working candidate adds two permanent expanded-home nooks with strict separate maps, atomic owned-copy conservation and cached3client refusal. Local262checks/zero skips and focused3browser pass; fullbrowser/CI/artifact/protectedmigration gates pending. Accepted074preview remains intact. [Evidence](evidence/IH2-075/REPORT.md).

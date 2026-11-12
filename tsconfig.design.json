@@ -51,7 +51,8 @@
     "tests/depot-art.spec.ts",
     "tools/observe-material-depots.ts",
     "tests/home-layout.test.ts",
-    "tests/home-workroom.spec.ts"
+    "tests/home-workroom.spec.ts",
+    "tests/home-panel.spec.ts"
   ],
   "compilerOptions": {
     "types": [

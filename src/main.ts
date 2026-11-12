@@ -101,7 +101,7 @@ function closePanel() { gardenUI?.closed();carpentryUI?.closed();commissionUI?.c
 panel.addEventListener('submit', event => { event.preventDefault(); closePanel(); });
 panel.addEventListener('close', () => {const explicit=pendingExplicitPanelCloses>0;if(explicit)pendingExplicitPanelCloses--;if(panel.open)return; gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();resumeMenuRender();unlockWorld(); if(!explicit)focusWorld(); });
 panel.addEventListener('cancel', event => {event.preventDefault();closePanel();});
-function openPanel(heading: string) { namedWalk=null;placeWalk=null;gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();body.classList.remove('garden-panel','carpentry-panel','commission-panel');body.removeAttribute('aria-busy');pendingHomePlotId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal();panel.scrollTop=0;pauseMenuRender(); }
+function openPanel(heading: string) { namedWalk=null;placeWalk=null;gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();body.classList.remove('garden-panel','carpentry-panel','commission-panel','home-arrangement-panel');body.removeAttribute('aria-busy');pendingHomePlotId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal();panel.scrollTop=0;pauseMenuRender(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }
 let townUI:TownUI|undefined;
 let pendingHomePlotId:string|undefined;

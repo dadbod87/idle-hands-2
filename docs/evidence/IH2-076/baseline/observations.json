@@ -1,6 +1,6 @@
 {
   "disclosure": "Fully intercepted current snapshot/EventSource, elapsed pure-command earned box/easel and fixed home/placements/arrival. Fixed-arrival movement acknowledgements are also intercepted. No real API or mutation commands, no housing pacing claim. Native Chrome with emulated touch/text sizing.",
-  "base": "http://127.0.0.1:49525",
+  "base": "http://127.0.0.1:4175",
   "results": [
     {
       "shape": {
@@ -29,7 +29,7 @@
             "visible": true
           },
           {
-            "label": "Upgrade plot \u00b7 24 bridge kits",
+            "label": "Upgrade plot · 24 bridge kits",
             "tag": "BUTTON",
             "top": 327,
             "bottom": 373,
@@ -102,7 +102,7 @@
             "visible": true
           },
           {
-            "label": "Upgrade plot \u00b7 24 bridge kits",
+            "label": "Upgrade plot · 24 bridge kits",
             "tag": "BUTTON",
             "top": 375,
             "bottom": 421,
@@ -175,7 +175,7 @@
             "visible": false
           },
           {
-            "label": "Upgrade plot \u00b7 24 bridge kits",
+            "label": "Upgrade plot · 24 bridge kits",
             "tag": "BUTTON",
             "top": 638,
             "bottom": 732,
@@ -248,7 +248,7 @@
             "visible": true
           },
           {
-            "label": "Upgrade plot \u00b7 24 bridge kits",
+            "label": "Upgrade plot · 24 bridge kits",
             "tag": "BUTTON",
             "top": 375,
             "bottom": 421,
@@ -314,7 +314,7 @@
         },
         "controls": [
           {
-            "label": "Claim your house plot \u00b7 12 bridge kits",
+            "label": "Claim your house plot · 12 bridge kits",
             "tag": "BUTTON",
             "top": 200,
             "bottom": 258,
@@ -339,6 +339,5 @@
       "errors": [],
       "commands": 0
     }
-  ],
-  "method": "Effective viewport is dialog bottom minus sticky header bottom; body scrollHeight divided by that usable height. Hidden zero-width controls excluded. All scene room/art ready before opening. Ratios compare only with the same method, not older audit definitions."
+  ]
 }

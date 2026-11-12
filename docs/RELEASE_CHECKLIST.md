@@ -146,3 +146,10 @@ IH2-066 design/audit gate: actual accepted065artifact remains untouched; disclos
 - Locked atomic old/extra moves, rental allocations, unique box/easel, visitor denial, retry/revision/placed stats and home-planter orientation exception. Populated process/container restart and dump/restore must include both extra furnishings.
 - Native owner/visitor desktop/phone/short200 placement/move/live motif/reload plus malformed current snapshot rejection; disclose SQL/elapsed/intercepted fixtures and occlusion/device limits.
 - Both exact-head CI jobs SUCCESS, actual artifacts/images, matching merge tree/cleanmain. Before protected migration: private dump/key backup and old-column hashes across all13canonical tables; only sixth checksum/two-null map additions allowed. Preserve identities/key; never seed protected practice.
+
+
+## IH2-076 home arrangement
+- Owner current-home controls first, secondary expansion/context; outside entry/claim stays primary, visitor read-only/no unrelated claim. Preserve6/8slots and all command/economy semantics.
+- Selection/disclosure survives accepted/rejected/refresh; native held pointer stable across passive update, identical retry/once-only, delayed old-panel response cannot replace guide. Keyboard controls/Close below sticky header on short200.
+- Paired native desktop/narrow/short owner starter/expanded/visitor with explicit intercepted-data/movement/clock disclosure. Count CSS-hidden/closed-details controls correctly; native picker/device limitations explicit.
+- Full required checks and both exact-headCIjobs/actual files/images/recovery/matching tree. Immutable preview swap preserves every current column/row of all13practice tables, key and six checksums; no APIrestart/migration.

@@ -168,3 +168,7 @@ Agent-selected after accepted072audit and073layout acceptance: give the three ex
 
 ## 2026-11-12 — IH2-075 useful permanent workroom
 Agent-selected under sequential local-build authorization after accepted072capacity finding/074art. Two extra furnishing positions make the already paid level2workroom useful without changing housing prices, production or ownership. A separate strict plot map preserves original six-slot personal saves and old home positions. New protocol4fails closed for cached3clients. Owned copies are conserved across rental6/home6/workroom2 under locked transactions; original APIs/controls retain their semantics. Existing room art and traversal stay unchanged. Source/CI and protected migration gates are distinct; keep accepted074runtime until all pass.
+
+
+## 2026-11-12 — IH2-076 inside-home arranging
+Agent-selected after accepted075and072phone findings. Inside owner home, current furnishing choices precede property/expansion history; outside, entering/claiming remains primary. Preserve chosen prop/slot through save/reject/refresh and reserve passive Refresh space so a held pointer cannot retarget another control. Scope async results to the original connected panel; retry keeps its exact original DTO. No server/domain/art/economy change. Native select truncation at enlarged text remains a documented platform behavior, with full accessible/picker options. Acceptance requires full source/CI/artifact and protected-preview gates.

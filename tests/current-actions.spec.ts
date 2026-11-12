@@ -47,7 +47,7 @@ test('returned post puts current choices before the kept story; revisiting and p
     try {
       const fixture = await boot(p, 'returning', 'square');
       if (shape.scale) await p.evaluate(() => document.documentElement.style.fontSize = '200%');
-      await p.locator('#bag').tap(); await button(p, 'Pip’s post · route & letterbox').tap();
+      await p.locator('#journal').tap(); await button(p, 'Pip’s post · route & letterbox').tap();
       const before = progress(await saved(p));
       expect(before.owned.letterbox).toBe(1);
       // Same existing action on the old artifact: buried below the completed card.
@@ -86,7 +86,7 @@ test('returned post puts current choices before the kept story; revisiting and p
     try {
       const fixture=await boot(p,kind,'square',true);
       await p.evaluate(()=>document.documentElement.style.fontSize='200%');
-      await p.locator('#bag').tap();await button(p,'Pip’s post · route & letterbox').tap();
+      await p.locator('#journal').tap();await button(p,'Pip’s post · route & letterbox').tap();
       const before=progress(await saved(p));
       await expect(button(p,'Walk to Pip · confirm post actions')).toBeHidden();
       const initialBounds=await inUsefulViewport(p,p.locator('[data-commission-action=preview-leaf]'));
@@ -108,7 +108,7 @@ test('full and growing gardens offer an early useful route without consuming a c
     try {
       const fixture = await boot(p, kind, 'garden');
       if (shape.scale) await p.evaluate(() => document.documentElement.style.fontSize = '200%');
-      await p.locator('#bag').tap(); await button(p, 'Your allotment · crops, markers & quests').tap();
+      await p.locator('#journal').tap(); await button(p, 'Your allotment · crops, markers & quests').tap();
       const before = progress(await saved(p));
       const route = button(p, kind === 'saturated' ? 'Visit the allotment attendant' : 'Make a marker at the field');
       // Existing routes on the old artifact are more than a screen below disabled production.
@@ -127,7 +127,7 @@ test('full and growing gardens offer an early useful route without consuming a c
   }
   const context = await browser.newContext({viewport:{width:360,height:640}}), p = await context.newPage();
   try {
-    await boot(p,'fresh','garden'); await p.locator('#bag').click();
+    await boot(p,'fresh','garden'); await p.locator('#journal').click();
     await button(p,'Your allotment · crops, markers & quests').click();
     await p.getByText('Practice, bed arrangement & growing notes',{exact:true}).click();
     const preview=p.locator('[data-garden-action=preview-plant]'),before=progress(await saved(p));

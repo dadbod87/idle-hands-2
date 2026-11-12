@@ -1,5 +1,7 @@
 # History
 
+2026-11-12 — IH2-084 candidate separates Bag and Journal, puts goals first in the journal and adds compact direct controls/B-J play shortcuts. Rules and progress unchanged; acceptance pending. [Evidence](evidence/IH2-084/REPORT.md).
+
 2026-11-12 — Accepted IH2-083 illustrated bag: collected items stack with number badges, furniture distinguishes available versus placed copies, and pockets group materials and garden/tools. PR31 merged as `0300adf`;291system and93browser checks pass. Actual local preview updated; progress/rules/API preserved. [Evidence](evidence/IH2-083/source-closeout.json).
 
 2026-11-12 — IH2-083 candidate adds an illustrated bag with grouped item stacks, available versus placed furniture and explicit collection semantics. No inventory/economy/save-rule change; acceptance pending. [Evidence](evidence/IH2-083/REPORT.md).

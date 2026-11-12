@@ -16,7 +16,7 @@ test('pending garden save: lost committed planting is recovered once before a re
   await page.goto('/?town=1');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
   await page.getByRole('button',{name:'Rowan',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.town()?.playerId)).toBe('clarity-gardener');
   const before=await saved(page);expect(before.garden.planted).toBe(0);expect(before.garden.seeds.radish).toBe(2);
-  await page.locator('#bag').click();await page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true}).click();await page.getByRole('button',{name:'Walk to the beds',exact:true}).click();
+  await page.locator('#journal').click();await page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true}).click();await page.getByRole('button',{name:'Walk to the beds',exact:true}).click();
   await expect(page.locator('#panel-title')).toHaveText('Your rented allotment',{timeout:process.env.CI?40000:15000});await expect.poll(async()=>(await feet(page)).room).toBe('garden');
   const position=(await feet(page)).position;let lost=false;
   await page.route('**/api/town/command',async route=>{const payload=route.request().postDataJSON();if(payload.kind==='garden'&&payload.gardenAction.action==='plant'){commands.push({id:payload.id,body:route.request().postData()!});if(!lost){lost=true;const response=await route.fetch();expect(response.ok()).toBe(true);await route.abort();return;}}await route.continue();});
@@ -42,7 +42,7 @@ test('a definite failed planting retry cannot become a paid receipt after a late
   await page.goto('/?town=1');await page.getByRole('button',{name:'Rowan',exact:true}).click();
   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.town()?.playerId)).toBe('clarity-gardener');
   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
-  await page.locator('#bag').click();await page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true}).click();
+  await page.locator('#journal').click();await page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true}).click();
   await page.getByRole('button',{name:'Walk to the beds',exact:true}).click();await expect(page.locator('#panel-title')).toHaveText('Your rented allotment',{timeout:process.env.CI?40000:15000});
   const before=await saved(page);expect(before.garden.planted).toBe(0);
   let aborted=false;
@@ -84,7 +84,7 @@ test('elapsed garden fixture: readiness does not steal bed focus, goal-flower co
  at=Date.now()-300000+6000;act({kind:'garden',gardenAction:{action:'plant',bed:0,crop:'radish'}});const original=structuredClone(s),deadline=s.garden.beds[0]!.readyAt;
  await page.addInitScript(seed=>{localStorage.setItem('ih2:workshop:v2',JSON.stringify(seed));localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'garden',position:{x:9,y:13}}));},s);
  await page.setViewportSize({width:360,height:640});await page.goto('/');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
- await page.locator('#bag').click();await page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true}).click();
+ await page.locator('#journal').click();await page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true}).click();
  const empty=page.locator('[data-garden-bed="1"]');await empty.click();await empty.focus();const before=(await empty.boundingBox())!;
  await expect(page.locator('[data-garden-bed="0"]')).toHaveAccessibleName(/Ready\./,{timeout:12000});await expect(empty).toBeFocused();await expect(empty).toHaveAttribute('aria-pressed','true');
  const after=(await empty.boundingBox())!;expect(Math.abs(after.y-before.y)).toBeLessThan(1);expect((await saved(page)).garden.beds[0].readyAt).toBe(deadline);expect((await saved(page)).garden.harvested.radish).toBe(0);

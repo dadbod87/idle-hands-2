@@ -964,6 +964,28 @@
       ]
     },
     {
+      "id": "IH2-084",
+      "title": "Separate bag and journal as clear personal tools",
+      "status": "in_progress",
+      "owner_branch": "feat/separate-bag-journal",
+      "depends_on": [
+        "IH2-083"
+      ],
+      "goal": "Give belongings and notes distinct RPG-style controls and panels, reducing mixed navigation while preserving activities and rules.",
+      "acceptance": [
+        "Independent Bag and Journal HUD controls and panels with short labels/icons, direct cross-tool links and guarded B/J shortcuts when playing. Bag contains existing stacks and disclosed arrangement; Journal begins with current goal then work/activity/progress notes. No duplicate mixed inventory/journal surface.",
+        "Preserve all existing routes, item counts, workshop/home placement and free inspectors; keep goals/skills/return summaries. Stable passive updates, menu input lock, identity teardown, pending retry/read-only/unsaved behavior and original authority/save/timer rules.",
+        "Native keyboard/tap and desktop320/360/short200/phone200; reachable44px controls, no HUD overlap/horizontal overflow, usable playfield and unobscured focus. Terra frozen actual-build review; migrate route tests to explicit tools without dropping assertions.",
+        "All required local/exact-final-head CI/full browser discovery/artifact/image/recovery/merge-tree gates. Actual static-only preview and native final checks preserve protected13tables/key/sixchecksums/API/studies."
+      ],
+      "exclusions": [
+        "No new economy, capacity, recipes, rewards, account/hosting, public release, drag/drop, broad quest/equipment systems or paid assets."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-084/PLAN.md"
+      ]
+    },
+    {
       "id": "IH2-070",
       "title": "Invited beta on approved isolated hosting",
       "status": "blocked",

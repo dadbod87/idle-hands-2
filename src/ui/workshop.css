@@ -63,3 +63,17 @@
 .bag-slots{grid-template-columns:repeat(auto-fit,minmax(min(100%,7rem),1fr))}.bag-slot h4{min-height:2.7em}#panel-body .bag-slot-detail{height:2.8em;overflow:auto;white-space:pre-line}.bag-shortcuts{display:flex;gap:6px;margin:0 0 12px}.bag-shortcuts button{flex:1;min-width:0;min-height:44px;margin:0;font-size:.8rem;padding:8px;overflow-wrap:anywhere}
 /* Pockets wrap at word boundaries, including text-only enlargement. */
 .bag-pockets,.bag-shortcuts{display:flex;flex-wrap:wrap;gap:6px}.bag-pockets button,.bag-shortcuts button{flex:1 0 auto;width:auto;max-width:100%;min-width:0;overflow-wrap:normal;word-break:normal;hyphens:none;padding:9px}
+
+/* Separate personal tools keep the playfield and the bag free of journal content. */
+.personal-tool-switch{display:flex;align-items:center;gap:10px;justify-content:space-between;margin:0 0 12px}.personal-tool-switch p{font-size:.85rem;margin:0!important}.personal-tool-switch button{min-width:0;min-height:44px;font-size:.85rem;padding:9px 12px;overflow-wrap:normal}
+.bag-arrangement,.journal-progress{border-top:1px solid var(--line);padding-top:10px;margin:12px 0}.bag-arrangement>summary,.journal-progress>summary{font-weight:bold;min-height:44px;padding:12px 0;cursor:pointer}.bag-arrangement>summary:focus-visible,.journal-progress>summary:focus-visible{outline:3px solid #b8653e;outline-offset:2px}
+.journal-activities{margin:16px 0}.journal-activities h3{margin:0 0 8px}.game-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.game-controls button{min-width:0;display:flex;align-items:center;justify-content:center;gap:5px;white-space:normal}.game-controls svg{flex-shrink:0}.game-controls button span{margin:0}
+@media(max-width:650px){.game-controls{grid-template-columns:repeat(auto-fit,minmax(min(100%,4.25rem),1fr));gap:5px}.game-controls button{font-size:.8rem;padding:6px 3px;flex-direction:column;min-height:48px}.game-controls #places span{font-size:20px;line-height:20px}.personal-tool-switch{flex-wrap:wrap}}
+@media(max-height:480px) and (min-width:651px){.game-controls{grid-template-columns:repeat(4,minmax(0,1fr))}.game-controls button{min-width:0;padding:7px 8px}}
+
+.game-controls{min-width:0;width:100%;max-width:min(100%,34rem);flex-shrink:1}
+
+/* Intrinsic labels choose rows; enlarged text must never collide inside fixed columns. */
+.game-controls{display:flex;flex-wrap:wrap;width:auto;max-width:100%;min-width:0;flex:0 1 auto}.game-controls button{flex:1 0 auto;width:auto;max-width:100%;overflow-wrap:normal;word-break:normal;hyphens:none}
+@media(max-width:650px){.game-controls{width:100%}.game-controls button{padding:6px;flex-direction:column}}
+@media(max-height:480px) and (min-width:651px){.game-controls{width:100%}.game-controls button{padding:7px 8px}}

@@ -12,7 +12,7 @@ async function boot(page:Page,url='/'){
 }
 async function close(page:Page){await page.getByRole('button',{name:'Close panel',exact:true}).click();}
 async function beds(page:Page){
- await page.locator('#bag').click();await page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true}).click();
+ await page.locator('#journal').click();await page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true}).click();
 }
 async function settled(page:Page){
  await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));

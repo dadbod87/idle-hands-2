@@ -14,7 +14,7 @@ async function close(p:Page){await p.getByRole('button',{name:'Close panel',exac
 async function visit(p:Page,id:string){await p.locator('#places').click();await p.locator('[data-destination="'+id+'"]').click();await expect.poll(async()=>(await feet(p)).walking,{timeout:arrival}).toBe(false);await expect.poll(async()=>(await feet(p)).nearby).toBe(id);await p.locator('#interact').click();}
 async function choose(p:Page,action:string){await p.locator('[data-carpentry-action="'+action+'"]').click();await expect(p.locator('[data-carpentry-quote]')).toBeFocused();}
 async function confirm(p:Page){const before=(await state(p)).revision;await p.locator('[data-carpentry-action=confirm]').click();await expect.poll(async()=>(await state(p)).revision).toBe(before+1);}
-async function desk(p:Page){await p.locator('#bag').click();await p.getByRole('button',{name:'Pine workshop · tools, easels & hampers',exact:true}).click();await expect(p.locator('#panel-body')).toHaveClass(/carpentry-panel/);}
+async function desk(p:Page){await p.locator('#journal').click();await p.getByRole('button',{name:'Pine workshop · tools, easels & hampers',exact:true}).click();await expect(p.locator('#panel-body')).toHaveClass(/carpentry-panel/);}
 function prepared(now=Date.now()):WorkshopState{
  let at=now-20*3600000,s=createWorkshop(at),serial=0;const act=(a:Record<string,unknown>)=>{const r=applyWorkshop(s,{...a,id:'pine-fixture-'+(++serial),expectedRevision:s.revision},at);if(!r.ok)throw new Error(r.message);s=r.state;};
  for(const resource of ['scrap','timber','supplies'])act({kind:'gather',resource});act({kind:'craft',recipe:'planter'});at+=5000;act({kind:'claim'});act({kind:'place',prop:'planter',slot:'north-west'});act({kind:'craft',recipe:'bridge-kit'});

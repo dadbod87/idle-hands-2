@@ -122,3 +122,5 @@ IH2-081runtime/source accepted PR29/a7dd24a, exact7aff73fCI43271107909bothSUCCES
 IH2-083 candidate: cloth/sage canvas satchel, inset stitched pockets and original runtime item illustrations with literal number badges. Reuse existing icons rather than adding a second art family; intrinsically wrapped pocket controls protect narrow/enlarged text. Terra/final acceptance in083evidence.
 
 IH2-083 accepted: original reused icons inside a CSS canvas satchel with inset cloth pockets and literal stack badges. Intrinsic control wrapping preserves whole words at narrow/text200 sizes. Terra6.1v2, six actual CI captures and four native final screenshots inspected; no new assets.
+
+IH2-084 candidate separates canvas satchel belongings from a paper journal, with labelled code-native bag/notebook toolbar icons and intrinsic-width enlarged-text wrapping. No new art assets; retain existing illustrated office-town family and keep world usable. Exact Terra/CI acceptance in084evidence.

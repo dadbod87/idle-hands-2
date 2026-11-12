@@ -1,0 +1,14 @@
+{
+  "classification": "Working-source and built-client byte comparison, not new quest/runtime authority",
+  "baseline": "c0565b5930634dc09655766b1414ca6c37dcad7d",
+  "changedRuntimePaths": [],
+  "untrackedRuntimePaths": [],
+  "runtimeFiles": 159,
+  "allBytesMatchAccepted068": true,
+  "acceptedStaticPort": 4175,
+  "acceptedStaticSession": 69766,
+  "acceptedApiPort": 4186,
+  "acceptedApiSession": 95621,
+  "acceptedServicesNotRestartedOrUpdatedByDesign": true,
+  "newPrototypeIsSeparate": "http://127.0.0.1:49523/"
+}

@@ -586,7 +586,7 @@
     {
       "id": "IH2-068",
       "title": "Phone activity clarity and updated-loop playtest",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-067"
       ],
@@ -604,14 +604,16 @@
         "docs/idle-hands-2/handoffs/2026-11-12-phone-clarity.md",
         "docs/evidence/IH2-068/REPORT.md",
         "docs/evidence/IH2-068/activity-audit.json",
-        "docs/evidence/IH2-068/authority-unchanged.json"
+        "docs/evidence/IH2-068/authority-unchanged.json",
+        "docs/evidence/IH2-068/source-closeout.json",
+        "docs/evidence/IH2-068/actual-preview-verification.json"
       ],
       "owner_branch": "feat/phone-activity-clarity"
     },
     {
       "id": "IH2-069",
       "title": "First neighborhood commission and useful-return design",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-068"
       ],
@@ -627,9 +629,14 @@
         "No broad city, combat/chat, paid art, cloud, real accounts, shortened timers or invented human playtime."
       ],
       "evidence": [
-        "docs/evidence/IH2-068/REPORT.md"
+        "docs/evidence/IH2-068/REPORT.md",
+        "docs/idle-hands-2/handoffs/2026-11-12-neighborhood-commission.md",
+        "docs/idle-hands-2/design/NEIGHBORHOOD_COMMISSION.md",
+        "docs/evidence/IH2-069/REPORT.md",
+        "docs/evidence/IH2-069/commission-model.json",
+        "docs/evidence/IH2-069/concept/art/catalog.json"
       ],
-      "owner_branch": null
+      "owner_branch": "feat/neighborhood-commission-design"
     },
     {
       "id": "IH2-070",

@@ -1,0 +1,9 @@
+{
+  "classification": "Actual loopback static design files, not game/server/ownership authority",
+  "url": "http://127.0.0.1:49523/",
+  "serverSession": 51198,
+  "files": 18,
+  "mismatches": [],
+  "htmlSha256": "d724840e98e938879ce8bb15d66d8bddcd270faa431a37d03ed2e70447e9949a",
+  "scope": "Only clean standalone concept directory is served; no game API, repository root, credentials or account data. Browser interaction verification is separate."
+}

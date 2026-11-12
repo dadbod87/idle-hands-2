@@ -1,0 +1,82 @@
+{
+  "task": "IH2-068",
+  "status": "complete",
+  "classification": "Private source/CI and actual local preview accepted; no hosted or original-game release",
+  "candidate": "109d9a814a1113ce0a8b14802d7971b072bc98a8",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/18",
+  "merge": "c0565b5930634dc09655766b1414ca6c37dcad7d",
+  "mergedAt": "2026-11-12T03:55:55Z",
+  "candidateTree": "aae7051d585d8a66f40fc8190a5eec1dc32f66aa",
+  "mergeTree": "aae7051d585d8a66f40fc8190a5eec1dc32f66aa",
+  "cleanMainEqualsRemoteVerifiedBeforeNextBranch": true,
+  "ci": {
+    "run": 43149639492,
+    "exactHead": true,
+    "domainJob": 130955513473,
+    "browserJob": 130955513162,
+    "both": "SUCCESS",
+    "domainPassed": 217,
+    "domainSkipped": 0,
+    "domainDurationMs": 63727.144806,
+    "browserPassed": 65,
+    "browserReportedMinutes": 14.1,
+    "browserBudgetMinutesUnchanged": 20,
+    "actualPopulatedPostgresRestart": true,
+    "automaticMainRun": 43151441716,
+    "automaticMainStatus": "both SUCCESS verified during069 design"
+  },
+  "actualArtifacts": {
+    "buildFiles": 159,
+    "byteEqualToLocal": true,
+    "allSixClarityImagesReviewed": true,
+    "directory": "../idle-hands-2-artifacts/phone-clarity-2026-11-12/ci-final/",
+    "preservedInRepo": "ci-screens/"
+  },
+  "local": {
+    "domainPassed": 217,
+    "zeroSkipped": true,
+    "domainDurationMs": 43119.492333,
+    "browserPassed": 65,
+    "browserReportedMinutes": 8.6,
+    "buildDesignPlanPinnedWhitespace": true,
+    "trackerTasks": 25,
+    "trackerChecks": 10,
+    "pinnedFiles": 40,
+    "independentReadOnlyReviews": 2,
+    "combinedActualUiRoutes": 9
+  },
+  "preview": {
+    "browserOnly": "http://127.0.0.1:4175/",
+    "sharedFictionalPractice": "http://127.0.0.1:4175/?town=1",
+    "staticSession": 69766,
+    "apiPort": 4186,
+    "apiSession": 95621,
+    "apiProcessUnchanged": 22288,
+    "clientOnlyUpdate": true,
+    "actualFileResponses": 159,
+    "apiFixtures": 200,
+    "oldSchema": 426,
+    "currentAnonymous": 401,
+    "actualNativeChromeDesktopPhoneUiPassed": true,
+    "noInterceptionStateClockPositionOrStockGrantsInActualPreviewVerification": true,
+    "all13CanonicalPracticeTablesPreserved": true,
+    "fictionalSavedResidents": 1,
+    "keyAndMigrationChecksumsPreserved": true,
+    "databaseWritesOrMigration": false
+  },
+  "regressionsResolved": [
+    "Stable visible pointer-focus geometry; no persistent scroll padding shift",
+    "Already-reached panel reopen survives old native close event",
+    "Final source ACK/cancel guide fixture begins outside confirmed portal range",
+    "Overlapping Places ranges now agree with actual Inspect target; old shared-trail assertion retained"
+  ],
+  "rejectedEvidence": "External dated directory retains initial8/1layout,16/4wording,elapsed/touch fixture preparations,partialguidefixture and complete63/1trailtarget reports/traces; none treated as passing.",
+  "limits": [
+    "Native Chrome and CI Chromium emulation, not physical phone/Safari",
+    "Automated known-answer audit timing is not human enjoyment or retention",
+    "Elapsed/position saves and intercepted transport are explicitly disclosed per-flow; actual preview check uses none",
+    "Finite authored neighborhood; next optional commission is a design task",
+    "No cloud, invitations, paid assets or current-game/real-account change"
+  ],
+  "nextTask": "IH2-069"
+}

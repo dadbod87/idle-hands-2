@@ -1,0 +1,9 @@
+{
+  "classification": "Actual accepted CI artifact responses on local4175; local API only, no identity/login/progress writes",
+  "files": 159,
+  "mismatches": [],
+  "apiFixtures": 200,
+  "cachedClient": 426,
+  "currentAnonymous": 401,
+  "htmlSha256": "a67974342573412de317d39b72160e0b4b7538e0f25b3ceb2d664ff796cc4e19"
+}

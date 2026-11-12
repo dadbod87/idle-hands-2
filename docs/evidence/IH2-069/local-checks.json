@@ -1,0 +1,31 @@
+{
+  "classification": "Final local design/repository checks; exact-head CI/source gates pending",
+  "domain": {
+    "passed": 224,
+    "skipped": 0,
+    "durationMs": 44295.869,
+    "newDesignChecks": 7
+  },
+  "browser": {
+    "passed": 68,
+    "reportedMinutes": 8.6,
+    "newStandaloneConceptCases": 3,
+    "driver": "Native headless Chrome, viewport/touch emulation"
+  },
+  "build": true,
+  "design": true,
+  "plan": true,
+  "pinnedFiles": 40,
+  "whitespace": true,
+  "existingPopulatedDatabaseRestart": true,
+  "newParcelServerPersistenceProven": false,
+  "gameRuntime159FilesUnchanged": true,
+  "actualConceptHttpFiles": 18,
+  "actualConceptDesktopPhoneUi": true,
+  "limits": [
+    "Standalone samples are in-memory fiction, not real resources or publication",
+    "No game quest/price/ownership/API/migration is implemented here",
+    "No physical-phone/Safari/human-enjoyment proof",
+    "Existing restart/regressions concern accepted game state, not new parcels"
+  ]
+}

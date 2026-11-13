@@ -1,5 +1,7 @@
+import type {GardenState as CurrentGardenState} from './live-garden.ts';
+type GardenState=LegacyGardenState|CurrentGardenState;
 /** Read-only planting facts. Existing garden commands own seeds, clocks and harvests. */
-import{CROP_DEFS,GARDEN_RULES,type CropId,type GardenState}from'./garden.ts';
+import{CROP_DEFS,GARDEN_RULES,type CropId,type GardenState as LegacyGardenState}from'./garden.ts';
 export function gardenBedView(s:GardenState,index:number,seed:CropId,now:number){
  if(!Number.isInteger(index)||index<0||index>=GARDEN_RULES.beds)throw new Error('Unknown garden bed.');
  const bed=s.beds[index],crop=bed?.crop??seed,durationMs=bed?bed.readyAt-bed.plantedAt:crop==='radish'&&!s.firstRadishUsed?GARDEN_RULES.firstRadishMs:CROP_DEFS[crop].durationMs;

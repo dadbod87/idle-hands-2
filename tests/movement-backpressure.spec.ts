@@ -1,6 +1,6 @@
 import{revealPlace}from'./helpers/places.ts';
 import { test, expect, type Route } from '@playwright/test';
-import { createWorkshop } from '../src/game/workshop.ts';
+import { createWorkshop } from '../src/game/live-workshop.ts';
 
 test('intercepted movement fixture: delayed acknowledgments bound prediction and preserve the walk and portal arrival', async ({ page }) => {
   // Isolated transport fixture only. No real town rows, grants, or production timing changes.

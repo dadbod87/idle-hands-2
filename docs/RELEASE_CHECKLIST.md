@@ -1,3 +1,11 @@
+#111acceptance checklist
+
+- [x] Coherent root3/garden4/protocol6, same save key/lease, atomic café authority and additive seventh migration; six old files unchanged.
+- [x]431system checks, strict build, focused native café/old-save/cached-writer proof and Terra V3 desktop/phone/short.
+- [ ] Complete153browser regression, actual current café restart recovery and exact-final-head four GitHub jobs.
+- [ ] Main-push regression/raw artifacts, matched local preview update, protected data/keys/old checksums/study origins and signed-session verification.
+- [ ] Close111with exact source pointer and112ready. No public/cloud launch.
+
 #110gates complete;111requires coherent integration
 
 PR41/main98d4d02 accepted after PR43498138268 and main43500750359all4jobs, each418system/146browser(74+72)/zero skips/flakes/errors and raw artifact proof. Isolated atomic café candidate and dedicated restart/restore proven; actual208clients/all active sources remain exact109, protected data/keys/PIDs preserved. No playable café or public/cloud launch. Next111coherent counter/save integration;112owner-directed house sizes/yards/layouts. Historical pending notes below superseded. [Report](evidence/IH2-110/REPORT.md).

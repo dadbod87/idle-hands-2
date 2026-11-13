@@ -1,4 +1,4 @@
-import{placesView}from'../game/places-view.ts';import type{WorkshopState}from'../game/workshop.ts';import type{Room,Stop}from'../game/world.ts';
+import{placesView}from'../game/places-view.ts';import type{WorkshopState}from'../game/live-workshop.ts';import type{Room,Stop}from'../game/world.ts';
 export function renderPlaces(body:HTMLElement,options:{room:Room;stops:Stop[];state:WorkshopState;goal:{id:string;destination?:string};now:number;neighborhood?:{districtId:string;ownerPlotId?:string};walk:(stop:Stop)=>void}){
  const view=placesView(options.room,options.stops,options.state,options.goal,options.now,options.neighborhood),intro=document.createElement('p');intro.className='places-intro';intro.textContent='Choose a place to walk. Inspect or enter when you arrive.';body.append(intro);
  const append=(host:HTMLElement,stops:Stop[])=>{for(const stop of stops){const b=document.createElement('button');b.type='button';b.className='destination';b.textContent='Walk to '+stop.name+' →';b.dataset.destination=stop.id;b.onclick=()=>options.walk(stop);host.append(b);}};

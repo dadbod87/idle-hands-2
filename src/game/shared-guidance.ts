@@ -1,5 +1,7 @@
+import type {WorkshopState as CurrentWorkshopState} from './live-workshop.ts';
+type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
 /** Presentation only. Quest awards and production remain authoritative and unchanged. */
-import {questStep,type WorkshopState} from './workshop.ts';
+import {questStep,type WorkshopState as LegacyWorkshopState} from './workshop.ts';
 export type GuidanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;legacySatisfied:boolean};
 export type GuidanceSnapshot={workshop:WorkshopState;lesson?:GuidanceLesson;bridge:{restored:boolean;contributed:number;target:number};trail?:{pennantOwned:boolean};plot?:unknown};
 export type SharedObjective={id:string;title:string;detail:string;complete:boolean;destination:'bench'|'bridge'|'journal'};

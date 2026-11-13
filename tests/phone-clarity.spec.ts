@@ -2,7 +2,7 @@ import{revealPlace}from'./helpers/places.ts';
 import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {worlds} from '../src/game/world.ts';
-import type {WorkshopState} from '../src/game/workshop.ts';
+import type {WorkshopState} from '../src/game/live-workshop.ts';
 
 const evidence=process.env.QA_EVIDENCE_DIR??'test-results/browser';
 const arrival=process.env.CI?40_000:15_000;

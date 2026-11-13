@@ -1,0 +1,10 @@
+{
+  "fixtureOnly": true,
+  "actualDedicatedContainerRestart": true,
+  "all14TablesAllFieldsPreserved": true,
+  "all7MigrationRowsPreserved": true,
+  "queuedDeadlinePlacedTeapotPaidUUIDAndFixedOpenPreserved": true,
+  "sameSignedSessionAndService": true,
+  "idleConnectionInterruptionHandled": false,
+  "limits": "Local isolated synthetic container recovery, not cloud HA or real-user restoration."
+}

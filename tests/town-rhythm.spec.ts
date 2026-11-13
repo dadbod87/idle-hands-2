@@ -1,7 +1,7 @@
 import{revealPlace}from'./helpers/places.ts';
 import {test,expect,type Page} from '@playwright/test';
 import fs from 'node:fs';
-import {createWorkshop} from '../src/game/workshop.ts';
+import {createWorkshop} from '../src/game/live-workshop.ts';
 
 const evidence=process.env.QA_EVIDENCE_DIR??'test-results/browser';fs.mkdirSync(evidence,{recursive:true});
 const arrivalTimeout=process.env.CI?30000:10000;

@@ -1,8 +1,8 @@
-import {applyGarden} from '../src/game/garden.ts';
+import {applyGarden} from '../src/game/live-garden.ts';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {TownClient,type TownSnapshot} from '../src/ui/town-client.ts';
-import {createWorkshop} from '../src/game/workshop.ts';
+import {createWorkshop} from '../src/game/live-workshop.ts';
 
 // Transport-only fixtures have full garden banks and no pending economy deadlines.
 // A separate test below covers real garden deadline and retry-timer coexistence.
@@ -154,5 +154,15 @@ for(const result of ['success','network','definite'] as const)test('obsolete pan
    assert.equal(f.client.retryAvailable,true);f.handle(request=>{assert.deepEqual(request.body,first);return json({ok:true,replayed:true,message:'Visible same receipt',snapshot:value('A',11,1100)});});
    await f.client.retry(()=>true);assert.equal(f.client.retryAvailable,false);assert.equal(f.client.snapshot!.workshop.revision,11);assert.match(f.messages.at(-1)!,/Visible same receipt/);
   }
+ }finally{await f.close();}
+});
+
+test('cafe public projection uses one deadline wakeup, rejects private fields and preserves same-boot monotone progress',async()=>{
+ const f=fixture();try{
+  f.set({...value('A',10,1000),cafe:{credits:12,phase:'opening',readyAt:14400000}});await f.client.load();assert.equal(f.timers.size,1);assert.equal(f.delays.at(-1),14400000-1000+50);
+  f.handle(()=>json({snapshot:{...value('A',11,1100),cafe:{credits:12,phase:'opening',readyAt:14400000,observedAt:1100}}}));await assert.rejects(()=>f.client.load(),/café project/);assert.equal(f.client.snapshot?.cafe?.readyAt,14400000);
+  f.handle(()=>json({snapshot:{...value('A',11,14400000),cafe:{credits:12,phase:'open',readyAt:14400000}}}));await f.client.load();assert.equal(f.timers.size,0);
+  f.handle(()=>json({snapshot:{...value('A',12,14400100),cafe:{credits:0,phase:'collecting',readyAt:null}}}));await f.client.load();assert.equal(f.client.snapshot?.cafe?.phase,'open');assert.equal(f.client.snapshot?.cafe?.readyAt,14400000);
+  f.handle(()=>json({snapshot:{...value('A',13,14400200),cafe:{credits:12,phase:'open',readyAt:28800000}}}));await f.client.load();assert.equal(f.client.snapshot?.cafe?.readyAt,14400000);
  }finally{await f.close();}
 });

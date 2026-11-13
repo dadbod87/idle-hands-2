@@ -1,4 +1,6 @@
-import {PROP_IDS,PROPS,type PropId,type WorkshopState} from './workshop.ts';
+import type {WorkshopState as CurrentWorkshopState} from './live-workshop.ts';
+type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
+import {PROP_IDS,PROPS,type PropId,type WorkshopState as LegacyWorkshopState} from './workshop.ts';
 import {MARKER_IDS,MARKER_DEFS} from './garden.ts';
 
 export const BAG_GROUPS=['furniture','materials','garden'] as const;
@@ -12,6 +14,7 @@ export function bagStacks(state:WorkshopState,elsewhere:Partial<Record<PropId,nu
   const valid=Number.isSafeInteger(home)&&home>=0&&workshop+home<=owned;
   return{id,group:'furniture',name:furnitureNames[id],icon:id==='letterbox'?'/art/commission/letterbox-'+state.commission.motif+'-closed.svg':'/art/homes/home-'+id+'-icon.svg',quantity:valid?owned-workshop-home:null,detail:valid?`${owned} owned\n${workshop+home} placed`:'Placement count unconfirmed'};
  });
+ if(state.version===3){const used=Object.values(state.placements).filter(p=>p==='teapot').length,home=(elsewhere as Record<string,number>).teapot??0,owned=state.owned.teapot;stacks.push({id:'teapot',group:'furniture',name:'Brave teapot',icon:'/art/cafe/teapot-icon.svg',quantity:used+home<=owned?owned-used-home:null,detail:`${owned} owned\n${used+home} placed`});}
  for(const id of ['scrap','timber','supplies'] as const)stacks.push({id,group:'materials',name:id==='scrap'?'Scrap':id==='timber'?'Timber':'Supplies',icon:'/art/homes/home-'+id+'-icon.svg',quantity:state.inventory[id],detail:'Carried material'});
  stacks.push({id:'pine',group:'materials',name:'Pine bundles',icon:'/art/carpentry/pine-bundle-icon.svg',quantity:state.carpentry.pine.carried,detail:'Carried wood'},
  {id:'bridge-kit',group:'materials',name:'Bridge repair kits',icon:'/art/homes/home-crate-icon.svg',quantity:state.bridgeKits,detail:'Kept kits · projects & homes'});

@@ -1,6 +1,6 @@
 import {test,expect,type Page,type Route} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
-import {createWorkshop} from '../src/game/workshop.ts';
+import {createWorkshop} from '../src/game/live-workshop.ts';
 async function harness(page:Page){
  const started=Date.now();let actor:string|null=null,hold=false,held:Route|null=null,captured:unknown,gets=0,restored=false,serverInstance='boot-one',clockOffset=0;
  const players=Object.fromEntries(['aster','bea'].map(id=>[id,{playerId:id,name:id==='aster'?'Aster':'Bea',workshop:createWorkshop(started),position:{room:'square',position:{x:24,y:25}},quest:{contentVersion:1,awarded:[]},bridge:{contributed:0,target:3,restored:false},plot:null,plots:[],seasonKey:'2026-11-06',scores:[],serverTime:started}]));

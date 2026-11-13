@@ -5,7 +5,7 @@ import {CAFE_SAVE_KEY,CAFE_LEGACY_KEY,CAFE_WRITER_LOCK,type CafeStorage,type Caf
 
 /** Isolated coordinator. No live UI/server imports. All writers must cooperate
  * with the same tab-lifetime lease; raw checks are not a cross-process CAS. */
-export type WriterEnvironment={storage:()=>CafeStorage;locks:()=>CafeWriterLocks|undefined;now:()=>number};
+export type WriterEnvironment={storage:()=>CafeStorage;locks:()=>CafeWriterLocks|undefined;now:()=>number;initialize?:()=>CafeWorkshopCandidate};
 export type WriterStatus='ready'|'saved'|'unsaved'|'blocked'|'invalid'|'busy'|'suspended'|'conflict'|'unavailable'|'missing'|'unreadable'|'save-failed'|'no-pending';
 /** state is detached last-confirmed data; conflict/unavailable may mean it is stale.
  * working is explicitly unconfirmed practice until a successful native write. */
@@ -51,7 +51,7 @@ export class CafeWriterCandidate{
   try{
    void locks.request(CAFE_WRITER_LOCK,{ifAvailable:true},async lock=>{
     if(epoch!==this.epoch){finish(this.outcome('suspended','An old acquisition was ignored.'));return;}
-    if(!lock||lock.name!==CAFE_WRITER_LOCK){finish(this.outcome('busy','Another tab owns the save. This tab has not changed it.'));return;}
+    if(!lock||lock.name!==CAFE_WRITER_LOCK){finish(this.outcome('busy','Workshop open in another tab. This tab has not changed it.'));return;}
     const wait=new Promise<void>(done=>this.release=done);this.storage=storage;this.held=true;
     finish(this.run(()=>this.loadOwned(false)));await wait;
     if(epoch===this.epoch){this.held=false;this.release=null;}
@@ -91,7 +91,11 @@ export class CafeWriterCandidate{
   if(!discard&&(this.dirty||this.pending)&&this.baseline&&!same(raw,this.baseline)){this.conflict=true;return this.outcome('conflict','The saved text changed while this tab was away. Unsaved practice and pending intent are kept.');}
   if(!discard&&this.dirty)return this.outcome('unsaved','Unsaved practice is kept. Save it explicitly before a tasting.');
   if(!discard&&this.pending?.kind==='serve')return this.outcome('save-failed','The original tasting is unresolved. Retry or cancel it.');
-  const text=raw.current??raw.legacy;if(text===null)return this.outcome('missing','No save exists. No replacement progress was created.');
+  const text=raw.current??raw.legacy;if(text===null&&this.environment.initialize){
+   const initial=migrateCafeCandidate(this.environment.initialize());if(!initial.ok)return this.outcome('unreadable','Initial state failed validation.');
+   this.baseline=raw;this.pending={kind:'load'};const result=this.write(initial.state,'ready','New local workshop saved under its writer lease.');
+   if(result.status==='save-failed'){this.working=initial.state;this.dirty=true;this.pending=null;return this.outcome('unsaved','Local save failed. Fresh ordinary practice is kept in this tab; save it before a tasting.');}return result;
+  }if(text===null)return this.outcome('missing','No save exists. No replacement progress was created.');
   let value:unknown;try{value=JSON.parse(text);}catch{return this.outcome('unreadable','Unreadable original save kept untouched.');}
   const loaded=migrateCafeCandidate(value);if(!loaded.ok)return this.outcome('unreadable','Unsupported original save kept untouched.');
   const prior={baseline:this.baseline,conflict:this.conflict,pending:this.pending,dirty:this.dirty};
@@ -154,7 +158,7 @@ export class CafeWriterCandidate{
  private write(state:CafeWorkshopCandidate,status:'ready'|'saved',message:string,ordinaryAccepted=false,teapotAwarded=false):WriterOutcome{
   const denied=this.checkBaseline();if(denied)return denied;
   let text:string;try{text=JSON.stringify(state);this.storage!.setItem(CAFE_SAVE_KEY,text);}
-  catch{return this.outcome(this.dirty?'unsaved':'save-failed','Save failed. Unsaved practice is kept; no new tasting or teapot is confirmed.',ordinaryAccepted);}
+  catch{return this.outcome(this.dirty?'unsaved':'save-failed','Local save failed. Unsaved practice is kept; no new tasting or teapot is confirmed.',ordinaryAccepted);}
   this.baseline={current:text,legacy:null};this.confirmed=structuredClone(state);this.working=structuredClone(state);this.dirty=false;this.pending=null;
   return this.outcome(status,message,ordinaryAccepted,teapotAwarded);
  }

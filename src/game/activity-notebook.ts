@@ -1,4 +1,6 @@
-import {ITEM_LIMIT,RECIPES,type WorkshopState} from './workshop.ts';
+import type {WorkshopState as CurrentWorkshopState} from './live-workshop.ts';
+type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
+import {ITEM_LIMIT,RECIPES,type WorkshopState as LegacyWorkshopState} from './workshop.ts';
 import {GARDEN_RULES} from './garden.ts';
 export type ActivityId='bench'|'rack'|'garden';
 export type ActivityNote={id:ActivityId;title:string;phase:'idle'|'running'|'ready'|'blocked';summary:string;detail:string;readyAt:number|null};

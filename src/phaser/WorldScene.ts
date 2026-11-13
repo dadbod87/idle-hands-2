@@ -3,12 +3,12 @@ import{RESIDENTIAL_ASSETS,residentialArt,homeExteriorForPlot}from'../art/residen
 import{ResidentialLife,type ChimneyAnchor}from'./ResidentialLife.ts';
 import{PARCELS,STREETS,addressForPlot,NEIGHBORHOOD_TREES}from'../game/neighborhood.ts';
 import{NEIGHBORHOOD_ASSETS,neighborhoodArt}from'../art/neighborhood.ts';
-import {homeSlots,type HomeSlotId} from '../game/home-layout.ts';
+import {homeSlots,type HomeSlotId} from '../game/live-home-layout.ts';
 import {DEPOT_ASSETS,depotArt} from '../art/depots.ts';
 import {settleCarpentry,type CarpentryState,type NoticeboardState} from '../game/carpentry.ts';
 import {CARPENTRY_ASSETS,carpentryArt,carpentryActionFrame,type CarpentryAnimation} from '../art/carpentry.ts';
 import {SURVEY_IDS,SURVEYS} from '../game/fieldwork.ts';
-import {gardenStage,type GardenState} from '../game/garden.ts';
+import {gardenStage,type GardenState} from '../game/live-garden.ts';
 import {GARDEN_ASSETS,gardenArt,gardenActionFrame,type GardenAnimation} from '../art/garden.ts';
 import Phaser from 'phaser';
 import {TRAIL_ASSETS,TRAIL_ART} from '../art/trail.ts';
@@ -19,7 +19,7 @@ import {TOWN_PEOPLE} from '../game/town-people.ts';
 import { Session, WALK_SPEED } from '../game/session.ts';
 import {movementFrameSteps} from '../game/movement-frame.ts';
 import { TILE, worlds } from '../game/world.ts';
-import { PLACEMENT_SLOTS, type WorkshopState,type PropId } from '../game/workshop.ts';
+import { PLACEMENT_SLOTS, type WorkshopState,type PropId } from '../game/live-workshop.ts';
 import { ORIGINAL_STATIC, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 import catalog from '../../public/art/variety/catalog.json';
 import {RESIDENT_IDS,TREE_KINDS,BUILDING_KINDS,residentArt,residentFrame,ambientPose,cosmeticStep} from '../art/variety.ts';
@@ -128,6 +128,8 @@ export class WorldScene extends Phaser.Scene {
   constructor(public session: Session) { super('world'); }
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
   preload() {
+    this.load.svg('home-teapot-world','/art/cafe/teapot-world.svg');
+    this.load.svg('home-teapot-icon','/art/cafe/teapot-icon.svg');
     for(const key of DEPOT_ASSETS)this.load.svg(key,`/art/depots/${key}.svg`);
     for(const motif of ['leaf','sun','moth'])this.load.svg('letterbox-'+motif+'-closed','/art/commission/letterbox-'+motif+'-closed.svg');
     // Peer sprites use the four ordinary rigs. Activity/equipment sheets belong

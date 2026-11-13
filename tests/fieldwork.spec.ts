@@ -2,7 +2,7 @@ import{revealPlace}from'./helpers/places.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {test,expect} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
-import {createWorkshop,applyWorkshop} from '../src/game/workshop.ts';
+import {createWorkshop,applyWorkshop} from '../src/game/live-workshop.ts';
 import {SURVEY_IDS,SURVEYS} from '../src/game/fieldwork.ts';
 for(const shape of [{name:'desktop',width:1440,height:900},{name:'phone',width:360,height:640}])test.describe(shape.name,()=>{test.use({hasTouch:shape.name==='phone'});test('off-bench sketchbook '+shape.name+': direct tree, keyboard choice, reload and unchanged long job',async({page})=>{
  test.setTimeout(process.env.CI?180000:90000);const evidence=process.env.QA_EVIDENCE_DIR??'test-results/browser';mkdirSync(evidence,{recursive:true});

@@ -1,7 +1,7 @@
 import{test,expect,type Page}from'@playwright/test';
 import{mkdirSync,writeFileSync}from'node:fs';
 import{homePanelFixture as fixture}from'./helpers/home-panel.ts';
-import type{WorkshopState}from'../src/game/workshop.ts';
+import type{WorkshopState}from'../src/game/live-workshop.ts';
 const out='test-results/browser';
 
 async function arrange(page:Page){await page.locator('#bag').click();await page.getByRole('button',{name:'Inspect or arrange a house',exact:true}).click();}

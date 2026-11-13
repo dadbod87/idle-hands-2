@@ -1,3 +1,4 @@
+import {readDatedStudyInput} from './dated-study-source.ts';
 /** Explicit dated099 attribution only; not a fallback for current source checks.
  * Current generator code reproduces the original study using original source
  * metadata. Actual historical-tree execution is recorded separately in104. */
@@ -9,7 +10,7 @@ const hash=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
 const manifest=():Manifest=>JSON.parse(readFileSync(cafeRefactorManifestPath,'utf8'));
 export function readDatedCafeInput(path:string):Buffer{
  const original=manifest().historical[path];
- if(!original)return readFileSync(path);
+ if(!original)return readDatedStudyInput(path);
  const bytes=readFileSync(original.snapshot);
  if(hash(bytes)!==original.sha256)throw new Error('Changed historical café input: '+path);
  return bytes;

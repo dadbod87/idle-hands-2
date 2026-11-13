@@ -1,3 +1,9 @@
+#111current continuation — feat/playable-cafe
+
+After acceptance, the exact verification/preview closeout is backed up on `chore/playable-cafe-closeout-2026-11-13`. Fetch and verify that branch before assuming this pre-acceptance checkpoint is current. Its existence/status is not implied until the recorded gates actually pass.
+
+Active full-code checkout: `work/idle-hands-2-playable-cafe`, based on110closeout4407a278. Actual café registered coherently; current431system/build and Terra V3/local source-update checks pass. Full153browser and normal public exact-head/main/artifact/actual-preview acceptance are in progress, not yet accepted. Existing4175/4176remain110/109runtime; no protected data/key changes. Read [111report](../evidence/IH2-111/REPORT.md). Next112housing only after111gates.
+
 #110accepted — next111playable café integration
 
 Main **98d4d02e52c77b48312d95febf0e06d5415144c3**, PR41, candidate **0ac7e8eb12c73e6f56aa79bf7ac6ab0e41f83d99**, identical tree. PR43498138268 and main43500750359each pass all four required jobs:418system/146browser, disjoint74+72, zero failures/skips/flakes/reporterrors. Raw artifacts/restore/client bytes verified. [Report](../evidence/IH2-110/REPORT.md) and source-closeout.json distinguish source/candidate/actual-preview evidence.

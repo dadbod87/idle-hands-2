@@ -9,7 +9,7 @@ import {execFile} from 'node:child_process';
 import {database,migrate,localDatabaseUrl} from '../server/db.ts';
 import {createTownServer} from '../server/http.ts';
 import {routeTo,worlds,type Point,type Room} from '../src/game/world.ts';
-import type {TownSnapshot,TownPosition} from '../server/store.ts';
+import type {TownSnapshot,TownPosition} from '../server/live-store.ts';
 
 const sleep=(ms:number)=>new Promise<void>(resolve=>setTimeout(resolve,ms));
 function summary(values:number[]){const ordered=[...values].sort((a,b)=>a-b);const at=(q:number)=>ordered[Math.min(ordered.length-1,Math.ceil(q*ordered.length)-1)]??0;return{count:ordered.length,p50:at(.5),p95:at(.95),p99:at(.99),max:ordered.at(-1)??0};}

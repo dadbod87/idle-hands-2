@@ -3,7 +3,7 @@ import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {Pool} from 'pg';
 import {localDatabaseUrl} from '../server/db.ts';
-import {createWorkshop,applyWorkshop,PLACEMENT_SLOTS} from '../src/game/workshop.ts';
+import {createWorkshop,applyWorkshop,loadWorkshop,PLACEMENT_SLOTS} from '../src/game/live-workshop.ts';
 import {combinedAuditFixture} from '../tools/combined-audit-fixtures.ts';
 import {emptyWorkroom} from '../src/game/home-layout.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
@@ -18,7 +18,7 @@ async function place(p:Page,prop:string,slot:string){const revision=(await town(
 async function point(p:Page,x:number,y:number){for(let n=0;n<12;n++){const q=await p.evaluate(v=>(window as any).__pilot.screenPoint(v.x,v.y),{x,y}),b=(await p.locator('canvas').boundingBox())!;const visible=q.x>20&&q.x<b.width-20&&q.y>20&&q.y<b.height-20;await p.mouse.click(b.x+Math.max(20,Math.min(b.width-20,q.x)),b.y+Math.max(20,Math.min(b.height-20,q.y)));if(visible)return;await expect.poll(async()=>(await scene(p)).walking,{timeout:arrival}).toBe(false);}throw Error('Target did not become visible');}
 test('expanded workroom actual owner/visitor: eight families, atomic moves, live unique motif and phone/short layouts',async({browser})=>{
  test.setTimeout(process.env.CI?240000:120000);mkdirSync(out,{recursive:true});
- const url=localDatabaseUrl(process.env.IH2_BROWSER_DATABASE_URL??'postgres://ih2:local-synthetic-only@127.0.0.1:55432/ih2_browser');expect(new URL(url).pathname).toBe('/ih2_browser');const pool=new Pool({connectionString:url});const now=Date.now();let state=combinedAuditFixture('returning',now).state!;
+ const url=localDatabaseUrl(process.env.IH2_BROWSER_DATABASE_URL??'postgres://ih2:local-synthetic-only@127.0.0.1:55432/ih2_browser');expect(new URL(url).pathname).toBe('/ih2_browser');const pool=new Pool({connectionString:url});const now=Date.now();let state=loadWorkshop(combinedAuditFixture('returning',now).state!,now).state;
  const claimed=applyWorkshop(state,{kind:'carpentry',carpentryAction:{action:'claim-easel'},id:'workroom-earned-easel',expectedRevision:state.revision},now);expect(claimed.ok,claimed.message).toBe(true);state=claimed.state;
  for(const[slot,prop]of Object.entries(state.placements))if(prop){const r=applyWorkshop(state,{kind:'remove',slot,id:'workroom-store-'+slot,expectedRevision:state.revision},now);expect(r.ok).toBe(true);state=r.state;}
  const old=Object.fromEntries(PLACEMENT_SLOTS.map((s,i)=>[s.id,['planter','stool','rug','lamp','crate','shelf'][i]]));let plot:string;

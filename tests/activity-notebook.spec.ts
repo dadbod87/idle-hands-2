@@ -1,5 +1,5 @@
 import{test,expect}from'@playwright/test';import{mkdirSync,writeFileSync}from'node:fs';
-import{createWorkshop,applyWorkshop,isCurrentWorkshop}from'../src/game/workshop.ts';
+import{createWorkshop,applyWorkshop,isCurrentWorkshop}from'../src/game/live-workshop.ts';
 const out='test-results/browser',note=(page:any,id:string)=>page.locator('[data-activity="'+id+'"]');
 test('notebook: actual five-second job boundary keeps held target, focus, scroll and free inspector actions',async({page})=>{
  mkdirSync(out,{recursive:true});const started=Date.now();let s=createWorkshop(started);for(const resource of['scrap','timber','supplies']as const)s=applyWorkshop(s,{kind:'gather',resource,id:'notebook-'+resource,expectedRevision:s.revision},started).state;expect(isCurrentWorkshop(s)).toBe(true);

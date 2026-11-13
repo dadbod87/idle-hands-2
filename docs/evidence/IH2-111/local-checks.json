@@ -1,0 +1,33 @@
+{
+  "system": {
+    "tests": 431,
+    "passed": 431,
+    "failed": 0,
+    "skipped": 0
+  },
+  "focusedCafeBrowser": {
+    "tests": 7,
+    "passed": 7
+  },
+  "build": true,
+  "design": true,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "diffCheck": true,
+  "clientFiles": 214,
+  "artFiles": 208,
+  "browser": {
+    "required": 153,
+    "status": "running"
+  },
+  "terra": "V3 actual compiled desktop/360/320/short200 + bounded/reduced motion; synthetic local fixtures",
+  "sourceUpdate": "Exact old tuple/queued work migration and actual accepted cached109compiled writer refuses root3raw; source-update.json",
+  "migrationCopies": "Both actual protected synthetic towns copied read-only into55434; new seventh migration keeps all13old tables/allfields/6checksums",
+  "acceptedPreview": "Unchanged pending source/main gates",
+  "usage": {
+    "weeklyUsedPercent": 62,
+    "remainingPercent": 38,
+    "resetCreditsUnused": 3
+  },
+  "limits": "Synthetic fixtures/emulated Chrome, no physical-device/cloud/public launch or real-player test."
+}

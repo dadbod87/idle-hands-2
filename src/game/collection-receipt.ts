@@ -1,5 +1,7 @@
+import type {WorkshopState as CurrentWorkshopState} from './live-workshop.ts';
+type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
 import {z} from 'zod';
-import {RESOURCE_IDS,type WorkshopState} from './workshop.ts';
+import {RESOURCE_IDS,type WorkshopState as LegacyWorkshopState} from './workshop.ts';
 const identity=z.string().regex(/^[a-zA-Z0-9:_-]{1,80}$/);
 export const collectionGrantSchema=z.object({commandId:identity,playerId:identity,resource:z.enum(RESOURCE_IDS),quantity:z.number().int().min(1).max(6),revision:z.number().int().min(1).max(1_000_000)}).strict();
 export type CollectionGrant=z.infer<typeof collectionGrantSchema>;

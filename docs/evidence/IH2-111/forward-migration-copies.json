@@ -1,0 +1,23 @@
+{
+  "readOnlyProtectedSyntheticSources": true,
+  "noKeysCopied": true,
+  "noProtectedMutation": true,
+  "proof": [
+    {
+      "source": "ih2_preview",
+      "isolatedTarget": "ih2_forward_primary",
+      "old13TablesAllFieldsExact": true,
+      "old6ChecksumsExact": true,
+      "newCafeTableOnly": true,
+      "sevenForwardMigrations": true
+    },
+    {
+      "source": "ih2_neighborhood_tour",
+      "isolatedTarget": "ih2_forward_tour",
+      "old13TablesAllFieldsExact": true,
+      "old6ChecksumsExact": true,
+      "newCafeTableOnly": true,
+      "sevenForwardMigrations": true
+    }
+  ]
+}

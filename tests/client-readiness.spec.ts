@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
-import {createWorkshop,applyWorkshop} from '../src/game/workshop.ts';
+import {createWorkshop,applyWorkshop} from '../src/game/live-workshop.ts';
 
 test('idle and menu redraw are bounded while clocks, resize and immediate movement remain live',async({page})=>{
  const evidence=process.env.QA_EVIDENCE_DIR??'test-results/browser';

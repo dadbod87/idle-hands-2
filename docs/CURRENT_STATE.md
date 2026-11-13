@@ -1,3 +1,5 @@
+102coherent source locally verified348system/136browser, unchanged208game/202art and21historical/rawstudyfiles. Originalcaféinputsreproduceexactly; all prior assertions/timeouts retained. Normal source gate still held, accepted090unchanged.103read-only café authority contract next. [Report](evidence/IH2-102/REPORT.md).
+
 101Bag quantities locally verified:338system/132browser/7focused/native8shapes/TerraV2/frozen208/origin/preservation. Key/ARIAclarifies available versus owned, header gap restored; a measured test-only resize-readiness race is corrected without relaxing crop/target/progress checks. Accepted090unchanged, normal source gate held. Next102coherent source preparation. [Report](evidence/IH2-101/REPORT.md).
 
 100 first Aster serving study locally verified:325system/110browser/native/TerraV2/eight-filefrozen;20cells with exact feet/final idle, zero runtime delta and all accepted data/artifacts preserved. Normal source gate remains held. Next101clarifies Bag available-versus-owned counts from the cold-read menu review. [Report](evidence/IH2-100/REPORT.md).

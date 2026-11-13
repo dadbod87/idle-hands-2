@@ -1498,7 +1498,7 @@
     {
       "id": "IH2-102",
       "title": "One coherent held source with complete art and menu checks",
-      "status": "in_progress",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1513,9 +1513,35 @@
         "No new caf\u00e9 service/food/reward/room/command/state/migration/economy/authority/public hosting/paid asset/billing/runner changes or current-game edits. No removal of old test assertions, timeout inflation or historical artifact overwrite. No runtime change beyond already locally reviewed101input."
       ],
       "evidence": [
-        "docs/evidence/IH2-102/PLAN.md"
+        "docs/evidence/IH2-102/PLAN.md",
+        "docs/evidence/IH2-102/REPORT.md",
+        "docs/evidence/IH2-102/source-inputs.json",
+        "docs/evidence/IH2-102/local-checks.json",
+        "docs/evidence/IH2-102/artifact-proof.json",
+        "docs/evidence/IH2-102/source-hold.json"
       ],
-      "owner_branch": "feat/coherent-source-review"
+      "owner_branch": "feat/coherent-source-review",
+      "blocked_reason": "Local348system/136browser/10model/4focused/208identity/21rawstudyfiles/preservation pass. Normal exact-final-head GitHub/rawartifact/source gates remain unmet after oldbillingrefusal; no merge or accepted-preview update."
+    },
+    {
+      "id": "IH2-103",
+      "title": "Caf\u00e9 authority and durable local-save contract",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Record an implementation-ready small caf\u00e9 persistence/authority plan from actual current code without rushing a new runtime before the7amstop.",
+      "acceptance": [
+        "Read-only audit of current strict schemas, consumed sinks, local single-writer/save/quota semantics, server transaction/UUID/proximity/protocol and six immutable migrations. Distinguish current facts from design decisions and record independent domain review.",
+        "Choose an atomic private/public/local projection boundary, exact old-save migration/cached-writer protection, forward placement constraint path, funded-versus-open refusal rule, fixed deadlines and UI receipt/focus/cooldown contract; no invented implementation claims.",
+        "Define next bounded pure-ledger/migration work outside live entrypoints and later coherent SQL/UI/art gates; preserve gameplay/source/artifact/data/key identity. Documentation/plan/pinned/design/link checks suffice for this design-only task; reuse102code results explicitly. Normal source acceptance remains held."
+      ],
+      "exclusions": [
+        "No code/schema/migration/auth/state/prop/reward/room/API/service/key/data/expense/public change. No defaulting corrupt saves or silent changes to existing local durability semantics. No rushed bulk art/runtime section before cutoff."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-103/PLAN.md"
+      ]
     }
   ]
 }

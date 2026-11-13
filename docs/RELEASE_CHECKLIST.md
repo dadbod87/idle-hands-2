@@ -1,3 +1,7 @@
+# Coherent102 release hold
+
+Local348system/136browser, disjoint69+67shards, exact208runtime/202art/21studyrawfiles and preservation pass. Normal final-head GitHub four jobs/rawuploadedartifact/source/actual-preview gates remain required; billing refusal is not bypassed. Accepted090and all held review origins stay intact. [Record](evidence/IH2-102/local-checks.json).
+
 # Latest101 local hold
 
 FinalV2local338system/132browser/7focused/native8/TerraV2/frozen208/origin/preservation pass. Original132assertions/timeouts retained; viewport readiness now waits for actual responsive layout rather than an already-clamped zoom. All202art and accepted090clients/data/API/keys/54studies and held artifacts preserved. Exact-final-head normal GitHub/rawartifact/source/actual-preview gates remain required after prior billing refusal.102will prepare one coherent candidate. [Record](evidence/IH2-101/local-checks.json).

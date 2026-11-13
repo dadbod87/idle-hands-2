@@ -1,0 +1,66 @@
+{
+  "classification": "Explicit unaccepted consolidation inputs; preserve dated study bytes",
+  "runtimeInput": "f7a0c0a38a0064d63bdd429deeaee858503e7e62",
+  "acceptedMain": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
+  "studySources": {
+    "IH2-099": "ee92ed5e22791585b327d077341be144b59b232b",
+    "IH2-100": "b3bee6188864679ea4c2ebb196068354bd8a7edf"
+  },
+  "historicalStudies": [
+    {
+      "task": "IH2-099",
+      "source": "ee92ed5e22791585b327d077341be144b59b232b",
+      "root": "docs/evidence/IH2-099/study",
+      "files": {
+        "index.html": "ab69ccd1a179bbfae3969f929bd57628c6c8885bde3afc3726fb76d4ce58d7ce",
+        "provenance.json": "5a973fad00ec7bc5b7b6c0cd7f695191d1fc207bd99dc41fb838e24d05a9a56f",
+        "study.js": "ed2716ade4345fee2a29bbc468ba8a3f96ea0e5ab9cdd7b0c9187cdcf667b1f5",
+        "style.css": "50396a3555ce8e9b24b27906e0a78fb8ac1462874179c733b1daf6181de94c0f",
+        "catalog.json": "3235a8a230f37c1d5dc6f8562c78cda7d6a8b3e7b14f2849707960396be68b6a",
+        "art/bowl-soup.svg": "df182c92a4738c838202fb957f1197f44a74a607b4a8103098284c86ac97cd05",
+        "art/garden-radish-produce.svg": "c15e29a55b820152258c5abdc2223e6a119a581d1320dcd4e290ead7078ee542",
+        "art/building-cafe.svg": "29faeaae7b996735ae97b5e3e156f6900bd1247e19ef95f4c344212e4f7a5078",
+        "art/radish-formal.svg": "f2f0e7c79f0e6eaacecd8cc41dd9b01c13773d3f146db869648ac7702891084c",
+        "art/cafe-counter.svg": "1a6edd7c3e74b47af4cd12c354ec7328b12098e6dbc8ba46b01189d1090b04a3",
+        "art/brave-teapot.svg": "cc0cf815f7c7e5ff4f901b6b395b8062686d6e6461addb62505c2fe9433e10fc",
+        "art/plate-slices.svg": "2b0ff96b1f123d66cfe30b6b90e446a926619d5d5961c2ee85d5a10c1b8babb6",
+        "art/cafe-room.svg": "337529216d4eefdf2a19c641c05c0f6e1218073d12edb93e21b4d94142a3d0c5"
+      }
+    },
+    {
+      "task": "IH2-100",
+      "source": "b3bee6188864679ea4c2ebb196068354bd8a7edf",
+      "root": "docs/evidence/IH2-100/study",
+      "files": {
+        "index.html": "95596dcc08688e871c5559685906557a60f4f40092d8092324f241abccc28c1a",
+        "provenance.json": "31870e7739242f4a3bb9298b4560d33670fa6fcff7a14b4fbcef432f81770991",
+        "aster-serving.svg": "b6defc8f3c59c44dc32a8019f01e859e25855a0ff5ad7323f4e5b8bb4e11d456",
+        "serving-plate.svg": "7e4db9f16ea9c5fd9c8aace9e14d1c98531e759a592c98cf5d2cdfbd36f60ee5",
+        "study.js": "47e61dd4b801ed5bb48277ec2eb314e85234cd3b0ff7ab4db46ed5eea3221c7e",
+        "style.css": "2ddb405e0a724cfe734f82bf4f0094ec63d74ed4e49df96ff5583d1f10f2270d",
+        "contact-sheet.svg": "47d7a966b594bfd6eabf4d07ae8ceb08de897373d74aaa0638b1c87946408770",
+        "catalog.json": "2d3882b5a023d746ce28edc7d73f35a7c741b1a06fa5a0a2b985f8008607afcb"
+      }
+    }
+  ],
+  "currentWorldSha256": "c4e17cfd7a017d68210eb1af9ba14531bc489e52cd16ef40abfc222ee1f19b26",
+  "historicalCafeWorldSha256": "c4e17cfd7a017d68210eb1af9ba14531bc489e52cd16ef40abfc222ee1f19b26",
+  "copiedCodeFiles": [
+    "tests/design-cafe.spec.ts",
+    "tests/design-cafe.test.ts",
+    "tools/cafe-baseline-audit.ts",
+    "tools/cafe-study-plan.ts",
+    "tools/cafe-study-template/index.html",
+    "tools/cafe-study-template/study.js",
+    "tools/cafe-study-template/style.css",
+    "tools/create-cafe-study.ts",
+    "tools/simulate-cafe-study.ts",
+    "tests/serving-study.spec.ts",
+    "tests/serving-study.test.ts",
+    "tools/create-serving-study.py",
+    "tools/observe-serving-study.ts",
+    "tools/serving-study-template/index.html",
+    "tools/serving-study-template/study.js",
+    "tools/serving-study-template/style.css"
+  ]
+}

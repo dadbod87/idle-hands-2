@@ -1,0 +1,13 @@
+{
+  "classification": "LOCAL_COHERENT_CANDIDATE_ONLY",
+  "acceptedMain": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
+  "branch": "feat/coherent-source-review",
+  "sourceCheckpoint": "Final commit recorded in canonical continuation after backup",
+  "normalGithubChecksComplete": false,
+  "lastRefusedRun": 43365543304,
+  "ownerBillingResolutionReceived": false,
+  "newRunOrPr": false,
+  "merged": false,
+  "acceptedPreviewUpdated": false,
+  "publicDeployment": false
+}

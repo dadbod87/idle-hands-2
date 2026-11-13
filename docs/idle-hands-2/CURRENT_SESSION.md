@@ -1,60 +1,9 @@
-# Active102: coherent held source preparation
+#102 coherent source locally verified;103 next
 
-Isolated `idle-hands-2-coherent` / `feat/coherent-source-review`, base final held101f7a0c0a. Import099study tools/tests and100serving tools/tests only; keep all current UI/runtime and every existing assertion/time limit. Preserve all dated099/100study files and actual review URLs. A new explicit current-candidate café wrapper/export belongs in102evidence because World fingerprints differ from the old accepted090study; no historical hash patching. [Plan](../evidence/IH2-102/PLAN.md).
+Current isolated checkout: idle-hands-2-coherent, branch feat/coherent-source-review, based on held101f7a0c0a. Final102backup commit is recorded in canonical continuation after push. Full348system/136browser pass; zero PostgreSQL skips or browser skips/flakes/unexpected/errors. Discovery69+67is disjoint and keeps the ordered family on2. Strict build/design/plan/pinned/whitespace and raw-artifact identity pass.
 
-Actual game must remain byte-identical to101V2208files/202art. Accepted090clients/API/data/keys/54studies and all held artifacts remain unchanged. Normal GitHub/rawartifact/source gate still unmet after old PR39billing refusal; no owner resolution, redundant run/PR, runner/billing bypass, merge or public release. Latestmainf0a294aand onlyPR39/8abc unchanged; onlyIdleHands2active. Last52%weeklyused/48%remaining,3resetcreditsunused; stop near10%reserve or15:00UTC.
+All208compiled game files match101V2byte-for-byte;202art and original099thirteen/100eight study files remain exact. Direct hashes corrected an assumption: World and all original café inputs never changed. Original modules/checks are retained; the integration verifier runs in the existing provenance case. Only raw café artifact-copy plumbing is added to its browser file; every old assertion/timeout remains.
 
-# Canonical continuation:101 backed up,102 next
+Actual local review49600and fictional Lane town49602/API49604are unchanged101V2artifacts; their208bodies per origin match this source build. Café49586and Aster gesture49590remain separate studies. Accepted0904175/API4186andTour4176/API4188/data/keys/checksums/54studies remain intact. No main merge or public release.
 
-101source `f7a0c0a38a0064d63bdd429deeaee858503e7e62` is pushed to `feat/bag-quantity-clarity`, locally338system/132browser/7focused/native8/TerraV2/frozen208/origin/preservation verified. Shards67+65are disjoint with the ordered family on2. This canonical branch copies only documentation/evidence; runtime stays accepted090. Next102coherent candidate will retain all UI plus independent099/100study checks without a source-gate bypass. Current52%weeklyused/48%remaining,3resetcreditsunused; stop near10%reserve or15:00UTC.
-
-#101 locally verified;102 coherent source next
-
-Final101source backup pending this closeout commit/push. Local338system/132browser/7focused/native8/TerraV2/208frozen/origin/preservation pass; actual V2game review49602uses fictional Lane and unchanged090API5at49604, local-only49600. All202runtime art/accepted090data/keys/54studies/heldartifacts unchanged. A measured test-only inherited resize race is corrected with stronger viewport readiness; all old crop/target/collision/progress assertions and timeouts remain. [Handoff](handoffs/2026-11-13-bag-quantity.md).
-
-Next102uses final held101source in an isolated branch, retains all branch-specific tests, imports099/100study tools/tests without old runtime, and exports a new honest current-source café revalidation rather than overwriting099historical art/provenance. Main remainsf0a294aand normal GitHub/rawartifact/source/accepted-preview gates remain unmet; no owner billing resolution has arrived. [Plan](../evidence/IH2-102/PLAN.md). Session inventory: onlyIdleHands2active, IdleHands1idle. Last51%weeklyused/49%remaining; stop near10%reserve or15:00UTC.
-
-# Active101: explain Bag availability at the items
-
-Isolated `idle-hands-2-bag-quantity` / `feat/bag-quantity-clarity`, starting from held098source91a3eb1 plus canonical3d6b781documentation. The098runtime is a locally verified unaccepted input, not accepted090. Follow101PLAN: short context key before grid, precise available/carried/kept accessible names, shorter bottom note; no inventory calculation/state/server changes. Preserve all098features/checks and all accepted090clients/API/data/keys/54studies plus held artifacts. No source gate bypass or public release.
-
-100 sourceb3bee61is pushed; frozen8art study49590/local325/110/TerraV2/preservation verified, normal source gate held. Last51%weeklyused/49%remaining; stop near10%reserve or15:00UTC.
-
-# Canonical continuation:100 backed up,101 next
-
-100 source `b3bee6188864679ea4c2ebb196068354bd8a7edf` is pushed to `feat/serving-gesture-study`, locally325system/110browser/final2packing/native/TerraV2/frozen8/preservation verified. Discovery58+52is disjoint with the ordered family on2. This canonical branch copies only documentation/evidence; runtime remains accepted090. Required normal source gate remains held. Next101Bag quantity clarity starts from held098source91a3eb1in a separate checkout, explicitly an unaccepted source input. Last51%weeklyused/49%remaining; stop near10%reserve or15:00UTC.
-
-#100 locally verified;101 Bag count clarity next
-
-100 source backup is pending final commit/push on `feat/serving-gesture-study`. Local325system/110browser/final2artifact-packchecks/native/TerraV2/frozen8/preservation pass; all204accepted090client/198art files remain exact. Gallery http://serving-review.localhost:49590/ is standalone Aster art, no gameplay. Required normal GitHub/source/rawartifact gate remains unmet after old PR39billing refusal. [Handoff](handoffs/2026-11-13-serving-study.md).
-
-Next101 uses held098source91a3eb1 as an explicitly unaccepted input in an isolated checkout. A cold-read menu audit found output/cost/wait/destination clear but a bare0Bag badge could mean zero owned rather than none available to place. Add a short key before the grid, precise accessible count names and shorten bottom notes; no inventory rules/holdings changes. [Plan](../evidence/IH2-101/PLAN.md). Keep all held branch-specific checks and accepted090previews/data/keys/studies untouched.
-
-Last51%weeklyused/49%remaining,3resetcreditsunused. Continue until around10%reserve or15:00UTC(7amNovember13Pacific), whichever first.
-
-# Active100: first original serving gesture
-
-Continue in isolated `idle-hands-2-serving-study` / `feat/serving-gesture-study`, base canonical documentation checkpointa1cb383, runtime byte-identical accepted090/mainf0a294a.100is a first Aster-only plate gesture: four facings/fiveposes, unchanged64×80frame/32,72foot/0.9display and exact accepted final idle. Use guarded safe imports of existing original rig functions; never call public-writing generators. No gameplay, actor state, café, reward, item, command or live integration.
-
-099held sourceee92ed5was pushed with329/110and frozen13fileV2native/Terra/preservation pass. Its café remains a study at49586; regular090previews and held098UIreview49579remain unchanged. All204/198accepted bytes, protected/Tour data/keys/checksums/54studies and newheldartifacts must remain intact. Required GitHub/source gates stay held after oldbillingrefusal; no bypass/merge/accepted update. Session inventory shows only this sequel chat active and IdleHands1idle; latest mainf0a/PR39 unchanged.
-
-Read100PLAN. Produce one bounded gallery and real compositor/pixel/motion checks, then ask Terra for anatomy/readability. Other three rigs remain unfinished until first-rig review. Record exact failures and source/fixture/device limits. Continue until around10%weeklyreserve or15:00UTC(7amNov13Pacific), whichever first; last50%used/50%remaining, no resetcredits used.
-# Canonical continuation —099recorded,100next
-
-099source `ee92ed5e22791585b327d077341be144b59b232b` is pushed to `feat/cafe-service-study`, locally329/110and frozen13V2/native/Terra/preservation verified. This canonical branch copies only documentation/evidence; its runtime remains accepted090. Required source gate is held. Next100first Aster serving gesture is independent art from the accepted rig, no café implementation. Last50%weeklyused/50%remaining, stop near10%reserve or15:00UTC.
-
-# Café study locally verified; source release remains held
-
-IH2-099 is complete locally on `feat/cafe-service-study` in `../idle-hands-2-cafe-study`. Its source candidate will be recorded in the canonical pointer after commit/push. It starts from documentation checkpoint847df45 with byte-identical accepted090runtime (`f0a294af86d4b637f060c8f40a6d7f061d9cad15`), not the pending091–098runtime. No café, food, room, reward or command has been implemented.
-
-Local checks:329system, zero PostgreSQL skips;110browser, no skipped/flaky/unexpected cases or report errors; strict build/design;54-taskplan/10trackerchecks;40pinnedfiles; whitespace. Shards55+55are disjoint and preserve the ordered family on2. All204rebuiltclient and198art files match the090baseline. Six new original study SVGs plus two accepted reuses stay outside runtime. The48-entryaudit and576analyticalcases/24controls remain design evidence, not implemented balance or measured playtime.
-
-Current frozen study: http://cafe-review.localhost:49586/#counter,13HTTPbodyhashes verified. V1at49584is retained immutable. Root inspected15V2captures with real browser touch/mouse/keyboard and graphic keyboard pan/reset across desktop,320/360phones and narrow/short200text. TerraV1review/V2captionrecheck finds no sampled blocker. Selected stock/progress and synthetic400ms/5s/900msreply/event examples are fictional; no game/API/storage access, actual room/collision, physical-device, complete accessibility or enjoyment claim. Two sampled quoteDOMaxe scans have zero violations and retained incomplete checks. [Report](../evidence/IH2-099/REPORT.md), [design](design/CAFE_HOSPITALITY_STUDY.md).
-
-Accepted main/clients remain090: protected4175/API4186and persistentTourlocalhost4176/API4188. All13tablefields/privatekeyhashes/mode0600/sixchecksums per namespace and54acceptedstudy responses are preserved. Held098source91a3eb1and its338/132suite,208file49578/49579reviews and separate090API5fictional population remain unchanged; both208origins were HTTP-hash checked again. Keep all branch-specific tests when consolidating.
-
-Required normal exact-final-head GitHub jobs/rawartifact/source/actual accepted-client/preservation gates remain unmet. The last old PR39run43365543304was refused before tests for account billing/spending-limit status; owner question remains unanswered. No redundant PR/run, alternate runner, billing change, main merge or accepted-preview replacement. Latest fetch stillmainf0a294aand only PR39/8abc1b4open.
-
-Next independent task:100original Aster serving-gesture study, one rig/four facings/fiveposes before a broader family. [Plan](../evidence/IH2-100/PLAN.md). Use accepted original rig safely; never write public/runtime or old generators. Preserve all accepted bytes/data/studies plus caféV1/V2/098reviews. Study animations never authorize rewards. Record one task active in an isolated source branch before editing.
-
-Continue until about10%weeklyreserve or7amNovember13Pacific(15:00UTC), whichever first; last50%used/50%remaining with no resetcredits used. No automation/background promise or hosted release exists.
+Normal exact-final-head GitHub/rawartifact/source gates remain unmet after oldPR39billingrefusal; no owner resolution. No redundant PR/run, runner/billing bypass or accepted-preview replacement. Next103is a short read-only café persistence/authority contract from actual code/domain review. No new runtime section before the15:00UTC(7amNovember13Pacific)stop. Last52%weeklyused/48%remaining,3resetcreditsunused.

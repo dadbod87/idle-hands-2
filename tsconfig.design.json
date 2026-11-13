@@ -100,7 +100,16 @@
     "tools/create-allotment-study.ts",
     "tools/garden-framing-model.ts",
     "tests/garden-framing-study.test.ts",
-    "tests/allotment-study.spec.ts"
+    "tests/allotment-study.spec.ts",
+    "tools/cafe-study-plan.ts",
+    "tools/simulate-cafe-study.ts",
+    "tools/create-cafe-study.ts",
+    "tests/design-cafe.spec.ts",
+    "tools/cafe-baseline-audit.ts",
+    "tests/serving-study.test.ts",
+    "tests/serving-study.spec.ts",
+    "tools/observe-serving-study.ts",
+    "tools/check-coherent-inputs.ts"
   ],
   "compilerOptions": {
     "types": [

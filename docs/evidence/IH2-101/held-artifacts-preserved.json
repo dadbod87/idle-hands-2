@@ -1,0 +1,47 @@
+{
+  "method": "Actual read-only HTTP body hashes; no restart or mutation",
+  "sets": [
+    {
+      "name": "accepted-practice",
+      "port": 4175,
+      "responses": 204,
+      "exactHashMatch": true
+    },
+    {
+      "name": "accepted-tour",
+      "port": 4176,
+      "responses": 204,
+      "exactHashMatch": true
+    },
+    {
+      "name": "held098static",
+      "port": 49578,
+      "responses": 208,
+      "exactHashMatch": true
+    },
+    {
+      "name": "held098town",
+      "port": 49579,
+      "responses": 208,
+      "exactHashMatch": true
+    },
+    {
+      "name": "cafe-v1",
+      "port": 49584,
+      "responses": 13,
+      "exactHashMatch": true
+    },
+    {
+      "name": "cafe-v2",
+      "port": 49586,
+      "responses": 13,
+      "exactHashMatch": true
+    },
+    {
+      "name": "serving100",
+      "port": 49590,
+      "responses": 8,
+      "exactHashMatch": true
+    }
+  ]
+}

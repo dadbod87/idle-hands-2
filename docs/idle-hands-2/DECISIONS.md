@@ -209,3 +209,6 @@ Owner finds combined Bag & journal cluttered and wants an eventual little RPG/MM
 
 
 2026-11-13 —100 proves a first Aster-only confirmed-serving gesture outside gameplay before producing more character families. Original64×80frames,32,72feet and exact resting identity remain fixed; one720ms replay never authorizes an item or reward. Terra's thin sleeve-outline refinement and expanded raster checks address hand connection and cropping. Normal source gates stay held. The subsequent cold-read menu review finds a smaller available-versus-owned Bag count ambiguity, so101prioritizes a short visible context key and precise accessible names before further art; no inventory calculation changes.
+
+
+2026-11-13 —101repurposes Bag intro into contextual available/carried/kept count explanation above slots, with precise accessible names and unchanged ledgers. Keep12pxheading separation after removing intro from that location. A measured inherited resize test race on098and101requires waiting for text mode and camera/canvas/DOM viewport agreement; never relax crop/target/collision/progress bounds or inflate timeouts to hide it. Source102must retain all UI and independent study checks while preserving dated artifacts and normal release gates.

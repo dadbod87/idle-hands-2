@@ -1,3 +1,7 @@
+# Latest101 local hold
+
+FinalV2local338system/132browser/7focused/native8/TerraV2/frozen208/origin/preservation pass. Original132assertions/timeouts retained; viewport readiness now waits for actual responsive layout rather than an already-clamped zoom. All202art and accepted090clients/data/API/keys/54studies and held artifacts preserved. Exact-final-head normal GitHub/rawartifact/source/actual-preview gates remain required after prior billing refusal.102will prepare one coherent candidate. [Record](evidence/IH2-101/local-checks.json).
+
 # Latest100 art hold
 
 Local325system/110browser, native pixel/phone/TerraV2 and frozen8 checks pass. Raw art packaging was verified by a final2-casefocused rerun. All204accepted client/198art bytes, towns/keys/checksums/54studies and held098/099reviews remain unchanged. Source acceptance still requires exact-final-head normal GitHub jobs/rawuploadedartifact and source/preview/preservation gates; old billing refusal is not bypassed. [Record](evidence/IH2-100/local-checks.json).

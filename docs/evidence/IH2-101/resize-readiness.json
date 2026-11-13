@@ -1,0 +1,1109 @@
+{
+  "classification": "Focused native cosmetic root-font/viewport timing diagnostic. Original held098and101V2, actual Journal garden entry; no actor/stock/server-clock/API override. RAF observations include prepaint states, not persistent clipping or physical-device proof.",
+  "records": [
+    {
+      "version": "held098",
+      "repeat": 0,
+      "frames": [
+        {
+          "frame": 0,
+          "at": 2912.6000003814697,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 356,
+          "canvasHeight": 453,
+          "cameraPixelWidth": 356,
+          "cameraPixelHeight": 453.8125,
+          "zoom": 0.9468085106382979,
+          "matrix": [
+            0.9468085169792175,
+            0,
+            0,
+            0.9468085169792175,
+            -109.82978820800781,
+            -91.54920196533203
+          ],
+          "bedTop": 150.83377838134766
+        },
+        {
+          "frame": 1,
+          "at": 2924.300000190735,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 2,
+          "at": 2939.300000190735,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 3,
+          "at": 2955.8999996185303,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 4,
+          "at": 2972.3999996185303,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 5,
+          "at": 2989.1000003814697,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        }
+      ]
+    },
+    {
+      "version": "held098",
+      "repeat": 1,
+      "frames": [
+        {
+          "frame": 0,
+          "at": 3062,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 356,
+          "canvasHeight": 453,
+          "cameraPixelWidth": 356,
+          "cameraPixelHeight": 453.8125,
+          "zoom": 0.9468085106382979,
+          "matrix": [
+            0.9468085169792175,
+            0,
+            0,
+            0.9468085169792175,
+            -109.82978820800781,
+            -91.54920196533203
+          ],
+          "bedTop": 150.83377838134766
+        },
+        {
+          "frame": 1,
+          "at": 3074.800000190735,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 2,
+          "at": 3089.199999809265,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 3,
+          "at": 3106.1000003814697,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 4,
+          "at": 3122.5,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 5,
+          "at": 3139.199999809265,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        }
+      ]
+    },
+    {
+      "version": "held098",
+      "repeat": 2,
+      "frames": [
+        {
+          "frame": 0,
+          "at": 3212.6000003814697,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 356,
+          "canvasHeight": 453,
+          "cameraPixelWidth": 356,
+          "cameraPixelHeight": 453.8125,
+          "zoom": 0.9468085106382979,
+          "matrix": [
+            0.9468085169792175,
+            0,
+            0,
+            0.9468085169792175,
+            -109.82978820800781,
+            -91.54920196533203
+          ],
+          "bedTop": 150.83377838134766
+        },
+        {
+          "frame": 1,
+          "at": 3225.5,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 2,
+          "at": 3239.5,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 3,
+          "at": 3256.300000190735,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 4,
+          "at": 3272.800000190735,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 5,
+          "at": 3289.5,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        }
+      ]
+    },
+    {
+      "version": "held098",
+      "repeat": 3,
+      "frames": [
+        {
+          "frame": 0,
+          "at": 3363.800000190735,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 356,
+          "canvasHeight": 453,
+          "cameraPixelWidth": 356,
+          "cameraPixelHeight": 453.8125,
+          "zoom": 0.9468085106382979,
+          "matrix": [
+            0.9468085169792175,
+            0,
+            0,
+            0.9468085169792175,
+            -109.82978820800781,
+            -91.54920196533203
+          ],
+          "bedTop": 150.83377838134766
+        },
+        {
+          "frame": 1,
+          "at": 3376,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 2,
+          "at": 3389.800000190735,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 3,
+          "at": 3407.199999809265,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 4,
+          "at": 3423.1000003814697,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 5,
+          "at": 3440.6000003814697,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        }
+      ]
+    },
+    {
+      "version": "101V2",
+      "repeat": 0,
+      "frames": [
+        {
+          "frame": 0,
+          "at": 2955.5,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 356,
+          "canvasHeight": 453,
+          "cameraPixelWidth": 356,
+          "cameraPixelHeight": 453.8125,
+          "zoom": 0.9468085106382979,
+          "matrix": [
+            0.9468085169792175,
+            0,
+            0,
+            0.9468085169792175,
+            -109.82978820800781,
+            -91.54920196533203
+          ],
+          "bedTop": 150.83377838134766
+        },
+        {
+          "frame": 1,
+          "at": 2967.800000190735,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 2,
+          "at": 2982.7000007629395,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 3,
+          "at": 2999.2000007629395,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 4,
+          "at": 3015.7000007629395,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 5,
+          "at": 3032.4000005722046,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        }
+      ]
+    },
+    {
+      "version": "101V2",
+      "repeat": 1,
+      "frames": [
+        {
+          "frame": 0,
+          "at": 3104,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 356,
+          "canvasHeight": 453,
+          "cameraPixelWidth": 356,
+          "cameraPixelHeight": 453.8125,
+          "zoom": 0.9468085106382979,
+          "matrix": [
+            0.9468085169792175,
+            0,
+            0,
+            0.9468085169792175,
+            -109.82978820800781,
+            -91.54920196533203
+          ],
+          "bedTop": 150.83377838134766
+        },
+        {
+          "frame": 1,
+          "at": 3118.2000007629395,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 2,
+          "at": 3132.6000003814697,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 3,
+          "at": 3149.4000005722046,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 4,
+          "at": 3166.1000003814697,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 5,
+          "at": 3183,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        }
+      ]
+    },
+    {
+      "version": "101V2",
+      "repeat": 2,
+      "frames": [
+        {
+          "frame": 0,
+          "at": 3255.300000190735,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 356,
+          "canvasHeight": 453,
+          "cameraPixelWidth": 356,
+          "cameraPixelHeight": 453.8125,
+          "zoom": 0.9468085106382979,
+          "matrix": [
+            0.9468085169792175,
+            0,
+            0,
+            0.9468085169792175,
+            -109.82978820800781,
+            -91.54920196533203
+          ],
+          "bedTop": 150.83377838134766
+        },
+        {
+          "frame": 1,
+          "at": 3271.7000007629395,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 2,
+          "at": 3283,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 3,
+          "at": 3299.4000005722046,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 4,
+          "at": 3315.800000190735,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 5,
+          "at": 3332.7000007629395,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        }
+      ]
+    },
+    {
+      "version": "101V2",
+      "repeat": 3,
+      "frames": [
+        {
+          "frame": 0,
+          "at": 3408.800000190735,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 356,
+          "canvasHeight": 453,
+          "cameraPixelWidth": 356,
+          "cameraPixelHeight": 453.8125,
+          "zoom": 0.9468085106382979,
+          "matrix": [
+            0.9468085169792175,
+            0,
+            0,
+            0.9468085169792175,
+            -109.82978820800781,
+            -91.54920196533203
+          ],
+          "bedTop": 150.83377838134766
+        },
+        {
+          "frame": 1,
+          "at": 3421.300000190735,
+          "largeText": false,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 187,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 2,
+          "at": 3433.300000190735,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 187,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 187,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -206.5
+          ],
+          "bedTop": -14.5
+        },
+        {
+          "frame": 3,
+          "at": 3449.5,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 4,
+          "at": 3465,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        },
+        {
+          "frame": 5,
+          "at": 3482.9000005722046,
+          "largeText": true,
+          "rootFont": 32,
+          "worldWidth": 840,
+          "worldHeight": 220,
+          "canvasWidth": 840,
+          "canvasHeight": 220,
+          "cameraPixelWidth": 840,
+          "cameraPixelHeight": 220,
+          "zoom": 0.75,
+          "matrix": [
+            0.75,
+            0,
+            0,
+            0.75,
+            204,
+            -190
+          ],
+          "bedTop": 2
+        }
+      ]
+    }
+  ]
+}

@@ -1462,7 +1462,7 @@
     {
       "id": "IH2-101",
       "title": "Clear available-versus-owned Bag quantities",
-      "status": "in_progress",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1479,9 +1479,42 @@
       "evidence": [
         "docs/evidence/IH2-101/PLAN.md",
         "docs/evidence/IH2-101/baseline-terra.md",
-        "docs/evidence/IH2-101/baseline-phone-bag.png"
+        "docs/evidence/IH2-101/baseline-phone-bag.png",
+        "docs/evidence/IH2-101/REPORT.md",
+        "docs/evidence/IH2-101/local-checks.json",
+        "docs/evidence/IH2-101/artifact-proof.json",
+        "docs/evidence/IH2-101/native-proof.json",
+        "docs/evidence/IH2-101/origin-proof.json",
+        "docs/evidence/IH2-101/api-source-proof.json",
+        "docs/evidence/IH2-101/held-artifacts-preserved.json",
+        "docs/evidence/IH2-101/resize-readiness.json",
+        "docs/evidence/IH2-101/terra-v1.md",
+        "docs/evidence/IH2-101/terra-v2.md",
+        "docs/evidence/IH2-101/source-hold.json"
       ],
-      "owner_branch": "feat/bag-quantity-clarity"
+      "owner_branch": "feat/bag-quantity-clarity",
+      "blocked_reason": "FinalV2local338system/132browser/7focused/native8shapes/TerraV2/208frozen/origin/preservation pass. Required normal exact-final-head GitHub/rawartifact/source gate remains unmet after prior PR39billing refusal; no merge or accepted090preview update."
+    },
+    {
+      "id": "IH2-102",
+      "title": "One coherent held source with complete art and menu checks",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Prepare one reviewable private source candidate that retains all locally reviewed menu fixes and independent caf\u00e9/serving studies, without bypassing source acceptance or changing the current game artifact.",
+      "acceptance": [
+        "After101localcloseout, start an isolated branch from its final unaccepted source; retain all091\u2013098/101UI assertions, recovery/focus and corrected geometry. Import099analytical tools/tests and100serving tools/tests explicitly, preserving original frozen evidence and every branch-specific assertion/time limit.",
+        "Audit actual reproducibility inputs:099was authored against accepted090while the menu candidate changes world presentation fingerprints. Export a clearly named current-candidate revalidation into102evidence, with explicit unaccepted source context; never rewrite099dated artifacts or pretend changed fingerprints are accepted. Preserve all48catalog declarations/null prices, art bytes, gameplay rules and old study checks.",
+        "Strict build/design/plan/pinned/whitespace and full actual combined system/browser suites with zero hidden skips, disjoint shard coverage and ordered shared family. Inspect real raw study packaging plus actual208client/202art identity against101, actual local/native review as appropriate, source input/commit map and preservation evidence.",
+        "Normal exact-final-head GitHub four-job/rawuploadedartifact/source/accepted-preview gates remain required. No new PR/run/merge/accepted update while owner billing resolution remains absent; coherent local source is preparation only."
+      ],
+      "exclusions": [
+        "No new caf\u00e9 service/food/reward/room/command/state/migration/economy/authority/public hosting/paid asset/billing/runner changes or current-game edits. No removal of old test assertions, timeout inflation or historical artifact overwrite. No runtime change beyond already locally reviewed101input."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-102/PLAN.md"
+      ]
     }
   ]
 }

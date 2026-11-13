@@ -1,3 +1,7 @@
+Corrected097V2locally verified338system/129browser/root/Terra/authority/artifact/preservation. Original cropfeet unchanged; earlier half-tile rectangle model rejected, archives retained. Accepted090unchanged.098stablephone toolbar needed before consolidated source/CI/actual release. [Report](evidence/IH2-097/REPORT.md).
+
+IH2-097 actual garden candidate locally verified:338system/129browser, frozen208files/root/Terra, all198priorart and protected data preserved. Normal consolidated CI/source/accepted-preview gates still pending; accepted090unchanged. [Report](evidence/IH2-097/REPORT.md).
+
 IH2-096standalone allotment study locally reviewed:335system/127browser, native20fileV2and12pixel-identical format-cleanup captures/Terra; all204game files/198art and accepted data/keys/54studies unchanged. Source CI/merge gates remain held.097actual garden composition/framing queued, without a gameplay-rule change. [Report](evidence/IH2-096/REPORT.md).
 
 IH2-095V2focus/close-only repair locally verified332system/125browser/root/Terra/recovery/artifact/preservation; required GitHub release gates held. Accepted090previews/main stay unchanged.096standalone allotment art/framing study queued. [Report](evidence/IH2-095/REPORT.md).

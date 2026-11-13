@@ -1,0 +1,13 @@
+{
+  "classification": "Corrected runtimeV2 and studyV3 actual HTTP hashes, not source acceptance. Superseded artifacts retained, accepted090unchanged.",
+  "responses": {
+    "runtime": {
+      "matchedFiles": 208,
+      "bad": []
+    },
+    "study": {
+      "matchedFiles": 20,
+      "bad": []
+    }
+  }
+}

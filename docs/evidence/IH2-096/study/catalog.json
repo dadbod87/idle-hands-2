@@ -17,8 +17,8 @@
     "art/study-bed-footprint-2.svg": "daa667f7bf6438f382637ce3b20245e4a8c81d3551721000f3b73d259f8471e5",
     "art/study-bed-footprint-3.svg": "b32e8d943c2af226a0345d91c7e2d3f28d613ad45aa3d2e9716be7a1983385d9",
     "art/study-meadow-detail.svg": "37a93c45a22bf16d65d967cdba7780307cd2fe8f649cf3d91999e2bc2ef6653e",
-    "index.html": "d74ccb6fb4c2e4f81dfb80f0dadbbd304bc968b58d3694d88784401e3fa7004f",
-    "geometry.json": "e771969995e73b16896c4d0ef2bda302ce96c20be56fda0f3c2fb2377b78dfbd",
+    "index.html": "db67f824aa7b0e3730f2890c37dedbfeaa5e12723ae269cf6fc06301d35d2973",
+    "geometry.json": "7e15bc1dc646994a15fe64823da3e0ad6218e6c6c95951a4ba016714202fcfc4",
     "NOTICES.txt": "e80017b0278b2cd81a3cde98ed40187836ea026e152c0985e6bebc5355f53192"
   },
   "sources": {
@@ -34,14 +34,14 @@
     "public/art/garden/garden-marigold-growing.svg": "8b48f6c276059a69a2f2798f433ec4477cace59c4095da31910d84a4fbf178e7",
     "public/art/garden/garden-marigold-ready.svg": "e54347e049d77937442f5c7d5886d8874db0cba0a29eae44450801dc6612d129",
     "public/art/variety/resident-aster.svg": "ea9299bd173705f45c4990802f609cad51cfbc8523cf7a3e51ec4ebb9e499688",
-    "tools/create-allotment-study.ts": "3d7e51bde7d882ee8dbfc567a8d72fa145ea33b9a52cecf54823180a7085cbee",
+    "tools/create-allotment-study.ts": "2575a3cd516f0f0e99ebdbe41c618327b3ff705976ee0e90261f34cd6b57c24c",
     "tools/create-allotment-study-art.py": "a14d11e9e776894f9e207e520e3df008b1deabd4bd73cc968ded5a2e161fc7f6",
     "tools/garden-framing-model.ts": "e72bf60618266b658f5ad82f6265f2c1a2dcb666a4421cdc3bcf3c90d8853742",
     "tools/templates/allotment-study.html": "a1c3bcd97a5b4f4b678ceb4dd60d0e67a43da9169c234b4c9152e366964ea2ce",
     "src/game/world.ts": "c4e17cfd7a017d68210eb1af9ba14531bc489e52cd16ef40abfc222ee1f19b26",
     "src/art/garden.ts": "4f74b8d17a668f111728761605e64a534d382a9cde06566e0a90f139e45905fe",
-    "src/phaser/WorldScene.ts": "e10eab9a66bdb3809e8da2ca99aa921d85b4c460d7c1dca7709b057b35f0830d",
-    "src/main.ts": "2591ceee327b03321dd135e66f71c5eca126e734170a218a348d7cbbcf3ca741"
+    "src/phaser/WorldScene.ts": "7d8b08ff2a561fe2deeadbecd6a48fcc42adfd3480f8806f460870208c82fa0e",
+    "src/main.ts": "54d76127036edee766b0947ffa8fe9b46b8b2559f7880a57334f4ad39d5fa316"
   },
   "attributions": [
     {
@@ -231,5 +231,5 @@
   ],
   "newArt": "Four original code-authored SVG layers; no paid/downloaded assets. Full original crop/actor copies remain byte-identical.",
   "renderOnly": "Current and candidate arrangements/framing are visual comparisons. No runtime promotion, capacity, growth or unlock is implemented.",
-  "coordinateNote": "Session feet and target/collision coordinates render at (value+0.5)*32. Existing crop feet are literal GARDEN_BEDS pixels; proposed footprint projection is separately declared +16px, not a game change."
+  "coordinateNote": "Actor feet render at (position+0.5)*32. Collision and clickable doorArea rectangles are world-grid edges at value*32, as canStand and Session.point prove. Existing GARDEN_BEDS already align; no crop shift or model change. Earlier half-tile rectangle projection was rejected."
 }

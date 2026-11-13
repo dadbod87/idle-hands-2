@@ -1,0 +1,31 @@
+# Corrected allotment V2 — locally verified, release held
+
+The garden gains full soil footprints and quiet low flowers/paving, using four byte-identical original study layers. All 198 earlier artwork files and every original crop foot, stage and ready mark remain unchanged. At phone entry, a bounded 0.75–1 actor-follow view shows all three beds. The camera follows exploration, resets to scale 1 outside the garden and does not choose a new scale when a menu opens. Compact, constant-size labels clear the player. Caption tap regions are at least 44 CSS pixels and use the same normal approach/proximity path as physical prop taps; they do not open menus from a distance.
+
+Actor positions render at (position + 0.5) × 32. Collision and clickable rectangle edges are already grid coordinates × 32. Bed ranges are x128–224, 256–352 and 384–480; y256–352. Original crop feet (176,352), (304,352), (432,352) already match them. The corrected activity envelope is x128–480/y256–544, with arrival follow offset (0,64). No obstacle, stop point, model, economy, growth, timer or authoritative rule changes.
+
+## Rejected V1 and the stronger proof
+
+The earlier 096 study and 097 V1 incorrectly applied the actor half-tile offset to rectangle edges. Their local 335/127 and 338/129 passes did not prove actual edge alignment. Final source review rejected this interpretation before any 097 source commit or accepted-client update. Rejected immutable files, logs and images remain externally; corrected study V3 and runtime V2 supersede them. The original 096 feature commit remains held and is corrected by this source revision.
+
+The new proof calls actual canStand on both sides of all four bed edges and actual Session.point at every click rectangle's inner/outer edges. Old data produces 12 collision and 12 click mismatches; corrected data produces zero. World and Session source hashes remain identical to the base. A real keyboard contact check stops the actor's foot at the original bed boundary plus its radius, matching the rendered foot. Native caption checks cover beds, attendant and exit; a read-only dialog observer records that the attendant menu opens only after reaching the ordinary proximity threshold. The incorrect study expectation is corrected, not treated as a valid assertion to retain. Other prior behavior assertions and timeouts remain.
+
+## Final local checks and actual artifact
+
+Corrected V2 passes all 338 system checks with zero PostgreSQL skips (57,644.001041 ms), and all 129 browser cases in 914,056.475 ms, with zero skipped, flaky or unexpected cases and no report errors. Strict build/design, the 52-task plan with 10 tracker tests, 40 pinned files and whitespace checks pass. Final discovery is disjoint 65 + 64, retaining the shared-town/starter-homes/trail/first-visit family on shard 2.
+
+The frozen client has 208 files, all verified through actual HTTP response hashes. It adds 15,936 raw / 3,387 per-file-gzip bytes over 095 V2; all 198 prior art bytes match. The corrected standalone study has 20 verified responses and all 16 original study art inputs unchanged. It is an illustration comparison, not a Phaser or saved-game implementation.
+
+Root inspected 20 actual V2 game captures across empty, ready/mixed crops, night/drizzle, desktop, 320/360 phones, short doubled text and narrow doubled text. Empty views use no gameplay fixtures. Crop views seed only isolated browser histories built from legal past planting commands; they consume bound seeds without harvesting or granting rewards. They are not real elapsed play, server or real-player progress. Neither position nor Date.now is overridden. Cosmetic sky/text settings and synthetic hidden/reduced preferences are disclosed. Twelve corrected static-study captures are separate from these game images.
+
+Terra's V2 review confirms bounded entry/crop appearance and all three caption actions; its independent source reading agrees with the corrected edge convention and normal approach/proximity path. It explicitly supersedes the V1 visual review, which did not validate physical boundaries. Root separately covers contact, modal movement lock, resize/reset, body targets, reload, holdings and scaled world rain/lamp phase/coverage. Rain periods/overscan and lamp projection scale with the actual world view; size styles change only on scale changes. Existing weather colors/rates and reduced/hidden/interior policies stay intact, with no effect-driven server work.
+
+A single native local Chrome sample of 120 RAF intervals during held garden movement with drizzle recorded 16.7 ms p95 and 121 rendered frames. This is short-run cadence, not CPU/GPU duration, baseline improvement or physical-phone performance. Existing mixed metrics deliberately include 10 Hz idle intervals and exclude modal gaps. Four cached art layers have about a 1.37 MiB minimum raw RGBA estimate, excluding driver overhead.
+
+## Preservation, remaining issue and release gate
+
+Accepted 090 clients/APIs, protected practice and populated Tour remain unchanged: all fields of 13 tables, private key hashes/mode 0600 and six migration checksums per namespace are preserved. All 54 accepted study responses remain unchanged. No rule, world, session, server, schema, command, dependency, workflow, original Idle Hands, real-player, cloud or expense change occurred. Asset/provenance metadata adds the four originals. Rejected 096 artifacts are retained, not served as current; corrected study V3 replaces only its separate review service.
+
+Root measured an inherited phone footer issue in the corrected build: nearby Inspect to Nothing nearby wraps the action button, shrinks the playfield by 53 CSS pixels and moves Places/Bag/Journal. IH2-098 is queued to reserve a stable action layout before the combined menu/garden release. Field notes already reserve readable, scrollable space and must keep that behavior.
+
+Normal successful exact-final-head GitHub jobs, raw uploaded artifacts and actual immutable accepted-client/preservation gates remain unmet. The last old PR 39 run was refused before tests for account billing/spending-limit status; no alternative runner or billing workaround is used. A local pass and separate review URL do not constitute acceptance. Physical devices/Safari, complete accessibility, sustained device performance and enjoyment remain unverified.

@@ -8,20 +8,20 @@
   },
   "blocked": [
     {
-      "x": 144,
-      "y": 272,
+      "x": 128,
+      "y": 256,
       "width": 96,
       "height": 96
     },
     {
-      "x": 272,
-      "y": 272,
+      "x": 256,
+      "y": 256,
       "width": 96,
       "height": 96
     },
     {
-      "x": 400,
-      "y": 272,
+      "x": 384,
+      "y": 256,
       "width": 96,
       "height": 96
     }
@@ -31,8 +31,8 @@
       "id": "garden-beds",
       "name": "Your garden beds",
       "rect": {
-        "x": 144,
-        "y": 256,
+        "x": 128,
+        "y": 240,
         "width": 352,
         "height": 152
       },
@@ -45,8 +45,8 @@
       "id": "garden-desk",
       "name": "Allotment attendant",
       "rect": {
-        "x": 144,
-        "y": 416,
+        "x": 128,
+        "y": 400,
         "width": 80,
         "height": 64
       },
@@ -59,8 +59,8 @@
       "id": "garden-exit",
       "name": "Town square",
       "rect": {
-        "x": 264,
-        "y": 496,
+        "x": 248,
+        "y": 480,
         "width": 80,
         "height": 64
       },
@@ -71,8 +71,8 @@
     }
   ],
   "activity": {
-    "x": 144,
-    "y": 272,
+    "x": 128,
+    "y": 256,
     "width": 352,
     "height": 288
   },
@@ -92,16 +92,16 @@
   ],
   "candidateBeds": [
     {
-      "x": 192,
-      "y": 368
+      "x": 176,
+      "y": 352
     },
     {
-      "x": 320,
-      "y": 368
+      "x": 304,
+      "y": 352
     },
     {
-      "x": 448,
-      "y": 368
+      "x": 432,
+      "y": 352
     }
   ],
   "currentLabels": [
@@ -123,8 +123,8 @@
   ],
   "proposedLabels": [
     [
-      320,
-      393,
+      416,
+      401.6,
       "Your three beds"
     ],
     [
@@ -138,5 +138,5 @@
       "Square ↓"
     ]
   ],
-  "coordinateNote": "Session feet and target/collision coordinates render at (value+0.5)*32. Existing crop feet are literal GARDEN_BEDS pixels; proposed footprint projection is separately declared +16px, not a game change."
+  "coordinateNote": "Actor feet render at (position+0.5)*32. Collision and clickable doorArea rectangles are world-grid edges at value*32, as canStand and Session.point prove. Existing GARDEN_BEDS already align; no crop shift or model change. Earlier half-tile rectangle projection was rejected."
 }

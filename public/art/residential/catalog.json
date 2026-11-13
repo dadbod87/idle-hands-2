@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "authoring": "Original deterministic Python SVG; no third-party or paid media.",
+  "generator": "tools/create-residential-art.py",
+  "generatorSha256": "c9db8b9b1fc29f63a9e2f66685677cdc12c447c5ea35e6e90465f4897f66c1df",
+  "assets": [
+    {
+      "id": "residential-brick-starter",
+      "file": "residential-brick-starter.svg",
+      "width": 208,
+      "height": 248,
+      "kind": "exterior",
+      "family": "brick-gable",
+      "level": 1,
+      "foot": {
+        "x": 104,
+        "y": 240
+      },
+      "doorFoot": {
+        "x": 104,
+        "y": 240
+      },
+      "lightingWindows": [
+        {
+          "x": 66,
+          "y": 106,
+          "width": 24,
+          "height": 32
+        },
+        {
+          "x": 107,
+          "y": 106,
+          "width": 24,
+          "height": 32
+        },
+        {
+          "x": 94,
+          "y": 179,
+          "width": 20,
+          "height": 22
+        }
+      ],
+      "chimney": {
+        "x": 138.5,
+        "y": 27
+      },
+      "collisionNote": "Presentation only; unchanged parcel authority and common door foot."
+    },
+    {
+      "id": "residential-timber-starter",
+      "file": "residential-timber-starter.svg",
+      "width": 208,
+      "height": 248,
+      "kind": "exterior",
+      "family": "timber-porch",
+      "level": 1,
+      "foot": {
+        "x": 104,
+        "y": 240
+      },
+      "doorFoot": {
+        "x": 104,
+        "y": 240
+      },
+      "lightingWindows": [
+        {
+          "x": 35,
+          "y": 154,
+          "width": 31,
+          "height": 38
+        },
+        {
+          "x": 128,
+          "y": 154,
+          "width": 20,
+          "height": 31
+        },
+        {
+          "x": 94,
+          "y": 179,
+          "width": 20,
+          "height": 22
+        }
+      ],
+      "chimney": {
+        "x": 51.5,
+        "y": 65
+      },
+      "collisionNote": "Presentation only; unchanged parcel authority and common door foot."
+    },
+    {
+      "id": "residential-brick-expanded",
+      "file": "residential-brick-expanded.svg",
+      "width": 208,
+      "height": 248,
+      "kind": "exterior",
+      "family": "brick-gable",
+      "level": 2,
+      "foot": {
+        "x": 104,
+        "y": 240
+      },
+      "doorFoot": {
+        "x": 104,
+        "y": 240
+      },
+      "lightingWindows": [
+        {
+          "x": 66,
+          "y": 106,
+          "width": 24,
+          "height": 32
+        },
+        {
+          "x": 107,
+          "y": 106,
+          "width": 24,
+          "height": 32
+        },
+        {
+          "x": 94,
+          "y": 179,
+          "width": 20,
+          "height": 22
+        },
+        {
+          "x": 157,
+          "y": 150,
+          "width": 26,
+          "height": 36
+        }
+      ],
+      "chimney": {
+        "x": 138.5,
+        "y": 27
+      },
+      "collisionNote": "Presentation only; unchanged parcel authority and common door foot."
+    },
+    {
+      "id": "residential-timber-expanded",
+      "file": "residential-timber-expanded.svg",
+      "width": 208,
+      "height": 248,
+      "kind": "exterior",
+      "family": "timber-porch",
+      "level": 2,
+      "foot": {
+        "x": 104,
+        "y": 240
+      },
+      "doorFoot": {
+        "x": 104,
+        "y": 240
+      },
+      "lightingWindows": [
+        {
+          "x": 35,
+          "y": 154,
+          "width": 31,
+          "height": 38
+        },
+        {
+          "x": 128,
+          "y": 154,
+          "width": 20,
+          "height": 31
+        },
+        {
+          "x": 94,
+          "y": 179,
+          "width": 20,
+          "height": 22
+        },
+        {
+          "x": 164,
+          "y": 163,
+          "width": 22,
+          "height": 31
+        }
+      ],
+      "chimney": {
+        "x": 51.5,
+        "y": 65
+      },
+      "collisionNote": "Presentation only; unchanged parcel authority and common door foot."
+    },
+    {
+      "id": "residential-chimney-smoke",
+      "file": "residential-chimney-smoke.svg",
+      "width": 48,
+      "height": 48,
+      "kind": "cosmetic-puff",
+      "foot": {
+        "x": 24,
+        "y": 24
+      }
+    },
+    {
+      "id": "residential-verge-daisies",
+      "file": "residential-verge-daisies.svg",
+      "width": 64,
+      "height": 40,
+      "kind": "low-walk-through-verge",
+      "foot": {
+        "x": 32,
+        "y": 35
+      }
+    },
+    {
+      "id": "residential-verge-lavender",
+      "file": "residential-verge-lavender.svg",
+      "width": 64,
+      "height": 40,
+      "kind": "low-walk-through-verge",
+      "foot": {
+        "x": 32,
+        "y": 35
+      }
+    }
+  ]
+}

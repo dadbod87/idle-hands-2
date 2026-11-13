@@ -1060,7 +1060,7 @@
     {
       "id": "IH2-088",
       "title": "Playable addressed neighborhood and individual home doors",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-087",
         "IH2-089"
@@ -1077,7 +1077,8 @@
       "evidence": [
         "docs/idle-hands-2/design/FIRST_CITY_LAYOUT.md",
         "docs/evidence/IH2-088/PLAN.md",
-        "docs/evidence/IH2-088/REPORT.md"
+        "docs/evidence/IH2-088/REPORT.md",
+        "docs/evidence/IH2-088/source-closeout.json"
       ],
       "owner_branch": "feat/addressed-neighborhood"
     },
@@ -1107,7 +1108,7 @@
     {
       "id": "IH2-090",
       "title": "Distinct residential exteriors and purposeful ambient life",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-088"
       ],
@@ -1115,14 +1116,18 @@
       "acceptance": [
         "Original starter/expanded exterior family with distinct silhouettes/shared feet/recognizable upgrades and coherent vegetation/streets.",
         "Purposeful bounded cosmetic life preserves collision, occlusion, reduced/hidden/offscreen controls and all clocks/state.",
-        "Art/provenance, actual camera/phone/visitor screenshots, payload/frame evidence and full required gates."
+        "Art/provenance, actual camera/phone/visitor screenshots, payload/frame evidence and full required gates.",
+        "Repair inherited route-grid/continuous-body mismatch; prove all ordered home-door pairs and fractional endpoints without changing collision geometry/speed/server authority. Matched client/server restart preserves progress/key/checksums."
       ],
       "exclusions": [
         "No original-game/real accounts/cloud/expenses or undisclosed economy change."
       ],
       "evidence": [
-        "docs/idle-hands-2/design/FIRST_CITY_LAYOUT.md"
-      ]
+        "docs/idle-hands-2/design/FIRST_CITY_LAYOUT.md",
+        "docs/evidence/IH2-090/PLAN.md",
+        "docs/evidence/IH2-090/REPORT.md"
+      ],
+      "owner_branch": "feat/residential-life"
     },
     {
       "id": "IH2-070",

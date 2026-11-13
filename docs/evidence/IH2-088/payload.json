@@ -1,0 +1,16 @@
+{
+  "candidate": "69d71b6a00e1a68e057eedc00cc38e5f00fc2040",
+  "files": 196,
+  "all185PriorArtUnchanged": true,
+  "newArt": [
+    "art/neighborhood/neighborhood-ground.svg",
+    "art/neighborhood/home-site-boundary.svg",
+    "art/neighborhood/catalog.json",
+    "art/neighborhood/housing-registry.svg",
+    "art/neighborhood/future-home-site.svg"
+  ],
+  "rawDelta": 52042,
+  "gzipEachFileDelta": 8840,
+  "htmlSha256": "8ed940d5cee67497839f616ce9b1eebd3e050bc7a1246f17be6daee875607e23",
+  "method": "Exact final CI client compared with accepted089CIclient; sum per-file gzip, not network/device benchmark."
+}

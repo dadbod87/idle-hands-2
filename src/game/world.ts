@@ -65,8 +65,8 @@ export const worlds: Record<Room, World> = {
   }
 };
 export function walkable(room: Room, p: Point): boolean {
-  const w = worlds[room];
-  return Number.isFinite(p.x) && Number.isFinite(p.y) && Number.isInteger(p.x) && Number.isInteger(p.y) && p.x >= 1 && p.y >= 1 && p.x < w.width - 1 && p.y < w.height - 1 && !w.blocked.some(([x, y, width, height]) => p.x >= x && p.y >= y && p.x < x + width && p.y < y + height);
+  // Grid nodes are actual foot centres too, including fractional building edges.
+  return Number.isInteger(p.x) && Number.isInteger(p.y) && canStand(room,p);
 }
 export function pathTo(room: Room, from: Point, to: Point): Point[] {
   if (!walkable(room, to) || !walkable(room, from)) return [];
@@ -103,7 +103,14 @@ export function clearSegment(room: Room, from: Point, to: Point): boolean {
 export function routeTo(room: Room, from: Point, to: Point): Point[] {
   if (!canStand(room, from) || !canStand(room, to)) return [];
   if (clearSegment(room, from, to)) return [{ ...to }];
-  const start = { x: Math.round(from.x), y: Math.round(from.y) }, end = { x: Math.round(to.x), y: Math.round(to.y) };
+  // A valid continuous position can round into a wall. Join the nearest safe
+  // grid centre through a collision-checked segment; never snap the actor.
+  const anchor=(point:Point)=>{
+    const x=Math.round(point.x),y=Math.round(point.y),choices:Point[]=[];
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const p={x:x+dx,y:y+dy};if(walkable(room,p)&&clearSegment(room,point,p))choices.push(p);}
+    choices.sort((a,b)=>Math.hypot(a.x-point.x,a.y-point.y)-Math.hypot(b.x-point.x,b.y-point.y));return choices[0];
+  };
+  const start=anchor(from),end=anchor(to);if(!start||!end)return [];
   const grid = pathTo(room, start, end);
   if (!grid.length && (start.x !== end.x || start.y !== end.y)) return [];
   const candidates = [start, ...grid, to], result: Point[] = [];

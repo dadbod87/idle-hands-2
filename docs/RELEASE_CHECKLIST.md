@@ -1,3 +1,7 @@
+# Current local preview gate
+
+IH2-088 verified at exact69d71b6/mergeaa4db70/CI43346520501. Future updates must preserve matched API5, both immutable clients4175/localhost4176, separate protected/tour data and keys/sixchecksums, all54studies, scoped owner/visitor entry and exact door-front return. Public hosting/account/cost approval remains separate. [Proof](evidence/IH2-088/source-closeout.json).
+
 # Pilot acceptance
 
 - npm run test; npm run build; npm run test:browser; npm run check:plan; upstream skill integrity; diff check.

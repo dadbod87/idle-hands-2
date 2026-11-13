@@ -1771,6 +1771,76 @@
       "source": "tools/create-neighborhood-art.ts",
       "date": "2026-11-12",
       "modifications": "Original registry, roads, bounded site fence/foundation. No imported media; original home silhouettes retained."
+    },
+    {
+      "id": "residential-brick-expanded",
+      "path": "public/art/residential/residential-brick-expanded.svg",
+      "sha256": "b9c532196f752c764573521d66cf069cfe9b3727d2f58322921cf889062f44ef",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-residential-art.py",
+      "date": "2026-11-12",
+      "modifications": "Original brick/timber exterior pairs, cosmetic puff and low verge flowers. No imported media; prior cottage/site art unchanged."
+    },
+    {
+      "id": "residential-brick-starter",
+      "path": "public/art/residential/residential-brick-starter.svg",
+      "sha256": "b997561cf5de7e13cba8b682b53da910a432e9c0e509ae9235bc06bbb452455d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-residential-art.py",
+      "date": "2026-11-12",
+      "modifications": "Original brick/timber exterior pairs, cosmetic puff and low verge flowers. No imported media; prior cottage/site art unchanged."
+    },
+    {
+      "id": "residential-chimney-smoke",
+      "path": "public/art/residential/residential-chimney-smoke.svg",
+      "sha256": "3bed2058780e607cfb32521478616ea9011439d289e19efff8bcec1b2c8a958a",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-residential-art.py",
+      "date": "2026-11-12",
+      "modifications": "Original brick/timber exterior pairs, cosmetic puff and low verge flowers. No imported media; prior cottage/site art unchanged."
+    },
+    {
+      "id": "residential-timber-expanded",
+      "path": "public/art/residential/residential-timber-expanded.svg",
+      "sha256": "eba6ebc2a90528944d6ba900df83c23d32dc2ca96a8852cf892c0aaa16117b93",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-residential-art.py",
+      "date": "2026-11-12",
+      "modifications": "Original brick/timber exterior pairs, cosmetic puff and low verge flowers. No imported media; prior cottage/site art unchanged."
+    },
+    {
+      "id": "residential-timber-starter",
+      "path": "public/art/residential/residential-timber-starter.svg",
+      "sha256": "c72d5d222c3f7a870190ecd93c23e878c6a357f4185b6007e323d7261c440a0b",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-residential-art.py",
+      "date": "2026-11-12",
+      "modifications": "Original brick/timber exterior pairs, cosmetic puff and low verge flowers. No imported media; prior cottage/site art unchanged."
+    },
+    {
+      "id": "residential-verge-daisies",
+      "path": "public/art/residential/residential-verge-daisies.svg",
+      "sha256": "90e0c9e0ebe1886d3299c8cf839d2fc63b189d66a17df6498a569cc124393573",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-residential-art.py",
+      "date": "2026-11-12",
+      "modifications": "Original brick/timber exterior pairs, cosmetic puff and low verge flowers. No imported media; prior cottage/site art unchanged."
+    },
+    {
+      "id": "residential-verge-lavender",
+      "path": "public/art/residential/residential-verge-lavender.svg",
+      "sha256": "daf06d8e5618f3e76c911254d2b99e884f3230e9c29098d69c88e319a5a1c364",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-residential-art.py",
+      "date": "2026-11-12",
+      "modifications": "Original brick/timber exterior pairs, cosmetic puff and low verge flowers. No imported media; prior cottage/site art unchanged."
     }
   ],
   "comparison": {

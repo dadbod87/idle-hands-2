@@ -888,6 +888,41 @@
       "id": "neighborhood-ground",
       "path": "art/neighborhood/neighborhood-ground.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "residential-brick-expanded",
+      "path": "art/residential/residential-brick-expanded.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "residential-brick-starter",
+      "path": "art/residential/residential-brick-starter.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "residential-chimney-smoke",
+      "path": "art/residential/residential-chimney-smoke.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "residential-timber-expanded",
+      "path": "art/residential/residential-timber-expanded.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "residential-timber-starter",
+      "path": "art/residential/residential-timber-starter.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "residential-verge-daisies",
+      "path": "art/residential/residential-verge-daisies.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "residential-verge-lavender",
+      "path": "art/residential/residential-verge-lavender.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

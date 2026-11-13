@@ -1,4 +1,8 @@
-# History
+# Changelog
+
+## 2026-11-12 — IH2-088 addressed neighborhood verified
+
+Stable addresses and individual home doors across expandable24-site blocks; grouped Places/street directory/Registry, scoped public presence and correct physical-door exits/reloads. Four original site/registry/ground SVGs; all185prior art files unchanged. Protocol5checks cached clients before player data access. No economy/timer/state ownership/SQLmigration change. Exact69d71b6CI43346520501all4SUCCESS317/106; actual196file4175and separate populated fictional tour verified, protected data/key/checksums/studies preserved. [Evidence](evidence/IH2-088/source-closeout.json).
 
 2026-11-12 — Candidate088addressed neighborhoods and individual home doors, protocol5guards, grouped street/registry menus and original site art. No economy/migration changes; actual release gates pending. [Evidence](evidence/IH2-088/REPORT.md).
 

@@ -2,6 +2,8 @@
 
 Active sibling idle-hands-2-neighborhood/feat/addressed-neighborhood fast-forwarded accepted089closeout5757b3b, preserving original uncommitted geometry/art drafts.088now active; plan docs/evidence/IH2-088/PLAN.md. Candidate now implements protocol5/Room neighborhood, authoritative gates/doors/origin-preserving exits/presence, grouped street/registry menus and four original art assets.317system/zero skips and native5focusedcases pass; full106/exact-headCI/actual immutable artifacts/protected API5update gates pending. TerraV2verified corrected visitor exit copy and actual return; root Registry/native tests pass. Separate persistent guarded localhost4176tour tool prepared, not started. Latest41%weeklyused/59%remaining, no resets. Actual4175remains immutable089static5310/session17888 with protectedAPI4186/P83080unchanged.
 
+Second candidate1ae7 CI43343501669 rejected for two stale legacy accessible-name selectors (domain succeeded). Exact labels corrected, assertions/timeouts retained; local Registry shared-only guidance corrected. Eight focused cases pass2.5minutes. New exact-head/full106 acceptance remains pending.
+
 ## Previous accepted checkpoint
 
 # IH2-089 accepted;088individual home streets next

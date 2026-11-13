@@ -220,6 +220,7 @@ document.querySelector('#places')!.addEventListener('click', () => {
   openPanel('Places to go');
   renderPlaces(body,{room:session.room,stops:currentStops(),state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),neighborhood:districtId?{districtId,ownerPlotId:town?.snapshot?.plot?.id}:undefined,walk:walkToPlace});
 });
+function openSharedTownChoice(heading:string,intro='Homes live in shared practice. Your browser-only workshop stays saved here; shared town progress is separate.'){openPanel(heading);body.append(paragraph(intro));const enter=document.createElement('button');enter.type='button';enter.className='destination';enter.dataset.openTown='';enter.textContent='Open shared practice town';enter.onclick=()=>{const url=new URL(window.location.href);url.searchParams.set('town','1');window.location.assign(url);};body.append(enter);}
 function resolvedStop(stop:Stop):Stop{if(stop.id==='home-door'&&districtId){const exit=exitForHome({homePlotId,districtId});return{...stop,name:'Front door',transition:exit.room,arrival:exit.position};}return stop;}
 function currentStops():Stop[]{return worlds[session.room].stops.map(stop=>{if(session.room!=='neighborhood'||!districtId||!stop.id.startsWith(HOME_SITE_PREFIX))return resolvedStop(stop);const id=plotAtAddress(districtId,Number(stop.id.slice(HOME_SITE_PREFIX.length))),plot=town?.snapshot?.plots.find(p=>p.id===id);return{...stop,name:stop.name+' · '+(plot?plot.ownerName??'Resident':'Future home site')};});}
 async function enterNeighborhood(block:string,homeAfter?:string){
@@ -259,7 +260,7 @@ async function enterRemotePortal(stop:Stop){
 }
 function activate(stop: Stop) {
   stop=resolvedStop(stop);
-  if(stop.id==='residential-gate'){if(town)void enterNeighborhood(pendingDistrictId??(town.snapshot?.plot?addressForPlot(town.snapshot.plot.id).block:'1'));else{openPanel('Homes & neighbors');body.append(paragraph('Homes live in shared practice. Your browser-only workshop stays saved here; shared town progress is separate.'));const enter=document.createElement('button');enter.type='button';enter.className='destination';enter.dataset.openTown='';enter.textContent='Open shared practice town';enter.onclick=()=>{const url=new URL(window.location.href);url.searchParams.set('town','1');window.location.assign(url);};body.append(enter);}return;}
+  if(stop.id==='residential-gate'){if(town)void enterNeighborhood(pendingDistrictId??(town.snapshot?.plot?addressForPlot(town.snapshot.plot.id).block:'1'));else openSharedTownChoice('Homes & neighbors');return;}
   if(session.room==='neighborhood'&&town&&stop.id==='neighborhood-directory'){if(pendingDistrictId){const id=pendingDistrictId,home=pendingHomePlotId;pendingDistrictId=undefined;pendingHomePlotId=undefined;void enterNeighborhood(id,home);}else townUI!.showNeighborhoods();return;}
   if(session.room==='neighborhood'&&districtId&&town&&stop.id.startsWith(HOME_SITE_PREFIX)){const id=plotAtAddress(districtId,Number(stop.id.slice(HOME_SITE_PREFIX.length)));pendingHomePlotId=undefined;if(town.snapshot?.plots.some(p=>p.id===id))void enterHome(id);else{openPanel(stop.name);body.append(paragraph('Future home site. Homes are assigned a permanent address when earned at the Housing Registry.'));const b=document.createElement('button');b.type='button';b.className='destination';b.textContent='Walk to Housing Registry';b.onclick=()=>goNamedDestination('square','plot');body.append(b);}return;}
   feedback.textContent='At '+stop.name+'.';
@@ -286,6 +287,7 @@ function activate(stop: Stop) {
   if(stop.id==='trail-gate'&&!scene.bridgeRestored){if(town)townUI!.showBridge();else{openPanel('Bridge committee');body.append(paragraph('Shared practice keeps bridge construction and trail discoveries. This browser-only workshop has a separate save.'));}return;}
   if(town&&session.room==='trail'&&(TRAIL_LANDMARK_IDS as readonly string[]).includes(stop.id)){townUI!.showTrail(stop.id);return;}
   if(town&&stop.id==='bridge'){townUI!.showBridge();return;}
+  if(!town&&(stop.id==='plot'||stop.id==='home-front')){openSharedTownChoice(stop.id==='plot'?'Housing Registry':'Home visits',stop.id==='plot'?stop.text:'Earned homes and their front doors are in shared practice. Your browser-only workshop stays saved separately.');return;}
   if(town&&stop.id==='plot'){townUI!.showPlots();return;}
   if(town&&stop.id==='home-front'){const target=pendingHomePlotId??town.snapshot?.plot?.id;pendingHomePlotId=undefined;if(target)void enterHome(target);else townUI!.showPlots();return;}
   if(['scrap','timber','supplies'].includes(stop.id)){workshop.showResource(stop.id as 'scrap'|'timber'|'supplies');return;}

@@ -20,7 +20,7 @@ export const worlds: Record<Room, World> = {
       { id: 'workshop', name: 'Workshop', point: { x: 20, y: 22 }, transition: 'workshop', arrival: { x: 9, y: 11 }, doorArea: [19.25, 20, 1.5, 2.25], text: 'Your workshop. The desk is temporary. The paperwork is structural.' },
       { id: 'cafe', name: 'The Almost Open Café', point: { x: 30, y: 22 }, doorArea:[30.25,20,1.5,2.25], text: 'The opening date is pencilled in. The pencil has requested an extension.' },
       {id:'home-front',name:'Housing Registry entrance',point:{x:30,y:35.5},doorArea:[29.25,34.75,1.5,2],text:'An earned home. Knock once; the paperwork stays outside.'},
-      { id: 'plot', name: 'Housing Registry', point: { x: 30, y: 29 }, text: 'Room to put down roots. The full game will let you acquire a plot, upgrade a house and make it yours. No plots are sold in this pilot.' },
+      { id: 'plot', name: 'Housing Registry', point: { x: 30, y: 29 }, text: 'Claim a plot, upgrade a house and arrange its furnishings in shared practice. Your browser-only workshop stays saved separately.' },
       ...SURVEY_IDS.map(id=>({id:'survey-'+id,name:SURVEYS[id].name+' · sketch study',point:{...SURVEYS[id].point},doorArea:[...SURVEYS[id].doorArea] as [number,number,number,number],text:SURVEYS[id].hint})),
       ...TOWN_PEOPLE.map(person=>({id:person.id,name:person.name+' · '+person.role.split(' · ')[0],point:person.point,doorArea:person.doorArea,text:'Talk to '+person.name+'.'})),
       {id:'trail-gate',name:'Inkwood trail',point:{x:25.5,y:12.25},transition:'trail',arrival:{x:9,y:22},doorArea:[24.5,9.5,3,3.6],text:'The first restored trail. Access follows the bridge inspection, not optimistic calendar math.'},

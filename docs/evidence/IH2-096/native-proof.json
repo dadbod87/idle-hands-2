@@ -1,0 +1,95 @@
+{
+  "classification": "Actual standalone visual study; no game connection",
+  "pageErrors": [],
+  "apiRequests": [],
+  "viewports": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "text": 100
+      },
+      "overflow": false,
+      "view": {
+        "width": 1436,
+        "height": 715.15625
+      },
+      "frame": {
+        "zoom": 1,
+        "scrollX": -430,
+        "scrollY": -69.578125,
+        "width": 1436,
+        "height": 715.15625,
+        "fitsActivity": true
+      },
+      "failedAssets": []
+    },
+    {
+      "shape": {
+        "name": "phone320",
+        "width": 320,
+        "height": 640,
+        "text": 100
+      },
+      "overflow": false,
+      "view": {
+        "width": 316,
+        "height": 374.65625
+      },
+      "frame": {
+        "zoom": 0.8404255319148937,
+        "scrollX": 132,
+        "scrollY": 130.20648734177217,
+        "width": 376,
+        "height": 445.7935126582278,
+        "fitsActivity": true
+      },
+      "failedAssets": []
+    },
+    {
+      "shape": {
+        "name": "phone360",
+        "width": 360,
+        "height": 640,
+        "text": 100
+      },
+      "overflow": false,
+      "view": {
+        "width": 356,
+        "height": 388.703125
+      },
+      "frame": {
+        "zoom": 0.9468085106382979,
+        "scrollX": 132,
+        "scrollY": 165.45962078651684,
+        "width": 376,
+        "height": 410.54037921348316,
+        "fitsActivity": true
+      },
+      "failedAssets": []
+    },
+    {
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "text": 200
+      },
+      "overflow": false,
+      "view": {
+        "width": 840,
+        "height": 230
+      },
+      "frame": {
+        "zoom": 0.75,
+        "scrollX": -272,
+        "scrollY": 262.66666666666663,
+        "width": 1120,
+        "height": 306.6666666666667,
+        "fitsActivity": true
+      },
+      "failedAssets": []
+    }
+  ]
+}

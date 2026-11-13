@@ -1,0 +1,61 @@
+{
+  "studyResponses": 20,
+  "studyBytes": 130172,
+  "studyGzipPerFile": 17917,
+  "failedStudyResponses": [],
+  "unchangedRuntimeFiles": 204,
+  "runtimeEquals095V2": true,
+  "system": {
+    "pass": 335,
+    "fail": 0,
+    "skipped": 0,
+    "durationMs": 54216.756208
+  },
+  "strictBuild": true,
+  "design": true,
+  "roadmapTasks": 50,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "fullBrowser": {
+    "pass": 127,
+    "durationMs": 899411.615,
+    "skipped": 0,
+    "flaky": 0,
+    "unexpected": 0,
+    "errors": []
+  },
+  "runtimeArtUnchanged": 198,
+  "protectedPractice": "all13table fields, private key hash/mode0600 and six migration checksums unchanged",
+  "tour": "same full preservation; no update",
+  "acceptedStudyResponsesUnchanged": 54,
+  "artifactDirectory": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/allotment-study-2026-11-12",
+  "studyURL": "http://allotment-study.localhost:49572/",
+  "classification": "Static visual-only canvas study; illustration choices, no game/API/storage connection. Local candidate, not source acceptance or runtime promotion.",
+  "shardDiscovery": {
+    "shard1": 65,
+    "shard2": 62,
+    "disjointBySpecId": true,
+    "total": 127,
+    "orderedFamilyOn2": [
+      "shared-town.spec.ts",
+      "starter-homes.spec.ts",
+      "trail.spec.ts",
+      "z-first-visit.spec.ts"
+    ],
+    "classification": "Discovery only, not CI execution. Spec IDs distinguish identical leaf titles in nested room groups."
+  },
+  "weeklyUsageObserved": {
+    "usedPercent": 47,
+    "remainingPercent": 53,
+    "resetCreditsUsed": 0,
+    "stop": "about90%used or2026-11-13T15:00:00Z"
+  },
+  "actualPNGsByteEqualV1": 12,
+  "postExportWhitespaceCleanup": {
+    "classification": "Only line-end spaces stripped from generated model; catalog source fingerprint updated. Other18study files unchanged, all12actual native PNGs byte-equal V1.",
+    "focusedDomainPass": 3,
+    "focusedBrowserPass": 2,
+    "strictBuildPass": true,
+    "frozenVersion": "review-v2"
+  }
+}

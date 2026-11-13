@@ -1306,7 +1306,7 @@
     {
       "id": "IH2-096",
       "title": "Allotment visual identity and phone framing study",
-      "status": "in_progress",
+      "status": "blocked",
       "owner_branch": "feat/allotment-visual-study",
       "depends_on": [
         "IH2-090"
@@ -1321,7 +1321,35 @@
         "No gameplay, price, resource, timer, collision, model/map, hosting, real-account, paid asset, runtime camera or accepted-preview change; no acceptance bypass while GitHub billing holds pending candidates."
       ],
       "evidence": [
-        "docs/evidence/IH2-096/PLAN.md"
+        "docs/evidence/IH2-096/PLAN.md",
+        "docs/evidence/IH2-096/REPORT.md",
+        "docs/evidence/IH2-096/local-checks.json",
+        "docs/evidence/IH2-096/native-proof.json",
+        "docs/evidence/IH2-096/prior-runtime-preserved.json",
+        "docs/evidence/IH2-096/source-hold.json",
+        "docs/evidence/IH2-096/terra-findings.md",
+        "docs/evidence/IH2-096/format-only-proof.json"
+      ],
+      "blocked_reason": "Local335system/127browser/Terra/native/provenance/preservation pass; final required source CI remains held after GitHub billing refusal. No merge or runtime promotion."
+    },
+    {
+      "id": "IH2-097",
+      "title": "Actual allotment composition and phone framing",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Integrate the locally reviewed096original garden layers and bounded phone camera in a separate held playable candidate, preserving all gameplay authority.",
+      "acceptance": [
+        "Exactly four reviewed original layers promoted byte-for-byte with reproducible provenance; all prior198art intact. Three existing beds/crop stages/checkmarks, correctly explained render projection and quiet low details, no capacity/model/collision change.",
+        "Actual actor-follow/room-reset/resize camera keeps player and existing service targets usable on desktop320/360/short200; no menu-driven zoom. Actual Phaser screen/world taps, labels, collision, exits, rain/world lamp alignment under zoom and reduced/hidden/interior rules verified.",
+        "All prior335system/127browser assertions retained, focused actual and Terra checks plus full local/exact-head GitHub/frozen actual artifact and protected data/key/study gates.096is a locally reviewed source input, not a completed dependency or bypass of its CI hold."
+      ],
+      "exclusions": [
+        "No rules/backend/protocol/schema/commands/economy/recipes/timers/new harvests or resources, cloud/public hosting, real identities or expense. No acceptance/update of protected previews while the required GitHub gate remains held."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-097/PLAN.md"
       ]
     }
   ]

@@ -96,7 +96,11 @@
     "tests/garden-clarity.spec.ts",
     "tests/housing-view.test.ts",
     "tests/housing-clarity.spec.ts",
-    "tests/town-focus.spec.ts"
+    "tests/town-focus.spec.ts",
+    "tools/create-allotment-study.ts",
+    "tools/garden-framing-model.ts",
+    "tests/garden-framing-study.test.ts",
+    "tests/allotment-study.spec.ts"
   ],
   "compilerOptions": {
     "types": [

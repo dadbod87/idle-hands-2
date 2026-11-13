@@ -138,3 +138,7 @@ IH2-088candidate adds original deterministic Housing Registry/ground/vacant site
 ## IH2-090 candidate residential family
 
 Retain original cottage pair and all190prior artwork bytes. Original brick-gable/timber-porch pairs preserve208×248frames/104,240door feet and recognizable workrooms, with exact window/chimney metadata. A stable nine-site plot-ID cycle is only a facade projection, not ownership/upgrade authority. Original cached puff and low noninteractive verge flowers add quiet life; max72puffs, no per-frame allocations, reduced/hidden/interior/offscreen suppression. No emitter owns progression. Native camera/phone/short/night and TerraV1scope in090evidence; this is an initial family, not complete town art or physical-device certification.
+
+## IH2-096 standalone allotment study
+
+Four original reproducible low flower/paver/bed-footprint vectors and twelve byte-identical existing inputs live outside public/runtime. Full soil footprints clarify the three existing beds while retaining original crop stages/checkmarks; no new resource, capacity or collision. Candidate crop projection separately declares +16pxXY to the model render transform. A static framing comparison keeps the existing targets readable on phones with minimum0.75zoom and pan for very short views. Terra bounded review finds no clear blocker, but desktop density and actual Phaser/camera/rain/navigation require separate integration gates. No runtime art/camera acceptance implied; see096evidence.

@@ -4,7 +4,7 @@
   "candidateBranch": "feat/bag-quantity-clarity",
   "runtimeInputUnaccepted098": "91a3eb1b8e5f16f006223c6bf859a2d743343c93",
   "uiCodeCheckpoint": "6eeff78eb7dde148b43a6e4b3bff55b0ee22cd96",
-  "sourceCheckpoint": "Final branch commit to be recorded in canonical continuation after backup",
+  "sourceCheckpoint": "f7a0c0a38a0064d63bdd429deeaee858503e7e62",
   "normalChecksComplete": false,
   "lastRefusedRun": 43365543304,
   "lastRefusedCandidate": "8abc1b46325b1220271a550951acc685b667aec9",
@@ -12,5 +12,6 @@
   "newRunOrPrCreated": false,
   "merged": false,
   "acceptedPreviewUpdated": false,
-  "publicDeployment": false
+  "publicDeployment": false,
+  "sourcePushed": true
 }

@@ -1498,7 +1498,7 @@
     {
       "id": "IH2-102",
       "title": "One coherent held source with complete art and menu checks",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-090"
       ],
@@ -1514,7 +1514,8 @@
       ],
       "evidence": [
         "docs/evidence/IH2-102/PLAN.md"
-      ]
+      ],
+      "owner_branch": "feat/coherent-source-review"
     }
   ]
 }

@@ -1,3 +1,13 @@
+# Active102: coherent held source preparation
+
+Isolated `idle-hands-2-coherent` / `feat/coherent-source-review`, base final held101f7a0c0a. Import099study tools/tests and100serving tools/tests only; keep all current UI/runtime and every existing assertion/time limit. Preserve all dated099/100study files and actual review URLs. A new explicit current-candidate café wrapper/export belongs in102evidence because World fingerprints differ from the old accepted090study; no historical hash patching. [Plan](../evidence/IH2-102/PLAN.md).
+
+Actual game must remain byte-identical to101V2208files/202art. Accepted090clients/API/data/keys/54studies and all held artifacts remain unchanged. Normal GitHub/rawartifact/source gate still unmet after old PR39billing refusal; no owner resolution, redundant run/PR, runner/billing bypass, merge or public release. Latestmainf0a294aand onlyPR39/8abc unchanged; onlyIdleHands2active. Last52%weeklyused/48%remaining,3resetcreditsunused; stop near10%reserve or15:00UTC.
+
+# Canonical continuation:101 backed up,102 next
+
+101source `f7a0c0a38a0064d63bdd429deeaee858503e7e62` is pushed to `feat/bag-quantity-clarity`, locally338system/132browser/7focused/native8/TerraV2/frozen208/origin/preservation verified. Shards67+65are disjoint with the ordered family on2. This canonical branch copies only documentation/evidence; runtime stays accepted090. Next102coherent candidate will retain all UI plus independent099/100study checks without a source-gate bypass. Current52%weeklyused/48%remaining,3resetcreditsunused; stop near10%reserve or15:00UTC.
+
 #101 locally verified;102 coherent source next
 
 Final101source backup pending this closeout commit/push. Local338system/132browser/7focused/native8/TerraV2/208frozen/origin/preservation pass; actual V2game review49602uses fictional Lane and unchanged090API5at49604, local-only49600. All202runtime art/accepted090data/keys/54studies/heldartifacts unchanged. A measured test-only inherited resize race is corrected with stronger viewport readiness; all old crop/target/collision/progress assertions and timeouts remain. [Handoff](handoffs/2026-11-13-bag-quantity.md).

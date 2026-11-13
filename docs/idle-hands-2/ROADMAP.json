@@ -1197,7 +1197,7 @@
     {
       "id": "IH2-092",
       "title": "Selected-bed planting facts and clear garden actions",
-      "status": "in_progress",
+      "status": "blocked",
       "owner_branch": "feat/clear-garden-planting",
       "depends_on": [
         "IH2-090"
@@ -1213,7 +1213,33 @@
       ],
       "evidence": [
         "docs/evidence/IH2-092/PLAN.md",
-        "docs/idle-hands-2/design/GARDEN_PLANTING_CLARITY.md"
+        "docs/idle-hands-2/design/GARDEN_PLANTING_CLARITY.md",
+        "docs/evidence/IH2-092/REPORT.md",
+        "docs/evidence/IH2-092/source-hold.json"
+      ],
+      "blocked_reason": "Local326system/112browser/Terra/artifact/preservation checks pass; required GitHub checks unavailable due to account billing. No merge or accepted-client update. Candidatef544a9e retained; prepare combined093review without bypassing gates."
+    },
+    {
+      "id": "IH2-093",
+      "title": "Combined menu candidate and first-city playability review",
+      "status": "in_progress",
+      "owner_branch": "feat/clear-crafting-menus",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Prepare one coherent local review copy of091and092and audit how its menus and first-city navigation work together.",
+      "acceptance": [
+        "Combine exact owned source/test leaves from8abc1b4andf544a9e with provenance; preserve rules/server/protocol/dependencies/all198art and all117browser cases. Full330system/zeroDBskips/build/browser/design/plan/pinned/diff.",
+        "Use a separate loopback origin/cookie namespace and guarded disposable ih2_menu_review historical population; no accepted primary/Tour data/keys or source/client changes. Preserve fictional holdings during native visits.",
+        "Root/Terra actual frozen artifact desktop/touch/narrow/short/text200 review of tutorials,work/Bag/Journal/Places,Garden/Nella and populated owner/visitor/doors/streets. Capture actionable findings, screenshots and exact fixture/device limits.",
+        "All required exact-final-head GitHub checks/artifacts and actual/preservation release gates still required before main merge or accepted-client update; local review is not acceptance."
+      ],
+      "exclusions": [
+        "No new economy,assets,server/schema/protocol/routing,hosting,real-player,paid service,runner or billing changes. No091/092acceptance bypass."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-093/PLAN.md",
+        "docs/idle-hands-2/design/COMBINED_MENU_REVIEW.md"
       ]
     }
   ]

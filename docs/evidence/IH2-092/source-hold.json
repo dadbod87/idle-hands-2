@@ -1,0 +1,41 @@
+{
+  "classification": "Locally verified independent092candidate; release held by required GitHub gate",
+  "candidate": "f544a9e642e668f89a2aa826435ce361864f4282",
+  "tree": "db95f14767adad5f9c38c4579b662450095f97c3",
+  "branch": "feat/clear-garden-planting",
+  "localDomain": 326,
+  "localDomainSkipped": 0,
+  "localDomainDurationMs": 56934.971833,
+  "finalLocalBrowser": {
+    "total": 112,
+    "expected": 112,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "localBrowserDurationMs": 868561.115,
+  "payload": {
+    "classification": "Final092independent local draft, not accepted or GitHub-verified",
+    "files": 204,
+    "all204BytesEqualTerraV2": true,
+    "all198ArtByteIdentical": true,
+    "accepted090": {
+      "raw": 3893520,
+      "perFileGzip": 631892
+    },
+    "candidate": {
+      "raw": 3895734,
+      "perFileGzip": 632628
+    },
+    "deltaRaw": 2214,
+    "deltaPerFileGzip": 736,
+    "htmlSha256": "2717865852ba038c6a401ce973d833c39a0d94e754f86225d967d449e3872e86"
+  },
+  "terraV2NativeSamplePassed": true,
+  "githubTestsRan": false,
+  "githubCondition": "Known account billing/spending-limit refusal on091run43365543304; no redundant092PR started",
+  "merged": false,
+  "acceptedPreviewChanged": false,
+  "protectedAndTourAllFieldsKeys0600SixChecksums54StudiesPreserved": true
+}

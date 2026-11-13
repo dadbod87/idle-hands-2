@@ -1,3 +1,13 @@
+# Local continuation — combined menu review; accepted runtime stays090
+
+Active093in sibling idle-hands-2-menu-review/feat/clear-crafting-menus: [plan](../evidence/IH2-093/PLAN.md), [scope](design/COMBINED_MENU_REVIEW.md). Combine exact owned leaves from locally verified0918abc1b4and092f544a9e into one isolated review copy. No new rules/server/art or actual release. Run330system/117browser, preserve all old checks, freeze204files and use a separate loopback origin plus guarded disposable fictional town for native root/Terra desktop/mobile/city review. No accepted data/cookie/key/session changes; no new runner/billing/hosting workaround.
+
+091PR39still unmerged:326system/113browser pass locally, Terra final-r2pass, provider43365543304refused before tests because account payment/spending-limit condition.092independent candidatef544a9e now326system/112browser pass (868561.115ms), zero skips/flakes/unexpected;204bytes equalTerraV2,+2214raw/+736gzip/all198art unchanged. [092hold](../evidence/IH2-092/source-hold.json). Required GitHub/actual-release gates unmet; user billing question pending. A later consolidated final PR may cover both slices after all gates, but none are accepted yet.
+
+Canonical code and both actual previews remain090: mainf0a294a,4175/localhost4176immutable204files and frozen090API5PIDs24309/23065. Both full13tablefield sets/privatekeys/hash/mode0600/sixchecksums and54studyresponses reverified unchanged after092local final run. No real player/original-game/cloud work. Continue near10%weekly reserve or7amNov13Pacific; latest44%used/56%remaining, no resets.
+
+## Previous local checkpoint
+
 # Local continuation —091held;092independent garden draft
 
 Accepted source/runtime remain090: private mainf0a294a, canonical planninga748bbc;204file4175andlocalhost4176with frozen090API5, all protected/Tour13tablefields/privatekeys/sixchecksums and54studyresponses preserved. No accepted preview update, cloud or original-game work.

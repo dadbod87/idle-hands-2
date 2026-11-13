@@ -1,0 +1,74 @@
+{
+  "classification": "Actual accepted finalCI208file client on4175; fresh ordinary native local flows and reload, anonymous shared chooser only. No protected identity/progress write.",
+  "all208ResponsesEqualCI": true,
+  "htmlSha256": "c4460808810215056660fdbf41df92b0cbdee52638a1be4bcd7ffba510975681",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false,
+        "resident": "Mira",
+        "id": "receipt-maker"
+      },
+      "job": {
+        "recipe": "planter",
+        "startedAt": 1794597343609,
+        "readyAt": 1794597348609
+      },
+      "actual5secondCraft": true,
+      "unclaimedOutputRemainedZero": true,
+      "explicitClaimedOutput": 1,
+      "actualInputSpend": {
+        "scrap": 2,
+        "timber": 2,
+        "supplies": 1
+      },
+      "claimAndBagSameActionBounds": {
+        "x": 522,
+        "y": 302.6875,
+        "width": 396,
+        "height": 63
+      },
+      "realServerCommands": [],
+      "noStockPositionClockOrResponseInjection": true,
+      "noProtectedIdentitySelected": true,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true,
+        "resident": "Sol",
+        "id": "receipt-other"
+      },
+      "job": {
+        "recipe": "planter",
+        "startedAt": 1794597357323,
+        "readyAt": 1794597362323
+      },
+      "actual5secondCraft": true,
+      "unclaimedOutputRemainedZero": true,
+      "explicitClaimedOutput": 1,
+      "actualInputSpend": {
+        "scrap": 2,
+        "timber": 2,
+        "supplies": 1
+      },
+      "claimAndBagSameActionBounds": {
+        "x": 51,
+        "y": 302.6875,
+        "width": 258,
+        "height": 63
+      },
+      "realServerCommands": [],
+      "noStockPositionClockOrResponseInjection": true,
+      "noProtectedIdentitySelected": true,
+      "errors": []
+    }
+  ],
+  "limits": "Chrome desktop/touch emulation, not physical phone/Safari/full accessibility or fun certification."
+}

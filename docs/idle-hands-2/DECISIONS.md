@@ -246,3 +246,15 @@ Next107makes normal commands operate on cafe-era state without discarding sinks 
 ## November13 — explicit owner choice: public source
 
 Owner asked to make the existing sequel repository public instead of paying for private Actions allowance. Visibility changed and anonymous access verified. Standard public Ubuntu workflows are free; no repository replacement, license change, history rewrite, paid setup or public game launch. Preserve local-first batching and exact-final-head checks. Earlier private/billing labels in dated evidence remain historical, not a prohibition on current free public CI. No hosted run was triggered in this administrative task.
+
+
+## November13 — coordinated writer and normal free source acceptance
+
+108keeps failed ordinary practice explicit and blocks café spending until a separate complete-root flush succeeds. Café pending state is not optimistic; migration is an uncancellable readiness gate after review found a stale-overwrite cancellation path. One lifetime lease, per-acquisition epoch and raw-source identity guard the candidate. It remains unregistered; native tests do not certify real BFCache residency or malicious/noncooperating storage CAS.
+
+Owner now authorizes normal free public CI/source updates.109will consolidate the already tested held source and refresh actual previews only after every exact-head/main/artifact/preservation gate. No obsolete billing probe, paid resources, original-game work or public game launch.
+
+
+## November13 — verified consolidated acceptance
+
+PR40/mainacab0549 passed exact candidate/main403system/146browser and actual208artifact, matched API/session/save/data/native preview gates. Close091–109source tasks; retain dated evidence and corrected097V3authority. Actual game remains root2/garden3/protocol5/eight props; isolated cafe candidates are not live. Next110proves atomic SQL/UUID/shared funding in a dedicated synthetic database, SQL outside auto-discovery until coherent registration. Docs-only closeout/backups use local plan/pinned/diff checks and do not trigger a redundant full hosted suite. No paid/public-game authorization inferred.

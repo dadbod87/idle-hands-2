@@ -1,0 +1,78 @@
+{
+  "noLoginOrWrites": true,
+  "protocol": 5,
+  "observations": [
+    {
+      "port": 4186,
+      "route": "fixtures",
+      "schema": 4,
+      "status": 200
+    },
+    {
+      "port": 4186,
+      "route": "fixtures",
+      "schema": 5,
+      "status": 200
+    },
+    {
+      "port": 4186,
+      "route": "snapshot",
+      "schema": 4,
+      "status": 426
+    },
+    {
+      "port": 4186,
+      "route": "snapshot",
+      "schema": 5,
+      "status": 401
+    },
+    {
+      "port": 4186,
+      "route": "events",
+      "schema": 4,
+      "status": 426
+    },
+    {
+      "port": 4186,
+      "route": "events",
+      "schema": 5,
+      "status": 401
+    },
+    {
+      "port": 4188,
+      "route": "fixtures",
+      "schema": 4,
+      "status": 200
+    },
+    {
+      "port": 4188,
+      "route": "fixtures",
+      "schema": 5,
+      "status": 200
+    },
+    {
+      "port": 4188,
+      "route": "snapshot",
+      "schema": 4,
+      "status": 426
+    },
+    {
+      "port": 4188,
+      "route": "snapshot",
+      "schema": 5,
+      "status": 401
+    },
+    {
+      "port": 4188,
+      "route": "events",
+      "schema": 4,
+      "status": 426
+    },
+    {
+      "port": 4188,
+      "route": "events",
+      "schema": 5,
+      "status": 401
+    }
+  ]
+}

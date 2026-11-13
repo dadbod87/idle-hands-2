@@ -1,0 +1,21 @@
+{
+  "studies": [
+    {
+      "task": "IH2-099",
+      "files": 13,
+      "matchesSource": true
+    },
+    {
+      "task": "IH2-100",
+      "files": 8,
+      "matchesSource": true
+    },
+    {
+      "task": "IH2-106",
+      "files": 15,
+      "matchesSource": true
+    }
+  ],
+  "totalFiles": 36,
+  "classification": "Local raw studies, not source acceptance"
+}

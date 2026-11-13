@@ -1,3 +1,15 @@
+## November13 — consolidated source and actual preview acceptance
+
+PR40/mainacab0549 accepted after PR43482304202 + main43484850214, each403system/146browser/zero skips/flakes/errors/all4jobs. Actual208client/matched API5 on4175/localhost4176 verified with native desktop/phone, signed-session/local queued-job recovery and complete protected data/key/checksum/study preservation. Cafe candidates remain unregistered; no public/cloud game launch. Historical holds below are superseded only by this verified closeout. Next110atomic transaction candidate. [Report](evidence/IH2-109/REPORT.md).
+
+## November13 — consolidated source acceptance prepared
+
+Preparing109normal free public CI and local matched-preview acceptance over exact108runtime. Includes accumulated town UI and isolated café foundations; no new game code in109and no playable café registration. Actual403/146local evidence retained; exact-head/main/source/artifact/restart/native gates pending.
+
+## November13 — coordinated candidate writer locally verified
+
+108adds one isolated lifetime lease for ordinary+cafe saves, confirmed/unsaved separation, explicit flush, retained intent, raw conflict and guarded lifecycle/capability handling.403system/146browser/17focused pass, migration-cancellationP2fixed/reviewed; no live registration or game payload delta. Source/actual-preview acceptance follows109now that public CI is available.
+
 ## November13 — owner-authorized public source
 
 Existing sequel repository made public; anonymous API/page/raw-source verified. Updated current instructions to permit standard free public Ubuntu checks while retaining local-first batching, all exact-head gates and paid-resource limits. No workflow run, merge, game release, cloud or actual-preview update. Runtime unchanged from107. See idle-hands-2/handoffs/2026-11-13-public-source.md.

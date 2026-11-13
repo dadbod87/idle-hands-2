@@ -1,3 +1,11 @@
+#109acceptance complete; next110candidate only
+
+PR40/mainacab0549 accepted after PR43482304202 + main43484850214, each403system/146browser/zero skips/flakes/errors/all4jobs. Actual208client/matched API5 on4175/localhost4176 verified with native desktop/phone, signed-session/local queued-job recovery and complete protected data/key/checksum/study preservation. Cafe candidates remain unregistered; no public/cloud game launch. Historical holds below are superseded only by this verified closeout. Next110atomic transaction candidate. [Report](evidence/IH2-109/REPORT.md).
+
+109current gate: require final-head domain/both disjoint74+72browser shards/browser-playtest; retain raw artifacts and source identity, merge/main regression, matched local client/API/208served bodies, table/key/checksum/session recovery and actual desktop/phone checks. Old090previews stay until all applicable gates pass.
+
+108local candidate passes403system/146browser/17focused and source/native/preservation. Require109exact-head public CI/both disjoint shards/artifacts/merge/main regression and matched actual client/API/recovery before accepted-preview update. No new café UI/root/protocol/SQL/props registration.
+
 Public-source update November13: old private minute hold is historical; standard public Ubuntu checks may run for authorized final candidates. Still require exact-head domain/both disjoint browser shards/browser-playtest and actual artifact/preview/preservation gates. Paid larger runners/storage/hosting remain unapproved. Visibility change is not source or release acceptance.
 
 107local candidate: shared context factories preserve ordinary behavior and café ledgers; no live root/writer/props/UI/server/protocol/SQL registration.386system/10focused/build/design pass, 142browser0skips/flakes/errors and final preservation pass. Source gate/billing hold remains; no accepted-preview update. Later unified writer/unsaved-practice/cache/BFCache, server UUID/SQL/protocol/allocation and coherent counter/art/reward gates required. See evidence/IH2-107/REPORT.md.

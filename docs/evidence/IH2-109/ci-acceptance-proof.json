@@ -1,0 +1,33 @@
+{
+  "candidate": "1a9e950e663d008ab644e7d14998025b5c906ffe",
+  "run": 43482304202,
+  "all4JobsSuccess": true,
+  "disjointBrowserCases": 146,
+  "rawStudyFiles": 36,
+  "studyCopies": [
+    {
+      "task": "IH2-099",
+      "files": 13,
+      "shards": [
+        1
+      ]
+    },
+    {
+      "task": "IH2-100",
+      "files": 8,
+      "shards": [
+        2
+      ]
+    },
+    {
+      "task": "IH2-106",
+      "files": 15,
+      "shards": [
+        2
+      ]
+    }
+  ],
+  "finalWriterFixtureModuleAndSourceProof": true,
+  "standardPublicUbuntuRunnerMinutesRoundedEstimate": 28,
+  "charge": "Standard public runner compute free; not an invoice/storage balance claim."
+}

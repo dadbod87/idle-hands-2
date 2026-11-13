@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-13",
+  "classification": "Source accepted and actual LOCAL previews verified; no public game deployment",
+  "repository": "dadbod87/idle-hands-2",
+  "pr": 40,
+  "candidate": "1a9e950e663d008ab644e7d14998025b5c906ffe",
+  "main": "acab0549ec6540b90fc9cd381157ca2fc07f7bd5",
+  "candidateAndMergeTreesEqual": true,
+  "ci": {
+    "pullRequestRun": 43482304202,
+    "mainPushRun": 43484850214,
+    "eachRun": {
+      "jobsPassed": [
+        "domain-build-plan",
+        "browser-shard (1)",
+        "browser-shard (2)",
+        "browser-playtest"
+      ],
+      "system": 403,
+      "browser": 146,
+      "disjointShards": [
+        74,
+        72
+      ],
+      "failedSkippedFlakyReportErrors": 0
+    },
+    "runner": "standard public Ubuntu; no paid resource configured"
+  },
+  "artifacts": {
+    "clientFiles": 208,
+    "artFiles": 202,
+    "runtimeSourceGitBlobs": 1981,
+    "prMainLocalTerraClientByteEqual": true,
+    "old198ArtFilesPreserved": true,
+    "newArtFiles": 4
+  },
+  "actual": {
+    "primary": "http://127.0.0.1:4175/",
+    "tour": "http://localhost:4176/?town=1",
+    "protocol": 5,
+    "apiPorts": [
+      4186,
+      4188
+    ],
+    "nativeDesktopPhoneCraftClaimBagReloadPassed": true,
+    "allServedClientBytesEqualMainCI": true,
+    "oldLocalSaveAndEightHourJobPreserved": true,
+    "signedTourSessionAndAll13TableFieldsPreservedAcrossRestart": true,
+    "protectedPracticeAll13TableFieldsUnchanged": true,
+    "privateKeysPreservedMode": "0600",
+    "sixMigrationChecksumsPreserved": true,
+    "acceptedStudyResponsesPreserved": 54,
+    "heldStudyResponsesPreserved": 36,
+    "anonymousProtocolGuards": 12
+  },
+  "reviews": {
+    "independentDomain": "migration-cancel stale-overwrite P2 fixed and re-reviewed",
+    "Terra": "Exact matched frozen208 client: desktop1440, phone360, short844x390/text200, native craft/claim/Bag; no sampled P1/P2",
+    "root": "Actual desktop/phone Bag captures inspected"
+  },
+  "disclosures": [
+    "Local/synthetic only. Actual fresh walkthrough and source-update save proof use native UI, real five-second craft and eight-hour queued job; no stock/time/state assignment or intercepted responses.",
+    "Tour contains26 fictional profiles/25 historical homes; ordinary login/read may advance observation timestamps before exact restart baseline. No reseed, grant or real player changes.",
+    "Full automated regressions include disclosed synthetic/elapsed/intercepted fixtures; no physical phone, Safari, exhaustive accessibility, performance or human-fun certification.",
+    "Initial external restart observers misclassified deliberate old SSE reload/shutdown errors; diagnostics retained and guard narrowed to observed navigation/shutdown cases. Runtime-only replay used old090 then new109; no source changes or CI reruns. One replay startup used absent old archived Vite config, corrected to canonical byte-identical config.",
+    "Cafe domain/writer/art are isolated candidates. Actual root2/garden3/protocol5/eight props remain; cafe not playable or server-registered.",
+    "Docs-only closeout task64 is checked locally after tested candidate task63; do not claim exact-head CI for later bookkeeping commits."
+  ],
+  "next": "IH2-110 atomic shared cafe transaction candidate; isolated synthetic DB, no live registration",
+  "artifactDirectory": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/source-acceptance-2026-11-13"
+}

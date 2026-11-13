@@ -1,5 +1,5 @@
 {
-  "classification": "Final local compiled111candidate V4; source acceptance pending",
+  "classification": "Final V5 touch-target client; follow-up source gates pending",
   "clientFiles": 214,
   "files": {
     "art/allotment/study-bed-footprint-1.svg": "051b1823c850a94156ede27c414a117551894ea5d3de2669d867c75505f02c69",
@@ -210,9 +210,9 @@
     "art/variety/tree-fruit-trunk.svg": "67684dc81fc049aaa5755eba818d0125c6ddc744703a2739d91bd503b63dda1f",
     "art/variety/tree-oak-canopy.svg": "5171c9ef3b13bba0b398390637043e201f3ce4743eafe548a375723dc58acf2e",
     "art/variety/tree-oak-trunk.svg": "71ba673ac11dfc610a4fb509e30cde25804f2da0cf882c74d190c5cce66b42aa",
-    "assets/index-CSGeO_SW.js": "7bca03bc32cad2fc1c5e348d53d86ba9edb3b946e8ce6b07ccfa6be5d2317199",
-    "assets/index-Dm25xXMp.css": "362fb25f33ff5afb40a13f354e5a4bd8a3f8d908c74caf214674e4cca427ff3b",
-    "index.html": "11cbff8658fca811d5c05c00bc9907c66f8f9361ed4b194b17cfe5902949f4f5",
+    "assets/index-CSKyO1_m.js": "7bca03bc32cad2fc1c5e348d53d86ba9edb3b946e8ce6b07ccfa6be5d2317199",
+    "assets/index-Dpro5G83.css": "c88d19b7e882122aa8ca647d9f8d3fa30b1c7a851cfb3b47d20155618576422b",
+    "index.html": "ee43a8c8deefd8ce424f78c29532c2f3888741036393a7f38eed2379e719276e",
     "licenses/README.txt": "5afe252ab041dbd90d66231dabe18f6e00eef01d88bb98bc850c55ee4d299478",
     "licenses/eventemitter3-LICENSE.txt": "3aecc12b1cb28832b5f65ab64291de96568c3f236a74d646281b4491f7bcadbf",
     "licenses/phaser-LICENSE.txt": "d59c20a9deb5dc240614b428dce5246ae561d15efeeebea0e069d73f0a78fbff"

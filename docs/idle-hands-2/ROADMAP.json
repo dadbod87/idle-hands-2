@@ -1801,9 +1801,11 @@
       ],
       "evidence": [
         "docs/evidence/IH2-111/PLAN.md",
-        "docs/evidence/IH2-111/REPORT.md"
+        "docs/evidence/IH2-111/REPORT.md",
+        "docs/evidence/IH2-111/touch-target-followup.md",
+        "docs/evidence/IH2-111/terra-touch-review.md"
       ],
-      "owner_branch": "feat/playable-cafe"
+      "owner_branch": "fix/cafe-presentation-target"
     },
     {
       "id": "IH2-112",

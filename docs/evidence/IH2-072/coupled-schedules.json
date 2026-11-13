@@ -5,10 +5,10 @@
     "gameArtifactFiles": 174
   },
   "sourceSha256": {
-    "src/game/workshop.ts": "0f1ab6d6f46ba1ece0116abb9d9b3ed06d516381a751b196f18c8b9b215f3f01",
-    "src/game/garden.ts": "0fe25dd282848c93d09e659ae37a8540d6bb3b8a56c9448dba0710fca53bf9ba",
-    "src/game/carpentry.ts": "f8556fba3a01ba5897c2be1100463b5bdc03c10ee2cf70c6f3045b7fa578b73f",
-    "src/game/commission.ts": "bc28936781b798010cde85415fa50907dbde70bea00214ba00a442088db24888",
+    "src/game/workshop.ts": "ae2fbf2dff8b8ed779e2959a8313476669d83dd06e51beade7f02aa1f50f3436",
+    "src/game/garden.ts": "7ba870682d15f40ef83f21302a25fc736e2a19a5f6b73b2e8cca20cbfe6ca5da",
+    "src/game/carpentry.ts": "eb8da9660bbf7877e1c65a57ae70f802af35a0a609cd40586559c75fe9fc19a1",
+    "src/game/commission.ts": "6dcbd71b803cdb04715ca8a238fbe46993692165835d17ebb56526baccac5044",
     "src/game/town-rules.ts": "ec21ce6a1b5ed3ae0824e6e141e78080b6cf4955d1b1173fd30bdd25062d457e",
     "tools/coupled-neighborhood-model.ts": "9f67323b537678dd694e516c4bb9ea5d7cddb4d5d06d504383ac77b63c803c1c",
     "tools/simulate-coupled-neighborhood.ts": "6d91e8f78b6ebeccebc1e664d0fb8d20fe559fdf35502425ba955486f6a45e12"

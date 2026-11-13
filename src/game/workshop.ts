@@ -1,8 +1,9 @@
+import type {RuleSchema} from './rule-schema.ts';
 import { z } from 'zod';
-import {commissionSchema,commissionActionSchema,createCommission,applyCommission,commissionLedgerMatches} from './commission.ts';
+import {commissionSchema,commissionActionSchema,createCommission,createCommissionRules,commissionLedgerMatches} from './commission.ts';
 import {SURVEY_IDS,SURVEY_CHOICES,SURVEYS} from './fieldwork.ts';
-import {carpentrySchema,carpentryActionSchema,createCarpentry,applyCarpentry,carpentryLedgerMatches,migrateCarpentry} from './carpentry.ts';
-import {gardenSchema,gardenActionSchema,createGarden,applyGarden,migrateGarden,type GardenLedgerInput} from './garden.ts';
+import {carpentrySchema,carpentryActionSchema,createCarpentry,createCarpentryRules,carpentryLedgerMatches,migrateCarpentry} from './carpentry.ts';
+import {gardenSchema,gardenActionSchema,createGarden,defaultGardenRules,migrateGarden,type GardenLedgerInput,type GardenLike,type GardenRules} from './garden.ts';
 
 // Local synthetic prototype rules. This module does not establish server authority.
 export const RESOURCE_IDS = ['scrap', 'timber', 'supplies'] as const;
@@ -77,7 +78,8 @@ const stateSchema=workshopBaseSchema.superRefine(refineWorkshopLedger);
 export const isCurrentWorkshop=(value:unknown):value is WorkshopState=>stateSchema.safeParse(value).success;
 export type WorkshopState = z.infer<typeof stateSchema>;
 const baseCommand = { id: receiptSchema.shape.id, expectedRevision: count };
-const commandSchema = z.discriminatedUnion('kind', [
+export function createWorkshopCommandSchema<P extends readonly [string,...string[]]>(propIds:P){
+ return z.discriminatedUnion('kind', [
   z.object({...baseCommand,kind:z.literal('commission'),commissionAction:commissionActionSchema}).strict(),
   z.object({...baseCommand,kind:z.literal('carpentry'),carpentryAction:carpentryActionSchema}).strict(),
   z.object({...baseCommand,kind:z.literal('garden'),gardenAction:gardenActionSchema}).strict(),
@@ -85,9 +87,12 @@ const commandSchema = z.discriminatedUnion('kind', [
   z.object({ ...baseCommand, kind: z.literal('gather'), resource: z.enum(RESOURCE_IDS) }).strict(),
   z.object({ ...baseCommand, kind: z.literal('craft'), recipe: z.enum(['planter', 'bridge-kit']) }).strict(),
   z.object({ ...baseCommand, kind: z.literal('claim') }).strict(),
-  z.object({ ...baseCommand, kind: z.literal('place'), prop: z.enum(PROP_IDS), slot: z.enum(slotIds), fromSlot: z.enum(slotIds).optional() }).strict(),
+  z.object({ ...baseCommand, kind: z.literal('place'), prop: z.enum(propIds), slot: z.enum(slotIds), fromSlot: z.enum(slotIds).optional() }).strict(),
   z.object({ ...baseCommand, kind: z.literal('remove'), slot: z.enum(slotIds) }).strict()
 ]);
+}
+export const workshopCommandSchema=createWorkshopCommandSchema(PROP_IDS);
+const commandSchema=workshopCommandSchema;
 export type WorkshopCommand = z.infer<typeof commandSchema>;
 export type WorkshopResult = { state: WorkshopState; ok: boolean; message: string; replayed: boolean };
 function validTime(now: number): boolean { return timestamp.safeParse(now).success; }
@@ -137,9 +142,30 @@ export function migrateWorkshopCandidateInput(value:unknown,now:number):unknown{
   }
   return migrated;
 }
-export function settleWorkshop(input: WorkshopState, now: number): WorkshopState {
+export function recipeDuration(state: Pick<WorkshopState,'stats'>, recipe: RecipeId): number {
+  return recipe === 'planter' && state.stats.plantersCrafted === 0 ? RECIPES.planter.tutorialDurationMs : RECIPES[recipe].durationMs;
+}
+export function skillLevel(xp: number): number { return Math.min(5, 1 + Math.floor(Math.max(0, xp) / 30)); }
+export function questStep(state: Pick<WorkshopState,'stats'|'job'|'inventory'>): { id: string; title: string; detail: string; complete: boolean } {
+  if (!state.stats.plantersCrafted && !state.job && RESOURCE_IDS.some(id=>state.inventory[id]<RECIPES.planter.cost[id])) return { id: 'gather', title: 'Something from almost nothing', detail: 'Tap a material bin in the square. Gather scrap, timber and supplies for your first planter.', complete: false };
+  if (!state.stats.plantersCrafted) return { id: 'craft', title: 'A remarkably short apprenticeship', detail: 'At the workshop bench, make and collect your first planter. This first lesson takes five seconds; later planters take eight hours.', complete: false };
+  if (!state.stats.planterPlacedAfterCraft) return { id: 'place', title: 'Put down a very small root', detail: 'Open your bag and place your new planter in a workshop nook. Previewing and moving furniture are free.', complete: false };
+  if (!state.stats.bridgeJobsStarted) return { id: 'bridge', title: 'The committee requests a kit', detail: 'Gather more materials and start a twelve-hour bridge kit at the bench. It will wait for you; no need to keep this tab open.', complete: false };
+  return { id: 'complete', title: 'Orientation postponed. Again.', detail: 'First lesson complete. Your queued job and furnishings stay saved. Bridge donations and plot ownership are available in shared practice, which keeps a separate save.', complete: true };
+}
+
+export type WorkshopRuleCommand=Exclude<WorkshopCommand,{kind:'place'}> | (Omit<Extract<WorkshopCommand,{kind:'place'}>,'prop'> & {prop:string});
+export type WorkshopRuleState<G extends GardenLike>=Omit<WorkshopState,'version'|'garden'|'owned'|'placements'> & {version:number;garden:G;owned:Record<string,number>;placements:Record<SlotId,string|null>};
+export type WorkshopRuleResult<S>={state:S;ok:boolean;message:string;replayed:boolean};
+/** Rule contexts are trusted source, not request-controlled validator overrides. */
+export function createWorkshopRules<G extends GardenLike,S extends WorkshopRuleState<G>>(config:{schema:RuleSchema<S>;commands:RuleSchema<WorkshopRuleCommand>;garden:GardenRules<G>;propIds:readonly string[];props:Record<string,{name:string}>}){
+ const stateSchema=config.schema,commandSchema=config.commands,PROP_IDS=config.propIds,PROPS=config.props;
+ const {applyGarden}=config.garden;
+ const {applyCarpentry}=createCarpentryRules(config.garden);
+ const {applyCommission}=createCommissionRules(config.garden);
+function settleWorkshop(input: S, now: number): S {
   if (!validTime(now) || now < input.observedAt) return input;
-  let next: WorkshopState | undefined;
+  let next: S | undefined;
   for (const resource of RESOURCE_IDS) {
     const node = input.nodes[resource];
     if (node.stock >= NODE_CAPACITY) continue;
@@ -153,21 +179,10 @@ export function settleWorkshop(input: WorkshopState, now: number): WorkshopState
   if (next) next.observedAt = now;
   return next ?? input;
 }
-export function recipeDuration(state: WorkshopState, recipe: RecipeId): number {
-  return recipe === 'planter' && state.stats.plantersCrafted === 0 ? RECIPES.planter.tutorialDurationMs : RECIPES[recipe].durationMs;
-}
-export function skillLevel(xp: number): number { return Math.min(5, 1 + Math.floor(Math.max(0, xp) / 30)); }
-export function questStep(state: WorkshopState): { id: string; title: string; detail: string; complete: boolean } {
-  if (!state.stats.plantersCrafted && !state.job && RESOURCE_IDS.some(id=>state.inventory[id]<RECIPES.planter.cost[id])) return { id: 'gather', title: 'Something from almost nothing', detail: 'Tap a material bin in the square. Gather scrap, timber and supplies for your first planter.', complete: false };
-  if (!state.stats.plantersCrafted) return { id: 'craft', title: 'A remarkably short apprenticeship', detail: 'At the workshop bench, make and collect your first planter. This first lesson takes five seconds; later planters take eight hours.', complete: false };
-  if (!state.stats.planterPlacedAfterCraft) return { id: 'place', title: 'Put down a very small root', detail: 'Open your bag and place your new planter in a workshop nook. Previewing and moving furniture are free.', complete: false };
-  if (!state.stats.bridgeJobsStarted) return { id: 'bridge', title: 'The committee requests a kit', detail: 'Gather more materials and start a twelve-hour bridge kit at the bench. It will wait for you; no need to keep this tab open.', complete: false };
-  return { id: 'complete', title: 'Orientation postponed. Again.', detail: 'First lesson complete. Your queued job and furnishings stay saved. Bridge donations and plot ownership are available in shared practice, which keeps a separate save.', complete: true };
-}
-export function applyWorkshop(input: WorkshopState, raw: unknown, now: number, allocatedElsewhere:Partial<Record<PropId,number>>={}): WorkshopResult {
-  const fail = (message: string): WorkshopResult => ({ state: input, ok: false, message, replayed: false });
+function applyWorkshop(input: S, raw: unknown, now: number, allocatedElsewhere:Partial<Record<string,number>>={}): WorkshopRuleResult<S> {
+  const fail = (message: string): WorkshopRuleResult<S> => ({ state: input, ok: false, message, replayed: false });
   if(!stateSchema.safeParse(input).success)return fail('The saved workshop could not be validated. Nothing was changed.');
-  if(Object.keys(allocatedElsewhere).some(id=>!PROP_IDS.includes(id as PropId))||PROP_IDS.some(id=>{const n=allocatedElsewhere[id]??0;return !Number.isInteger(n)||n<0||n>ITEM_LIMIT||n+Object.values(input.placements).filter(p=>p===id).length>input.owned[id];}))return fail('Furniture allocation could not be confirmed. Nothing was moved.');
+  if(Object.keys(allocatedElsewhere).some(id=>!PROP_IDS.includes(id as string))||PROP_IDS.some(id=>{const n=allocatedElsewhere[id]??0;return !Number.isInteger(n)||n<0||n>ITEM_LIMIT||n+Object.values(input.placements).filter(p=>p===id).length>input.owned[id];}))return fail('Furniture allocation could not be confirmed. Nothing was moved.');
   const parsed = commandSchema.safeParse(raw);
   if (!parsed.success) return fail('That request is not valid. Nothing was changed.');
   if (!validTime(now) || now < input.observedAt) return fail('The local clock moved backwards. Try again when it catches up.');
@@ -248,3 +263,7 @@ export function applyWorkshop(input: WorkshopState, raw: unknown, now: number, a
   if (!stateSchema.safeParse(next).success) return fail('This request would create invalid progress. Nothing was changed.');
   return { state: next, ok: true, message, replayed: false };
 }
+
+ return {settleWorkshop,applyWorkshop};
+}
+export const {settleWorkshop,applyWorkshop}=createWorkshopRules<import('./garden.ts').GardenState,WorkshopState>({schema:stateSchema,commands:commandSchema,garden:defaultGardenRules,propIds:PROP_IDS,props:PROPS});

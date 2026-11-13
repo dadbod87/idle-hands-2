@@ -114,7 +114,8 @@
     "tests/cafe-save.test.ts",
     "tests/cafe-save.spec.ts",
     "tests/serving-family.test.ts",
-    "tests/serving-family.spec.ts"
+    "tests/serving-family.spec.ts",
+    "tests/cafe-commands.test.ts"
   ],
   "compilerOptions": {
     "types": [

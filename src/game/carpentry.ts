@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import {consumeGarden,gardenSchema,GARDEN_HOUR,GARDEN_DAY,GARDEN_TIME_MAX,type GardenState} from './garden.ts';
+import {defaultGardenRules,type GardenRules,type GardenLike,GARDEN_HOUR,GARDEN_DAY,GARDEN_TIME_MAX,type GardenState} from './garden.ts';
 
 // Pure candidate rules, not an authority boundary. The caller must persist the
 // returned garden, carpentry, output and civic intent in one UUID transaction.
@@ -66,9 +66,41 @@ export function carpentryActionLocations(a:CarpentryAction):Array<{room:'square'
 export function carpentryLedgerMatches(s:CarpentryState,g:Pick<GardenState,'consumed'>):boolean{
  return g.consumed.easels.radish===0&&g.consumed.easels.marigold===s.started&&g.consumed.hampers.radish===2*s.hampers&&g.consumed.hampers.marigold===s.hampers;
 }
-export type CarpentryResult={ok:boolean;state:CarpentryState;garden:GardenState;message:string;awardEasel:boolean;recordIntent:boolean};
-export function applyCarpentry(input:CarpentryState,garden:GardenState,raw:unknown,now:number):CarpentryResult{
- const fail=(message:string):CarpentryResult=>({ok:false,state:input,garden,message,awardEasel:false,recordIntent:false});
+export type CarpentryResult<G=GardenState>={ok:boolean;state:CarpentryState;garden:G;message:string;awardEasel:boolean;recordIntent:boolean};
+export function nextCarpentryDeadline(input:CarpentryState,now:number):number|null{
+ const s=settleCarpentry(input,now),times:number[]=[];
+ if(s.job&&s.job.readyAt>now)times.push(s.job.readyAt);
+ if(s.nextHamperAt!==null&&s.nextHamperAt>now)times.push(s.nextHamperAt);
+ if(s.pine.available<6)times.push(s.pine.lastAt+CARPENTRY_RULES.pineMs);
+ return times.length?Math.min(...times):null;
+}
+export function easelGoal(input:CarpentryState,garden:GardenState):{active:boolean;pineNeeded:number;flowersNeeded:number;spendingLastFlower:boolean}{
+ return {active:input.keepEaselGoal,pineNeeded:Math.max(0,4-input.pine.carried),flowersNeeded:Math.max(0,1-garden.produce.marigold),spendingLastFlower:input.keepEaselGoal&&garden.produce.marigold===1};
+}
+
+// Anonymous public project value. A store must lock/update its singleton in the
+// same transaction as recordIntent; this pure function does not grant a credit.
+export const noticeboardSchema=z.object({credits:count.max(6),phase:z.enum(['collecting','installing','open']),startedAt:clock.nullable(),readyAt:deadline.nullable(),openedAt:deadline.nullable()}).strict().superRefine((s,ctx)=>{
+ const valid=s.credits<6?s.phase==='collecting'&&s.startedAt===null&&s.readyAt===null&&s.openedAt===null:s.startedAt!==null&&s.readyAt!==null&&s.readyAt-s.startedAt===CARPENTRY_RULES.noticeMs&&(s.phase==='installing'&&s.openedAt===null||s.phase==='open'&&s.openedAt===s.readyAt);
+ if(!valid)ctx.addIssue({code:'custom',message:'Invalid noticeboard phase or fixed installation deadline.'});
+});
+export type NoticeboardState=z.infer<typeof noticeboardSchema>;
+export function createNoticeboard():NoticeboardState{return {credits:0,phase:'collecting',startedAt:null,readyAt:null,openedAt:null};}
+export function settleNoticeboard(input:NoticeboardState,now:number):NoticeboardState{
+ noticeboardSchema.parse(input);clock.parse(now);
+ if(input.startedAt!==null&&now<input.startedAt||input.openedAt!==null&&now<input.openedAt)throw new Error('Noticeboard time moved backwards.');
+ return input.phase==='installing'&&input.readyAt!<=now?{...input,phase:'open',openedAt:input.readyAt}:input;
+}
+export function recordNoticeboard(input:NoticeboardState,now:number):{state:NoticeboardState;credited:boolean}{
+ const s=settleNoticeboard(input,now);if(s.credits===6)return {state:s,credited:false};
+ const credits=s.credits+1;
+ return {state:credits===6?{credits,phase:'installing',startedAt:now,readyAt:now+CARPENTRY_RULES.noticeMs,openedAt:null}:{...s,credits},credited:true};
+}
+
+export function createCarpentryRules<G extends GardenLike>(rules:GardenRules<G>){
+ const gardenSchema=rules.schema,consumeGarden=rules.consumeGarden;
+function applyCarpentry(input:CarpentryState,garden:G,raw:unknown,now:number):CarpentryResult<G>{
+ const fail=(message:string):CarpentryResult<G>=>({ok:false,state:input,garden,message,awardEasel:false,recordIntent:false});
  if(!carpentrySchema.safeParse(input).success||!gardenSchema.safeParse(garden).success||!carpentryLedgerMatches(input,garden))return fail('The saved crafting ledger could not be confirmed. Nothing changed.');
  if(!clock.safeParse(now).success||now<input.observedAt||now<garden.observedAt)return fail('The crafting clock could not be confirmed. Nothing changed.');
  const parsed=carpentryActionSchema.safeParse(raw);if(!parsed.success)return fail('That carpentry request is not valid. Nothing changed.');
@@ -121,32 +153,7 @@ export function applyCarpentry(input:CarpentryState,garden:GardenState,raw:unkno
  if(!carpentrySchema.safeParse(s).success||!carpentryLedgerMatches(s,g))return fail('This request would exceed a prototype limit. Nothing changed.');
  return {ok:true,state:s,garden:g,message,awardEasel,recordIntent};
 }
-export function nextCarpentryDeadline(input:CarpentryState,now:number):number|null{
- const s=settleCarpentry(input,now),times:number[]=[];
- if(s.job&&s.job.readyAt>now)times.push(s.job.readyAt);
- if(s.nextHamperAt!==null&&s.nextHamperAt>now)times.push(s.nextHamperAt);
- if(s.pine.available<6)times.push(s.pine.lastAt+CARPENTRY_RULES.pineMs);
- return times.length?Math.min(...times):null;
-}
-export function easelGoal(input:CarpentryState,garden:GardenState):{active:boolean;pineNeeded:number;flowersNeeded:number;spendingLastFlower:boolean}{
- return {active:input.keepEaselGoal,pineNeeded:Math.max(0,4-input.pine.carried),flowersNeeded:Math.max(0,1-garden.produce.marigold),spendingLastFlower:input.keepEaselGoal&&garden.produce.marigold===1};
-}
 
-// Anonymous public project value. A store must lock/update its singleton in the
-// same transaction as recordIntent; this pure function does not grant a credit.
-export const noticeboardSchema=z.object({credits:count.max(6),phase:z.enum(['collecting','installing','open']),startedAt:clock.nullable(),readyAt:deadline.nullable(),openedAt:deadline.nullable()}).strict().superRefine((s,ctx)=>{
- const valid=s.credits<6?s.phase==='collecting'&&s.startedAt===null&&s.readyAt===null&&s.openedAt===null:s.startedAt!==null&&s.readyAt!==null&&s.readyAt-s.startedAt===CARPENTRY_RULES.noticeMs&&(s.phase==='installing'&&s.openedAt===null||s.phase==='open'&&s.openedAt===s.readyAt);
- if(!valid)ctx.addIssue({code:'custom',message:'Invalid noticeboard phase or fixed installation deadline.'});
-});
-export type NoticeboardState=z.infer<typeof noticeboardSchema>;
-export function createNoticeboard():NoticeboardState{return {credits:0,phase:'collecting',startedAt:null,readyAt:null,openedAt:null};}
-export function settleNoticeboard(input:NoticeboardState,now:number):NoticeboardState{
- noticeboardSchema.parse(input);clock.parse(now);
- if(input.startedAt!==null&&now<input.startedAt||input.openedAt!==null&&now<input.openedAt)throw new Error('Noticeboard time moved backwards.');
- return input.phase==='installing'&&input.readyAt!<=now?{...input,phase:'open',openedAt:input.readyAt}:input;
+ return {applyCarpentry};
 }
-export function recordNoticeboard(input:NoticeboardState,now:number):{state:NoticeboardState;credited:boolean}{
- const s=settleNoticeboard(input,now);if(s.credits===6)return {state:s,credited:false};
- const credits=s.credits+1;
- return {state:credits===6?{credits,phase:'installing',startedAt:now,readyAt:now+CARPENTRY_RULES.noticeMs,openedAt:null}:{...s,credits},credited:true};
-}
+export const {applyCarpentry}=createCarpentryRules(defaultGardenRules);

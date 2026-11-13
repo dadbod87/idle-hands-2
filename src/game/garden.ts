@@ -1,3 +1,4 @@
+import type {RuleSchema} from './rule-schema.ts';
 import {z} from 'zod';
 
 // Pure rules. The caller owns identity, proximity, command UUID/revision and transactions.
@@ -94,25 +95,6 @@ export function migrateGarden(value:unknown):unknown{
 /** Fixed internal recipe debit; callers still own UUID, revision, proximity and
  * atomic persistence with the corresponding wood/job change. No arbitrary
  * amounts or client-supplied ledger entries are accepted. */
-export function consumeGarden(input:GardenState,use:'easels'|'hampers'|'commission',now:number):GardenState|null{
- if(use!=='easels'&&use!=='hampers'&&use!=='commission')return null;
- const s=settleGarden(input,now),radishes=use==='hampers'?2:use==='commission'?1:0,flowers=use==='commission'?0:1;
- if(s.produce.radish<radishes||s.produce.marigold<flowers)return null;
- s.produce.radish-=radishes;s.produce.marigold-=flowers;
- s.consumed[use].radish+=radishes;s.consumed[use].marigold+=flowers;
- return gardenSchema.safeParse(s).success?s:null;
-}
-export function settleGarden(input:GardenState,now:number):GardenState{
- gardenSchema.parse(input);nowSchema.parse(now);if(now<input.observedAt)throw new Error('Garden time moved backwards.');
- const s=structuredClone(input);s.observedAt=now;
- for(const [name,cap,period]of [['clippings',GARDEN_RULES.clippingCap,GARDEN_RULES.clippingMs],['rested',GARDEN_RULES.restedCap,GARDEN_RULES.restedMs]] as const){
-  const value=s[name],earned=Math.floor((now-value.lastAt)/period);
-  // No fractional or hidden reserve accumulates while the bank is already full.
-  if(value.available===cap){value.lastAt=now;continue;}
-  if(earned>0){value.available=Math.min(cap,value.available+earned);value.lastAt=value.available===cap?now:value.lastAt+earned*period;}
- }
- return s;
-}
 const bed=z.number().int().min(0).max(2);
 export const gardenActionSchema=z.discriminatedUnion('action',[
  z.object({action:z.literal('plant'),bed,crop:z.enum(CROP_IDS)}).strict(),
@@ -135,9 +117,37 @@ export function gardenActionLocations(a:GardenAction):Array<{room:'square'|'gard
  if(a.action==='submit-request'||a.action==='display-marker')return[{room:'garden',stopId:'garden-desk'},{room:'square',stopId:'garden-registry'}];
  return[{room:'garden',stopId:'garden-desk'}];
 }
-export type GardenResult={ok:boolean;state:GardenState;message:string;publicChanged:boolean;requestCredit:boolean};
-export function applyGarden(input:GardenState,raw:unknown,now:number):GardenResult{
- const fail=(message:string):GardenResult=>({ok:false,state:input,message,publicChanged:false,requestCredit:false});
+export type GardenResult<G=GardenState>={ok:boolean;state:G;message:string;publicChanged:boolean;requestCredit:boolean};
+export function gardenStage(bed:GardenState['beds'][number],now:number):'empty'|'sow'|'sprout'|'growing'|'ready'{
+ nowSchema.parse(now);
+ if(!bed)return 'empty';if(now>=bed.readyAt)return 'ready';
+ const fraction=Math.max(0,(now-bed.plantedAt)/(bed.readyAt-bed.plantedAt));return fraction<.2?'sow':fraction<.55?'sprout':'growing';
+}
+
+/** Same rule bodies with a strict code-owned schema; extra ledger fields survive cloning. */
+export type GardenLike=GardenLedgerInput & {version:number};
+export function createGardenRules<G extends GardenLike>(gardenSchema:RuleSchema<G>){
+function consumeGarden(input:G,use:'easels'|'hampers'|'commission',now:number):G|null{
+ if(use!=='easels'&&use!=='hampers'&&use!=='commission')return null;
+ const s=settleGarden(input,now),radishes=use==='hampers'?2:use==='commission'?1:0,flowers=use==='commission'?0:1;
+ if(s.produce.radish<radishes||s.produce.marigold<flowers)return null;
+ s.produce.radish-=radishes;s.produce.marigold-=flowers;
+ s.consumed[use].radish+=radishes;s.consumed[use].marigold+=flowers;
+ return gardenSchema.safeParse(s).success?s:null;
+}
+function settleGarden(input:G,now:number):G{
+ gardenSchema.parse(input);nowSchema.parse(now);if(now<input.observedAt)throw new Error('Garden time moved backwards.');
+ const s=structuredClone(input);s.observedAt=now;
+ for(const [name,cap,period]of [['clippings',GARDEN_RULES.clippingCap,GARDEN_RULES.clippingMs],['rested',GARDEN_RULES.restedCap,GARDEN_RULES.restedMs]] as const){
+  const value=s[name],earned=Math.floor((now-value.lastAt)/period);
+  // No fractional or hidden reserve accumulates while the bank is already full.
+  if(value.available===cap){value.lastAt=now;continue;}
+  if(earned>0){value.available=Math.min(cap,value.available+earned);value.lastAt=value.available===cap?now:value.lastAt+earned*period;}
+ }
+ return s;
+}
+function applyGarden(input:G,raw:unknown,now:number):GardenResult<G>{
+ const fail=(message:string):GardenResult<G>=>({ok:false,state:input,message,publicChanged:false,requestCredit:false});
  gardenSchema.parse(input);
  if(!nowSchema.safeParse(now).success||now<input.observedAt)return fail('The garden clock could not be confirmed. Your patch is unchanged.');
  const parsed=gardenActionSchema.safeParse(raw);if(!parsed.success)return fail('That garden request is not valid. Nothing changed.');
@@ -195,15 +205,16 @@ export function applyGarden(input:GardenState,raw:unknown,now:number):GardenResu
  if(!gardenSchema.safeParse(s).success)return fail('The prototype garden limit was reached. Your patch is unchanged.');
  return {ok:true,state:s,message,publicChanged:s.selectedMarker!==input.selectedMarker,requestCredit};
 }
-export function gardenStage(bed:GardenState['beds'][number],now:number):'empty'|'sow'|'sprout'|'growing'|'ready'{
- nowSchema.parse(now);
- if(!bed)return 'empty';if(now>=bed.readyAt)return 'ready';
- const fraction=Math.max(0,(now-bed.plantedAt)/(bed.readyAt-bed.plantedAt));return fraction<.2?'sow':fraction<.55?'sprout':'growing';
-}
-export function nextGardenDeadline(s:GardenState,now:number):number|null{
+function nextGardenDeadline(s:G,now:number):number|null{
  s=settleGarden(s,now);
  const candidates=[...s.beds.flatMap(b=>b&&b.readyAt>now?[b.readyAt]:[]),...(s.nextRequestAt!==null&&s.nextRequestAt>now?[s.nextRequestAt]:[])];
  if(s.clippings.available<GARDEN_RULES.clippingCap)candidates.push(s.clippings.lastAt+GARDEN_RULES.clippingMs);
  if(s.rested.available<GARDEN_RULES.restedCap)candidates.push(s.rested.lastAt+GARDEN_RULES.restedMs);
  const future=candidates.filter(t=>t>now);return future.length?Math.min(...future):null;
 }
+
+ return {schema:gardenSchema,consumeGarden,settleGarden,applyGarden,nextGardenDeadline};
+}
+export type GardenRules<G extends GardenLike>=ReturnType<typeof createGardenRules<G>>;
+export const defaultGardenRules=createGardenRules(gardenSchema);
+export const {consumeGarden,settleGarden,applyGarden,nextGardenDeadline}=defaultGardenRules;

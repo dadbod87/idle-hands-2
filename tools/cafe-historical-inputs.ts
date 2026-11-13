@@ -3,10 +3,10 @@
  * metadata. Actual historical-tree execution is recorded separately in104. */
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
-const manifestPath='docs/evidence/IH2-104/validator-refactor.json';
+export const cafeRefactorManifestPath='docs/evidence/IH2-107/validator-refactor.json';
 type Manifest={historical:Record<string,{snapshot:string;sha256:string}>;currentRefactors:Record<string,string>};
 const hash=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
-const manifest=():Manifest=>JSON.parse(readFileSync(manifestPath,'utf8'));
+const manifest=():Manifest=>JSON.parse(readFileSync(cafeRefactorManifestPath,'utf8'));
 export function readDatedCafeInput(path:string):Buffer{
  const original=manifest().historical[path];
  if(!original)return readFileSync(path);

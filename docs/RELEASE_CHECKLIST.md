@@ -1,3 +1,5 @@
+107local candidate: shared context factories preserve ordinary behavior and café ledgers; no live root/writer/props/UI/server/protocol/SQL registration.386system/10focused/build/design pass, 142browser0skips/flakes/errors and final preservation pass. Source gate/billing hold remains; no accepted-preview update. Later unified writer/unsaved-practice/cache/BFCache, server UUID/SQL/protocol/allocation and coherent counter/art/reward gates required. See evidence/IH2-107/REPORT.md.
+
 # Actions usage preflight
 
 Read [ACTIONS_USAGE_POLICY](idle-hands-2/ACTIONS_USAGE_POLICY.md). Complete the candidate locally, inspect active runs and the recorded allowance/budget hold, and avoid redundant hosted triggers. Confirm the exact final candidate passes all required checks before merging; no billing or documentation exception bypasses this gate. Record run IDs, retries, estimated summed job-minutes and the next session's hold status.

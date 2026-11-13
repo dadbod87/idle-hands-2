@@ -1,3 +1,5 @@
+107ordinary café-era commands locally implemented;386system/10focused/build/design and independent domain review pass. Full142browser0skips/flakes/errors, final plan/pinned/diff/preservation pass. Shared unchanged rule bodies with strict live2/3 and candidate3/4contexts; no writer/UI/server registration. Source gate held. [Report](evidence/IH2-107/REPORT.md).
+
 106original serving family/teapot art locally verified:80cells/four rigs,376system/142browser0skips/flakes/errors, TerraV2no sampled visual blocker. All15frozen/source/HTTP/raw files match;208game/202art bytes unchanged, no live registration. Next107ordinary command compatibility; source gate held. [Report](evidence/IH2-106/REPORT.md).
 
 105staged café save protection locally verified:372system/139browser+3final native cases,0skips/flakes/errors; quota/migration/stale/two-window/confirmation protection and exact208game identity. No live wiring or accepted-preview change; normal source gate held. Next106original serving rigs/teapot kit. [Report](evidence/IH2-105/REPORT.md).

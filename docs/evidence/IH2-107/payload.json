@@ -1,0 +1,23 @@
+{
+  "referenceCommit": "c9aa22759b36463f28721911d900d57bf1d361d6",
+  "runtimeFiles": 208,
+  "unchangedSamePathFiles": 206,
+  "artFilesByteIdentical": 202,
+  "removedOrRenamedPaths": [
+    "assets/index-DA91l4eM.js"
+  ],
+  "addedOrRenamedPaths": [
+    "assets/index-CoMpb2Pu.js"
+  ],
+  "samePathChanged": [
+    "index.html"
+  ],
+  "oldRawBytes": 3925932,
+  "newRawBytes": 3926609,
+  "oldSummedGzipBytes": 639979,
+  "newSummedGzipBytes": 640291,
+  "method": "Sum of local compiled file sizes and per-file gzip; not browser transferred bytes or frame-time performance.",
+  "rawDeltaBytes": 677,
+  "summedGzipDeltaBytes": 312,
+  "candidateSignaturesAbsentFromCompiledGame": true
+}

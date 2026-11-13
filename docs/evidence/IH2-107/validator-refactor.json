@@ -1,0 +1,44 @@
+{
+  "classification": "DATED_099_INPUTS_AND_CURRENT_107_RULE_FACTORIES_NOT_ACCEPTANCE",
+  "originCommit": "4f1323862a61acf9265087c422dbed8231e9fa0d",
+  "historical": {
+    "src/game/workshop.ts": {
+      "snapshot": "docs/evidence/IH2-104/historical-cafe-inputs/src/game/workshop.ts",
+      "sha256": "8158a199b7e1a647fb93cefad98c6ee4515cd02194c1e8bcc205aa1d404a443d"
+    },
+    "src/game/garden.ts": {
+      "snapshot": "docs/evidence/IH2-104/historical-cafe-inputs/src/game/garden.ts",
+      "sha256": "4bcad76311fb65b44609b0af37a45f3cf022e68f0ef4ccef6837234fafbc5991"
+    },
+    "src/game/carpentry.ts": {
+      "snapshot": "docs/evidence/IH2-104/historical-cafe-inputs/src/game/carpentry.ts",
+      "sha256": "7eba4bd2ef18eb8c2d5d000ba73be6e6fd7ac70eaef054a79b54d6ab4c5e9ce0"
+    },
+    "src/game/commission.ts": {
+      "snapshot": "docs/evidence/IH2-104/historical-cafe-inputs/src/game/commission.ts",
+      "sha256": "882a78203ba26d6c1f8697ff576823f2320d0ff76a4f37c9ce30594c4b137d92"
+    },
+    "tools/create-cafe-study.ts": {
+      "snapshot": "docs/evidence/IH2-104/historical-cafe-inputs/tools/create-cafe-study.ts",
+      "sha256": "4d9e7c96a20e6c4a7fd40f1278778c4f7adb189c2b6851bbff006f573949754e"
+    },
+    "tools/cafe-baseline-audit.ts": {
+      "snapshot": "docs/evidence/IH2-104/historical-cafe-inputs/tools/cafe-baseline-audit.ts",
+      "sha256": "5582384c2e05a05c81f96fffec8fadeca6eef03a2d5a4ce6deb6a75a833fa078"
+    }
+  },
+  "currentRefactors": {
+    "src/game/workshop.ts": "ae2fbf2dff8b8ed779e2959a8313476669d83dd06e51beade7f02aa1f50f3436",
+    "src/game/garden.ts": "7ba870682d15f40ef83f21302a25fc736e2a19a5f6b73b2e8cca20cbfe6ca5da",
+    "src/game/carpentry.ts": "eb8da9660bbf7877e1c65a57ae70f802af35a0a609cd40586559c75fe9fc19a1",
+    "src/game/commission.ts": "6dcbd71b803cdb04715ca8a238fbe46993692165835d17ebb56526baccac5044"
+  },
+  "method": "Same original099six snapshots; current107four factories independently fingerprinted. Executable rule bodies compared against actual pre-refactor source; strict live default schemas unchanged.",
+  "previousCurrentRefactors": {
+    "src/game/workshop.ts": "0f1ab6d6f46ba1ece0116abb9d9b3ed06d516381a751b196f18c8b9b215f3f01",
+    "src/game/garden.ts": "0fe25dd282848c93d09e659ae37a8540d6bb3b8a56c9448dba0710fca53bf9ba",
+    "src/game/carpentry.ts": "f8556fba3a01ba5897c2be1100463b5bdc03c10ee2cf70c6f3045b7fa578b73f",
+    "src/game/commission.ts": "bc28936781b798010cde85415fa50907dbde70bea00214ba00a442088db24888"
+  },
+  "refactorFromCommit": "c9aa22759b36463f28721911d900d57bf1d361d6"
+}

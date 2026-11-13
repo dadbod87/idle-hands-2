@@ -217,8 +217,8 @@ test('candidate remains unregistered with the live writer, scene and network; mi
 });
 
  test('dated café provenance checks both immutable historical bytes and explicitly reviewed current refactor bytes',async()=>{
- const {checkCafeRefactorSources}=await import('../tools/cafe-historical-inputs.ts');
- const manifest=JSON.parse(readFileSync('docs/evidence/IH2-104/validator-refactor.json','utf8'));
+ const {checkCafeRefactorSources,cafeRefactorManifestPath}=await import('../tools/cafe-historical-inputs.ts');
+ const manifest=JSON.parse(readFileSync(cafeRefactorManifestPath,'utf8'));
  assert.deepEqual(checkCafeRefactorSources(manifest),[]);
  const changed=structuredClone(manifest);changed.currentRefactors['src/game/workshop.ts']='0'.repeat(64);
  assert.ok(checkCafeRefactorSources(changed).some(s=>s.includes('Current café refactor mismatch')));

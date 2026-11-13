@@ -1,3 +1,5 @@
+**107 compatibility update:** isolated ordinary command contexts now preserve the complete café-era ledger/reward state. Live default versions, writer, props, protocol and server remain unchanged. See ../../evidence/IH2-107/REPORT.md. Next108proves one writer coordinator before registration. The original103audit and104/106notes below remain dated history.
+
 # A tasting worth saving
 
 **106 artwork update:** all four rigs now have a locally reviewed generic plate gesture, plus Bag/world teapot art in a separate15-file gallery. See ../../evidence/IH2-106/REPORT.md. These assets are not wired to actions, ownership, placement or UI; the original103observations below are historical.

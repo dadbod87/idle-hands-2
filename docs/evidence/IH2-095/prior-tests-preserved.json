@@ -1,0 +1,6 @@
+{
+  "allExistingTestStatementsByteIdentical": true,
+  "sha256": "c63c3e4c9c20d0dc1dde403c3b9765fc6068c77497731e4e0ed3125c4f4f40d7",
+  "fixtureExtracted": "tests/helpers/home-panel.ts",
+  "optionalExtraVisitorRowsOnly": true
+}

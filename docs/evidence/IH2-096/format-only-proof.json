@@ -1,0 +1,9 @@
+{
+  "changedFiles": [
+    "index.html",
+    "catalog.json"
+  ],
+  "htmlEqualAfterLineEndWhitespaceRemoval": true,
+  "other18FilesUnchanged": true,
+  "reason": "Generated TypeScript blank-line spaces failed git whitespace check; trim line ends in exporter. Script behavior, art, geometry and controls unchanged."
+}

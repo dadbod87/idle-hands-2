@@ -1,0 +1,17 @@
+{
+  "classification": "Actual Chrome loopback origin and fake-cookie canaries, not real sessions. Fresh local defaults then real isolated review-town login; no accepted identity selected.",
+  "url": "http://housing-review.localhost:49567/",
+  "nativeBrowserResolution": true,
+  "all204ResponsesMatchFrozenBuild": true,
+  "primaryAndTourCanariesNotSentOrOverwritten": true,
+  "reviewCookieOnDistinctHost": true,
+  "realAuthenticatedReviewSnapshotStatus": 200,
+  "unisolatedFrontendLoginDenied403": true,
+  "profile": "Fictional Lane, one of26profiles/25historical homes",
+  "noGameplayCommands": true,
+  "serverSource": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
+  "appearanceOnlyFixture": "day/clear URL; no server-clock change",
+  "syntheticCookieFixture": "Temporary loopback HTTP fixture seeds invalid host-only canaries on127.0.0.1andlocalhost, probes actual Cookie header booleans with positive controls and repeated review-host negative control; no request to accepted game/API ports or actual session values",
+  "errors": [],
+  "limits": "Chrome desktop/touch-size resize, not physical phone/Safari/fullaccessibility/fun certification. No actual cookie/key values recorded."
+}

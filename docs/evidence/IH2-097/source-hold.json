@@ -1,0 +1,11 @@
+{
+  "task": "IH2-097",
+  "branch": "feat/allotment-composition",
+  "base": "1572352",
+  "acceptedMain": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
+  "localResult": "CorrectedV2338system/129browser/root/Terra/source-crosscheck/artifact/preservation pass",
+  "sourceGate": "Unaccepted/unmerged. Last PR39refused beforetests for accountbilling/spending-limit status. Required exact-final-head normal jobs/artifact/actual gates stillpending.",
+  "nextRequiredUIFix": "IH2-098stablephoneactionbar; observed53pxplayfieldjump andnavigationrepositioning.",
+  "acceptedPreviewUpdate": false,
+  "originalGameOrCloudChange": false
+}

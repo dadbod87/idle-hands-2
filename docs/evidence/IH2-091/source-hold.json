@@ -1,0 +1,30 @@
+{
+  "classification": "Local candidate only; release held before GitHub tests",
+  "task": "IH2-091",
+  "candidate": "8abc1b46325b1220271a550951acc685b667aec9",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/39",
+  "ciRun": 43365543304,
+  "githubTestsRan": false,
+  "providerCondition": "Recent account payments failed or spending limit needs attention; owner action required",
+  "localDomain": 326,
+  "localDomainSkipped": 0,
+  "initialLocalBrowser": 111,
+  "focusedFinalBrowser": 9,
+  "finalLocalBrowser": {
+    "expected": 113,
+    "status": "success",
+    "passed": 113,
+    "skipped": 0,
+    "flaky": 0,
+    "unexpected": 0,
+    "durationMs": 872719.2359999999
+  },
+  "terraFinalR2SamplePassed": true,
+  "merged": false,
+  "acceptedPreviewChanged": false,
+  "acceptedTask": "IH2-090",
+  "protectedAndTourAll13TableFieldsKeysSixChecksumsPreserved": true,
+  "frozenStudyResponsesPreserved": 54,
+  "paidOrRunnerChanges": false,
+  "finalLocal204BytesEqualTerraFinalR2": true
+}

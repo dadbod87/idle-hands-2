@@ -1,0 +1,1423 @@
+{
+  "classification": "Actual frozen101V2client, local defaults and dedicated existing fictional Lane town on unchanged090API5. Normal source gate held.",
+  "records": [
+    {
+      "shared": false,
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "text": 100,
+        "touch": false
+      },
+      "cases": [
+        {
+          "pocket": "furniture",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Optimistic planter",
+              "count": "0",
+              "accessible": "Optimistic planter: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Committee stool",
+              "count": "1",
+              "accessible": "Committee stool: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Welcome-ish rug",
+              "count": "1",
+              "accessible": "Welcome-ish rug: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Bright idea lamp",
+              "count": "1",
+              "accessible": "Bright idea lamp: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Useful crate",
+              "count": "1",
+              "accessible": "Useful crate: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Shelf of intentions",
+              "count": "1",
+              "accessible": "Shelf of intentions: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Garden study easel",
+              "count": "0",
+              "accessible": "Garden study easel: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Unreasonably Official Letterbox",
+              "count": "0",
+              "accessible": "Unreasonably Official Letterbox: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            }
+          ]
+        },
+        {
+          "pocket": "materials",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Scrap",
+              "count": "0",
+              "accessible": "Scrap: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Timber",
+              "count": "0",
+              "accessible": "Timber: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Supplies",
+              "count": "0",
+              "accessible": "Supplies: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Pine bundles",
+              "count": "0",
+              "accessible": "Pine bundles: 0 carried",
+              "detail": "Carried wood"
+            },
+            {
+              "name": "Bridge repair kits",
+              "count": "0",
+              "accessible": "Bridge repair kits: 0 carried",
+              "detail": "Kept kits · projects & homes"
+            }
+          ]
+        },
+        {
+          "pocket": "garden",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Radish seeds",
+              "count": "2",
+              "accessible": "Radish seeds: 2 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Harvested radishes",
+              "count": "0",
+              "accessible": "Harvested radishes: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Marigold seeds",
+              "count": "1",
+              "accessible": "Marigold seeds: 1 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Cut marigolds",
+              "count": "0",
+              "accessible": "Cut marigolds: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Bound hand saw",
+              "count": "0",
+              "accessible": "Bound hand saw: 0 kept",
+              "detail": "Protected tool"
+            },
+            {
+              "name": "Optimistic sunburst",
+              "count": "0",
+              "accessible": "Optimistic sunburst: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Leaf of absence",
+              "count": "0",
+              "accessible": "Leaf of absence: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Tiny committee pennant",
+              "count": "0",
+              "accessible": "Tiny committee pennant: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Officially almost straight",
+              "count": "0",
+              "accessible": "Officially almost straight: 0 kept",
+              "detail": "Garden marker"
+            }
+          ]
+        }
+      ],
+      "holdingsUnchanged": true,
+      "commands": [],
+      "errors": []
+    },
+    {
+      "shared": false,
+      "shape": {
+        "name": "phone320",
+        "width": 320,
+        "height": 640,
+        "text": 100,
+        "touch": true
+      },
+      "cases": [
+        {
+          "pocket": "furniture",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Optimistic planter",
+              "count": "0",
+              "accessible": "Optimistic planter: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Committee stool",
+              "count": "1",
+              "accessible": "Committee stool: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Welcome-ish rug",
+              "count": "1",
+              "accessible": "Welcome-ish rug: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Bright idea lamp",
+              "count": "1",
+              "accessible": "Bright idea lamp: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Useful crate",
+              "count": "1",
+              "accessible": "Useful crate: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Shelf of intentions",
+              "count": "1",
+              "accessible": "Shelf of intentions: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Garden study easel",
+              "count": "0",
+              "accessible": "Garden study easel: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Unreasonably Official Letterbox",
+              "count": "0",
+              "accessible": "Unreasonably Official Letterbox: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            }
+          ]
+        },
+        {
+          "pocket": "materials",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Scrap",
+              "count": "0",
+              "accessible": "Scrap: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Timber",
+              "count": "0",
+              "accessible": "Timber: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Supplies",
+              "count": "0",
+              "accessible": "Supplies: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Pine bundles",
+              "count": "0",
+              "accessible": "Pine bundles: 0 carried",
+              "detail": "Carried wood"
+            },
+            {
+              "name": "Bridge repair kits",
+              "count": "0",
+              "accessible": "Bridge repair kits: 0 carried",
+              "detail": "Kept kits · projects & homes"
+            }
+          ]
+        },
+        {
+          "pocket": "garden",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Radish seeds",
+              "count": "2",
+              "accessible": "Radish seeds: 2 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Harvested radishes",
+              "count": "0",
+              "accessible": "Harvested radishes: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Marigold seeds",
+              "count": "1",
+              "accessible": "Marigold seeds: 1 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Cut marigolds",
+              "count": "0",
+              "accessible": "Cut marigolds: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Bound hand saw",
+              "count": "0",
+              "accessible": "Bound hand saw: 0 kept",
+              "detail": "Protected tool"
+            },
+            {
+              "name": "Optimistic sunburst",
+              "count": "0",
+              "accessible": "Optimistic sunburst: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Leaf of absence",
+              "count": "0",
+              "accessible": "Leaf of absence: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Tiny committee pennant",
+              "count": "0",
+              "accessible": "Tiny committee pennant: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Officially almost straight",
+              "count": "0",
+              "accessible": "Officially almost straight: 0 kept",
+              "detail": "Garden marker"
+            }
+          ]
+        }
+      ],
+      "holdingsUnchanged": true,
+      "commands": [],
+      "errors": []
+    },
+    {
+      "shared": false,
+      "shape": {
+        "name": "phone360",
+        "width": 360,
+        "height": 640,
+        "text": 100,
+        "touch": true
+      },
+      "cases": [
+        {
+          "pocket": "furniture",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Optimistic planter",
+              "count": "0",
+              "accessible": "Optimistic planter: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Committee stool",
+              "count": "1",
+              "accessible": "Committee stool: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Welcome-ish rug",
+              "count": "1",
+              "accessible": "Welcome-ish rug: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Bright idea lamp",
+              "count": "1",
+              "accessible": "Bright idea lamp: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Useful crate",
+              "count": "1",
+              "accessible": "Useful crate: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Shelf of intentions",
+              "count": "1",
+              "accessible": "Shelf of intentions: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Garden study easel",
+              "count": "0",
+              "accessible": "Garden study easel: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Unreasonably Official Letterbox",
+              "count": "0",
+              "accessible": "Unreasonably Official Letterbox: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            }
+          ]
+        },
+        {
+          "pocket": "materials",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Scrap",
+              "count": "0",
+              "accessible": "Scrap: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Timber",
+              "count": "0",
+              "accessible": "Timber: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Supplies",
+              "count": "0",
+              "accessible": "Supplies: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Pine bundles",
+              "count": "0",
+              "accessible": "Pine bundles: 0 carried",
+              "detail": "Carried wood"
+            },
+            {
+              "name": "Bridge repair kits",
+              "count": "0",
+              "accessible": "Bridge repair kits: 0 carried",
+              "detail": "Kept kits · projects & homes"
+            }
+          ]
+        },
+        {
+          "pocket": "garden",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Radish seeds",
+              "count": "2",
+              "accessible": "Radish seeds: 2 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Harvested radishes",
+              "count": "0",
+              "accessible": "Harvested radishes: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Marigold seeds",
+              "count": "1",
+              "accessible": "Marigold seeds: 1 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Cut marigolds",
+              "count": "0",
+              "accessible": "Cut marigolds: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Bound hand saw",
+              "count": "0",
+              "accessible": "Bound hand saw: 0 kept",
+              "detail": "Protected tool"
+            },
+            {
+              "name": "Optimistic sunburst",
+              "count": "0",
+              "accessible": "Optimistic sunburst: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Leaf of absence",
+              "count": "0",
+              "accessible": "Leaf of absence: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Tiny committee pennant",
+              "count": "0",
+              "accessible": "Tiny committee pennant: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Officially almost straight",
+              "count": "0",
+              "accessible": "Officially almost straight: 0 kept",
+              "detail": "Garden marker"
+            }
+          ]
+        }
+      ],
+      "holdingsUnchanged": true,
+      "commands": [],
+      "errors": []
+    },
+    {
+      "shared": false,
+      "shape": {
+        "name": "phone320200",
+        "width": 320,
+        "height": 640,
+        "text": 200,
+        "touch": true
+      },
+      "cases": [
+        {
+          "pocket": "furniture",
+          "headerIconGap": 12,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Optimistic planter",
+              "count": "0",
+              "accessible": "Optimistic planter: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Committee stool",
+              "count": "1",
+              "accessible": "Committee stool: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Welcome-ish rug",
+              "count": "1",
+              "accessible": "Welcome-ish rug: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Bright idea lamp",
+              "count": "1",
+              "accessible": "Bright idea lamp: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Useful crate",
+              "count": "1",
+              "accessible": "Useful crate: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Shelf of intentions",
+              "count": "1",
+              "accessible": "Shelf of intentions: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Garden study easel",
+              "count": "0",
+              "accessible": "Garden study easel: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Unreasonably Official Letterbox",
+              "count": "0",
+              "accessible": "Unreasonably Official Letterbox: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            }
+          ]
+        },
+        {
+          "pocket": "materials",
+          "headerIconGap": 12,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Scrap",
+              "count": "0",
+              "accessible": "Scrap: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Timber",
+              "count": "0",
+              "accessible": "Timber: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Supplies",
+              "count": "0",
+              "accessible": "Supplies: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Pine bundles",
+              "count": "0",
+              "accessible": "Pine bundles: 0 carried",
+              "detail": "Carried wood"
+            },
+            {
+              "name": "Bridge repair kits",
+              "count": "0",
+              "accessible": "Bridge repair kits: 0 carried",
+              "detail": "Kept kits · projects & homes"
+            }
+          ]
+        },
+        {
+          "pocket": "garden",
+          "headerIconGap": 12,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Radish seeds",
+              "count": "2",
+              "accessible": "Radish seeds: 2 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Harvested radishes",
+              "count": "0",
+              "accessible": "Harvested radishes: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Marigold seeds",
+              "count": "1",
+              "accessible": "Marigold seeds: 1 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Cut marigolds",
+              "count": "0",
+              "accessible": "Cut marigolds: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Bound hand saw",
+              "count": "0",
+              "accessible": "Bound hand saw: 0 kept",
+              "detail": "Protected tool"
+            },
+            {
+              "name": "Optimistic sunburst",
+              "count": "0",
+              "accessible": "Optimistic sunburst: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Leaf of absence",
+              "count": "0",
+              "accessible": "Leaf of absence: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Tiny committee pennant",
+              "count": "0",
+              "accessible": "Tiny committee pennant: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Officially almost straight",
+              "count": "0",
+              "accessible": "Officially almost straight: 0 kept",
+              "detail": "Garden marker"
+            }
+          ]
+        }
+      ],
+      "holdingsUnchanged": true,
+      "commands": [],
+      "errors": []
+    },
+    {
+      "shared": false,
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "text": 200,
+        "touch": true
+      },
+      "cases": [
+        {
+          "pocket": "furniture",
+          "headerIconGap": 12,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Optimistic planter",
+              "count": "0",
+              "accessible": "Optimistic planter: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Committee stool",
+              "count": "1",
+              "accessible": "Committee stool: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Welcome-ish rug",
+              "count": "1",
+              "accessible": "Welcome-ish rug: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Bright idea lamp",
+              "count": "1",
+              "accessible": "Bright idea lamp: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Useful crate",
+              "count": "1",
+              "accessible": "Useful crate: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Shelf of intentions",
+              "count": "1",
+              "accessible": "Shelf of intentions: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Garden study easel",
+              "count": "0",
+              "accessible": "Garden study easel: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Unreasonably Official Letterbox",
+              "count": "0",
+              "accessible": "Unreasonably Official Letterbox: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            }
+          ]
+        },
+        {
+          "pocket": "materials",
+          "headerIconGap": 12,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Scrap",
+              "count": "0",
+              "accessible": "Scrap: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Timber",
+              "count": "0",
+              "accessible": "Timber: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Supplies",
+              "count": "0",
+              "accessible": "Supplies: 0 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Pine bundles",
+              "count": "0",
+              "accessible": "Pine bundles: 0 carried",
+              "detail": "Carried wood"
+            },
+            {
+              "name": "Bridge repair kits",
+              "count": "0",
+              "accessible": "Bridge repair kits: 0 carried",
+              "detail": "Kept kits · projects & homes"
+            }
+          ]
+        },
+        {
+          "pocket": "garden",
+          "headerIconGap": 12,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Radish seeds",
+              "count": "2",
+              "accessible": "Radish seeds: 2 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Harvested radishes",
+              "count": "0",
+              "accessible": "Harvested radishes: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Marigold seeds",
+              "count": "1",
+              "accessible": "Marigold seeds: 1 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Cut marigolds",
+              "count": "0",
+              "accessible": "Cut marigolds: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Bound hand saw",
+              "count": "0",
+              "accessible": "Bound hand saw: 0 kept",
+              "detail": "Protected tool"
+            },
+            {
+              "name": "Optimistic sunburst",
+              "count": "0",
+              "accessible": "Optimistic sunburst: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Leaf of absence",
+              "count": "0",
+              "accessible": "Leaf of absence: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Tiny committee pennant",
+              "count": "0",
+              "accessible": "Tiny committee pennant: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Officially almost straight",
+              "count": "0",
+              "accessible": "Officially almost straight: 0 kept",
+              "detail": "Garden marker"
+            }
+          ]
+        }
+      ],
+      "holdingsUnchanged": true,
+      "commands": [],
+      "errors": []
+    },
+    {
+      "shared": true,
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "text": 100,
+        "touch": false
+      },
+      "cases": [
+        {
+          "pocket": "furniture",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Optimistic planter",
+              "count": "0",
+              "accessible": "Optimistic planter: 0 available to place",
+              "detail": "1 owned\n1 placed"
+            },
+            {
+              "name": "Committee stool",
+              "count": "1",
+              "accessible": "Committee stool: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Welcome-ish rug",
+              "count": "1",
+              "accessible": "Welcome-ish rug: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Bright idea lamp",
+              "count": "1",
+              "accessible": "Bright idea lamp: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Useful crate",
+              "count": "1",
+              "accessible": "Useful crate: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Shelf of intentions",
+              "count": "1",
+              "accessible": "Shelf of intentions: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Garden study easel",
+              "count": "0",
+              "accessible": "Garden study easel: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Unreasonably Official Letterbox",
+              "count": "0",
+              "accessible": "Unreasonably Official Letterbox: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            }
+          ]
+        },
+        {
+          "pocket": "materials",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Scrap",
+              "count": "1",
+              "accessible": "Scrap: 1 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Timber",
+              "count": "4",
+              "accessible": "Timber: 4 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Supplies",
+              "count": "5",
+              "accessible": "Supplies: 5 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Pine bundles",
+              "count": "0",
+              "accessible": "Pine bundles: 0 carried",
+              "detail": "Carried wood"
+            },
+            {
+              "name": "Bridge repair kits",
+              "count": "0",
+              "accessible": "Bridge repair kits: 0 carried",
+              "detail": "Kept kits · projects & homes"
+            }
+          ]
+        },
+        {
+          "pocket": "garden",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Radish seeds",
+              "count": "2",
+              "accessible": "Radish seeds: 2 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Harvested radishes",
+              "count": "0",
+              "accessible": "Harvested radishes: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Marigold seeds",
+              "count": "1",
+              "accessible": "Marigold seeds: 1 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Cut marigolds",
+              "count": "0",
+              "accessible": "Cut marigolds: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Bound hand saw",
+              "count": "0",
+              "accessible": "Bound hand saw: 0 kept",
+              "detail": "Protected tool"
+            },
+            {
+              "name": "Optimistic sunburst",
+              "count": "0",
+              "accessible": "Optimistic sunburst: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Leaf of absence",
+              "count": "0",
+              "accessible": "Leaf of absence: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Tiny committee pennant",
+              "count": "0",
+              "accessible": "Tiny committee pennant: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Officially almost straight",
+              "count": "0",
+              "accessible": "Officially almost straight: 0 kept",
+              "detail": "Garden marker"
+            }
+          ]
+        }
+      ],
+      "holdingsUnchanged": true,
+      "commands": [],
+      "errors": []
+    },
+    {
+      "shared": true,
+      "shape": {
+        "name": "phone320",
+        "width": 320,
+        "height": 640,
+        "text": 100,
+        "touch": true
+      },
+      "cases": [
+        {
+          "pocket": "furniture",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Optimistic planter",
+              "count": "0",
+              "accessible": "Optimistic planter: 0 available to place",
+              "detail": "1 owned\n1 placed"
+            },
+            {
+              "name": "Committee stool",
+              "count": "1",
+              "accessible": "Committee stool: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Welcome-ish rug",
+              "count": "1",
+              "accessible": "Welcome-ish rug: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Bright idea lamp",
+              "count": "1",
+              "accessible": "Bright idea lamp: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Useful crate",
+              "count": "1",
+              "accessible": "Useful crate: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Shelf of intentions",
+              "count": "1",
+              "accessible": "Shelf of intentions: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Garden study easel",
+              "count": "0",
+              "accessible": "Garden study easel: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Unreasonably Official Letterbox",
+              "count": "0",
+              "accessible": "Unreasonably Official Letterbox: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            }
+          ]
+        },
+        {
+          "pocket": "materials",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Scrap",
+              "count": "1",
+              "accessible": "Scrap: 1 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Timber",
+              "count": "4",
+              "accessible": "Timber: 4 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Supplies",
+              "count": "5",
+              "accessible": "Supplies: 5 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Pine bundles",
+              "count": "0",
+              "accessible": "Pine bundles: 0 carried",
+              "detail": "Carried wood"
+            },
+            {
+              "name": "Bridge repair kits",
+              "count": "0",
+              "accessible": "Bridge repair kits: 0 carried",
+              "detail": "Kept kits · projects & homes"
+            }
+          ]
+        },
+        {
+          "pocket": "garden",
+          "headerIconGap": 8,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Radish seeds",
+              "count": "2",
+              "accessible": "Radish seeds: 2 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Harvested radishes",
+              "count": "0",
+              "accessible": "Harvested radishes: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Marigold seeds",
+              "count": "1",
+              "accessible": "Marigold seeds: 1 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Cut marigolds",
+              "count": "0",
+              "accessible": "Cut marigolds: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Bound hand saw",
+              "count": "0",
+              "accessible": "Bound hand saw: 0 kept",
+              "detail": "Protected tool"
+            },
+            {
+              "name": "Optimistic sunburst",
+              "count": "0",
+              "accessible": "Optimistic sunburst: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Leaf of absence",
+              "count": "0",
+              "accessible": "Leaf of absence: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Tiny committee pennant",
+              "count": "0",
+              "accessible": "Tiny committee pennant: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Officially almost straight",
+              "count": "0",
+              "accessible": "Officially almost straight: 0 kept",
+              "detail": "Garden marker"
+            }
+          ]
+        }
+      ],
+      "holdingsUnchanged": true,
+      "commands": [],
+      "errors": []
+    },
+    {
+      "shared": true,
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "text": 200,
+        "touch": true
+      },
+      "cases": [
+        {
+          "pocket": "furniture",
+          "headerIconGap": 12,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Optimistic planter",
+              "count": "0",
+              "accessible": "Optimistic planter: 0 available to place",
+              "detail": "1 owned\n1 placed"
+            },
+            {
+              "name": "Committee stool",
+              "count": "1",
+              "accessible": "Committee stool: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Welcome-ish rug",
+              "count": "1",
+              "accessible": "Welcome-ish rug: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Bright idea lamp",
+              "count": "1",
+              "accessible": "Bright idea lamp: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Useful crate",
+              "count": "1",
+              "accessible": "Useful crate: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Shelf of intentions",
+              "count": "1",
+              "accessible": "Shelf of intentions: 1 available to place",
+              "detail": "1 owned\n0 placed"
+            },
+            {
+              "name": "Garden study easel",
+              "count": "0",
+              "accessible": "Garden study easel: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            },
+            {
+              "name": "Unreasonably Official Letterbox",
+              "count": "0",
+              "accessible": "Unreasonably Official Letterbox: 0 available to place",
+              "detail": "0 owned\n0 placed"
+            }
+          ]
+        },
+        {
+          "pocket": "materials",
+          "headerIconGap": 12,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Scrap",
+              "count": "1",
+              "accessible": "Scrap: 1 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Timber",
+              "count": "4",
+              "accessible": "Timber: 4 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Supplies",
+              "count": "5",
+              "accessible": "Supplies: 5 carried",
+              "detail": "Carried material"
+            },
+            {
+              "name": "Pine bundles",
+              "count": "0",
+              "accessible": "Pine bundles: 0 carried",
+              "detail": "Carried wood"
+            },
+            {
+              "name": "Bridge repair kits",
+              "count": "0",
+              "accessible": "Bridge repair kits: 0 carried",
+              "detail": "Kept kits · projects & homes"
+            }
+          ]
+        },
+        {
+          "pocket": "garden",
+          "headerIconGap": 12,
+          "broken": [],
+          "keyCopies": 1,
+          "pageFits": true,
+          "dialogFits": true,
+          "counts": [
+            {
+              "name": "Radish seeds",
+              "count": "2",
+              "accessible": "Radish seeds: 2 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Harvested radishes",
+              "count": "0",
+              "accessible": "Harvested radishes: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Marigold seeds",
+              "count": "1",
+              "accessible": "Marigold seeds: 1 kept",
+              "detail": "Seeds ready to plant"
+            },
+            {
+              "name": "Cut marigolds",
+              "count": "0",
+              "accessible": "Cut marigolds: 0 kept",
+              "detail": "Harvested & kept"
+            },
+            {
+              "name": "Bound hand saw",
+              "count": "0",
+              "accessible": "Bound hand saw: 0 kept",
+              "detail": "Protected tool"
+            },
+            {
+              "name": "Optimistic sunburst",
+              "count": "0",
+              "accessible": "Optimistic sunburst: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Leaf of absence",
+              "count": "0",
+              "accessible": "Leaf of absence: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Tiny committee pennant",
+              "count": "0",
+              "accessible": "Tiny committee pennant: 0 kept",
+              "detail": "Garden marker"
+            },
+            {
+              "name": "Officially almost straight",
+              "count": "0",
+              "accessible": "Officially almost straight: 0 kept",
+              "detail": "Garden marker"
+            }
+          ]
+        }
+      ],
+      "holdingsUnchanged": true,
+      "commands": [],
+      "errors": []
+    }
+  ],
+  "all208BodiesVerifiedAtBothOrigins": true,
+  "disclosure": "Native keyboard/touch, viewport/root-text and cosmetic day/clear appearance emulation. No stock/position/clock/reply interception, craft/claim/placement or grants. Historic26fictionalprofiles/25homes are not actual players or fresh elapsed gameplay. No physical-device/Safari/fullaccessibility/fun claim."
+}

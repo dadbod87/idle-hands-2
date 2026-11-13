@@ -1,4 +1,64 @@
+109current gate: require final-head domain/both disjoint74+72browser shards/browser-playtest; retain raw artifacts and source identity, merge/main regression, matched local client/API/208served bodies, table/key/checksum/session recovery and actual desktop/phone checks. Old090previews stay until all applicable gates pass.
+
+108local candidate passes403system/146browser/17focused and source/native/preservation. Require109exact-head public CI/both disjoint shards/artifacts/merge/main regression and matched actual client/API/recovery before accepted-preview update. No new café UI/root/protocol/SQL/props registration.
+
+Public-source update November13: old private minute hold is historical; standard public Ubuntu checks may run for authorized final candidates. Still require exact-head domain/both disjoint browser shards/browser-playtest and actual artifact/preview/preservation gates. Paid larger runners/storage/hosting remain unapproved. Visibility change is not source or release acceptance.
+
+107local candidate: shared context factories preserve ordinary behavior and café ledgers; no live root/writer/props/UI/server/protocol/SQL registration.386system/10focused/build/design pass, 142browser0skips/flakes/errors and final preservation pass. Source gate/billing hold remains; no accepted-preview update. Later unified writer/unsaved-practice/cache/BFCache, server UUID/SQL/protocol/allocation and coherent counter/art/reward gates required. See evidence/IH2-107/REPORT.md.
+
+# Actions usage preflight
+
+Read [ACTIONS_USAGE_POLICY](idle-hands-2/ACTIONS_USAGE_POLICY.md). Complete the candidate locally, inspect active runs and the recorded allowance/budget hold, and avoid redundant hosted triggers. Confirm the exact final candidate passes all required checks before merging; no billing or documentation exception bypasses this gate. Record run IDs, retries, estimated summed job-minutes and the next session's hold status.
+
+#106serving art local hold
+
+376system/142browser0skips/flakes/errors, TerraV2review,15frozen/source/HTTP/raw files and80native raster cells verified. All208game files unchanged; no live art/prop/Bag registration or integration claim. Normal exact-head hosted/source/artifact gates remain. [Report](evidence/IH2-106/REPORT.md).
+
+#105save protection local hold
+
+372system/139browser+3final native cases,0skips/flakes/errors; disjoint70+69,208game bytes unchanged. Quota errors are injected in synthetic ports/ephemeral browser fixtures; no live writer integration or server UUID/SQL proof. Preserve actual lifetime-lock/cache/command-family/placement requirements and normal exact-head hosted/source gates. [Report](evidence/IH2-105/REPORT.md).
+
+#104pure café local hold
+
+359system/136browser, disjoint69+67,0skips/flakes/errors, strict build/design/plan/pinned and preservation pass. Candidate stays outside live writer/root/protocol/props/UI/server registration. No durable café/UUID/SQL/home-allocation proof is claimed. Exact-final-head hosted/source/rawartifact/preview gates remain required; billing refusal is not bypassed. [Report](evidence/IH2-104/REPORT.md).
+
+# Coherent102 release hold
+
+Local348system/136browser, disjoint69+67shards, exact208runtime/202art/21studyrawfiles and preservation pass. Normal final-head GitHub four jobs/rawuploadedartifact/source/actual-preview gates remain required; billing refusal is not bypassed. Accepted090and all held review origins stay intact. [Record](evidence/IH2-102/local-checks.json).
+
+# Latest101 local hold
+
+FinalV2local338system/132browser/7focused/native8/TerraV2/frozen208/origin/preservation pass. Original132assertions/timeouts retained; viewport readiness now waits for actual responsive layout rather than an already-clamped zoom. All202art and accepted090clients/data/API/keys/54studies and held artifacts preserved. Exact-final-head normal GitHub/rawartifact/source/actual-preview gates remain required after prior billing refusal.102will prepare one coherent candidate. [Record](evidence/IH2-101/local-checks.json).
+
+# Latest100 art hold
+
+Local325system/110browser, native pixel/phone/TerraV2 and frozen8 checks pass. Raw art packaging was verified by a final2-casefocused rerun. All204accepted client/198art bytes, towns/keys/checksums/54studies and held098/099reviews remain unchanged. Source acceptance still requires exact-final-head normal GitHub jobs/rawuploadedartifact and source/preview/preservation gates; old billing refusal is not bypassed. [Record](evidence/IH2-100/local-checks.json).
+
+# Latest independent099design hold
+
+329system/110browser/model/art/native/TerraV2/frozen13checks pass on accepted090runtime. All204game/198art bytes and accepted data/API/keys/54studies,098heldreview and caféV1/V2origins preserved. No café/food/room/state/recipe is implemented. Source acceptance remains held behind normal exact-head GitHub/rawartifact/native/preservation gates; old account billing refusal is not bypassed. Existing098UIcandidate91a3eb1and its338/132suite remain separate, to be retained in a future consolidation. [Record](evidence/IH2-099/local-checks.json).
+
+# Latest local hold:098verified, normal source gate remains
+
+098final338system/132browser/native/Terra/origin/frozen208/preservation pass. Original53pxphone reflow repaired. Two old short200viewport assumptions now verify the original full-size bounds after real scroll; all gameplay/timeouts preserved. Separate fictional-town49579review is unaccepted; regular090clients/APIs/data/keys/54studies stay intact. Required exact-final-head GitHub jobs/rawartifact/actual accepted-client/preservation gates still unmet after old account billing refusal. Do not bypass billing/runners or replace accepted previews.099is independent design only. [Record](evidence/IH2-098/local-checks.json).
+
+# Current local hold: corrected097V2 and098next
+
+097V1geometry is rejected. CorrectedV2uses actual collision/tap-edge probes, original crop feet and caption approach targets; local338/129/root/Terra pass. Resolve the observed inherited53pxphonefooterjump in098before consolidating. All required normal exact-final-head GitHub jobs/rawartifact/actual accepted-client/preservation gates remain; old billing refusal is not bypassed. Accepted090data/clients/APIs/keys/studies stay intact.
+
+# Pending local candidates: do not release yet
+
+Accepted source and previews remain IH2-090. Candidates091–095UI stack,096standalone study and097garden integration are local work only. GitHub account billing prevented required jobs from starting; owner resolution and all successful exact-final-head jobs, raw uploaded artifacts, immutable accepted-client checks and protected data/key/study preservation are still required. Do not install another runner, change billing, merge main or replace accepted previews as a workaround.
+
+The native held-reply audit also reproduced an inherited TownUI focus bug: a delayed upgrade reply redirects a deliberately chosen slot control to the placement action. IH2-095V2locally resolves it and the additional close-only reopening bug; its125case suite passes locally. Exact-head GitHub/artifact/actual gates still apply to the final consolidated release. Preserve all prior browser assertions/timeouts, disjoint shards and the ordered shared-town/starter-homes/trail/z-first-visit family on shard2. A separate review URL and local tests are not acceptance.
+
+## Accepted preview gate
+
 # Current local preview gate
+
+090verified exact05c468c/mergef0a294a/CI43353707882. Keep matched090frozen API5for both204file4175/localhost4176clients, all protected/tour data/keys/sixchecksums,54studies, three family doorfeet,552doorpair/fractional endpoint checks, bounded reduced/hidden/offscreen life and all198currentart files in future UI updates. Source route helper is also movement validation; update matched server if that helper changes. [Proof](evidence/IH2-090/source-closeout.json). Public/account/cost approval remains separate.
+
+## Previous local checkpoint
 
 IH2-088 verified at exact69d71b6/mergeaa4db70/CI43346520501. Future updates must preserve matched API5, both immutable clients4175/localhost4176, separate protected/tour data and keys/sixchecksums, all54studies, scoped owner/visitor entry and exact door-front return. Public hosting/account/cost approval remains separate. [Proof](evidence/IH2-088/source-closeout.json).
 

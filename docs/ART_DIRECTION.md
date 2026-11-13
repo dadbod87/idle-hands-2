@@ -1,3 +1,5 @@
+106local art candidate: four-rig80cell generic serving gesture and dedicated teapot Bag/world kit; no live registration. Same-facing original feet/final idle and all20Aster cells exact. TerraV2desktop/mobile emulation no sampled blocker; game .9/inspection2x/native raster evidence in [report](evidence/IH2-106/REPORT.md). Current game art unchanged; physical-device/integration gates remain.
+
 # Idle Hands 2 — illustrated company-town kit
 
 IH2-082 accepted notebook uses the existing paper-panel visual language, three stable ordered cards and explicit state glyphs. Short route labels retain descriptive accessible names; doubled text scrolls deliberately. No new art assets. Final Terra6.1 review and six actual CI captures were inspected; physical phone/Safari remain unverified.
@@ -138,3 +140,14 @@ IH2-088candidate adds original deterministic Housing Registry/ground/vacant site
 ## IH2-090 candidate residential family
 
 Retain original cottage pair and all190prior artwork bytes. Original brick-gable/timber-porch pairs preserve208×248frames/104,240door feet and recognizable workrooms, with exact window/chimney metadata. A stable nine-site plot-ID cycle is only a facade projection, not ownership/upgrade authority. Original cached puff and low noninteractive verge flowers add quiet life; max72puffs, no per-frame allocations, reduced/hidden/interior/offscreen suppression. No emitter owns progression. Native camera/phone/short/night and TerraV1scope in090evidence; this is an initial family, not complete town art or physical-device certification.
+
+## IH2-096/097 corrected allotment contract
+
+The earlier half-tile rectangle hypothesis was rejected before acceptance. Only actor positions add0.5; blocked/click rectangle edges are grid coordinates. Original crop feet already align and stay unchanged. Four original low soil/flower/paver layers add clarity without capacity or collision. Corrected standalone study V3 and playable V2 retain all prior art; rejected V1/V2 geometry archives are historical.
+
+The bounded0.75–1 actor-follow garden view fits three beds at phone entry, with constant12pxlabels and at-least44CSSpxcaption tap regions routed through ordinary approach/proximity. Keep room reset, menu-scale stability and world rain/lamp projection. Root actual authority-edge probes/native20captures and Terra V2visual/source checks pass; source/accepted-preview gates remain separate. See097REPORT. An inherited dynamic phone footer still needs098before consolidated release.
+
+
+## Candidate serving gesture — not runtime art
+
+IH2-100 explores one original Aster plate handover from the existing rig, with four facings/five poses and shared64×80/32,72/0.9 anchors. Preserve its accepted-rig resting identity and exact lower-foot pixels. Thin ink outlines keep hand/sleeve/prop connections legible over the established town and wood palettes. Static contact, bounded replay and reduced-motion cancellation are review surfaces only. Bea/Casey/Devon remain unfinished; no game art or recipe is added. [Contract](idle-hands-2/design/SERVING_GESTURE_STUDY.md).

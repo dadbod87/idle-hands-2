@@ -1,0 +1,12 @@
+# Next bounded work — pure café candidate
+
+Resume only on a new authorized continuation after the7amstop. Use the final coherent source/103contract in an isolated branch; normal source gate remains held. Read current facts, especially strict root2/garden3sinks and same-key writer. Implement a pure runtime-shaped café candidate and exact migration adapter, outside live entrypoints. Do not merely duplicate099's analytical schedule model and call it authority.
+
+Preserve one-radish conservation, immediate serving,4hcooldown, personal3/teapot-once, public12/fixed4hopening and both-goals-funded refusal. Derive local-only project from the same private history. Test unknown/current-corrupt/partial roots and populated recognized legacy tuples without replacing raw input or resetting jobs/seeds/props/history. Factor existing pure validation only when needed and preserve every current behavior/assertion; no live root/protocol/PROP_IDS exposure yet.
+
+The103contract supplies later staged local quota-safe commit and shared SQL/UUID/proximity/lock/forward-constraint gates. Those are not satisfied by a pure reducer. Actual counter UI/teapot placement/all-rig animation/door/opening remain later coherent integration. Free original assets only, no cloud/real-player/service/data changes. Run appropriate full source checks when code changes; preserve all existing artifacts/keys and normal GitHub gates.
+
+
+## Authorized execution
+
+November13owner requested continued local work before paying for GitHub. Branch feat/cafe-ledger-candidate based4f13238; no hosted trigger or gate bypass. Existing validators are factored with unchanged live behavior; immutable099source/artifacts and current analytical fingerprints are both audited. See REPORT.md and local-checks.json for actual results and remaining gates.

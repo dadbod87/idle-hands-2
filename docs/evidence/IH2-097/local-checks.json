@@ -1,0 +1,46 @@
+{
+  "classification": "Corrected097V2local candidate; V1superseded, no accepted-preview or main update.",
+  "baseCandidate": "1572352",
+  "system": {
+    "pass": 338,
+    "skipped": 0,
+    "failed": 0,
+    "durationMs": 57644.001041
+  },
+  "browser": {
+    "pass": 129,
+    "durationMs": 914056.475,
+    "skipped": 0,
+    "flaky": 0,
+    "unexpected": 0,
+    "errors": []
+  },
+  "strictBuild": true,
+  "design": true,
+  "roadmapTasks": 52,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "frozenClient": {
+    "files": 208,
+    "unchangedPriorArt": 198,
+    "rawDeltaVs095V2": 15936,
+    "perFileGzipDeltaVs095V2": 3387,
+    "classification": "Corrected frozen097V2, V1superseded. Actual authority rectangles, original crop feet, caption approach regions; no accepted game update."
+  },
+  "actualFrozenRuntimeResponses": 208,
+  "correctedStudyV3Responses": 20,
+  "priorStudyArtUnchanged": 16,
+  "geometryAuthorityComparison": {
+    "oldCollisionMismatches": 12,
+    "oldClickMismatches": 12,
+    "correctedCollisionMismatches": 0,
+    "correctedClickMismatches": 0,
+    "authoritySourceUnchanged": true
+  },
+  "nativeRootCaptures": 20,
+  "nativeStudyCaptures": 12,
+  "fixtures": "Empty fresh native views use no gameplay fixture; ready/mixed/night states use legal historical browser-local plant saves. No position/Date override or real progress. Cosmetic sky/text and synthetic hidden/reduced settings disclosed.",
+  "terra": "V2entry/crop/caption visual review and independent source convention/ordinary approach cross-check pass with bounded limits.",
+  "preservation": "Accepted090clients/APIs, both13table/allfield/privatekey hashes/mode0600/sixchecksums,54acceptedstudies unchanged. Rejected09620files kept on disk; correctedV3separate.",
+  "pendingBeforeConsolidatedRelease": "098observed53pxphonefooterjump, plus required normal exact-head GitHub/uploaded-artifact/actual/preservation gates. Last PR39run refused beforetests for billing/spending-limit status; no workaround."
+}

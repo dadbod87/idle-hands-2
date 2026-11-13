@@ -27,7 +27,7 @@
   ],
   "sourceSha256": {
     "tools/woodland-plan.ts": "d3a408129b3eac585af1b0aed01b496eefed6b282b4d728eb8fba68d4ec811a6",
-    "src/game/garden.ts": "4bcad76311fb65b44609b0af37a45f3cf022e68f0ef4ccef6837234fafbc5991"
+    "src/game/garden.ts": "7ba870682d15f40ef83f21302a25fc736e2a19a5f6b73b2e8cca20cbfe6ca5da"
   },
   "cohorts": [
     {

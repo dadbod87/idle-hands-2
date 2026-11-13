@@ -1,0 +1,15 @@
+# Public repository verified November13; game remains local
+
+Owner explicitly requested public visibility to avoid private Actions minute charges. The existing dadbod87/idle-hands-2 repository is now public; anonymous API/page/raw-main-source requests return200. No replacement repository, payment/budget change, cloud/public game hosting, PR update, workflow run, merge or accepted-preview change. Main remainsf0a294af86d4b637f060c8f40a6d7f061d9cad15,117Actions runs/latest43365543304unchanged at verification.
+
+This isolated policy checkout is idle-hands-2-public-policy, branch chore/public-source-policy, based on final107candidate9cfdfdac4d102b94be7e8486730439d7ab2cc840. Runtime/tests/assets are unchanged from that candidate;386system/142browser evidence is reused, not rerun or newly source-accepted. Documentation tracker/pinned/diff checks run for this update. Final policy backup SHA is recorded in canonical continuation after push. Continue108from the latest policy branch so the new public-source instructions travel with the unchanged107runtime. Canonical bookkeeping remains accepted090runtime/docs only.
+
+Read the updated ACTIONS_USAGE_POLICY: standard public Ubuntu checks are free and available for authorized final-candidate validation; continue local-first batching. Paid larger runners/storage/subscriptions/hosting remain unapproved. All required exact-final-head domain/both-browser-shard/browser-playtest gates remain; no old billing failure is a pass. Don’t rerun obsoletePR39merely to test billing. Consolidated source/actual-preview acceptance remains pending. Next bounded game task is108unified candidate writer, including unsaved-practice/cache/BFCache protections.
+
+## Visibility check scope
+
+Targeted scan of3,439reachable Git blobs/commit/tag objects (85,787,499bytes) after fetching all branch refs found84credential-URL matches, all reviewed synthetic local or reserved-example negative tests; no unresolved recognized key/token/private-key/JWT pattern. No suspicious credential/local-key filename was found in reachable history. Current repository Actions secrets/variables/environments are empty. Issue/PR bodies were checked for recognized high-risk patterns. Reviewed current CI upload paths and key/logging code; local .env/.local signing keys remain ignored and are not CI upload inputs.
+
+This is a targeted credential review, not a guarantee against every secret/private-data format. Historical Action logs/artifacts and review-comment bodies were not exhaustively downloaded or rescanned; no such exhaustive claim is made. No known real credentials or real player records were located. Synthetic test credentials are intentionally public, not production access. No history rewriting, artifact deletion or protected local database/key changes were needed.
+
+Actual metadata/anonymous proof and sanitized scan summary: docs/evidence/public-visibility-2026-11-13/. Full local scan details (paths/categories only, no matched credentials) remain outside the repo under ../idle-hands-2-artifacts/public-visibility-2026-11-13. Connector offered no visibility-edit capability, so the authenticated GitHub REST endpoint was used.

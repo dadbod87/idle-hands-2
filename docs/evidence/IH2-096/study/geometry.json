@@ -1,0 +1,142 @@
+{
+  "classification": "IH2-096 original standalone visual study. No game API, storage, jobs or authority.",
+  "width": 576,
+  "height": 576,
+  "actor": {
+    "x": 304,
+    "y": 464
+  },
+  "blocked": [
+    {
+      "x": 128,
+      "y": 256,
+      "width": 96,
+      "height": 96
+    },
+    {
+      "x": 256,
+      "y": 256,
+      "width": 96,
+      "height": 96
+    },
+    {
+      "x": 384,
+      "y": 256,
+      "width": 96,
+      "height": 96
+    }
+  ],
+  "targets": [
+    {
+      "id": "garden-beds",
+      "name": "Your garden beds",
+      "rect": {
+        "x": 128,
+        "y": 240,
+        "width": 352,
+        "height": 152
+      },
+      "point": {
+        "x": 304,
+        "y": 432
+      }
+    },
+    {
+      "id": "garden-desk",
+      "name": "Allotment attendant",
+      "rect": {
+        "x": 128,
+        "y": 400,
+        "width": 80,
+        "height": 64
+      },
+      "point": {
+        "x": 176,
+        "y": 464
+      }
+    },
+    {
+      "id": "garden-exit",
+      "name": "Town square",
+      "rect": {
+        "x": 248,
+        "y": 480,
+        "width": 80,
+        "height": 64
+      },
+      "point": {
+        "x": 304,
+        "y": 528
+      }
+    }
+  ],
+  "activity": {
+    "x": 128,
+    "y": 256,
+    "width": 352,
+    "height": 288
+  },
+  "currentBeds": [
+    {
+      "x": 176,
+      "y": 352
+    },
+    {
+      "x": 304,
+      "y": 352
+    },
+    {
+      "x": 432,
+      "y": 352
+    }
+  ],
+  "candidateBeds": [
+    {
+      "x": 176,
+      "y": 352
+    },
+    {
+      "x": 304,
+      "y": 352
+    },
+    {
+      "x": 432,
+      "y": 352
+    }
+  ],
+  "currentLabels": [
+    [
+      304,
+      384,
+      "Your three beds"
+    ],
+    [
+      176,
+      371.2,
+      "Attendant"
+    ],
+    [
+      304,
+      531.2,
+      "Square ↓"
+    ]
+  ],
+  "proposedLabels": [
+    [
+      416,
+      401.6,
+      "Your three beds"
+    ],
+    [
+      176,
+      478,
+      "Attendant"
+    ],
+    [
+      304,
+      531.2,
+      "Square ↓"
+    ]
+  ],
+  "coordinateNote": "Actor feet render at (position+0.5)*32. Collision and clickable doorArea rectangles are world-grid edges at value*32, as canStand and Session.point prove. Existing GARDEN_BEDS already align; no crop shift or model change. Earlier half-tile rectangle projection was rejected."
+}

@@ -1,0 +1,24 @@
+{
+  "domain": 332,
+  "domainSkipped": 0,
+  "domainDurationMs": 59450.838709,
+  "browser": {
+    "total": 125,
+    "expected": 125,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "browserDurationMs": 899529.132,
+  "shards": [
+    63,
+    62
+  ],
+  "disjoint": true,
+  "orderedFamilyOn2": true,
+  "all204BytesEqualFrozenV2": true,
+  "githubChecksRan": false,
+  "merged": false,
+  "acceptedPreviewChanged": false
+}

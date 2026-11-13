@@ -1,3 +1,5 @@
+Current099independent [café hospitality study](CAFE_HOSPITALITY_STUDY.md) and [accepted090coverage audit](CURRENT_RUNTIME_COVERAGE.md) distinguish optional design from current gameplay. Future herbs/food remain unimplemented/unpriced; no runtime alias or economy is introduced.
+
 # A living town, built one useful layer at a time
 
 IH2-054 design package, 2026-11-10. **Design candidates, not implemented features.** The design was recorded against the IH2-051 neighborhood. The design package itself adds no regions, combat, chat, purchases, real accounts or hosting. IH2-052/053 now implement their bounded home/teaching/return and timed bridge/trail slices; see CURRENT_SESSION and exact task evidence, rather than treating every candidate as shipped.
@@ -96,3 +98,17 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 ## November12 first-city expansion
 
 [Ledgerwick capacity/layout, addressed homes, menu clarity and staged implementation](FIRST_CITY_LAYOUT.md) is the current owner-directed expansion plan.087blueprint is design only;088physical streets/doors,089crafting clarity and090residential art/life require separate acceptance.
+
+## Next craft-menu clarity target
+
+[CRAFT_MENU_AUDIT](CRAFT_MENU_AUDIT.md) records bounded model observations on accepted088local UI, without timed/shared/physical-device acceptance. [PINE_WORKSHOP_CLARITY](PINE_WORKSHOP_CLARITY.md) scopes queued091task-first Nella/rack work. Garden cost/time/yield consolidation is a later target; neither is implemented by these design notes.
+
+
+[First serving gesture](SERVING_GESTURE_STUDY.md): IH2-100 is an independent Aster-only original art study. Bounded720ms replay, exact feet/final idle, native pixel/phone checks and Terra refinement; no café/action/reward integration. Source acceptance remains held. The next usability priority is the count-key ambiguity recorded in101PLAN.
+
+
+[Coherent source102](../../evidence/IH2-102/REPORT.md) retains all original study inputs/checks and current UI without changing game bytes. [Café authority contract](CAFE_AUTHORITY_CONTRACT.md),103, is a read-only source-grounded next-step design: one-save local projection/staged Café commit, atomic shared transaction, exact migration/cached-writer gates and concise UI. It implements none of those changes.104is a pure candidate module outside live entrypoints, not a partial public feature.
+
+- [104 pure café candidate evidence](../../evidence/IH2-104/REPORT.md): strict serializable debit/reward/migration proofs outside live registration; persistence and coherent counter UI remain later work.
+
+- [106 original serving family and teapot kit](../../evidence/IH2-106/REPORT.md):80cells/four rigs and separate icon/world art, locally reviewed only; no live handover or reward integration.

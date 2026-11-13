@@ -1,0 +1,11 @@
+{
+  "reference": "104final-build verified against its actual full-browser208file artifact",
+  "beforeFiles": 208,
+  "afterFiles": 208,
+  "allBytesIdentical": true,
+  "unchangedArtFiles": 202,
+  "rawDeltaBytes": 0,
+  "gzipDeltaBytes": 0,
+  "candidateNotInLiveBundle": true,
+  "finalSourceAlternateBuildMatchesAll208ActiveBrowserFiles": true
+}

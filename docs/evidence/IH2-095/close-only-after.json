@@ -1,0 +1,12 @@
+{
+  "disclosure": "Fully intercepted synthetic owner upgrade/stock/arrival/reply; native close while held, same original reply released, no actual server.",
+  "reopened": false,
+  "commands": [
+    {
+      "kind": "upgrade-plot",
+      "plotId": "1",
+      "id": "569d3989-34b6-4b36-a2fb-9d7be8f398cd",
+      "expectedRevision": 1
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "classification": "Existing persistent fictional tour; ordinary Places/Inspect walking via home/street exits brings three existing profiles to the square prerequisite of the unchanged finalCI journeys. No reseed or position/API/time/stock injection; naturally updates travel position/receipts after the restart preservation gate. Explicitly waits for actual accepted target-room movement response and authoritative snapshot before closing each browser.",
+  "rows": [
+    {
+      "name": "Avery · test neighbor",
+      "from": {
+        "room": "neighborhood",
+        "districtId": "1",
+        "position": {
+          "x": 31.5,
+          "y": 2.5
+        }
+      },
+      "to": {
+        "room": "square",
+        "position": {
+          "x": 42,
+          "y": 32
+        }
+      },
+      "holdingsAndPlotUnchanged": true,
+      "errors": []
+    },
+    {
+      "name": "Lane · test neighbor",
+      "from": {
+        "room": "neighborhood",
+        "districtId": "1",
+        "position": {
+          "x": 31.5,
+          "y": 2.5
+        }
+      },
+      "to": {
+        "room": "square",
+        "position": {
+          "x": 42,
+          "y": 32
+        }
+      },
+      "holdingsAndPlotUnchanged": true,
+      "errors": []
+    },
+    {
+      "name": "Visitor",
+      "from": {
+        "room": "neighborhood",
+        "districtId": "1",
+        "position": {
+          "x": 27,
+          "y": 27.5
+        }
+      },
+      "to": {
+        "room": "square",
+        "position": {
+          "x": 42,
+          "y": 32
+        }
+      },
+      "holdingsAndPlotUnchanged": true,
+      "errors": []
+    }
+  ]
+}

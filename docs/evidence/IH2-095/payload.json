@@ -1,0 +1,15 @@
+{
+  "classification": "Unaccepted095V2focus+close-only repair on pending UI stack",
+  "files": 204,
+  "all198ArtByteIdentical": true,
+  "housing094": {
+    "raw": 3907529,
+    "perFileGzip": 635895
+  },
+  "candidate": {
+    "raw": 3909092,
+    "perFileGzip": 636351
+  },
+  "deltaRaw": 1563,
+  "deltaPerFileGzip": 456
+}

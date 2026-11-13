@@ -1,0 +1,66 @@
+{
+  "classification": "Unaccepted local union of exact owned candidate leaves, current hold docs retained",
+  "inputs": [
+    {
+      "source": "8abc1b46325b1220271a550951acc685b667aec9",
+      "path": "src/game/carpentry-view.ts",
+      "sha256": "5d601776f1bd79c8adf71612a616495e9d433f7651243116f7e071d2c3d077af"
+    },
+    {
+      "source": "8abc1b46325b1220271a550951acc685b667aec9",
+      "path": "src/ui/carpentry.ts",
+      "sha256": "3922cabea487a478e5db13a6ecf06fc9de49356a0e4246b6cdb7777e97f13432"
+    },
+    {
+      "source": "8abc1b46325b1220271a550951acc685b667aec9",
+      "path": "src/ui/carpentry.css",
+      "sha256": "511190eb68df6ec8c793c93be0298371b96652cec34b9611160cfdad7f91cbd1"
+    },
+    {
+      "source": "8abc1b46325b1220271a550951acc685b667aec9",
+      "path": "tests/carpentry.spec.ts",
+      "sha256": "99bf56d6c2a83e67429a4a7f1cdfd43d9c4cb94d93af7119350346ccbfce1005"
+    },
+    {
+      "source": "8abc1b46325b1220271a550951acc685b667aec9",
+      "path": "tests/carpentry-clarity.spec.ts",
+      "sha256": "8f7545edfaa8763bf96e974a3eab280945f65f9743b9b2c683afecaff1d1abdc"
+    },
+    {
+      "source": "8abc1b46325b1220271a550951acc685b667aec9",
+      "path": "tests/carpentry-view.test.ts",
+      "sha256": "1ecf7328b504c91e1d25db4d96eb21c96b6df7b6ba43a4e9dfc7a3d59b8e6ebd"
+    },
+    {
+      "source": "8abc1b46325b1220271a550951acc685b667aec9",
+      "path": "tests/helpers/carpentry.ts",
+      "sha256": "0f6aa36c6be6e53f5c1e1a4dae66530993b6d6035be1ea45f1bafcb304d668f6"
+    },
+    {
+      "source": "f544a9e642e668f89a2aa826435ce361864f4282",
+      "path": "src/game/garden-view.ts",
+      "sha256": "da1bd14ee860502430cf89ed63eca5ae15e8b4d5bbbcd04672937cf4f32730c2"
+    },
+    {
+      "source": "f544a9e642e668f89a2aa826435ce361864f4282",
+      "path": "src/ui/garden.ts",
+      "sha256": "cb4e8aafe65755a99fafd593f5687457d38686591d013c251ab85f5566957902"
+    },
+    {
+      "source": "f544a9e642e668f89a2aa826435ce361864f4282",
+      "path": "src/ui/garden.css",
+      "sha256": "59f85f4defcf30db7736873f10a7ad1d8597175f4b012b61ddd32893eb57915c"
+    },
+    {
+      "source": "f544a9e642e668f89a2aa826435ce361864f4282",
+      "path": "tests/garden-view.test.ts",
+      "sha256": "27855f8e8652f65bc47661b67545ea89261788fe1e570908b64152d42f67bbd2"
+    },
+    {
+      "source": "f544a9e642e668f89a2aa826435ce361864f4282",
+      "path": "tests/garden-clarity.spec.ts",
+      "sha256": "fdd539603a66dc916afdee0595da48fa985a84d1503d21aa77c681969c4b34d5"
+    }
+  ],
+  "backendRulesSchemaProtocolRoutingDependenciesUnchanged": true
+}

@@ -1,0 +1,235 @@
+{
+  "classification": "IH2-096 original standalone visual study. No game API, storage, jobs or authority.",
+  "files": {
+    "art/garden-ground.svg": "8343339a474478edf586f5e2b1af26b38d5a91084e8e86d40df9caf8e7af76a1",
+    "art/garden-attendant.svg": "269dd5bfbedd6746a324c18ae67a9cda4a43ff0c72415a128136fe53fd8db1fa",
+    "art/garden-bed-empty.svg": "4e2e8e41633c8fcb6fdc908e33ba82f4ffc78733f5a8a79a4fb05346a544aace",
+    "art/garden-radish-sow.svg": "86b1127dbbc0883e0aae8b365cd722a84affaa548b8f220c6444672e9788be2c",
+    "art/garden-radish-sprout.svg": "0c17b100e43ab23b563e409a0693700f0326fcc8808c01332a7018d4387e711c",
+    "art/garden-radish-growing.svg": "e30e062e7e5e52a2ef0812d4a2cde5afaa5e490fbcb541d0af4a361233f6d67a",
+    "art/garden-radish-ready.svg": "dcc5801b6b1325d097294d6b2894546cc85e329d12000037d7238172082d1332",
+    "art/garden-marigold-sow.svg": "d15a7eaf112072ff4eda1f981b6a3480b045b2590afed3661694637236261be9",
+    "art/garden-marigold-sprout.svg": "db9a48302f65f38f10126bb42c1dd3b0f59ba069c91ae84515271d18daaf1e0b",
+    "art/garden-marigold-growing.svg": "8b48f6c276059a69a2f2798f433ec4477cace59c4095da31910d84a4fbf178e7",
+    "art/garden-marigold-ready.svg": "e54347e049d77937442f5c7d5886d8874db0cba0a29eae44450801dc6612d129",
+    "art/resident-aster.svg": "ea9299bd173705f45c4990802f609cad51cfbc8523cf7a3e51ec4ebb9e499688",
+    "art/study-bed-footprint-1.svg": "051b1823c850a94156ede27c414a117551894ea5d3de2669d867c75505f02c69",
+    "art/study-bed-footprint-2.svg": "daa667f7bf6438f382637ce3b20245e4a8c81d3551721000f3b73d259f8471e5",
+    "art/study-bed-footprint-3.svg": "b32e8d943c2af226a0345d91c7e2d3f28d613ad45aa3d2e9716be7a1983385d9",
+    "art/study-meadow-detail.svg": "37a93c45a22bf16d65d967cdba7780307cd2fe8f649cf3d91999e2bc2ef6653e",
+    "index.html": "db67f824aa7b0e3730f2890c37dedbfeaa5e12723ae269cf6fc06301d35d2973",
+    "geometry.json": "7e15bc1dc646994a15fe64823da3e0ad6218e6c6c95951a4ba016714202fcfc4",
+    "NOTICES.txt": "e80017b0278b2cd81a3cde98ed40187836ea026e152c0985e6bebc5355f53192"
+  },
+  "sources": {
+    "public/art/garden/garden-ground.svg": "8343339a474478edf586f5e2b1af26b38d5a91084e8e86d40df9caf8e7af76a1",
+    "public/art/garden/garden-attendant.svg": "269dd5bfbedd6746a324c18ae67a9cda4a43ff0c72415a128136fe53fd8db1fa",
+    "public/art/garden/garden-bed-empty.svg": "4e2e8e41633c8fcb6fdc908e33ba82f4ffc78733f5a8a79a4fb05346a544aace",
+    "public/art/garden/garden-radish-sow.svg": "86b1127dbbc0883e0aae8b365cd722a84affaa548b8f220c6444672e9788be2c",
+    "public/art/garden/garden-radish-sprout.svg": "0c17b100e43ab23b563e409a0693700f0326fcc8808c01332a7018d4387e711c",
+    "public/art/garden/garden-radish-growing.svg": "e30e062e7e5e52a2ef0812d4a2cde5afaa5e490fbcb541d0af4a361233f6d67a",
+    "public/art/garden/garden-radish-ready.svg": "dcc5801b6b1325d097294d6b2894546cc85e329d12000037d7238172082d1332",
+    "public/art/garden/garden-marigold-sow.svg": "d15a7eaf112072ff4eda1f981b6a3480b045b2590afed3661694637236261be9",
+    "public/art/garden/garden-marigold-sprout.svg": "db9a48302f65f38f10126bb42c1dd3b0f59ba069c91ae84515271d18daaf1e0b",
+    "public/art/garden/garden-marigold-growing.svg": "8b48f6c276059a69a2f2798f433ec4477cace59c4095da31910d84a4fbf178e7",
+    "public/art/garden/garden-marigold-ready.svg": "e54347e049d77937442f5c7d5886d8874db0cba0a29eae44450801dc6612d129",
+    "public/art/variety/resident-aster.svg": "ea9299bd173705f45c4990802f609cad51cfbc8523cf7a3e51ec4ebb9e499688",
+    "tools/create-allotment-study.ts": "2575a3cd516f0f0e99ebdbe41c618327b3ff705976ee0e90261f34cd6b57c24c",
+    "tools/create-allotment-study-art.py": "a14d11e9e776894f9e207e520e3df008b1deabd4bd73cc968ded5a2e161fc7f6",
+    "tools/garden-framing-model.ts": "e72bf60618266b658f5ad82f6265f2c1a2dcb666a4421cdc3bcf3c90d8853742",
+    "tools/templates/allotment-study.html": "a1c3bcd97a5b4f4b678ceb4dd60d0e67a43da9169c234b4c9152e366964ea2ce",
+    "src/game/world.ts": "c4e17cfd7a017d68210eb1af9ba14531bc489e52cd16ef40abfc222ee1f19b26",
+    "src/art/garden.ts": "4f74b8d17a668f111728761605e64a534d382a9cde06566e0a90f139e45905fe",
+    "src/phaser/WorldScene.ts": "7d8b08ff2a561fe2deeadbecd6a48fcc42adfd3480f8806f460870208c82fa0e",
+    "src/main.ts": "707a8c797cd027674b63734768ac2953f639b7582bfd239d8372aa23c04ae18e"
+  },
+  "attributions": [
+    {
+      "file": "art/garden-ground.svg",
+      "id": "garden-ground",
+      "path": "public/art/garden/garden-ground.svg",
+      "sha256": "8343339a474478edf586f5e2b1af26b38d5a91084e8e86d40df9caf8e7af76a1",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "file": "art/garden-attendant.svg",
+      "id": "garden-attendant",
+      "path": "public/art/garden/garden-attendant.svg",
+      "sha256": "269dd5bfbedd6746a324c18ae67a9cda4a43ff0c72415a128136fe53fd8db1fa",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "file": "art/garden-bed-empty.svg",
+      "id": "garden-bed-empty",
+      "path": "public/art/garden/garden-bed-empty.svg",
+      "sha256": "4e2e8e41633c8fcb6fdc908e33ba82f4ffc78733f5a8a79a4fb05346a544aace",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "file": "art/garden-radish-sow.svg",
+      "id": "garden-radish-sow",
+      "path": "public/art/garden/garden-radish-sow.svg",
+      "sha256": "86b1127dbbc0883e0aae8b365cd722a84affaa548b8f220c6444672e9788be2c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "file": "art/garden-radish-sprout.svg",
+      "id": "garden-radish-sprout",
+      "path": "public/art/garden/garden-radish-sprout.svg",
+      "sha256": "0c17b100e43ab23b563e409a0693700f0326fcc8808c01332a7018d4387e711c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "file": "art/garden-radish-growing.svg",
+      "id": "garden-radish-growing",
+      "path": "public/art/garden/garden-radish-growing.svg",
+      "sha256": "e30e062e7e5e52a2ef0812d4a2cde5afaa5e490fbcb541d0af4a361233f6d67a",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "file": "art/garden-radish-ready.svg",
+      "id": "garden-radish-ready",
+      "path": "public/art/garden/garden-radish-ready.svg",
+      "sha256": "dcc5801b6b1325d097294d6b2894546cc85e329d12000037d7238172082d1332",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "file": "art/garden-marigold-sow.svg",
+      "id": "garden-marigold-sow",
+      "path": "public/art/garden/garden-marigold-sow.svg",
+      "sha256": "d15a7eaf112072ff4eda1f981b6a3480b045b2590afed3661694637236261be9",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "file": "art/garden-marigold-sprout.svg",
+      "id": "garden-marigold-sprout",
+      "path": "public/art/garden/garden-marigold-sprout.svg",
+      "sha256": "db9a48302f65f38f10126bb42c1dd3b0f59ba069c91ae84515271d18daaf1e0b",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "file": "art/garden-marigold-growing.svg",
+      "id": "garden-marigold-growing",
+      "path": "public/art/garden/garden-marigold-growing.svg",
+      "sha256": "8b48f6c276059a69a2f2798f433ec4477cace59c4095da31910d84a4fbf178e7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "file": "art/garden-marigold-ready.svg",
+      "id": "garden-marigold-ready",
+      "path": "public/art/garden/garden-marigold-ready.svg",
+      "sha256": "e54347e049d77937442f5c7d5886d8874db0cba0a29eae44450801dc6612d129",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-art.py",
+      "date": "2026-11-11",
+      "modifications": "Original crop, seed, produce, marker, errand and allotment vectors; bounded four-facing actions reuse the original resident rig. No imported media."
+    },
+    {
+      "file": "art/resident-aster.svg",
+      "id": "variety-resident-aster",
+      "path": "public/art/variety/resident-aster.svg",
+      "sha256": "ea9299bd173705f45c4990802f609cad51cfbc8523cf7a3e51ec4ebb9e499688",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-town-variety.py",
+      "date": "2026-11-10",
+      "modifications": "Original silhouette/material/pose illustration. No imported media."
+    },
+    {
+      "file": "art/study-bed-footprint-1.svg",
+      "license": "project-original",
+      "creator": "Original code-authored for Idle Hands 2",
+      "source": "tools/create-allotment-study-art.py",
+      "date": "2026-11-12",
+      "sha256": "051b1823c850a94156ede27c414a117551894ea5d3de2669d867c75505f02c69",
+      "width": 96,
+      "height": 96,
+      "foot": {
+        "x": 48,
+        "y": 96
+      }
+    },
+    {
+      "file": "art/study-bed-footprint-2.svg",
+      "license": "project-original",
+      "creator": "Original code-authored for Idle Hands 2",
+      "source": "tools/create-allotment-study-art.py",
+      "date": "2026-11-12",
+      "sha256": "daa667f7bf6438f382637ce3b20245e4a8c81d3551721000f3b73d259f8471e5",
+      "width": 96,
+      "height": 96,
+      "foot": {
+        "x": 48,
+        "y": 96
+      }
+    },
+    {
+      "file": "art/study-bed-footprint-3.svg",
+      "license": "project-original",
+      "creator": "Original code-authored for Idle Hands 2",
+      "source": "tools/create-allotment-study-art.py",
+      "date": "2026-11-12",
+      "sha256": "b32e8d943c2af226a0345d91c7e2d3f28d613ad45aa3d2e9716be7a1983385d9",
+      "width": 96,
+      "height": 96,
+      "foot": {
+        "x": 48,
+        "y": 96
+      }
+    },
+    {
+      "file": "art/study-meadow-detail.svg",
+      "license": "project-original",
+      "creator": "Original code-authored for Idle Hands 2",
+      "source": "tools/create-allotment-study-art.py",
+      "date": "2026-11-12",
+      "sha256": "37a93c45a22bf16d65d967cdba7780307cd2fe8f649cf3d91999e2bc2ef6653e",
+      "width": 576,
+      "height": 576
+    }
+  ],
+  "newArt": "Four original code-authored SVG layers; no paid/downloaded assets. Full original crop/actor copies remain byte-identical.",
+  "renderOnly": "Current and candidate arrangements/framing are visual comparisons. No runtime promotion, capacity, growth or unlock is implemented.",
+  "coordinateNote": "Actor feet render at (position+0.5)*32. Collision and clickable doorArea rectangles are world-grid edges at value*32, as canStand and Session.point prove. Existing GARDEN_BEDS already align; no crop shift or model change. Earlier half-tile rectangle projection was rejected."
+}

@@ -2,6 +2,10 @@
 
 Authority: Nick delegated routine design/technical choices on 2026-11-09 and requested free assets with as little upfront input as possible. The agent owns ordinary reversible choices and records reasons; Nick may steer at any point. This system runs when prompted; it does not start unattended background development or promise automatic future sessions.
 
+## Actions usage
+
+Every session must read [ACTIONS_USAGE_POLICY](ACTIONS_USAGE_POLICY.md) before requesting hosted validation. Follow its local-first batching, existing-run inspection, quota hold and closeout rules. Required final-head checks remain unchanged.
+
 ## Resume in any session
 
 From a current checkout, read root AGENTS and required current-game state/release documents, then this directory's README, DECISIONS, EXPERIENCE_BRIEF and latest handoff. Run:

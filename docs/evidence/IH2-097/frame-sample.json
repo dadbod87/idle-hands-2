@@ -1,0 +1,39 @@
+{
+  "classification": "One120RAF-interval sample in native headless local Chrome at320×640 with actual corrected frozen097V2garden/drizzle and held native movement key. Full browser suite already finished. RAF cadence and rendered-frame count, not GPU/CPU duration, baseline improvement, physical phone or sustained performance certification. Source mixed metrics include intentional10Hzidle and exclude modal gaps.",
+  "sample": {
+    "count": 120,
+    "medianMs": 16.699999999999818,
+    "p95Ms": 16.700000000000728,
+    "maxMs": 16.800000000000182,
+    "renderedFrameDelta": 121,
+    "renderer": 2,
+    "renderOptions": {
+      "textureSmoothing": true,
+      "contextAntialias": false
+    },
+    "sourceMixedMetrics": {
+      "frameSamples": 267,
+      "p95FrameMs": 16.700000000000728,
+      "policy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+    },
+    "camera": {
+      "zoom": 0.8404255319148937,
+      "scrollX": 230,
+      "scrollY": 137.13568037974682,
+      "worldView": {
+        "x": 200,
+        "y": 99.08386075949366,
+        "width": 376,
+        "height": 476.9161392405063
+      },
+      "matrix": [
+        0.8404255509376526,
+        0,
+        0,
+        0.8404255509376526,
+        -168.08511352539062,
+        -83.27261352539062
+      ]
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import {consumeGarden,gardenSchema,GARDEN_TIME_MAX,type GardenState} from './garden.ts';
+import {defaultGardenRules,type GardenRules,type GardenLike,GARDEN_TIME_MAX,type GardenState} from './garden.ts';
 import {carpentrySchema,type CarpentryState} from './carpentry.ts';
 
 /** Private, bounded NPC correspondence. No player mail, inventory grants or clock jobs. */
@@ -37,7 +37,7 @@ export const commissionActionSchema=z.discriminatedUnion('action',[
 ]);
 export type CommissionAction=z.infer<typeof commissionActionSchema>;
 export function commissionLocation(a:CommissionAction):{room:'square';stopId:string}{return{room:'square',stopId:a.action==='handover'?a.recipient:'courier'};}
-export function commissionLedgerMatches(c:CommissionState,p:CarpentryState,g:GardenState):boolean{
+export function commissionLedgerMatches(c:CommissionState,p:CarpentryState,g:Pick<GardenState,'consumed'>):boolean{
  return p.commissionPine===2*c.madeCount&&g.consumed.commission.radish===c.madeCount&&g.consumed.commission.marigold===0;
 }
 export function routeCaption(order:readonly RecipientId[]):string{
@@ -50,9 +50,12 @@ export function routeCaption(order:readonly RecipientId[]):string{
  'carpentry-desk,caretaker,clerk':'Work first. Forms last. Marlow has requested a meeting.'
  };return captions[order.join(',')]??'Your route is still being written.';
 }
-export type CommissionResult={ok:boolean;state:CommissionState;carpentry:CarpentryState;garden:GardenState;message:string};
-export function applyCommission(input:CommissionState,carpentry:CarpentryState,garden:GardenState,raw:unknown,now:number):CommissionResult{
- const fail=(message:string):CommissionResult=>({ok:false,state:input,carpentry,garden,message});
+export type CommissionResult<G=GardenState>={ok:boolean;state:CommissionState;carpentry:CarpentryState;garden:G;message:string};
+
+export function createCommissionRules<G extends GardenLike>(rules:GardenRules<G>){
+ const gardenSchema=rules.schema,consumeGarden=rules.consumeGarden;
+function applyCommission(input:CommissionState,carpentry:CarpentryState,garden:G,raw:unknown,now:number):CommissionResult<G>{
+ const fail=(message:string):CommissionResult<G>=>({ok:false,state:input,carpentry,garden,message});
  if(!commissionSchema.safeParse(input).success||!carpentrySchema.safeParse(carpentry).success||!gardenSchema.safeParse(garden).success||!commissionLedgerMatches(input,carpentry,garden))return fail('The commission ledger could not be confirmed. Nothing changed.');
  if(!clock.safeParse(now).success||now<carpentry.observedAt||now<garden.observedAt||input.acceptedAt!==null&&now<input.acceptedAt||input.completedAt!==null&&now<input.completedAt)return fail('The confirmed clock moved backwards. Your route is kept.');
  const parsed=commissionActionSchema.safeParse(raw);if(!parsed.success)return fail('That post request is not valid. Nothing changed.');
@@ -91,3 +94,7 @@ export function applyCommission(input:CommissionState,carpentry:CarpentryState,g
  if(!commissionSchema.safeParse(c).success||!carpentrySchema.safeParse(p).success||!gardenSchema.safeParse(g).success||!commissionLedgerMatches(c,p,g))return fail('This request would create invalid commission progress. Nothing changed.');
  return{ok:true,state:c,carpentry:p,garden:g,message};
 }
+
+ return {applyCommission};
+}
+export const {applyCommission}=createCommissionRules(defaultGardenRules);

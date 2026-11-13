@@ -1,4 +1,54 @@
+## November13 — consolidated source acceptance prepared
+
+Preparing109normal free public CI and local matched-preview acceptance over exact108runtime. Includes accumulated town UI and isolated café foundations; no new game code in109and no playable café registration. Actual403/146local evidence retained; exact-head/main/source/artifact/restart/native gates pending.
+
+## November13 — coordinated candidate writer locally verified
+
+108adds one isolated lifetime lease for ordinary+cafe saves, confirmed/unsaved separation, explicit flush, retained intent, raw conflict and guarded lifecycle/capability handling.403system/146browser/17focused pass, migration-cancellationP2fixed/reviewed; no live registration or game payload delta. Source/actual-preview acceptance follows109now that public CI is available.
+
+## November13 — owner-authorized public source
+
+Existing sequel repository made public; anonymous API/page/raw-source verified. Updated current instructions to permit standard free public Ubuntu checks while retaining local-first batching, all exact-head gates and paid-resource limits. No workflow run, merge, game release, cloud or actual-preview update. Runtime unchanged from107. See idle-hands-2/handoffs/2026-11-13-public-source.md.
+
+## November13 — café-era ordinary command compatibility (held locally)
+
+107factors source-owned schema contexts around unchanged workshop/garden/carpentry/commission rule bodies. Isolated candidate preserves café sinks/history/teapot through mixed actions; default live schemas/props unchanged. Ten focused/386system checks pass; 142browser0skips/flakes/errors and final preservation pass. Numerical models unchanged except explicit fingerprints. No live registration, Actions, source acceptance or accepted-preview update. See evidence/IH2-107/REPORT.md.
+
+106original serving family/teapot art locally verified:80cells/four rigs,376system/142browser0skips/flakes/errors, TerraV2no sampled visual blocker. All15frozen/source/HTTP/raw files match;208game/202art bytes unchanged, no live registration. Next107ordinary command compatibility; source gate held. [Report](evidence/IH2-106/REPORT.md).
+
+105staged café save protection locally verified:372system/139browser+3final native cases,0skips/flakes/errors; quota/migration/stale/two-window/confirmation protection and exact208game identity. No live wiring or accepted-preview change; normal source gate held. Next106original serving rigs/teapot kit. [Report](evidence/IH2-105/REPORT.md).
+
+November13 —104pure café foundation:359system/136browser,0skips/flakes/errors; strict migration/conservation/reward/cooldown/fixedopening and two-sided provenance verified. No live wiring or accepted-preview change; normal source gate remains held. Next105staged local persistence. [Report](evidence/IH2-104/REPORT.md).
+
+2026-11-13 —103records Café persistence/authority decisions and next pure-ledger task. No implementation or data/service change; code remains102348/136verified candidate with required normal source gate held.
+
+2026-11-13 —102unifies held101UIand original099/100study tools/checks with exact historical inputs, raw artifact packaging and348/136pass. Zero game payload change; source gate held.
+
+2026-11-13 —101candidate clarifies available/carried/kept Bag counts before grid, shortens notes and restores heading/icon gap. Final338system/132browser pass with native/Terra/origin/preservation; test-only responsive viewport readiness fixed after retained failure. Normal source gate held; no accepted-preview/public change.
+
+2026-11-13 —100 candidate-only original Aster serving study:20cells/fourfacings, one720msreplay, exact feet/rest and clearer outlined sleeve. Local325/110and native/Terra/frozen8checks pass; no gameplay or accepted-preview change, normal GitHub source gate held.101Bag quantity clarity next.
+
+2026-11-13 — IH2-099independent café chapter study: existing-radish/immediate-service direction, permanent-keepsake clarity,576modelvariants/24controls,48catalog audit,6originalSVGs and concise separate13fileV2. Local329/110/native/Terra/artifact/preservationpass; no actual game or source acceptance. [Report](evidence/IH2-099/REPORT.md).
+
+2026-11-13 — IH2-098local toolbar repair: intrinsic action sizing, deterministic notes slot and deliberate short200page scroll;338system/132browser/native/Terra/origin/artifact/preservation pass. All202art/rules/progress unchanged; regular090previews/source gates remain held. [Report](evidence/IH2-098/REPORT.md).
+
+2026-11-13 — Corrected097V2: true rectangle edges/original cropfeet, soil/low details, bounded phone framing,44pxcaption approach targets and scaled world sky.338system/129browser/native/Terra/authority/preservation pass. EarlierV1geometry rejected before accepted update.098phone toolbar jump and normal source/CI/actual gates remain. [Report](evidence/IH2-097/REPORT.md).
+
+2026-11-13 — IH2-097 local garden candidate: original soil/low details, bounded phone actor-follow framing, compact labels and scaled world rain/lamp projection.338system/129browser/native/Terra/artifact/preservation pass; required source/accepted-preview gates remain pending. [Report](evidence/IH2-097/REPORT.md).
+
+2026-11-13 — IH2-096standalone allotment study locally reviewed:335system/127browser, native20fileV2and12pixel-identical format-cleanup captures/Terra; all204game files/198art and accepted data/keys/54studies unchanged. Source CI/merge gates remain held.097actual garden composition/framing queued, without a gameplay-rule change. [Report](evidence/IH2-096/REPORT.md).
+
+2026-11-12 — IH2-095V2local repair preserves plot-scoped chosen focus and closed panels through delayed replies/retries, uses safe status fallback, hides redundant owner entry and honors Refresh hidden state.332system/125browser pass; all game art and protected data/keys/studies preserved. Original pending recovery independently replayed once. Initial124pass superseded by close-only regression/fix. GitHub/actual accepted gates remain held;096garden design study queued.
+
+2026-11-12 — IH2-094local housing card candidate: canonical12/24kit held/needed/missing/ready and6/8nook outcome, in-place count refresh, owner/visitor/read-only and narrow/short200evidence.332system/119browser pass;198art and all protected data/keys/studies unchanged. Inherited focus-stealing P2reproduced and queued095before release. GitHub billing keeps source/actual release held; no current-game/cloud change.
+
+2026-11-12 — IH2-093local combined menu candidate: exact091/092source leaves,330system/117browser, frozen204files, guarded fictional review town and actual origin/cookie isolation, native root/Terra owner/visitor/doors/holdings/life samples. Registry held/needed clarity identified next. All accepted data/keys/clients/studies unchanged. Required GitHub release gates remain blocked by billing; no merge, accepted update, original-game or cloud work.
+
 # Changelog
+
+## 2026-11-12 — IH2-090 residential family and route repair verified
+
+Three house families/six matching tiers, seven original vectors, bounded occupied chimney life and low public flowers. Stable plot-ID styles/fixed door feet and all190priorart preserved. Repaired raw-grid/continuous-body mismatch that blocked90doorpairs; all552ordered pairs/48fractional endpoint walks pass without changing geometry/radius/speed. Exact05c468c/CI43353707882all4SUCCESS322/108; actual204fileclients/matched server5and restart/native/preservation gates pass. No economy/timer/ownership/SQLmigration/protocol or original-game/cloud/expense/public release change. [Evidence](evidence/IH2-090/source-closeout.json).
 
 ## 2026-11-12 — IH2-088 addressed neighborhood verified
 

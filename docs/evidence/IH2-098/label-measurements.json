@@ -1,0 +1,173 @@
+{
+  "classification": "Actual097V2computed font and offscreen inert text-width measurements; no real control/state/clock/API changes.",
+  "records": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "text": 100
+      },
+      "font": "700 15px Georgia, serif",
+      "rootFont": 16,
+      "navWidth": 513.53125,
+      "labels": [
+        {
+          "text": "Nothing nearby",
+          "fullWidth": 160.171875
+        },
+        {
+          "text": "Inspect",
+          "fullWidth": 97.109375
+        },
+        {
+          "text": "Enter workshop",
+          "fullWidth": 164.375
+        },
+        {
+          "text": "Enter allotment",
+          "fullWidth": 162.203125
+        },
+        {
+          "text": "Enter square",
+          "fullWidth": 140.203125
+        },
+        {
+          "text": "Enter trail",
+          "fullWidth": 120.484375
+        },
+        {
+          "text": "Enter street",
+          "fullWidth": 131.890625
+        }
+      ],
+      "reservation": 160
+    },
+    {
+      "shape": {
+        "name": "phone320",
+        "width": 320,
+        "height": 640,
+        "text": 100
+      },
+      "font": "700 12.8px Georgia, serif",
+      "rootFont": 16,
+      "navWidth": 296,
+      "labels": [
+        {
+          "text": "Nothing nearby",
+          "fullWidth": 118.546875
+        },
+        {
+          "text": "Inspect",
+          "fullWidth": 64.734375
+        },
+        {
+          "text": "Enter workshop",
+          "fullWidth": 122.125
+        },
+        {
+          "text": "Enter allotment",
+          "fullWidth": 120.28125
+        },
+        {
+          "text": "Enter square",
+          "fullWidth": 101.5
+        },
+        {
+          "text": "Enter trail",
+          "fullWidth": 84.6875
+        },
+        {
+          "text": "Enter street",
+          "fullWidth": 94.40625
+        }
+      ],
+      "reservation": 160
+    },
+    {
+      "shape": {
+        "name": "phone200",
+        "width": 320,
+        "height": 640,
+        "text": 200
+      },
+      "font": "700 25.6px Georgia, serif",
+      "rootFont": 32,
+      "navWidth": 296,
+      "labels": [
+        {
+          "text": "Nothing nearby",
+          "fullWidth": 221.09375
+        },
+        {
+          "text": "Inspect",
+          "fullWidth": 113.453125
+        },
+        {
+          "text": "Enter workshop",
+          "fullWidth": 228.25
+        },
+        {
+          "text": "Enter allotment",
+          "fullWidth": 224.5625
+        },
+        {
+          "text": "Enter square",
+          "fullWidth": 187
+        },
+        {
+          "text": "Enter trail",
+          "fullWidth": 153.359375
+        },
+        {
+          "text": "Enter street",
+          "fullWidth": 172.8125
+        }
+      ],
+      "reservation": 296
+    },
+    {
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "text": 200
+      },
+      "font": "700 25.6px Georgia, serif",
+      "rootFont": 32,
+      "navWidth": 420.390625,
+      "labels": [
+        {
+          "text": "Nothing nearby",
+          "fullWidth": 225.09375
+        },
+        {
+          "text": "Inspect",
+          "fullWidth": 117.453125
+        },
+        {
+          "text": "Enter workshop",
+          "fullWidth": 232.25
+        },
+        {
+          "text": "Enter allotment",
+          "fullWidth": 228.5625
+        },
+        {
+          "text": "Enter square",
+          "fullWidth": 191
+        },
+        {
+          "text": "Enter trail",
+          "fullWidth": 157.359375
+        },
+        {
+          "text": "Enter street",
+          "fullWidth": 176.8125
+        }
+      ],
+      "reservation": 320
+    }
+  ]
+}

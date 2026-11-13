@@ -1,0 +1,8 @@
+{
+  "originalCommit": "4f1323862a61acf9265087c422dbed8231e9fa0d",
+  "rootInvariantBodyExactlyUnchanged": true,
+  "gardenInvariantBodyUnchangedExceptAdditionalSink": true,
+  "liveAdditionalSinkExplicitlyDefaultsToZero": true,
+  "legacyConversionBodyExactlyUnchanged": true,
+  "carpentryCommissionChange": "parameter types narrowed to consumed fields only; no executable body change"
+}

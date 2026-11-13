@@ -1,0 +1,68 @@
+{
+  "classification": "LOCAL_FINAL_V2_CANDIDATE_NOT_SOURCE_ACCEPTED",
+  "system": {
+    "passed": 338,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 55868.897,
+    "postgresRequired": true
+  },
+  "browser": {
+    "passed": 132,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "reportErrors": 0,
+    "durationMs": 960607.407
+  },
+  "focusedFinal": {
+    "passed": 7,
+    "includes": "Both garden frame/rain cases and five Bag allocation/claim/keyboard/fallback/persistence cases"
+  },
+  "shardDiscovery": {
+    "counts": [
+      67,
+      65
+    ],
+    "disjoint": true,
+    "union": 132,
+    "orderedFamilyOnlyOn2": true
+  },
+  "strictBuild": true,
+  "design": true,
+  "planTasks": 56,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "whitespace": true,
+  "native": {
+    "shapes": 8,
+    "pocketCaptures": 24,
+    "frozenHttpBodies": 416,
+    "headerIconGapRangeCssPixels": [
+      8,
+      12
+    ],
+    "holdingsUnchanged": true,
+    "actualPlacedCopyContrast": true
+  },
+  "scopedAxe": {
+    "samples": 2,
+    "violations": 0,
+    "incomplete": 0,
+    "scope": "Bag DOM only, not fullaccessibility certification"
+  },
+  "runtimeArtUnchanged": 202,
+  "artifactFiles": 208,
+  "rawDeltaFrom098": 233,
+  "summedPerFileGzipDeltaFrom098": 48,
+  "accepted090Updated": false,
+  "normalGithubGate": false,
+  "publicDeployment": false,
+  "failedEvidenceRetained": [
+    "First canonical-name assumptions:2failed",
+    "V1fullrun interrupted for real header spacing fix",
+    "First V2fullrun131pass/1garden-resize readiness failure",
+    "Root pending-panel keyboard harness attempt"
+  ],
+  "readinessFix": "Read-only test predicate waits for real text mode and DOM/canvas/camera size agreement. All original crop\u22121/44pxtarget/collision/progress assertions and timeouts retained; no product camera/economy change."
+}

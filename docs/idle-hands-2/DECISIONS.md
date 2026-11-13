@@ -206,3 +206,50 @@ Owner finds combined Bag & journal cluttered and wants an eventual little RPG/MM
 2026-11-12 owner direction: continue consecutive bounded local sections while away, near10%shared usage reserve. Prioritize first-city capacity/coherent layouts, visible/enterable neighbors, purposeful art/life and clear crafting/menus; Terra audit explicitly requested. Agent candidate:24-address expandable residential blocks with stable plot-ID-derived addresses, compact service center and separate safe residential routes. See design/FIRST_CITY_LAYOUT; design is not implementation or hosted authorization.
 
 2026-11-12 — Accepted089implements the owner's action-first menu direction: canonical item names, exact output/material/time/pocket, brief truthful reasons and optional rules/flavor. Readiness never claims output. Explicit collection retains a stable action slot with visible completion/Bag; async focus respects closed/changed panels and other chosen controls, and resize preserves the focused action. Places captures useful priorities at open and groups every retained destination once. Costs, clocks, progress and server authority stay unchanged. Exact acceptance in089closeout;088must extend these patterns for residential streets rather than add a flat25-home menu.
+
+
+2026-11-13 —100 proves a first Aster-only confirmed-serving gesture outside gameplay before producing more character families. Original64×80frames,32,72feet and exact resting identity remain fixed; one720ms replay never authorizes an item or reward. Terra's thin sleeve-outline refinement and expanded raster checks address hand connection and cropping. Normal source gates stay held. The subsequent cold-read menu review finds a smaller available-versus-owned Bag count ambiguity, so101prioritizes a short visible context key and precise accessible names before further art; no inventory calculation changes.
+
+
+2026-11-13 —101repurposes Bag intro into contextual available/carried/kept count explanation above slots, with precise accessible names and unchanged ledgers. Keep12pxheading separation after removing intro from that location. A measured inherited resize test race on098and101requires waiting for text mode and camera/canvas/DOM viewport agreement; never relax crop/target/collision/progress bounds or inflate timeouts to hide it. Source102must retain all UI and independent study checks while preserving dated artifacts and normal release gates.
+
+
+2026-11-13 —102direct hashes corrected the initial World-fingerprint hypothesis: original099inputs/art/checks reproduce exactly; keep and package them with100rather than duplicate output.103design chooses a same-root local Café projection and narrow staged café storage commit; existing other-command unsaved-practice behavior is unchanged. Both-goals-complete means personal3+townfunded12even during opening. Shared debit/reward/credit/UUID must be atomic, with consistent locks, fixed deadline and exact migration/cached-writer proofs. Proposed versions3/4/6remain design only. Next104purecandidate stays outside live entrypoints until later coherent integration.
+
+
+## November13 — local café candidate while Actions allowance is held
+
+Owner explicitly authorized continued local development before arranging GitHub billing.104implements a strict pure café ledger/migration candidate outside live registration, sharing unchanged current invariants rather than duplicating them. Actual candidate/root/public rules are locally tested; they are not SQL, durable-save, identity or live-feature authority. Dated099source attribution is now explicitly pinned separately from104current refactors, with actual historical-tree replay and unchanged numerical reports. No old13study output is rewritten. Next105proves a narrow staged local save adapter before any coherent live integration; all normal source gates, shared/home/cache prerequisites and spending boundaries remain.
+
+
+## November13 — staged save protection remains isolated
+
+105uses the existing current/fallback keys and exact exclusive writer-lock name. Pending retries retain original expected revision and never rebase; native write success precedes confirmation. Migration must persist before readiness and never falls back around a corrupt current key. No missing-save grant or new project key. Test-only native browser proof uses fresh ephemeral contexts and intercepted fixture documents with pre-write quota injection, not a real profile or hosted service. Existing tab-lifetime ownership must be shared during integration; the adapter must not nest locks. Native API success is not durable server UUID replay or eviction/power-loss protection.
+
+Next independent106work completes remaining original serving rigs/teapot art while source acceptance is held. Live café integration must coordinate the complete root/garden command family, writer/bootstrap/cache/BFCache, protocol/forward SQL and all home allocations before exposing one complete counter/reward slice.
+
+
+## November13 - serving family and teapot kit
+
+106extends guarded Aster gesture to all four rigs, preserving all20reviewed Aster cells and every same-facing original foot/final idle. World teapot reuses exact099blue-glaze/brass art; dedicated simplified Bag icon preserves identity. Separate15-file gallery, not live asset/prop/item registration.56pxBag preview is a compact stress sample; actual Bag images are64px and future scale/placement must be reconciled. Terra reviewed frozen V2desktop/phone/short200samples without visual blocker; not physical-device or integrated-animation certification.
+
+Next107makes normal commands operate on cafe-era state without discarding sinks or teapot entitlement before coherent writer/cache/protocol/SQL/UI integration. Unsaved ordinary practice must not be silently discarded by cafe reload. Source gate/no-Actions instruction remain.
+
+
+## November13 — unchanged rules with explicit schema contexts
+
+107shares trusted source-owned contexts rather than projecting cafe-era state into older shapes or restoring spent produce. Default exported rules retain strict root2/garden3 and old prop IDs; candidate context retains strict root3/garden4/cafe sink/teapot entitlement. All ten executable bodies are compared after TypeScript removal; six analytical outputs retain exact values with explicit updated current-source fingerprints. These are domain proofs, not a live migration or transaction authority.
+
+108will prove a unified isolated writer coordinator first: preserve unsaved ordinary practice, share the tab-lifetime lease, guard capabilities and stale cache/BFCache state, stage before confirmation. This agent-selected prerequisite implements the existing103contract; it does not authorize registration or override the billing/source gate.
+
+
+## November13 — explicit owner choice: public source
+
+Owner asked to make the existing sequel repository public instead of paying for private Actions allowance. Visibility changed and anonymous access verified. Standard public Ubuntu workflows are free; no repository replacement, license change, history rewrite, paid setup or public game launch. Preserve local-first batching and exact-final-head checks. Earlier private/billing labels in dated evidence remain historical, not a prohibition on current free public CI. No hosted run was triggered in this administrative task.
+
+
+## November13 — coordinated writer and normal free source acceptance
+
+108keeps failed ordinary practice explicit and blocks café spending until a separate complete-root flush succeeds. Café pending state is not optimistic; migration is an uncancellable readiness gate after review found a stale-overwrite cancellation path. One lifetime lease, per-acquisition epoch and raw-source identity guard the candidate. It remains unregistered; native tests do not certify real BFCache residency or malicious/noncooperating storage CAS.
+
+Owner now authorizes normal free public CI/source updates.109will consolidate the already tested held source and refresh actual previews only after every exact-head/main/artifact/preservation gate. No obsolete billing probe, paid resources, original-game work or public game launch.

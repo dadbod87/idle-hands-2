@@ -1,0 +1,12 @@
+{
+  "comparedTo": "b126893",
+  "trackedRuntimePublicServerPackageDiff": [],
+  "priorTrackedTestDiff": [],
+  "newTests": [
+    "tests/garden-framing-study.test.ts",
+    "tests/allotment-study.spec.ts"
+  ],
+  "gameBuildFilesEqual095V2": 204,
+  "priorBrowserAssertionsRetained": 125,
+  "priorRuntimeArtUnchanged": 198
+}

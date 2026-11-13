@@ -1,0 +1,28 @@
+{
+  "classification": "DESIGN_ONLY_NO_RUNTIME_IMPLEMENTATION",
+  "directSourceAudit": true,
+  "independentDomainReview": true,
+  "changedTrackedPaths": [
+    "docs/CHANGELOG.md",
+    "docs/CURRENT_STATE.md",
+    "docs/evidence/IH2-102/source-hold.json",
+    "docs/idle-hands-2/CURRENT_SESSION.md",
+    "docs/idle-hands-2/DECISIONS.md",
+    "docs/idle-hands-2/ROADMAP.json",
+    "docs/idle-hands-2/design/README.md"
+  ],
+  "codeDiffFrom102": [],
+  "runtimeEvidenceReusedFrom": "2d3fa8f9b84ca1de8dc4585a97594ed415fe5cd1",
+  "reusedSystem": 348,
+  "reusedBrowser": 136,
+  "newRuntimeTestsClaimed": false,
+  "planTasks": 58,
+  "trackerTests": 10,
+  "designIncludingHistoricalStudyVerifier": true,
+  "pinnedFiles": 40,
+  "whitespace": true,
+  "schemaOrDataMutation": false,
+  "serviceOrKeyChange": false,
+  "normalSourceGate": false,
+  "publicDeployment": false
+}

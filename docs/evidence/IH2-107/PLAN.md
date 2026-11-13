@@ -1,0 +1,5 @@
+# Ordinary commands on the café-era save
+
+Continue from final106/c9aa22759b36463f28721911d900d57bf1d361d6 in isolated feat/cafe-command-compatibility. Share source-owned rule contexts, retaining strict default root2/garden3 and strict candidate root3/garden4. Never project away café consumption, restore produce, reset jobs or bypass ownership. Prove no-café comparison histories plus actual mixed histories, full stock/refusals, ordinary receipts and teapot rental placement. Keep live writer/root/protocol/props/UI/server registration unchanged.
+
+Run focused and full isolated-system checks, strict build/design, full browser regression, tracker/pinned/diff and protected-preview preservation. Explicitly revalidate current fingerprints after factoring, preserve dated snapshots/studies/assertions, compare executable function bodies and numerical model outputs. No Actions minutes, PR update, merge, cloud, spending, real progress mutation or accepted-preview replacement. Normal exact-final-head source gates remain required.

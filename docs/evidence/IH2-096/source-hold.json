@@ -1,0 +1,12 @@
+{
+  "task": "IH2-096",
+  "branch": "feat/allotment-visual-study",
+  "baseCandidate": "b126893",
+  "acceptedMain": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
+  "classification": "Standalone original visual study only; held source/design candidate, not playable promotion.",
+  "lastGitHubGate": "PR39 run43365543304 refused before tests for account billing/spending-limit status; owner response pending.",
+  "requiredFinalHeadCI": "not run/successful; no source acceptance or merge",
+  "acceptedClients": "unchanged090 on127.0.0.1:4175andlocalhost:4176",
+  "newReview": "20-file frozen standalone study onallotment-study.localhost:49572",
+  "documentation": "Local335system/127browser and post-format3domain/2browser/native byte-equality checks recorded; exact-head CI/accepted gates remain unmet."
+}

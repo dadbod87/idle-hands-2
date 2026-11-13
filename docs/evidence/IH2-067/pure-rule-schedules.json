@@ -7,8 +7,8 @@
     "Only4hhamper configuration is implemented;12h remains an historical comparison"
   ],
   "sourceSha256": {
-    "src/game/garden.ts": "4bcad76311fb65b44609b0af37a45f3cf022e68f0ef4ccef6837234fafbc5991",
-    "src/game/carpentry.ts": "7eba4bd2ef18eb8c2d5d000ba73be6e6fd7ac70eaef054a79b54d6ab4c5e9ce0",
+    "src/game/garden.ts": "7ba870682d15f40ef83f21302a25fc736e2a19a5f6b73b2e8cca20cbfe6ca5da",
+    "src/game/carpentry.ts": "eb8da9660bbf7877e1c65a57ae70f802af35a0a609cd40586559c75fe9fc19a1",
     "tools/woodland-plan.ts": "d3a408129b3eac585af1b0aed01b496eefed6b282b4d728eb8fba68d4ec811a6",
     "tools/simulate-carpentry-rules.ts": "13992d8e93e0f8daec1d7c1436b4a6596a56817ae68617746ac47c16c98cd090"
   },

@@ -1,0 +1,10 @@
+{
+  "candidate": "b1268936f7f775deb7b2230bf0b446ef06f676c2",
+  "classification": "Final V2locally verified focus repair, release held",
+  "domain": 332,
+  "browser": 125,
+  "githubChecksRan": false,
+  "merged": false,
+  "acceptedPreviewChanged": false,
+  "githubCondition": "Last091run refused before tests due to account billing/spending limit; owner question pending"
+}

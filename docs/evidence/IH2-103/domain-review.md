@@ -1,0 +1,7 @@
+# Independent read-only domain review
+
+The existing workshop domain reviewer inspected the coherent source without edits, tests, browser/service/key/data or authentication actions. Root independently read the cited local writer/save path, strict schema/migrations, server transaction, HTTP protocol guard and forward placement constraint.
+
+Confirmed findings: local reducer success currently precedes persistence and quota failures leave explicitly unsaved in-memory progress; one common writer lock/key must be retained. New café consumption cannot be defaulted into a corrupt current root. Private/public debit, cooldown, teapot, bounded credit and UUID receipt must commit atomically. The public row must be locked before deciding whether a serve remains useful; a late personal entitlement survives public funding. Workroom SQL whitelists require a forward constraint migration. No existing café table, sink, prop or command exists.
+
+Recommendations adopted for the design: refuse useless paid serves at personal3+funded12, derive local-only public progress from the same private history, use a narrow staged local café commit, keep exact supported migration/cached-writer guards, and finish UI/art after authority proofs. Lock-order integration and full failures/concurrency/absence/restart/device gates remain explicit implementation work, not completed verification. These are agent review findings, not production or human-fun certification.

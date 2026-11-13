@@ -1,0 +1,21 @@
+# Local098verified — source gate held,099next
+
+Source: isolated `idle-hands-2-stable-toolbar`, branch `feat/stable-phone-toolbar`, base corrected097`d9cc5044a934d42366a13ae816e4f245b3b433e1`. The intrinsic longest-label sizing layer fixes the observed53pxcontext reflow; deterministic notes flex sizing and deliberate short200vertical page scrolling preserve readable controls and a220pxminimum world. Wording, accessible labels, actions and all202art/domain/server/protocol/dependencies remain unchanged.
+
+Final338system/zeroPostgreSQLskips(54,870.710917ms),132browser(959,428.16ms; no skipped/flaky/unexpected/reporterrors), strictbuild/design/53taskplan/10tracker/40pinned/diff pass. Disjoint67+65discovery preserves ordered family on2. Final rebuild matches all208frozen responses; all202art unchanged. Root actual HTTP/native5solo+3shared shapes/24images and Terra bounded desktop320/360/short200review pass; Terra did not independently test long feedback or physical devices. First130/132run’s two old short200immediate-fit assertions are superseded by real-scroll full reachability with all44pxbounds/nonnegative top and all gameplay/timeouts retained. Failed artifacts/teardown errors retained separately; final report is clean. Logs: `../idle-hands-2-artifacts/stable-toolbar-2026-11-13/`; [record](../evidence/IH2-098/REPORT.md).
+
+Separate review URLs serve identical frozen208client files:
+- http://toolbar-review.localhost:49578/ — fresh browser-only gameplay; no API.
+- http://toolbar-town.localhost:49579/?town=1 — new49580process,34byte-identical090API5/game/migration/tool files, existing guarded26fictionalprofiles/25historically earned homes/3selectable roles. No initializer/reset/migration. New in-memory key leaves older49564review/accepted keys and processes untouched. Native origin/canary/signed snapshot and shared desktop320/short200movement/holdings pass; source/runtime/historical/cosmetic fixtures disclosed in098evidence.
+
+Accepted main remains090`f0a294af86d4b637f060c8f40a6d7f061d9cad15`; protected4175/API4186and persistentTourlocalhost4176/API4188are unchanged090204fileclients/API5. All13tablefields/privatekeys0600/sixchecksums and54acceptedstudy responses preserved. Corrected097V2atallotment-play.localhost:49576and standalone correctedstudyV3atallotment-study.localhost:49572remain unchanged; rejected096/097V1geometry is not accepted. Rectangle edges are directtile×32; only actor/stop positions add.5.
+
+Normal successful exact-final-head GitHub jobs, raw uploaded artifacts and actual accepted-client/preservation gates remain required. Old PR39run43365543304was refused before tests for account billing/spending-limit status; owner question remains unanswered. No runner/billing bypass, main merge or accepted-preview update. Hold091–098source candidates until the proper consolidated release can pass.
+
+Commit/push098backup and record its SHA in canonical continuation, then begin independent099café feasibility/design from accepted090runtime with current planning docs. [Plan](../evidence/IH2-099/PLAN.md). It adds no actual food/crop/recipe/state/service/hosting. Read-only Terra critique is preparation, not runtime acceptance. Keep one source task active. Continue sequentially until about10%weeklyreserve or7amNov13Pacific(15:00UTC); last49%used, no resetcredits used.
+
+## Reproduce
+
+From098worktree: `IH2_PG_DOCKER=1 IH2_TEST_DATABASE_URL=postgres://ih2:local-synthetic-only@127.0.0.1:55432/ih2_test IH2_HTTP_TEST_DATABASE_URL=postgres://ih2:local-synthetic-only@127.0.0.1:55432/ih2_http_test npm run test`; `npm run build`; `npm run test:browser`; `npm run check:design`; `npm run check:plan`; `python3 tools/verify-game-skills.py`; `git diff --check`. Use canonical worktree for the existing preserve-practice/verify-tour-held/verify-frozen-studies helpers; they read the existing private local key there, never copy or print it. Frozen actual208hashes/native/root/Terra/disclosures and sourceAPI34file match are in098evidence; failed first run is external first-full-viewport-assumptions.
+
+Git fetch confirms mainf0a294aand only PR39/8abc1b4still open; no redundant workflow attempt or PR created. Routine independent099free design is authorized, without an extra owner balancing gate, while current source acceptance remains held. Candidate assumptions are not implemented economy.

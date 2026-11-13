@@ -1,0 +1,14 @@
+{
+  "shards": [
+    74,
+    72
+  ],
+  "disjoint": true,
+  "union": 146,
+  "orderedFamilyOnlyOn2": [
+    "shared-town.spec.ts",
+    "starter-homes.spec.ts",
+    "trail.spec.ts",
+    "z-first-visit.spec.ts"
+  ]
+}

@@ -1,0 +1,27 @@
+# IH2-108 — One coordinated candidate writer
+
+Implemented locally in feat/coordinated-cafe-writer, base f806f9fcf3e30464300e2ea20c44dab28e5c1bf7. Full local verification complete; normal source/actual-preview acceptance remains109. Owner has resumed normal free public GitHub validation; no paid resources or café UI registration.
+
+## Behavior
+
+The isolated coordinator owns one same-origin WebLock for the tab lifetime. Ordinary commands and café serves share the exact existing current/fallback keys and lease name, without nesting105per-operation acquisition. Storage and navigator/lock capabilities are read lazily inside a guarded connect. Every new acquisition has its own epoch; hide/dispose invalidates even callbacks that have not acquired yet, and old callbacks cannot install or clear a newer lease. Dispose is terminal; persisted show can reacquire after suspend.
+
+Two detached snapshots are explicit: state is last-confirmed durable data (possibly stale after conflict/unavailability); working is unconfirmed practice. Failed ordinary writes retain complete working progress and block café spending. A separate successful flush saves it first; it does not also serve. Later ordinary commands may retain and save the complete accumulated practice root. A failed café write keeps the original detached intent/revision, never optimistically debits/awards, and blocks ordinary/flush operations until resolved or cancelled. Third-reward confirmation follows native write success. No server UUID/transaction claim.
+
+Raw identity includes current-key absence and fallback text/source. Before any write, reread and compare under the lease. Changed raw text freezes dirty work/pending intent without overwriting either version; explicit valid discard/reload is required to replace it. Invalid replacement data preserves old working snapshots. Failed explicit replacement migration restores prior dirty/conflict state. Missing/corrupt/unsupported data is never replaced with defaults or bypassed by an older fallback. Migration is a readiness gate and cannot be cancelled into write access. Input/output snapshots cannot mutate internal state.
+
+No asynchronous UI callbacks or awaits occur inside native read/check/full-root write/confirmation. Native Web Storage acceptance is not immunity to browser eviction/power loss. Raw equality is not a cross-process compare-and-swap against malicious/noncooperating writes; all writers must honor the common lease. The current live UI/writer, accepted storage, root2/garden3, protocol5, props, server/SQL and art remain unchanged. There is no second café key or periodic settlement writer; future UI integration must derive read-only clock projections or explicitly coordinate its writes.
+
+## Verification and review
+
+17focused unit cases pass (207.654375ms);403full system cases pass,0failed/0skipped (106,069.6515ms), including the existing isolated PostgreSQL/HTTP/recovery suites. Four initial native Chrome cases pass (9,490.087ms); final full146browser run passes with0unexpected/0flaky/0skipped/0reporterrors in1062015.175ms. Its module and twelve source hashes are verified against final source and supersede the intermediate fixture. Native fixture documents/modules are explicitly intercepted in fresh ephemeral contexts. They use actual native storage/locks, injected pre-write quota/getter faults, synthetic persisted page events and actual navigation release. This is not proof that Chrome retained a page in real BFCache, an integrated cached game, physical devices, Safari or server authority. Legacy refusal uses actual old reducer/loader facades, not a full old cached UI.
+
+The independent domain reviewer caught aP2: reconnecting to a different supported legacy save, failing its migration, then cancelling the load could enable writes from stale previous working state. Migration cancellation is now refused; a dedicated regression keeps the replacement raw exact, blocks actions, then migrates that replacement before enabling them. Reviewer rechecked the fix and found no alternate public bypass. Initial three failed unit scenarios incorrectly gathered repeatedly from an already drained bin; test fixtures now use all three actual six-unit resource bins. No economy rule, existing assertion or timeout was relaxed. Logs retained.
+
+Compiled208game files/202art are byte-identical to107; zero runtime raw/gzip delta. Only test fixture modules import the new writer. No new analytical fingerprint refresh is needed. Existing large-main-chunk warning remains. Full regression, all36raw-study files,74+72disjoint discovery/ordered family2,63task/10tracker/40pinned/diff and protected practice/Tour/54study preservation pass. Terra static6capture review found no sampledP1/P2; inherited partial item-title clipping at phone200keeps Collected/Open bag visible. Source acceptance remains109.
+
+## Next acceptance gate
+
+109will consolidate held091–108source through one final-candidate public GitHub run, both disjoint browser shards, raw artifact/source checks and normal merge/main-push checks before updating the actual local clients and matched API. Preserve every protected fixture table/key/migration checksum and accepted study origin. No paid/cloud/public-game launch is implied. The café still needs later coordinated live root/UI/cache/SQL/UUID/protocol/home allocation/counter/art/physical reward integration.
+
+Local artifacts: ../idle-hands-2-artifacts/coordinated-writer-2026-11-13.

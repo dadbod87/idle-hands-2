@@ -17,12 +17,18 @@ async function canvasFits(page:Page){
   return Math.max(Math.abs(wrap!.height-canvas!.height),Math.abs(wrap!.width-canvas!.width),Math.abs(wrap!.y-canvas!.y));
  }).toBeLessThan(2);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ // Enlarged short screens deliberately scroll vertically to preserve the world.
+ // Keep strict immediate fit elsewhere; here require every original target to be
+ // fully reachable after a real scroll, retaining the same viewport bounds.
+ const scrollable=await page.evaluate(()=>innerHeight<=480&&innerWidth>=651&&document.querySelector('.shell')!.classList.contains('large-text'));
  for(const button of await page.locator('nav button,#field-guide').all()){
+  if(scrollable)await button.scrollIntoViewIfNeeded();
   const box=(await button.boundingBox())!;
   expect(box.height).toBeGreaterThanOrEqual(44);
   expect(box.width).toBeGreaterThanOrEqual(44);
   expect(box.x).toBeGreaterThanOrEqual(0);
   expect(box.x+box.width).toBeLessThanOrEqual(await page.evaluate(()=>innerWidth));
+  expect(box.y).toBeGreaterThanOrEqual(0);
   expect(box.y+box.height).toBeLessThanOrEqual(await page.evaluate(()=>innerHeight));
  }
 }

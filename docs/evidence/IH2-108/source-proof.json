@@ -1,0 +1,12 @@
+{
+  "referenceCommit": "f806f9fcf3e30464300e2ea20c44dab28e5c1bf7",
+  "sources": {
+    "src/persistence/cafe-writer-candidate.ts": "8dedec9994cfdd2f00b3ef9726070a740b218ae1333e05bbd3d260407898a41d",
+    "tests/cafe-writer.test.ts": "2285fa640b8eab8151fae3c84937ce6227f59a5975e40c8f736353ee2c95d71f",
+    "tests/cafe-writer.spec.ts": "15b071742f6fdd2bafd8c1d313219feb9fd1c1fd4785bfff4d782a0e0150302d",
+    "tests/helpers/cafe-writer-browser-entry.ts": "47dd7b8bdc0a614a63426f8e1236b4b2edacce1bd0c7f1baf10a38387701d095",
+    "tsconfig.design.json": "0c5719d51c2175a310b22f9a1d7c9f4a6db406a151934a86d70602d8f6874b54"
+  },
+  "coreGardenWorkshopCafeRulesUnchanged": true,
+  "liveWriterServerProtocolAndPropsUnchanged": true
+}

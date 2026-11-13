@@ -34,7 +34,7 @@ app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
  <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">NEIGHBORHOOD STUDY<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
  <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
- <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal</button><button id="interact" class="primary" disabled>Nothing nearby</button></nav></footer>
+ <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal</button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav></footer>
 </main>
 <dialog id="panel" aria-labelledby="panel-title"><form method="dialog"><header class="dialog-head"><div><p class="eyebrow">TOWN INFORMATION SERVICES</p><h2 id="panel-title">Places to go</h2></div><button aria-label="Close panel" value="close">×</button></header><div id="panel-body"></div></form></dialog>`;
 const panel = document.querySelector<HTMLDialogElement>('#panel')!;
@@ -43,6 +43,7 @@ const body = document.querySelector<HTMLDivElement>('#panel-body')!;
 const feedback = document.querySelector<HTMLElement>('#feedback')!;
 new MutationObserver(()=>{feedback.scrollTop=0;}).observe(feedback,{childList:true,characterData:true,subtree:true});
 const interactButton = document.querySelector<HTMLButtonElement>('#interact')!;
+const interactLabel = document.querySelector<HTMLElement>('#interaction-label')!;
 const location = document.querySelector<HTMLElement>('#location')!;
 const scene = new WorldScene(session);
 let skyOffset=0;scene.skyNow=()=>Date.now()+skyOffset;scene.skyFixture=climateFixture(new URLSearchParams(window.location.search));
@@ -331,8 +332,8 @@ scene.onFrame = () => {
     const hint=session.room==='square'?'Under new mismanagement.':session.room==='neighborhood'?'Homes, not cubicles.':session.room==='trail'?'A path worth the paperwork.':session.room==='garden'?'Ready plants wait safely.':session.room.startsWith('home')?(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved'):'Great things take time.';
     location.textContent=roomName;const sub=document.createElement('span');sub.textContent=hint;location.append(sub);
     if(town){const label=document.createElement('small');label.className='fixture-label';label.textContent='Practice town · '+(town.snapshot?.name??'choose a resident');location.append(label);}
-    interactButton.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby';
-    if(stop?.id==='trail-gate'&&!scene.bridgeRestored)interactButton.textContent='Inspect bridge';
+    interactLabel.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby';
+    if(stop?.id==='trail-gate'&&!scene.bridgeRestored)interactLabel.textContent='Inspect bridge';
     interactButton.disabled = !stop;
     interactButton.setAttribute('aria-label', stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
   }
@@ -350,7 +351,7 @@ Object.defineProperty(window, '__pilot', { value: Object.freeze({
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);
     return { climate:scene.climateState(), ready, presentation:{menuBackdropPaused:menuRenderPaused,renderedFrames,idleFrameLimit:game.loop.fpsLimit,frameSamplePolicy:'Visible mixed normal and 10Hz idle intervals; modal gaps excluded'}, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };
   },
-  screenPoint: (x: number, y: number) => { const c = scene.cameras.main; return { x: (x + .5) * 32 - c.scrollX, y: (y + .5) * 32 - c.scrollY }; }
+  screenPoint: (x: number, y: number) => { const c = scene.cameras.main; const p=c.matrixCombined.transformPoint((x+.5)*32,(y+.5)*32);return {x:p.x,y:p.y}; }
 }), writable: false });
 
 }

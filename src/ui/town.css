@@ -17,3 +17,8 @@
 #panel-body .home-arrange select{font-size:1rem;font-weight:normal}
 
 .registry-records{border-top:1px solid var(--line);margin-top:12px}.registry-records>summary{min-height:44px;padding:12px 0;font-weight:bold;cursor:pointer}.registry-records .town-plot{margin-top:12px}
+
+.housing-purchase{display:grid;gap:4px;border-left:3px solid var(--line);padding:4px 0 4px 10px;overflow-wrap:anywhere;line-height:1.3}.housing-purchase span{font-size:.85rem}
+
+/* The destination display rule must not expose a deliberately hidden refresh. */
+[data-town-plot-refresh][hidden]{display:none}

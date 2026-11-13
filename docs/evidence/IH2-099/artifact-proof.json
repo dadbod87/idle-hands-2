@@ -1,0 +1,6 @@
+{
+  "responses": 13,
+  "mismatches": [],
+  "unchangedArtVsV1": 8,
+  "classification": "Actual HTTP bodies from frozenV2staticstudy;13files,6originalSVGs and2unchangedacceptedreuses, no API or game source."
+}

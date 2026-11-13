@@ -1,0 +1,51 @@
+{
+  "classification": "LOCAL_COMMAND_COMPATIBILITY_CANDIDATE_NOT_SOURCE_ACCEPTED",
+  "system": {
+    "passed": 386,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 68944.026084
+  },
+  "focusedUnit": {
+    "passed": 10,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 280.524375
+  },
+  "browser": {
+    "passed": 142,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "reportErrors": 0,
+    "durationMs": 1010965.946,
+    "scope": "Full actual compiled-game regression; final additional mixed-request unit case changes no browser harness or compiled game."
+  },
+  "build": true,
+  "design": true,
+  "trackerTasks": 62,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "sourceAccepted": false,
+  "normalGithubGate": false,
+  "publicDeployment": false,
+  "hostedRunsStarted": 0,
+  "discovery": {
+    "shards": [
+      72,
+      70
+    ],
+    "disjoint": true,
+    "union": 142,
+    "orderedFamilyOnlyOn2": [
+      "shared-town.spec.ts",
+      "starter-homes.spec.ts",
+      "trail.spec.ts",
+      "z-first-visit.spec.ts"
+    ]
+  },
+  "historicalRawStudyFilesPackaged": 21,
+  "servingFamilyRawFilesPackaged": 15,
+  "protectedPracticeAndTourAnd54Studies": true,
+  "independentReview": "No concrete blocker; read-only domain/context/provenance review, no server or integration authority claim."
+}

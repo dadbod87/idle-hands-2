@@ -1,0 +1,23 @@
+{
+  "disclosure": "UI-only fully intercepted synthetic home/supplies/arrival/upgrade reply; response held before fixture commit, native focus/selection then released unchanged. No real server/protected progress.",
+  "before": {
+    "tag": "SELECT",
+    "label": "Plot furniture position",
+    "text": "north-west · Optimistic planternorth-middle · emptynorth-east · emptysouth-west · emptysouth-middle · emptysouth-east · empty"
+  },
+  "after": {
+    "tag": "SELECT",
+    "label": "Plot furniture position",
+    "text": "north-west · Optimistic planternorth-middle · emptynorth-east · emptysouth-west · emptysouth-middle · emptysouth-east · emptyWorkroom · north nook · emptyWorkroom · south nook · empty"
+  },
+  "chosenSlot": "south-middle",
+  "focusWasStolen": false,
+  "fixtureCommands": [
+    {
+      "kind": "upgrade-plot",
+      "plotId": "1",
+      "id": "484d76ea-929c-4e8f-ac50-a5036b738076",
+      "expectedRevision": 1
+    }
+  ]
+}

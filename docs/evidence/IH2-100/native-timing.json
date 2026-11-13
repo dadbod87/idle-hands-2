@@ -1,0 +1,25 @@
+{
+  "timing": [
+    {
+      "column": 0,
+      "elapsed": 0
+    },
+    {
+      "column": 1,
+      "elapsed": 164.89999961853027
+    },
+    {
+      "column": 2,
+      "elapsed": 341.5999994277954
+    },
+    {
+      "column": 3,
+      "elapsed": 520.3999996185303
+    },
+    {
+      "column": 4,
+      "elapsed": 720.5
+    }
+  ],
+  "method": "MutationObserver on displayed sprite column during native keyboard-triggered replay, real browser performance clock; no clock override. Scheduling measurements under local regression load, not an FPS guarantee."
+}

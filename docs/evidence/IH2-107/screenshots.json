@@ -1,0 +1,16 @@
+{
+  "artifactDirectory": "../idle-hands-2-artifacts/cafe-commands-2026-11-13",
+  "scope": "Actual current compiled game in existing isolated synthetic browser regression; Chrome desktop/phone viewport emulation, not physical devices. No new UI for107.",
+  "samples": [
+    {
+      "path": "full-results/browser/craft-desktop-collected.png",
+      "sha256": "512974a086ac3e466c468bc673ae9095d89e45a3516956675b9de9ea6ac65e39",
+      "rootVisuallyInspected": true
+    },
+    {
+      "path": "full-results/browser/craft-phone-places.png",
+      "sha256": "e1ddbb44866a6498f838db15ceca70bd7bc8a821e5fdd5f0fe24469aae174954",
+      "rootVisuallyInspected": true
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "classification": "Final098locally verified held candidate, not accepted source/regular preview or production.",
+  "baseCandidate": "d9cc5044a934d42366a13ae816e4f245b3b433e1",
+  "system": {
+    "pass": 338,
+    "skipped": 0,
+    "failed": 0,
+    "durationMs": 54870.710917
+  },
+  "browser": {
+    "pass": 132,
+    "durationMs": 959428.16,
+    "skipped": 0,
+    "flaky": 0,
+    "unexpected": 0,
+    "errors": []
+  },
+  "strictBuild": true,
+  "design": true,
+  "roadmapTasks": 53,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "shards": {
+    "one": 67,
+    "two": 65,
+    "disjoint": true,
+    "orderedFamilyOnTwo": true
+  },
+  "frozenClient": {
+    "responses": 208,
+    "unchangedPriorArt": 202,
+    "rawDeltaVs097V2": 552,
+    "perFileGzipDeltaVs097V2": 141,
+    "rebuildMatches": true
+  },
+  "rootNative": {
+    "soloShapes": 5,
+    "soloCaptures": 15,
+    "sharedShapes": 3,
+    "sharedCaptures": 9,
+    "classification": "Native fresh local or existing fictional review population; cosmetic sky/text only; shared native movement uses actual API, no intercepted replies or stock/position/serverclock injection."
+  },
+  "terra": "No sampled blocker; long feedback not independently exercised by Terra, physical devices/full accessibility/fun unverified.",
+  "preservation": {
+    "practice13TablesAllFields": true,
+    "tour13TablesAllFields": true,
+    "keysAnd0600": true,
+    "migrationChecksumsPerNamespace": 6,
+    "acceptedStudyResponses": 54,
+    "accepted090ClientsUnchanged": true
+  },
+  "superseded": "First full130/132failed only two old short200immediate fit assumptions, now each fully reachable after scroll with original bounds/44px/added nonnegative top. First failure report/teardown errors kept separately; final report clean.",
+  "gitHub": "Required normal exact-final-head source jobs/artifacts still unmet after last old PR39billing refusal. No alternate runner, merge or accepted-client update."
+}

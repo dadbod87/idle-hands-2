@@ -1,0 +1,53 @@
+{
+  "classification": "LOCAL_CANDIDATE_COMPLETE_SOURCE_ACCEPTANCE_PENDING_109",
+  "system": {
+    "passed": 403,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 106069.6515
+  },
+  "focusedUnit": {
+    "passed": 17,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 207.654375
+  },
+  "initialFocusedBrowser": {
+    "passed": 4,
+    "durationMs": 9490.087,
+    "scope": "Intermediate fixture; final source covered by full146suite and checked fixture hashes."
+  },
+  "browser": {
+    "passed": 146,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "reportErrors": 0,
+    "durationMs": 1062015.175
+  },
+  "build": true,
+  "design": true,
+  "discovery": {
+    "shards": [
+      74,
+      72
+    ],
+    "disjoint": true,
+    "union": 146,
+    "orderedFamilyOnlyOn2": [
+      "shared-town.spec.ts",
+      "starter-homes.spec.ts",
+      "trail.spec.ts",
+      "z-first-visit.spec.ts"
+    ]
+  },
+  "trackerTasks": 63,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "historicalStudyRawFiles": 36,
+  "protectedPracticeTourAnd54Studies": true,
+  "sourceAccepted": false,
+  "actualPreviewUpdated": false,
+  "weeklyUsageUsedPercent": 59,
+  "weeklyUsageRemainingPercent": 41
+}

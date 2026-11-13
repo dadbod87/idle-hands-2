@@ -1,0 +1,7 @@
+# IH2-097 V2 source cross-check
+
+The corrected interpretation is consistent with the source. Garden blocked rectangles are grid-edge coordinates [4,8,3,3], [8,8,3,3], [12,8,3,3]. With TILE=32 their horizontal ranges are 128–224, 256–352 and 384–480, and vertical range is 256–352 pixels. `ALLOTMENT_BED_FEET` uses each rectangle's horizontal midpoint and bottom edge, giving (176,352), (304,352), (432,352); it does not add a half tile to rectangle edges. Both the footprint layers (bottom-center origin) and crop-stage images (catalog foot origin) use these same feet.
+
+`canStand` adds 0.5 to the actor's relative tile-center position, then tests the foot radius against those unshifted rectangles. `Session.point` likewise adds 0.5 to the actor-relative click coordinate before comparing with unshifted stop doorArea edges. WorldScene converts canvas world coordinates to actor-relative coordinates by subtracting 0.5 tile.
+
+For a garden caption, `gardenLabelHit` expands the text bounds to a minimum 44 screen pixels at the current zoom. A hit calls `Session.approach` for its explicit bed, attendant or exit stop; it does not open a panel directly. `approach` routes to the stop's point, and `takeArrival` only returns the stop while unlocked and within 1.25 tiles; main then activates it. Manual movement or locking cancels the pending route. This source reading supports the corrected V2 interpretation and the native caption/proximity evidence; it is not itself a fresh boundary or physical-device test. No concrete source concern found in this bounded cross-check.

@@ -1,4 +1,44 @@
+109consolidated source acceptance in progress over108verified403/146runtime. Standard free public GitHub checks available; exact-head/main/artifact/actual-preview gates pending. Current game previews remain090until verified refresh. [Plan](evidence/IH2-109/PLAN.md).
+
+108coordinated writer candidate locally complete:403system/146browser0skips/flakes/errors,17focused, native/epoch/migration/dirty-preservation proof and no live registration.208game/202art exact107. Next109normal public CI/source/actual-preview acceptance. [Report](evidence/IH2-108/REPORT.md).
+
+Public source: existing idle-hands-2made public November13at explicit owner request; anonymous200verified. Standard public Ubuntu CI free, paid resources unapproved. No runtime/main/preview change. Current continuation: chore/public-source-policy over unchanged107candidate; next108. See idle-hands-2/handoffs/2026-11-13-public-source.md.
+
+107ordinary café-era commands locally implemented;386system/10focused/build/design and independent domain review pass. Full142browser0skips/flakes/errors, final plan/pinned/diff/preservation pass. Shared unchanged rule bodies with strict live2/3 and candidate3/4contexts; no writer/UI/server registration. Source gate held. [Report](evidence/IH2-107/REPORT.md).
+
+106original serving family/teapot art locally verified:80cells/four rigs,376system/142browser0skips/flakes/errors, TerraV2no sampled visual blocker. All15frozen/source/HTTP/raw files match;208game/202art bytes unchanged, no live registration. Next107ordinary command compatibility; source gate held. [Report](evidence/IH2-106/REPORT.md).
+
+105staged café save protection locally verified:372system/139browser+3final native cases,0skips/flakes/errors; quota/migration/stale/two-window/confirmation protection and exact208game identity. No live wiring or accepted-preview change; normal source gate held. Next106original serving rigs/teapot kit. [Report](evidence/IH2-105/REPORT.md).
+
+104pure café candidate locally verified:359system/136browser,0skips/flakes/errors; strict migration/conservation/reward/cooldown/fixedopening and two-sided provenance verified. No live wiring or accepted-preview change; normal source gate remains held. Next105staged local persistence. [Report](evidence/IH2-104/REPORT.md).
+
+103design-only café authority/persistence contract recorded from actual source and independent review; no runtime/data/schema/API change.102actual348/136code evidence retained. Next104purecandidate outside live entrypoints, normal source gate held and accepted090unchanged. [Contract](idle-hands-2/design/CAFE_AUTHORITY_CONTRACT.md).
+
+102coherent source locally verified348system/136browser, unchanged208game/202art and21historical/rawstudyfiles. Originalcaféinputsreproduceexactly; all prior assertions/timeouts retained. Normal source gate still held, accepted090unchanged.103read-only café authority contract next. [Report](evidence/IH2-102/REPORT.md).
+
+101Bag quantities locally verified:338system/132browser/7focused/native8shapes/TerraV2/frozen208/origin/preservation. Key/ARIAclarifies available versus owned, header gap restored; a measured test-only resize-readiness race is corrected without relaxing crop/target/progress checks. Accepted090unchanged, normal source gate held. Next102coherent source preparation. [Report](evidence/IH2-101/REPORT.md).
+
+100 first Aster serving study locally verified:325system/110browser/native/TerraV2/eight-filefrozen;20cells with exact feet/final idle, zero runtime delta and all accepted data/artifacts preserved. Normal source gate remains held. Next101clarifies Bag available-versus-owned counts from the cold-read menu review. [Report](evidence/IH2-100/REPORT.md).
+
+099independent café feasibility/art/menu study locally329system/110browser/native/TerraV2/frozen13/model/auditverified. No game café/food/state added; all204accepted090client/198art/data/keys/studies and held098reviews preserved. Normal source gate remains held;100first-rig gesture study next. [Report](evidence/IH2-099/REPORT.md).
+
+098locally verified338system/132browser: stable full-word toolbar/scrollable notes and deliberate short200world, frozen208and disclosed fictional-town review49579. All202art and protected090data/clients/API/keys/54studies preserved. Normal source/GitHub/accepted-preview gates held;099independent café feasibility next. [Report](evidence/IH2-098/REPORT.md).
+
+Corrected097V2locally verified338system/129browser/root/Terra/authority/artifact/preservation. Original cropfeet unchanged; earlier half-tile rectangle model rejected, archives retained. Accepted090unchanged.098stablephone toolbar needed before consolidated source/CI/actual release. [Report](evidence/IH2-097/REPORT.md).
+
+IH2-097 actual garden candidate locally verified:338system/129browser, frozen208files/root/Terra, all198priorart and protected data preserved. Normal consolidated CI/source/accepted-preview gates still pending; accepted090unchanged. [Report](evidence/IH2-097/REPORT.md).
+
+IH2-096standalone allotment study locally reviewed:335system/127browser, native20fileV2and12pixel-identical format-cleanup captures/Terra; all204game files/198art and accepted data/keys/54studies unchanged. Source CI/merge gates remain held.097actual garden composition/framing queued, without a gameplay-rule change. [Report](evidence/IH2-096/REPORT.md).
+
+IH2-095V2focus/close-only repair locally verified332system/125browser/root/Terra/recovery/artifact/preservation; required GitHub release gates held. Accepted090previews/main stay unchanged.096standalone allotment art/framing study queued. [Report](evidence/IH2-095/REPORT.md).
+
+IH2-094housing purchase facts locally verified:332system/119browser/root/Terra/origin/artifact/preservation. Known inherited delayed-reply focusP2feeds095before release. GitHub billing still holds required checks; accepted main/4175/localhost4176remain090. [Report](evidence/IH2-094/REPORT.md).
+
+IH2-093combined local review passes330system/117browser, root/Terra/origin/artifact/preservation. Release held by GitHub account billing before required checks. Actual accepted clients/API remain090. [Report](evidence/IH2-093/REPORT.md). Current handoff authoritative.
+
 # Idle Hands 2 — current state
+
+IH2-090verified PR38/mergef0a294a, exact05c468c CI43353707882all4SUCCESS:322system/zero skips,108local/108CIbrowser. Three original residential families, recognizable workrooms, authored windows and quiet occupied smoke/flowers; all190priorart unchanged. Shared route-grid repair passes552doorpairs/48fractional endpoints with unchanged collision/speed. Actual204file4175/localhost4176and matched frozen090API5verified, signed Tour/data/key/checksums and protected practice/54studies preserved. Next091clear pine-workshop actions. [Closeout](evidence/IH2-090/source-closeout.json). Older entries historical.
 
 IH2-090candidate adds original brick/timber exterior pairs, bounded occupied chimney life and low public flowers, preserving all190priorart files. Repairs inherited fractional-boundary route-planner mismatch; all552door pairs/48fractional endpoint walks pass with unchanged collision/speed.322domain/zero skips and native/render2cases pass; TerraV1sampled204filebuild finds no blocker. Full108/exactheadCI/matched client-server restart/artifact/preservation gates pending; actual4175/4176still088. [Report](evidence/IH2-090/REPORT.md).
 

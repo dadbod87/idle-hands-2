@@ -1,0 +1,164 @@
+{
+  "classification": "Actual frozen097V2local game at320×640, fresh browser and native Journal route/keyboard movement. Cosmetic day/clear only; no stock/position/clock/API injection. Observed inherited responsive footer reflow, not a physics or server change.",
+  "before": {
+    "world": {
+      "x": 2,
+      "y": 74,
+      "width": 316,
+      "height": 453.8125
+    },
+    "controls": [
+      {
+        "id": "places",
+        "text": "⌖ Places",
+        "rect": {
+          "x": 12,
+          "y": 574,
+          "width": 70.171875,
+          "height": 56
+        }
+      },
+      {
+        "id": "bag",
+        "text": "Bag",
+        "rect": {
+          "x": 87.171875,
+          "y": 574,
+          "width": 53.1875,
+          "height": 56
+        }
+      },
+      {
+        "id": "journal",
+        "text": "Journal",
+        "rect": {
+          "x": 145.359375,
+          "y": 574,
+          "width": 80.421875,
+          "height": 56
+        }
+      },
+      {
+        "id": "interact",
+        "text": "Inspect",
+        "rect": {
+          "x": 230.78125,
+          "y": 574,
+          "width": 77.21875,
+          "height": 56
+        }
+      }
+    ],
+    "position": {
+      "version": 1,
+      "room": "garden",
+      "position": {
+        "x": 9,
+        "y": 14
+      },
+      "locked": false,
+      "walking": false,
+      "nearby": "garden-beds"
+    },
+    "camera": {
+      "zoom": 0.8404255319148937,
+      "scrollX": 146,
+      "scrollY": 79.10403481012656,
+      "worldView": {
+        "x": 116,
+        "y": 36.020569620253184,
+        "width": 376,
+        "height": 539.9794303797468
+      },
+      "matrix": [
+        0.8404255509376526,
+        0,
+        0,
+        0.8404255509376526,
+        -97.48936462402344,
+        -30.272611618041992
+      ]
+    }
+  },
+  "after": {
+    "world": {
+      "x": 2,
+      "y": 74,
+      "width": 316,
+      "height": 400.8125
+    },
+    "controls": [
+      {
+        "id": "places",
+        "text": "⌖ Places",
+        "rect": {
+          "x": 12,
+          "y": 521,
+          "width": 97.578125,
+          "height": 56
+        }
+      },
+      {
+        "id": "bag",
+        "text": "Bag",
+        "rect": {
+          "x": 114.578125,
+          "y": 521,
+          "width": 80.59375,
+          "height": 56
+        }
+      },
+      {
+        "id": "journal",
+        "text": "Journal",
+        "rect": {
+          "x": 200.171875,
+          "y": 521,
+          "width": 107.828125,
+          "height": 56
+        }
+      },
+      {
+        "id": "interact",
+        "text": "Nothing nearby",
+        "rect": {
+          "x": 12,
+          "y": 582,
+          "width": 296,
+          "height": 48
+        }
+      }
+    ],
+    "position": {
+      "version": 1,
+      "room": "garden",
+      "position": {
+        "x": 10.75,
+        "y": 14
+      },
+      "locked": false,
+      "walking": false,
+      "nearby": null
+    },
+    "camera": {
+      "zoom": 0.8404255319148937,
+      "scrollX": 202,
+      "scrollY": 137.13568037974682,
+      "worldView": {
+        "x": 172,
+        "y": 99.08386075949366,
+        "width": 376,
+        "height": 476.9161392405063
+      },
+      "matrix": [
+        0.8404255509376526,
+        0,
+        0,
+        0.8404255509376526,
+        -144.55319213867188,
+        -83.27261352539062
+      ]
+    }
+  },
+  "worldHeightChange": -53
+}

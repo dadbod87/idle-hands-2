@@ -9,7 +9,7 @@
 .garden-panel .garden-bed-time-short{display:none}
 .garden-panel [aria-pressed=true]{outline:3px solid #48685f;outline-offset:-4px}
 .garden-panel fieldset{border:1px solid #8d9a7c;padding:.5rem;margin:.6rem 0;min-width:0}
-.garden-panel .garden-seeds{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.garden-panel .garden-seeds{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,6.5rem),1fr));gap:.5rem}
 .garden-panel .garden-seed{display:grid;grid-template-columns:1.3rem minmax(0,1fr);gap:.2rem .4rem;min-height:4rem;min-width:0;cursor:pointer;align-items:start;padding:.3rem;background:#eee7d1;border-radius:4px}
 .garden-panel .garden-seed input{grid-row:1/3;width:1.3rem;height:1.3rem;margin:0;align-self:center}
 .garden-panel .garden-seed img{grid-column:2;grid-row:2;justify-self:end;width:16px;height:16px}
@@ -55,3 +55,10 @@
 .garden-panel [data-garden-action=accept-errand]{height:4em;overflow:auto}
 .garden-panel .garden-pieces{padding-left:1.1rem;margin:.6rem 0}
 .garden-panel .garden-pieces li>span{display:block;height:3em;overflow:auto;line-height:1.3}
+.garden-plant-facts{border:1px solid #8d9a7c;border-radius:5px;background:#faf4e5;padding:.4rem;margin:.4rem 0;min-width:0}
+.garden-panel .garden-plant-facts h3{font-size:.95rem;line-height:1.35;margin:0 0 .25rem;overflow-wrap:normal}
+.garden-plant-facts dl{display:grid;gap:.25rem;margin:0;font-size:.88rem;line-height:1.4;font-variant-numeric:tabular-nums}
+.garden-plant-facts dl>div{display:flex;flex-wrap:wrap;gap:.15rem .6rem;min-width:0}
+.garden-plant-facts dt{flex:0 0 4.5ch}
+.garden-plant-facts dd{flex:1 1 9rem}
+.garden-plant-facts dt{font-weight:bold}.garden-plant-facts dd{margin:0;min-width:0;overflow-wrap:normal}

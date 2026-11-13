@@ -1,0 +1,13 @@
+{
+  "candidate": "738e3c6",
+  "classification": "Local verified housing candidate, unaccepted",
+  "domain": 332,
+  "browser": 119,
+  "githubChecksRan": false,
+  "merged": false,
+  "acceptedPreviewChanged": false,
+  "releaseBlockers": [
+    "GitHub account billing prevents required checks",
+    "Inherited TownUI focus P2 queued095 before combined release"
+  ]
+}

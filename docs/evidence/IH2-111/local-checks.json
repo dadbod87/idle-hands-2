@@ -1,0 +1,71 @@
+{
+  "system": {
+    "tests": 431,
+    "passed": 431,
+    "failed": 0,
+    "skipped": 0
+  },
+  "focusedCafeBrowser": {
+    "tests": 7,
+    "passed": 7
+  },
+  "build": true,
+  "design": true,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "diffCheck": true,
+  "clientFiles": 214,
+  "artFiles": 208,
+  "browser": {
+    "coverage": 153,
+    "fullRun": {
+      "expected": 149,
+      "unexpected": 4,
+      "skipped": 0,
+      "flaky": 0,
+      "reportErrors": 0
+    },
+    "correctedCompanionRun": {
+      "passed": 12,
+      "failed": 1,
+      "reason": "Unsupported-save warning found and fixed afterward"
+    },
+    "finalFocusedRun": {
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "reason": "Exact V4 caf\u00e97 + unsupported migration1 + workshop/lifecycle7"
+    },
+    "interpretation": "All153cases exercised; corrected cases pass. Required exact-final-head CI must independently pass the entire153suite before merge."
+  },
+  "terra": "Comprehensive V3 desktop360/320/short200 + motion; final V4 desktop/320counter/reward/Bag and unsupported-save warning. Synthetic fixtures, no API interception.",
+  "sourceUpdate": "Exact old tuple/queued work migration and actual accepted cached109compiled writer refuses root3raw; source-update.json",
+  "migrationCopies": "Both actual protected synthetic towns copied read-only into55434; new seventh migration keeps all13old tables/allfields/6checksums",
+  "acceptedPreview": "Unchanged pending source/main gates",
+  "usage": {
+    "weeklyUsedPercent": 64,
+    "remainingPercent": 36,
+    "resetCreditsUnused": 3
+  },
+  "limits": "Synthetic fixtures/emulated Chrome, no physical-device/cloud/public launch or real-player test.",
+  "restart": "Actual dedicated current-cafe and repository decorated-home PostgreSQL restart drills pass; protected cluster never restarted",
+  "requiredFinalCI": {
+    "candidate": "12e97369dd89bfcbb16b1f8a59c0d1dc0dda4b28",
+    "pullRequestRun": 43522020468,
+    "merge": "056c3793a76147a999851912fd313af95e9e9cb4",
+    "mainRun": 43523926478,
+    "bothAll4JobsSuccess": true,
+    "systemEach": 431,
+    "browserEach": 153,
+    "disjointShards": [
+      77,
+      76
+    ],
+    "zeroFailuresSkipsFlakesReportErrors": true
+  },
+  "finalTouchLocal": {
+    "systemPassed": 431,
+    "cafeBrowserPassed": 7,
+    "buildDesignPlanPinnedDiff": true
+  }
+}

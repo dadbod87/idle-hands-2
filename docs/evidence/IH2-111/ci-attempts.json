@@ -1,0 +1,22 @@
+{
+  "attempts": [
+    {
+      "run": 43515772964,
+      "head": "19128357c6281282c2fd3141e07d110d0aab844d",
+      "accepted": false,
+      "domain": "success431",
+      "browser1": "Failed unchanged weather test immediately after resize: CSS period161.362 vs newly assigned camera period163.6923076923, before post-render DOM alignment.4passed/72notrun; no merge.",
+      "browser2": "Cancelled by normal workflow concurrency after replacement push; prior head unaccepted.",
+      "correction": "Wait two animation frames after the expected camera zoom before exact existing rain period/phase/matrix/coverage checks. No tolerance, case, wait or device coverage removed. Targeted native test passes; game214files unchanged.",
+      "rerunReason": "Diagnosed test sampling race fixed on a new final head; all required jobs rerun for that head.",
+      "gate": "Failure, no merge"
+    }
+  ],
+  "acceptedFinal": {
+    "candidate": "12e97369dd89bfcbb16b1f8a59c0d1dc0dda4b28",
+    "pullRequestRun": 43522020468,
+    "merge": "056c3793a76147a999851912fd313af95e9e9cb4",
+    "mainRun": 43523926478,
+    "all4JobsEach": true
+  }
+}

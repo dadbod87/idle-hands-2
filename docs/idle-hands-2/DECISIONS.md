@@ -273,3 +273,14 @@ Owner likes the neighborhood and requests distinct exterior sizes, varied yard d
 ## November13 —110source acceptance and next coherent slice
 
 PR41/main98d4d02 passes exact-head/main418system/146browser/all4jobs plus raw artifacts and preserved protected/client/source proof. Close110candidate task. Existing208game/all active server/art/migrations stay exact109, so no unnecessary accepted-service restart.111integrates a complete playable café, not removal of test guards or partial schema.112housing design remains discoverable and unimplemented. Documentation-only closeout/backups receive66task/10tracker/40pinned/whitespace checks without an unnecessary hosted full rerun; exact source CI claims remain candidate/main only.
+
+## 2026-11-13 —111coherent café registration
+
+Register root3/garden4/protocol6 with the same native key/lifetime lease and additive seventh migration, current wrappers/store and every teapot home/rental allocation together. Legacy pure/store modules remain frozen compatibility/provenance inputs; current HTTP imports live-store only. Use actual trusted live counter feet30,22. Public café projection exposes credits/phase/fixed deadline only. Confirmed-only bounded original serving/reward art, concise native menus and focused visible Bag reward take priority over a new café interior. Local/native/system/Terra proof is separate from pending full-browser/exact-head/main/actual-preview acceptance. No public/cloud game release. Task112housing follows this coherent slice.
+
+
+## November13 —111source and actual preview acceptance
+
+PR43/main056c3793 accepted after PR43522020468 and main43523926478, all4jobs each431system/153browser(77+76), zero skips/flakes/errors and exact214client/raw artifacts. Actual local4175/localhost4176/API6 refreshed with the same signed Tour, old13tables/allfields/keys/sixchecksums preserved; additive seventh migration only. Playable café menus, safe saves, confirmed rewards and conserved teapot allocation accepted. No public/cloud game launch. Next112housing variety. [Report](evidence/IH2-111/REPORT.md).
+
+Close111;112housing design is next. Keep café interior, real identity/cloud launch and spending outside this task. Docs-only closeout uses local plan/pinned/diff checks; runtime CI claims apply to candidate/main.

@@ -1,0 +1,143 @@
+{
+  "date": "2026-11-13",
+  "classification": "Source and matched local preview accepted; no public/cloud game launch.",
+  "pr": 43,
+  "integrationPR": 42,
+  "initialMerge": "50fbcbbd37b418881cf48bda7901339df888929b",
+  "candidate": "12e97369dd89bfcbb16b1f8a59c0d1dc0dda4b28",
+  "merge": "056c3793a76147a999851912fd313af95e9e9cb4",
+  "sameTree": true,
+  "pullRequestCI": {
+    "run": 43522020468,
+    "sha": "12e97369dd89bfcbb16b1f8a59c0d1dc0dda4b28",
+    "all4JobsSuccess": true,
+    "system": 431,
+    "browser": 153,
+    "disjointShards": [
+      77,
+      76
+    ],
+    "zeroFailuresSkippedFlakyReportErrors": true,
+    "orderedFixtureFamily": {
+      "shared-town.spec.ts": [
+        2
+      ],
+      "starter-homes.spec.ts": [
+        2
+      ],
+      "trail.spec.ts": [
+        2
+      ],
+      "z-first-visit.spec.ts": [
+        2
+      ]
+    },
+    "all214ClientBytesEqualLocalAndReviewedV5": true,
+    "candidateDumpRestoreRawArtifactVerified": true,
+    "jobMinutesRoundedEstimate": 29,
+    "publicRepository": true,
+    "runnerLabels": [
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ]
+    ],
+    "noPaidResourceConfigured": true,
+    "referenceScope": "Final exact local/reviewed/CI"
+  },
+  "mainCI": {
+    "run": 43523926478,
+    "sha": "056c3793a76147a999851912fd313af95e9e9cb4",
+    "all4JobsSuccess": true,
+    "system": 431,
+    "browser": 153,
+    "disjointShards": [
+      77,
+      76
+    ],
+    "zeroFailuresSkippedFlakyReportErrors": true,
+    "orderedFixtureFamily": {
+      "shared-town.spec.ts": [
+        2
+      ],
+      "starter-homes.spec.ts": [
+        2
+      ],
+      "trail.spec.ts": [
+        2
+      ],
+      "z-first-visit.spec.ts": [
+        2
+      ]
+    },
+    "all214ClientBytesEqualLocalAndReviewedV5": true,
+    "candidateDumpRestoreRawArtifactVerified": true,
+    "jobMinutesRoundedEstimate": 30,
+    "publicRepository": true,
+    "runnerLabels": [
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ]
+    ],
+    "noPaidResourceConfigured": true,
+    "referenceScope": "Final exact local/reviewed/CI"
+  },
+  "actualPreview": {
+    "classification": "Actual matched local214client/API6 source update; existing fictional Tour and primary practice only.",
+    "oldPayload": {
+      "files": 208,
+      "htmlSha256": "c4460808810215056660fdbf41df92b0cbdee52638a1be4bcd7ffba510975681"
+    },
+    "nextPayload": {
+      "files": 214,
+      "htmlSha256": "ee43a8c8deefd8ce424f78c29532c2f3888741036393a7f38eed2379e719276e"
+    },
+    "signedSessionUnchanged": true,
+    "serverInstanceChanged": true,
+    "old13TablesAllColumnsAllRowsPreserved": true,
+    "old6ChecksumsExact": true,
+    "seventhForwardMigrationAndNewCafeTableOnly": true,
+    "keysExactMode0600": true,
+    "holdingsDecorationsPlotsAndQueuedDeadlinesPreserved": true,
+    "root2To3Garden3To4": true,
+    "noGrantsResetsOrInterception": true,
+    "errors": [],
+    "limits": "Chrome emulation, not real user/device/cloud/production acceptance. Full synthetic baseline kept outside repository; no keys or cookie serialized."
+  },
+  "finalCompiledReference": "Terra V5; all214local/PR/main/4175/4176responses verified",
+  "localChecks": "local-checks.json",
+  "currentCafeRestart": "current-cafe-restart.json",
+  "sourceUpdate": "source-update.json and actual-update.json",
+  "preservation": "All old13tables/columns/rows and six checksums, both existing signing keys/mode0600 preserved; additive seventh migration/new cafe table only. Protected PostgreSQL never restarted/reset.",
+  "studies": "All54accepted HTTP study responses unchanged; original099/100/106held/source/frozen files untouched.",
+  "terra": "V3four layouts/motion; V4desktop/320reward/Bag plus unsupported-save warning; final V5four layouts,44pxdisclosure/free keyboard/tap and confirmed reward/Bag. Chrome emulation.",
+  "next": "IH2-112 distinct house sizes, personal yard choices and meaningful priced layout features; design first, no invented wallet/prices.",
+  "limits": [
+    "Synthetic conserved stock/elapsed time/position and deliberately lost committed response for reward/retry tests; no real progress grants.",
+    "Chrome desktop/touch emulation, not physical phone/Safari/screen-reader/fun certification.",
+    "Four-hour timing uses declared isolated clocks, not an actual wall-time wait.",
+    "No furnished cafe interior, real authentication, public/cloud launch, billing configuration or original-game changes.",
+    "Documentation-only closeout gets local tracker/pinned/diff checks; full CI claims apply to exact candidate/main source, not later bookkeeping commits."
+  ],
+  "artifacts": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13",
+  "actualNativeCafe": "actual-native-cafe.json",
+  "actualOldProtocol": "actual-old-protocol-refusal.json",
+  "finalTouchFix": "19pxpresentation disclosure corrected to44pxminimum/focus; all four layouts reviewed before final acceptance."
+}

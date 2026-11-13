@@ -1,8 +1,34 @@
-# Canonical bookkeeping — continue from accepted café source
+# Canonical bookkeeping pointer — do not use this old runtime
 
-Full-code closeout **4407a27820a787d301c272dbb18b45a83f909dc6**, branch **chore/cafe-transaction-closeout-2026-11-13**, checkout `../idle-hands-2-cafe-transaction`; remote backup verified. Runtime equals accepted main **98d4d02e52c77b48312d95febf0e06d5415144c3**, PR41. PR43498138268/main43500750359each418system/146browser/all4jobs/zero errors, raw artifacts verified. Later documentation-only closeout locally checked; no extra exact-headCI claim. Next111ready;112house sizes/yards/layout choices queued.
+Accepted playable café source main056c3793a76147a999851912fd313af95e9e9cb4, full-code closeout **7e8a0b246a58810ef69e5df99f4873a5abfc6ec7**, branch `chore/playable-cafe-closeout-2026-11-13`, checkout `../idle-hands-2-playable-cafe`. Fetch/inspect that source before112housing work. This canonical checkout intentionally retains090runtime and its six numerical model reports; only documentation/instructions are synchronized. Existing private keys stay here for the frozen current APIservices; never copy, regenerate or expose them.
 
-This canonical checkout remains old090runtime with documentation-only synchronization; six numerical reports intentionally stay aligned with that old runtime. Do not implement111from canonical code. Actual4175/localhost4176API5services load their preserved109frozen source/artifact, all active bytes exactly match110; keys/data/PIDs untouched. Candidate cluster55434is separate, guarded and not a live game service. See110source-closeout.json and current handoff. Latest usage61%used/39%remaining; three resetcredits untouched.
+Actual4175/localhost4176now run frozen final214file client/API6, verified same signed Tour/all old13table fields/keys/sixchecksums with additive seventh migration only. PR42+43and final main checks passed; current task111done/112ready. See the full-code report/handoff for exact evidence and limitations. This bookkeeping commit does not claim runtime CI on old090code.
+
+---
+
+#111accepted — playable café; next112housing variety
+
+Main **056c3793a76147a999851912fd313af95e9e9cb4**, PR42+43, candidate **12e97369dd89bfcbb16b1f8a59c0d1dc0dda4b28**, same tree. PR43522020468 and main43523926478 each passed all four required jobs:431system/153browser, disjoint77+76, zero failures/skips/flakes/reporterrors. Raw artifacts and all214local/CI/actual responses verified. See [111report](../evidence/IH2-111/REPORT.md), source-closeout.json and [handoff](handoffs/2026-11-13-playable-cafe.md). Historical pending notes below are superseded.
+
+FULL CODE continuation: `../idle-hands-2-playable-cafe`, branch `chore/playable-cafe-closeout-2026-11-13`, resolve latest pushed head. This is accepted main runtime plus docs-only closeout. Canonical `idle-hands-2` remains old090runtime/bookkeeping only: follow its exact full-code pointer; do not implement there.
+
+Actual preview http://127.0.0.1:4175/ ; existing fictional Tour http://localhost:4176/?town=1 . Both214file finalCIclients and matched API6 now run the frozen current source in `/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/ci-final/runtime-source`, with CI main client in `/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/main-ci/sequel-client-build`. Cwd remains canonical for the existing private keys. Native signed Tour survived update. All old13tables/allfields/6checksums/key0600 preserved; additive seventh migration and one private café table only. Never reset/reseed/recreate keys or restart protected PostgreSQL. Rollback client/source is frozen109; schema rollback must not drop the forward table or lose root3progress.
+
+Café counter square30,22: private3tastings/one teapot, finite12credit town goal/fixed4hopening, accurate cooldown, review/cancel/retry, native save errors, confirmed-only original art, Bag and all rental/home allocations. Root3/garden4/protocol6 and common save key/lease are coherent. Current HTTP uses live-store/live rule boundaries; old reducers/store remain compatibility references. No furnished café interior or cloud/public launch. All synthetic/elapsed/lost-response/emulation limits are in111report. Terra V3four-layout/motion, V4warning and final V5four-layout/touch/reward/Bag reviews passed; root native physical teapot passed.
+
+Next **IH2-112**, ready after111: read HOUSE_VARIETY_AND_YARDS.md and current neighborhood/house allocation art first. Design distinct exterior sizes, personal yard options and meaningful purchasable layout features; preserve address/creative work/visitor paths, model slow progression before inventing wallet/prices or real-money purchases. Public standard Ubuntu CI works; follow ACTIONS_USAGE_POLICY, local-first batching and exact-head/main gates. No paid setup or reset credits used.
+
+---
+
+#111phone touch-target follow-up — fix/cafe-presentation-target
+
+Initial integration PR42/main50fbcbbd passed all exact-head/main431system/153browser checks and V4artifacts; actual4175/4176remain unchanged pending final UI acceptance. Final native QA found optional presentation disclosure19px; V5adds44px target/focus without state/economy/server/art changes. Seven focused café cases and Terra V5desktop/360/320/short200disclosure/reward/Bag review pass. Final follow-up PR/main/actual-preview gates still required. Read111report/touch-target-followup. Do not use old canonical090runtime. After acceptance resolve chore/playable-cafe-closeout-2026-11-13.
+
+#111current continuation — feat/playable-cafe
+
+After acceptance, the exact verification/preview closeout is backed up on `chore/playable-cafe-closeout-2026-11-13`. Fetch and verify that branch before assuming this pre-acceptance checkpoint is current. Its existence/status is not implied until the recorded gates actually pass.
+
+Active full-code checkout: `work/idle-hands-2-playable-cafe`, based on110closeout4407a278. Actual café registered coherently; current431system/build and Terra V3/local source-update checks pass. Full153browser and normal public exact-head/main/artifact/actual-preview acceptance are in progress, not yet accepted. Existing4175/4176remain110/109runtime; no protected data/key changes. Read [111report](../evidence/IH2-111/REPORT.md). Next112housing only after111gates.
 
 #110accepted — next111playable café integration
 

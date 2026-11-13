@@ -1,0 +1,8 @@
+{
+  "fixtureOnly": true,
+  "isolatedBrowserContexts": true,
+  "oldPopulatedSaveMigrated": true,
+  "queuedDeadlineInventoryReceiptsPreserved": true,
+  "cachedActualAcceptedCompiled109WriterPreservedExactCurrent3Raw": true,
+  "limits": "Separate browser-local synthetic saves. Existing practice towns/keys/real accounts never changed."
+}

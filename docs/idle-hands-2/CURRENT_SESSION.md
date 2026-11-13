@@ -1,3 +1,7 @@
+# Actions usage rules saved — read before hosted validation
+
+Owner requested durable usage rules on November13. Read ACTIONS_USAGE_POLICY.md at every startup. Current continuation branch is docs/actions-usage-guardrails in idle-hands-2-actions-policy, inheriting103 source82b7272 and coherent102 runtime. This branch is backed up without opening/updating a PR or dispatching Actions. Continue104 from this branch after reconciling current remote/handoff; canonical runtime remains accepted090. Billing is still awaiting owner setup; no paid budget or hosted-run recovery is confirmed.
+
 #7am continuation point —103design recorded,104queued
 
 Current isolated checkout: idle-hands-2-cafe-authority, branch docs/cafe-authority-contract, based on coherent102source2d3fa8f.103changes documentation only. Its final backup commit is recorded in canonical continuation after push. Read design/CAFE_AUTHORITY_CONTRACT.md and103evidence. No runtime/schema/API/data/services changed.

@@ -6,6 +6,10 @@ Read docs/CURRENT_STATE.md, docs/CHANGELOG.md, docs/RELEASE_CHECKLIST.md, then d
 
 IH2-010 engine pilot is complete. Read the current handoff/tracker for the active task and actual branch; do not switch to an older pilot checkpoint before inspecting the current source. Follow .agents/skills/phaser-2d-game, game-ui-frontend and game-playtest; pinned upstream files must remain intact. No current-game art/cast/economy restrictions silently migrate into this independent prototype. Read docs/ART_DIRECTION.md before art changes. docs/idle-hands-2/DEEP_SYSTEMS_PLAN.md records candidate resource/growing/equipment/home/town/action-animation depth; keep candidate catalogs distinct from implemented systems. The expanded owner directions, candidate catalog and art/pacing contracts are indexed in docs/idle-hands-2/design/README.md; read it before052 or later expansion. It does not mark combat/chat/regions implemented. Cosmetic town time/weather must never settle jobs or alter server economy.
 
+## Actions usage — mandatory startup
+
+Before any PR update, hosted rerun/dispatch or merge, read [ACTIONS_USAGE_POLICY](docs/idle-hands-2/ACTIONS_USAGE_POLICY.md). Work locally first, batch hosted validation, inspect existing runs, preserve exact-final-head gates, and respect the recorded billing hold. A private backup push is not source acceptance. Never configure spending or infer a paid budget from development authorization.
+
 ## Product requirements
 - Slow long-term progression, humor, deep systems and teamwork. Rapid onboarding is not rapid completion; avoid infinite click-to-money compounding.
 - Players should acquire personal house plots, upgrade homes and decorate them over time. Plot rights and creative work persist; weekly competition must not erase them.

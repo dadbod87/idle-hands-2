@@ -1,13 +1,15 @@
-# Canonical:102 backed up,103 design next
+# Canonical continuation:103 backed up;104 queued
 
-Coherent source `2d3fa8f9b84ca1de8dc4585a97594ed415fe5cd1` is pushed to feat/coherent-source-review. Actual348system/136browser/69+67discovery/raw21/208identity/preservation pass. This canonical branch copies documentation/evidence only; runtime remains accepted090. Normal exact-head GitHub/source/rawartifact gate is held.103is the final short read-only café persistence contract before15:00UTC.
+Final103 documentation source is `82b7272dc63c3a603ff47de522865266bc9afe8b` on `docs/cafe-authority-contract` in the isolated idle-hands-2-cafe-authority checkout, inheriting coherent102 code `2d3fa8f9b84ca1de8dc4585a97594ed415fe5cd1`. This canonical branch copies documentation only; its runtime remains accepted090. Future104 must begin from the103 source branch, not this canonical old runtime.
 
-#102 coherent source locally verified;103 next
+At the November13 7am stop, the owner reports the included 2,000 Actions minutes are exhausted; billing is not resolved and no spending or workflow change is authorized. The current response audits usage and explains pricing. No104 implementation, main merge, accepted-preview replacement, cloud provisioning or billing change. All code and evidence are backed up.
 
-Current isolated checkout: idle-hands-2-coherent, branch feat/coherent-source-review, based on held101f7a0c0a. Final102backup commit is recorded in canonical continuation after push. Full348system/136browser pass; zero PostgreSQL skips or browser skips/flakes/unexpected/errors. Discovery69+67is disjoint and keeps the ordered family on2. Strict build/design/plan/pinned/whitespace and raw-artifact identity pass.
+#7am continuation point —103design recorded,104queued
 
-All208compiled game files match101V2byte-for-byte;202art and original099thirteen/100eight study files remain exact. Direct hashes corrected an assumption: World and all original café inputs never changed. Original modules/checks are retained; the integration verifier runs in the existing provenance case. Only raw café artifact-copy plumbing is added to its browser file; every old assertion/timeout remains.
+Current isolated checkout: idle-hands-2-cafe-authority, branch docs/cafe-authority-contract, based on coherent102source2d3fa8f.103changes documentation only. Its final backup commit is recorded in canonical continuation after push. Read design/CAFE_AUTHORITY_CONTRACT.md and103evidence. No runtime/schema/API/data/services changed.
 
-Actual local review49600and fictional Lane town49602/API49604are unchanged101V2artifacts; their208bodies per origin match this source build. Café49586and Aster gesture49590remain separate studies. Accepted0904175/API4186andTour4176/API4188/data/keys/checksums/54studies remain intact. No main merge or public release.
+Actual102code checks:348system/136browser, zero skips/flakes/unexpected/reporterrors, disjoint69+67orderedfamily, exact208client/202art and21historical/rawstudyfiles.103reuses those code results explicitly; its own checks are documentation/design/plan/pinned/whitespace/source-scope. Do not call it a new103runtime test run.
 
-Normal exact-final-head GitHub/rawartifact/source gates remain unmet after oldPR39billingrefusal; no owner resolution. No redundant PR/run, runner/billing bypass or accepted-preview replacement. Next103is a short read-only café persistence/authority contract from actual code/domain review. No new runtime section before the15:00UTC(7amNovember13Pacific)stop. Last52%weeklyused/48%remaining,3resetcreditsunused.
+Review links remain local and unaccepted: bag-review.localhost:49600; fictional Lane townbag-town.localhost:49602/?town=1(API49604); café study49586; Aster gesture49590. Three other serving rigs unfinished. Accepted090mainf0a294aand4175/API4186/Tour4176/API4188/data/keys/checksums/54studies remain unchanged.
+
+Next104is a strict pure café ledger/migration candidate outside live entrypoints. Keep live root/writer/protocol/PROP_IDS/server/UI unchanged; later staged local save/SQL/UUID/placement/room/animation gates are explicit in103. No new implementation begins before the7amstop. Source acceptance remains held after priorPR39billingrefusal; no owner resolution or redundant PR/run/runner/billing bypass/main merge/accepted-preview/public update. Last52%weeklyused/48%remaining,3resetcreditsunused; stop at15:00UTC November13.

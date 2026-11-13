@@ -212,3 +212,6 @@ Owner finds combined Bag & journal cluttered and wants an eventual little RPG/MM
 
 
 2026-11-13 —101repurposes Bag intro into contextual available/carried/kept count explanation above slots, with precise accessible names and unchanged ledgers. Keep12pxheading separation after removing intro from that location. A measured inherited resize test race on098and101requires waiting for text mode and camera/canvas/DOM viewport agreement; never relax crop/target/collision/progress bounds or inflate timeouts to hide it. Source102must retain all UI and independent study checks while preserving dated artifacts and normal release gates.
+
+
+2026-11-13 —102direct hashes corrected the initial World-fingerprint hypothesis: original099inputs/art/checks reproduce exactly; keep and package them with100rather than duplicate output.103design chooses a same-root local Café projection and narrow staged café storage commit; existing other-command unsaved-practice behavior is unchanged. Both-goals-complete means personal3+townfunded12even during opening. Shared debit/reward/credit/UUID must be atomic, with consistent locks, fixed deadline and exact migration/cached-writer proofs. Proposed versions3/4/6remain design only. Next104purecandidate stays outside live entrypoints until later coherent integration.

@@ -1,0 +1,28 @@
+{
+  "classification": "Actual finalCI196file persistent localhost fictional tour;25historically earned homes/26fictional profiles,3selectable. Same browser/cookie across realAPIprocess restart. Returned computed clocks may advance; every raw persisted field is hashed and compared. No intercepted data, clock/stock/position injection during observer.",
+  "all196ResponsesEqualCI": true,
+  "all13TablesAllColumnsRowsPreserved": true,
+  "privateKeyPreserved": true,
+  "privateKeyMode": "0600",
+  "sixChecksumsPreserved": true,
+  "serverInstanceChanged": true,
+  "signedSessionUnchanged": true,
+  "holdingsPlotsPlacementJobsAndDoorPositionPreserved": true,
+  "probeMethod": "Native actual room and viewport resize, bounded mixed normal and10Hzidle frame samples; not an activeFPS/device/WAN benchmark.",
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "expectedAnonymousResponses": [
+    {
+      "path": "/api/town/snapshot",
+      "status": 401
+    },
+    {
+      "path": "/api/town/snapshot",
+      "status": 401
+    }
+  ],
+  "limits": "Chrome emulation; historical population and native assertions are separate from fresh progression and protected practice. No physical-phone/Safari/cloudHA/fullaccessibility/fun certification."
+}

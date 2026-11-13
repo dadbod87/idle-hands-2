@@ -1,3 +1,11 @@
+# IH2-088 verified — addressed homes and streets
+
+PR37 merged aa4db704a81efb9dc17180995eb2bb449030080e from exact69d71b6a00e1a68e057eedc00cc38e5f00fc2040; matching tree2d63abd580abbf7f6c29380ac591b01e232ce6ee. CI43346520501 all four SUCCESS:317system/zero skips88.538seconds and disjoint53+53browser8.6/11.7minutes, zero skips/flakes/unexpected cases. Local317/zero skips54.067seconds, full106browser13.9minutes, build/design/plan10/pinned40/diff pass. [Structured closeout](source-closeout.json). Prior candidate notes below are historical.
+
+Actual196file CIclient and matched frozen protocol5server now serve4175. Native ordinary local desktop/phone gather/real5secondcraft/explicitclaim/Bag/reload and anonymous chooser pass. All13protected table columns/rows, one fictional resident/zero plots, existing key/sixchecksums and54study responses unchanged across deliberateAPIrestart. Old089client/frozen081server/privatebackup retained. Public fictional roster remains accessible; cached4snapshot/events426, anonymous5snapshot/events401. No protected identity selected/grant/reset/migration.
+
+Separate persistent localhost4176tour has25fictional historically earned homes/26profiles and three selectable residents. Exact196responsebytes, three native cases1.2minutes and actualAPIrestart preserve same signed cookie/all13rawtable fields/key0600/sixchecksums/holdings/plots/door position. No interception during native flows. Terra final actual desktop/phone/short neighborhood navigation finds no sampled P1/P2 blocker; root reviewed Registry CIimages, not independently final-reviewed by Terra. Twelve actual4175captures plus tour/native/restart/CI images and rawreports retained in sibling artifacts. Chrome emulation is not physical-device/Safari/full accessibility/cloudHA/fun certification.090art/life next.
+
 # IH2-088 candidate — individual addressed homes
 
 The accepted087blueprint is now a working source candidate: a64×64residential room,24stable plot-ID addresses/four streets per block, visible occupied/future sites and a separate Housing Registry at the old square entrance. Plot25usesblock2without displacing existing owners. Eight original trees have matching trunk collisions; shared continuous pathfinding reaches all24fronts in under20simulation seconds at the unchanged speed. Source/runtime acceptance and actual preview update remain pending.

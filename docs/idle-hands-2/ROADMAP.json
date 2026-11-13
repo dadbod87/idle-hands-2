@@ -1060,7 +1060,7 @@
     {
       "id": "IH2-088",
       "title": "Playable addressed neighborhood and individual home doors",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-087",
         "IH2-089"
@@ -1077,7 +1077,8 @@
       "evidence": [
         "docs/idle-hands-2/design/FIRST_CITY_LAYOUT.md",
         "docs/evidence/IH2-088/PLAN.md",
-        "docs/evidence/IH2-088/REPORT.md"
+        "docs/evidence/IH2-088/REPORT.md",
+        "docs/evidence/IH2-088/source-closeout.json"
       ],
       "owner_branch": "feat/addressed-neighborhood"
     },

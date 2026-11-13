@@ -1,0 +1,190 @@
+{
+  "classification": "Verified private source and actual local preview; not hosted beta or owner playtest acceptance",
+  "task": "IH2-088",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/37",
+  "candidate": "69d71b6a00e1a68e057eedc00cc38e5f00fc2040",
+  "merge": "aa4db704a81efb9dc17180995eb2bb449030080e",
+  "matchingTree": "2d63abd580abbf7f6c29380ac591b01e232ce6ee",
+  "ciRun": 43346520501,
+  "ciJobs": [
+    {
+      "databaseId": 131627093338,
+      "name": "domain-build-plan",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T01:39:25Z",
+      "completedAt": "2026-11-13T01:41:41Z"
+    },
+    {
+      "databaseId": 131627093590,
+      "name": "browser-shard (1/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T01:39:25Z",
+      "completedAt": "2026-11-13T01:49:06Z"
+    },
+    {
+      "databaseId": 131627093780,
+      "name": "browser-shard (2/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T01:39:25Z",
+      "completedAt": "2026-11-13T01:52:01Z"
+    },
+    {
+      "databaseId": 131631992130,
+      "name": "browser-playtest",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T01:52:04Z",
+      "completedAt": "2026-11-13T01:52:09Z"
+    }
+  ],
+  "checks": {
+    "domain": 317,
+    "skipped": 0,
+    "localDomainDurationMs": 54066.988291,
+    "ciDomainDurationMs": 88538.014761,
+    "localBrowser": 106,
+    "localBrowserDuration": "13.9minutes",
+    "finalCIBrowser": 106,
+    "disjointShards": [
+      53,
+      53
+    ],
+    "shardDurations": [
+      516421.09,
+      699382.997
+    ],
+    "zeroSkippedFlakyUnexpected": true,
+    "strictBuildDesignPlan10Pinned40Diff": true
+  },
+  "payload": {
+    "candidate": "69d71b6a00e1a68e057eedc00cc38e5f00fc2040",
+    "files": 196,
+    "all185PriorArtUnchanged": true,
+    "newArt": [
+      "art/neighborhood/neighborhood-ground.svg",
+      "art/neighborhood/home-site-boundary.svg",
+      "art/neighborhood/catalog.json",
+      "art/neighborhood/housing-registry.svg",
+      "art/neighborhood/future-home-site.svg"
+    ],
+    "rawDelta": 52042,
+    "gzipEachFileDelta": 8840,
+    "htmlSha256": "8ed940d5cee67497839f616ce9b1eebd3e050bc7a1246f17be6daee875607e23",
+    "method": "Exact final CI client compared with accepted089CIclient; sum per-file gzip, not network/device benchmark."
+  },
+  "actualPreview": {
+    "url": "http://127.0.0.1:4175/",
+    "staticPid": 17533,
+    "staticSession": 63488,
+    "all196ResponsesEqualCI": true,
+    "htmlSha256": "8ed940d5cee67497839f616ce9b1eebd3e050bc7a1246f17be6daee875607e23",
+    "nativeLocalDesktopPhone": true,
+    "reloadPreserved": true,
+    "anonymousSharedChooserOnly": true,
+    "protectedIdentitySelected": false,
+    "apiPort": 4186,
+    "apiPid": 17482,
+    "apiSession": 81450,
+    "apiRestarted": true,
+    "protocol": 5
+  },
+  "actualTour": {
+    "url": "http://localhost:4176/?town=1",
+    "staticPid": 16852,
+    "staticSession": 63838,
+    "apiPort": 4188,
+    "apiPid": 17106,
+    "apiSession": 81037,
+    "database": "ih2_neighborhood_tour",
+    "profiles": 26,
+    "historicalEarnedHomes": 25,
+    "selectableFictionalResidents": 3,
+    "initialization": "Guarded empty dedicated namespace only; resume never resets. Historical pure command/clock/proximity/state fixture disclosed; no direct kit grant.",
+    "nativeCases": 3,
+    "nativeDuration": "1.2minutes",
+    "nativeInterception": false,
+    "apiRestart": {
+      "classification": "Actual finalCI196file persistent localhost fictional tour;25historically earned homes/26fictional profiles,3selectable. Same browser/cookie across realAPIprocess restart. Returned computed clocks may advance; every raw persisted field is hashed and compared. No intercepted data, clock/stock/position injection during observer.",
+      "all196ResponsesEqualCI": true,
+      "all13TablesAllColumnsRowsPreserved": true,
+      "privateKeyPreserved": true,
+      "privateKeyMode": "0600",
+      "sixChecksumsPreserved": true,
+      "serverInstanceChanged": true,
+      "signedSessionUnchanged": true,
+      "holdingsPlotsPlacementJobsAndDoorPositionPreserved": true,
+      "probeMethod": "Native actual room and viewport resize, bounded mixed normal and10Hzidle frame samples; not an activeFPS/device/WAN benchmark.",
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+        "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+      ],
+      "expectedAnonymousResponses": [
+        {
+          "path": "/api/town/snapshot",
+          "status": 401
+        },
+        {
+          "path": "/api/town/snapshot",
+          "status": 401
+        }
+      ],
+      "limits": "Chrome emulation; historical population and native assertions are separate from fresh progression and protected practice. No physical-phone/Safari/cloudHA/fullaccessibility/fun certification."
+    },
+    "privateKey": "Separate0600namespace; never printed/copied; preserved hash."
+  },
+  "preservation": {
+    "classification": "Actual read-only protected fictional practice across 088 matched protocol5/client neighborhood update",
+    "canonicalTables": 13,
+    "allColumnsAndRowsPreserved": true,
+    "residents": 1,
+    "plots": 0,
+    "signingKeyPreserved": true,
+    "sixMigrationChecksumsPreserved": true,
+    "noDatabaseWrites": true,
+    "apiRestarted": true
+  },
+  "frozenStudyFiles": 54,
+  "independentTerra": {
+    "classification": "Root record of independent gpt-6.1-terra bounded reviews; not human acceptance.",
+    "v2": "Corrected visitor Front door / Enter street and actual return verified in source candidate.",
+    "v3": "Phone browser-only gate explanation and explicit shared chooser verified; no identity selected.",
+    "finalActual": "Exact finalCIclient at localhost4176: native phone Visitor entered Morgan home and returned to2CloverCourt; directory24+1homes; desktop Places/scene and short844x390/text200 readable; no sampled P1/P2 blocker.",
+    "registry": "Root reviewed actual final CI Registry desktop/phone images; Terra did not independently inspect Registry in final pass.",
+    "limits": "Chrome touch/viewport/text emulation, not physical phone/Safari/full accessibility/economy/server certification.",
+    "artifacts": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/neighborhood-runtime-2026-11-12/terra-final-actual"
+  },
+  "finalCIImagesReviewed": [
+    "neighborhood-registry-desktop.png",
+    "neighborhood-registry-phone.png",
+    "neighborhood-menu-short200.png",
+    "neighborhood-menu-narrow200.png",
+    "neighborhood-owner-interior.png",
+    "neighborhood-phone-later-block.png"
+  ],
+  "actualScreenshotsReviewed": [
+    "actual-tour-desktop-world.png",
+    "actual-tour-phone-world.png",
+    "actual-phone-bag.png",
+    "actual-desktop-working.png"
+  ],
+  "boundedLoad": {
+    "clients": 20,
+    "homes": 25,
+    "peersEach": 9,
+    "localSnapshotP95Ms": 38.000083,
+    "ciSnapshotP95Ms": 97.02274,
+    "positionCheckpoints": 0,
+    "movementWrites": 0,
+    "noPrivateInventoryInPresence": true,
+    "limits": "Explicit public-position fixture10perblock in actual isolated HTTP/SSE; not WAN/cloud capacity."
+  },
+  "serverRecoveryProof": "FinalCI actual PG16.15container restart and separate actual persistent Tour API process restart with same signed session/all13table fields/key/checksums/holdings/door.",
+  "artifacts": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/neighborhood-runtime-2026-11-12",
+  "limitations": [
+    "Chrome emulation, not physical phone/Safari/full canvas accessibility, cloud HA or fun/retention certification.",
+    "Two existing home exterior silhouettes retained for090original variety; no final city-art or complete MMO claim.",
+    "No economy/recipe/timer/output/ownership/progress/SQLmigration change. Protocol5deliberately refuses cached4before player data access; public fictional roster remains unversioned.",
+    "No original Idle Hands, real account, cloud, expense, hosting or public beta work."
+  ],
+  "superseded": "da374initialentry refinement;1ae7stalelegacyselectors;6dcphysicaldoorinteriorlabel. Partial/cancelled/rejected runs retained and not counted. External observer root-cookie-path and roster-gate assumptions corrected without app/security changes."
+}

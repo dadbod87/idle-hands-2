@@ -1430,7 +1430,7 @@
     {
       "id": "IH2-100",
       "title": "Original serving gesture and clear character action study",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-090"
       ],
@@ -1445,7 +1445,8 @@
       ],
       "evidence": [
         "docs/evidence/IH2-100/PLAN.md"
-      ]
+      ],
+      "owner_branch": "feat/serving-gesture-study"
     }
   ]
 }

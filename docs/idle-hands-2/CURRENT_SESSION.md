@@ -1,3 +1,10 @@
+# Active100: first original serving gesture
+
+Continue in isolated `idle-hands-2-serving-study` / `feat/serving-gesture-study`, base canonical documentation checkpointa1cb383, runtime byte-identical accepted090/mainf0a294a.100is a first Aster-only plate gesture: four facings/fiveposes, unchanged64×80frame/32,72foot/0.9display and exact accepted final idle. Use guarded safe imports of existing original rig functions; never call public-writing generators. No gameplay, actor state, café, reward, item, command or live integration.
+
+099held sourceee92ed5was pushed with329/110and frozen13fileV2native/Terra/preservation pass. Its café remains a study at49586; regular090previews and held098UIreview49579remain unchanged. All204/198accepted bytes, protected/Tour data/keys/checksums/54studies and newheldartifacts must remain intact. Required GitHub/source gates stay held after oldbillingrefusal; no bypass/merge/accepted update. Session inventory shows only this sequel chat active and IdleHands1idle; latest mainf0a/PR39 unchanged.
+
+Read100PLAN. Produce one bounded gallery and real compositor/pixel/motion checks, then ask Terra for anatomy/readability. Other three rigs remain unfinished until first-rig review. Record exact failures and source/fixture/device limits. Continue until around10%weeklyreserve or15:00UTC(7amNov13Pacific), whichever first; last50%used/50%remaining, no resetcredits used.
 # Canonical continuation —099recorded,100next
 
 099source `ee92ed5e22791585b327d077341be144b59b232b` is pushed to `feat/cafe-service-study`, locally329/110and frozen13V2/native/Terra/preservation verified. This canonical branch copies only documentation/evidence; its runtime remains accepted090. Required source gate is held. Next100first Aster serving gesture is independent art from the accepted rig, no café implementation. Last50%weeklyused/50%remaining, stop near10%reserve or15:00UTC.

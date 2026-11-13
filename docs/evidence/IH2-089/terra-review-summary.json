@@ -1,0 +1,27 @@
+{
+  "reviewer": "gpt-6.1-terra",
+  "accepted086Audit": [
+    "P2three first-planter names",
+    "P2flat25Places",
+    "empty disabledclaim ahead of firstrecipe"
+  ],
+  "v1": "Naming/output and groups improved; postclaimconfirmation belowfold/disabledclaim P2.",
+  "v2": "Claimconfirmation and Bag slot/focus fixed;1owned0placed verified.",
+  "v3": "No blocker in native phone/short controlled text-only200 firstcraft. Explicit start focus belowsticky header, real5secondwait, Collected/Bag handoff and1Optimisticplanter verified.",
+  "limits": "Fresh ordinary local contexts; no protected identities or stock/time/state injection. Not full server/economy/physical-device/full accessibility or fun certification.",
+  "browserClosed": true,
+  "finalV6": {
+    "url": "http://127.0.0.1:49559/",
+    "candidate": "60b1b2b322d552bd854a7bcfc17cec035d8e4584",
+    "noSampledBlocker": true,
+    "scope": "Native ordinary local craft/claim/Bag at320x640 and844x390 text-only200;360x640 to320x480reflow; visible Collected inside focused Bag action. No shared identity or state injection.",
+    "reflowBounds": {
+      "top": 328,
+      "bottom": 454,
+      "headerBottom": 176,
+      "viewportHeight": 480
+    },
+    "evidence": "terra-v6/",
+    "limits": "Emulated Chrome, not physical-phone/server certification."
+  }
+}

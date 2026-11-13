@@ -1,0 +1,10 @@
+{
+  "candidate": "60b1b2b322d552bd854a7bcfc17cec035d8e4584",
+  "files": 191,
+  "exactReviewedV6Bytes": true,
+  "all185OldArtByteIdentical": true,
+  "newAssets": 0,
+  "rawDelta": 11109,
+  "gzipEachFileDelta": 2917,
+  "method": "Actual final CI versus086; sum per-file gzip, not measured CDN/device benchmark."
+}

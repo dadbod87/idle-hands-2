@@ -1,0 +1,86 @@
+{
+  "classification": "Actual finalCI191file client on49556 and real disposable ih2_browser API4197, fresh Mira/Sol ordinary zero progress. Existing Aster/Bea/Casey48kit/2planter fixture seeds remain unused. Native movement/gather/craft/claim/Bag; no new grant/interception.",
+  "all191ResponsesEqualCI": true,
+  "htmlSha256": "3f5a8459c2df99b2c630837928e61fbc77b1cc33361bcfb91ee7ce6969f71844",
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "touch": false,
+        "resident": "Mira",
+        "id": "receipt-maker"
+      },
+      "job": {
+        "recipe": "planter",
+        "startedAt": 1794528846791,
+        "readyAt": 1794528851791
+      },
+      "actual5secondCraft": true,
+      "unclaimedOutputRemainedZero": true,
+      "explicitClaimedOutput": 1,
+      "actualInputSpend": {
+        "scrap": 2,
+        "timber": 2,
+        "supplies": 1
+      },
+      "claimAndBagSameActionBounds": {
+        "x": 522,
+        "y": 302.6875,
+        "width": 396,
+        "height": 63
+      },
+      "realServerCommands": [
+        "gather",
+        "gather",
+        "gather",
+        "craft",
+        "claim"
+      ],
+      "noStockPositionClockOrResponseInjection": true,
+      "noProtectedIdentitySelected": false,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640,
+        "touch": true,
+        "resident": "Sol",
+        "id": "receipt-other"
+      },
+      "job": {
+        "recipe": "planter",
+        "startedAt": 1794528859693,
+        "readyAt": 1794528864693
+      },
+      "actual5secondCraft": true,
+      "unclaimedOutputRemainedZero": true,
+      "explicitClaimedOutput": 1,
+      "actualInputSpend": {
+        "scrap": 2,
+        "timber": 2,
+        "supplies": 1
+      },
+      "claimAndBagSameActionBounds": {
+        "x": 51,
+        "y": 302.6875,
+        "width": 258,
+        "height": 63
+      },
+      "realServerCommands": [
+        "gather",
+        "gather",
+        "gather",
+        "craft",
+        "claim"
+      ],
+      "noStockPositionClockOrResponseInjection": true,
+      "noProtectedIdentitySelected": false,
+      "errors": []
+    }
+  ],
+  "limits": "Chrome desktop/touch emulation, not physical phone/Safari/full accessibility or fun certification."
+}

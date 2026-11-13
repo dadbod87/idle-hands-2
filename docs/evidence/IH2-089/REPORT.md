@@ -1,3 +1,15 @@
+# IH2-089 accepted — clear crafting and calmer Places
+
+PR36 merged d013e2c; exact60b1b2b CI43333582760 and matching merge tree pass. All300system checks/zero skips and103local browser cases pass; exactCI disjoint52+51browser passes. Strict build/design/plan10/pinned40/diff verified. FinalV6Terra review passes native phone/short/enlarged text/reflow after correcting async server focus, whole-word headings and visible collection confirmation. [Machine-readable closeout](source-closeout.json).
+
+Actual downloaded191file CI client matches reviewedV6 and now serves4175; native ordinary local desktop/phone gather/5secondcraft/explicitclaim/Bag/reload pass, with anonymous shared chooser only. The same client passes real disposable shared HTTP/SQL desktop/phone staging without stock/time/position/response injection. Six actual CI images, selected actual local/shared captures and populated restart proof inspected. All185oldart unchanged; +11,109raw/+2,917per-file-gzip bytes. No timer/request/dependency/economy/authority change.
+
+Protected practice all13tables/allfields,one fictional resident/zero plots,key/sixchecksums and API4186/PID83080/protocol4 preserved; static-only PID5310/session17888 replaces086client. All54accepted study responses remain unchanged. Captures and raw/rejected evidence in sibling crafting-clarity-2026-11-12artifact directory. Phone/touch/text are Chrome emulation, not physical-phone/Safari/full accessibility/human-fun certification. No cloud/current-game/real-account/expense work.
+
+088addressed home streets is next; isolated idle-hands-2-neighborhood/feat/addressed-neighborhood retains unaccepted pure geometry and three original art drafts. It has not changed runtime/API/protected data.
+
+## Historical candidate and correction notes
+
 # IH2-089 — crafting and Places clarity candidate
 
 Independent Terra accepted086audit found three names for the first planter,25equally weighted Places destinations and a disabled claim before the first recipe. This presentation-only candidate uses existing authoritative RECIPES/PROPS names across bench, Bag and notebook; recipe cards state one output, Bag pocket, exact material costs and data-derived real duration. Read-only missing/tutorial/busy/output-limit reasons prevent futile clicks while commands retain server validation. No cost, recipe, output, ownership, clock, save, server/protocol or economy change.

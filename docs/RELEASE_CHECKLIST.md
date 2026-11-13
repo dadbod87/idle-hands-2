@@ -217,3 +217,10 @@ IH2-085 acceptance recorded: final8bb045e exact-headCI43313138618 all four jobs 
 
 - Assert actual world phase during native keyboard/touch camera travel on both axes, independent fall and viewport edge coverage through resize; retain reduced/hidden/interior behavior and held progress.
 - Final ef56506 CI43316779357 all four jobs SUCCESS:294system/zero skips,99browser. Actual191-filepreview, six uploadedCI/eight native captures and protected13tables/key/checksums/API/studies verified. See086source-closeout; future changes repeat applicable gates.
+
+## IH2-089 crafting and Places clarity
+- Data-derived canonical names/one output/pocket/cost/duration/blocked reasons; projections must agree with actual eligibility and never change stock/job clocks.
+- Fresh/active/ready/collected work, no auto-claim, fixed action bounds; actual asynchronous server craft/claim focus after pending controls reenable, closed/changed panel and deliberate other focus protected.
+- Whole-word labels, reachable44px controls, native grouped routes, narrow/short/root200and independent text-only200/reflow. Keep completion visible beside the focused Bag action on short screens; retain all original route/authority/replay assertions.
+-300zero-skip local/system and103full local/exactCI cases, both disjointshards/stableaggregate plus strict build/design/plan/pinned/diff. Review actualCIimages/restart proof, compare191client and185oldart, test actual downloaded local/shared client before static-only update.
+- Preserve13protectedtables/allfields/key/sixchecksums/API and all54studyresponses; no protectedidentity or grant for screenshots. Disclose unchanged real-response hold in Ivy test and all older fixture seeds. Source/local acceptance is not hosted/physical-phone certification.

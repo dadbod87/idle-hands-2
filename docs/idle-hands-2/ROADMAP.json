@@ -1306,7 +1306,7 @@
     {
       "id": "IH2-096",
       "title": "Allotment visual identity and phone framing study",
-      "status": "queued",
+      "status": "in_progress",
       "owner_branch": "feat/allotment-visual-study",
       "depends_on": [
         "IH2-090"

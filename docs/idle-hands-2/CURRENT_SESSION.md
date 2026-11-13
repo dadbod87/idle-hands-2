@@ -1,3 +1,11 @@
+# Active096: separate allotment visual study
+
+Isolated idle-hands-2-allotment-study/feat/allotment-visual-study starts at pending095b126893. [Plan](../evidence/IH2-096/PLAN.md). Build a standalone clearly labelled original garden-landmark/bed-footprint/framing comparison using actual model anchors and unchanged reused art. No game/public/runtime/camera/collision/server/rule changes. Preserve all204game bytes from095and all198art,125prior browser assertions and every protected/API/key/study artifact. Candidate art/framing is not farming progress or runtime promotion.
+
+095V2locally verified332system/125browser/root/Terra/close/retry/artifact/preservation, sourceb126893pushed; all CI/actual accepted gates held after last GitHub billing refusal. Actualmainf0a294a/090clients4175andlocalhost4176andAPIs unchanged. Focus-review.localhost49569servesV2; ih2_menu_review090API5on49564separate, all accepted data/keys0600/checksums/54studies kept. Main090automatic43357774254all4SUCCESS reverified.46%weeklyused/54%remaining; no resets; continue near10%reserve or7amNov13Pacific latest.
+
+## Previous checkpoint
+
 # Scoped focus repair locally verified; garden study next
 
 095in idle-hands-2-town-focus/feat/town-response-focus: finalV2passes332system/zeroDBskips59.451s and125browser899529.132ms/zero skips/flakes/unexpected; disjoint63+62orderedfamily2. Build/design/plan10/pinned40/diff pass. All204bytes equal frozenV2,198art unchanged,+1563raw/+456gzip over094. Root/Terra actual and explicitly intercepted focus/close/retry proofs pass. V1full124was preliminary; extra close-only audit found missing dialog.open guard, now covered by125thcase. [Report](../evidence/IH2-095/REPORT.md). Existing pending recovery remains visible before Bag and replays original payload once. No accepted data/client changes.

@@ -5,7 +5,7 @@ import { worlds, walkable, pathTo, canStand, clearSegment, routeTo, type Room } 
 
 test('every named destination has a walkable route and never crosses blocked cells', () => {
  for (const room of Object.keys(worlds) as Room[]) {
-  const start = room === 'square' ? {x:24,y:25} : {x:9,y:11};
+  const session=new Session();session.enter(room);const start={...session.position};
   for (const stop of worlds[room].stops) {
    if(!Number.isInteger(stop.point.x)||!Number.isInteger(stop.point.y)){const route=routeTo(room,start,stop.point);assert.ok(route.length,room+':'+stop.id);let previous=start;for(const point of route){assert.ok(clearSegment(room,previous,point));previous=point;}assert.deepEqual(previous,stop.point);continue;}
    const path=pathTo(room,start,stop.point); assert.ok(path.length,room+':'+stop.id);

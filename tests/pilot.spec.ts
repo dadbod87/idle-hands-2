@@ -98,7 +98,7 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  await expect.poll(async()=>(await snapshot(page)).room).toBe('square');
  expect((await snapshot(page)).position).toEqual({x:19.5,y:22.3});
  await page.waitForTimeout(200);expect((await snapshot(page)).room).toBe('square');
- await destination(page,'plot');await page.getByRole('button',{name:'Inspect Future house plots'}).click();
+ await destination(page,'plot');await page.getByRole('button',{name:'Inspect Housing Registry'}).click();
  await expect(page.getByRole('dialog')).toContainText('upgrade a house');
  await page.screenshot({path:`${evidenceDir}/${shape.name}-housing-note.png`});
  await page.keyboard.press('Escape');

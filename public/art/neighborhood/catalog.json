@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "authoring": "Original deterministic TypeScript SVG; no third-party media.",
+  "generator": "tools/create-neighborhood-art.ts",
+  "generatorSha256": "fa6ac54f0b7ef96375cd445ce71a8b717f2e25be2a98ee1471d349a31db6241b",
+  "assets": [
+    {
+      "id": "housing-registry",
+      "file": "housing-registry.svg",
+      "width": 208,
+      "height": 248,
+      "sha256": "aa6e4d765dfcaba815b4b0193deb2d5260f68f95dd82406229590a8baaa4afdb",
+      "foot": {
+        "x": 104,
+        "y": 240
+      },
+      "lightingWindows": [
+        {
+          "x": 37,
+          "y": 141,
+          "width": 32,
+          "height": 39
+        },
+        {
+          "x": 139,
+          "y": 141,
+          "width": 32,
+          "height": 39
+        }
+      ],
+      "occlusion": {
+        "x": 12,
+        "y": 26,
+        "width": 184,
+        "height": 214
+      }
+    },
+    {
+      "id": "home-site-boundary",
+      "file": "home-site-boundary.svg",
+      "width": 208,
+      "height": 248,
+      "sha256": "a49de6c6cfcce3d6111c225b903c3cf7e56d7181ab694e827751c08051c3d3e9",
+      "foot": {
+        "x": 104,
+        "y": 240
+      },
+      "lightingWindows": []
+    },
+    {
+      "id": "future-home-site",
+      "file": "future-home-site.svg",
+      "width": 208,
+      "height": 248,
+      "sha256": "1f9a18930c06b379b63b2df086462698c026d9a04c8ff69eacd959b1097d5242",
+      "foot": {
+        "x": 104,
+        "y": 240
+      },
+      "occlusion": {
+        "x": 1,
+        "y": 1,
+        "width": 206,
+        "height": 239
+      },
+      "lightingWindows": []
+    },
+    {
+      "id": "neighborhood-ground",
+      "file": "neighborhood-ground.svg",
+      "width": 2048,
+      "height": 2048,
+      "sha256": "1c29e51c384ea0bac592170c92d9eba32e48a04b72ac80a31f322060ddf45159"
+    }
+  ]
+}

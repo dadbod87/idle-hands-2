@@ -1,7 +1,9 @@
+import{PARCELS,STREETS,HOME_SITE_PREFIX,addressForPlot}from'./neighborhood.ts';
 /** Stable menu grouping captured at open time. It never moves an actor or changes a goal. */
 import{RECIPES,RESOURCE_IDS,type WorkshopState}from'./workshop.ts';import type{Room,Stop}from'./world.ts';
 export type PlaceGroup={id:string;title:string;stops:Stop[]};
-export function placesView(room:Room,stops:Stop[],state:WorkshopState,goal:{id:string;destination?:string},now:number){
+export function placesView(room:Room,stops:Stop[],state:WorkshopState,goal:{id:string;destination?:string},now:number,neighborhood?:{districtId:string;ownerPlotId?:string}){
+ if(room==='neighborhood'){const a=neighborhood?.ownerPlotId?addressForPlot(neighborhood.ownerPlotId):undefined,own=a&&a.block===neighborhood?.districtId?HOME_SITE_PREFIX+a.slot:null,ids=[own,'neighborhood-directory','neighborhood-exit'],primary=ids.flatMap(id=>stops.filter(s=>s.id===id)),chosen=new Set(primary.map(s=>s.id)),groups=STREETS.map((street,row)=>({id:'street-'+row,title:street,stops:stops.filter(s=>!chosen.has(s.id)&&PARCELS.slice(row*6,row*6+6).some(p=>s.id===HOME_SITE_PREFIX+p.slot))})).filter(g=>g.stops.length);return{primary,groups,heading:'Your neighborhood'};}
  if(room!=='square'||stops.length<=6)return{primary:[...stops],groups:[]as PlaceGroup[],heading:'In this room'};
  let preferred:string[]=[];
  if(goal.id==='gather'){preferred=RESOURCE_IDS.filter(id=>state.inventory[id]<RECIPES.planter.cost[id]);}

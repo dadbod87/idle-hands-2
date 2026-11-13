@@ -1731,6 +1731,46 @@
       "source": "tools/promote-collection-art.py",
       "date": "2026-11-12",
       "modifications": "Byte-identical accepted original collection sheets; front-facing DOMreceipt only. No imported media or state authority."
+    },
+    {
+      "id": "future-home-site",
+      "path": "public/art/neighborhood/future-home-site.svg",
+      "sha256": "1f9a18930c06b379b63b2df086462698c026d9a04c8ff69eacd959b1097d5242",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-neighborhood-art.ts",
+      "date": "2026-11-12",
+      "modifications": "Original registry, roads, bounded site fence/foundation. No imported media; original home silhouettes retained."
+    },
+    {
+      "id": "home-site-boundary",
+      "path": "public/art/neighborhood/home-site-boundary.svg",
+      "sha256": "a49de6c6cfcce3d6111c225b903c3cf7e56d7181ab694e827751c08051c3d3e9",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-neighborhood-art.ts",
+      "date": "2026-11-12",
+      "modifications": "Original registry, roads, bounded site fence/foundation. No imported media; original home silhouettes retained."
+    },
+    {
+      "id": "housing-registry",
+      "path": "public/art/neighborhood/housing-registry.svg",
+      "sha256": "aa6e4d765dfcaba815b4b0193deb2d5260f68f95dd82406229590a8baaa4afdb",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-neighborhood-art.ts",
+      "date": "2026-11-12",
+      "modifications": "Original registry, roads, bounded site fence/foundation. No imported media; original home silhouettes retained."
+    },
+    {
+      "id": "neighborhood-ground",
+      "path": "public/art/neighborhood/neighborhood-ground.svg",
+      "sha256": "1c29e51c384ea0bac592170c92d9eba32e48a04b72ac80a31f322060ddf45159",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-neighborhood-art.ts",
+      "date": "2026-11-12",
+      "modifications": "Original registry, roads, bounded site fence/foundation. No imported media; original home silhouettes retained."
     }
   ],
   "comparison": {

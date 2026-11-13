@@ -71,3 +71,7 @@ Every accepted section needs required exact-head CI, actual artifacts/images and
 ## Independent accepted086 UX audit
 
 Terra6.1 used fresh desktop and touch-emulated phone contexts with native first collections/craft, no protected shared identity. P2: the first planter is called orientation/optimistic/plain planter across the loop; use one player-facing item name and explicitly show one item going to Bag. P2: Places gives25destinations equal weight; prioritize current/nearby goals and group the rest without changing walk semantics. Improvement: empty bench shows a disabled collection action before the actionable recipe; lead with current work or the usable recipe. Costs, duration, ready status and collection action are already explicit. No later multi-hour wait or physical-device verification. Evidence in sibling city-ux-audit-2026-11-12/terra-review.089 precedes088integration so more addresses do not worsen the menu.
+
+##088working integration, acceptance pending
+
+The source candidate now derives actual64×64rooms/24sites from this shared geometry, validates district/plot doors on the local server and preserves legacy passages and physical-origin exits. Grouped Places/registry menus and original site art have focused checks; full exact-head CI/artifact/protected-preview gates remain in088evidence. The planned later cities/090silhouette family remain unimplemented. Dedicated fictional25-home test/tour data is separate from protected0plot practice.

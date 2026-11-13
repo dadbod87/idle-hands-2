@@ -61,7 +61,7 @@ test('intercepted home-entry fixture: a lost committed response stays locked and
  await page.goto('/?town=1');
  await page.getByRole('dialog').getByRole('button',{name:'Aster',exact:true}).click();
  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.snapshot().position)).toEqual({x:30,y:35.5});
- await page.getByRole('button',{name:'Inspect House front door',exact:true}).click();
+ await page.getByRole('button',{name:'Inspect Housing Registry entrance',exact:true}).click();
  await expect(page.getByRole('dialog')).toContainText('Confirm pending request');
  await expect(page.getByRole('button',{name:'Retry the same request',exact:true})).toBeVisible();
  expect(commits).toBe(1);expect(commandPayloads).toHaveLength(1);

@@ -7,7 +7,7 @@ import {nextCarpentryDeadline,noticeboardSchema,type NoticeboardState} from '../
 import {TOWN_SCHEMA} from '../game/protocol-version.ts';
 import type {Room,Point} from '../game/world.ts';
 import type {RemoteWorkshopAdapter} from './workshop.ts';
-export type TownPosition={room:Room;position:Point;homePlotId?:string};
+export type TownPosition={room:Room;position:Point;homePlotId?:string;districtId?:string};
 export type TownPlot={id:string;ownerId:string|null;ownerName?:string;tier?:number;level:1|2;placements:HomeLayout['placements'];workroomPlacements:HomeLayout['workroomPlacements'];pennantOwned?:boolean;letterboxMotif?:LetterboxMotif|null};
 export type TownLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot={commissionTown?:{styles:Array<{ownerId:string;ownerName:string;motif:LetterboxMotif}>};serverInstance?:string;noticeboard?:NoticeboardState;playerId:string;name:string;workshop:WorkshopState;position:TownPosition;quest:{contentVersion:string|number;awarded:unknown};bridge:{contributed:number;target:number;restored:boolean;phase?:'collecting'|'building'|'open';startedAt?:number|null;readyAt?:number|null;openedAt?:number|null;grandfathered?:boolean};trail?:{stamps:string[];pennantOwned:boolean};projectJournal?:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;plot:TownPlot|null;plots:TownPlot[];seasonKey:string;scores:unknown;serverTime:number;gardenTown?:{credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};lesson?:TownLesson;lessonQuote?:{route:'construction'|'upkeep';expectedBridgeContributed:number}};

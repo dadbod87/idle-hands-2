@@ -1,6 +1,8 @@
 # Idle Hands 2 — current state
 
-IH2-089 candidate clarifies crafting output/cost/time and canonical names, keeps stable claim→Bag completion, and groups Places around useful stops.300system/zero skips and focused native/regression checks pass; final103/CI/preview gates pending. [Evidence](evidence/IH2-089/REPORT.md).
+088candidate adds addressed residential blocks/individual doors, grouped street visits and registry records, physical-origin exits and four original site/registry/ground vectors.317system/zero skips and focused native checks pass; full106/CI/actual artifact/protocol5preview gates pending. Protected4175remains089/protocol4. [Report](evidence/IH2-088/REPORT.md).
+
+IH2-089 accepted PR36/merge d013e2c, exact60b1b2b CI43333582760:300system/zero skips,103local and103CIbrowser pass. Clear canonical crafting/output/cost/time, stable explicit claim/Bag, scoped result focus/reflow and grouped Places now verified on actual4175CIclient. Protected API/data/key/all54study files unchanged.088individual home doors next. [Proof](evidence/IH2-089/source-closeout.json).
 
 IH2-087 accepted design/source: audited city capacity and home visiting, tested24-address expandable blocks and separate10-file blueprint. PR35/merge38ef23e, exactc789b69 CI43323897322 all four jobs SUCCESS;296system/100browser. All191game bytes/progress/API/studies unchanged.089craft/menu clarity next, then088physical doors and090art/life. [Proof](evidence/IH2-087/source-closeout.json). Candidate entries below historical.
 
@@ -52,7 +54,7 @@ IH2-075 working candidate adds two permanent expanded-home nooks with strict sep
 
 IH2-074 source/local preview accepted: PR23/merge3c64173, exact82e68f8CI43216529180bothSUCCESS257/76(14.4m). Actual178files/sixCIimages, live-clock desktop/phone direct collection/reload, matchingtree/cleanmain and13practice tables/key/migrations preserved.4175serves074immutableartifact,4186protocol3unchanged. [Closeout](evidence/IH2-074/source-closeout.json). IH2-075two expanded-workroom nooks active on`feat/home-workroom-nooks`; [current handoff](idle-hands-2/CURRENT_SESSION.md) is authoritative.
 
-IH2-073source/localpreviewaccepted: PR22/mergea353f84, exacte4f54a1CI43210519289bothSUCCESS256/75(14.6m). Actual174files/7CIimages, freshactual300000mscrop→paiduniqueletterbox→placement/reload, matchingtree/cleanmain and all13practice tables/key/migrations preserved.4175nowserves073immutableCIartifact;4186unchangedprotocol3. [Closeout](evidence/IH2-073/source-closeout.json). IH2-074materialdepotsactive on`feat/material-depots`. [Current handoff](idle-hands-2/CURRENT_SESSION.md).
+IH2-073source/localpreviewaccepted: PR22/mergea353f84, exacte4f54a1CI43210619289bothSUCCESS256/75(14.6m). Actual174files/7CIimages, freshactual300000mscrop→paiduniqueletterbox→placement/reload, matchingtree/cleanmain and all13practice tables/key/migrations preserved.4175nowserves073immutableCIartifact;4186unchangedprotocol3. [Closeout](evidence/IH2-073/source-closeout.json). IH2-074materialdepotsactive on`feat/material-depots`. [Current handoff](idle-hands-2/CURRENT_SESSION.md).
 
 Earlier milestone records below are historical; use the current handoff for active work.
 

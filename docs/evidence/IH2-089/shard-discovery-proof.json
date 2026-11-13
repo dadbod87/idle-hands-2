@@ -1,0 +1,9 @@
+{
+  "candidate": "60b1b2b322d552bd854a7bcfc17cec035d8e4584",
+  "fullCases": 103,
+  "shards": [
+    52,
+    51
+  ],
+  "disjointCompleteCoverage": true
+}

@@ -1,0 +1,125 @@
+{
+  "classification": "Accepted private source and actual local preview; presentation only, not hosted beta",
+  "task": "IH2-089",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/36",
+  "candidate": "60b1b2b322d552bd854a7bcfc17cec035d8e4584",
+  "merge": "d013e2c22f820c090985a243b2585a80ccdc6205",
+  "matchingTree": "f7fd8f468e96e66379f177cc2b16d1ee2d195695",
+  "ciRun": 43333582760,
+  "ciJobs": [
+    {
+      "databaseId": 131584014816,
+      "name": "domain-build-plan",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T00:00:55Z",
+      "completedAt": "2026-11-13T00:03:10Z"
+    },
+    {
+      "databaseId": 131584014915,
+      "name": "browser-shard (1/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T00:00:55Z",
+      "completedAt": "2026-11-13T00:10:31Z"
+    },
+    {
+      "databaseId": 131584015195,
+      "name": "browser-shard (2/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T00:00:55Z",
+      "completedAt": "2026-11-13T00:11:11Z"
+    },
+    {
+      "databaseId": 131588905526,
+      "name": "browser-playtest",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T00:11:13Z",
+      "completedAt": "2026-11-13T00:11:16Z"
+    }
+  ],
+  "checks": {
+    "domain": 300,
+    "skipped": 0,
+    "localDomainDurationMs": 51055.547166,
+    "ciDomainDurationMs": 89682.430026,
+    "localBrowser": 103,
+    "localBrowserDuration": "12.5 minutes",
+    "finalCIBrowser": 103,
+    "disjointShards": [
+      52,
+      51
+    ],
+    "shardDurations": [
+      "8.5 minutes",
+      "9.3 minutes"
+    ],
+    "strictBuildDesignPlan10Pinned40Diff": true
+  },
+  "independentTerra": "V6 native local phone/short/text-only200/reflow; no sampled blocker. Earlier focus/confirmation findings corrected. Emulation, not physical device or server certification.",
+  "payload": {
+    "candidate": "60b1b2b322d552bd854a7bcfc17cec035d8e4584",
+    "files": 191,
+    "exactReviewedV6Bytes": true,
+    "all185OldArtByteIdentical": true,
+    "newAssets": 0,
+    "rawDelta": 11109,
+    "gzipEachFileDelta": 2917,
+    "method": "Actual final CI versus086; sum per-file gzip, not measured CDN/device benchmark."
+  },
+  "actualPreview": {
+    "url": "http://127.0.0.1:4175/",
+    "staticPid": 5310,
+    "staticSession": 17888,
+    "all191ResponsesEqualCI": true,
+    "htmlSha256": "3f5a8459c2df99b2c630837928e61fbc77b1cc33361bcfb91ee7ce6969f71844",
+    "nativeLocalDesktopPhone": true,
+    "reloadPreserved": true,
+    "anonymousSharedChooserOnly": true,
+    "protectedIdentitySelected": false,
+    "apiPort": 4186,
+    "apiPid": 83080,
+    "apiSession": 34638,
+    "apiRestarted": false,
+    "protocol": 4
+  },
+  "actualSharedStaging": {
+    "url": "http://127.0.0.1:49556/",
+    "apiPort": 4197,
+    "database": "ih2_browser",
+    "all191ResponsesEqualCI": true,
+    "nativeFreshMiraSolOrdinaryZero": true,
+    "realFirstJobMilliseconds": 5000,
+    "explicitClaimedOutput": 1,
+    "grantOrClockPositionResponseInjection": false,
+    "existingUnusedSeeds": "Aster/Bea/Casey48kits/2planters remain unused."
+  },
+  "focusedTransportFixture": "Shared regression Ivy holds second real craft response unchanged until panel closes; no stock/time/position injection, no late panel reopen/focus or duplicate debit/output.",
+  "preservation": {
+    "classification": "Actual read-only protected fictional practice across 089 static-only crafting presentation update",
+    "canonicalTables": 13,
+    "allColumnsAndRowsPreserved": true,
+    "residents": 1,
+    "plots": 0,
+    "signingKeyPreserved": true,
+    "sixMigrationChecksumsPreserved": true,
+    "noDatabaseWrites": true,
+    "apiRestarted": false
+  },
+  "frozenStudyFiles": 54,
+  "finalCIImagesReviewed": [
+    "craft-phone-recipe.png",
+    "craft-desktop-working.png",
+    "craft-phone-collected.png",
+    "craft-responsive-short200.png",
+    "craft-phone-places.png",
+    "craft-phone-bag.png"
+  ],
+  "actualScreenshots": "actual-{desktop,phone}-{places,recipe,working,ready,collected,bag}.png; corresponding actual-shared captures retained. Selected actual local/shared images inspected.",
+  "serverRecoveryProof": "Actual isolated CI PG16.15 restart with same signed session/decorated upgraded workroom/queued production/garden/commission/collection ledgers; declared historical/time fixtures, not protected town restart.",
+  "artifacts": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/crafting-clarity-2026-11-12",
+  "limitations": [
+    "Chrome viewport/touch/text emulation; no physical phone/Safari/full canvas accessibility or retention certification.",
+    "No new art/dependency/request/timer, rules, costs, outputs, ownership, state/schema/protocol or protected API changes.",
+    "No original-game/real accounts/cloud/expense/public beta work."
+  ],
+  "superseded": "c569 all-green102-case CI rejected by actual shared staging; raw artifacts/logs retained separately. Earlier failing focus/resize checks also retained."
+}

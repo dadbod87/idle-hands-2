@@ -90,7 +90,12 @@
     "tools/run-neighborhood-tour.ts",
     "tests/residential-art.test.ts",
     "tests/residential-life.spec.ts",
-    "tests/neighborhood-routing.test.ts"
+    "tests/neighborhood-routing.test.ts",
+    "tools/cafe-study-plan.ts",
+    "tools/simulate-cafe-study.ts",
+    "tools/create-cafe-study.ts",
+    "tests/design-cafe.spec.ts",
+    "tools/cafe-baseline-audit.ts"
   ],
   "compilerOptions": {
     "types": [

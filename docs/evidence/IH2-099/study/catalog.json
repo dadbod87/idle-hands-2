@@ -1,0 +1,158 @@
+{
+  "classification": "DESIGN_STUDY_ONLY",
+  "gameSaveCompatible": false,
+  "notImplemented": true,
+  "studyDefault": {
+    "radishes": 1,
+    "preparation": 0,
+    "cooldown": 240
+  },
+  "publicTarget": 12,
+  "personalTarget": 3,
+  "openingDelayMinutes": 240,
+  "presentations": [
+    {
+      "id": "slices",
+      "name": "Slices, approved",
+      "image": "art/plate-slices.svg"
+    },
+    {
+      "id": "soup",
+      "name": "Soup, technically",
+      "image": "art/bowl-soup.svg"
+    },
+    {
+      "id": "formal",
+      "name": "A formal radish",
+      "image": "art/radish-formal.svg"
+    }
+  ],
+  "sources": {
+    "src/game/garden.ts": "4bcad76311fb65b44609b0af37a45f3cf022e68f0ef4ccef6837234fafbc5991",
+    "src/game/carpentry.ts": "7eba4bd2ef18eb8c2d5d000ba73be6e6fd7ac70eaef054a79b54d6ab4c5e9ce0",
+    "src/game/workshop.ts": "8158a199b7e1a647fb93cefad98c6ee4515cd02194c1e8bcc205aa1d404a443d",
+    "src/game/world.ts": "c4e17cfd7a017d68210eb1af9ba14531bc489e52cd16ef40abfc222ee1f19b26",
+    "src/game/commission.ts": "882a78203ba26d6c1f8697ff576823f2320d0ff76a4f37c9ce30594c4b137d92",
+    "public/art/variety/catalog.json": "f646eacb0d032993e70fee5e63355437bf8505b44639bafc025f5501369ef157",
+    "docs/idle-hands-2/design/CONTENT_CATALOG.json": "1e76f996401111e6c6a4a78f191b9db4cfee5d68ee8cbd6a30e00199871ade56"
+  },
+  "room": {
+    "size": [
+      24,
+      20
+    ],
+    "tilePixels": 32,
+    "insideExitPoint": [
+      11.5,
+      18
+    ],
+    "insideExitPixel": [
+      384,
+      592
+    ],
+    "exitRectangle": [
+      11,
+      17.5,
+      2,
+      1.5
+    ],
+    "exitPixelEdges": [
+      352,
+      560,
+      416,
+      608
+    ],
+    "squareDoorPoint": [
+      30,
+      22
+    ],
+    "proposedWindowPoint": [
+      28,
+      22
+    ],
+    "exteriorComposition": {
+      "acceptedCafeFoot": [
+        104,
+        272
+      ],
+      "counterFoot": [
+        88,
+        136
+      ],
+      "counterDisplayScale": [
+        5,
+        11
+      ],
+      "relativeFootPixels": [
+        -64,
+        0
+      ]
+    },
+    "scope": "Static composition only, not game collision/camera/pathfinding; only source square points are checked with actual canStand."
+  },
+  "assets": [
+    {
+      "file": "art/plate-slices.svg",
+      "width": 80,
+      "height": 64,
+      "foot": [
+        40,
+        58
+      ],
+      "scope": "Tasting presentation, UI/world concept; not edible inventory.",
+      "sha256": "2b0ff96b1f123d66cfe30b6b90e446a926619d5d5961c2ee85d5a10c1b8babb6"
+    },
+    {
+      "file": "art/bowl-soup.svg",
+      "width": 80,
+      "height": 64,
+      "foot": [
+        40,
+        58
+      ],
+      "scope": "Tasting presentation, UI/world concept; not food:herb-soup.",
+      "sha256": "df182c92a4738c838202fb957f1197f44a74a607b4a8103098284c86ac97cd05"
+    },
+    {
+      "file": "art/radish-formal.svg",
+      "width": 80,
+      "height": 64,
+      "foot": [
+        40,
+        58
+      ],
+      "scope": "Tasting presentation, UI/world concept; same hypothetical price/result.",
+      "sha256": "f2f0e7c79f0e6eaacecd8cc41dd9b01c13773d3f146db869648ac7702891084c"
+    },
+    {
+      "file": "art/brave-teapot.svg",
+      "width": 80,
+      "height": 80,
+      "foot": [
+        40,
+        74
+      ],
+      "scope": "Candidate keepsake icon/world illustration; not an owned runtime item.",
+      "sha256": "cc0cf815f7c7e5ff4f901b6b395b8062686d6e6461addb62505c2fe9433e10fc"
+    },
+    {
+      "file": "art/cafe-counter.svg",
+      "width": 176,
+      "height": 144,
+      "foot": [
+        88,
+        136
+      ],
+      "scope": "Outside tasting-window counter, no authority/hitbox supplied.",
+      "sha256": "1a6edd7c3e74b47af4cd12c354ec7328b12098e6dbc8ba46b01189d1090b04a3"
+    },
+    {
+      "file": "art/cafe-room.svg",
+      "width": 768,
+      "height": 640,
+      "foot": null,
+      "scope": "Proposed24×20room illustration only; no collision, pathfinding or camera implementation.",
+      "sha256": "337529216d4eefdf2a19c641c05c0f6e1218073d12edb93e21b4d94142a3d0c5"
+    }
+  ]
+}

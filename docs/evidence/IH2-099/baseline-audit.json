@@ -1,0 +1,391 @@
+{
+  "classification": "DATED_SOURCE_AUDIT_NOT_RUNTIME_MAPPING",
+  "acceptedMain": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
+  "acceptedBaselineFiles": 204,
+  "acceptedArtFiles": 198,
+  "acceptedSvgFiles": 184,
+  "candidateCatalogEntries": 48,
+  "counts": {
+    "bounded-existing-definition": 21,
+    "related-bounded-slice": 3,
+    "future-only": 24
+  },
+  "fingerprints": {
+    "src/game/workshop.ts": "8158a199b7e1a647fb93cefad98c6ee4515cd02194c1e8bcc205aa1d404a443d",
+    "src/game/garden.ts": "4bcad76311fb65b44609b0af37a45f3cf022e68f0ef4ccef6837234fafbc5991",
+    "src/game/carpentry.ts": "7eba4bd2ef18eb8c2d5d000ba73be6e6fd7ac70eaef054a79b54d6ab4c5e9ce0",
+    "src/game/commission.ts": "882a78203ba26d6c1f8697ff576823f2320d0ff76a4f37c9ce30594c4b137d92",
+    "src/game/world.ts": "c4e17cfd7a017d68210eb1af9ba14531bc489e52cd16ef40abfc222ee1f19b26",
+    "src/game/home-layout.ts": "f8b2495f9c32d23acbfe7519d4133bce984935c4b65112d23eb37cebdf08e0c3",
+    "src/game/neighborhood.ts": "af42939028a1172182580f82da92f24bac4b7fa77ee38a680847f84209865ff0",
+    "docs/idle-hands-2/design/CONTENT_CATALOG.json": "1e76f996401111e6c6a4a78f191b9db4cfee5d68ee8cbd6a30e00199871ade56"
+  },
+  "rows": [
+    {
+      "id": "material:scrap",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "material:timber",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "material:supplies",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "wood:pine",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "related-bounded-slice",
+      "evidence": "src/game/carpentry.ts",
+      "scope": "A bounded personal fallen-pine pool and carried bundles exist. This is not a general forest/species inventory or a catalog-ID migration."
+    },
+    {
+      "id": "wood:birch",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "wood:oak",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "stone:salvaged",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "part:fastener",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "cloth:plain",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "seed:herb",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "crop:herb",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "fruit:orchard",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "Decorative fruit trees and observations are not harvested fruit inventory."
+    },
+    {
+      "id": "equipment:hand-tool",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "related-bounded-slice",
+      "evidence": "src/game/carpentry.ts",
+      "scope": "The bound hand saw is explicitly self-equipped. General hand-tool slots, public equipment and tiers remain future."
+    },
+    {
+      "id": "equipment:axe",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "Preparing fallen pine with a hand saw is not axe chopping."
+    },
+    {
+      "id": "equipment:watering-can",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "equipment:work-gloves",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "weapon:practice-club",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "food:herb-soup",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "A soup-styled tasting illustration in099does not implement edible herb soup."
+    },
+    {
+      "id": "food:orchard-snack",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "furniture:planter",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "furniture:stool",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "furniture:rug",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "furniture:lamp",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "furniture:crate",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "furniture:shelf",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "home:starter",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/world.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "home:workroom",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/world.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "home:garden-bed",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "related-bounded-slice",
+      "evidence": "src/game/garden.ts",
+      "scope": "Three private rented beds exist without a house prerequisite. House-plot outdoor construction/decorating is not implemented."
+    },
+    {
+      "id": "lodging:boarding-bed",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "town:bridge",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "server/store.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "town:trail",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/world.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "town:orchard",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "service:workshop",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/world.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "service:outfitter",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "recipe:planter",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "recipe:bridge-kit",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "part:bridge-kit",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/workshop.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "recipe:pine-crate",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "A donated crate and a pine easel do not implement the pine-crate recipe."
+    },
+    {
+      "id": "recipe:birch-stool",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "A donated stool and decorative birch trees do not implement birch lumber or a crafted birch stool."
+    },
+    {
+      "id": "recipe:herb-soup",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "Inputs/duration remain null and non-executable.099does not price or implement this recipe."
+    },
+    {
+      "id": "recipe:practice-club",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "decor:clipboard-pennant",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/town-rules.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "decor:quay-lantern",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "service:quay-market",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "creature:paper-mite",
+      "catalogDeclaration": "not-implemented",
+      "accepted090": "future-only",
+      "evidence": null,
+      "scope": "No executable accepted090definition. Candidate values and asset gaps remain unresolved."
+    },
+    {
+      "id": "landmark:trailhead",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/world.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "landmark:old-sign",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/world.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    },
+    {
+      "id": "landmark:lookout",
+      "catalogDeclaration": "existing-definition",
+      "accepted090": "bounded-existing-definition",
+      "evidence": "src/game/world.ts",
+      "scope": "Existing durable definition only; not an entire candidate phase, complete art/animation family or a new recipe."
+    }
+  ],
+  "outside48": [
+    {
+      "scope": "Accepted runtime outside the old catalog",
+      "evidence": [
+        "src/game/garden.ts",
+        "src/game/carpentry.ts",
+        "src/game/commission.ts"
+      ],
+      "includes": [
+        "Two actual crops, radish and marigold; neither aliases candidate kitchen herbs.",
+        "Pine handsaw lesson/pool, kept easel, hamper and noticeboard; not pine crates or generic woodworking mastery.",
+        "Pip addressed commission and once-only letterbox with3free motifs; not human mail/chat."
+      ]
+    },
+    {
+      "scope": "Accepted presentation/property after the old audit",
+      "evidence": [
+        "src/game/neighborhood.ts",
+        "src/game/home-layout.ts",
+        "src/ui/bag.ts",
+        "src/ui/workshop.ts"
+      ],
+      "includes": [
+        "Addressed expandable24-site neighborhoods, physical owner/visitor doors, six starter/eight expanded nooks.",
+        "Separate bag/journal, confirmed collection receipts, illustrated material depots, day/night/world-anchored rain and three residential families."
+      ]
+    }
+  ],
+  "pendingPresentation": "091–098are locally reviewed source candidates, not accepted by this audit. Their clear Pine/garden/housing facts, scoped delayed replies, garden art/framing and stable toolbar do not add food, crops, rules or a café service.",
+  "caveat": "No content IDs are renamed and no dated catalog declaration/null price is silently changed. Evidence references denote bounded accepted slices; verify future source and actual devices separately."
+}

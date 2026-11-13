@@ -1,0 +1,7 @@
+# Café study bounded review
+
+No sampled P1 or P2 blocker found. At 320px the counter shows the one-radish requirement, held produce and free review action together. First visit, Pip's last-radish conflict, after-opening newcomer, completed goals, full produce and stale review examples have understandable next states. In the stale example the town finished during review and the study prevented a useless spend. An after-opening serve receipt stated that the café was already open and personal progress counted. In a synthetic slow confirmation, closing via Escape and focusing the example selector kept dialogs closed and focus on the selector after the response.
+
+The exterior reads as a café and separates the door from the service window; interior illustration shows an open central approach, readable contained plaque and recognizable counter/tables. This is an art composition, not a collision or playable-room test. A small potential refinement is to make the eventual permanent teapot destination more immediately apparent next to personal progress if it can be done without adding reading; the full explanation remains available in the details.
+
+Desktop, 320/360 phone, short landscape and root-font 200% Chrome views were sampled; screenshots in this folder. Example states and slow response are synthetic study behavior, not a game/API/save or actual economy. This does not establish physical-device use, full accessibility, player fun or retention. Browser contexts closed.

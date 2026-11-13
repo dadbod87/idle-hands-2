@@ -1,3 +1,4 @@
+import {checkCafeStudy} from './create-cafe-study.ts';
 import {existsSync,readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
@@ -65,4 +66,4 @@ export function checkDesignPlan(catalog:Obj,regionPlan:Obj,repoRoot=process.cwd(
  return errors;
 }
 export function loadDesignPlan(repoRoot=process.cwd()){const root=resolve(repoRoot,'docs/idle-hands-2/design');return{catalog:JSON.parse(readFileSync(resolve(root,'CONTENT_CATALOG.json'),'utf8')),regions:JSON.parse(readFileSync(resolve(root,'REGION_PLAN.json'),'utf8'))};}
-if(process.argv[1]&&pathToFileURL(resolve(process.argv[1])).href===import.meta.url){const {catalog,regions}=loadDesignPlan();const errors=checkDesignPlan(catalog,regions);if(errors.length){console.error(errors.join('\n'));process.exitCode=1;}else console.log(`PASS: ${catalog.entries.length} candidate entries, ${regions.regions.length} regions, runtime anchors, recipe phases and safe routes. No runtime feature acceptance implied.`);}
+if(process.argv[1]&&pathToFileURL(resolve(process.argv[1])).href===import.meta.url){const {catalog,regions}=loadDesignPlan();const errors=[...checkDesignPlan(catalog,regions),...checkCafeStudy()];if(errors.length){console.error(errors.join('\n'));process.exitCode=1;}else console.log(`PASS: ${catalog.entries.length} candidate entries, ${regions.regions.length} regions, runtime anchors, recipe phases and safe routes. No runtime feature acceptance implied.`);}

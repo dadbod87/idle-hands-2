@@ -1,0 +1,25 @@
+{
+  "classification": "ActualHTTPbodychecks only; no API/login/game action. Existing held098and immutableCaf\u00e9V1/V2review bytes unchanged.",
+  "checked": [
+    {
+      "port": 49578,
+      "responses": 208,
+      "mismatches": []
+    },
+    {
+      "port": 49579,
+      "responses": 208,
+      "mismatches": []
+    },
+    {
+      "port": 49584,
+      "responses": 13,
+      "mismatches": []
+    },
+    {
+      "port": 49586,
+      "responses": 13,
+      "mismatches": []
+    }
+  ]
+}

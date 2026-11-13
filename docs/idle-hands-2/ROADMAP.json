@@ -1679,7 +1679,7 @@
     {
       "id": "IH2-108",
       "title": "One coordinated candidate writer for ordinary actions and caf\u00e9",
-      "status": "queued",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1691,10 +1691,41 @@
         "Run full appropriate local checks and preserve accepted data/artifacts. Record remaining SQL/UUID/protocol/home-allocation/coherent counter/menu/art/reward gates."
       ],
       "exclusions": [
-        "No live writer/root/storage/profile/server/SQL/protocol/props/UI registration, real progress changes, cloud/spending, hosted Actions while held, PR/merge or accepted-preview replacement."
+        "No live writer/root/storage/profile/server/SQL/protocol/props/UI registration, real progress changes, cloud/spending or public game launch. New owner direction permits normal free public CI/source acceptance after final checks; accepted previews update only through their complete artifact/preservation gates."
       ],
       "evidence": [
-        "docs/evidence/IH2-108/PLAN.md"
+        "docs/evidence/IH2-108/PLAN.md",
+        "docs/evidence/IH2-108/REPORT.md",
+        "docs/evidence/IH2-108/local-checks.json",
+        "docs/evidence/IH2-108/domain-review.md",
+        "docs/evidence/IH2-108/source-proof.json",
+        "docs/evidence/IH2-108/payload.json",
+        "docs/evidence/IH2-108/artifact-proof.json",
+        "docs/evidence/IH2-108/discovery.json",
+        "docs/evidence/IH2-108/terra-static.md"
+      ],
+      "owner_branch": "feat/coordinated-cafe-writer",
+      "blocked_reason": "Local candidate complete:403system/17focused/146browser0skips/flakes/errors; native lifetime lock/raw preservation/unsaved practice/retry/migration gate/epoch proofs and exact208game identity. Normal consolidated source and actual-preview acceptance queued109; no live cafe registration."
+    },
+    {
+      "id": "IH2-109",
+      "title": "Consolidated public-source acceptance and matched local previews",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Accept locally verified held091\u2013108source through exact public GitHub gates, preserve complete artifacts/data and refresh actual matched local previews. Public source/free CI explicitly owner-authorized; no public game launch.",
+      "acceptance": [
+        "Inspect final108local evidence, exact source/PR/main/public runner state and current usage policy. No obsolete billing probe; no weak or skipped checks.",
+        "Require exact-final-head domain, both disjoint browser shards and browser-playtest. Verify raw artifacts/403system/146browser coverage and immutable studies/source, then merge and inspect main-push regression.",
+        "Freeze actual CI client/source and preserve protected practice/Tour13tables/allfields/keys/6checksums. Update local clients/matched API with rollback and prove served bytes, protocol/recovery/native desktop/phone behavior and preserved study origins.",
+        "Root/appropriate Terra actual desktop/phone review; disclose synthetic/elapsed/intercepted fixtures, emulation, source versus preview acceptance. Update blocked task statuses only when their recorded gates are actually met, close genuinely supersededPR39and record exact continuation."
+      ],
+      "exclusions": [
+        "No original-game runtime/data, public/cloud sequel launch, paid resources or billing changes, real users/grants/resets. No partial caf\u00e9 UI/root/protocol registration; isolated candidates remain unregistered."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-109/PLAN.md"
       ]
     }
   ],

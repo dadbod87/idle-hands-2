@@ -1,3 +1,11 @@
+#108 coordinated writer locally complete;109source acceptance next
+
+Current isolated checkout idle-hands-2-writer, branch feat/coordinated-cafe-writer, basef806f9fcf3e30464300e2ea20c44dab28e5c1bf7. Full local403system/17focused/146browser pass with0skips/flakes/unexpected/reporterrors; build/design/63tasks/10tracker/40pinned/diff and protected data/54studies pass. Full duration recorded in108local-checks.json. Actual208game/202art byte-identical to107, no live registration. Independent domainP2fixed (migration cancellation stale overwrite), dedicated regression and re-review; Terra static6stills finds no sampledP1/P2, not interaction/device certification.
+
+One candidate tab-lifetime lease coordinates ordinary/cafe saves, explicit working versus confirmed state, blocked cafe until unsaved practice flush, fixed original intent, guarded capabilities and epoch-safe hide/show/dispose. Migrations cannot be cancelled into write access. Conflicts preserve both raw and unsaved work; explicit valid reload required. Actual native storage/WebLocks in ephemeral intercepted test pages, injected quota/getter errors, synthetic persisted events/actual navigation release; no real BFCache residency/cachedUI/server authority or eviction/powerloss claim. New writer is not in the game bundle or live bootstrap.
+
+Owner resumed normal source updates after making repository public. Next109consolidates held091–108through exact standard free public CI, both disjoint browser shards/artifacts/source, merge/main regression and actual matched-client/API/preservation/recovery/native gates before changing4175/localhost4176. Do not rerun obsoletePR39or bypass gates. No paid/cloud/public game launch, real progress or original-game changes. Acceptedmainf0a294aand090previews remain until109completes. Current Codex59%used/41%remaining,3resetcredits untouched.
+
 # Public repository verified November13; game remains local
 
 Owner explicitly requested public visibility to avoid private Actions minute charges. The existing dadbod87/idle-hands-2 repository is now public; anonymous API/page/raw-main-source requests return200. No replacement repository, payment/budget change, cloud/public game hosting, PR update, workflow run, merge or accepted-preview change. Main remainsf0a294af86d4b637f060c8f40a6d7f061d9cad15,117Actions runs/latest43365543304unchanged at verification.

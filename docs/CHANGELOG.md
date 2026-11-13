@@ -1,3 +1,7 @@
+## November13 — coordinated candidate writer locally verified
+
+108adds one isolated lifetime lease for ordinary+cafe saves, confirmed/unsaved separation, explicit flush, retained intent, raw conflict and guarded lifecycle/capability handling.403system/146browser/17focused pass, migration-cancellationP2fixed/reviewed; no live registration or game payload delta. Source/actual-preview acceptance follows109now that public CI is available.
+
 ## November13 — owner-authorized public source
 
 Existing sequel repository made public; anonymous API/page/raw-source verified. Updated current instructions to permit standard free public Ubuntu checks while retaining local-first batching, all exact-head gates and paid-resource limits. No workflow run, merge, game release, cloud or actual-preview update. Runtime unchanged from107. See idle-hands-2/handoffs/2026-11-13-public-source.md.

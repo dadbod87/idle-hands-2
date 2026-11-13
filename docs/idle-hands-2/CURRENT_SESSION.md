@@ -1,10 +1,22 @@
-# Canonical continuation:105backed up;106queued
+# Canonical continuation:106backed up;107queued
 
-Latest actual source is `4025174becedba6dec0c2bd16ea6accb708f6596` on `feat/cafe-save-protection`, checkout idle-hands-2-cafe-save. Resume106from that actual code after fetching remote; this canonical branch copies documentation/evidence only and retains accepted090runtime and its old matching analytical fingerprints. Read ACTIONS_USAGE_POLICY before any hosted trigger.
+Latest actual source is `c9aa22759b36463f28721911d900d57bf1d361d6` on `feat/serving-family-teapot`, checkout idle-hands-2-serving-family. Resume107from that code after fetching remote. This canonical bookkeeping branch copies documentation/art-study evidence only and retains accepted090runtime and its matching old analytical fingerprints. Read ACTIONS_USAGE_POLICY; no hosted runs authorized.
 
-Owner requested save-failure protection locally with no Actions minutes. Actual372system/139browser+3final native cases,0skips/flakes/errors; build/design/60tasks/10tracker/40pinned/diff and preservation pass. All208game/202art bytes match104. No live writer/root/protocol/server/props/UI/main/accepted-preview/billing change. Normal exact-head hosted/source acceptance remains held. Next independent106original serving rigs/teapot art; subsequent coherent integration retains writer/cache/schema/command-family/UUID/SQL/home-allocation gates.
+Owner requested serving/teapot art and local-only work. Actual376system/142browser0skips/flakes/errors; TerraV2no sampled visual blocker;80cells/four rigs and teapot icon/world art, all15source/frozen/HTTP/raw files exact. All208game/202art bytes match105, zero runtime payload delta. No live prop/art/state/UI/server/protocol registration, accepted-preview/main/cloud/billing change. Original21studyfiles, protected data/keys/checksums/API/54studies unchanged. Source acceptance remains held.
 
-At closeout Codex weekly55%used/45%remaining;3resetcredits available and untouched. No account spend/credit action. No104/105source acceptance inferred from local tests or private backups.
+Preview http://serving-family.localhost:49612/ remains frozenV2loopback-only. Screens/findings and raw files are in ../idle-hands-2-artifacts/serving-family-2026-11-13. Next107normal command compatibility for cafe-era state; later coordinated writer/cache/SQL/protocol/home-allocation/counter/reward integration before live exposure.
+
+#106serving family locally reviewed;107commands next
+
+Current isolated checkout idle-hands-2-serving-family, branch feat/serving-family-teapot, base4025174becedba6dec0c2bd16ea6accb708f6596. Final backup SHA recorded in canonical continuation after push. Owner requested local-only serving/teapot art with no Actions minutes. Read ACTIONS_USAGE_POLICY/106REPORT; normal hosted/source acceptance remains held. Use actual106source, not canonical accepted090runtime.
+
+Actual376system/142browser,0skips/flakes/unexpected/reporterrors. Unit69,095.663542ms; full browser duration in106local-checks.json. Discovery72+70disjoint/orderedfamily2; build/design/61tasks/10tracker/40pinned/diff pass. All208game/202art bytes exactly match105, zero runtime payload delta. Four rigs80generic radish-plate cells; all20Aster bodies/attachments and original same-facing feet/final idles preserved. Separate world teapot exact099reuse and simplified64pxsource icon; gallery compact56pxBag/48pxworld samples are not live UI sizes (actual Bag64px).
+
+Terra inspected actual frozenV2desktop/360/short200, directions2x, game-size backgrounds/teapot/focus; no sampledP1/P2. Native80cell expanded raster/footRGBA/mirror/crop and teapot alpha/handle checks pass. Designed720msbounded replay, reduced preference/facing and synthetic hidden cancellation tested; not exhaustive timing, physical-device or integrated-gameplay certification. All15source/frozen/HTTP200 bodies/rawcopies match. Original21raw studyfiles and54accepted studyresponses preserved. No new fixture grants or game-response interception for this art study; full game regressions retain existing disclosed synthetic/elapsed/intercepted fixtures.
+
+Local art preview http://serving-family.localhost:49612/ serves immutable V2fifteen files; Python loopback process retained. It is separate from accepted0904175/4176and all older held review origins. Protected practice/Tour all13fields/keys/sixchecksums and090schema5API unchanged. No live state/writer/props/Bag/room/server/protocol/migration/public art or accepted-preview/main change. No PR/dispatch/hostedrun/cloud/billing action.
+
+Next107proves ordinary commands on cafe-era state while keeping cafe consumption/teapot ownership, old receipts/jobs/seeds/clock rules and strict legacy behavior. Do not restore spent produce or hide cafe fields to appease old schemas. Later one coordinated writer/cache/BFCache/protocol/SQL/home-allocation/counter/reward integration must precede live exposure; unsaved ordinary practice cannot be silently discarded. Keep current-rig-only activity loading, and distinguish generic plate gestures from optional soup/formal hand-prop variants.
 
 #105save protection locally verified;106art next
 

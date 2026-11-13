@@ -1614,7 +1614,7 @@
     {
       "id": "IH2-106",
       "title": "Complete serving rigs and original teapot art kit",
-      "status": "queued",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1629,7 +1629,38 @@
         "No live writer/root/protocol/PROP_IDS/Bag/room/server/database change, account/progress mutation, cloud/spending, hosted Actions while held, merge or accepted-preview replacement. No paid assets or full animation-family claim with missing rigs."
       ],
       "evidence": [
-        "docs/evidence/IH2-106/PLAN.md"
+        "docs/evidence/IH2-106/PLAN.md",
+        "docs/evidence/IH2-106/REPORT.md",
+        "docs/evidence/IH2-106/local-checks.json",
+        "docs/evidence/IH2-106/artifact-proof.json",
+        "docs/evidence/IH2-106/payload.json",
+        "docs/evidence/IH2-106/discovery.json",
+        "docs/evidence/IH2-106/terra-review.md",
+        "docs/evidence/IH2-106/study/catalog.json",
+        "docs/evidence/IH2-106/study/provenance.json"
+      ],
+      "owner_branch": "feat/serving-family-teapot",
+      "blocked_reason": "Art locally complete:80cells/four rigs, original teapot kit,376system/142browser0skips/flakes/errors, frozen15HTTP/source/raw identities, TerraV2no sampledP1/P2. No live registration; normal hosted/source acceptance remains held."
+    },
+    {
+      "id": "IH2-107",
+      "title": "Ordinary command compatibility for cafe-era saves",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Extend isolated cafe candidate to normal workshop/garden/carpentry/commission actions without erasing cafe costs, rewards or existing play. Local continuation from held104-106code is owner-authorized; no source acceptance inferred.",
+      "acceptance": [
+        "Read104-106evidence/103contract and usage policy, inspect current reducers, use final106branch. Keep live root/writer/protocol/props/UI/server registration unchanged.",
+        "Reuse or factor shared pure rules with strict candidate schemas. Preserve original v2behavior and legacy refusals; never mask cafe consumption, restore spent produce or reset jobs/seeds/receipts/clocks to fit older schemas.",
+        "Prove mixed-action histories before/after cafe with ordinary/finishing jobs, all garden sinks, full/depleted stocks, once-only teapot, rental placement/removal, stale/replayed receipts, no-cafe golden comparisons and immutable refused inputs.",
+        "Revalidate current-source fingerprints explicitly if factoring modules, preserve099/100studies and assertions/timeouts, run appropriate full local checks; record later writer/cache/unsaved-practice/UUID/SQL/protocol/home-allocation and complete counter/art integration gates."
+      ],
+      "exclusions": [
+        "No live root/writer/protocol/PROP_IDS/UI/server migration, real progress/storage/data change, cloud/spending/hosted Actions while held, merge or accepted-preview replacement. Pure candidates do not prove server authority or whole-home allocations."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-107/PLAN.md"
       ]
     }
   ]

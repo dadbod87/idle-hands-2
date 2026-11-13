@@ -2,6 +2,10 @@
 
 Read [ACTIONS_USAGE_POLICY](idle-hands-2/ACTIONS_USAGE_POLICY.md). Complete the candidate locally, inspect active runs and the recorded allowance/budget hold, and avoid redundant hosted triggers. Confirm the exact final candidate passes all required checks before merging; no billing or documentation exception bypasses this gate. Record run IDs, retries, estimated summed job-minutes and the next session's hold status.
 
+#106serving art local hold
+
+376system/142browser0skips/flakes/errors, TerraV2review,15frozen/source/HTTP/raw files and80native raster cells verified. All208game files unchanged; no live art/prop/Bag registration or integration claim. Normal exact-head hosted/source/artifact gates remain. [Report](evidence/IH2-106/REPORT.md).
+
 #105save protection local hold
 
 372system/139browser+3final native cases,0skips/flakes/errors; disjoint70+69,208game bytes unchanged. Quota errors are injected in synthetic ports/ephemeral browser fixtures; no live writer integration or server UUID/SQL proof. Preserve actual lifetime-lock/cache/command-family/placement requirements and normal exact-head hosted/source gates. [Report](evidence/IH2-105/REPORT.md).

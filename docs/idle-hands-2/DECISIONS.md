@@ -227,3 +227,10 @@ Owner explicitly authorized continued local development before arranging GitHub 
 105uses the existing current/fallback keys and exact exclusive writer-lock name. Pending retries retain original expected revision and never rebase; native write success precedes confirmation. Migration must persist before readiness and never falls back around a corrupt current key. No missing-save grant or new project key. Test-only native browser proof uses fresh ephemeral contexts and intercepted fixture documents with pre-write quota injection, not a real profile or hosted service. Existing tab-lifetime ownership must be shared during integration; the adapter must not nest locks. Native API success is not durable server UUID replay or eviction/power-loss protection.
 
 Next independent106work completes remaining original serving rigs/teapot art while source acceptance is held. Live café integration must coordinate the complete root/garden command family, writer/bootstrap/cache/BFCache, protocol/forward SQL and all home allocations before exposing one complete counter/reward slice.
+
+
+## November13 - serving family and teapot kit
+
+106extends guarded Aster gesture to all four rigs, preserving all20reviewed Aster cells and every same-facing original foot/final idle. World teapot reuses exact099blue-glaze/brass art; dedicated simplified Bag icon preserves identity. Separate15-file gallery, not live asset/prop/item registration.56pxBag preview is a compact stress sample; actual Bag images are64px and future scale/placement must be reconciled. Terra reviewed frozen V2desktop/phone/short200samples without visual blocker; not physical-device or integrated-animation certification.
+
+Next107makes normal commands operate on cafe-era state without discarding sinks or teapot entitlement before coherent writer/cache/protocol/SQL/UI integration. Unsaved ordinary practice must not be silently discarded by cafe reload. Source gate/no-Actions instruction remain.

@@ -1,3 +1,5 @@
+106local art candidate: four-rig80cell generic serving gesture and dedicated teapot Bag/world kit; no live registration. Same-facing original feet/final idle and all20Aster cells exact. TerraV2desktop/mobile emulation no sampled blocker; game .9/inspection2x/native raster evidence in [report](evidence/IH2-106/REPORT.md). Current game art unchanged; physical-device/integration gates remain.
+
 # Idle Hands 2 — illustrated company-town kit
 
 IH2-082 accepted notebook uses the existing paper-panel visual language, three stable ordered cards and explicit state glyphs. Short route labels retain descriptive accessible names; doubled text scrolls deliberately. No new art assets. Final Terra6.1 review and six actual CI captures were inspected; physical phone/Safari remain unverified.

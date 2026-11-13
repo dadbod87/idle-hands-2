@@ -1,3 +1,5 @@
+106original serving family/teapot art locally verified:80cells/four rigs,376system/142browser0skips/flakes/errors, TerraV2no sampled visual blocker. All15frozen/source/HTTP/raw files match;208game/202art bytes unchanged, no live registration. Next107ordinary command compatibility; source gate held. [Report](evidence/IH2-106/REPORT.md).
+
 105staged café save protection locally verified:372system/139browser+3final native cases,0skips/flakes/errors; quota/migration/stale/two-window/confirmation protection and exact208game identity. No live wiring or accepted-preview change; normal source gate held. Next106original serving rigs/teapot kit. [Report](evidence/IH2-105/REPORT.md).
 
 104pure café candidate locally verified:359system/136browser,0skips/flakes/errors; strict migration/conservation/reward/cooldown/fixedopening and two-sided provenance verified. No live wiring or accepted-preview change; normal source gate remains held. Next105staged local persistence. [Report](evidence/IH2-104/REPORT.md).

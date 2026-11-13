@@ -1,0 +1,2027 @@
+{
+  "classification": "CANDIDATE_ART_ONLY",
+  "notImplemented": true,
+  "gameSaveCompatible": false,
+  "rigs": [
+    "aster",
+    "bea",
+    "casey",
+    "devon"
+  ],
+  "unfinishedRigs": [],
+  "frameWidth": 64,
+  "frameHeight": 80,
+  "columns": 5,
+  "rows": 4,
+  "displayScale": 0.9,
+  "foot": {
+    "x": 32,
+    "y": 72
+  },
+  "facings": [
+    "south",
+    "north",
+    "east",
+    "west"
+  ],
+  "poses": [
+    "ready",
+    "reach",
+    "contact",
+    "recovery",
+    "idle"
+  ],
+  "replayTimesMs": [
+    0,
+    160,
+    340,
+    520,
+    720
+  ],
+  "replayMs": 720,
+  "frames": [
+    {
+      "rig": "aster",
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "facing": "south",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "bodySha256": "928ab8cd8ed3ed92c961463ac407372e923717e3bbeaa58fe4d88a02bc23f938",
+      "acceptedIdleSha256": "9eba1328b0b32894bdfc5d76d2edf139caf9b5b60c9bbfcd4040b5592015bfae",
+      "attachment": {
+        "wrist": {
+          "x": 40,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 40,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "facing": "south",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "bodySha256": "a3403f2267b681ae186a269e0c5b930aa324f4f1810832f483e47296458b5068",
+      "acceptedIdleSha256": "9eba1328b0b32894bdfc5d76d2edf139caf9b5b60c9bbfcd4040b5592015bfae",
+      "attachment": {
+        "wrist": {
+          "x": 46,
+          "y": 47
+        },
+        "plateCenter": {
+          "x": 46,
+          "y": 43.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "facing": "south",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "bodySha256": "13bfbf3119ceebd7f44f0dcd8966d0b3972ce67e5d3d8aeb6fb804ff91ec9a3a",
+      "acceptedIdleSha256": "9eba1328b0b32894bdfc5d76d2edf139caf9b5b60c9bbfcd4040b5592015bfae",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 44
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 40.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "facing": "south",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "bodySha256": "e8244c640a2a6820b1f212516070b6adc2c5581f47f07bce1d8f30f838aa343b",
+      "acceptedIdleSha256": "9eba1328b0b32894bdfc5d76d2edf139caf9b5b60c9bbfcd4040b5592015bfae",
+      "attachment": {
+        "wrist": {
+          "x": 37,
+          "y": 49
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 4,
+      "row": 0,
+      "column": 4,
+      "facing": "south",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "bodySha256": "9eba1328b0b32894bdfc5d76d2edf139caf9b5b60c9bbfcd4040b5592015bfae",
+      "acceptedIdleSha256": "9eba1328b0b32894bdfc5d76d2edf139caf9b5b60c9bbfcd4040b5592015bfae",
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "index": 5,
+      "row": 1,
+      "column": 0,
+      "facing": "north",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "bodySha256": "2d184ff296394980e849685e88bf77154d15780a3c76ed6d9413e8ce07390ff4",
+      "acceptedIdleSha256": "4ff2e7eab514981ed4cb8bdde6cd16b2a22decc27f5b1c1e897921a13fa6f1cc",
+      "attachment": {
+        "wrist": {
+          "x": 44,
+          "y": 45
+        },
+        "plateCenter": {
+          "x": 44,
+          "y": 41.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 6,
+      "row": 1,
+      "column": 1,
+      "facing": "north",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "bodySha256": "c57b911e0bb9195dc8ae6875a9a47bb55308561b7efcc64f53590729074e79b2",
+      "acceptedIdleSha256": "4ff2e7eab514981ed4cb8bdde6cd16b2a22decc27f5b1c1e897921a13fa6f1cc",
+      "attachment": {
+        "wrist": {
+          "x": 48,
+          "y": 40
+        },
+        "plateCenter": {
+          "x": 48,
+          "y": 36.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 7,
+      "row": 1,
+      "column": 2,
+      "facing": "north",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "bodySha256": "7419836d665273761d00e3d647fa4ef3f7ffc0871d2d0fdef739e119b46b1e16",
+      "acceptedIdleSha256": "4ff2e7eab514981ed4cb8bdde6cd16b2a22decc27f5b1c1e897921a13fa6f1cc",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 35
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 31.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 8,
+      "row": 1,
+      "column": 3,
+      "facing": "north",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "bodySha256": "ed29bcaec7b4b760f7053d15e03804e2eeab20014f76ac6e7eaf230d491a52a3",
+      "acceptedIdleSha256": "4ff2e7eab514981ed4cb8bdde6cd16b2a22decc27f5b1c1e897921a13fa6f1cc",
+      "attachment": {
+        "wrist": {
+          "x": 43,
+          "y": 49
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 9,
+      "row": 1,
+      "column": 4,
+      "facing": "north",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "efbb6f642b8b7d5e4009754e9132ed748084f5b0261d193b08818c1bb4ed00b0",
+      "bodySha256": "4ff2e7eab514981ed4cb8bdde6cd16b2a22decc27f5b1c1e897921a13fa6f1cc",
+      "acceptedIdleSha256": "4ff2e7eab514981ed4cb8bdde6cd16b2a22decc27f5b1c1e897921a13fa6f1cc",
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "index": 10,
+      "row": 2,
+      "column": 0,
+      "facing": "east",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "bodySha256": "a6014f07d2b8ce851db0c0afd25a81e80c1778957e1742182029085ec731611e",
+      "acceptedIdleSha256": "e81c4440a6767b67fe05d0f0b8b6096f6993237a51039aa52bbe32e4ee11a9ff",
+      "attachment": {
+        "wrist": {
+          "x": 38,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 38,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 11,
+      "row": 2,
+      "column": 1,
+      "facing": "east",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "bodySha256": "b1f81f4a0f2eb3d292ed3a9e441a655817d0eb85fcf6528771335e97c2b0b983",
+      "acceptedIdleSha256": "e81c4440a6767b67fe05d0f0b8b6096f6993237a51039aa52bbe32e4ee11a9ff",
+      "attachment": {
+        "wrist": {
+          "x": 45,
+          "y": 46
+        },
+        "plateCenter": {
+          "x": 45,
+          "y": 42.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 12,
+      "row": 2,
+      "column": 2,
+      "facing": "east",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "bodySha256": "834edb4b914db7ced0bd70a349806aa9ce75fabc0beb485a08a5c44a708d2b5f",
+      "acceptedIdleSha256": "e81c4440a6767b67fe05d0f0b8b6096f6993237a51039aa52bbe32e4ee11a9ff",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 42
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 38.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 13,
+      "row": 2,
+      "column": 3,
+      "facing": "east",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "bodySha256": "1000d40300990ba3efd04d9589b345d68431dde32b7e9ca64d35ca03c10019e2",
+      "acceptedIdleSha256": "e81c4440a6767b67fe05d0f0b8b6096f6993237a51039aa52bbe32e4ee11a9ff",
+      "attachment": {
+        "wrist": {
+          "x": 35,
+          "y": 50
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 14,
+      "row": 2,
+      "column": 4,
+      "facing": "east",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "549f06a85cec5d12f8c8478f9a43a50331c12fb574e8ee117033307161bc7fd6",
+      "bodySha256": "e81c4440a6767b67fe05d0f0b8b6096f6993237a51039aa52bbe32e4ee11a9ff",
+      "acceptedIdleSha256": "e81c4440a6767b67fe05d0f0b8b6096f6993237a51039aa52bbe32e4ee11a9ff",
+      "attachment": null
+    },
+    {
+      "rig": "aster",
+      "index": 15,
+      "row": 3,
+      "column": 0,
+      "facing": "west",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "bodySha256": "5bf558c06ffe8378256207b5f49bfc2dd215d975e63c3c1bfd7b8ecd0ba17bc9",
+      "acceptedIdleSha256": "1d10bf3e47a19ba1200337a3feecd3cace505850fd6a71c549e3657ef970f808",
+      "attachment": {
+        "wrist": {
+          "x": 26,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 26,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 16,
+      "row": 3,
+      "column": 1,
+      "facing": "west",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "bodySha256": "0dd52ccaaa90e9ebf10bb58da1778e07df2aa82f03950afc808608a10e3b2023",
+      "acceptedIdleSha256": "1d10bf3e47a19ba1200337a3feecd3cace505850fd6a71c549e3657ef970f808",
+      "attachment": {
+        "wrist": {
+          "x": 19,
+          "y": 46
+        },
+        "plateCenter": {
+          "x": 19,
+          "y": 42.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 17,
+      "row": 3,
+      "column": 2,
+      "facing": "west",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "bodySha256": "828a2a1dcd5947401ade07fa00d73038b874026fbfb453eb83ccf4977b6331fb",
+      "acceptedIdleSha256": "1d10bf3e47a19ba1200337a3feecd3cace505850fd6a71c549e3657ef970f808",
+      "attachment": {
+        "wrist": {
+          "x": 13,
+          "y": 42
+        },
+        "plateCenter": {
+          "x": 13,
+          "y": 38.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 18,
+      "row": 3,
+      "column": 3,
+      "facing": "west",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "bodySha256": "f13987571379b793827ccc321114519ab92b6a6dd9b436516d4d1caa07669456",
+      "acceptedIdleSha256": "1d10bf3e47a19ba1200337a3feecd3cace505850fd6a71c549e3657ef970f808",
+      "attachment": {
+        "wrist": {
+          "x": 29,
+          "y": 50
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "aster",
+      "index": 19,
+      "row": 3,
+      "column": 4,
+      "facing": "west",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "ebb974e7b2e87d8e697aa5acf02ce53086ecf161b2b6bbd5f7d7c202c2f3119a",
+      "bodySha256": "1d10bf3e47a19ba1200337a3feecd3cace505850fd6a71c549e3657ef970f808",
+      "acceptedIdleSha256": "1d10bf3e47a19ba1200337a3feecd3cace505850fd6a71c549e3657ef970f808",
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "facing": "south",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "bodySha256": "4d944ccf212bb6ff77ba9edf086769fc09fe2b2e0742a0aea57d6181a86794f9",
+      "acceptedIdleSha256": "f3c1a5271c5cc74613a18a7d5b3c411158374a57f26a1f0103b83274ac4ae2ef",
+      "attachment": {
+        "wrist": {
+          "x": 40,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 40,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "facing": "south",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "bodySha256": "2e5f2997dde77fbd8434e5523b9d764a9c33f6957b0021c7427f44099fc2de43",
+      "acceptedIdleSha256": "f3c1a5271c5cc74613a18a7d5b3c411158374a57f26a1f0103b83274ac4ae2ef",
+      "attachment": {
+        "wrist": {
+          "x": 46,
+          "y": 47
+        },
+        "plateCenter": {
+          "x": 46,
+          "y": 43.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "facing": "south",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "bodySha256": "ef00d7de31ed08edf4ed7de04cef027ee447f9aa40f34817f7a329f58c62e660",
+      "acceptedIdleSha256": "f3c1a5271c5cc74613a18a7d5b3c411158374a57f26a1f0103b83274ac4ae2ef",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 44
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 40.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "facing": "south",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "bodySha256": "59ed91fe0fe375f56f6a6fa6bff065b7de24f75d844122631c58b5bf8d580122",
+      "acceptedIdleSha256": "f3c1a5271c5cc74613a18a7d5b3c411158374a57f26a1f0103b83274ac4ae2ef",
+      "attachment": {
+        "wrist": {
+          "x": 37,
+          "y": 49
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 4,
+      "row": 0,
+      "column": 4,
+      "facing": "south",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "bodySha256": "f3c1a5271c5cc74613a18a7d5b3c411158374a57f26a1f0103b83274ac4ae2ef",
+      "acceptedIdleSha256": "f3c1a5271c5cc74613a18a7d5b3c411158374a57f26a1f0103b83274ac4ae2ef",
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "index": 5,
+      "row": 1,
+      "column": 0,
+      "facing": "north",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "bodySha256": "e1ecdc2c1a11fe358d1ca9d63bda56ba8bf54793acf377f74591adb13613e0ec",
+      "acceptedIdleSha256": "cf7c932a2642c527ffdcf1de5efad4278fa69a0f1b2d0c3f28e2d38b51d7e543",
+      "attachment": {
+        "wrist": {
+          "x": 44,
+          "y": 45
+        },
+        "plateCenter": {
+          "x": 44,
+          "y": 41.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 6,
+      "row": 1,
+      "column": 1,
+      "facing": "north",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "bodySha256": "121dd96356d47b87723748b329db4ec39a6c3d4a4114e954698c07c88e1f987b",
+      "acceptedIdleSha256": "cf7c932a2642c527ffdcf1de5efad4278fa69a0f1b2d0c3f28e2d38b51d7e543",
+      "attachment": {
+        "wrist": {
+          "x": 48,
+          "y": 40
+        },
+        "plateCenter": {
+          "x": 48,
+          "y": 36.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 7,
+      "row": 1,
+      "column": 2,
+      "facing": "north",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "bodySha256": "a4725b14cc04f2f54d368284df4bc7739427fac9bbccc603fdf8398f711f15b5",
+      "acceptedIdleSha256": "cf7c932a2642c527ffdcf1de5efad4278fa69a0f1b2d0c3f28e2d38b51d7e543",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 35
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 31.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 8,
+      "row": 1,
+      "column": 3,
+      "facing": "north",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "bodySha256": "5b987aa9d921aada54b4d44b57a3c7f81944023460e468111e401b37856ead02",
+      "acceptedIdleSha256": "cf7c932a2642c527ffdcf1de5efad4278fa69a0f1b2d0c3f28e2d38b51d7e543",
+      "attachment": {
+        "wrist": {
+          "x": 43,
+          "y": 49
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 9,
+      "row": 1,
+      "column": 4,
+      "facing": "north",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "733b2df33d00a37cea5dde318cc57cdf4216877eedf99c66393e97d5e2b6c14c",
+      "bodySha256": "cf7c932a2642c527ffdcf1de5efad4278fa69a0f1b2d0c3f28e2d38b51d7e543",
+      "acceptedIdleSha256": "cf7c932a2642c527ffdcf1de5efad4278fa69a0f1b2d0c3f28e2d38b51d7e543",
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "index": 10,
+      "row": 2,
+      "column": 0,
+      "facing": "east",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "bodySha256": "32876812cca54a5b0f16fd2b361c4311c7857dcc9b9380410b65a9d856570918",
+      "acceptedIdleSha256": "5f3dc4ea6245356c299853bed41e6316f29b4cb71a17687ad36ec3866c6e73e7",
+      "attachment": {
+        "wrist": {
+          "x": 38,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 38,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 11,
+      "row": 2,
+      "column": 1,
+      "facing": "east",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "bodySha256": "06ae44e952f137a315c8b756e8ffaaa5e535cb29a38c170568c1f6be70b2d3c4",
+      "acceptedIdleSha256": "5f3dc4ea6245356c299853bed41e6316f29b4cb71a17687ad36ec3866c6e73e7",
+      "attachment": {
+        "wrist": {
+          "x": 45,
+          "y": 46
+        },
+        "plateCenter": {
+          "x": 45,
+          "y": 42.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 12,
+      "row": 2,
+      "column": 2,
+      "facing": "east",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "bodySha256": "f85494fd7a9b089192bc9ef6f71dc7ac5b63176b06d4102b01e335db4086debc",
+      "acceptedIdleSha256": "5f3dc4ea6245356c299853bed41e6316f29b4cb71a17687ad36ec3866c6e73e7",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 42
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 38.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 13,
+      "row": 2,
+      "column": 3,
+      "facing": "east",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "bodySha256": "749e9658d5dc126b70b9a075774706edc00ae60feed729e35a4ae2fdf65804a0",
+      "acceptedIdleSha256": "5f3dc4ea6245356c299853bed41e6316f29b4cb71a17687ad36ec3866c6e73e7",
+      "attachment": {
+        "wrist": {
+          "x": 35,
+          "y": 50
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 14,
+      "row": 2,
+      "column": 4,
+      "facing": "east",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "1d25b461ff22886dc6d7f6bf96fef8a2c8b268215511d012e45c960cfc4bbc7c",
+      "bodySha256": "5f3dc4ea6245356c299853bed41e6316f29b4cb71a17687ad36ec3866c6e73e7",
+      "acceptedIdleSha256": "5f3dc4ea6245356c299853bed41e6316f29b4cb71a17687ad36ec3866c6e73e7",
+      "attachment": null
+    },
+    {
+      "rig": "bea",
+      "index": 15,
+      "row": 3,
+      "column": 0,
+      "facing": "west",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "bodySha256": "9aa1db95328c1c98839974717202ba3c924a2b2ca11a014af4cb588eb96f2b2f",
+      "acceptedIdleSha256": "73d15a1a18fda42c3f5ef4f339104a3b090a28e3e7e02d3784a49e092776388a",
+      "attachment": {
+        "wrist": {
+          "x": 26,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 26,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 16,
+      "row": 3,
+      "column": 1,
+      "facing": "west",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "bodySha256": "ee07998852580e927882be26b3a8612e0f13537a0c70f6abdfe053f9caf35b10",
+      "acceptedIdleSha256": "73d15a1a18fda42c3f5ef4f339104a3b090a28e3e7e02d3784a49e092776388a",
+      "attachment": {
+        "wrist": {
+          "x": 19,
+          "y": 46
+        },
+        "plateCenter": {
+          "x": 19,
+          "y": 42.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 17,
+      "row": 3,
+      "column": 2,
+      "facing": "west",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "bodySha256": "f0ed0cc6c81a4fb8ac59117a3088c47edb4e16e35ae84d74e89423225e8cd254",
+      "acceptedIdleSha256": "73d15a1a18fda42c3f5ef4f339104a3b090a28e3e7e02d3784a49e092776388a",
+      "attachment": {
+        "wrist": {
+          "x": 13,
+          "y": 42
+        },
+        "plateCenter": {
+          "x": 13,
+          "y": 38.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 18,
+      "row": 3,
+      "column": 3,
+      "facing": "west",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "bodySha256": "e01c1c4d7495a6f5b80cfdbf8795e7891e83b7abd5c829ba32cf8a84edf92e93",
+      "acceptedIdleSha256": "73d15a1a18fda42c3f5ef4f339104a3b090a28e3e7e02d3784a49e092776388a",
+      "attachment": {
+        "wrist": {
+          "x": 29,
+          "y": 50
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "bea",
+      "index": 19,
+      "row": 3,
+      "column": 4,
+      "facing": "west",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "e926ae3cb8d6eb2ffb0c99bfb520998679e5310564842c4c0bc67463b78137b5",
+      "bodySha256": "73d15a1a18fda42c3f5ef4f339104a3b090a28e3e7e02d3784a49e092776388a",
+      "acceptedIdleSha256": "73d15a1a18fda42c3f5ef4f339104a3b090a28e3e7e02d3784a49e092776388a",
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "facing": "south",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "bodySha256": "6734c7e445b4ddcd567e4b35ce6ebe653487ebb8f314624c6e99621ca4d55257",
+      "acceptedIdleSha256": "2721ade29cfdbcc69f3c0a42e03bc8d93fe8aa2fd75a57bb644a6b10d9199134",
+      "attachment": {
+        "wrist": {
+          "x": 40,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 40,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "facing": "south",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "bodySha256": "a93d3397fe8ecbd83a9043fea4212467150c72f77e6adf03588c732e7b8a89bd",
+      "acceptedIdleSha256": "2721ade29cfdbcc69f3c0a42e03bc8d93fe8aa2fd75a57bb644a6b10d9199134",
+      "attachment": {
+        "wrist": {
+          "x": 46,
+          "y": 47
+        },
+        "plateCenter": {
+          "x": 46,
+          "y": 43.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "facing": "south",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "bodySha256": "6f2ae8ba0e40b4af3bc2bb2f9da4829ea4922b0172fe0530dab4ae28dd53bbf7",
+      "acceptedIdleSha256": "2721ade29cfdbcc69f3c0a42e03bc8d93fe8aa2fd75a57bb644a6b10d9199134",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 44
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 40.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "facing": "south",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "bodySha256": "cbab56876a99d3298bf3fd55599e81e922b3dad65c924e512d29a52dcb051b35",
+      "acceptedIdleSha256": "2721ade29cfdbcc69f3c0a42e03bc8d93fe8aa2fd75a57bb644a6b10d9199134",
+      "attachment": {
+        "wrist": {
+          "x": 37,
+          "y": 49
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 4,
+      "row": 0,
+      "column": 4,
+      "facing": "south",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "bodySha256": "2721ade29cfdbcc69f3c0a42e03bc8d93fe8aa2fd75a57bb644a6b10d9199134",
+      "acceptedIdleSha256": "2721ade29cfdbcc69f3c0a42e03bc8d93fe8aa2fd75a57bb644a6b10d9199134",
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "index": 5,
+      "row": 1,
+      "column": 0,
+      "facing": "north",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "bodySha256": "698ae8ebdbcd1f5cabf50e18434b2e686bdeb6048da8f65291275b49b74bc1f0",
+      "acceptedIdleSha256": "5b2e770b51a9ec37aac437cbb3b9f7c38c9adf5a326b6f01109a00058b990d4b",
+      "attachment": {
+        "wrist": {
+          "x": 44,
+          "y": 45
+        },
+        "plateCenter": {
+          "x": 44,
+          "y": 41.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 6,
+      "row": 1,
+      "column": 1,
+      "facing": "north",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "bodySha256": "10405b5680b114fbceaf9e6a8d72ddbe7337e747686162d2fc2bbb499d4a769c",
+      "acceptedIdleSha256": "5b2e770b51a9ec37aac437cbb3b9f7c38c9adf5a326b6f01109a00058b990d4b",
+      "attachment": {
+        "wrist": {
+          "x": 48,
+          "y": 40
+        },
+        "plateCenter": {
+          "x": 48,
+          "y": 36.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 7,
+      "row": 1,
+      "column": 2,
+      "facing": "north",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "bodySha256": "a2b1aba48d9a235f1063cacf26cac3a82aa42cacdeacbb00dea5359b868d9b6d",
+      "acceptedIdleSha256": "5b2e770b51a9ec37aac437cbb3b9f7c38c9adf5a326b6f01109a00058b990d4b",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 35
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 31.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 8,
+      "row": 1,
+      "column": 3,
+      "facing": "north",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "bodySha256": "dc60779ed0906d938c52551ef3d7b742e2cddd8b73cc26b990642e36377063dc",
+      "acceptedIdleSha256": "5b2e770b51a9ec37aac437cbb3b9f7c38c9adf5a326b6f01109a00058b990d4b",
+      "attachment": {
+        "wrist": {
+          "x": 43,
+          "y": 49
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 9,
+      "row": 1,
+      "column": 4,
+      "facing": "north",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "9afe326b5121052409c7a3915c236ce97bfb762d4e0c1dfe8b7b350b731d5485",
+      "bodySha256": "5b2e770b51a9ec37aac437cbb3b9f7c38c9adf5a326b6f01109a00058b990d4b",
+      "acceptedIdleSha256": "5b2e770b51a9ec37aac437cbb3b9f7c38c9adf5a326b6f01109a00058b990d4b",
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "index": 10,
+      "row": 2,
+      "column": 0,
+      "facing": "east",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "bodySha256": "cfee2fa8a3b548653ef379e82d9c2e34d17e54057ace99d135757f682009e318",
+      "acceptedIdleSha256": "5d978f80de6b69d393292e3e8f793ab4acf0247316a7052eb5c84a92a7789110",
+      "attachment": {
+        "wrist": {
+          "x": 38,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 38,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 11,
+      "row": 2,
+      "column": 1,
+      "facing": "east",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "bodySha256": "70a8e6714fc6ca3690877211efb83dfe4930e42d4ad9973d13cc9cf26212cffd",
+      "acceptedIdleSha256": "5d978f80de6b69d393292e3e8f793ab4acf0247316a7052eb5c84a92a7789110",
+      "attachment": {
+        "wrist": {
+          "x": 45,
+          "y": 46
+        },
+        "plateCenter": {
+          "x": 45,
+          "y": 42.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 12,
+      "row": 2,
+      "column": 2,
+      "facing": "east",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "bodySha256": "ee26cde5c2f7f978bb564f6e4a9dd8f22ebc7c861368f22a1b440d1c40febaba",
+      "acceptedIdleSha256": "5d978f80de6b69d393292e3e8f793ab4acf0247316a7052eb5c84a92a7789110",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 42
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 38.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 13,
+      "row": 2,
+      "column": 3,
+      "facing": "east",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "bodySha256": "50fea68cfb0d10c3cfb2379c4e2b5ef6ea847abfa08811648b2401c1ae6ba67a",
+      "acceptedIdleSha256": "5d978f80de6b69d393292e3e8f793ab4acf0247316a7052eb5c84a92a7789110",
+      "attachment": {
+        "wrist": {
+          "x": 35,
+          "y": 50
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 14,
+      "row": 2,
+      "column": 4,
+      "facing": "east",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "35e451d032c4b4c0285b0e3d2ce7301631a1b73ea9c6117beb446621b8909b87",
+      "bodySha256": "5d978f80de6b69d393292e3e8f793ab4acf0247316a7052eb5c84a92a7789110",
+      "acceptedIdleSha256": "5d978f80de6b69d393292e3e8f793ab4acf0247316a7052eb5c84a92a7789110",
+      "attachment": null
+    },
+    {
+      "rig": "casey",
+      "index": 15,
+      "row": 3,
+      "column": 0,
+      "facing": "west",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "bodySha256": "9045049a20cabb4f577c6d1179a10e21914acd93ea2359f3c378f7e58c771c16",
+      "acceptedIdleSha256": "d64f247ebda7aa312ed127b54722739eded96e02a8570ac5f7c3780ecf0a4b89",
+      "attachment": {
+        "wrist": {
+          "x": 26,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 26,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 16,
+      "row": 3,
+      "column": 1,
+      "facing": "west",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "bodySha256": "96275c947d6444d7d40de982f47c034206d6b8c19f353f929826da2c8988d52c",
+      "acceptedIdleSha256": "d64f247ebda7aa312ed127b54722739eded96e02a8570ac5f7c3780ecf0a4b89",
+      "attachment": {
+        "wrist": {
+          "x": 19,
+          "y": 46
+        },
+        "plateCenter": {
+          "x": 19,
+          "y": 42.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 17,
+      "row": 3,
+      "column": 2,
+      "facing": "west",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "bodySha256": "71b17bbfa68d80fb0f989d58d3a28d30ed6e0d5783df2932a6cfb1fbaf762a0f",
+      "acceptedIdleSha256": "d64f247ebda7aa312ed127b54722739eded96e02a8570ac5f7c3780ecf0a4b89",
+      "attachment": {
+        "wrist": {
+          "x": 13,
+          "y": 42
+        },
+        "plateCenter": {
+          "x": 13,
+          "y": 38.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 18,
+      "row": 3,
+      "column": 3,
+      "facing": "west",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "bodySha256": "a1c9b1427683f08d9d0e8542c6389a18b6c946450bf115c2c67e36e6d272aae8",
+      "acceptedIdleSha256": "d64f247ebda7aa312ed127b54722739eded96e02a8570ac5f7c3780ecf0a4b89",
+      "attachment": {
+        "wrist": {
+          "x": 29,
+          "y": 50
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "casey",
+      "index": 19,
+      "row": 3,
+      "column": 4,
+      "facing": "west",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "740334a7ce2cb378b7f8f0a55bdfbe7a9181eda0463b7dcccbe24911c7ed3339",
+      "bodySha256": "d64f247ebda7aa312ed127b54722739eded96e02a8570ac5f7c3780ecf0a4b89",
+      "acceptedIdleSha256": "d64f247ebda7aa312ed127b54722739eded96e02a8570ac5f7c3780ecf0a4b89",
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "facing": "south",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "bodySha256": "a89368174fe509d17ea10f6a6e24669a7e3daf6f4b81c866b2528b3f7251a984",
+      "acceptedIdleSha256": "621c62d319d1d7647ef9b5873ce5aab25aa950747518b9dbdb68fce67c2600d2",
+      "attachment": {
+        "wrist": {
+          "x": 40,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 40,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "facing": "south",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "bodySha256": "aaf0c3dac3f93acba69f4eb3af2ae2ebc851bbd145c5cfb7a81b22cfad7648f9",
+      "acceptedIdleSha256": "621c62d319d1d7647ef9b5873ce5aab25aa950747518b9dbdb68fce67c2600d2",
+      "attachment": {
+        "wrist": {
+          "x": 46,
+          "y": 47
+        },
+        "plateCenter": {
+          "x": 46,
+          "y": 43.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "facing": "south",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "bodySha256": "297ab525fdc6793ce48144d3f5c113e1abfd25537ec4ab7e683c88c7075fac6c",
+      "acceptedIdleSha256": "621c62d319d1d7647ef9b5873ce5aab25aa950747518b9dbdb68fce67c2600d2",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 44
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 40.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "facing": "south",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "bodySha256": "96e01bbfcc72b722dd072085212adb03637c38ed2e8cec779a764207648df997",
+      "acceptedIdleSha256": "621c62d319d1d7647ef9b5873ce5aab25aa950747518b9dbdb68fce67c2600d2",
+      "attachment": {
+        "wrist": {
+          "x": 37,
+          "y": 49
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 4,
+      "row": 0,
+      "column": 4,
+      "facing": "south",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "bodySha256": "621c62d319d1d7647ef9b5873ce5aab25aa950747518b9dbdb68fce67c2600d2",
+      "acceptedIdleSha256": "621c62d319d1d7647ef9b5873ce5aab25aa950747518b9dbdb68fce67c2600d2",
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "index": 5,
+      "row": 1,
+      "column": 0,
+      "facing": "north",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "bodySha256": "4058f1ad0d822abad3e8dbda440579e73db751a1f1ad773875d1f66841877507",
+      "acceptedIdleSha256": "e6f5ef05357b3eacc5724d88a3ecadb49ac9f425061cee28aaf25f3dd075dce5",
+      "attachment": {
+        "wrist": {
+          "x": 44,
+          "y": 45
+        },
+        "plateCenter": {
+          "x": 44,
+          "y": 41.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 6,
+      "row": 1,
+      "column": 1,
+      "facing": "north",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "bodySha256": "5de0e02ae5f2f4aa8fdff68d807cd5c1d5739afaa2f0a7d8a5848047fdb4335b",
+      "acceptedIdleSha256": "e6f5ef05357b3eacc5724d88a3ecadb49ac9f425061cee28aaf25f3dd075dce5",
+      "attachment": {
+        "wrist": {
+          "x": 48,
+          "y": 40
+        },
+        "plateCenter": {
+          "x": 48,
+          "y": 36.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 7,
+      "row": 1,
+      "column": 2,
+      "facing": "north",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "bodySha256": "c5b68d184b22b30a52e7597cfba9f4e6a80209290ee6227e545d04ee36a08cf3",
+      "acceptedIdleSha256": "e6f5ef05357b3eacc5724d88a3ecadb49ac9f425061cee28aaf25f3dd075dce5",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 35
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 31.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 8,
+      "row": 1,
+      "column": 3,
+      "facing": "north",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "bodySha256": "558c5116f05519d31366c4e2b04229823235bb71d5340d828a129ea53d6e5c3c",
+      "acceptedIdleSha256": "e6f5ef05357b3eacc5724d88a3ecadb49ac9f425061cee28aaf25f3dd075dce5",
+      "attachment": {
+        "wrist": {
+          "x": 43,
+          "y": 49
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 9,
+      "row": 1,
+      "column": 4,
+      "facing": "north",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "cbb53cbed28d49ec04a7a0a68e8e26856c406163f9ab73c7fe3e34a3dcdbb708",
+      "bodySha256": "e6f5ef05357b3eacc5724d88a3ecadb49ac9f425061cee28aaf25f3dd075dce5",
+      "acceptedIdleSha256": "e6f5ef05357b3eacc5724d88a3ecadb49ac9f425061cee28aaf25f3dd075dce5",
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "index": 10,
+      "row": 2,
+      "column": 0,
+      "facing": "east",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "bodySha256": "784d35ebbce09737b1d201690d7cfb40c25cc9ee16409800a2cabbe185efebea",
+      "acceptedIdleSha256": "1b8072559dc396a1ceaa1a4fcf1738de15711d025b5d580c925ff2c942457b68",
+      "attachment": {
+        "wrist": {
+          "x": 38,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 38,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 11,
+      "row": 2,
+      "column": 1,
+      "facing": "east",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "bodySha256": "a4006843690d18e974d0fea2940417dc57554fc01fe5244f33d2bf37c3e25110",
+      "acceptedIdleSha256": "1b8072559dc396a1ceaa1a4fcf1738de15711d025b5d580c925ff2c942457b68",
+      "attachment": {
+        "wrist": {
+          "x": 45,
+          "y": 46
+        },
+        "plateCenter": {
+          "x": 45,
+          "y": 42.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 12,
+      "row": 2,
+      "column": 2,
+      "facing": "east",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "bodySha256": "bd34973dd2acad8367a542f82c4445a7326710e97227c92c585d1b89c6669c34",
+      "acceptedIdleSha256": "1b8072559dc396a1ceaa1a4fcf1738de15711d025b5d580c925ff2c942457b68",
+      "attachment": {
+        "wrist": {
+          "x": 51,
+          "y": 42
+        },
+        "plateCenter": {
+          "x": 51,
+          "y": 38.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 13,
+      "row": 2,
+      "column": 3,
+      "facing": "east",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "bodySha256": "02e48fd0b16136dcd69805197cd47abe4287d5facb60b3e79c9c65135cb41fb9",
+      "acceptedIdleSha256": "1b8072559dc396a1ceaa1a4fcf1738de15711d025b5d580c925ff2c942457b68",
+      "attachment": {
+        "wrist": {
+          "x": 35,
+          "y": 50
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 14,
+      "row": 2,
+      "column": 4,
+      "facing": "east",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "54057ba241073ad260e24f48943fb1175b317af60e2e35213506281adb6eca5f",
+      "bodySha256": "1b8072559dc396a1ceaa1a4fcf1738de15711d025b5d580c925ff2c942457b68",
+      "acceptedIdleSha256": "1b8072559dc396a1ceaa1a4fcf1738de15711d025b5d580c925ff2c942457b68",
+      "attachment": null
+    },
+    {
+      "rig": "devon",
+      "index": 15,
+      "row": 3,
+      "column": 0,
+      "facing": "west",
+      "pose": "ready",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "bodySha256": "a9838a4ff9af8f8c0bb72f5948cf9c6b9503b86303baddd784eecd45c0c78eb0",
+      "acceptedIdleSha256": "8e724c4c9a63f8abbe94e458cf448939da66ccd2ff6d7a44b1c7adc85ea7dae4",
+      "attachment": {
+        "wrist": {
+          "x": 26,
+          "y": 49
+        },
+        "plateCenter": {
+          "x": 26,
+          "y": 45.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 16,
+      "row": 3,
+      "column": 1,
+      "facing": "west",
+      "pose": "reach",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "bodySha256": "f5de30fedf1e91dfd4f4dd59b4d67210ff87e84b91e14e95e3de338507c46520",
+      "acceptedIdleSha256": "8e724c4c9a63f8abbe94e458cf448939da66ccd2ff6d7a44b1c7adc85ea7dae4",
+      "attachment": {
+        "wrist": {
+          "x": 19,
+          "y": 46
+        },
+        "plateCenter": {
+          "x": 19,
+          "y": 42.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 17,
+      "row": 3,
+      "column": 2,
+      "facing": "west",
+      "pose": "contact",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "bodySha256": "2ab87f346394442537fc111871b050e8a667f421156ce86e39c1514803d59c18",
+      "acceptedIdleSha256": "8e724c4c9a63f8abbe94e458cf448939da66ccd2ff6d7a44b1c7adc85ea7dae4",
+      "attachment": {
+        "wrist": {
+          "x": 13,
+          "y": 42
+        },
+        "plateCenter": {
+          "x": 13,
+          "y": 38.6
+        },
+        "plateScale": 0.8,
+        "hasPlate": true
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 18,
+      "row": 3,
+      "column": 3,
+      "facing": "west",
+      "pose": "recovery",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "bodySha256": "6b85a221ef6d64057e2e754b6a2ad9005ed595eb2bbea4686d2219fd08ffacc2",
+      "acceptedIdleSha256": "8e724c4c9a63f8abbe94e458cf448939da66ccd2ff6d7a44b1c7adc85ea7dae4",
+      "attachment": {
+        "wrist": {
+          "x": 29,
+          "y": 50
+        },
+        "plateCenter": null,
+        "plateScale": 0.8,
+        "hasPlate": false
+      }
+    },
+    {
+      "rig": "devon",
+      "index": 19,
+      "row": 3,
+      "column": 4,
+      "facing": "west",
+      "pose": "idle",
+      "foot": {
+        "x": 32,
+        "y": 72
+      },
+      "footVectorSha256": "36aec64b80ef3b86c081b3278b232f6c780a24f7d4bfc256ede15230dd14a78b",
+      "bodySha256": "8e724c4c9a63f8abbe94e458cf448939da66ccd2ff6d7a44b1c7adc85ea7dae4",
+      "acceptedIdleSha256": "8e724c4c9a63f8abbe94e458cf448939da66ccd2ff6d7a44b1c7adc85ea7dae4",
+      "attachment": null
+    }
+  ],
+  "teapot": {
+    "icon": {
+      "file": "teapot-icon.svg",
+      "width": 64,
+      "height": 64,
+      "displayPixels": 56,
+      "foot": {
+        "x": 32,
+        "y": 56
+      }
+    },
+    "world": {
+      "file": "teapot-world.svg",
+      "width": 80,
+      "height": 80,
+      "displayPixels": 48,
+      "foot": {
+        "x": 40,
+        "y": 74
+      }
+    },
+    "scope": "Art/anchor candidate only; no owned item, quantity, collision or placement integration."
+  },
+  "sources": {
+    "tools/create-serving-family.py": "c5118cbc741b1c28051de1b7db4ed2fc9baa972f6e5cd94ed7d441797b135406",
+    "tools/create-serving-study.py": "34ad9ec7baa4de46fa37c8cc30d354ba4c61aae69653ae2956d7043caaaf1ebd",
+    "tools/create-town-variety.py": "00ba74f1551f0bd55d7d630e6489c7bed4315236da0fb94047d9e175e45f6040",
+    "docs/evidence/IH2-099/study/art/brave-teapot.svg": "cc0cf815f7c7e5ff4f901b6b395b8062686d6e6461addb62505c2fe9433e10fc",
+    "tools/serving-family-template/index.html": "02b6a11ce706816a4b190017a610080b04266eafc9f6feb2e60d564c89c0d4bf",
+    "tools/serving-family-template/style.css": "9d90516d766b9027393347ed478fcb7641f2a02262a579c6199cea8c2f32b225",
+    "tools/serving-family-template/family.js": "115dfc28ad5847dfef816b5616420ddf32a9868df5137062d44e08c6a4dcf31f"
+  },
+  "files": {
+    "aster-contact.svg": "86f374715d5984acf2b0e29fedd965d8d44a2185899fb2dacc0c490f75f78c22",
+    "aster-serving.svg": "ddc3614614a7bb57df4c5c399cacfd352a78f272ba9d5f6311e34b3bfcc8c4f4",
+    "bea-contact.svg": "5e355b1a691b9e01621f250ee2dc24e106491f557c5afd2665d9dd6e10b13ff7",
+    "bea-serving.svg": "3edd84982413489a76b6f99eef9f6e9a5804ccf74d7d11eefafe2c15d032375d",
+    "casey-contact.svg": "3d9d2599fb1660fbf8d7cbd0e26e267fc6f61c2d4945964fd89d748b54fb3510",
+    "casey-serving.svg": "9547480ab49f3525a19bc615115801acff364a58493c340102aa350d87906c64",
+    "devon-contact.svg": "36e1b059d07fdf5074992998789801d47869d7b564bb6097527c3820af74d958",
+    "devon-serving.svg": "985af57505eb1a1a79d98d3fd11f35206ad82992c4338bf7bb400f9fbfbbf328",
+    "family.js": "115dfc28ad5847dfef816b5616420ddf32a9868df5137062d44e08c6a4dcf31f",
+    "index.html": "02b6a11ce706816a4b190017a610080b04266eafc9f6feb2e60d564c89c0d4bf",
+    "style.css": "9d90516d766b9027393347ed478fcb7641f2a02262a579c6199cea8c2f32b225",
+    "teapot-icon.svg": "3316d883a8a48cacced890b5c41c50932be9ba5bce3758440971a8af0d791702",
+    "teapot-world.svg": "cc0cf815f7c7e5ff4f901b6b395b8062686d6e6461addb62505c2fe9433e10fc"
+  }
+}

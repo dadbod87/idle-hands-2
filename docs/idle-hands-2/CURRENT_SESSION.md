@@ -1,4 +1,10 @@
-096source candidate1572352pushed onfeat/allotment-visual-study; canonical copy is planning/evidence only, runtime stays090.
+Canonical planning only: active097work is in sibling idle-hands-2-garden-frame; accepted runtime remains090.096heldsource1572352is pushed.
+
+# Active 097: actual allotment composition and phone framing candidate
+
+Isolated idle-hands-2-garden-frame / feat/allotment-composition starts from held096source1572352, including pending095UI source. Follow097PLAN; preserve all rules/state/backend and prior198runtimeart/335system/127browser coverage. Integrate exactly four locally reviewed original096layers, actor-follow phone framing, actual Phaser4matrix taps and world-anchored rain/lamp scale. No menu-driven zoom. All required CI/accepted-client gates remain held; accepted090main/clients/APIs/data/keys/54studies stay untouched.
+
+## Previous checkpoint
 
 # 096 locally reviewed; 097 actual garden candidate next
 

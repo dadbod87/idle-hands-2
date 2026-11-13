@@ -1335,7 +1335,7 @@
     {
       "id": "IH2-097",
       "title": "Actual allotment composition and phone framing",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-090"
       ],
@@ -1350,7 +1350,8 @@
       ],
       "evidence": [
         "docs/evidence/IH2-097/PLAN.md"
-      ]
+      ],
+      "owner_branch": "feat/allotment-composition"
     }
   ]
 }

@@ -1584,7 +1584,7 @@
     {
       "id": "IH2-105",
       "title": "Quota-safe staged local caf\u00e9 commit candidate",
-      "status": "queued",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1596,10 +1596,40 @@
         "Run applicable repository checks; document remaining shared transaction/UUID/locks, housing allocations, protocol/cache and coherent UI/art gates. Keep normal final-head source acceptance required."
       ],
       "exclusions": [
-        "No actual live save/writer/root/PROP_IDS/protocol/UI/server registration, real browser storage or protected fixture mutation, cloud/SQL migration, hosted Actions while held, spending or merge. No broad unsaved-practice rewrite."
+        "No actual live save/writer/root/PROP_IDS/protocol/UI/server registration, existing user-profile browser storage or protected fixture mutation, cloud/SQL migration, hosted Actions while held, spending or merge. No broad unsaved-practice rewrite."
       ],
       "evidence": [
-        "docs/evidence/IH2-105/PLAN.md"
+        "docs/evidence/IH2-105/PLAN.md",
+        "docs/evidence/IH2-105/REPORT.md",
+        "docs/evidence/IH2-105/domain-review.md",
+        "docs/evidence/IH2-105/local-checks.json",
+        "docs/evidence/IH2-105/source-scope.json",
+        "docs/evidence/IH2-105/payload.json",
+        "docs/evidence/IH2-105/discovery.json",
+        "docs/evidence/IH2-105/native-fixture-proof.json"
+      ],
+      "owner_branch": "feat/cafe-save-protection",
+      "blocked_reason": "Locally complete:372system/139browser+3final native recheck,0skips/flakes/errors; stage/write/retry/raw-preservation proofs,208byte-identical game/preservation recorded. Normal hosted/source acceptance remains held; no live writer registration."
+    },
+    {
+      "id": "IH2-106",
+      "title": "Complete serving rigs and original teapot art kit",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Complete the remaining original serving rigs and readable Bag/world teapot assets in an isolated family gallery before coherent caf\u00e9 integration. This art work is independent of105source acceptance.",
+      "acceptance": [
+        "Read100Aster evidence,103authority contract,105save-protection handoff, current rig/art direction and Actions usage policy; preserve original099/100study files and all accepted data/art.",
+        "Build all four facing/phase families for the four current rigs using original vector sources; prove exact feet/final idle, handedness/contact/crop at actual game scale, bounded replay/reduced/hidden behavior and measured payload. Keep dated Aster artifacts unchanged.",
+        "Produce distinct readable Bag/world teapot representations with provenance, no live prop/catalog registration; native desktop/narrow/short/text200checks, actual small-scale raster comparisons, appropriate Terra review and explicit fixture/device limits.",
+        "Run full appropriate local checks, preserve normal hosted/source gates, document remaining coordinated command/schema/writer/protocol/SQL/home allocation/counter/receipt integration; no partial live combination."
+      ],
+      "exclusions": [
+        "No live writer/root/protocol/PROP_IDS/Bag/room/server/database change, account/progress mutation, cloud/spending, hosted Actions while held, merge or accepted-preview replacement. No paid assets or full animation-family claim with missing rigs."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-106/PLAN.md"
       ]
     }
   ]

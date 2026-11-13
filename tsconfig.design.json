@@ -110,7 +110,9 @@
     "tests/serving-study.spec.ts",
     "tools/observe-serving-study.ts",
     "tools/check-coherent-inputs.ts",
-    "tests/cafe-candidate.test.ts"
+    "tests/cafe-candidate.test.ts",
+    "tests/cafe-save.test.ts",
+    "tests/cafe-save.spec.ts"
   ],
   "compilerOptions": {
     "types": [

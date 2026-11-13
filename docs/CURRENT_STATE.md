@@ -1,3 +1,5 @@
+105staged café save protection locally verified:372system/139browser+3final native cases,0skips/flakes/errors; quota/migration/stale/two-window/confirmation protection and exact208game identity. No live wiring or accepted-preview change; normal source gate held. Next106original serving rigs/teapot kit. [Report](evidence/IH2-105/REPORT.md).
+
 104pure café candidate locally verified:359system/136browser,0skips/flakes/errors; strict migration/conservation/reward/cooldown/fixedopening and two-sided provenance verified. No live wiring or accepted-preview change; normal source gate remains held. Next105staged local persistence. [Report](evidence/IH2-104/REPORT.md).
 
 103design-only café authority/persistence contract recorded from actual source and independent review; no runtime/data/schema/API change.102actual348/136code evidence retained. Next104purecandidate outside live entrypoints, normal source gate held and accepted090unchanged. [Contract](idle-hands-2/design/CAFE_AUTHORITY_CONTRACT.md).

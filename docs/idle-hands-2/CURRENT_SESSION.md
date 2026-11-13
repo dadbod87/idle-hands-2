@@ -1,12 +1,24 @@
-# Mandatory usage policy; latest source4f13238
+# Canonical continuation:104backed up;105queued
 
-Read ACTIONS_USAGE_POLICY.md before any hosted trigger. The latest coherent source plus durable policy is `4f13238` on `docs/actions-usage-guardrails` in idle-hands-2-actions-policy. Resume104 from that source after checking remote, not from this canonical accepted090 runtime. Rules are linked in AGENTS/build guide/README/release checklist. Billing remains unconfirmed; no spending, workflow, PR, hosted-run, merge or preview change in this follow-up. Documentation checks58tasks/10tracker/40pinned/whitespace passed.
+Latest actual source is `ee9537ebf3c30764e8cce61ff5f60a2b28cb9f17` on `feat/cafe-ledger-candidate`, checkout idle-hands-2-cafe-ledger. Use that code for105. This canonical bookkeeping branch copies documentation/evidence only: runtime remains accepted090, and its six old design-model fingerprints are deliberately retained to match that old runtime. The six refreshed current-source models live on the104source branch with exact numerical equivalence proof.
 
-# Canonical continuation:103 backed up;104 queued
+Owner authorized local continuation before arranging GitHub allowance. Actual104local359system/136browser,0skips/flakes/errors; build/design/59tasks/10tracker/40pinned and preservation pass. No live café registration, accepted-preview/main/public/billing change. Normal hosted/source acceptance remains held. Read ACTIONS_USAGE_POLICY at startup; do not trigger redundant PRs/runs or infer a paid budget. Next105quota-safe staged save candidate.
 
-Final103 documentation source is `82b7272dc63c3a603ff47de522865266bc9afe8b` on `docs/cafe-authority-contract` in the isolated idle-hands-2-cafe-authority checkout, inheriting coherent102 code `2d3fa8f9b84ca1de8dc4585a97594ed415fe5cd1`. This canonical branch copies documentation only; its runtime remains accepted090. Future104 must begin from the103 source branch, not this canonical old runtime.
+#104 pure café candidate locally verified;105next
 
-At the November13 7am stop, the owner reports the included 2,000 Actions minutes are exhausted; billing is not resolved and no spending or workflow change is authorized. The current response audits usage and explains pricing. No104 implementation, main merge, accepted-preview replacement, cloud provisioning or billing change. All code and evidence are backed up.
+Current isolated checkout idle-hands-2-cafe-ledger, branch feat/cafe-ledger-candidate, based4f1323862a61acf9265087c422dbed8231e9fa0d. Owner authorized continued local work on November13while arranging Actions billing. Final backup SHA is recorded in canonical continuation after push. Use this current candidate code, not canonical accepted090runtime, for105. Read ACTIONS_USAGE_POLICY and104REPORT before hosted work.
+
+Actual local359system/136browser, zero skips/flakes/unexpected/reporterrors; disjoint69+67discovery keeps ordered family on2. Build/design/59taskplan/10tracker/40pinned/whitespace pass. Full browser1,019,647.172ms. Current208compiled files/all202art,119raw/52summedgzip delta vs102; final alternate build exactly matches the full-browser artifact. Original099thirteen/100eight files/rawcopies unchanged. Six current analytical reports differ only in explicit fingerprint values; actual original-tree replay7passes; four current refactors separately pinned and original invariant/legacy bodies verified. Independent read-only domain/provenance review found no concrete defect.
+
+Pure root3/garden4candidate, one-radish cost,4hcooldown,3personal/one teapot,12public/fixed4hopening, late entitlement and strict raw-preserving migration are NOT live registration. No writer/protocol/PROP_IDS/room/server/UI/schema/data/service/key change. Existing validators were factored without changing live invariants. Local current-build screenshots were sampled; no new Terra UI audit, physical device or human fun claim. Existing synthetic/elapsed/intercepted browser fixtures only.
+
+Protected practice/Tour all13tables/allfields/keys/sixchecksums, accepted090schema5API and54accepted study responses remain unchanged. Accepted090mainf0a294a/previews4175and4176remain; held review origins are not replaced. Current104artifact is local full-browser4198/4196 evidence, not a refreshed persistent review URL.
+
+Next105proves an isolated same-key/common-lock staged save adapter: persist complete candidate before confirming, refuse unknown/partial input, preserve raw/confirmed state on quota/migration-write failure, and retry exactly once. Shared SQL/UUID/locks/home allocations/protocol/cache and coherent counter/physical teapot/UI remain later gates.104source acceptance stays blocked; local continuation is authorized, not a merge bypass. No new PR/dispatch/hostedrun/mainmerge/public/cloud/billing change.
+
+# Actions usage rules saved — read before hosted validation
+
+Owner requested durable usage rules on November13. Read ACTIONS_USAGE_POLICY.md at every startup. Current continuation branch is docs/actions-usage-guardrails in idle-hands-2-actions-policy, inheriting103 source82b7272 and coherent102 runtime. This branch is backed up without opening/updating a PR or dispatching Actions. Continue104 from this branch after reconciling current remote/handoff; canonical runtime remains accepted090. Billing is still awaiting owner setup; no paid budget or hosted-run recovery is confirmed.
 
 #7am continuation point —103design recorded,104queued
 

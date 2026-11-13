@@ -1,0 +1,25 @@
+{
+  "originCommit": "4f1323862a61acf9265087c422dbed8231e9fa0d",
+  "archivedSourcesVerifiedAgainstGit": 6,
+  "actualHistoricalTreeReplay": {
+    "command": "node --experimental-strip-types --test tests/design-cafe.test.ts",
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "directory": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/cafe-ledger-2026-11-13/historical-replay",
+    "notCurrentCodeExecution": true
+  },
+  "currentGeneratorHistoricalAttribution": "Current equivalent generation uses recorded historical metadata, while all4current refactors are separately fingerprinted. No claim that current files are old.",
+  "historicalStudies": [
+    {
+      "task": "IH2-099",
+      "files": 13,
+      "allBytesUnchanged": true
+    },
+    {
+      "task": "IH2-100",
+      "files": 8,
+      "allBytesUnchanged": true
+    }
+  ]
+}

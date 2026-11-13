@@ -1,0 +1,45 @@
+{
+  "classification": "LOCAL_PURE_CANDIDATE_NOT_SOURCE_ACCEPTED",
+  "system": {
+    "passed": 359,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 79463.305416,
+    "finalPresentationContractAligned": true
+  },
+  "focusedNew": {
+    "passed": 11,
+    "skipped": 0
+  },
+  "browser": {
+    "passed": 136,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "reportErrors": 0,
+    "durationMs": 1019647.172
+  },
+  "historicalSourceReplay": {
+    "passed": 7,
+    "skipped": 0
+  },
+  "build": true,
+  "design": true,
+  "normalGithubGate": false,
+  "sourceAccepted": false,
+  "publicDeployment": false,
+  "trackerTasks": 59,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "historicalRawStudyFilesPackaged": 21,
+  "discovery": {
+    "shards": [
+      69,
+      67
+    ],
+    "disjoint": true,
+    "union": 136,
+    "orderedFamilyOnlyOn2": true
+  },
+  "protectedPracticeAndTourAnd54Studies": true
+}

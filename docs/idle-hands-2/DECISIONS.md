@@ -215,3 +215,8 @@ Owner finds combined Bag & journal cluttered and wants an eventual little RPG/MM
 
 
 2026-11-13 —102direct hashes corrected the initial World-fingerprint hypothesis: original099inputs/art/checks reproduce exactly; keep and package them with100rather than duplicate output.103design chooses a same-root local Café projection and narrow staged café storage commit; existing other-command unsaved-practice behavior is unchanged. Both-goals-complete means personal3+townfunded12even during opening. Shared debit/reward/credit/UUID must be atomic, with consistent locks, fixed deadline and exact migration/cached-writer proofs. Proposed versions3/4/6remain design only. Next104purecandidate stays outside live entrypoints until later coherent integration.
+
+
+## November13 — local café candidate while Actions allowance is held
+
+Owner explicitly authorized continued local development before arranging GitHub billing.104implements a strict pure café ledger/migration candidate outside live registration, sharing unchanged current invariants rather than duplicating them. Actual candidate/root/public rules are locally tested; they are not SQL, durable-save, identity or live-feature authority. Dated099source attribution is now explicitly pinned separately from104current refactors, with actual historical-tree replay and unchanged numerical reports. No old13study output is rewritten. Next105proves a narrow staged local save adapter before any coherent live integration; all normal source gates, shared/home/cache prerequisites and spending boundaries remain.

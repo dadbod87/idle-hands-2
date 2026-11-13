@@ -1552,7 +1552,7 @@
     {
       "id": "IH2-104",
       "title": "Pure caf\u00e9 ledger and exact migration candidate",
-      "status": "queued",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1566,7 +1566,40 @@
         "No actual storage writer change, table/migration execution, HTTP command/protocol bump, live state/prop/reward/room registration, real-player grant, server/keys/host/expense/public change. No blind defaults or whole-game durability rewrite."
       ],
       "evidence": [
-        "docs/evidence/IH2-104/PLAN.md"
+        "docs/evidence/IH2-104/PLAN.md",
+        "docs/evidence/IH2-104/REPORT.md",
+        "docs/evidence/IH2-104/local-checks.json",
+        "docs/evidence/IH2-104/domain-review.md",
+        "docs/evidence/IH2-104/validator-refactor.json",
+        "docs/evidence/IH2-104/factoring-proof.json",
+        "docs/evidence/IH2-104/historical-proof.json",
+        "docs/evidence/IH2-104/design-equivalence.json",
+        "docs/evidence/IH2-104/payload.json",
+        "docs/evidence/IH2-104/discovery.json",
+        "docs/evidence/IH2-104/sampled-visual-review.md"
+      ],
+      "owner_branch": "feat/cafe-ledger-candidate",
+      "blocked_reason": "Pure candidate locally complete:359system/136browser,0skips/flakes/errors; exact legacy/conservation/provenance/preservation evidence recorded. Normal final-head GitHub/source acceptance remains held by allowance; no live registration or release."
+    },
+    {
+      "id": "IH2-105",
+      "title": "Quota-safe staged local caf\u00e9 commit candidate",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Prove a narrow same-key writer-lock/save adapter for the locally verified104candidate without live registration, while preserving the source-acceptance hold.",
+      "acceptance": [
+        "Read104source/evidence and ACTIONS_USAGE_POLICY. Owner authorized continued local work on held candidates; accepted090is the source dependency, while actual implementation starts from the final104branch. No source acceptance is inferred.",
+        "Under the common writer lock, reload and validate the same save, calculate a candidate, write the complete root successfully, then expose confirmation. Preserve raw/confirmed state on quota or migration-write failure; no radish/reward/cooldown/public-credit confirmation before durable success.",
+        "Use isolated storage fixtures to prove malformed/unknown/partial preservation, two-window reload, stale revisions, repeated retry, same-key migration, fixed local deadline, teapot once and no-spend completion. Distinguish pure approval from storage success and shared authority.",
+        "Run applicable repository checks; document remaining shared transaction/UUID/locks, housing allocations, protocol/cache and coherent UI/art gates. Keep normal final-head source acceptance required."
+      ],
+      "exclusions": [
+        "No actual live save/writer/root/PROP_IDS/protocol/UI/server registration, real browser storage or protected fixture mutation, cloud/SQL migration, hosted Actions while held, spending or merge. No broad unsaved-practice rewrite."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-105/PLAN.md"
       ]
     }
   ]

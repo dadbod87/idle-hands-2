@@ -1,3 +1,11 @@
+# Active099: café hospitality feasibility and concise study
+
+Isolated `idle-hands-2-cafe-study` / `feat/cafe-service-study`, base canonical documentation checkpoint847df45; runtime code is byte-identical accepted090mainf0a294a. No pending091–098runtime is imported. Read099PLAN; compare immediate service against an unnecessary2minqueue and premature herb/edible inventory, model current radish/Pip/flower constraints, choose ordinary reversible study defaults after evidence. Separate original-art menu/room concept only, no runtime/game save/API/currency or public hosting change. All204accepted files/198art/API5/protected/Tour/studies stay preserved.
+
+Current source fetch stillf0a294aand PR39/8abc1b4only. Read-only session inventory shows this sequel chat active and original Idle Hands1idle; no other active sequel chat observed. Required GitHub gate remains held after old billing refusal; owner question unanswered, no bypass. Previous098source91a3eb1pushed locally338/132/native/Terra/artifact/origin/preservationverified; review http://toolbar-town.localhost:49579/?town=1(disclosed fictional residents). Accepted090previews unchanged.
+
+Follow one active task, source/evidence/design fidelity and future authority gates. Continue near10%weeklyreserve or7amNov13Pacific/15:00UTC. Last49%used/51%remaining, no resetcredits used.
+
 # Canonical continuation — source/runtime090preserved
 
 098source candidate `91a3eb1b8e5f16f006223c6bf859a2d743343c93` is pushed to `feat/stable-phone-toolbar`, locally338/132/native/Terra/origin/artifact/preservation verified. This canonical branch copies only planning/evidence; its runtime remains accepted090. Required GitHub gate remains held. Next099independent café study starts from this090runtime plus current docs. Last49%weeklyused/51%remaining; no resetcredits used, stop near10%reserve or15:00UTC.

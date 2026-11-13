@@ -1399,7 +1399,7 @@
     {
       "id": "IH2-099",
       "title": "Caf\u00e9 hospitality feasibility and concise service study",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-090"
       ],
@@ -1414,7 +1414,8 @@
       ],
       "evidence": [
         "docs/evidence/IH2-099/PLAN.md"
-      ]
+      ],
+      "owner_branch": "feat/cafe-service-study"
     }
   ]
 }

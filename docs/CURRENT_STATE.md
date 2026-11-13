@@ -1,5 +1,7 @@
 # Idle Hands 2 — current state
 
+IH2-090candidate adds original brick/timber exterior pairs, bounded occupied chimney life and low public flowers, preserving all190priorart files. Repairs inherited fractional-boundary route-planner mismatch; all552door pairs/48fractional endpoint walks pass with unchanged collision/speed.322domain/zero skips and native/render2cases pass; TerraV1sampled204filebuild finds no blocker. Full108/exactheadCI/matched client-server restart/artifact/preservation gates pending; actual4175/4176still088. [Report](evidence/IH2-090/REPORT.md).
+
 IH2-088 verified PR37/mergeaa4db70, exact69d71b6 CI43346520501all4SUCCESS:317system/zero skips,106local and106CIbrowser. Addressed24-site expandable neighborhoods, individual server-validated doors, exact street returns, grouped phone visits and Housing Registry now run in actual4175matched protocol5. All protected progress/key/6checksums/54studies preserved. Separate disclosed25fictional-home tour at localhost4176; actual native visits and APIrestart verified.090distinct exteriors/life next. [Closeout](evidence/IH2-088/source-closeout.json). Older entries below historical; current handoff authoritative.
 
 088candidate adds addressed residential blocks/individual doors, grouped street visits and registry records, physical-origin exits and four original site/registry/ground vectors.317system/zero skips and focused native checks pass; full106/CI/actual artifact/protocol5preview gates pending. Protected4175remains089/protocol4. [Report](evidence/IH2-088/REPORT.md).

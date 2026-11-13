@@ -1,3 +1,15 @@
+# IH2-090 candidate — distinct homes and collision-safe routing
+
+Active isolated sibling idle-hands-2-residential/feat/residential-life, basee0f7a07. Seven original vectors/three facade families/bounded occupied chimney life implemented; shared route-helper repair resolves90failed house-door pairs using unchanged body collision/speed and safe grid anchors.322domain/0skips54.602s, newnative2cases49.1s, routing/art5checks pass; full108/exactheadCI/actual artifact gates pending. TerraV1frozen204filedesktop/touchphone/short200review has no sampled P1/P2. Actual4175/localhost4176and frozenAPI5remain088; final matched client/server update/restart with both protected/tour13table/key/6checksum preservation is required (shared helper is also server movement validation). No reseed/SQLmigration/protocol/economy change. Latest42%used/58%remaining; continue near10%reserve/7amNov13Pacific.
+
+## Previous checkpoint and preparation history
+
+# IH2-090 in progress — residential art and life
+
+Active isolated sibling idle-hands-2-residential/feat/residential-life based on verified088closinge0f7a07. Plan docs/evidence/IH2-090/PLAN.md. Seven original vector assets/three exterior families/bounded occupied chimney life planned, not accepted. Preserve actual088196file4175/4176clients and both frozenAPI5processes/data/keys/checksums/studies until exact final gates. Latest42%used/58%remaining, no reset. Continue near10%reserve/7amNov13Pacific latest.
+
+## Verified preceding checkpoint
+
 # IH2-088 verified; continue residential art and life
 
 The owner authorizes consecutive bounded local sections while away. Continue until near10%weekly reserve or7amNovember13Pacific latest. Latest42%used/58%remaining; no reset credits used. Keep crafting/menus action-first and intuitive, house visits easy on phones, and the first city coherent and lively. No cloud, public beta, real account, original-game or expense authorization.

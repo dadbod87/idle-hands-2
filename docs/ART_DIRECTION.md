@@ -134,3 +134,7 @@ IH2-085 accepted: final source PR33/mergeef5a796; nine CI images and fourteen ac
 IH2-086 accepted: rain belongs to world coordinates, compensating both camera axes after render while independent fall continues.192x96periodic translation with192px overscan, same pattern/colors/speed, no new assets. PR34/merge1426b2b; native movement/resize captures and limits in086evidence.
 
 IH2-088candidate adds original deterministic Housing Registry/ground/vacant site/occupied boundary vectors, preserving all old home/tree art. A visible boundary explains the common footprint; only occupied windows glow. Two accepted home silhouettes remain placeholders for090variety. Actual native phone captures and bounded Terra reviews precede exact source/artifact acceptance; no final-art or physical-device claim.
+
+## IH2-090 candidate residential family
+
+Retain original cottage pair and all190prior artwork bytes. Original brick-gable/timber-porch pairs preserve208×248frames/104,240door feet and recognizable workrooms, with exact window/chimney metadata. A stable nine-site plot-ID cycle is only a facade projection, not ownership/upgrade authority. Original cached puff and low noninteractive verge flowers add quiet life; max72puffs, no per-frame allocations, reduced/hidden/interior/offscreen suppression. No emitter owns progression. Native camera/phone/short/night and TerraV1scope in090evidence; this is an initial family, not complete town art or physical-device certification.

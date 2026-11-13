@@ -1,0 +1,40 @@
+{
+  "classification": "LOCAL_ART_CANDIDATE_NOT_RUNTIME_OR_SOURCE_ACCEPTED",
+  "system": {
+    "passed": 376,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 69095.663542
+  },
+  "focusedUnit": 4,
+  "focusedBrowser": 3,
+  "browser": {
+    "passed": 142,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "reportErrors": 0,
+    "durationMs": 1019125.5599999999
+  },
+  "terra": "No sampled P1/P2; native Chrome emulation, not physical device or full timing/accessibility proof",
+  "build": true,
+  "design": true,
+  "sourceAccepted": false,
+  "normalGithubGate": false,
+  "publicDeployment": false,
+  "discovery": {
+    "shards": [
+      72,
+      70
+    ],
+    "disjoint": true,
+    "union": 142,
+    "orderedFamilyOnlyOn2": true
+  },
+  "trackerTasks": 61,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "historicalRawStudyFilesPackaged": 21,
+  "newRawStudyFilesPackaged": 15,
+  "protectedPracticeAndTourAnd54Studies": true
+}

@@ -1,0 +1,29 @@
+{
+  "license": "project-original",
+  "authoring": "Original project rigs and guarded serving trajectories, original blue teapot world reuse plus dedicated simplified Bag icon. No third-party/paid media; no runtime generator/export.",
+  "sources": {
+    "tools/create-serving-family.py": "c5118cbc741b1c28051de1b7db4ed2fc9baa972f6e5cd94ed7d441797b135406",
+    "tools/create-serving-study.py": "34ad9ec7baa4de46fa37c8cc30d354ba4c61aae69653ae2956d7043caaaf1ebd",
+    "tools/create-town-variety.py": "00ba74f1551f0bd55d7d630e6489c7bed4315236da0fb94047d9e175e45f6040",
+    "docs/evidence/IH2-099/study/art/brave-teapot.svg": "cc0cf815f7c7e5ff4f901b6b395b8062686d6e6461addb62505c2fe9433e10fc",
+    "tools/serving-family-template/index.html": "02b6a11ce706816a4b190017a610080b04266eafc9f6feb2e60d564c89c0d4bf",
+    "tools/serving-family-template/style.css": "9d90516d766b9027393347ed478fcb7641f2a02262a579c6199cea8c2f32b225",
+    "tools/serving-family-template/family.js": "115dfc28ad5847dfef816b5616420ddf32a9868df5137062d44e08c6a4dcf31f"
+  },
+  "files": {
+    "aster-contact.svg": "86f374715d5984acf2b0e29fedd965d8d44a2185899fb2dacc0c490f75f78c22",
+    "aster-serving.svg": "ddc3614614a7bb57df4c5c399cacfd352a78f272ba9d5f6311e34b3bfcc8c4f4",
+    "bea-contact.svg": "5e355b1a691b9e01621f250ee2dc24e106491f557c5afd2665d9dd6e10b13ff7",
+    "bea-serving.svg": "3edd84982413489a76b6f99eef9f6e9a5804ccf74d7d11eefafe2c15d032375d",
+    "casey-contact.svg": "3d9d2599fb1660fbf8d7cbd0e26e267fc6f61c2d4945964fd89d748b54fb3510",
+    "casey-serving.svg": "9547480ab49f3525a19bc615115801acff364a58493c340102aa350d87906c64",
+    "catalog.json": "707b382494948335497da110f4fbb1b032251243db76722a8c2c360b440b4056",
+    "devon-contact.svg": "36e1b059d07fdf5074992998789801d47869d7b564bb6097527c3820af74d958",
+    "devon-serving.svg": "985af57505eb1a1a79d98d3fd11f35206ad82992c4338bf7bb400f9fbfbbf328",
+    "family.js": "115dfc28ad5847dfef816b5616420ddf32a9868df5137062d44e08c6a4dcf31f",
+    "index.html": "02b6a11ce706816a4b190017a610080b04266eafc9f6feb2e60d564c89c0d4bf",
+    "style.css": "9d90516d766b9027393347ed478fcb7641f2a02262a579c6199cea8c2f32b225",
+    "teapot-icon.svg": "3316d883a8a48cacced890b5c41c50932be9ba5bce3758440971a8af0d791702",
+    "teapot-world.svg": "cc0cf815f7c7e5ff4f901b6b395b8062686d6e6461addb62505c2fe9433e10fc"
+  }
+}

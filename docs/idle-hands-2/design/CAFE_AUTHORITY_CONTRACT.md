@@ -1,5 +1,7 @@
 # A tasting worth saving
 
+**106 artwork update:** all four rigs now have a locally reviewed generic plate gesture, plus Bag/world teapot art in a separate15-file gallery. See ../../evidence/IH2-106/REPORT.md. These assets are not wired to actions, ownership, placement or UI; the original103observations below are historical.
+
 **104 update:** the isolated pure ledger/migration candidate now exists in src/game/cafe-candidate.ts; see ../../evidence/IH2-104/REPORT.md. It is not registered with the live root, writer, protocol, props, server or UI. The103source table below is a dated audit of2d3fa8f; its line numbers are historical. Durable storage, transactions and the coherent playable slice remain future gates.
 
 **Design contract only.** Based on coherent candidate `2d3fa8f9b84ca1de8dc4585a97594ed415fe5cd1`, which is locally verified and still unaccepted. The café, teapot, new save versions and transactions below are not implemented. Accepted source/previews remain090. This contract turns the099study into a small next development sequence; it does not approve hosting, accounts, expenses or a public release.

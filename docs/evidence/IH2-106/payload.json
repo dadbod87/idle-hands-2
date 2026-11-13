@@ -1,0 +1,33 @@
+{
+  "runtimeFiles": 208,
+  "runtimeArtUnchanged": 202,
+  "runtimeAllBytesIdenticalTo105": true,
+  "runtimeRawDeltaBytes": 0,
+  "runtimeGzipDeltaBytes": 0,
+  "studyFiles": 15,
+  "studyRawBytes": 479767,
+  "studySummedGzipBytes": 27296,
+  "note": "Summed per-file gzip; standalone gallery only, not browser transfer or game payload.",
+  "candidateAllFourRigAndTeapotAssets": {
+    "rawBytes": 204794,
+    "summedGzipBytes": 7754,
+    "files": [
+      "aster-serving.svg",
+      "bea-serving.svg",
+      "casey-serving.svg",
+      "devon-serving.svg",
+      "teapot-icon.svg",
+      "teapot-world.svg"
+    ]
+  },
+  "candidateOneRigAndTeapotAssets": {
+    "rawBytes": 47916,
+    "summedGzipBytes": 2476,
+    "files": [
+      "aster-serving.svg",
+      "teapot-icon.svg",
+      "teapot-world.svg"
+    ]
+  },
+  "candidateCostNotActualTransfer": "Potential future art selection only. No asset is currently registered or downloaded by the game; integration should retain current-rig-only activity loading."
+}

@@ -112,7 +112,9 @@
     "tools/check-coherent-inputs.ts",
     "tests/cafe-candidate.test.ts",
     "tests/cafe-save.test.ts",
-    "tests/cafe-save.spec.ts"
+    "tests/cafe-save.spec.ts",
+    "tests/serving-family.test.ts",
+    "tests/serving-family.spec.ts"
   ],
   "compilerOptions": {
     "types": [

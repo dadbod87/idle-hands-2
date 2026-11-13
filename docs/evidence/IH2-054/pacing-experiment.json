@@ -29,7 +29,7 @@
     "townClockChangesProduction": false
   },
   "sourceHashes": {
-    "src/game/workshop.ts": "8158a199b7e1a647fb93cefad98c6ee4515cd02194c1e8bcc205aa1d404a443d",
+    "src/game/workshop.ts": "0f1ab6d6f46ba1ece0116abb9d9b3ed06d516381a751b196f18c8b9b215f3f01",
     "src/game/town-rules.ts": "ec21ce6a1b5ed3ae0824e6e141e78080b6cf4955d1b1173fd30bdd25062d457e",
     "server/store.ts": "16d1c40f2cc40a5557760b9ecaaa04d9cfe040d91eebaa8a73a03824e3e2fffc"
   },

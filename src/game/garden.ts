@@ -40,7 +40,7 @@ const consumedSchema=z.object({easels:harvestedSchema,hampers:harvestedSchema,co
 const bedSchema=z.object({crop:z.enum(CROP_IDS),plantedAt:nowSchema,readyAt:deadline,cared:z.boolean()}).strict();
 const bank=(max:number)=>z.object({available:boundedCount.max(max),lastAt:nowSchema}).strict();
 const unique=<T>(values:T[])=>new Set(values).size===values.length;
-export const gardenSchema=z.object({
+export const gardenBaseSchema=z.object({
  version:z.literal(3),observedAt:nowSchema,seeds:seedsSchema,produce:produceSchema,consumed:consumedSchema,
  beds:z.array(bedSchema.nullable()).length(GARDEN_RULES.beds),firstRadishUsed:z.boolean(),
  clippings:bank(GARDEN_RULES.clippingCap),rested:bank(GARDEN_RULES.restedCap),
@@ -48,14 +48,17 @@ export const gardenSchema=z.object({
  requests:boundedCount,nextRequestAt:deadline.nullable(),
  markers:z.array(z.enum(MARKER_IDS)).max(MARKER_IDS.length),selectedMarker:z.enum(MARKER_IDS).nullable(),
  errand:z.object({accepted:z.boolean(),pieces:z.array(z.enum(STAKE_IDS)).max(3),assembled:z.boolean()}).strict()
-}).strict().superRefine((s,ctx)=>{
+}).strict();
+export type GardenLedgerInput=Omit<z.infer<typeof gardenBaseSchema>,'version'>;
+/** Shared invariants; only the isolated candidate supplies an additional sink. */
+export function refineGardenLedger(s:GardenLedgerInput,ctx:z.RefinementCtx,additional:{radish:number;marigold:number}={radish:0,marigold:0}){
  const issue=(message:string)=>ctx.addIssue({code:'custom',message});
  const active=s.beds.filter(b=>b!==null),total=s.harvested.radish+s.harvested.marigold;
  if(total>GARDEN_RULES.counterMax||s.planted!==total+active.length)issue('Garden planting history does not conserve plants.');
  if(s.practice!==total+s.bonusPractice||s.bonusPractice>total)issue('Garden practice does not match harvests.');
  for(const crop of CROP_IDS){
   if(s.seeds[crop]+active.filter(b=>b.crop===crop).length>CROP_DEFS[crop].seedQuota)issue('Bound seed entitlement exceeded.');
-  if(s.harvested[crop]!==s.produce[crop]+s.requests+s.consumed.easels[crop]+s.consumed.hampers[crop]+s.consumed.commission[crop])issue('Produce history does not conserve harvests and uses.');
+  if(s.harvested[crop]!==s.produce[crop]+s.requests+s.consumed.easels[crop]+s.consumed.hampers[crop]+s.consumed.commission[crop]+additional[crop])issue('Produce history does not conserve harvests and uses.');
  }
  if(s.consumed.commission.radish>1||s.consumed.commission.marigold!==0||s.consumed.easels.radish!==0||s.consumed.hampers.radish!==2*s.consumed.hampers.marigold)issue('Invalid fixed recipe consumption.');
  let teachingBeds=0;
@@ -71,7 +74,8 @@ export const gardenSchema=z.object({
  if(s.selectedMarker!==null&&!s.markers.includes(s.selectedMarker))issue('Selected marker is not owned.');
  if(!s.errand.accepted&&(s.errand.pieces.length>0||s.errand.assembled))issue('Stake errand was not accepted.');
  if(s.errand.assembled&&(s.errand.pieces.length!==3||!s.markers.includes('almost-straight'))||s.markers.includes('almost-straight')!==s.errand.assembled)issue('Invalid errand marker award.');
-});
+}
+export const gardenSchema=gardenBaseSchema.superRefine((s,ctx)=>refineGardenLedger(s,ctx));
 export type GardenState=z.infer<typeof gardenSchema>;
 export function createGarden(now:number):GardenState{
  nowSchema.parse(now);

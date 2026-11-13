@@ -37,7 +37,7 @@ export const commissionActionSchema=z.discriminatedUnion('action',[
 ]);
 export type CommissionAction=z.infer<typeof commissionActionSchema>;
 export function commissionLocation(a:CommissionAction):{room:'square';stopId:string}{return{room:'square',stopId:a.action==='handover'?a.recipient:'courier'};}
-export function commissionLedgerMatches(c:CommissionState,p:CarpentryState,g:GardenState):boolean{
+export function commissionLedgerMatches(c:CommissionState,p:CarpentryState,g:Pick<GardenState,'consumed'>):boolean{
  return p.commissionPine===2*c.madeCount&&g.consumed.commission.radish===c.madeCount&&g.consumed.commission.marigold===0;
 }
 export function routeCaption(order:readonly RecipientId[]):string{

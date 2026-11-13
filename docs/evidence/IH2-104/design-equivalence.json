@@ -1,0 +1,49 @@
+[
+  {
+    "path": "docs/evidence/IH2-054/pacing-experiment.json",
+    "changedFields": [
+      "/sourceHashes/src/game/workshop.ts"
+    ],
+    "allOtherFieldsExactlyEqual": true
+  },
+  {
+    "path": "docs/evidence/IH2-064/garden-model.json",
+    "changedFields": [
+      "/sources/src/game/workshop.ts"
+    ],
+    "allOtherFieldsExactlyEqual": true
+  },
+  {
+    "path": "docs/evidence/IH2-066/woodland-model.json",
+    "changedFields": [
+      "/sourceSha256/src/game/garden.ts"
+    ],
+    "allOtherFieldsExactlyEqual": true
+  },
+  {
+    "path": "docs/evidence/IH2-067/pure-rule-schedules.json",
+    "changedFields": [
+      "/sourceSha256/src/game/garden.ts",
+      "/sourceSha256/src/game/carpentry.ts"
+    ],
+    "allOtherFieldsExactlyEqual": true
+  },
+  {
+    "path": "docs/evidence/IH2-069/commission-model.json",
+    "changedFields": [
+      "/sources/2/sha256",
+      "/sources/3/sha256"
+    ],
+    "allOtherFieldsExactlyEqual": true
+  },
+  {
+    "path": "docs/evidence/IH2-072/coupled-schedules.json",
+    "changedFields": [
+      "/sourceSha256/src/game/workshop.ts",
+      "/sourceSha256/src/game/garden.ts",
+      "/sourceSha256/src/game/carpentry.ts",
+      "/sourceSha256/src/game/commission.ts"
+    ],
+    "allOtherFieldsExactlyEqual": true
+  }
+]

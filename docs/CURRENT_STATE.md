@@ -1,3 +1,5 @@
+104pure café candidate locally verified:359system/136browser,0skips/flakes/errors; strict migration/conservation/reward/cooldown/fixedopening and two-sided provenance verified. No live wiring or accepted-preview change; normal source gate remains held. Next105staged local persistence. [Report](evidence/IH2-104/REPORT.md).
+
 103design-only café authority/persistence contract recorded from actual source and independent review; no runtime/data/schema/API change.102actual348/136code evidence retained. Next104purecandidate outside live entrypoints, normal source gate held and accepted090unchanged. [Contract](idle-hands-2/design/CAFE_AUTHORITY_CONTRACT.md).
 
 102coherent source locally verified348system/136browser, unchanged208game/202art and21historical/rawstudyfiles. Originalcaféinputsreproduceexactly; all prior assertions/timeouts retained. Normal source gate still held, accepted090unchanged.103read-only café authority contract next. [Report](evidence/IH2-102/REPORT.md).

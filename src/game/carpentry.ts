@@ -63,7 +63,7 @@ export function carpentryActionLocations(a:CarpentryAction):Array<{room:'square'
  if(a.action==='start-easel'||a.action==='claim-easel')return[{room:'workshop',stopId:'finishing-rack'}];
  return[{room:'square',stopId:'carpentry-desk'}];
 }
-export function carpentryLedgerMatches(s:CarpentryState,g:GardenState):boolean{
+export function carpentryLedgerMatches(s:CarpentryState,g:Pick<GardenState,'consumed'>):boolean{
  return g.consumed.easels.radish===0&&g.consumed.easels.marigold===s.started&&g.consumed.hampers.radish===2*s.hampers&&g.consumed.hampers.marigold===s.hampers;
 }
 export type CarpentryResult={ok:boolean;state:CarpentryState;garden:GardenState;message:string;awardEasel:boolean;recordIntent:boolean};

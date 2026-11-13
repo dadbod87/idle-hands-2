@@ -2,7 +2,7 @@ import { z } from 'zod';
 import {commissionSchema,commissionActionSchema,createCommission,applyCommission,commissionLedgerMatches} from './commission.ts';
 import {SURVEY_IDS,SURVEY_CHOICES,SURVEYS} from './fieldwork.ts';
 import {carpentrySchema,carpentryActionSchema,createCarpentry,applyCarpentry,carpentryLedgerMatches,migrateCarpentry} from './carpentry.ts';
-import {gardenSchema,gardenActionSchema,createGarden,applyGarden,migrateGarden} from './garden.ts';
+import {gardenSchema,gardenActionSchema,createGarden,applyGarden,migrateGarden,type GardenLedgerInput} from './garden.ts';
 
 // Local synthetic prototype rules. This module does not establish server authority.
 export const RESOURCE_IDS = ['scrap', 'timber', 'supplies'] as const;
@@ -42,7 +42,7 @@ const nodeSchema = z.object({ stock: count.max(NODE_CAPACITY), lastAt: timestamp
 const receiptSchema = z.object({ id: z.string().regex(/^[a-zA-Z0-9:_-]{1,80}$/), revision: count, message: z.string().max(240) }).strict();
 const propValueSchema = z.enum(PROP_IDS).nullable();
 const placementSchema = z.object(Object.fromEntries(slotIds.map(id => [id, propValueSchema])) as Record<SlotId, typeof propValueSchema>).strict();
-const stateSchema = z.object({
+export const workshopBaseSchema = z.object({
   version: z.literal(2), commission:commissionSchema, revision: count, observedAt: timestamp,
   sketches: z.array(z.enum(SURVEY_IDS)).max(3).refine(ids=>new Set(ids).size===ids.length).default([]),
   garden:gardenSchema,carpentry:carpentrySchema,
@@ -53,7 +53,10 @@ const stateSchema = z.object({
   stats: z.object({ gathered: count, crafted: count, plantersCrafted: count, placed: count, planterPlacedAfterCraft: z.boolean(), bridgeJobsStarted: count }).strict(),
   skills: z.object({ gathering: count, making: count }).strict(),
   receipts: z.array(receiptSchema).max(64), lastMessage: z.string().max(240)
-}).strict().superRefine((s, ctx) => {
+}).strict();
+export type WorkshopLedgerInput=Omit<z.infer<typeof workshopBaseSchema>,'version'|'garden'|'placements'> & {garden:GardenLedgerInput;placements:Record<SlotId,string|null>};
+/** Existing cross-ledger checks, shared without introducing live prop IDs. */
+export function refineWorkshopLedger(s:WorkshopLedgerInput,ctx:z.RefinementCtx){
   const issue = (message: string) => ctx.addIssue({ code: 'custom', message });
   if(s.garden.observedAt>s.observedAt||s.carpentry.observedAt>s.observedAt)issue('Activity clock is ahead of the save.');
   if(!commissionLedgerMatches(s.commission,s.carpentry,s.garden)||s.owned.letterbox!==s.commission.madeCount)issue('Commission costs and single letterbox ownership do not agree.');
@@ -69,7 +72,8 @@ const stateSchema = z.object({
     if (s.job.recipe === 'planter' && elapsed === RECIPES.planter.tutorialDurationMs && s.stats.plantersCrafted > 0) issue('Tutorial production has already been used.');
   }
   if (new Set(s.receipts.map(r => r.id)).size !== s.receipts.length || s.receipts.some(r => r.revision > s.revision)) issue('Invalid command receipts.');
-});
+}
+const stateSchema=workshopBaseSchema.superRefine(refineWorkshopLedger);
 export const isCurrentWorkshop=(value:unknown):value is WorkshopState=>stateSchema.safeParse(value).success;
 export type WorkshopState = z.infer<typeof stateSchema>;
 const baseCommand = { id: receiptSchema.shape.id, expectedRevision: count };
@@ -104,6 +108,14 @@ export function createWorkshop(now: number): WorkshopState {
 export function loadWorkshop(value: unknown, now: number): { state: WorkshopState; recovered: boolean } {
   if (!validTime(now)) throw new Error('A valid integer clock is required.');
   if (value === null || value === undefined) return { state: createWorkshop(now), recovered: false };
+  const migrated=migrateWorkshopCandidateInput(value,now);
+  const parsed = stateSchema.safeParse(migrated);
+  if (!parsed.success) return { state: createWorkshop(now), recovered: true };
+  return {state:settleWorkshop(parsed.data,now),recovered:false};
+}
+/** Exact existing legacy conversion without settlement or recovery defaults.
+ * Candidate adapters must validate its result; unknown input is returned intact. */
+export function migrateWorkshopCandidateInput(value:unknown,now:number):unknown{
   // Additive old-save migration only. Existing stock, jobs, history and receipts stay intact.
   let migrated=value;
   if(value&&typeof value==='object'&&!Array.isArray(value)&&(value as {version?:unknown}).version===1){
@@ -123,9 +135,7 @@ export function loadWorkshop(value: unknown, now: number): { state: WorkshopStat
       migrated={...old,version:2,commission:createCommission(),owned,garden:Object.hasOwn(old,'garden')?migrateGarden(old.garden):createGarden(epoch),carpentry:legacy?createCarpentry(epoch):migrateCarpentry(old.carpentry)};
     }
   }
-  const parsed = stateSchema.safeParse(migrated);
-  if (!parsed.success) return { state: createWorkshop(now), recovered: true };
-  return {state:settleWorkshop(parsed.data,now),recovered:false};
+  return migrated;
 }
 export function settleWorkshop(input: WorkshopState, now: number): WorkshopState {
   if (!validTime(now) || now < input.observedAt) return input;

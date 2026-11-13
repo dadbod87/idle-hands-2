@@ -108,3 +108,5 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 
 
 [Coherent source102](../../evidence/IH2-102/REPORT.md) retains all original study inputs/checks and current UI without changing game bytes. [Café authority contract](CAFE_AUTHORITY_CONTRACT.md),103, is a read-only source-grounded next-step design: one-save local projection/staged Café commit, atomic shared transaction, exact migration/cached-writer gates and concise UI. It implements none of those changes.104is a pure candidate module outside live entrypoints, not a partial public feature.
+
+- [104 pure café candidate evidence](../../evidence/IH2-104/REPORT.md): strict serializable debit/reward/migration proofs outside live registration; persistence and coherent counter UI remain later work.

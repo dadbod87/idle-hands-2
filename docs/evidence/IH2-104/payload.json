@@ -1,0 +1,15 @@
+{
+  "reference": "coherent102 dist, checked against its recorded208file manifest",
+  "beforeFiles": 208,
+  "afterFiles": 208,
+  "rawDeltaBytes": 119,
+  "summedGzipDeltaBytes": 52,
+  "unchangedArtFiles": 202,
+  "changedOrNew": [
+    "index.html",
+    "assets/index-DA91l4eM.js"
+  ],
+  "candidateSpecificRuntimeStringsAbsent": true,
+  "finalSourceAlternateBuildMatchesActiveBrowserBuild": true,
+  "matchingFiles": 208
+}

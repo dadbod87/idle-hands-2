@@ -1,0 +1,3 @@
+# Current build sample review
+
+Root inspected actual browser-suite images pine-clear-phone-ready.png (360×640) and pine-clear-desktop-ready.png (1440×900) from the current104compiled artifact. Original ready control, quantities, reward destination and scrollable rows remain readable in these samples. No UI/art change was intended, so no new Terra visual audit was needed. Full136browser assertions cover desktop/narrow/short/text200and existing authority/focus routes; this is browser emulation, not physical-device or full human usability certification. Existing fictional/elapsed/network fixtures are explicitly retained; these are not real player screenshots. Images are preserved in the external104full-results/browser directory.

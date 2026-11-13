@@ -1,0 +1,9 @@
+# IH2-104 local closeout — November13
+
+Owner authorized local continuation before arranging GitHub allowance. Source branch feat/cafe-ledger-candidate in idle-hands-2-cafe-ledger, base4f13238; final SHA recorded in canonical continuation.104REPORT/local-checks and authority contract are the actual scope.
+
+359system0skips,136browser0unexpected/flaky/skipped/reporterrors; disjoint69+67orderedfamily2; strict build/design,59tasks/10tracker/40pinned/diff pass. Final208file artifact matches the actual full-browser build;202art unchanged,119raw/52gzipdelta. Exact populated legacy migration, one-radish/cooldown/reward/funding behavior and immutable refused inputs tested. Eleven new pure/provenance cases; seven actual original-tree café cases; all21raw studyfiles packaged by hash. Six current reports retain all non-hash data; two-sided current/historical source provenance and original invariant/legacy-body proof retained. No concrete finding from independent read-only review.
+
+No live candidate registration, save write, SQL, protocol bump, UI/prop/room/server change, or accepted data/service/key/preview mutation. Protected13fields/key/checksums and54studyresponses verified. Pure serial last-credit cases are not concurrent SQL or UUID proof; rental-only teapot availability is not shared-home allocation proof. Synthetic unit stock and established isolated/elapsed/intercepted browser fixtures only, no real data. Two current-build screenshot samples reviewed, no physical-phone claim.
+
+Normal exact-final-head hosted/source acceptance remains blocked; mainf0a294a and PR39are unchanged. No hosted trigger or paid budget; owner still arranging billing. Next105queued: quota-safe staged local persistence candidate outside live registration; use current104source. Documentation-only canonical synchronization must not replace runtime with old090. Full failures/corrections and artifacts are retained at ../idle-hands-2-artifacts/cafe-ledger-2026-11-13.

@@ -1,3 +1,5 @@
+November13 —104pure café foundation:359system/136browser,0skips/flakes/errors; strict migration/conservation/reward/cooldown/fixedopening and two-sided provenance verified. No live wiring or accepted-preview change; normal source gate remains held. Next105staged local persistence. [Report](evidence/IH2-104/REPORT.md).
+
 2026-11-13 —103records Café persistence/authority decisions and next pure-ledger task. No implementation or data/service change; code remains102348/136verified candidate with required normal source gate held.
 
 2026-11-13 —102unifies held101UIand original099/100study tools/checks with exact historical inputs, raw artifact packaging and348/136pass. Zero game payload change; source gate held.

@@ -1,0 +1,10 @@
+{
+  "all208CompiledClientFilesExactlyEqualAccepted109": true,
+  "artFiles": 202,
+  "liveEntryPointsAndSixMigrationsUnchanged": true,
+  "candidateServerSource": "1c47b93d1ddba0f09da3c23802cc3896a5b0faa55a0496bbacb583b6791f057c",
+  "candidateSQL": "edb623bfd9c407fa6d7084dcad3db9281a95c7183eb5500d7fe559c9484070ea",
+  "newServerTest": "86f807290a07cc5847d5e9e376a79167c26050fd32d6fddcdb9e9308eb834905",
+  "noActiveCafeRegistration": true,
+  "clientPayloadDeltaBytes": 0
+}

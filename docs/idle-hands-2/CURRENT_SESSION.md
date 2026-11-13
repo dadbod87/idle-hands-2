@@ -1,3 +1,11 @@
+#110shared café transaction candidate — local validation in progress
+
+Current full-code checkout `../idle-hands-2-cafe-transaction`, branch `feat/shared-cafe-transaction`, base5bdaaab9d830b097c2945e6c857e3b8f2217ea1a over accepted109mainacab0549. Candidate only: dedicated localDBs ih2_cafe_test/restore on55434; no active migration/API/writer/protocol/props/UI registration.418system/15focused/actual dedicated PostgreSQL restart/build pass; full146browser passes,0unexpected/flaky/skipped/reporterrors. Exact public CI/source gates pending; accepted4175/localhost4176API5artifacts stay byte-identical109. Read110REPORT/PLAN and usage policy; preserve all protected data/keys/studies.
+
+Owner housing direction captured in HOUSE_VARIETY_AND_YARDS, owner directions and decisions: different exterior sizes, personal yard decorations and multiple purchasable layouts with added features. No live purchase/art/currency changes. Next111coherent playable café integration;112housing variation design. Do not start either until110source acceptance is closed.
+
+---
+
 # Current authority — accepted109 and local preview update complete
 
 Accepted main **acab0549ec6540b90fc9cd381157ca2fc07f7bd5**, PR40. Exact final candidate1a9e950e663d008ab644e7d14998025b5c906ffe; identical merge tree. PR43482304202 and main43484850214all four required jobs pass:403system/146browser(74+72), zero skips/flakes/errors. Actual main208files verified on both previews; see docs/evidence/IH2-109/REPORT.md and source-closeout.json.

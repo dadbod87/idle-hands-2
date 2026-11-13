@@ -258,3 +258,13 @@ Owner now authorizes normal free public CI/source updates.109will consolidate th
 ## November13 — verified consolidated acceptance
 
 PR40/mainacab0549 passed exact candidate/main403system/146browser and actual208artifact, matched API/session/save/data/native preview gates. Close091–109source tasks; retain dated evidence and corrected097V3authority. Actual game remains root2/garden3/protocol5/eight props; isolated cafe candidates are not live. Next110proves atomic SQL/UUID/shared funding in a dedicated synthetic database, SQL outside auto-discovery until coherent registration. Docs-only closeout/backups use local plan/pinned/diff checks and do not trigger a redundant full hosted suite. No paid/public-game authorization inferred.
+
+
+## November13 — owner-directed housing variety
+
+Owner likes the neighborhood and requests distinct exterior sizes, varied yard decorations and multiple purchasable layouts with added features. Record this as persistent in-game progression, not real-money monetization. HOUSE_VARIETY_AND_YARDS.md separates requirements from proposed families/features and defers prices until a pacing model; preserve addresses, furniture, rights and visitor privacy. No housing runtime change in110.
+
+
+## November13 — candidate shared café transaction
+
+110reuses real player/UUID receipt patterns only in guarded loopback ih2_cafe_test/restore. New SQL stays outside auto-discovery; one forward-lock transaction persists debit/sink/cooldown/teapot/credit/deadline/receipt. Explicit phase-only writer latches once; snapshots stay read-only. The spawn-point proximity binding is explicitly synthetic, not a reachable café.111must integrate actual counter, full protocol/cache/writer/root/SQL/home maps/confirmed UI and art coherently before a playable café claim. Housing112then develops current owner variety direction without inventing real-money purchases.

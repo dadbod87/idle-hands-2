@@ -1752,7 +1752,7 @@
     {
       "id": "IH2-110",
       "title": "Atomic shared café transaction candidate",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-109"
       ],
@@ -1767,7 +1767,55 @@
         "No active migration/API/protocol/root/writer/props/UI registration, real data or protected practice/Tour mutation, remote infrastructure/spending/accounts/public game launch. Candidate transactions do not certify production auth or actual counter reachability."
       ],
       "evidence": [
-        "docs/evidence/IH2-110/PLAN.md"
+        "docs/evidence/IH2-110/PLAN.md",
+        "docs/evidence/IH2-110/REPORT.md",
+        "docs/evidence/IH2-110/cafe-candidate.json",
+        "docs/evidence/IH2-110/cafe-candidate-restart.json",
+        "docs/evidence/IH2-110/source-and-payload.json",
+        "docs/idle-hands-2/handoffs/2026-11-13-shared-cafe-transaction.md",
+        "docs/evidence/IH2-110/local-checks.json"
+      ],
+      "owner_branch": "feat/shared-cafe-transaction"
+    },
+    {
+      "id": "IH2-111",
+      "title": "Playable café with coherent saves and town authority",
+      "status": "queued",
+      "depends_on": [
+        "IH2-110"
+      ],
+      "goal": "Integrate the proved café candidates as one complete durable local/shared tasting loop with actual reachable counter, confirmed reward, art and conserved home allocation.",
+      "acceptance": [
+        "Read accepted110proofs/103contract and inventory every writer/cache/protocol/save/SQL/rental/starter/expanded-home boundary before coherent registration.",
+        "Implement forward tuple/protocol/writer/SQL and every teapot allocation map together; prove actual old clients refuse and preserve existing progress, unsaved work, keys and checksums.",
+        "Bind an actual reachable counter/door and complete concise serve/cooldown/receipt/Bag/placement experience with original art and confirmed-only animation.",
+        "Full domain/browser/native desktop/phone/short/text200, Terra actual UI, authority/race/retry/rollback/restart/restore and normal exact-head/main/artifact/actual-preview gates."
+      ],
+      "exclusions": [
+        "No partial tuple deployment, public/cloud game launch, real accounts/data, paid assets/resources or original-game changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-111/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-112",
+      "title": "House sizes, personal yards and meaningful layout choices",
+      "status": "queued",
+      "depends_on": [
+        "IH2-111"
+      ],
+      "goal": "Turn owner-requested exterior size/yard/layout variety into a coherent current-source design and priced progression candidate before runtime expansion.",
+      "acceptance": [
+        "Audit existing home ownership, prices, lot/door geometry, migrations and all furnishing maps; preserve persistent rights and actual addresses.",
+        "Compare distinct exterior sizes/floor plans/yard choices, meaningful added features and staged earned-resource costs; distinguish owner requirements from proposed families/prices.",
+        "Native street/choice studies on desktop320/360phone/short/text200 plus Terra review where needed; no fake playable purchase claim."
+      ],
+      "exclusions": [
+        "No new real-money currency, live house purchase/migration, loss of furniture/rights, public hosting or paid assets."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/HOUSE_VARIETY_AND_YARDS.md"
       ]
     }
   ],

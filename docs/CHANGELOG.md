@@ -1,3 +1,7 @@
+## November13 — atomic shared café transaction candidate
+
+Local418system/15focused/dedicated PostgreSQL restart/build pass;146browser pass,0unexpected/flaky/skipped/reporterrors; exact-head/main/source gates pending. Candidate transaction and SQL stay outside live registration;208client/202art exact109and protected services unchanged. Housing variation owner direction saved;111coherent café integration and112housing design queued. [Report](evidence/IH2-110/REPORT.md).
+
 ## November13 — consolidated source and actual preview acceptance
 
 PR40/mainacab0549 accepted after PR43482304202 + main43484850214, each403system/146browser/zero skips/flakes/errors/all4jobs. Actual208client/matched API5 on4175/localhost4176 verified with native desktop/phone, signed-session/local queued-job recovery and complete protected data/key/checksum/study preservation. Cafe candidates remain unregistered; no public/cloud game launch. Historical holds below are superseded only by this verified closeout. Next110atomic transaction candidate. [Report](evidence/IH2-109/REPORT.md).

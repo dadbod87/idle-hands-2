@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-12 — IH2-091 pine-menu candidate
+
+Task-first Nella, up-front easel ingredients/time/Bag destination, named previews and stable explicit collection/Bag handoff. Later controls/explanations retained; rules, progress, art and matched090API5 unchanged. Validation in progress; not accepted or deployed. [Evidence](evidence/IH2-091/REPORT.md).
+
 ## 2026-11-12 — IH2-090 residential family and route repair verified
 
 Three house families/six matching tiers, seven original vectors, bounded occupied chimney life and low public flowers. Stable plot-ID styles/fixed door feet and all190priorart preserved. Repaired raw-grid/continuous-body mismatch that blocked90doorpairs; all552ordered pairs/48fractional endpoint walks pass without changing geometry/radius/speed. Exact05c468c/CI43353707882all4SUCCESS322/108; actual204fileclients/matched server5and restart/native/preservation gates pass. No economy/timer/ownership/SQLmigration/protocol or original-game/cloud/expense/public release change. [Evidence](evidence/IH2-090/source-closeout.json).

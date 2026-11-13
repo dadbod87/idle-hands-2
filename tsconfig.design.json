@@ -90,7 +90,8 @@
     "tools/run-neighborhood-tour.ts",
     "tests/residential-art.test.ts",
     "tests/residential-life.spec.ts",
-    "tests/neighborhood-routing.test.ts"
+    "tests/neighborhood-routing.test.ts",
+    "tests/carpentry-clarity.spec.ts"
   ],
   "compilerOptions": {
     "types": [

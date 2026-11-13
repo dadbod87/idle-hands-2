@@ -1,3 +1,9 @@
+# IH2-091 in progress — task-first pine workshop
+
+Active isolated sibling idle-hands-2-pine-ui/feat/clear-pine-workshop based on verified090closinga748bbc. Plan docs/evidence/IH2-091/PLAN.md; task-first UI implemented, not accepted.326system/zero skips56.802s and initial focused6pass57.6s; initial full111browser passed14.4m and final focused9passed1.1m. Terra V2/finalR1 narrow200cue/remote-visit/same-panelrepeat checks pass; final-r2retry-scope smoke underway. Final113browser/exact-headCI/actual/preservation gates pending;204files/+10160raw/+2807gzip/all198art unchanged. Refine Nella/rack immediate prerequisites/recipe facts/named confirmations/stable work and Bag controls, retaining all rules/controls/async guards. Actual204file4175/localhost4176and matched frozen090API5/data/keys/checksums/54studies remain verified and untouched. Latest43%used/57%remaining; no resets. Continue near10%reserve/7amNov13Pacific latest. Automatic-main090CI43357774254 independently verified SUCCESS.
+
+## Verified preceding checkpoint
+
 # IH2-090 verified; continue task-first pine workshop
 
 Owner authorizes consecutive bounded local sections while away, with intuitive action-first crafting/menus, coherent lively first city and easy phone visits. Continue near10%weekly reserve or7amNovember13Pacific latest. Latest43%used/57%remaining, no reset credits used. No original-game/real-account/cloud/public-beta/expense authorization.

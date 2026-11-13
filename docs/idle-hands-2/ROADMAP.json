@@ -1171,7 +1171,7 @@
     {
       "id": "IH2-091",
       "title": "Task-first pine workshop and finishing rack",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-090"
       ],
@@ -1186,8 +1186,10 @@
       ],
       "evidence": [
         "docs/idle-hands-2/design/CRAFT_MENU_AUDIT.md",
-        "docs/idle-hands-2/design/PINE_WORKSHOP_CLARITY.md"
-      ]
+        "docs/idle-hands-2/design/PINE_WORKSHOP_CLARITY.md",
+        "docs/evidence/IH2-091/PLAN.md"
+      ],
+      "owner_branch": "feat/clear-pine-workshop"
     }
   ]
 }

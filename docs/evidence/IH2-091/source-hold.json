@@ -12,7 +12,12 @@
   "focusedFinalBrowser": 9,
   "finalLocalBrowser": {
     "expected": 113,
-    "status": "running"
+    "status": "success",
+    "passed": 113,
+    "skipped": 0,
+    "flaky": 0,
+    "unexpected": 0,
+    "durationMs": 872719.2359999999
   },
   "terraFinalR2SamplePassed": true,
   "merged": false,
@@ -20,5 +25,6 @@
   "acceptedTask": "IH2-090",
   "protectedAndTourAll13TableFieldsKeysSixChecksumsPreserved": true,
   "frozenStudyResponsesPreserved": 54,
-  "paidOrRunnerChanges": false
+  "paidOrRunnerChanges": false,
+  "finalLocal204BytesEqualTerraFinalR2": true
 }

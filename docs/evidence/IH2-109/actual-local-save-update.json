@@ -1,0 +1,21 @@
+{
+  "classification": "Fresh ephemeral local save built by native090UI: three material collections, real5second first planter/claim, then real8hour queued second planter. No stock/time/state assignment/interception or real user profile.",
+  "allComparedFieldsPreserved": true,
+  "queuedDeadlinePreserved": true,
+  "ownedPlanterPreserved": true,
+  "keys": [
+    "inventory",
+    "owned",
+    "placements",
+    "job",
+    "stats",
+    "skills",
+    "bridgeKits",
+    "sketches",
+    "garden",
+    "carpentry",
+    "commission"
+  ],
+  "localSchemaBefore": 2,
+  "localSchemaAfter": 2
+}

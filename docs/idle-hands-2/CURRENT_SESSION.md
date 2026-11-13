@@ -1,3 +1,15 @@
+096source candidate1572352pushed onfeat/allotment-visual-study; canonical copy is planning/evidence only, runtime stays090.
+
+# 096 locally reviewed; 097 actual garden candidate next
+
+096isolated feat/allotment-visual-study:335system/zeroDBskips54.217s,127browser899411.615ms/zero skips/flakes/unexpected, disjoint65+62/family2. Four original SVG layers/twelve byte-identical originals, static phone-fit comparison and native/root/Terra review.20frozenV2responses130172raw/17917gzip match; whitespace-only export cleanup rechecks3domain/2browser/build and all12native PNGs equalV1. All204game bytes equal095V2/all198art unchanged. [Report](../evidence/IH2-096/REPORT.md).
+
+Mainf0a294a/accepted090clients4175andlocalhost4176/matched API5/protected and Tour13table fields/privatekeys0600/sixchecksums/54studies unchanged. Review-only allotment-study.localhost49572nowV2; V1retained, no API/storage connection. Required GitHub exact-head/source/accepted gates still held after last PR39billing refusal; owner reply pending. No runner/billing/cloud/real-account/original-game workaround.
+
+Next097queued [plan](../evidence/IH2-097/PLAN.md): actual garden layers/framing only after this local study review; keep actor follow, resetoutsidegarden, no menuzoom, proper Phaser4matrix taps/lamp/rain world projection and all rules/old tests. Create isolated sibling/branch from096final source, not canonical090runtime. Candidate source commits recorded in handoff/canonical docs after push. Latest47%weeklyused/53%remaining, no reset credits used; continue near10%reserve or7amNov13Pacific latest.
+
+## Previous checkpoint
+
 # Active096: separate allotment visual study
 
 Isolated idle-hands-2-allotment-study/feat/allotment-visual-study starts at pending095b126893. [Plan](../evidence/IH2-096/PLAN.md). Build a standalone clearly labelled original garden-landmark/bed-footprint/framing comparison using actual model anchors and unchanged reused art. No game/public/runtime/camera/collision/server/rule changes. Preserve all204game bytes from095and all198art,125prior browser assertions and every protected/API/key/study artifact. Candidate art/framing is not farming progress or runtime promotion.

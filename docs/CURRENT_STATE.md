@@ -1,3 +1,5 @@
+IH2-096standalone allotment study locally reviewed:335system/127browser, native20fileV2and12pixel-identical format-cleanup captures/Terra; all204game files/198art and accepted data/keys/54studies unchanged. Source CI/merge gates remain held.097actual garden composition/framing queued, without a gameplay-rule change. [Report](evidence/IH2-096/REPORT.md).
+
 IH2-095V2focus/close-only repair locally verified332system/125browser/root/Terra/recovery/artifact/preservation; required GitHub release gates held. Accepted090previews/main stay unchanged.096standalone allotment art/framing study queued. [Report](evidence/IH2-095/REPORT.md).
 
 IH2-094housing purchase facts locally verified:332system/119browser/root/Terra/origin/artifact/preservation. Known inherited delayed-reply focusP2feeds095before release. GitHub billing still holds required checks; accepted main/4175/localhost4176remain090. [Report](evidence/IH2-094/REPORT.md).

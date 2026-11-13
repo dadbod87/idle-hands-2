@@ -1,0 +1,1 @@
+All study artwork is original code-authored for Idle Hands 2 (project-original). Existing project ownership applies. Reused artwork remains byte-identical; exact source hashes and credits are in catalog.json. No paid/downloaded media, image APIs or font files. This standalone HTML uses browser canvas and original code, not a bundled game engine.

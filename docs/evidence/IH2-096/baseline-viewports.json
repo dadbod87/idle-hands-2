@@ -1,0 +1,152 @@
+{
+  "classification": "Actual frozen095V2local game, fresh browser, native Journal route/read-only crop inspector, no planting/stock/position/time/reply injection. Appearance-only day/clear and DOM200%text. Not physical phone.",
+  "api": [],
+  "errors": [],
+  "cases": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "text": 100
+      },
+      "measured": {
+        "width": 1404,
+        "height": 697,
+        "canvasWidth": 1404,
+        "canvasHeight": 697,
+        "feet": {
+          "version": 1,
+          "room": "garden",
+          "position": {
+            "x": 9,
+            "y": 14
+          },
+          "locked": false,
+          "walking": false,
+          "nearby": "garden-beds"
+        },
+        "bedProjection": {
+          "x": 718,
+          "y": 412.5
+        }
+      }
+    },
+    {
+      "shape": {
+        "name": "phone320",
+        "width": 320,
+        "height": 640,
+        "text": 100
+      },
+      "measured": {
+        "width": 316,
+        "height": 453.8125,
+        "canvasWidth": 316,
+        "canvasHeight": 453,
+        "feet": {
+          "version": 1,
+          "room": "garden",
+          "position": {
+            "x": 9,
+            "y": 14
+          },
+          "locked": false,
+          "walking": false,
+          "nearby": "garden-beds"
+        },
+        "bedProjection": {
+          "x": 158,
+          "y": 229.8125
+        }
+      }
+    },
+    {
+      "shape": {
+        "name": "phone360",
+        "width": 360,
+        "height": 640,
+        "text": 100
+      },
+      "measured": {
+        "width": 356,
+        "height": 453.8125,
+        "canvasWidth": 356,
+        "canvasHeight": 453,
+        "feet": {
+          "version": 1,
+          "room": "garden",
+          "position": {
+            "x": 9,
+            "y": 14
+          },
+          "locked": false,
+          "walking": false,
+          "nearby": "garden-beds"
+        },
+        "bedProjection": {
+          "x": 178,
+          "y": 229.8125
+        }
+      }
+    },
+    {
+      "shape": {
+        "name": "short",
+        "width": 844,
+        "height": 390,
+        "text": 100
+      },
+      "measured": {
+        "width": 840,
+        "height": 266,
+        "canvasWidth": 840,
+        "canvasHeight": 266,
+        "feet": {
+          "version": 1,
+          "room": "garden",
+          "position": {
+            "x": 9,
+            "y": 14
+          },
+          "locked": false,
+          "walking": false,
+          "nearby": "garden-beds"
+        },
+        "bedProjection": {
+          "x": 436,
+          "y": 42
+        }
+      }
+    },
+    {
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "text": 200
+      },
+      "measured": {
+        "width": 840,
+        "height": 241,
+        "canvasWidth": 840,
+        "canvasHeight": 241,
+        "feet": {
+          "version": 1,
+          "room": "garden",
+          "position": {
+            "x": 9,
+            "y": 14
+          },
+          "locked": false,
+          "walking": false,
+          "nearby": "garden-beds"
+        },
+        "bedProjection": {
+          "x": 436,
+          "y": 17
+        }
+      }
+    }
+  ]
+}

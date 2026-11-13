@@ -1368,7 +1368,7 @@
     {
       "id": "IH2-098",
       "title": "Stable phone action bar across nearby states",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-090"
       ],
@@ -1384,7 +1384,8 @@
       "evidence": [
         "docs/evidence/IH2-098/PLAN.md",
         "docs/evidence/IH2-098/baseline.json"
-      ]
+      ],
+      "owner_branch": "feat/stable-phone-toolbar"
     }
   ]
 }

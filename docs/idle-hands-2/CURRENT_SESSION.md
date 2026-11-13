@@ -1,4 +1,10 @@
-Canonical planning/evidence only; runtime remains accepted090. Corrected097source d9cc5044a934d42366a13ae816e4f245b3b433e1 is pushed onfeat/allotment-composition, unaccepted. Latest48%weeklyused/52%remaining, three resetcredits unused.
+Canonical planning only: active098is in sibling idle-hands-2-stable-toolbar from corrected097d9cc504; accepted runtime remains090.48%weeklyused, no resetcredits used.
+
+# Active098: stable phone action bar
+
+Isolated idle-hands-2-stable-toolbar / feat/stable-phone-toolbar starts from corrected097d9cc504. Follow098PLAN, native measured53pxcontextjump; preserve full labels/ARIA/feedbackscroll/202art and338system/129browser coverage. Minimal bounded contextual-action reservation preferred after font measurements. Accepted090clients/API/progress unchanged; normal GitHub/actual gates remain held. Latest48%weeklyused/52%remaining, stop near10%reserve or7amNov13Pacific.
+
+## Previous checkpoint
 
 # Corrected097V2 locally verified; stable phone toolbar next
 

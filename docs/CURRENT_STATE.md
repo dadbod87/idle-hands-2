@@ -1,3 +1,5 @@
+Public source: existing idle-hands-2made public November13at explicit owner request; anonymous200verified. Standard public Ubuntu CI free, paid resources unapproved. No runtime/main/preview change. Current continuation: chore/public-source-policy over unchanged107candidate; next108. See idle-hands-2/handoffs/2026-11-13-public-source.md.
+
 107ordinary café-era commands locally implemented;386system/10focused/build/design and independent domain review pass. Full142browser0skips/flakes/errors, final plan/pinned/diff/preservation pass. Shared unchanged rule bodies with strict live2/3 and candidate3/4contexts; no writer/UI/server registration. Source gate held. [Report](evidence/IH2-107/REPORT.md).
 
 106original serving family/teapot art locally verified:80cells/four rigs,376system/142browser0skips/flakes/errors, TerraV2no sampled visual blocker. All15frozen/source/HTTP/raw files match;208game/202art bytes unchanged, no live registration. Next107ordinary command compatibility; source gate held. [Report](evidence/IH2-106/REPORT.md).

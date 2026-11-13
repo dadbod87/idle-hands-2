@@ -1,6 +1,6 @@
 # Idle Hands 2 — neighborhood pilot
 
-Private source: [dadbod87/idle-hands-2](https://github.com/dadbod87/idle-hands-2). A separate local game with persistent creative progress, slower progression and a cooperative town. The original live Idle Hands and its real accounts remain separate and unchanged. No public sequel deployment or cloud backend exists.
+Public source: [dadbod87/idle-hands-2](https://github.com/dadbod87/idle-hands-2). A separate local game with persistent creative progress, slower progression and a cooperative town. The original live Idle Hands and its real accounts remain separate and unchanged. No public sequel deployment or cloud backend exists.
 
 The accepted illustrated pilot has continuous movement, direct-tap destinations, doorway entry/exit, a field guide, material gathering, crafting, skills, six furnishing types and saved timed jobs. Default mode saves in this browser. Opt-in `/?town=1` uses an isolated local authoritative service: fictional residents cooperate on a bridge, own/upgrade plots, decorate and retain progress through weekly score rollover.
 

@@ -1,0 +1,25 @@
+{
+  "scope": "All locally fetched reachable refs, blobs and commit/tag messages",
+  "objectsScanned": 3439,
+  "bytesScanned": 85787499,
+  "categories": [
+    "private-key",
+    "github-token",
+    "aws-key",
+    "google-key",
+    "openai-token",
+    "supabase-secret",
+    "stripe-live",
+    "jwt",
+    "credential-url",
+    "secret-assignment"
+  ],
+  "limitation": "Targeted pattern scan, not a guarantee against every secret or private data format. No values emitted.",
+  "reviewedSyntheticUrlHits": 84,
+  "unresolved": [],
+  "manualReview": "Remaining three flagged lines are explicit negative-target tests that never open a pool; localhost and reserved database.example with synthetic fixed credentials.",
+  "flaggedMatches": 84,
+  "repositorySecrets": 0,
+  "repositoryVariables": 0,
+  "environments": 0
+}

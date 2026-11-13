@@ -1,3 +1,11 @@
+# Public repository verified November13; game remains local
+
+Owner explicitly requested public visibility to avoid private Actions minute charges. The existing dadbod87/idle-hands-2 repository is now public; anonymous API/page/raw-main-source requests return200. No replacement repository, payment/budget change, cloud/public game hosting, PR update, workflow run, merge or accepted-preview change. Main remainsf0a294af86d4b637f060c8f40a6d7f061d9cad15,117Actions runs/latest43365543304unchanged at verification.
+
+This isolated policy checkout is idle-hands-2-public-policy, branch chore/public-source-policy, based on final107candidate9cfdfdac4d102b94be7e8486730439d7ab2cc840. Runtime/tests/assets are unchanged from that candidate;386system/142browser evidence is reused, not rerun or newly source-accepted. Documentation tracker/pinned/diff checks run for this update. Final policy backup SHA is recorded in canonical continuation after push. Continue108from the latest policy branch so the new public-source instructions travel with the unchanged107runtime. Canonical bookkeeping remains accepted090runtime/docs only.
+
+Read the updated ACTIONS_USAGE_POLICY: standard public Ubuntu checks are free and available for authorized final-candidate validation; continue local-first batching. Paid larger runners/storage/subscriptions/hosting remain unapproved. All required exact-final-head domain/both-browser-shard/browser-playtest gates remain; no old billing failure is a pass. Don’t rerun obsoletePR39merely to test billing. Consolidated source/actual-preview acceptance remains pending. Next bounded game task is108unified candidate writer, including unsaved-practice/cache/BFCache protections.
+
 #107 ordinary café commands locally complete;108writer coordination next
 
 Current isolated checkout idle-hands-2-cafe-commands, branch feat/cafe-command-compatibility, base c9aa22759b36463f28721911d900d57bf1d361d6. Final private backup SHA recorded in canonical continuation after push. Owner requested local command compatibility without Actions minutes. Read ACTIONS_USAGE_POLICY/107REPORT. Normal exact-final-head hosted/source gates remain held; accepted mainf0a294a/090previews unchanged. Use actual107source, not canonical accepted090runtime.

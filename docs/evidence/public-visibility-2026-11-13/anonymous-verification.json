@@ -1,0 +1,18 @@
+[
+  {
+    "url": "https://api.github.com/repos/dadbod87/idle-hands-2",
+    "status": 200,
+    "authenticated": false,
+    "visibility": "public"
+  },
+  {
+    "url": "https://github.com/dadbod87/idle-hands-2",
+    "status": 200,
+    "authenticated": false
+  },
+  {
+    "url": "https://raw.githubusercontent.com/dadbod87/idle-hands-2/main/AGENTS.md",
+    "status": 200,
+    "authenticated": false
+  }
+]

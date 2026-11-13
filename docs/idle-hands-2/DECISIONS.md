@@ -241,3 +241,8 @@ Next107makes normal commands operate on cafe-era state without discarding sinks 
 107shares trusted source-owned contexts rather than projecting cafe-era state into older shapes or restoring spent produce. Default exported rules retain strict root2/garden3 and old prop IDs; candidate context retains strict root3/garden4/cafe sink/teapot entitlement. All ten executable bodies are compared after TypeScript removal; six analytical outputs retain exact values with explicit updated current-source fingerprints. These are domain proofs, not a live migration or transaction authority.
 
 108will prove a unified isolated writer coordinator first: preserve unsaved ordinary practice, share the tab-lifetime lease, guard capabilities and stale cache/BFCache state, stage before confirmation. This agent-selected prerequisite implements the existing103contract; it does not authorize registration or override the billing/source gate.
+
+
+## November13 — explicit owner choice: public source
+
+Owner asked to make the existing sequel repository public instead of paying for private Actions allowance. Visibility changed and anonymous access verified. Standard public Ubuntu workflows are free; no repository replacement, license change, history rewrite, paid setup or public game launch. Preserve local-first batching and exact-final-head checks. Earlier private/billing labels in dated evidence remain historical, not a prohibition on current free public CI. No hosted run was triggered in this administrative task.

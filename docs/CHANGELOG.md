@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-12 — IH2-090 residential family and route repair verified
+
+Three house families/six matching tiers, seven original vectors, bounded occupied chimney life and low public flowers. Stable plot-ID styles/fixed door feet and all190priorart preserved. Repaired raw-grid/continuous-body mismatch that blocked90doorpairs; all552ordered pairs/48fractional endpoint walks pass without changing geometry/radius/speed. Exact05c468c/CI43353707882all4SUCCESS322/108; actual204fileclients/matched server5and restart/native/preservation gates pass. No economy/timer/ownership/SQLmigration/protocol or original-game/cloud/expense/public release change. [Evidence](evidence/IH2-090/source-closeout.json).
+
 ## 2026-11-12 — IH2-088 addressed neighborhood verified
 
 Stable addresses and individual home doors across expandable24-site blocks; grouped Places/street directory/Registry, scoped public presence and correct physical-door exits/reloads. Four original site/registry/ground SVGs; all185prior art files unchanged. Protocol5checks cached clients before player data access. No economy/timer/state ownership/SQLmigration change. Exact69d71b6CI43346520501all4SUCCESS317/106; actual196file4175and separate populated fictional tour verified, protected data/key/checksums/studies preserved. [Evidence](evidence/IH2-088/source-closeout.json).

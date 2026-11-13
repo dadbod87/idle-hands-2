@@ -1,0 +1,42 @@
+{
+  "classification": "Actual persistent fictional Tour from088196file client/API5 to exact090204file matched client/server5, same browser/cookie across real source-update process restart. No reseed/grant/interception. Every raw13table field/key/checksum compared; virtual observation clocks may advance.",
+  "before196ResponsesEqualAccepted088": true,
+  "after204ResponsesEqualFinalCI": true,
+  "all13TablesAllColumnsRowsPreserved": true,
+  "privateKeyPreserved": true,
+  "privateKeyMode": "0600",
+  "sixChecksumsPreserved": true,
+  "serverInstanceChanged": true,
+  "signedSessionUnchanged": true,
+  "holdingsPlotsPlacementJobsAndDoorPositionPreserved": true,
+  "profiles": 26,
+  "homes": 25,
+  "probeMethod": "Native current-room load/viewport resize with existing bounded normal/10Hzidle sampling; not an activeFPS/WAN/device benchmark.",
+  "pageErrors": [],
+  "consoleErrors": [
+    {
+      "phase": "before",
+      "message": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+      "path": "/api/town/snapshot"
+    },
+    {
+      "phase": "before",
+      "message": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+      "path": "/api/town/snapshot"
+    }
+  ],
+  "badResponses": [
+    {
+      "phase": "before",
+      "path": "/api/town/snapshot",
+      "status": 401
+    },
+    {
+      "phase": "before",
+      "path": "/api/town/snapshot",
+      "status": 401
+    }
+  ],
+  "failedRequests": [],
+  "limits": "Historical25home fixture population/three selectable residents; Chrome emulation, not physical phone/Safari/fullaccessibility/cloudHA/fun certification."
+}

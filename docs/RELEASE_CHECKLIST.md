@@ -1,5 +1,9 @@
 # Current local preview gate
 
+090verified exact05c468c/mergef0a294a/CI43353707882. Keep matched090frozen API5for both204file4175/localhost4176clients, all protected/tour data/keys/sixchecksums,54studies, three family doorfeet,552doorpair/fractional endpoint checks, bounded reduced/hidden/offscreen life and all198currentart files in future UI updates. Source route helper is also movement validation; update matched server if that helper changes. [Proof](evidence/IH2-090/source-closeout.json). Public/account/cost approval remains separate.
+
+## Previous local checkpoint
+
 IH2-088 verified at exact69d71b6/mergeaa4db70/CI43346520501. Future updates must preserve matched API5, both immutable clients4175/localhost4176, separate protected/tour data and keys/sixchecksums, all54studies, scoped owner/visitor entry and exact door-front return. Public hosting/account/cost approval remains separate. [Proof](evidence/IH2-088/source-closeout.json).
 
 # Pilot acceptance

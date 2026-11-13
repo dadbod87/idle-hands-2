@@ -1,0 +1,10 @@
+{
+  "candidate": "05c468cbde0b5b7aa6143ddc686881ed4ef18938",
+  "files": 204,
+  "all190PriorArtUnchanged": true,
+  "exactTerraV1AndLocalFullBrowserBuildBytes": true,
+  "rawDelta": 42216,
+  "gzipEachFileDelta": 7045,
+  "htmlSha256": "0fcfc7019e8384dd94e65cfe8be4cc5a8c4f4dd270a71df2aedecbc59c34fa3e",
+  "method": "Exact finalCI204client versus accepted088; sum per-file gzip, not measured CDN/device benchmark."
+}

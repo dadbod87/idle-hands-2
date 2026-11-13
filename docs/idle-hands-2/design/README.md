@@ -96,3 +96,7 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 ## November12 first-city expansion
 
 [Ledgerwick capacity/layout, addressed homes, menu clarity and staged implementation](FIRST_CITY_LAYOUT.md) is the current owner-directed expansion plan.087blueprint is design only;088physical streets/doors,089crafting clarity and090residential art/life require separate acceptance.
+
+## Next craft-menu clarity target
+
+[CRAFT_MENU_AUDIT](CRAFT_MENU_AUDIT.md) records bounded model observations on accepted088local UI, without timed/shared/physical-device acceptance. [PINE_WORKSHOP_CLARITY](PINE_WORKSHOP_CLARITY.md) scopes queued091task-first Nella/rack work. Garden cost/time/yield consolidation is a later target; neither is implemented by these design notes.

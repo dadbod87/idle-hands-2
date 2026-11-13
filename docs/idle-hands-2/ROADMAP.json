@@ -1108,7 +1108,7 @@
     {
       "id": "IH2-090",
       "title": "Distinct residential exteriors and purposeful ambient life",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-088"
       ],
@@ -1125,7 +1125,8 @@
       "evidence": [
         "docs/idle-hands-2/design/FIRST_CITY_LAYOUT.md",
         "docs/evidence/IH2-090/PLAN.md",
-        "docs/evidence/IH2-090/REPORT.md"
+        "docs/evidence/IH2-090/REPORT.md",
+        "docs/evidence/IH2-090/source-closeout.json"
       ],
       "owner_branch": "feat/residential-life"
     },
@@ -1166,6 +1167,27 @@
         "No assumed public launch from planning approval; no asset purchases or monetization added."
       ],
       "evidence": []
+    },
+    {
+      "id": "IH2-091",
+      "title": "Task-first pine workshop and finishing rack",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Make Nella and the finishing rack explain the next action with exact costs, prerequisites, time and Bag destination.",
+      "acceptance": [
+        "Primary saw lesson/recovery/equip or next useful route reflects actual state; retain later actions/explanations in coherent secondary groups.",
+        "Keep recipe/output/held-vs-needed/time/Bag facts together before free preview; named exact confirmations, stable work/claim region and last-goal-flower guard.",
+        "Preserve all rules/timers/state/authority/receipts and every prior browser assertion; focused native local/shared/retry/focus/touch/short/text200 plus full exact-headCI/artifact/actual-client/preservation/Terra gates."
+      ],
+      "exclusions": [
+        "No economy/recipe/output/state/schema/protocol/hosting/original-game/real-account/expense change; Garden fact consolidation is a separate followup."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/CRAFT_MENU_AUDIT.md",
+        "docs/idle-hands-2/design/PINE_WORKSHOP_CLARITY.md"
+      ]
     }
   ]
 }

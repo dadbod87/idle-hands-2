@@ -1,0 +1,43 @@
+{
+  "classification": "Actual updated protected loopback API; anonymous GET only, no identity selected or database mutation.",
+  "requiredSchema": "5",
+  "publicFictionalFixtureRosterIntentionallyUnversioned": true,
+  "rows": [
+    {
+      "path": "fixtures",
+      "schema": "4",
+      "status": 200,
+      "cachedClientRefusedBeforeAccess": false
+    },
+    {
+      "path": "fixtures",
+      "schema": "5",
+      "status": 200,
+      "cachedClientRefusedBeforeAccess": false
+    },
+    {
+      "path": "snapshot",
+      "schema": "4",
+      "status": 426,
+      "cachedClientRefusedBeforeAccess": true
+    },
+    {
+      "path": "snapshot",
+      "schema": "5",
+      "status": 401,
+      "cachedClientRefusedBeforeAccess": false
+    },
+    {
+      "path": "events",
+      "schema": "4",
+      "status": 426,
+      "cachedClientRefusedBeforeAccess": true
+    },
+    {
+      "path": "events",
+      "schema": "5",
+      "status": 401,
+      "cachedClientRefusedBeforeAccess": false
+    }
+  ]
+}

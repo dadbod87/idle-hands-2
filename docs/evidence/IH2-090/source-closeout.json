@@ -1,0 +1,253 @@
+{
+  "classification": "Verified private source and actual local previews; not hosted beta or owner playtest acceptance",
+  "task": "IH2-090",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/38",
+  "candidate": "05c468cbde0b5b7aa6143ddc686881ed4ef18938",
+  "merge": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
+  "matchingTree": "7898290925d7f33c2f9c2383ad396ecb2cb9e180",
+  "ciRun": 43353707882,
+  "ciJobs": [
+    {
+      "databaseId": 131650590643,
+      "name": "domain-build-plan",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T02:39:45Z",
+      "completedAt": "2026-11-13T02:41:58Z"
+    },
+    {
+      "databaseId": 131650591025,
+      "name": "browser-shard (2/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T02:39:46Z",
+      "completedAt": "2026-11-13T02:53:43Z"
+    },
+    {
+      "databaseId": 131650591041,
+      "name": "browser-shard (1/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T02:39:46Z",
+      "completedAt": "2026-11-13T02:51:32Z"
+    },
+    {
+      "databaseId": 131655708950,
+      "name": "browser-playtest",
+      "conclusion": "success",
+      "startedAt": "2026-11-13T02:53:46Z",
+      "completedAt": "2026-11-13T02:53:50Z"
+    }
+  ],
+  "checks": {
+    "domain": 322,
+    "skipped": 0,
+    "localDomainDurationMs": 54602.49325,
+    "ciDomainDurationMs": 96726.780187,
+    "localBrowser": 108,
+    "localBrowserDuration": "14.3minutes",
+    "finalCIBrowser": 108,
+    "disjointShards": [
+      58,
+      50
+    ],
+    "shardDurationsMs": [
+      639747.9870000001,
+      774731.9439999999
+    ],
+    "zeroSkippedFlakyUnexpected": true,
+    "strictBuildDesignPlan10Pinned40Diff": true
+  },
+  "art": {
+    "originalNewVectors": 7,
+    "totalOriginalVectors": 184,
+    "houseFamilies": 3,
+    "facades": 6,
+    "all190PriorArtUnchanged": true,
+    "stableNineSitePlotIdCycle": true,
+    "fixedFrame": [
+      208,
+      248
+    ],
+    "fixedDoorFoot": [
+      104,
+      240
+    ]
+  },
+  "routing": {
+    "inherited088FailedDoorPairs": 90,
+    "orderedDoorPairsNowActuallyTraversed": 552,
+    "fractionalNearWallJourneys": 48,
+    "actualSessionTicks": true,
+    "noSnappingOrWallPenetration": true,
+    "collisionRadiusGeometrySpeedUnchanged": true,
+    "sharedClientServerHelper": true,
+    "serverAuthorityPreserved": true
+  },
+  "ambient": {
+    "maximumCachedPuffs": 72,
+    "puffsPerOccupiedHome": 3,
+    "perFrameAllocations": false,
+    "noEmptySiteLightOrSmoke": true,
+    "reducedHiddenInteriorOffscreenSuppression": true,
+    "publicProjectionOnlyRebuild": true,
+    "existingIdleFramePolicyRetained": true
+  },
+  "payload": {
+    "candidate": "05c468cbde0b5b7aa6143ddc686881ed4ef18938",
+    "files": 204,
+    "all190PriorArtUnchanged": true,
+    "exactTerraV1AndLocalFullBrowserBuildBytes": true,
+    "rawDelta": 42216,
+    "gzipEachFileDelta": 7045,
+    "htmlSha256": "0fcfc7019e8384dd94e65cfe8be4cc5a8c4f4dd270a71df2aedecbc59c34fa3e",
+    "method": "Exact finalCI204client versus accepted088; sum per-file gzip, not measured CDN/device benchmark."
+  },
+  "actualPreview": {
+    "url": "http://127.0.0.1:4175/",
+    "staticPid": 24360,
+    "staticSession": 23865,
+    "apiPort": 4186,
+    "apiPid": 24309,
+    "apiSession": 47477,
+    "matchedFrozenSource": "090exactcandidate",
+    "all204ResponsesEqualCI": true,
+    "htmlSha256": "0fcfc7019e8384dd94e65cfe8be4cc5a8c4f4dd270a71df2aedecbc59c34fa3e",
+    "nativeLocalDesktopPhone": true,
+    "realFirstCraftMs": 5000,
+    "explicitClaimAndBag": true,
+    "reloadPreserved": true,
+    "anonymousSharedChooserOnly": true,
+    "protectedIdentitySelected": false,
+    "apiRestarted": true,
+    "protocol": 5
+  },
+  "actualTour": {
+    "url": "http://localhost:4176/?town=1",
+    "staticPid": 23116,
+    "staticSession": 85345,
+    "apiPort": 4188,
+    "apiPid": 23065,
+    "apiSession": 42452,
+    "database": "ih2_neighborhood_tour",
+    "profiles": 26,
+    "historicalEarnedHomes": 25,
+    "selectableFictionalResidents": 3,
+    "reseedOrDirectGrant": false,
+    "sourceUpdate": {
+      "classification": "Actual persistent fictional Tour from088196file client/API5 to exact090204file matched client/server5, same browser/cookie across real source-update process restart. No reseed/grant/interception. Every raw13table field/key/checksum compared; virtual observation clocks may advance.",
+      "before196ResponsesEqualAccepted088": true,
+      "after204ResponsesEqualFinalCI": true,
+      "all13TablesAllColumnsRowsPreserved": true,
+      "privateKeyPreserved": true,
+      "privateKeyMode": "0600",
+      "sixChecksumsPreserved": true,
+      "serverInstanceChanged": true,
+      "signedSessionUnchanged": true,
+      "holdingsPlotsPlacementJobsAndDoorPositionPreserved": true,
+      "profiles": 26,
+      "homes": 25,
+      "probeMethod": "Native current-room load/viewport resize with existing bounded normal/10Hzidle sampling; not an activeFPS/WAN/device benchmark.",
+      "pageErrors": [],
+      "consoleErrors": [
+        {
+          "phase": "before",
+          "message": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+          "path": "/api/town/snapshot"
+        },
+        {
+          "phase": "before",
+          "message": "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+          "path": "/api/town/snapshot"
+        }
+      ],
+      "badResponses": [
+        {
+          "phase": "before",
+          "path": "/api/town/snapshot",
+          "status": 401
+        },
+        {
+          "phase": "before",
+          "path": "/api/town/snapshot",
+          "status": 401
+        }
+      ],
+      "failedRequests": [],
+      "limits": "Historical25home fixture population/three selectable residents; Chrome emulation, not physical phone/Safari/fullaccessibility/cloudHA/fun certification."
+    },
+    "nativeCases": 5,
+    "nativeDuration": "1.7minutes",
+    "nativeInterception": false,
+    "nativeSetup": "Ordinary UI travel after restart proof brings existing profiles to the unchanged journeys square prerequisite; waits for accepted target-room movement response and authoritative snapshot. Naturally changes travel position/receipts; holdings/plots unchanged.",
+    "holdingsPreservedAcrossNativeJourneys": true
+  },
+  "preservation": {
+    "classification": "Actual read-only protected fictional practice across 090 matched client/server route and residential update",
+    "canonicalTables": 13,
+    "allColumnsAndRowsPreserved": true,
+    "residents": 1,
+    "plots": 0,
+    "signingKeyPreserved": true,
+    "sixMigrationChecksumsPreserved": true,
+    "noDatabaseWrites": true,
+    "apiRestarted": true
+  },
+  "frozenStudyFiles": 54,
+  "independentTerra": {
+    "classification": "Root record of independent gpt-6.1-terra bounded frozen204fileV1review; not human acceptance.",
+    "result": "No sampled P1/P2; distinct three families/recognizable workrooms/readable brick and timber junction; sampled phone night window panes aligned, doorway/label/Inspect readable; desktop and short200HUD fit; native Visitor3CloverCourt entry/return worked.",
+    "scope": "Desktop/phone/short samples; paired stills show subtle pale puffs, not live motion-quality certification. Phone location card still covers part of roof as088.",
+    "sameFinalCIBytes": true,
+    "limits": "Chrome emulation, not physical phone/Safari/full accessibility/fun/server/production certification.",
+    "artifacts": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/residential-life-2026-11-12/terra-v1"
+  },
+  "finalCIImagesReviewed": [
+    "residential-family-gallery.png",
+    "residential-desktop-street.png",
+    "residential-phone-door-3.png",
+    "residential-phone-door-9.png",
+    "residential-phone-night.png",
+    "residential-short200-places.png"
+  ],
+  "actualImagesReviewed": [
+    "actual-phone-bag.png",
+    "actual-tour-phone-update.png",
+    "actual-tour/test-results/browser/residential-phone-night.png"
+  ],
+  "boundedLoad": {
+    "classification": "Actual isolated20HTTP/SSEclients/25historicalhomes; public saved-position fixture10perblock; not WAN/cloud capacity.",
+    "metrics": {
+      "local": {
+        "clients": 20,
+        "publicHomes": 25,
+        "peersEach": 9,
+        "snapshotP95Ms": 38.58554099999992,
+        "positionCheckpoints": 0,
+        "movementWrites": 0,
+        "noPrivateInventoryInPresence": true
+      },
+      "ci": {
+        "clients": 20,
+        "publicHomes": 25,
+        "peersEach": 9,
+        "snapshotP95Ms": 121.36491699999988,
+        "positionCheckpoints": 0,
+        "movementWrites": 0,
+        "noPrivateInventoryInPresence": true
+      }
+    }
+  },
+  "serverRecoveryProof": "FinalCI real isolatedPG16.15container restart plus actual persistent Tour same-browser088\u2192090source-update restart; same signed session/all13rawtable fields/key/sixchecksums/holdings/plots/door preserved. Primary restart/data verification separate.",
+  "artifacts": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/residential-life-2026-11-12",
+  "rejected": "Test pose typing; premature rendered-room observation; actual inherited cross-street route defect; external persistent-Tour setup originally closed at predicted square arrival before target ACK. Corrected setup only, unchanged final source/native tests passed on rerun. Rejections retained, not counted as full passes.",
+  "limitations": [
+    "Chrome viewport/touch/text emulation, not physical phone/Safari/full canvas accessibility/fun/motion-quality or cloudHA certification.",
+    "Phone location card still covers part of roof; this is an initial exterior family, not complete city/MMO art.",
+    "Route helper repair changes navigation validation; no collision geometry/radius/speed, economy/recipe/timer/output/ownership, SQLmigration or protocol change.",
+    "No original Idle Hands, real accounts, cloud, expense, hosting or public beta work."
+  ],
+  "automaticMainCI": {
+    "run": 43357774254,
+    "head": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
+    "status": "in_progress_at_closeout",
+    "note": "Exact candidate premerge all4gates passed; recheck automatic main during091."
+  }
+}

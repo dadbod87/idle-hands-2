@@ -1,0 +1,23 @@
+{
+  "candidate": "05c468cbde0b5b7aa6143ddc686881ed4ef18938",
+  "fullCases": 108,
+  "shards": [
+    58,
+    50
+  ],
+  "disjointCompleteCoverage": true,
+  "orderedFixtureFiles": {
+    "shared-town.spec.ts": [
+      2
+    ],
+    "starter-homes.spec.ts": [
+      2
+    ],
+    "trail.spec.ts": [
+      2
+    ],
+    "z-first-visit.spec.ts": [
+      2
+    ]
+  }
+}

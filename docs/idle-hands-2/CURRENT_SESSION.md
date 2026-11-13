@@ -1,3 +1,9 @@
+#101 locally verified;102 coherent source next
+
+Final101source backup pending this closeout commit/push. Local338system/132browser/7focused/native8/TerraV2/208frozen/origin/preservation pass; actual V2game review49602uses fictional Lane and unchanged090API5at49604, local-only49600. All202runtime art/accepted090data/keys/54studies/heldartifacts unchanged. A measured test-only inherited resize race is corrected with stronger viewport readiness; all old crop/target/collision/progress assertions and timeouts remain. [Handoff](handoffs/2026-11-13-bag-quantity.md).
+
+Next102uses final held101source in an isolated branch, retains all branch-specific tests, imports099/100study tools/tests without old runtime, and exports a new honest current-source café revalidation rather than overwriting099historical art/provenance. Main remainsf0a294aand normal GitHub/rawartifact/source/accepted-preview gates remain unmet; no owner billing resolution has arrived. [Plan](../evidence/IH2-102/PLAN.md). Session inventory: onlyIdleHands2active, IdleHands1idle. Last51%weeklyused/49%remaining; stop near10%reserve or15:00UTC.
+
 # Active101: explain Bag availability at the items
 
 Isolated `idle-hands-2-bag-quantity` / `feat/bag-quantity-clarity`, starting from held098source91a3eb1 plus canonical3d6b781documentation. The098runtime is a locally verified unaccepted input, not accepted090. Follow101PLAN: short context key before grid, precise available/carried/kept accessible names, shorter bottom note; no inventory calculation/state/server changes. Preserve all098features/checks and all accepted090clients/API/data/keys/54studies plus held artifacts. No source gate bypass or public release.

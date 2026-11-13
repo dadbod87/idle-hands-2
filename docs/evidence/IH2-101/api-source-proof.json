@@ -1,0 +1,9 @@
+{
+  "classification": "Dedicated101V2process imports unchanged accepted090API5source; no accepted process or key change",
+  "files": 36,
+  "changed": [],
+  "database": "Existing guarded ih2_menu_review; no initialization/reset/migration",
+  "port": 49604,
+  "key": "New memory-only key, not recorded",
+  "reviewProxy": "Only review config rewrites backend Host to127.0.0.1; backend Host guard and explicit allowed frontend Origin remain enforced."
+}

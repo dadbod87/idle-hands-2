@@ -1,0 +1,16 @@
+{
+  "classification": "LOCAL_CANDIDATE_ONLY",
+  "acceptedMain": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
+  "candidateBranch": "feat/bag-quantity-clarity",
+  "runtimeInputUnaccepted098": "91a3eb1b8e5f16f006223c6bf859a2d743343c93",
+  "uiCodeCheckpoint": "6eeff78eb7dde148b43a6e4b3bff55b0ee22cd96",
+  "sourceCheckpoint": "Final branch commit to be recorded in canonical continuation after backup",
+  "normalChecksComplete": false,
+  "lastRefusedRun": 43365543304,
+  "lastRefusedCandidate": "8abc1b46325b1220271a550951acc685b667aec9",
+  "lastRefusal": "Prior GitHub account billing/spending-limit refusal before tests; owner resolution has not been received.",
+  "newRunOrPrCreated": false,
+  "merged": false,
+  "acceptedPreviewUpdated": false,
+  "publicDeployment": false
+}

@@ -1,3 +1,5 @@
+101Bag quantities locally verified:338system/132browser/7focused/native8shapes/TerraV2/frozen208/origin/preservation. Key/ARIAclarifies available versus owned, header gap restored; a measured test-only resize-readiness race is corrected without relaxing crop/target/progress checks. Accepted090unchanged, normal source gate held. Next102coherent source preparation. [Report](evidence/IH2-101/REPORT.md).
+
 100 first Aster serving study locally verified:325system/110browser/native/TerraV2/eight-filefrozen;20cells with exact feet/final idle, zero runtime delta and all accepted data/artifacts preserved. Normal source gate remains held. Next101clarifies Bag available-versus-owned counts from the cold-read menu review. [Report](evidence/IH2-100/REPORT.md).
 
 099independent café feasibility/art/menu study locally329system/110browser/native/TerraV2/frozen13/model/auditverified. No game café/food/state added; all204accepted090client/198art/data/keys/studies and held098reviews preserved. Normal source gate remains held;100first-rig gesture study next. [Report](evidence/IH2-099/REPORT.md).

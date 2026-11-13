@@ -31,3 +31,5 @@ Task111remains in progress until exact-final-head four public GitHub jobs, main-
 Selected actual compiled screenshots: [desktop counter](desktop-counter.png), [phone earned reward](phone-earned.png), [short200 reward](short200-earned.png), [native rental teapot](teapot-world-phone.png). See [Terra findings and limits](terra-review.md) and [old source-update proof](source-update.json).
 
 [Final V4 Terra regression](terra-final-review.md) confirms actual desktop/320reward/Bag and visible unsupported-save warning with exact raw preservation. V4compiled214files are the final CI comparison reference.
+
+First hosted candidate1912835/run43515772964passed431domain checks but stopped browser-shard1on an existing rain-resize sampling race (camera zoom assigned before post-render DOM alignment). The check now awaits two actual animation frames after the expected zoom, preserving every exact period/phase/matrix/coverage assertion and all153cases. Targeted native rain check passes; no game code or214compiled bytes changed for this correction. The failed head is unaccepted; the new head requires all four jobs again. See ci-attempts.json.

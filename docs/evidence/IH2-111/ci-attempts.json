@@ -1,0 +1,14 @@
+{
+  "attempts": [
+    {
+      "run": 43515772964,
+      "head": "19128357c6281282c2fd3141e07d110d0aab844d",
+      "accepted": false,
+      "domain": "success431",
+      "browser1": "Failed unchanged weather test immediately after resize: CSS period161.362 vs newly assigned camera period163.6923076923, before post-render DOM alignment.4passed/72notrun; no merge.",
+      "browser2": "Running before replacement push; concurrency cancellation/status recorded at closeout.",
+      "correction": "Wait two animation frames after the expected camera zoom before exact existing rain period/phase/matrix/coverage checks. No tolerance, case, wait or device coverage removed. Targeted native test passes; game214files unchanged.",
+      "rerunReason": "Diagnosed test sampling race fixed on a new final head; all required jobs rerun for that head."
+    }
+  ]
+}

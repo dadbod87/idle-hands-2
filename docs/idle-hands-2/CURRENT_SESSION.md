@@ -1,3 +1,7 @@
+#111phone touch-target follow-up — fix/cafe-presentation-target
+
+Initial integration PR42/main50fbcbbd passed all exact-head/main431system/153browser checks and V4artifacts; actual4175/4176remain unchanged pending final UI acceptance. Final native QA found optional presentation disclosure19px; V5adds44px target/focus without state/economy/server/art changes. Seven focused café cases and Terra V5desktop/360/320/short200disclosure/reward/Bag review pass. Final follow-up PR/main/actual-preview gates still required. Read111report/touch-target-followup. Do not use old canonical090runtime. After acceptance resolve chore/playable-cafe-closeout-2026-11-13.
+
 #111current continuation — feat/playable-cafe
 
 After acceptance, the exact verification/preview closeout is backed up on `chore/playable-cafe-closeout-2026-11-13`. Fetch and verify that branch before assuming this pre-acceptance checkpoint is current. Its existence/status is not implied until the recorded gates actually pass.

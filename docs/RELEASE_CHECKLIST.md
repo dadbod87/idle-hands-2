@@ -1,3 +1,5 @@
+109current gate: require final-head domain/both disjoint74+72browser shards/browser-playtest; retain raw artifacts and source identity, merge/main regression, matched local client/API/208served bodies, table/key/checksum/session recovery and actual desktop/phone checks. Old090previews stay until all applicable gates pass.
+
 108local candidate passes403system/146browser/17focused and source/native/preservation. Require109exact-head public CI/both disjoint shards/artifacts/merge/main regression and matched actual client/API/recovery before accepted-preview update. No new café UI/root/protocol/SQL/props registration.
 
 Public-source update November13: old private minute hold is historical; standard public Ubuntu checks may run for authorized final candidates. Still require exact-head domain/both disjoint browser shards/browser-playtest and actual artifact/preview/preservation gates. Paid larger runners/storage/hosting remain unapproved. Visibility change is not source or release acceptance.

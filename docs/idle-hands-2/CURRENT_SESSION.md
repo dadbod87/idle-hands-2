@@ -1,3 +1,11 @@
+#109 consolidated source/preview acceptance in progress
+
+Runtime base **3d2a7664c5e577d13585bfbba87d0b01f2ef56fc**, isolated idle-hands-2-source-release / feat/consolidated-source-release. Owner resumed normal updates after public visibility. Actual108local403system/146browser0skips/flakes/errors,17focused/four native and63tasks/10tracker/40pinned/build/design/diff/preservation pass; no runtime difference in this109documentation/acceptance preparation. Standard public Ubuntu CI may run. Mainf0a294a/090previews and oldPR39remain until exact-head/source/actual-preview gates pass.
+
+Next: one final candidate PR, require domain/both disjoint74+72shards/browser-playtest; verify raw CI/build/source and36historical study outputs, merge and inspect main regression. Freeze matched client/API source and preserve protected practice/Tour13tables/allfields/keys/6checksums plus54accepted study origins before local preview update. Actual native restart/session/desktop/phone checks and appropriate Terra review, explicit fixtures/limits, then closeout exactSHAs. No source acceptance is inferred yet.
+
+The cafe writer, ledger and art remain isolated candidates; actual game still root2/garden3/protocol5with eight props. No public/cloud game launch, paid services or original-game changes. No obsolete billing probe. Current weekly41%remaining, reset credits untouched.
+
 #108 coordinated writer locally complete;109source acceptance next
 
 Current isolated checkout idle-hands-2-writer, branch feat/coordinated-cafe-writer, basef806f9fcf3e30464300e2ea20c44dab28e5c1bf7. Full local403system/17focused/146browser pass with0skips/flakes/unexpected/reporterrors; build/design/63tasks/10tracker/40pinned/diff and protected data/54studies pass. Full duration recorded in108local-checks.json. Actual208game/202art byte-identical to107, no live registration. Independent domainP2fixed (migration cancellation stale overwrite), dedicated regression and re-review; Terra static6stills finds no sampledP1/P2, not interaction/device certification.

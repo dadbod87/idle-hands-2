@@ -1,3 +1,7 @@
+## November13 — consolidated source acceptance prepared
+
+Preparing109normal free public CI and local matched-preview acceptance over exact108runtime. Includes accumulated town UI and isolated café foundations; no new game code in109and no playable café registration. Actual403/146local evidence retained; exact-head/main/source/artifact/restart/native gates pending.
+
 ## November13 — coordinated candidate writer locally verified
 
 108adds one isolated lifetime lease for ordinary+cafe saves, confirmed/unsaved separation, explicit flush, retained intent, raw conflict and guarded lifecycle/capability handling.403system/146browser/17focused pass, migration-cancellationP2fixed/reviewed; no live registration or game payload delta. Source/actual-preview acceptance follows109now that public CI is available.

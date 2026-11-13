@@ -1710,7 +1710,7 @@
     {
       "id": "IH2-109",
       "title": "Consolidated public-source acceptance and matched local previews",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-090"
       ],
@@ -1726,7 +1726,8 @@
       ],
       "evidence": [
         "docs/evidence/IH2-109/PLAN.md"
-      ]
+      ],
+      "owner_branch": "feat/consolidated-source-release"
     }
   ],
   "source_status_note": "Owner explicitly made the repository public November13,2026. Prior private-billing refusals in task histories remain dated evidence; standard free public CI may now validate authorized final candidates. No pending source/preview acceptance is satisfied by visibility alone. Read ACTIONS_USAGE_POLICY and CURRENT_SESSION."

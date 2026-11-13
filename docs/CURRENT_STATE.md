@@ -1,3 +1,5 @@
+109consolidated source acceptance in progress over108verified403/146runtime. Standard free public GitHub checks available; exact-head/main/artifact/actual-preview gates pending. Current game previews remain090until verified refresh. [Plan](evidence/IH2-109/PLAN.md).
+
 108coordinated writer candidate locally complete:403system/146browser0skips/flakes/errors,17focused, native/epoch/migration/dirty-preservation proof and no live registration.208game/202art exact107. Next109normal public CI/source/actual-preview acceptance. [Report](evidence/IH2-108/REPORT.md).
 
 Public source: existing idle-hands-2made public November13at explicit owner request; anonymous200verified. Standard public Ubuntu CI free, paid resources unapproved. No runtime/main/preview change. Current continuation: chore/public-source-policy over unchanged107candidate; next108. See idle-hands-2/handoffs/2026-11-13-public-source.md.

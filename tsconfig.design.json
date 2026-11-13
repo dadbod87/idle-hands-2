@@ -95,7 +95,8 @@
     "tests/garden-view.test.ts",
     "tests/garden-clarity.spec.ts",
     "tests/housing-view.test.ts",
-    "tests/housing-clarity.spec.ts"
+    "tests/housing-clarity.spec.ts",
+    "tests/town-focus.spec.ts"
   ],
   "compilerOptions": {
     "types": [

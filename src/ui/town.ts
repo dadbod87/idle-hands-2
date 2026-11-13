@@ -20,34 +20,51 @@ export class TownUI {
  private homeChoices=new Map<string,{prop:string;slot:string;details:boolean}>();
  private homeKeyboard=false;
  private purchaseUpdates:Array<()=>void>=[];
- constructor(private host:TownHost,private client:TownClient){window.setInterval(()=>{if(!document.hidden&&this.status?.isConnected)this.refresh();},1000);}
+ constructor(private host:TownHost,private client:TownClient){const dialog=this.host.body.closest('dialog');dialog?.addEventListener('keydown',event=>{if(event.key==='Tab')this.homeKeyboard=true;});dialog?.addEventListener('pointerdown',()=>this.homeKeyboard=false);window.setInterval(()=>{if(!document.hidden&&this.status?.isConnected)this.refresh();},1000);}
  private p(text:string){const p=document.createElement('p');p.textContent=text;return p;}
  private button(text:string,action:()=>void){const b=document.createElement('button');b.type='button';b.textContent=text;b.className='destination';b.onclick=action;return b;}
- private start(title:string,context=true){this.purchaseUpdates=[];this.panel='';this.host.open(title);this.host.body.classList.remove('home-arrangement-panel');this.host.body.replaceChildren();if(context)this.host.body.append(this.p('Practice town · fictional residents and test supplies. Confirmed changes are saved here.'));this.status=this.p('');this.status.className='town-status';this.status.setAttribute('role','status');}
+ private start(title:string,context=true){this.purchaseUpdates=[];this.panel='';this.host.open(title);this.host.body.classList.remove('home-arrangement-panel');this.host.body.replaceChildren();if(context)this.host.body.append(this.p('Practice town · fictional residents and test supplies. Confirmed changes are saved here.'));this.status=this.p('');this.status.className='town-status';this.status.setAttribute('role','status');this.status.tabIndex=-1;}
  private notice(){this.host.body.append(this.status!);}
+ /** Keys describe a control's purpose and owning plot, never its label or order. */
+ private focusKey(target:Element|null){
+  if(!(target instanceof HTMLElement)||!this.host.body.contains(target))return null;
+  const plot=target.closest<HTMLElement>('[data-home-plot]')?.dataset.homePlot,scope=plot?'[data-home-plot="'+CSS.escape(plot)+'"] ':'';
+  for(const attribute of['data-home-field','data-home-action','data-home-upgrade','data-home-enter','data-town-claim','data-town-focus','data-town-plot-refresh','data-town-donate','data-bridge-check','data-lesson-start','data-lesson-complete','data-lesson-redeem','data-enter-trail','data-trail-stamp']){
+   const value=target.getAttribute(attribute);if(value!==null)return scope+'['+attribute+'="'+CSS.escape(value)+'"]';
+  }
+  return null;
+ }
+ private repaintResult(refresh:()=>void,anchor:Element|null,message:string){
+  const dialog=this.host.body.closest('dialog'),current=document.activeElement,chosen=current!==anchor&&current!==document.body&&current!==dialog,inside=!!current&&this.host.body.contains(current),key=this.focusKey(chosen?current:anchor),scroll=dialog?.scrollTop??0,keyboard=this.homeKeyboard;
+  refresh();if(this.status)this.status.textContent=message;
+  if(!dialog?.open||document.hidden||chosen&&!inside)return;
+  if(chosen)dialog.scrollTop=scroll;
+  const match=key?this.host.body.querySelector<HTMLElement>(key):null,target=match&&!match.hidden&&!match.matches(':disabled')&&getComputedStyle(match).visibility!=='hidden'&&match.getClientRects().length?match:this.status;
+  target?.focus({preventScroll:true});
+  if(chosen)dialog.scrollTop=scroll;
+  if(target&&(keyboard||target===this.status))this.revealHomeFocus(target);
+ }
  private async action(command:TownCommand,refresh:()=>void){
   if(this.busy)return;
-  const status=this.status,present=()=>status===this.status&&!!status?.isConnected,focused=document.activeElement?.textContent;
-  const showResult=()=>{
+  const status=this.status,owner=this.client.snapshot?.playerId,anchor=document.activeElement,dialog=this.host.body.closest('dialog'),ownsPanel=()=>status===this.status&&!!status?.isConnected&&this.client.snapshot?.playerId===owner,present=()=>!!dialog?.open&&ownsPanel();
+  const showResult=(initiator:Element|null)=>{
+   if(!present())return;
    const message=this.client.lastMessage||this.client.snapshot?.workshop.lastMessage||'Saved to the local town server.';
-   this.host.feedback(message);this.host.changed?.();if(!present())return;
-   refresh();const next=[...this.host.body.querySelectorAll<HTMLButtonElement>('button')].find(b=>!b.disabled&&b.textContent===focused)??this.host.body.querySelector<HTMLButtonElement>('button:not(:disabled)');
-   next?.focus({preventScroll:this.host.body.classList.contains('home-arrangement-panel')});
-   if(next&&this.homeKeyboard&&this.panel==='plots')this.revealHomeFocus(next);
-   if(this.status)this.status.textContent=message;
+   this.host.feedback(message);this.host.changed?.();this.repaintResult(refresh,initiator,message);
   };
   this.busy=true;if(status)status.textContent='Waiting for the town server…';this.host.body.setAttribute('aria-busy','true');
-  try{await this.client.command(command);showResult();}
+  try{await this.client.command(command,present);showResult(anchor);}
   catch(error){
    if(!present())return;if(status)status.textContent=(error as Error).message;
    if(this.client.retryAvailable){
     const retry=this.button('Retry the same request',()=>{
-     if(this.busy||!present())return;this.busy=true;retry.disabled=true;this.host.body.setAttribute('aria-busy','true');
-     void this.client.retry().then(showResult).catch(e=>{if(present()){retry.disabled=false;if(status)status.textContent=e.message;}}).finally(()=>{this.busy=false;if(present())this.host.body.removeAttribute('aria-busy');});
-    });this.host.body.append(retry);
+     if(this.busy||!present())return;const retryAnchor=document.activeElement;this.busy=true;retry.disabled=true;this.host.body.setAttribute('aria-busy','true');
+     void this.client.retry(present).then(()=>showResult(retryAnchor)).catch(e=>{if(present()){retry.disabled=false;if(status)status.textContent=e.message;}}).finally(()=>{this.busy=false;if(ownsPanel())this.host.body.removeAttribute('aria-busy');});
+    });retry.dataset.townFocus='retry';this.host.body.querySelector('[data-town-focus="retry"]')?.remove();this.host.body.append(retry);
    }
-  }finally{this.busy=false;if(present())this.host.body.removeAttribute('aria-busy');}
+  }finally{this.busy=false;if(ownsPanel())this.host.body.removeAttribute('aria-busy');}
  }
+
  async showLogin(onLogin?:(snapshot:TownSnapshot)=>void){this.start('Choose a practice resident');this.host.body.append(this.p('Choose a fictional resident. Each keeps their own saved workshop and plot.'));this.notice();let fixtures:Array<{id:string;name:string}>;try{fixtures=await this.client.fixtures();}catch{fixtures=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}];}if(!this.status?.isConnected)return;for(const fixture of fixtures)this.host.body.append(this.button(fixture.name,()=>{if(this.busy)return;this.busy=true;this.status!.textContent='Opening '+fixture.name+'’s practice town…';void this.client.login(fixture.id).then(snapshot=>{this.status!.textContent='Signed in as '+snapshot.name;onLogin?.(snapshot);}).catch(error=>this.status!.textContent=error.message).finally(()=>this.busy=false);}));}
  private paintJournal(s:TownSnapshot){const section=this.host.body.querySelector<HTMLElement>('[data-project-journal]');if(!section)return;const key=JSON.stringify(s.projectJournal??[]);if(section.dataset.version===key)return;section.dataset.version=key;section.replaceChildren();if(!s.projectJournal?.length)return;const heading=document.createElement('h3');heading.textContent='Committee minutes';section.append(heading);for(const event of s.projectJournal){const row=this.p(event.kind==='grandfathered'?'Already repaired. Earlier work and access are honored.':'Bridge opened · '+(event.effectiveAt===null?'recorded':new Date(event.effectiveAt).toLocaleString())+'. The path stays open.');row.dataset.projectEvent=event.id;section.append(row);}}
  private bridgeText(s:TownSnapshot){return `${s.bridge.contributed} / ${s.bridge.target} repair credits funded. `+(s.bridge.restored?'The bridge is open. Inkwood is ready.':s.bridge.phase==='building'?'Materials complete. Construction and inspection are in progress.':'Three credits. Several meetings. One bridge.');}
@@ -94,29 +111,29 @@ export class TownUI {
   this.plotVersion=JSON.stringify([s.plots,s.workshop.owned,s.workshop.bridgeKits]);
   if(inside)this.host.body.classList.add('home-arrangement-panel');
   if(!inside)this.host.body.append(this.p('Plots receive a permanent street address when claimed. You are not buying this registry building or choosing an occupied site.'));
-  if(!s.plot&&!plotId){const claim=this.button(`Claim your house plot · ${PLOT_CLAIM_KITS} bridge kits`,()=>void this.action({kind:'claim-plot'},()=>this.showPlots()));claim.disabled=s.workshop.bridgeKits<PLOT_CLAIM_KITS;this.host.body.append(this.purchaseFacts('claim',claim),claim);}
-  let records:HTMLDetailsElement|undefined;if(!inside&&!plotId&&s.plots.length>6){records=document.createElement('details');records.className='registry-records';records.dataset.registryRecords='';records.open=this.registryOpen;const summary=document.createElement('summary');summary.textContent='Other home records · '+s.plots.filter(p=>p.ownerId!==s.playerId).length;records.append(summary);records.ontoggle=()=>{if(records?.isConnected)this.registryOpen=records.open;};}
+  if(!s.plot&&!plotId){const claim=this.button(`Claim your house plot · ${PLOT_CLAIM_KITS} bridge kits`,()=>void this.action({kind:'claim-plot'},()=>this.showPlots()));claim.dataset.townClaim='new';claim.disabled=s.workshop.bridgeKits<PLOT_CLAIM_KITS;this.host.body.append(this.purchaseFacts('claim',claim),claim);}
+  let records:HTMLDetailsElement|undefined;if(!inside&&!plotId&&s.plots.length>6){records=document.createElement('details');records.className='registry-records';records.dataset.registryRecords='';records.open=this.registryOpen;const summary=document.createElement('summary');summary.dataset.townFocus='registry-records';summary.textContent='Other home records · '+s.plots.filter(p=>p.ownerId!==s.playerId).length;records.append(summary);records.ontoggle=()=>{if(records?.isConnected)this.registryOpen=records.open;};}
   const plots=[...s.plots].sort((a,b)=>Number(b.ownerId===s.playerId)-Number(a.ownerId===s.playerId));
   for(const plot of plots){
    if(plotId&&plot.id!==plotId)continue;
    const owner=plot.ownerId===s.playerId,inThisHome=inside&&selected?.id===plot.id;
-   const section=document.createElement('section');section.className='town-plot';
+   const section=document.createElement('section');section.className='town-plot';section.dataset.homePlot=plot.id;
    const saved=this.homeChoices.get(plot.id)??{prop:'',slot:'',details:false};this.homeChoices.set(plot.id,saved);
    const rerender=()=>{const dialog=this.host.body.closest('dialog'),scroll=dialog?.scrollTop??0;this.showPlots(plotId);if(dialog)dialog.scrollTop=scroll;};
    const info=document.createElement('div');
-   if(plot.ownerId){const enter=this.button(owner?'Enter your house':'Visit '+(plot.ownerName??'this house'),()=>{if(this.busy)return;this.busy=true;void this.host.enterHome?.(plot.id).catch(error=>this.host.feedback(error.message)).finally(()=>this.busy=false);});enter.dataset.homeEnter=plot.id;if(!inThisHome||owner)info.append(enter);}
+   if(plot.ownerId){const enter=this.button(owner?'Enter your house':'Visit '+(plot.ownerName??'this house'),()=>{if(this.busy)return;this.busy=true;void this.host.enterHome?.(plot.id).catch(error=>this.host.feedback(error.message)).finally(()=>this.busy=false);});enter.dataset.homeEnter=plot.id;if(!inThisHome)info.append(enter);}
    info.append(this.p(`${addressForPlot(plot.id).label} · ${plot.ownerName??'Unclaimed'} · level ${plot.level??plot.tier??0}`));
    if(inThisHome)info.append(this.p('Practice town · fictional residents and test supplies. Confirmed changes are saved here.'));
    if(plot.pennantOwned)info.append(this.p('Inkwood discovery pennant · earned and displayed at home'));
    if(owner){
     const upgrade=this.button(`Upgrade plot · ${PLOT_UPGRADE_KITS} bridge kits`,()=>void this.action({kind:'upgrade-plot',plotId:plot.id},rerender));
-    upgrade.disabled=s.workshop.bridgeKits<PLOT_UPGRADE_KITS||plot.level>=2;
+    upgrade.dataset.homeUpgrade=plot.id;upgrade.disabled=s.workshop.bridgeKits<PLOT_UPGRADE_KITS||plot.level>=2;
     info.append(this.purchaseFacts('expand',upgrade,plot.id),upgrade,this.p(plot.level===2?'Expanded home · eight furnishing nooks, including two in your workroom.':'Starter home · six furnishing nooks. Expansion adds two workroom nooks.'));
     const controls=document.createElement('div');controls.className='home-arrange';controls.dataset.homeArrange='';
-    const prop=document.createElement('select');prop.setAttribute('aria-label','Owned furniture for plot');
+    const prop=document.createElement('select');prop.setAttribute('aria-label','Owned furniture for plot');prop.dataset.homeField='furniture';
     for(const[id,count]of Object.entries(s.workshop.owned))if(count>0){const option=document.createElement('option');option.value=id;option.textContent=PROPS[id as keyof typeof PROPS].name+' · '+count+' owned';prop.append(option);}
     if([...prop.options].some(o=>o.value===saved.prop))prop.value=saved.prop;saved.prop=prop.value;
-    const slot=document.createElement('select');slot.setAttribute('aria-label','Plot furniture position');
+    const slot=document.createElement('select');slot.setAttribute('aria-label','Plot furniture position');slot.dataset.homeField='position';
     for(const nook of homeSlots(plot.level)){const option=document.createElement('option'),placed=homeDisplay(plot)[nook.id];option.value=nook.id;option.textContent=(nook.id.startsWith('workroom-')?nook.label:nook.id)+' · '+(placed?PROPS[placed].name:'empty');slot.append(option);}
     if([...slot.options].some(o=>o.value===saved.slot))slot.value=saved.slot;saved.slot=slot.value;
     const preview=document.createElement('img');preview.alt='Selected owned furnishing';preview.width=56;preview.height=56;
@@ -134,11 +151,11 @@ export class TownUI {
     if(inThisHome){
      section.append(controls);
      const details=document.createElement('details');details.className='home-secondary';details.dataset.homeSecondary='';details.open=saved.details;
-     const summary=document.createElement('summary');summary.textContent='House & expansion';details.append(summary,info);details.ontoggle=()=>{if(details.isConnected)saved.details=details.open;};
+     const summary=document.createElement('summary');summary.dataset.townFocus='home-expansion';summary.textContent='House & expansion';details.append(summary,info);details.ontoggle=()=>{if(details.isConnected)saved.details=details.open;};
      section.append(details);
     }else section.append(info,controls);
    }else if(!plot.ownerId){
-    section.append(info);const claim=this.button(`Claim plot · ${PLOT_CLAIM_KITS} bridge kits`,()=>void this.action({kind:'claim-plot'},()=>this.showPlots(plotId)));claim.disabled=!!s.plot||s.workshop.bridgeKits<PLOT_CLAIM_KITS;section.append(this.purchaseFacts('claim',claim),claim);
+    section.append(info);const claim=this.button(`Claim plot · ${PLOT_CLAIM_KITS} bridge kits`,()=>void this.action({kind:'claim-plot'},()=>this.showPlots(plotId)));claim.dataset.townClaim='new';claim.disabled=!!s.plot||s.workshop.bridgeKits<PLOT_CLAIM_KITS;section.append(this.purchaseFacts('claim',claim),claim);
    }else{section.append(this.p('Visiting · only the owner can change this plot.'),info);}
    (records&&!owner?records:this.host.body).append(section);
   }

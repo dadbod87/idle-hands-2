@@ -1752,7 +1752,7 @@
     {
       "id": "IH2-110",
       "title": "Atomic shared café transaction candidate",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-109"
       ],
@@ -1773,7 +1773,12 @@
         "docs/evidence/IH2-110/cafe-candidate-restart.json",
         "docs/evidence/IH2-110/source-and-payload.json",
         "docs/idle-hands-2/handoffs/2026-11-13-shared-cafe-transaction.md",
-        "docs/evidence/IH2-110/local-checks.json"
+        "docs/evidence/IH2-110/local-checks.json",
+        "docs/evidence/IH2-110/source-closeout.json",
+        "docs/evidence/IH2-110/preservation.json",
+        "docs/evidence/IH2-110/accepted-preview-http.json",
+        "docs/evidence/IH2-110/active-runtime-proof.json",
+        "docs/evidence/IH2-110/accepted-service-processes-preserved.json"
       ],
       "owner_branch": "feat/shared-cafe-transaction"
     },

@@ -1,0 +1,15 @@
+{
+  "classification": "Actual accepted unchanged clients; no API calls/browser identity or progress writes",
+  "origins": [
+    {
+      "port": 4175,
+      "files": 208,
+      "allHttpBodiesEqualAccepted109AndLocal110Build": true
+    },
+    {
+      "port": 4176,
+      "files": 208,
+      "allHttpBodiesEqualAccepted109AndLocal110Build": true
+    }
+  ]
+}

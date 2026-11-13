@@ -1171,7 +1171,7 @@
     {
       "id": "IH2-091",
       "title": "Task-first pine workshop and finishing rack",
-      "status": "queued",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1186,7 +1186,34 @@
       ],
       "evidence": [
         "docs/idle-hands-2/design/CRAFT_MENU_AUDIT.md",
-        "docs/idle-hands-2/design/PINE_WORKSHOP_CLARITY.md"
+        "docs/idle-hands-2/design/PINE_WORKSHOP_CLARITY.md",
+        "docs/evidence/IH2-091/PLAN.md",
+        "docs/evidence/IH2-091/REPORT.md",
+        "docs/evidence/IH2-091/source-hold.json"
+      ],
+      "owner_branch": "feat/clear-pine-workshop",
+      "blocked_reason": "PR39 exact8abc1b4 GitHub Actions refused before tests due to account billing/spending-limit status. Owner resolution and all exact-head checks/artifacts required before merge or actual-client update."
+    },
+    {
+      "id": "IH2-092",
+      "title": "Selected-bed planting facts and clear garden actions",
+      "status": "in_progress",
+      "owner_branch": "feat/clear-garden-planting",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Show selected crop cost, real growth time and explicit harvest output together without adding a dense menu.",
+      "acceptance": [
+        "Preserve every garden action/explanation/state/rule/timer/authority and existing checks; pure display facts match actual first/later crop commands.",
+        "Keep selected actual bed/crop, held seed/cost/time/yield and named preview/confirmation clear; stable ready/full/cancel/receipt and scoped async focus/feedback.",
+        "Native desktop/touch/narrow/short/text200, local/shared/retry/save/clock checks and Terra review; full exact-headCI/artifact/actual-client/preservation gates before acceptance."
+      ],
+      "exclusions": [
+        "Independent local draft on accepted090; no091runtime dependency, billing workaround, economy/state/schema/server/protocol/hosting/real-account/expense/art changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-092/PLAN.md",
+        "docs/idle-hands-2/design/GARDEN_PLANTING_CLARITY.md"
       ]
     }
   ]

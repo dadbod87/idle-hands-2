@@ -1,0 +1,45 @@
+{
+  "classification": "LOCAL_COHERENT_CANDIDATE_NOT_SOURCE_ACCEPTED",
+  "system": {
+    "passed": 348,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 61765.460583,
+    "postgresRequired": true
+  },
+  "browser": {
+    "passed": 136,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "reportErrors": 0,
+    "durationMs": 993678.571
+  },
+  "focused": {
+    "system": 10,
+    "browser": 4
+  },
+  "discovery": {
+    "shards": [
+      69,
+      67
+    ],
+    "disjoint": true,
+    "union": 136,
+    "orderedFamilyOnlyOn2": true
+  },
+  "strictBuild": true,
+  "designIncludingCoherentVerifier": true,
+  "trackerTests": 10,
+  "planTasks": 57,
+  "pinnedFiles": 40,
+  "whitespace": true,
+  "runtimeFiles": 208,
+  "runtimeArtUnchanged": 202,
+  "gamePayloadDeltaFrom101": 0,
+  "historicalStudyFilesUnchanged": 21,
+  "rawStudyArtifactsPackaged": 21,
+  "normalGithubGate": false,
+  "sourceAccepted": false,
+  "publicDeployment": false
+}

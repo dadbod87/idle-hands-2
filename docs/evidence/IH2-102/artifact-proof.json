@@ -1,0 +1,36 @@
+{
+  "classification": "Same held101V2runtime and unchanged099/100studies verified in coherent source; no accepted/public promotion",
+  "compiledClientFiles": 208,
+  "runtimeArtFiles": 202,
+  "compiledBytesIdenticalTo101": true,
+  "gamePayloadDeltaBytes": 0,
+  "http": [
+    {
+      "name": "current-local",
+      "port": 49600,
+      "responses": 208,
+      "exactMatch": true
+    },
+    {
+      "name": "current-town",
+      "port": 49602,
+      "responses": 208,
+      "exactMatch": true
+    },
+    {
+      "name": "IH2-099",
+      "port": 49586,
+      "responses": 13,
+      "exactMatch": true
+    },
+    {
+      "name": "IH2-100",
+      "port": 49590,
+      "responses": 8,
+      "exactMatch": true
+    }
+  ],
+  "rawBrowserArtifactStudyFiles": 21,
+  "rawBytesExact": true,
+  "nativeEvidenceReusedFrom": "IH2-101V2; identical208bodies verified, no rerendered or new feature claim"
+}

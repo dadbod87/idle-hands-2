@@ -1697,5 +1697,6 @@
         "docs/evidence/IH2-108/PLAN.md"
       ]
     }
-  ]
+  ],
+  "source_status_note": "Owner explicitly made the repository public November13,2026. Prior private-billing refusals in task histories remain dated evidence; standard free public CI may now validate authorized final candidates. No pending source/preview acceptance is satisfied by visibility alone. Read ACTIONS_USAGE_POLICY and CURRENT_SESSION."
 }

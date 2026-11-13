@@ -1,3 +1,5 @@
+Public-source update November13: old private minute hold is historical; standard public Ubuntu checks may run for authorized final candidates. Still require exact-head domain/both disjoint browser shards/browser-playtest and actual artifact/preview/preservation gates. Paid larger runners/storage/hosting remain unapproved. Visibility change is not source or release acceptance.
+
 107local candidate: shared context factories preserve ordinary behavior and café ledgers; no live root/writer/props/UI/server/protocol/SQL registration.386system/10focused/build/design pass, 142browser0skips/flakes/errors and final preservation pass. Source gate/billing hold remains; no accepted-preview update. Later unified writer/unsaved-practice/cache/BFCache, server UUID/SQL/protocol/allocation and coherent counter/art/reward gates required. See evidence/IH2-107/REPORT.md.
 
 # Actions usage preflight

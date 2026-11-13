@@ -1,4 +1,6 @@
-Continuation source:107is privately backed up at9cfdfdac4d102b94be7e8486730439d7ab2cc840in ../idle-hands-2-cafe-commands, feat/cafe-command-compatibility. This checkout contains docs only over accepted090runtime; see CURRENT_SESSION for exact resume. Next108coordinated candidate writer. No hosted run or accepted-preview change.
+Canonical checkout remains accepted090runtime/docs only. Current continuation source: ../idle-hands-2-public-policy, chore/public-source-policy, f806f9fcf3e30464300e2ea20c44dab28e5c1bf7; next108. Repository visibility is public; free standard CI available, no source gate bypass or game deployment.
+
+Public source: existing idle-hands-2made public November13at explicit owner request; anonymous200verified. Standard public Ubuntu CI free, paid resources unapproved. No runtime/main/preview change. Current continuation: chore/public-source-policy over unchanged107candidate; next108. See idle-hands-2/handoffs/2026-11-13-public-source.md.
 
 107ordinary café-era commands locally implemented;386system/10focused/build/design and independent domain review pass. Full142browser0skips/flakes/errors, final plan/pinned/diff/preservation pass. Shared unchanged rule bodies with strict live2/3 and candidate3/4contexts; no writer/UI/server registration. Source gate held. [Report](evidence/IH2-107/REPORT.md).
 

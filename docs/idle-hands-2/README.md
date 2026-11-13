@@ -1,3 +1,5 @@
+Public source verified November13 at https://github.com/dadbod87/idle-hands-2 after explicit owner request. Standard public Linux CI is free; prior private-allowance hold is historical. No public game hosting or cloud backend is enabled. See ACTIONS_USAGE_POLICY.md and CURRENT_SESSION.md for current checks and actual continuation source.
+
 # Idle Hands 2.0 — planning and build home
 
 Status: **private local shared-town prototype; garden, pine and Pip activity slices accepted; combined audit, phone action hierarchy, depot art and workroom nooks accepted; inside-home arrangement accepted; Aster collection art study accepted outside runtime; remaining rig family queued** (2026-11-12). Separate game, with an isolated local command service and fictional practice identities. No hosted sequel, real accounts or paid assets. The original Idle Hands remains separate.

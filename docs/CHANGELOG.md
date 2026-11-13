@@ -1,3 +1,7 @@
+## November13 — owner-authorized public source
+
+Existing sequel repository made public; anonymous API/page/raw-source verified. Updated current instructions to permit standard free public Ubuntu checks while retaining local-first batching, all exact-head gates and paid-resource limits. No workflow run, merge, game release, cloud or actual-preview update. Runtime unchanged from107. See idle-hands-2/handoffs/2026-11-13-public-source.md.
+
 ## November13 — café-era ordinary command compatibility (held locally)
 
 107factors source-owned schema contexts around unchanged workshop/garden/carpentry/commission rule bodies. Isolated candidate preserves café sinks/history/teapot through mixed actions; default live schemas/props unchanged. Ten focused/386system checks pass; 142browser0skips/flakes/errors and final preservation pass. Numerical models unchanged except explicit fingerprints. No live registration, Actions, source acceptance or accepted-preview update. See evidence/IH2-107/REPORT.md.

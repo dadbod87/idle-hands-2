@@ -37,9 +37,11 @@ export class WorkshopUI {
  private collectionIntent:{id:string;owner:string;rig:string;view:CollectionReceiptView}|null=null;
  private remoteBusy=false;
  private remoteError='';
- private benchFocused=(event:FocusEvent)=>{const target=event.target;if(!(target instanceof HTMLElement)||!target.matches(':focus-visible')||!this.host.body.querySelector('[data-recipe-card]'))return;const dialog=target.closest('dialog'),header=dialog?.querySelector('header');if(!dialog?.open||!header)return;const h=header.getBoundingClientRect(),d=dialog.getBoundingClientRect();let b=target.getBoundingClientRect();if(b.y<h.bottom+8)dialog.scrollTop-=h.bottom+8-b.y;b=target.getBoundingClientRect();if(b.height<=d.bottom-h.bottom-20&&b.bottom>d.bottom-12)dialog.scrollTop+=b.bottom-(d.bottom-12);};
+ private keepBenchFocus(target:EventTarget|null){if(!(target instanceof HTMLElement)||!this.host.body.contains(target)||!this.host.body.querySelector('[data-recipe-card]'))return;const dialog=target.closest('dialog'),header=dialog?.querySelector('header');if(!dialog?.open||!header)return;const h=header.getBoundingClientRect(),d=dialog.getBoundingClientRect();let b=target.getBoundingClientRect();if(b.y<h.bottom+8)dialog.scrollTop-=h.bottom+8-b.y;b=target.getBoundingClientRect();if(b.height<=d.bottom-h.bottom-20&&b.bottom>d.bottom-12)dialog.scrollTop+=b.bottom-(d.bottom-12);}
+ private benchFocused=(event:FocusEvent)=>{if(event.target instanceof HTMLElement&&event.target.matches(':focus-visible'))this.keepBenchFocus(event.target);};
  constructor(private host:PanelHost,private remote?:RemoteWorkshopAdapter){
   this.host.body.addEventListener('focusin',this.benchFocused);
+  new ResizeObserver(()=>this.keepBenchFocus(document.activeElement)).observe(this.host.body);
   if(remote){
    this.state=remote.initial??createWorkshop(Date.now());
    remote.subscribe(state=>this.acceptRemote(state));
@@ -72,14 +74,14 @@ export class WorkshopUI {
   const failed=(message:string):WorkshopCommandResult=>({ok:false,state:this.state,message,retry:!!this.remote?.canRetry()});
   if(!this.remote||this.remoteBusy)return failed('A change is still being confirmed.');
   if(command&&this.remote.canRetry()){this.remoteError='Retry the previous request before making another change.';this.remoteNotice();return failed(this.remoteError);}
-  const benchOrigin=this.host.body.querySelector<HTMLElement>('[data-bench-work]');const before=this.state.revision;this.remoteBusy=true;this.remoteError='';this.updateClocks();const focusAnchor=document.activeElement;
+  const benchOrigin=this.host.body.querySelector<HTMLElement>('[data-bench-work]');const before=this.state.revision;this.remoteBusy=true;this.remoteError='';this.updateClocks();const focusAnchor=document.activeElement;let reveal:(()=>void)|undefined;
   try{
    const receipt:RemoteOutcome=command?await this.remote.command(command,this.collectionView?()=>false:present):this.remote.canRetry()?await this.remote.retry(this.collectionView?()=>false:present):{state:await this.remote.load(),message:'Town state refreshed.',ok:false};
    if(!present()){this.finishCollection(receipt);return failed('The submitting panel changed. Confirmed state is kept.');}
    this.acceptRemote(receipt.state);const shown=this.finishCollection(receipt);if(this.collectionView&&!shown)this.collectionView.message(receipt.command?.kind==='gather'?'Original request resolved. '+receipt.message:receipt.message);this.host.feedback(receipt.message);if(this.status&&!this.collectionView)this.status.textContent=receipt.message;this.preview=null;if(this.host.body.querySelector('#placement'))this.renderPlacement();
-   this.revealBenchWork(benchOrigin,receipt.ok??receipt.state.revision>before,receipt.command??command,focusAnchor);return{ok:receipt.ok??receipt.state.revision>before,state:this.state,message:receipt.message,retry:false};
+   reveal=()=>{if(present())this.revealBenchWork(benchOrigin,receipt.ok??receipt.state.revision>before,receipt.command??command,focusAnchor);};return{ok:receipt.ok??receipt.state.revision>before,state:this.state,message:receipt.message,retry:false};
   }catch(error){if(!this.remote.canRetry())this.collectionIntent=null;if(!present())return failed('The submitting panel changed. Confirmed state is kept.');this.remoteError=(error as Error).message;this.host.feedback(this.remoteError+(this.collectionView&&this.remote.canRetry()?' The request may have saved. Retry the same request.':''));return failed(this.remoteError);}
-  finally{this.remoteBusy=false;this.updateClocks();if(this.remoteError)this.remoteNotice();}
+  finally{this.remoteBusy=false;this.updateClocks();if(this.remoteError)this.remoteNotice();reveal?.();}
  }
  public async runCommission(action:CommissionAction,expectedRevision?:number,present:()=>boolean=()=>true):Promise<WorkshopCommandResult>{
   const command={kind:'commission',commissionAction:action,...(expectedRevision===undefined?{}:{expectedRevision})};
@@ -117,7 +119,14 @@ export class WorkshopUI {
   this.revealBenchWork(benchOrigin,receipt.ok,command);return{ok:receipt.ok,message};
  }
  private revealBenchWork(origin:HTMLElement|null,ok:boolean,command:Record<string,unknown>|null|undefined,focusAnchor?:Element|null){
-  if(!ok||command?.kind!=='craft'||!origin||this.host.body.querySelector('[data-bench-work]')!==origin||focusAnchor&&document.activeElement!==focusAnchor)return;const dialog=origin.closest('dialog'),head=dialog?.querySelector('header'),title=origin.querySelector<HTMLElement>('[data-bench-title]');if(!dialog?.open||!head||!title)return;title.tabIndex=-1;title.focus({preventScroll:true});dialog.scrollTop+=origin.getBoundingClientRect().top-head.getBoundingClientRect().bottom-12;
+  if(!ok||!['craft','claim'].includes(String(command?.kind))||!origin||document.hidden||this.host.body.querySelector('[data-bench-work]')!==origin)return;
+  const dialog=origin.closest('dialog'),head=dialog?.querySelector('header');if(!dialog?.open||!head)return;
+  // Disabling the submitting button can move focus to the modal/body while a
+  // real reply is pending. Preserve an explicitly chosen different control.
+  const active=document.activeElement;if(focusAnchor&&active!==focusAnchor&&active!==document.body&&active!==dialog)return;
+  const target=origin.querySelector<HTMLElement>(command?.kind==='claim'?'[data-bench-bag]':'[data-bench-title]');if(!target||target.hidden)return;target.tabIndex=command?.kind==='claim'?0:-1;target.focus({preventScroll:true});
+  if(command?.kind==='craft')dialog.scrollTop+=origin.getBoundingClientRect().top-head.getBoundingClientRect().bottom-12;
+  else{dialog.scrollTop+=origin.getBoundingClientRect().top-head.getBoundingClientRect().bottom-12;const h=head.getBoundingClientRect(),d=dialog.getBoundingClientRect();let b=target.getBoundingClientRect();if(b.y<h.bottom+8)dialog.scrollTop-=h.bottom+8-b.y;b=target.getBoundingClientRect();if(b.bottom>d.bottom-12)dialog.scrollTop+=b.bottom-(d.bottom-12);}
  }
  private disclosure(){return this.p(this.remote?'Shared practice town · fictional residents. Confirmed changes are saved here.':'Local practice save · this browser only. No account, trading or shared town progress.','disclosure');}
  private resources(){const list=document.createElement('dl');list.className='resource-list';for(const id of RESOURCE_IDS){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=names[id];const icon=document.createElement('img');icon.src='/art/homes/home-'+id+'-icon.svg';icon.alt='';icon.width=32;icon.height=32;icon.className='item-icon';dt.prepend(icon);dd.dataset.quantity=id;dd.textContent=String(this.state.inventory[id]);list.append(dt,dd);}return list;}
@@ -168,7 +177,7 @@ export class WorkshopUI {
   for(const id of RESOURCE_IDS){const card=document.createElement('div'),label=document.createElement('span'),icon=document.createElement('img'),quantity=document.createElement('strong');icon.src='/art/homes/home-'+id+'-icon.svg';icon.alt='';icon.width=20;icon.height=20;label.append(icon,names[id]);quantity.dataset.quantity=id;quantity.textContent=String(this.state.inventory[id]);card.append(label,quantity);materials.append(card);}b.append(materials);
   const work=document.createElement('section');work.className='bench-work';work.dataset.benchWork='';work.dataset.seen=this.state.job?'1':'0';work.hidden=!this.state.job;
   const title=document.createElement('h3');title.dataset.benchTitle='';const job=this.p('','bench-clock');job.dataset.job='';job.tabIndex=0;const detail=this.p('','bench-output');detail.dataset.benchWorkDetail='';
-  const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';claim.setAttribute('aria-describedby','bench-work-detail');detail.id='bench-work-detail';detail.tabIndex=0;const bag=this.button('Open bag',()=>this.showInventory(),'destination');bag.dataset.benchBag='';bag.hidden=true;work.append(title,job,detail,claim,bag);b.append(work);
+  const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';claim.setAttribute('aria-describedby','bench-work-detail');detail.id='bench-work-detail';detail.tabIndex=0;const bag=this.button('Open bag',()=>this.showInventory(),'destination');const collected=document.createElement('span');collected.textContent='✓ Collected';collected.setAttribute('aria-hidden','true');collected.className='bench-bag-confirmation';bag.prepend(collected);bag.dataset.benchBag='';bag.setAttribute('aria-describedby','bench-work-detail');bag.hidden=true;work.append(title,job,detail,claim,bag);b.append(work);
   const recipeHeading=document.createElement('h3');recipeHeading.textContent='Choose a recipe';b.append(recipeHeading);
   for(const id of ['planter','bridge-kit']as const){const view=recipeView(this.state,id),section=document.createElement('section');section.className='recipe recipe-card';section.dataset.recipeCard=id;
    const header=document.createElement('div');header.className='recipe-heading';const icon=document.createElement('img');icon.src='/art/homes/home-'+(id==='planter'?'planter':'crate')+'-icon.svg';icon.alt='';icon.width=40;icon.height=40;const name=document.createElement('h4');name.textContent='1 '+view.name;header.append(icon,name);

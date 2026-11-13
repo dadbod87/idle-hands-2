@@ -1,0 +1,145 @@
+{
+  "classification": "Actual13response frozenV2staticconcept. Default fictional study values; only appearance root-text setting, real browser touch/mouse/keyboard input. No intercepted game responses, clock/position/stock fixture, game storage, API or actual player. Graphic zoom/pan is not Phaser movement/collision/camera. Chrome emulation, not physical devices.",
+  "records": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "text": 100
+      },
+      "input": "native mouse and keyboard art scroll",
+      "layout": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "cardHeight": 596.703125,
+        "primary": {
+          "x": 940,
+          "y": 480.703125,
+          "width": 350,
+          "height": 67.1875,
+          "top": 480.703125,
+          "right": 1290,
+          "bottom": 547.890625,
+          "left": 940
+        },
+        "gameHook": "undefined"
+      },
+      "pan": 3,
+      "requests": 13,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone320",
+        "width": 320,
+        "height": 640,
+        "text": 100
+      },
+      "input": "native touch taps and keyboard art scroll",
+      "layout": {
+        "width": 320,
+        "documentWidth": 320,
+        "cardHeight": 593.390625,
+        "primary": {
+          "x": 26,
+          "y": -274.125,
+          "width": 268,
+          "height": 71.875,
+          "top": -274.125,
+          "right": 294,
+          "bottom": -202.25,
+          "left": 26
+        },
+        "gameHook": "undefined"
+      },
+      "pan": 3,
+      "requests": 13,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone360",
+        "width": 360,
+        "height": 640,
+        "text": 100
+      },
+      "input": "native touch taps and keyboard art scroll",
+      "layout": {
+        "width": 360,
+        "documentWidth": 360,
+        "cardHeight": 588.703125,
+        "primary": {
+          "x": 26,
+          "y": -277.0625,
+          "width": 308,
+          "height": 67.1875,
+          "top": -277.0625,
+          "right": 334,
+          "bottom": -209.875,
+          "left": 26
+        },
+        "gameHook": "undefined"
+      },
+      "pan": 3,
+      "requests": 13,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone200",
+        "width": 320,
+        "height": 640,
+        "text": 200
+      },
+      "input": "native touch taps and keyboard art scroll",
+      "layout": {
+        "width": 320,
+        "documentWidth": 320,
+        "cardHeight": 1381.984375,
+        "primary": {
+          "x": 26,
+          "y": -709.875,
+          "width": 268,
+          "height": 188.484375,
+          "top": -709.875,
+          "right": 294,
+          "bottom": -521.390625,
+          "left": 26
+        },
+        "gameHook": "undefined"
+      },
+      "pan": 3,
+      "requests": 13,
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "text": 200
+      },
+      "input": "native touch taps and keyboard art scroll",
+      "layout": {
+        "width": 844,
+        "documentWidth": 844,
+        "cardHeight": 1132.3125,
+        "primary": {
+          "x": 458,
+          "y": 132.015625,
+          "width": 350,
+          "height": 139.78125,
+          "top": 132.015625,
+          "right": 808,
+          "bottom": 271.796875,
+          "left": 458
+        },
+        "gameHook": "undefined"
+      },
+      "pan": 2,
+      "requests": 13,
+      "errors": []
+    }
+  ]
+}

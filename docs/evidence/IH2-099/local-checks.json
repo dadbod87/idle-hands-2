@@ -1,0 +1,85 @@
+{
+  "classification": "Independent099design study on accepted090runtime, not a gameplay/cafe/source release.",
+  "base": "847df45 / runtimef0a294af86d4b637f060c8f40a6d7f061d9cad15",
+  "system": {
+    "pass": 329,
+    "skipped": 0,
+    "failed": 0,
+    "durationMs": 57593.162375
+  },
+  "browser": {
+    "pass": 110,
+    "skipped": 0,
+    "flaky": 0,
+    "unexpected": 0,
+    "errors": [],
+    "durationMs": 887901.838
+  },
+  "strictBuild": true,
+  "design": true,
+  "roadmapTasks": 54,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "shards": [
+    {
+      "shard": 1,
+      "cases": 55,
+      "orderedFamily": []
+    },
+    {
+      "shard": 2,
+      "cases": 55,
+      "orderedFamily": [
+        "shared-town.spec.ts",
+        "shared-town.spec.ts",
+        "starter-homes.spec.ts",
+        "trail.spec.ts",
+        "z-first-visit.spec.ts"
+      ]
+    }
+  ],
+  "runtime": {
+    "files": 204,
+    "artFiles": 198,
+    "allBytesUnchanged": true
+  },
+  "standaloneStudy": {
+    "version": "V2",
+    "responses": 13,
+    "newOriginalSVGs": 6,
+    "unchangedAcceptedReuses": 2,
+    "rawBytes": 47631,
+    "perFileGzipBytes": 16976,
+    "runtimePayloadDelta": 0,
+    "actualHTTPMatches": true,
+    "nativeShapes": 5,
+    "nativeCaptures": 15,
+    "nativeTouchAndKeyboard": true,
+    "terraV1FullBoundedAndV2CaptionRecheck": true
+  },
+  "analyticalModel": {
+    "variants": 576,
+    "sceneryControls": 24,
+    "conservationAll": true,
+    "actualGameplay": false,
+    "travelAndActionCadenceMeasured": false
+  },
+  "catalogAudit": {
+    "entries": 48,
+    "boundedDefinitions": 21,
+    "relatedSlices": 3,
+    "futureOnly": 24,
+    "oldNullPricesUnchanged": true
+  },
+  "accessibility": "Two sampled quote DOM axe scans:zero violations; incomplete checks retained. No screen-reader/fullaccessibility/physical-device/human-fun certification.",
+  "fixtures": "Every study stock/progress state is fictional and there is no game/API/storage access. Synthetic400ms/5sconfirmation and900msstale-town event; isolated invalid game-key canaries in tests. Additional frozen native touch/click/key paths use default study values, not intercepted game replies. Existing full-regression elapsed/reply/SQL fixtures remain declared in their unchanged test sources; no real player or protected data.",
+  "preservation": {
+    "protectedAndTour13TablesAllFields": true,
+    "privateKeysAnd0600": true,
+    "checksumsPerNamespace": 6,
+    "acceptedStudyHTTPResponses": 54,
+    "accepted090ClientsAPI5Unchanged": true,
+    "held098ReviewUnchanged": true
+  },
+  "sourceGate": "Normal exact-final-head GitHub jobs/rawartifact/accepted-client gates remain unmet after prior PR39billing refusal. No main merge, public hosting or billing/runner bypass."
+}

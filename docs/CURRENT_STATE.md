@@ -1,3 +1,7 @@
+100 first Aster serving study locally verified:325system/110browser/native/TerraV2/eight-filefrozen;20cells with exact feet/final idle, zero runtime delta and all accepted data/artifacts preserved. Normal source gate remains held. Next101clarifies Bag available-versus-owned counts from the cold-read menu review. [Report](evidence/IH2-100/REPORT.md).
+
+099independent café feasibility/art/menu study locally329system/110browser/native/TerraV2/frozen13/model/auditverified. No game café/food/state added; all204accepted090client/198art/data/keys/studies and held098reviews preserved. Normal source gate remains held;100first-rig gesture study next. [Report](evidence/IH2-099/REPORT.md).
+
 098locally verified338system/132browser: stable full-word toolbar/scrollable notes and deliberate short200world, frozen208and disclosed fictional-town review49579. All202art and protected090data/clients/API/keys/54studies preserved. Normal source/GitHub/accepted-preview gates held;099independent café feasibility next. [Report](evidence/IH2-098/REPORT.md).
 
 Corrected097V2locally verified338system/129browser/root/Terra/authority/artifact/preservation. Original cropfeet unchanged; earlier half-tile rectangle model rejected, archives retained. Accepted090unchanged.098stablephone toolbar needed before consolidated source/CI/actual release. [Report](evidence/IH2-097/REPORT.md).

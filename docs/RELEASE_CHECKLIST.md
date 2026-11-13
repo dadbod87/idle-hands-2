@@ -1,3 +1,11 @@
+# Latest100 art hold
+
+Local325system/110browser, native pixel/phone/TerraV2 and frozen8 checks pass. Raw art packaging was verified by a final2-casefocused rerun. All204accepted client/198art bytes, towns/keys/checksums/54studies and held098/099reviews remain unchanged. Source acceptance still requires exact-final-head normal GitHub jobs/rawuploadedartifact and source/preview/preservation gates; old billing refusal is not bypassed. [Record](evidence/IH2-100/local-checks.json).
+
+# Latest independent099design hold
+
+329system/110browser/model/art/native/TerraV2/frozen13checks pass on accepted090runtime. All204game/198art bytes and accepted data/API/keys/54studies,098heldreview and caféV1/V2origins preserved. No café/food/room/state/recipe is implemented. Source acceptance remains held behind normal exact-head GitHub/rawartifact/native/preservation gates; old account billing refusal is not bypassed. Existing098UIcandidate91a3eb1and its338/132suite remain separate, to be retained in a future consolidation. [Record](evidence/IH2-099/local-checks.json).
+
 # Latest local hold:098verified, normal source gate remains
 
 098final338system/132browser/native/Terra/origin/frozen208/preservation pass. Original53pxphone reflow repaired. Two old short200viewport assumptions now verify the original full-size bounds after real scroll; all gameplay/timeouts preserved. Separate fictional-town49579review is unaccepted; regular090clients/APIs/data/keys/54studies stay intact. Required exact-final-head GitHub jobs/rawartifact/actual accepted-client/preservation gates still unmet after old account billing refusal. Do not bypass billing/runners or replace accepted previews.099is independent design only. [Record](evidence/IH2-098/local-checks.json).

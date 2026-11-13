@@ -1,0 +1,22 @@
+{
+  "total": 110,
+  "disjoint": true,
+  "shards": [
+    {
+      "shard": 1,
+      "cases": 55,
+      "orderedFamily": []
+    },
+    {
+      "shard": 2,
+      "cases": 55,
+      "orderedFamily": [
+        "shared-town.spec.ts",
+        "shared-town.spec.ts",
+        "starter-homes.spec.ts",
+        "trail.spec.ts",
+        "z-first-visit.spec.ts"
+      ]
+    }
+  ]
+}

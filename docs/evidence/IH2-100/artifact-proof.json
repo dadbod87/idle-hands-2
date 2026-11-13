@@ -1,0 +1,47 @@
+{
+  "classification": "Local standalone Aster candidate art, not accepted or integrated",
+  "files": {
+    "aster-serving.svg": {
+      "sha256": "b6defc8f3c59c44dc32a8019f01e859e25855a0ff5ad7323f4e5b8bb4e11d456",
+      "bytes": 46339,
+      "gzipBytes": 1693
+    },
+    "catalog.json": {
+      "sha256": "2d3882b5a023d746ce28edc7d73f35a7c741b1a06fa5a0a2b985f8008607afcb",
+      "bytes": 15027,
+      "gzipBytes": 2546
+    },
+    "contact-sheet.svg": {
+      "sha256": "47d7a966b594bfd6eabf4d07ae8ceb08de897373d74aaa0638b1c87946408770",
+      "bytes": 47283,
+      "gzipBytes": 1940
+    },
+    "index.html": {
+      "sha256": "95596dcc08688e871c5559685906557a60f4f40092d8092324f241abccc28c1a",
+      "bytes": 2147,
+      "gzipBytes": 1007
+    },
+    "provenance.json": {
+      "sha256": "31870e7739242f4a3bb9298b4560d33670fa6fcff7a14b4fbcef432f81770991",
+      "bytes": 1179,
+      "gzipBytes": 707
+    },
+    "serving-plate.svg": {
+      "sha256": "7e4db9f16ea9c5fd9c8aace9e14d1c98531e759a592c98cf5d2cdfbd36f60ee5",
+      "bytes": 534,
+      "gzipBytes": 270
+    },
+    "study.js": {
+      "sha256": "47e61dd4b801ed5bb48277ec2eb314e85234cd3b0ff7ab4db46ed5eea3221c7e",
+      "bytes": 2875,
+      "gzipBytes": 1116
+    },
+    "style.css": {
+      "sha256": "2ddb405e0a724cfe734f82bf4f0094ec63d74ed4e49df96ff5583d1f10f2270d",
+      "bytes": 2568,
+      "gzipBytes": 1180
+    }
+  },
+  "totalRawBytes": 117952,
+  "perFileGzipBytes": 10459
+}

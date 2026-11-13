@@ -1,0 +1,7 @@
+# Next bounded task — one candidate writer coordinator
+
+Use final107source,105staged-save evidence and the103authority contract. Read Actions usage policy; local continuation only while source gates are held. Build an isolated coordinator for both ordinary107commands and café serving, without registering a new live writer or menu. The coordinator must share the existing tab-lifetime lease and current/fallback save keys; do not nest the105per-operation lock under that lease.
+
+Decide and document how failed ordinary saves remain explicit unsaved practice, how subsequent café actions are blocked or safely flushed without dropping that practice, and how retries retain the original intent/revision. Guard acquisition of native storage/lock capabilities. Prove staged complete-root writes, corrupt/unsupported raw preservation, migration quota failure, stale cached-writer refusal, two-window/BFCache coordination, cancellation and detached confirmed snapshots using fresh synthetic contexts. Keep current live writer behavior unchanged until a coherent integration task. No new real profile data, second café save key, server/SQL/protocol/props/UI registration, cloud/spending, hosted Actions, PR/merge or accepted-preview replacement. Preserve all normal acceptance gates and protected data.
+
+This is a prerequisite, not the complete playable café. Later atomic server UUID transactions/forward constraints/protocol/all-home allocation maps and one integrated counter/menu/art/receipt slice remain required before live exposure.

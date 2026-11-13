@@ -234,3 +234,10 @@ Next independent106work completes remaining original serving rigs/teapot art whi
 106extends guarded Aster gesture to all four rigs, preserving all20reviewed Aster cells and every same-facing original foot/final idle. World teapot reuses exact099blue-glaze/brass art; dedicated simplified Bag icon preserves identity. Separate15-file gallery, not live asset/prop/item registration.56pxBag preview is a compact stress sample; actual Bag images are64px and future scale/placement must be reconciled. Terra reviewed frozen V2desktop/phone/short200samples without visual blocker; not physical-device or integrated-animation certification.
 
 Next107makes normal commands operate on cafe-era state without discarding sinks or teapot entitlement before coherent writer/cache/protocol/SQL/UI integration. Unsaved ordinary practice must not be silently discarded by cafe reload. Source gate/no-Actions instruction remain.
+
+
+## November13 — unchanged rules with explicit schema contexts
+
+107shares trusted source-owned contexts rather than projecting cafe-era state into older shapes or restoring spent produce. Default exported rules retain strict root2/garden3 and old prop IDs; candidate context retains strict root3/garden4/cafe sink/teapot entitlement. All ten executable bodies are compared after TypeScript removal; six analytical outputs retain exact values with explicit updated current-source fingerprints. These are domain proofs, not a live migration or transaction authority.
+
+108will prove a unified isolated writer coordinator first: preserve unsaved ordinary practice, share the tab-lifetime lease, guard capabilities and stale cache/BFCache state, stage before confirmation. This agent-selected prerequisite implements the existing103contract; it does not authorize registration or override the billing/source gate.

@@ -1645,7 +1645,7 @@
     {
       "id": "IH2-107",
       "title": "Ordinary command compatibility for cafe-era saves",
-      "status": "queued",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1660,7 +1660,41 @@
         "No live root/writer/protocol/PROP_IDS/UI/server migration, real progress/storage/data change, cloud/spending/hosted Actions while held, merge or accepted-preview replacement. Pure candidates do not prove server authority or whole-home allocations."
       ],
       "evidence": [
-        "docs/evidence/IH2-107/PLAN.md"
+        "docs/evidence/IH2-107/PLAN.md",
+        "docs/evidence/IH2-107/REPORT.md",
+        "docs/evidence/IH2-107/rule-body-proof.json",
+        "docs/evidence/IH2-107/validator-refactor.json",
+        "docs/evidence/IH2-107/design-equivalence.json",
+        "docs/evidence/IH2-107/payload.json",
+        "docs/evidence/IH2-107/domain-review.md",
+        "docs/evidence/IH2-107/source-proof.json",
+        "docs/evidence/IH2-107/artifact-proof.json",
+        "docs/evidence/IH2-107/discovery.json",
+        "docs/evidence/IH2-107/screenshots.json",
+        "docs/evidence/IH2-107/local-checks.json"
+      ],
+      "owner_branch": "feat/cafe-command-compatibility",
+      "blocked_reason": "Locally complete:386system/142browser/10focused0skips/flakes/errors, shared unchanged rule bodies, strict defaults/candidate context, preserved cafe costs/reward and immutable studies/data. Normal exact-final-head hosted/source gate remains held; no live registration or accepted-preview update."
+    },
+    {
+      "id": "IH2-108",
+      "title": "One coordinated candidate writer for ordinary actions and caf\u00e9",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Prove one isolated writer coordinator that preserves ordinary unsaved practice and caf\u00e9 progress without nested locks or partial live registration. Local continuation from held105/107is authorized, not source acceptance.",
+      "acceptance": [
+        "Read final107and105evidence/103contract/usage policy; inspect actual lifetime writer and staged adapter. Keep existing live writer/root/protocol/props/UI/server unchanged.",
+        "Coordinate ordinary and caf\u00e9 candidate actions under one lifetime lease/current save key. Explicitly preserve unsaved ordinary progress; no silent reload or rebase around it. Guard storage/locks acquisition and stage writes before confirmation.",
+        "Prove quota/migration/raw-corruption/stale-cache/two-window/BFCache/retry/cancel/lease release behavior with isolated synthetic data and native browser capabilities. No nested lock or second caf\u00e9 key.",
+        "Run full appropriate local checks and preserve accepted data/artifacts. Record remaining SQL/UUID/protocol/home-allocation/coherent counter/menu/art/reward gates."
+      ],
+      "exclusions": [
+        "No live writer/root/storage/profile/server/SQL/protocol/props/UI registration, real progress changes, cloud/spending, hosted Actions while held, PR/merge or accepted-preview replacement."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-108/PLAN.md"
       ]
     }
   ]

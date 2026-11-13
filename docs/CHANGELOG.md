@@ -1,3 +1,7 @@
+## November13 — café-era ordinary command compatibility (held locally)
+
+107factors source-owned schema contexts around unchanged workshop/garden/carpentry/commission rule bodies. Isolated candidate preserves café sinks/history/teapot through mixed actions; default live schemas/props unchanged. Ten focused/386system checks pass; 142browser0skips/flakes/errors and final preservation pass. Numerical models unchanged except explicit fingerprints. No live registration, Actions, source acceptance or accepted-preview update. See evidence/IH2-107/REPORT.md.
+
 106original serving family/teapot art locally verified:80cells/four rigs,376system/142browser0skips/flakes/errors, TerraV2no sampled visual blocker. All15frozen/source/HTTP/raw files match;208game/202art bytes unchanged, no live registration. Next107ordinary command compatibility; source gate held. [Report](evidence/IH2-106/REPORT.md).
 
 105staged café save protection locally verified:372system/139browser+3final native cases,0skips/flakes/errors; quota/migration/stale/two-window/confirmation protection and exact208game identity. No live wiring or accepted-preview change; normal source gate held. Next106original serving rigs/teapot kit. [Report](evidence/IH2-105/REPORT.md).

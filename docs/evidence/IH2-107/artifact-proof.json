@@ -1,0 +1,64 @@
+{
+  "classification": "LOCAL_RAW_REGRESSION_ARTIFACTS_NOT_SOURCE_ACCEPTANCE",
+  "studies": [
+    {
+      "task": "IH2-099",
+      "copiedFiles": 13,
+      "allRawBytesMatchSource": true,
+      "files": {
+        "index.html": "ab69ccd1a179bbfae3969f929bd57628c6c8885bde3afc3726fb76d4ce58d7ce",
+        "provenance.json": "5a973fad00ec7bc5b7b6c0cd7f695191d1fc207bd99dc41fb838e24d05a9a56f",
+        "study.js": "ed2716ade4345fee2a29bbc468ba8a3f96ea0e5ab9cdd7b0c9187cdcf667b1f5",
+        "style.css": "50396a3555ce8e9b24b27906e0a78fb8ac1462874179c733b1daf6181de94c0f",
+        "catalog.json": "3235a8a230f37c1d5dc6f8562c78cda7d6a8b3e7b14f2849707960396be68b6a",
+        "art/bowl-soup.svg": "df182c92a4738c838202fb957f1197f44a74a607b4a8103098284c86ac97cd05",
+        "art/garden-radish-produce.svg": "c15e29a55b820152258c5abdc2223e6a119a581d1320dcd4e290ead7078ee542",
+        "art/building-cafe.svg": "29faeaae7b996735ae97b5e3e156f6900bd1247e19ef95f4c344212e4f7a5078",
+        "art/radish-formal.svg": "f2f0e7c79f0e6eaacecd8cc41dd9b01c13773d3f146db869648ac7702891084c",
+        "art/cafe-counter.svg": "1a6edd7c3e74b47af4cd12c354ec7328b12098e6dbc8ba46b01189d1090b04a3",
+        "art/brave-teapot.svg": "cc0cf815f7c7e5ff4f901b6b395b8062686d6e6461addb62505c2fe9433e10fc",
+        "art/plate-slices.svg": "2b0ff96b1f123d66cfe30b6b90e446a926619d5d5961c2ee85d5a10c1b8babb6",
+        "art/cafe-room.svg": "337529216d4eefdf2a19c641c05c0f6e1218073d12edb93e21b4d94142a3d0c5"
+      }
+    },
+    {
+      "task": "IH2-100",
+      "copiedFiles": 8,
+      "allRawBytesMatchSource": true,
+      "files": {
+        "index.html": "95596dcc08688e871c5559685906557a60f4f40092d8092324f241abccc28c1a",
+        "provenance.json": "31870e7739242f4a3bb9298b4560d33670fa6fcff7a14b4fbcef432f81770991",
+        "aster-serving.svg": "b6defc8f3c59c44dc32a8019f01e859e25855a0ff5ad7323f4e5b8bb4e11d456",
+        "serving-plate.svg": "7e4db9f16ea9c5fd9c8aace9e14d1c98531e759a592c98cf5d2cdfbd36f60ee5",
+        "study.js": "47e61dd4b801ed5bb48277ec2eb314e85234cd3b0ff7ab4db46ed5eea3221c7e",
+        "style.css": "2ddb405e0a724cfe734f82bf4f0094ec63d74ed4e49df96ff5583d1f10f2270d",
+        "contact-sheet.svg": "47d7a966b594bfd6eabf4d07ae8ceb08de897373d74aaa0638b1c87946408770",
+        "catalog.json": "2d3882b5a023d746ce28edc7d73f35a7c741b1a06fa5a0a2b985f8008607afcb"
+      }
+    },
+    {
+      "task": "IH2-106",
+      "copiedFiles": 15,
+      "allRawBytesMatchSource": true,
+      "files": {
+        "teapot-icon.svg": "3316d883a8a48cacced890b5c41c50932be9ba5bce3758440971a8af0d791702",
+        "index.html": "02b6a11ce706816a4b190017a610080b04266eafc9f6feb2e60d564c89c0d4bf",
+        "provenance.json": "88cc3fc40de3b0c46dced481485f849417d72fe0a5bebcda38b35dd3ddc49df0",
+        "aster-serving.svg": "ddc3614614a7bb57df4c5c399cacfd352a78f272ba9d5f6311e34b3bfcc8c4f4",
+        "aster-contact.svg": "86f374715d5984acf2b0e29fedd965d8d44a2185899fb2dacc0c490f75f78c22",
+        "teapot-world.svg": "cc0cf815f7c7e5ff4f901b6b395b8062686d6e6461addb62505c2fe9433e10fc",
+        "style.css": "9d90516d766b9027393347ed478fcb7641f2a02262a579c6199cea8c2f32b225",
+        "casey-contact.svg": "3d9d2599fb1660fbf8d7cbd0e26e267fc6f61c2d4945964fd89d748b54fb3510",
+        "casey-serving.svg": "9547480ab49f3525a19bc615115801acff364a58493c340102aa350d87906c64",
+        "catalog.json": "707b382494948335497da110f4fbb1b032251243db76722a8c2c360b440b4056",
+        "devon-serving.svg": "985af57505eb1a1a79d98d3fd11f35206ad82992c4338bf7bb400f9fbfbbf328",
+        "devon-contact.svg": "36e1b059d07fdf5074992998789801d47869d7b564bb6097527c3820af74d958",
+        "family.js": "115dfc28ad5847dfef816b5616420ddf32a9868df5137062d44e08c6a4dcf31f",
+        "bea-contact.svg": "5e355b1a691b9e01621f250ee2dc24e106491f557c5afd2665d9dd6e10b13ff7",
+        "bea-serving.svg": "3edd84982413489a76b6f99eef9f6e9a5804ccf74d7d11eefafe2c15d032375d"
+      }
+    }
+  ],
+  "totalFiles": 36,
+  "acceptedPreviewReplaced": false
+}

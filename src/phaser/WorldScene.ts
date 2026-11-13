@@ -207,7 +207,7 @@ export class WorldScene extends Phaser.Scene {
     } else if(this.room.startsWith('home')) {
       const key=this.room==='home'?HOME_ART.starterInterior:HOME_ART.expandedInterior;const meta=HOME_CATALOG.assets.find(asset=>asset.id===key);for(const box of meta?.lightingWindows??[])litWindows.push(box);
       label(9,1.4,this.homeOwnerName+'’s '+(this.room==='home'?'home':'home · workroom added'));
-      label(9.5,14,'Square ↓');
+      label(9.5,14,this.districtId?'Street ↓':'Square ↓');
       this.pennantView=this.add.image(15*TILE,5.5*TILE,TRAIL_ART.pennant.world).setOrigin(TRAIL_ART.pennant.foot.x/TRAIL_ART.pennant.width,TRAIL_ART.pennant.foot.y/TRAIL_ART.pennant.height).setDepth(2*TILE).setVisible(this.homePennantOwned);
     } else {
       image('bench',3*TILE,3*TILE,5*TILE).setDisplaySize(5*TILE,3*TILE);

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "authority": "docs/idle-hands-2/README.md",
   "tasks": [
     {
@@ -1368,7 +1368,7 @@
     {
       "id": "IH2-098",
       "title": "Stable phone action bar across nearby states",
-      "status": "in_progress",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1383,9 +1383,38 @@
       ],
       "evidence": [
         "docs/evidence/IH2-098/PLAN.md",
-        "docs/evidence/IH2-098/baseline.json"
+        "docs/evidence/IH2-098/baseline.json",
+        "docs/evidence/IH2-098/REPORT.md",
+        "docs/evidence/IH2-098/local-checks.json",
+        "docs/evidence/IH2-098/artifact-proof.json",
+        "docs/evidence/IH2-098/native-proof.json",
+        "docs/evidence/IH2-098/shared-native-proof.json",
+        "docs/evidence/IH2-098/origin-cookie-proof.json",
+        "docs/evidence/IH2-098/terra-findings.md",
+        "docs/evidence/IH2-098/source-hold.json"
       ],
-      "owner_branch": "feat/stable-phone-toolbar"
+      "owner_branch": "feat/stable-phone-toolbar",
+      "blocked_reason": "Finallocal338system/132browser/root/Terra/frozen208/sourceAPI/origin/preservation pass. Required normal GitHub checks/artifacts remain unmet after old PR39billing refusal; no main merge or accepted090preview update. Separate disclosed fictional-town review49579is available."
+    },
+    {
+      "id": "IH2-099",
+      "title": "Caf\u00e9 hospitality feasibility and concise service study",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Choose a useful small caf\u00e9 activity that works alongside occupied benches, before introducing another crop, timer or inventory; prove a concise phone-first concept without gameplay changes.",
+      "acceptance": [
+        "Audit actual accepted090 versus48candidate catalog and pending091\u2013098presentation; compare existing-produce, herb/food and scenery-only alternatives using current scarce-material, flower-goal and busy/full/late-newcomer constraints. Record selected defaults and unresolved assumptions as non-executable design.",
+        "Reproducible schedule/capacity/conservation experiment with brief, daily, active, absence and solo/group cases; reject resource/waiting inflation without a meaningful use. If a viable slice is selected, supply bounded original-art desktop/phone/short/enlarged menu/room study with one clear named next action and optional details; native/Terra inspection and art provenance.",
+        "All accepted090204runtime files/198art/API5and protected/Tour13tablefields/keys/checksums/54studies remain unchanged. Study has no game saves/API/state, runtime/economy implementation or accepted-preview effect; normal exact-head source gates remain required."
+      ],
+      "exclusions": [
+        "No executable recipe/price/new crop/food/health/trade/equipment/server/schema/state/command, paid assets or cloud hosting, real-account or original-game change. No GitHub billing/runner workaround or runtime integration ahead of the pending source gate."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-099/PLAN.md"
+      ]
     }
   ]
 }

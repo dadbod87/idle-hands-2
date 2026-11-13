@@ -1,3 +1,5 @@
+2026-11-13 — IH2-098local toolbar repair: intrinsic action sizing, deterministic notes slot and deliberate short200page scroll;338system/132browser/native/Terra/origin/artifact/preservation pass. All202art/rules/progress unchanged; regular090previews/source gates remain held. [Report](evidence/IH2-098/REPORT.md).
+
 2026-11-13 — Corrected097V2: true rectangle edges/original cropfeet, soil/low details, bounded phone framing,44pxcaption approach targets and scaled world sky.338system/129browser/native/Terra/authority/preservation pass. EarlierV1geometry rejected before accepted update.098phone toolbar jump and normal source/CI/actual gates remain. [Report](evidence/IH2-097/REPORT.md).
 
 2026-11-13 — IH2-097 local garden candidate: original soil/low details, bounded phone actor-follow framing, compact labels and scaled world rain/lamp projection.338system/129browser/native/Terra/artifact/preservation pass; required source/accepted-preview gates remain pending. [Report](evidence/IH2-097/REPORT.md).

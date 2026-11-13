@@ -1,0 +1,1110 @@
+{
+  "classification": "Actual frozen208-response098build; native fresh local Journal route and keyboard movement. Cosmetic day/clear and root text only; no server/position/stock/time fixture. Desktop Chrome emulation, not physical device.",
+  "records": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "text": 100
+      },
+      "states": [
+        {
+          "name": "inspect",
+          "world": {
+            "x": 18,
+            "y": 96,
+            "width": 1404,
+            "height": 697
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 884.265625,
+                "y": 814.5,
+                "width": 112.53125,
+                "height": 48
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 1003.796875,
+                "y": 814.5,
+                "width": 93.953125,
+                "height": 48
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 1104.75,
+                "y": 814.5,
+                "width": 125.875,
+                "height": 48
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Inspect",
+              "rect": {
+                "x": 1237.625,
+                "y": 814.5,
+                "width": 164.375,
+                "height": 48
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 1,
+            "scrollX": -414,
+            "scrollY": -60.5,
+            "worldView": {
+              "x": -414,
+              "y": -60.5,
+              "width": 1404,
+              "height": 697
+            },
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              414,
+              60.5
+            ]
+          }
+        },
+        {
+          "name": "entry",
+          "world": {
+            "x": 18,
+            "y": 96,
+            "width": 1404,
+            "height": 697
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 884.265625,
+                "y": 814.5,
+                "width": 112.53125,
+                "height": 48
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 1003.796875,
+                "y": 814.5,
+                "width": 93.953125,
+                "height": 48
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 1104.75,
+                "y": 814.5,
+                "width": 125.875,
+                "height": 48
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Enter square",
+              "rect": {
+                "x": 1237.625,
+                "y": 814.5,
+                "width": 164.375,
+                "height": 48
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 1,
+            "scrollX": -414,
+            "scrollY": -60.5,
+            "worldView": {
+              "x": -414,
+              "y": -60.5,
+              "width": 1404,
+              "height": 697
+            },
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              414,
+              60.5
+            ]
+          }
+        },
+        {
+          "name": "away",
+          "world": {
+            "x": 18,
+            "y": 96,
+            "width": 1404,
+            "height": 697
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 884.265625,
+                "y": 814.5,
+                "width": 112.53125,
+                "height": 48
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 1003.796875,
+                "y": 814.5,
+                "width": 93.953125,
+                "height": 48
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 1104.75,
+                "y": 814.5,
+                "width": 125.875,
+                "height": 48
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Nothing nearby",
+              "rect": {
+                "x": 1237.625,
+                "y": 814.5,
+                "width": 164.375,
+                "height": 48
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 1,
+            "scrollX": -414,
+            "scrollY": -60.5,
+            "worldView": {
+              "x": -414,
+              "y": -60.5,
+              "width": 1404,
+              "height": 697
+            },
+            "matrix": [
+              1,
+              0,
+              0,
+              1,
+              414,
+              60.5
+            ]
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone320",
+        "width": 320,
+        "height": 640,
+        "text": 100
+      },
+      "states": [
+        {
+          "name": "inspect",
+          "world": {
+            "x": 2,
+            "y": 74,
+            "width": 316,
+            "height": 400.8125
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 12,
+                "y": 521,
+                "width": 97.578125,
+                "height": 56
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 114.578125,
+                "y": 521,
+                "width": 80.59375,
+                "height": 56
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 200.171875,
+                "y": 521,
+                "width": 107.828125,
+                "height": 56
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Inspect",
+              "rect": {
+                "x": 12,
+                "y": 582,
+                "width": 296,
+                "height": 48
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.8404255319148937,
+            "scrollX": 146,
+            "scrollY": 137.13568037974682,
+            "worldView": {
+              "x": 116,
+              "y": 99.08386075949366,
+              "width": 376,
+              "height": 476.9161392405063
+            },
+            "matrix": [
+              0.8404255509376526,
+              0,
+              0,
+              0.8404255509376526,
+              -97.48936462402344,
+              -83.27261352539062
+            ]
+          }
+        },
+        {
+          "name": "entry",
+          "world": {
+            "x": 2,
+            "y": 74,
+            "width": 316,
+            "height": 400.8125
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 12,
+                "y": 521,
+                "width": 97.578125,
+                "height": 56
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 114.578125,
+                "y": 521,
+                "width": 80.59375,
+                "height": 56
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 200.171875,
+                "y": 521,
+                "width": 107.828125,
+                "height": 56
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Enter square",
+              "rect": {
+                "x": 12,
+                "y": 582,
+                "width": 296,
+                "height": 48
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.8404255319148937,
+            "scrollX": 146,
+            "scrollY": 137.13568037974682,
+            "worldView": {
+              "x": 116,
+              "y": 99.08386075949366,
+              "width": 376,
+              "height": 476.9161392405063
+            },
+            "matrix": [
+              0.8404255509376526,
+              0,
+              0,
+              0.8404255509376526,
+              -97.48936462402344,
+              -83.27261352539062
+            ]
+          }
+        },
+        {
+          "name": "away",
+          "world": {
+            "x": 2,
+            "y": 74,
+            "width": 316,
+            "height": 400.8125
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 12,
+                "y": 521,
+                "width": 97.578125,
+                "height": 56
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 114.578125,
+                "y": 521,
+                "width": 80.59375,
+                "height": 56
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 200.171875,
+                "y": 521,
+                "width": 107.828125,
+                "height": 56
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Nothing nearby",
+              "rect": {
+                "x": 12,
+                "y": 582,
+                "width": 296,
+                "height": 48
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.8404255319148937,
+            "scrollX": 148.67200000000003,
+            "scrollY": 137.13568037974682,
+            "worldView": {
+              "x": 118.67200000000003,
+              "y": 99.08386075949366,
+              "width": 376,
+              "height": 476.9161392405063
+            },
+            "matrix": [
+              0.8404255509376526,
+              0,
+              0,
+              0.8404255509376526,
+              -99.7349853515625,
+              -83.27261352539062
+            ]
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone360",
+        "width": 360,
+        "height": 640,
+        "text": 100
+      },
+      "states": [
+        {
+          "name": "inspect",
+          "world": {
+            "x": 2,
+            "y": 74,
+            "width": 356,
+            "height": 453.8125
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 12,
+                "y": 574,
+                "width": 65.8125,
+                "height": 56
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 82.8125,
+                "y": 574,
+                "width": 48.84375,
+                "height": 56
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 136.65625,
+                "y": 574,
+                "width": 76.078125,
+                "height": 56
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Inspect",
+              "rect": {
+                "x": 217.734375,
+                "y": 574,
+                "width": 130.265625,
+                "height": 56
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.9468085106382979,
+            "scrollX": 126,
+            "scrollY": 109.4399578651686,
+            "worldView": {
+              "x": 116,
+              "y": 96.69241573033713,
+              "width": 376,
+              "height": 479.3075842696629
+            },
+            "matrix": [
+              0.9468085169792175,
+              0,
+              0,
+              0.9468085169792175,
+              -109.82978820800781,
+              -91.54920196533203
+            ]
+          }
+        },
+        {
+          "name": "entry",
+          "world": {
+            "x": 2,
+            "y": 74,
+            "width": 356,
+            "height": 453.8125
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 12,
+                "y": 574,
+                "width": 65.8125,
+                "height": 56
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 82.8125,
+                "y": 574,
+                "width": 48.84375,
+                "height": 56
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 136.65625,
+                "y": 574,
+                "width": 76.078125,
+                "height": 56
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Enter square",
+              "rect": {
+                "x": 217.734375,
+                "y": 574,
+                "width": 130.265625,
+                "height": 56
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.9468085106382979,
+            "scrollX": 126,
+            "scrollY": 109.4399578651686,
+            "worldView": {
+              "x": 116,
+              "y": 96.69241573033713,
+              "width": 376,
+              "height": 479.3075842696629
+            },
+            "matrix": [
+              0.9468085169792175,
+              0,
+              0,
+              0.9468085169792175,
+              -109.82978820800781,
+              -91.54920196533203
+            ]
+          }
+        },
+        {
+          "name": "away",
+          "world": {
+            "x": 2,
+            "y": 74,
+            "width": 356,
+            "height": 453.8125
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 12,
+                "y": 574,
+                "width": 65.8125,
+                "height": 56
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 82.8125,
+                "y": 574,
+                "width": 48.84375,
+                "height": 56
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 136.65625,
+                "y": 574,
+                "width": 76.078125,
+                "height": 56
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Nothing nearby",
+              "rect": {
+                "x": 217.734375,
+                "y": 574,
+                "width": 130.265625,
+                "height": 56
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.9468085106382979,
+            "scrollX": 128.656,
+            "scrollY": 109.4399578651686,
+            "worldView": {
+              "x": 118.656,
+              "y": 96.69241573033713,
+              "width": 376,
+              "height": 479.3075842696629
+            },
+            "matrix": [
+              0.9468085169792175,
+              0,
+              0,
+              0.9468085169792175,
+              -112.34451293945312,
+              -91.54920196533203
+            ]
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone320200",
+        "width": 320,
+        "height": 640,
+        "text": 200
+      },
+      "states": [
+        {
+          "name": "inspect",
+          "world": {
+            "x": 2,
+            "y": 108,
+            "width": 316,
+            "height": 321.609375
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 12,
+                "y": 507,
+                "width": 99.8125,
+                "height": 70
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 116.8125,
+                "y": 507,
+                "width": 65.859375,
+                "height": 70
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 187.671875,
+                "y": 507,
+                "width": 120.328125,
+                "height": 70
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Inspect",
+              "rect": {
+                "x": 12,
+                "y": 582,
+                "width": 296,
+                "height": 48
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.8404255319148937,
+            "scrollX": 146,
+            "scrollY": 223.85808939873425,
+            "worldView": {
+              "x": 116,
+              "y": 193.32555379746844,
+              "width": 376,
+              "height": 382.6744462025316
+            },
+            "matrix": [
+              0.8404255509376526,
+              0,
+              0,
+              0.8404255509376526,
+              -97.48936462402344,
+              -162.47573852539062
+            ]
+          }
+        },
+        {
+          "name": "entry",
+          "world": {
+            "x": 2,
+            "y": 108,
+            "width": 316,
+            "height": 321.609375
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 12,
+                "y": 507,
+                "width": 99.8125,
+                "height": 70
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 116.8125,
+                "y": 507,
+                "width": 65.859375,
+                "height": 70
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 187.671875,
+                "y": 507,
+                "width": 120.328125,
+                "height": 70
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Enter square",
+              "rect": {
+                "x": 12,
+                "y": 582,
+                "width": 296,
+                "height": 48
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.8404255319148937,
+            "scrollX": 146,
+            "scrollY": 223.85808939873425,
+            "worldView": {
+              "x": 116,
+              "y": 193.32555379746844,
+              "width": 376,
+              "height": 382.6744462025316
+            },
+            "matrix": [
+              0.8404255509376526,
+              0,
+              0,
+              0.8404255509376526,
+              -97.48936462402344,
+              -162.47573852539062
+            ]
+          }
+        },
+        {
+          "name": "away",
+          "world": {
+            "x": 2,
+            "y": 108,
+            "width": 316,
+            "height": 321.609375
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 12,
+                "y": 507,
+                "width": 99.8125,
+                "height": 70
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 116.8125,
+                "y": 507,
+                "width": 65.859375,
+                "height": 70
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 187.671875,
+                "y": 507,
+                "width": 120.328125,
+                "height": 70
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Nothing nearby",
+              "rect": {
+                "x": 12,
+                "y": 582,
+                "width": 296,
+                "height": 48
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.8404255319148937,
+            "scrollX": 148.67200000000003,
+            "scrollY": 223.85808939873425,
+            "worldView": {
+              "x": 118.67200000000003,
+              "y": 193.32555379746844,
+              "width": 376,
+              "height": 382.6744462025316
+            },
+            "matrix": [
+              0.8404255509376526,
+              0,
+              0,
+              0.8404255509376526,
+              -99.7349853515625,
+              -162.47573852539062
+            ]
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "text": 200
+      },
+      "states": [
+        {
+          "name": "inspect",
+          "world": {
+            "x": 2,
+            "y": 64,
+            "width": 840,
+            "height": 220
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 283.28125,
+                "y": 293,
+                "width": 193.609375,
+                "height": 67
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 483.890625,
+                "y": 293,
+                "width": 142.328125,
+                "height": 67
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 633.21875,
+                "y": 293,
+                "width": 196.78125,
+                "height": 67
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Inspect",
+              "rect": {
+                "x": 283.28125,
+                "y": 367,
+                "width": 546.71875,
+                "height": 47
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.75,
+            "scrollX": -132,
+            "scrollY": 290,
+            "worldView": {
+              "x": -272,
+              "y": 253.33333333333334,
+              "width": 1120,
+              "height": 293.3333333333333
+            },
+            "matrix": [
+              0.75,
+              0,
+              0,
+              0.75,
+              204,
+              -190
+            ]
+          }
+        },
+        {
+          "name": "entry",
+          "world": {
+            "x": 2,
+            "y": 64,
+            "width": 840,
+            "height": 220
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 283.28125,
+                "y": 293,
+                "width": 193.609375,
+                "height": 67
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 483.890625,
+                "y": 293,
+                "width": 142.328125,
+                "height": 67
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 633.21875,
+                "y": 293,
+                "width": 196.78125,
+                "height": 67
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Enter square",
+              "rect": {
+                "x": 283.28125,
+                "y": 367,
+                "width": 546.71875,
+                "height": 47
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.75,
+            "scrollX": -132,
+            "scrollY": 314,
+            "worldView": {
+              "x": -272,
+              "y": 277.33333333333337,
+              "width": 1120,
+              "height": 293.3333333333333
+            },
+            "matrix": [
+              0.75,
+              0,
+              0,
+              0.75,
+              204,
+              -208
+            ]
+          }
+        },
+        {
+          "name": "away",
+          "world": {
+            "x": 2,
+            "y": 64,
+            "width": 840,
+            "height": 220
+          },
+          "controls": [
+            {
+              "id": "places",
+              "text": "⌖ Places",
+              "rect": {
+                "x": 283.28125,
+                "y": 293,
+                "width": 193.609375,
+                "height": 67
+              }
+            },
+            {
+              "id": "bag",
+              "text": "Bag",
+              "rect": {
+                "x": 483.890625,
+                "y": 293,
+                "width": 142.328125,
+                "height": 67
+              }
+            },
+            {
+              "id": "journal",
+              "text": "Journal",
+              "rect": {
+                "x": 633.21875,
+                "y": 293,
+                "width": 196.78125,
+                "height": 67
+              }
+            },
+            {
+              "id": "interact",
+              "text": "Nothing nearby",
+              "rect": {
+                "x": 283.28125,
+                "y": 367,
+                "width": 546.71875,
+                "height": 47
+              }
+            }
+          ],
+          "camera": {
+            "zoom": 0.75,
+            "scrollX": -132,
+            "scrollY": 314,
+            "worldView": {
+              "x": -272,
+              "y": 277.33333333333337,
+              "width": 1120,
+              "height": 293.3333333333333
+            },
+            "matrix": [
+              0.75,
+              0,
+              0,
+              0.75,
+              204,
+              -208
+            ]
+          }
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

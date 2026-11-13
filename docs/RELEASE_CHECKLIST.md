@@ -1,3 +1,7 @@
+# Latest local hold:098verified, normal source gate remains
+
+098final338system/132browser/native/Terra/origin/frozen208/preservation pass. Original53pxphone reflow repaired. Two old short200viewport assumptions now verify the original full-size bounds after real scroll; all gameplay/timeouts preserved. Separate fictional-town49579review is unaccepted; regular090clients/APIs/data/keys/54studies stay intact. Required exact-final-head GitHub jobs/rawartifact/actual accepted-client/preservation gates still unmet after old account billing refusal. Do not bypass billing/runners or replace accepted previews.099is independent design only. [Record](evidence/IH2-098/local-checks.json).
+
 # Current local hold: corrected097V2 and098next
 
 097V1geometry is rejected. CorrectedV2uses actual collision/tap-edge probes, original crop feet and caption approach targets; local338/129/root/Terra pass. Resolve the observed inherited53pxphonefooterjump in098before consolidating. All required normal exact-final-head GitHub jobs/rawartifact/actual accepted-client/preservation gates remain; old billing refusal is not bypassed. Accepted090data/clients/APIs/keys/studies stay intact.

@@ -1,3 +1,5 @@
+IH2-093combined local review passes330system/117browser, root/Terra/origin/artifact/preservation. Release held by GitHub account billing before required checks. Actual accepted clients/API remain090. [Report](evidence/IH2-093/REPORT.md). Current handoff authoritative.
+
 # Idle Hands 2 — current state
 
 IH2-090verified PR38/mergef0a294a, exact05c468c CI43353707882all4SUCCESS:322system/zero skips,108local/108CIbrowser. Three original residential families, recognizable workrooms, authored windows and quiet occupied smoke/flowers; all190priorart unchanged. Shared route-grid repair passes552doorpairs/48fractional endpoints with unchanged collision/speed. Actual204file4175/localhost4176and matched frozen090API5verified, signed Tour/data/key/checksums and protected practice/54studies preserved. Next091clear pine-workshop actions. [Closeout](evidence/IH2-090/source-closeout.json). Older entries historical.

@@ -1,3 +1,11 @@
+# Combined menus locally verified; release held
+
+093combined candidate in idle-hands-2-menu-review/feat/clear-crafting-menus combines exact0918abc1b4and092f544a9eleaves.330system/zeroDBskips55.892s;117browser881825.728ms/zero skips/flakes/unexpected; disjoint59+58legacyfamily2; build/design/plan10/pinned40/diff pass. All204bytes equal frozen review-v1,198art unchanged,+12374raw/+3488gzip. Root native owner/visitor/doors/holdings/life and Terra desktop/phone/short200sample pass; origin/cookie isolation proved by actual HTTP controls. [Report](../evidence/IH2-093/REPORT.md). Separate review http://menu-review.localhost:49565/ uses guarded26fictional profiles/25historical homes in ih2_menu_review and frozen090API5on49564. No accepted session/key/data/client replacement; no real data or runtime injection during visits. External helper rejections disclosed.
+
+GitHub account billing/spending-limit refusal persists; user question pending.091PR39unmerged,092/093not redundantly opened. All three locally verified slices remain unaccepted. Canonical/mainruntime and accepted4175/localhost4176stay090; both13tablefield sets/keys0600/sixchecksums and54studies unchanged. Next useful independent UI work: Registry claim/expansion held-vs-needed stock and clear unavailable reason, preserving canonical12/24kit prices and server authority.45%weeklyused/55%remaining, no resets; continue near10%reserve or7amNov13Pacific latest.
+
+## Earlier checkpoint
+
 # Local continuation — combined menu review; accepted runtime stays090
 
 Active093in sibling idle-hands-2-menu-review/feat/clear-crafting-menus: [plan](../evidence/IH2-093/PLAN.md), [scope](design/COMBINED_MENU_REVIEW.md). Combine exact owned leaves from locally verified0918abc1b4and092f544a9e into one isolated review copy. No new rules/server/art or actual release. Run330system/117browser, preserve all old checks, freeze204files and use a separate loopback origin plus guarded disposable fictional town for native root/Terra desktop/mobile/city review. No accepted data/cookie/key/session changes; no new runner/billing/hosting workaround.

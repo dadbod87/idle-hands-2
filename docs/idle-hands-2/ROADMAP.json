@@ -1222,7 +1222,7 @@
     {
       "id": "IH2-093",
       "title": "Combined menu candidate and first-city playability review",
-      "status": "in_progress",
+      "status": "blocked",
       "owner_branch": "feat/clear-crafting-menus",
       "depends_on": [
         "IH2-090"
@@ -1239,8 +1239,14 @@
       ],
       "evidence": [
         "docs/evidence/IH2-093/PLAN.md",
-        "docs/idle-hands-2/design/COMBINED_MENU_REVIEW.md"
-      ]
+        "docs/idle-hands-2/design/COMBINED_MENU_REVIEW.md",
+        "docs/evidence/IH2-093/REPORT.md",
+        "docs/evidence/IH2-093/local-checks.json",
+        "docs/evidence/IH2-093/native-proof.json",
+        "docs/evidence/IH2-093/origin-cookie-proof.json",
+        "docs/evidence/IH2-093/source-provenance.json"
+      ],
+      "blocked_reason": "Local330system/117browser/native root/Terra/origin/artifact/preservation pass. Required exact-head GitHub checks unavailable due to account billing; no main merge or accepted-client update. Retain coherent review copy; independent housing clarity followup may proceed locally."
     }
   ]
 }

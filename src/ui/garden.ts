@@ -1,4 +1,5 @@
 import {CROP_IDS,CROP_DEFS,CLIPPING_MARKERS,MARKER_IDS,MARKER_DEFS,STAKE_IDS,STAKE_CHOICES,STAKE_STUDIES,settleGarden,gardenStage,type GardenState,type GardenAction,type CropId,type MarkerId,type StakeId} from '../game/garden.ts';
+import{gardenBedView,gardenGrowthLabel,plantingConfirmation}from'../game/garden-view.ts';
 import {WorkshopUI,duration,type WorkshopCommandResult} from './workshop.ts';
 import './garden.css';
 type PublicGarden={credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};
@@ -42,8 +43,8 @@ export class GardenUI{
  private retryRow(afterRetry?:(result:WorkshopCommandResult)=>void){const b=this.button('Retry the same request',()=>void this.retry(afterRetry),'retry');b.classList.add('garden-retry');this.host.body.append(b);if(this.notes)this.host.body.append(this.notes);if(this.status)this.host.body.append(this.status);this.layoutObserver=new ResizeObserver(()=>{const target=document.activeElement;if(target instanceof HTMLElement&&target.hasAttribute('data-garden-quote')&&this.host.body.contains(target))this.ensureVisible(target,'start');});const header=this.host.body.closest('dialog')?.querySelector('.dialog-head');if(header)this.layoutObserver.observe(header);if(this.status)this.layoutObserver.observe(this.status);return b;}
  private async retry(afterRetry?:(result:WorkshopCommandResult)=>void){if(this.busy||this.owner!==this.host.owner())return;const status=this.status,owner=this.owner;this.busy=true;this.refresh();try{const r=await this.workshop.retryGarden();if(status===this.status&&owner===this.host.owner()&&this.active){afterRetry?.(r);if(r.ok)this.preview=false;if(status)status.textContent=r.message;}}finally{this.busy=false;this.host.changed();this.refresh();}}
  private async perform(action:GardenAction){
-  if(this.blocked(action))return false;this.busy=true;if(this.status)this.status.textContent='Saving this change…';this.refresh();this.host.changed();
-  try{const result=await this.workshop.runGarden(action);if(this.status)this.status.textContent=result.message;this.host.feedback(result.message);if(result.ok){this.preview=false;this.host.accepted(action);}return result.ok;}
+  if(this.blocked(action))return false;const status=this.status,owner=this.owner;this.busy=true;if(this.status)this.status.textContent='Saving this change…';this.refresh();this.host.changed();
+  try{const result=await this.workshop.runGarden(action);if(status===this.status&&owner===this.host.owner()&&this.active){if(status)status.textContent=result.message;if(result.ok)this.preview=false;}if(owner===this.host.owner()){this.host.feedback(result.message);if(result.ok)this.host.accepted(action);}return result.ok;}
   finally{this.busy=false;this.host.changed();this.refresh();}
  }
  private updateRetry(button:HTMLButtonElement){const s=this.workshop.gardenSaveStatus();button.hidden=!s.canRetry;button.disabled=this.busy||s.busy;this.host.body.querySelectorAll<HTMLButtonElement>('[data-garden-nav]').forEach(b=>b.disabled=this.isSaving);if(!this.view().clockOk&&this.status)this.status.textContent='The clock has not caught up with this saved garden. Your plants are kept; actions will be available when the time can be confirmed.';else if(s.error&&this.status&&!this.status.textContent)this.status.textContent=s.error;else if(!s.error&&this.status?.textContent===this.saveError)this.status.textContent=this.neutralFeedback;this.saveError=s.error;}
@@ -64,18 +65,19 @@ export class GardenUI{
   }
   body.append(row);
   const stock=this.el('p','','garden-stock'),bedNotice=this.el('p','','garden-bed-notice');bedNotice.tabIndex=0;bedNotice.setAttribute('aria-label','Selected bed status');
-  body.append(stock,bedNotice);
+  // Held produce remains in growing notes; keep selected planting facts by its action.
   const seedset=this.el('fieldset','','garden-seeds');seedset.append(this.el('legend','Choose a bound seed'));
   const radios:HTMLInputElement[]=[],counts:HTMLElement[]=[];
   for(const crop of CROP_IDS){
-   const label=this.el('label','','garden-seed'),radio=this.el('input');radio.type='radio';radio.name='garden-seed';radio.value=crop;radio.checked=crop===this.crop;
+   const label=this.el('label','','garden-seed'),radio=this.el('input');radio.type='radio';radio.name='garden-seed';radio.value=crop;radio.checked=crop===this.crop;radio.setAttribute('aria-label',CROP_DEFS[crop].name);label.title=CROP_DEFS[crop].name;
    radio.onchange=()=>{this.crop=crop;this.preview=false;receiptBed=null;this.refresh();};
-   const count=this.el('span');counts.push(count);label.append(radio,this.image('garden-'+crop+'-seed',24),this.el('span',CROP_DEFS[crop].name),count);seedset.append(label);radios.push(radio);
+   const count=this.el('span');count.id='garden-seed-stock-'+crop;radio.setAttribute('aria-describedby',count.id);counts.push(count);label.append(radio,this.image('garden-'+crop+'-seed',24),this.el('span',crop==='radish'?'Radish':'Marigold'),count);seedset.append(label);radios.push(radio);
   }
   body.append(seedset);
+  const facts=this.el('section','','garden-plant-facts'),factsTitle=this.el('h3'),factsList=this.el('dl'),factValues:HTMLElement[]=[];facts.dataset.gardenFacts='';for(const label of['Seed','Grow','Harvest']){const term=this.el('dt',label),value=this.el('dd');factValues.push(value);const line=this.el('div');line.append(term,value);factsList.append(line);}facts.append(factsTitle,factsList);body.append(facts);
   const actions=this.el('div','','garden-primary-actions');
   const preview=this.button('Preview planting · free',()=>{receiptBed=null;this.preview=true;this.refresh();this.focusQuote(previewText);},'preview-plant');
-  const harvest=this.button('Harvest · 1 produce + 1 seed',()=>{receiptBed=null;void this.perform({action:'harvest',bed:this.selected??0});},'harvest');actions.append(preview,harvest);body.append(actions);
+  const harvest=this.button('Harvest · 1 produce + 1 seed',()=>{receiptBed=null;void this.perform({action:'harvest',bed:this.selected??0});},'harvest');actions.append(preview,harvest);body.append(actions,bedNotice);
   const previewBox=this.el('section','','garden-preview'),previewText=this.el('p');previewText.dataset.gardenQuote='true';previewText.tabIndex=-1;
   const confirm=this.button('Confirm planting · 1 bound seed',()=>{
    const selected=this.selected??0,owner=this.host.owner(),returnFocus=document.activeElement===confirm;
@@ -83,7 +85,9 @@ export class GardenUI{
    void this.perform({action:'plant',bed:selected,crop:this.crop}).then(ok=>{
     if(!ok&&!this.workshop.gardenSaveStatus().canRetry)receiptBed=null;
     if(ok&&returnFocus&&!this.preview&&owner===this.host.owner()&&body.contains(confirm)&&confirm.closest('dialog')?.open&&(document.activeElement===confirm||document.activeElement===document.body)){
-     this.status?.focus({preventScroll:true});
+     // Return the selected action and its facts to view after confirming;
+     // keep the receipt in place and respect a different chosen focus.
+     harvest.scrollIntoView({block:'center',behavior:'instant'});this.ensureVisible(harvest);this.status?.focus({preventScroll:true});
     }
    });
   },'plant');
@@ -98,7 +102,7 @@ export class GardenUI{
   for(let i=0;i<3;i++){const option=this.el('option','Bed '+(i+1));option.value=String(i);swap.append(option);}swap.value='1';
   const swapButton=this.button('Swap the two beds · free',()=>void this.perform({action:'swap-beds',from:this.selected??0,to:Number(swap.value)}),'swap-beds');
   const arrange=this.el('details','','garden-options'),summary=this.el('summary','Practice, bed arrangement & growing notes');
-  arrange.append(summary,practice,this.el('p','Three beds. No house, kit or workshop slot needed. Ready plants wait safely; there is no withering. Seeds return at harvest.'),this.el('p','Rearranging never restarts growth. Choose another bed:'),swap,swapButton);body.append(arrange);
+  arrange.append(summary,stock,practice,this.el('p','Three beds. No house, kit or workshop slot needed. Ready plants wait safely; there is no withering. Seeds return at harvest.'),this.el('p','Rearranging never restarts growth. Choose another bed:'),swap,swapButton);body.append(arrange);
   const nav=this.el('div','','garden-navigation');if(atBeds)nav.append(walk);
   const attendantNav=this.navigation('garden','garden-desk','Visit the allotment attendant'),fieldNav=this.navigation('square','garden-field','Make a marker at the field'),registryNav=this.navigation('square','garden-registry','See chosen garden displays');
   const reviewHarvest=this.button('Review ready harvest',()=>{harvest.focus({preventScroll:true});this.ensureVisible(harvest);},'review-harvest');
@@ -136,7 +140,7 @@ export class GardenUI{
    const previousNeutral=this.neutralFeedback;
    this.neutralFeedback=bed&&s.produce[bed.crop]>=12?'The plant and seed stay safe. Review produce uses or choose another bed.':bed&&bed.readyAt>now?'Plants wait safely while you explore another activity.':bed?'A harvest is ready. Review its bed before collecting.':this.bedFeedback;
    if(this.status?.textContent===previousNeutral)this.status.textContent=this.neutralFeedback;
-   const grow=this.crop==='radish'&&!s.firstRadishUsed?5*60000:CROP_DEFS[this.crop].durationMs;
+   const factsView=gardenBedView(s,this.selected!,this.crop,now),grow=factsView.durationMs;factsTitle.textContent='Bed '+(this.selected!+1)+' · '+factsView.name;factValues[0].textContent=factsView.seedCost+' seed · '+factsView.seedsHeld+' held';factValues[1].textContent=gardenGrowthLabel(grow,factsView.firstRadish);factValues[2].textContent=factsView.produce+' '+factsView.crop+' + '+factsView.seedReturned+' seed back';confirm.textContent=plantingConfirmation(this.selected!,this.crop);
    preview.disabled=this.busy||!!bed||s.seeds[this.crop]===0;
    previewBox.hidden=!this.preview&&receiptBed===null;
    previewText.textContent=this.preview?`Bed ${this.selected!+1} · ${CROP_DEFS[this.crop].name}. Cost: 1 seed. ${duration(grow)} real time.${this.host.canUse(action)?'':' Confirm at your beds.'}`:receiptBed!==null?`Bed ${receiptBed+1} planted. One bound seed was spent. This receipt stays until you close it or choose another bed; your plant waits safely.`:'Preview a seed and bed before planting. Nothing is spent until you confirm.';

@@ -1,0 +1,50 @@
+{
+  "classification": "Actual accepted4175client, native desktop and touch-emulated phone. Fresh flow uses ordinary local defaults and actual Places walk; reward flow uses explicitly seeded conserved stock/two elapsed tastings and counter position in separate ephemeral browser contexts. No real profile, shared mutation, API interception or protected progress change.",
+  "rows": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "rewardFixture": false,
+      "summaryHeight": 44,
+      "pageErrors": [],
+      "noSharedCommands": true
+    },
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "rewardFixture": true,
+      "summaryHeight": 44,
+      "pageErrors": [],
+      "noSharedCommands": true
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "rewardFixture": false,
+      "summaryHeight": 44,
+      "pageErrors": [],
+      "noSharedCommands": true
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "rewardFixture": true,
+      "summaryHeight": 44,
+      "pageErrors": [],
+      "noSharedCommands": true
+    }
+  ],
+  "limits": "Chrome emulation, not physical phones/Safari/screen reader or wall-time4hwait."
+}

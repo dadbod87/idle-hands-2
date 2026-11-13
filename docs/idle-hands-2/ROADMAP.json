@@ -1785,7 +1785,7 @@
     {
       "id": "IH2-111",
       "title": "Playable caf\u00e9 with coherent saves and town authority",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-110"
       ],
@@ -1803,7 +1803,15 @@
         "docs/evidence/IH2-111/PLAN.md",
         "docs/evidence/IH2-111/REPORT.md",
         "docs/evidence/IH2-111/touch-target-followup.md",
-        "docs/evidence/IH2-111/terra-touch-review.md"
+        "docs/evidence/IH2-111/terra-touch-review.md",
+        "docs/evidence/IH2-111/local-checks.json",
+        "docs/evidence/IH2-111/source-closeout.json",
+        "docs/evidence/IH2-111/actual-update.json",
+        "docs/evidence/IH2-111/current-cafe-restart.json",
+        "docs/evidence/IH2-111/terra-final-review.md",
+        "docs/idle-hands-2/handoffs/2026-11-13-playable-cafe.md",
+        "docs/evidence/IH2-111/actual-native-cafe.json",
+        "docs/evidence/IH2-111/actual-old-protocol-refusal.json"
       ],
       "owner_branch": "fix/cafe-presentation-target"
     },

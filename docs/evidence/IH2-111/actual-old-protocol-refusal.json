@@ -1,0 +1,47 @@
+{
+  "actualUpdatedServices": true,
+  "allOld5Refused426": true,
+  "noCredentialsSent": true,
+  "results": [
+    {
+      "origin": "http://127.0.0.1:4175",
+      "path": "snapshot",
+      "status": 426
+    },
+    {
+      "origin": "http://127.0.0.1:4175",
+      "path": "events?schema=5",
+      "status": 426
+    },
+    {
+      "origin": "http://127.0.0.1:4175",
+      "path": "login",
+      "status": 426
+    },
+    {
+      "origin": "http://127.0.0.1:4175",
+      "path": "command",
+      "status": 426
+    },
+    {
+      "origin": "http://localhost:4176",
+      "path": "snapshot",
+      "status": 426
+    },
+    {
+      "origin": "http://localhost:4176",
+      "path": "events?schema=5",
+      "status": 426
+    },
+    {
+      "origin": "http://localhost:4176",
+      "path": "login",
+      "status": 426
+    },
+    {
+      "origin": "http://localhost:4176",
+      "path": "command",
+      "status": 426
+    }
+  ]
+}

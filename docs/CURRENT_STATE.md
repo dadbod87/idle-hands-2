@@ -1,3 +1,9 @@
+#111source and actual local preview accepted
+
+PR43/main056c3793 accepted after PR43522020468 and main43523926478, all4jobs each431system/153browser(77+76), zero skips/flakes/errors and exact214client/raw artifacts. Actual local4175/localhost4176/API6 refreshed with the same signed Tour, old13tables/allfields/keys/sixchecksums preserved; additive seventh migration only. Playable café menus, safe saves, confirmed rewards and conserved teapot allocation accepted. No public/cloud game launch. Next112housing variety. [Report](evidence/IH2-111/REPORT.md).
+
+Historical pending checklist/history below is superseded by this verified header.
+
 #111playable café — integration verified locally, acceptance pending
 
 Actual counter/menu/confirmed serving/teapot Bag and all home allocations now use coherent root3/garden4/protocol6.431system tests pass; focused native cafés and Terra V3 desktop/phone/short pass. Full153browser/public source/main/actual-preview gates pending. Existing accepted4175/4176previews remain unchanged until those gates pass. [Report](evidence/IH2-111/REPORT.md).

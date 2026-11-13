@@ -1,10 +1,16 @@
+#111all source/main/actual-preview gates complete
+
+PR43/main056c3793 accepted after PR43522020468 and main43523926478, all4jobs each431system/153browser(77+76), zero skips/flakes/errors and exact214client/raw artifacts. Actual local4175/localhost4176/API6 refreshed with the same signed Tour, old13tables/allfields/keys/sixchecksums preserved; additive seventh migration only. Playable café menus, safe saves, confirmed rewards and conserved teapot allocation accepted. No public/cloud game launch. Next112housing variety. [Report](evidence/IH2-111/REPORT.md).
+
+Historical pending checklist/history below is superseded by this verified header.
+
 #111acceptance checklist
 
 - [x] Coherent root3/garden4/protocol6, same save key/lease, atomic café authority and additive seventh migration; six old files unchanged.
 - [x]431system checks, strict build, focused native café/old-save/cached-writer proof and Terra V3 desktop/phone/short.
-- [ ] Complete153browser regression, actual current café restart recovery and exact-final-head four GitHub jobs.
-- [ ] Main-push regression/raw artifacts, matched local preview update, protected data/keys/old checksums/study origins and signed-session verification.
-- [ ] Close111with exact source pointer and112ready. No public/cloud launch.
+- [x] Complete153browser regression, actual current café restart recovery and exact-final-head four GitHub jobs.
+- [x] Main-push regression/raw artifacts, matched local preview update, protected data/keys/old checksums/study origins and signed-session verification.
+- [x] Close111with exact source pointer and112ready. No public/cloud launch.
 
 #110gates complete;111requires coherent integration
 

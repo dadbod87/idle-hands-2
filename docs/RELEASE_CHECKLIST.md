@@ -1,8 +1,8 @@
 # Pending menu stack: do not release yet
 
-Accepted source and previews remain IH2-090. Candidates 091–094 are local work only. GitHub account billing prevented required jobs from starting; owner resolution and all successful exact-final-head jobs, raw uploaded artifacts, immutable accepted-client checks and protected data/key/study preservation are still required. Do not install another runner, change billing, merge main or replace accepted previews as a workaround.
+Accepted source and previews remain IH2-090. Candidates 091–095 are local work only. GitHub account billing prevented required jobs from starting; owner resolution and all successful exact-final-head jobs, raw uploaded artifacts, immutable accepted-client checks and protected data/key/study preservation are still required. Do not install another runner, change billing, merge main or replace accepted previews as a workaround.
 
-The native held-reply audit also reproduced an inherited TownUI focus bug: a delayed upgrade reply redirects a deliberately chosen slot control to the placement action. IH2-095 must resolve it before a consolidated menu release. Preserve all prior browser assertions/timeouts, disjoint shards and the ordered shared-town/starter-homes/trail/z-first-visit family on shard2. A separate review URL and local tests are not acceptance.
+The native held-reply audit also reproduced an inherited TownUI focus bug: a delayed upgrade reply redirects a deliberately chosen slot control to the placement action. IH2-095V2locally resolves it and the additional close-only reopening bug; its125case suite passes locally. Exact-head GitHub/artifact/actual gates still apply to the final consolidated release. Preserve all prior browser assertions/timeouts, disjoint shards and the ordered shared-town/starter-homes/trail/z-first-visit family on shard2. A separate review URL and local tests are not acceptance.
 
 ## Accepted preview gate
 

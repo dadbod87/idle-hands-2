@@ -1,3 +1,13 @@
+# Scoped focus repair locally verified; garden study next
+
+095in idle-hands-2-town-focus/feat/town-response-focus: finalV2passes332system/zeroDBskips59.451s and125browser899529.132ms/zero skips/flakes/unexpected; disjoint63+62orderedfamily2. Build/design/plan10/pinned40/diff pass. All204bytes equal frozenV2,198art unchanged,+1563raw/+456gzip over094. Root/Terra actual and explicitly intercepted focus/close/retry proofs pass. V1full124was preliminary; extra close-only audit found missing dialog.open guard, now covered by125thcase. [Report](../evidence/IH2-095/REPORT.md). Existing pending recovery remains visible before Bag and replays original payload once. No accepted data/client changes.
+
+Review-only http://focus-review.localhost:49569/servesV2, dedicated ih2_menu_review090API5on49564; older095V1on disk. Accepted4175/localhost4176/frozen090APIs and full13tablefields/privatekeys0600/sixchecksums/54studies unchanged. Mainf0a294a stillcurrent; automatic43357774254all4SUCCESS independently verified. Last091PR39run refused before tests due to billing; owner question pending.091–095remain unaccepted/unmerged, no required-final-head CI or actual accepted update. No runner/billing/hosting/real-account/original-game changes.
+
+Next096queued: [allotment study plan](../evidence/IH2-096/PLAN.md). Terra day world audit found no clear navigation blocker; sparse garden/partly clipped320bed row is a design opportunity, not a rule defect. Original standalone ground/bed-footprint/framing study first, all game bytes unchanged.46%weeklyused/54%remaining; no resets; continue near10%reserve or7amNov13Pacific latest.
+
+## Earlier checkpoint
+
 # Active095: preserve chosen town controls
 
 Isolated idle-hands-2-town-focus/feat/town-response-focus starts at held094738e3c6. [Plan](../evidence/IH2-095/PLAN.md). Root native intercepted held-reply proof shows upgrade result steals Plot furniture position focus. Use stable plot-scoped semantic keys, same panel/original owner predicate across command/retry/feedback/repaint, preserve deliberately chosen control/disclosure/selection/scroll and persistent header Close. Removed/disabled targets go to non-action status. Omit Enter your house only when already inside it. No command ID/receipt/rules/server/art changes; retain all119browser cases and every old assertion/timeout.

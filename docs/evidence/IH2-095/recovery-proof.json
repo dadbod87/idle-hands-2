@@ -1,0 +1,20 @@
+{
+  "disclosure": "Fully intercepted legal-history home/arrival/SSE and pure reducer; committed original remove reply lost after native Close. Existing personal-tool guard intercepts Bag to confirm the unresolved request. No actual backend or protected progress.",
+  "recoveryBeforeNewActions": true,
+  "retryVisible": true,
+  "oneOriginalCommit": true,
+  "exactOriginalReplay": true,
+  "explicitHomeReopenCurrent": true,
+  "commands": [
+    {
+      "kind": "edit-plot",
+      "id": "7a980483-e635-470a-b13d-72df06e6f7b0",
+      "slot": "north-middle"
+    },
+    {
+      "kind": "edit-plot",
+      "id": "7a980483-e635-470a-b13d-72df06e6f7b0",
+      "slot": "north-middle"
+    }
+  ]
+}

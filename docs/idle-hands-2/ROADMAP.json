@@ -1277,7 +1277,7 @@
     {
       "id": "IH2-095",
       "title": "Respect chosen town controls during delayed replies",
-      "status": "in_progress",
+      "status": "blocked",
       "owner_branch": "feat/town-response-focus",
       "depends_on": [
         "IH2-090"
@@ -1293,7 +1293,35 @@
       ],
       "evidence": [
         "docs/evidence/IH2-095/PLAN.md",
-        "docs/evidence/IH2-094/focus-followup.json"
+        "docs/evidence/IH2-094/focus-followup.json",
+        "docs/evidence/IH2-095/REPORT.md",
+        "docs/evidence/IH2-095/local-checks.json",
+        "docs/evidence/IH2-095/focus-proof.json",
+        "docs/evidence/IH2-095/close-only-after.json",
+        "docs/evidence/IH2-095/recovery-proof.json",
+        "docs/evidence/IH2-095/prior-tests-preserved.json"
+      ],
+      "blocked_reason": "Final V2local332system/125browser/root/Terra/artifact/origin/recovery/preservation pass; GitHub required gates remain unavailable after last account billing refusal. No merge or accepted-client update."
+    },
+    {
+      "id": "IH2-096",
+      "title": "Allotment visual identity and phone framing study",
+      "status": "queued",
+      "owner_branch": "feat/allotment-visual-study",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Compare original low garden landmarks, clear bed footprints and phone framing without changing the playable game.",
+      "acceptance": [
+        "Separate labelled study with exact actual garden anchors/dimensions and byte-identical reused art; original reproducible concept layers/provenance, no fake resources/unlocks/obstacles or extra permanent labels.",
+        "Native desktop320/360/short/text200, keyboard/touch comparison of current/proposed framing and empty/ready illustrations; preserve readable existing targets and actual model coordinates. Terra review and honest design/device limits.",
+        "All204game files/198art unchanged, rules/server/API/data/keys/studies unchanged; meaningful study checks plus all required local/exact-head GitHub/artifact gates before source acceptance. No runtime promotion inferred."
+      ],
+      "exclusions": [
+        "No gameplay, price, resource, timer, collision, model/map, hosting, real-account, paid asset, runtime camera or accepted-preview change; no acceptance bypass while GitHub billing holds pending candidates."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-096/PLAN.md"
       ]
     }
   ]

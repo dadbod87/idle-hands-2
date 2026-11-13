@@ -1,3 +1,11 @@
+# Active101 in isolated Bag quantity checkout
+
+Continue in `../idle-hands-2-bag-quantity` / `feat/bag-quantity-clarity`; code checkpoint `6eeff78eb7dde148b43a6e4b3bff55b0ee22cd96` is pushed. It starts from held098unaccepted runtime91a3eb1, not accepted090. Visible count keys and exact accessible names now explain available/carried/kept amounts; old intro is repurposed and bottom note shorter. V1heading gap was rejected by Terra; V2restores12pxclearance. Current338system/5focused/native8shapes/TerraV2 pass; final132browser regression remains running. Never claim that pending full result.
+
+FrozenV2 local review http://bag-review.localhost:49600/ and dedicated fictional town http://bag-town.localhost:49602/?town=1 use208clientfiles and unchanged090API5at49604. Actual signed Lane login,416HTTPbodies/cookie-canary isolation and rejected nonapproved origin verified. Existing26fictional/25home review DB reused with guards, no reset/migration, new memory-only key. No accepted090or held098/099/100artifact/process/key change. V1static49592retained rejected; only failed ownV1sharedfront/API stopped.
+
+Finish full checks/records/preservation/source backup for101, then prepare one coherent candidate retaining all UI and independent099/100study checks before any normal source acceptance. Required normal exact-final-head GitHub/rawartifact/merge/accepted-preview gate remains unmet after old PR39billing refusal. Last51%weeklyused/49%remaining; stop near10%reserve or15:00UTC November13.
+
 # Canonical continuation:100 backed up,101 next
 
 100 source `b3bee6188864679ea4c2ebb196068354bd8a7edf` is pushed to `feat/serving-gesture-study`, locally325system/110browser/final2packing/native/TerraV2/frozen8/preservation verified. Discovery58+52is disjoint with the ordered family on2. This canonical branch copies only documentation/evidence; runtime remains accepted090. Required normal source gate remains held. Next101Bag quantity clarity starts from held098source91a3eb1in a separate checkout, explicitly an unaccepted source input. Last51%weeklyused/49%remaining; stop near10%reserve or15:00UTC.

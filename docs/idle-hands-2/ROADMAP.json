@@ -1462,7 +1462,7 @@
     {
       "id": "IH2-101",
       "title": "Clear available-versus-owned Bag quantities",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-090"
       ],
@@ -1480,7 +1480,8 @@
         "docs/evidence/IH2-101/PLAN.md",
         "docs/evidence/IH2-101/baseline-terra.md",
         "docs/evidence/IH2-101/baseline-phone-bag.png"
-      ]
+      ],
+      "owner_branch": "feat/bag-quantity-clarity"
     }
   ]
 }

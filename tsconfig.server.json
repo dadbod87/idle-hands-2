@@ -1,1 +1,1 @@
-{"compilerOptions":{"target":"ES2022","module":"NodeNext","moduleResolution":"NodeNext","lib":["ES2022","DOM"],"strict":true,"noEmit":true,"skipLibCheck":true,"allowImportingTsExtensions":true,"types":["node"]},"include":["server/**/*.ts","tests/server-*.test.ts"]}
+{"compilerOptions":{"target":"ES2022","module":"NodeNext","moduleResolution":"NodeNext","lib":["ES2022","DOM"],"strict":true,"noEmit":true,"skipLibCheck":true,"allowImportingTsExtensions":true,"types":["node"]},"include":["server/**/*.ts","tests/server-*.test.ts","tools/prove-cafe-candidate-restart.ts"]}

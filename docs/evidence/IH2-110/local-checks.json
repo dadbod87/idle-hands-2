@@ -1,0 +1,35 @@
+{
+  "system": {
+    "tests": 418,
+    "passed": 418,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 82506.12775
+  },
+  "focused": {
+    "tests": 15,
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "startTime": "2026-11-13T19:46:15.863Z",
+    "duration": 1024688.954,
+    "expected": 146,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "build": true,
+  "design": true,
+  "planTasks": 66,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "diffCheck": true,
+  "clientFiles": 208,
+  "artFiles": 202,
+  "noClientByteChanges": true,
+  "freshTerraReview": false,
+  "TerraReason": "No UI/art byte delta; actual accepted109208client already reviewed. Coherent playable caf\u00e9111needs new Terra UI review.",
+  "limits": "Synthetic DB stocks and injected clocks/errors, desktop/touch emulation and existing intercepted/elapsed browser fixtures; no real progress or physical device certification."
+}

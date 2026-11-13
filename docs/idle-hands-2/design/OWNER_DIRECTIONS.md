@@ -42,3 +42,8 @@ The062sketchbook is the first small off-bench collection chapter; its keepsake i
 ## November12 — clear RPG/MMO-lite personal tools
 
 Owner wants the eventual game to feel like a little RPG/MMO lite and finds the combined bag/journal cluttered. Keep inventory/belongings separate from goals, work notes and progress. IH2-084 implements only the bounded navigation split; this direction does not claim new equipment, combat, human chat, account security or a hosted MMO. Preserve the own art style, phone usability and persistent creative work.
+
+
+## November13 — varied house sizes, yards and purchasable layouts
+
+Direct owner request: preserve the liked neighborhood, vary exterior sizes, add personal yard decorations, and offer multiple home layouts with added features at higher in-game cost. See [HOUSE_VARIETY_AND_YARDS](HOUSE_VARIETY_AND_YARDS.md). Examples, prices and implementation sequence there are agent-selected/unimplemented. No real-money purchase or new currency is authorized.

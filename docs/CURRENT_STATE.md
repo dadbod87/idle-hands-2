@@ -1,3 +1,11 @@
+#110candidate shared café authority
+
+Local418system/15focused/dedicated PostgreSQL restart/build pass;146browser pass,0unexpected/flaky/skipped/reporterrors; exact-head/main/source gates pending. Candidate transaction and SQL stay outside live registration;208client/202art exact109and protected services unchanged. Housing variation owner direction saved;111coherent café integration and112housing design queued. [Report](evidence/IH2-110/REPORT.md).
+
+# Current —109source/local previews accepted
+
+PR40/mainacab0549 accepted after PR43482304202 + main43484850214, each403system/146browser/zero skips/flakes/errors/all4jobs. Actual208client/matched API5 on4175/localhost4176 verified with native desktop/phone, signed-session/local queued-job recovery and complete protected data/key/checksum/study preservation. Cafe candidates remain unregistered; no public/cloud game launch. Historical holds below are superseded only by this verified closeout. Next110atomic transaction candidate. [Report](evidence/IH2-109/REPORT.md).
+
 109consolidated source acceptance in progress over108verified403/146runtime. Standard free public GitHub checks available; exact-head/main/artifact/actual-preview gates pending. Current game previews remain090until verified refresh. [Plan](evidence/IH2-109/PLAN.md).
 
 108coordinated writer candidate locally complete:403system/146browser0skips/flakes/errors,17focused, native/epoch/migration/dirty-preservation proof and no live registration.208game/202art exact107. Next109normal public CI/source/actual-preview acceptance. [Report](evidence/IH2-108/REPORT.md).

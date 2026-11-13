@@ -1,3 +1,25 @@
+#110shared café transaction candidate — local validation in progress
+
+Current full-code checkout `../idle-hands-2-cafe-transaction`, branch `feat/shared-cafe-transaction`, base5bdaaab9d830b097c2945e6c857e3b8f2217ea1a over accepted109mainacab0549. Candidate only: dedicated localDBs ih2_cafe_test/restore on55434; no active migration/API/writer/protocol/props/UI registration.418system/15focused/actual dedicated PostgreSQL restart/build pass; full146browser passes,0unexpected/flaky/skipped/reporterrors. Exact public CI/source gates pending; accepted4175/localhost4176API5artifacts stay byte-identical109. Read110REPORT/PLAN and usage policy; preserve all protected data/keys/studies.
+
+Owner housing direction captured in HOUSE_VARIETY_AND_YARDS, owner directions and decisions: different exterior sizes, personal yard decorations and multiple purchasable layouts with added features. No live purchase/art/currency changes. Next111coherent playable café integration;112housing variation design. Do not start either until110source acceptance is closed.
+
+---
+
+# Current authority — accepted109 and local preview update complete
+
+Accepted main **acab0549ec6540b90fc9cd381157ca2fc07f7bd5**, PR40. Exact final candidate1a9e950e663d008ab644e7d14998025b5c906ffe; identical merge tree. PR43482304202 and main43484850214all four required jobs pass:403system/146browser(74+72), zero skips/flakes/errors. Actual main208files verified on both previews; see docs/evidence/IH2-109/REPORT.md and source-closeout.json.
+
+Current FULL CODE continuation checkout: `../idle-hands-2-accepted`, branch `chore/local-source-closeout-2026-11-13`, accepted-main runtime plus docs-only closeout. Use its latest pushed head, not the canonical old090runtime. Canonical `idle-hands-2` is documentation/bookkeeping only; its running services deliberately load the frozen accepted artifact/runtime below. Earlier notes beneath this header are historical and superseded where they describe pending CI/billing/preview gates.
+
+Preview http://127.0.0.1:4175/ ; fictional Tour http://localhost:4176/?town=1 . APIs4186/4188protocol5. Service cwd stays canonical `work/idle-hands-2` to preserve private existing local keys. Runtime source: `../idle-hands-2-artifacts/source-acceptance-2026-11-13/ci-final/runtime-source`; client: `../idle-hands-2-artifacts/source-acceptance-2026-11-13/main-ci/build`. See artifact accepted-service-processes.txt and dated handoff for commands. Keep processes/previews and all study origins running; no key copy/regeneration or DB reset.
+
+Actual old→new signed session/all13table fields/key/sixchecksums plus populated local save/queued deadline preserved. Fresh native desktop/phone craft→claim→Bag→reload and twelve protocol guards passed. Terra reviewed exact matched208client; root inspected actual captures. All54accepted/36held study HTTP bodies preserved. Local synthetic data and emulation, not physical devices or public/cloud game launch. Cafe remains unregistered root2/garden3/protocol5/eight props; no playable cafe yet.
+
+Next **IH2-110**, queued/ready: atomic shared cafe transaction CANDIDATE in a dedicated isolated synthetic database. Read its PLAN and103contract/104–108proofs. SQL stays outside auto-discovered migrations; no partial live registration, protected town writes, production/Supabase or original-game changes. Public standard Ubuntu CI works normally; local-first batching/exact-head/main gates and paid-resource restrictions remain. Latest usage61%used/39%remaining; three reset credits untouched.
+
+---
+
 #109 consolidated source/preview acceptance in progress
 
 Runtime base **3d2a7664c5e577d13585bfbba87d0b01f2ef56fc**, isolated idle-hands-2-source-release / feat/consolidated-source-release. Owner resumed normal updates after public visibility. Actual108local403system/146browser0skips/flakes/errors,17focused/four native and63tasks/10tracker/40pinned/build/design/diff/preservation pass; no runtime difference in this109documentation/acceptance preparation. Standard public Ubuntu CI may run. Mainf0a294a/090previews and oldPR39remain until exact-head/source/actual-preview gates pass.

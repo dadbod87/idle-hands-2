@@ -247,7 +247,7 @@
       "depends_on": [
         "IH2-040"
       ],
-      "goal": "Apply Nick\u2019s approved visual direction with recognizable varied people, trees, buildings and ground, plus restrained life on phones.",
+      "goal": "Apply Nick’s approved visual direction with recognizable varied people, trees, buildings and ground, plus restrained life on phones.",
       "acceptance": [
         "Original coherent variations: at least three tree silhouettes and four residents with varied builds, clothing and hair, retaining readable shared scale.",
         "Workshop, cafe and future house samples have distinct footprints, height/roof shapes and material textures beyond signage; land/paths have intentional variation without visual noise.",
@@ -510,7 +510,7 @@
         "Versioned old-save defaults, server proximity/ownership, UUID replay/revision/concurrent atomic harvest/recovery/request, full storage, absence, restart/backup and existing-job preservation pass using isolated fixtures. Required local checks and exact-head both CI/artifact review before source merge."
       ],
       "exclusions": [
-        "No extra crop families, caf\u00e9 economy, trade, combat, chat, paid assets, hosted accounts, real-player data or weather production bonus. No claim of continuous hours of activity or physical-phone validation from emulation."
+        "No extra crop families, café economy, trade, combat, chat, paid assets, hosted accounts, real-player data or weather production bonus. No claim of continuous hours of activity or physical-phone validation from emulation."
       ],
       "evidence": [
         "docs/idle-hands-2/GARDEN_RUNTIME.md",
@@ -559,7 +559,7 @@
       "depends_on": [
         "IH2-066"
       ],
-      "goal": "Implement one practical original resource/tool/recipe family connecting private progress, visible d\u00e9cor and optional town help.",
+      "goal": "Implement one practical original resource/tool/recipe family connecting private progress, visible décor and optional town help.",
       "acceptance": [
         "Implement bound recoverable/equippable saw, one renewable personal pine pool/reserved stock, one independent12hfinishing job and recognizable kept easel. Preserve original timber/material IDs, costs, bench jobs, skills and property. No auto-repeat or old-currency conversion.",
         "Add versioned explicit garden consumed-by-use accounting for easel/optional hamper, cumulative private carpentry progress and deliberate cost/goal preview. Daily requests cannot invisibly consume the saved craft goal. Retain literal storage/cooldown/retry/recovery explanations.",
@@ -689,9 +689,9 @@
       "goal": "Evaluate the combined accepted neighborhood for meaningful active choices, useful returns, material opportunity costs and visible personal/cooperative expression before selecting another bounded expansion.",
       "acceptance": [
         "Use exact accepted071artifact and current rules. Observe fresh, returning, both-jobs-busy, full-capacity/saturated, late-newcomer and owned-home situations across desktop/narrow/short200views, disclosing each elapsed/position/house fixture and preserving practice.",
-        "Record actual short return and10\u201320minute active observation timelines, meaningful verbs and persistent choices, NPC first/repeat reactions, route/scroll/wait/next-goal burden. Agent speed is not human enjoyment; three handovers are not three new verbs.",
+        "Record actual short return and10–20minute active observation timelines, meaningful verbs and persistent choices, NPC first/repeat reactions, route/scroll/wait/next-goal burden. Agent speed is not human enjoyment; three handovers are not three new verbs.",
         "Execute coupled ordinary/garden/pine/commission/easel/hamper/welcome-request policies for daily/regular/active/absence schedules; conserve all ledgers and quantify housing pace, optional reward opportunity costs and finite-content limits without changing rates.",
-        "Review no-helper/already-funded newcomer purpose and owner\u2192visitor arrangement/motif/register/remove/reload visibility using isolated fixtures. Keep actual ownership and recognizable item identity separate from a gallery sample.",
+        "Review no-helper/already-funded newcomer purpose and owner→visitor arrangement/motif/register/remove/reload visibility using isolated fixtures. Keep actual ownership and recognizable item identity separate from a gallery sample.",
         "Publish ranked reproducible findings/current-runtime-versus-candidate coverage, screenshot/evidence links and one bounded next recommendation. Keep older reports dated; do not claim candidate shops/food/chat/regions are implemented.",
         "Required checks plus both exact-final-headCI/artifact/source gates; unchanged game build174files verified. No automatic economy/runtime/art/hosting feature in this audit."
       ],
@@ -1171,7 +1171,7 @@
     {
       "id": "IH2-091",
       "title": "Task-first pine workshop and finishing rack",
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
@@ -1189,15 +1189,16 @@
         "docs/idle-hands-2/design/PINE_WORKSHOP_CLARITY.md",
         "docs/evidence/IH2-091/PLAN.md",
         "docs/evidence/IH2-091/REPORT.md",
-        "docs/evidence/IH2-091/source-hold.json"
+        "docs/evidence/IH2-091/source-hold.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/clear-pine-workshop",
-      "blocked_reason": "PR39 exact8abc1b4 GitHub Actions refused before tests due to account billing/spending-limit status. Owner resolution and all exact-head checks/artifacts required before merge or actual-client update."
+      "owner_branch": "feat/clear-pine-workshop"
     },
     {
       "id": "IH2-092",
       "title": "Selected-bed planting facts and clear garden actions",
-      "status": "blocked",
+      "status": "done",
       "owner_branch": "feat/clear-garden-planting",
       "depends_on": [
         "IH2-090"
@@ -1215,14 +1216,15 @@
         "docs/evidence/IH2-092/PLAN.md",
         "docs/idle-hands-2/design/GARDEN_PLANTING_CLARITY.md",
         "docs/evidence/IH2-092/REPORT.md",
-        "docs/evidence/IH2-092/source-hold.json"
-      ],
-      "blocked_reason": "Local326system/112browser/Terra/artifact/preservation checks pass; required GitHub checks unavailable due to account billing. No merge or accepted-client update. Candidatef544a9e retained; prepare combined093review without bypassing gates."
+        "docs/evidence/IH2-092/source-hold.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
+      ]
     },
     {
       "id": "IH2-093",
       "title": "Combined menu candidate and first-city playability review",
-      "status": "blocked",
+      "status": "done",
       "owner_branch": "feat/clear-crafting-menus",
       "depends_on": [
         "IH2-090"
@@ -1244,14 +1246,15 @@
         "docs/evidence/IH2-093/local-checks.json",
         "docs/evidence/IH2-093/native-proof.json",
         "docs/evidence/IH2-093/origin-cookie-proof.json",
-        "docs/evidence/IH2-093/source-provenance.json"
-      ],
-      "blocked_reason": "Local330system/117browser/native root/Terra/origin/artifact/preservation pass. Required exact-head GitHub checks unavailable due to account billing; no main merge or accepted-client update. Retain coherent review copy; independent housing clarity followup may proceed locally."
+        "docs/evidence/IH2-093/source-provenance.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
+      ]
     },
     {
       "id": "IH2-094",
       "title": "Clear housing claim and expansion costs",
-      "status": "blocked",
+      "status": "done",
       "owner_branch": "feat/clear-housing-purchases",
       "depends_on": [
         "IH2-090"
@@ -1270,14 +1273,15 @@
         "docs/evidence/IH2-094/REPORT.md",
         "docs/evidence/IH2-094/local-checks.json",
         "docs/evidence/IH2-094/native-proof.json",
-        "docs/evidence/IH2-094/focus-followup.json"
-      ],
-      "blocked_reason": "Local332system/119browser/root/Terra/origin/artifact/preservation checks pass. Required GitHub gates blocked by account billing; inherited delayed-reply focus P2 must be resolved in095before consolidated release. No main merge or accepted-client update."
+        "docs/evidence/IH2-094/focus-followup.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
+      ]
     },
     {
       "id": "IH2-095",
       "title": "Respect chosen town controls during delayed replies",
-      "status": "blocked",
+      "status": "done",
       "owner_branch": "feat/town-response-focus",
       "depends_on": [
         "IH2-090"
@@ -1299,14 +1303,15 @@
         "docs/evidence/IH2-095/focus-proof.json",
         "docs/evidence/IH2-095/close-only-after.json",
         "docs/evidence/IH2-095/recovery-proof.json",
-        "docs/evidence/IH2-095/prior-tests-preserved.json"
-      ],
-      "blocked_reason": "Final V2local332system/125browser/root/Terra/artifact/origin/recovery/preservation pass; GitHub required gates remain unavailable after last account billing refusal. No merge or accepted-client update."
+        "docs/evidence/IH2-095/prior-tests-preserved.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
+      ]
     },
     {
       "id": "IH2-096",
       "title": "Allotment visual identity and phone framing study",
-      "status": "blocked",
+      "status": "done",
       "owner_branch": "feat/allotment-visual-study",
       "depends_on": [
         "IH2-090"
@@ -1330,14 +1335,15 @@
         "docs/evidence/IH2-096/terra-findings.md",
         "docs/evidence/IH2-096/format-only-proof.json",
         "docs/evidence/IH2-097/geometry-correction.json",
-        "docs/evidence/IH2-097/source-crosscheck.md"
-      ],
-      "blocked_reason": "Original rectangle hypothesis rejected before acceptance. CorrectedstudyV3within097passesactualauthority/native/Terra338system/129browser; normal sourceCI remains held, no accepted-client promotion."
+        "docs/evidence/IH2-097/source-crosscheck.md",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
+      ]
     },
     {
       "id": "IH2-097",
       "title": "Actual allotment composition and phone framing",
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
@@ -1360,15 +1366,16 @@
         "docs/evidence/IH2-097/terra-findings.md",
         "docs/evidence/IH2-097/source-hold.json",
         "docs/evidence/IH2-097/geometry-correction.json",
-        "docs/evidence/IH2-097/source-crosscheck.md"
+        "docs/evidence/IH2-097/source-crosscheck.md",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/allotment-composition",
-      "blocked_reason": "CorrectedV2local338system/129browser/root/Terra/authority/artifact/preservation pass. Required GitHub gates remain unmet after old billing refusal; inherited53pxphonefooterjump queued098before consolidated release."
+      "owner_branch": "feat/allotment-composition"
     },
     {
       "id": "IH2-098",
       "title": "Stable phone action bar across nearby states",
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
@@ -1391,21 +1398,22 @@
         "docs/evidence/IH2-098/shared-native-proof.json",
         "docs/evidence/IH2-098/origin-cookie-proof.json",
         "docs/evidence/IH2-098/terra-findings.md",
-        "docs/evidence/IH2-098/source-hold.json"
+        "docs/evidence/IH2-098/source-hold.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/stable-phone-toolbar",
-      "blocked_reason": "Finallocal338system/132browser/root/Terra/frozen208/sourceAPI/origin/preservation pass. Required normal GitHub checks/artifacts remain unmet after old PR39billing refusal; no main merge or accepted090preview update. Separate disclosed fictional-town review49579is available."
+      "owner_branch": "feat/stable-phone-toolbar"
     },
     {
       "id": "IH2-099",
-      "title": "Caf\u00e9 hospitality feasibility and concise service study",
-      "status": "blocked",
+      "title": "Café hospitality feasibility and concise service study",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
-      "goal": "Choose a useful small caf\u00e9 activity that works alongside occupied benches, before introducing another crop, timer or inventory; prove a concise phone-first concept without gameplay changes.",
+      "goal": "Choose a useful small café activity that works alongside occupied benches, before introducing another crop, timer or inventory; prove a concise phone-first concept without gameplay changes.",
       "acceptance": [
-        "Audit actual accepted090 versus48candidate catalog and pending091\u2013098presentation; compare existing-produce, herb/food and scenery-only alternatives using current scarce-material, flower-goal and busy/full/late-newcomer constraints. Record selected defaults and unresolved assumptions as non-executable design.",
+        "Audit actual accepted090 versus48candidate catalog and pending091–098presentation; compare existing-produce, herb/food and scenery-only alternatives using current scarce-material, flower-goal and busy/full/late-newcomer constraints. Record selected defaults and unresolved assumptions as non-executable design.",
         "Reproducible schedule/capacity/conservation experiment with brief, daily, active, absence and solo/group cases; reject resource/waiting inflation without a meaningful use. If a viable slice is selected, supply bounded original-art desktop/phone/short/enlarged menu/room study with one clear named next action and optional details; native/Terra inspection and art provenance.",
         "All accepted090204runtime files/198art/API5and protected/Tour13tablefields/keys/checksums/54studies remain unchanged. Study has no game saves/API/state, runtime/economy implementation or accepted-preview effect; normal exact-head source gates remain required."
       ],
@@ -1422,26 +1430,27 @@
         "docs/evidence/IH2-099/native-proof.json",
         "docs/evidence/IH2-099/terra-v1.md",
         "docs/evidence/IH2-099/terra-v2.md",
-        "docs/evidence/IH2-099/source-hold.json"
+        "docs/evidence/IH2-099/source-hold.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/cafe-service-study",
-      "blocked_reason": "Independent090-based local329system/110browser/model/art/native/TerraV2/frozen13/preservationpass. Normal exact-final-head GitHub/source/artifact gates remain unmet after old PR39billing refusal; no runtime caf\u00e9/food or accepted-preview update."
+      "owner_branch": "feat/cafe-service-study"
     },
     {
       "id": "IH2-100",
       "title": "Original serving gesture and clear character action study",
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
-      "goal": "Prove one original Aster serving gesture at real display scale before expanding the actor family or integrating a caf\u00e9 action.",
+      "goal": "Prove one original Aster serving gesture at real display scale before expanding the actor family or integrating a café action.",
       "acceptance": [
         "Twenty original Aster cells across four facings/fiveposes,64x80/foot32,72,unchanged final idle and guardedoriginalriginputs; meaningful hand/plate contact and tucked recovery, no face/body/crop loss; exact source/output provenance, other three rigs explicitly unfinished.",
         "Separate concise native gallery with bounded replay/static inspection and reduced/hidden resets; actual compositor/raster foot/crop and desktop/320/360/short200keyboard/touch checks plus bounded Terra motion/anatomy review. No metadata-only or physical-device claim.",
         "All204accepted090client/198art bytes, acceptedAPI/data/keys/checksums/54studies,099V1/V2and098heldreview remain unchanged; strict build/design/plan/pinned/fullrelevant checks and normal exact-head source/artifact gates."
       ],
       "exclusions": [
-        "No actual caf\u00e9/food/item/reward/action/authority/room/command/server/protocol/schema/dependency/public/expense or original-game change. No accepted-preview replacement or billing/runner workaround. No bulk all-rig production before first-rig review."
+        "No actual café/food/item/reward/action/authority/room/command/server/protocol/schema/dependency/public/expense or original-game change. No accepted-preview replacement or billing/runner workaround. No bulk all-rig production before first-rig review."
       ],
       "evidence": [
         "docs/evidence/IH2-100/PLAN.md",
@@ -1454,15 +1463,16 @@
         "docs/evidence/IH2-100/held-artifacts-preserved.json",
         "docs/evidence/IH2-100/terra-v1.md",
         "docs/evidence/IH2-100/terra-v2.md",
-        "docs/evidence/IH2-100/source-hold.json"
+        "docs/evidence/IH2-100/source-hold.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/serving-gesture-study",
-      "blocked_reason": "Local325system/110browser/2artifact-packfocused/native/TerraV2/8filefrozen/preservation pass. Required normal exact-final-head GitHub/source/rawartifact gates remain unmet after prior PR39billing refusal; no game integration, merge or accepted-preview update."
+      "owner_branch": "feat/serving-gesture-study"
     },
     {
       "id": "IH2-101",
       "title": "Clear available-versus-owned Bag quantities",
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
@@ -1490,27 +1500,28 @@
         "docs/evidence/IH2-101/resize-readiness.json",
         "docs/evidence/IH2-101/terra-v1.md",
         "docs/evidence/IH2-101/terra-v2.md",
-        "docs/evidence/IH2-101/source-hold.json"
+        "docs/evidence/IH2-101/source-hold.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/bag-quantity-clarity",
-      "blocked_reason": "FinalV2local338system/132browser/7focused/native8shapes/TerraV2/208frozen/origin/preservation pass. Required normal exact-final-head GitHub/rawartifact/source gate remains unmet after prior PR39billing refusal; no merge or accepted090preview update."
+      "owner_branch": "feat/bag-quantity-clarity"
     },
     {
       "id": "IH2-102",
       "title": "One coherent held source with complete art and menu checks",
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
-      "goal": "Prepare one reviewable private source candidate that retains all locally reviewed menu fixes and independent caf\u00e9/serving studies, without bypassing source acceptance or changing the current game artifact.",
+      "goal": "Prepare one reviewable private source candidate that retains all locally reviewed menu fixes and independent café/serving studies, without bypassing source acceptance or changing the current game artifact.",
       "acceptance": [
-        "After101localcloseout, start an isolated branch from its final unaccepted source; retain all091\u2013098/101UI assertions, recovery/focus and corrected geometry. Import099analytical tools/tests and100serving tools/tests explicitly, preserving original frozen evidence and every branch-specific assertion/time limit.",
+        "After101localcloseout, start an isolated branch from its final unaccepted source; retain all091–098/101UI assertions, recovery/focus and corrected geometry. Import099analytical tools/tests and100serving tools/tests explicitly, preserving original frozen evidence and every branch-specific assertion/time limit.",
         "Audit actual reproducibility inputs:099was authored against accepted090while the menu candidate changes world presentation fingerprints. Export a clearly named current-candidate revalidation into102evidence, with explicit unaccepted source context; never rewrite099dated artifacts or pretend changed fingerprints are accepted. Preserve all48catalog declarations/null prices, art bytes, gameplay rules and old study checks.",
         "Strict build/design/plan/pinned/whitespace and full actual combined system/browser suites with zero hidden skips, disjoint shard coverage and ordered shared family. Inspect real raw study packaging plus actual208client/202art identity against101, actual local/native review as appropriate, source input/commit map and preservation evidence.",
         "Normal exact-final-head GitHub four-job/rawuploadedartifact/source/accepted-preview gates remain required. No new PR/run/merge/accepted update while owner billing resolution remains absent; coherent local source is preparation only."
       ],
       "exclusions": [
-        "No new caf\u00e9 service/food/reward/room/command/state/migration/economy/authority/public hosting/paid asset/billing/runner changes or current-game edits. No removal of old test assertions, timeout inflation or historical artifact overwrite. No runtime change beyond already locally reviewed101input."
+        "No new café service/food/reward/room/command/state/migration/economy/authority/public hosting/paid asset/billing/runner changes or current-game edits. No removal of old test assertions, timeout inflation or historical artifact overwrite. No runtime change beyond already locally reviewed101input."
       ],
       "evidence": [
         "docs/evidence/IH2-102/PLAN.md",
@@ -1518,19 +1529,20 @@
         "docs/evidence/IH2-102/source-inputs.json",
         "docs/evidence/IH2-102/local-checks.json",
         "docs/evidence/IH2-102/artifact-proof.json",
-        "docs/evidence/IH2-102/source-hold.json"
+        "docs/evidence/IH2-102/source-hold.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/coherent-source-review",
-      "blocked_reason": "Local348system/136browser/10model/4focused/208identity/21rawstudyfiles/preservation pass. Normal exact-final-head GitHub/rawartifact/source gates remain unmet after oldbillingrefusal; no merge or accepted-preview update."
+      "owner_branch": "feat/coherent-source-review"
     },
     {
       "id": "IH2-103",
-      "title": "Caf\u00e9 authority and durable local-save contract",
-      "status": "blocked",
+      "title": "Café authority and durable local-save contract",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
-      "goal": "Record an implementation-ready small caf\u00e9 persistence/authority plan from actual current code without rushing a new runtime before the7amstop.",
+      "goal": "Record an implementation-ready small café persistence/authority plan from actual current code without rushing a new runtime before the7amstop.",
       "acceptance": [
         "Read-only audit of current strict schemas, consumed sinks, local single-writer/save/quota semantics, server transaction/UUID/proximity/protocol and six immutable migrations. Distinguish current facts from design decisions and record independent domain review.",
         "Choose an atomic private/public/local projection boundary, exact old-save migration/cached-writer protection, forward placement constraint path, funded-versus-open refusal rule, fixed deadlines and UI receipt/focus/cooldown contract; no invented implementation claims.",
@@ -1544,19 +1556,20 @@
         "docs/evidence/IH2-103/REPORT.md",
         "docs/evidence/IH2-103/domain-review.md",
         "docs/idle-hands-2/design/CAFE_AUTHORITY_CONTRACT.md",
-        "docs/evidence/IH2-103/local-checks.json"
+        "docs/evidence/IH2-103/local-checks.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "docs/cafe-authority-contract",
-      "blocked_reason": "Design-only local contract/source audit/independent domain review complete; no runtime/data change. Documentation checks and reused102348/136code evidence recorded. Normal final-head source acceptance remains held after prior billing refusal."
+      "owner_branch": "docs/cafe-authority-contract"
     },
     {
       "id": "IH2-104",
-      "title": "Pure caf\u00e9 ledger and exact migration candidate",
-      "status": "blocked",
+      "title": "Pure café ledger and exact migration candidate",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
-      "goal": "Implement a strict serializable caf\u00e9 ledger/migration candidate outside live entrypoints, following103contract and reusing099analytical findings without claiming them runtime authority.",
+      "goal": "Implement a strict serializable café ledger/migration candidate outside live entrypoints, following103contract and reusing099analytical findings without claiming them runtime authority.",
       "acceptance": [
         "Read actual current103contract and source; implement pure candidate state/transition/projection and recognized migration adapter without changing live writer/root/protocol/PROP_IDS/room/server/UI or accepted previews. Reuse/factor current pure validation where safe; preserve all existing behavior and corruption refusal.",
         "Prove harvest/consume/held conservation, one-radish immediate serve,4hcappedcooldown, personal3/teapot-once, public12/fixedopening, no-useful-goal no-spend, late entitlement, stable immutable inputs, malformed/unknown/partial migration refusal and exact populated old-data preservation. These are pure proofs, not SQL/durability/network claims.",
@@ -1576,15 +1589,16 @@
         "docs/evidence/IH2-104/design-equivalence.json",
         "docs/evidence/IH2-104/payload.json",
         "docs/evidence/IH2-104/discovery.json",
-        "docs/evidence/IH2-104/sampled-visual-review.md"
+        "docs/evidence/IH2-104/sampled-visual-review.md",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/cafe-ledger-candidate",
-      "blocked_reason": "Pure candidate locally complete:359system/136browser,0skips/flakes/errors; exact legacy/conservation/provenance/preservation evidence recorded. Normal final-head GitHub/source acceptance remains held by allowance; no live registration or release."
+      "owner_branch": "feat/cafe-ledger-candidate"
     },
     {
       "id": "IH2-105",
-      "title": "Quota-safe staged local caf\u00e9 commit candidate",
-      "status": "blocked",
+      "title": "Quota-safe staged local café commit candidate",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
@@ -1606,19 +1620,20 @@
         "docs/evidence/IH2-105/source-scope.json",
         "docs/evidence/IH2-105/payload.json",
         "docs/evidence/IH2-105/discovery.json",
-        "docs/evidence/IH2-105/native-fixture-proof.json"
+        "docs/evidence/IH2-105/native-fixture-proof.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/cafe-save-protection",
-      "blocked_reason": "Locally complete:372system/139browser+3final native recheck,0skips/flakes/errors; stage/write/retry/raw-preservation proofs,208byte-identical game/preservation recorded. Normal hosted/source acceptance remains held; no live writer registration."
+      "owner_branch": "feat/cafe-save-protection"
     },
     {
       "id": "IH2-106",
       "title": "Complete serving rigs and original teapot art kit",
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
-      "goal": "Complete the remaining original serving rigs and readable Bag/world teapot assets in an isolated family gallery before coherent caf\u00e9 integration. This art work is independent of105source acceptance.",
+      "goal": "Complete the remaining original serving rigs and readable Bag/world teapot assets in an isolated family gallery before coherent café integration. This art work is independent of105source acceptance.",
       "acceptance": [
         "Read100Aster evidence,103authority contract,105save-protection handoff, current rig/art direction and Actions usage policy; preserve original099/100study files and all accepted data/art.",
         "Build all four facing/phase families for the four current rigs using original vector sources; prove exact feet/final idle, handedness/contact/crop at actual game scale, bounded replay/reduced/hidden behavior and measured payload. Keep dated Aster artifacts unchanged.",
@@ -1637,15 +1652,16 @@
         "docs/evidence/IH2-106/discovery.json",
         "docs/evidence/IH2-106/terra-review.md",
         "docs/evidence/IH2-106/study/catalog.json",
-        "docs/evidence/IH2-106/study/provenance.json"
+        "docs/evidence/IH2-106/study/provenance.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/serving-family-teapot",
-      "blocked_reason": "Art locally complete:80cells/four rigs, original teapot kit,376system/142browser0skips/flakes/errors, frozen15HTTP/source/raw identities, TerraV2no sampledP1/P2. No live registration; normal hosted/source acceptance remains held."
+      "owner_branch": "feat/serving-family-teapot"
     },
     {
       "id": "IH2-107",
       "title": "Ordinary command compatibility for cafe-era saves",
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
@@ -1671,23 +1687,24 @@
         "docs/evidence/IH2-107/artifact-proof.json",
         "docs/evidence/IH2-107/discovery.json",
         "docs/evidence/IH2-107/screenshots.json",
-        "docs/evidence/IH2-107/local-checks.json"
+        "docs/evidence/IH2-107/local-checks.json",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/cafe-command-compatibility",
-      "blocked_reason": "Locally complete:386system/142browser/10focused0skips/flakes/errors, shared unchanged rule bodies, strict defaults/candidate context, preserved cafe costs/reward and immutable studies/data. Normal exact-final-head hosted/source gate remains held; no live registration or accepted-preview update."
+      "owner_branch": "feat/cafe-command-compatibility"
     },
     {
       "id": "IH2-108",
-      "title": "One coordinated candidate writer for ordinary actions and caf\u00e9",
-      "status": "blocked",
+      "title": "One coordinated candidate writer for ordinary actions and café",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
-      "goal": "Prove one isolated writer coordinator that preserves ordinary unsaved practice and caf\u00e9 progress without nested locks or partial live registration. Local continuation from held105/107is authorized, not source acceptance.",
+      "goal": "Prove one isolated writer coordinator that preserves ordinary unsaved practice and café progress without nested locks or partial live registration. Local continuation from held105/107is authorized, not source acceptance.",
       "acceptance": [
         "Read final107and105evidence/103contract/usage policy; inspect actual lifetime writer and staged adapter. Keep existing live writer/root/protocol/props/UI/server unchanged.",
-        "Coordinate ordinary and caf\u00e9 candidate actions under one lifetime lease/current save key. Explicitly preserve unsaved ordinary progress; no silent reload or rebase around it. Guard storage/locks acquisition and stage writes before confirmation.",
-        "Prove quota/migration/raw-corruption/stale-cache/two-window/BFCache/retry/cancel/lease release behavior with isolated synthetic data and native browser capabilities. No nested lock or second caf\u00e9 key.",
+        "Coordinate ordinary and café candidate actions under one lifetime lease/current save key. Explicitly preserve unsaved ordinary progress; no silent reload or rebase around it. Guard storage/locks acquisition and stage writes before confirmation.",
+        "Prove quota/migration/raw-corruption/stale-cache/two-window/BFCache/retry/cancel/lease release behavior with isolated synthetic data and native browser capabilities. No nested lock or second café key.",
         "Run full appropriate local checks and preserve accepted data/artifacts. Record remaining SQL/UUID/protocol/home-allocation/coherent counter/menu/art/reward gates."
       ],
       "exclusions": [
@@ -1702,19 +1719,20 @@
         "docs/evidence/IH2-108/payload.json",
         "docs/evidence/IH2-108/artifact-proof.json",
         "docs/evidence/IH2-108/discovery.json",
-        "docs/evidence/IH2-108/terra-static.md"
+        "docs/evidence/IH2-108/terra-static.md",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
-      "owner_branch": "feat/coordinated-cafe-writer",
-      "blocked_reason": "Local candidate complete:403system/17focused/146browser0skips/flakes/errors; native lifetime lock/raw preservation/unsaved practice/retry/migration gate/epoch proofs and exact208game identity. Normal consolidated source and actual-preview acceptance queued109; no live cafe registration."
+      "owner_branch": "feat/coordinated-cafe-writer"
     },
     {
       "id": "IH2-109",
       "title": "Consolidated public-source acceptance and matched local previews",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-090"
       ],
-      "goal": "Accept locally verified held091\u2013108source through exact public GitHub gates, preserve complete artifacts/data and refresh actual matched local previews. Public source/free CI explicitly owner-authorized; no public game launch.",
+      "goal": "Accept locally verified held091–108source through exact public GitHub gates, preserve complete artifacts/data and refresh actual matched local previews. Public source/free CI explicitly owner-authorized; no public game launch.",
       "acceptance": [
         "Inspect final108local evidence, exact source/PR/main/public runner state and current usage policy. No obsolete billing probe; no weak or skipped checks.",
         "Require exact-final-head domain, both disjoint browser shards and browser-playtest. Verify raw artifacts/403system/146browser coverage and immutable studies/source, then merge and inspect main-push regression.",
@@ -1722,12 +1740,83 @@
         "Root/appropriate Terra actual desktop/phone review; disclose synthetic/elapsed/intercepted fixtures, emulation, source versus preview acceptance. Update blocked task statuses only when their recorded gates are actually met, close genuinely supersededPR39and record exact continuation."
       ],
       "exclusions": [
-        "No original-game runtime/data, public/cloud sequel launch, paid resources or billing changes, real users/grants/resets. No partial caf\u00e9 UI/root/protocol registration; isolated candidates remain unregistered."
+        "No original-game runtime/data, public/cloud sequel launch, paid resources or billing changes, real users/grants/resets. No partial café UI/root/protocol registration; isolated candidates remain unregistered."
       ],
       "evidence": [
-        "docs/evidence/IH2-109/PLAN.md"
+        "docs/evidence/IH2-109/PLAN.md",
+        "docs/evidence/IH2-109/REPORT.md",
+        "docs/evidence/IH2-109/source-closeout.json"
       ],
       "owner_branch": "feat/consolidated-source-release"
+    },
+    {
+      "id": "IH2-110",
+      "title": "Atomic shared café transaction candidate",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-109"
+      ],
+      "goal": "Prove conserved private café costs/rewards and the finite shared12-credit fixed-deadline project in one isolated UUID transaction, reusing existing authority patterns before coherent live registration.",
+      "acceptance": [
+        "Read accepted109source,103authority contract and104–108ledger/writer/art proofs. Use a dedicated isolated synthetic DB; preserve all protected data and old migration checksums.",
+        "Lock player/public project, validate identity/location/server clock/revision, migrate exact supported tuples and atomically debit/reward/cooldown/credit/receipt. No restored produce or arbitrary client ledgers.",
+        "Prove concurrent final credit/third reward, late progress/completion, UUID replay/mismatch/lost reply, rollback, deadline/restart/dump-restore, existing ordinary work and read-only snapshot boundaries. Label any synthetic target geometry.",
+        "Keep candidate SQL outside active migration discovery and preserve default protocol5/root2/live writer/props/UI. Run full applicable local/public CI checks and record remaining coherent cache/protocol/counter/home-allocation/art integration gates."
+      ],
+      "exclusions": [
+        "No active migration/API/protocol/root/writer/props/UI registration, real data or protected practice/Tour mutation, remote infrastructure/spending/accounts/public game launch. Candidate transactions do not certify production auth or actual counter reachability."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-110/PLAN.md",
+        "docs/evidence/IH2-110/REPORT.md",
+        "docs/evidence/IH2-110/cafe-candidate.json",
+        "docs/evidence/IH2-110/cafe-candidate-restart.json",
+        "docs/evidence/IH2-110/source-and-payload.json",
+        "docs/idle-hands-2/handoffs/2026-11-13-shared-cafe-transaction.md",
+        "docs/evidence/IH2-110/local-checks.json"
+      ],
+      "owner_branch": "feat/shared-cafe-transaction"
+    },
+    {
+      "id": "IH2-111",
+      "title": "Playable café with coherent saves and town authority",
+      "status": "queued",
+      "depends_on": [
+        "IH2-110"
+      ],
+      "goal": "Integrate the proved café candidates as one complete durable local/shared tasting loop with actual reachable counter, confirmed reward, art and conserved home allocation.",
+      "acceptance": [
+        "Read accepted110proofs/103contract and inventory every writer/cache/protocol/save/SQL/rental/starter/expanded-home boundary before coherent registration.",
+        "Implement forward tuple/protocol/writer/SQL and every teapot allocation map together; prove actual old clients refuse and preserve existing progress, unsaved work, keys and checksums.",
+        "Bind an actual reachable counter/door and complete concise serve/cooldown/receipt/Bag/placement experience with original art and confirmed-only animation.",
+        "Full domain/browser/native desktop/phone/short/text200, Terra actual UI, authority/race/retry/rollback/restart/restore and normal exact-head/main/artifact/actual-preview gates."
+      ],
+      "exclusions": [
+        "No partial tuple deployment, public/cloud game launch, real accounts/data, paid assets/resources or original-game changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-111/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-112",
+      "title": "House sizes, personal yards and meaningful layout choices",
+      "status": "queued",
+      "depends_on": [
+        "IH2-111"
+      ],
+      "goal": "Turn owner-requested exterior size/yard/layout variety into a coherent current-source design and priced progression candidate before runtime expansion.",
+      "acceptance": [
+        "Audit existing home ownership, prices, lot/door geometry, migrations and all furnishing maps; preserve persistent rights and actual addresses.",
+        "Compare distinct exterior sizes/floor plans/yard choices, meaningful added features and staged earned-resource costs; distinguish owner requirements from proposed families/prices.",
+        "Native street/choice studies on desktop320/360phone/short/text200 plus Terra review where needed; no fake playable purchase claim."
+      ],
+      "exclusions": [
+        "No new real-money currency, live house purchase/migration, loss of furniture/rights, public hosting or paid assets."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/HOUSE_VARIETY_AND_YARDS.md"
+      ]
     }
   ],
   "source_status_note": "Owner explicitly made the repository public November13,2026. Prior private-billing refusals in task histories remain dated evidence; standard free public CI may now validate authorized final candidates. No pending source/preview acceptance is satisfied by visibility alone. Read ACTIONS_USAGE_POLICY and CURRENT_SESSION."

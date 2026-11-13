@@ -1,0 +1,27 @@
+{
+  "classification": "Isolated candidate DB only; conserved synthetic harvested stock and declared server clocks; no live API/counter/auth registration or real data",
+  "database": "ih2_cafe_test",
+  "restoredDatabase": "ih2_cafe_restore",
+  "realPostgresDumpRestore": true,
+  "storeReconnect": true,
+  "sixChecksumsPreserved": true,
+  "queuedJobUnchanged": true,
+  "privateSinkTeapotUUIDReplayPreserved": true,
+  "fixedOpeningDeadline": 1794650400000,
+  "projectFingerprint": "8c82938b17fe6b9e58339ea2034aeb6cd3c571598abe05c16068310d3046951c",
+  "rules": {
+    "cooldownMs": 14400000,
+    "openingMs": 14400000,
+    "personalGoal": 3,
+    "publicGoal": 12
+  },
+  "candidateTargetGeometry": {
+    "room": "square",
+    "point": {
+      "x": 24,
+      "y": 25
+    },
+    "radius": 1.4
+  },
+  "limits": "Target is synthetic spawn-point binding, not actual cafe counter reachability. Complete all-home teapot maps/protocol/cache/UI still later integration."
+}

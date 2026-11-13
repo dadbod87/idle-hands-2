@@ -1,3 +1,9 @@
+# Active094housing purchase clarity; release held
+
+Isolated idle-hands-2-housing-ui/feat/clear-housing-purchases starts at locally verified combined093c5822f8. [Plan](../evidence/IH2-094/PLAN.md). Show held/needed kit counts and concise outcome/reason at existing claim/expansion actions; preserve canonical12/24prices, all authority/progress/art/controls and every prior assertion. Keep ordinary snapshot updates in place. No091/092/093acceptance implied; GitHub billing prevents required exact-head checks, accepted main/runtime/4175/localhost4176remain090. Review-only menu-review.localhost49565/guarded ih2_menu_review090API5remains separate; no protected sessions/data/keys changed.45%weeklyused/55%remaining, no resets; continue near10%reserve or7amNov13Pacific latest.
+
+## Prior local checkpoint
+
 # Combined menus locally verified; release held
 
 093combined candidate in idle-hands-2-menu-review/feat/clear-crafting-menus combines exact0918abc1b4and092f544a9eleaves.330system/zeroDBskips55.892s;117browser881825.728ms/zero skips/flakes/unexpected; disjoint59+58legacyfamily2; build/design/plan10/pinned40/diff pass. All204bytes equal frozen review-v1,198art unchanged,+12374raw/+3488gzip. Root native owner/visitor/doors/holdings/life and Terra desktop/phone/short200sample pass; origin/cookie isolation proved by actual HTTP controls. [Report](../evidence/IH2-093/REPORT.md). Separate review http://menu-review.localhost:49565/ uses guarded26fictional profiles/25historical homes in ih2_menu_review and frozen090API5on49564. No accepted session/key/data/client replacement; no real data or runtime injection during visits. External helper rejections disclosed.

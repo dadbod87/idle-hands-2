@@ -1,0 +1,9 @@
+# Next bounded task proposal: housing purchase clarity
+
+Owner asks for intuitive menus. Terra093 actual phone Registry finding: unavailable12kit action shows neither actual held stock nor missing count. Followup read-only review confirms server auto-allocates plot and charges12; expansion charges24additional, preserves furnishing map and adds2workroom nooks. Do not imply site selection or a shorter unlock timer.
+
+Candidate UI-only work: canonical pure cost projection for claim/expand, compact held/needed and missing/ready text adjacent to existing action, six starter nooks or two added workroom nooks stated briefly. Owner expansion stays in existing House & expansion disclosure; visitors remain read-only. Update counts/availability in place on ordinary authoritative snapshots without rebuilding controls, stealing focus or hiding stale record refresh. Named server result remains authoritative; no automatic command, debit, new polling/schema/rules/art or accepted-preview replacement.
+
+Keep inherited request focus/owner risks visible and test changed focus/closed panel/identity if touching action helper. Unsupported historical site-specific claim branch appears unreachable because canonical snapshots expose allocated owned plots only; inspect reachability before edits, never send unsupported plotId in strict claim schema. Avoid broad unrelated cleanup.
+
+Tests: pure0/11/12claim and0/23/24expand, already owned/expanded; actual server debit/replay and preserved placements remain existing authority. Native actual disposable fixture held/need, snapshot refresh preserving focus/disclosure/scroll, owner/visitor,320/360/short200 and named successful expansion. No protected practice/Tour mutation. Full local system/browser, exact-head GitHub/artifact/actual/preservation/Terra gates before acceptance. CIbillinghold remains; can prepare and freeze local candidate, never mark released.

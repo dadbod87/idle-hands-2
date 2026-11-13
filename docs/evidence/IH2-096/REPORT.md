@@ -1,3 +1,11 @@
+# Corrected study V3 is current; original geometry claims rejected
+
+097corrects the original coordinate model: only actor positions add0.5; rectangle edges are grid coordinates. Original crop feet already align. Corrected study V3 retains all16art inputs, uses true rectangles and no crop shift, and is checked against actual Session.point/canStand behavior. Its20actualresponses and12nativecaptures are recorded in097evidence, alongside corrected338system/129browser and independent Terra source/visual review. This remains an unaccepted source/design candidate; no accepted game update occurred. Older335/127and geometry notes below are historical, not proof of boundary alignment.
+
+# Coordinate erratum — original geometry claims rejected before acceptance
+
+The original standalone study incorrectly added a half tile to rectangle edges. canStand and Session.point already add that half tile to actor coordinates; rectangle edges are plain grid units. Existing crop feet already match the bed collisions. Its335/127checks and bounded visual review did not establish actual boundary alignment. FrozenV1/V2are retained as rejected historical evidence;097owns corrected study/runtime projections and direct authority-boundary/caption tests. No accepted game or real progress was changed. The older record below remains historical, not a current geometry claim.
+
 # Allotment study — local visual comparison, acceptance held
 
 A separate clearly labelled comparison gives the existing three beds full soil/wood footprints, modest original flat flowers/paving and a phone fit comparison. It retains all original crop/growth/check-mark artwork and actor identity. Four reproducible original SVG layers and twelve byte-identical original inputs; all sixteen assets have exact hashes/credits. No paid/downloaded media, engine bundle, fonts or API. The garden has no extra capacity, pickups or obstacles. The study is not the playable Phaser scene and does not plant, settle, grant or save anything.

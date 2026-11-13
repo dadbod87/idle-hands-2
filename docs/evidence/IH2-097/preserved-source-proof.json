@@ -1,0 +1,24 @@
+{
+  "baseCandidate": "1572352",
+  "priorBrowserCasesRetained": 127,
+  "priorSystemCasesRetained": 335,
+  "correctedIncorrectStudyExpectation": [
+    "tests/garden-framing-study.test.ts"
+  ],
+  "correction": "Rectangle edges are grid edges, not actor-centered points. Existing study intent strengthened with real Session.point edge probes, plus new actual canStand boundaries. No valid prior behavior assertion or timeout removed.",
+  "unchangedAuthorityServerDependenciesWorkflows": [],
+  "rejected096V2FilesPreservedOnDisk": 20,
+  "correctedStudyV3": "20actualHTTPresponses;16originalartinputs unchanged, geometry/data projection corrected explicitly.",
+  "shards": [
+    65,
+    64
+  ],
+  "disjointBySpecId": true,
+  "total": 129,
+  "orderedFamilyOn2": [
+    "shared-town.spec.ts",
+    "starter-homes.spec.ts",
+    "trail.spec.ts",
+    "z-first-visit.spec.ts"
+  ]
+}

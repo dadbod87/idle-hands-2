@@ -1,5 +1,5 @@
 import type Phaser from 'phaser';
-import {rainTranslation} from '../art/rain.ts';
+import {rainLayer} from '../art/rain.ts';
 import {cosmeticStep} from '../art/variety.ts';
 import {climateAt,type TownClimate} from '../game/town-climate.ts';
 
@@ -19,6 +19,7 @@ export class TownSky {
  private cameraX=NaN;
  private cameraY=NaN;
  private rainTransform='';
+ private cameraZoom=NaN;
  setWindows(windows:Array<{x:number;y:number;width:number;height:number}>){this.lamps.replaceChildren();
   for(const box of windows){
    const fill=document.createElement('div');fill.style.cssText=`position:absolute;left:${box.x}px;top:${box.y}px;width:${box.width}px;height:${box.height}px;background:var(--lamp-fill);`;
@@ -32,7 +33,7 @@ export class TownSky {
   // CSS compositing avoids a full-viewport alpha pass in each WebGL context.
   this.overlay.style.cssText='position:absolute;inset:0;overflow:hidden;pointer-events:none;contain:strict;isolation:isolate;';
   this.shade=document.createElement('div');this.shade.style.cssText='position:absolute;inset:0;';
-  this.lamps=document.createElement('div');this.lamps.style.cssText='position:absolute;left:0;top:0;pointer-events:none;';
+  this.lamps=document.createElement('div');this.lamps.dataset.weatherLamps='';this.lamps.style.cssText='position:absolute;left:0;top:0;pointer-events:none;transform-origin:0 0;';
   this.setWindows(windows);
   this.rain=document.createElement('div');this.rain.dataset.weatherRain='';
   const pattern='<svg xmlns="http://www.w3.org/2000/svg" width="192" height="96" viewBox="0 0 192 96"><path d="M15 3l-3 11M53 38l-3 10M89 11l-3 12M125 64l-3 10M162 28l-3 11M185 80l-3 12" fill="none" stroke="#425b65" stroke-opacity=".22" stroke-width="2.2"/><path d="M15 3l-3 11M53 38l-3 10M89 11l-3 12M125 64l-3 10M162 28l-3 11M185 80l-3 12" fill="none" stroke="#edf4ed" stroke-opacity=".58" stroke-width="1.2"/></svg>';
@@ -46,8 +47,19 @@ export class TownSky {
   const align=()=>this.alignCamera();scene.events.on('render',align);
   scene.events.once('shutdown',()=>scene.events.off('render',align));
  }
- private alignCamera(){const camera=this.scene.cameras.main;if(camera.scrollX!==this.cameraX||camera.scrollY!==this.cameraY){this.cameraX=camera.scrollX;this.cameraY=camera.scrollY;this.lamps.style.transform=`translate(${-this.cameraX}px,${-this.cameraY}px)`;}this.alignRain();}
- private alignRain(){const p=rainTranslation(this.cameraX,this.cameraY,this.offset);const transform=`translate(${p.x}px,${p.y}px)`;if(transform!==this.rainTransform){this.rainTransform=transform;this.rain.style.transform=transform;}}
+ private alignCamera(){
+  const camera=this.scene.cameras.main,x=camera.worldView.x,y=camera.worldView.y,zoom=camera.zoom;
+  if(zoom!==this.cameraZoom){
+   const inset=192*zoom;for(const side of ['left','right','top','bottom'] as const)this.rain.style[side]=`${-inset}px`;
+   this.rain.style.backgroundSize=`${192*zoom}px ${96*zoom}px`;
+  }
+  if(x!==this.cameraX||y!==this.cameraY||zoom!==this.cameraZoom){
+   this.cameraX=x;this.cameraY=y;this.cameraZoom=zoom;
+   this.lamps.style.transform=`translate(${-x*zoom}px,${-y*zoom}px) scale(${zoom})`;
+  }
+  this.alignRain();
+ }
+ private alignRain(){const p=rainLayer(this.cameraX,this.cameraY,this.offset,this.cameraZoom);const transform=`translate(${p.x}px,${p.y}px)`;if(transform!==this.rainTransform){this.rainTransform=transform;this.rain.style.transform=transform;}}
  update(now:number,delta:number,interior:boolean,motion:boolean,fixture:TownClimate|null){
   const second=Math.floor(now/1000);
   if(second!==this.lastSecond||interior!==this.interior||!!fixture!==this.fixture){

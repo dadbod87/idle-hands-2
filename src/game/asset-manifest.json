@@ -923,6 +923,26 @@
       "id": "residential-verge-lavender",
       "path": "art/residential/residential-verge-lavender.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "study-bed-footprint-1",
+      "path": "art/allotment/study-bed-footprint-1.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "study-bed-footprint-2",
+      "path": "art/allotment/study-bed-footprint-2.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "study-bed-footprint-3",
+      "path": "art/allotment/study-bed-footprint-3.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "study-meadow-detail",
+      "path": "art/allotment/study-meadow-detail.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

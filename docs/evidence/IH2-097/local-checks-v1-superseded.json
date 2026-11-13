@@ -1,0 +1,46 @@
+{
+  "classification": "Locally verified held playable candidate, not main/source acceptance or an accepted-preview update.",
+  "baseCandidate": "1572352",
+  "system": {
+    "pass": 338,
+    "skipped": 0,
+    "failed": 0,
+    "durationMs": 55750.742417
+  },
+  "browser": {
+    "pass": 129,
+    "skipped": 0,
+    "flaky": 0,
+    "unexpected": 0,
+    "errors": [],
+    "durationMs": 913072.292
+  },
+  "strictBuild": true,
+  "design": true,
+  "roadmapTasks": 51,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "frozenClient": {
+    "files": 208,
+    "unchangedPriorArt": 198,
+    "newFiles": [
+      "art/allotment/study-bed-footprint-1.svg",
+      "art/allotment/study-bed-footprint-2.svg",
+      "art/allotment/study-bed-footprint-3.svg",
+      "art/allotment/study-meadow-detail.svg",
+      "assets/index-2wIVz1Ib.js"
+    ],
+    "rawDeltaVs095V2": 15459,
+    "perFileGzipDeltaVs095V2": 3210,
+    "classification": "Local candidate; immutable review client only. No accepted-client or API update."
+  },
+  "actualFrozenResponses": 208,
+  "nativeRootCaptures": 20,
+  "nativeRootFixtureCoverage": "Four no-gameplay-fixture empty views; ready/mixed/night-ready views seed only disclosed legal historical browser saves. Appearance sky/text fixtures; no position or Date override. Four extra320/text200 views.",
+  "terra": "Bounded entry and native bed tap pass; actual ready/mixed local histories disclosed. No independent rain/reset/attendant/exit coverage in Terra pass.",
+  "preservation": "Both accepted090clients/APIs, practice and Tour all13table fields/privatekey hashes/mode0600/sixchecksums each and54acceptedstudyresponses unchanged.096frozen20responses also unchanged.",
+  "concurrency": "Fresh remote main f0a294a; only PR39open. Available app session inventory found only this active sequel chat; original-game chat idle. No other active sequel chat observed.",
+  "requiredGitHubGate": "Pending normal exact-final-head checks; last PR39run refused before tests for account billing/spending-limit status. No workaround.",
+  "superseded": true,
+  "reason": "Incorrect half-tile rectangle model; final source review rejected it before097commit/acceptance."
+}

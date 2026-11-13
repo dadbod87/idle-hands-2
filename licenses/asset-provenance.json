@@ -1841,6 +1841,46 @@
       "source": "tools/create-residential-art.py",
       "date": "2026-11-12",
       "modifications": "Original brick/timber exterior pairs, cosmetic puff and low verge flowers. No imported media; prior cottage/site art unchanged."
+    },
+    {
+      "id": "study-bed-footprint-1",
+      "path": "public/art/allotment/study-bed-footprint-1.svg",
+      "sha256": "051b1823c850a94156ede27c414a117551894ea5d3de2669d867c75505f02c69",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-allotment-art.py",
+      "date": "2026-11-13",
+      "modifications": "Byte-identical locally reviewed IH2-096 original soil and low meadow layers, authored by tools/create-allotment-study-art.py. No extra resources, capacity or collision."
+    },
+    {
+      "id": "study-bed-footprint-2",
+      "path": "public/art/allotment/study-bed-footprint-2.svg",
+      "sha256": "daa667f7bf6438f382637ce3b20245e4a8c81d3551721000f3b73d259f8471e5",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-allotment-art.py",
+      "date": "2026-11-13",
+      "modifications": "Byte-identical locally reviewed IH2-096 original soil and low meadow layers, authored by tools/create-allotment-study-art.py. No extra resources, capacity or collision."
+    },
+    {
+      "id": "study-bed-footprint-3",
+      "path": "public/art/allotment/study-bed-footprint-3.svg",
+      "sha256": "b32e8d943c2af226a0345d91c7e2d3f28d613ad45aa3d2e9716be7a1983385d9",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-allotment-art.py",
+      "date": "2026-11-13",
+      "modifications": "Byte-identical locally reviewed IH2-096 original soil and low meadow layers, authored by tools/create-allotment-study-art.py. No extra resources, capacity or collision."
+    },
+    {
+      "id": "study-meadow-detail",
+      "path": "public/art/allotment/study-meadow-detail.svg",
+      "sha256": "37a93c45a22bf16d65d967cdba7780307cd2fe8f649cf3d91999e2bc2ef6653e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/promote-allotment-art.py",
+      "date": "2026-11-13",
+      "modifications": "Byte-identical locally reviewed IH2-096 original soil and low meadow layers, authored by tools/create-allotment-study-art.py. No extra resources, capacity or collision."
     }
   ],
   "comparison": {

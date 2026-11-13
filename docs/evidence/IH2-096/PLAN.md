@@ -1,3 +1,7 @@
+# Coordinate hypothesis correction
+
+The original plan below is historical. Its +16px rectangle projection hypothesis was rejected in097: canStand and Session.point add0.5to actor positions, not rectangle edges. Original crop feet already align. Corrected study V3 uses grid-edge rectangles and no crop shift, with actual edge probes. Preserve the earlier immutable files as rejected evidence; current097REPORT/geometry-correction/source-crosscheck govern this point.
+
 # Next bounded section: allotment sense of place and phone framing study
 
 Owner asks for a coherent lively first city, readable phone play and original art. Terra's bounded095day audit found no clear P1/P2 in square/garden/workshop navigation. Its strongest design opportunity is the sparse allotment: a largely empty desktop rectangle and a partly clipped three-bed row at320px. This is an observed design opportunity, not a broken farming system or human-fun finding. Workshop has two decorative quips over the rug; keep that separate from this garden study.

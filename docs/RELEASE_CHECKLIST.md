@@ -1,6 +1,10 @@
+# Current local hold: corrected097V2 and098next
+
+097V1geometry is rejected. CorrectedV2uses actual collision/tap-edge probes, original crop feet and caption approach targets; local338/129/root/Terra pass. Resolve the observed inherited53pxphonefooterjump in098before consolidating. All required normal exact-final-head GitHub jobs/rawartifact/actual accepted-client/preservation gates remain; old billing refusal is not bypassed. Accepted090data/clients/APIs/keys/studies stay intact.
+
 # Pending local candidates: do not release yet
 
-Accepted source and previews remain IH2-090. Candidates091–095UI stack and096standalone study are local work only. GitHub account billing prevented required jobs from starting; owner resolution and all successful exact-final-head jobs, raw uploaded artifacts, immutable accepted-client checks and protected data/key/study preservation are still required. Do not install another runner, change billing, merge main or replace accepted previews as a workaround.
+Accepted source and previews remain IH2-090. Candidates091–095UI stack,096standalone study and097garden integration are local work only. GitHub account billing prevented required jobs from starting; owner resolution and all successful exact-final-head jobs, raw uploaded artifacts, immutable accepted-client checks and protected data/key/study preservation are still required. Do not install another runner, change billing, merge main or replace accepted previews as a workaround.
 
 The native held-reply audit also reproduced an inherited TownUI focus bug: a delayed upgrade reply redirects a deliberately chosen slot control to the placement action. IH2-095V2locally resolves it and the additional close-only reopening bug; its125case suite passes locally. Exact-head GitHub/artifact/actual gates still apply to the final consolidated release. Preserve all prior browser assertions/timeouts, disjoint shards and the ordered shared-town/starter-homes/trail/z-first-visit family on shard2. A separate review URL and local tests are not acceptance.
 

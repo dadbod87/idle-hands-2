@@ -1,0 +1,888 @@
+{
+  "classification": "Pure actual canStand and Session.point comparisons using isolated temporary Session instances at defined stops. No saved/player/database/clock mutation or browser position injection. Old unaccepted data fails, corrected data passes without changing authority.",
+  "rule": "Only actor positions add0.5. Rectangle edges use grid units directly.",
+  "unchangedAuthority": {
+    "src/game/world.ts": "c4e17cfd7a017d68210eb1af9ba14531bc489e52cd16ef40abfc222ee1f19b26",
+    "src/game/session.ts": "61cf3ae0c9d6c159e650103a8cee1635925a675cc13721dec96e49a8b6dc9c31"
+  },
+  "rejected": {
+    "collision": [
+      {
+        "bed": 0,
+        "edge": "left-in",
+        "x": 136.42,
+        "y": 320,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 0,
+        "edge": "left-out",
+        "x": 136.22,
+        "y": 320,
+        "expected": true,
+        "actual": false,
+        "pass": false
+      },
+      {
+        "bed": 0,
+        "edge": "right-in",
+        "x": 247.58,
+        "y": 320,
+        "expected": false,
+        "actual": true,
+        "pass": false
+      },
+      {
+        "bed": 0,
+        "edge": "right-out",
+        "x": 247.78,
+        "y": 320,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 0,
+        "edge": "top-in",
+        "x": 192,
+        "y": 264.42,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 0,
+        "edge": "top-out",
+        "x": 192,
+        "y": 264.21999999999997,
+        "expected": true,
+        "actual": false,
+        "pass": false
+      },
+      {
+        "bed": 0,
+        "edge": "bottom-in",
+        "x": 192,
+        "y": 375.58,
+        "expected": false,
+        "actual": true,
+        "pass": false
+      },
+      {
+        "bed": 0,
+        "edge": "bottom-out",
+        "x": 192,
+        "y": 375.78000000000003,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "left-in",
+        "x": 264.42,
+        "y": 320,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "left-out",
+        "x": 264.21999999999997,
+        "y": 320,
+        "expected": true,
+        "actual": false,
+        "pass": false
+      },
+      {
+        "bed": 1,
+        "edge": "right-in",
+        "x": 375.58,
+        "y": 320,
+        "expected": false,
+        "actual": true,
+        "pass": false
+      },
+      {
+        "bed": 1,
+        "edge": "right-out",
+        "x": 375.78000000000003,
+        "y": 320,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "top-in",
+        "x": 320,
+        "y": 264.42,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "top-out",
+        "x": 320,
+        "y": 264.21999999999997,
+        "expected": true,
+        "actual": false,
+        "pass": false
+      },
+      {
+        "bed": 1,
+        "edge": "bottom-in",
+        "x": 320,
+        "y": 375.58,
+        "expected": false,
+        "actual": true,
+        "pass": false
+      },
+      {
+        "bed": 1,
+        "edge": "bottom-out",
+        "x": 320,
+        "y": 375.78000000000003,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "left-in",
+        "x": 392.42,
+        "y": 320,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "left-out",
+        "x": 392.21999999999997,
+        "y": 320,
+        "expected": true,
+        "actual": false,
+        "pass": false
+      },
+      {
+        "bed": 2,
+        "edge": "right-in",
+        "x": 503.58,
+        "y": 320,
+        "expected": false,
+        "actual": true,
+        "pass": false
+      },
+      {
+        "bed": 2,
+        "edge": "right-out",
+        "x": 503.78000000000003,
+        "y": 320,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "top-in",
+        "x": 448,
+        "y": 264.42,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "top-out",
+        "x": 448,
+        "y": 264.21999999999997,
+        "expected": true,
+        "actual": false,
+        "pass": false
+      },
+      {
+        "bed": 2,
+        "edge": "bottom-in",
+        "x": 448,
+        "y": 375.58,
+        "expected": false,
+        "actual": true,
+        "pass": false
+      },
+      {
+        "bed": 2,
+        "edge": "bottom-out",
+        "x": 448,
+        "y": 375.78000000000003,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    ],
+    "clicks": [
+      {
+        "target": "garden-beds",
+        "edge": "left-in",
+        "x": 144.1,
+        "y": 332,
+        "expected": "garden-beds",
+        "actual": "garden-beds",
+        "pass": true
+      },
+      {
+        "target": "garden-beds",
+        "edge": "left-out",
+        "x": 143.9,
+        "y": 332,
+        "expected": null,
+        "actual": "garden-beds",
+        "pass": false
+      },
+      {
+        "target": "garden-beds",
+        "edge": "right-in",
+        "x": 495.9,
+        "y": 332,
+        "expected": "garden-beds",
+        "actual": null,
+        "pass": false
+      },
+      {
+        "target": "garden-beds",
+        "edge": "right-out",
+        "x": 496.1,
+        "y": 332,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-beds",
+        "edge": "top-in",
+        "x": 320,
+        "y": 256.1,
+        "expected": "garden-beds",
+        "actual": "garden-beds",
+        "pass": true
+      },
+      {
+        "target": "garden-beds",
+        "edge": "top-out",
+        "x": 320,
+        "y": 255.9,
+        "expected": null,
+        "actual": "garden-beds",
+        "pass": false
+      },
+      {
+        "target": "garden-beds",
+        "edge": "bottom-in",
+        "x": 320,
+        "y": 407.9,
+        "expected": "garden-beds",
+        "actual": null,
+        "pass": false
+      },
+      {
+        "target": "garden-beds",
+        "edge": "bottom-out",
+        "x": 320,
+        "y": 408.1,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "left-in",
+        "x": 144.1,
+        "y": 448,
+        "expected": "garden-desk",
+        "actual": "garden-desk",
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "left-out",
+        "x": 143.9,
+        "y": 448,
+        "expected": null,
+        "actual": "garden-desk",
+        "pass": false
+      },
+      {
+        "target": "garden-desk",
+        "edge": "right-in",
+        "x": 223.9,
+        "y": 448,
+        "expected": "garden-desk",
+        "actual": null,
+        "pass": false
+      },
+      {
+        "target": "garden-desk",
+        "edge": "right-out",
+        "x": 224.1,
+        "y": 448,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "top-in",
+        "x": 184,
+        "y": 416.1,
+        "expected": "garden-desk",
+        "actual": "garden-desk",
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "top-out",
+        "x": 184,
+        "y": 415.9,
+        "expected": null,
+        "actual": "garden-desk",
+        "pass": false
+      },
+      {
+        "target": "garden-desk",
+        "edge": "bottom-in",
+        "x": 184,
+        "y": 479.9,
+        "expected": "garden-desk",
+        "actual": null,
+        "pass": false
+      },
+      {
+        "target": "garden-desk",
+        "edge": "bottom-out",
+        "x": 184,
+        "y": 480.1,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "left-in",
+        "x": 264.1,
+        "y": 528,
+        "expected": "garden-exit",
+        "actual": "garden-exit",
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "left-out",
+        "x": 263.9,
+        "y": 528,
+        "expected": null,
+        "actual": "garden-exit",
+        "pass": false
+      },
+      {
+        "target": "garden-exit",
+        "edge": "right-in",
+        "x": 343.9,
+        "y": 528,
+        "expected": "garden-exit",
+        "actual": null,
+        "pass": false
+      },
+      {
+        "target": "garden-exit",
+        "edge": "right-out",
+        "x": 344.1,
+        "y": 528,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "top-in",
+        "x": 304,
+        "y": 496.1,
+        "expected": "garden-exit",
+        "actual": "garden-exit",
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "top-out",
+        "x": 304,
+        "y": 495.9,
+        "expected": null,
+        "actual": "garden-exit",
+        "pass": false
+      },
+      {
+        "target": "garden-exit",
+        "edge": "bottom-in",
+        "x": 304,
+        "y": 559.9,
+        "expected": "garden-exit",
+        "actual": null,
+        "pass": false
+      },
+      {
+        "target": "garden-exit",
+        "edge": "bottom-out",
+        "x": 304,
+        "y": 560.1,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      }
+    ],
+    "collisionMismatches": 12,
+    "clickMismatches": 12
+  },
+  "fixed": {
+    "collision": [
+      {
+        "bed": 0,
+        "edge": "left-in",
+        "x": 120.41999999999999,
+        "y": 304,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 0,
+        "edge": "left-out",
+        "x": 120.22,
+        "y": 304,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 0,
+        "edge": "right-in",
+        "x": 231.58,
+        "y": 304,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 0,
+        "edge": "right-out",
+        "x": 231.78,
+        "y": 304,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 0,
+        "edge": "top-in",
+        "x": 176,
+        "y": 248.42,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 0,
+        "edge": "top-out",
+        "x": 176,
+        "y": 248.22,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 0,
+        "edge": "bottom-in",
+        "x": 176,
+        "y": 359.58,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 0,
+        "edge": "bottom-out",
+        "x": 176,
+        "y": 359.78000000000003,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "left-in",
+        "x": 248.42,
+        "y": 304,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "left-out",
+        "x": 248.22,
+        "y": 304,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "right-in",
+        "x": 359.58,
+        "y": 304,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "right-out",
+        "x": 359.78000000000003,
+        "y": 304,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "top-in",
+        "x": 304,
+        "y": 248.42,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "top-out",
+        "x": 304,
+        "y": 248.22,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "bottom-in",
+        "x": 304,
+        "y": 359.58,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 1,
+        "edge": "bottom-out",
+        "x": 304,
+        "y": 359.78000000000003,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "left-in",
+        "x": 376.42,
+        "y": 304,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "left-out",
+        "x": 376.21999999999997,
+        "y": 304,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "right-in",
+        "x": 487.58,
+        "y": 304,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "right-out",
+        "x": 487.78000000000003,
+        "y": 304,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "top-in",
+        "x": 432,
+        "y": 248.42,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "top-out",
+        "x": 432,
+        "y": 248.22,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "bottom-in",
+        "x": 432,
+        "y": 359.58,
+        "expected": false,
+        "actual": false,
+        "pass": true
+      },
+      {
+        "bed": 2,
+        "edge": "bottom-out",
+        "x": 432,
+        "y": 359.78000000000003,
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    ],
+    "clicks": [
+      {
+        "target": "garden-beds",
+        "edge": "left-in",
+        "x": 128.1,
+        "y": 316,
+        "expected": "garden-beds",
+        "actual": "garden-beds",
+        "pass": true
+      },
+      {
+        "target": "garden-beds",
+        "edge": "left-out",
+        "x": 127.9,
+        "y": 316,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-beds",
+        "edge": "right-in",
+        "x": 479.9,
+        "y": 316,
+        "expected": "garden-beds",
+        "actual": "garden-beds",
+        "pass": true
+      },
+      {
+        "target": "garden-beds",
+        "edge": "right-out",
+        "x": 480.1,
+        "y": 316,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-beds",
+        "edge": "top-in",
+        "x": 304,
+        "y": 240.1,
+        "expected": "garden-beds",
+        "actual": "garden-beds",
+        "pass": true
+      },
+      {
+        "target": "garden-beds",
+        "edge": "top-out",
+        "x": 304,
+        "y": 239.9,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-beds",
+        "edge": "bottom-in",
+        "x": 304,
+        "y": 391.9,
+        "expected": "garden-beds",
+        "actual": "garden-beds",
+        "pass": true
+      },
+      {
+        "target": "garden-beds",
+        "edge": "bottom-out",
+        "x": 304,
+        "y": 392.1,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "left-in",
+        "x": 128.1,
+        "y": 432,
+        "expected": "garden-desk",
+        "actual": "garden-desk",
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "left-out",
+        "x": 127.9,
+        "y": 432,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "right-in",
+        "x": 207.9,
+        "y": 432,
+        "expected": "garden-desk",
+        "actual": "garden-desk",
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "right-out",
+        "x": 208.1,
+        "y": 432,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "top-in",
+        "x": 168,
+        "y": 400.1,
+        "expected": "garden-desk",
+        "actual": "garden-desk",
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "top-out",
+        "x": 168,
+        "y": 399.9,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "bottom-in",
+        "x": 168,
+        "y": 463.9,
+        "expected": "garden-desk",
+        "actual": "garden-desk",
+        "pass": true
+      },
+      {
+        "target": "garden-desk",
+        "edge": "bottom-out",
+        "x": 168,
+        "y": 464.1,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "left-in",
+        "x": 248.1,
+        "y": 512,
+        "expected": "garden-exit",
+        "actual": "garden-exit",
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "left-out",
+        "x": 247.9,
+        "y": 512,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "right-in",
+        "x": 327.9,
+        "y": 512,
+        "expected": "garden-exit",
+        "actual": "garden-exit",
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "right-out",
+        "x": 328.1,
+        "y": 512,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "top-in",
+        "x": 288,
+        "y": 480.1,
+        "expected": "garden-exit",
+        "actual": "garden-exit",
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "top-out",
+        "x": 288,
+        "y": 479.9,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "bottom-in",
+        "x": 288,
+        "y": 543.9,
+        "expected": "garden-exit",
+        "actual": "garden-exit",
+        "pass": true
+      },
+      {
+        "target": "garden-exit",
+        "edge": "bottom-out",
+        "x": 288,
+        "y": 544.1,
+        "expected": null,
+        "actual": null,
+        "pass": true
+      }
+    ],
+    "collisionMismatches": 0,
+    "clickMismatches": 0
+  }
+}

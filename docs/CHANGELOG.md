@@ -1,3 +1,7 @@
+2026-11-13 — Corrected097V2: true rectangle edges/original cropfeet, soil/low details, bounded phone framing,44pxcaption approach targets and scaled world sky.338system/129browser/native/Terra/authority/preservation pass. EarlierV1geometry rejected before accepted update.098phone toolbar jump and normal source/CI/actual gates remain. [Report](evidence/IH2-097/REPORT.md).
+
+2026-11-13 — IH2-097 local garden candidate: original soil/low details, bounded phone actor-follow framing, compact labels and scaled world rain/lamp projection.338system/129browser/native/Terra/artifact/preservation pass; required source/accepted-preview gates remain pending. [Report](evidence/IH2-097/REPORT.md).
+
 2026-11-13 — IH2-096standalone allotment study locally reviewed:335system/127browser, native20fileV2and12pixel-identical format-cleanup captures/Terra; all204game files/198art and accepted data/keys/54studies unchanged. Source CI/merge gates remain held.097actual garden composition/framing queued, without a gameplay-rule change. [Report](evidence/IH2-096/REPORT.md).
 
 2026-11-12 — IH2-095V2local repair preserves plot-scoped chosen focus and closed panels through delayed replies/retries, uses safe status fallback, hides redundant owner entry and honors Refresh hidden state.332system/125browser pass; all game art and protected data/keys/studies preserved. Original pending recovery independently replayed once. Initial124pass superseded by close-only regression/fix. GitHub/actual accepted gates remain held;096garden design study queued.

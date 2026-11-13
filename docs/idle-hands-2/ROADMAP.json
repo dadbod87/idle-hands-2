@@ -1328,14 +1328,16 @@
         "docs/evidence/IH2-096/prior-runtime-preserved.json",
         "docs/evidence/IH2-096/source-hold.json",
         "docs/evidence/IH2-096/terra-findings.md",
-        "docs/evidence/IH2-096/format-only-proof.json"
+        "docs/evidence/IH2-096/format-only-proof.json",
+        "docs/evidence/IH2-097/geometry-correction.json",
+        "docs/evidence/IH2-097/source-crosscheck.md"
       ],
-      "blocked_reason": "Local335system/127browser/Terra/native/provenance/preservation pass; final required source CI remains held after GitHub billing refusal. No merge or runtime promotion."
+      "blocked_reason": "Original rectangle hypothesis rejected before acceptance. CorrectedstudyV3within097passesactualauthority/native/Terra338system/129browser; normal sourceCI remains held, no accepted-client promotion."
     },
     {
       "id": "IH2-097",
       "title": "Actual allotment composition and phone framing",
-      "status": "queued",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1349,7 +1351,39 @@
         "No rules/backend/protocol/schema/commands/economy/recipes/timers/new harvests or resources, cloud/public hosting, real identities or expense. No acceptance/update of protected previews while the required GitHub gate remains held."
       ],
       "evidence": [
-        "docs/evidence/IH2-097/PLAN.md"
+        "docs/evidence/IH2-097/PLAN.md",
+        "docs/evidence/IH2-097/REPORT.md",
+        "docs/evidence/IH2-097/local-checks.json",
+        "docs/evidence/IH2-097/artifact-proof.json",
+        "docs/evidence/IH2-097/preserved-source-proof.json",
+        "docs/evidence/IH2-097/frame-sample.json",
+        "docs/evidence/IH2-097/terra-findings.md",
+        "docs/evidence/IH2-097/source-hold.json",
+        "docs/evidence/IH2-097/geometry-correction.json",
+        "docs/evidence/IH2-097/source-crosscheck.md"
+      ],
+      "owner_branch": "feat/allotment-composition",
+      "blocked_reason": "CorrectedV2local338system/129browser/root/Terra/authority/artifact/preservation pass. Required GitHub gates remain unmet after old billing refusal; inherited53pxphonefooterjump queued098before consolidated release."
+    },
+    {
+      "id": "IH2-098",
+      "title": "Stable phone action bar across nearby states",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Fix the observed 53-pixel playfield and navigation jump without reducing readable controls or changing gameplay.",
+      "acceptance": [
+        "At the same viewport, no-nearby/inspect/entry text preserves navigation control rectangles and playfield height. Deliberate responsive rows, 44px targets, whole words and readable scrollable feedback remain.",
+        "Native desktop/320/360/390/short/200% movement, pointer/keyboard and menu focus checks plus bounded Terra review; all prior338system/129browser assertions/timeouts and normal exact-head source/artifact/accepted-preview/preservation gates retained.",
+        "All202runtime artwork, rules/server/model/protocol/dependencies/progress/keys/checksums/accepted studies unchanged. Pending097is a locally reviewed source input, not completed/accepted by this queued task."
+      ],
+      "exclusions": [
+        "No new UI controls, truncated errors, smaller text, changed action wording, economy/art/state/server/hosting/real-account or expense changes. No bypass of GitHub billing/source gates."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-098/PLAN.md",
+        "docs/evidence/IH2-098/baseline.json"
       ]
     }
   ]

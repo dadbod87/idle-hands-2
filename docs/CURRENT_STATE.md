@@ -1,3 +1,5 @@
+103design-only café authority/persistence contract recorded from actual source and independent review; no runtime/data/schema/API change.102actual348/136code evidence retained. Next104purecandidate outside live entrypoints, normal source gate held and accepted090unchanged. [Contract](idle-hands-2/design/CAFE_AUTHORITY_CONTRACT.md).
+
 102coherent source locally verified348system/136browser, unchanged208game/202art and21historical/rawstudyfiles. Originalcaféinputsreproduceexactly; all prior assertions/timeouts retained. Normal source gate still held, accepted090unchanged.103read-only café authority contract next. [Report](evidence/IH2-102/REPORT.md).
 
 101Bag quantities locally verified:338system/132browser/7focused/native8shapes/TerraV2/frozen208/origin/preservation. Key/ARIAclarifies available versus owned, header gap restored; a measured test-only resize-readiness race is corrected without relaxing crop/target/progress checks. Accepted090unchanged, normal source gate held. Next102coherent source preparation. [Report](evidence/IH2-101/REPORT.md).

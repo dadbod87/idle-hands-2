@@ -1,3 +1,5 @@
+2026-11-13 —103records Café persistence/authority decisions and next pure-ledger task. No implementation or data/service change; code remains102348/136verified candidate with required normal source gate held.
+
 2026-11-13 —102unifies held101UIand original099/100study tools/checks with exact historical inputs, raw artifact packaging and348/136pass. Zero game payload change; source gate held.
 
 2026-11-13 —101candidate clarifies available/carried/kept Bag counts before grid, shortens notes and restores heading/icon gap. Final338system/132browser pass with native/Terra/origin/preservation; test-only responsive viewport readiness fixed after retained failure. Normal source gate held; no accepted-preview/public change.

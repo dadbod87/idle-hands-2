@@ -1526,7 +1526,7 @@
     {
       "id": "IH2-103",
       "title": "Caf\u00e9 authority and durable local-save contract",
-      "status": "queued",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1540,7 +1540,33 @@
         "No code/schema/migration/auth/state/prop/reward/room/API/service/key/data/expense/public change. No defaulting corrupt saves or silent changes to existing local durability semantics. No rushed bulk art/runtime section before cutoff."
       ],
       "evidence": [
-        "docs/evidence/IH2-103/PLAN.md"
+        "docs/evidence/IH2-103/PLAN.md",
+        "docs/evidence/IH2-103/REPORT.md",
+        "docs/evidence/IH2-103/domain-review.md",
+        "docs/idle-hands-2/design/CAFE_AUTHORITY_CONTRACT.md",
+        "docs/evidence/IH2-103/local-checks.json"
+      ],
+      "owner_branch": "docs/cafe-authority-contract",
+      "blocked_reason": "Design-only local contract/source audit/independent domain review complete; no runtime/data change. Documentation checks and reused102348/136code evidence recorded. Normal final-head source acceptance remains held after prior billing refusal."
+    },
+    {
+      "id": "IH2-104",
+      "title": "Pure caf\u00e9 ledger and exact migration candidate",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Implement a strict serializable caf\u00e9 ledger/migration candidate outside live entrypoints, following103contract and reusing099analytical findings without claiming them runtime authority.",
+      "acceptance": [
+        "Read actual current103contract and source; implement pure candidate state/transition/projection and recognized migration adapter without changing live writer/root/protocol/PROP_IDS/room/server/UI or accepted previews. Reuse/factor current pure validation where safe; preserve all existing behavior and corruption refusal.",
+        "Prove harvest/consume/held conservation, one-radish immediate serve,4hcappedcooldown, personal3/teapot-once, public12/fixedopening, no-useful-goal no-spend, late entitlement, stable immutable inputs, malformed/unknown/partial migration refusal and exact populated old-data preservation. These are pure proofs, not SQL/durability/network claims.",
+        "Record remaining staged local commit, shared atomic transaction/forward constraints/protocol/cachedwriter/UI/art/physical-device gates. No live field/prop exposure until a coherent vertical slice; all normal exact-head source/rawartifact/preservation gates stay required."
+      ],
+      "exclusions": [
+        "No actual storage writer change, table/migration execution, HTTP command/protocol bump, live state/prop/reward/room registration, real-player grant, server/keys/host/expense/public change. No blind defaults or whole-game durability rewrite."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-104/PLAN.md"
       ]
     }
   ]

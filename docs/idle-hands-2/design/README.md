@@ -105,3 +105,6 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 
 
 [First serving gesture](SERVING_GESTURE_STUDY.md): IH2-100 is an independent Aster-only original art study. Bounded720ms replay, exact feet/final idle, native pixel/phone checks and Terra refinement; no café/action/reward integration. Source acceptance remains held. The next usability priority is the count-key ambiguity recorded in101PLAN.
+
+
+[Coherent source102](../../evidence/IH2-102/REPORT.md) retains all original study inputs/checks and current UI without changing game bytes. [Café authority contract](CAFE_AUTHORITY_CONTRACT.md),103, is a read-only source-grounded next-step design: one-save local projection/staged Café commit, atomic shared transaction, exact migration/cached-writer gates and concise UI. It implements none of those changes.104is a pure candidate module outside live entrypoints, not a partial public feature.

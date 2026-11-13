@@ -1,0 +1,12 @@
+{
+  "accepted109": "acab0549ec6540b90fc9cd381157ca2fc07f7bd5",
+  "acceptedCandidateMerge": "98d4d02e52c77b48312d95febf0e06d5415144c3",
+  "runtimeSourcePathsAdded": [
+    "server/cafe-transaction-candidate.ts",
+    "server/candidates/cafe-project.sql"
+  ],
+  "allExistingGameServerArtAndSixMigrationBytesUnchanged": true,
+  "newFilesUnregistered": true,
+  "actualClientsStillFrozen109ButExactlyEqual110Build": true,
+  "noAcceptedServiceOrDatabaseChangeNeeded": true
+}

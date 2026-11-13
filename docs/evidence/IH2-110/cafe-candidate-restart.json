@@ -1,0 +1,12 @@
+{
+  "classification": "Real dedicated local synthetic PostgreSQL container restart; protected cluster/services untouched",
+  "container": "idle-hands-2-cafe-candidate-pg",
+  "realDatabaseRestart": true,
+  "allPlayerReceiptProjectMigrationFieldsPreserved": true,
+  "snapshotExactlyPreserved": true,
+  "teapotAndConsumedProduceAndQueuedJobPreserved": true,
+  "sixChecksumsPreserved": true,
+  "serverClock": 1794650400000,
+  "fingerprint": "fe248dfcc9dddc3293aef7095c7154aae01f812c54266b4e6583d7dec1e9536d",
+  "limits": "Declared comparison clock; no real accounts, production or server HTTP/auth proof."
+}

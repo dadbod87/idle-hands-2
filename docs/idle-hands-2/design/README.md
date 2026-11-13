@@ -112,3 +112,6 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 - [104 pure café candidate evidence](../../evidence/IH2-104/REPORT.md): strict serializable debit/reward/migration proofs outside live registration; persistence and coherent counter UI remain later work.
 
 - [106 original serving family and teapot kit](../../evidence/IH2-106/REPORT.md):80cells/four rigs and separate icon/world art, locally reviewed only; no live handover or reward integration.
+
+
+- [Varied home sizes, yards and purchasable layouts](HOUSE_VARIETY_AND_YARDS.md): November13owner direction, persistent creative rights, meaningful added features and a staged future implementation plan. Not playable purchases.

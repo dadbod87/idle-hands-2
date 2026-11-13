@@ -1,0 +1,30 @@
+# Final source closeout
+
+PR41/main98d4d02e52c77b48312d95febf0e06d5415144c3 accepted, exact tree0ac7e8e. PR43498138268 and main43500750359all4jobs each418/146, disjoint74+72, zero skips/flakes/errors. Full raw artifacts and same208client bytes verified. Current full-code continuation: idle-hands-2-cafe-transaction / chore/cafe-transaction-closeout-2026-11-13, latest pushed head; runtime accepted main, docs-only later closeout locally checked. Canonical090runtime is bookkeeping only. Next111ready;112housing direction/design queued. See110source-closeout.json. Older pending notes below retain development history and are superseded by this final header.
+
+Actual4175/localhost4176API5remain frozen109, every active file/client byte exactly matches110CI. No accepted restart or protected write; both13table fields/keys0600/sixchecksums and4PIDs preserved. Candidate DB55434is separate; no live café UI/SQL/protocol registration. No new Terra review, unchanged exact109client; root fresh regression samples inspected. Later111actual UI needs Terra review. No real data, originalgame, expenses or public/cloud game launch.
+
+---
+
+# November13 — shared café transaction candidate
+
+Current source checkout idle-hands-2-cafe-transaction / feat/shared-cafe-transaction, base5bdaaab over accepted109mainacab0549. Local full418system/15focused/dedicated real PostgreSQL restart/build/design/66taskplan/10tracker/40pinned/diff checks pass. Full146browser passes,0unexpected/flaky/skipped/reporterrors; exact-head public GitHub four jobs/main regression/source acceptance remain pending. Do not treat this handoff as a completed source gate. Final source closeout supplies commit/run IDs and status after acceptance.
+
+Candidate installer/class guarded to loopback ih2_cafe_test/restore only. Dedicated local Docker idle-hands-2-cafe-candidate-pg on127.0.0.1:55434, label app=idle-hands-2-cafe-candidate. No protected cluster55432writes/restarts; exact13table fields/keys0600/sixchecksums and accepted4servicePIDs preserved. Native candidate target is explicitly synthetic square spawn(24,25), not actual café reachability. No game HTTP/root/writer/protocol/props/UI/active SQL registration. All208compiled game/202art bytes equal accepted109;4175/localhost4176andAPI5stay on their verified frozen artifacts. Do not point the candidate at protected towns by removing guards.
+
+Implementation: server/cafe-transaction-candidate.ts; inactive SQL server/candidates/cafe-project.sql. Canonical UUID hash, player→bridge→ownplot→cafe order; atomic private debit/sink/count/cooldown/teapot/credit/fixeddeadline/receipt. Snapshot repeatable-read/read-only; explicit café-only settlement latches fixed opening, never inverse café→player locks or per-frame writes. Current prop maps validated; all-map teapot extension and real auth/transport remain next integration.
+
+Tests use conserved synthetic harvested stock/declared server clocks. Lost reply is represented by discarding committed method result and store reconnect; no new HTTP fault claim. Local actual separate PG restart and real pg_dump/restore preserve private progress, original job/deadline, teapot and UUID result. SQL lifecycle/null/monotone/RLS/invoker checks and pure source guards pass. Earlier startup/Pool.options guard/test phase-expectation failures are diagnosed in110REPORT; final code passes. No assertions/timeouts/skips weakened.
+
+Local commands (cwd this full-code checkout):
+- IH2_TEST_DATABASE_URL=postgres://ih2:local-synthetic-only@127.0.0.1:55434/ih2_test node --experimental-strip-types tools/prepare-test-dbs.ts
+- IH2_TEST_DATABASE_URL=postgres://ih2:local-synthetic-only@127.0.0.1:55434/ih2_test IH2_HTTP_TEST_DATABASE_URL=postgres://ih2:local-synthetic-only@127.0.0.1:55434/ih2_http_test IH2_PG_DOCKER=1 IH2_PG_CONTAINER=idle-hands-2-cafe-candidate-pg npm run test
+- npm run build ; npm run check:design ; npm run check:plan ; python3 tools/verify-game-skills.py ; git diff --check (run as individually checked commands)
+- IH2_BROWSER_DATABASE_URL=postgres://ih2:local-synthetic-only@127.0.0.1:55434/ih2_browser npm run test:browser
+- node --experimental-strip-types tools/prove-cafe-candidate-restart.ts ONLY after the focused candidate test has populated it and no other suite is using that separate candidate cluster. The tool verifies exact container label/loopback port before a real restart; never run against accepted practice/Tour.
+
+Artifacts: work/idle-hands-2-artifacts/cafe-transaction-2026-11-13, including original logs/proofs/source hashes and protected read-only baseline. Source closeout will record complete final checks/CI; candidate evidence is in docs/evidence/IH2-110.
+
+Owner housing additions recorded in design/HOUSE_VARIETY_AND_YARDS.md and OWNER_DIRECTIONS: real exterior size choices, personalized yard decorations, multiple purchased floor plans with meaningful added features. Current facade family derives from plot ID; current lot8×10/collision6.5×7.5must not be silently stretched. Price examples/possible currency/features remain unimplemented earned-resource design, no real-money purchase. Keep address/rights/furniture, usable existing home through upgrade timer and public neighbor routes.
+
+Next111coherent playable café: read PLAN, full cache/writer/tuple/protocol6/new SQL/all-home teapot maps, validated live server movement, actual reachable counter, confirmed-only receipt/art/Bag/placement and concise stable phone menus. Terra reviews actual new UI then; this110has no visual delta and doesn't need another unchanged-client audit.112housing variation design follows. No public/cloud game launch, real users/progress, originalgame or paid resources authorized. Respect normal free public CI batching/exact-head gates; three reset credits untouched, latest39%weekly remaining.

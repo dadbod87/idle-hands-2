@@ -1,6 +1,32 @@
-# Canonical bookkeeping pointer — use the current full-code checkout
+# Canonical bookkeeping — continue from accepted café source
 
-Full-code source/closeout **5bdaaab**, branch **chore/local-source-closeout-2026-11-13**, checkout `../idle-hands-2-accepted`. Remote backup verified. Runtime there is accepted main **acab0549ec6540b90fc9cd381157ca2fc07f7bd5**; its later documentation-only changes are locally checked, not another exact-headCI claim. Next110queued/ready. This canonical checkout is still old090runtime with current documentation only; six numerical reports intentionally remain aligned with its old source. Do not implement110here. Running preview services use frozen accepted109source/artifact with canonical cwd/private keys. No runtime or protected data changed by this bookkeeping sync.
+Full-code closeout **4407a27820a787d301c272dbb18b45a83f909dc6**, branch **chore/cafe-transaction-closeout-2026-11-13**, checkout `../idle-hands-2-cafe-transaction`; remote backup verified. Runtime equals accepted main **98d4d02e52c77b48312d95febf0e06d5415144c3**, PR41. PR43498138268/main43500750359each418system/146browser/all4jobs/zero errors, raw artifacts verified. Later documentation-only closeout locally checked; no extra exact-headCI claim. Next111ready;112house sizes/yards/layout choices queued.
+
+This canonical checkout remains old090runtime with documentation-only synchronization; six numerical reports intentionally stay aligned with that old runtime. Do not implement111from canonical code. Actual4175/localhost4176API5services load their preserved109frozen source/artifact, all active bytes exactly match110; keys/data/PIDs untouched. Candidate cluster55434is separate, guarded and not a live game service. See110source-closeout.json and current handoff. Latest usage61%used/39%remaining; three resetcredits untouched.
+
+#110accepted — next111playable café integration
+
+Main **98d4d02e52c77b48312d95febf0e06d5415144c3**, PR41, candidate **0ac7e8eb12c73e6f56aa79bf7ac6ab0e41f83d99**, identical tree. PR43498138268 and main43500750359each pass all four required jobs:418system/146browser, disjoint74+72, zero failures/skips/flakes/reporterrors. Raw artifacts/restore/client bytes verified. [Report](../evidence/IH2-110/REPORT.md) and source-closeout.json distinguish source/candidate/actual-preview evidence.
+
+FULL CODE continuation checkout `../idle-hands-2-cafe-transaction`, branch `chore/cafe-transaction-closeout-2026-11-13`, accepted110main runtime plus documentation-only closeout; resolve latest pushed head. Canonical `idle-hands-2` remains old090runtime/bookkeeping only; do not implement from it. Historical pending notes below are superseded by this verified closeout.
+
+Actual preview http://127.0.0.1:4175/ ; fictional Tour http://localhost:4176/?town=1 . Still the frozen109client/API5source, byte-identical to every existing110active file and all208newCIclient bytes. Accepted services/PIDs, both protected13table/allfield/key0600/sixchecksum fingerprints and54studyresponses unchanged. No refresh needed for two unregistered candidate files. Existing source/runtime paths and launch commands remain in109handoff. Do not restart/reset or copy/regenerate private keys.
+
+New dedicated candidate cluster: Docker idle-hands-2-cafe-candidate-pg, app=idle-hands-2-cafe-candidate, loopback55434, ih2_cafe_test/restore. Isolated candidate SQL and atomic UUID/private/public transaction, real restart/dump-restore proven; active protocol/root/writer/props/migrations/UI unchanged. Café is not playable yet. Never remove candidate DB guards as a shortcut to registration.
+
+Next **IH2-111**, queued/ready: coherent playable counter, exact tuple/protocol6/local writer/cache/home-allocation/SQL integration and confirmed-only art/receipt/Bag/UI; read its PLAN. Use actual validated live movement, not body coordinates or an old checkpoint. Terra reviews the new desktop/phone/short/text200 UI then. No fresh Terra check was needed for110's unchanged client; root sampled fresh regression captures. No production-auth/public-hosting/physical-device claim.
+
+Owner housing request is saved in HOUSE_VARIETY_AND_YARDS/OWNER_DIRECTIONS and task112: real exterior size choices, personal yards, multiple purchased layouts with meaningful features, no invented currency/prices or real-money purchases. Preserve address, owned pieces and neighbor paths. Public standard CI works; local-first batching and exact-head/main gates remain, no paid setup. Three reset credits untouched.
+
+---
+
+#110shared café transaction candidate — local validation in progress
+
+Current full-code checkout `../idle-hands-2-cafe-transaction`, branch `feat/shared-cafe-transaction`, base5bdaaab9d830b097c2945e6c857e3b8f2217ea1a over accepted109mainacab0549. Candidate only: dedicated localDBs ih2_cafe_test/restore on55434; no active migration/API/writer/protocol/props/UI registration.418system/15focused/actual dedicated PostgreSQL restart/build pass; full146browser passes,0unexpected/flaky/skipped/reporterrors. Exact public CI/source gates pending; accepted4175/localhost4176API5artifacts stay byte-identical109. Read110REPORT/PLAN and usage policy; preserve all protected data/keys/studies.
+
+Owner housing direction captured in HOUSE_VARIETY_AND_YARDS, owner directions and decisions: different exterior sizes, personal yard decorations and multiple purchasable layouts with added features. No live purchase/art/currency changes. Next111coherent playable café integration;112housing variation design. Do not start either until110source acceptance is closed.
+
+---
 
 # Current authority — accepted109 and local preview update complete
 

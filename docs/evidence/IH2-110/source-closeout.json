@@ -1,0 +1,119 @@
+{
+  "date": "2026-11-13",
+  "classification": "Source accepted; isolated candidate transactions verified. Actual playable cafe integration remains next111.",
+  "pr": 41,
+  "candidate": "0ac7e8eb12c73e6f56aa79bf7ac6ab0e41f83d99",
+  "merge": "98d4d02e52c77b48312d95febf0e06d5415144c3",
+  "sameTree": true,
+  "pullRequestCI": {
+    "run": 43498138268,
+    "sha": "0ac7e8eb12c73e6f56aa79bf7ac6ab0e41f83d99",
+    "all4JobsSuccess": true,
+    "system": 418,
+    "browser": 146,
+    "disjointShards": [
+      74,
+      72
+    ],
+    "zeroFailuresSkippedFlakyReportErrors": true,
+    "orderedFixtureFamily": {
+      "shared-town.spec.ts": [
+        2
+      ],
+      "starter-homes.spec.ts": [
+        2
+      ],
+      "trail.spec.ts": [
+        2
+      ],
+      "z-first-visit.spec.ts": [
+        2
+      ]
+    },
+    "all208ClientBytesEqualLocalAndAccepted109": true,
+    "candidateDumpRestoreRawArtifactVerified": true,
+    "jobMinutesRoundedEstimate": 30,
+    "publicRepository": true,
+    "runnerLabels": [
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ]
+    ],
+    "noPaidResourceConfigured": true
+  },
+  "mainCI": {
+    "run": 43500750359,
+    "sha": "98d4d02e52c77b48312d95febf0e06d5415144c3",
+    "all4JobsSuccess": true,
+    "system": 418,
+    "browser": 146,
+    "disjointShards": [
+      74,
+      72
+    ],
+    "zeroFailuresSkippedFlakyReportErrors": true,
+    "orderedFixtureFamily": {
+      "shared-town.spec.ts": [
+        2
+      ],
+      "starter-homes.spec.ts": [
+        2
+      ],
+      "trail.spec.ts": [
+        2
+      ],
+      "z-first-visit.spec.ts": [
+        2
+      ]
+    },
+    "all208ClientBytesEqualLocalAndAccepted109": true,
+    "candidateDumpRestoreRawArtifactVerified": true,
+    "jobMinutesRoundedEstimate": 29,
+    "publicRepository": true,
+    "runnerLabels": [
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ],
+      [
+        "ubuntu-24.04"
+      ]
+    ],
+    "noPaidResourceConfigured": true
+  },
+  "actualClients": "Both208file actual109clients exactly equal local/PR/main110build; no refresh needed",
+  "existingGameServerArtMigrations": "Every previously active file unchanged from109; only two unregistered runtime candidate files added",
+  "protectedState": "Both13table/allfield/key0600/sixchecksum fingerprints unchanged; four accepted service PIDs unchanged",
+  "preservedStudies": {
+    "acceptedHttpResponses": 54,
+    "heldArtSources": "No changes to099/100/106source/frozen galleries; existing frozen origins left running"
+  },
+  "localChecks": "local-checks.json",
+  "restart": "cafe-candidate-restart.json; actual separate Docker PostgreSQL restart, protected cluster untouched",
+  "housing": "Owner direction and current-source audit in design/HOUSE_VARIETY_AND_YARDS.md; multiple sizes/yards/layout features remain queued112, not live purchases",
+  "next": "IH2-111 coherent playable cafe with protocol/root/writer/SQL/allocation/counter/confirmed art;112house variety design",
+  "limits": [
+    "Synthetic stocks/declared clocks and injected SQL failure; not real player earnings or wall-time four-hour waits.",
+    "Lost reply represented by discarded committed method result/store reconnect; no new HTTP endpoint/fault claim.",
+    "Existing146browser suite includes disclosed elapsed/intercepted fixtures and desktop/touch emulation, not physical device/Safari/full accessibility or human fun certification.",
+    "Candidate target is explicit synthetic spawn-point binding; no actual cafe reachability or all-home teapot placement registration.",
+    "No public/cloud game deployment, paid configuration, original-game changes or real data.",
+    "Docs-only closeout has local66task/10tracker/40pinned/diff checks; exact-head418/146CI applies to candidate/merge, not later bookkeeping commits."
+  ],
+  "artifacts": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/cafe-transaction-2026-11-13",
+  "terraReview": "No fresh review; client/art bytes exactly match reviewed109. Root inspected fresh desktop/phone regression captures. Terra reviews new playable UI in111."
+}

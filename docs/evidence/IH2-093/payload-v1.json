@@ -1,0 +1,15 @@
+{
+  "classification": "Combined local review, unaccepted",
+  "files": 204,
+  "all198ArtByteIdentical": true,
+  "accepted090": {
+    "raw": 3893520,
+    "perFileGzip": 631892
+  },
+  "candidate": {
+    "raw": 3905894,
+    "perFileGzip": 635380
+  },
+  "deltaRaw": 12374,
+  "deltaPerFileGzip": 3488
+}

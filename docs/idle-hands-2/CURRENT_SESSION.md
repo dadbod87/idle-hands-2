@@ -1,3 +1,7 @@
+# Mandatory usage policy; latest source4f13238
+
+Read ACTIONS_USAGE_POLICY.md before any hosted trigger. The latest coherent source plus durable policy is `4f13238` on `docs/actions-usage-guardrails` in idle-hands-2-actions-policy. Resume104 from that source after checking remote, not from this canonical accepted090 runtime. Rules are linked in AGENTS/build guide/README/release checklist. Billing remains unconfirmed; no spending, workflow, PR, hosted-run, merge or preview change in this follow-up. Documentation checks58tasks/10tracker/40pinned/whitespace passed.
+
 # Canonical continuation:103 backed up;104 queued
 
 Final103 documentation source is `82b7272dc63c3a603ff47de522865266bc9afe8b` on `docs/cafe-authority-contract` in the isolated idle-hands-2-cafe-authority checkout, inheriting coherent102 code `2d3fa8f9b84ca1de8dc4585a97594ed415fe5cd1`. This canonical branch copies documentation only; its runtime remains accepted090. Future104 must begin from the103 source branch, not this canonical old runtime.

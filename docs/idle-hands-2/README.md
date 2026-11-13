@@ -18,6 +18,8 @@ The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/de
 - [Deep resource, growing, equipment, home and animation plan](DEEP_SYSTEMS_PLAN.md)
 - [Living-town quests, skills and restoration design](LIVING_TOWN_SYSTEMS.md)
 
+- [Mandatory Actions usage and release rules](ACTIONS_USAGE_POLICY.md): read before PR updates, hosted tests or merges; preserves the billing hold and exact-head gates.
+
 ## Chosen direction
 
 - [Engine comparison and decision](ENGINE_DECISION.md): **Phaser 4 + TypeScript + Vite + DOM UI**, selected after current source/documentation review; validate desktop/phone in IH2-010. RPGJS offers more built-in RPG systems and remains the fallback if the pilot changes the tradeoff. The Phaser pilot has now been tested locally; RPGJS has not been runtime-benchmarked. See CURRENT_SESSION and pilot evidence.

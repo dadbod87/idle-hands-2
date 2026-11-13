@@ -1,3 +1,7 @@
+# Latest100 art hold
+
+Local325system/110browser, native pixel/phone/TerraV2 and frozen8 checks pass. Raw art packaging was verified by a final2-casefocused rerun. All204accepted client/198art bytes, towns/keys/checksums/54studies and held098/099reviews remain unchanged. Source acceptance still requires exact-final-head normal GitHub jobs/rawuploadedartifact and source/preview/preservation gates; old billing refusal is not bypassed. [Record](evidence/IH2-100/local-checks.json).
+
 # Latest independent099design hold
 
 329system/110browser/model/art/native/TerraV2/frozen13checks pass on accepted090runtime. All204game/198art bytes and accepted data/API/keys/54studies,098heldreview and caféV1/V2origins preserved. No café/food/room/state/recipe is implemented. Source acceptance remains held behind normal exact-head GitHub/rawartifact/native/preservation gates; old account billing refusal is not bypassed. Existing098UIcandidate91a3eb1and its338/132suite remain separate, to be retained in a future consolidation. [Record](evidence/IH2-099/local-checks.json).

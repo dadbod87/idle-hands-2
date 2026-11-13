@@ -1,0 +1,17 @@
+# Original Aster serving study — source acceptance still held
+
+Worktree `../idle-hands-2-serving-study`, branch `feat/serving-gesture-study`, independent from pending runtime candidates. It starts from canonical documentation a1cb383 with accepted090 runtime/main f0a294af86d4b637f060c8f40a6d7f061d9cad15. No game/café integration or public release. Final backup commit is recorded in the canonical continuation after push.
+
+Twenty cells cover Aster/four facings/ready-reach-contact-recovery-idle at64×80, foot32,72 and0.9 display. Exact accepted idle and same-facing foot pixels, zero out-of-frame alpha, exact east/west vector reflection and source/output reproducibility pass. Terra’s profile refinement added an original thin ink sleeve outline; V2 sampled anatomy/phone review finds it clearer with no new blocker. Three other rigs remain unfinished. [Report](../../evidence/IH2-100/REPORT.md), [contract](../design/SERVING_GESTURE_STUDY.md).
+
+Frozen eight-file local art review: http://serving-review.localhost:49590/ , Python session54188. Mutable draft49588/session48494 is not linked as the final review. Eight actual HTTP body hashes match;117,952 raw/10,459 summed gzip bytes, zero game payload delta. Root inspected five viewport/text shapes, all four directions at game size/2×, contact sheet and declared grass/wood composites. Native Enter Replay/Space still inspection pass; standard selectOption exercises facing choices. Native OS select-popup keyboard behavior is not certified by this headless Mac run. Optional video encoder is unavailable; no dependency was installed. Real-clock displayed phases and screenshots are retained.
+
+Final repository and browser counts are in local-checks.json; preserve all accepted090322/108cases plus this branch’s additional cases when consolidating. Held098338/132 and099329/110 remain separate source inputs, not replaced by these counts. Keep disjoint browser shards and the ordered shared-town/starter-homes/trail/first-visit family.
+
+Accepted4175/API4186 and persistent Tourlocalhost4176/API4188 remain matched090/API5. Protected/Tour13table fields, signing-key hashes/mode0600, six migration checksums each and54acceptedstudy responses are preserved. Actual204responses from each accepted client,208from each098heldreview and13from eachcaféV1/V2remain exact. No private keys or real accounts were copied or exposed. Study has no game/API/save/command access.
+
+Normal exact-final-head GitHub jobs/raw uploaded artifact/source/accepted-preview gates remain unmet after old PR39run43365543304billing/spending-limit refusal before tests. No redundant workflow/PR, billing/runner bypass, main merge or accepted-client update. Latest fetch still mainf0a294a with onlyPR39/8abc1b4open. Owner resolution question is still unanswered.
+
+A bounded cold-read crafting/menu review of the held fictional town is separate from this animation task. Record findings without spending/granting stock or modifying protected towns. Pick the next useful bounded task from those findings; otherwise extend the remaining three rigs only after this first-rig local review, explicitly retaining the unmet source gate. Do not finish a large art library before playable validation.
+
+Continue to about10%weekly reserve or15:00UTC November13(7amPacific), whichever first. Last usage51%used/49%remaining, three reset credits untouched. Physical devices, Safari, full accessibility and actual Phaser serving integration remain unverified.

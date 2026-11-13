@@ -1430,7 +1430,7 @@
     {
       "id": "IH2-100",
       "title": "Original serving gesture and clear character action study",
-      "status": "queued",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1444,7 +1444,42 @@
         "No actual caf\u00e9/food/item/reward/action/authority/room/command/server/protocol/schema/dependency/public/expense or original-game change. No accepted-preview replacement or billing/runner workaround. No bulk all-rig production before first-rig review."
       ],
       "evidence": [
-        "docs/evidence/IH2-100/PLAN.md"
+        "docs/evidence/IH2-100/PLAN.md",
+        "docs/evidence/IH2-100/REPORT.md",
+        "docs/evidence/IH2-100/local-checks.json",
+        "docs/evidence/IH2-100/artifact-proof.json",
+        "docs/evidence/IH2-100/runtime-preserved.json",
+        "docs/evidence/IH2-100/native-proof.json",
+        "docs/evidence/IH2-100/native-timing.json",
+        "docs/evidence/IH2-100/held-artifacts-preserved.json",
+        "docs/evidence/IH2-100/terra-v1.md",
+        "docs/evidence/IH2-100/terra-v2.md",
+        "docs/evidence/IH2-100/source-hold.json"
+      ],
+      "owner_branch": "feat/serving-gesture-study",
+      "blocked_reason": "Local325system/110browser/2artifact-packfocused/native/TerraV2/8filefrozen/preservation pass. Required normal exact-final-head GitHub/source/rawartifact gates remain unmet after prior PR39billing refusal; no game integration, merge or accepted-preview update."
+    },
+    {
+      "id": "IH2-101",
+      "title": "Clear available-versus-owned Bag quantities",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Remove the cold-read ambiguity between zero furniture copies available to place and an item already owned and placed, without altering inventory rules or adding reading.",
+      "acceptance": [
+        "Use isolated current held098source91a3eb1 as an explicitly unaccepted locally reviewed input; preserve its stable toolbar, corrected garden, task-first crafting, focus/retry fixes and all branch-specific checks. No accepted-preview promotion.",
+        "Put a concise context-specific count key before the visible Bag grid, keep owned/placed details and make accessible count names precise for furniture versus carried/kept pockets. Unknown remote allocation must stay unconfirmed, never falsely zero. Reduce redundant bottom explanations instead of adding a large tutorial.",
+        "Native desktop/320/360/short200 pocket switching, complete words, focus, actual count/detail and no-holdings-change evidence with bounded Terra recheck. Existing full repository checks and normal exact-final-head GitHub/rawartifact/source/preview/preservation gates retained.",
+        "All202held runtime art, economy/calculation/server/protocol/save data/keys/checksums and accepted090clients/API/54studies plus held098/099/100artifacts preserved."
+      ],
+      "exclusions": [
+        "No ownership/availability calculation, item grant/placement/crafting cost/timer/economy/state/server/schema/dependency/public/expense or original-game change. No billing/runner bypass or claim that held inputs are accepted."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-101/PLAN.md",
+        "docs/evidence/IH2-101/baseline-terra.md",
+        "docs/evidence/IH2-101/baseline-phone-bag.png"
       ]
     }
   ]

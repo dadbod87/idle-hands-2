@@ -1,0 +1,16 @@
+{
+  "classification": "LOCAL_CANDIDATE_ONLY",
+  "acceptedMain": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
+  "candidateBranch": "feat/serving-gesture-study",
+  "sourceCheckpoint": "b3bee6188864679ea4c2ebb196068354bd8a7edf",
+  "normalChecksComplete": false,
+  "lastRefusedRun": 43365543304,
+  "lastRefusedCandidate": "8abc1b46325b1220271a550951acc685b667aec9",
+  "lastRefusal": "GitHub account billing/spending-limit refusal before tests; owner resolution has not been received.",
+  "newRunOrPrCreated": false,
+  "merged": false,
+  "acceptedPreviewUpdated": false,
+  "publicDeployment": false,
+  "requiredNextGate": "All four required exact-final-head GitHub jobs, disjoint browser coverage, raw uploaded artifact inspection, source acceptance and any actual preview/preservation checks.",
+  "sourcePushed": true
+}

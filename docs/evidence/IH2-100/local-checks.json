@@ -1,0 +1,56 @@
+{
+  "classification": "LOCAL_CANDIDATE_NOT_SOURCE_ACCEPTED",
+  "system": {
+    "passed": 325,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 55887.162417,
+    "postgresRequired": true
+  },
+  "browser": {
+    "passed": 110,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "reportErrors": 0,
+    "durationMs": 863270.129,
+    "exactFullReportRetained": true
+  },
+  "finalArtifactPacking": {
+    "focusedBrowserPassed": 2,
+    "rawStudyFiles": 8,
+    "exactBytesMatch": true,
+    "note": "After full110pass, only artifact-copy plumbing was added to afterAll; both focused browser cases reran successfully, with no assertion/runtime changes."
+  },
+  "shardDiscovery": {
+    "counts": [
+      58,
+      52
+    ],
+    "disjoint": true,
+    "union": 110,
+    "orderedFamilyOnlyOn2": true
+  },
+  "strictBuild": true,
+  "design": true,
+  "planTasks": 55,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "whitespace": true,
+  "native": {
+    "shapes": 5,
+    "frozenHttpFiles": 8,
+    "all20CellRaster": true,
+    "zeroOutsideAlpha": true,
+    "sameFacingFootRgbaExact": true,
+    "acceptedIdleSourceExact": true,
+    "exactVectorMirror": true,
+    "declaredGroundComposites": 8
+  },
+  "normalGithubGate": false,
+  "publicDeployment": false,
+  "preservedClientFiles": 204,
+  "preservedArtFiles": 198,
+  "gamePayloadDeltaBytes": 0,
+  "externalEvidenceRoot": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/serving-study-2026-11-13"
+}

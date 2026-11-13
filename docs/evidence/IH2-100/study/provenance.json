@@ -1,0 +1,17 @@
+{
+  "license": "project-original",
+  "authoring": "Original project plate/arm trajectories, guarded reuse of existing project Aster body/head/feet. No external/downloaded/paid media. Safe original authoring import; no public-writing generator is called.",
+  "originalRigSource": "tools/create-town-variety.py",
+  "originalRigSha256": "00ba74f1551f0bd55d7d630e6489c7bed4315236da0fb94047d9e175e45f6040",
+  "generator": "tools/create-serving-study.py",
+  "generatorSha256": "34ad9ec7baa4de46fa37c8cc30d354ba4c61aae69653ae2956d7043caaaf1ebd",
+  "files": {
+    "aster-serving.svg": "b6defc8f3c59c44dc32a8019f01e859e25855a0ff5ad7323f4e5b8bb4e11d456",
+    "catalog.json": "2d3882b5a023d746ce28edc7d73f35a7c741b1a06fa5a0a2b985f8008607afcb",
+    "contact-sheet.svg": "47d7a966b594bfd6eabf4d07ae8ceb08de897373d74aaa0638b1c87946408770",
+    "index.html": "95596dcc08688e871c5559685906557a60f4f40092d8092324f241abccc28c1a",
+    "serving-plate.svg": "7e4db9f16ea9c5fd9c8aace9e14d1c98531e759a592c98cf5d2cdfbd36f60ee5",
+    "study.js": "47e61dd4b801ed5bb48277ec2eb314e85234cd3b0ff7ab4db46ed5eea3221c7e",
+    "style.css": "2ddb405e0a724cfe734f82bf4f0094ec63d74ed4e49df96ff5583d1f10f2270d"
+  }
+}

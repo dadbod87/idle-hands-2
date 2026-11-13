@@ -1,3 +1,5 @@
+105staged café save protection locally verified:372system/139browser+3final native cases,0skips/flakes/errors; quota/migration/stale/two-window/confirmation protection and exact208game identity. No live wiring or accepted-preview change; normal source gate held. Next106original serving rigs/teapot kit. [Report](evidence/IH2-105/REPORT.md).
+
 November13 —104pure café foundation:359system/136browser,0skips/flakes/errors; strict migration/conservation/reward/cooldown/fixedopening and two-sided provenance verified. No live wiring or accepted-preview change; normal source gate remains held. Next105staged local persistence. [Report](evidence/IH2-104/REPORT.md).
 
 2026-11-13 —103records Café persistence/authority decisions and next pure-ledger task. No implementation or data/service change; code remains102348/136verified candidate with required normal source gate held.

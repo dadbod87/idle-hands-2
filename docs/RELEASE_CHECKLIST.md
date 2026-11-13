@@ -2,6 +2,10 @@
 
 Read [ACTIONS_USAGE_POLICY](idle-hands-2/ACTIONS_USAGE_POLICY.md). Complete the candidate locally, inspect active runs and the recorded allowance/budget hold, and avoid redundant hosted triggers. Confirm the exact final candidate passes all required checks before merging; no billing or documentation exception bypasses this gate. Record run IDs, retries, estimated summed job-minutes and the next session's hold status.
 
+#105save protection local hold
+
+372system/139browser+3final native cases,0skips/flakes/errors; disjoint70+69,208game bytes unchanged. Quota errors are injected in synthetic ports/ephemeral browser fixtures; no live writer integration or server UUID/SQL proof. Preserve actual lifetime-lock/cache/command-family/placement requirements and normal exact-head hosted/source gates. [Report](evidence/IH2-105/REPORT.md).
+
 #104pure café local hold
 
 359system/136browser, disjoint69+67,0skips/flakes/errors, strict build/design/plan/pinned and preservation pass. Candidate stays outside live writer/root/protocol/props/UI/server registration. No durable café/UUID/SQL/home-allocation proof is claimed. Exact-final-head hosted/source/rawartifact/preview gates remain required; billing refusal is not bypassed. [Report](evidence/IH2-104/REPORT.md).

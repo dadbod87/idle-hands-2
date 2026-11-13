@@ -220,3 +220,10 @@ Owner finds combined Bag & journal cluttered and wants an eventual little RPG/MM
 ## November13 — local café candidate while Actions allowance is held
 
 Owner explicitly authorized continued local development before arranging GitHub billing.104implements a strict pure café ledger/migration candidate outside live registration, sharing unchanged current invariants rather than duplicating them. Actual candidate/root/public rules are locally tested; they are not SQL, durable-save, identity or live-feature authority. Dated099source attribution is now explicitly pinned separately from104current refactors, with actual historical-tree replay and unchanged numerical reports. No old13study output is rewritten. Next105proves a narrow staged local save adapter before any coherent live integration; all normal source gates, shared/home/cache prerequisites and spending boundaries remain.
+
+
+## November13 — staged save protection remains isolated
+
+105uses the existing current/fallback keys and exact exclusive writer-lock name. Pending retries retain original expected revision and never rebase; native write success precedes confirmation. Migration must persist before readiness and never falls back around a corrupt current key. No missing-save grant or new project key. Test-only native browser proof uses fresh ephemeral contexts and intercepted fixture documents with pre-write quota injection, not a real profile or hosted service. Existing tab-lifetime ownership must be shared during integration; the adapter must not nest locks. Native API success is not durable server UUID replay or eviction/power-loss protection.
+
+Next independent106work completes remaining original serving rigs/teapot art while source acceptance is held. Live café integration must coordinate the complete root/garden command family, writer/bootstrap/cache/BFCache, protocol/forward SQL and all home allocations before exposing one complete counter/reward slice.

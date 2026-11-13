@@ -1,0 +1,50 @@
+{
+  "classification": "LOCAL_STAGED_SAVE_CANDIDATE_NOT_SOURCE_ACCEPTED",
+  "focusedUnit": {
+    "passed": 13,
+    "failed": 0,
+    "skipped": 0
+  },
+  "focusedBrowser": {
+    "passed": 3,
+    "failed": 0,
+    "fixture": "fresh intercepted test documents, native WebLocks/storage; injected quota errors before native writes",
+    "finalSourceRecheckPassed": 3,
+    "finalSourceDurationMs": 7157.6669999999995,
+    "compiledFixtureAndTenSourceHashesVerified": true
+  },
+  "system": {
+    "passed": 372,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 65134.797458
+  },
+  "browser": {
+    "passed": 139,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "reportErrors": 0,
+    "durationMs": 1017258.966,
+    "scope": "Full regression on byte-identical game artifact; final candidate retry-availability guard and fixture artifact-copy plumbing additionally verified by final focused native run."
+  },
+  "build": true,
+  "design": true,
+  "sourceAccepted": false,
+  "normalGithubGate": false,
+  "publicDeployment": false,
+  "historicalRawStudyFilesPackaged": 21,
+  "discovery": {
+    "shards": [
+      70,
+      69
+    ],
+    "disjoint": true,
+    "union": 139,
+    "orderedFamilyOnlyOn2": true
+  },
+  "trackerTasks": 60,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "protectedPracticeAndTourAnd54Studies": true
+}

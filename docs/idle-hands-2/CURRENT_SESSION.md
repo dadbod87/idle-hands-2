@@ -1,8 +1,22 @@
-# Canonical continuation:104backed up;105queued
+# Canonical continuation:105backed up;106queued
 
-Latest actual source is `ee9537ebf3c30764e8cce61ff5f60a2b28cb9f17` on `feat/cafe-ledger-candidate`, checkout idle-hands-2-cafe-ledger. Use that code for105. This canonical bookkeeping branch copies documentation/evidence only: runtime remains accepted090, and its six old design-model fingerprints are deliberately retained to match that old runtime. The six refreshed current-source models live on the104source branch with exact numerical equivalence proof.
+Latest actual source is `4025174becedba6dec0c2bd16ea6accb708f6596` on `feat/cafe-save-protection`, checkout idle-hands-2-cafe-save. Resume106from that actual code after fetching remote; this canonical branch copies documentation/evidence only and retains accepted090runtime and its old matching analytical fingerprints. Read ACTIONS_USAGE_POLICY before any hosted trigger.
 
-Owner authorized local continuation before arranging GitHub allowance. Actual104local359system/136browser,0skips/flakes/errors; build/design/59tasks/10tracker/40pinned and preservation pass. No live café registration, accepted-preview/main/public/billing change. Normal hosted/source acceptance remains held. Read ACTIONS_USAGE_POLICY at startup; do not trigger redundant PRs/runs or infer a paid budget. Next105quota-safe staged save candidate.
+Owner requested save-failure protection locally with no Actions minutes. Actual372system/139browser+3final native cases,0skips/flakes/errors; build/design/60tasks/10tracker/40pinned/diff and preservation pass. All208game/202art bytes match104. No live writer/root/protocol/server/props/UI/main/accepted-preview/billing change. Normal exact-head hosted/source acceptance remains held. Next independent106original serving rigs/teapot art; subsequent coherent integration retains writer/cache/schema/command-family/UUID/SQL/home-allocation gates.
+
+At closeout Codex weekly55%used/45%remaining;3resetcredits available and untouched. No account spend/credit action. No104/105source acceptance inferred from local tests or private backups.
+
+#105save protection locally verified;106art next
+
+Current isolated checkout idle-hands-2-cafe-save, branch feat/cafe-save-protection, baseee9537ebf3c30764e8cce61ff5f60a2b28cb9f17. Final backup SHA is recorded in canonical continuation after push. Owner explicitly requested continued local development with no Actions minutes. Read ACTIONS_USAGE_POLICY and105REPORT; normal hosted/source acceptance remains held. Use this actual source for next work, not canonical accepted090runtime.
+
+Actual local372system/139browser+3final native cases, zero skips/flakes/unexpected/reporterrors. Final unit65,134.797458ms; full browser1,017,258.966ms. Discovery70+69disjoint/orderedfamily2; build/design/60tasks/10tracker/40pinned/whitespace pass. All208game files/202art match104byte-for-byte, zero payload delta. Original21raw studyfiles packaged. Final native fixture code and ten source hashes recorded; pure/new unit13cases and native3cover quota/migration/text/stale/two-window/lock/confirmation/cancellation. Quota faults were injected before native writes in ephemeral intercepted test documents, not real quota filling or an actual game UI.
+
+Adapter is outside live entrypoints. It uses existing keys/lock; reload under exclusive ownership, complete native write before confirmation, raw-preserving migration, original-revision retry with no rebase/duplicate spend, guarded cancellation and detached last-confirmed state. Native API success is not server UUID replay, power-loss or eviction protection. Real browser capability acquisition must be guarded at later UI bootstrap. The live writer retains its lifetime lease; integration must share that coordinator, never acquire a nested lock.
+
+Live writer/root/domain/game/server/protocol/props/assets/workflow and six migrations remain unchanged. No actual user-profile storage, protected data, signing keys/services, accepted090previews4175/4176, mainf0a294a or54accepted study responses changed. Independent read-only review found no concrete defect; later retry-availability refinement has final unit/native checks. Native browser recheck plumbing changed only test artifacts; actual game artifact stayed exact.
+
+Next independent106completes original serving rigs/teapot art in a separate gallery. Subsequent coherent café integration must coordinate all root/garden/ordinary command families, old cached writers/storage/BFCache, lifetime writer/bootstrap, server UUID/atomic SQL/forward constraints/protocol and rental/starter/expanded-home allocations before exposing the counter/receipt/physical reward. No new PR/dispatch/hosted run/merge/public/cloud/billing change.
 
 #104 pure café candidate locally verified;105next
 

@@ -1,0 +1,22 @@
+{
+  "classification": "ISOLATED_NATIVE_STORAGE_AND_LOCKS_NOT_GAME_UI",
+  "moduleSha256": "b08d246cf7e755093ef796cbd910e04003d14be2fe2a549e787535392d09654c",
+  "sources": {
+    "src/persistence/cafe-save-candidate.ts": "97fe8f3ec75f485966a985c7bc863f18a5ff025114b5152bb0d3ba045ad3d89b",
+    "src/game/cafe-candidate.ts": "c715e5fec457a154a0b0aa618cdaeca9ffc1916b91892304670d8cd5d1a2477c",
+    "src/game/workshop.ts": "0f1ab6d6f46ba1ece0116abb9d9b3ed06d516381a751b196f18c8b9b215f3f01",
+    "src/game/garden.ts": "0fe25dd282848c93d09e659ae37a8540d6bb3b8a56c9448dba0710fca53bf9ba",
+    "src/game/carpentry.ts": "f8556fba3a01ba5897c2be1100463b5bdc03c10ee2cf70c6f3045b7fa578b73f",
+    "src/game/commission.ts": "bc28936781b798010cde85415fa50907dbde70bea00214ba00a442088db24888",
+    "tests/helpers/cafe.ts": "83c87b690944d59e8019d220bb3cf16bc79591e9b3a2bbc421bb17f22d9f3246",
+    "tests/helpers/cafe-save-browser-entry.ts": "18d40a82aec30c2183955dfc8d922ae82f00042fe87cdbb9c8ed112e963f4da0",
+    "tests/cafe-save.spec.ts": "eead0a044067013ca0fc52a7fe35512fe00033341fae0757086c45f9ebff07ba",
+    "package-lock.json": "8f7dc3240bd0c6a16108ceac9f12d549023c1f7da4b85fbb1af8f9940da342b7"
+  },
+  "interceptedRoutes": [
+    "/__cafe_save_fixture",
+    "/__cafe_save_module.js"
+  ],
+  "quota": "Injected error before native setItem; not an actual quota fill",
+  "profile": "Fresh ephemeral Playwright context; no user/accepted profile"
+}

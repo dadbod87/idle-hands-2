@@ -1,0 +1,25 @@
+{
+  "referenceCommit": "ee9537ebf3c30764e8cce61ff5f60a2b28cb9f17",
+  "unchangedPaths": [
+    "src/ui/workshop.ts",
+    "src/game/workshop.ts",
+    "src/game/garden.ts",
+    "src/game/carpentry.ts",
+    "src/game/commission.ts",
+    "src/game/cafe-candidate.ts",
+    "src/main.ts",
+    "server/http.ts",
+    "server/store.ts",
+    ".github/workflows/sequel-ci.yml"
+  ],
+  "checks": "Exact byte identity, not only matching names. Six migration files unchanged by git diff; no entrypoint imports new adapter.",
+  "liveRegistration": false,
+  "unchangedMigrationFiles": {
+    "supabase/migrations/20261110150647_durable_town.sql": "b3e6bed2922d60114aca88445bd468803349c014c9ee5729be35cc5c6d3bd38c",
+    "supabase/migrations/20261110225711_starter_homes_maintenance.sql": "c296adf6d4ff6368b953917d6393dabe6cd1e3d9a80fd42d22cf0f82b5cde8f6",
+    "supabase/migrations/20261110234756_timed_bridge_trail.sql": "0a5ff151d997f8aee0e3f1b1f8303c3b69c484957ace1e008b2e2eb5d0a19098",
+    "supabase/migrations/20261111192445_garden_welcome.sql": "81ba6fa4477fb620e48cdafb36a77280d7f62b1cf12c49d03fa18f54fe2186e1",
+    "supabase/migrations/20261111233505_pine_noticeboard.sql": "27e4b0478ba667a5aebf8cf49d1feeb50b292a875e4907d8baddd5de438e4b45",
+    "supabase/migrations/20261112124000_home_workroom.sql": "f9517e148d064961aeccf2ac09d26027e482b5f376df224c365e8b9d9294880d"
+  }
+}

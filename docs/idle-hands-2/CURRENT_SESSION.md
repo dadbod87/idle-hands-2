@@ -1,3 +1,11 @@
+# Active095: preserve chosen town controls
+
+Isolated idle-hands-2-town-focus/feat/town-response-focus starts at held094738e3c6. [Plan](../evidence/IH2-095/PLAN.md). Root native intercepted held-reply proof shows upgrade result steals Plot furniture position focus. Use stable plot-scoped semantic keys, same panel/original owner predicate across command/retry/feedback/repaint, preserve deliberately chosen control/disclosure/selection/scroll and persistent header Close. Removed/disabled targets go to non-action status. Omit Enter your house only when already inside it. No command ID/receipt/rules/server/art changes; retain all119browser cases and every old assertion/timeout.
+
+094local332system/119browser/Terra/native/artifact/preservation pass at738e3c6; GitHub billing still blocks source/actual acceptance. Accepted090main,4175andlocalhost4176/APIs/data/keys/studies unchanged. Review-only49565andhousing-review.localhost49567keep their frozen clients and dedicated ih2_menu_review090API5on49564, new ephemeralreviewkey after origin extension; no accepted key/session changes.45%weeklyused/55%remaining, no resets; continue near10%reserve or7amNov13Pacific latest.
+
+## Previous checkpoint
+
 # Housing cards locally verified; focus fix next
 
 094in idle-hands-2-housing-ui/feat/clear-housing-purchases passes332system/zeroDBskips56.419s and119browser885155.956ms/zero skips/flakes/unexpected; disjoint61+58family2. Build/design/49taskplan10/pinned40/diff pass. Frozen204files all match,198art unchanged,+1635raw/+515gzip over093. Root actual owner/guest360/320/844short200 and Terra bounded sample pass; all progress kept. [Report](../evidence/IH2-094/REPORT.md). Native root UI-only held-reply probe proves inherited focusP2;095queued before any combined release, with Terra-reviewed semantic/owner/panel/retry strategy. [Plan](../evidence/IH2-095/PLAN.md).

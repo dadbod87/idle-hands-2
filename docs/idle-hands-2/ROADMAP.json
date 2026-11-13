@@ -1277,7 +1277,7 @@
     {
       "id": "IH2-095",
       "title": "Respect chosen town controls during delayed replies",
-      "status": "queued",
+      "status": "in_progress",
       "owner_branch": "feat/town-response-focus",
       "depends_on": [
         "IH2-090"

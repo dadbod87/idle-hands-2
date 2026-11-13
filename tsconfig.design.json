@@ -73,7 +73,13 @@
     "tools/neighborhood-layout.ts",
     "tools/create-neighborhood-study.ts",
     "tests/neighborhood-layout.test.ts",
-    "tests/neighborhood-study.spec.ts"
+    "tests/neighborhood-study.spec.ts",
+    "src/game/crafting-view.ts",
+    "src/game/places-view.ts",
+    "src/ui/places.ts",
+    "tests/crafting-view.test.ts",
+    "tests/places-view.test.ts",
+    "tests/crafting-clarity.spec.ts"
   ],
   "compilerOptions": {
     "types": [

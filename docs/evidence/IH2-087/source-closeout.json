@@ -1,0 +1,204 @@
+{
+  "classification": "Accepted first-city design/source and separate interactive blueprint; no runtime neighborhood integration",
+  "task": "IH2-087",
+  "pr": "https://github.com/dadbod87/idle-hands-2/pull/35",
+  "candidate": "c789b69add543f1793ae21d78cc1ca07be019e52",
+  "merge": "38ef23ee880fa50e32ed444f1b41fb009c8be70a",
+  "matchingTree": "69607ea236ed2e4e1c740d9bdb71b63aa9a0d1e0",
+  "cleanMainEqualsOriginBeforeCloseout": true,
+  "ciRun": 43323897322,
+  "ciJobs": [
+    {
+      "databaseId": 131551507850,
+      "name": "browser-shard (2/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T22:52:55Z",
+      "completedAt": "2026-11-12T23:04:53Z"
+    },
+    {
+      "databaseId": 131551508248,
+      "name": "browser-shard (1/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T22:52:55Z",
+      "completedAt": "2026-11-12T23:01:20Z"
+    },
+    {
+      "databaseId": 131551508256,
+      "name": "domain-build-plan",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T22:52:56Z",
+      "completedAt": "2026-11-12T22:55:07Z"
+    },
+    {
+      "databaseId": 131557540074,
+      "name": "browser-playtest",
+      "conclusion": "success",
+      "startedAt": "2026-11-12T23:04:56Z",
+      "completedAt": "2026-11-12T23:04:59Z"
+    }
+  ],
+  "checks": {
+    "domain": 296,
+    "skipped": 0,
+    "localFinalDomainDurationMs": 51993.840041,
+    "ciDomainDurationMs": 87436.394546,
+    "localBrowser": 100,
+    "localBrowserDuration": "11.5 minutes on initial candidate before pan-hint position refinement",
+    "finalFocusedBrowser": "1 case,6.0 seconds",
+    "finalCIBrowser": 100,
+    "disjointShards": [
+      50,
+      50
+    ],
+    "shardDurations": [
+      "7.3 minutes",
+      "10.8 minutes"
+    ],
+    "workersPerRunner": 1,
+    "runnerDeadlineMinutes": 20,
+    "strictBuildDesignPlan10Pinned40Diff": true
+  },
+  "candidateDesign": {
+    "homesPerBlock": 24,
+    "streets": 4,
+    "publicRoutesProvenClear": 24,
+    "addressUsesBigintStrings": true,
+    "additionalBlocksPreserveAddresses": true,
+    "unobstructedRouteLimitSeconds": 20,
+    "routeEstimateIsNotActualPlaytestTiming": true,
+    "reusedOriginalArtFiles": 8,
+    "newRuntimeAssets": 0,
+    "gameFilesUnchanged": 191
+  },
+  "artifactReview": {
+    "studyFiles": 10,
+    "allCIStudyBytesMatchReviewedSource": true,
+    "selectedUploadedImages": [
+      {
+        "file": "city-plan-desktop-overview.png",
+        "sha256": "ef3712674ac50402eeb29b186e1e5c48ad8a91af2ec56a49116368c36bb54ea6",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "city-plan-phone-address24.png",
+        "sha256": "4951fe2a418d678eac2031eb9fd32931f2be4aa2e98392026a5fa070efd671f8",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "city-plan-phone-overview.png",
+        "sha256": "77eb893b9552671e054f4f921f2f32061d2de8a817d9cbd5cb7e8e6b7d3ba1d8",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "city-plan-narrow-text200.png",
+        "sha256": "e25db150c45e3981a9aea8f9c4d095f90927e538f6aeb23727f87c27222d72e3",
+        "actualUploadedCIImageReviewed": true
+      },
+      {
+        "file": "city-plan-short-overview.png",
+        "sha256": "d18515fbaf67d11e482e03b5f53185c26e62d76952cdb2a6ddb1087edbdb0239",
+        "actualUploadedCIImageReviewed": true
+      }
+    ],
+    "populatedRestartProofReviewed": true
+  },
+  "actualPreview": {
+    "studyUrl": "http://127.0.0.1:49552/",
+    "studyPid": 93615,
+    "studySession": 92399,
+    "outDir": "../idle-hands-2-artifacts/city-plan-2026-11-12/ci-final/browser/test-results/browser/ledgerwick-study",
+    "all10ResponsesEqualCI": true,
+    "nativeDesktopAndTouchPanKeyboardLocate": true,
+    "actualScreenshotsReviewed": 4,
+    "gameUrl": "http://127.0.0.1:4175/",
+    "all191GameResponsesUnchanged": true,
+    "gameStaticPid": 72060,
+    "gameStaticSession": 69523,
+    "apiPid": 83080,
+    "apiSession": 34638,
+    "apiPort": 4186,
+    "protocol": 4,
+    "apiRestarted": false
+  },
+  "protectedPractice": {
+    "classification": "Actual read-only protected fictional practice through087separate city blueprint; game/API unchanged",
+    "canonicalTables": 13,
+    "allColumnsAndRowsPreserved": true,
+    "residents": 1,
+    "plots": 0,
+    "signingKeyPreserved": true,
+    "sixMigrationChecksumsPreserved": true,
+    "noDatabaseWrites": true,
+    "apiRestarted": false
+  },
+  "historicalStudies": {
+    "noServerRestartOrMutation": true,
+    "sets": [
+      {
+        "port": 49529,
+        "dir": "gathering-study-2026-11-12/ci-final/browser/test-results/browser/gathering-study",
+        "count": 9,
+        "everyResponseByteEqualPriorAcceptedCI": true
+      },
+      {
+        "port": 49530,
+        "dir": "gathering-family-2026-11-12/ci-final/browser/test-results/browser/gathering-family",
+        "count": 21,
+        "everyResponseByteEqualPriorAcceptedCI": true
+      },
+      {
+        "port": 49534,
+        "dir": "collection-receipts-2026-11-12/ci-final/browser/test-results/browser/collection-receipt-study",
+        "count": 14,
+        "everyResponseByteEqualPriorAcceptedCI": true
+      },
+      {
+        "port": 49552,
+        "dir": "city-plan-2026-11-12/ci-final/browser/test-results/browser/ledgerwick-study",
+        "count": 10,
+        "everyResponseByteEqualPriorAcceptedCI": true
+      }
+    ],
+    "reverifiedAfter082StaticUpdate": true,
+    "reverifiedAfter083StaticUpdate": true,
+    "reverifiedAfter084StaticUpdate": true,
+    "reverifiedAfter087SeparateStudy": true,
+    "newStudyVerifiedByNativeActualArtifactDrill": true
+  },
+  "terra": {
+    "model": "gpt-6.1-terra",
+    "blueprint": "No clearP1/P2 in desktop/360/320root200/short; native home find/locate/zoom/pan/keyboard work; study/visitor boundary clear. Uniform prototype rows need later silhouette/landmark variation. In-map drag hint added and verified fully visible in four initial shapes.",
+    "accepted086CraftingAudit": "P2canonical item-name mismatch, P2equally weighted25Placesdestinations; empty bench disabled claim before recipe. Costs/time/readiness clear.089prioritizedbefore088.",
+    "limits": "Emulated touch, not physical device or runtime home authority; still study art not final city art."
+  },
+  "supersededRuns": [
+    {
+      "head": "95d459a",
+      "run": 43322815636,
+      "status": "cancelled for phone-first drag-hint refinement"
+    },
+    {
+      "head": "7997aeb",
+      "run": 43323810691,
+      "status": "superseded/cancelled when generated study output refreshed"
+    }
+  ],
+  "limitations": [
+    "Candidate only: no playable residential room/doors/addresses/ownership change.088implementation remains queued after089UI clarity.",
+    "Original two house silhouettes are prototype layout reuse;090distinct residential art/life remains queued.",
+    "No new game/backend/network/timer/economy/schema/migration/dependency change.",
+    "Native mouse/keyboard and browser touch emulation, not physical-phone/Safari/full accessibility or fun certification.",
+    "Existing regression synthetic/intercepted/elapsed fixtures retain disclosures; new study uses fictional addresses and no game API/storage or position/clock/state injection.",
+    "087remains accepted baseline while089draft is isolated in sibling idle-hands-2-crafting; do not overwrite draft."
+  ],
+  "prior086AutomaticMain": {
+    "run": 43319319967,
+    "conclusion": "success"
+  },
+  "usage": {
+    "weeklyUsedPercent": 38,
+    "remainingPercent": 62,
+    "noResetUsed": true,
+    "reservePercent": 10
+  }
+}

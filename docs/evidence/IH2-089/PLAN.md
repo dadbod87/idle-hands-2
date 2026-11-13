@@ -1,0 +1,5 @@
+# IH2-089 — clear crafting and calmer Places
+
+After accepted087blueprint and independent Terra086audit, align item names with existing authoritative RECIPES/PROPS; lead with exact1output/Bag pocket/material cost/real duration and truthful disabled reasons. Keep server/rules/costs/ownership/job clocks unchanged. Fresh empty bench has no disabled claim; active/ready work stays in a fixed card, after successful collection confirm at top and swap Openbag into the same action slot/focus. Optional rules/flavor/activity links behind details. Group all existing Places destinations once, with useful current goals and unchanged walk/ACK semantics; no passive reordering.
+
+Pure projections checked against actual domain eligibility and exact deadline/held output. Native desktop/phone/short/root200, held readiness/claim, missing/busy/remote and original regressions; TerraV1claimcompletionP2 corrected andV2phone verified. Required full local/exact-headCI/artifact/recovery/static-preview gates before acceptance, preserving13protected tables/key/API/checksums and all54accepted study files. No backend/protocol/migration/dependency/art/economy changes or cloud/real accounts.

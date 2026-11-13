@@ -1,0 +1,35 @@
+{
+  "classification": "Actual immutable finalCI10-file design study on49552; native pointer/keyboard and browser-native touch emulation, not physical device or runtime house authority.",
+  "all10StudyResponsesEqualCI": true,
+  "all191GameResponsesUnchanged": true,
+  "observations": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 1000
+      },
+      "nativeLocate": true,
+      "nativeMouseOrEmulatedTouchPan": true,
+      "nativeKeyboardSelection": true,
+      "candidateOnly": true,
+      "noStateOrClockInjection": true,
+      "api": [],
+      "errors": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 740
+      },
+      "nativeLocate": true,
+      "nativeMouseOrEmulatedTouchPan": true,
+      "nativeKeyboardSelection": true,
+      "candidateOnly": true,
+      "noStateOrClockInjection": true,
+      "api": [],
+      "errors": []
+    }
+  ]
+}

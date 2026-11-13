@@ -1,3 +1,4 @@
+import{revealPlace}from'./helpers/places.ts';
 import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {worlds} from '../src/game/world.ts';
@@ -104,7 +105,7 @@ test('named journeys: guide enters once, rental room is centered, current-stop r
  // tear down the newly opened garden's active controls.
  await page.getByRole('button',{name:'Walk to the beds',exact:true}).click();await page.waitForTimeout(150);
  await expect(page.getByRole('dialog')).toBeVisible();await page.locator('[data-garden-action=preview-plant]').click();await expect(page.locator('[data-garden-quote]')).toContainText('Cost: 1 seed');await page.locator('[data-garden-action=cancel-preview]').click();await close(page);
- await page.locator('#places').click();await expect(page.locator('[data-destination=garden-exit]')).toContainText('Walk to');await page.locator('[data-destination=garden-exit]').click();
+ await page.locator('#places').click();await expect((await revealPlace(page,'[data-destination=garden-exit]'))).toContainText('Walk to');await (await revealPlace(page,'[data-destination=garden-exit]')).click();
  await expect.poll(async()=>(await feet(page)).walking,{timeout:arrival}).toBe(false);await expect(page.locator('#feedback')).toContainText('Choose Enter');expect((await feet(page)).room).toBe('garden');
  await page.locator('#interact').click();await expect.poll(async()=>(await feet(page)).room).toBe('square');expect((await feet(page)).position).toEqual(worlds.garden.stops.find(s=>s.id==='garden-exit')!.arrival);
  await page.locator('#field-guide').click();await page.locator('#guide-workshop').click();await expect.poll(async()=>(await feet(page)).walking).toBe(true);
@@ -122,7 +123,7 @@ test('phone Places in overlapping ranges walks to the requested Inspect target b
  // No inventory/time/API grants, and actual walking must resolve the target.
  await page.addInitScript(()=>localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:24.6,y:12.6}})));
  await boot(page);const initial=await saved(page);expect((await feet(page)).nearby).toBe('trail-gate');
- await page.locator('#places').tap();await page.locator('[data-destination=bridge]').tap();
+ await page.locator('#places').tap();await (await revealPlace(page,'[data-destination=bridge]')).tap();
  await expect.poll(async()=>(await feet(page)).nearby,{timeout:arrival}).toBe('bridge');await expect.poll(async()=>(await feet(page)).walking).toBe(false);
  expect((await feet(page)).position).toEqual({x:24,y:13});await expect(page.locator('#feedback')).toHaveText('At Bridge committee. Choose Inspect.');
  await expect(page.locator('#interact')).toHaveAttribute('aria-label','Inspect Bridge committee');await page.screenshot({path:evidence+'/clarity-phone-places-overlap.png'});

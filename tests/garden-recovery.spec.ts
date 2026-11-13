@@ -1,3 +1,4 @@
+import{revealPlace}from'./helpers/places.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
@@ -22,7 +23,7 @@ test('pending garden save: lost committed planting is recovered once before a re
   await page.route('**/api/town/command',async route=>{const payload=route.request().postDataJSON();if(payload.kind==='garden'&&payload.gardenAction.action==='plant'){commands.push({id:payload.id,body:route.request().postData()!});if(!lost){lost=true;const response=await route.fetch();expect(response.ok()).toBe(true);await route.abort();return;}}await route.continue();});
   await page.locator('[data-garden-action=preview-plant]').click();await page.locator('[data-garden-action=plant]').click();await expect(page.locator('[data-garden-action=retry]')).toBeEnabled();
   await expect(page.locator('[data-garden-action=plant]')).toBeDisabled();await page.keyboard.press('Escape');
-  await page.locator('#places').click();await page.locator('[data-destination=garden-exit]').click();await expect(page.locator('#panel-title')).toHaveText('Confirm pending request');
+  await page.locator('#places').click();await (await revealPlace(page,'[data-destination=garden-exit]')).click();await expect(page.locator('#panel-title')).toHaveText('Confirm pending request');
   expect((await feet(page)).room).toBe('garden');expect((await feet(page)).position).toEqual(position);await page.screenshot({path:dir+'/clarity-phone-pending-route.png'});
   await page.getByRole('button',{name:'Retry the same request',exact:true}).click();await expect(page.getByRole('dialog')).not.toBeVisible();
   await expect.poll(async()=>(await saved(page)).garden.planted).toBe(1);expect(commands).toHaveLength(2);expect(commands[1]).toEqual(commands[0]);

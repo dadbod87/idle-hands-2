@@ -1,3 +1,4 @@
+import{revealPlace}from'./helpers/places.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
@@ -30,7 +31,7 @@ async function point(page:Page,x:number,y:number,touch=false){
 }
 async function walkTo(page:Page,id:string,touch=false){
  const places=page.getByRole('button',{name:'Places',exact:false});if(touch)await places.tap();else await places.click();
- const destination=page.locator(`[data-destination="${id}"]`);if(touch)await destination.tap();else await destination.click();
+ const destination=(await revealPlace(page,`[data-destination="${id}"]`));if(touch)await destination.tap();else await destination.click();
  await expect.poll(async()=>(await actor(page)).walking,{timeout:arrivalTimeout}).toBe(false);
  await expect.poll(async()=>(await actor(page)).nearby).toBe(id);
 }

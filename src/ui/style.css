@@ -23,3 +23,6 @@
 #feedback:focus-visible{outline:3px solid #b8653e;outline-offset:-3px}
 
 .sky-notes{margin-top:16px;border-top:1px solid var(--line);padding-top:8px}.sky-notes summary{min-height:44px;padding:12px 0;font-weight:bold;cursor:pointer}.sky-notes summary:focus-visible{outline:3px solid #b8653e;outline-offset:2px}
+
+/* Capture this ordering when Places opens; passive updates never reshuffle targets. */
+#panel-body .places-intro{font-size:.9rem;margin:0 0 12px}.places-primary{margin-bottom:14px}.places-group{border-top:1px solid var(--line);padding-top:4px;margin-top:8px}.places-group>summary{font-weight:bold;min-height:48px;padding:12px 0;cursor:pointer}.places-group>summary:focus-visible{outline:3px solid #b8653e;outline-offset:2px}.places-group>.destination{display:block;width:100%}

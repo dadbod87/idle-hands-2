@@ -1,5 +1,9 @@
 # Idle Hands 2 — current state
 
+IH2-089 candidate clarifies crafting output/cost/time and canonical names, keeps stable claim→Bag completion, and groups Places around useful stops.300system/zero skips and focused native/regression checks pass; final103/CI/preview gates pending. [Evidence](evidence/IH2-089/REPORT.md).
+
+IH2-087 accepted design/source: audited city capacity and home visiting, tested24-address expandable blocks and separate10-file blueprint. PR35/merge38ef23e, exactc789b69 CI43323897322 all four jobs SUCCESS;296system/100browser. All191game bytes/progress/API/studies unchanged.089craft/menu clarity next, then088physical doors and090art/life. [Proof](evidence/IH2-087/source-closeout.json). Candidate entries below historical.
+
 IH2-087 candidate audits city capacity/visits, records expandable24-home block geometry and separate interactive blueprint. Original191game files unchanged. Terra crafting/menu findings feed089before088runtime expansion. [Evidence](evidence/IH2-087/REPORT.md).
 
 IH2-086 accepted: rain anchors to the world during camera movement, with bounded wrapping and full resize coverage. PR34/merge`1426b2b`, exact`ef56506` CI43316779357 all four jobs SUCCESS;294system/zero skips and99browser. Actual191-file preview/native desktop+touch movement verified; progress/protected practice/API/studies preserved. [Evidence](evidence/IH2-086/source-closeout.json). Candidate notes below historical; current handoff authoritative.

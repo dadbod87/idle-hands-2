@@ -1,4 +1,5 @@
 import {collectionGrant,type CollectionGrant} from '../game/collection-receipt.ts';
+import {recipeView,benchWork,craftDuration} from '../game/crafting-view.ts';
 import {BagView} from './bag.ts';
 import {ActivityNotebook} from './activity-notebook.ts';
 import {CollectionReceiptView} from './collection-receipt.ts';
@@ -7,11 +8,11 @@ import type {CommissionAction} from '../game/commission.ts';
 import type {CarpentryAction} from '../game/carpentry.ts';
 import type {GardenAction} from '../game/garden.ts';
 import {SURVEY_IDS,SURVEYS,SURVEY_CHOICES,CHOICE_LABELS,type SurveyId} from '../game/fieldwork.ts';
-import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, skillLevel } from '../game/workshop.ts';
+import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PROPS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, skillLevel } from '../game/workshop.ts';
 import './workshop.css';
 export const WORKSHOP_SAVE_KEY='ih2:workshop:v2';
 const SAVE_KEY=WORKSHOP_SAVE_KEY,LEGACY_SAVE_KEY='ih2:workshop:v1';
-const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',planter:'Orientation planter',stool:'Break-time stool',rug:'Welcome rug',lamp:'Optimism lamp',crate:'Useful crate',shelf:'Almost level shelf',easel:'Garden study easel',letterbox:'Unreasonably Official Letterbox'};
+const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',...Object.fromEntries(PROP_IDS.map(id=>[id,PROPS[id].name]))};
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Record<string,unknown>;playerId?:string;collection?:CollectionGrant};
 export type RemoteWorkshopAdapter={busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
@@ -36,7 +37,11 @@ export class WorkshopUI {
  private collectionIntent:{id:string;owner:string;rig:string;view:CollectionReceiptView}|null=null;
  private remoteBusy=false;
  private remoteError='';
+ private keepBenchFocus(target:EventTarget|null){if(!(target instanceof HTMLElement)||!this.host.body.contains(target)||!this.host.body.querySelector('[data-recipe-card]'))return;const dialog=target.closest('dialog'),header=dialog?.querySelector('header');if(!dialog?.open||!header)return;const h=header.getBoundingClientRect(),d=dialog.getBoundingClientRect();let b=target.getBoundingClientRect();if(b.y<h.bottom+8)dialog.scrollTop-=h.bottom+8-b.y;b=target.getBoundingClientRect();if(b.height<=d.bottom-h.bottom-20&&b.bottom>d.bottom-12)dialog.scrollTop+=b.bottom-(d.bottom-12);}
+ private benchFocused=(event:FocusEvent)=>{if(event.target instanceof HTMLElement&&event.target.matches(':focus-visible'))this.keepBenchFocus(event.target);};
  constructor(private host:PanelHost,private remote?:RemoteWorkshopAdapter){
+  this.host.body.addEventListener('focusin',this.benchFocused);
+  new ResizeObserver(()=>this.keepBenchFocus(document.activeElement)).observe(this.host.body);
   if(remote){
    this.state=remote.initial??createWorkshop(Date.now());
    remote.subscribe(state=>this.acceptRemote(state));
@@ -69,14 +74,14 @@ export class WorkshopUI {
   const failed=(message:string):WorkshopCommandResult=>({ok:false,state:this.state,message,retry:!!this.remote?.canRetry()});
   if(!this.remote||this.remoteBusy)return failed('A change is still being confirmed.');
   if(command&&this.remote.canRetry()){this.remoteError='Retry the previous request before making another change.';this.remoteNotice();return failed(this.remoteError);}
-  const before=this.state.revision;this.remoteBusy=true;this.remoteError='';this.updateClocks();
+  const benchOrigin=this.host.body.querySelector<HTMLElement>('[data-bench-work]');const before=this.state.revision;this.remoteBusy=true;this.remoteError='';this.updateClocks();const focusAnchor=document.activeElement;let reveal:(()=>void)|undefined;
   try{
    const receipt:RemoteOutcome=command?await this.remote.command(command,this.collectionView?()=>false:present):this.remote.canRetry()?await this.remote.retry(this.collectionView?()=>false:present):{state:await this.remote.load(),message:'Town state refreshed.',ok:false};
    if(!present()){this.finishCollection(receipt);return failed('The submitting panel changed. Confirmed state is kept.');}
    this.acceptRemote(receipt.state);const shown=this.finishCollection(receipt);if(this.collectionView&&!shown)this.collectionView.message(receipt.command?.kind==='gather'?'Original request resolved. '+receipt.message:receipt.message);this.host.feedback(receipt.message);if(this.status&&!this.collectionView)this.status.textContent=receipt.message;this.preview=null;if(this.host.body.querySelector('#placement'))this.renderPlacement();
-   return{ok:receipt.ok??receipt.state.revision>before,state:this.state,message:receipt.message,retry:false};
+   reveal=()=>{if(present())this.revealBenchWork(benchOrigin,receipt.ok??receipt.state.revision>before,receipt.command??command,focusAnchor);};return{ok:receipt.ok??receipt.state.revision>before,state:this.state,message:receipt.message,retry:false};
   }catch(error){if(!this.remote.canRetry())this.collectionIntent=null;if(!present())return failed('The submitting panel changed. Confirmed state is kept.');this.remoteError=(error as Error).message;this.host.feedback(this.remoteError+(this.collectionView&&this.remote.canRetry()?' The request may have saved. Retry the same request.':''));return failed(this.remoteError);}
-  finally{this.remoteBusy=false;this.updateClocks();if(this.remoteError)this.remoteNotice();}
+  finally{this.remoteBusy=false;this.updateClocks();if(this.remoteError)this.remoteNotice();reveal?.();}
  }
  public async runCommission(action:CommissionAction,expectedRevision?:number,present:()=>boolean=()=>true):Promise<WorkshopCommandResult>{
   const command={kind:'commission',commissionAction:action,...(expectedRevision===undefined?{}:{expectedRevision})};
@@ -104,14 +109,24 @@ export class WorkshopUI {
  private dispatch(command:Record<string,unknown>){
   if(this.remote){void this.remoteDispatch(command);return;}
   if(!this.ownsSave){const message=this.localReadOnlyReason||'Workshop open in another tab, or local-save coordination unavailable. Close other game tabs and reload this one to continue.';this.host.feedback(message);if(this.status)this.status.textContent=message;return{ok:false,message};}
-  const before=this.state,id=typeof command.id==='string'?command.id:crypto.randomUUID();
+  const benchOrigin=this.host.body.querySelector<HTMLElement>('[data-bench-work]');const before=this.state,id=typeof command.id==='string'?command.id:crypto.randomUUID();
   const receipt=applyWorkshop(this.state,{...command,id,expectedRevision:typeof command.expectedRevision==='number'?command.expectedRevision:this.state.revision} as WorkshopCommand,Date.now());this.state=receipt.state;this.persist(command.kind==='gather');const message=receipt.message+(this.saved?'':' Local save failed; this progress will be lost on reload.');this.host.feedback(message);this.host.changed();
   // Keep the action controls stable: update quantities/timers without rebuilding the form.
   const grant=receipt.ok&&!receipt.replayed&&command.kind==='gather'?collectionGrant(id,this.host.owner?.()??'local',command.resource,before,this.state):undefined;
   this.finishCollection({state:this.state,message,ok:receipt.ok,command:{...command,id},playerId:this.host.owner?.()??'local',collection:grant},this.saved);
   this.updateClocks();if(this.status&&!this.collectionView)this.status.textContent=message;
   this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>{el.textContent=String(this.state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]);});
-  return{ok:receipt.ok,message};
+  this.revealBenchWork(benchOrigin,receipt.ok,command);return{ok:receipt.ok,message};
+ }
+ private revealBenchWork(origin:HTMLElement|null,ok:boolean,command:Record<string,unknown>|null|undefined,focusAnchor?:Element|null){
+  if(!ok||!['craft','claim'].includes(String(command?.kind))||!origin||document.hidden||this.host.body.querySelector('[data-bench-work]')!==origin)return;
+  const dialog=origin.closest('dialog'),head=dialog?.querySelector('header');if(!dialog?.open||!head)return;
+  // Disabling the submitting button can move focus to the modal/body while a
+  // real reply is pending. Preserve an explicitly chosen different control.
+  const active=document.activeElement;if(focusAnchor&&active!==focusAnchor&&active!==document.body&&active!==dialog)return;
+  const target=origin.querySelector<HTMLElement>(command?.kind==='claim'?'[data-bench-bag]':'[data-bench-title]');if(!target||target.hidden)return;target.tabIndex=command?.kind==='claim'?0:-1;target.focus({preventScroll:true});
+  if(command?.kind==='craft')dialog.scrollTop+=origin.getBoundingClientRect().top-head.getBoundingClientRect().bottom-12;
+  else{dialog.scrollTop+=origin.getBoundingClientRect().top-head.getBoundingClientRect().bottom-12;const h=head.getBoundingClientRect(),d=dialog.getBoundingClientRect();let b=target.getBoundingClientRect();if(b.y<h.bottom+8)dialog.scrollTop-=h.bottom+8-b.y;b=target.getBoundingClientRect();if(b.bottom>d.bottom-12)dialog.scrollTop+=b.bottom-(d.bottom-12);}
  }
  private disclosure(){return this.p(this.remote?'Shared practice town · fictional residents. Confirmed changes are saved here.':'Local practice save · this browser only. No account, trading or shared town progress.','disclosure');}
  private resources(){const list=document.createElement('dl');list.className='resource-list';for(const id of RESOURCE_IDS){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=names[id];const icon=document.createElement('img');icon.src='/art/homes/home-'+id+'-icon.svg';icon.alt='';icon.width=32;icon.height=32;icon.className='item-icon';dt.prepend(icon);dd.dataset.quantity=id;dd.textContent=String(this.state.inventory[id]);list.append(dt,dd);}return list;}
@@ -157,15 +172,23 @@ export class WorkshopUI {
  };this.begin(names[resource]+' depot',render);}
 
  showBench(){const render=()=>{
-  const b=this.host.body;b.replaceChildren();b.append(this.p('Useful work. Unnecessary forms. One job at a time. All durations use real time, not the town’s day/night clock.'),this.resources());
-  const job=this.p('');job.dataset.job='';b.append(job);
-  const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';b.append(claim);
-  const recipes=[{id:'planter',label:'Make orientation planter',text:'2 scrap + 2 timber + 1 supplies. First planter: 5 seconds, once. Later planters: 8 real hours.'},{id:'bridge-kit',label:'Make bridge supplies',text:'3 scrap + 2 timber + 1 supplies. 12 real hours. '+(this.remote?'Bring the finished kit to the bridge committee.':'Crafting practice stock stays in this browser’s workshop.')}];
-  for(const recipe of recipes){const section=document.createElement('section');section.className='recipe';const craft=this.button(recipe.label,()=>this.dispatch({kind:'craft',recipe:recipe.id}),'destination');craft.dataset.craft=recipe.id;section.append(this.p(recipe.text),craft);b.append(section);}
-  if(this.host.commission)b.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));
-  b.append(this.button('While work runs · town sketchbook',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)b.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!()));
-  if(this.host.garden)b.append(this.button('While work runs · your allotment',()=>this.host.garden?.(),'destination'));
-  if(this.host.teaching)b.append(this.button('Orientation maintenance · one-time contribution',()=>this.host.teaching?.(),'destination'));this.notice();b.append(this.p('A queued job finishes while you are away and waits for collection. No automatic repeat jobs or hidden lost output.','disclosure'),this.disclosure());this.updateClocks();
+  const b=this.host.body;b.replaceChildren();b.classList.add('bench-panel');b.append(this.p('One job at a time. The forms can wait.','bench-intro'));
+  const materials=document.createElement('div');materials.className='bench-materials';materials.setAttribute('aria-label','Materials in your bag');
+  for(const id of RESOURCE_IDS){const card=document.createElement('div'),label=document.createElement('span'),icon=document.createElement('img'),quantity=document.createElement('strong');icon.src='/art/homes/home-'+id+'-icon.svg';icon.alt='';icon.width=20;icon.height=20;label.append(icon,names[id]);quantity.dataset.quantity=id;quantity.textContent=String(this.state.inventory[id]);card.append(label,quantity);materials.append(card);}b.append(materials);
+  const work=document.createElement('section');work.className='bench-work';work.dataset.benchWork='';work.dataset.seen=this.state.job?'1':'0';work.hidden=!this.state.job;
+  const title=document.createElement('h3');title.dataset.benchTitle='';const job=this.p('','bench-clock');job.dataset.job='';job.tabIndex=0;const detail=this.p('','bench-output');detail.dataset.benchWorkDetail='';
+  const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';claim.setAttribute('aria-describedby','bench-work-detail');detail.id='bench-work-detail';detail.tabIndex=0;const bag=this.button('Open bag',()=>this.showInventory(),'destination');const collected=document.createElement('span');collected.textContent='✓ Collected';collected.setAttribute('aria-hidden','true');collected.className='bench-bag-confirmation';bag.prepend(collected);bag.dataset.benchBag='';bag.setAttribute('aria-describedby','bench-work-detail');bag.hidden=true;work.append(title,job,detail,claim,bag);b.append(work);
+  const recipeHeading=document.createElement('h3');recipeHeading.textContent='Choose a recipe';b.append(recipeHeading);
+  for(const id of ['planter','bridge-kit']as const){const view=recipeView(this.state,id),section=document.createElement('section');section.className='recipe recipe-card';section.dataset.recipeCard=id;
+   const header=document.createElement('div');header.className='recipe-heading';const icon=document.createElement('img');icon.src='/art/homes/home-'+(id==='planter'?'planter':'crate')+'-icon.svg';icon.alt='';icon.width=40;icon.height=40;const name=document.createElement('h4');name.textContent='1 '+view.name;header.append(icon,name);
+   const output=this.p('Bag · '+view.pocket+' pocket','recipe-output'),time=this.p('','recipe-time');time.dataset.recipeTime=id;const cost=this.p('Cost: '+RESOURCE_IDS.map(key=>view.cost[key]+' '+key).join(' · '),'recipe-cost'),reason=this.p('','recipe-reason');reason.dataset.recipeReason=id;reason.id='recipe-reason-'+id;reason.tabIndex=0;
+   const craft=this.button('Make '+view.name,()=>this.dispatch({kind:'craft',recipe:id}),'destination');craft.dataset.craft=id;craft.setAttribute('aria-describedby',reason.id);section.append(header,output,time,cost,craft,reason);b.append(section);
+  }
+  if(this.host.teaching)b.append(this.button('Orientation maintenance',()=>this.host.teaching?.(),'destination'));
+  const activities=document.createElement('details'),summary=document.createElement('summary');activities.className='bench-activities';summary.textContent='Other things to do';activities.append(summary);
+  if(this.host.commission)activities.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));
+  activities.append(this.button('While work runs · town sketchbook',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)activities.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!()));if(this.host.garden)activities.append(this.button('While work runs · your allotment',()=>this.host.garden?.(),'destination'));b.append(activities);
+  const rules=document.createElement('details'),rulesTitle=document.createElement('summary');rules.className='bench-rules';rulesTitle.textContent='How crafting works';rules.append(rulesTitle,this.p('Materials are spent when a job starts. Time is real, even while you are away. Finished work waits for you to collect it into your bag. Jobs never repeat automatically. Your first planter takes five seconds; later ones take eight hours.'));b.append(rules);this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Your work bench',render);}
  private toolSwitch(label:string,open:()=>void){const row=document.createElement('div');row.className='personal-tool-switch';const copy=this.p(label);row.append(copy,this.button(label==='Belongings'?'Open journal':'Open bag',()=>{open();this.host.body.closest('dialog')?.querySelector<HTMLButtonElement>('[aria-label="Close panel"]')?.focus({preventScroll:true});}));return row;}
  showInventory(arrange=false){const render=()=>{
@@ -210,9 +233,13 @@ export class WorkshopUI {
   for(const el of b.querySelectorAll<HTMLElement>('[data-node]')){const node=this.state.nodes[el.dataset.node as typeof RESOURCE_IDS[number]];el.textContent=`${node.stock} available · ${node.stock>=6?'depot full':`next unit in ${duration(node.lastAt+4*3600_000-now)}`}`;}
   for(const button of b.querySelectorAll<HTMLButtonElement>('[data-collect]:not(.collection-control)'))button.disabled=!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry())||this.state.nodes[button.dataset.collect as typeof RESOURCE_IDS[number]].stock===0||Object.values(this.state.inventory).reduce((a,v)=>a+v,0)>=60;
   if(this.collectionView)this.collectionView.blocked(!!this.remote&&(this.remoteBusy||!!this.remote.busy?.()||!!this.remoteError||this.remote.canRetry())||!this.collectionView.usable||this.state.nodes[this.collectionView.resource].stock===0||Object.values(this.state.inventory).reduce((a,v)=>a+v,0)>=60,!this.remote||this.remoteBusy||!!this.remote?.busy?.()||(!this.remoteError&&!this.remote?.canRetry()));
-  const claim=b.querySelector<HTMLButtonElement>('[data-claim]');if(claim)claim.disabled=!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry())||!this.state.job||this.state.job.readyAt>now;
-  for(const button of b.querySelectorAll<HTMLButtonElement>('[data-craft]')){button.disabled=!!this.state.job||!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry());if(button.dataset.craft==='planter')button.textContent=this.state.stats.plantersCrafted?'Make another planter · 8 real hours':'Make orientation planter';}
-  const job=b.querySelector('[data-job]');if(job)job.textContent=this.state.job?`${this.state.job.recipe==='planter'?'Planter':'Bridge supplies'} · ${this.state.job.readyAt<=now?'ready to collect':duration(this.state.job.readyAt-now)+' remaining'}`:'Bench is free. Choose a recipe.';
+  const workCard=b.querySelector<HTMLElement>('[data-bench-work]'),work=benchWork(this.state,now),pending=!!this.remote&&(this.remoteBusy||!!this.remote.busy?.()||!!this.remoteError||this.remote.canRetry());
+  const claim=b.querySelector<HTMLButtonElement>('[data-claim]'),claimFocused=document.activeElement===claim;
+  if(workCard){if(this.state.job){workCard.dataset.seen='1';workCard.dataset.output=recipeView(this.state,this.state.job.recipe).name;workCard.dataset.beforeCrafted=String(this.state.stats.crafted);workCard.dataset.collected='0';}else if(this.state.stats.crafted>Number(workCard.dataset.beforeCrafted??Infinity))workCard.dataset.collected='1';workCard.hidden=workCard.dataset.seen!=='1';workCard.dataset.phase=work.phase;const collected=work.phase==='idle'&&workCard.dataset.collected==='1';workCard.querySelector('[data-bench-title]')!.textContent=collected?'1 '+workCard.dataset.output:work.title;workCard.querySelector('[data-bench-work-detail]')!.textContent=!this.remote&&!this.saved?'Local save failed. Keep this tab open; reloading will lose this work.':collected?'Collected. Open your bag to inspect or place it.':work.detail;const bag=workCard.querySelector<HTMLButtonElement>('[data-bench-bag]')!;bag.hidden=work.phase!=='idle';if(claim)claim.hidden=work.phase==='idle';}
+  if(claim)claim.disabled=pending||!work.canClaim;
+  if(claimFocused&&workCard&&work.phase==='idle')workCard.querySelector<HTMLButtonElement>('[data-bench-bag]')!.focus({preventScroll:true});
+  for(const button of b.querySelectorAll<HTMLButtonElement>('[data-craft]')){const id=button.dataset.craft as 'planter'|'bridge-kit',view=recipeView(this.state,id);button.disabled=pending||!!view.reason;button.textContent='Make '+view.name;const reason=b.querySelector<HTMLElement>('[data-recipe-reason="'+id+'"]');if(reason)reason.textContent=this.remoteError?'Connection needs attention. Retry below.':this.remote?.canRetry()?'Confirm the previous request below.':pending?'Waiting for server confirmation.':view.reason??'Ready to make.';const time=b.querySelector<HTMLElement>('[data-recipe-time="'+id+'"]');if(time)time.textContent=craftDuration(view.durationMs)+(id==='planter'&&!this.state.stats.plantersCrafted?' · first planter':'');}
+  const job=b.querySelector('[data-job]');if(job)job.textContent=workCard?pending?'Confirming saved work…':work.phase==='running'?duration(work.readyAt!-now)+' remaining':work.phase==='ready'?'✓ Ready to collect':work.phase==='blocked'?'! Collection is waiting':workCard.dataset.collected==='1'?(!this.remote&&!this.saved?'! Collected · unsaved':'✓ Collected'):'No job is queued.':this.state.job?`${this.state.job.recipe==='planter'?'Optimistic planter':'Bridge repair kit'} · ${this.state.job.readyAt<=now?'ready to collect':duration(this.state.job.readyAt-now)+' remaining'}`:'Bench is free. Choose a recipe.';
   const quest=b.querySelector('[data-quest]');if(quest){const objective=this.host.objective?.()??questStep(this.state);quest.textContent='Orientation: '+objective.title+' — '+objective.detail;}
   const skills=b.querySelector('[data-skills]');if(skills)skills.textContent=`Gathering L${skillLevel(this.state.skills.gathering)} (${this.state.skills.gathering} XP) · Making L${skillLevel(this.state.skills.making)} (${this.state.skills.making} XP). Skills are persistent practice progress; no speed bonus yet.`;
   const kits=b.querySelector('[data-kits]');if(kits)kits.textContent=`Bridge supplies in storage: ${this.state.bridgeKits}. ${this.host.kitUse?.()??(this.remote?'Visit the bridge committee to contribute.':'Shared practice has separate resources and bridge donations; stock from this browser is not imported.')}`;

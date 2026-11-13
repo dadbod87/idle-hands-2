@@ -1,3 +1,4 @@
+import{revealPlace}from'./helpers/places.ts';
 import { test, expect, type Route } from '@playwright/test';
 import { createWorkshop } from '../src/game/workshop.ts';
 
@@ -41,7 +42,7 @@ test('intercepted movement fixture: delayed acknowledgments bound prediction and
   await page.getByRole('dialog').getByRole('button', { name: 'Aster', exact: true }).click();
   await expect(page.getByRole('dialog')).not.toBeVisible();
   await page.getByRole('button', { name: 'Places', exact: false }).click();
-  await page.locator('[data-destination="bridge"]').click();
+  await (await revealPlace(page,'[data-destination="bridge"]')).click();
   await expect.poll(() => !!held).toBe(true);
   await page.waitForTimeout(1000);
   const paused = await page.evaluate(() => (window as any).__pilot.snapshot());
@@ -53,7 +54,7 @@ test('intercepted movement fixture: delayed acknowledgments bound prediction and
   expect(sent.length).toBeGreaterThan(1); expect(rejected).toEqual([]);
 
   await page.getByRole('button', { name: 'Places', exact: false }).click();
-  await page.locator('[data-destination="workshop"]').click();
+  await (await revealPlace(page,'[data-destination="workshop"]')).click();
   await expect.poll(() => page.evaluate(() => (window as any).__pilot.snapshot().nearby), { timeout: process.env.CI ? 30000 : 12000 }).toBe('workshop');
   await expect.poll(() => page.evaluate(() => (window as any).__pilot.snapshot().walking)).toBe(false);
   // Hold only the room-transition acknowledgment, not a preceding same-room checkpoint.
@@ -88,7 +89,7 @@ test('intercepted movement fixture: switching residents while a movement is held
  });
  await page.goto('/?town=1');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
  await page.getByRole('dialog').getByRole('button',{name:'Aster',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.town()?.playerId)).toBe('aster');
- await page.getByRole('button',{name:'Places',exact:false}).click();await page.locator('[data-destination="bridge"]').click();await expect.poll(()=>!!movementHeld).toBe(true);
+ await page.getByRole('button',{name:'Places',exact:false}).click();await (await revealPlace(page,'[data-destination="bridge"]')).click();await expect.poll(()=>!!movementHeld).toBe(true);
  await page.getByRole('button',{name:'Choose practice resident'}).click();await page.getByRole('dialog').getByRole('button',{name:'Bea',exact:true}).click();await expect.poll(()=>!!loginHeld).toBe(true);
  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.town())).toBe(null);
  // Drain cancellation/recovery microtasks while the new identity is not installed.

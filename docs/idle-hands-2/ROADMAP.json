@@ -1247,6 +1247,27 @@
         "docs/evidence/IH2-093/source-provenance.json"
       ],
       "blocked_reason": "Local330system/117browser/native root/Terra/origin/artifact/preservation pass. Required exact-head GitHub checks unavailable due to account billing; no main merge or accepted-client update. Retain coherent review copy; independent housing clarity followup may proceed locally."
+    },
+    {
+      "id": "IH2-094",
+      "title": "Clear housing claim and expansion costs",
+      "status": "in_progress",
+      "owner_branch": "feat/clear-housing-purchases",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Show canonical held/needed kit counts and truthful claim/expansion outcomes beside housing actions without adding reading burden.",
+      "acceptance": [
+        "Compact12kit starter/sixnook and24additional-kit expansion/twoworkroom-nook facts with held/needed/missing/ready; owner expansion remains secondary, visitor read-only, no site selection implication.",
+        "Preserve all rules/server/schema/protocol/art/state/authority and old checks; in-place ordinary snapshot count/availability refresh retains focus/disclosure/scroll, actual accepted command/replay remains final.",
+        "Native desktop/touch320/360/short200 and root/Terra review; meaningful threshold/async/refresh tests plus full local checks; exact-head GitHub/artifact/actual/preservation gates before acceptance."
+      ],
+      "exclusions": [
+        "Based on unaccepted combined093reviewc5822f8; no implicit091/092/093acceptance, billing workaround, economy/deadline/server/migration/hosting/real-account/expense or new art changes. Unsupported site-specific branch and broader async risks audited before any edits."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-094/PLAN.md"
+      ]
     }
   ]
 }

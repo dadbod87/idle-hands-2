@@ -1,3 +1,5 @@
+Current099independent [café hospitality study](CAFE_HOSPITALITY_STUDY.md) and [accepted090coverage audit](CURRENT_RUNTIME_COVERAGE.md) distinguish optional design from current gameplay. Future herbs/food remain unimplemented/unpriced; no runtime alias or economy is introduced.
+
 # A living town, built one useful layer at a time
 
 IH2-054 design package, 2026-11-10. **Design candidates, not implemented features.** The design was recorded against the IH2-051 neighborhood. The design package itself adds no regions, combat, chat, purchases, real accounts or hosting. IH2-052/053 now implement their bounded home/teaching/return and timed bridge/trail slices; see CURRENT_SESSION and exact task evidence, rather than treating every candidate as shipped.

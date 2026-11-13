@@ -1399,7 +1399,7 @@
     {
       "id": "IH2-099",
       "title": "Caf\u00e9 hospitality feasibility and concise service study",
-      "status": "in_progress",
+      "status": "blocked",
       "depends_on": [
         "IH2-090"
       ],
@@ -1413,9 +1413,39 @@
         "No executable recipe/price/new crop/food/health/trade/equipment/server/schema/state/command, paid assets or cloud hosting, real-account or original-game change. No GitHub billing/runner workaround or runtime integration ahead of the pending source gate."
       ],
       "evidence": [
-        "docs/evidence/IH2-099/PLAN.md"
+        "docs/evidence/IH2-099/PLAN.md",
+        "docs/evidence/IH2-099/REPORT.md",
+        "docs/evidence/IH2-099/local-checks.json",
+        "docs/evidence/IH2-099/baseline-audit.json",
+        "docs/evidence/IH2-099/pacing.json",
+        "docs/evidence/IH2-099/artifact-proof.json",
+        "docs/evidence/IH2-099/native-proof.json",
+        "docs/evidence/IH2-099/terra-v1.md",
+        "docs/evidence/IH2-099/terra-v2.md",
+        "docs/evidence/IH2-099/source-hold.json"
       ],
-      "owner_branch": "feat/cafe-service-study"
+      "owner_branch": "feat/cafe-service-study",
+      "blocked_reason": "Independent090-based local329system/110browser/model/art/native/TerraV2/frozen13/preservationpass. Normal exact-final-head GitHub/source/artifact gates remain unmet after old PR39billing refusal; no runtime caf\u00e9/food or accepted-preview update."
+    },
+    {
+      "id": "IH2-100",
+      "title": "Original serving gesture and clear character action study",
+      "status": "queued",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Prove one original Aster serving gesture at real display scale before expanding the actor family or integrating a caf\u00e9 action.",
+      "acceptance": [
+        "Twenty original Aster cells across four facings/fiveposes,64x80/foot32,72,unchanged final idle and guardedoriginalriginputs; meaningful hand/plate contact and tucked recovery, no face/body/crop loss; exact source/output provenance, other three rigs explicitly unfinished.",
+        "Separate concise native gallery with bounded replay/static inspection and reduced/hidden resets; actual compositor/raster foot/crop and desktop/320/360/short200keyboard/touch checks plus bounded Terra motion/anatomy review. No metadata-only or physical-device claim.",
+        "All204accepted090client/198art bytes, acceptedAPI/data/keys/checksums/54studies,099V1/V2and098heldreview remain unchanged; strict build/design/plan/pinned/fullrelevant checks and normal exact-head source/artifact gates."
+      ],
+      "exclusions": [
+        "No actual caf\u00e9/food/item/reward/action/authority/room/command/server/protocol/schema/dependency/public/expense or original-game change. No accepted-preview replacement or billing/runner workaround. No bulk all-rig production before first-rig review."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-100/PLAN.md"
+      ]
     }
   ]
 }

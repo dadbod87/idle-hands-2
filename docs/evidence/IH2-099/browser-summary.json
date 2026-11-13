@@ -1,0 +1,17 @@
+{
+  "startTime": 1794571481440,
+  "duration": 887901.838,
+  "projectNames": [
+    ""
+  ],
+  "stats": {
+    "total": 110,
+    "expected": 110,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "errors": [],
+  "options": {}
+}

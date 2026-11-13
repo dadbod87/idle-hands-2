@@ -1,4 +1,4 @@
-import {CROP_IDS,CROP_DEFS,CLIPPING_MARKERS,MARKER_IDS,MARKER_DEFS,STAKE_IDS,STAKE_CHOICES,STAKE_STUDIES,settleGarden,gardenStage,type GardenState,type GardenAction,type CropId,type MarkerId,type StakeId} from '../game/garden.ts';
+import {CROP_IDS,CROP_DEFS,CLIPPING_MARKERS,MARKER_IDS,MARKER_DEFS,STAKE_IDS,STAKE_CHOICES,STAKE_STUDIES,settleGarden,gardenStage,type GardenState,type GardenAction,type CropId,type MarkerId,type StakeId} from '../game/live-garden.ts';
 import{gardenBedView,gardenGrowthLabel,plantingConfirmation}from'../game/garden-view.ts';
 import {WorkshopUI,duration,type WorkshopCommandResult} from './workshop.ts';
 import './garden.css';

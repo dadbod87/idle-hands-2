@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
-import {createWorkshop} from '../src/game/workshop.ts';
+import {createWorkshop} from '../src/game/live-workshop.ts';
 
 test('native event stream recovers from a transient429 without reloading the page or changing progress',async({page})=>{
  const evidence=process.env.QA_EVIDENCE_DIR??'test-results/browser';let actor=false,attempts=0,snapshots=0,beforeFailureSnapshots=0;

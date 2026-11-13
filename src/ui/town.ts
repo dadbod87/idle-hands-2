@@ -1,8 +1,8 @@
 import{housingPurchase}from'../game/housing-view.ts';
 import{addressForPlot}from'../game/neighborhood.ts';
-import {homeSlots,homeDisplay} from '../game/home-layout.ts';
+import {homeSlots,homeDisplay} from '../game/live-home-layout.ts';
 import {PLOT_CLAIM_KITS,PLOT_UPGRADE_KITS} from '../game/town-rules.ts';
-import {PROPS,type WorkshopState } from '../game/workshop.ts';
+import {PROPS,type WorkshopState } from '../game/live-workshop.ts';
 import {TRAIL_LANDMARK_IDS,type Room,type Point } from '../game/world.ts';
 import {duration} from './workshop.ts';
 import {TownClient,type TownSnapshot,type TownPlot,type TownCommand} from './town-client.ts';

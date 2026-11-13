@@ -1,4 +1,7 @@
-import {CARPENTRY_RULES,PINE_STATIONS,settleCarpentry,easelGoal,type CarpentryAction,type CarpentryState,type NoticeboardState} from '../game/carpentry.ts';
+import type {GardenState} from '../game/live-garden.ts';
+import type {GardenState as LegacyGardenState} from '../game/garden.ts';
+const easelGoal=(s:CarpentryState,g:GardenState)=>legacyEaselGoal(s,g as unknown as LegacyGardenState);
+import {CARPENTRY_RULES,PINE_STATIONS,settleCarpentry,easelGoal as legacyEaselGoal,type CarpentryAction,type CarpentryState,type NoticeboardState} from '../game/carpentry.ts';
 import {nextPineStep,easelRecipe,easelWork,carpentryConfirmation} from '../game/carpentry-view.ts';
 import {WorkshopUI,duration} from './workshop.ts';
 import './carpentry.css';

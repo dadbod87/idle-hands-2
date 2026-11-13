@@ -3,7 +3,7 @@ import {localDatabaseUrl} from '../server/db.ts';
 import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {Pool} from 'pg';
-import type{WorkshopState}from'../src/game/workshop.ts';
+import type{WorkshopState}from'../src/game/live-workshop.ts';
 import{prepared}from'./helpers/carpentry.ts';
 import {worlds} from '../src/game/world.ts';
 const dir=process.env.QA_EVIDENCE_DIR??'test-results/browser';mkdirSync(dir,{recursive:true});

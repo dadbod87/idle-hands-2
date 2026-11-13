@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
-import {createWorkshop} from '../src/game/workshop.ts';
+import {createWorkshop} from '../src/game/live-workshop.ts';
 const evidence=process.env.QA_EVIDENCE_DIR??'test-results/browser';
 test('intercepted maintenance fixture: real-time countdown, unchanged queued work and explicit upkeep redemption',async({page})=>{
  const origin=Date.now(),workshop=createWorkshop(origin);workshop.inventory={scrap:4,timber:4,supplies:5};workshop.owned.planter=1;workshop.placements['north-west']='planter';workshop.stats.planterPlacedAfterCraft=true;workshop.stats.plantersCrafted=1;workshop.job={recipe:'bridge-kit',startedAt:origin,readyAt:origin+43_200_000};

@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
 import assert from 'node:assert/strict';
 import {combinedAuditFixture,type LocalAuditCase} from './combined-audit-fixtures.ts';
-import {isCurrentWorkshop,type WorkshopState} from '../src/game/workshop.ts';
+import {isCurrentWorkshop,type WorkshopState} from '../src/game/live-workshop.ts';
 const base=process.env.IH2_AUDIT_URL??'http://127.0.0.1:4175/',u=new URL(base);
 assert.equal(u.hostname,'127.0.0.1');assert.equal(u.pathname,'/');assert.equal(u.search,'');
 const output=resolve(process.env.QA_EVIDENCE_DIR??'test-results/combined-local');await mkdir(output,{recursive:true});

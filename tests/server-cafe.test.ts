@@ -34,7 +34,7 @@ test('isolated PostgreSQL cafe atomic authority and recovery',{skip:!candidateUr
  for(const name of ['ih2_cafe_test','ih2_cafe_restore'])if(!(await admin.query('select 1 from pg_database where datname=$1',[name])).rowCount)await admin.query('create database '+name);
  await admin.end();const pool=new Pool({connectionString:url,max:12,connectionTimeoutMillis:5000,statement_timeout:7000});
  let now=start,store:CafeTransactionCandidate;
- const clocks=async()=> (await pool.query('select version,checksum from ih2_meta.migrations order by version')).rows;
+ const clocks=async()=> (await pool.query("select version,checksum from ih2_meta.migrations where version not like '%_cafe_tastings.sql' order by version")).rows;
  async function add(id:string,stock=12){await pool.query('insert into ih2.players(id,name,workshop,position) values($1,$1,$2,$3)',[id,legacy(stock),point]);}
  async function serve(id='aster',extra:Record<string,unknown>={}){const s=await store.snapshot(id);return store.serve(id,{id:randomUUID(),expectedRevision:s.workshop.revision,kind:'cafe-serve-candidate',presentation:'slices',...extra});}
  async function state(id='aster'){return(await pool.query('select workshop from ih2.players where id=$1',[id])).rows[0].workshop;}
@@ -144,7 +144,7 @@ test('isolated PostgreSQL cafe atomic authority and recovery',{skip:!candidateUr
     const dump=spawnSync('docker',['exec',container,'pg_dump','-U','ih2','-d','ih2_cafe_test','--schema=ih2','--schema=ih2_meta','--no-owner','--no-acl'],{encoding:'utf8',maxBuffer:8*1024*1024});assert.equal(dump.status,0,dump.stderr);
     const imported=spawnSync('docker',['exec','-i',container,'psql','-v','ON_ERROR_STOP=1','-U','ih2','-d','ih2_cafe_restore'],{encoding:'utf8',input:dump.stdout,maxBuffer:8*1024*1024});assert.equal(imported.status,0,imported.stderr);
     const recovered=new CafeTransactionCandidate(restore,{now:()=>now});assert.deepEqual(await recovered.snapshot('aster'),before);const replay=await recovered.serve('aster',original);assert.ok(replay.replayed&&replay.ok&&replay.teapotAwarded);assert.equal(replay.snapshot.workshop.garden.consumed.cafe.radish,3);assert.equal(replay.snapshot.workshop.owned.teapot,1);assert.deepEqual(replay.snapshot.workshop.job,old.job);
-    assert.deepEqual((await restore.query('select version,checksum from ih2_meta.migrations order by version')).rows,checksums);
+    assert.deepEqual((await restore.query("select version,checksum from ih2_meta.migrations where version not like '%_cafe_tastings.sql' order by version")).rows,checksums);
     await mkdir('test-results/server',{recursive:true});await writeFile('test-results/server/cafe-candidate.json',JSON.stringify({classification:'Isolated candidate DB only; conserved synthetic harvested stock and declared server clocks; no live API/counter/auth registration or real data',database:'ih2_cafe_test',restoredDatabase:'ih2_cafe_restore',realPostgresDumpRestore:true,storeReconnect:true,sixChecksumsPreserved:checksums.length===6,queuedJobUnchanged:true,privateSinkTeapotUUIDReplayPreserved:true,fixedOpeningDeadline:ready,projectFingerprint:digest(before.project),rules:CAFE_RULES,candidateTargetGeometry:CAFE_CANDIDATE_TARGET,limits:'Target is synthetic spawn-point binding, not actual cafe counter reachability. Complete all-home teapot maps/protocol/cache/UI still later integration.'},null,2)+'\n');
    }finally{await restore.end();}
   });

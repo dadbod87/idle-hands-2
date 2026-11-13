@@ -1,10 +1,12 @@
+import type {WorkshopState as CurrentWorkshopState} from './live-workshop.ts';
+type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
 /** Read-only crafting presentation. Commands, ownership and clocks remain authoritative. */
-import{RECIPES,RESOURCE_IDS,ITEM_LIMIT,recipeDuration,type WorkshopState,type RecipeId}from'./workshop.ts';
+import{RECIPES,RESOURCE_IDS,ITEM_LIMIT,recipeDuration,type WorkshopState as LegacyWorkshopState,type RecipeId}from'./workshop.ts';
 export type RecipeView={id:RecipeId;name:string;quantity:1;pocket:'Furniture'|'Materials';durationMs:number;cost:typeof RECIPES[RecipeId]['cost'];missing:string[];reason:string|null};
 export function recipeView(state:WorkshopState,id:RecipeId):RecipeView{
  const r=RECIPES[id],missing=RESOURCE_IDS.flatMap(key=>state.inventory[key]<r.cost[key]?[`${r.cost[key]-state.inventory[key]} ${key}`]:[]),full=(id==='planter'?state.owned.planter:state.bridgeKits)>=ITEM_LIMIT;
  const reason=state.job?'The bench is busy. Collect its work before starting another recipe.':id==='bridge-kit'&&!state.stats.planterPlacedAfterCraft?'Place your first planter to unlock this recipe.':missing.length?'Need '+missing.join(' + ')+'.':full?(id==='planter'?'You already own 99 planters. Choose another recipe.':'Kit storage is full. Use or contribute kits before starting.'):id==='bridge-kit'&&state.stats.bridgeJobsStarted>=1_000_000?'This work bench has reached its job limit.':null;
- return{id,name:r.name,quantity:1,pocket:id==='planter'?'Furniture':'Materials',durationMs:recipeDuration(state,id),cost:r.cost,missing,reason};
+ return{id,name:r.name,quantity:1,pocket:id==='planter'?'Furniture':'Materials',durationMs:recipeDuration(state as LegacyWorkshopState,id),cost:r.cost,missing,reason};
 }
 export function benchWork(state:WorkshopState,now:number){
  const job=state.job;if(!job)return{phase:'idle' as const,title:'Bench is free',detail:'Choose a recipe below.',readyAt:null,canClaim:false};

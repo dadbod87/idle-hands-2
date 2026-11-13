@@ -1,5 +1,7 @@
+import type {WorkshopState as LegacyWorkshopState} from '../game/workshop.ts';
+type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
 import {bagStacks,BAG_GROUPS,type BagGroup} from '../game/bag.ts';
-import type {PropId,WorkshopState} from '../game/workshop.ts';
+import type {PropId,WorkshopState as CurrentWorkshopState} from '../game/live-workshop.ts';
 
 const COUNT_KEYS:Record<BagGroup,string>={furniture:'Numbers show copies available to place.',materials:'Numbers show carried materials.',garden:'Numbers show kept items.'};
 

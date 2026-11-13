@@ -1,6 +1,9 @@
+const easelGoal=(s:CarpentryState,g:GardenState)=>legacyEaselGoal(s,g as LegacyGardenState);
+import type {GardenState as CurrentGardenState} from './live-garden.ts';
+type GardenState=LegacyGardenState|CurrentGardenState;
 /** Read-only pine-workshop presentation; existing commands and clocks own progress. */
-import{CARPENTRY_RULES,easelGoal,type CarpentryState,type CarpentryAction}from'./carpentry.ts';
-import type{GardenState}from'./garden.ts';
+import{CARPENTRY_RULES,easelGoal as legacyEaselGoal,type CarpentryState,type CarpentryAction}from'./carpentry.ts';
+import type{GardenState as LegacyGardenState}from'./garden.ts';
 import{PROPS}from'./workshop.ts';
 export type PineStep={kind:'action';action:CarpentryAction;title:string;detail:string}|{kind:'go';room:'square'|'garden'|'workshop';stop:string;label:string;title:string;detail:string}|{kind:'more';label:string;title:string;detail:string};
 function sawStep(s:CarpentryState):PineStep|null{

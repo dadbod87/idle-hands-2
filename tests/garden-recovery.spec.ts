@@ -3,7 +3,7 @@ import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {Pool} from 'pg';
-import {createWorkshop,applyWorkshop} from '../src/game/workshop.ts';
+import {createWorkshop,applyWorkshop} from '../src/game/live-workshop.ts';
 import {localDatabaseUrl} from '../server/db.ts';
 import {randomUUID} from 'node:crypto';
 const dir=process.env.QA_EVIDENCE_DIR??'test-results/browser';

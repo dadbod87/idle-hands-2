@@ -1,3 +1,11 @@
+#2026-11-13 —111playable café candidate
+
+Connected actual café counter to concise tasting menus, confirmed-only original serving/reward animation, accurate cooldown, one earned Bag/world teapot and conserved rental/home placement. Coordinated local save and current atomic shared server migrate exact old tuples together; protocol6refuses old clients.431local system checks and Terra V3 sampled desktop/phone/short pass. Full browser/source/main/actual-preview acceptance pending. No public/cloud game release.
+
+## November13 — café transaction source accepted
+
+PR41/main98d4d02 accepted after PR43498138268 and main43500750359all4jobs, each418system/146browser(74+72)/zero skips/flakes/errors and raw artifact proof. Isolated atomic café candidate and dedicated restart/restore proven; actual208clients/all active sources remain exact109, protected data/keys/PIDs preserved. No playable café or public/cloud launch. Next111coherent counter/save integration;112owner-directed house sizes/yards/layouts. Historical pending notes below superseded. [Report](evidence/IH2-110/REPORT.md).
+
 ## November13 — atomic shared café transaction candidate
 
 Local418system/15focused/dedicated PostgreSQL restart/build pass;146browser pass,0unexpected/flaky/skipped/reporterrors; exact-head/main/source gates pending. Candidate transaction and SQL stay outside live registration;208client/202art exact109and protected services unchanged. Housing variation owner direction saved;111coherent café integration and112housing design queued. [Report](evidence/IH2-110/REPORT.md).

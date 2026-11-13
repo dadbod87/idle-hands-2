@@ -268,3 +268,12 @@ Owner likes the neighborhood and requests distinct exterior sizes, varied yard d
 ## November13 — candidate shared café transaction
 
 110reuses real player/UUID receipt patterns only in guarded loopback ih2_cafe_test/restore. New SQL stays outside auto-discovery; one forward-lock transaction persists debit/sink/cooldown/teapot/credit/deadline/receipt. Explicit phase-only writer latches once; snapshots stay read-only. The spawn-point proximity binding is explicitly synthetic, not a reachable café.111must integrate actual counter, full protocol/cache/writer/root/SQL/home maps/confirmed UI and art coherently before a playable café claim. Housing112then develops current owner variety direction without inventing real-money purchases.
+
+
+## November13 —110source acceptance and next coherent slice
+
+PR41/main98d4d02 passes exact-head/main418system/146browser/all4jobs plus raw artifacts and preserved protected/client/source proof. Close110candidate task. Existing208game/all active server/art/migrations stay exact109, so no unnecessary accepted-service restart.111integrates a complete playable café, not removal of test guards or partial schema.112housing design remains discoverable and unimplemented. Documentation-only closeout/backups receive66task/10tracker/40pinned/whitespace checks without an unnecessary hosted full rerun; exact source CI claims remain candidate/main only.
+
+## 2026-11-13 —111coherent café registration
+
+Register root3/garden4/protocol6 with the same native key/lifetime lease and additive seventh migration, current wrappers/store and every teapot home/rental allocation together. Legacy pure/store modules remain frozen compatibility/provenance inputs; current HTTP imports live-store only. Use actual trusted live counter feet30,22. Public café projection exposes credits/phase/fixed deadline only. Confirmed-only bounded original serving/reward art, concise native menus and focused visible Bag reward take priority over a new café interior. Local/native/system/Terra proof is separate from pending full-browser/exact-head/main/actual-preview acceptance. No public/cloud game release. Task112housing follows this coherent slice.

@@ -1,3 +1,4 @@
+import {CafeWriterCandidate,type WriterOutcome} from '../persistence/cafe-writer-candidate.ts';
 import {collectionGrant,type CollectionGrant} from '../game/collection-receipt.ts';
 import {recipeView,benchWork,craftDuration} from '../game/crafting-view.ts';
 import {BagView} from './bag.ts';
@@ -8,7 +9,7 @@ import type {CommissionAction} from '../game/commission.ts';
 import type {CarpentryAction} from '../game/carpentry.ts';
 import type {GardenAction} from '../game/garden.ts';
 import {SURVEY_IDS,SURVEYS,SURVEY_CHOICES,CHOICE_LABELS,type SurveyId} from '../game/fieldwork.ts';
-import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PROPS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, skillLevel } from '../game/workshop.ts';
+import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PROPS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, skillLevel } from '../game/live-workshop.ts';
 import './workshop.css';
 export const WORKSHOP_SAVE_KEY='ih2:workshop:v2';
 const SAVE_KEY=WORKSHOP_SAVE_KEY,LEGACY_SAVE_KEY='ih2:workshop:v1';
@@ -20,6 +21,8 @@ type PanelHost={owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;bo
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
+ private localWriter:CafeWriterCandidate|null=null;
+ private localOutcome:WriterOutcome|null=null;
  private serialized='';
  private active:(()=>void)|null=null;
  private selected:string='planter';
@@ -51,21 +54,18 @@ export class WorkshopUI {
    if(!remote.initial){this.remoteBusy=true;void remote.load().then(state=>this.acceptRemote(state)).catch(error=>{this.remoteError=error.message;this.host.feedback(error.message);}).finally(()=>{this.remoteBusy=false;this.updateClocks();});}
    return;
   }
-  let raw:unknown=null;try{raw=JSON.parse(localStorage.getItem(SAVE_KEY)??localStorage.getItem(LEGACY_SAVE_KEY)??'null');}catch{raw='invalid';}
-  const loaded=raw===null?{state:createWorkshop(Date.now()),recovered:false}:loadWorkshop(raw,Date.now());this.state=loaded.state;
-  if(loaded.recovered)this.freezeLocalSave();
-  const acquire=()=>{if(this.localReadOnlyReason)return;if(!navigator.locks){this.host.feedback('This browser cannot coordinate local saves. Workshop actions are read-only here.');return;}
-   void navigator.locks.request('ih2:workshop-writer',{ifAvailable:true},async lock=>{
-    if(!lock){this.host.feedback('Workshop open in another tab. This tab is read-only; close the other tab and reload to continue.');return;}
-    this.ownsSave=true;this.synchronize();if(!this.ownsSave)return;this.persist();await new Promise<void>(resolve=>this.releaseLock=resolve);
-   });
-  };acquire();
-  window.addEventListener('storage',event=>{if(event.key===SAVE_KEY||event.key===LEGACY_SAVE_KEY&&localStorage.getItem(SAVE_KEY)===null)this.synchronize();});
-  window.addEventListener('pageshow',event=>{if(event.persisted)acquire();});
-  this.ticker=window.setInterval(()=>{const before=JSON.stringify(this.state);if(!this.ownsSave){this.updateClocks();return;}this.state=settleWorkshop(this.state,Date.now());if(JSON.stringify(this.state)!==before){this.persist();this.host.changed();}this.updateClocks();},1000);
-  window.addEventListener('pagehide',()=>{this.persist();this.ownsSave=false;this.releaseLock?.();this.releaseLock=null;});
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden){this.state=settleWorkshop(this.state,Date.now());this.persist();this.updateClocks();}});
+  this.state=createWorkshop(Date.now());
+  try{const text=localStorage.getItem(SAVE_KEY)??localStorage.getItem(LEGACY_SAVE_KEY);if(text){const loaded=loadWorkshop(JSON.parse(text),Date.now());this.state=loaded.state;if(loaded.recovered)this.localReadOnlyReason='Unsupported save kept unchanged · read-only.';}}catch{this.localReadOnlyReason='Local save cannot be read · kept unchanged.';}
+  this.localWriter=new CafeWriterCandidate({storage:()=>window.localStorage,locks:()=>navigator.locks,now:Date.now,initialize:()=>createWorkshop(Date.now())});
+  const acquire=()=>void this.localWriter!.connect().then(r=>this.acceptLocal(r));acquire();
+  window.addEventListener('pagehide',()=>{this.localWriter?.suspend();this.ownsSave=false;});
+  window.addEventListener('pageshow',e=>{if(e.persisted)acquire();});
+  window.addEventListener('storage',e=>{if(e.key===SAVE_KEY||e.key===LEGACY_SAVE_KEY){const r=this.localWriter?.reload();if(r)this.acceptLocal(r);}});
+  this.ticker=window.setInterval(()=>{const state=this.localWriter?.snapshot();if(state)this.state=settleWorkshop(state,Date.now());this.updateClocks();},1000);
  }
+ private acceptLocal(r:WriterOutcome){this.localOutcome=r;this.ownsSave=r.ownsLease&&r.working!==null;this.saved=!r.dirty&&!['save-failed','unreadable','unavailable','conflict'].includes(r.status);if(r.working)this.state=r.working;this.localReadOnlyReason=['ready','saved','unsaved'].includes(r.status)?'':r.message+(r.status==='unreadable'?' Saved data kept unchanged; actions are read-only.':'');if(this.localReadOnlyReason)this.host.feedback(this.localReadOnlyReason);const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=r.dirty?'Unsaved practice · keep tab open':r.status==='ready'||r.status==='saved'?'Local workshop · saved here':'Kept save · read-only';this.host.changed();this.updateClocks();}
+ public localSaveRecovery(action:'retry'|'flush'|'reload'|'cancel'){if(!this.localWriter)return;const r=action==='retry'?this.localWriter.retry():action==='flush'?this.localWriter.flush():action==='reload'?this.localWriter.discardAndReload():null;if(action==='cancel'&&this.localWriter.cancelPending())this.acceptLocal(this.localWriter.reload());if(r)this.acceptLocal(r);}
+
  snapshot(){return JSON.parse(JSON.stringify(this.state));}
  closed(){this.bag?.destroy();this.bag=null;this.notebook?.destroy();this.notebook=null;this.host.body.closest('dialog')?.classList.remove('notebook-dialog');this.collectionView?.destroy();this.collectionView=null;this.host.body.classList.remove('collection-panel');this.host.body.closest('dialog')?.classList.remove('collection-dialog');this.active=null;this.status=null;this.preview=null;}
  private acceptRemote(state:WorkshopState){this.state=state;if(!this.remote?.canRetry())this.remoteError='';this.host.changed();this.updateClocks();this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>el.textContent=String(state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]));}
@@ -95,13 +95,19 @@ export class WorkshopUI {
  }
  public async retryCommission(present:()=>boolean):Promise<WorkshopCommandResult>{return this.remote?this.remoteDispatch(null,present):{ok:false,message:'There is no shared request to retry.',state:this.state,retry:false};}
  public async retryGarden():Promise<WorkshopCommandResult>{return this.remote?this.remoteDispatch(null):{ok:false,message:'There is no shared request to retry.',state:this.state,retry:false};}
+ public async serveCafe(presentation:'slices'|'soup'|'formal',expectedRevision:number,present:()=>boolean):Promise<WorkshopCommandResult>{
+  if(this.remote)return this.remoteDispatch({kind:'cafe-serve',presentation,expectedRevision},present);
+  const r=this.localWriter?.serve({presentation,expectedRevision});if(!r)return{ok:false,message:'The save is unavailable.',state:this.state,retry:false};this.acceptLocal(r);return{ok:r.status==='saved',message:r.message,state:this.state,retry:r.canRetry};
+ }
+ public async retryCafe(present:()=>boolean):Promise<WorkshopCommandResult>{if(this.remote)return this.remoteDispatch(null,present);const r=this.localWriter?.retry();if(!r)return{ok:false,message:'No request to retry.',state:this.state,retry:false};this.acceptLocal(r);return{ok:r.status==='saved',message:r.message,state:this.state,retry:r.canRetry};}
+ public cafeTeapotAvailable(){return this.state.owned.teapot-Object.values(this.state.placements).filter(p=>p==='teapot').length-(this.remote?.allocatedElsewhere?.('teapot')??0);}
+ public cafeLocalStatus(){return this.localOutcome;}
  public gardenClock(){return Math.floor(this.remote?.now()??Date.now());}
- public gardenSaveStatus(){return{busy:this.remoteBusy,canRetry:!!this.remote?.canRetry(),readOnly:!this.remote&&!this.ownsSave,error:this.remoteError||this.localReadOnlyReason||(!this.remote&&!this.ownsSave?'This tab is read-only while another tab owns the save, or this browser cannot coordinate saves. Reload after closing other game tabs.':'')};}
+ public gardenSaveStatus(){return{busy:this.remoteBusy,canRetry:!!this.remote?.canRetry()||!!this.localOutcome?.canRetry,readOnly:!this.remote&&!this.ownsSave,error:this.remoteError||this.localReadOnlyReason||(!this.remote&&!this.ownsSave?'This tab is read-only while another tab owns the save, or this browser cannot coordinate saves. Reload after closing other game tabs.':'')};}
 
  private freezeLocalSave(){this.saved=false;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent='Saved data kept · read-only';this.localReadOnlyReason='This local save could not be read safely. It has been kept unchanged; actions are read-only.';this.ownsSave=false;this.releaseLock?.();this.releaseLock=null;this.host.feedback(this.localReadOnlyReason);}
- private synchronize(){try{const raw=localStorage.getItem(SAVE_KEY)??localStorage.getItem(LEGACY_SAVE_KEY);if(!raw||raw===this.serialized)return;const loaded=loadWorkshop(JSON.parse(raw),Date.now());if(loaded.recovered){this.freezeLocalSave();return;}this.state=loaded.state;this.serialized=raw;this.host.changed();if(this.collectionView||this.notebook){this.updateClocks();this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>el.textContent=String(this.state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]));}else this.active?.();}catch{this.freezeLocalSave();}}
-
- private persist(quiet=false){if(this.remote)return true;if(!this.ownsSave)return this.saved;const next=JSON.stringify(this.state);if(next===this.serialized)return this.saved;try{localStorage.setItem(SAVE_KEY,next);this.serialized=next;this.saved=true;}catch{this.saved=false;if(!quiet)this.host.feedback('Local save failed. Keep this tab open; new progress will be lost on reload.');}const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=this.saved?'Local workshop · saved here':'Unsaved practice · keep tab open';return this.saved;}
+ private synchronize(){if(this.localWriter)this.acceptLocal(this.localWriter.reload());}
+ private persist(_quiet=false){return this.saved;}
  private button(text:string,handler:()=>void,className=''){const b=document.createElement('button');b.type='button';b.textContent=text;b.className=className;b.onclick=handler;return b;}
  private p(text:string,className=''){const p=document.createElement('p');p.textContent=text;p.className=className;return p;}
  private begin(title:string,render:()=>void){if(!this.remote)this.state=settleWorkshop(this.state,Date.now());this.persist();this.host.open(title);this.active=render;this.status=null;if(this.remote)this.remoteBusy=true;render();if(this.remote){void this.remote.load().then(state=>this.acceptRemote(state)).catch(error=>{this.remoteError=error.message;this.host.feedback(error.message);}).finally(()=>{this.remoteBusy=false;this.updateClocks();});}}
@@ -110,13 +116,13 @@ export class WorkshopUI {
   if(this.remote){void this.remoteDispatch(command);return;}
   if(!this.ownsSave){const message=this.localReadOnlyReason||'Workshop open in another tab, or local-save coordination unavailable. Close other game tabs and reload this one to continue.';this.host.feedback(message);if(this.status)this.status.textContent=message;return{ok:false,message};}
   const benchOrigin=this.host.body.querySelector<HTMLElement>('[data-bench-work]');const before=this.state,id=typeof command.id==='string'?command.id:crypto.randomUUID();
-  const receipt=applyWorkshop(this.state,{...command,id,expectedRevision:typeof command.expectedRevision==='number'?command.expectedRevision:this.state.revision} as WorkshopCommand,Date.now());this.state=receipt.state;this.persist(command.kind==='gather');const message=receipt.message+(this.saved?'':' Local save failed; this progress will be lost on reload.');this.host.feedback(message);this.host.changed();
+  const receipt=this.localWriter!.command({...command,id,expectedRevision:typeof command.expectedRevision==='number'?command.expectedRevision:this.state.revision});this.acceptLocal(receipt);const message=receipt.message;this.host.feedback(message);this.host.changed();
   // Keep the action controls stable: update quantities/timers without rebuilding the form.
-  const grant=receipt.ok&&!receipt.replayed&&command.kind==='gather'?collectionGrant(id,this.host.owner?.()??'local',command.resource,before,this.state):undefined;
-  this.finishCollection({state:this.state,message,ok:receipt.ok,command:{...command,id},playerId:this.host.owner?.()??'local',collection:grant},this.saved);
+  const grant=receipt.ordinaryAccepted&&command.kind==='gather'?collectionGrant(id,this.host.owner?.()??'local',command.resource,before,this.state):undefined;
+  this.finishCollection({state:this.state,message,ok:receipt.ordinaryAccepted,command:{...command,id},playerId:this.host.owner?.()??'local',collection:grant},this.saved);
   this.updateClocks();if(this.status&&!this.collectionView)this.status.textContent=message;
   this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>{el.textContent=String(this.state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]);});
-  this.revealBenchWork(benchOrigin,receipt.ok,command);return{ok:receipt.ok,message};
+  this.revealBenchWork(benchOrigin,receipt.ordinaryAccepted,command);return{ok:receipt.ordinaryAccepted,message};
  }
  private revealBenchWork(origin:HTMLElement|null,ok:boolean,command:Record<string,unknown>|null|undefined,focusAnchor?:Element|null){
   if(!ok||!['craft','claim'].includes(String(command?.kind))||!origin||document.hidden||this.host.body.querySelector('[data-bench-work]')!==origin)return;
@@ -209,7 +215,7 @@ export class WorkshopUI {
  };this.begin('Journal',render);}
  private renderPlacement(){
   const area=this.host.body.querySelector('#placement');if(!area)return;const restoreFocus=area.contains(document.activeElement);area.replaceChildren();
-  const count=this.state.owned[this.selected as typeof PROP_IDS[number]];const owned=this.p(`${names[this.selected]} · ${count} owned. Preview and moving are free.`);owned.dataset.owned=this.selected;const picture=document.createElement('img');picture.src=this.selected==='letterbox'?'/art/commission/letterbox-'+this.state.commission.motif+'-closed.svg':'/art/homes/home-'+this.selected+'-icon.svg';picture.alt=names[this.selected];picture.width=64;picture.height=64;picture.className='furniture-preview';area.append(picture,owned);
+  const count=this.state.owned[this.selected as typeof PROP_IDS[number]];const owned=this.p(`${names[this.selected]} · ${count} owned. Preview and moving are free.`);owned.dataset.owned=this.selected;const picture=document.createElement('img');picture.src=this.selected==='teapot'?'/art/cafe/teapot-icon.svg':this.selected==='letterbox'?'/art/commission/letterbox-'+this.state.commission.motif+'-closed.svg':'/art/homes/home-'+this.selected+'-icon.svg';picture.alt=names[this.selected];picture.width=64;picture.height=64;picture.className='furniture-preview';area.append(picture,owned);
   const grid=document.createElement('div');grid.className='placement-grid';grid.setAttribute('aria-label','Workshop furniture positions');
   for(const slot of PLACEMENT_SLOTS){const prop=this.state.placements[slot.id];const button=this.button(`${slot.label}: ${prop?names[prop]:'empty'}${this.preview===slot.id?' · preview '+names[this.selected]:''}`,()=>{this.preview=slot.id;this.lastSlot=slot.id;this.renderPlacement();});button.disabled=!this.host.inside();button.dataset.slot=slot.id;if(this.preview===slot.id)button.classList.add('preview');grid.append(button);}area.append(grid);
   const apply=this.button('Place here',()=>{if(!this.preview)return;const placed=Object.entries(this.state.placements).filter(([,prop])=>prop===this.selected);const available=this.state.owned[this.selected as typeof PROP_IDS[number]]-(this.remote?.allocatedElsewhere?.(this.selected)??0);if(this.remote&&available<=0){const message=this.state.owned[this.selected as typeof PROP_IDS[number]]===0?'Make or acquire this furniture before placing it.':'All copies are in your house plot. Return one to the bag there before placing it here.';this.host.feedback(message);if(this.status)this.status.textContent=message;return;}const fromSlot=placed.length>=available?placed[0]?.[0]:undefined;this.dispatch({kind:'place',prop:this.selected,slot:this.preview,...(fromSlot?{fromSlot}:{})});if(!this.remote){this.preview=null;this.renderPlacement();}},'primary');apply.disabled=!this.preview||!this.host.inside();

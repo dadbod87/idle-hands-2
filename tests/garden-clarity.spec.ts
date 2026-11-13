@@ -1,6 +1,6 @@
 import{test,expect,type Page,type Locator}from'@playwright/test';
 import{mkdirSync,writeFileSync}from'node:fs';
-import{createWorkshop,applyWorkshop,type WorkshopState}from'../src/game/workshop.ts';
+import{createWorkshop,applyWorkshop,type WorkshopState}from'../src/game/live-workshop.ts';
 import{Pool}from'pg';import{localDatabaseUrl}from'../server/db.ts';
 const out=process.env.QA_EVIDENCE_DIR??'test-results/browser';mkdirSync(out,{recursive:true});const state=(p:Page)=>p.evaluate(()=>(window as any).__pilot.workshop()) as Promise<WorkshopState>,feet=(p:Page)=>p.evaluate(()=>(window as any).__pilot.snapshot()),arrival=process.env.CI?40000:15000;
 async function boot(p:Page,url='/'){await p.goto(url);await expect.poll(()=>p.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);}

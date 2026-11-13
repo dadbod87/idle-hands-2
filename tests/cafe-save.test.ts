@@ -153,8 +153,8 @@ test('same-instance pending acquisition is guarded and cancellation cannot relea
   storage.failures=1;const later=new CafeSaveCandidate(storage,locks,()=>at+4*H);await later.load();assert.equal((await later.serve(intent(later.snapshot()!))).status,'save-failed');assert.equal(later.discardRetry(),true);assert.equal((await later.retry()).status,'no-pending');assert.equal(storage.writes,1);
 });
 
-test('storage adapter matches current key and lock contracts while remaining outside live imports',()=>{
-  const live=readFileSync('src/ui/workshop.ts','utf8');assert.ok(live.includes("WORKSHOP_SAVE_KEY='"+CAFE_SAVE_KEY+"'"));assert.ok(live.includes("LEGACY_SAVE_KEY='"+CAFE_LEGACY_KEY+"'"));assert.ok(live.includes("locks.request('"+CAFE_WRITER_LOCK+"'"));
+test('storage adapter matches current key and lock contracts while the staged adapter stays outside the registered coordinated writer',()=>{
+  const live=readFileSync('src/ui/workshop.ts','utf8');assert.ok(live.includes("WORKSHOP_SAVE_KEY='"+CAFE_SAVE_KEY+"'"));assert.ok(live.includes("LEGACY_SAVE_KEY='"+CAFE_LEGACY_KEY+"'"));assert.ok(live.includes('new CafeWriterCandidate'));assert.ok(readFileSync('src/persistence/cafe-writer-candidate.ts','utf8').includes('locks.request(CAFE_WRITER_LOCK'));assert.equal(CAFE_WRITER_LOCK,'ih2:workshop-writer');
   for(const file of ['src/ui/workshop.ts','src/main.ts','server/store.ts','server/http.ts'])assert.doesNotMatch(readFileSync(file,'utf8'),/cafe-save-candidate|CafeSaveCandidate/);
 });
 

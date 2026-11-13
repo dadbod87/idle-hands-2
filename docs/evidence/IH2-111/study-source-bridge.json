@@ -1,0 +1,28 @@
+{
+  "base": "4407a27820a787d301c272dbb18b45a83f909dc6",
+  "classification": "Historical study inputs, not current runtime source",
+  "historical": {
+    "src/game/world.ts": {
+      "snapshot": "docs/evidence/IH2-111/legacy-source/src__game__world.ts",
+      "sha256": "c4e17cfd7a017d68210eb1af9ba14531bc489e52cd16ef40abfc222ee1f19b26"
+    },
+    "src/main.ts": {
+      "snapshot": "docs/evidence/IH2-111/legacy-source/src__main.ts",
+      "sha256": "707a8c797cd027674b63734768ac2953f639b7582bfd239d8372aa23c04ae18e"
+    },
+    "src/phaser/WorldScene.ts": {
+      "snapshot": "docs/evidence/IH2-111/legacy-source/src__phaser__WorldScene.ts",
+      "sha256": "7d8b08ff2a561fe2deeadbecd6a48fcc42adfd3480f8806f460870208c82fa0e"
+    },
+    "tools/create-allotment-study.ts": {
+      "snapshot": "docs/evidence/IH2-111/legacy-source/tools__create-allotment-study.ts",
+      "sha256": "2575a3cd516f0f0e99ebdbe41c618327b3ff705976ee0e90261f34cd6b57c24c"
+    }
+  },
+  "reviewedCurrent": {
+    "src/game/world.ts": "29af0efe621efafea58a69475bf113329315f2139025d802d5c47e64343f1bd9",
+    "src/main.ts": "830ef5b70c8e8b2f9116866b9dee119c1ea3d77fe190cd68ccaa0bde58013507",
+    "src/phaser/WorldScene.ts": "902711d7a76cec0a853e8b9763fcbe51ea16f1349dac95ad1e5a15815cdcef1d",
+    "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
+  }
+}

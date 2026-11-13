@@ -943,6 +943,36 @@
       "id": "study-meadow-detail",
       "path": "art/allotment/study-meadow-detail.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "cafe-teapot-icon",
+      "path": "art/cafe/teapot-icon.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "cafe-aster-serving",
+      "path": "art/cafe/aster-serving.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "cafe-teapot-world",
+      "path": "art/cafe/teapot-world.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "cafe-casey-serving",
+      "path": "art/cafe/casey-serving.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "cafe-devon-serving",
+      "path": "art/cafe/devon-serving.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "cafe-bea-serving",
+      "path": "art/cafe/bea-serving.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

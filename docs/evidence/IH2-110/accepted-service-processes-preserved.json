@@ -1,0 +1,22 @@
+{
+  "fourAcceptedClientAndAPIProcessesSameAs109": true,
+  "pidPortPairs": [
+    [
+      "36734",
+      "127.0.0.1:4186"
+    ],
+    [
+      "36748",
+      "127.0.0.1:4188"
+    ],
+    [
+      "36759",
+      "127.0.0.1:4175"
+    ],
+    [
+      "36770",
+      "127.0.0.1:4176"
+    ]
+  ],
+  "noAcceptedRestart": true
+}

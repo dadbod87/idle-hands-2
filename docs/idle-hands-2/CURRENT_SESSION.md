@@ -1,3 +1,25 @@
+#111current continuation — feat/playable-cafe
+
+After acceptance, the exact verification/preview closeout is backed up on `chore/playable-cafe-closeout-2026-11-13`. Fetch and verify that branch before assuming this pre-acceptance checkpoint is current. Its existence/status is not implied until the recorded gates actually pass.
+
+Active full-code checkout: `work/idle-hands-2-playable-cafe`, based on110closeout4407a278. Actual café registered coherently; current431system/build and Terra V3/local source-update checks pass. Full153browser and normal public exact-head/main/artifact/actual-preview acceptance are in progress, not yet accepted. Existing4175/4176remain110/109runtime; no protected data/key changes. Read [111report](../evidence/IH2-111/REPORT.md). Next112housing only after111gates.
+
+#110accepted — next111playable café integration
+
+Main **98d4d02e52c77b48312d95febf0e06d5415144c3**, PR41, candidate **0ac7e8eb12c73e6f56aa79bf7ac6ab0e41f83d99**, identical tree. PR43498138268 and main43500750359each pass all four required jobs:418system/146browser, disjoint74+72, zero failures/skips/flakes/reporterrors. Raw artifacts/restore/client bytes verified. [Report](../evidence/IH2-110/REPORT.md) and source-closeout.json distinguish source/candidate/actual-preview evidence.
+
+FULL CODE continuation checkout `../idle-hands-2-cafe-transaction`, branch `chore/cafe-transaction-closeout-2026-11-13`, accepted110main runtime plus documentation-only closeout; resolve latest pushed head. Canonical `idle-hands-2` remains old090runtime/bookkeeping only; do not implement from it. Historical pending notes below are superseded by this verified closeout.
+
+Actual preview http://127.0.0.1:4175/ ; fictional Tour http://localhost:4176/?town=1 . Still the frozen109client/API5source, byte-identical to every existing110active file and all208newCIclient bytes. Accepted services/PIDs, both protected13table/allfield/key0600/sixchecksum fingerprints and54studyresponses unchanged. No refresh needed for two unregistered candidate files. Existing source/runtime paths and launch commands remain in109handoff. Do not restart/reset or copy/regenerate private keys.
+
+New dedicated candidate cluster: Docker idle-hands-2-cafe-candidate-pg, app=idle-hands-2-cafe-candidate, loopback55434, ih2_cafe_test/restore. Isolated candidate SQL and atomic UUID/private/public transaction, real restart/dump-restore proven; active protocol/root/writer/props/migrations/UI unchanged. Café is not playable yet. Never remove candidate DB guards as a shortcut to registration.
+
+Next **IH2-111**, queued/ready: coherent playable counter, exact tuple/protocol6/local writer/cache/home-allocation/SQL integration and confirmed-only art/receipt/Bag/UI; read its PLAN. Use actual validated live movement, not body coordinates or an old checkpoint. Terra reviews the new desktop/phone/short/text200 UI then. No fresh Terra check was needed for110's unchanged client; root sampled fresh regression captures. No production-auth/public-hosting/physical-device claim.
+
+Owner housing request is saved in HOUSE_VARIETY_AND_YARDS/OWNER_DIRECTIONS and task112: real exterior size choices, personal yards, multiple purchased layouts with meaningful features, no invented currency/prices or real-money purchases. Preserve address, owned pieces and neighbor paths. Public standard CI works; local-first batching and exact-head/main gates remain, no paid setup. Three reset credits untouched.
+
+---
+
 #110shared café transaction candidate — local validation in progress
 
 Current full-code checkout `../idle-hands-2-cafe-transaction`, branch `feat/shared-cafe-transaction`, base5bdaaab9d830b097c2945e6c857e3b8f2217ea1a over accepted109mainacab0549. Candidate only: dedicated localDBs ih2_cafe_test/restore on55434; no active migration/API/writer/protocol/props/UI registration.418system/15focused/actual dedicated PostgreSQL restart/build pass; full146browser passes,0unexpected/flaky/skipped/reporterrors. Exact public CI/source gates pending; accepted4175/localhost4176API5artifacts stay byte-identical109. Read110REPORT/PLAN and usage policy; preserve all protected data/keys/studies.

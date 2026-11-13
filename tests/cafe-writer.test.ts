@@ -96,3 +96,12 @@ test('browser bootstrap guards native getters and lifecycle listeners reacquire 
  const target=new EventTarget();const host=Object.assign(target,{navigator:{locks:undefined}});Object.defineProperty(host,'localStorage',{get:()=>{throw Error('privacy');}});const binding=browserCafeWriter(host as unknown as Window,()=>at);assert.equal((await binding.writer.connect()).status,'unavailable');target.dispatchEvent(new Event('pagehide'));binding.dispose();assert.equal((await binding.writer.connect()).status,'suspended');
  const f=fixture();const t=new EventTarget();const good=Object.assign(t,{localStorage:f.storage,navigator:{locks:f.locks}});const b=browserCafeWriter(good as unknown as Window,()=>at);await b.writer.connect();t.dispatchEvent(new Event('pagehide'));await drain();assert.equal(f.locks.held,false);const show=new Event('pageshow');Object.defineProperty(show,'persisted',{value:true});t.dispatchEvent(show);await drain();assert.equal(f.locks.held,true);b.dispose();await drain();t.dispatchEvent(show);await drain();assert.equal(f.locks.held,false);assert.equal(isCurrentWorkshop(b.writer.snapshot()),false);
 });
+
+test('fresh bootstrap quota failure retains ordinary practice but cafe requires an explicit successful flush',async()=>{
+ const f=fixture();f.map.clear();f.fail=2;
+ const writer=new CafeWriterCandidate({storage:()=>f.storage,locks:()=>f.locks,now:()=>at,initialize:()=>cafeFixture()});
+ try{const start=await writer.connect();assert.equal(start.status,'unsaved');assert.equal(start.dirty,true);assert.equal(start.state,null);assert.equal(f.map.size,0);
+ const practice=writer.command(command(0));assert.equal(practice.ordinaryAccepted,true);assert.equal(practice.status,'unsaved');assert.equal(writer.serve(intent(1)).status,'unsaved');assert.equal(writer.snapshot()!.cafe.totalServes,0);
+ assert.equal(writer.flush().status,'saved');assert.equal(writer.serve(intent(1)).status,'saved');assert.equal(writer.confirmedSnapshot()!.cafe.totalServes,1);assert.equal(writer.confirmedSnapshot()!.garden.produce.radish,11);
+ }finally{writer.dispose();}
+});

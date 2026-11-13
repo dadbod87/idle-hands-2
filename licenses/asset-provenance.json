@@ -1881,6 +1881,66 @@
       "source": "tools/promote-allotment-art.py",
       "date": "2026-11-13",
       "modifications": "Byte-identical locally reviewed IH2-096 original soil and low meadow layers, authored by tools/create-allotment-study-art.py. No extra resources, capacity or collision."
+    },
+    {
+      "id": "cafe-teapot-icon",
+      "path": "public/art/cafe/teapot-icon.svg",
+      "sha256": "3316d883a8a48cacced890b5c41c50932be9ba5bce3758440971a8af0d791702",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "docs/evidence/IH2-106/study/teapot-icon.svg",
+      "date": "2026-11-13",
+      "modifications": "Byte-identical registered serving/teapot art from reviewed IH2-106; no paid or third-party assets."
+    },
+    {
+      "id": "cafe-aster-serving",
+      "path": "public/art/cafe/aster-serving.svg",
+      "sha256": "ddc3614614a7bb57df4c5c399cacfd352a78f272ba9d5f6311e34b3bfcc8c4f4",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "docs/evidence/IH2-106/study/aster-serving.svg",
+      "date": "2026-11-13",
+      "modifications": "Byte-identical registered serving/teapot art from reviewed IH2-106; no paid or third-party assets."
+    },
+    {
+      "id": "cafe-teapot-world",
+      "path": "public/art/cafe/teapot-world.svg",
+      "sha256": "cc0cf815f7c7e5ff4f901b6b395b8062686d6e6461addb62505c2fe9433e10fc",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "docs/evidence/IH2-106/study/teapot-world.svg",
+      "date": "2026-11-13",
+      "modifications": "Byte-identical registered serving/teapot art from reviewed IH2-106; no paid or third-party assets."
+    },
+    {
+      "id": "cafe-casey-serving",
+      "path": "public/art/cafe/casey-serving.svg",
+      "sha256": "9547480ab49f3525a19bc615115801acff364a58493c340102aa350d87906c64",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "docs/evidence/IH2-106/study/casey-serving.svg",
+      "date": "2026-11-13",
+      "modifications": "Byte-identical registered serving/teapot art from reviewed IH2-106; no paid or third-party assets."
+    },
+    {
+      "id": "cafe-devon-serving",
+      "path": "public/art/cafe/devon-serving.svg",
+      "sha256": "985af57505eb1a1a79d98d3fd11f35206ad82992c4338bf7bb400f9fbfbbf328",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "docs/evidence/IH2-106/study/devon-serving.svg",
+      "date": "2026-11-13",
+      "modifications": "Byte-identical registered serving/teapot art from reviewed IH2-106; no paid or third-party assets."
+    },
+    {
+      "id": "cafe-bea-serving",
+      "path": "public/art/cafe/bea-serving.svg",
+      "sha256": "3edd84982413489a76b6f99eef9f6e9a5804ccf74d7d11eefafe2c15d032375d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "docs/evidence/IH2-106/study/bea-serving.svg",
+      "date": "2026-11-13",
+      "modifications": "Byte-identical registered serving/teapot art from reviewed IH2-106; no paid or third-party assets."
     }
   ],
   "comparison": {

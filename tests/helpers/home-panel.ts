@@ -1,9 +1,9 @@
 import{expect,type Page}from'@playwright/test';
 import{combinedAuditFixture}from'../../tools/combined-audit-fixtures.ts';
-import{applyWorkshop,PLACEMENT_SLOTS}from'../../src/game/workshop.ts';
-import{applyHomeArrangement,emptyWorkroom,type HomeLayout}from'../../src/game/home-layout.ts';
+import{applyWorkshop,loadWorkshop,PLACEMENT_SLOTS}from'../../src/game/live-workshop.ts';
+import{applyHomeArrangement,emptyWorkroom,type HomeLayout}from'../../src/game/live-home-layout.ts';
 export async function homePanelFixture(page:Page,options:{level?:1|2;visitor?:boolean;outside?:boolean;otherPlots?:number}={}){
- const now=Date.now(),level=options.level??2;let state=combinedAuditFixture('returning',now).state!,seq=0;
+ const now=Date.now(),level=options.level??2;let state=loadWorkshop(combinedAuditFixture('returning',now).state!,now).state,seq=0;
  const act=(action:object)=>{const r=applyWorkshop(state,{...action,id:'home-panel-'+seq++,expectedRevision:state.revision}as any,Math.max(now,Date.now(),state.observedAt));expect(r.ok,r.message).toBe(true);state=r.state;};
  act({kind:'carpentry',carpentryAction:{action:'claim-easel'}});for(const s of PLACEMENT_SLOTS)if(state.placements[s.id])act({kind:'remove',slot:s.id});
  let layout:HomeLayout={level,placements:Object.fromEntries(PLACEMENT_SLOTS.map((s,i)=>[s.id,['planter','stool','rug','lamp','crate','shelf'][i]]))as HomeLayout['placements'],workroomPlacements:level===2?{'workroom-north':'letterbox','workroom-south':'easel'}:emptyWorkroom()};

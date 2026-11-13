@@ -1,7 +1,7 @@
 import{revealPlace}from'./helpers/places.ts';
 import {test,expect,type Page} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
-import {createWorkshop,applyWorkshop,type WorkshopState} from '../src/game/workshop.ts';
+import {createWorkshop,applyWorkshop,type WorkshopState} from '../src/game/live-workshop.ts';
 import {RECIPIENT_IDS,RECIPIENTS} from '../src/game/commission.ts';
 const dir=process.env.QA_EVIDENCE_DIR??'test-results/browser';mkdirSync(dir,{recursive:true});
 const state=(p:Page)=>p.evaluate(()=>(window as any).__pilot.workshop()) as Promise<WorkshopState>;

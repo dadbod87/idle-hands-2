@@ -117,7 +117,8 @@
     "tests/serving-family.spec.ts",
     "tests/cafe-commands.test.ts",
     "tests/cafe-writer.test.ts",
-    "tests/cafe-writer.spec.ts"
+    "tests/cafe-writer.spec.ts",
+    "tests/playable-cafe.spec.ts"
   ],
   "compilerOptions": {
     "types": [

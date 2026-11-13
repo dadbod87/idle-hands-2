@@ -1,4 +1,4 @@
-import{test,expect,type Page}from'@playwright/test';import{mkdirSync,writeFileSync}from'node:fs';import{createWorkshop}from'../src/game/workshop.ts';import{emptyWorkroom}from'../src/game/home-layout.ts';
+import{test,expect,type Page}from'@playwright/test';import{mkdirSync,writeFileSync}from'node:fs';import{createWorkshop}from'../src/game/live-workshop.ts';import{emptyWorkroom}from'../src/game/home-layout.ts';
 const out='test-results/browser';
 async function fixture(p:Page,mode:'claim'|'owner'|'visitor'){
  const owner=mode==='owner',visitor=mode==='visitor',id=visitor?'bea':'aster',name=visitor?'Bea':'Aster',state=createWorkshop(Date.now());state.owned.planter=1;let level=1,logged=false,claimed=mode!=='claim';

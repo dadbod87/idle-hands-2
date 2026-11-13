@@ -5,7 +5,7 @@ import {createHmac,timingSafeEqual,randomUUID} from 'node:crypto';
 import type {Pool} from 'pg';
 import {z} from 'zod';
 import {TransportAdmission,BoundedStream} from './transport.ts';
-import {TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './store.ts';
+import {TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './live-store.ts';
 import {canStand,routeTo,worlds} from '../src/game/world.ts';
 const DEFAULT_FIXTURES=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}];
 const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden','neighborhood']),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(positionContextValid);
@@ -18,9 +18,10 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  const fixtures=Object.freeze(rosterSchema.parse(options.fixtureResidents??DEFAULT_FIXTURES).map(row=>Object.freeze({...row})));
  const admission=new TransportAdmission(fixtures.map(f=>f.id),options.transportNow);
  const serverInstance=randomUUID();
- const now=options.now??Date.now,store=new TownStore(options.pool,{now});
- const homes=new Map<string,TownPlot>();let bridgeOpen=false;
- function cacheHomes(snapshot:TownSnapshot){bridgeOpen=bridgeOpen||snapshot.bridge.phase==='open';for(const plot of snapshot.plots){const previous=homes.get(plot.id);if(!previous||plot.level>=previous.level)homes.set(plot.id,plot);}for(const entry of residents.values()){const normalized=canonicalHomePosition(entry.value,[...homes.values()]);if(JSON.stringify(normalized)!==JSON.stringify(entry.value)){entry.value=normalized;entry.credit=1;entry.at=now();dirty=true;}}}
+ const now=options.now??Date.now;
+ const store=new TownStore(options.pool,{now});
+ const homes=new Map<string,TownPlot>();let bridgeOpen=false;let cafeOpened=false;
+ function cacheHomes(snapshot:Pick<TownSnapshot,'plots'|'bridge'>&{cafe?:TownSnapshot['cafe']}){if(snapshot.cafe?.phase==='open'&&!cafeOpened){cafeOpened=true;invalidate('');}bridgeOpen=bridgeOpen||snapshot.bridge.phase==='open';for(const plot of snapshot.plots){const previous=homes.get(plot.id);if(!previous||plot.level>=previous.level)homes.set(plot.id,plot);}for(const entry of residents.values()){const normalized=canonicalHomePosition(entry.value,[...homes.values()]);if(JSON.stringify(normalized)!==JSON.stringify(entry.value)){entry.value=normalized;entry.credit=1;entry.at=now();dirty=true;}}}
  const residents=new Map<string,{value:TownPosition;at:number;credit:number}>();
  const residentLoads=new Map<string,Promise<{value:TownPosition;at:number;credit:number}>>();
  const connections=new Set<{id:string;res:ServerResponse;stream:BoundedStream}>();
@@ -93,7 +94,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     return await serial(id,res,async()=>{
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
     const command=await body(req);if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});metrics.commands++;const result=await store.execute(id,command,current.value);cacheHomes(result.snapshot);if(result.ok&&!result.replayed&&command&&typeof command==='object'&&['enter-home','enter-neighborhood'].includes(String((command as {kind?:unknown}).kind))){current.value=result.snapshot.position;current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;}result.snapshot.position=current.value;
-    if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(['contribute','claim-plot','upgrade-plot','edit-plot','redeem-lesson'].includes(String((command as {kind?:unknown}).kind))||((command as {kind?:unknown}).kind==='stamp-trail'&&result.snapshot.trail.pennantOwned)||(['garden','carpentry','commission'].includes(String((command as {kind?:unknown}).kind))&&result.publicChanged)))invalidate(id);
+    if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(['contribute','claim-plot','upgrade-plot','edit-plot','redeem-lesson'].includes(String((command as {kind?:unknown}).kind))||((command as {kind?:unknown}).kind==='stamp-trail'&&result.snapshot.trail.pennantOwned)||(['garden','carpentry','commission','cafe-serve'].includes(String((command as {kind?:unknown}).kind))&&result.publicChanged)))invalidate(id);
     return json(res,200,{...result,snapshot:{...result.snapshot,serverInstance}});
     });
    }

@@ -1,5 +1,7 @@
+import type {WorkshopState as CurrentWorkshopState} from '../game/live-workshop.ts';
+type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
 import {activityNotes,type ActivityId} from '../game/activity-notebook.ts';
-import type {WorkshopState} from '../game/workshop.ts';
+import type {WorkshopState as LegacyWorkshopState} from '../game/workshop.ts';
 type Actions=Record<ActivityId,{label:string;open:()=>void}>;
 const time=(ms:number)=>{const s=Math.max(0,Math.ceil(ms/1000));return s>=3600?`${Math.floor(s/3600)}h ${Math.floor(s%3600/60)}m`:`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;};
 /** Stable DOM; existing WorkshopUI ticker supplies updates. No network, save, or timer. */

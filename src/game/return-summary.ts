@@ -1,4 +1,6 @@
-import type {WorkshopState} from './workshop.ts';
+import type {WorkshopState as CurrentWorkshopState} from './live-workshop.ts';
+type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
+import type {WorkshopState as LegacyWorkshopState} from './workshop.ts';
 export type VisitSnapshot={playerId:string;serverTime:number;workshop:WorkshopState;plot:{id:string;level?:number;tier?:number}|null;bridge:{contributed:number;target:number;restored:boolean};lesson?:{startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;legacySatisfied:boolean}};
 export type VisitBaseline={version:1;playerId:string;serverTime:number;jobReadyAt:number|null;jobRecipe:string|null;homeId:string|null;homeLevel:number;bridgeCount:number;bridgeOpen?:boolean};
 export function visitBaseline(snapshot:VisitSnapshot):VisitBaseline{return{version:1,playerId:snapshot.playerId,serverTime:snapshot.serverTime,jobReadyAt:snapshot.workshop.job?.readyAt??null,jobRecipe:snapshot.workshop.job?.recipe??null,homeId:snapshot.plot?.id??null,homeLevel:snapshot.plot?.level??snapshot.plot?.tier??0,bridgeCount:snapshot.bridge.contributed,bridgeOpen:snapshot.bridge.restored};}

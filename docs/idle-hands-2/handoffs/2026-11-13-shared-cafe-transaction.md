@@ -1,3 +1,11 @@
+# Final source closeout
+
+PR41/main98d4d02e52c77b48312d95febf0e06d5415144c3 accepted, exact tree0ac7e8e. PR43498138268 and main43500750359all4jobs each418/146, disjoint74+72, zero skips/flakes/errors. Full raw artifacts and same208client bytes verified. Current full-code continuation: idle-hands-2-cafe-transaction / chore/cafe-transaction-closeout-2026-11-13, latest pushed head; runtime accepted main, docs-only later closeout locally checked. Canonical090runtime is bookkeeping only. Next111ready;112housing direction/design queued. See110source-closeout.json. Older pending notes below retain development history and are superseded by this final header.
+
+Actual4175/localhost4176API5remain frozen109, every active file/client byte exactly matches110CI. No accepted restart or protected write; both13table fields/keys0600/sixchecksums and4PIDs preserved. Candidate DB55434is separate; no live café UI/SQL/protocol registration. No new Terra review, unchanged exact109client; root fresh regression samples inspected. Later111actual UI needs Terra review. No real data, originalgame, expenses or public/cloud game launch.
+
+---
+
 # November13 — shared café transaction candidate
 
 Current source checkout idle-hands-2-cafe-transaction / feat/shared-cafe-transaction, base5bdaaab over accepted109mainacab0549. Local full418system/15focused/dedicated real PostgreSQL restart/build/design/66taskplan/10tracker/40pinned/diff checks pass. Full146browser passes,0unexpected/flaky/skipped/reporterrors; exact-head public GitHub four jobs/main regression/source acceptance remain pending. Do not treat this handoff as a completed source gate. Final source closeout supplies commit/run IDs and status after acceptance.

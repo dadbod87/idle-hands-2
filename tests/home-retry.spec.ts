@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {emptyWorkroom} from '../src/game/home-layout.ts';
-import {createWorkshop} from '../src/game/workshop.ts';
+import {createWorkshop} from '../src/game/live-workshop.ts';
 import type {TownPosition} from '../src/ui/town.ts';
 
 const evidence=process.env.QA_EVIDENCE_DIR??'test-results/browser';

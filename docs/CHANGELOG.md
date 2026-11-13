@@ -1,3 +1,5 @@
+2026-11-12 — IH2-094local housing card candidate: canonical12/24kit held/needed/missing/ready and6/8nook outcome, in-place count refresh, owner/visitor/read-only and narrow/short200evidence.332system/119browser pass;198art and all protected data/keys/studies unchanged. Inherited focus-stealing P2reproduced and queued095before release. GitHub billing keeps source/actual release held; no current-game/cloud change.
+
 2026-11-12 — IH2-093local combined menu candidate: exact091/092source leaves,330system/117browser, frozen204files, guarded fictional review town and actual origin/cookie isolation, native root/Terra owner/visitor/doors/holdings/life samples. Registry held/needed clarity identified next. All accepted data/keys/clients/studies unchanged. Required GitHub release gates remain blocked by billing; no merge, accepted update, original-game or cloud work.
 
 # Changelog

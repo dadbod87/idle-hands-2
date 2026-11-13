@@ -1251,7 +1251,7 @@
     {
       "id": "IH2-094",
       "title": "Clear housing claim and expansion costs",
-      "status": "in_progress",
+      "status": "blocked",
       "owner_branch": "feat/clear-housing-purchases",
       "depends_on": [
         "IH2-090"
@@ -1266,7 +1266,34 @@
         "Based on unaccepted combined093reviewc5822f8; no implicit091/092/093acceptance, billing workaround, economy/deadline/server/migration/hosting/real-account/expense or new art changes. Unsupported site-specific branch and broader async risks audited before any edits."
       ],
       "evidence": [
-        "docs/evidence/IH2-094/PLAN.md"
+        "docs/evidence/IH2-094/PLAN.md",
+        "docs/evidence/IH2-094/REPORT.md",
+        "docs/evidence/IH2-094/local-checks.json",
+        "docs/evidence/IH2-094/native-proof.json",
+        "docs/evidence/IH2-094/focus-followup.json"
+      ],
+      "blocked_reason": "Local332system/119browser/root/Terra/origin/artifact/preservation checks pass. Required GitHub gates blocked by account billing; inherited delayed-reply focus P2 must be resolved in095before consolidated release. No main merge or accepted-client update."
+    },
+    {
+      "id": "IH2-095",
+      "title": "Respect chosen town controls during delayed replies",
+      "status": "queued",
+      "owner_branch": "feat/town-response-focus",
+      "depends_on": [
+        "IH2-090"
+      ],
+      "goal": "Fix the reproduced inherited focus-stealing bug without changing commands or saved progress.",
+      "acceptance": [
+        "Same panel and original owner scope feedback, result repaint, focus and retry; close/reopen/other panel never receives old presentation. Domain receipts and pending identity restrictions remain unchanged.",
+        "Preserve deliberately chosen stable plot-scoped select/button/summary or persistent header Close across required repaint, saved choices/disclosure/scroll; vanished/disabled actions use safe non-action status. No arbitrary first enabled placement or purchase focus. Remove redundant Enter your house only inside that same house.",
+        "Retain every prior assertion and timeout. Native held success/rejection/retry/close/header/selected control plus320/short200/Terra review; full local and exact-head GitHub/artifact/actual/preservation release gates."
+      ],
+      "exclusions": [
+        "Pending UI stack remains unaccepted while GitHub billing blocks required gates. No server/rules/schema/protocol/dependency/art/economy/hosting/real-account or expense changes. No changing request IDs, receipt logic or retry authority."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-095/PLAN.md",
+        "docs/evidence/IH2-094/focus-followup.json"
       ]
     }
   ]

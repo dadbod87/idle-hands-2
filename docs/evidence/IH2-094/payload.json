@@ -1,0 +1,15 @@
+{
+  "classification": "Unaccepted local094housing card on combined093candidate",
+  "files": 204,
+  "all198ArtByteIdentical": true,
+  "combined093": {
+    "raw": 3905894,
+    "perFileGzip": 635380
+  },
+  "candidate": {
+    "raw": 3907529,
+    "perFileGzip": 635895
+  },
+  "deltaRaw": 1635,
+  "deltaPerFileGzip": 515
+}

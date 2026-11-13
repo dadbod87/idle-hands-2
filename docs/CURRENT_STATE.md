@@ -1,3 +1,5 @@
+IH2-094housing purchase facts locally verified:332system/119browser/root/Terra/origin/artifact/preservation. Known inherited delayed-reply focusP2feeds095before release. GitHub billing still holds required checks; accepted main/4175/localhost4176remain090. [Report](evidence/IH2-094/REPORT.md).
+
 IH2-093combined local review passes330system/117browser, root/Terra/origin/artifact/preservation. Release held by GitHub account billing before required checks. Actual accepted clients/API remain090. [Report](evidence/IH2-093/REPORT.md). Current handoff authoritative.
 
 # Idle Hands 2 — current state

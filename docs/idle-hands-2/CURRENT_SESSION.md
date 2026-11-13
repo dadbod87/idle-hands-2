@@ -1,3 +1,11 @@
+# Housing cards locally verified; focus fix next
+
+094in idle-hands-2-housing-ui/feat/clear-housing-purchases passes332system/zeroDBskips56.419s and119browser885155.956ms/zero skips/flakes/unexpected; disjoint61+58family2. Build/design/49taskplan10/pinned40/diff pass. Frozen204files all match,198art unchanged,+1635raw/+515gzip over093. Root actual owner/guest360/320/844short200 and Terra bounded sample pass; all progress kept. [Report](../evidence/IH2-094/REPORT.md). Native root UI-only held-reply probe proves inherited focusP2;095queued before any combined release, with Terra-reviewed semantic/owner/panel/retry strategy. [Plan](../evidence/IH2-095/PLAN.md).
+
+Review http://housing-review.localhost:49567/uses frozenV1and guarded ih2_menu_review090API5on49564; only dedicated review API restarted with explicit additional Origin and ephemeral-memory-key rotation, population/holdings preserved.093review remains separate49565. No actual accepted key/session/data/client/API changed. Both protected/Tour13tablefield sets/privatekeys0600/sixchecksums and54studies unchanged. Known GitHub account billing refusal keeps091–094unaccepted; no main merge/accepted-preview update/runner workaround/hosting/real-account/original-game work.45%weeklyused/55%remaining, no reset; continue near10%reserve or7amNov13Pacific latest.
+
+## Earlier checkpoint
+
 # Active094housing purchase clarity; release held
 
 Isolated idle-hands-2-housing-ui/feat/clear-housing-purchases starts at locally verified combined093c5822f8. [Plan](../evidence/IH2-094/PLAN.md). Show held/needed kit counts and concise outcome/reason at existing claim/expansion actions; preserve canonical12/24prices, all authority/progress/art/controls and every prior assertion. Keep ordinary snapshot updates in place. No091/092/093acceptance implied; GitHub billing prevents required exact-head checks, accepted main/runtime/4175/localhost4176remain090. Review-only menu-review.localhost49565/guarded ih2_menu_review090API5remains separate; no protected sessions/data/keys changed.45%weeklyused/55%remaining, no resets; continue near10%reserve or7amNov13Pacific latest.

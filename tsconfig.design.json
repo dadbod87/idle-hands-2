@@ -93,7 +93,9 @@
     "tests/neighborhood-routing.test.ts",
     "tests/carpentry-clarity.spec.ts",
     "tests/garden-view.test.ts",
-    "tests/garden-clarity.spec.ts"
+    "tests/garden-clarity.spec.ts",
+    "tests/housing-view.test.ts",
+    "tests/housing-clarity.spec.ts"
   ],
   "compilerOptions": {
     "types": [

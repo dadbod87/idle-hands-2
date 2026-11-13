@@ -1,3 +1,11 @@
+# Pending menu stack: do not release yet
+
+Accepted source and previews remain IH2-090. Candidates 091–094 are local work only. GitHub account billing prevented required jobs from starting; owner resolution and all successful exact-final-head jobs, raw uploaded artifacts, immutable accepted-client checks and protected data/key/study preservation are still required. Do not install another runner, change billing, merge main or replace accepted previews as a workaround.
+
+The native held-reply audit also reproduced an inherited TownUI focus bug: a delayed upgrade reply redirects a deliberately chosen slot control to the placement action. IH2-095 must resolve it before a consolidated menu release. Preserve all prior browser assertions/timeouts, disjoint shards and the ordered shared-town/starter-homes/trail/z-first-visit family on shard2. A separate review URL and local tests are not acceptance.
+
+## Accepted preview gate
+
 # Current local preview gate
 
 090verified exact05c468c/mergef0a294a/CI43353707882. Keep matched090frozen API5for both204file4175/localhost4176clients, all protected/tour data/keys/sixchecksums,54studies, three family doorfeet,552doorpair/fractional endpoint checks, bounded reduced/hidden/offscreen life and all198currentart files in future UI updates. Source route helper is also movement validation; update matched server if that helper changes. [Proof](evidence/IH2-090/source-closeout.json). Public/account/cost approval remains separate.

@@ -102,3 +102,6 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 ## Next craft-menu clarity target
 
 [CRAFT_MENU_AUDIT](CRAFT_MENU_AUDIT.md) records bounded model observations on accepted088local UI, without timed/shared/physical-device acceptance. [PINE_WORKSHOP_CLARITY](PINE_WORKSHOP_CLARITY.md) scopes queued091task-first Nella/rack work. Garden cost/time/yield consolidation is a later target; neither is implemented by these design notes.
+
+
+[First serving gesture](SERVING_GESTURE_STUDY.md): IH2-100 is an independent Aster-only original art study. Bounded720ms replay, exact feet/final idle, native pixel/phone checks and Terra refinement; no café/action/reward integration. Source acceptance remains held. The next usability priority is the count-key ambiguity recorded in101PLAN.

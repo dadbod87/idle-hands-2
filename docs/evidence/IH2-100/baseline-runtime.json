@@ -1,5 +1,5 @@
 {
-  "classification": "Local rebuilt accepted090runtime baseline before independent099design edits; accepted services use their existing immutable CIbuilds.",
+  "classification": "Accepted090 byte baseline reused from the verified099 audit; independently rechecked against rebuilt100client/public art and actual accepted HTTP responses. No pending runtime is incorporated.",
   "acceptedMain": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
   "runtime": {
     "index.html": "0fcfc7019e8384dd94e65cfe8be4cc5a8c4f4dd270a71df2aedecbc59c34fa3e",

@@ -1,3 +1,5 @@
+2026-11-13 —100 candidate-only original Aster serving study:20cells/fourfacings, one720msreplay, exact feet/rest and clearer outlined sleeve. Local325/110and native/Terra/frozen8checks pass; no gameplay or accepted-preview change, normal GitHub source gate held.101Bag quantity clarity next.
+
 2026-11-13 — IH2-099independent café chapter study: existing-radish/immediate-service direction, permanent-keepsake clarity,576modelvariants/24controls,48catalog audit,6originalSVGs and concise separate13fileV2. Local329/110/native/Terra/artifact/preservationpass; no actual game or source acceptance. [Report](evidence/IH2-099/REPORT.md).
 
 2026-11-13 — IH2-098local toolbar repair: intrinsic action sizing, deterministic notes slot and deliberate short200page scroll;338system/132browser/native/Terra/origin/artifact/preservation pass. All202art/rules/progress unchanged; regular090previews/source gates remain held. [Report](evidence/IH2-098/REPORT.md).

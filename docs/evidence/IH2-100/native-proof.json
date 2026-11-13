@@ -1,0 +1,408 @@
+{
+  "classification": "Frozen standalone art study only, no gameplay integration",
+  "records": [
+    {
+      "id": "desktop",
+      "width": 1160,
+      "height": 820,
+      "text": 100,
+      "touch": false,
+      "controls": [
+        {
+          "text": "Front\nBack\nRight\nLeft",
+          "x": 266,
+          "y": -0.40625,
+          "width": 308,
+          "height": 48
+        },
+        {
+          "text": "Ready\nReach\nServe\nReturn\nRest",
+          "x": 586,
+          "y": -0.40625,
+          "width": 308,
+          "height": 48
+        },
+        {
+          "text": "Replay gesture",
+          "x": 266,
+          "y": 63.59375,
+          "width": 308,
+          "height": 48
+        },
+        {
+          "text": "Show serve pose",
+          "x": 586,
+          "y": 63.59375,
+          "width": 308,
+          "height": 48
+        },
+        {
+          "text": "Enlarge for inspection",
+          "x": 266,
+          "y": 129.59375,
+          "width": 628,
+          "height": 44
+        },
+        {
+          "text": "Still images only",
+          "x": 266,
+          "y": 175.59375,
+          "width": 628,
+          "height": 44
+        },
+        {
+          "text": "Show foot anchor",
+          "x": 266,
+          "y": 221.59375,
+          "width": 628,
+          "height": 44
+        },
+        {
+          "text": "View all 20 poses",
+          "x": 266,
+          "y": 411.171875,
+          "width": 628,
+          "height": 44
+        }
+      ],
+      "words": {
+        "problems": [],
+        "pageWidth": 1160,
+        "viewport": 1160
+      }
+    },
+    {
+      "id": "phone320",
+      "width": 320,
+      "height": 740,
+      "text": 100,
+      "touch": true,
+      "controls": [
+        {
+          "text": "Front\nBack\nRight\nLeft",
+          "x": 23.59375,
+          "y": 450.453125,
+          "width": 272.8125,
+          "height": 48
+        },
+        {
+          "text": "Ready\nReach\nServe\nReturn\nRest",
+          "x": 23.59375,
+          "y": 538.453125,
+          "width": 272.8125,
+          "height": 48
+        },
+        {
+          "text": "Replay gesture",
+          "x": 23.59375,
+          "y": 602.453125,
+          "width": 272.8125,
+          "height": 48
+        },
+        {
+          "text": "Show serve pose",
+          "x": 23.59375,
+          "y": 662.453125,
+          "width": 272.8125,
+          "height": 48
+        },
+        {
+          "text": "Enlarge for inspection",
+          "x": 23.59375,
+          "y": 696.453125,
+          "width": 272.8125,
+          "height": 44
+        },
+        {
+          "text": "Still images only",
+          "x": 23.59375,
+          "y": 372.453125,
+          "width": 272.8125,
+          "height": 44
+        },
+        {
+          "text": "Show foot anchor",
+          "x": 23.59375,
+          "y": 418.453125,
+          "width": 272.8125,
+          "height": 44
+        },
+        {
+          "text": "View all 20 poses",
+          "x": 23.59375,
+          "y": 605.03125,
+          "width": 272.8125,
+          "height": 44
+        }
+      ],
+      "words": {
+        "problems": [],
+        "pageWidth": 320,
+        "viewport": 320
+      }
+    },
+    {
+      "id": "phone360",
+      "width": 360,
+      "height": 640,
+      "text": 100,
+      "touch": true,
+      "controls": [
+        {
+          "text": "Front\nBack\nRight\nLeft",
+          "x": 24.796875,
+          "y": 83.65625,
+          "width": 310.40625,
+          "height": 48
+        },
+        {
+          "text": "Ready\nReach\nServe\nReturn\nRest",
+          "x": 24.796875,
+          "y": 171.65625,
+          "width": 310.40625,
+          "height": 48
+        },
+        {
+          "text": "Replay gesture",
+          "x": 24.796875,
+          "y": 235.65625,
+          "width": 310.40625,
+          "height": 48
+        },
+        {
+          "text": "Show serve pose",
+          "x": 24.796875,
+          "y": 295.65625,
+          "width": 310.40625,
+          "height": 48
+        },
+        {
+          "text": "Enlarge for inspection",
+          "x": 24.796875,
+          "y": 361.65625,
+          "width": 310.40625,
+          "height": 44
+        },
+        {
+          "text": "Still images only",
+          "x": 24.796875,
+          "y": 407.65625,
+          "width": 310.40625,
+          "height": 44
+        },
+        {
+          "text": "Show foot anchor",
+          "x": 24.796875,
+          "y": 453.65625,
+          "width": 310.40625,
+          "height": 44
+        },
+        {
+          "text": "View all 20 poses",
+          "x": 24.796875,
+          "y": 504.234375,
+          "width": 310.40625,
+          "height": 44
+        }
+      ],
+      "words": {
+        "problems": [],
+        "pageWidth": 360,
+        "viewport": 360
+      }
+    },
+    {
+      "id": "phone320text200",
+      "width": 320,
+      "height": 740,
+      "text": 200,
+      "touch": true,
+      "controls": [
+        {
+          "text": "Front\nBack\nRight\nLeft",
+          "x": 23.59375,
+          "y": 17.53125,
+          "width": 272.8125,
+          "height": 64
+        },
+        {
+          "text": "Ready\nReach\nServe\nReturn\nRest",
+          "x": 23.59375,
+          "y": 145.53125,
+          "width": 272.8125,
+          "height": 64
+        },
+        {
+          "text": "Replay gesture",
+          "x": 23.59375,
+          "y": 225.53125,
+          "width": 272.8125,
+          "height": 72
+        },
+        {
+          "text": "Show serve pose",
+          "x": 23.59375,
+          "y": 309.53125,
+          "width": 272.8125,
+          "height": 120
+        },
+        {
+          "text": "Enlarge for inspection",
+          "x": 23.59375,
+          "y": 447.53125,
+          "width": 272.8125,
+          "height": 96
+        },
+        {
+          "text": "Still images only",
+          "x": 23.59375,
+          "y": 545.53125,
+          "width": 272.8125,
+          "height": 48
+        },
+        {
+          "text": "Show foot anchor",
+          "x": 23.59375,
+          "y": 595.53125,
+          "width": 272.8125,
+          "height": 96
+        },
+        {
+          "text": "View all 20 poses",
+          "x": 23.59375,
+          "y": 427.703125,
+          "width": 272.8125,
+          "height": 96
+        }
+      ],
+      "words": {
+        "problems": [],
+        "pageWidth": 320,
+        "viewport": 320
+      }
+    },
+    {
+      "id": "short200",
+      "width": 844,
+      "height": 390,
+      "text": 200,
+      "touch": true,
+      "controls": [
+        {
+          "text": "Front\nBack\nRight\nLeft",
+          "x": 108,
+          "y": 78.78125,
+          "width": 308,
+          "height": 64
+        },
+        {
+          "text": "Ready\nReach\nServe\nReturn\nRest",
+          "x": 428,
+          "y": 78.78125,
+          "width": 308,
+          "height": 64
+        },
+        {
+          "text": "Replay gesture",
+          "x": 108,
+          "y": 158.78125,
+          "width": 308,
+          "height": 72
+        },
+        {
+          "text": "Show serve pose",
+          "x": 428,
+          "y": 158.78125,
+          "width": 308,
+          "height": 72
+        },
+        {
+          "text": "Enlarge for inspection",
+          "x": 108,
+          "y": 248.78125,
+          "width": 628,
+          "height": 48
+        },
+        {
+          "text": "Still images only",
+          "x": 108,
+          "y": 298.78125,
+          "width": 628,
+          "height": 48
+        },
+        {
+          "text": "Show foot anchor",
+          "x": 108,
+          "y": 341.78125,
+          "width": 628,
+          "height": 48
+        },
+        {
+          "text": "View all 20 poses",
+          "x": 108,
+          "y": 170.953125,
+          "width": 628,
+          "height": 48
+        }
+      ],
+      "words": {
+        "problems": [],
+        "pageWidth": 844,
+        "viewport": 844
+      }
+    }
+  ],
+  "served": [
+    {
+      "name": "aster-serving.svg",
+      "status": 200,
+      "sha256": "b6defc8f3c59c44dc32a8019f01e859e25855a0ff5ad7323f4e5b8bb4e11d456",
+      "bytes": 46339
+    },
+    {
+      "name": "catalog.json",
+      "status": 200,
+      "sha256": "2d3882b5a023d746ce28edc7d73f35a7c741b1a06fa5a0a2b985f8008607afcb",
+      "bytes": 15027
+    },
+    {
+      "name": "contact-sheet.svg",
+      "status": 200,
+      "sha256": "47d7a966b594bfd6eabf4d07ae8ceb08de897373d74aaa0638b1c87946408770",
+      "bytes": 47283
+    },
+    {
+      "name": "index.html",
+      "status": 200,
+      "sha256": "95596dcc08688e871c5559685906557a60f4f40092d8092324f241abccc28c1a",
+      "bytes": 2147
+    },
+    {
+      "name": "provenance.json",
+      "status": 200,
+      "sha256": "31870e7739242f4a3bb9298b4560d33670fa6fcff7a14b4fbcef432f81770991",
+      "bytes": 1179
+    },
+    {
+      "name": "serving-plate.svg",
+      "status": 200,
+      "sha256": "7e4db9f16ea9c5fd9c8aace9e14d1c98531e759a592c98cf5d2cdfbd36f60ee5",
+      "bytes": 534
+    },
+    {
+      "name": "study.js",
+      "status": 200,
+      "sha256": "47e61dd4b801ed5bb48277ec2eb314e85234cd3b0ff7ab4db46ed5eea3221c7e",
+      "bytes": 2875
+    },
+    {
+      "name": "style.css",
+      "status": 200,
+      "sha256": "2ddb405e0a724cfe734f82bf4f0094ec63d74ed4e49df96ff5583d1f10f2270d",
+      "bytes": 2568
+    }
+  ],
+  "errors": [],
+  "unexpectedRequests": [],
+  "disclosure": "Native mouse/keyboard and browser touch taps; viewport/font emulation. No game/API/save data, clock/position/stock/reply interception. Eight contrast captures composite exact accepted ground SVGs behind this standalone actor; they are not actual Phaser world scenes. Not physical devices, Phaser action integration, general accessibility or enjoyment proof."
+}

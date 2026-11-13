@@ -1,3 +1,11 @@
+#100 locally verified;101 Bag count clarity next
+
+100 source backup is pending final commit/push on `feat/serving-gesture-study`. Local325system/110browser/final2artifact-packchecks/native/TerraV2/frozen8/preservation pass; all204accepted090client/198art files remain exact. Gallery http://serving-review.localhost:49590/ is standalone Aster art, no gameplay. Required normal GitHub/source/rawartifact gate remains unmet after old PR39billing refusal. [Handoff](handoffs/2026-11-13-serving-study.md).
+
+Next101 uses held098source91a3eb1 as an explicitly unaccepted input in an isolated checkout. A cold-read menu audit found output/cost/wait/destination clear but a bare0Bag badge could mean zero owned rather than none available to place. Add a short key before the grid, precise accessible count names and shorten bottom notes; no inventory rules/holdings changes. [Plan](../evidence/IH2-101/PLAN.md). Keep all held branch-specific checks and accepted090previews/data/keys/studies untouched.
+
+Last51%weeklyused/49%remaining,3resetcreditsunused. Continue until around10%reserve or15:00UTC(7amNovember13Pacific), whichever first.
+
 # Active100: first original serving gesture
 
 Continue in isolated `idle-hands-2-serving-study` / `feat/serving-gesture-study`, base canonical documentation checkpointa1cb383, runtime byte-identical accepted090/mainf0a294a.100is a first Aster-only plate gesture: four facings/fiveposes, unchanged64×80frame/32,72foot/0.9display and exact accepted final idle. Use guarded safe imports of existing original rig functions; never call public-writing generators. No gameplay, actor state, café, reward, item, command or live integration.

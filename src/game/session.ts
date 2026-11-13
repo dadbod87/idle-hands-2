@@ -1,6 +1,6 @@
 import { worlds, canStand, routeTo, type Room, type Point, type Stop } from './world.ts';
 export type SavedPosition = { version: 1; room: Room; position: Point };
-const spawn: Record<Room, Point> = { square: { x: 24, y: 25 }, workshop: { x: 9, y: 11 }, home: {x:9,y:11}, 'home-expanded': {x:9,y:11},trail:{x:9,y:22},garden:{x:9,y:14} };
+const spawn: Record<Room, Point> = { neighborhood:{x:31.5,y:2.5}, square: { x: 24, y: 25 }, workshop: { x: 9, y: 11 }, home: {x:9,y:11}, 'home-expanded': {x:9,y:11},trail:{x:9,y:22},garden:{x:9,y:14} };
 export const WALK_SPEED = 5; // World tiles per second; the actor is never snapped to them.
 export class Session {
   room: Room = 'square';

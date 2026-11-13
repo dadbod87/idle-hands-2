@@ -15,3 +15,5 @@
 .home-arrangement-panel .home-status{min-height:2.6em}
 .home-arrangement-panel{overflow-anchor:none}
 #panel-body .home-arrange select{font-size:1rem;font-weight:normal}
+
+.registry-records{border-top:1px solid var(--line);margin-top:12px}.registry-records>summary{min-height:44px;padding:12px 0;font-weight:bold;cursor:pointer}.registry-records .town-plot{margin-top:12px}

@@ -19,6 +19,13 @@ export class TownSky {
  private cameraX=NaN;
  private cameraY=NaN;
  private rainTransform='';
+ setWindows(windows:Array<{x:number;y:number;width:number;height:number}>){this.lamps.replaceChildren();
+  for(const box of windows){
+   const fill=document.createElement('div');fill.style.cssText=`position:absolute;left:${box.x}px;top:${box.y}px;width:${box.width}px;height:${box.height}px;background:var(--lamp-fill);`;
+   const edge=document.createElement('div');edge.style.cssText=`position:absolute;left:${box.x-2.5}px;top:${box.y-2.5}px;width:${box.width+5}px;height:${box.height+5}px;border:3px solid var(--lamp-edge);box-sizing:border-box;`;
+   this.lamps.append(fill,edge);
+  }
+ }
  constructor(private scene:Phaser.Scene,windows:Array<{x:number;y:number;width:number;height:number}>){
   this.overlay=document.createElement('div');this.overlay.className='town-sky-overlay';this.overlay.setAttribute('aria-hidden','true');
   // Keep this stacking context inside #world, beneath later location/guide DOM.
@@ -26,11 +33,7 @@ export class TownSky {
   this.overlay.style.cssText='position:absolute;inset:0;overflow:hidden;pointer-events:none;contain:strict;isolation:isolate;';
   this.shade=document.createElement('div');this.shade.style.cssText='position:absolute;inset:0;';
   this.lamps=document.createElement('div');this.lamps.style.cssText='position:absolute;left:0;top:0;pointer-events:none;';
-  for(const box of windows){
-   const fill=document.createElement('div');fill.style.cssText=`position:absolute;left:${box.x}px;top:${box.y}px;width:${box.width}px;height:${box.height}px;background:var(--lamp-fill);`;
-   const edge=document.createElement('div');edge.style.cssText=`position:absolute;left:${box.x-2.5}px;top:${box.y-2.5}px;width:${box.width+5}px;height:${box.height+5}px;border:3px solid var(--lamp-edge);box-sizing:border-box;`;
-   this.lamps.append(fill,edge);
-  }
+  this.setWindows(windows);
   this.rain=document.createElement('div');this.rain.dataset.weatherRain='';
   const pattern='<svg xmlns="http://www.w3.org/2000/svg" width="192" height="96" viewBox="0 0 192 96"><path d="M15 3l-3 11M53 38l-3 10M89 11l-3 12M125 64l-3 10M162 28l-3 11M185 80l-3 12" fill="none" stroke="#425b65" stroke-opacity=".22" stroke-width="2.2"/><path d="M15 3l-3 11M53 38l-3 10M89 11l-3 12M125 64l-3 10M162 28l-3 11M185 80l-3 12" fill="none" stroke="#edf4ed" stroke-opacity=".58" stroke-width="1.2"/></svg>';
   // One cached repeating bitmap; only its compositor transform changes per frame.

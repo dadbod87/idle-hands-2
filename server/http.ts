@@ -1,3 +1,4 @@
+import{positionContextValid,exitForHome}from'../src/game/neighborhood.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {createServer,type IncomingMessage,type ServerResponse} from 'node:http';
 import {createHmac,timingSafeEqual,randomUUID} from 'node:crypto';
@@ -7,7 +8,7 @@ import {TransportAdmission,BoundedStream} from './transport.ts';
 import {TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './store.ts';
 import {canStand,routeTo,worlds} from '../src/game/world.ts';
 const DEFAULT_FIXTURES=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}];
-const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden']),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(value=>isHome(value.room)?!!value.homePlotId:value.homePlotId===undefined);
+const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden','neighborhood']),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(positionContextValid);
 const COOKIE='ih2_fixture';
 function json(res:ServerResponse,status:number,data:unknown){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(data));}
 async function body(req:IncomingMessage){let text='';for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>16384)throw new Error('Body too large');}return JSON.parse(text||'{}') as unknown;}
@@ -39,7 +40,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  function throttled(res:ServerResponse){res.setHeader('Retry-After','1');return json(res,429,{message:'The local town is busy. Please retry shortly.'});}
  function send(item:{stream:BoundedStream},name:string,data:unknown){const before={...item.stream.metrics};const ok=name==='presence'?item.stream.presence(data):name==='heartbeat'?item.stream.heartbeat():item.stream.event(name,data);metrics.sseSubmittedBytes+=item.stream.metrics.submittedBytes-before.submittedBytes;metrics.sseSubmittedFrames+=item.stream.metrics.submittedFrames-before.submittedFrames;metrics.sseSuppressedPresence+=item.stream.metrics.suppressedPresence-before.suppressedPresence;return ok;}
  function invalidate(except:string){for(const item of connections)if(item.id!==except)send(item,'invalidate',{});}
- function presence(){for(const item of connections)item.stream.check();if(!dirty)return;dirty=false;const active=new Set([...connections].map(c=>c.id));for(const item of connections){const own=residents.get(item.id);if(!own)continue;const others=[...residents].filter(([id,entry])=>id!==item.id&&active.has(id)&&((['square','trail'].includes(entry.value.room)&&entry.value.room===own.value.room)||isHome(entry.value.room)&&entry.value.room===own.value.room&&entry.value.homePlotId===own.value.homePlotId)).map(([id,entry])=>({id,name:fixtures.find(f=>f.id===id)!.name,...entry.value}));if(send(item,'presence',others))metrics.presenceEvents++;}}
+ function presence(){for(const item of connections)item.stream.check();if(!dirty)return;dirty=false;const active=new Set([...connections].map(c=>c.id));for(const item of connections){const own=residents.get(item.id);if(!own)continue;const others=[...residents].filter(([id,entry])=>id!==item.id&&active.has(id)&&((['square','trail','neighborhood'].includes(entry.value.room)&&entry.value.room===own.value.room&&(entry.value.room!=='neighborhood'||entry.value.districtId===own.value.districtId))||isHome(entry.value.room)&&entry.value.room===own.value.room&&entry.value.homePlotId===own.value.homePlotId)).map(([id,entry])=>({id,name:fixtures.find(f=>f.id===id)!.name,...entry.value}));if(send(item,'presence',others))metrics.presenceEvents++;}}
  const ticker=setInterval(presence,200);ticker.unref();const heartbeat=setInterval(()=>{for(const item of connections)send(item,'heartbeat',null);},15000);heartbeat.unref();
  const server=createServer(async(req,res)=>{
   try{
@@ -74,8 +75,13 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     return await serial(id,res,async()=>{
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
     const rawPosition=await body(req);if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});const next=positionSchema.parse(rawPosition),previous=current.value,elapsed=Math.max(0,(now()-current.at)/1000);const credit=Math.min(2,current.credit+elapsed*5);let spent=0,valid=canStand(next.room,next.position)&&(next.room!=='trail'||bridgeOpen)&&(!isHome(next.room)||next.homePlotId===previous.homePlotId&&!!homes.get(next.homePlotId!)&&next.room===(homes.get(next.homePlotId!)!.level===2?'home-expanded':'home'));
-    if(next.room===previous.room){valid=valid&&next.homePlotId===previous.homePlotId;const distance=Math.hypot(next.position.x-previous.position.x,next.position.y-previous.position.y),route=distance<.0001?[]:routeTo(next.room,previous.position,next.position);let prior=previous.position;const travelled=route.reduce((total,p)=>{const step=Math.hypot(p.x-prior.x,p.y-prior.y);prior=p;return total+step;},0);valid=valid&&(distance<.0001||route.length>0)&&travelled<=credit+.001;spent=travelled;}
-    else{if(isHome(next.room))valid=false;const portal=worlds[previous.room].stops.find(s=>s.transition===next.room&&Math.hypot(previous.position.x-s.point.x,previous.position.y-s.point.y)<=1.9);valid=valid&&!!portal?.arrival&&Math.hypot(next.position.x-portal.arrival.x,next.position.y-portal.arrival.y)<.05;}
+    if(next.room===previous.room){valid=valid&&next.homePlotId===previous.homePlotId&&next.districtId===previous.districtId;const distance=Math.hypot(next.position.x-previous.position.x,next.position.y-previous.position.y),route=distance<.0001?[]:routeTo(next.room,previous.position,next.position);let prior=previous.position;const travelled=route.reduce((total,p)=>{const step=Math.hypot(p.x-prior.x,p.y-prior.y);prior=p;return total+step;},0);valid=valid&&(distance<.0001||route.length>0)&&travelled<=credit+.001;spent=travelled;}
+    else{
+     if(isHome(next.room)||next.room==='neighborhood'&&!isHome(previous.room))valid=false;
+     const portal=worlds[previous.room].stops.find(s=>(isHome(previous.room)?s.id==='home-door':s.transition===next.room)&&Math.hypot(previous.position.x-s.point.x,previous.position.y-s.point.y)<=1.9);
+     const expected=isHome(previous.room)?exitForHome(previous):portal?.arrival?{room:portal.transition,position:portal.arrival,districtId:undefined}:null;
+     valid=valid&&!!portal&&!!expected&&expected.room===next.room&&expected.districtId===next.districtId&&Math.hypot(next.position.x-expected.position.x,next.position.y-expected.position.y)<.05;
+    }
     if(!valid){metrics.movementRejected++;return json(res,409,{message:'That move was not accepted. Returning to the last confirmed position.',position:previous});}
     current.value=next;current.at=now();current.credit=next.room===previous.room?Math.max(0,credit-spent):1;dirty=true;metrics.movementAccepted++;
     if(next.room!==previous.room){await store.savePosition(id,next);metrics.positionCheckpoints++;}
@@ -86,7 +92,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(!rate(id,'command',30,60000))return json(res,429,{message:'Please give the clerk a moment before more requests.'});
     return await serial(id,res,async()=>{
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
-    const command=await body(req);if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});metrics.commands++;const result=await store.execute(id,command,current.value);cacheHomes(result.snapshot);if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(command as {kind?:unknown}).kind==='enter-home'){current.value=result.snapshot.position;current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;}result.snapshot.position=current.value;
+    const command=await body(req);if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});metrics.commands++;const result=await store.execute(id,command,current.value);cacheHomes(result.snapshot);if(result.ok&&!result.replayed&&command&&typeof command==='object'&&['enter-home','enter-neighborhood'].includes(String((command as {kind?:unknown}).kind))){current.value=result.snapshot.position;current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;}result.snapshot.position=current.value;
     if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(['contribute','claim-plot','upgrade-plot','edit-plot','redeem-lesson'].includes(String((command as {kind?:unknown}).kind))||((command as {kind?:unknown}).kind==='stamp-trail'&&result.snapshot.trail.pennantOwned)||(['garden','carpentry','commission'].includes(String((command as {kind?:unknown}).kind))&&result.publicChanged)))invalidate(id);
     return json(res,200,{...result,snapshot:{...result.snapshot,serverInstance}});
     });

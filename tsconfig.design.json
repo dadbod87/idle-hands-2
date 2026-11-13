@@ -79,7 +79,15 @@
     "src/ui/places.ts",
     "tests/crafting-view.test.ts",
     "tests/places-view.test.ts",
-    "tests/crafting-clarity.spec.ts"
+    "tests/crafting-clarity.spec.ts",
+    "tools/neighborhood-home-fixture.ts",
+    "tools/neighborhood-browser-server.ts",
+    "tools/create-neighborhood-art.ts",
+    "tests/neighborhood-address.test.ts",
+    "tests/neighborhood-art.test.ts",
+    "tests/neighborhood-runtime.spec.ts",
+    "tools/neighborhood-tour-config.ts",
+    "tools/run-neighborhood-tour.ts"
   ],
   "compilerOptions": {
     "types": [

@@ -868,6 +868,26 @@
       "id": "collection-devon-timber",
       "path": "art/collection/devon-timber.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "future-home-site",
+      "path": "art/neighborhood/future-home-site.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "home-site-boundary",
+      "path": "art/neighborhood/home-site-boundary.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "housing-registry",
+      "path": "art/neighborhood/housing-registry.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "neighborhood-ground",
+      "path": "art/neighborhood/neighborhood-ground.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

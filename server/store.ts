@@ -1,3 +1,4 @@
+import{addressForPlot,frontForPlot,districtExists,positionContextValid,TOWN_GATE,HOME_SITE_PREFIX}from'../src/game/neighborhood.ts';
 import {HOME_SLOTS,homeAllocation,homeAllocationValid,isCurrentHomeLayout,applyHomeArrangement,type HomeLayout} from '../src/game/home-layout.ts';
 import {collectionGrant,type CollectionGrant} from '../src/game/collection-receipt.ts';
 import {commissionActionSchema,commissionLocation,MOTIFS,type LetterboxMotif} from '../src/game/commission.ts';
@@ -11,7 +12,7 @@ import { applyWorkshop, createWorkshop, loadWorkshop, questStep, PROP_IDS, PLACE
 import { canStand, worlds, TRAIL_LANDMARK_IDS, type Point, type Room } from '../src/game/world.ts';
 import { PLOT_CLAIM_KITS, PLOT_UPGRADE_KITS, MAINTENANCE_MS, MAINTENANCE_COST, BRIDGE_BUILD_MS, TRAIL_PENNANT_AWARD } from '../src/game/town-rules.ts';
 
-export type TownPosition = { room: Room; position: Point; homePlotId?: string };
+export type TownPosition = { room: Room; position: Point; homePlotId?: string; districtId?:string };
 export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'];workroomPlacements:HomeLayout['workroomPlacements']; pennantOwned:boolean;letterboxMotif:LetterboxMotif|null };
 export type MaintenanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot = {
@@ -36,6 +37,7 @@ const slotSchema = z.enum(HOME_SLOTS.map(s => s.id) as [string, ...string[]]);
 const specialSchema = z.discriminatedUnion('kind', [
   z.object({ ...base, kind: z.literal('contribute') }).strict(),
   z.object({...base,kind:z.literal('stamp-trail'),landmarkId:z.enum(TRAIL_LANDMARK_IDS)}).strict(),
+  z.object({...base,kind:z.literal('enter-neighborhood'),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/)}).strict(),
   z.object({ ...base, kind: z.literal('enter-home'), plotId:z.string().regex(/^[1-9][0-9]{0,17}$/) }).strict(),
   z.object({ ...base, kind:z.literal('start-lesson'), route:z.enum(['construction','upkeep']),expectedBridgeContributed:z.number().int().min(0).max(3) }).strict(),
   z.object({ ...base, kind:z.literal('complete-lesson') }).strict(),
@@ -54,12 +56,14 @@ function canonical(value: unknown): string {
 }
 function hash(value: unknown): string { return createHash('sha256').update(canonical(value)).digest('hex'); }
 export function isHome(room:Room):boolean{return room==='home'||room==='home-expanded';}
-function validPosition(value: TownPosition): boolean { return !!worlds[value.room] && canStand(value.room,value.position) && (isHome(value.room)?!!value.homePlotId&&/^[1-9][0-9]{0,17}$/.test(value.homePlotId):value.homePlotId===undefined); }
+function validPosition(value:TownPosition):boolean{return !!worlds[value.room]&&canStand(value.room,value.position)&&positionContextValid(value);}
 export function canonicalHomePosition(value:TownPosition,plots:TownPlot[]):TownPosition{
+ if(!positionContextValid(value))throw new Error('Invalid durable room context.');
+ if(value.room==='neighborhood'&&!districtExists(value.districtId!,plots))throw new Error('Unknown durable neighborhood.');
  if(!isHome(value.room))return value;
  const plot=plots.find(p=>p.id===value.homePlotId);
  if(!plot)return {room:'square',position:{x:30,y:35.5}};
- const room=plot.level===2?'home-expanded':'home';return {room,homePlotId:plot.id,position:canStand(room,value.position)?value.position:{x:9,y:11}};
+ const room=plot.level===2?'home-expanded':'home';return {room,homePlotId:plot.id,...(value.districtId?{districtId:addressForPlot(plot.id).block}:{}),position:canStand(room,value.position)?value.position:{x:9,y:11}};
 }
 function near(p: TownPosition, room: Room, stopId: string): boolean {
   const stop = worlds[room].stops.find(s => s.id === stopId);
@@ -174,9 +178,9 @@ export class TownStore {
       const ownLayout:HomeLayout|null=ownPlot?{level:ownPlot.level,placements:ownPlot.placements,workroomPlacements:ownPlot.workroom_placements}:null;
       if(ownLayout&&(!isCurrentHomeLayout(ownLayout)||!homeAllocationValid(state,ownLayout)))throw new Error('Stored home layout failed validation. Nothing was replaced.');
       const special = specialSchema.safeParse(raw);
-      const specialKinds = ['contribute', 'claim-plot', 'upgrade-plot', 'edit-plot','enter-home','start-lesson','complete-lesson','redeem-lesson','stamp-trail'];
+      const specialKinds = ['contribute', 'claim-plot', 'upgrade-plot', 'edit-plot','enter-home','enter-neighborhood','start-lesson','complete-lesson','redeem-lesson','stamp-trail'];
       const contextPlot=isHome(position.room)?(await client.query('select id::text,owner_id,level from ih2.plots where id=$1',[position.homePlotId])).rows[0]:null;
-      const validContext=(!isHome(position.room)||!!contextPlot&&position.room===(contextPlot.level===2?'home-expanded':'home'))&&(position.room!=='trail'||(await client.query('select phase from ih2.bridge where id=1')).rows[0].phase==='open');
+      const validContext=(!isHome(position.room)||!!contextPlot&&position.room===(contextPlot.level===2?'home-expanded':'home'))&&(position.room!=='neighborhood'||districtExists(position.districtId!, (await client.query('select id::text from ih2.plots')).rows))&&(position.room!=='trail'||(await client.query('select phase from ih2.bridge where id=1')).rows[0].phase==='open');
       const reject = (message: string) => { result = { ok: false, message, revision: state.revision }; };
       if (cmd.expectedRevision !== state.revision) reject('Your town state changed. Review the refreshed bag and try again.');
       else if (!validPosition(position)||!validContext) reject('A valid server position is required.');
@@ -194,11 +198,17 @@ export class TownStore {
               if(!stamp.rows.length)reject('This landmark is already in your permanent trail journal.');
               else{const count=(await client.query('select count(*)::int as n from ih2.trail_stamps where player_id=$1',[id])).rows[0].n;if(count===TRAIL_LANDMARK_IDS.length)await client.query('insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing',[id,TRAIL_PENNANT_AWARD]);state.revision++;state.observedAt=now;state.lastMessage=count===TRAIL_LANDMARK_IDS.length?'All three landmarks recorded. Your permanent clipboard pennant is earned.':'Landmark recorded in your permanent trail journal.';result={ok:true,message:state.lastMessage,revision:state.revision};}
             }
+          }else if(action.kind==='enter-neighborhood'){
+            const plots=(await client.query('select id::text from ih2.plots')).rows;
+            if(!near(position,'square','residential-gate')&&!near(position,'neighborhood','neighborhood-exit')&&!near(position,'neighborhood','neighborhood-directory'))reject('Walk to the neighborhood gate before choosing a street.');
+            else if(!districtExists(action.districtId,plots))reject('That neighborhood has no homes yet.');
+            else{authoritativePosition={room:'neighborhood',districtId:action.districtId,position:{...TOWN_GATE}};state.revision++;state.observedAt=now;state.lastMessage='Entered neighborhood '+action.districtId+'. Your neighbors have been advised to look busy.';result={ok:true,message:state.lastMessage,revision:state.revision};}
           }else if(action.kind==='enter-home'){
             const target=(await client.query('select id::text,level from ih2.plots where id=$1',[action.plotId])).rows[0];
-            if(!near(position,'square','plot')&&!near(position,'square','home-front'))reject('Walk to the home entrance before entering.');
+            const address=addressForPlot(action.plotId),streetDoor=position.room==='neighborhood'&&position.districtId===address.block&&near(position,'neighborhood',HOME_SITE_PREFIX+address.slot);
+            if(!streetDoor&&!near(position,'square','plot')&&!near(position,'square','home-front'))reject('Walk to the home entrance before entering.');
             else if(!target)reject('That home does not exist.');
-            else{authoritativePosition={room:target.level===2?'home-expanded':'home',homePlotId:target.id,position:{x:9,y:11}};state.revision++;state.observedAt=now;state.lastMessage='Entered home '+target.id+'. Visitors may look; only the owner may arrange it.';result={ok:true,message:state.lastMessage,revision:state.revision};}
+            else{authoritativePosition={room:target.level===2?'home-expanded':'home',homePlotId:target.id,...(streetDoor?{districtId:address.block}:{}),position:{x:9,y:11}};state.revision++;state.observedAt=now;state.lastMessage='Entered home '+target.id+'. Visitors may look; only the owner may arrange it.';result={ok:true,message:state.lastMessage,revision:state.revision};}
           }else if(action.kind==='start-lesson'||action.kind==='complete-lesson'||action.kind==='redeem-lesson'){
             await client.query('insert into ih2.maintenance_lessons(player_id) values($1) on conflict do nothing',[id]);
             const lesson=(await client.query('select * from ih2.maintenance_lessons where player_id=$1 for update',[id])).rows[0];

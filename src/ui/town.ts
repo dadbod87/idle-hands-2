@@ -1,3 +1,4 @@
+import{addressForPlot}from'../game/neighborhood.ts';
 import {homeSlots,homeDisplay} from '../game/home-layout.ts';
 import {PLOT_CLAIM_KITS,PLOT_UPGRADE_KITS} from '../game/town-rules.ts';
 import {PROPS,type WorkshopState } from '../game/workshop.ts';
@@ -7,14 +8,14 @@ import {TownClient,type TownSnapshot,type TownPlot,type TownCommand} from './tow
 export {TownClient} from './town-client.ts';
 export type {TownPosition,TownPlot,TownLesson,TownSnapshot,TownCommand,TownHooks} from './town-client.ts';
 import './town.css';
-type TownHost={open:(title:string)=>void;body:HTMLElement;feedback:(message:string)=>void;changed?:()=>void;enterHome?:(plotId:string)=>Promise<void>;enterTrail?:()=>void};
+type TownHost={open:(title:string)=>void;body:HTMLElement;feedback:(message:string)=>void;changed?:()=>void;enterHome?:(plotId:string)=>Promise<void>;enterNeighborhood?:(districtId:string)=>Promise<void>;enterTrail?:()=>void};
 export class TownUI {
  private status:HTMLElement|null=null;
  private busy=false;
  private panel:''|'bridge'|'plots'|'lesson'|'trail'='';
  private landmark:string|undefined;
  private plotVersion='';
- private choiceOwner='';
+ private choiceOwner='';private registryOpen=false;
  private homeChoices=new Map<string,{prop:string;slot:string;details:boolean}>();
  private homeKeyboard=false;
  constructor(private host:TownHost,private client:TownClient){window.setInterval(()=>{if(!document.hidden&&this.status?.isConnected)this.refresh();},1000);}
@@ -67,15 +68,24 @@ export class TownUI {
   else{const enter=this.button('Walk into Inkwood trail',()=>this.host.enterTrail?.());enter.disabled=!s.bridge.restored;this.host.body.append(enter);}
   const earned=document.createElement('img');earned.src='/art/trail/trail-pennant-icon.svg';earned.alt='Earned Inkwood discovery pennant';earned.width=64;earned.height=64;earned.dataset.trailPennant='';this.host.body.append(earned,this.p('Discoveries belong to you, even if someone else repaired the bridge. All three stamps earn one permanent home pennant. Re-reading a landmark gives no duplicate reward.'));this.notice();this.refresh();
  }
+ showNeighborhoods(){
+  const s=this.client.snapshot;if(!s){void this.showLogin();return;}this.start('Homes & neighbors');
+  this.host.body.append(this.p('Choose a neighborhood, then walk to a door. Visitors may look around; only owners can arrange their homes.'));
+  const districts=[...new Set(['1',...s.plots.map(p=>addressForPlot(p.id).block)])].sort((a,b)=>BigInt(a)<BigInt(b)?-1:1);
+  for(const id of districts){const homes=s.plots.filter(p=>addressForPlot(p.id).block===id),own=homes.some(p=>p.ownerId===s.playerId),button=this.button((own?'Your street · ':'')+'Neighborhood '+id+' · '+homes.length+' homes',()=>void this.host.enterNeighborhood?.(id));button.dataset.neighborhoodEnter=id;this.host.body.append(button);}
+  this.notice();
+ }
  showPlots(plotId?:string){
   const s=this.client.snapshot;if(!s){void this.showLogin();return;}
   const selected=s.plots.find(p=>p.id===plotId),inside=!!selected&&s.position.room.startsWith('home')&&s.position.homePlotId===selected.id;
   const arranging=inside&&selected?.ownerId===s.playerId;
   this.start(arranging?'Your home':inside?'Visiting':'Town house plots',!inside);this.panel='plots';
-  if(this.choiceOwner!==s.playerId){this.homeChoices.clear();this.choiceOwner=s.playerId;}
+  if(this.choiceOwner!==s.playerId){this.homeChoices.clear();this.choiceOwner=s.playerId;this.registryOpen=false;}
   this.plotVersion=JSON.stringify([s.plots,s.workshop.owned,s.workshop.bridgeKits]);
   if(inside)this.host.body.classList.add('home-arrangement-panel');
+  if(!inside)this.host.body.append(this.p('Plots receive a permanent street address when claimed. You are not buying this registry building or choosing an occupied site.'));
   if(!s.plot&&!plotId){const claim=this.button(`Claim your house plot · ${PLOT_CLAIM_KITS} bridge kits`,()=>void this.action({kind:'claim-plot'},()=>this.showPlots()));claim.disabled=s.workshop.bridgeKits<PLOT_CLAIM_KITS;this.host.body.append(claim);}
+  let records:HTMLDetailsElement|undefined;if(!inside&&!plotId&&s.plots.length>6){records=document.createElement('details');records.className='registry-records';records.dataset.registryRecords='';records.open=this.registryOpen;const summary=document.createElement('summary');summary.textContent='Other home records · '+s.plots.filter(p=>p.ownerId!==s.playerId).length;records.append(summary);records.ontoggle=()=>{if(records?.isConnected)this.registryOpen=records.open;};}
   const plots=[...s.plots].sort((a,b)=>Number(b.ownerId===s.playerId)-Number(a.ownerId===s.playerId));
   for(const plot of plots){
    if(plotId&&plot.id!==plotId)continue;
@@ -85,7 +95,7 @@ export class TownUI {
    const rerender=()=>{const dialog=this.host.body.closest('dialog'),scroll=dialog?.scrollTop??0;this.showPlots(plotId);if(dialog)dialog.scrollTop=scroll;};
    const info=document.createElement('div');
    if(plot.ownerId){const enter=this.button(owner?'Enter your house':'Visit '+(plot.ownerName??'this house'),()=>{if(this.busy)return;this.busy=true;void this.host.enterHome?.(plot.id).catch(error=>this.host.feedback(error.message)).finally(()=>this.busy=false);});enter.dataset.homeEnter=plot.id;if(!inThisHome||owner)info.append(enter);}
-   info.append(this.p(`Plot ${plot.id} · ${plot.ownerName??plot.ownerId??'Unclaimed'} · level ${plot.level??plot.tier??0}`));
+   info.append(this.p(`${addressForPlot(plot.id).label} · ${plot.ownerName??'Unclaimed'} · level ${plot.level??plot.tier??0}`));
    if(inThisHome)info.append(this.p('Practice town · fictional residents and test supplies. Confirmed changes are saved here.'));
    if(plot.pennantOwned)info.append(this.p('Inkwood discovery pennant · earned and displayed at home'));
    if(owner){
@@ -120,8 +130,9 @@ export class TownUI {
    }else if(!plot.ownerId){
     section.append(info);const claim=this.button(`Claim plot · ${PLOT_CLAIM_KITS} bridge kits`,()=>void this.action({kind:'claim-plot',plotId:plot.id},()=>this.showPlots(plotId)));claim.disabled=!!s.plot||s.workshop.bridgeKits<PLOT_CLAIM_KITS;section.append(claim);
    }else{section.append(this.p('Visiting · only the owner can change this plot.'),info);}
-   this.host.body.append(section);
+   (records&&!owner?records:this.host.body).append(section);
   }
+  if(records)this.host.body.append(records);
   const reload=this.button('Refresh plot information',()=>{if(this.busy)return;const dialog=this.host.body.closest('dialog'),scroll=dialog?.scrollTop??0;this.showPlots(plotId);if(dialog)dialog.scrollTop=scroll;});reload.dataset.townPlotRefresh='';
   if(inside){reload.style.visibility='hidden';reload.dataset.homeRefreshReserved='';}else reload.hidden=true;
   this.host.body.append(reload);this.notice();if(inside)this.status?.classList.add('home-status');

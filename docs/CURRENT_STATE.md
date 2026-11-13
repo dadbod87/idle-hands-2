@@ -1,5 +1,7 @@
 # Idle Hands 2 — current state
 
+088candidate adds addressed residential blocks/individual doors, grouped street visits and registry records, physical-origin exits and four original site/registry/ground vectors.317system/zero skips and focused native checks pass; full105/CI/actual artifact/protocol5preview gates pending. Protected4175remains089/protocol4. [Report](evidence/IH2-088/REPORT.md).
+
 IH2-089 accepted PR36/merge d013e2c, exact60b1b2b CI43333582760:300system/zero skips,103local and103CIbrowser pass. Clear canonical crafting/output/cost/time, stable explicit claim/Bag, scoped result focus/reflow and grouped Places now verified on actual4175CIclient. Protected API/data/key/all54study files unchanged.088individual home doors next. [Proof](evidence/IH2-089/source-closeout.json).
 
 IH2-087 accepted design/source: audited city capacity and home visiting, tested24-address expandable blocks and separate10-file blueprint. PR35/merge38ef23e, exactc789b69 CI43323897322 all four jobs SUCCESS;296system/100browser. All191game bytes/progress/API/studies unchanged.089craft/menu clarity next, then088physical doors and090art/life. [Proof](evidence/IH2-087/source-closeout.json). Candidate entries below historical.

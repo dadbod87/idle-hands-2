@@ -1,0 +1,11 @@
+{
+  "status": "LOCAL_VERIFIED_SOURCE_GATE_HELD",
+  "branch": "feat/stable-phone-toolbar",
+  "baseCandidate": "d9cc5044a934d42366a13ae816e4f245b3b433e1",
+  "acceptedMain": "f0a294af86d4b637f060c8f40a6d7f061d9cad15",
+  "onlyOpenPR": 39,
+  "oldPRHead": "8abc1b46325b1220271a550951acc685b667aec9",
+  "lastRefusedRun": 43365543304,
+  "reason": "Prior GitHub run refused before tests for account billing/spending-limit status. Owner question unanswered; no new final source jobs or artifact acceptance claimed.",
+  "next": "After owner resolution, prepare one coherent exact final candidate through normal GitHub/source/rawartifact/native/preservation gates. Regular090previews remain unchanged; no runner/billing bypass."
+}

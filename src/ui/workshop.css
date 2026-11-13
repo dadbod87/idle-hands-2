@@ -87,3 +87,15 @@
 .bench-work h3{font-size:1.05rem;overflow-wrap:normal;word-break:normal;hyphens:none}
 
 .bench-work button{height:4.2em;overflow:auto}.bench-bag-confirmation{display:block;font-size:.8em;line-height:1.3;font-weight:normal}
+
+/* Reserve the longest current action label with its real font and padding.
+   Both layers share a cell, so changing nearby state cannot move the toolbar. */
+#interact{display:grid;grid-template-columns:minmax(0,1fr);place-items:center}
+#interact::before{content:attr(data-size-label);visibility:hidden;pointer-events:none;grid-area:1/1}
+#interact>#interaction-label{grid-area:1/1;font:inherit}
+
+/* A long status must scroll inside its slot, not claim the action bar's width. */
+.shell>footer>.context{flex:1 1 12rem}
+@media(max-height:480px) and (min-width:651px){
+ .shell.large-text{height:auto;min-height:100dvh;grid-template-rows:auto minmax(220px,1fr) auto}
+}

@@ -41,7 +41,7 @@
     "src/game/world.ts": "c4e17cfd7a017d68210eb1af9ba14531bc489e52cd16ef40abfc222ee1f19b26",
     "src/art/garden.ts": "4f74b8d17a668f111728761605e64a534d382a9cde06566e0a90f139e45905fe",
     "src/phaser/WorldScene.ts": "7d8b08ff2a561fe2deeadbecd6a48fcc42adfd3480f8806f460870208c82fa0e",
-    "src/main.ts": "54d76127036edee766b0947ffa8fe9b46b8b2559f7880a57334f4ad39d5fa316"
+    "src/main.ts": "707a8c797cd027674b63734768ac2953f639b7582bfd239d8372aa23c04ae18e"
   },
   "attributions": [
     {

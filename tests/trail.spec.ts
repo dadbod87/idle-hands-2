@@ -136,7 +136,9 @@ test('real isolated town: timed opening, personal trail journal and permanent ho
   await expect.poll(async()=>{const canvas=(await newcomer.locator('canvas').boundingBox())!,wrap=(await newcomer.locator('.world-wrap').boundingBox())!;return Math.max(Math.abs(canvas.height-wrap.height),Math.abs(canvas.width-wrap.width));}).toBeLessThan(2);
   const shortWorld=(await newcomer.locator('.world-wrap').boundingBox())!;expect(shortWorld.height).toBeGreaterThanOrEqual(195);
   expect(await newcomer.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  const shortControls=[];for(const target of await newcomer.locator('nav button,#field-guide').all()){const box=(await target.boundingBox())!;expect(box.width).toBeGreaterThanOrEqual(44);expect(box.height).toBeGreaterThanOrEqual(44);expect(box.x).toBeGreaterThanOrEqual(0);expect(box.x+box.width).toBeLessThanOrEqual(844);expect(box.y+box.height).toBeLessThanOrEqual(390);shortControls.push(box);}
+  // Deliberate short200 page scrolling keeps a useful world; each control must
+  // still fit fully in the actual viewport after scrolling it into view.
+  const shortControls=[];for(const target of await newcomer.locator('nav button,#field-guide').all()){await target.scrollIntoViewIfNeeded();const box=(await target.boundingBox())!;expect(box.width).toBeGreaterThanOrEqual(44);expect(box.height).toBeGreaterThanOrEqual(44);expect(box.x).toBeGreaterThanOrEqual(0);expect(box.x+box.width).toBeLessThanOrEqual(844);expect(box.y).toBeGreaterThanOrEqual(0);expect(box.y+box.height).toBeLessThanOrEqual(390);shortControls.push(box);}
   await newcomer.screenshot({path:evidence+'/trail-short-text200-world.png'});
   await newcomer.getByRole('button',{name:'Journal',exact:true}).tap();await newcomer.getByRole('button',{name:'Trail field notebook',exact:true}).tap();
   await expect(newcomer.getByRole('button',{name:'Close panel',exact:true})).toBeInViewport();

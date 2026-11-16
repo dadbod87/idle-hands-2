@@ -1,0 +1,29 @@
+{
+  "method": "Compiled static files; gzip9 per file with mtime0, not a network transfer/cache/physical-device measurement. Includes all eager and optional art; actual startup request/frame checks remain native-browser evidence.",
+  "priorAccepted114": {
+    "files": 214,
+    "rawBytes": 4172827,
+    "sumPerFileGzip9Bytes": 660557,
+    "largestJavaScript": [
+      {
+        "file": "assets/index-GzVzkc_t.js",
+        "rawBytes": 1820314,
+        "gzip9Bytes": 484594
+      }
+    ]
+  },
+  "currentCandidate116": {
+    "files": 221,
+    "rawBytes": 4208778,
+    "sumPerFileGzip9Bytes": 670552,
+    "largestJavaScript": [
+      {
+        "file": "assets/index-DP2MK8uM.js",
+        "rawBytes": 1842036,
+        "gzip9Bytes": 490836
+      }
+    ]
+  },
+  "deltaRawBytes": 35951,
+  "deltaPerFileGzipBytes": 9995
+}

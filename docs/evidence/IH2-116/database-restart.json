@@ -7,7 +7,7 @@
   "persistedWorkshopExactlyPreserved": true,
   "snapshotComparisonClock": {
     "fixtureOnly": true,
-    "at": 1794867300882,
+    "at": 1794870382571,
     "reason": "Compare every virtual workshop field at the same declared observation time; actual container/service restart is real."
   },
   "serviceSurvived": true,

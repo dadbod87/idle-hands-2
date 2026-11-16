@@ -1,3 +1,7 @@
+# IH2-116 local integration complete; release gates pending
+
+Current full source is `work/idle-hands-2-playable-housing`, `feat/playable-housing`. Fresh474system, real dedicated PostgreSQL restart, full176browser and required local checks passed; Terra6.1desktop/mobile images reviewed. Actual practice remains114client/113API until exact PR/main4job and preserved matched-update gates. See116REPORT and CURRENT_SESSION; code backup is not acceptance.
+
 # IH2-116 candidate in progress
 
 Current complete source is work/idle-hands-2-playable-housing, feat/playable-housing. Read [CURRENT_SESSION](idle-hands-2/CURRENT_SESSION.md) and [116report](evidence/IH2-116/REPORT.md). Local474system/restart/focused6browser and Terra V3visual checks pass; full176browser/exact PR/main/actual update remain pending. Actual114game/113API remain unchanged until acceptance gates.

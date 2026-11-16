@@ -1,6 +1,6 @@
 # IH2-116 candidate — playable housing
 
-Current implementation is `work/idle-hands-2-playable-housing`, `feat/playable-housing`, over115closeoutbc9591e/main3bff040. [Evidence](evidence/IH2-116/REPORT.md), [handoff](idle-hands-2/handoffs/2026-11-16-playable-housing.md). Full local checks, exact-head PR/main4job raw reports/artifacts and matched protected preview preservation remain required before acceptance. No hosted release. The prior accepted115checkpoint below remains the fallback; resolve the dated116closeout branch in CURRENT_SESSION after acceptance.
+Current implementation is `work/idle-hands-2-playable-housing`, `feat/playable-housing`, over115closeoutbc9591e/main3bff040. [Evidence](evidence/IH2-116/REPORT.md), [handoff](idle-hands-2/handoffs/2026-11-16-playable-housing.md). Local474/176/restart and all required checks passed. Exact-head PR/main4job raw reports/artifacts and matched protected preview preservation remain required before acceptance. No hosted release. The prior accepted115checkpoint below remains the fallback; resolve the dated116closeout branch in CURRENT_SESSION after acceptance.
 
 # IH2-115 accepted — housing ownership and construction foundation
 

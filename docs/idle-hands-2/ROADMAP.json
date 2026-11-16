@@ -1894,7 +1894,7 @@
     {
       "id": "IH2-115",
       "title": "Isolated housing catalog, legacy rights and safe yard allocation contract",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-112"
       ],
@@ -1912,7 +1912,8 @@
         "docs/evidence/IH2-115/CONTRACT.md",
         "docs/evidence/IH2-115/TERRA_BASELINE.md",
         "docs/evidence/IH2-115/TERRA_REVIEW.md",
-        "docs/idle-hands-2/handoffs/2026-11-16-housing-contract.md"
+        "docs/idle-hands-2/handoffs/2026-11-16-housing-contract.md",
+        "docs/evidence/IH2-115/source-closeout.json"
       ],
       "owner_branch": "feat/housing-ownership-contract"
     },

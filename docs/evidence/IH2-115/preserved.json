@@ -1,0 +1,22 @@
+{
+  "main": "3bff040ffdb2c539a19f6301df6125ba68ed9f80",
+  "all14ProtectedTablesEveryRowFieldAnd7MigrationChecksumsPreserved": true,
+  "privateKeyFingerprintsModesAnd4ServicePIDsUnchanged": true,
+  "noProtectedServiceRestartResetMigrationGrantOrKeyCopy": true,
+  "all428ActualGameStaticResponsesExactAccepted114AndNewMainCI": true,
+  "all94HistoricalStudyResponsesExact": true,
+  "sets": [
+    {
+      "port": 49640,
+      "files": 20,
+      "allBytesExact": true
+    },
+    {
+      "port": 49641,
+      "files": 20,
+      "allBytesExact": true
+    }
+  ],
+  "classification": "Read-only protected-data/key/PID/static-byte comparison across isolated115work. Actual game remains114; no new housing runtime integration or shared login issued.",
+  "verifiedAt": "2026-11-16T21:22:35.679421+00:00"
+}

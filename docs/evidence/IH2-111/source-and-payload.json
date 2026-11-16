@@ -1,5 +1,5 @@
 {
-  "classification": "Final V5 touch-target client; follow-up source gates pending",
+  "classification": "Accepted final V5: exact local, PR, main and actual214file artifacts",
   "clientFiles": 214,
   "files": {
     "art/allotment/study-bed-footprint-1.svg": "051b1823c850a94156ede27c414a117551894ea5d3de2669d867c75505f02c69",
@@ -216,5 +216,6 @@
     "licenses/README.txt": "5afe252ab041dbd90d66231dabe18f6e00eef01d88bb98bc850c55ee4d299478",
     "licenses/eventemitter3-LICENSE.txt": "3aecc12b1cb28832b5f65ab64291de96568c3f236a74d646281b4491f7bcadbf",
     "licenses/phaser-LICENSE.txt": "d59c20a9deb5dc240614b428dce5246ae561d15efeeebea0e069d73f0a78fbff"
-  }
+  },
+  "acceptedMerge": "056c3793a76147a999851912fd313af95e9e9cb4"
 }

@@ -1,0 +1,75 @@
+{
+  "health200": true,
+  "source": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/ci-final/runtime-source",
+  "client": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/main-ci/sequel-client-build",
+  "services": [
+    {
+      "port": 4186,
+      "pid": 89083,
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/ci-final/runtime-source/tools/run-local-server.ts"
+      ],
+      "cwd": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2",
+      "source": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/ci-final/runtime-source",
+      "privateKeys": "Existing canonical keys only; never copied/regenerated."
+    },
+    {
+      "port": 4188,
+      "pid": 89084,
+      "command": [
+        "node",
+        "--experimental-strip-types",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/ci-final/runtime-source/tools/run-neighborhood-tour.ts"
+      ],
+      "cwd": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2",
+      "source": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/ci-final/runtime-source",
+      "privateKeys": "Existing canonical keys only; never copied/regenerated."
+    },
+    {
+      "port": 4175,
+      "pid": 89085,
+      "command": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "preview",
+        "--config",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/ci-final/runtime-source/vite.config.ts",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "4175",
+        "--strictPort",
+        "--outDir",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/main-ci/sequel-client-build"
+      ],
+      "cwd": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2",
+      "source": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/ci-final/runtime-source",
+      "privateKeys": "Existing canonical keys only; never copied/regenerated."
+    },
+    {
+      "port": 4176,
+      "pid": 89086,
+      "command": [
+        "node",
+        "node_modules/vite/bin/vite.js",
+        "preview",
+        "--config",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/ci-final/runtime-source/vite.config.ts",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "4176",
+        "--strictPort",
+        "--outDir",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/main-ci/sequel-client-build"
+      ],
+      "cwd": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2",
+      "source": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/playable-cafe-2026-11-13/ci-final/runtime-source",
+      "privateKeys": "Existing canonical keys only; never copied/regenerated."
+    }
+  ],
+  "protectedPostgresRestarted": false,
+  "noKeyCreationOrCopy": true
+}

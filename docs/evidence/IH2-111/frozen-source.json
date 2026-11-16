@@ -1,0 +1,9 @@
+{
+  "candidate": "12e97369dd89bfcbb16b1f8a59c0d1dc0dda4b28",
+  "merge": "056c3793a76147a999851912fd313af95e9e9cb4",
+  "sameTree": "72da1507814f8ad15bba5eab7fd3f14212c43f18",
+  "allTrackedFrozenFilesEqualMain": true,
+  "trackedFiles": 2049,
+  "manifestSha256": "04e52f1e3a95732aded6fc1647301d82f7db869e91085ab57afebecbdc654053",
+  "noPrivateKeysInSource": true
+}

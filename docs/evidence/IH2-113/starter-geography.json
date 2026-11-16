@@ -1,0 +1,464 @@
+{
+  "source": "7e8a0b246a58810ef69e5df99f4873a5abfc6ec7",
+  "square": {
+    "width": 48,
+    "height": 48,
+    "blocked": [
+      [
+        17,
+        16,
+        6,
+        6
+      ],
+      [
+        28,
+        16,
+        6,
+        6
+      ],
+      [
+        27,
+        30,
+        8,
+        5
+      ],
+      [
+        17,
+        26,
+        2,
+        2
+      ],
+      [
+        34,
+        26,
+        2,
+        2
+      ],
+      [
+        14,
+        17,
+        2,
+        2
+      ],
+      [
+        37,
+        19,
+        2,
+        2
+      ],
+      [
+        13,
+        30,
+        2,
+        2
+      ],
+      [
+        37,
+        33,
+        2,
+        2
+      ],
+      [
+        0,
+        10,
+        48,
+        2
+      ]
+    ],
+    "stops": [
+      {
+        "id": "residential-gate",
+        "name": "Homes & neighbors",
+        "point": {
+          "x": 42,
+          "y": 32
+        },
+        "doorArea": [
+          40.5,
+          29.5,
+          3,
+          3
+        ],
+        "text": "A street for every neighbor. Visit the residential neighborhood."
+      },
+      {
+        "id": "scrap",
+        "name": "Scrap depot",
+        "point": {
+          "x": 21,
+          "y": 30
+        },
+        "doorArea": [
+          20.5,
+          27.5,
+          2,
+          2
+        ],
+        "text": "Rescued metal. Someone has already filed it under miscellaneous."
+      },
+      {
+        "id": "timber",
+        "name": "Timber depot",
+        "point": {
+          "x": 23,
+          "y": 30
+        },
+        "doorArea": [
+          22.5,
+          27.5,
+          2,
+          2
+        ],
+        "text": "Locally sourced. The source was a badly assembled shelf."
+      },
+      {
+        "id": "supplies",
+        "name": "Supply depot",
+        "point": {
+          "x": 25,
+          "y": 30
+        },
+        "doorArea": [
+          24.5,
+          27.5,
+          2,
+          2
+        ],
+        "text": "The essentials. In a box marked non-essential."
+      },
+      {
+        "id": "workshop",
+        "name": "Workshop",
+        "point": {
+          "x": 20,
+          "y": 22
+        },
+        "transition": "workshop",
+        "arrival": {
+          "x": 9,
+          "y": 11
+        },
+        "doorArea": [
+          19.25,
+          20,
+          1.5,
+          2.25
+        ],
+        "text": "Your workshop. The desk is temporary. The paperwork is structural."
+      },
+      {
+        "id": "cafe",
+        "name": "Café tasting counter",
+        "point": {
+          "x": 30,
+          "y": 22
+        },
+        "doorArea": [
+          30.25,
+          20,
+          1.5,
+          2.25
+        ],
+        "text": "An outside tasting counter. Offer one harvested radish; three tastings earn a teapot. The paperwork is on a four-hour schedule."
+      },
+      {
+        "id": "home-front",
+        "name": "Housing Registry entrance",
+        "point": {
+          "x": 30,
+          "y": 35.5
+        },
+        "doorArea": [
+          29.25,
+          34.75,
+          1.5,
+          2
+        ],
+        "text": "An earned home. Knock once; the paperwork stays outside."
+      },
+      {
+        "id": "plot",
+        "name": "Housing Registry",
+        "point": {
+          "x": 30,
+          "y": 29
+        },
+        "text": "Claim a plot, upgrade a house and arrange its furnishings in shared practice. Your browser-only workshop stays saved separately."
+      },
+      {
+        "id": "survey-oak",
+        "name": "Square shade tree · sketch study",
+        "point": {
+          "x": 18,
+          "y": 28.5
+        },
+        "doorArea": [
+          17,
+          25.5,
+          2,
+          3
+        ],
+        "text": "Look at the spreading shape of its crown. The tree has declined to submit an organizational chart."
+      },
+      {
+        "id": "survey-birch",
+        "name": "Pale-barked tree · sketch study",
+        "point": {
+          "x": 35,
+          "y": 28.5
+        },
+        "doorArea": [
+          34,
+          25.5,
+          2,
+          3
+        ],
+        "text": "Look closely at the light-colored trunk and its dark little marks. This is bark, not a barcode."
+      },
+      {
+        "id": "survey-fruit",
+        "name": "Corner fruit tree · sketch study",
+        "point": {
+          "x": 38,
+          "y": 35.5
+        },
+        "doorArea": [
+          37,
+          32.5,
+          2,
+          3
+        ],
+        "text": "The round shapes in the leaves are fruit. Harvesting and orchards are a later system; looking is free."
+      },
+      {
+        "id": "clerk",
+        "name": "Marlow · Town clerk",
+        "point": {
+          "x": 18,
+          "y": 24
+        },
+        "doorArea": [
+          17.9,
+          22.65,
+          1.2,
+          1.95
+        ],
+        "text": "Talk to Marlow."
+      },
+      {
+        "id": "caretaker",
+        "name": "Jun · Grounds caretaker",
+        "point": {
+          "x": 32,
+          "y": 24
+        },
+        "doorArea": [
+          31.9,
+          22.65,
+          1.2,
+          1.95
+        ],
+        "text": "Talk to Jun."
+      },
+      {
+        "id": "courier",
+        "name": "Pip · Town courier",
+        "point": {
+          "x": 26,
+          "y": 25
+        },
+        "doorArea": [
+          25.9,
+          23.65,
+          1.2,
+          1.95
+        ],
+        "text": "Talk to Pip."
+      },
+      {
+        "id": "trail-gate",
+        "name": "Inkwood trail",
+        "point": {
+          "x": 25.5,
+          "y": 12.25
+        },
+        "transition": "trail",
+        "arrival": {
+          "x": 9,
+          "y": 22
+        },
+        "doorArea": [
+          24.5,
+          9.5,
+          3,
+          3.6
+        ],
+        "text": "The first restored trail. Access follows the bridge inspection, not optimistic calendar math."
+      },
+      {
+        "id": "bridge",
+        "name": "Bridge committee",
+        "point": {
+          "x": 24,
+          "y": 13
+        },
+        "text": "A future shared project: everyone contributes, everyone gets a new place to explore. Today the committee is only inspecting the concept of a bridge."
+      },
+      {
+        "id": "allotment",
+        "name": "Your rented allotment",
+        "point": {
+          "x": 17,
+          "y": 36
+        },
+        "transition": "garden",
+        "arrival": {
+          "x": 9,
+          "y": 14
+        },
+        "doorArea": [
+          15.75,
+          33.75,
+          2.5,
+          2.5
+        ],
+        "text": "Three beds. No house or workshop slot required. The committee has approved having roots."
+      },
+      {
+        "id": "garden-registry",
+        "name": "Garden display registry",
+        "point": {
+          "x": 20,
+          "y": 36
+        },
+        "doorArea": [
+          19.25,
+          34,
+          1.5,
+          2
+        ],
+        "text": "Chosen public markers and the town welcome bed. Private garden stock stays private."
+      },
+      {
+        "id": "garden-field",
+        "name": "Field clippings",
+        "point": {
+          "x": 12,
+          "y": 37
+        },
+        "doorArea": [
+          10.75,
+          35.5,
+          2.5,
+          2
+        ],
+        "text": "Gather two replenishing clippings and make a marker by hand. No workshop materials."
+      },
+      {
+        "id": "stake-forked",
+        "name": "Forked stake",
+        "point": {
+          "x": 11,
+          "y": 26
+        },
+        "doorArea": [
+          10.25,
+          24.5,
+          1.5,
+          2
+        ],
+        "text": "An urgent matter of almost-straight stakes. Inspect the usable end."
+      },
+      {
+        "id": "stake-striped",
+        "name": "Marked stake",
+        "point": {
+          "x": 18,
+          "y": 39
+        },
+        "doorArea": [
+          17.25,
+          37.5,
+          1.5,
+          2
+        ],
+        "text": "This stripe has been approved for lining things up."
+      },
+      {
+        "id": "carpentry-desk",
+        "name": "Nella · pine workshop & noticeboard",
+        "point": {
+          "x": 5,
+          "y": 35
+        },
+        "doorArea": [
+          4.25,
+          31,
+          6.5,
+          5.5
+        ],
+        "text": "A free hand-saw lesson, practical hampers and a noticeboard with notably few notices."
+      },
+      {
+        "id": "pine-crooked",
+        "name": "Crooked pine deadfall",
+        "point": {
+          "x": 6,
+          "y": 26
+        },
+        "doorArea": [
+          4.75,
+          21.75,
+          3.5,
+          5
+        ],
+        "text": "Prepare fallen pine with your bound saw. All three points share one personal renewable supply."
+      },
+      {
+        "id": "pine-forked",
+        "name": "Forked pine deadfall",
+        "point": {
+          "x": 7,
+          "y": 41
+        },
+        "doorArea": [
+          5.75,
+          37.25,
+          3.5,
+          4.5
+        ],
+        "text": "Two trunks. One supply entitlement. The tree has declined to form a subsidiary."
+      },
+      {
+        "id": "pine-sheltered",
+        "name": "Sheltered pine deadfall",
+        "point": {
+          "x": 40,
+          "y": 41
+        },
+        "doorArea": [
+          38.75,
+          36.25,
+          3.5,
+          5.5
+        ],
+        "text": "Fallen branches, not a license to demolish the forest. Your supply is personal."
+      },
+      {
+        "id": "stake-notched",
+        "name": "Notched stake",
+        "point": {
+          "x": 35,
+          "y": 39
+        },
+        "doorArea": [
+          34.25,
+          37.5,
+          1.5,
+          2
+        ],
+        "text": "A crosspiece goes here. Probably. Inspect it to be sure."
+      }
+    ]
+  }
+}

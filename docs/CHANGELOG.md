@@ -1,3 +1,13 @@
+## November16 — spacious town candidate
+
+Full source `work/idle-hands-2-town-expansion`, branch `feat/spacious-town`, base7e8closeout over accepted main056c3793. Real square4096×3072/native2K+4K, connected scenic commons and six destinations; old activity/home coordinates and economy unchanged. Protocol7matches expanded geometry; root3/garden4/seven SQL migrations unchanged.Frozen final434system/158browser, zero failures/skips/flakes/report-errors,8focused native cases, isolated database restart and Terra checks pass. Exact PR/main/raw artifacts/actual preview/data/session checks remain pending. Existing4175/4176remain111until all gates pass. [113report](evidence/IH2-113/REPORT.md). New user priority precedes112; later housing begins only after this acceptance.
+
+## November13 —111playable café accepted
+
+PR43/main056c3793 accepted after PR43522020468 and main43523926478, all4jobs each431system/153browser(77+76), zero skips/flakes/errors and exact214client/raw artifacts. Actual local4175/localhost4176/API6 refreshed with the same signed Tour, old13tables/allfields/keys/sixchecksums preserved; additive seventh migration only. Playable café menus, safe saves, confirmed rewards and conserved teapot allocation accepted. No public/cloud game launch. Next112housing variety. [Report](evidence/IH2-111/REPORT.md).
+
+Historical pending checklist/history below is superseded by this verified header.
+
 #2026-11-13 —111playable café candidate
 
 Connected actual café counter to concise tasting menus, confirmed-only original serving/reward animation, accurate cooldown, one earned Bag/world teapot and conserved rental/home placement. Coordinated local save and current atomic shared server migrate exact old tuples together; protocol6refuses old clients.431local system checks and Terra V3 sampled desktop/phone/short pass. Full browser/source/main/actual-preview acceptance pending. No public/cloud game release.

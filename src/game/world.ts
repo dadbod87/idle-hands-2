@@ -1,3 +1,4 @@
+import {TOWN_SIZE,COMMONS_STOPS,COMMONS_BLOCKED} from './town-expansion.ts';
 import{BLOCK_SIZE,PARCELS,TOWN_GATE,RESIDENTIAL_GATE,HOME_SITE_PREFIX,NEIGHBORHOOD_TREES}from'./neighborhood.ts';
 import {SURVEY_IDS,SURVEYS} from './fieldwork.ts';
 import {TOWN_PEOPLE} from './town-people.ts';
@@ -10,9 +11,10 @@ export const TRAIL_LANDMARK_IDS=['trailhead','old-sign','lookout'] as const;
 export const worlds: Record<Room, World> = {
   neighborhood:{...BLOCK_SIZE,blocked:[...PARCELS.map(p=>[p.building.x,p.building.y,p.building.width,p.building.height]as[number,number,number,number]),...NEIGHBORHOOD_TREES.map(([x,y])=>[x-.35,y-.75,.7,.75]as[number,number,number,number])],stops:[{id:'neighborhood-directory',name:'Street directory',point:{x:29.5,y:4.5},doorArea:[28.75,2.5,1.5,2.5],text:'Choose another neighborhood at the directory.'},{id:'neighborhood-exit',name:'Town square',point:{...TOWN_GATE},transition:'square',arrival:{...RESIDENTIAL_GATE},doorArea:[30.25,.5,2.5,2.5],text:'Back to the town square. The neighbors will still be here.'},...PARCELS.map(p=>({id:HOME_SITE_PREFIX+p.slot,name:p.number+' '+p.street,point:{...p.front},doorArea:[p.door.x,p.door.y,p.door.width,p.door.height] as [number,number,number,number],text:'An addressed home site. Earned homes belong to their residents.'}))]},
   square: {
-    width: 48, height: 48,
-    blocked: [[17, 16, 6, 6], [28, 16, 6, 6], [27, 30, 8, 5], [17, 26, 2, 2], [34, 26, 2, 2], [14, 17, 2, 2], [37, 19, 2, 2], [13, 30, 2, 2], [37, 33, 2, 2], [0, 10, 48, 2]],
+    ...TOWN_SIZE,
+    blocked: [...COMMONS_BLOCKED,[17, 16, 6, 6], [28, 16, 6, 6], [27, 30, 8, 5], [17, 26, 2, 2], [34, 26, 2, 2], [14, 17, 2, 2], [37, 19, 2, 2], [13, 30, 2, 2], [37, 33, 2, 2], [0, 10, TOWN_SIZE.width, 2]],
     stops: [
+      ...COMMONS_STOPS.map(s=>({...s,point:{...s.point},doorArea:[...s.doorArea] as [number,number,number,number]})),
       {id:'residential-gate',name:'Homes & neighbors',point:{...RESIDENTIAL_GATE},doorArea:[40.5,29.5,3,3],text:'A street for every neighbor. Visit the residential neighborhood.'},
       { id: 'scrap', name: 'Scrap depot', point: {x:21,y:30}, doorArea:[20.5,27.5,2,2], text: 'Rescued metal. Someone has already filed it under miscellaneous.' },
       { id: 'timber', name: 'Timber depot', point: {x:23,y:30}, doorArea:[22.5,27.5,2,2], text: 'Locally sourced. The source was a badly assembled shelf.' },

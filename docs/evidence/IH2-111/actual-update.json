@@ -1,0 +1,22 @@
+{
+  "classification": "Actual matched local214client/API6 source update; existing fictional Tour and primary practice only.",
+  "oldPayload": {
+    "files": 208,
+    "htmlSha256": "c4460808810215056660fdbf41df92b0cbdee52638a1be4bcd7ffba510975681"
+  },
+  "nextPayload": {
+    "files": 214,
+    "htmlSha256": "ee43a8c8deefd8ce424f78c29532c2f3888741036393a7f38eed2379e719276e"
+  },
+  "signedSessionUnchanged": true,
+  "serverInstanceChanged": true,
+  "old13TablesAllColumnsAllRowsPreserved": true,
+  "old6ChecksumsExact": true,
+  "seventhForwardMigrationAndNewCafeTableOnly": true,
+  "keysExactMode0600": true,
+  "holdingsDecorationsPlotsAndQueuedDeadlinesPreserved": true,
+  "root2To3Garden3To4": true,
+  "noGrantsResetsOrInterception": true,
+  "errors": [],
+  "limits": "Chrome emulation, not real user/device/cloud/production acceptance. Full synthetic baseline kept outside repository; no keys or cookie serialized."
+}

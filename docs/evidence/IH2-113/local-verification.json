@@ -1,0 +1,32 @@
+{
+  "classification": "Frozen final local source; native Chrome emulation, isolated55434databases and declared synthetic/elapsed/intercepted fixtures from the existing full suite. No real players/protected55432changes.",
+  "system": 434,
+  "browser": {
+    "total": 158,
+    "expected": 158,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "browserDurationMs": 1074904.816,
+  "browserReportErrors": [],
+  "focused": 8,
+  "actualIsolatedDatabaseRestart": true,
+  "fullClientFiles": 214,
+  "runtimeAndTestsUnchangedDuringFinalRun": true,
+  "sha256": {
+    "src/game/protocol-version.ts": "29d16a0659cdc32c5f1eeabbcd1e17603e5864a8f4c3603ae9c9fe76b7af0cbf",
+    "src/game/world.ts": "8c18a3406f46bec3ca776019bdafbddfac7e67f11c1da941c796415ee8332141",
+    "src/game/town-expansion.ts": "69c25ca79af7372c7ed7658a74e82a1118157e1e01789a5adf2d20f4d373ddef",
+    "src/main.ts": "045b6c7be785afaa8b31fa3229b7d88691d99bf235eb6927fe8c4e56174581cd",
+    "src/phaser/WorldScene.ts": "ad8c526bbd2fa0bbfdd67b04765018dfdedc930eda1659842c199f9d5e67abbc",
+    "src/phaser/TownCommons.ts": "013fa2cb61f1759ca04baa949eff16d47ce66b65f747db39997438ca9e7ca409",
+    "src/ui/style.css": "b9d9a7e4cde29dda3f905856d28b633cea8068107a3dc0c1d0d39656d832f729",
+    "tests/town-expansion.spec.ts": "4db33acc5340106f71325af022974c088fa9276742fb0ae2808690710c70c7b9",
+    "tests/town-expansion.test.ts": "1a465151765b7dd9f1629764a9358cf7d1780add3237dad1092c3b96c281bb73",
+    "tests/crafting-clarity.spec.ts": "18fc311de158d103746a4c966c4a72e07f8d55f438d6b5c12dcec568a6c32a8b",
+    "tests/server-playable-cafe.test.ts": "4e48af8b7263248441145979a79a65cbb6d29598310f483f976949dedbc3fcfa"
+  },
+  "hostedAndActualPreviewAcceptance": "pending"
+}

@@ -1,3 +1,17 @@
+#112accepted — house-size/yard/room design; next114landscaping
+
+Main **095f76b0ceb1a713c88ef5c036d9fb0f10b79ef9**, [PR45](https://github.com/dadbod87/idle-hands-2/pull/45), candidate **122ac46b50f4c11a0d3ca52db96da1e2e55d3807**, identical tree. PR run43916212654 and main run43919451116 each passed all four jobs: **438system/163browser(82+81)**, zero failures/skips/flakes/report errors. Raw artifacts, all214default-game bytes and all20standalone-study bytes verified. [112report](../evidence/IH2-112/REPORT.md), source-closeout and [handoff](handoffs/2026-11-16-housing-variety.md).
+
+Full-code continuation `work/idle-hands-2-housing-variety`, branch `chore/housing-variety-closeout-2026-11-16` (accepted main plus documentation closeout; resolve latest pushed head). Canonical `idle-hands-2` remains old-runtime bookkeeping only. Do not implement there.
+
+[Game preview](http://127.0.0.1:4175/), [fictional Tour](http://localhost:4176/?town=1) stay the accepted113source/client/API7, byte-identical to every existing active112file and all214CIgame bytes. Existing frozen113runtime/client paths, signed sessions, protected14tables/7migration checksums/private-key fingerprints/modes/fourPIDs remain preserved at recorded validation. No game service restart/update, schema change, reset, grant or key copy/regeneration. See113active-services/source-closeout for launch details. Preserve54historical study responses and new20file standalone study.
+
+[Housing study](http://127.0.0.1:49640/) serves frozen TerraV4, exactly equal bothCIartifacts. Native HTTP2K/320tap+keyboard, zero errors/API/storage; design-only, not game purchases. Four families/six forms, truthful lot/room/yard/door comparison, current12+24kit tier benchmarks, declared6hbuilder proposal. Remodel/yard-piece costs unpriced. Legacy appearance/address/6or8nooks/furnishings stay intact; same-capacity conveniences do not increase production. All new code unregistered. [Design](../evidence/IH2-112/DESIGN.md).
+
+Next ordered task114: organic district edges/town-life polish. Next housing task115: isolated versioned catalog/legacy/allocation/quote/build and wide residential-framing candidates before any registered purchase/geometry. No public/cloud sequel launch or paid asset/infrastructure. Physical phones/Safari remain untested; all disclosures are in112report. Three reset credits were not consumed.
+
+Historical checkpoints below are superseded by this accepted closeout.
+
 #112local gates complete — hosted source acceptance pending
 
 Full source `work/idle-hands-2-housing-variety`, branch `feat/housing-variety-study`, based on113closeoutaea4602. Original housing study/model only, unregistered: all214default game bytes exactly accepted113.438system/163browser,5focused, TerraV4, build/design/plan/pinned/whitespace pass; zero failures/skips/flakes/report-errors.20study bytes match reviewedV4. Exact candidate/main four-job/raw artifact gates remain pending; no merge yet. Actual4175/4176/API7stay unchanged with428responses/data/keys/PIDs verified. [112report](../evidence/IH2-112/REPORT.md). Read its audit/design and dated handoff.115housing contracts and114organic landscaping are queued; no new playable house purchase/timer/geometry.

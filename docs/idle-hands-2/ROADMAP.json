@@ -1842,7 +1842,7 @@
     {
       "id": "IH2-112",
       "title": "House sizes, personal yards and meaningful layout choices",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-111",
         "IH2-113"
@@ -1858,7 +1858,10 @@
       ],
       "evidence": [
         "docs/evidence/IH2-112/REPORT.md",
-        "docs/idle-hands-2/design/HOUSE_VARIETY_AND_YARDS.md"
+        "docs/evidence/IH2-112/DESIGN.md",
+        "docs/evidence/IH2-112/TERRA_REVIEW.md",
+        "docs/evidence/IH2-112/source-closeout.json",
+        "docs/idle-hands-2/handoffs/2026-11-16-housing-variety.md"
       ],
       "owner_branch": "feat/housing-variety-study"
     },

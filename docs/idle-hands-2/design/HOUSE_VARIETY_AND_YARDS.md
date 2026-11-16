@@ -1,3 +1,7 @@
+# IH2-115 — isolated ownership/construction contract
+
+[Current contract](../../evidence/IH2-115/CONTRACT.md) freezes complete candidate12/24tier/2remodel kit prices,6hbuilders, exactlegacy rights, allnine furnishing allocations and safe quoted/retried SQLtransactions. Native in-memory construction/street rehearsal and Terra6.1reviews remain separate from actual game integration. Read115REPORT/CURRENT_SESSION for acceptance; the original112study and current114game stay preserved.116owns coherent art/physics/protocol/SQL/presence/ordinary-writer integration before purchases become playable. Historical design proposals below retain their dated scope.
+
 # November16 — current-source design candidate
 
 [IH2-112 source audit](../../evidence/IH2-112/CURRENT_SOURCE_AUDIT.md), [design/pricing proposal](../../evidence/IH2-112/DESIGN.md), pacing and standalone native choice study now compare four families/six variants. This is unregistered design: actual113game, seven migrations, earned resources and existing homes remain unchanged. Current authority is live-store/live-home-layout; the older110starting-point observations below are historical. Tier12/24kit benchmarks are retained, proposed6hbuilders are new, and remodel/yard-piece costs are not priced. Full source acceptance and final evidence are recorded in112report/dated handoff.

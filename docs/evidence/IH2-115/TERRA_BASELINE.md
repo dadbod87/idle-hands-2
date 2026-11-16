@@ -1,0 +1,22 @@
+# IH2-115 — housing experience baseline
+
+On November 16 independently sampled the accepted, standalone housing V5 at `http://127.0.0.1:49641/` in native Chrome at 2560×1440 and 320×640, and the accepted actual game at `http://127.0.0.1:4175/` at 320×640 in a fresh local-workshop context. Captures are in `../idle-hands-2-artifacts/housing-contract-2026-11-16/terra-baseline/`. These are viewport emulations, not physical devices. No login, grants, injected data, API interception, reset, protected database or shared-account access was used. The game’s Homes & neighbors Inspect explicitly leads to shared practice; the review stopped there. Thus actual owned-home purchase, construction, visitor and completion flows were not inspected.
+
+## Risks to resolve before an operational offer
+
+**P1 scope and price risk — do not turn a benchmark into a complete quote.** V5 shows a starter owner choosing Garden Studio “24 bridge kits · 8 indoor nooks,” immediately qualified as a tier benchmark; remodeling and yard-piece fees are unpriced. It also explicitly says the six-hour construction window is proposed. A future confirmation must show the complete authoritative cost and what it covers, or clearly prevent confirmation when a required component has no agreed price. “Tier rights already owned” must not imply a free remodel. Preserve the separation between a design study, an isolated contract and a registered playable transaction.
+
+**P1 continuity risk — home and possessions must be concrete through the transition.** Before a player commits, show the current home and address, selected result, retained six/eight nooks and furnishings, and any items that will move to available Bag stock. During construction retain the old usable home and visitor access, without changing another parcel or stranding an occupant. On completion communicate what changed and where displaced items went, and make any final application an explicit safe action if needed. These are requirements for future verification, not findings that the existing game currently violates them.
+
+## Concise player-facing sequence to test in the operational study
+
+1. **Choose:** Present the current home and a few recognizable alternatives with one clear feature and yard tradeoff each. Keep preview free, preserve current appearance until a deliberate choice, and use an obvious back/cancel action.
+2. **Review:** On one compact screen show the exact total due and resources available, the selected home, what remains yours, and the proposed six-hour build separately from kit-making time. Explain a changed or expired quote and require a refreshed review rather than charging a stale price. If no complete price is authorized, show the reason without a purchase control.
+3. **Building:** A small status near the home should show the selected result, time remaining or ready status, and “Your current home is open.” Offer direct continuation to the existing bench, garden, café or town without suggesting extra queues, output or rewards. Keep details optional and do not block normal play.
+4. **Ready / completed:** Distinguish “ready to finish” from “finished,” make the next action unambiguous, and after success show the resulting home plus any items returned to Bag. Reload, retry, another visitor present and a second window must not yield conflicting or duplicate outcomes; verify these as contract behavior before claiming them in UI.
+
+## What the current baseline teaches
+
+The study’s selected name, tier benchmark and nook count appear just after the choices, and the 320px card separates the unpriced fees from tier rights. Optional lot and room concepts let interested players inspect detail without forcing it on everyone. Its detailed facts, proposed six-hour window and ownership assurances are much farther down the phone page, so an actual review step should bring the essentials together rather than relying on a long scroll. The real game’s local-workshop panel plainly distinguishes browser-only work from shared practice and provides a single action; it does not demonstrate actual ownership or building. Keep the same directness when later moving between home, building status and activities.
+
+No operational construction interface or live transaction was tested here. The 115 deliverable is an isolated, unregistered contract; actual economy, persistence, collision, privacy, visitor behavior, timer and full end-to-end integration require their own evidence and later matched implementation.

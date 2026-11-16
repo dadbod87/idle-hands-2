@@ -1,0 +1,104 @@
+{
+  "classification": "Project-owned original art only;24unchanged existing home/study SVGs; new schematic is original canvas code, not production facade art.",
+  "housingCatalogV1SHA256": "2eb05e8e93e50b46449023e2bb451db57fa55780018ea48263175769c589829f",
+  "candidateSqlSHA256": "f9e1b7809d1fd8f24a75a343f965bb511dd2d32452517c21b1e87e759e4d97d2",
+  "noPaidOrImportedMedia": true,
+  "all24OriginalSvgBytes": [
+    {
+      "file": "houses/garden-studio-2-post.svg",
+      "sha256": "a2d1d6fffdf589254d32e163d27179aa97d2f4ae4c917659470a3f01cfabf912"
+    },
+    {
+      "file": "houses/garden-studio-2-pots.svg",
+      "sha256": "6d72326a388bec81decbe972de30ab1862af3f867e454ea344ef9d3e9334f568"
+    },
+    {
+      "file": "houses/garden-studio-2.svg",
+      "sha256": "d13cfa2e8c462d3f5c284e89ed83b3ed6e05c2133fd07091d9ac581909cac21b"
+    },
+    {
+      "file": "houses/home-expanded-exterior.svg",
+      "sha256": "c6680ceecc64cf805a14fe7a7070834a8081ae9b5b447469323462fe21b62c65"
+    },
+    {
+      "file": "houses/home-starter-exterior.svg",
+      "sha256": "7cff4118776b04127e17f9d9b5b2faa3ca6848d7d4268be133c3c661f411e8bd"
+    },
+    {
+      "file": "houses/pocket-cottage-1-post.svg",
+      "sha256": "b21b0a1c2688103f03a8151222b0adc105eb3cf00468744f7d69be8c1e99507b"
+    },
+    {
+      "file": "houses/pocket-cottage-1-pots.svg",
+      "sha256": "ff478493b5b89008b49ada4be3d2436d7041713fd19ac96b23fbcd6194599928"
+    },
+    {
+      "file": "houses/pocket-cottage-1.svg",
+      "sha256": "1c7006ebe373482685db728091e816b6700f7a14ba112b8c207a9046e2cc21b0"
+    },
+    {
+      "file": "houses/pocket-cottage-2-post.svg",
+      "sha256": "082a3fca7175c793cd4dc1bae32cceef85899b6901d4071726521c4687ed82d4"
+    },
+    {
+      "file": "houses/pocket-cottage-2-pots.svg",
+      "sha256": "3cdc347d99e64dc0a7de954435aa2f55b575bbbe7bf525c1b66772086a018091"
+    },
+    {
+      "file": "houses/pocket-cottage-2.svg",
+      "sha256": "f1b83d2ed5bc37eee467c023cc31be993f45b0362186fc4bdea87d55e421f12d"
+    },
+    {
+      "file": "houses/porch-house-1-post.svg",
+      "sha256": "7b7bf9f2878d6c7c49a29a7aa529b36962de52fd293536bd3aef5b145012d464"
+    },
+    {
+      "file": "houses/porch-house-1-pots.svg",
+      "sha256": "c92b056801b92c9641b12070a9b53b3fddb5784a796b8171cc31dc285b75e2c3"
+    },
+    {
+      "file": "houses/porch-house-1.svg",
+      "sha256": "617e665620d328cb2db1c1a4f4f44c37dd581fb4a7219485a3b83fe7dbe809f1"
+    },
+    {
+      "file": "houses/porch-house-2-post.svg",
+      "sha256": "f64025462d44fbc94fa626c52754bf9d261f71398a0b7c9980f5a15f21ac565d"
+    },
+    {
+      "file": "houses/porch-house-2-pots.svg",
+      "sha256": "a65e41c8c7e494a2d736c948acb5b53c29301feed2751ede8259cdd299f99d65"
+    },
+    {
+      "file": "houses/porch-house-2.svg",
+      "sha256": "c195b38fe35fe19c2d96404f2699a783427e480f8319e13d947244505b4857d9"
+    },
+    {
+      "file": "houses/residential-brick-expanded.svg",
+      "sha256": "b9c532196f752c764573521d66cf069cfe9b3727d2f58322921cf889062f44ef"
+    },
+    {
+      "file": "houses/residential-brick-starter.svg",
+      "sha256": "b997561cf5de7e13cba8b682b53da910a432e9c0e509ae9235bc06bbb452455d"
+    },
+    {
+      "file": "houses/residential-timber-expanded.svg",
+      "sha256": "eba6ebc2a90528944d6ba900df83c23d32dc2ca96a8852cf892c0aaa16117b93"
+    },
+    {
+      "file": "houses/residential-timber-starter.svg",
+      "sha256": "c72d5d222c3f7a870190ecd93c23e878c6a357f4185b6007e323d7261c440a0b"
+    },
+    {
+      "file": "houses/workshop-lodge-2-post.svg",
+      "sha256": "fc195e77cf34036980dcc0505dc1e3458e68889fe5f9bbf39a35b60560fb0dc9"
+    },
+    {
+      "file": "houses/workshop-lodge-2-pots.svg",
+      "sha256": "f55fdc6d2f4763e8ebaf92e3417aff544ab48bd360b7c729b218e1ef574dc429"
+    },
+    {
+      "file": "houses/workshop-lodge-2.svg",
+      "sha256": "adb7537157c4cb8902d392b0f7d521bc48ef39a7b45c40132548bbddfd53fda1"
+    }
+  ]
+}

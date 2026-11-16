@@ -1,0 +1,64 @@
+{
+  "newStatic": [
+    {
+      "port": 4175,
+      "pid": 52896,
+      "command": [
+        "node",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2/node_modules/vite/bin/vite.js",
+        "preview",
+        "--config",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/town-life-2026-11-16/ci-final/runtime-source/vite.config.ts",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "4175",
+        "--strictPort",
+        "--outDir",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/town-life-2026-11-16/main-ci/sequel-client-build"
+      ],
+      "cwd": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2",
+      "client": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/town-life-2026-11-16/main-ci/sequel-client-build",
+      "configSource": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/town-life-2026-11-16/ci-final/runtime-source",
+      "apiPort": 4186
+    },
+    {
+      "port": 4176,
+      "pid": 52907,
+      "command": [
+        "node",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2/node_modules/vite/bin/vite.js",
+        "preview",
+        "--config",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/town-life-2026-11-16/ci-final/runtime-source/vite.config.ts",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "4176",
+        "--strictPort",
+        "--outDir",
+        "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/town-life-2026-11-16/main-ci/sequel-client-build"
+      ],
+      "cwd": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2",
+      "client": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/town-life-2026-11-16/main-ci/sequel-client-build",
+      "configSource": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/town-life-2026-11-16/ci-final/runtime-source",
+      "apiPort": 4188
+    }
+  ],
+  "unchangedApi": [
+    {
+      "port": 4186,
+      "pid": 73931,
+      "source": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/spacious-town-2026-11-16/ci-final/runtime-source"
+    },
+    {
+      "port": 4188,
+      "pid": 73932,
+      "source": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/spacious-town-2026-11-16/ci-final/runtime-source"
+    }
+  ],
+  "client": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/town-life-2026-11-16/main-ci/sequel-client-build",
+  "compatibleAuthoritySource": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/town-life-2026-11-16/ci-final/runtime-source",
+  "all47AuthorityFilesExactOldRuntime": true,
+  "noApiOrProtectedPgRestart": true
+}

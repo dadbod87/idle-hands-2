@@ -55,3 +55,8 @@ Each task should revert independently. Save migrations need forward recovery and
 
 ## Owner-authorized sequential run — 2026-11-10
 Nick explicitly requested continuing through successive sections while away until usage runs low. This supersedes the one-task-per-prompt stop for this active run: keep only one task active, finish its checks/CI/artifact review/merge/closeout, then select the next ready section. Preserve approximately10% weekly allowance, recheck at boundaries, no reset credits. Hosting, real accounts, spending and public release retain their gates; no timer or background automation is created.
+
+
+## Preserve local server evidence before browser cleanup
+
+After system/restart checks, copy `test-results/server/` to a task artifact directory outside Playwright's `test-results/` output tree before starting the browser suite. Playwright clears that output tree at startup. Keep system/restart logs outside it from the beginning. If a raw report is lost, label its values unavailable; do not fabricate a previous measurement or quietly reuse an older task's proof. The hosted server job already archives its raw evidence before the separate browser jobs.

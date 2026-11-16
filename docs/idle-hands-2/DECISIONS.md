@@ -297,3 +297,8 @@ After113map acceptance,112compares original compact/porch/garden/workshop forms 
 ## November16 —114player-experience improvements
 
 Owner requests continuous fun/intuitive/visual/ease evaluation and Terra6.1 actual-game review. Fix native phone landmark composition through continuous bounded camera framing, keeping every authoritative position/shape and zoom unchanged. Caption taps reuse normal approach/proximity. Separate6scenic walks from functional outdoor stops. Keep ambient life bounded/client-only, no server events or reward sparkle. Companion study leads with selected tier benchmark and optional room details; prices/rights and old frozen study stay intact.114is presentation;115still owns housing catalog/transaction/allocation. Acceptance/actual preview remains pending in114report until exact gates pass.
+
+
+## November16 — versioned housing contract before coherent integration
+
+IH2-115selects a frozen isolated housing-v1 catalog: existing12/24kit rights,2kit same-tier remodel (agent candidate, one bench-day),6real-hour builders and2minute quotes. No hidden family/tier charge; no active prices yet. Preserve exactlegacy facade/6or8nooks/address/allnine owned prop families. One rental/indoor/yard allocation ledger; deferred occupied-footprint completion, old home stays open. Candidate schema/commands stay outside current runtime/discovered migrations. Terra-directed review focuses free visible Close, complete price, continuity and Arrange yard as completion payoff.116owns coherent trusted-position/presence/all-writer/protocol/SQL/art integration; browser-only rental saves are independent, so do not create an unnecessary local home format. See115CONTRACT/REPORT for measured acceptance, limits and fees.

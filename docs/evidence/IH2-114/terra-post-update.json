@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-16",
+  "origin": "http://127.0.0.1:4175/",
+  "scope": "Independent Chrome local-workshop ordinary spawn and Places travel to Founders pond, contextual Inspect; desktop2k and phone320 viewport emulation. No shared login, database, grants, interception, injected position, build or restart. No physical device, performance or full regression claim.",
+  "results": [
+    {
+      "viewport": "phone320",
+      "field": "II\nIdle Hands 2\nFounders\u2019 pond\nDay \u00b7 Clear skies \u00b7 12:40\n\nAt Founders\u2019 pond. Choose Inspect.\n\n\u2316\nPlaces\nBag\nJournal\nInspect",
+      "title": "Founders\u2019 pond"
+    },
+    {
+      "viewport": "desktop2k",
+      "field": "II\n\nTHE PATRON GROUP \u00b7 A NEW CHAPTER\n\nIdle Hands 2\nNEIGHBORHOOD STUDY\nLocal workshop \u00b7 saved here\nFounders\u2019 pond\nFollow the loop north for the old square. Places can guide you.\nDay \u00b7 Clear skies \u00b7 12:40\n\nTap the floor to walk.\nWASD / arrows \u00b7 E to interact\n\nFIELD NOTES\n\nAt Founders\u2019 pond. Choose Inspect.\n\n\u2316\nPlaces\nBag\nJournal\nInspect",
+      "title": "Founders\u2019 pond"
+    }
+  ],
+  "files": {
+    "desktop2k-inspect.png": "1bd708989e651c19844aebeac1efe14c4f403d1238d1c09f8382f6e47df2a019",
+    "desktop2k-pond.png": "06b2a1e4c8393e29d3b00ee3f8007dbb532c68612866539f8d42e2627c40ab14",
+    "desktop2k-spawn.png": "9306809e9db9afc184a716abbe17f3072d6aa5c0ea2b8fbaa46835821e6ae922",
+    "phone320-inspect.png": "759ccdae8f2d2ec88d0f9ebeb313e58555d700efc72aef2ee01ed0c6704ec606",
+    "phone320-pond.png": "5ba984d3ad2dad244e38289101f56fd6839943ea439ccae788887cd0e89aed11",
+    "phone320-spawn.png": "a0cb7d1bf2747b46ac89a91078a2c51bddf39a6f078e5397df351864011353fd"
+  },
+  "findings": [
+    "No visual or contextual Inspect blocker observed in the sampled installed desktop and 320px states. Pond, player and raised sign visible; correct pond panel opened."
+  ]
+}

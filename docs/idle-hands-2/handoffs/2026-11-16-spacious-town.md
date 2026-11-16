@@ -1,3 +1,15 @@
+# IH2-113 accepted — spacious town; next IH2-112 housing
+
+Main **fc979570d57ee2401a84510cbb0ab917d9239bde**, [PR #44](https://github.com/dadbod87/idle-hands-2/pull/44), candidate **a9a1d4d825db76fad2921c535078dfd098365f47**, identical tree. PR run 43900672096 and main run 43904199640 each passed all four jobs: **434 system checks / 158 browser cases (82 + 76)**, zero failures, skips, flakes or report errors. Both raw artifact sets and all 214 client files match the reviewed build.
+
+Actual preview [127.0.0.1:4175](http://127.0.0.1:4175/) and fictional Tour [localhost:4176/?town=1](http://localhost:4176/?town=1) now use the matched final client/API 7. The signed Tour session survived; all 14 tables, every field/row, seven migration checksums and private-key fingerprints/modes remain exact. No SQL migration, reset, grant or key copy/regeneration. Native 2K/4K travel, phone/short enlarged controls and unchanged ordinary progress passed on the actual main artifact. No public/cloud game launch.
+
+Full-code continuation: `work/idle-hands-2-town-expansion`, branch `chore/spacious-town-closeout-2026-11-16` (accepted main runtime plus this documentation closeout; resolve its latest pushed head). Canonical `idle-hands-2` remains old-runtime bookkeeping only. Read the 113 report/source-closeout and dated handoff. The larger square preserves old activity/home positions and adds connected scenic districts. Remaining organic landscaping is task 114. Task 112 is ready next: house size, yard and layout design, preserving existing ownership and furnishings.
+
+Historical pending notes below are superseded by this verified closeout.
+
+Actual immutable runtime: `/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/spacious-town-2026-11-16/ci-final/runtime-source`; client: `/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/spacious-town-2026-11-16/main-ci/sequel-client-build`. Service cwd remains canonical for the existing private keys. Active process metadata: `docs/evidence/IH2-113/active-services.json`. Do not restart protected PostgreSQL or regenerate/copy keys. Preserve original accepted study origins and frozen source.
+
 # November16 — spacious-town candidate
 
 Current FULL CODE: `work/idle-hands-2-town-expansion`, branch `feat/spacious-town`, base7e8a0b246a58810ef69e5df99f4873a5abfc6ec7 (111closeout over main056c3793). Resolve pushed branch and latest report; this file does not imply pending gates passed. Canonical `idle-hands-2` is old090bookkeeping, never runtime source.

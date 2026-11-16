@@ -1,3 +1,7 @@
+## November 16 — spacious town accepted
+
+Main fc979570, PR #44: real 4,096 × 3,072 square, connected scenic districts, native 2K/4K coverage, regional phone guidance, safe roof occlusion and protocol 7. Final 434/158 checks on PR/main and matched actual preview pass; all protected data/keys/session preserved. Next: housing variety design.
+
 ## November16 — spacious town candidate
 
 Full source `work/idle-hands-2-town-expansion`, branch `feat/spacious-town`, base7e8closeout over accepted main056c3793. Real square4096×3072/native2K+4K, connected scenic commons and six destinations; old activity/home coordinates and economy unchanged. Protocol7matches expanded geometry; root3/garden4/seven SQL migrations unchanged.Frozen final434system/158browser, zero failures/skips/flakes/report-errors,8focused native cases, isolated database restart and Terra checks pass. Exact PR/main/raw artifacts/actual preview/data/session checks remain pending. Existing4175/4176remain111until all gates pass. [113report](evidence/IH2-113/REPORT.md). New user priority precedes112; later housing begins only after this acceptance.

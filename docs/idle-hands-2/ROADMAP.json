@@ -1818,8 +1818,7 @@
     {
       "id": "IH2-113",
       "title": "Spacious first town and large-screen world coverage",
-      "status": "in_progress",
-      "owner_branch": "feat/spacious-town",
+      "status": "done",
       "depends_on": [
         "IH2-111"
       ],
@@ -1836,7 +1835,8 @@
         "docs/evidence/IH2-113/REPORT.md",
         "docs/evidence/IH2-113/local-verification.json",
         "docs/evidence/IH2-113/shared-navigation.json",
-        "docs/evidence/IH2-113/TERRA_REVIEW.md"
+        "docs/evidence/IH2-113/TERRA_REVIEW.md",
+        "docs/evidence/IH2-113/source-closeout.json"
       ]
     },
     {

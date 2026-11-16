@@ -1,10 +1,22 @@
-# Canonical bookkeeping pointer — do not use this old runtime
+# Canonical bookkeeping only — use the current full-code checkout
 
-Accepted playable café source main056c3793a76147a999851912fd313af95e9e9cb4, full-code closeout **7e8a0b246a58810ef69e5df99f4873a5abfc6ec7**, branch `chore/playable-cafe-closeout-2026-11-13`, checkout `../idle-hands-2-playable-cafe`. Fetch/inspect that source before112housing work. This canonical checkout intentionally retains090runtime and its six numerical model reports; only documentation/instructions are synchronized. Existing private keys stay here for the frozen current APIservices; never copy, regenerate or expose them.
+Do not implement from this old IH2-090 runtime. Resume **aea4602** (`chore/spacious-town-closeout-2026-11-16`) in `../idle-hands-2-town-expansion`, the accepted main runtime plus verified documentation closeout. Fetch and verify its latest pushed head. Main **fc979570d57ee2401a84510cbb0ab917d9239bde**, PR #44; both complete CI runs and actual 4175/4176/API7 preview verification passed. Next ready task: IH2-112 housing sizes/yards/layout design. Protected data, keys and signed Tour remain exact. Never merge this bookkeeping branch into main as runtime source. Six old source-derived model JSON files intentionally remain aligned with this old checkout.
 
-Actual4175/localhost4176now run frozen final214file client/API6, verified same signed Tour/all old13table fields/keys/sixchecksums with additive seventh migration only. PR42+43and final main checks passed; current task111done/112ready. See the full-code report/handoff for exact evidence and limitations. This bookkeeping commit does not claim runtime CI on old090code.
+# IH2-113 accepted — spacious town; next IH2-112 housing
 
----
+Main **fc979570d57ee2401a84510cbb0ab917d9239bde**, [PR #44](https://github.com/dadbod87/idle-hands-2/pull/44), candidate **a9a1d4d825db76fad2921c535078dfd098365f47**, identical tree. PR run 43900672096 and main run 43904199640 each passed all four jobs: **434 system checks / 158 browser cases (82 + 76)**, zero failures, skips, flakes or report errors. Both raw artifact sets and all 214 client files match the reviewed build.
+
+Actual preview [127.0.0.1:4175](http://127.0.0.1:4175/) and fictional Tour [localhost:4176/?town=1](http://localhost:4176/?town=1) now use the matched final client/API 7. The signed Tour session survived; all 14 tables, every field/row, seven migration checksums and private-key fingerprints/modes remain exact. No SQL migration, reset, grant or key copy/regeneration. Native 2K/4K travel, phone/short enlarged controls and unchanged ordinary progress passed on the actual main artifact. No public/cloud game launch.
+
+Full-code continuation: `work/idle-hands-2-town-expansion`, branch `chore/spacious-town-closeout-2026-11-16` (accepted main runtime plus this documentation closeout; resolve its latest pushed head). Canonical `idle-hands-2` remains old-runtime bookkeeping only. Read the 113 report/source-closeout and dated handoff. The larger square preserves old activity/home positions and adds connected scenic districts. Remaining organic landscaping is task 114. Task 112 is ready next: house size, yard and layout design, preserving existing ownership and furnishings.
+
+Historical pending notes below are superseded by this verified closeout.
+
+#113priority — spacious town before112housing
+
+After acceptance, fetch and inspect `chore/spacious-town-closeout-2026-11-16` for the exact verified source/preview/task closeout before starting112. Its existence and acceptance must be verified; this pending header is not a claim that it has been created.
+
+Full source `work/idle-hands-2-town-expansion`, branch `feat/spacious-town`, base7e8closeout over accepted main056c3793. Real square4096×3072/native2K+4K, connected scenic commons and six destinations; old activity/home coordinates and economy unchanged. Protocol7matches expanded geometry; root3/garden4/seven SQL migrations unchanged.Frozen final434system/158browser, zero failures/skips/flakes/report-errors,8focused native cases, isolated database restart and Terra checks pass. Exact PR/main/raw artifacts/actual preview/data/session checks remain pending. Existing4175/4176remain111until all gates pass. [113report](../evidence/IH2-113/REPORT.md). New user priority precedes112; later housing begins only after this acceptance.
 
 #111accepted — playable café; next112housing variety
 

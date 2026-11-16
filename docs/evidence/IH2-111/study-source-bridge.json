@@ -20,9 +20,9 @@
     }
   },
   "reviewedCurrent": {
-    "src/game/world.ts": "29af0efe621efafea58a69475bf113329315f2139025d802d5c47e64343f1bd9",
-    "src/main.ts": "830ef5b70c8e8b2f9116866b9dee119c1ea3d77fe190cd68ccaa0bde58013507",
-    "src/phaser/WorldScene.ts": "902711d7a76cec0a853e8b9763fcbe51ea16f1349dac95ad1e5a15815cdcef1d",
+    "src/game/world.ts": "8c18a3406f46bec3ca776019bdafbddfac7e67f11c1da941c796415ee8332141",
+    "src/main.ts": "045b6c7be785afaa8b31fa3229b7d88691d99bf235eb6927fe8c4e56174581cd",
+    "src/phaser/WorldScene.ts": "ad8c526bbd2fa0bbfdd67b04765018dfdedc930eda1659842c199f9d5e67abbc",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   }
 }

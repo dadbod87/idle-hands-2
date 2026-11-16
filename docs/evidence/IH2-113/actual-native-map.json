@@ -1,0 +1,117 @@
+{
+  "classification": "Actual main-CI214client at4175; native direct sign travel from ordinary defaults into East Commons, then2K/4K/phone/short200checks. Cosmetic daytime and doubled CSS text only; no position/stock/time/economy/API fixtures, interception or grants. Chrome viewport emulation, not a physical device or cloud launch.",
+  "records": [
+    {
+      "shape": "2K",
+      "camera": {
+        "zoom": 1,
+        "scrollX": 0,
+        "scrollY": 197.5,
+        "worldView": {
+          "x": 0,
+          "y": 197.5,
+          "width": 2524,
+          "height": 1237
+        },
+        "matrix": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          -197.5
+        ]
+      },
+      "canvas": {
+        "width": 2524,
+        "height": 1237
+      },
+      "shells": 1,
+      "footerBottom": 1422,
+      "viewport": {
+        "width": 2560,
+        "height": 1440
+      }
+    },
+    {
+      "shape": "4K",
+      "camera": {
+        "zoom": 1,
+        "scrollX": 0,
+        "scrollY": 0,
+        "worldView": {
+          "x": 0,
+          "y": 0,
+          "width": 3804,
+          "height": 1957
+        },
+        "matrix": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "canvas": {
+        "width": 3804,
+        "height": 1957
+      },
+      "shells": 1,
+      "footerBottom": 2142,
+      "viewport": {
+        "width": 3840,
+        "height": 2160
+      }
+    },
+    {
+      "shape": "phone360",
+      "camera": {
+        "zoom": 1,
+        "scrollX": 1918,
+        "scrollY": 641.7017499999967,
+        "worldView": {
+          "x": 1918,
+          "y": 641.7017499999967,
+          "width": 356,
+          "height": 593.8125
+        },
+        "matrix": [
+          1,
+          0,
+          0,
+          1,
+          -1918,
+          -641.7017211914062
+        ]
+      },
+      "canvas": {
+        "width": 356,
+        "height": 593
+      },
+      "shells": 1,
+      "footerBottom": 778,
+      "viewport": {
+        "width": 360,
+        "height": 780
+      }
+    }
+  ],
+  "nativeCommonsArrival": true,
+  "arrival": {
+    "version": 1,
+    "room": "square",
+    "position": {
+      "x": 65,
+      "y": 28.831499999999895
+    },
+    "locked": true,
+    "walking": false,
+    "nearby": "commons-green"
+  },
+  "existingApproachRange": 1.25,
+  "workshopProgressExact": true,
+  "noApiRequests": true,
+  "errors": []
+}

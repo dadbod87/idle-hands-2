@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-13",
+  "updated": "2026-11-16",
   "authority": "docs/idle-hands-2/README.md",
   "tasks": [
     {
@@ -1816,11 +1816,36 @@
       "owner_branch": "fix/cafe-presentation-target"
     },
     {
+      "id": "IH2-113",
+      "title": "Spacious first town and large-screen world coverage",
+      "status": "done",
+      "depends_on": [
+        "IH2-111"
+      ],
+      "goal": "Expand the actual walkable first town into connected scenic districts and cover 2560/3840 desktop canvases without stretching sprites or relocating saved homes.",
+      "acceptance": [
+        "A larger continuous square with authored full-world ground and river, distinct connected commons and readable destinations; existing activities and addresses retain coordinates.",
+        "Native 2560\u00d71440,3840\u00d72160,narrow phone and short viewport checks cover resize, edge coverage, direct travel, keyboard movement, collision, menus and reload.",
+        "Required local, exact final PR/main checks and matched preview update preserve protected data, signing keys and historical study bytes."
+      ],
+      "exclusions": [
+        "No economy/reward changes, paid assets, real-player changes, cloud hosting or reset of existing progress."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-113/REPORT.md",
+        "docs/evidence/IH2-113/local-verification.json",
+        "docs/evidence/IH2-113/shared-navigation.json",
+        "docs/evidence/IH2-113/TERRA_REVIEW.md",
+        "docs/evidence/IH2-113/source-closeout.json"
+      ]
+    },
+    {
       "id": "IH2-112",
       "title": "House sizes, personal yards and meaningful layout choices",
       "status": "queued",
       "depends_on": [
-        "IH2-111"
+        "IH2-111",
+        "IH2-113"
       ],
       "goal": "Turn owner-requested exterior size/yard/layout variety into a coherent current-source design and priced progression candidate before runtime expansion.",
       "acceptance": [
@@ -1833,6 +1858,26 @@
       ],
       "evidence": [
         "docs/idle-hands-2/design/HOUSE_VARIETY_AND_YARDS.md"
+      ]
+    },
+    {
+      "id": "IH2-114",
+      "title": "Organic district edges and town-life polish",
+      "status": "queued",
+      "depends_on": [
+        "IH2-113",
+        "IH2-112"
+      ],
+      "goal": "Polish the intentionally open commons after housing concepts establish occupied and future spaces.",
+      "acceptance": [
+        "Improve shoreline/path edges, vegetation grouping and recognizable gathering-place detail without blocking routes or pretending future services are playable.",
+        "Inspect native2K/4K,phone and short/text200views; preserve original starter activity coordinates, homes and economy."
+      ],
+      "exclusions": [
+        "No reward/currency/authority changes, bulk asset packs, paid resources or displacement of persistent property."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-113/TERRA_REVIEW.md"
       ]
     }
   ],

@@ -1,3 +1,24 @@
+# IH2-113 accepted — spacious town; next IH2-112 housing
+
+Main **fc979570d57ee2401a84510cbb0ab917d9239bde**, [PR #44](https://github.com/dadbod87/idle-hands-2/pull/44), candidate **a9a1d4d825db76fad2921c535078dfd098365f47**, identical tree. PR run 43900672096 and main run 43904199640 each passed all four jobs: **434 system checks / 158 browser cases (82 + 76)**, zero failures, skips, flakes or report errors. Both raw artifact sets and all 214 client files match the reviewed build.
+
+Actual preview [127.0.0.1:4175](http://127.0.0.1:4175/) and fictional Tour [localhost:4176/?town=1](http://localhost:4176/?town=1) now use the matched final client/API 7. The signed Tour session survived; all 14 tables, every field/row, seven migration checksums and private-key fingerprints/modes remain exact. No SQL migration, reset, grant or key copy/regeneration. Native 2K/4K travel, phone/short enlarged controls and unchanged ordinary progress passed on the actual main artifact. No public/cloud game launch.
+
+Full-code continuation: `work/idle-hands-2-town-expansion`, branch `chore/spacious-town-closeout-2026-11-16` (accepted main runtime plus this documentation closeout; resolve its latest pushed head). Canonical `idle-hands-2` remains old-runtime bookkeeping only. Read the 113 report/source-closeout and dated handoff. The larger square preserves old activity/home positions and adds connected scenic districts. Remaining organic landscaping is task 114. Task 112 is ready next: house size, yard and layout design, preserving existing ownership and furnishings.
+
+Historical pending notes below are superseded by this verified closeout.
+
+#113acceptance checklist
+
+- [x] Additive geography/old stop and doorway preservation; coherent protocol7/root3/garden4/seven migrations.
+- [x] Frozen434system/158browser,8focused, native shared navigation, isolated PostgreSQL restart, design/plan/pinned/whitespace and Terra review.
+- [x] Exact final candidate: all4GitHub jobs and raw disjoint82+76/artifact/client verification.
+- [x] Main-push full regression/artifacts and matched source/client preview update.
+- [x] Existing signed Tour,14tables/allfields/7checksums/private-key fingerprints/modes and actual desktop/mobile native proof.
+- [x] Close113with exact source/handoff and112ready; no public/cloud launch.
+
+Full source `work/idle-hands-2-town-expansion`, branch `feat/spacious-town`, base7e8closeout over accepted main056c3793. Real square4096×3072/native2K+4K, connected scenic commons and six destinations; old activity/home coordinates and economy unchanged. Protocol7matches expanded geometry; root3/garden4/seven SQL migrations unchanged.Frozen final434system/158browser, zero failures/skips/flakes/report-errors,8focused native cases, isolated database restart and Terra checks pass. Exact PR/main/raw artifacts/actual preview/data/session checks remain pending. Existing4175/4176remain111until all gates pass. [113report](evidence/IH2-113/REPORT.md). New user priority precedes112; later housing begins only after this acceptance.
+
 #111all source/main/actual-preview gates complete
 
 PR43/main056c3793 accepted after PR43522020468 and main43523926478, all4jobs each431system/153browser(77+76), zero skips/flakes/errors and exact214client/raw artifacts. Actual local4175/localhost4176/API6 refreshed with the same signed Tour, old13tables/allfields/keys/sixchecksums preserved; additive seventh migration only. Playable café menus, safe saves, confirmed rewards and conserved teapot allocation accepted. No public/cloud game launch. Next112housing variety. [Report](evidence/IH2-111/REPORT.md).

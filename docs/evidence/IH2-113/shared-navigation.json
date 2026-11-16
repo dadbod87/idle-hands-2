@@ -1,0 +1,32 @@
+{
+  "classification": "Native real HTTP/SQL movement by ordinary fictional Cora between expanded commons and pond, plus native page reload and actual API restart returning the existing last durable checkpoint. Dedicated ih2_town_navigation on55434, never protected55432. No response interception, position/stock/time injection or currency grants. Cosmetic daytime; Chrome viewport emulation, not physical devices.",
+  "commons": {
+    "version": 1,
+    "room": "square",
+    "position": {
+      "x": 65,
+      "y": 30
+    },
+    "locked": false,
+    "walking": false,
+    "nearby": "commons-green"
+  },
+  "pond": {
+    "version": 1,
+    "room": "square",
+    "position": {
+      "x": 69,
+      "y": 68
+    },
+    "locked": false,
+    "walking": false,
+    "nearby": "commons-pond"
+  },
+  "serverValidatedNewCoordinates": true,
+  "livePositionSurvivesPageReload": true,
+  "apiRestartResumesExistingDurableCheckpoint": true,
+  "freeSameRoomWalkingDoesNotWriteDatabase": true,
+  "privateWorkshopExact": true,
+  "protocol": 7,
+  "errors": []
+}

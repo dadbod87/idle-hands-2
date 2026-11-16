@@ -1941,6 +1941,66 @@
       "source": "docs/evidence/IH2-106/study/bea-serving.svg",
       "date": "2026-11-13",
       "modifications": "Byte-identical registered serving/teapot art from reviewed IH2-106; no paid or third-party assets."
+    },
+    {
+      "id": "housing-garden-studio-2",
+      "path": "public/art/housing/garden-studio-2.svg",
+      "sha256": "b49bf5df6a2960e40b3d08949b365b639b4df4b71ce3c265c6d497eeae250178",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-housing-art.py",
+      "date": "2026-11-16",
+      "modifications": "Original matched house body/roof/door vectors; no imported media."
+    },
+    {
+      "id": "housing-pocket-cottage-1",
+      "path": "public/art/housing/pocket-cottage-1.svg",
+      "sha256": "ec4d2240d160ab636823b34ff01a4024e56e64dddbbd4c97cc909b3ad22c9f75",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-housing-art.py",
+      "date": "2026-11-16",
+      "modifications": "Original matched house body/roof/door vectors; no imported media."
+    },
+    {
+      "id": "housing-pocket-cottage-2",
+      "path": "public/art/housing/pocket-cottage-2.svg",
+      "sha256": "35750a79c39947008fa8f14858128357076523a1dbff6a1a21cc688e72d93017",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-housing-art.py",
+      "date": "2026-11-16",
+      "modifications": "Original matched house body/roof/door vectors; no imported media."
+    },
+    {
+      "id": "housing-porch-house-1",
+      "path": "public/art/housing/porch-house-1.svg",
+      "sha256": "599787b8bd371b855e5374ba77c20c1c625331df4f480a69e21aef0287701369",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-housing-art.py",
+      "date": "2026-11-16",
+      "modifications": "Original matched house body/roof/door vectors; no imported media."
+    },
+    {
+      "id": "housing-porch-house-2",
+      "path": "public/art/housing/porch-house-2.svg",
+      "sha256": "e0912300447004133c5efcd7f424df86eea4ab7db4aa60788970b0445f3e6de7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-housing-art.py",
+      "date": "2026-11-16",
+      "modifications": "Original matched house body/roof/door vectors; no imported media."
+    },
+    {
+      "id": "housing-workshop-lodge-2",
+      "path": "public/art/housing/workshop-lodge-2.svg",
+      "sha256": "b21718986a610e41f4f2e3e5d970b9af8b75f0096bc5ad755445a7d547396a50",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-housing-art.py",
+      "date": "2026-11-16",
+      "modifications": "Original matched house body/roof/door vectors; no imported media."
     }
   ],
   "comparison": {

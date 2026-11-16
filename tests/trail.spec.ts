@@ -1,3 +1,5 @@
+import{exitHomeToSquare}from'./helpers/home-journey.ts';
+import{addressForPlot,HOME_SITE_PREFIX}from'../src/game/neighborhood.ts';
 import{revealPlace}from'./helpers/places.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {test,expect,type Page} from '@playwright/test';
@@ -38,7 +40,7 @@ async function walkTo(page:Page,id:string,touch=false){
 async function inspect(page:Page,touch=false){if(touch)await page.locator('#interact').tap();else await page.locator('#interact').click();await expect(page.getByRole('dialog')).toBeVisible();}
 async function leaveInterior(page:Page,touch=false){
  const room=(await actor(page)).room;
- if(room==='home'||room==='home-expanded'){await point(page,9,13.5,touch);await expect.poll(async()=>(await actor(page)).room,{timeout:arrivalTimeout}).toBe('square');}
+ if(room==='home'||room==='home-expanded'){if((await town(page)).position.districtId)await exitHomeToSquare(page);else{await point(page,9,13.5,touch);await expect.poll(async()=>(await actor(page)).room,{timeout:arrivalTimeout}).toBe('square');}}
  else if(room==='workshop'){await point(page,9,13.5,touch);await expect.poll(async()=>(await actor(page)).room,{timeout:arrivalTimeout}).toBe('square');}
 }
 async function apiSnapshot(page:Page){const response=await page.request.get('/api/town/snapshot',{headers:{'X-IH2-Schema':TOWN_SCHEMA}});expect(response.status()).toBe(200);return(await response.json()).snapshot;}
@@ -109,7 +111,7 @@ test('real isolated town: timed opening, personal trail journal and permanent ho
   await expect.poll(async()=>(await actor(owner)).room,{timeout:arrivalTimeout}).toBe('square');expect((await actor(owner)).position).toEqual({x:25.5,y:12.6});
   await expect.poll(async()=>(await apiSnapshot(owner)).position.room).toBe('square');
   expect((await apiSnapshot(owner)).position.position).toEqual({x:25.5,y:12.6});
-  await walkTo(owner,'home-front');await point(owner,30,34.5);
+  await owner.locator('#places').click();await (await revealPlace(owner,'[data-destination=residential-gate]')).click();await expect.poll(async()=>(await actor(owner)).room,{timeout:arrivalTimeout}).toBe('neighborhood');await owner.locator('#places').click();await (await revealPlace(owner,'[data-destination="'+HOME_SITE_PREFIX+addressForPlot(plotId).slot+'"]')).click();
   await expect.poll(async()=>(await actor(owner)).room,{timeout:arrivalTimeout}).toBe('home-expanded');
   await expect.poll(()=>owner.evaluate(()=>(window as any).__pilot.metrics().visual.home.plotId)).toBe(plotId);
   const homeVisual=await owner.evaluate(()=>(window as any).__pilot.metrics().visual.home);
@@ -151,7 +153,7 @@ test('real isolated town: timed opening, personal trail journal and permanent ho
   await walkTo(newcomer,'trail-exit',true);await point(newcomer,9,24,true);await expect.poll(async()=>(await actor(newcomer)).room,{timeout:arrivalTimeout}).toBe('square');expect((await actor(newcomer)).position).toEqual({x:25.5,y:12.6});
   expect(errors).toEqual([]);
   writeFileSync(evidence+'/trail-authority.json',JSON.stringify({
-   disclosure:'Actual disposable loopback ih2_browser backend, fictional browser-server residents and stock; shared-town/starter-homes tests earn initial project funding and Casey home. No HTTP/EventSource interception or player inventory/stamp/property mutation. The sole SQL write moves both project timestamps six hours earlier while preserving duration; a real snapshot settles opening. Explicit day/clear and phone night/clear sky-study URLs are cosmetic only; Date.now, player production and scores are unchanged. Desktop/touch viewport emulation is not a physical-device test.',
+   disclosure:'Actual disposable loopback ih2_browser backend, fictional browser-server residents and stock; shared-town earns initial project funding; starter-homes declares the historical paid-rights home display fixture. Current timed paid construction is separately exercised in playable-housing.spec.ts. No HTTP/EventSource interception or player inventory/stamp/property mutation. The sole SQL write moves both project timestamps six hours earlier while preserving duration; a real snapshot settles opening. Explicit day/clear and phone night/clear sky-study URLs are cosmetic only; Date.now, player production and scores are unchanged. Desktop/touch viewport emulation is not a physical-device test.',
    initialBridge:initial.bridge,projectTimeFixture:advanced.rows[0],openedBridge:opened.bridge,openingJournal:opening,
    ownerStamps:completed.trail,ownerEconomyUnchanged:true,stampCommands,duplicateReplayed:replayed.replayed,homeVisual,
    newcomerTrail:(await town(newcomer)).trail,newcomerEconomyUnchanged:true,nightClimate,shortLayout:{viewport:{width:844,height:390},rootText:'200%',world:shortWorld,controls:shortControls},errors

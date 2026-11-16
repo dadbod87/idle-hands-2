@@ -1920,7 +1920,7 @@
     {
       "id": "IH2-116",
       "title": "Playable shared housing choices, builders and conserved yard arrangement",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-115"
       ],
@@ -1937,6 +1937,28 @@
       ],
       "evidence": [
         "docs/evidence/IH2-115/CONTRACT.md"
+      ],
+      "owner_branch": "feat/playable-housing"
+    },
+    {
+      "id": "IH2-117",
+      "title": "Lived-in home interiors and useful house visits",
+      "status": "queued",
+      "depends_on": [
+        "IH2-116"
+      ],
+      "goal": "Give selected housing families recognizable interior identity and a warm arrival/decorating payoff without adding production capacity or another inventory.",
+      "acceptance": [
+        "Preserve plot identity, selected exterior, nooks, owned allocations, builders, signed sessions and all durable progress.",
+        "Prototype and playtest one coherent family-specific interior/arrival treatment before expanding all homes; keep doors, feet, camera, furniture and visitor navigation clear on phones.",
+        "Any garden-desk or home-bench shortcut must use the existing private garden/single queue with trusted context and current capacity; keep unavailable conveniences honestly labelled.",
+        "Use Terra6.1 actual-game desktop/mobile review and full owning-repository source/CI/preserved-preview gates; record fun, clarity and remaining limits."
+      ],
+      "exclusions": [
+        "No new wallet, bonus production, free furnishings, unpriced yard recipes, combat/regions, relocation, cloud hosting or public launch."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-116/REPORT.md"
       ]
     }
   ],

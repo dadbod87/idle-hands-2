@@ -1,0 +1,9 @@
+{
+  "classification": "Isolated housing candidate, synthetic preexisting48kits and home only; no active migration/HTTP/auth registration.",
+  "database": "ih2_housing_test",
+  "restoreDatabase": "ih2_housing_restore",
+  "freshProcessPreserved": true,
+  "dumpRestoreAndReceiptReplayPreserved": true,
+  "all7MigrationChecksumsExact": true,
+  "fingerprint": "d24a0d8a5d1c662cee970f06e8a07d24edcc114e07cf86cabc92ce3152443e73"
+}

@@ -1,0 +1,8 @@
+{
+  "classification": "Housing115candidate survives same actual isolated PostgreSQL restart already required by repository; no extra/protected restart.",
+  "actualDatabaseRestart": true,
+  "allAccountQuoteBuildReceiptFieldsExact": true,
+  "all7AppliedMigrationChecksumsExact": true,
+  "paid24KitsAndFixed6hDeadlineAndOldHomeRetained": true,
+  "fingerprint": "0ead7319dc934197e32454ed5e2c57b640ac288e249f86f47498e409ad15a213"
+}

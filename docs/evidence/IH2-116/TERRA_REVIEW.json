@@ -1,0 +1,28 @@
+{
+  "scope": "Independent offline visual review of all eight supplied actual-game PNGs at desktop 2K, emulated phone 320 and short viewport at 200% text. No browser, interaction, source, or database access in this review.",
+  "noSampledBlocker": true,
+  "visibleFindings": [
+    "The desktop quote clearly displays the 12-kit cost, 36-kit remainder, six-hour build, rental continuity, free close and confirmation. The phone quote shows the close action and cost; its lower actions are outside the captured frame.",
+    "The sampled desktop and phone streets show the home, door, resident and yard planters. Planters remain visible, including the side placement near the fence.",
+    "The remodel and expanded-owner captures show the named home and yard arrangement controls; the phone visitor capture shows a named home and another resident. These stills do not establish interaction or persistence behavior."
+  ],
+  "opportunities": [
+    "Side-yard decorations are small and close to the fence at desktop scale; check visibility and selection as larger or more varied yard items are added."
+  ],
+  "limitations": [
+    "A still cannot verify scrolling, focus, action reachability, price transactions, movement, visitor behavior, persistence, or completion of the pictured flows. The phone quote and short 200% captures show only part of their scrollable content.",
+    "The supplied inputs report three separate native tests passed using local HTTP/SSE and disposable SQL with fictional stock and a separate advanced clock; those interactions were not rerun in this review. Phone views are emulated, not physical-device checks.",
+    "Full local regression, CI, and any actual installed update remain pending."
+  ],
+  "hashesMatchInputs": true,
+  "sha256": {
+    "housing-game-2k-street.png": "2a37e1f58aff510cbf3b2c16f41bbcc743596aea6ca0ced26f32a464dd338355",
+    "housing-game-phone320-street.png": "56e7a2ca153eeb94245bcb9d59e0e37486dffaa41ac38de652bb297b9f281a07",
+    "housing-game-2k-quote.png": "79d10156fdf9293943b68f709fceab34c0c2eae1f302f1e1d667b76c5c58ff84",
+    "housing-game-phone320-quote.png": "54e7f58f48ebc8c3eca18c8bf45f2a7a59fac1a5bd3ad68474c3002c37f75e25",
+    "housing-game-short200-no-kits.png": "0d0b370091661a91714e62d31239ff7b19b267df4189317ad52b488c83f168a3",
+    "housing-game-remodel-bag-return.png": "91b5981683278490c64af4dcac26106d7957c40b65265d1d101cc3ce39c4758c",
+    "housing-game-expanded-owner.png": "8fcbce7fa11575bca10172ad8330e4299bd56094edccdef4fa4beed9e3e179ed",
+    "housing-game-phone-live-expanded-visitor.png": "167fbd907bd4dddc3b6a4aaa5c414f2e6b802c64c41baa3147645e47bf4d8ee2"
+  }
+}

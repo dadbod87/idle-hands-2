@@ -973,6 +973,36 @@
       "id": "cafe-bea-serving",
       "path": "art/cafe/bea-serving.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "housing-garden-studio-2",
+      "path": "art/housing/garden-studio-2.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "housing-pocket-cottage-1",
+      "path": "art/housing/pocket-cottage-1.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "housing-pocket-cottage-2",
+      "path": "art/housing/pocket-cottage-2.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "housing-porch-house-1",
+      "path": "art/housing/porch-house-1.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "housing-porch-house-2",
+      "path": "art/housing/porch-house-2.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "housing-workshop-lodge-2",
+      "path": "art/housing/workshop-lodge-2.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

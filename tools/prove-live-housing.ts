@@ -1,0 +1,3 @@
+/** Fresh-process read proof, dedicated restore fixture only. */
+import{database,localDatabaseUrl}from'../server/db.ts';import{TownStore}from'../server/live-store.ts';
+const u=new URL(localDatabaseUrl(process.argv[2]));if(u.pathname!=='/ih2_housing_live_restore'||u.port==='55432')throw Error('Dedicated housing restore fixture required');const now=Number(process.argv[3]);if(!Number.isSafeInteger(now))throw Error('Declared fixture observation required');const p=database(u.href);try{const s=await new TownStore(p,{now:()=>now}).snapshot('aster');console.log(JSON.stringify({housing:s.housing,workshop:s.workshop,plot:s.plot}));}finally{await p.end();}

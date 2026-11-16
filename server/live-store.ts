@@ -1,3 +1,7 @@
+import{validPublicHouse,liveHousingAccount}from'../src/game/live-housing.ts';
+import{housingWorld}from'../src/game/housing-world.ts';
+import{housingAction,privateHousing,housingAccount}from'./housing.ts';
+import{type Occupant,emptyYard}from'../src/design/housing-contract.ts';
 import {cafePublic,type CafePublicState} from '../src/game/cafe-public.ts';
 import {cafeProjectSchema,createCafeProject,serveCafeCandidate,type CafeProject} from '../src/game/cafe-candidate.ts';
 /** Current protocol6 store. server/store.ts remains the frozen v5 compatibility reference. */
@@ -16,10 +20,10 @@ import { canStand, worlds, TRAIL_LANDMARK_IDS, type Point, type Room } from '../
 import { PLOT_CLAIM_KITS, PLOT_UPGRADE_KITS, MAINTENANCE_MS, MAINTENANCE_COST, BRIDGE_BUILD_MS, TRAIL_PENNANT_AWARD } from '../src/game/town-rules.ts';
 
 export type TownPosition = { room: Room; position: Point; homePlotId?: string; districtId?:string };
-export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'];workroomPlacements:HomeLayout['workroomPlacements']; pennantOwned:boolean;letterboxMotif:LetterboxMotif|null };
+export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'];workroomPlacements:HomeLayout['workroomPlacements']; pennantOwned:boolean;letterboxMotif:LetterboxMotif|null;planId?:string|null;yard?:ReturnType<typeof emptyYard>;construction?:string|null;housingRevision?:number };
 export type MaintenanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot = {
-  cafe:CafePublicState;
+  housingSites:Array<{plotId:string;ownerId:string;ownerName:string;phase:'building'|'ready'}>;housing:Awaited<ReturnType<typeof privateHousing>>;cafe:CafePublicState;
   playerId: string; name: string; workshop: WorkshopState; position: TownPosition;
   quest: { contentVersion: 1; awarded: string[] };
   bridge: { contributed: number; target: number; restored: boolean;phase:'collecting'|'building'|'open';startedAt:number|null;readyAt:number|null;openedAt:number|null;grandfathered:boolean };
@@ -87,8 +91,8 @@ export function seasonKey(now: number): string {
 /** Trusted server boundary only. Caller authenticates synthetic identity and validates movement/rate before execute. */
 export class TownStore {
   readonly pool: Pool;
-  private now: () => number;
-  constructor(pool: Pool, options: { now?: () => number } = {}) { this.pool = pool; this.now = options.now ?? Date.now; }
+  private now: () => number;private occupants:()=>readonly Occupant[];
+  constructor(pool: Pool, options: { now?: () => number;occupants?:()=>readonly Occupant[] } = {}) { this.pool = pool; this.now = options.now ?? Date.now;this.occupants=options.occupants??(()=>[]); }
   private clock(): number {
     const now = this.now();
     if (!Number.isSafeInteger(now) || now < 0 || now > Number.MAX_SAFE_INTEGER - 86400_000) throw new Error('Invalid server clock.');
@@ -107,7 +111,7 @@ export class TownStore {
     return parsed.state;
   }
   async savePosition(id: string, position: TownPosition): Promise<void> {
-    if (!validPosition(position)) throw new Error('Invalid server-validated position.');
+    if (!(positionContextValid(position)&&(position.room==='neighborhood'?canStand(position.room,position.position,housingWorld((await this.pool.query('select id::text,plan_id as "planId" from ih2.plots')).rows,position.districtId!)):validPosition(position)))) throw new Error('Invalid server-validated position.');
     if(position.room==='trail'&&(await this.snapshot(id)).bridge.phase!=='open')throw new Error('The trail is not open.');
     if(isHome(position.room)){const plot=(await this.pool.query('select level from ih2.plots where id=$1',[position.homePlotId])).rows[0];if(!plot||(plot.level===2?'home-expanded':'home')!==position.room)throw new Error('Home instance is not valid.');}
     await this.pool.query('update ih2.players set position=$2,updated_at=now() where id=$1', [id, position]);
@@ -126,13 +130,13 @@ export class TownStore {
     const player = rows[0]; if (!player) throw new Error('Unknown synthetic player.');
     // A visitor sees the selected appearance only when the one owned box is
     // actually placed in this home. Register consent is a separate projection.
-    const plots = (await client.query(`select p.id::text,p.owner_id,p.level,p.placements,p.workroom_placements,u.name,
+    const plots = (await client.query(`select p.id::text,p.owner_id,p.level,p.placements,p.workroom_placements,p.plan_id,p.yard,p.housing_revision,u.name,
       exists(select 1 from ih2.quest_awards q where q.player_id=p.owner_id and q.quest_id='trail-pennant-v1') as pennant_owned,
       case when u.workshop->'owned'->'letterbox'='1'::jsonb and u.workshop->'commission'->'madeCount'='1'::jsonb and
-        (exists(select 1 from jsonb_each_text(p.placements) s where s.value='letterbox') or exists(select 1 from jsonb_each_text(p.workroom_placements) s where s.value='letterbox'))
+        (exists(select 1 from jsonb_each_text(p.placements) s where s.value='letterbox') or exists(select 1 from jsonb_each_text(p.workroom_placements) s where s.value='letterbox') or exists(select 1 from jsonb_each_text(p.yard) s where s.value='letterbox'))
         then u.workshop->'commission'->>'motif' else null end as letterbox_motif
-      from ih2.plots p join ih2.players u on u.id=p.owner_id order by p.id`)).rows.map(p => ({ id:p.id,ownerId:p.owner_id,ownerName:p.name,level:p.level as 1|2,placements:p.placements,workroomPlacements:p.workroom_placements,pennantOwned:p.pennant_owned,letterboxMotif:(MOTIFS as readonly string[]).includes(p.letterbox_motif)?p.letterbox_motif as LetterboxMotif:null }));
-    if(plots.some(p=>!isCurrentHomeLayout(p)))throw new Error('Stored home layout failed validation. Progress was not replaced.');
+      from ih2.plots p join ih2.players u on u.id=p.owner_id order by p.id`)).rows.map(p => ({ id:p.id,ownerId:p.owner_id,ownerName:p.name,level:p.level as 1|2,placements:p.placements,workroomPlacements:p.workroom_placements,pennantOwned:p.pennant_owned,planId:p.plan_id,yard:p.yard,housingRevision:p.housing_revision,letterboxMotif:(MOTIFS as readonly string[]).includes(p.letterbox_motif)?p.letterbox_motif as LetterboxMotif:null }));
+    if(plots.some(p=>!validPublicHouse(p)))throw new Error('Stored home layout failed validation. Progress was not replaced.');
     const bridgeRow = (await client.query('select b.*,g.credits as welcome_credits,n.credits as notice_credits,n.phase as notice_phase,n.started_at as notice_started,n.ready_at as notice_ready,n.opened_at as notice_opened from ih2.bridge b cross join ih2.garden_welcome g cross join ih2.noticeboard n where b.id=1 and g.id=1 and n.id=1')).rows[0];
     // Explicit projection only: never select other residents' private garden JSON.
     const displayRows=(await client.query(`select id,name,
@@ -152,7 +156,7 @@ export class TownStore {
     const noticeboard:NoticeboardState={credits:bridgeRow.notice_credits,phase:bridgeRow.notice_phase,startedAt:bridgeRow.notice_started===null?null:Number(bridgeRow.notice_started),readyAt:bridgeRow.notice_ready===null?null:Number(bridgeRow.notice_ready),openedAt:bridgeRow.notice_opened===null?null:Number(bridgeRow.notice_opened)};
     const workshop=this.readState(player,now),own=plots.find(p=>p.ownerId===id);if(own&&!homeAllocationValid(workshop,own))throw new Error('Stored furniture allocation failed validation. Nothing was replaced.');
     const cafeRow=(await client.query('select * from ih2.cafe_project where id=1')).rows[0];const cafe=cafePublic(this.readCafe(cafeRow));
-    return {cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    const housingSites=(await client.query("select b.plot_id::text as \"plotId\",b.owner_id as \"ownerId\",p.name as \"ownerName\",case when (b.build->>'readyAt')::bigint<=$1 then 'ready' else 'building' end as phase from ih2.housing_builds b join ih2.players p on p.id=b.owner_id where b.completed_at is null order by b.plot_id",[now])).rows;const housing=await privateHousing(client,id);liveHousingAccount(id,workshop,own??null,housing.build);return {housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string): Promise<TownSnapshot> {
     const client = await this.pool.connect();
@@ -181,8 +185,8 @@ export class TownStore {
         return { ...result, replayed: prior.payload_hash === hash(raw), snapshot };
       }
       let result: Receipt = { ok: false, message: '', revision: state.revision };
-      const ownPlot = (await client.query('select id::text,owner_id,level,placements,workroom_placements from ih2.plots where owner_id=$1 for update', [id])).rows[0];
-      const ownLayout:HomeLayout|null=ownPlot?{level:ownPlot.level,placements:ownPlot.placements,workroomPlacements:ownPlot.workroom_placements}:null;
+      const ownPlot = (await client.query('select id::text,owner_id,level,placements,workroom_placements,plan_id,yard from ih2.plots where owner_id=$1 for update', [id])).rows[0];
+      const ownLayout:(HomeLayout&{yard?:ReturnType<typeof emptyYard>})|null=ownPlot?{level:ownPlot.level,placements:ownPlot.placements,workroomPlacements:ownPlot.workroom_placements,yard:ownPlot.yard}:null;
       if(ownLayout&&(!isCurrentHomeLayout(ownLayout)||!homeAllocationValid(state,ownLayout)))throw new Error('Stored home layout failed validation. Nothing was replaced.');
       const special = specialSchema.safeParse(raw);
       const specialKinds = ['contribute', 'claim-plot', 'upgrade-plot', 'edit-plot','enter-home','enter-neighborhood','start-lesson','complete-lesson','redeem-lesson','stamp-trail'];
@@ -190,9 +194,15 @@ export class TownStore {
       const validContext=(!isHome(position.room)||!!contextPlot&&position.room===(contextPlot.level===2?'home-expanded':'home'))&&(position.room!=='neighborhood'||districtExists(position.districtId!, (await client.query('select id::text from ih2.plots')).rows))&&(position.room!=='trail'||(await client.query('select phase from ih2.bridge where id=1')).rows[0].phase==='open');
       const reject = (message: string) => { result = { ok: false, message, revision: state.revision }; };
       if (cmd.expectedRevision !== state.revision) reject('Your town state changed. Review the refreshed bag and try again.');
-      else if (!validPosition(position)||!validContext) reject('A valid server position is required.');
+      else if (!(position.room==='neighborhood'?canStand(position.room,position.position,housingWorld((await client.query('select id::text,plan_id as "planId" from ih2.plots')).rows,position.districtId!)):validPosition(position))||!validContext) reject('A valid server position is required.');
       else if (now < state.observedAt) reject('The server clock moved backwards. Your progress is unchanged.');
       else if (state.revision >= 1_000_000) reject('Prototype command limit reached. Your progress is unchanged.');
+      else if(cmd.kind.startsWith('housing-')){
+        const atHome=!!ownPlot&&isHome(position.room)&&position.homePlotId===ownPlot.id;
+        const atYard=!!ownPlot&&position.room==='neighborhood'&&position.districtId===addressForPlot(ownPlot.id).block&&near(position,'neighborhood',HOME_SITE_PREFIX+addressForPlot(ownPlot.id).slot);
+        if(!near(position,'square','plot')&&!atHome&&!atYard)reject('Visit the housing registry or your own home to manage housing.');
+        else{try{const applied=await housingAction(client,id,state,ownPlot??null,raw,now,this.occupants());state=applied.state;result={ok:applied.ok,message:applied.message,revision:state.revision,publicChanged:applied.publicChanged};}catch(error){if(error instanceof z.ZodError)reject('This housing choice could not be confirmed. Refresh before continuing.');else if(error instanceof Error&&(/quote|plan|builders|address|space|clock|belongings/i).test(error.message))reject(error.message);else throw error;}}
+      }
       else if(cmd.kind==='cafe-serve'){
         const action=z.object({...base,kind:z.literal('cafe-serve'),presentation:z.enum(['slices','soup','formal'])}).strict().safeParse(raw);
         if(!action.success)reject('Invalid tasting request. Nothing changed.');
@@ -269,25 +279,7 @@ export class TownStore {
                 result = { ok: true, message: state.lastMessage, revision: state.revision };
               }
             }
-          } else if (action.kind === 'claim-plot') {
-            if (!near(position, 'square', 'plot')) reject('Walk to the housing notice before claiming a plot.');
-            else if (ownPlot) reject('You already have a plot. Nobody needs a second mailbox yet.');
-            else if (state.bridgeKits < PLOT_CLAIM_KITS) reject(`A plot requires ${PLOT_CLAIM_KITS} bridge kits. Nothing was spent.`);
-            else {
-              state.bridgeKits -= PLOT_CLAIM_KITS; state.revision++; state.observedAt = now; state.lastMessage = 'Your own plot is reserved. Persistent roots. Provisional paperwork.';
-              await client.query('insert into ih2.plots(owner_id,placements) values($1,$2)', [id, emptyPlacements()]);
-              result = { ok: true, message: state.lastMessage, revision: state.revision };
-            }
-          } else if (action.kind === 'upgrade-plot') {
-            if (!ownPlot || ownPlot.id !== action.plotId) reject('Only the owner can upgrade this plot.');
-            else if (!near(position, 'square', 'plot')&&!(isHome(position.room)&&position.homePlotId===ownPlot.id)) reject('Walk to the housing notice or your own home before upgrading.');
-            else if (ownPlot.level >= 2) reject('This proof includes one home upgrade. Your furnishings remain safe.');
-            else if (state.bridgeKits < PLOT_UPGRADE_KITS) reject(`The home upgrade requires ${PLOT_UPGRADE_KITS} additional bridge kits. Nothing was spent.`);
-            else {
-              state.bridgeKits -= PLOT_UPGRADE_KITS; state.revision++; state.observedAt = now; state.lastMessage = 'Home upgraded. Your furniture was not restructured.';
-              await client.query('update ih2.plots set level=2 where owner_id=$1', [id]);
-              result = { ok: true, message: state.lastMessage, revision: state.revision };
-            }
+          } else if(action.kind==='claim-plot'||action.kind==='upgrade-plot'){reject('Choose a home and review a construction quote. No immediate purchase was made.');
           } else {
             if (!ownPlot || ownPlot.id !== action.plotId) reject('Only the owner can arrange this plot.');
             else if (!near(position, 'square', 'plot')&&!(isHome(position.room)&&position.homePlotId===ownPlot.id)) reject('Walk to the housing notice or your own home to arrange furniture.');
@@ -356,6 +348,7 @@ export class TownStore {
           }
         }
       }
+      if(result.ok){await housingAccount(client,id,state,(await client.query('select id::text,level,placements,workroom_placements,plan_id,yard from ih2.plots where owner_id=$1',[id])).rows[0]??null);}
       if (result.ok) {
         if (questStep(state).complete) await client.query('insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing', [id, 'orientation-v1']);
         await client.query('update ih2.players set workshop=$2,position=$3,quest_content_version=1,updated_at=now() where id=$1', [id, state, authoritativePosition]);

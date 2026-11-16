@@ -17,14 +17,14 @@ export function isCurrentHomeLayout(value:unknown):value is HomeLayout{
 }
 export const homeSlots=(level:number)=>level===2?HOME_SLOTS:PLACEMENT_SLOTS;
 export const homeDisplay=(layout:HomeLayout):Partial<Record<HomeSlotId,PropId|null>>=>layout.level===2?{...layout.placements,...layout.workroomPlacements}:{...layout.placements};
-export const homeAllocation=(layout:HomeLayout,prop:string)=>Object.values(layout.placements).filter(p=>p===prop).length+Object.values(layout.workroomPlacements).filter(p=>p===prop).length;
+export const homeAllocation=(layout:HomeLayout&{yard?:Record<string,PropId|null>},prop:string)=>Object.values(layout.placements).filter(p=>p===prop).length+Object.values(layout.workroomPlacements).filter(p=>p===prop).length+Object.values(layout.yard??{}).filter(p=>p===prop).length;
 export const homeAllocationValid=(state:WorkshopState,layout:HomeLayout)=>PROP_IDS.every(p=>homeAllocation(layout,p)+Object.values(state.placements).filter(v=>v===p).length<=state.owned[p]);
 const slot=z.enum(HOME_SLOTS.map(s=>s.id) as [HomeSlotId,...HomeSlotId[]]);
 const actionSchema=z.object({id:z.string().regex(/^[a-zA-Z0-9:_-]{1,80}$/),expectedRevision:z.number().int().min(0).max(1_000_000),action:z.enum(['place','remove']),slot,prop:z.enum(PROP_IDS).optional(),fromSlot:slot.optional()}).strict();
 export type HomeArrangement=z.infer<typeof actionSchema>;
 export function applyHomeArrangement(input:WorkshopState,layout:HomeLayout,raw:unknown,now:number){
  const fail=(message:string)=>({ok:false,state:input,layout,message,replayed:false});
- if(!isCurrentWorkshop(input)||!homeLayoutSchema.safeParse(layout).success)return fail('Home layout could not be confirmed. Nothing was moved.');
+ if(!isCurrentWorkshop(input)||!isCurrentHomeLayout(layout))return fail('Home layout could not be confirmed. Nothing was moved.');
  const parsed=actionSchema.safeParse(raw);if(!parsed.success)return fail('Invalid home arrangement. Nothing was moved.');
  if(!Number.isSafeInteger(now)||now<input.observedAt||now>Number.MAX_SAFE_INTEGER-OFFLINE_CAP_MS)return fail('The server clock moved backwards. Nothing was moved.');
  if(!homeAllocationValid(input,layout))return fail('Furniture allocation could not be confirmed. Nothing was moved.');

@@ -1,3 +1,7 @@
+# IH2-116 candidate in progress
+
+Current complete source is work/idle-hands-2-playable-housing, feat/playable-housing. Read [CURRENT_SESSION](idle-hands-2/CURRENT_SESSION.md) and [116report](evidence/IH2-116/REPORT.md). Local474system/restart/focused6browser and Terra V3visual checks pass; full176browser/exact PR/main/actual update remain pending. Actual114game/113API remain unchanged until acceptance gates.
+
 # IH2-115 accepted — housing ownership and construction foundation
 
 [PR47](https://github.com/dadbod87/idle-hands-2/pull/47), main **3bff040ffdb2c539a19f6301df6125ba68ed9f80**, candidate **b0df8021853a9f14036410db6c6de41768032641**, identical tree. PR43953150524 and main43956473345 each passed all four jobs: **462system /173browser (91+82)**, zero failures/skips/flakes/report errors. Raw recovery/SQL/latency artifacts and all214default-game/31rehearsal/20earlier-study files verified. [Report](evidence/IH2-115/REPORT.md), [contract](evidence/IH2-115/CONTRACT.md), [closeout](evidence/IH2-115/source-closeout.json), [handoff](idle-hands-2/handoffs/2026-11-16-housing-contract.md).

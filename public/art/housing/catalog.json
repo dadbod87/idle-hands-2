@@ -1,0 +1,280 @@
+{
+  "assets": [
+    {
+      "id": "housing-pocket-cottage-1",
+      "file": "pocket-cottage-1.svg",
+      "width": 256,
+      "height": 336,
+      "foot": {
+        "x": 128,
+        "y": 304
+      },
+      "doorFoot": {
+        "x": 128,
+        "y": 304
+      },
+      "body": {
+        "x": 56.0,
+        "y": 128.0,
+        "width": 144.0,
+        "height": 176.0
+      },
+      "lightingWindows": [
+        {
+          "x": 70.0,
+          "y": 183.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 154.0,
+          "y": 183.0,
+          "width": 30,
+          "height": 36
+        }
+      ],
+      "chimney": {
+        "x": 179.0,
+        "y": 116.0
+      }
+    },
+    {
+      "id": "housing-pocket-cottage-2",
+      "file": "pocket-cottage-2.svg",
+      "width": 256,
+      "height": 336,
+      "foot": {
+        "x": 128,
+        "y": 304
+      },
+      "doorFoot": {
+        "x": 128,
+        "y": 304
+      },
+      "body": {
+        "x": 56.0,
+        "y": 64.0,
+        "width": 144.0,
+        "height": 240.0
+      },
+      "lightingWindows": [
+        {
+          "x": 70.0,
+          "y": 119.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 154.0,
+          "y": 119.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 70.0,
+          "y": 175.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 154.0,
+          "y": 175.0,
+          "width": 30,
+          "height": 36
+        }
+      ],
+      "chimney": {
+        "x": 179.0,
+        "y": 52.0
+      }
+    },
+    {
+      "id": "housing-porch-house-1",
+      "file": "porch-house-1.svg",
+      "width": 256,
+      "height": 336,
+      "foot": {
+        "x": 128,
+        "y": 304
+      },
+      "doorFoot": {
+        "x": 128,
+        "y": 304
+      },
+      "body": {
+        "x": 32.0,
+        "y": 128.0,
+        "width": 192,
+        "height": 176.0
+      },
+      "lightingWindows": [
+        {
+          "x": 46.0,
+          "y": 183.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 178.0,
+          "y": 183.0,
+          "width": 30,
+          "height": 36
+        }
+      ],
+      "chimney": {
+        "x": 203.0,
+        "y": 116.0
+      }
+    },
+    {
+      "id": "housing-porch-house-2",
+      "file": "porch-house-2.svg",
+      "width": 256,
+      "height": 336,
+      "foot": {
+        "x": 128,
+        "y": 304
+      },
+      "doorFoot": {
+        "x": 128,
+        "y": 304
+      },
+      "body": {
+        "x": 32.0,
+        "y": 64.0,
+        "width": 192,
+        "height": 240.0
+      },
+      "lightingWindows": [
+        {
+          "x": 46.0,
+          "y": 119.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 178.0,
+          "y": 119.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 46.0,
+          "y": 175.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 178.0,
+          "y": 175.0,
+          "width": 30,
+          "height": 36
+        }
+      ],
+      "chimney": {
+        "x": 203.0,
+        "y": 52.0
+      }
+    },
+    {
+      "id": "housing-garden-studio-2",
+      "file": "garden-studio-2.svg",
+      "width": 256,
+      "height": 336,
+      "foot": {
+        "x": 128,
+        "y": 304
+      },
+      "doorFoot": {
+        "x": 128,
+        "y": 304
+      },
+      "body": {
+        "x": 24.0,
+        "y": 96.0,
+        "width": 208.0,
+        "height": 208.0
+      },
+      "lightingWindows": [
+        {
+          "x": 38.0,
+          "y": 151.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 186.0,
+          "y": 151.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 38.0,
+          "y": 207.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 186.0,
+          "y": 207.0,
+          "width": 30,
+          "height": 36
+        }
+      ],
+      "chimney": {
+        "x": 211.0,
+        "y": 84.0
+      }
+    },
+    {
+      "id": "housing-workshop-lodge-2",
+      "file": "workshop-lodge-2.svg",
+      "width": 256,
+      "height": 336,
+      "foot": {
+        "x": 128,
+        "y": 304
+      },
+      "doorFoot": {
+        "x": 128,
+        "y": 304
+      },
+      "body": {
+        "x": 24.0,
+        "y": 64.0,
+        "width": 208.0,
+        "height": 240.0
+      },
+      "lightingWindows": [
+        {
+          "x": 38.0,
+          "y": 119.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 186.0,
+          "y": 119.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 38.0,
+          "y": 175.0,
+          "width": 30,
+          "height": 36
+        },
+        {
+          "x": 186.0,
+          "y": 175.0,
+          "width": 30,
+          "height": 36
+        }
+      ],
+      "chimney": {
+        "x": 211.0,
+        "y": 52.0
+      }
+    }
+  ]
+}

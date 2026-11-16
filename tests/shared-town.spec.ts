@@ -1,3 +1,5 @@
+import{historicalHome}from'./helpers/historical-home.ts';
+import{exitHomeToSquare}from'./helpers/home-journey.ts';
 import{revealPlace}from'./helpers/places.ts';
 import {test,expect,type Page} from '@playwright/test';
 import fs from 'node:fs';
@@ -31,16 +33,15 @@ test('desktop and narrow-phone residents cooperate, retain ownership and retry t
  // Stop the unused software-rendered canvas before the remaining ownership flow.
  await third.close();
  await a.screenshot({path:`${dir}/shared-bridge-funded.png`});
- // Each resident can acquire a fresh plot; a visitor sees ownership without edit controls.
- await visit(a,'plot');await a.getByRole('button',{name:'Claim your house plot · 12 bridge kits',exact:true}).click();await expect.poll(async()=>(await snapshot(a)).plot?.ownerId).toBe('aster');
- await a.getByRole('button',{name:'Upgrade plot · 24 bridge kits'}).click();await expect.poll(async()=>(await snapshot(a)).plot?.level).toBe(2);
+ // Historical paid-rights display fixture retains old allocation/visitor coverage. Native timed purchases now run in playable-housing.spec.ts; the bridge clock here stays untouched.
+ await historicalHome('aster',1);await a.reload();await expect.poll(async()=>(await snapshot(a))?.plot?.ownerId).toBe('aster');expect((await snapshot(a)).workshop.bridgeKits).toBe(35);await historicalHome('aster',2);await a.reload();await expect.poll(async()=>(await snapshot(a))?.plot?.level).toBe(2);expect((await snapshot(a)).workshop.bridgeKits).toBe(11);await visit(a,'plot');await a.getByRole('button',{name:'Walk to your home',exact:true}).click();await expect.poll(async()=>(await position(a)).room,{timeout:process.env.CI?40000:12000}).toBe('home-expanded');await a.locator('#bag').click();await a.getByRole('button',{name:'Inspect or arrange a house',exact:true}).click();
  await a.getByRole('combobox',{name:'Owned furniture for plot'}).selectOption('planter');await a.getByRole('button',{name:'Place owned furniture here'}).click();await expect.poll(async()=>(await snapshot(a)).plot?.placements['north-west']).toBe('planter');
- const owned=await snapshot(a);await a.screenshot({path:`${dir}/shared-owner-plot.png`});await close(a);
+ const owned=await snapshot(a);await a.screenshot({path:`${dir}/shared-owner-plot.png`});await close(a);await exitHomeToSquare(a);
  await a.getByRole('button',{name:'Places',exact:false}).click();await (await revealPlace(a,'[data-destination="workshop"]')).click();await expect.poll(async()=>(await position(a)).walking,{timeout:process.env.CI?40000:12000}).toBe(false);await a.getByRole('button',{name:'Enter workshop',exact:true}).click();await expect.poll(async()=>(await position(a)).room).toBe('workshop');await a.getByRole('button',{name:'Bag',exact:true}).click();await a.getByRole('button',{name:'Arrange furniture',exact:true}).click();await a.getByRole('combobox',{name:'Furniture to place'}).selectOption('planter');await a.locator('[data-slot="south-west"]').click();await a.getByRole('button',{name:'Place here',exact:true}).click();await expect.poll(async()=>(await snapshot(a)).workshop.placements['south-west']).toBe('planter');await a.locator('[data-slot="south-east"]').click();await a.getByRole('button',{name:'Place here',exact:true}).click();await expect.poll(async()=>(await snapshot(a)).workshop.placements['south-east']).toBe('planter');expect((await snapshot(a)).workshop.placements['south-west']).toBe(null);expect((await snapshot(a)).plot.placements['north-west']).toBe('planter');await close(a);
- await visit(b,'plot');await expect(b.getByRole('dialog')).toContainText('only the owner can change');await expect(b.getByRole('button',{name:'Upgrade plot · 24 bridge kits'})).toHaveCount(0);await expect(b.getByRole('button',{name:'Place owned furniture here'})).toHaveCount(0);
+ await visit(b,'plot');await b.locator('[data-registry-records] summary').click();await b.getByRole('button',{name:'Visit Aster',exact:true}).click();await expect.poll(async()=>(await position(b)).room,{timeout:process.env.CI?40000:12000}).toBe('home-expanded');await b.locator('#bag').click();await b.getByRole('button',{name:'Inspect or arrange a house',exact:true}).click();await expect(b.getByRole('dialog')).toContainText('only the owner can change');await expect(b.getByRole('button',{name:'Upgrade plot · 24 bridge kits'})).toHaveCount(0);await expect(b.getByRole('button',{name:'Place owned furniture here'})).toHaveCount(0);
  await b.screenshot({path:`${dir}/shared-phone-visitor.png`});const axe=await new AxeBuilder({page:b}).analyze();expect(axe.violations).toEqual([]);fs.writeFileSync(`${dir}/shared-phone-axe.json`,JSON.stringify({violations:axe.violations,incomplete:axe.incomplete},null,2));await close(b);
  // Bea's visitor, screenshot and accessibility assertions are complete.
- await phone.close();
+ await exitHomeToSquare(b);await phone.close();
  await a.reload();await expect.poll(()=>a.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await expect.poll(async()=>(await snapshot(a))?.plot?.level).toBe(2);expect((await snapshot(a)).workshop.bridgeKits).toBe(owned.workshop.bridgeKits);expect((await snapshot(a)).plot.placements).toEqual(owned.plot.placements);
  expect(errors).toEqual([]);await desktop.close();
 });

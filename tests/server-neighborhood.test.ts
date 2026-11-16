@@ -1,10 +1,11 @@
+import{TownStore as HistoricalTownStore}from'../server/store.ts';
 import{test}from'node:test';import assert from'node:assert/strict';import{mkdirSync,writeFileSync}from'node:fs';
 import{database,migrate}from'../server/db.ts';import{TownStore,canonicalHomePosition,type TownPosition}from'../server/live-store.ts';import{createTownServer}from'../server/http.ts';import{TOWN_SCHEMA}from'../src/game/protocol-version.ts';import{worlds,routeTo}from'../src/game/world.ts';import{addressForPlot,frontForPlot,exitForHome,TOWN_GATE,RESIDENTIAL_GATE,PARCELS}from'../src/game/neighborhood.ts';import{populateNeighborhoodFixture,NEIGHBOR_ROSTER,NEIGHBOR_FIXTURES}from'../tools/neighborhood-home-fixture.ts';
 const url=process.env.IH2_TEST_DATABASE_URL;if(url&&new URL(url).pathname!=='/ih2_test')throw new Error('Neighborhood authority tests require isolated ih2_test.');
 test('addressed neighborhood authority and room-scoped actual transport',{skip:!url},async t=>{
  const pool=database(url);let clock=Date.now(),serial=0;const store=new TownStore(pool,{now:()=>clock});let app:ReturnType<typeof createTownServer>|undefined;
  try{
-  await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');await migrate(pool);const fixture=await populateNeighborhoodFixture(pool,store,url!,clock);
+  await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');await migrate(pool);const fixture=await populateNeighborhoodFixture(pool,new HistoricalTownStore(pool,{now:()=>clock}),url!,clock);
   async function command(id:string,kind:string,position:TownPosition,extra:Record<string,unknown>={}){const s=await store.snapshot(id);return store.execute(id,{id:'street-'+(++serial),expectedRevision:s.workshop.revision,kind,...extra},position);}
   await t.test('25historically earned homes retain unique permanent addresses and exact paid kits/furniture',async()=>{
    const s=await store.snapshot('town-visitor');assert.equal(s.plots.length,25);assert.deepEqual(s.workshop.inventory,{scrap:0,timber:0,supplies:0});assert.equal(s.plot,null);assert.equal(s.plots.filter(p=>p.level===2).length,8);assert.equal(new Set(s.plots.map(p=>addressForPlot(p.id).label)).size,25);assert.equal(addressForPlot('25').block,'2');for(const row of fixture.owners){assert.equal(row.housingKitsRemaining,0);const owner=await store.snapshot(String(row.id));assert.equal(owner.workshop.owned.planter,1);assert.equal(owner.plot?.placements['north-west'],'planter');assert.equal(owner.workshop.job,null);assert.equal('workshop'in owner.plots[0],false);}

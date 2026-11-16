@@ -1,8 +1,9 @@
-import { worlds, canStand, routeTo, type Room, type Point, type Stop } from './world.ts';
+import { worlds, canStand, routeTo, type Room, type Point, type Stop,type World } from './world.ts';
 export type SavedPosition = { version: 1; room: Room; position: Point };
 const spawn: Record<Room, Point> = { neighborhood:{x:31.5,y:2.5}, square: { x: 24, y: 25 }, workshop: { x: 9, y: 11 }, home: {x:9,y:11}, 'home-expanded': {x:9,y:11},trail:{x:9,y:22},garden:{x:9,y:14} };
 export const WALK_SPEED = 5; // World tiles per second; the actor is never snapped to them.
 export class Session {
+  geometry?:World;
   room: Room = 'square';
   position: Point = { ...spawn.square };
   path: Point[] = [];
@@ -20,7 +21,7 @@ export class Session {
   lock(value: boolean): void { this.locked = value; this.stop(); }
   walk(to: Point): boolean {
     if (this.locked) return false;
-    this.stop(); this.path = routeTo(this.room, this.position, to);
+    this.stop(); this.path = routeTo(this.room, this.position, to,this.room==='neighborhood'?this.geometry:undefined);
     return this.path.length > 0;
   }
   point(to: Point): boolean {
@@ -48,11 +49,11 @@ export class Session {
     const steps = Math.max(1, Math.ceil(Math.hypot(dx, dy) / .1));
     for (let i = 0; i < steps; i++) {
       const both = { x: this.position.x + dx / steps, y: this.position.y + dy / steps };
-      if (canStand(this.room, both)) { this.position = both; continue; }
+      if (canStand(this.room, both,this.room==='neighborhood'?this.geometry:undefined)) { this.position = both; continue; }
       const xOnly = { x: both.x, y: this.position.y };
-      if (canStand(this.room, xOnly)) this.position = xOnly;
+      if (canStand(this.room, xOnly,this.room==='neighborhood'?this.geometry:undefined)) this.position = xOnly;
       const yOnly = { x: this.position.x, y: both.y };
-      if (canStand(this.room, yOnly)) this.position = yOnly;
+      if (canStand(this.room, yOnly,this.room==='neighborhood'?this.geometry:undefined)) this.position = yOnly;
     }
   }
   tick(delta: number, direction?: Point): void {
@@ -80,7 +81,7 @@ export class Session {
   }
   nearby(): Stop | undefined { return worlds[this.room].stops.find(s => Math.hypot(this.position.x - s.point.x, this.position.y - s.point.y) <= 1.25); }
   enter(room: Room, arrival: Point = spawn[room]): void {
-    if (!canStand(room, arrival)) throw new Error('Transition arrival must be collision-safe.');
+    if (!canStand(room, arrival,room==='neighborhood'?this.geometry:undefined)) throw new Error('Transition arrival must be collision-safe.');
     this.stop(); this.room = room; this.position = { ...arrival };
   }
   save(): SavedPosition { return { version: 1, room: this.room, position: { ...this.position } }; }

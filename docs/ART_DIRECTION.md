@@ -164,3 +164,8 @@ Original code-drawn meadow/understory grouping, hand-cut shore contours strictly
 ## IH2-115 — ownership/construction rehearsal, no new runtime art
 
 Reuses all18original112silhouette SVGs and6exact existinglegacyfacades without changing bytes. Clear paper/sage review, initial free Close focus, decorating-first completion and a separately labelled street/doorway ground diagram support the candidate rules. The diagram is original canvas code and has a legend; it is not final architecture or registered collision. Bound proposed yard art to0.6tile width and nonblocking ground markers before116production art/proximity proofs. Preserve detailed legacy cladding/trim and exact feet; no external/paid media or new default-client download. See115provenance/Terra/CONTRACT.
+
+
+## IH2-116 matched housing candidate
+
+Six original code-authored256×336house SVGs match frozen v1body sizes and shared128,304door feet, preserve the194accepted originals exactly and add bounded window lighting/chimney anchors. Do not replace or redraw legacy facades. Yard items remain0.6tile/nonblocking and render above boundary fences; street construction markers add no collision or authority. Expanded choices currently share one connected eight-nook room; future interior themes/conveniences must be honestly labelled. Terra V3actual-game native captures show no sampled visual blocker; source/CI/actual preview acceptance remains separate in116report.

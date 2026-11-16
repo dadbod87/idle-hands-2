@@ -66,12 +66,12 @@ export const worlds: Record<Room, World> = {
     ]
   }
 };
-export function walkable(room: Room, p: Point): boolean {
+export function walkable(room: Room, p: Point, geometry?:World): boolean {
   // Grid nodes are actual foot centres too, including fractional building edges.
-  return Number.isInteger(p.x) && Number.isInteger(p.y) && canStand(room,p);
+  return Number.isInteger(p.x) && Number.isInteger(p.y) && canStand(room,p,geometry);
 }
-export function pathTo(room: Room, from: Point, to: Point): Point[] {
-  if (!walkable(room, to) || !walkable(room, from)) return [];
+export function pathTo(room: Room, from: Point, to: Point, geometry?:World): Point[] {
+  if (!walkable(room, to,geometry) || !walkable(room, from,geometry)) return [];
   const key = (p: Point) => `${p.x},${p.y}`;
   const queue = [from], parents = new Map<string, Point | null>([[key(from), null]]);
   for (let i = 0; i < queue.length; i++) {
@@ -84,7 +84,7 @@ export function pathTo(room: Room, from: Point, to: Point): Point[] {
     }
     for (const delta of [{ x: 0, y: -1 }, { x: 1, y: 0 }, { x: 0, y: 1 }, { x: -1, y: 0 }]) {
       const n = { x: p.x + delta.x, y: p.y + delta.y };
-      if (walkable(room, n) && !parents.has(key(n))) { parents.set(key(n), p); queue.push(n); }
+      if (walkable(room, n,geometry) && !parents.has(key(n))) { parents.set(key(n), p); queue.push(n); }
     }
   }
   return [];
@@ -92,34 +92,34 @@ export function pathTo(room: Room, from: Point, to: Point): Point[] {
 
 // Positions are continuous foot centres expressed relative to tile centres.
 export const FOOT_RADIUS = .24;
-export function canStand(room: Room, p: Point): boolean {
-  const w = worlds[room], cx = p.x + .5, cy = p.y + .5, r = FOOT_RADIUS;
+export function canStand(room: Room, p: Point, geometry?:World): boolean {
+  const w = geometry??worlds[room], cx = p.x + .5, cy = p.y + .5, r = FOOT_RADIUS;
   return Number.isFinite(cx) && Number.isFinite(cy) && cx - r >= 1 && cy - r >= 1 && cx + r <= w.width - 1 && cy + r <= w.height - 1 &&
     !w.blocked.some(([x, y, width, height]) => cx + r > x && cx - r < x + width && cy + r > y && cy - r < y + height);
 }
-export function clearSegment(room: Room, from: Point, to: Point): boolean {
+export function clearSegment(room: Room, from: Point, to: Point, geometry?:World): boolean {
   const steps = Math.max(1, Math.ceil(Math.hypot(to.x - from.x, to.y - from.y) / .1));
-  for (let i = 0; i <= steps; i++) if (!canStand(room, { x: from.x + (to.x - from.x) * i / steps, y: from.y + (to.y - from.y) * i / steps })) return false;
+  for (let i = 0; i <= steps; i++) if (!canStand(room, { x: from.x + (to.x - from.x) * i / steps, y: from.y + (to.y - from.y) * i / steps },geometry)) return false;
   return true;
 }
-export function routeTo(room: Room, from: Point, to: Point): Point[] {
-  if (!canStand(room, from) || !canStand(room, to)) return [];
-  if (clearSegment(room, from, to)) return [{ ...to }];
+export function routeTo(room: Room, from: Point, to: Point, geometry?:World): Point[] {
+  if (!canStand(room, from,geometry) || !canStand(room, to,geometry)) return [];
+  if (clearSegment(room, from, to,geometry)) return [{ ...to }];
   // A valid continuous position can round into a wall. Join the nearest safe
   // grid centre through a collision-checked segment; never snap the actor.
   const anchor=(point:Point)=>{
     const x=Math.round(point.x),y=Math.round(point.y),choices:Point[]=[];
-    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const p={x:x+dx,y:y+dy};if(walkable(room,p)&&clearSegment(room,point,p))choices.push(p);}
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const p={x:x+dx,y:y+dy};if(walkable(room,p,geometry)&&clearSegment(room,point,p,geometry))choices.push(p);}
     choices.sort((a,b)=>Math.hypot(a.x-point.x,a.y-point.y)-Math.hypot(b.x-point.x,b.y-point.y));return choices[0];
   };
   const start=anchor(from),end=anchor(to);if(!start||!end)return [];
-  const grid = pathTo(room, start, end);
+  const grid = pathTo(room, start, end,geometry);
   if (!grid.length && (start.x !== end.x || start.y !== end.y)) return [];
   const candidates = [start, ...grid, to], result: Point[] = [];
   let current = from, index = 0;
   while (index < candidates.length) {
     let next = candidates.length - 1;
-    while (next >= index && !clearSegment(room, current, candidates[next])) next--;
+    while (next >= index && !clearSegment(room, current, candidates[next],geometry)) next--;
     if (next < index) return [];
     current = candidates[next]; result.push({ ...current }); index = next + 1;
   }

@@ -1,0 +1,14 @@
+{
+  "main": "0b4733f0c093cb204a20fa27dadd3102a7816df2",
+  "all428ActualClientResponsesMatchMainCI": true,
+  "all14ProtectedTablesEveryRowFieldAnd7MigrationChecksumsPreserved": true,
+  "privateKeyFingerprintsModesUnchanged": true,
+  "bothApiPIDsUnchanged": true,
+  "bothStaticOriginsPreserved": true,
+  "noSqlMigrationResetGrantKeyCopyOrRegeneration": true,
+  "authorityFilesExactOldRuntime": 47,
+  "protocol": 7,
+  "root": 3,
+  "garden": 4,
+  "classification": "Static-client-only update; old API processes kept running with byte-identical authoritative source. Native local-only visual checks and same fictional signed-session check are separate."
+}

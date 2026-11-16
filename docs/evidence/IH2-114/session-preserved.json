@@ -1,0 +1,8 @@
+{
+  "classification": "Native sign-in as existing fictional Visitor before static refresh, same signed cookie retained only in memory and accepted afterward. No movement, purchase, grant, new player or protected PG restart. Ordinary authenticated snapshot reads after the frozen SQL-preservation boundary.",
+  "sameOldSignedCookieAccepted": true,
+  "samePlayer": "town-visitor",
+  "ownedPlacementsInventoryKitsQueuedJobPlotUnchanged": true,
+  "normalLoginResumedAfterStaticRefresh": true,
+  "cookieNeverWrittenOrLogged": true
+}

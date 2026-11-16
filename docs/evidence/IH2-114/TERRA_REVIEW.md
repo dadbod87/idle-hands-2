@@ -19,3 +19,9 @@ The separate design-only `http://127.0.0.1:4214/` was sampled in Chrome at 2560�
 ## V3 targeted phone follow-up
 
 Independently reviewed frozen candidate `http://127.0.0.1:4215/` in fresh Chrome local-workshop contexts at 320×640 and 360×780. Ordinary Places → Town walks & scenery → Founders’ pond travel reached the destination, and the contextual Inspect control opened the correct pond panel on both widths. In retained `../idle-hands-2-artifacts/town-life-2026-11-16/terra-final-v3/pond-320.png` and `pond-360.png`, both water and actor remain visible; the raised two-line sign is fully in frame and no longer overlaps the actor. The earlier P3 is addressed in these states, with no new visual blocker observed. This independent pass used the contextual Inspect control and did not separately exercise caption tapping, collision, reload, motion bounds or real devices; those remain separate focused-test coverage.
+
+## 2026-11-16 — installed actual-main spot review
+
+Independently sampled the updated `http://127.0.0.1:4175/` in fresh native Chrome local-workshop contexts at 2560×1440 and 320×640. From ordinary spawn, Places → Town walks & scenery → Founders’ pond completed on each; the contextual Inspect control opened the correct pond panel. In the retained frames the pond, player and raised two-line sign are visible, the sign does not overlap the actor, and the phone panel and return action are readable. No visual or contextual Inspect blocker was observed in these sampled states.
+
+Screenshots are retained in `../idle-hands-2-artifacts/town-life-2026-11-16/terra-actual-main/`, with scope, results and screenshot hashes in `../idle-hands-2-artifacts/town-life-2026-11-16/terra-post-update.json`. No login, protected database access, grants, interception, injected position, build or service restart was used. This is an installed-artifact spot check on viewport emulation, not a physical-phone, full regression, performance or independent CI verification.

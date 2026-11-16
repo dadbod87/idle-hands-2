@@ -1,0 +1,5 @@
+{
+  "firstCheck": "External HTTP usability checker failed its requestfailed-empty assertion on initial pocket-cottage-1.svg while rapidly changing selection. Server logged200and all20asset bytes matched.",
+  "correction": "Wait for native initial and selected images to complete before each next selection, retaining no page/console/network-error assertions; no application/source/assertion removal or CI rerun.",
+  "scope": "External checker sequencing only; actual game checks unaffected."
+}

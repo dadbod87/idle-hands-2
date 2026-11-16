@@ -1868,7 +1868,7 @@
     {
       "id": "IH2-114",
       "title": "Organic district edges and town-life polish",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-113",
         "IH2-112"
@@ -1884,7 +1884,10 @@
         "No reward/currency/authority changes, bulk asset packs, paid resources or displacement of persistent property."
       ],
       "evidence": [
-        "docs/evidence/IH2-114/REPORT.md"
+        "docs/evidence/IH2-114/REPORT.md",
+        "docs/evidence/IH2-114/source-closeout.json",
+        "docs/evidence/IH2-114/TERRA_REVIEW.md",
+        "docs/idle-hands-2/handoffs/2026-11-16-town-life.md"
       ],
       "owner_branch": "feat/town-landscape-life"
     },

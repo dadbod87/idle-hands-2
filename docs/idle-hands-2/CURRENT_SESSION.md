@@ -1,3 +1,9 @@
+#113priority — spacious town before112housing
+
+After acceptance, fetch and inspect `chore/spacious-town-closeout-2026-11-16` for the exact verified source/preview/task closeout before starting112. Its existence and acceptance must be verified; this pending header is not a claim that it has been created.
+
+Full source `work/idle-hands-2-town-expansion`, branch `feat/spacious-town`, base7e8closeout over accepted main056c3793. Real square4096×3072/native2K+4K, connected scenic commons and six destinations; old activity/home coordinates and economy unchanged. Protocol7matches expanded geometry; root3/garden4/seven SQL migrations unchanged.Frozen final434system/158browser, zero failures/skips/flakes/report-errors,8focused native cases, isolated database restart and Terra checks pass. Exact PR/main/raw artifacts/actual preview/data/session checks remain pending. Existing4175/4176remain111until all gates pass. [113report](../evidence/IH2-113/REPORT.md). New user priority precedes112; later housing begins only after this acceptance.
+
 #111accepted — playable café; next112housing variety
 
 Main **056c3793a76147a999851912fd313af95e9e9cb4**, PR42+43, candidate **12e97369dd89bfcbb16b1f8a59c0d1dc0dda4b28**, same tree. PR43522020468 and main43523926478 each passed all four required jobs:431system/153browser, disjoint77+76, zero failures/skips/flakes/reporterrors. Raw artifacts and all214local/CI/actual responses verified. See [111report](../evidence/IH2-111/REPORT.md), source-closeout.json and [handoff](handoffs/2026-11-13-playable-cafe.md). Historical pending notes below are superseded.

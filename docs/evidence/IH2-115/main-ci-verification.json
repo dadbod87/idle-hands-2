@@ -1,0 +1,50 @@
+{
+  "run": 43956473345,
+  "sha": "3bff040ffdb2c539a19f6301df6125ba68ed9f80",
+  "all4JobsSuccess": true,
+  "system": 462,
+  "browser": 173,
+  "disjointShards": [
+    91,
+    82
+  ],
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "orderedFixtureFamily": {
+    "shared-town.spec.ts": [
+      2
+    ],
+    "starter-homes.spec.ts": [
+      2
+    ],
+    "trail.spec.ts": [
+      2
+    ],
+    "z-first-visit.spec.ts": [
+      2
+    ]
+  },
+  "all214DefaultClientFilesExactAccepted114AndLocal": true,
+  "all31HousingContractStudyFilesExactTerraV4": true,
+  "all20EarlierHousingStudyFilesUnchanged": true,
+  "rawHousingDumpRestoreFreshProcessAndRealPgRestartVerified": true,
+  "rawExistingHttpRestartSameSessionVerified": true,
+  "loadCommandP95Ms": 65.45883200000026,
+  "jobMinutesRoundedEstimate": 33,
+  "publicRepository": true,
+  "runnerLabels": [
+    [
+      "ubuntu-24.04"
+    ],
+    [
+      "ubuntu-24.04"
+    ],
+    [
+      "ubuntu-24.04"
+    ],
+    [
+      "ubuntu-24.04"
+    ]
+  ],
+  "noPaidResourceConfigured": true,
+  "scope": "Isolated candidate and standalone rehearsal, not live housing/HTTP/auth integration; active114game bytes unchanged."
+}

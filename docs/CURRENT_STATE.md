@@ -1,204 +1,29 @@
-# IH2-115 current — isolated housing ownership and construction
+# IH2-116 local integration complete; release gates pending
 
-Full source `work/idle-hands-2-housing-contract`, branch `feat/housing-ownership-contract`, base verified114closeout8929208 over main0b4733f. Strict versioned catalog, exactlegacy/owned-copy ledger, quoted fixed6hbuilders, dedicated SQL/restart/restore candidate and usable in-memory rehearsal. Actual4175/4176/API7and accepted studies stay114; no active housing purchase, migration, reset, grant or cloud change. Read115REPORT/CONTRACT/Terra and dated handoff. Full462system/173browser, strict build/design/plan/pinned/diff pass; exact final hosted/raw/served-study acceptance remains pending. Read115local-verification for compiled-byte identity and the resolved local timing investigation. Next116coherently integrates purchase→build→arrange→visit with matched art/physics/trusted authority.
+Current full source is `work/idle-hands-2-playable-housing`, `feat/playable-housing`. Fresh474system, real dedicated PostgreSQL restart, full176browser and required local checks passed; Terra6.1desktop/mobile images reviewed. Actual practice remains114client/113API until exact PR/main4job and preserved matched-update gates. See116REPORT and CURRENT_SESSION; code backup is not acceptance.
 
-# IH2-114 accepted — town-life polish and clearer housing previews
+# IH2-116 candidate in progress
 
-[PR46](https://github.com/dadbod87/idle-hands-2/pull/46), main **0b4733f0c093cb204a20fa27dadd3102a7816df2**, candidate **dcd4d870327f95d219bf541bc5ec77424701ed3b**, identical tree. PR43933153747 and main43936256913 each passed all four jobs: **441 system /167 browser (85+82)**, zero failures/skips/flakes/report errors. Raw reports, all214game files and20study files equal the final Terra-reviewed freeze. [Evidence](evidence/IH2-114/REPORT.md), [source closeout](evidence/IH2-114/source-closeout.json), [dated handoff](idle-hands-2/handoffs/2026-11-16-town-life.md).
+Current complete source is work/idle-hands-2-playable-housing, feat/playable-housing. Read [CURRENT_SESSION](idle-hands-2/CURRENT_SESSION.md) and [116report](evidence/IH2-116/REPORT.md). Local474system/restart/focused6browser and Terra V3visual checks pass; full176browser/exact PR/main/actual update remain pending. Actual114game/113API remain unchanged until acceptance gates.
 
-Full source: `work/idle-hands-2-town-life`, branch `chore/town-life-closeout-2026-11-16` (accepted main plus documentation-only closeout; resolve latest pushed head). Canonical `work/idle-hands-2` is old090runtime/bookkeeping only. Do not implement or create a source PR from it.
+# IH2-115 accepted — housing ownership and construction foundation
 
-[Game](http://127.0.0.1:4175/), [fictional Tour](http://localhost:4176/?town=1): accepted114main-CIclient. Four additional native actual-artifact cases and Terra6.1 desktop/phone follow-up pass. Static clients only replaced: both APIs kept running from frozen113source with47byte-identical authority inputs. Existing signed Visitor session, all14tables/everyfield/7migration checksums/private-key fingerprints/modes preserved at the recorded static-update boundary. No protected PostgreSQL/APIrestart, schema/reset/grant/keycopy/regeneration. Protocol7/root3/garden4 unchanged. See active-services.json for exact paths/PIDs; preserve canonical private keys.
+[PR47](https://github.com/dadbod87/idle-hands-2/pull/47), main **3bff040ffdb2c539a19f6301df6125ba68ed9f80**, candidate **b0df8021853a9f14036410db6c6de41768032641**, identical tree. PR43953150524 and main43956473345 each passed all four jobs: **462system /173browser (91+82)**, zero failures/skips/flakes/report errors. Raw recovery/SQL/latency artifacts and all214default-game/31rehearsal/20earlier-study files verified. [Report](evidence/IH2-115/REPORT.md), [contract](evidence/IH2-115/CONTRACT.md), [closeout](evidence/IH2-115/source-closeout.json), [handoff](idle-hands-2/handoffs/2026-11-16-housing-contract.md).
 
-[Housing study V5](http://127.0.0.1:49641/): new frozen main-CIartifact,20HTTPbytes verified, native2K/320tap+keyboard, no API/storage. Selected plan/tier benchmark appears beside choices; detailed room diagrams optional. All18house SVGs and proposed tier costs/rights unchanged. Design-only; no new playable purchases/timers. Old49640V4and54earlier static responses remain exact (74total).
+Full source: `work/idle-hands-2-housing-contract`, branch `chore/housing-contract-closeout-2026-11-16` (accepted main plus documentation-only closeout; resolve latest pushed head). Canonical `work/idle-hands-2` is old090runtime/bookkeeping only; do not implement or create a source PR from it.
 
-Next **IH2-115**: isolated versioned housing catalog, legacy rights/appearance, conserved yard/indoor allocation, safe quote/build/concurrency/expiry/restart/restore contracts, and wide residential framing before integration. Keep owner fun/intuitive/visual/ease evaluation in AGENTS/OWNER_DIRECTIONS active; use relevant actual-game Terra6.1 checks. Scenic places still need meaningful later activity/payoff; do not disguise decoration as harvestable stock or add empty regions as progression.
+[Construction rehearsal](http://127.0.0.1:49642/) serves the exact31-file main-CIartifact/TerraV4freeze. Native2K/320quote/cancel/build/finish/arrange/street and final Terra6.1 served-study checks passed. Fictional48kits, ownedplanter and advancedclock are disclosed; no API/login/storage or actual construction. The optional street view is a ground-footprint/doorway/framing diagram, not final facade art or current game collision.
 
-Limits: Chrome emulation, not physical-phone/Safari validation; standalone home silhouettes/space studies; residential2048blocks still need framing candidates. Cosmetic sky/hidden-state checks and full-suite55434synthetic fixtures disclosed. No public/cloud sequel launch, paid resource or reset-credit use. Verify current remote/source/services before resuming.
+Actual [game](http://127.0.0.1:4175/) and [fictional Tour](http://localhost:4176/?town=1) remain accepted114client and original compatible113APIprocesses. All47existing authority files and214compiled default-game files are unchanged. Read-only verification preserved all14tables/everyfield/7migration checksums/private-key fingerprints/modes/fourPIDs;428game static responses and94old-study responses remain exact. No game service/protectedPGrestart, migration, reset, grant, key copy/regeneration or real-player change. Never restart/reseed protected55432; dedicated fixtures use explicit55434overrides.
 
-## Historical checkpoints — superseded for current status
+The isolated housing-v1contract preserves exact legacy facades,6/8nooks, addresses and allnine owned furnishing types, displayed letterbox motifs and the existing trail pennant. Complete candidate prices:12starter kits/24additional expanded,2same-tier remodel,6hbuilders,2minute reviewed quotes; free preview/cancel/arrangement. Old home stays usable; fixed paid history, concurrent parcel ownership, once-only receipts, interruption rollback, expiry and safe late completion are proven in dedicated PostgreSQL. No new wallet/production queue/yard grant. Keep v1catalog bytes and seven old migration files immutable.
 
-#114local complete — hosted/actual acceptance pending
+Next **IH2-116**: coherent playable shared-practice purchase→build→finish→arrange→visit. Keep115test-database guards intact; implement the live adapter with trusted identity/proximity/room-presence lock, current all-writer conservation, additive migration and cached-client gate, detailed original art matching selected footprints/door/roof metadata, and exact source/actual preserved-preview gates. Browser-only rental saves have no shared home and remain independent. Garden/bench conveniences reuse existing capacity and must stay honestly labelled until working. No unpriced yard recipes, sale/downgrade/relocation, paid resources or public/cloud launch.
 
-Full source `work/idle-hands-2-town-life`, branch `feat/town-landscape-life`, base3c88d92. Original landscape/life, native phone pond framing/tappable readable signs, separate6scenic routes and more concise companion housing preview.441system/167browser,9focused,Terra6.1V3game+V5study, build/design/plan/pinned/diff pass with zero failures/skips/flakes/report-errors.47authority/domain/migration files unchanged; protocol7/root3/garden4/seven SQL files stay exact. Actual4175/4176and49640remain previous accepted artifacts pending exact PR/main/raw/static-only update gates. Read114report/handoff. No hosted sequel release or expense.
+Continue the owner fun/intuitive/visual/ease review from AGENTS/OWNER_DIRECTIONS and use relevant actual-game Terra6.1 checks. Benefits: complete visible price, free visible exit, old-home continuity and decorating-first completion. Remaining opportunity is a meaningful normal-game creative/social loop and actual detailed art, not more catalogs or empty regions. Chrome emulation is not physical-phone/Safari acceptance. Three reset credits were not consumed. Preserve local raw server evidence outside Playwright output before browser startup; initial timing/artifact investigations are documented, not hidden.
 
-#112accepted — house-size/yard/room design; next114landscaping
+## Current authority and history
 
-Main **095f76b0ceb1a713c88ef5c036d9fb0f10b79ef9**, [PR45](https://github.com/dadbod87/idle-hands-2/pull/45), candidate **122ac46b50f4c11a0d3ca52db96da1e2e55d3807**, identical tree. PR run43916212654 and main run43919451116 each passed all four jobs: **438system/163browser(82+81)**, zero failures/skips/flakes/report errors. Raw artifacts, all214default-game bytes and all20standalone-study bytes verified. [112report](evidence/IH2-112/REPORT.md), source-closeout and [handoff](idle-hands-2/handoffs/2026-11-16-housing-variety.md).
+Read AGENTS, CURRENT_SESSION, ROADMAP and the dated115handoff before continuing. The actual game has the accepted workshop/garden/commission/cafe, separate Bag/journal, addressed homes and spacious114town; new housing choices/builders/yard ownership remain an isolated115candidate. Source acceptance, local rehearsal, real-device validation and hosted release are separate states. No sequel cloud backend or real-account beta is deployed.
 
-Full-code continuation `work/idle-hands-2-housing-variety`, branch `chore/housing-variety-closeout-2026-11-16` (accepted main plus documentation closeout; resolve latest pushed head). Canonical `idle-hands-2` remains old-runtime bookkeeping only. Do not implement there.
-
-[Game preview](http://127.0.0.1:4175/), [fictional Tour](http://localhost:4176/?town=1) stay the accepted113source/client/API7, byte-identical to every existing active112file and all214CIgame bytes. Existing frozen113runtime/client paths, signed sessions, protected14tables/7migration checksums/private-key fingerprints/modes/fourPIDs remain preserved at recorded validation. No game service restart/update, schema change, reset, grant or key copy/regeneration. See113active-services/source-closeout for launch details. Preserve54historical study responses and new20file standalone study.
-
-[Housing study](http://127.0.0.1:49640/) serves frozen TerraV4, exactly equal bothCIartifacts. Native HTTP2K/320tap+keyboard, zero errors/API/storage; design-only, not game purchases. Four families/six forms, truthful lot/room/yard/door comparison, current12+24kit tier benchmarks, declared6hbuilder proposal. Remodel/yard-piece costs unpriced. Legacy appearance/address/6or8nooks/furnishings stay intact; same-capacity conveniences do not increase production. All new code unregistered. [Design](evidence/IH2-112/DESIGN.md).
-
-Next ordered task114: organic district edges/town-life polish. Next housing task115: isolated versioned catalog/legacy/allocation/quote/build and wide residential-framing candidates before any registered purchase/geometry. No public/cloud sequel launch or paid asset/infrastructure. Physical phones/Safari remain untested; all disclosures are in112report. Three reset credits were not consumed.
-
-Historical checkpoints below are superseded by this accepted closeout.
-
-#112current — housing variety design candidate
-
-After accepted113larger-town update, work continues in `work/idle-hands-2-housing-variety`, branch `feat/housing-variety-study`. Read112REPORT/DESIGN and the current top of CURRENT_SESSION. New original house/yard/room study is unregistered: actual4175/4176/API7/game214files remain exactly accepted113.438system/163browser plus TerraV4pass, zero failures/skips/flakes/report-errors; exact-head/main source acceptance pending. No new live purchase, timer, migration or collision. Preserve protected55432data/keys/PIDs.
-
-# IH2-113 accepted — spacious town; next IH2-112 housing
-
-Main **fc979570d57ee2401a84510cbb0ab917d9239bde**, [PR #44](https://github.com/dadbod87/idle-hands-2/pull/44), candidate **a9a1d4d825db76fad2921c535078dfd098365f47**, identical tree. PR run 43900672096 and main run 43904199640 each passed all four jobs: **434 system checks / 158 browser cases (82 + 76)**, zero failures, skips, flakes or report errors. Both raw artifact sets and all 214 client files match the reviewed build.
-
-Actual preview [127.0.0.1:4175](http://127.0.0.1:4175/) and fictional Tour [localhost:4176/?town=1](http://localhost:4176/?town=1) now use the matched final client/API 7. The signed Tour session survived; all 14 tables, every field/row, seven migration checksums and private-key fingerprints/modes remain exact. No SQL migration, reset, grant or key copy/regeneration. Native 2K/4K travel, phone/short enlarged controls and unchanged ordinary progress passed on the actual main artifact. No public/cloud game launch.
-
-Full-code continuation: `work/idle-hands-2-town-expansion`, branch `chore/spacious-town-closeout-2026-11-16` (accepted main runtime plus this documentation closeout; resolve its latest pushed head). Canonical `idle-hands-2` remains old-runtime bookkeeping only. Read the 113 report/source-closeout and dated handoff. The larger square preserves old activity/home positions and adds connected scenic districts. Remaining organic landscaping is task 114. Task 112 is ready next: house size, yard and layout design, preserving existing ownership and furnishings.
-
-Historical pending notes below are superseded by this verified closeout.
-
-#113spacious town — local candidate
-
-Full source `work/idle-hands-2-town-expansion`, branch `feat/spacious-town`, base7e8closeout over accepted main056c3793. Real square4096×3072/native2K+4K, connected scenic commons and six destinations; old activity/home coordinates and economy unchanged. Protocol7matches expanded geometry; root3/garden4/seven SQL migrations unchanged.Frozen final434system/158browser, zero failures/skips/flakes/report-errors,8focused native cases, isolated database restart and Terra checks pass. Exact PR/main/raw artifacts/actual preview/data/session checks remain pending. Existing4175/4176remain111until all gates pass. [113report](evidence/IH2-113/REPORT.md). New user priority precedes112; later housing begins only after this acceptance.
-
-#111source and actual local preview accepted
-
-PR43/main056c3793 accepted after PR43522020468 and main43523926478, all4jobs each431system/153browser(77+76), zero skips/flakes/errors and exact214client/raw artifacts. Actual local4175/localhost4176/API6 refreshed with the same signed Tour, old13tables/allfields/keys/sixchecksums preserved; additive seventh migration only. Playable café menus, safe saves, confirmed rewards and conserved teapot allocation accepted. No public/cloud game launch. Next112housing variety. [Report](evidence/IH2-111/REPORT.md).
-
-Historical pending checklist/history below is superseded by this verified header.
-
-#111playable café — integration verified locally, acceptance pending
-
-Actual counter/menu/confirmed serving/teapot Bag and all home allocations now use coherent root3/garden4/protocol6.431system tests pass; focused native cafés and Terra V3 desktop/phone/short pass. Full153browser/public source/main/actual-preview gates pending. Existing accepted4175/4176previews remain unchanged until those gates pass. [Report](evidence/IH2-111/REPORT.md).
-
-#110source accepted;111playable café next
-
-PR41/main98d4d02 accepted after PR43498138268 and main43500750359all4jobs, each418system/146browser(74+72)/zero skips/flakes/errors and raw artifact proof. Isolated atomic café candidate and dedicated restart/restore proven; actual208clients/all active sources remain exact109, protected data/keys/PIDs preserved. No playable café or public/cloud launch. Next111coherent counter/save integration;112owner-directed house sizes/yards/layouts. Historical pending notes below superseded. [Report](evidence/IH2-110/REPORT.md).
-
-#110candidate shared café authority
-
-Local418system/15focused/dedicated PostgreSQL restart/build pass;146browser pass,0unexpected/flaky/skipped/reporterrors; exact-head/main/source gates pending. Candidate transaction and SQL stay outside live registration;208client/202art exact109and protected services unchanged. Housing variation owner direction saved;111coherent café integration and112housing design queued. [Report](evidence/IH2-110/REPORT.md).
-
-# Current —109source/local previews accepted
-
-PR40/mainacab0549 accepted after PR43482304202 + main43484850214, each403system/146browser/zero skips/flakes/errors/all4jobs. Actual208client/matched API5 on4175/localhost4176 verified with native desktop/phone, signed-session/local queued-job recovery and complete protected data/key/checksum/study preservation. Cafe candidates remain unregistered; no public/cloud game launch. Historical holds below are superseded only by this verified closeout. Next110atomic transaction candidate. [Report](evidence/IH2-109/REPORT.md).
-
-109consolidated source acceptance in progress over108verified403/146runtime. Standard free public GitHub checks available; exact-head/main/artifact/actual-preview gates pending. Current game previews remain090until verified refresh. [Plan](evidence/IH2-109/PLAN.md).
-
-108coordinated writer candidate locally complete:403system/146browser0skips/flakes/errors,17focused, native/epoch/migration/dirty-preservation proof and no live registration.208game/202art exact107. Next109normal public CI/source/actual-preview acceptance. [Report](evidence/IH2-108/REPORT.md).
-
-Public source: existing idle-hands-2made public November13at explicit owner request; anonymous200verified. Standard public Ubuntu CI free, paid resources unapproved. No runtime/main/preview change. Current continuation: chore/public-source-policy over unchanged107candidate; next108. See idle-hands-2/handoffs/2026-11-13-public-source.md.
-
-107ordinary café-era commands locally implemented;386system/10focused/build/design and independent domain review pass. Full142browser0skips/flakes/errors, final plan/pinned/diff/preservation pass. Shared unchanged rule bodies with strict live2/3 and candidate3/4contexts; no writer/UI/server registration. Source gate held. [Report](evidence/IH2-107/REPORT.md).
-
-106original serving family/teapot art locally verified:80cells/four rigs,376system/142browser0skips/flakes/errors, TerraV2no sampled visual blocker. All15frozen/source/HTTP/raw files match;208game/202art bytes unchanged, no live registration. Next107ordinary command compatibility; source gate held. [Report](evidence/IH2-106/REPORT.md).
-
-105staged café save protection locally verified:372system/139browser+3final native cases,0skips/flakes/errors; quota/migration/stale/two-window/confirmation protection and exact208game identity. No live wiring or accepted-preview change; normal source gate held. Next106original serving rigs/teapot kit. [Report](evidence/IH2-105/REPORT.md).
-
-104pure café candidate locally verified:359system/136browser,0skips/flakes/errors; strict migration/conservation/reward/cooldown/fixedopening and two-sided provenance verified. No live wiring or accepted-preview change; normal source gate remains held. Next105staged local persistence. [Report](evidence/IH2-104/REPORT.md).
-
-103design-only café authority/persistence contract recorded from actual source and independent review; no runtime/data/schema/API change.102actual348/136code evidence retained. Next104purecandidate outside live entrypoints, normal source gate held and accepted090unchanged. [Contract](idle-hands-2/design/CAFE_AUTHORITY_CONTRACT.md).
-
-102coherent source locally verified348system/136browser, unchanged208game/202art and21historical/rawstudyfiles. Originalcaféinputsreproduceexactly; all prior assertions/timeouts retained. Normal source gate still held, accepted090unchanged.103read-only café authority contract next. [Report](evidence/IH2-102/REPORT.md).
-
-101Bag quantities locally verified:338system/132browser/7focused/native8shapes/TerraV2/frozen208/origin/preservation. Key/ARIAclarifies available versus owned, header gap restored; a measured test-only resize-readiness race is corrected without relaxing crop/target/progress checks. Accepted090unchanged, normal source gate held. Next102coherent source preparation. [Report](evidence/IH2-101/REPORT.md).
-
-100 first Aster serving study locally verified:325system/110browser/native/TerraV2/eight-filefrozen;20cells with exact feet/final idle, zero runtime delta and all accepted data/artifacts preserved. Normal source gate remains held. Next101clarifies Bag available-versus-owned counts from the cold-read menu review. [Report](evidence/IH2-100/REPORT.md).
-
-099independent café feasibility/art/menu study locally329system/110browser/native/TerraV2/frozen13/model/auditverified. No game café/food/state added; all204accepted090client/198art/data/keys/studies and held098reviews preserved. Normal source gate remains held;100first-rig gesture study next. [Report](evidence/IH2-099/REPORT.md).
-
-098locally verified338system/132browser: stable full-word toolbar/scrollable notes and deliberate short200world, frozen208and disclosed fictional-town review49579. All202art and protected090data/clients/API/keys/54studies preserved. Normal source/GitHub/accepted-preview gates held;099independent café feasibility next. [Report](evidence/IH2-098/REPORT.md).
-
-Corrected097V2locally verified338system/129browser/root/Terra/authority/artifact/preservation. Original cropfeet unchanged; earlier half-tile rectangle model rejected, archives retained. Accepted090unchanged.098stablephone toolbar needed before consolidated source/CI/actual release. [Report](evidence/IH2-097/REPORT.md).
-
-IH2-097 actual garden candidate locally verified:338system/129browser, frozen208files/root/Terra, all198priorart and protected data preserved. Normal consolidated CI/source/accepted-preview gates still pending; accepted090unchanged. [Report](evidence/IH2-097/REPORT.md).
-
-IH2-096standalone allotment study locally reviewed:335system/127browser, native20fileV2and12pixel-identical format-cleanup captures/Terra; all204game files/198art and accepted data/keys/54studies unchanged. Source CI/merge gates remain held.097actual garden composition/framing queued, without a gameplay-rule change. [Report](evidence/IH2-096/REPORT.md).
-
-IH2-095V2focus/close-only repair locally verified332system/125browser/root/Terra/recovery/artifact/preservation; required GitHub release gates held. Accepted090previews/main stay unchanged.096standalone allotment art/framing study queued. [Report](evidence/IH2-095/REPORT.md).
-
-IH2-094housing purchase facts locally verified:332system/119browser/root/Terra/origin/artifact/preservation. Known inherited delayed-reply focusP2feeds095before release. GitHub billing still holds required checks; accepted main/4175/localhost4176remain090. [Report](evidence/IH2-094/REPORT.md).
-
-IH2-093combined local review passes330system/117browser, root/Terra/origin/artifact/preservation. Release held by GitHub account billing before required checks. Actual accepted clients/API remain090. [Report](evidence/IH2-093/REPORT.md). Current handoff authoritative.
-
-# Idle Hands 2 — current state
-
-IH2-090verified PR38/mergef0a294a, exact05c468c CI43353707882all4SUCCESS:322system/zero skips,108local/108CIbrowser. Three original residential families, recognizable workrooms, authored windows and quiet occupied smoke/flowers; all190priorart unchanged. Shared route-grid repair passes552doorpairs/48fractional endpoints with unchanged collision/speed. Actual204file4175/localhost4176and matched frozen090API5verified, signed Tour/data/key/checksums and protected practice/54studies preserved. Next091clear pine-workshop actions. [Closeout](evidence/IH2-090/source-closeout.json). Older entries historical.
-
-IH2-090candidate adds original brick/timber exterior pairs, bounded occupied chimney life and low public flowers, preserving all190priorart files. Repairs inherited fractional-boundary route-planner mismatch; all552door pairs/48fractional endpoint walks pass with unchanged collision/speed.322domain/zero skips and native/render2cases pass; TerraV1sampled204filebuild finds no blocker. Full108/exactheadCI/matched client-server restart/artifact/preservation gates pending; actual4175/4176still088. [Report](evidence/IH2-090/REPORT.md).
-
-IH2-088 verified PR37/mergeaa4db70, exact69d71b6 CI43346520501all4SUCCESS:317system/zero skips,106local and106CIbrowser. Addressed24-site expandable neighborhoods, individual server-validated doors, exact street returns, grouped phone visits and Housing Registry now run in actual4175matched protocol5. All protected progress/key/6checksums/54studies preserved. Separate disclosed25fictional-home tour at localhost4176; actual native visits and APIrestart verified.090distinct exteriors/life next. [Closeout](evidence/IH2-088/source-closeout.json). Older entries below historical; current handoff authoritative.
-
-088candidate adds addressed residential blocks/individual doors, grouped street visits and registry records, physical-origin exits and four original site/registry/ground vectors.317system/zero skips and focused native checks pass; full106/CI/actual artifact/protocol5preview gates pending. Protected4175remains089/protocol4. [Report](evidence/IH2-088/REPORT.md).
-
-IH2-089 accepted PR36/merge d013e2c, exact60b1b2b CI43333582760:300system/zero skips,103local and103CIbrowser pass. Clear canonical crafting/output/cost/time, stable explicit claim/Bag, scoped result focus/reflow and grouped Places now verified on actual4175CIclient. Protected API/data/key/all54study files unchanged.088individual home doors next. [Proof](evidence/IH2-089/source-closeout.json).
-
-IH2-087 accepted design/source: audited city capacity and home visiting, tested24-address expandable blocks and separate10-file blueprint. PR35/merge38ef23e, exactc789b69 CI43323897322 all four jobs SUCCESS;296system/100browser. All191game bytes/progress/API/studies unchanged.089craft/menu clarity next, then088physical doors and090art/life. [Proof](evidence/IH2-087/source-closeout.json). Candidate entries below historical.
-
-IH2-087 candidate audits city capacity/visits, records expandable24-home block geometry and separate interactive blueprint. Original191game files unchanged. Terra crafting/menu findings feed089before088runtime expansion. [Evidence](evidence/IH2-087/REPORT.md).
-
-IH2-086 accepted: rain anchors to the world during camera movement, with bounded wrapping and full resize coverage. PR34/merge`1426b2b`, exact`ef56506` CI43316779357 all four jobs SUCCESS;294system/zero skips and99browser. Actual191-file preview/native desktop+touch movement verified; progress/protected practice/API/studies preserved. [Evidence](evidence/IH2-086/source-closeout.json). Candidate notes below historical; current handoff authoritative.
-
-IH2-086 candidate anchors rain to world camera movement with bounded tile wrapping and overscan; rules/progress unchanged. Full acceptance pending. [Evidence](evidence/IH2-086/REPORT.md).
-
-IH2-085 accepted: more visible bounded sway/drizzle, corrected idle cosmetic timing and clearer sky color. PR33/merge`ef5a796`, final`8bb045e` CI43313138618 all four jobs SUCCESS;293system/zero skips and98browser. Actual191-file local preview and fourteen desktop/phone captures verified; original185art, production clocks and protected practice/API/studies preserved. [Evidence](evidence/IH2-085/source-closeout.json). Candidate history below is historical; current handoff authoritative.
-
-IH2-085 candidate reduces sky haze and makes existing sway/drizzle more visible, correcting idle cosmetic timing.293system/zero skips and12focusedbrowser pass; Terra sees clear rain/readable day/night with no clear blocker. Full98/CI/artifact/preview gates pending. [Evidence](evidence/IH2-085/REPORT.md).
-
-IH2-084 accepted: independent Bag and Journal, compact labelled toolbar, guarded B/J and focus-safe cross-links. Bag holds belongings/arrangement; Journal puts goals/work/progress first. PR32/merge `8a6c60d`, exact `cfb72ea` CI43306122595 all four jobs SUCCESS (291system/zero skips,96browser). Actual191-file local preview and native desktop/phone checks passed; protected13tables/key/checksums/API/studies preserved. [Closeout](evidence/IH2-084/source-closeout.json). Current handoff authoritative; candidate notes below historical.
-
-IH2-084 candidate separates Bag belongings/arrangement from Journal goals/work/progress, with dedicated toolbar controls and guarded shortcuts. Local291system/zero skips and focused tool/regression checks pass; TerraV3 recheck has no bounded blocker. Full96/CI/artifact/preview gates pending. [Evidence](evidence/IH2-084/REPORT.md).
-
-IH2-083 accepted: visual bag with original item illustrations, pocket groups and quantity badges. PR31/merge `0300adf`, exact `b468207` CI43299023223 all four jobs SUCCESS (291 system checks, zero skips;93 browser cases). Actual191-file local preview verified with native collection/placement/reload; protected13table/key/checksum/API and studies unchanged. [Closeout](evidence/IH2-083/source-closeout.json). Candidate notes below are historical; current handoff is authoritative.
-
-IH2-083 working visual bag presents original item icons and truthful stack counts with furniture allocation, three pockets and preserved notebook/controls. Local291system checks/zero skips and focused14browser pass; final Terra/full93/CI/artifact/preview gates pending. [Evidence](evidence/IH2-083/REPORT.md).
-
-IH2-082 accepted: PR30/merge `7d6fc48`, exact `c3966cf` CI43293385446 all four jobs SUCCESS (285 system checks, zero skips;88 browser cases across disjoint44+44 shards). The actual191-file preview4175 now includes the activity notebook; all13 practice tables/key/checksums/API and historical studies are preserved. Terra6.1 desktop/mobile review and native final-artifact checks passed. [Closeout](evidence/IH2-082/source-closeout.json). Current handoff is authoritative; candidate notes below are historical.
-
-IH2-082 working activity notebook connects current bench/rack/crop readiness and safe inspector routes inside Bag & journal.285domain/zero skips and focused3browser pass; Terra identified/corrected a phone200 label overflow, independent recheck/full gates pending. No backend/economy/timer or protected-preview change. [Evidence](evidence/IH2-082/REPORT.md).
-
-IH2-081 accepted playable receipt integration: PR29/mergea7dd24a, exact7aff73fCI43271107909bothSUCCESS279/85. Actual191-file4175preview/protocol4API updated after private backup; all13practice tables/key/sixchecksums and historical studies preserved. Terra6.1bounded review and actual local/shared desktop/phone captures inspected. [Closeout](evidence/IH2-081/source-closeout.json). No hosted/current-game release. Current handoff authoritative.
-
-IH2-081 runtime candidate integrates exact original local/shared collection receipts, optional persisted grant metadata, lazy original art and fixed focus-safe controls. Terra6.1bounded actual-build review finds no blocker; full local/exact-headCI/artifact/preview gates remain pending. Protected practice/API and old studies remain accepted/unchanged. [Evidence](evidence/IH2-081/REPORT.md).
-
-IH2-079 accepted design/source: PR28/merge10adfa9, exact8b392b9CI43257514774bothSUCCESS274/83. Frozen14-file receipt study49534verified with sixCIimages/native desktop+phone; Terra6.1rechecked narrow focus fix. Every178game byte/13practice tables/key/API and old galleries remain unchanged.081actual receipt integration queued; current APIstill lacks exact grant metadata. [Closeout](evidence/IH2-079/source-closeout.json). Current handoff authoritative; prior candidate entries below are historical.
-
-IH2-079 working separate receipt prototype: fixed controls, command-bound synthetic grants, once-only retry and current-rig artwork fallback. Terra6.1identified and rechecked the narrow reopen focus fix; no remaining bounded-review blocker. Five focused model/export checks and corrected native study pass; final274domain/83browser/exact-headCI/artifact gates pending. Every178game byte remains unchanged. [Evidence](evidence/IH2-079/REPORT.md). Previous078automaticmain43250716906bothSUCCESSindependently verified.
-
-IH2-078 accepted: PR27/merge9608e39, exact4737f44CI43246666644bothSUCCESS269/82. Four-character collection study49530verified from actual21-fileCIartifact; all178game files, protected4175/API/13tables/key and old49529gallery unchanged. Terra6.1found no blocker.079visible confirmed-receipt design queued; no runtime animation integration. CIbrowser18.8m has little deadline headroom; record/measure before adding coverage. [Closeout](evidence/IH2-078/source-closeout.json). Current handoff is authoritative; candidate entries below are historical.
-
-IH2-078 working candidate completes the four-character ordinary collection art study outside gameplay. Local269checks/zero skips and focused native192-cell raster/gallery pass; Terra6.1found no blocking visual/interaction issue. Full82browser and exact-headCI/artifact gates pending. All178game bytes/172runtimeart, protected4175/API and historical49529gallery remain unchanged. [Evidence](evidence/IH2-078/REPORT.md). Prior077automatic-mainCI43240666200is now independently verified bothSUCCESS.
-
-IH2-077accepted: PR26/merge49e7e77/exactf7f3921CI43237701257bothSUCCESS265/81. Original Aster collection study is separate from gameplay; actual nine-file gallery49529and all178unchanged game responses verified,13practice tables/key preserved. [Closeout](evidence/IH2-077/source-closeout.json).078remaining rig family queued; current handoff authoritative.
-
-IH2-077working candidate authors Aster-only ordinary collection study outside runtime:3handprops/fourfacings/reduced-motion gallery. Local265checks/zero skips and focused raster/browser pass; full81/CI/artifact gates pending. Every178game byte and protected076preview remain unchanged. [Evidence](evidence/IH2-077/REPORT.md).
-
-IH2-076accepted: PR25/merged8edb0c, exact04b6848CI43231538226bothSUCCESS262/80. Actual artifacts/native preview and13practice-table fields/key preserved;4175immutable076/protocol4APIunchanged. [Closeout](evidence/IH2-076/source-closeout.json).077ordinary gathering art study starts outside runtime; current handoff authoritative.
-
-IH2-076working presentation candidate prioritizes inside-owner arrangement and preserves selections/held-pointer targets/retries/panel context. Local262checks/zero skips, focused UI cases pass; full80browser/CI/artifact gates pending. Accepted075preview/API remain intact. [Evidence](evidence/IH2-076/REPORT.md).
-
-IH2-075accepted: PR24/merge00563d3/exact9626bb8CI43226178072bothSUCCESS262/78. Actual178files/fiveCIimages/populated recovery and13oldpractice-table fields/key preserved through protocol4/additive migration.4175immutable075preview verified. [Closeout](evidence/IH2-075/source-closeout.json).076phonehome arrangement active independently; current handoff authoritative.
-
-IH2-075 working candidate adds two permanent expanded-home nooks with strict separate maps, atomic owned-copy conservation and cached3client refusal. Local262checks/zero skips and focused3browser pass; fullbrowser/CI/artifact/protectedmigration gates pending. Accepted074preview remains intact. [Evidence](evidence/IH2-075/REPORT.md).
-
-IH2-074 source/local preview accepted: PR23/merge3c64173, exact82e68f8CI43216529180bothSUCCESS257/76(14.4m). Actual178files/sixCIimages, live-clock desktop/phone direct collection/reload, matchingtree/cleanmain and13practice tables/key/migrations preserved.4175serves074immutableartifact,4186protocol3unchanged. [Closeout](evidence/IH2-074/source-closeout.json). IH2-075two expanded-workroom nooks active on`feat/home-workroom-nooks`; [current handoff](idle-hands-2/CURRENT_SESSION.md) is authoritative.
-
-IH2-073source/localpreviewaccepted: PR22/mergea353f84, exacte4f54a1CI43210619289bothSUCCESS256/75(14.6m). Actual174files/7CIimages, freshactual300000mscrop→paiduniqueletterbox→placement/reload, matchingtree/cleanmain and all13practice tables/key/migrations preserved.4175nowserves073immutableCIartifact;4186unchangedprotocol3. [Closeout](evidence/IH2-073/source-closeout.json). IH2-074materialdepotsactive on`feat/material-depots`. [Current handoff](idle-hands-2/CURRENT_SESSION.md).
-
-Earlier milestone records below are historical; use the current handoff for active work.
-
-IH2-072 audit source accepted: PR21/merge `c72c3a7`, exact `2ac20e1`, CI43195544470 both SUCCESS (256 domain/zero skips,72 browser15.5m). Actual174unchanged game files/eight selected CI captures reviewed, matching tree and clean main=remote. Eighteen disclosed situation/viewports and real15minute/3minute-absence observation support ranked findings. [Closeout](evidence/IH2-072/source-closeout.json). The later073accepted layout/preview and074activeart task are recorded above.
-
-
-November 12, 2026. Separate private dadbod87/idle-hands-2; local fictional practice only. The original game and its real accounts are unchanged.
-
-IH2-071 source/local preview accepted: PR20/merge3fc2cfed6f30837a62b7c8cdf95126595586d3a6; exactef6340aCI43175976771bothSUCCESS247/72(15.3m), actual174files/13CIimages reviewed, matchingtree/cleanmain.4175/4186protocol3updatedwith all13canonicalpractice tables/onefictionalresident/key/migrations preserved. Actualresponses/native desktop+360touch free route/reload pass; sameimmutableartifact actualfresh5minpaidcraft passed in disclosed staging. [071closeout](evidence/IH2-071/source-closeout.json). IH2-072 combined progression/expression audit is active; game/art/economy stay unchanged while it gathers evidence.
-
-IH2-067 is source accepted: PR17, merge `7af9a3296ec21c9120567c36f195f6e7a4e01014`. Exact candidate `1683a7dd85b9ba8e7f0ea0230c7c713c51d6f969` passed both CI jobs (217 checks, zero skips; 59 browser cases in12.1m). Actual159-file build and selected uploaded images reviewed, matching tree and clean main verified. Local4175 now serves that immutable CI artifact; API4186 applied one additive noticeboard migration, preserving all12old canonical tables, one fictional resident and the signing key. Actual159responses plus desktop/phone UI pass. [Closeout](evidence/IH2-067/source-closeout.json). No hosted release or physical-device claim.
-
-IH2-068 is source/local-preview accepted: PR18/merge `c0565b5930634dc09655766b1414ca6c37dcad7d`. Exact109d9a8 CI43149639492bothSUCCESS217/65; actual159files/sixuploadedimages reviewed, matchingtree/cleanmain verified. Compact garden actions/contextualfeedback, guarded named travel, truthful overlapping Places targets and centered rental workshop are live on local4175. All13canonicalpractice tables/onefictionalresident/migrations/key remain unchanged;4186APIwas not restarted. [068closeout](evidence/IH2-068/source-closeout.json). Automaticmain43151441716also bothSUCCESS.
-
-IH2-069 source/design accepted: PR19/merge15fc340, exactcecb8c7CI43158628633bothSUCCESS224/68, actual159unchangedgamefiles andoriginalconceptimages reviewed, matchingtree/cleanmain. Frozen standalone49523study has no game/API/storage. [069closeout](evidence/IH2-069/source-closeout.json). IH2-071accepted runtime and its local preview update are recorded above;072is the current audit.
-
-Accepted garden runtime is b4438d3c1b98f04113e8ad3c47ab30e516741302 (PR15). Earlier accepted planning main was3946d7b1f5f5d18529e274935f70fd35bb5cb50b (PR16): exact941956d CI43108409997bothSUCCESS184/54, actual unchanged131-file build and concept/gameplay images reviewed. [066closeout](evidence/IH2-066/source-closeout.json). Exact candidate d53c5c3a5e55244d2c849c9f92a1e7be88864b98 passed both jobs in CI43099483367 attempt1:179 checks/zero skips and53 browser cases12.5minutes. Actual131-file build and uploaded images reviewed; candidate/merge treec136cff9d1f11d72e6c2b944a3d1b5ce113abac5 matches and cleanmain=remoteverified. [065closeout](evidence/IH2-065/source-closeout.json).
-
-The starter garden is playable locally: three private beds, bound recoverable radish/marigold seeds, reserved produce stacks, base practice plus rested bonus, finite hand-made markers, an almost-straight-stakes errand, chosen owner-labelled display and atomic mixed requests for a six-credit welcome bed. Thirty-one original runtime SVGs include growth and96actionposes. [Contract](idle-hands-2/GARDEN_RUNTIME.md), [report](evidence/IH2-065/REPORT.md). IH2-066 designed the first pine family;067implemented it.068nowchecks actual combined activity and phone clarity.
-
-The neighborhood retains the square/workshop/café exterior, owner/visitor homes and one expansion, shared bridge construction, safe trail and finite sketchbook. Existing ordinary materials, recipes, jobs, costs, skills and housing progress are preserved. Day/night/weather remain cosmetic. The current combined slice is finite; deeper resources/tools/quests, equipment, social features and optional PvE remain future work. IH2-069design and071runtime are accepted. IH2-072 audits the combined neighborhood before selecting another bounded expansion. Humor, useful solo progress, teamwork and deliberately visible creative ownership are continuing design requirements.
-
-Hosted070 remains blocked on the concrete owner account/access/cost plan. The new explicit local-build instruction creates an independent content task, not permission for hosting, charges, real identities, invitations or public domains. Actual hosted auth/permissions/backups/WAN and physical phone/Safari validation remain required gates.
-
-4175serves the immutable accepted071CIartifact; all174responses/nativeChrome desktop and360touch UI were verified at071closeout. Shared4186practice needs the isolated PostgreSQL/Node service when used; no remote access is implied. Preserve existing fictional practice and signing key. Tests use separate disposable databases. Empty practice preservation and populated restart/restore proofs remain separately disclosed.
+Past candidate/accepted checkpoints are retained in [CHANGELOG](CHANGELOG.md), task evidence and [the complete pre-closeout state history](https://github.com/dadbod87/idle-hands-2/blob/3bff040ffdb2c539a19f6301df6125ba68ed9f80/docs/CURRENT_STATE.md). They are historical, not competing source instructions. No evidence file or player data was removed by this resume-document consolidation.

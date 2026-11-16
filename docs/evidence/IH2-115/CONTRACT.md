@@ -74,3 +74,6 @@ Keep the115dedicated-database guards intact; implement the trusted live adapter 
 Future garden/bench conveniences must access the same three beds/single queue; do not advertise them as operational before they are implemented. Keep helpful activities available during builders, clear current actions before lore, and a visible creative payoff. Add new yard recipes or family features only after the coherent loop, not as unpriced controls.
 
 References consulted for implementation review: [PostgreSQL16 generated columns](https://www.postgresql.org/docs/16/ddl-generated-columns.html), [explicit locking](https://www.postgresql.org/docs/16/explicit-locking.html). A BEFORE trigger validates the new account expression directly, since stored generated columns are computed later. No Supabase CLI/cloud feature, API exposure or provider upgrade is part of this task.
+
+
+Live-adapter rule for116: the candidate account workshop is a disposable isolated copy, not a second live inventory. Apply the proven transitions to the owning live player/plot and new housing records in one transaction; never keep the candidate and current workshop copies writable in parallel. Existing quest awards remain the sole trophy ledger.

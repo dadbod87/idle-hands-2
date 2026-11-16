@@ -1,0 +1,8 @@
+{
+  "fixtureOnly": true,
+  "activePaidBuildAndQueuedJob": true,
+  "populatedDumpRestoreAndFreshProcess": true,
+  "all8MigrationChecksumsExact": true,
+  "currentOwnerAndQuoteBuildReceiptFieldsExact": true,
+  "oldSevenImmutable": true
+}

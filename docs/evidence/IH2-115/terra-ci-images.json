@@ -1,0 +1,15 @@
+{
+  "scope": "Visual inspection of four PR CI Linux Chromium screenshots only; still images do not independently prove scrolling, focus order, keyboard/touch operation, persistence or real-device behavior.",
+  "noSampledBlocker": true,
+  "findings": [
+    "Phone completion screen shows clear home identity and Arrange your yard action.",
+    "Desktop completion and 4K schematic legend/grid are readable in sampled screenshots.",
+    "Short 200% capture shows the scrolled lower portion of the quote dialog, including booking and free preview actions; the quote summary and Close are above this captured position, so reachability must be assessed from the separate interaction evidence, not this still."
+  ],
+  "images": {
+    "housing-contract-phone320.png": "c27db0fc624c4e25c8a0b3974397ae7a91d180911a756b109b8bf8cf7868fb47",
+    "housing-contract-short200.png": "2ef0b4441f0818d50bf58da8051ccac2740161a6a463d9076798a429f58b0325",
+    "housing-contract-desktop2k.png": "5466158247463b4b483ab70fbca361605ae816f4b7d1d7bc6d1db8a49fb0a980",
+    "housing-street-4k.png": "8630889c5028cd8a5a518c01ccd94520abaa6724c87a5ed33a811bc5b74a244c"
+  }
+}

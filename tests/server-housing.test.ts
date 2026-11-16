@@ -19,7 +19,7 @@ test('housing candidate guards fail closed for protected/remote/override pools a
  for(const name of ['ih2_preview','ih2_neighborhood_tour','ih2_test','ih2_cafe_test']){const p=new Pool({host:'127.0.0.1',database:name});assert.throws(()=>new HousingContractCandidate(p));await p.end();}
  for(const url of ['postgres://ih2@example.com/ih2_housing_test','postgres://ih2@127.0.0.1/ih2_housing_test?host=example.com','postgres://ih2@localhost/ih2_housing_test#override','postgres://ih2@127.0.0.1:55432/ih2_housing_test'])assert.throws(()=>HousingContractCandidate.databaseUrl(url));
  const remote=new Pool({connectionString:'postgres://ih2@localhost/ih2_housing_test',host:'example.com'});assert.throws(()=>new HousingContractCandidate(remote));await remote.end();
- for(const f of ['src/main.ts','server/http.ts','server/index.ts','server/live-store.ts','src/game/live-session.ts'].filter(f=>f!=='src/game/live-session.ts'))assert.doesNotMatch(await readFile(f,'utf8'),/housing-contract|HousingContractCandidate/);
+ for(const f of ['src/main.ts','server/http.ts','server/index.ts','server/live-store.ts','src/game/live-session.ts'].filter(f=>f!=='src/game/live-session.ts'))assert.doesNotMatch(await readFile(f,'utf8'),/housing-contract-candidate|HousingContractCandidate|ih2_housing_candidate/);
 });
 
 test('isolated PostgreSQL housing quote, ownership, allocation and construction durability',{skip:!candidateUrl},async t=>{
@@ -33,7 +33,7 @@ test('isolated PostgreSQL housing quote, ownership, allocation and construction 
  t.beforeEach(async()=>{await pool.query('drop schema if exists ih2_housing_candidate cascade;drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');await migrate(pool);now=start;store=new HousingContractCandidate(pool,{now:()=>now});await store.install();await store.importAccount(housingFixture());await store.importAccount(housingFixture('bea',0));});
  try{
   await t.test('legacy import and read-only projection retain every source field and all seven immutable migration checksums',async()=>{
-   const a=await store.snapshot('aster'),before=await fingerprint(),hashes=await migrations();assert.deepEqual(a,housingFixture());assert.equal(hashes.length,7);await store.publicStreet();await store.snapshot('bea');assert.deepEqual(await fingerprint(),before);assert.deepEqual(await migrations(),hashes);
+   const a=await store.snapshot('aster'),before=await fingerprint(),hashes=await migrations();assert.deepEqual(a,housingFixture());assert.equal(hashes.length,8);await store.publicStreet();await store.snapshot('bea');assert.deepEqual(await fingerprint(),before);assert.deepEqual(await migrations(),hashes);
    const pub=(await store.publicStreet())[0];assert.deepEqual(Object.keys(pub!).sort(),Object.keys(publicHousing(a,now)!).sort());assert.equal(JSON.stringify(pub).includes('bridgeKits'),false);assert.equal(JSON.stringify(pub).includes('produce'),false);await assert.rejects(store.importAccount(a));
   });
   await t.test('atomic forward import copies real current schema rows, exact facade/creative rights and fails without partial migration',async()=>{

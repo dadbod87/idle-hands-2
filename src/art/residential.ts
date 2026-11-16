@@ -1,3 +1,4 @@
+import housingCatalog from'../../public/art/housing/catalog.json'with{type:'json'};
 /** Disposable illustrated facade choices, never plot allocation or upgrade authority. */
 import catalog from '../../public/art/residential/catalog.json' with {type:'json'};
 import {HOME_ART,HOME_CATALOG} from './home.ts';
@@ -6,10 +7,12 @@ type Point={x:number;y:number};
 type WindowBox=Point&{width:number;height:number};
 export type ResidentialAsset={id:string;file:string;width:number;height:number;kind:string;foot:Point;family?:string;level?:number;doorFoot?:Point;lightingWindows?:WindowBox[];chimney?:Point};
 export type ExteriorArt={id:string;width:number;height:number;foot:Point;doorFoot:Point;family:string;lightingWindows:WindowBox[];chimney:Point};
+export const HOUSING_ASSETS=housingCatalog.assets;
 export const RESIDENTIAL_ASSETS=catalog.assets as ReadonlyArray<ResidentialAsset>;
 export const RESIDENTIAL_FAMILIES=['cottage','brick-gable','timber-porch'] as const;
 export function residentialArt(id:string){const value=RESIDENTIAL_ASSETS.find(a=>a.id===id);if(!value)throw new Error('Missing residential art: '+id);return value;}
-export function homeExteriorForPlot(plotId:string,level:1|2):ExteriorArt {
+export function homeExteriorForPlot(plotId:string,level:1|2,planId?:string|null):ExteriorArt {
+ if(planId){const m=housingCatalog.assets.find(a=>a.id==='housing-'+planId);if(!m)throw Error('Unknown current house art');return{...m,family:planId,lightingWindows:m.lightingWindows.map(w=>({...w}))};}
  addressForPlot(plotId);if(level!==1&&level!==2)throw new Error('Unknown exterior tier.');
  const n=BigInt(plotId)-1n,index=Number((n+n/3n)%3n),family=RESIDENTIAL_FAMILIES[index];
  const key=family==='cottage'?(level===2?HOME_ART.expandedExterior:HOME_ART.starterExterior):'residential-'+(family==='brick-gable'?'brick':'timber')+'-'+(level===2?'expanded':'starter');

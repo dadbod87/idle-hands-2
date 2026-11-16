@@ -20,9 +20,10 @@
     }
   },
   "reviewedCurrent": {
-    "src/game/world.ts": "8c18a3406f46bec3ca776019bdafbddfac7e67f11c1da941c796415ee8332141",
-    "src/main.ts": "045b6c7be785afaa8b31fa3229b7d88691d99bf235eb6927fe8c4e56174581cd",
-    "src/phaser/WorldScene.ts": "dc18aded6baaa9cf12865f8bff8db685aee01072a15b68e8bcbd7f2c29839414",
+    "src/game/world.ts": "61912bb2fe7504d9fd47ad689161140c4035bb7677af70010a6f209a2ba91076",
+    "src/main.ts": "d9e85cebd109726312c36d17205148122e9ef99a9f03c02e0f3ee48136292b03",
+    "src/phaser/WorldScene.ts": "4ad8318402d79b487507158064e559476905708c0249e1539f0795740c96f7df",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
-  }
+  },
+  "currentTask": "IH2-116: intentional current movement, housing renderer and integration changes; historical snapshots and study bytes stay exact. Final validation in116report."
 }

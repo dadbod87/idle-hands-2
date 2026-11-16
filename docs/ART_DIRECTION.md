@@ -151,3 +151,7 @@ The bounded0.75–1 actor-follow garden view fits three beds at phone entry, wit
 ## Candidate serving gesture — not runtime art
 
 IH2-100 explores one original Aster plate handover from the existing rig, with four facings/five poses and shared64×80/32,72/0.9 anchors. Preserve its accepted-rig resting identity and exact lower-foot pixels. Thin ink outlines keep hand/sleeve/prop connections legible over the established town and wood palettes. Static contact, bounded replay and reduced-motion cancellation are review surfaces only. Bea/Casey/Devon remain unfinished; no game art or recipe is added. [Contract](idle-hands-2/design/SERVING_GESTURE_STUDY.md).
+
+## November16 — unregistered housing variety study
+
+IH2-112creates original procedural vector illustrations, six house forms/four families, transparent ground, common288×320comparison scale, separate phone detail and8×10top-down footprint/numbered-yard/path schematic. Preserve the illustrated paper/sage/ink/terracotta kit. These drawings are isolated design assets generated with per-file provenance, not current registered residential artwork or new physical geometry. Existing six live facade IDs remain unchanged. Read112report and TerraV4review before treating the concepts as a playable catalog.

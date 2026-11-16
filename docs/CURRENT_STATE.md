@@ -1,3 +1,7 @@
+#112current — housing variety design candidate
+
+After accepted113larger-town update, work continues in `work/idle-hands-2-housing-variety`, branch `feat/housing-variety-study`. Read112REPORT/DESIGN and the current top of CURRENT_SESSION. New original house/yard/room study is unregistered: actual4175/4176/API7/game214files remain exactly accepted113.438system/163browser plus TerraV4pass, zero failures/skips/flakes/report-errors; exact-head/main source acceptance pending. No new live purchase, timer, migration or collision. Preserve protected55432data/keys/PIDs.
+
 # IH2-113 accepted — spacious town; next IH2-112 housing
 
 Main **fc979570d57ee2401a84510cbb0ab917d9239bde**, [PR #44](https://github.com/dadbod87/idle-hands-2/pull/44), candidate **a9a1d4d825db76fad2921c535078dfd098365f47**, identical tree. PR run 43900672096 and main run 43904199640 each passed all four jobs: **434 system checks / 158 browser cases (82 + 76)**, zero failures, skips, flakes or report errors. Both raw artifact sets and all 214 client files match the reviewed build.

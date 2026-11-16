@@ -1,0 +1,114 @@
+{
+  "classification": "Unregistered design-only home/yard study",
+  "constructionHours": 6,
+  "files": [
+    {
+      "file": "pocket-cottage-1.svg",
+      "sha256": "1c7006ebe373482685db728091e816b6700f7a14ba112b8c207a9046e2cc21b0",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "pocket-cottage-1-pots.svg",
+      "sha256": "ff478493b5b89008b49ada4be3d2436d7041713fd19ac96b23fbcd6194599928",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "pocket-cottage-1-post.svg",
+      "sha256": "b21b0a1c2688103f03a8151222b0adc105eb3cf00468744f7d69be8c1e99507b",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "pocket-cottage-2.svg",
+      "sha256": "f1b83d2ed5bc37eee467c023cc31be993f45b0362186fc4bdea87d55e421f12d",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "pocket-cottage-2-pots.svg",
+      "sha256": "3cdc347d99e64dc0a7de954435aa2f55b575bbbe7bf525c1b66772086a018091",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "pocket-cottage-2-post.svg",
+      "sha256": "082a3fca7175c793cd4dc1bae32cceef85899b6901d4071726521c4687ed82d4",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "porch-house-1.svg",
+      "sha256": "617e665620d328cb2db1c1a4f4f44c37dd581fb4a7219485a3b83fe7dbe809f1",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "porch-house-1-pots.svg",
+      "sha256": "c92b056801b92c9641b12070a9b53b3fddb5784a796b8171cc31dc285b75e2c3",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "porch-house-1-post.svg",
+      "sha256": "7b7bf9f2878d6c7c49a29a7aa529b36962de52fd293536bd3aef5b145012d464",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "porch-house-2.svg",
+      "sha256": "c195b38fe35fe19c2d96404f2699a783427e480f8319e13d947244505b4857d9",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "porch-house-2-pots.svg",
+      "sha256": "a65e41c8c7e494a2d736c948acb5b53c29301feed2751ede8259cdd299f99d65",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "porch-house-2-post.svg",
+      "sha256": "f64025462d44fbc94fa626c52754bf9d261f71398a0b7c9980f5a15f21ac565d",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "garden-studio-2.svg",
+      "sha256": "d13cfa2e8c462d3f5c284e89ed83b3ed6e05c2133fd07091d9ac581909cac21b",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "garden-studio-2-pots.svg",
+      "sha256": "6d72326a388bec81decbe972de30ab1862af3f867e454ea344ef9d3e9334f568",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "garden-studio-2-post.svg",
+      "sha256": "a2d1d6fffdf589254d32e163d27179aa97d2f4ae4c917659470a3f01cfabf912",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "workshop-lodge-2.svg",
+      "sha256": "adb7537157c4cb8902d392b0f7d521bc48ef39a7b45c40132548bbddfd53fda1",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "workshop-lodge-2-pots.svg",
+      "sha256": "f55fdc6d2f4763e8ebaf92e3417aff544ab48bd360b7c729b218e1ef574dc429",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    },
+    {
+      "file": "workshop-lodge-2-post.svg",
+      "sha256": "fc195e77cf34036980dcc0505dc1e3458e68889fe5f9bbf39a35b60560fb0dc9",
+      "creator": "Original procedural SVG authored for Idle Hands 2, no third-party assets",
+      "license": "Project-owned original art"
+    }
+  ]
+}

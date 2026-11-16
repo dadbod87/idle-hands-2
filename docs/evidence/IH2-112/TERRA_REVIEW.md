@@ -1,0 +1,21 @@
+# IH2-112 — independent housing study review
+
+Reviewed the frozen `housing-reviewed-v3/study/index.html` and sibling 2K, 4K, 320×640, 360×740 and 844×390 at 200% text captures in `../idle-hands-2-artifacts/spacious-town-2026-11-16/housing-reviewed-v3/`. The study is standalone design-only HTML/SVG, not the playable game. The phone views are emulations, not physical devices. An independent Chrome interaction pass at 360×740 is recorded in `../idle-hands-2-artifacts/spacious-town-2026-11-16/housing-terra/interaction-v3.json`; no game, API, account or database was used.
+
+## Findings
+
+**P2 — The plan and yard tradeoff is described more than illustrated.** The six/eight nook boxes show allowance and the added room name, but explicitly are not walkable geometry. The street comparison is a front elevation; while its common scale makes widths and door alignment easier to compare, it does not show lot depth or the placement of all candidate yard positions. The study's core choice is a smaller footprint and more usable yard versus more interior space, so a simple consistent top-down lot/room diagram with door, protected path and candidate yard positions would make that tradeoff independently assessable before implementation. This is a design-study completeness issue, not a claim that the playable game has incorrect geometry.
+
+**P3 — Enlarged-text landscape is readable but inefficient.** At 844×390 with 200% root text the facts and scene remain side by side, producing a very narrow facts column and a long page with substantial empty space alongside it. Stacking the panels at an effective-width breakpoint would make comparison easier. The capture shows wrapping rather than horizontal clipping; this is polish, not a demonstrated interaction blocker.
+
+## Verified in this study
+
+The earlier reviewed version could display a starter selector while an expanded variant appeared and drew the selected house at a larger scale than its neighbors. The frozen v3 synchronizes the effective tier and uses equal-width, same-viewBox street images. Across independent owner/tier/family selections the displayed selector matched the effective tier, all six plan IDs across four families appeared, and no mismatch was found. The selected home has a separate legible phone detail view. The comparison gives the proposed footprint dimensions and yard position count, separates main six and added two nooks, labels construction and conveniences as proposals, and distinguishes tier cost from unpriced remodeling and yard pieces. The design-only/no-save notice is prominent.
+
+At 360px the independently measured visible button, select and summary targets were at least 48px high and 109px wide; keyboard Enter activated a family choice. Sibling focus evidence reports all five viewport runs and additional choice, yard and protection interactions. Those reported results were not rerun as a full suite by this reviewer. Six variants, tier rights and prices are study behavior only; no implementation, real purchase, conservation, visitor access or timer was validated. Physical-phone behavior and actual residential street framing remain outside this review.
+
+## V4 targeted follow-up
+
+Reviewed the frozen `housing-reviewed-v4/study/index.html` independently in Chrome, opening the lot disclosure at 320×640, 2560×1440 and 844×390 with 200% root text. Screenshots are retained as `v4-lot320.png`, `v4-lot2k.png`, and `v4-lotshort200.png` in the external `housing-terra` directory. This is emulation of the standalone study, not the game or a physical-device test.
+
+The disclosure now depicts a common 8×10 lot, house footprint, numbered yard positions and a dashed clear visitor lane, with a readable legend. Switching through all four families changed the stated footprint and displayed anchor counts consistently (4, 2, 3 and 2 respectively). The diagram provides the exterior space comparison requested in the P2 finding; interior nook drawings remain explicitly conceptual, not walkable floor plans. The short 200% capture now stacks scene and facts, eliminating the narrow column noted in P3, and the document had no horizontal overflow at the inspected sizes. Both prior findings are addressed for this bounded study; no new visual blocker was observed. These observations do not validate actual game geometry, placement, collision or ownership.

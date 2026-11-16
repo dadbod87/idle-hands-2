@@ -118,7 +118,11 @@
     "tests/cafe-commands.test.ts",
     "tests/cafe-writer.test.ts",
     "tests/cafe-writer.spec.ts",
-    "tests/playable-cafe.spec.ts"
+    "tests/playable-cafe.spec.ts",
+    "tools/housing-pacing.ts",
+    "tools/create-housing-study.ts",
+    "tests/housing-options.test.ts",
+    "tests/housing-study.spec.ts"
   ],
   "compilerOptions": {
     "types": [

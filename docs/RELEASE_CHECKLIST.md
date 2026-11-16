@@ -1,3 +1,17 @@
+#114candidate
+
+- [x]47authority files exact, all destinations/colliders/doors/progress/economy unchanged; original view-only art, no new texture downloads/server calls.
+- [x] Native320/360pond water+actor+readable sign/caption tap/reload;2K/4Kday-night,short200,motion policy;5housing preview cases.
+- [x] Terra6.1actual baseline/candidateV2/finalV3and studyV5 reviews, findings resolved.
+- [x]441system/167browser, zero failures/skips/flakes/report errors; build/design,69task/10tracker,40pinned/diff pass; exact reviewed214game/20study bytes.
+- [ ] Exact final PR/main four-job/raw artifact/source acceptance.
+- [ ] Static-only client refresh with14tables/7checksums/keys and2APIprocesses preserved; old fictional signed session and actual native main-artifact checks.
+- [ ] New frozen housing study origin; old74study responses preserved; final closeout/next115pointers.
+
+#112accepted
+
+PR45/main095f76b0ceb1a713c88ef5c036d9fb0f10b79ef9, both exact-head/full-main four-job runs pass438system/163browser(82+81), no errors/skips/flakes. Raw artifacts/game214/study20bytes verified; native served design2K/320tap/keyboard and protected data/keys/PIDs proof retained. No game/SQL update or public sequel launch. [Closeout](evidence/IH2-112/source-closeout.json). Documentation-only closeout checks are separate from those exact runtime gates.
+
 #112housing study acceptance
 
 - [x] Audit actual authority, persistent lots/doors/rights,7migrations, all furnishing maps and current kit costs.
@@ -5,8 +19,8 @@
 - [x]438system, strict build/design,69task/10tracker,40pinned/whitespace;5native focused study cases and TerraV4.
 - [x]214default-game files and428actual responses exact113;14tables/7checksums/keys/fourPIDs unchanged at recorded verification.
 - [x] Full163local browser/raw reports and all20study bytes match reviewedV4.
-- [ ] Exact candidate/main four-job artifacts and accepted reproducible study freeze.
-- [ ] Closeout/next-task pointers and preserved actual-preview proof. No runtime registration or sequel public launch.
+- [x] Exact candidate/main four-job artifacts and accepted reproducible study freeze.
+- [x] Closeout/next-task pointers and preserved actual-preview proof. No runtime registration or sequel public launch.
 
 # IH2-113 accepted — spacious town; next IH2-112 housing
 

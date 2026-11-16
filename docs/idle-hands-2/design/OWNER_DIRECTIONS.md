@@ -47,3 +47,7 @@ Owner wants the eventual game to feel like a little RPG/MMO lite and finds the c
 ## November13 — varied house sizes, yards and purchasable layouts
 
 Direct owner request: preserve the liked neighborhood, vary exterior sizes, add personal yard decorations, and offer multiple home layouts with added features at higher in-game cost. See [HOUSE_VARIETY_AND_YARDS](HOUSE_VARIETY_AND_YARDS.md). Examples, prices and implementation sequence there are agent-selected/unimplemented. No real-money purchase or new currency is authorized.
+
+## November16 — continuous player-experience judgment
+
+Owner asks that actual game visuals be inspected with Terra6.1, including desktop/mobile, while continuing the design previews and implementation. Always evaluate current/planned systems for fun, intuitive choices, attractive presentation and easy enjoyable use. This directs routine product judgment; it is not permission for fake rewards, paid services, player resets or untested deployments. Task evidence should briefly explain player benefit, friction removed and remaining opportunity.

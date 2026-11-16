@@ -1,0 +1,13 @@
+{
+  "classification": "Original source-drawn view layers and prototype usability, no new downloaded/raster/third-party assets; existing textures and18home SVGs unchanged.",
+  "files": {
+    "src/art/commons-life.ts": "f9ae1965af4111697e1c2c925863aedfc725144ad0b456d25ff97e264365fc8b",
+    "src/phaser/TownCommons.ts": "678389c0cad4c31194fdac05ccc819dbde2f85534128990f6e8296196b859aa8",
+    "src/phaser/TownCommonsLife.ts": "e8599ddf7b568eecd6482bba64d7ea550fdff6f9ea4b9166395492b346eb4729",
+    "src/phaser/WorldScene.ts": "dc18aded6baaa9cf12865f8bff8db685aee01072a15b68e8bcbd7f2c29839414",
+    "tools/create-housing-study.ts": "5c913fe0a9242a780c599a9d2be62f67f4daf27e9f1bd9ae6dfed58632961847"
+  },
+  "creator": "Original procedural shapes authored for this project",
+  "license": "Project-owned original art",
+  "viewOnly": true
+}

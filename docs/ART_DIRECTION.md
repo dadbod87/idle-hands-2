@@ -155,3 +155,7 @@ IH2-100 explores one original Aster plate handover from the existing rig, with f
 ## November16 — unregistered housing variety study
 
 IH2-112creates original procedural vector illustrations, six house forms/four families, transparent ground, common288×320comparison scale, separate phone detail and8×10top-down footprint/numbered-yard/path schematic. Preserve the illustrated paper/sage/ink/terracotta kit. These drawings are isolated design assets generated with per-file provenance, not current registered residential artwork or new physical geometry. Existing six live facade IDs remain unchanged. Read112report and TerraV4review before treating the concepts as a playable catalog.
+
+## November16 —114organic commons candidate
+
+Original code-drawn meadow/understory grouping, hand-cut shore contours strictly inside existing water footprints, low reeds/pebbles, worn gathering thresholds and small picnic-table details. Existing original tree art and physical positions remain unchanged. Six bounded world-anchored butterflies and quiet ripples respect reduced motion/hidden views. Phone pond framing and raised readable caption make the actual landmark/player visible; no global wash, new loot or fake operational shop. Housing V5 improves disclosure and benchmark placement without changing its18original SVGs or registered residential art. Read114report/Terra/source gates before treating the candidate as accepted.

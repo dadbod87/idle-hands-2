@@ -1,3 +1,17 @@
+#112accepted
+
+PR45/main095f76b0ceb1a713c88ef5c036d9fb0f10b79ef9, both exact-head/full-main four-job runs pass438system/163browser(82+81), no errors/skips/flakes. Raw artifacts/game214/study20bytes verified; native served design2K/320tap/keyboard and protected data/keys/PIDs proof retained. No game/SQL update or public sequel launch. [Closeout](evidence/IH2-112/source-closeout.json). Documentation-only closeout checks are separate from those exact runtime gates.
+
+#112housing study acceptance
+
+- [x] Audit actual authority, persistent lots/doors/rights,7migrations, all furnishing maps and current kit costs.
+- [x] Four families/six forms, yard/room/route schematic, current-command pacing; original free vector provenance.
+- [x]438system, strict build/design,69task/10tracker,40pinned/whitespace;5native focused study cases and TerraV4.
+- [x]214default-game files and428actual responses exact113;14tables/7checksums/keys/fourPIDs unchanged at recorded verification.
+- [x] Full163local browser/raw reports and all20study bytes match reviewedV4.
+- [x] Exact candidate/main four-job artifacts and accepted reproducible study freeze.
+- [x] Closeout/next-task pointers and preserved actual-preview proof. No runtime registration or sequel public launch.
+
 # IH2-113 accepted — spacious town; next IH2-112 housing
 
 Main **fc979570d57ee2401a84510cbb0ab917d9239bde**, [PR #44](https://github.com/dadbod87/idle-hands-2/pull/44), candidate **a9a1d4d825db76fad2921c535078dfd098365f47**, identical tree. PR run 43900672096 and main run 43904199640 each passed all four jobs: **434 system checks / 158 browser cases (82 + 76)**, zero failures, skips, flakes or report errors. Both raw artifact sets and all 214 client files match the reviewed build.

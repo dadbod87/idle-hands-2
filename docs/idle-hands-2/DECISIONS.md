@@ -288,3 +288,8 @@ Close111;112housing design is next. Keep café interior, real identity/cloud lau
 ## November16 — large-screen first-town correction
 
 Owner requested a larger, less crowded explorable town and continuation afterward. Agent-selected additive geography keeps the original compact orientation plaza and all persistent coordinates, extends east/south into connected commons, and keeps full authored coverage at2K/4K. No sprite stretching, economic reward or fake operational shop. Protocol7rejects cached clients with incompatible48×48geometry; saves/root3/garden4/seven migrations remain stable.113takes priority before112housing design. Organic landscaping remains later polish, not a bulk city asset expansion.
+
+
+## November16 — housing variety without lost rights
+
+After113map acceptance,112compares original compact/porch/garden/workshop forms within stable parcels. Six/eight indoor nook rights and exact legacy facade/furniture survive; no retroactive fee or forced conversion. Agent-selected tier pricing retains12+24earned kits; a6hbuilder schedule is a proposal, not current behavior. Same-tier remodel and yard-piece recipes remain unpriced. Garden/bench conveniences must reuse existing capacity, never add production. Unregistered study only; matched runtime integration requires a later isolated catalog/transaction/migration proof. [Design](../evidence/IH2-112/DESIGN.md).

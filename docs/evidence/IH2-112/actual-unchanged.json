@@ -1,0 +1,14 @@
+{
+  "classification": "Actual existing113previews untouched while112standalone study is prepared. No service restart or protected data/API mutation.",
+  "origins": [
+    "http://127.0.0.1:4175/",
+    "http://localhost:4176/?town=1"
+  ],
+  "all428ResponsesExact": true,
+  "all214DefaultGameFilesEqualAccepted113Main": true,
+  "sameProtected14TablesEveryRowFieldAnd7MigrationChecksums": true,
+  "samePrivateKeyFingerprintsModes": true,
+  "same4ServicePIDs": true,
+  "noMigrationResetGrantKeyCopyOrRegeneration": true,
+  "runtimeSourceCommit": "fc979570d57ee2401a84510cbb0ab917d9239bde"
+}

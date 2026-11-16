@@ -227,3 +227,11 @@ Stable addresses and individual home doors across expandable24-site blocks; grou
 2026-11-11 — IH2-062 working candidate: optional square-tree observation sketchbook and original journal keepsake while ordinary production runs, additive legacy-save default and existing transactional/proximity authority. Comparative developer-source activity research and renewed humor/teamwork/solo-expression direction recorded. New local content is independently authorized; hosted accounts/costs remain gated. Local141checks/zero skips and47browser cases pass, plus strengthened HTTP/sharedUI tests; exact-head CI/artifact/source closeout pending.
 
 2026-11-11 — IH2-066 working candidate: nine fresh/returning/saturated agent viewport audits, dated candidate/runtime coverage,36schedule/policy/absence and18group models. Select non-executable pine/saw/kept-easel/produce-service/opt-in noticeboard family; record goal-starvation, phone panel friction and versioned ingredient-ledger requirements. No runtime/economy/hosting/art-family change; full source gates pending.
+
+## 2026-11-16 — IH2-112 housing variety design candidate
+
+Original standalone study compares compact cottage, porch house, garden studio and workshop lodge; different footprint sizes, room/yard/door diagrams and protected six/eight-nook ownership. Current-command kit pacing retains12+24tier benchmarks and models missed returns/competing crafts. Terra feedback corrected tier-selector clarity and image scale; final lot diagram and short200stacking reviewed. This does not register new game assets, prices, timers, purchases, collisions or SQL. Full source acceptance remains pending in112report/handoff; actual113larger-town game stays unchanged.115records isolated catalog/legacy/allocation/transaction and residential-framing work before integration.
+
+## 2026-11-16 —112source acceptance
+
+PR45/main095f76b0ceb1a713c88ef5c036d9fb0f10b79ef9, exact candidate/main all4jobs each438system/163browser(82+81), no failures/skips/flakes/report-errors. Raw artifacts and game214/study20bytes match; native49640study tested2K/320tap+keyboard, no API/storage/errors. Actual113game/keys/data/PIDs remain unchanged; unregistered designs require115housing contract before purchases. Next114landscaping.

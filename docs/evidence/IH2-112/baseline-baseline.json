@@ -1,0 +1,127 @@
+{
+  "classification": "Preparatory current-source housing audit, not IH2-112acceptance. Retained disposable25historical-home/26fictional-player fixture in ih2_neighborhood_browser on55434; existing high-progress seeds are declared fixtures. Native login/travel/resize only, no reset/seed/grant or protected55432access. Cosmetic daylight; Chrome emulation.",
+  "records": [
+    {
+      "shape": {
+        "name": "2k-gate",
+        "width": 2560,
+        "height": 1440
+      },
+      "zoom": 1,
+      "scrollX": -238,
+      "scrollY": 0,
+      "worldView": {
+        "x": -238,
+        "y": 0,
+        "width": 2524,
+        "height": 1237
+      },
+      "matrix": [
+        1,
+        0,
+        0,
+        1,
+        238,
+        0
+      ]
+    },
+    {
+      "shape": {
+        "name": "4k-gate",
+        "width": 3840,
+        "height": 2160
+      },
+      "zoom": 1,
+      "scrollX": -878,
+      "scrollY": 0,
+      "worldView": {
+        "x": -878,
+        "y": 0,
+        "width": 3804,
+        "height": 1957
+      },
+      "matrix": [
+        1,
+        0,
+        0,
+        1,
+        878,
+        0
+      ]
+    },
+    {
+      "shape": {
+        "name": "desktop-door",
+        "width": 1440,
+        "height": 900
+      },
+      "zoom": 1,
+      "scrollX": 0,
+      "scrollY": 211.5,
+      "worldView": {
+        "x": 0,
+        "y": 211.5,
+        "width": 1404,
+        "height": 697
+      },
+      "matrix": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        -211.5
+      ]
+    },
+    {
+      "shape": {
+        "name": "phone360-door",
+        "width": 360,
+        "height": 780
+      },
+      "zoom": 1,
+      "scrollX": 126,
+      "scrollY": 263.09375,
+      "worldView": {
+        "x": 126,
+        "y": 263.09375,
+        "width": 356,
+        "height": 593.8125
+      },
+      "matrix": [
+        1,
+        0,
+        0,
+        1,
+        -126,
+        -263.09375
+      ]
+    },
+    {
+      "shape": {
+        "name": "phone320-door",
+        "width": 320,
+        "height": 640
+      },
+      "zoom": 1,
+      "scrollX": 146,
+      "scrollY": 366.59375,
+      "worldView": {
+        "x": 146,
+        "y": 366.59375,
+        "width": 316,
+        "height": 386.8125
+      },
+      "matrix": [
+        1,
+        0,
+        0,
+        1,
+        -146,
+        -366.59375
+      ]
+    }
+  ],
+  "all25PlotRightsAndLevelsUnchanged": true,
+  "errors": []
+}

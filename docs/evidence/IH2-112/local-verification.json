@@ -1,0 +1,14 @@
+{
+  "system": 438,
+  "browser": 163,
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "nativeFocusedStudyCases": 5,
+  "all20StudyFilesEqualReviewedV4": true,
+  "all214GameFilesEqualAccepted113Main": true,
+  "designEntries": 48,
+  "regions": 5,
+  "planTasks": 69,
+  "trackerTests": 10,
+  "pinnedFiles": 40,
+  "classification": "Native Chrome viewport/touch-enabled contexts, synthetic existing fixtures/pure clocks; not physical devices, new live housing purchases or hosted game launch."
+}

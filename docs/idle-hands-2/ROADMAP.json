@@ -1842,7 +1842,7 @@
     {
       "id": "IH2-112",
       "title": "House sizes, personal yards and meaningful layout choices",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-111",
         "IH2-113"
@@ -1857,8 +1857,13 @@
         "No new real-money currency, live house purchase/migration, loss of furniture/rights, public hosting or paid assets."
       ],
       "evidence": [
-        "docs/idle-hands-2/design/HOUSE_VARIETY_AND_YARDS.md"
-      ]
+        "docs/evidence/IH2-112/REPORT.md",
+        "docs/evidence/IH2-112/DESIGN.md",
+        "docs/evidence/IH2-112/TERRA_REVIEW.md",
+        "docs/evidence/IH2-112/source-closeout.json",
+        "docs/idle-hands-2/handoffs/2026-11-16-housing-variety.md"
+      ],
+      "owner_branch": "feat/housing-variety-study"
     },
     {
       "id": "IH2-114",
@@ -1878,6 +1883,27 @@
       ],
       "evidence": [
         "docs/evidence/IH2-113/TERRA_REVIEW.md"
+      ]
+    },
+    {
+      "id": "IH2-115",
+      "title": "Isolated housing catalog, legacy rights and safe yard allocation contract",
+      "status": "queued",
+      "depends_on": [
+        "IH2-112"
+      ],
+      "goal": "Prove versioned housing choice, persistent legacy mapping and conserved indoor/yard ownership outside active runtime before introducing purchases or changing occupied plots.",
+      "acceptance": [
+        "Preserve exact existing facade/level/nooks/furnishing maps/address with zero retroactive cost and no forced conversion.",
+        "Define strict catalog/quote/constructor/allocation candidate with idempotence, concurrency, expiry, restart/restore and privacy proofs; keep existing applied migrations immutable.",
+        "Design bounded residential wide-screen framing and actual smaller-footprint collision/door/visitor transition rules without moving plots; price remodel/yard recipes separately before offering them."
+      ],
+      "exclusions": [
+        "No active discovered migration, real account changes, cloud hosting, fees, wallet, grants or partial runtime registration."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-112/DESIGN.md",
+        "docs/idle-hands-2/design/HOUSE_VARIETY_AND_YARDS.md"
       ]
     }
   ],

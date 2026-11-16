@@ -1,0 +1,17 @@
+{
+  "classification": "First complete local run failed only the existing20-client p95<=500ms timing assertion (461pass/1fail/0skip). Visual/build work was concurrent; no raw failing p95 was emitted. Host-contention explanation is an inference, not proven cause. Existing47authorityfiles/214compiled client files unchanged.",
+  "isolatedSameCheckP95Ms": 147.81487500000003,
+  "quietFull462RunBudgetPassed": true,
+  "quietFullRawP95Ms": null,
+  "targetMs": 500,
+  "sameAssertionAndCoverageRetained": true,
+  "noProductOrTestThresholdChange": true,
+  "repeatedFullResult": {
+    "passed": 462,
+    "failed": 0,
+    "skipped": 0
+  },
+  "artifactNote": "Playwright default output cleanup cleared local test-results/server before archive. Exact quiet-run p95 is unavailable; preserved system/restart logs establish pass. Hosted server job archives raw SQL/recovery artifacts before separate browser jobs and remains required.",
+  "finalPostAppearance462RunP95Ms": 78.1830829999999,
+  "finalRawServerEvidenceArchivedBeforeAnyBrowserCleanup": true
+}

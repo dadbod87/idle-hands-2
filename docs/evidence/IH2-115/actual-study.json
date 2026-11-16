@@ -1,0 +1,37 @@
+{
+  "origin": "http://127.0.0.1:49642",
+  "all31HttpFilesExactMainCIAndTerraV4": true,
+  "classification": "Actual served accepted standalone rehearsal, native Chrome2K/320tap/focus, explicit fictional48kits/ownedplanter and advancedclock; no API/storage/login/progress changes, not real construction/physical devices.",
+  "records": [
+    {
+      "size": {
+        "name": "2k",
+        "width": 2560,
+        "height": 1440
+      },
+      "nativeTap": false,
+      "keyboardFocusOnFreeClose": true,
+      "completeQuoteAndFreeCancel": true,
+      "oldHomeAndOwnedItemsPreservedThroughFictionalBuild": true,
+      "readyAndArrangeFirst": true,
+      "street24AddressLegend": true,
+      "noApiStorageApplicationHttpErrors": true,
+      "selectionCancellationDiagnostics": []
+    },
+    {
+      "size": {
+        "name": "phone320",
+        "width": 320,
+        "height": 640
+      },
+      "nativeTap": true,
+      "keyboardFocusOnFreeClose": true,
+      "completeQuoteAndFreeCancel": true,
+      "oldHomeAndOwnedItemsPreservedThroughFictionalBuild": true,
+      "readyAndArrangeFirst": true,
+      "street24AddressLegend": true,
+      "noApiStorageApplicationHttpErrors": true,
+      "selectionCancellationDiagnostics": []
+    }
+  ]
+}

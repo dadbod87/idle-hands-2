@@ -159,3 +159,8 @@ IH2-112creates original procedural vector illustrations, six house forms/four fa
 ## November16 —114organic commons candidate
 
 Original code-drawn meadow/understory grouping, hand-cut shore contours strictly inside existing water footprints, low reeds/pebbles, worn gathering thresholds and small picnic-table details. Existing original tree art and physical positions remain unchanged. Six bounded world-anchored butterflies and quiet ripples respect reduced motion/hidden views. Phone pond framing and raised readable caption make the actual landmark/player visible; no global wash, new loot or fake operational shop. Housing V5 improves disclosure and benchmark placement without changing its18original SVGs or registered residential art. Read114report/Terra/source gates before treating the candidate as accepted.
+
+
+## IH2-115 — ownership/construction rehearsal, no new runtime art
+
+Reuses all18original112silhouette SVGs and6exact existinglegacyfacades without changing bytes. Clear paper/sage review, initial free Close focus, decorating-first completion and a separately labelled street/doorway ground diagram support the candidate rules. The diagram is original canvas code and has a legend; it is not final architecture or registered collision. Bound proposed yard art to0.6tile width and nonblocking ground markers before116production art/proximity proofs. Preserve detailed legacy cladding/trim and exact feet; no external/paid media or new default-client download. See115provenance/Terra/CONTRACT.

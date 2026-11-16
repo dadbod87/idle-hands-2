@@ -1,0 +1,6 @@
+Local fixture database connection interrupted; unconfirmed actions can retry after reconnection.
+Local fixture database connection interrupted; unconfirmed actions can retry after reconnection.
+Local fixture database connection interrupted; unconfirmed actions can retry after reconnection.
+Local fixture database connection interrupted; unconfirmed actions can retry after reconnection.
+PASS isolated real PostgreSQL restart also preserved housing accounts, quotes, paid deadlines and receipts.
+PASS: isolated PostgreSQL restart preserved decorated property/job and the live service reconnected.

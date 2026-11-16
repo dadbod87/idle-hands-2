@@ -1,0 +1,206 @@
+{
+  "version": "housing-v1",
+  "starterKits": 12,
+  "expansionKits": 24,
+  "remodelKits": 2,
+  "buildMs": 21600000,
+  "quoteMs": 120000,
+  "legacy": [
+    {
+      "id": "legacy-home-starter-exterior",
+      "exterior": "home-starter-exterior",
+      "tier": 1
+    },
+    {
+      "id": "legacy-home-expanded-exterior",
+      "exterior": "home-expanded-exterior",
+      "tier": 2
+    },
+    {
+      "id": "legacy-residential-brick-starter",
+      "exterior": "residential-brick-starter",
+      "tier": 1
+    },
+    {
+      "id": "legacy-residential-brick-expanded",
+      "exterior": "residential-brick-expanded",
+      "tier": 2
+    },
+    {
+      "id": "legacy-residential-timber-starter",
+      "exterior": "residential-timber-starter",
+      "tier": 1
+    },
+    {
+      "id": "legacy-residential-timber-expanded",
+      "exterior": "residential-timber-expanded",
+      "tier": 2
+    }
+  ],
+  "plans": [
+    {
+      "id": "pocket-cottage-1",
+      "family": "pocket-cottage",
+      "tier": 1,
+      "name": "Pocket Cottage",
+      "width": 4.5,
+      "height": 5.5,
+      "indoorNooks": 6,
+      "yard": [
+        {
+          "x": 1.1,
+          "y": 4.5
+        },
+        {
+          "x": 6.9,
+          "y": 4.5
+        },
+        {
+          "x": 1.5,
+          "y": 9
+        },
+        {
+          "x": 6.5,
+          "y": 9
+        }
+      ],
+      "feature": "A small house. A generous garden.",
+      "extraRoom": "Main room",
+      "convenience": null,
+      "roof": "#6c8175",
+      "wall": "#d9caa6"
+    },
+    {
+      "id": "pocket-cottage-2",
+      "family": "pocket-cottage",
+      "tier": 2,
+      "name": "Cottage with a Loft",
+      "width": 4.5,
+      "height": 7.5,
+      "indoorNooks": 8,
+      "yard": [
+        {
+          "x": 1.1,
+          "y": 4.5
+        },
+        {
+          "x": 6.9,
+          "y": 4.5
+        },
+        {
+          "x": 1.5,
+          "y": 9
+        },
+        {
+          "x": 6.5,
+          "y": 9
+        }
+      ],
+      "feature": "More indoors. Still room for roses.",
+      "extraRoom": "Loft · 2 added nooks",
+      "convenience": null,
+      "roof": "#6c8175",
+      "wall": "#d9caa6"
+    },
+    {
+      "id": "porch-house-1",
+      "family": "porch-house",
+      "tier": 1,
+      "name": "The Front-Porch House",
+      "width": 6,
+      "height": 5.5,
+      "indoorNooks": 6,
+      "yard": [
+        {
+          "x": 1.5,
+          "y": 9
+        },
+        {
+          "x": 6.5,
+          "y": 9
+        }
+      ],
+      "feature": "For waving at people without leaving.",
+      "extraRoom": "Main room + covered porch",
+      "convenience": null,
+      "roof": "#a76f56",
+      "wall": "#bac4ab"
+    },
+    {
+      "id": "porch-house-2",
+      "family": "porch-house",
+      "tier": 2,
+      "name": "Porch House, Upstairs",
+      "width": 6,
+      "height": 7.5,
+      "indoorNooks": 8,
+      "yard": [
+        {
+          "x": 1.5,
+          "y": 9
+        },
+        {
+          "x": 6.5,
+          "y": 9
+        }
+      ],
+      "feature": "An upstairs retreat. The same porch.",
+      "extraRoom": "Upstairs retreat · 2 added nooks",
+      "convenience": null,
+      "roof": "#a76f56",
+      "wall": "#bac4ab"
+    },
+    {
+      "id": "garden-studio-2",
+      "family": "garden-studio",
+      "tier": 2,
+      "name": "Garden Studio",
+      "width": 6.5,
+      "height": 6.5,
+      "indoorNooks": 8,
+      "yard": [
+        {
+          "x": 1.5,
+          "y": 9
+        },
+        {
+          "x": 6.5,
+          "y": 9
+        },
+        {
+          "x": 4,
+          "y": 0.7
+        }
+      ],
+      "feature": "Sunroom space and a garden desk.",
+      "extraRoom": "Sunroom · 2 added nooks",
+      "convenience": "same-garden",
+      "roof": "#a78263",
+      "wall": "#d1c394"
+    },
+    {
+      "id": "workshop-lodge-2",
+      "family": "workshop-lodge",
+      "tier": 2,
+      "name": "Workshop Lodge",
+      "width": 6.5,
+      "height": 7.5,
+      "indoorNooks": 8,
+      "yard": [
+        {
+          "x": 1.5,
+          "y": 9
+        },
+        {
+          "x": 6.5,
+          "y": 9
+        }
+      ],
+      "feature": "A workroom for excellent intentions.",
+      "extraRoom": "Workroom · 2 added nooks",
+      "convenience": "same-bench",
+      "roof": "#526f70",
+      "wall": "#bdb7a3"
+    }
+  ]
+}

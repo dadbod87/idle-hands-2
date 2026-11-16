@@ -1,3 +1,7 @@
+# IH2-115 current — isolated housing ownership and construction
+
+Full source `work/idle-hands-2-housing-contract`, branch `feat/housing-ownership-contract`, base verified114closeout8929208 over main0b4733f. Strict versioned catalog, exactlegacy/owned-copy ledger, quoted fixed6hbuilders, dedicated SQL/restart/restore candidate and usable in-memory rehearsal. Actual4175/4176/API7and accepted studies stay114; no active housing purchase, migration, reset, grant or cloud change. Read115REPORT/CONTRACT/Terra and dated handoff. Full462system/173browser, strict build/design/plan/pinned/diff pass; exact final hosted/raw/served-study acceptance remains pending. Read115local-verification for compiled-byte identity and the resolved local timing investigation. Next116coherently integrates purchase→build→arrange→visit with matched art/physics/trusted authority.
+
 # IH2-114 accepted — town-life polish and clearer housing previews
 
 [PR46](https://github.com/dadbod87/idle-hands-2/pull/46), main **0b4733f0c093cb204a20fa27dadd3102a7816df2**, candidate **dcd4d870327f95d219bf541bc5ec77424701ed3b**, identical tree. PR43933153747 and main43936256913 each passed all four jobs: **441 system /167 browser (85+82)**, zero failures/skips/flakes/report errors. Raw reports, all214game files and20study files equal the final Terra-reviewed freeze. [Evidence](evidence/IH2-114/REPORT.md), [source closeout](evidence/IH2-114/source-closeout.json), [dated handoff](idle-hands-2/handoffs/2026-11-16-town-life.md).

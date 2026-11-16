@@ -1,0 +1,11 @@
+{
+  "classification": "Default game214files exactly114; optional standalone in-memory rehearsal only. Gzip-equivalent file measurement, not negotiated HTTP or device performance.",
+  "activeGameFiles": 214,
+  "activeGameAddedBytes": 0,
+  "studyFiles": 31,
+  "studyRawBytes": 229374,
+  "studyJavaScriptBytes": 155184,
+  "studyJavaScriptGzipEquivalentBytes": 47233,
+  "newRuntimeServerCalls": 0,
+  "newProductionAssets": 0
+}

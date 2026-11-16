@@ -1,0 +1,75 @@
+{
+  "classification": "Actual new local API7 via both matched clients; cached6requests refused before private state/action parsing. No credentials/cookies, stock grants, response interception or data writes.",
+  "records": [
+    {
+      "base": "http://127.0.0.1:4175",
+      "path": "snapshot",
+      "status": 426,
+      "requiredSchema": "7",
+      "noSnapshot": true
+    },
+    {
+      "base": "http://127.0.0.1:4175",
+      "path": "events?schema=6",
+      "status": 426,
+      "requiredSchema": "7",
+      "noSnapshot": true
+    },
+    {
+      "base": "http://127.0.0.1:4175",
+      "path": "login",
+      "status": 426,
+      "requiredSchema": "7",
+      "noSnapshot": true
+    },
+    {
+      "base": "http://127.0.0.1:4175",
+      "path": "movement",
+      "status": 426,
+      "requiredSchema": "7",
+      "noSnapshot": true
+    },
+    {
+      "base": "http://127.0.0.1:4175",
+      "path": "command",
+      "status": 426,
+      "requiredSchema": "7",
+      "noSnapshot": true
+    },
+    {
+      "base": "http://localhost:4176",
+      "path": "snapshot",
+      "status": 426,
+      "requiredSchema": "7",
+      "noSnapshot": true
+    },
+    {
+      "base": "http://localhost:4176",
+      "path": "events?schema=6",
+      "status": 426,
+      "requiredSchema": "7",
+      "noSnapshot": true
+    },
+    {
+      "base": "http://localhost:4176",
+      "path": "login",
+      "status": 426,
+      "requiredSchema": "7",
+      "noSnapshot": true
+    },
+    {
+      "base": "http://localhost:4176",
+      "path": "movement",
+      "status": 426,
+      "requiredSchema": "7",
+      "noSnapshot": true
+    },
+    {
+      "base": "http://localhost:4176",
+      "path": "command",
+      "status": 426,
+      "requiredSchema": "7",
+      "noSnapshot": true
+    }
+  ]
+}

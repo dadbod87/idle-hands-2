@@ -1,3 +1,21 @@
+#112local gates complete — hosted source acceptance pending
+
+Full source `work/idle-hands-2-housing-variety`, branch `feat/housing-variety-study`, based on113closeoutaea4602. Original housing study/model only, unregistered: all214default game bytes exactly accepted113.438system/163browser,5focused, TerraV4, build/design/plan/pinned/whitespace pass; zero failures/skips/flakes/report-errors.20study bytes match reviewedV4. Exact candidate/main four-job/raw artifact gates remain pending; no merge yet. Actual4175/4176/API7stay unchanged with428responses/data/keys/PIDs verified. [112report](../evidence/IH2-112/REPORT.md). Read its audit/design and dated handoff.115housing contracts and114organic landscaping are queued; no new playable house purchase/timer/geometry.
+
+# IH2-112 — house-size, yard and layout design
+
+Full source `work/idle-hands-2-housing-variety`, branch `feat/housing-variety-study`, baseaea4602 over accepted mainfc979570. Task113map is accepted and active at4175/4176/API7; all434system/158browser and PR/main/raw/actual/data/session gates passed. Current112is an unregistered design/price/art study only. No house purchase, geometry, save, SQL or active-preview change until its later integration. Preserve existing keys/data/studies.
+
+# IH2-113 accepted — spacious town; next IH2-112 housing
+
+Main **fc979570d57ee2401a84510cbb0ab917d9239bde**, [PR #44](https://github.com/dadbod87/idle-hands-2/pull/44), candidate **a9a1d4d825db76fad2921c535078dfd098365f47**, identical tree. PR run 43900672096 and main run 43904199640 each passed all four jobs: **434 system checks / 158 browser cases (82 + 76)**, zero failures, skips, flakes or report errors. Both raw artifact sets and all 214 client files match the reviewed build.
+
+Actual preview [127.0.0.1:4175](http://127.0.0.1:4175/) and fictional Tour [localhost:4176/?town=1](http://localhost:4176/?town=1) now use the matched final client/API 7. The signed Tour session survived; all 14 tables, every field/row, seven migration checksums and private-key fingerprints/modes remain exact. No SQL migration, reset, grant or key copy/regeneration. Native 2K/4K travel, phone/short enlarged controls and unchanged ordinary progress passed on the actual main artifact. No public/cloud game launch.
+
+Full-code continuation: `work/idle-hands-2-town-expansion`, branch `chore/spacious-town-closeout-2026-11-16` (accepted main runtime plus this documentation closeout; resolve its latest pushed head). Canonical `idle-hands-2` remains old-runtime bookkeeping only. Read the 113 report/source-closeout and dated handoff. The larger square preserves old activity/home positions and adds connected scenic districts. Remaining organic landscaping is task 114. Task 112 is ready next: house size, yard and layout design, preserving existing ownership and furnishings.
+
+Historical pending notes below are superseded by this verified closeout.
+
 #113priority — spacious town before112housing
 
 After acceptance, fetch and inspect `chore/spacious-town-closeout-2026-11-16` for the exact verified source/preview/task closeout before starting112. Its existence and acceptance must be verified; this pending header is not a claim that it has been created.

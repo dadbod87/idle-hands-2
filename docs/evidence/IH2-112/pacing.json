@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Return after readiness, about twice daily",
+    "visitHours": 12,
+    "missedWeek": false,
+    "weeklyDecor": false,
+    "visits": 37,
+    "commands": 131,
+    "thresholds": [
+      {
+        "kits": 12,
+        "elapsedHours": 144.2
+      },
+      {
+        "kits": 36,
+        "elapsedHours": 432.6
+      }
+    ],
+    "earnedKits": 36,
+    "ownedPlanters": 1,
+    "keptFirstPlanter": true,
+    "root": 3,
+    "garden": 4,
+    "classification": "Simulated current pure commands/clock, not SQL purchase, observed player pace or real-time browser progression."
+  },
+  {
+    "name": "One visit daily",
+    "visitHours": 24,
+    "missedWeek": false,
+    "weeklyDecor": false,
+    "visits": 37,
+    "commands": 114,
+    "thresholds": [
+      {
+        "kits": 12,
+        "elapsedHours": 288.2
+      },
+      {
+        "kits": 36,
+        "elapsedHours": 864.6
+      }
+    ],
+    "earnedKits": 36,
+    "ownedPlanters": 1,
+    "keptFirstPlanter": true,
+    "root": 3,
+    "garden": 4,
+    "classification": "Simulated current pure commands/clock, not SQL purchase, observed player pace or real-time browser progression."
+  },
+  {
+    "name": "Readiness returns with one missed week",
+    "visitHours": 12,
+    "missedWeek": true,
+    "weeklyDecor": false,
+    "visits": 37,
+    "commands": 117,
+    "thresholds": [
+      {
+        "kits": 12,
+        "elapsedHours": 312.2
+      },
+      {
+        "kits": 36,
+        "elapsedHours": 600.6
+      }
+    ],
+    "earnedKits": 36,
+    "ownedPlanters": 1,
+    "keptFirstPlanter": true,
+    "root": 3,
+    "garden": 4,
+    "classification": "Simulated current pure commands/clock, not SQL purchase, observed player pace or real-time browser progression."
+  },
+  {
+    "name": "Readiness returns plus a weekly planter",
+    "visitHours": 12,
+    "missedWeek": false,
+    "weeklyDecor": true,
+    "visits": 39,
+    "commands": 131,
+    "thresholds": [
+      {
+        "kits": 12,
+        "elapsedHours": 144.2
+      },
+      {
+        "kits": 36,
+        "elapsedHours": 456.6333333333333
+      }
+    ],
+    "earnedKits": 36,
+    "ownedPlanters": 3,
+    "keptFirstPlanter": true,
+    "root": 3,
+    "garden": 4,
+    "classification": "Simulated current pure commands/clock, not SQL purchase, observed player pace or real-time browser progression."
+  }
+]

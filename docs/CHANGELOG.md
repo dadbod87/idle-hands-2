@@ -1,3 +1,7 @@
+## November 16 — spacious town accepted
+
+Main fc979570, PR #44: real 4,096 × 3,072 square, connected scenic districts, native 2K/4K coverage, regional phone guidance, safe roof occlusion and protocol 7. Final 434/158 checks on PR/main and matched actual preview pass; all protected data/keys/session preserved. Next: housing variety design.
+
 ## November16 — spacious town candidate
 
 Full source `work/idle-hands-2-town-expansion`, branch `feat/spacious-town`, base7e8closeout over accepted main056c3793. Real square4096×3072/native2K+4K, connected scenic commons and six destinations; old activity/home coordinates and economy unchanged. Protocol7matches expanded geometry; root3/garden4/seven SQL migrations unchanged.Frozen final434system/158browser, zero failures/skips/flakes/report-errors,8focused native cases, isolated database restart and Terra checks pass. Exact PR/main/raw artifacts/actual preview/data/session checks remain pending. Existing4175/4176remain111until all gates pass. [113report](evidence/IH2-113/REPORT.md). New user priority precedes112; later housing begins only after this acceptance.
@@ -223,3 +227,7 @@ Stable addresses and individual home doors across expandable24-site blocks; grou
 2026-11-11 — IH2-062 working candidate: optional square-tree observation sketchbook and original journal keepsake while ordinary production runs, additive legacy-save default and existing transactional/proximity authority. Comparative developer-source activity research and renewed humor/teamwork/solo-expression direction recorded. New local content is independently authorized; hosted accounts/costs remain gated. Local141checks/zero skips and47browser cases pass, plus strengthened HTTP/sharedUI tests; exact-head CI/artifact/source closeout pending.
 
 2026-11-11 — IH2-066 working candidate: nine fresh/returning/saturated agent viewport audits, dated candidate/runtime coverage,36schedule/policy/absence and18group models. Select non-executable pine/saw/kept-easel/produce-service/opt-in noticeboard family; record goal-starvation, phone panel friction and versioned ingredient-ledger requirements. No runtime/economy/hosting/art-family change; full source gates pending.
+
+## 2026-11-16 — IH2-112 housing variety design candidate
+
+Original standalone study compares compact cottage, porch house, garden studio and workshop lodge; different footprint sizes, room/yard/door diagrams and protected six/eight-nook ownership. Current-command kit pacing retains12+24tier benchmarks and models missed returns/competing crafts. Terra feedback corrected tier-selector clarity and image scale; final lot diagram and short200stacking reviewed. This does not register new game assets, prices, timers, purchases, collisions or SQL. Full source acceptance remains pending in112report/handoff; actual113larger-town game stays unchanged.115records isolated catalog/legacy/allocation/transaction and residential-framing work before integration.

@@ -1,0 +1,35 @@
+{
+  "candidate": "a9a1d4d825db76fad2921c535078dfd098365f47",
+  "main": "fc979570d57ee2401a84510cbb0ab917d9239bde",
+  "tree": "e5b37ac73fe479653fd07b793dfcc3f7b367686e",
+  "pr": 44,
+  "prRun": 43900672096,
+  "mainRun": 43904199640,
+  "system": 434,
+  "browser": 158,
+  "shards": [
+    82,
+    76
+  ],
+  "bothRunsAll4JobsSuccess": true,
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all214ClientBytesEqualReviewedLocalAndBothCI": true,
+  "actualLocal214ClientApi7Verified": true,
+  "native2K4KPhoneShort200Verified": true,
+  "all14TablesAllColumnsAllRowsAnd7ChecksumsPreserved": true,
+  "sameSignedTourAndPrivateKeyFingerprintsMode0600": true,
+  "noSqlMigration": true,
+  "nativeSharedNavigationProof": "shared-navigation.json",
+  "activeSource": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/spacious-town-2026-11-16/ci-final/runtime-source",
+  "activeClient": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/spacious-town-2026-11-16/main-ci/sequel-client-build",
+  "externalArtifacts": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/spacious-town-2026-11-16",
+  "publicStandardUbuntuCi": true,
+  "runnerMinutesRoundedEstimate": 64,
+  "noPaidSetupOrResetCreditsUsed": true,
+  "limits": [
+    "Local synthetic towns and Chrome viewport emulation, not physical devices or hosted game production.",
+    "Cosmetic daytime/200%text and disclosed position-only or existing synthetic fixtures; no actual-preview economy/API/position interception.",
+    "Original scenic districts remain intentionally open; fishing, orchard harvesting and market trading are not implemented.",
+    "Same-room shared movement resumes its last durable checkpoint on service restart; unchanged existing contract."
+  ]
+}

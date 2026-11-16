@@ -1,3 +1,7 @@
+# November16 — current-source design candidate
+
+[IH2-112 source audit](../../evidence/IH2-112/CURRENT_SOURCE_AUDIT.md), [design/pricing proposal](../../evidence/IH2-112/DESIGN.md), pacing and standalone native choice study now compare four families/six variants. This is unregistered design: actual113game, seven migrations, earned resources and existing homes remain unchanged. Current authority is live-store/live-home-layout; the older110starting-point observations below are historical. Tier12/24kit benchmarks are retained, proposed6hbuilders are new, and remodel/yard-piece costs are not priced. Full source acceptance and final evidence are recorded in112report/dated handoff.
+
 # Homes worth recognizing from the street
 
 Owner direction, November13: retain the liked neighborhood, but vary actual exterior sizes, give yards different decorations, and let players purchase multiple home layouts with added features. This is recorded future design, not a claim that those choices are playable. Costs mean earned in-game progress/resources, not real-money purchases; no new wallet or price is implemented here.

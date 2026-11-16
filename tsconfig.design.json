@@ -122,7 +122,9 @@
     "tools/housing-pacing.ts",
     "tools/create-housing-study.ts",
     "tests/housing-options.test.ts",
-    "tests/housing-study.spec.ts"
+    "tests/housing-study.spec.ts",
+    "tests/commons-life.spec.ts",
+    "tests/commons-life.test.ts"
   ],
   "compilerOptions": {
     "types": [

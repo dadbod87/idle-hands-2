@@ -1,3 +1,11 @@
+#114local gates complete — exact hosted and actual-preview acceptance pending
+
+Full source `work/idle-hands-2-town-life`, branch `feat/town-landscape-life`.441system/167browser,9focused,Terra6.1V3game+V5study, strict build/design/69task+10tracker/40pinned/diff pass, zero failures/skips/flakes/report-errors. All214game/20study bytes match final reviewed freeze. Native narrow pond water/player/sign, normal validated caption taps, distinct composition/boundedlife, separate6walks, concise house benchmark/optional room diagrams.47backend/domain/migration files exact; onlyPlaces grouping is a server-unimported view helper. Actual4175/4176/API7and49640are unchanged until exact PR/main/raw gates and static-only update. Read114report and dated handoff; no real player/economy/SQL/cloud changes. Next115continues housing contract before purchases. After acceptance, fetch/verify expected `chore/town-life-closeout-2026-11-16` for the final source/runtime/handoff evidence; its future name here is not a claim that acceptance has happened.
+
+#114current — organic district edges and town-life polish
+
+Full code `work/idle-hands-2-town-life`, branch `feat/town-landscape-life`, base3c88d92over accepted main095f76b. Task114in progress; actual4175/4176/API7and49640housing study remain accepted previous versions. Read114REPORT/Terra baseline. Presentation-only composition/life; no geometry, economy, timer, progress or migration changes. User specifically requests Terra6.1 actual-game desktop/mobile inspection and ongoing fun/intuitive/visual/usability evaluation. Preserve protected55432/keys/old studies. Next housing115continues the accepted previews through isolated contract proofs.
+
 #112accepted — house-size/yard/room design; next114landscaping
 
 Main **095f76b0ceb1a713c88ef5c036d9fb0f10b79ef9**, [PR45](https://github.com/dadbod87/idle-hands-2/pull/45), candidate **122ac46b50f4c11a0d3ca52db96da1e2e55d3807**, identical tree. PR run43916212654 and main run43919451116 each passed all four jobs: **438system/163browser(82+81)**, zero failures/skips/flakes/report errors. Raw artifacts, all214default-game bytes and all20standalone-study bytes verified. [112report](../evidence/IH2-112/REPORT.md), source-closeout and [handoff](handoffs/2026-11-16-housing-variety.md).

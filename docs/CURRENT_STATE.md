@@ -1,3 +1,7 @@
+#114local complete — hosted/actual acceptance pending
+
+Full source `work/idle-hands-2-town-life`, branch `feat/town-landscape-life`, base3c88d92. Original landscape/life, native phone pond framing/tappable readable signs, separate6scenic routes and more concise companion housing preview.441system/167browser,9focused,Terra6.1V3game+V5study, build/design/plan/pinned/diff pass with zero failures/skips/flakes/report-errors.47authority/domain/migration files unchanged; protocol7/root3/garden4/seven SQL files stay exact. Actual4175/4176and49640remain previous accepted artifacts pending exact PR/main/raw/static-only update gates. Read114report/handoff. No hosted sequel release or expense.
+
 #112accepted — house-size/yard/room design; next114landscaping
 
 Main **095f76b0ceb1a713c88ef5c036d9fb0f10b79ef9**, [PR45](https://github.com/dadbod87/idle-hands-2/pull/45), candidate **122ac46b50f4c11a0d3ca52db96da1e2e55d3807**, identical tree. PR run43916212654 and main run43919451116 each passed all four jobs: **438system/163browser(82+81)**, zero failures/skips/flakes/report errors. Raw artifacts, all214default-game bytes and all20standalone-study bytes verified. [112report](evidence/IH2-112/REPORT.md), source-closeout and [handoff](idle-hands-2/handoffs/2026-11-16-housing-variety.md).

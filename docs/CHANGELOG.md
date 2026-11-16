@@ -235,3 +235,7 @@ Original standalone study compares compact cottage, porch house, garden studio a
 ## 2026-11-16 —112source acceptance
 
 PR45/main095f76b0ceb1a713c88ef5c036d9fb0f10b79ef9, exact candidate/main all4jobs each438system/163browser(82+81), no failures/skips/flakes/report-errors. Raw artifacts and game214/study20bytes match; native49640study tested2K/320tap+keyboard, no API/storage/errors. Actual113game/keys/data/PIDs remain unchanged; unregistered designs require115housing contract before purchases. Next114landscaping.
+
+## 2026-11-16 —114organic town and clearer preview candidate
+
+View-only natural ground/shore/gathering details, bounded world-space ambientlife, phone pond framing/readable44pxvalidated caption taps,6scenic routes in a distinct disclosure. Companion housingV5shows selected tier benchmark beside choices and optional room concepts. Terra6.1actual baseline/finalgame and study reviews resolved findings.441system/167browser/local gates pass; exact source/main/actual static refresh pending in114report. All47authority/domain/migration files and18house SVGs unchanged. No game economy/timer/purchase/progress changes.

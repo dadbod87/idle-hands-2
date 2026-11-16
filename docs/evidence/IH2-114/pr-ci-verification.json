@@ -1,0 +1,47 @@
+{
+  "run": 43933153747,
+  "sha": "dcd4d870327f95d219bf541bc5ec77424701ed3b",
+  "all4JobsSuccess": true,
+  "system": 441,
+  "browser": 167,
+  "disjointShards": [
+    85,
+    82
+  ],
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "orderedFixtureFamily": {
+    "shared-town.spec.ts": [
+      2
+    ],
+    "starter-homes.spec.ts": [
+      2
+    ],
+    "trail.spec.ts": [
+      2
+    ],
+    "z-first-visit.spec.ts": [
+      2
+    ]
+  },
+  "all214ClientBytesEqualTerraV3AndCurrentLocal": true,
+  "all20StudyFilesEqualReviewedV5": true,
+  "candidateDumpRestoreRawArtifactVerified": true,
+  "jobMinutesRoundedEstimate": 33,
+  "publicRepository": true,
+  "runnerLabels": [
+    [
+      "ubuntu-24.04"
+    ],
+    [
+      "ubuntu-24.04"
+    ],
+    [
+      "ubuntu-24.04"
+    ],
+    [
+      "ubuntu-24.04"
+    ]
+  ],
+  "noPaidResourceConfigured": true,
+  "referenceScope": "Final exact local/TerraV3game+V5study/CI; authority remains exact priorruntime"
+}

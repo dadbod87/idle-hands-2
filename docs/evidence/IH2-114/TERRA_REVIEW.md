@@ -1,0 +1,27 @@
+# IH2-114 — independent candidate V2 review
+
+Reviewed candidate `http://127.0.0.1:4213/` in fresh Chrome local-workshop contexts, with no login, injected position, interception, grants or protected database access. Retained captures are in `../idle-hands-2-artifacts/town-life-2026-11-16/terra-final-v2/`. Actual Places → Town walks & scenery → Founders’ pond travel and Inspect were exercised at 2560×1440, 3840×2160, 320×640 and 360×780; 844×390 at 200% root text was sampled after game readiness and scrolling. Natural nighttime was captured at the pond; forced cosmetic daytime was separately sampled at desktop. These are emulations, not physical phones or Safari, and this is not a performance or full regression audit.
+
+## Findings
+
+**P3 — Pond sign is partially clipped and overlaps the actor at phone arrival.** At both phone sizes, the water and player are now simultaneously visible, addressing the baseline P2. The sign extends beyond the right edge and its lettering crosses the actor's head, although the persistent location card and field note identify the destination and Inspect opens the correct description. A later camera/sign composition refinement could improve the arrival without sacrificing water or actor visibility. No interaction blocker was observed.
+
+## Assessment
+
+The softer pond contours, reeds and stones, grouped ground tones, path edges and details at the pavilion and market give the expanded town more character while maintaining readable roads and recognizable landmarks in the inspected views. The six scenic destinations now have their own Places group, reducing the earlier browsing burden. On both phones the pond is visible at ordinary arrival and Inspect opens its description and a return route; on short enlarged text the controls can be reached by vertical page scroll and no horizontal overflow was measured. The earlier baseline concerns about missing phone pond payoff and schematic waterside presentation are addressed in sampled views. Some large lawns and straight routes remain; these are compatible with an open town and future polish, not a new blocker.
+
+The independent pass did not measure hidden/reduced-motion behavior, 10 Hz bounds, collision, touch coordinate mapping, reload, or progress conservation; those remain claims of separate focused tests rather than this review. Still frames alone do not certify animation quality or entire-world navigation. No physical-device, production, or release acceptance is implied.
+
+## Housing study V5 companion check
+
+The separate design-only `http://127.0.0.1:4214/` was sampled in Chrome at 2560×1440, 320×640, 360×780 and 844×390 with 200% root text; captures are alongside the candidate evidence as `housing*.png`. It plainly states that purchases and saves do not occur. The selected name, tier benchmark and nook count now sit immediately below the four choices, with unpriced remodel and yard fees disclosed. In a 320px interaction, choosing Garden Studio showed 36 kits for a first home, 24 for a starter owner and already-owned tier rights for an expanded owner. Opening the optional room concept showed the six main and two sunroom nooks and labeled the image non-walkable. The 320 page had no horizontal overflow. This is a clearer cold-read than the previous long phone page and no new blocker was observed; it remains a proposed design rather than playable housing or an approved price.
+
+## V3 targeted phone follow-up
+
+Independently reviewed frozen candidate `http://127.0.0.1:4215/` in fresh Chrome local-workshop contexts at 320×640 and 360×780. Ordinary Places → Town walks & scenery → Founders’ pond travel reached the destination, and the contextual Inspect control opened the correct pond panel on both widths. In retained `../idle-hands-2-artifacts/town-life-2026-11-16/terra-final-v3/pond-320.png` and `pond-360.png`, both water and actor remain visible; the raised two-line sign is fully in frame and no longer overlaps the actor. The earlier P3 is addressed in these states, with no new visual blocker observed. This independent pass used the contextual Inspect control and did not separately exercise caption tapping, collision, reload, motion bounds or real devices; those remain separate focused-test coverage.
+
+## 2026-11-16 — installed actual-main spot review
+
+Independently sampled the updated `http://127.0.0.1:4175/` in fresh native Chrome local-workshop contexts at 2560×1440 and 320×640. From ordinary spawn, Places → Town walks & scenery → Founders’ pond completed on each; the contextual Inspect control opened the correct pond panel. In the retained frames the pond, player and raised two-line sign are visible, the sign does not overlap the actor, and the phone panel and return action are readable. No visual or contextual Inspect blocker was observed in these sampled states.
+
+Screenshots are retained in `../idle-hands-2-artifacts/town-life-2026-11-16/terra-actual-main/`, with scope, results and screenshot hashes in `../idle-hands-2-artifacts/town-life-2026-11-16/terra-post-update.json`. No login, protected database access, grants, interception, injected position, build or service restart was used. This is an installed-artifact spot check on viewport emulation, not a physical-phone, full regression, performance or independent CI verification.

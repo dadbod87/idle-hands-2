@@ -1868,22 +1868,28 @@
     {
       "id": "IH2-114",
       "title": "Organic district edges and town-life polish",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-113",
         "IH2-112"
       ],
-      "goal": "Polish the intentionally open commons after housing concepts establish occupied and future spaces.",
+      "goal": "Polish the intentionally open commons after housing concepts establish occupied and future spaces. Apply the same owner-requested usability judgment to the existing housing preview without registering purchases.",
       "acceptance": [
         "Improve shoreline/path edges, vegetation grouping and recognizable gathering-place detail without blocking routes or pretending future services are playable.",
-        "Inspect native2K/4K,phone and short/text200views; preserve original starter activity coordinates, homes and economy."
+        "Inspect native2K/4K,phone and short/text200views; preserve original starter activity coordinates, homes and economy.",
+        "Native phone pond framing reveals water and player; scenic browsing and label taps stay clear and use existing validated movement.",
+        "Companion housing preview shows the selected plan/tier benchmark beside choices, with optional detailed room concepts; preserve exact proposed tier calculations and keep purchases unregistered."
       ],
       "exclusions": [
         "No reward/currency/authority changes, bulk asset packs, paid resources or displacement of persistent property."
       ],
       "evidence": [
-        "docs/evidence/IH2-113/TERRA_REVIEW.md"
-      ]
+        "docs/evidence/IH2-114/REPORT.md",
+        "docs/evidence/IH2-114/source-closeout.json",
+        "docs/evidence/IH2-114/TERRA_REVIEW.md",
+        "docs/idle-hands-2/handoffs/2026-11-16-town-life.md"
+      ],
+      "owner_branch": "feat/town-landscape-life"
     },
     {
       "id": "IH2-115",

@@ -1,3 +1,23 @@
+# IH2-114 accepted — town-life polish and clearer housing previews
+
+[PR46](https://github.com/dadbod87/idle-hands-2/pull/46), main **0b4733f0c093cb204a20fa27dadd3102a7816df2**, candidate **dcd4d870327f95d219bf541bc5ec77424701ed3b**, identical tree. PR43933153747 and main43936256913 each passed all four jobs: **441 system /167 browser (85+82)**, zero failures/skips/flakes/report errors. Raw reports, all214game files and20study files equal the final Terra-reviewed freeze. [Evidence](evidence/IH2-114/REPORT.md), [source closeout](evidence/IH2-114/source-closeout.json), [dated handoff](idle-hands-2/handoffs/2026-11-16-town-life.md).
+
+Full source: `work/idle-hands-2-town-life`, branch `chore/town-life-closeout-2026-11-16` (accepted main plus documentation-only closeout; resolve latest pushed head). Canonical `work/idle-hands-2` is old090runtime/bookkeeping only. Do not implement or create a source PR from it.
+
+[Game](http://127.0.0.1:4175/), [fictional Tour](http://localhost:4176/?town=1): accepted114main-CIclient. Four additional native actual-artifact cases and Terra6.1 desktop/phone follow-up pass. Static clients only replaced: both APIs kept running from frozen113source with47byte-identical authority inputs. Existing signed Visitor session, all14tables/everyfield/7migration checksums/private-key fingerprints/modes preserved at the recorded static-update boundary. No protected PostgreSQL/APIrestart, schema/reset/grant/keycopy/regeneration. Protocol7/root3/garden4 unchanged. See active-services.json for exact paths/PIDs; preserve canonical private keys.
+
+[Housing study V5](http://127.0.0.1:49641/): new frozen main-CIartifact,20HTTPbytes verified, native2K/320tap+keyboard, no API/storage. Selected plan/tier benchmark appears beside choices; detailed room diagrams optional. All18house SVGs and proposed tier costs/rights unchanged. Design-only; no new playable purchases/timers. Old49640V4and54earlier static responses remain exact (74total).
+
+Next **IH2-115**: isolated versioned housing catalog, legacy rights/appearance, conserved yard/indoor allocation, safe quote/build/concurrency/expiry/restart/restore contracts, and wide residential framing before integration. Keep owner fun/intuitive/visual/ease evaluation in AGENTS/OWNER_DIRECTIONS active; use relevant actual-game Terra6.1 checks. Scenic places still need meaningful later activity/payoff; do not disguise decoration as harvestable stock or add empty regions as progression.
+
+Limits: Chrome emulation, not physical-phone/Safari validation; standalone home silhouettes/space studies; residential2048blocks still need framing candidates. Cosmetic sky/hidden-state checks and full-suite55434synthetic fixtures disclosed. No public/cloud sequel launch, paid resource or reset-credit use. Verify current remote/source/services before resuming.
+
+## Historical checkpoints — superseded for current status
+
+#114local complete — hosted/actual acceptance pending
+
+Full source `work/idle-hands-2-town-life`, branch `feat/town-landscape-life`, base3c88d92. Original landscape/life, native phone pond framing/tappable readable signs, separate6scenic routes and more concise companion housing preview.441system/167browser,9focused,Terra6.1V3game+V5study, build/design/plan/pinned/diff pass with zero failures/skips/flakes/report-errors.47authority/domain/migration files unchanged; protocol7/root3/garden4/seven SQL files stay exact. Actual4175/4176and49640remain previous accepted artifacts pending exact PR/main/raw/static-only update gates. Read114report/handoff. No hosted sequel release or expense.
+
 #112accepted — house-size/yard/room design; next114landscaping
 
 Main **095f76b0ceb1a713c88ef5c036d9fb0f10b79ef9**, [PR45](https://github.com/dadbod87/idle-hands-2/pull/45), candidate **122ac46b50f4c11a0d3ca52db96da1e2e55d3807**, identical tree. PR run43916212654 and main run43919451116 each passed all four jobs: **438system/163browser(82+81)**, zero failures/skips/flakes/report errors. Raw artifacts, all214default-game bytes and all20standalone-study bytes verified. [112report](evidence/IH2-112/REPORT.md), source-closeout and [handoff](idle-hands-2/handoffs/2026-11-16-housing-variety.md).

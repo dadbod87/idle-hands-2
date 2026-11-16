@@ -1,0 +1,32 @@
+{
+  "all74HistoricalResponsesExact": true,
+  "priorSets": [
+    {
+      "port": 49529,
+      "dir": "gathering-study-2026-11-12/ci-final/browser/test-results/browser/gathering-study",
+      "count": 9,
+      "everyResponseByteEqualPriorAcceptedCI": true
+    },
+    {
+      "port": 49530,
+      "dir": "gathering-family-2026-11-12/ci-final/browser/test-results/browser/gathering-family",
+      "count": 21,
+      "everyResponseByteEqualPriorAcceptedCI": true
+    },
+    {
+      "port": 49534,
+      "dir": "collection-receipts-2026-11-12/ci-final/browser/test-results/browser/collection-receipt-study",
+      "count": 14,
+      "everyResponseByteEqualPriorAcceptedCI": true
+    },
+    {
+      "port": 49552,
+      "dir": "city-plan-2026-11-12/ci-final/browser/test-results/browser/ledgerwick-study",
+      "count": 10,
+      "everyResponseByteEqualPriorAcceptedCI": true
+    }
+  ],
+  "old49640V4Files": 20,
+  "noOldStudyRestartOrFileMutation": true,
+  "verifiedAt": "2026-11-16T19:28:42.394107+00:00"
+}

@@ -1,0 +1,20 @@
+{
+  "method": "Sum shipped assets/*.js raw and gzip(mtime=0), identical original static textures. This is file-size measurement, not network compression negotiation or physical-device frame rate.",
+  "accepted113": {
+    "files": 1,
+    "rawBytes": 1815013,
+    "gzipBytes": 482376
+  },
+  "candidate114": {
+    "files": 1,
+    "rawBytes": 1820314,
+    "gzipBytes": 484594
+  },
+  "deltaRaw": 5301,
+  "deltaGzip": 2218,
+  "newDownloadedTextures": 0,
+  "newAmbientMaxHz": 10,
+  "newAmbientGraphicsBuffers": 1,
+  "newButterflies": 6,
+  "newServerCalls": 0
+}

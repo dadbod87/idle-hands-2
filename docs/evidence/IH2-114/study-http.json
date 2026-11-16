@@ -1,0 +1,59 @@
+{
+  "origin": "http://127.0.0.1:49641",
+  "classification": "Served standalone design study, all20static bytes equal reviewedV5and mainCI, actual Chrome pointer/keyboard/touch emulation; no game/API/save or physical-device claim.",
+  "all20FilesExact": true,
+  "records": [
+    {
+      "shape": {
+        "name": "2k",
+        "width": 2560,
+        "height": 1440
+      },
+      "keyboard": true,
+      "nativeTap": false,
+      "rightsPreserved": true,
+      "noApiOrStorage": true,
+      "errors": [],
+      "failed": [
+        {
+          "url": "http://127.0.0.1:49641/pocket-cottage-1.svg",
+          "failure": "net::ERR_ABORTED",
+          "phase": "initial-loading"
+        }
+      ],
+      "expectedStartupAborts": [
+        {
+          "url": "http://127.0.0.1:49641/pocket-cottage-1.svg",
+          "failure": "net::ERR_ABORTED",
+          "phase": "initial-loading"
+        }
+      ]
+    },
+    {
+      "shape": {
+        "name": "phone320",
+        "width": 320,
+        "height": 640
+      },
+      "keyboard": true,
+      "nativeTap": true,
+      "rightsPreserved": true,
+      "noApiOrStorage": true,
+      "errors": [],
+      "failed": [
+        {
+          "url": "http://127.0.0.1:49641/pocket-cottage-1.svg",
+          "failure": "net::ERR_ABORTED",
+          "phase": "initial-loading"
+        }
+      ],
+      "expectedStartupAborts": [
+        {
+          "url": "http://127.0.0.1:49641/pocket-cottage-1.svg",
+          "failure": "net::ERR_ABORTED",
+          "phase": "initial-loading"
+        }
+      ]
+    }
+  ]
+}

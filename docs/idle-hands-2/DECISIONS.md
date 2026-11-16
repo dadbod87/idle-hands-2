@@ -293,3 +293,7 @@ Owner requested a larger, less crowded explorable town and continuation afterwar
 ## November16 — housing variety without lost rights
 
 After113map acceptance,112compares original compact/porch/garden/workshop forms within stable parcels. Six/eight indoor nook rights and exact legacy facade/furniture survive; no retroactive fee or forced conversion. Agent-selected tier pricing retains12+24earned kits; a6hbuilder schedule is a proposal, not current behavior. Same-tier remodel and yard-piece recipes remain unpriced. Garden/bench conveniences must reuse existing capacity, never add production. Unregistered study only; matched runtime integration requires a later isolated catalog/transaction/migration proof. [Design](../evidence/IH2-112/DESIGN.md).
+
+## November16 —114player-experience improvements
+
+Owner requests continuous fun/intuitive/visual/ease evaluation and Terra6.1 actual-game review. Fix native phone landmark composition through continuous bounded camera framing, keeping every authoritative position/shape and zoom unchanged. Caption taps reuse normal approach/proximity. Separate6scenic walks from functional outdoor stops. Keep ambient life bounded/client-only, no server events or reward sparkle. Companion study leads with selected tier benchmark and optional room details; prices/rights and old frozen study stay intact.114is presentation;115still owns housing catalog/transaction/allocation. Acceptance/actual preview remains pending in114report until exact gates pass.

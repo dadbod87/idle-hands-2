@@ -2001,6 +2001,26 @@
       "source": "tools/create-housing-art.py",
       "date": "2026-11-16",
       "modifications": "Original matched house body/roof/door vectors; no imported media."
+    },
+    {
+      "id": "cottage-expanded-interior",
+      "path": "public/art/interiors/cottage-expanded-interior.svg",
+      "sha256": "7490e4b76d86ddd609dfd6b85cf2efd4433cc3fbca07eddf00e1bac957493714",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-cottage-interiors.py",
+      "date": "2026-11-16",
+      "modifications": "Cottage material layers and flat north-wall embroidery derived from original project home interior; exact bed, floor, door and nook geometry. No imported media."
+    },
+    {
+      "id": "cottage-starter-interior",
+      "path": "public/art/interiors/cottage-starter-interior.svg",
+      "sha256": "25cd4bded1cf6c710abf233cca3dec4e5ab3f947506b6cd71ddbbc3cae8835f9",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-cottage-interiors.py",
+      "date": "2026-11-16",
+      "modifications": "Cottage material layers and flat north-wall embroidery derived from original project home interior; exact bed, floor, door and nook geometry. No imported media."
     }
   ],
   "comparison": {

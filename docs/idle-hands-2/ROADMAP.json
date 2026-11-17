@@ -2007,6 +2007,25 @@
       "evidence": [
         "docs/evidence/IH2-119/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-120",
+      "title": "Profile shared-loop load variance before hosting",
+      "status": "queued",
+      "depends_on": [
+        "IH2-118"
+      ],
+      "goal": "Explain observed local versus CI load variance and define a trustworthy shared-loop capacity envelope before hosting.",
+      "acceptance": [
+        "Retain raw repeated environment/pool/lock/query/durable-write/network/cleanup/idle measurements, including failures, without assuming a host-only cause.",
+        "Any justified optimization preserves authority, strict existing budgets/client counts, economy/timers, conservation/replay/privacy and all full source/main/preserved-preview gates."
+      ],
+      "exclusions": [
+        "No relaxed durability/budgets/waits/coverage, real-player load, cloud infrastructure, expense or unrelated gameplay change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-120/PLAN.md"
+      ]
     }
   ],
   "source_status_note": "Owner explicitly made the repository public November13,2026. Prior private-billing refusals in task histories remain dated evidence; standard free public CI may now validate authorized final candidates. No pending source/preview acceptance is satisfied by visibility alone. Read ACTIONS_USAGE_POLICY and CURRENT_SESSION."

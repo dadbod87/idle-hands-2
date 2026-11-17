@@ -6,6 +6,10 @@ Authority: Nick delegated routine design/technical choices on 2026-11-09 and req
 
 Every session must read [ACTIONS_USAGE_POLICY](ACTIONS_USAGE_POLICY.md) before requesting hosted validation. Follow its local-first batching, existing-run inspection, quota hold and closeout rules. Required final-head checks remain unchanged.
 
+## Match the verification runtime
+
+The repository workflow pins Node24.22.2. Prefer that exact runtime for full local Node/Playwright verification and record the browser/profile. A newer system runtime is not evidence that the pinned checks passed. November17diagnostics encountered local Node26stream/installer and Chrome reload-poll failures; a matching-runtime/browser check succeeded, without establishing a single root cause. Keep those observations separate. An isolated verified official Nodebinary may be used without changing system defaults or dependency locks. Use the existing CIprofile when reproducing CI; report its configured assertion windows, not a pass of the different local Chrome profile. Never change coverage, budgets or source timeouts to manufacture acceptance.
+
 ## Resume in any session
 
 From a current checkout, read root AGENTS and required current-game state/release documents, then this directory's README, DECISIONS, EXPERIENCE_BRIEF and latest handoff. Run:

@@ -1,0 +1,2480 @@
+{
+  "method": "Budget pass comes only from each original final report. Missing values remain null/absent. SQL and pool times include network/Node callback scheduling. Unique server commands are identified by the traced receipt write, not request bodies; dropped raw samples make that classification incomplete. Transaction spans are client-observed BEGIN\u2192COMMIT/ROLLBACK, not pure lock/CPU time. Sampled PG wait counts are not exact durations. Unattributed time includes validation/serialization/scheduling, not pure CPU.",
+  "runs": [
+    {
+      "run": "baseline-node24-01",
+      "attempt": null,
+      "finalReportPresent": true,
+      "node": "v24.22.2",
+      "commandP95Ms": 967.6185839999998,
+      "commandBudgetPass": false,
+      "sql": {
+        "count": 5620,
+        "p50": 1.4737499999996544,
+        "p95": 14.695666999999958,
+        "p99": 57.62237500000083,
+        "max": 1528.6610419999997
+      },
+      "resources": {
+        "cpuUserMs": 2273.787,
+        "cpuSystemMs": 630.13,
+        "cpuPercentOfOneCore": 8.739957453853272,
+        "rssPeakBytes": 171229184,
+        "eventLoopP95Ms": 23.232511
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      }
+    },
+    {
+      "run": "latency-node24/db-delay-0",
+      "attempt": {
+        "name": "db-delay-0",
+        "profile": true,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v24.22.2",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          10.279296875,
+          10.80419921875,
+          18.7958984375
+        ],
+        "hostLoadAtEnd": [
+          9.70458984375,
+          10.62646484375,
+          18.45458984375
+        ],
+        "elapsedMs": 29331.228459,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v24.22.2",
+      "commandP95Ms": 218.7499170000001,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 1.1090829999998277,
+        "p95": 5.242790999999897,
+        "p99": 10.601957999999286,
+        "max": 63.8298749999999
+      },
+      "resources": {
+        "cpuUserMs": 1887.796,
+        "cpuSystemMs": 387.667,
+        "cpuPercentOfOneCore": 8.084861107579703,
+        "rssPeakBytes": 178110464,
+        "eventLoopP95Ms": 22.429695
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "profile": {
+        "outcome": {
+          "completed": true,
+          "errorCode": null
+        },
+        "rawCoverage": {
+          "seen": 6942,
+          "retained": 6942,
+          "dropped": 0
+        },
+        "poolAcquire": {
+          "count": 280,
+          "p50": 67.44250000000102,
+          "p95": 201.8303330000001,
+          "p99": 242.01825000000008,
+          "max": 248.91445799999997,
+          "sum": 18903.559740999983
+        },
+        "commit": {
+          "count": 280,
+          "p50": 1.6882079999995767,
+          "p95": 6.945542000001296,
+          "p99": 11.259083999999348,
+          "max": 23.42150000000038,
+          "sum": 741.6598030000143
+        },
+        "rowLock": {
+          "count": 300,
+          "p50": 1.2834160000020347,
+          "p95": 5.091333000000304,
+          "p99": 9.555291000000125,
+          "max": 14.819541999997455,
+          "sum": 569.5526310000009
+        },
+        "uniqueCommandTraceCount": 140,
+        "replayCommandTraceCount": 20,
+        "sqlQueriesPerUniqueCommand": {
+          "count": 140,
+          "p50": 27,
+          "p95": 28,
+          "max": 28
+        },
+        "uniqueCommandParts": {
+          "serverMs": {
+            "count": 140,
+            "p50": 91.74670799999967,
+            "p95": 198.44570799999974,
+            "max": 265.3431669999991
+          },
+          "poolMs": {
+            "count": 140,
+            "p50": 47.11579200000051,
+            "p95": 135.36995899999965,
+            "max": 168.49495899999965
+          },
+          "sqlMs": {
+            "count": 140,
+            "p50": 36.45008299999972,
+            "p95": 87.59666799999968,
+            "max": 123.04578800000672
+          },
+          "unattributedMs": {
+            "count": 140,
+            "p50": 1.7684199999994235,
+            "p95": 3.637040999990859,
+            "max": 10.683874000001651
+          }
+        },
+        "clientObservedTransactionSpans": {
+          "count": 280,
+          "p50": 33.050124999997934,
+          "p95": 88.53558300000032,
+          "max": 125.15766600000279
+        },
+        "unmatchedTransactionBegins": 0,
+        "sampledBackendStateCounts": {
+          "active/none/none": 1,
+          "idle/Client/ClientRead": 400,
+          "idle in transaction/Client/ClientRead": 39,
+          "idle in transaction/none/none": 5,
+          "idle in transaction/IO/WALSync": 1
+        },
+        "observerIdleSubmissions": 0,
+        "observerErrors": [],
+        "slowestUniqueCommands": [
+          {
+            "request": 970,
+            "uniqueReceiptWritten": true,
+            "serverMs": 265.3431669999991,
+            "poolMs": 168.49495899999965,
+            "sqlMs": 94.08362500000658,
+            "unattributedMs": 2.7645829999928537,
+            "sqlQueries": 28
+          },
+          {
+            "request": 968,
+            "uniqueReceiptWritten": true,
+            "serverMs": 240.08899999999994,
+            "poolMs": 114.48737500000061,
+            "sqlMs": 123.04578800000672,
+            "unattributedMs": 2.555836999992607,
+            "sqlQueries": 28
+          },
+          {
+            "request": 969,
+            "uniqueReceiptWritten": true,
+            "serverMs": 230.2910840000004,
+            "poolMs": 115.53483400000187,
+            "sqlMs": 113.44974500001626,
+            "unattributedMs": 1.3065049999822804,
+            "sqlQueries": 28
+          },
+          {
+            "request": 966,
+            "uniqueReceiptWritten": true,
+            "serverMs": 221.42312500000116,
+            "poolMs": 122.10074999999779,
+            "sqlMs": 96.41391600000134,
+            "unattributedMs": 2.90845900000204,
+            "sqlQueries": 28
+          },
+          {
+            "request": 967,
+            "uniqueReceiptWritten": true,
+            "serverMs": 220.09258299999783,
+            "poolMs": 117.77337499999703,
+            "sqlMs": 100.02567000000272,
+            "unattributedMs": 2.2935379999980796,
+            "sqlQueries": 28
+          }
+        ]
+      }
+    },
+    {
+      "run": "latency-node24/db-delay-2",
+      "attempt": {
+        "name": "db-delay-2",
+        "profile": true,
+        "syntheticDatabaseDelayMs": 2,
+        "node": "v24.22.2",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          9.70458984375,
+          10.62646484375,
+          18.45458984375
+        ],
+        "hostLoadAtEnd": [
+          11.75048828125,
+          11.03125,
+          18.28466796875
+        ],
+        "elapsedMs": 38215.771292000005,
+        "timeout": false,
+        "code": 1,
+        "signal": null,
+        "network": {
+          "connections": 8,
+          "refused": 0,
+          "bytesToDatabase": 1540554,
+          "bytesFromDatabase": 1875776,
+          "closed": true,
+          "activeSockets": 0,
+          "delayMsPerChunkEachDirection": 2,
+          "method": "Synthetic per-TCP-chunk delay in both directions; coalescing/backpressure make actual query RTT variable. Not WAN or pure SQL execution time."
+        }
+      },
+      "finalReportPresent": true,
+      "node": "v24.22.2",
+      "commandP95Ms": 1479.7206250000017,
+      "commandBudgetPass": false,
+      "sql": {
+        "count": 5620,
+        "p50": 8.54241599999932,
+        "p95": 23.797999999998865,
+        "p99": 45.36020899999858,
+        "max": 109.07854100000259
+      },
+      "resources": {
+        "cpuUserMs": 2319.018,
+        "cpuSystemMs": 539.752,
+        "cpuPercentOfOneCore": 7.761644319486728,
+        "rssPeakBytes": 168378368,
+        "eventLoopP95Ms": 23.838719
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "profile": {
+        "outcome": {
+          "completed": false,
+          "errorCode": "ERR_ASSERTION"
+        },
+        "rawCoverage": {
+          "seen": 6942,
+          "retained": 6942,
+          "dropped": 0
+        },
+        "poolAcquire": {
+          "count": 280,
+          "p50": 360.47320799999943,
+          "p95": 1120.330665999998,
+          "p99": 1170.3337919999976,
+          "max": 1184.4344579999997,
+          "sum": 111164.68354199997
+        },
+        "commit": {
+          "count": 280,
+          "p50": 8.563583000000108,
+          "p95": 29.321916000000783,
+          "p99": 51.019749999999476,
+          "max": 68.94416700000147,
+          "sum": 3189.944081000026
+        },
+        "rowLock": {
+          "count": 300,
+          "p50": 9.60070799999994,
+          "p95": 28.622666000002937,
+          "p99": 46.92816700000185,
+          "max": 84.70683300000019,
+          "sum": 3625.6367180000243
+        },
+        "uniqueCommandTraceCount": 140,
+        "replayCommandTraceCount": 20,
+        "sqlQueriesPerUniqueCommand": {
+          "count": 140,
+          "p50": 27,
+          "p95": 28,
+          "max": 28
+        },
+        "uniqueCommandParts": {
+          "serverMs": {
+            "count": 140,
+            "p50": 665.8762080000006,
+            "p95": 1477.648165999999,
+            "max": 1511.2199999999975
+          },
+          "poolMs": {
+            "count": 140,
+            "p50": 385.5018749999999,
+            "p95": 1107.6938750000008,
+            "max": 1139.7253750000018
+          },
+          "sqlMs": {
+            "count": 140,
+            "p50": 292.8107910000035,
+            "p95": 460.187834999997,
+            "max": 554.4808319999975
+          },
+          "unattributedMs": {
+            "count": 140,
+            "p50": 3.0237919999890437,
+            "p95": 9.158957999999984,
+            "max": 27.233290999999554
+          }
+        },
+        "clientObservedTransactionSpans": {
+          "count": 280,
+          "p50": 225.7612909999998,
+          "p95": 453.13270900000134,
+          "max": 556.0719170000011
+        },
+        "unmatchedTransactionBegins": 0,
+        "sampledBackendStateCounts": {
+          "idle/Client/ClientRead": 384,
+          "idle in transaction/Client/ClientRead": 265,
+          "active/none/none": 9,
+          "active/IO/WALSync": 4,
+          "active/LWLock/WALWrite": 2,
+          "idle in transaction/none/none": 2
+        },
+        "observerIdleSubmissions": 0,
+        "observerErrors": [],
+        "slowestUniqueCommands": [
+          {
+            "request": 963,
+            "uniqueReceiptWritten": true,
+            "serverMs": 1511.2199999999975,
+            "poolMs": 1050.3993329999976,
+            "sqlMs": 458.11799699999756,
+            "unattributedMs": 2.7026700000023993,
+            "sqlQueries": 28
+          },
+          {
+            "request": 964,
+            "uniqueReceiptWritten": true,
+            "serverMs": 1510.4358329999995,
+            "poolMs": 1052.8849580000024,
+            "sqlMs": 451.1652120000035,
+            "unattributedMs": 6.385662999993656,
+            "sqlQueries": 28
+          },
+          {
+            "request": 956,
+            "uniqueReceiptWritten": true,
+            "serverMs": 1501.379499999999,
+            "poolMs": 1031.9342920000017,
+            "sqlMs": 461.8429549999855,
+            "unattributedMs": 7.602253000011842,
+            "sqlQueries": 28
+          },
+          {
+            "request": 947,
+            "uniqueReceiptWritten": true,
+            "serverMs": 1497.7578749999993,
+            "poolMs": 1116.908124999998,
+            "sqlMs": 377.55570899999657,
+            "unattributedMs": 3.294041000004654,
+            "sqlQueries": 28
+          },
+          {
+            "request": 965,
+            "uniqueReceiptWritten": true,
+            "serverMs": 1489.9266669999997,
+            "poolMs": 1050.2123749999992,
+            "sqlMs": 437.2154169999958,
+            "unattributedMs": 2.498875000004773,
+            "sqlQueries": 28
+          }
+        ]
+      }
+    },
+    {
+      "run": "latency-node24/db-delay-5",
+      "attempt": {
+        "name": "db-delay-5",
+        "profile": true,
+        "syntheticDatabaseDelayMs": 5,
+        "node": "v24.22.2",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          11.75048828125,
+          11.03125,
+          18.28466796875
+        ],
+        "hostLoadAtEnd": [
+          12.92529296875,
+          11.4306640625,
+          18.05615234375
+        ],
+        "elapsedMs": 44052.46675000001,
+        "timeout": false,
+        "code": 1,
+        "signal": null,
+        "network": {
+          "connections": 8,
+          "refused": 0,
+          "bytesToDatabase": 1549229,
+          "bytesFromDatabase": 1881996,
+          "closed": true,
+          "activeSockets": 0,
+          "delayMsPerChunkEachDirection": 5,
+          "method": "Synthetic per-TCP-chunk delay in both directions; coalescing/backpressure make actual query RTT variable. Not WAN or pure SQL execution time."
+        }
+      },
+      "finalReportPresent": true,
+      "node": "v24.22.2",
+      "commandP95Ms": 1833.6534589999992,
+      "commandBudgetPass": false,
+      "sql": {
+        "count": 5620,
+        "p50": 15.021333000000595,
+        "p95": 24.61120899999878,
+        "p99": 36.59758299999885,
+        "max": 78.02729199999885
+      },
+      "resources": {
+        "cpuUserMs": 2371.236,
+        "cpuSystemMs": 514.486,
+        "cpuPercentOfOneCore": 6.877318561156979,
+        "rssPeakBytes": 171163648,
+        "eventLoopP95Ms": 23.232511
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "profile": {
+        "outcome": {
+          "completed": false,
+          "errorCode": "ERR_ASSERTION"
+        },
+        "rawCoverage": {
+          "seen": 6942,
+          "retained": 6942,
+          "dropped": 0
+        },
+        "poolAcquire": {
+          "count": 280,
+          "p50": 639.6854999999996,
+          "p95": 1312.0560000000005,
+          "p99": 1490.7543750000004,
+          "max": 1491.1165419999998,
+          "sum": 164595.8436619999
+        },
+        "commit": {
+          "count": 280,
+          "p50": 15.325416000000132,
+          "p95": 26.818041999998968,
+          "p99": 50.48516699999891,
+          "max": 62.64758299999994,
+          "sum": 4739.040798999997
+        },
+        "rowLock": {
+          "count": 300,
+          "p50": 15.150250000002416,
+          "p95": 22.870582999999897,
+          "p99": 26.30787500000224,
+          "max": 74.59708300000057,
+          "sum": 4831.104074999994
+        },
+        "uniqueCommandTraceCount": 140,
+        "replayCommandTraceCount": 20,
+        "sqlQueriesPerUniqueCommand": {
+          "count": 140,
+          "p50": 27,
+          "p95": 28,
+          "max": 28
+        },
+        "uniqueCommandParts": {
+          "serverMs": {
+            "count": 140,
+            "p50": 1111.306208,
+            "p95": 1817.8695419999995,
+            "max": 2142.724792000001
+          },
+          "poolMs": {
+            "count": 140,
+            "p50": 700.0632500000011,
+            "p95": 1336.3042079999996,
+            "max": 1491.1165419999998
+          },
+          "sqlMs": {
+            "count": 140,
+            "p50": 434.54291600001307,
+            "p95": 599.5841680000012,
+            "max": 651.122414999998
+          },
+          "unattributedMs": {
+            "count": 140,
+            "p50": 2.8123340000020107,
+            "p95": 8.491168000011385,
+            "max": 11.234956999986025
+          }
+        },
+        "clientObservedTransactionSpans": {
+          "count": 280,
+          "p50": 363.2292499999967,
+          "p95": 519.4985830000005,
+          "max": 653.2537080000002
+        },
+        "unmatchedTransactionBegins": 0,
+        "sampledBackendStateCounts": {
+          "idle/Client/ClientRead": 353,
+          "idle in transaction/Client/ClientRead": 416,
+          "active/none/none": 6,
+          "active/Client/ClientRead": 2,
+          "idle in transaction/none/none": 2,
+          "active/IO/WALSync": 5,
+          "active/LWLock/WALWrite": 7
+        },
+        "observerIdleSubmissions": 0,
+        "observerErrors": [],
+        "slowestUniqueCommands": [
+          {
+            "request": 897,
+            "uniqueReceiptWritten": true,
+            "serverMs": 2142.724792000001,
+            "poolMs": 1489.270124999999,
+            "sqlMs": 651.122414999998,
+            "unattributedMs": 2.332252000003791,
+            "sqlQueries": 27
+          },
+          {
+            "request": 899,
+            "uniqueReceiptWritten": true,
+            "serverMs": 2142.475041999998,
+            "poolMs": 1490.8190419999992,
+            "sqlMs": 648.7913740000004,
+            "unattributedMs": 2.8646259999986796,
+            "sqlQueries": 27
+          },
+          {
+            "request": 900,
+            "uniqueReceiptWritten": true,
+            "serverMs": 2142.184250000002,
+            "poolMs": 1490.7543750000004,
+            "sqlMs": 648.8303309999937,
+            "unattributedMs": 2.5995440000078816,
+            "sqlQueries": 27
+          },
+          {
+            "request": 898,
+            "uniqueReceiptWritten": true,
+            "serverMs": 2134.058541000002,
+            "poolMs": 1491.1165419999998,
+            "sqlMs": 635.9300850000072,
+            "unattributedMs": 7.0119139999951585,
+            "sqlQueries": 27
+          },
+          {
+            "request": 896,
+            "uniqueReceiptWritten": true,
+            "serverMs": 2103.226125000001,
+            "poolMs": 1475.3265420000025,
+            "sqlMs": 622.0467910000152,
+            "unattributedMs": 5.85279199998331,
+            "sqlQueries": 27
+          }
+        ]
+      }
+    },
+    {
+      "run": "paired-node24/01-baseline",
+      "attempt": {
+        "name": "01-baseline",
+        "profile": false,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v24.22.2",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          10.1103515625,
+          12.4296875,
+          22.701171875
+        ],
+        "hostLoadAtEnd": [
+          10.13623046875,
+          12.2255859375,
+          22.27099609375
+        ],
+        "elapsedMs": 30558.688416999998,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v24.22.2",
+      "commandP95Ms": 345.9283340000002,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 1.2506670000002487,
+        "p95": 6.996207999999569,
+        "p99": 18.369042000000263,
+        "max": 65.69012500000008
+      },
+      "resources": {
+        "cpuUserMs": 1986.912,
+        "cpuSystemMs": 426.451,
+        "cpuPercentOfOneCore": 8.272157668377378,
+        "rssPeakBytes": 183107584,
+        "eventLoopP95Ms": 22.757375
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      }
+    },
+    {
+      "run": "paired-node24/02-profile",
+      "attempt": {
+        "name": "02-profile",
+        "profile": true,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v24.22.2",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          10.13623046875,
+          12.2255859375,
+          22.27099609375
+        ],
+        "hostLoadAtEnd": [
+          9.93994140625,
+          12.0166015625,
+          21.84814453125
+        ],
+        "elapsedMs": 29292.348625000002,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v24.22.2",
+      "commandP95Ms": 328.9677909999991,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 1.1167920000002596,
+        "p95": 6.264874999999961,
+        "p99": 13.981999999999971,
+        "max": 31.11129200000005
+      },
+      "resources": {
+        "cpuUserMs": 1833.27,
+        "cpuSystemMs": 386.615,
+        "cpuPercentOfOneCore": 7.830607115712372,
+        "rssPeakBytes": 175210496,
+        "eventLoopP95Ms": 22.495231
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "profile": {
+        "outcome": {
+          "completed": true,
+          "errorCode": null
+        },
+        "rawCoverage": {
+          "seen": 6942,
+          "retained": 6942,
+          "dropped": 0
+        },
+        "poolAcquire": {
+          "count": 280,
+          "p50": 55.778416999999536,
+          "p95": 241.80912499999977,
+          "p99": 262.69429200000013,
+          "max": 263.4747920000009,
+          "sum": 20652.804129999975
+        },
+        "commit": {
+          "count": 280,
+          "p50": 1.4387089999981981,
+          "p95": 6.440916999999899,
+          "p99": 13.25329099999999,
+          "max": 23.70358299999998,
+          "sum": 599.6400019999929
+        },
+        "rowLock": {
+          "count": 300,
+          "p50": 1.285334000000148,
+          "p95": 7.522707999999966,
+          "p99": 17.953624999998283,
+          "max": 26.73358300000018,
+          "sum": 725.4496260000233
+        },
+        "uniqueCommandTraceCount": 140,
+        "replayCommandTraceCount": 20,
+        "sqlQueriesPerUniqueCommand": {
+          "count": 140,
+          "p50": 27,
+          "p95": 28,
+          "max": 28
+        },
+        "uniqueCommandParts": {
+          "serverMs": {
+            "count": 140,
+            "p50": 141.5485410000001,
+            "p95": 328.31370799999786,
+            "max": 337.7977499999979
+          },
+          "poolMs": {
+            "count": 140,
+            "p50": 68.82887499999924,
+            "p95": 252.16612499999974,
+            "max": 263.4747920000009
+          },
+          "sqlMs": {
+            "count": 140,
+            "p50": 43.63149900000053,
+            "p95": 118.55804200000784,
+            "max": 189.34570800000074
+          },
+          "unattributedMs": {
+            "count": 140,
+            "p50": 1.6930000000029395,
+            "p95": 6.010043000000223,
+            "max": 13.349544999986392
+          }
+        },
+        "clientObservedTransactionSpans": {
+          "count": 280,
+          "p50": 34.05520899999999,
+          "p95": 92.6363750000055,
+          "max": 194.04899999999998
+        },
+        "unmatchedTransactionBegins": 0,
+        "sampledBackendStateCounts": {
+          "idle/Client/ClientRead": 399,
+          "idle in transaction/Client/ClientRead": 45,
+          "idle in transaction/none/none": 4,
+          "active/Client/ClientRead": 2,
+          "active/none/none": 1
+        },
+        "observerIdleSubmissions": 0,
+        "observerErrors": [],
+        "slowestUniqueCommands": [
+          {
+            "request": 931,
+            "uniqueReceiptWritten": true,
+            "serverMs": 337.7977499999979,
+            "poolMs": 262.69429200000013,
+            "sqlMs": 73.32441699999617,
+            "unattributedMs": 1.7790410000015981,
+            "sqlQueries": 27
+          },
+          {
+            "request": 937,
+            "uniqueReceiptWritten": true,
+            "serverMs": 332.84725000000253,
+            "poolMs": 246.2353750000002,
+            "sqlMs": 83.7655839999934,
+            "unattributedMs": 2.8462910000089323,
+            "sqlQueries": 28
+          },
+          {
+            "request": 936,
+            "uniqueReceiptWritten": true,
+            "serverMs": 331.6028750000005,
+            "poolMs": 245.73349999999846,
+            "sqlMs": 82.79425199999605,
+            "unattributedMs": 3.0751230000059877,
+            "sqlQueries": 28
+          },
+          {
+            "request": 940,
+            "uniqueReceiptWritten": true,
+            "serverMs": 330.98554199999853,
+            "poolMs": 249.7680419999997,
+            "sqlMs": 79.83275399999911,
+            "unattributedMs": 1.3847459999997227,
+            "sqlQueries": 28
+          },
+          {
+            "request": 938,
+            "uniqueReceiptWritten": true,
+            "serverMs": 330.8323330000021,
+            "poolMs": 246.544332999998,
+            "sqlMs": 82.68153800000073,
+            "unattributedMs": 1.6064620000033756,
+            "sqlQueries": 28
+          }
+        ]
+      }
+    },
+    {
+      "run": "paired-node24/03-profile",
+      "attempt": {
+        "name": "03-profile",
+        "profile": true,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v24.22.2",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          9.93994140625,
+          12.0166015625,
+          21.84814453125
+        ],
+        "hostLoadAtEnd": [
+          10.728515625,
+          12.08203125,
+          21.58935546875
+        ],
+        "elapsedMs": 28836.203457999996,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v24.22.2",
+      "commandP95Ms": 187.38999999999942,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 1.0548330000000306,
+        "p95": 5.035957999999937,
+        "p99": 9.210916999999426,
+        "max": 108.12558400000034
+      },
+      "resources": {
+        "cpuUserMs": 1894.026,
+        "cpuSystemMs": 382.51,
+        "cpuPercentOfOneCore": 8.14513521267445,
+        "rssPeakBytes": 172408832,
+        "eventLoopP95Ms": 22.560767
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "profile": {
+        "outcome": {
+          "completed": true,
+          "errorCode": null
+        },
+        "rawCoverage": {
+          "seen": 6942,
+          "retained": 6942,
+          "dropped": 0
+        },
+        "poolAcquire": {
+          "count": 280,
+          "p50": 60.14374999999927,
+          "p95": 132.27175,
+          "p99": 153.86283300000002,
+          "max": 178.06354199999998,
+          "sum": 15553.868464999987
+        },
+        "commit": {
+          "count": 280,
+          "p50": 1.6301250000005894,
+          "p95": 5.713208000000009,
+          "p99": 8.798208000000159,
+          "max": 10.342000000000553,
+          "sum": 613.7642419999846
+        },
+        "rowLock": {
+          "count": 300,
+          "p50": 1.1598750000002838,
+          "p95": 7.046167000000423,
+          "p99": 9.067625000000135,
+          "max": 12.126333000000159,
+          "sum": 569.4036129999986
+        },
+        "uniqueCommandTraceCount": 140,
+        "replayCommandTraceCount": 20,
+        "sqlQueriesPerUniqueCommand": {
+          "count": 140,
+          "p50": 27,
+          "p95": 28,
+          "max": 28
+        },
+        "uniqueCommandParts": {
+          "serverMs": {
+            "count": 140,
+            "p50": 113.01008300000103,
+            "p95": 182.13266599999952,
+            "max": 194.74412500000017
+          },
+          "poolMs": {
+            "count": 140,
+            "p50": 70.55375000000004,
+            "p95": 136.02912500000002,
+            "max": 143.4202920000007
+          },
+          "sqlMs": {
+            "count": 140,
+            "p50": 36.9803329999977,
+            "p95": 109.11474899999894,
+            "max": 193.2525799999985
+          },
+          "unattributedMs": {
+            "count": 140,
+            "p50": 1.7831249999999272,
+            "p95": 4.141332999995939,
+            "max": 12.462671000000682
+          }
+        },
+        "clientObservedTransactionSpans": {
+          "count": 280,
+          "p50": 31.636540999999966,
+          "p95": 81.96870800000033,
+          "max": 194.46349999999939
+        },
+        "unmatchedTransactionBegins": 0,
+        "sampledBackendStateCounts": {
+          "idle/Client/ClientRead": 402,
+          "idle in transaction/Client/ClientRead": 31,
+          "idle in transaction/none/none": 5,
+          "idle/none/none": 1,
+          "active/none/none": 1,
+          "active/Client/ClientRead": 2
+        },
+        "observerIdleSubmissions": 0,
+        "observerErrors": [],
+        "slowestUniqueCommands": [
+          {
+            "request": 363,
+            "uniqueReceiptWritten": true,
+            "serverMs": 194.74412500000017,
+            "poolMs": 0.03245799999967858,
+            "sqlMs": 193.2525799999985,
+            "unattributedMs": 1.4590870000020004,
+            "sqlQueries": 27
+          },
+          {
+            "request": 364,
+            "uniqueReceiptWritten": true,
+            "serverMs": 194.72170900000037,
+            "poolMs": 0.028125000000727596,
+            "sqlMs": 192.5259990000004,
+            "unattributedMs": 2.167584999999235,
+            "sqlQueries": 27
+          },
+          {
+            "request": 366,
+            "uniqueReceiptWritten": true,
+            "serverMs": 191.6471249999995,
+            "poolMs": 0.01749999999992724,
+            "sqlMs": 190.08083400000123,
+            "unattributedMs": 1.5487909999983458,
+            "sqlQueries": 27
+          },
+          {
+            "request": 896,
+            "uniqueReceiptWritten": true,
+            "serverMs": 185.50841700000092,
+            "poolMs": 127.57016699999986,
+            "sqlMs": 55.765913999992335,
+            "unattributedMs": 2.172336000008727,
+            "sqlQueries": 27
+          },
+          {
+            "request": 899,
+            "uniqueReceiptWritten": true,
+            "serverMs": 183.06808300000012,
+            "poolMs": 139.9563330000001,
+            "sqlMs": 40.90358399999968,
+            "unattributedMs": 2.2081660000003467,
+            "sqlQueries": 27
+          }
+        ]
+      }
+    },
+    {
+      "run": "paired-node24/04-baseline",
+      "attempt": {
+        "name": "04-baseline",
+        "profile": false,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v24.22.2",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          10.728515625,
+          12.08203125,
+          21.58935546875
+        ],
+        "hostLoadAtEnd": [
+          9.3623046875,
+          11.638671875,
+          21.0986328125
+        ],
+        "elapsedMs": 28657.363750000004,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v24.22.2",
+      "commandP95Ms": 138.65958399999727,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 0.8850000000002183,
+        "p95": 3.411167000000205,
+        "p99": 7.560083000000304,
+        "max": 22.36616700000002
+      },
+      "resources": {
+        "cpuUserMs": 1813.233,
+        "cpuSystemMs": 350.098,
+        "cpuPercentOfOneCore": 7.811402439414109,
+        "rssPeakBytes": 179716096,
+        "eventLoopP95Ms": 22.413311
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      }
+    },
+    {
+      "run": "paired-node24/05-baseline",
+      "attempt": {
+        "name": "05-baseline",
+        "profile": false,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v24.22.2",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          9.3623046875,
+          11.638671875,
+          21.0986328125
+        ],
+        "hostLoadAtEnd": [
+          8.7353515625,
+          11.27294921875,
+          20.6376953125
+        ],
+        "elapsedMs": 28551.494415999987,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v24.22.2",
+      "commandP95Ms": 218.295834,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 0.9132920000010927,
+        "p95": 4.4578749999996035,
+        "p99": 11.330290999998397,
+        "max": 25.265332999999373
+      },
+      "resources": {
+        "cpuUserMs": 1751.225,
+        "cpuSystemMs": 365.367,
+        "cpuPercentOfOneCore": 7.630730367672377,
+        "rssPeakBytes": 175194112,
+        "eventLoopP95Ms": 22.429695
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      }
+    },
+    {
+      "run": "paired-node24/06-profile",
+      "attempt": {
+        "name": "06-profile",
+        "profile": true,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v24.22.2",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          8.7353515625,
+          11.27294921875,
+          20.6376953125
+        ],
+        "hostLoadAtEnd": [
+          11.06884765625,
+          11.62060546875,
+          20.4404296875
+        ],
+        "elapsedMs": 28992.18637499999,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v24.22.2",
+      "commandP95Ms": 250.96558300000106,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 1.084292000000005,
+        "p95": 4.670917000000031,
+        "p99": 13.763749999998254,
+        "max": 44.02899999999863
+      },
+      "resources": {
+        "cpuUserMs": 1918.225,
+        "cpuSystemMs": 422.722,
+        "cpuPercentOfOneCore": 8.333482971569007,
+        "rssPeakBytes": 169525248,
+        "eventLoopP95Ms": 22.544383
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "profile": {
+        "outcome": {
+          "completed": true,
+          "errorCode": null
+        },
+        "rawCoverage": {
+          "seen": 6942,
+          "retained": 6942,
+          "dropped": 0
+        },
+        "poolAcquire": {
+          "count": 280,
+          "p50": 37.00616700000319,
+          "p95": 173.25504100000035,
+          "p99": 200.09820799999943,
+          "max": 236.17533399999957,
+          "sum": 15267.58917200002
+        },
+        "commit": {
+          "count": 280,
+          "p50": 1.490458000000217,
+          "p95": 5.774832999999944,
+          "p99": 10.31899999999996,
+          "max": 30.19316699999763,
+          "sum": 574.6544909999932
+        },
+        "rowLock": {
+          "count": 300,
+          "p50": 1.3395419999997102,
+          "p95": 10.639458000001468,
+          "p99": 19.15070899999955,
+          "max": 37.289959000001545,
+          "sum": 803.8957149999983
+        },
+        "uniqueCommandTraceCount": 140,
+        "replayCommandTraceCount": 20,
+        "sqlQueriesPerUniqueCommand": {
+          "count": 140,
+          "p50": 27,
+          "p95": 28,
+          "max": 28
+        },
+        "uniqueCommandParts": {
+          "serverMs": {
+            "count": 140,
+            "p50": 110.38475000000017,
+            "p95": 249.23483299999862,
+            "max": 285.27587499999936
+          },
+          "poolMs": {
+            "count": 140,
+            "p50": 42.03995799999757,
+            "p95": 173.56925000000047,
+            "max": 193.38637500000186
+          },
+          "sqlMs": {
+            "count": 140,
+            "p50": 45.55128900001,
+            "p95": 90.5377510000144,
+            "max": 116.58491800000775
+          },
+          "unattributedMs": {
+            "count": 140,
+            "p50": 1.8273319999934756,
+            "p95": 3.29871199999252,
+            "max": 10.705081999998583
+          }
+        },
+        "clientObservedTransactionSpans": {
+          "count": 280,
+          "p50": 35.96404199999961,
+          "p95": 86.60912499999995,
+          "max": 118.15874999999869
+        },
+        "unmatchedTransactionBegins": 0,
+        "sampledBackendStateCounts": {
+          "idle/Client/ClientRead": 405,
+          "idle in transaction/Client/ClientRead": 41,
+          "active/none/none": 2,
+          "idle in transaction/none/none": 2
+        },
+        "observerIdleSubmissions": 0,
+        "observerErrors": [],
+        "slowestUniqueCommands": [
+          {
+            "request": 956,
+            "uniqueReceiptWritten": true,
+            "serverMs": 285.27587499999936,
+            "poolMs": 193.38637500000186,
+            "sqlMs": 89.60074800001894,
+            "unattributedMs": 2.288751999978558,
+            "sqlQueries": 28
+          },
+          {
+            "request": 958,
+            "uniqueReceiptWritten": true,
+            "serverMs": 266.489708000001,
+            "poolMs": 189.60625000000073,
+            "sqlMs": 75.21791699999449,
+            "unattributedMs": 1.66554100000576,
+            "sqlQueries": 28
+          },
+          {
+            "request": 957,
+            "uniqueReceiptWritten": true,
+            "serverMs": 264.83491700000013,
+            "poolMs": 184.9819580000003,
+            "sqlMs": 77.63354300001083,
+            "unattributedMs": 2.219415999988996,
+            "sqlQueries": 28
+          },
+          {
+            "request": 959,
+            "uniqueReceiptWritten": true,
+            "serverMs": 254.69333299999926,
+            "poolMs": 173.25504100000035,
+            "sqlMs": 79.9760849999875,
+            "unattributedMs": 1.4622070000114036,
+            "sqlQueries": 28
+          },
+          {
+            "request": 954,
+            "uniqueReceiptWritten": true,
+            "serverMs": 252.97354199999972,
+            "poolMs": 134.3552920000002,
+            "sqlMs": 115.96716399999787,
+            "unattributedMs": 2.651086000001669,
+            "sqlQueries": 27
+          }
+        ]
+      }
+    },
+    {
+      "run": "paired-node26/01-baseline",
+      "attempt": {
+        "name": "01-baseline",
+        "profile": false,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v26.7.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          12.92529296875,
+          11.4306640625,
+          18.05615234375
+        ],
+        "hostLoadAtEnd": [
+          15.07861328125,
+          12.2666015625,
+          18.13916015625
+        ],
+        "elapsedMs": 30021.851958,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v26.7.0",
+      "commandP95Ms": 395.39929200000006,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 1.061916999999994,
+        "p95": 6.612333999999464,
+        "p99": 16.38495899999998,
+        "max": 85.45000000000005
+      },
+      "resources": {
+        "cpuUserMs": 1854.269,
+        "cpuSystemMs": 469.114,
+        "cpuPercentOfOneCore": 7.974383726564225,
+        "rssPeakBytes": 165920768,
+        "eventLoopP95Ms": 22.757375
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      }
+    },
+    {
+      "run": "paired-node26/02-profile",
+      "attempt": {
+        "name": "02-profile",
+        "profile": true,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v26.7.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          15.07861328125,
+          12.2666015625,
+          18.13916015625
+        ],
+        "hostLoadAtEnd": [
+          12.23828125,
+          11.84228515625,
+          17.78076171875
+        ],
+        "elapsedMs": 29291.414,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v26.7.0",
+      "commandP95Ms": 261.9328749999986,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 1.065625000000182,
+        "p95": 5.189625000000092,
+        "p99": 10.473457999999937,
+        "max": 45.492958000000044
+      },
+      "resources": {
+        "cpuUserMs": 1993.444,
+        "cpuSystemMs": 458.468,
+        "cpuPercentOfOneCore": 8.633445547362651,
+        "rssPeakBytes": 174702592,
+        "eventLoopP95Ms": 22.527999
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "profile": {
+        "outcome": {
+          "completed": true,
+          "errorCode": null
+        },
+        "rawCoverage": {
+          "seen": 6942,
+          "retained": 6942,
+          "dropped": 0
+        },
+        "poolAcquire": {
+          "count": 280,
+          "p50": 69.15354200000002,
+          "p95": 187.51800000000003,
+          "p99": 219.7335000000021,
+          "max": 223.50924999999916,
+          "sum": 20154.847205000013
+        },
+        "commit": {
+          "count": 280,
+          "p50": 1.454249999998865,
+          "p95": 6.963459000000057,
+          "p99": 28.591833000002225,
+          "max": 35.60883400000239,
+          "sum": 671.2927049999911
+        },
+        "rowLock": {
+          "count": 300,
+          "p50": 1.2477499999999964,
+          "p95": 5.46362500000032,
+          "p99": 7.49133399999846,
+          "max": 15.980790999998135,
+          "sum": 575.0923010000338
+        },
+        "uniqueCommandTraceCount": 140,
+        "replayCommandTraceCount": 20,
+        "sqlQueriesPerUniqueCommand": {
+          "count": 140,
+          "p50": 27,
+          "p95": 28,
+          "max": 28
+        },
+        "uniqueCommandParts": {
+          "serverMs": {
+            "count": 140,
+            "p50": 112.17829200000051,
+            "p95": 261.01304099999834,
+            "max": 285.3779590000013
+          },
+          "poolMs": {
+            "count": 140,
+            "p50": 69.35141700000031,
+            "p95": 190.6010000000024,
+            "max": 223.50924999999916
+          },
+          "sqlMs": {
+            "count": 140,
+            "p50": 39.07695899999817,
+            "p95": 96.01074800000788,
+            "max": 128.41079099998387
+          },
+          "unattributedMs": {
+            "count": 140,
+            "p50": 1.6332110000030298,
+            "p95": 4.859580999991522,
+            "max": 11.26696099999981
+          }
+        },
+        "clientObservedTransactionSpans": {
+          "count": 280,
+          "p50": 31.557000000000244,
+          "p95": 77.20262499999808,
+          "max": 132.12441600000238
+        },
+        "unmatchedTransactionBegins": 0,
+        "sampledBackendStateCounts": {
+          "active/IO/WALSync": 1,
+          "active/none/none": 4,
+          "idle in transaction/Client/ClientRead": 36,
+          "idle/Client/ClientRead": 413,
+          "idle in transaction/none/none": 1,
+          "active/Client/ClientRead": 1
+        },
+        "observerIdleSubmissions": 0,
+        "observerErrors": [],
+        "slowestUniqueCommands": [
+          {
+            "request": 940,
+            "uniqueReceiptWritten": true,
+            "serverMs": 285.3779590000013,
+            "poolMs": 219.7335000000021,
+            "sqlMs": 63.97128900000462,
+            "unattributedMs": 1.6731699999945704,
+            "sqlQueries": 28
+          },
+          {
+            "request": 939,
+            "uniqueReceiptWritten": true,
+            "serverMs": 278.21070800000234,
+            "poolMs": 223.50924999999916,
+            "sqlMs": 52.771208999995,
+            "unattributedMs": 1.9302490000081889,
+            "sqlQueries": 28
+          },
+          {
+            "request": 936,
+            "uniqueReceiptWritten": true,
+            "serverMs": 262.9971250000017,
+            "poolMs": 218.50737500000105,
+            "sqlMs": 42.87374700000146,
+            "unattributedMs": 1.616002999999182,
+            "sqlQueries": 27
+          },
+          {
+            "request": 932,
+            "uniqueReceiptWritten": true,
+            "serverMs": 261.68475000000035,
+            "poolMs": 184.47120800000266,
+            "sqlMs": 75.62337300001673,
+            "unattributedMs": 1.5901689999809605,
+            "sqlQueries": 27
+          },
+          {
+            "request": 937,
+            "uniqueReceiptWritten": true,
+            "serverMs": 261.5977079999975,
+            "poolMs": 216.9093329999996,
+            "sqlMs": 43.504080999995494,
+            "unattributedMs": 1.18429400000241,
+            "sqlQueries": 27
+          }
+        ]
+      }
+    },
+    {
+      "run": "paired-node26/03-profile",
+      "attempt": {
+        "name": "03-profile",
+        "profile": true,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v26.7.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          12.23828125,
+          11.84228515625,
+          17.78076171875
+        ],
+        "hostLoadAtEnd": [
+          10.2236328125,
+          11.40673828125,
+          17.4169921875
+        ],
+        "elapsedMs": 29553.59025,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v26.7.0",
+      "commandP95Ms": 272.1356250000026,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 1.1854590000002645,
+        "p95": 7.854833000000326,
+        "p99": 15.953125,
+        "max": 52.47937500000012
+      },
+      "resources": {
+        "cpuUserMs": 2035.575,
+        "cpuSystemMs": 429.499,
+        "cpuPercentOfOneCore": 8.586288786791073,
+        "rssPeakBytes": 169951232,
+        "eventLoopP95Ms": 22.577151
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "profile": {
+        "outcome": {
+          "completed": true,
+          "errorCode": null
+        },
+        "rawCoverage": {
+          "seen": 6942,
+          "retained": 6942,
+          "dropped": 0
+        },
+        "poolAcquire": {
+          "count": 280,
+          "p50": 68.98850000000311,
+          "p95": 300.4474580000001,
+          "p99": 350.200959,
+          "max": 358.483208,
+          "sum": 25684.031959999997
+        },
+        "commit": {
+          "count": 280,
+          "p50": 1.873874999997497,
+          "p95": 8.150708000001032,
+          "p99": 12.606707999999912,
+          "max": 14.091417000000092,
+          "sum": 755.5979949999866
+        },
+        "rowLock": {
+          "count": 300,
+          "p50": 1.1790000000000873,
+          "p95": 7.3955409999998665,
+          "p99": 13.696334000000206,
+          "max": 16.14795800000138,
+          "sum": 640.9844499999808
+        },
+        "uniqueCommandTraceCount": 140,
+        "replayCommandTraceCount": 20,
+        "sqlQueriesPerUniqueCommand": {
+          "count": 140,
+          "p50": 27,
+          "p95": 28,
+          "max": 28
+        },
+        "uniqueCommandParts": {
+          "serverMs": {
+            "count": 140,
+            "p50": 141.86104200000045,
+            "p95": 257.299541999997,
+            "max": 272.17654200000106
+          },
+          "poolMs": {
+            "count": 140,
+            "p50": 103.60662500000035,
+            "p95": 210.13754199999994,
+            "max": 217.50037499999962
+          },
+          "sqlMs": {
+            "count": 140,
+            "p50": 45.414748999998665,
+            "p95": 112.4883740000023,
+            "max": 206.37025099998573
+          },
+          "unattributedMs": {
+            "count": 140,
+            "p50": 1.9448719999991226,
+            "p95": 5.929252000009001,
+            "max": 24.408127000002423
+          }
+        },
+        "clientObservedTransactionSpans": {
+          "count": 280,
+          "p50": 34.822000000000116,
+          "p95": 112.48441700000058,
+          "max": 209.36549999999988
+        },
+        "unmatchedTransactionBegins": 0,
+        "sampledBackendStateCounts": {
+          "active/IO/WALSync": 1,
+          "idle in transaction/Client/ClientRead": 51,
+          "idle in transaction/none/none": 4,
+          "active/none/none": 5,
+          "idle/Client/ClientRead": 396,
+          "active/IO/WALWrite": 1,
+          "active/Client/ClientRead": 3
+        },
+        "observerIdleSubmissions": 0,
+        "observerErrors": [],
+        "slowestUniqueCommands": [
+          {
+            "request": 922,
+            "uniqueReceiptWritten": true,
+            "serverMs": 272.17654200000106,
+            "poolMs": 201.75866700000188,
+            "sqlMs": 68.19162200001301,
+            "unattributedMs": 2.2262529999861727,
+            "sqlQueries": 27
+          },
+          {
+            "request": 921,
+            "uniqueReceiptWritten": true,
+            "serverMs": 270.52008299999943,
+            "poolMs": 200.9152090000025,
+            "sqlMs": 65.72745999999097,
+            "unattributedMs": 3.877414000005956,
+            "sqlQueries": 27
+          },
+          {
+            "request": 911,
+            "uniqueReceiptWritten": true,
+            "serverMs": 269.93262499999764,
+            "poolMs": 197.11170800000036,
+            "sqlMs": 70.6582079999971,
+            "unattributedMs": 2.162709000000177,
+            "sqlQueries": 27
+          },
+          {
+            "request": 913,
+            "uniqueReceiptWritten": true,
+            "serverMs": 268.1829590000016,
+            "poolMs": 188.82133299999987,
+            "sqlMs": 69.7569580000054,
+            "unattributedMs": 9.604667999996309,
+            "sqlQueries": 27
+          },
+          {
+            "request": 912,
+            "uniqueReceiptWritten": true,
+            "serverMs": 266.9000840000008,
+            "poolMs": 197.1364169999979,
+            "sqlMs": 66.9642519999943,
+            "unattributedMs": 2.799415000008594,
+            "sqlQueries": 27
+          }
+        ]
+      }
+    },
+    {
+      "run": "paired-node26/04-baseline",
+      "attempt": {
+        "name": "04-baseline",
+        "profile": false,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v26.7.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          10.2236328125,
+          11.40673828125,
+          17.4169921875
+        ],
+        "hostLoadAtEnd": [
+          11.59228515625,
+          11.66015625,
+          17.30126953125
+        ],
+        "elapsedMs": 29096.290999999997,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v26.7.0",
+      "commandP95Ms": 158.77125000000024,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 0.9733330000017304,
+        "p95": 4.355416999999761,
+        "p99": 11.299792000000025,
+        "max": 46.43287500000008
+      },
+      "resources": {
+        "cpuUserMs": 1875.762,
+        "cpuSystemMs": 413.248,
+        "cpuPercentOfOneCore": 8.127473209007375,
+        "rssPeakBytes": 171622400,
+        "eventLoopP95Ms": 22.544383
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      }
+    },
+    {
+      "run": "paired-node26/05-baseline",
+      "attempt": {
+        "name": "05-baseline",
+        "profile": false,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v26.7.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          11.59228515625,
+          11.66015625,
+          17.30126953125
+        ],
+        "hostLoadAtEnd": [
+          11.5703125,
+          11.669921875,
+          17.109375
+        ],
+        "elapsedMs": 30397.64841700002,
+        "timeout": false,
+        "code": 1,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v26.7.0",
+      "commandP95Ms": 541.9485829999999,
+      "commandBudgetPass": false,
+      "sql": {
+        "count": 5620,
+        "p50": 1.3099590000019816,
+        "p95": 9.03695800000014,
+        "p99": 25.25683299999946,
+        "max": 65.95641700000124
+      },
+      "resources": {
+        "cpuUserMs": 1987.688,
+        "cpuSystemMs": 477.171,
+        "cpuPercentOfOneCore": 8.398766593763323,
+        "rssPeakBytes": 167673856,
+        "eventLoopP95Ms": 22.642687
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      }
+    },
+    {
+      "run": "paired-node26/06-profile",
+      "attempt": {
+        "name": "06-profile",
+        "profile": true,
+        "syntheticDatabaseDelayMs": 0,
+        "node": "v26.7.0",
+        "platform": "darwin",
+        "arch": "arm64",
+        "logicalCpus": 10,
+        "hostLoadAtStart": [
+          11.5703125,
+          11.669921875,
+          17.109375
+        ],
+        "hostLoadAtEnd": [
+          11.7958984375,
+          11.75341796875,
+          16.953125
+        ],
+        "elapsedMs": 29327.49224999998,
+        "timeout": false,
+        "code": 0,
+        "signal": null,
+        "network": null
+      },
+      "finalReportPresent": true,
+      "node": "v26.7.0",
+      "commandP95Ms": 287.41233299999976,
+      "commandBudgetPass": true,
+      "sql": {
+        "count": 5620,
+        "p50": 1.0450419999997393,
+        "p95": 4.556750000000193,
+        "p99": 9.500625000000127,
+        "max": 70.150667
+      },
+      "resources": {
+        "cpuUserMs": 1968.676,
+        "cpuSystemMs": 416.411,
+        "cpuPercentOfOneCore": 8.418146608572002,
+        "rssPeakBytes": 171966464,
+        "eventLoopP95Ms": 22.675455
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "profile": {
+        "outcome": {
+          "completed": true,
+          "errorCode": null
+        },
+        "rawCoverage": {
+          "seen": 6942,
+          "retained": 6942,
+          "dropped": 0
+        },
+        "poolAcquire": {
+          "count": 280,
+          "p50": 48.81945799999812,
+          "p95": 171.37612500000068,
+          "p99": 258.1026670000001,
+          "max": 259.14900000000034,
+          "sum": 15386.17640300002
+        },
+        "commit": {
+          "count": 280,
+          "p50": 1.5427500000000691,
+          "p95": 4.930917000000136,
+          "p99": 8.13149999999996,
+          "max": 9.566749999999956,
+          "sum": 534.0775909999884
+        },
+        "rowLock": {
+          "count": 300,
+          "p50": 1.3282499999986612,
+          "p95": 5.393457999999555,
+          "p99": 20.526166999999987,
+          "max": 24.278999999999996,
+          "sum": 668.4566609999833
+        },
+        "uniqueCommandTraceCount": 140,
+        "replayCommandTraceCount": 20,
+        "sqlQueriesPerUniqueCommand": {
+          "count": 140,
+          "p50": 27,
+          "p95": 28,
+          "max": 28
+        },
+        "uniqueCommandParts": {
+          "serverMs": {
+            "count": 140,
+            "p50": 93.47499999999854,
+            "p95": 261.86825,
+            "max": 370.4925410000001
+          },
+          "poolMs": {
+            "count": 140,
+            "p50": 36.229583000000275,
+            "p95": 195.13766700000042,
+            "max": 259.14900000000034
+          },
+          "sqlMs": {
+            "count": 140,
+            "p50": 40.06325099999822,
+            "p95": 107.19412600000123,
+            "max": 121.56270799999947
+          },
+          "unattributedMs": {
+            "count": 140,
+            "p50": 1.7909979999894858,
+            "p95": 4.929087000000436,
+            "max": 30.04824399999916
+          }
+        },
+        "clientObservedTransactionSpans": {
+          "count": 280,
+          "p50": 29.856250000000728,
+          "p95": 103.12191699999858,
+          "max": 130.07616700000017
+        },
+        "unmatchedTransactionBegins": 0,
+        "sampledBackendStateCounts": {
+          "idle/Client/ClientRead": 396,
+          "active/IO/WALSync": 3,
+          "active/LWLock/WALWrite": 5,
+          "idle in transaction/Client/ClientRead": 41,
+          "active/none/none": 3,
+          "active/Client/ClientRead": 2,
+          "idle in transaction/none/none": 1
+        },
+        "observerIdleSubmissions": 0,
+        "observerErrors": [],
+        "slowestUniqueCommands": [
+          {
+            "request": 240,
+            "uniqueReceiptWritten": true,
+            "serverMs": 370.4925410000001,
+            "poolMs": 259.14900000000034,
+            "sqlMs": 108.58733200000006,
+            "unattributedMs": 2.7562089999996715,
+            "sqlQueries": 27
+          },
+          {
+            "request": 237,
+            "uniqueReceiptWritten": true,
+            "serverMs": 369.52712500000007,
+            "poolMs": 257.1183339999998,
+            "sqlMs": 110.13575000000037,
+            "unattributedMs": 2.273040999999921,
+            "sqlQueries": 27
+          },
+          {
+            "request": 238,
+            "uniqueReceiptWritten": true,
+            "serverMs": 368.81820800000014,
+            "poolMs": 258.76245800000015,
+            "sqlMs": 108.47783400000071,
+            "unattributedMs": 1.5779159999992771,
+            "sqlQueries": 27
+          },
+          {
+            "request": 239,
+            "uniqueReceiptWritten": true,
+            "serverMs": 366.52829199999996,
+            "poolMs": 258.1026670000001,
+            "sqlMs": 105.24970900000062,
+            "unattributedMs": 3.1759159999992335,
+            "sqlQueries": 27
+          },
+          {
+            "request": 236,
+            "uniqueReceiptWritten": true,
+            "serverMs": 361.751542,
+            "poolMs": 251.9574160000002,
+            "sqlMs": 107.19412600000123,
+            "unattributedMs": 2.599999999998545,
+            "sqlQueries": 27
+          }
+        ]
+      }
+    },
+    {
+      "run": "profile-node24-01",
+      "attempt": null,
+      "finalReportPresent": true,
+      "node": "v24.22.2",
+      "commandP95Ms": 633.379917000002,
+      "commandBudgetPass": false,
+      "sql": {
+        "count": 5620,
+        "p50": 2.206083000000035,
+        "p95": 16.16112500000054,
+        "p99": 36.56970799999999,
+        "max": 133.16600000000108
+      },
+      "resources": {
+        "cpuUserMs": 2426.418,
+        "cpuSystemMs": 729.982,
+        "cpuPercentOfOneCore": 9.849099118803391,
+        "rssPeakBytes": 167641088,
+        "eventLoopP95Ms": 34.897919
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "profile": {
+        "outcome": {
+          "completed": false,
+          "errorCode": "ERR_ASSERTION"
+        },
+        "rawCoverage": {
+          "seen": 6942,
+          "retained": 6942,
+          "dropped": 0
+        },
+        "poolAcquire": {
+          "count": 280,
+          "p50": 142.68891599999915,
+          "p95": 462.86691599999995,
+          "p99": 537.324125000001,
+          "max": 548.0321669999994,
+          "sum": 46100.541658
+        },
+        "commit": {
+          "count": 280,
+          "p50": 3.031750000000102,
+          "p95": 27.255665999999565,
+          "p99": 99.12166700000034,
+          "max": 133.18266700000095,
+          "sum": 2187.1504209999785
+        },
+        "rowLock": {
+          "count": 300,
+          "p50": 2.5632919999998194,
+          "p95": 16.5707910000001,
+          "p99": 33.16145899999901,
+          "max": 114.95741599999747,
+          "sum": 1641.6573759999983
+        },
+        "uniqueCommandTraceCount": 140,
+        "replayCommandTraceCount": 20,
+        "sqlQueriesPerUniqueCommand": {
+          "count": 140,
+          "p50": 27,
+          "p95": 28,
+          "max": 28
+        },
+        "uniqueCommandParts": {
+          "serverMs": {
+            "count": 140,
+            "p50": 270.2012500000001,
+            "p95": 618.7078339999989,
+            "max": 638.8661670000001
+          },
+          "poolMs": {
+            "count": 140,
+            "p50": 162.7867499999993,
+            "p95": 488.187708999998,
+            "max": 548.0321669999994
+          },
+          "sqlMs": {
+            "count": 140,
+            "p50": 104.07274899999811,
+            "p95": 326.5673759999918,
+            "max": 348.62020799999846
+          },
+          "unattributedMs": {
+            "count": 140,
+            "p50": 2.945163999995202,
+            "p95": 8.857334000002083,
+            "max": 34.373876000001474
+          }
+        },
+        "clientObservedTransactionSpans": {
+          "count": 280,
+          "p50": 74.07416600000215,
+          "p95": 258.94166600000244,
+          "max": 350.4026249999997
+        },
+        "unmatchedTransactionBegins": 0,
+        "sampledBackendStateCounts": {
+          "idle in transaction/none/none": 5,
+          "idle/Client/ClientRead": 396,
+          "idle in transaction/Client/ClientRead": 99,
+          "active/Client/ClientRead": 7,
+          "active/none/none": 12,
+          "active/IO/DataFileExtend": 1,
+          "active/IO/WALSync": 1
+        },
+        "observerIdleSubmissions": 0,
+        "observerErrors": [],
+        "slowestUniqueCommands": [
+          {
+            "request": 948,
+            "uniqueReceiptWritten": true,
+            "serverMs": 638.8661670000001,
+            "poolMs": 300.9457919999986,
+            "sqlMs": 334.28095800001756,
+            "unattributedMs": 3.6394169999839505,
+            "sqlQueries": 28
+          },
+          {
+            "request": 951,
+            "uniqueReceiptWritten": true,
+            "serverMs": 636.8279169999987,
+            "poolMs": 484.5661250000012,
+            "sqlMs": 148.2335840000087,
+            "unattributedMs": 4.028207999988808,
+            "sqlQueries": 27
+          },
+          {
+            "request": 949,
+            "uniqueReceiptWritten": true,
+            "serverMs": 632.6721249999973,
+            "poolMs": 299.74254199999996,
+            "sqlMs": 330.528833999997,
+            "unattributedMs": 2.40074900000036,
+            "sqlQueries": 28
+          },
+          {
+            "request": 952,
+            "uniqueReceiptWritten": true,
+            "serverMs": 631.3007499999985,
+            "poolMs": 488.187708999998,
+            "sqlMs": 139.56633199997668,
+            "unattributedMs": 3.5467090000238386,
+            "sqlQueries": 27
+          },
+          {
+            "request": 896,
+            "uniqueReceiptWritten": true,
+            "serverMs": 631.2437499999996,
+            "poolMs": 548.0321669999994,
+            "sqlMs": 80.07145999998829,
+            "unattributedMs": 3.140123000011954,
+            "sqlQueries": 27
+          }
+        ]
+      }
+    }
+  ]
+}

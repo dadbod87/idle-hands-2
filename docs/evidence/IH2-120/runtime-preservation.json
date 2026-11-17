@@ -1,0 +1,8 @@
+{
+  "baselineMain": "ed1dc9da784bcf014060282c4dc89cf5819d9647",
+  "baselineCloseout": "ba10743e995daefd36bde9b0980a30f93f7b28f2",
+  "all232CompiledFilesExactlyEqual119": true,
+  "sourceServerClientArtAll9SqlLockfileUnchanged": true,
+  "normalServicesNotRestartedOrWritten": true,
+  "diagnosticsOnlyDiscardable55434Ih2LoadAndSeparateOffline4290": true
+}

@@ -2021,7 +2021,7 @@
     {
       "id": "IH2-120",
       "title": "Profile shared-loop load variance before hosting",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-118"
       ],
@@ -2034,7 +2034,33 @@
         "No relaxed durability/budgets/waits/coverage, real-player load, cloud infrastructure, expense or unrelated gameplay change."
       ],
       "evidence": [
-        "docs/evidence/IH2-120/PLAN.md"
+        "docs/evidence/IH2-120/PLAN.md",
+        "docs/evidence/IH2-120/REPORT.md",
+        "docs/evidence/IH2-120/METHOD.md",
+        "docs/evidence/IH2-120/measurements.json",
+        "docs/evidence/IH2-120/TERRA_REVIEW.md",
+        "docs/evidence/IH2-120/VALIDATION_HISTORY.md"
+      ],
+      "owner_branch": "perf/shared-loop-profile"
+    },
+    {
+      "id": "IH2-121",
+      "title": "Batch coherent town snapshot reads without changing authority",
+      "status": "queued",
+      "depends_on": [
+        "IH2-120"
+      ],
+      "goal": "Reduce measured database round-trip amplification and connection occupancy while preserving exact authoritative snapshots.",
+      "acceptance": [
+        "Exact same-clock snapshot equivalence for all existing player/public/private/home/cafe/outing/quest/timer fields, including populated homes and concurrent writers; no stale private data or in-memory authority.",
+        "Reduce measured query/transaction occupancy against the retained 27\u201328-query command baseline, with the same20clients,500msbudgets,durability,replay/conservation/privacy and declared added-latency fixtures; retain failed as well as passing runs.",
+        "Full existing exact-head PR/main/raw/browser and preserved-preview gates; original nine migration files and economy/timers/progress/house allocation remain unchanged."
+      ],
+      "exclusions": [
+        "No new economy, pool-size increase, weakened isolation/durability/budgets, real-player load, cloud setup, expense or unrelated UI expansion."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-121/PLAN.md"
       ]
     }
   ],

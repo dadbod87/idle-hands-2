@@ -1,0 +1,5 @@
+# Render profile visual review
+
+Reviewed the three supplied diagnostic stills. The 2K and 4K images show a continuous town scene with the resident visible near East Commons, recognizable buildings, paths, labels, and a fully visible header and bottom controls. The 4K view shows a wider area and the resident occupies a smaller part of the screen. The phone image keeps the resident visible near the center, with an East Commons label, town status, field note, and distinct bottom navigation controls. The phone field note and controls are readable in the capture; the limited viewport naturally shows less surrounding context. No obvious visual blocker or broken scene is apparent in these individual stills.
+
+The stills cannot establish continuous camera tracking, smooth movement, touch activation, or performance. The operator reports four seconds of native ArrowRight movement in fresh offline fictional residents, along with the separately measured ready, reload, and browser animation-frame timings. These are diagnostic browser measurements, not physical-device, rendered-player-capacity, or hosting evidence.

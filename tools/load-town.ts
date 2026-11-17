@@ -1,3 +1,4 @@
+import {LoadProfile,profileTarget} from './load-profile.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 /** Bounded ordinary-player HTTP/SSE exercise. Never targets the practice town. */
 import assert from 'node:assert/strict';
@@ -16,10 +17,12 @@ function summary(values:number[]){const ordered=[...values].sort((a,b)=>a-b);con
 type Peer={id:string;room:string};
 type Actor={id:string;cookie:string;snapshot:TownSnapshot;position:TownPosition;peers:Peer[]|null;lastCommand?:Record<string,unknown>;stream?:{abort:AbortController;pump:Promise<void>}};
 
-export async function loadTown(options:{url:string;resetSynthetic:boolean;output:string}){
+export async function loadTown(options:{url:string;resetSynthetic:boolean;output:string;profile?:boolean}){
  const url=localDatabaseUrl(options.url);
  if(new URL(url).pathname!=='/ih2_load'||!options.resetSynthetic)throw new Error('Load exercise may reset ONLY explicit loopback ih2_load.');
- const pool=database(url);let phase='setup';
+ if(options.profile)profileTarget(url);
+ if(new URL(url).port==='55432')throw new Error('Load exercise refuses protected55432.');
+ const pool=database(url);let phase:'setup'|'load'|'idle'|'verification'|'cleanup'='setup';
  const sql:Record<string,{count:number;verbs:Record<string,number>;milliseconds:number[]}>={};
  // Instrument each actual client.query once, including the callback form used
  // internally by pool.query. Never record SQL text, values, cookies or secrets.
@@ -34,21 +37,24 @@ export async function loadTown(options:{url:string;resetSynthetic:boolean;output
    try{const result=original(...args);return callback<0&&result?.then?result.finally(finish):result;}catch(error){finish();throw error;}
   };
  });
+ const profile=options.profile?new LoadProfile(url,()=>phase,options.output):undefined;profile?.attach(pool);
  let app:ReturnType<typeof createTownServer>|undefined;const actors:Actor[]=[];let sampler:ReturnType<typeof setInterval>|undefined;
  const loop=monitorEventLoopDelay({resolution:20});const cleanup={completed:false,activeStreamsAfter:null as number|null,activeRequestsAfter:null as number|null};let finishedReport:unknown;
  const postgresSamples:Array<{phase:string;cpuPercent?:string;memory?:string;unavailable?:boolean}>=[],postgresProbes:Promise<void>[]=[];let pgSampler:ReturnType<typeof setInterval>|undefined;
  try{
+  await profile?.startObserver();
   await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');await migrate(pool);
   const storageSql="select relname,pg_total_relation_size(c.oid)::bigint::text as bytes from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='ih2' and c.relkind='r' order by relname";
   const storageBefore=(await pool.query(storageSql)).rows;
   const roster=Array.from({length:20},(_,n)=>({id:'load-'+String(n).padStart(2,'0'),name:'Practice '+n}));
   app=createTownServer({pool,secret:randomBytes(32).toString('base64url'),fixtureResidents:roster,port:0});
+  profile?.attachHttp(app.server);
   const base='http://127.0.0.1:'+await app.listen();
   const latencies:Record<string,number[]>={},http:{requests:number;sseConnections:number;requestBodyBytes:number;responseBodyBytes:number}={requests:0,sseConnections:0,requestBodyBytes:0,responseBodyBytes:0};
   const sse={receivedBytes:0,events:0,presence:0,heartbeats:0,errors:[] as string[]};
   const rss:number[]=[];const started=performance.now(),cpuStart=process.cpuUsage();loop.enable();phase='load';
   sampler=setInterval(()=>rss.push(process.memoryUsage().rss),100);sampler.unref();
-  const samplePostgres=()=>{const samplePhase=phase;postgresProbes.push(new Promise<void>(resolve=>execFile('docker',['stats','--no-stream','--format','{{json .}}',process.env.IH2_PG_CONTAINER??'idle-hands-2-pg'],{timeout:5000,maxBuffer:4096},(error,stdout)=>{try{if(error)throw error;const data=JSON.parse(stdout);postgresSamples.push({phase:samplePhase,cpuPercent:data.CPUPerc,memory:data.MemUsage});}catch{postgresSamples.push({phase:samplePhase,unavailable:true});}resolve();})));};
+  const samplePostgres=()=>{const samplePhase=phase;const container=process.env.IH2_PG_CONTAINER;if(!container){postgresSamples.push({phase:samplePhase,unavailable:true});return;}postgresProbes.push(new Promise<void>(resolve=>execFile('docker',['stats','--no-stream','--format','{{json .}}',container],{timeout:5000,maxBuffer:4096},(error,stdout)=>{try{if(error)throw error;const data=JSON.parse(stdout);postgresSamples.push({phase:samplePhase,cpuPercent:data.CPUPerc,memory:data.MemUsage});}catch{postgresSamples.push({phase:samplePhase,unavailable:true});}resolve();})));};
   samplePostgres();pgSampler=setInterval(samplePostgres,5000);pgSampler.unref();
   async function request(path:string,actor?:Actor,body?:unknown,label=path){
    const encoded=body===undefined?undefined:JSON.stringify(body),at=performance.now();http.requests++;http.requestBodyBytes+=encoded?Buffer.byteLength(encoded):0;
@@ -97,12 +103,12 @@ export async function loadTown(options:{url:string;resetSynthetic:boolean;output
   const saved=(await pool.query('select workshop from ih2.players')).rows;assert.equal(saved.length,20);for(const row of saved){assert.deepEqual(row.workshop.inventory,{scrap:1,timber:2,supplies:4});assert.equal(row.workshop.bridgeKits,0);}
   const storage=(await pool.query(storageSql)).rows;
   const report={disclosure:'Actual loopback Node HTTP/SSE +dedicated disposable ih2_load PostgreSQL;20unique ordinary zero-progress residents. Legal continuous route/ACK movement, real5splanter and12hqueued job. No stock/time/position grants, real accounts or cloud. This is20protocol clients, not20rendered browsers or a physical-phone/WAN/soak/capacity guarantee.',method:'Same Node process runs server and load generators: CPU/RSS include both, exclude PostgreSQL/browser/OS; CPU average includes10sidle, RSS sampled every100ms. Event-loop delay resolution20ms. Full-response-body HTTP latency; independent small-body loopback RTT. Body/SSE bytes omit HTTP/TLS/TCP framing. SQL instrumentation wraps each real client.query once including callback pool.query; setup/verification separated from load/idle.',environment:{node:process.version,platform:process.platform,arch:process.arch,poolMaximum:5},cleanup,elapsedMs,latencyMs:Object.fromEntries(Object.entries(latencies).map(([key,value])=>[key,summary(value)])),http,sse,server:structuredClone(app.metrics),sql:Object.fromEntries(Object.entries(sql).map(([key,value])=>[key,{count:value.count,verbs:value.verbs,latencyMs:summary(value.milliseconds)}])),resources:{cpuUserMs:cpu.user/1000,cpuSystemMs:cpu.system/1000,cpuPercentOfOneCore:(cpu.user+cpu.system)/1000/elapsedMs*100,rssPeakBytes:Math.max(process.memoryUsage().rss,...rss),eventLoopP95Ms:loop.percentile(95)/1e6},postgresSamples,postgresSampleMethod:'Docker cgroup snapshots every5s,1sCLImeasurement windows; not peak database CPU or hosted capacity. No SQL/stat resets; unavailable samples explicitly flagged.',storage,storageBefore,storageGrowthBytes:storage.reduce((sum,row)=>sum+Number(row.bytes)-Number(storageBefore.find(before=>before.relname===row.relname)?.bytes??0),0),conservation:{residents:20,uniqueCommands:140,replayedCommands:20,receiptRows:140,inventoryEach:{scrap:1,timber:2,supplies:4},outputKits:0,realJobHours:12,firstPlanterSeconds:5},privacy:{initialPublicPeers,privateTenHidden:true,reconnectedPrivatePeers:0},idle:{seconds:10,sqlQueries:idleSql,presenceEvents:idlePresenceEvents},budgets:{commandP95TargetMs:500,commandP95Pass:summary(latencies.command).p95<=500,physicalPhoneAndHostedProof:'PENDING'}};
-  finishedReport=report;assert.ok(report.budgets.commandP95Pass,'Local20-client command p95 '+report.latencyMs.command.p95+'ms exceeds500ms');return report;
- }finally{if(pgSampler)clearInterval(pgSampler);if(sampler)clearInterval(sampler);loop.disable();for(const actor of actors){actor.stream?.abort.abort();await actor.stream?.pump;}await app?.close();cleanup.activeStreamsAfter=app?.metrics.transport.activeStreams??null;cleanup.activeRequestsAfter=app?.metrics.transport.activeRequests??null;cleanup.completed=true;await pool.end();await Promise.allSettled(postgresProbes);if(finishedReport){mkdirSync(options.output,{recursive:true});writeFileSync(options.output+'/load-town.json',JSON.stringify(finishedReport,null,2)+'\n');}}
+  finishedReport=report;assert.ok(report.budgets.commandP95Pass,'Local20-client command p95 '+report.latencyMs.command.p95+'ms exceeds500ms');profile?.succeeded();return report;
+ }catch(error){profile?.failed(error);throw error;}finally{phase='cleanup';if(pgSampler)clearInterval(pgSampler);if(sampler)clearInterval(sampler);loop.disable();for(const actor of actors){actor.stream?.abort.abort();await actor.stream?.pump;}await app?.close();cleanup.activeStreamsAfter=app?.metrics.transport.activeStreams??null;cleanup.activeRequestsAfter=app?.metrics.transport.activeRequests??null;cleanup.completed=true;await pool.end();await Promise.allSettled(postgresProbes);await profile?.finish(cleanup);if(finishedReport){mkdirSync(options.output,{recursive:true});writeFileSync(options.output+'/load-town.json',JSON.stringify(finishedReport,null,2)+'\n');}}
 }
 
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  const url=process.env.IH2_LOAD_DATABASE_URL;if(!url)throw new Error('Set an explicit isolated IH2_LOAD_DATABASE_URL.');
- const report=await loadTown({url,resetSynthetic:process.env.IH2_LOAD_RESET==='1',output:process.env.IH2_LOAD_OUT??'test-results/server/load'});
+ const report=await loadTown({url,resetSynthetic:process.env.IH2_LOAD_RESET==='1',output:process.env.IH2_LOAD_OUT??'test-results/server/load',profile:process.env.IH2_LOAD_PROFILE==='1'});
  console.log(JSON.stringify({clients:20,seconds:report.elapsedMs/1000,commands:report.conservation.uniqueCommands,p95Ms:report.latencyMs.command.p95,queries:report.sql.load.count,idle:report.idle}));
 }

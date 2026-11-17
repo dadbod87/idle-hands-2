@@ -8,6 +8,7 @@ test('load runner rejects practice, remote and unapproved reset targets before o
  // these cases never invoke Pool or attempt the overridden destination.
  for(const url of ['postgres://ih2:synthetic@database.example/ih2_load','postgres://ih2:synthetic@127.0.0.1:55432/ih2_load?host=database.example','postgres://ih2:synthetic@127.0.0.1:55432/ih2_load?port=6432','postgres://ih2:synthetic@127.0.0.1:55432/ih2_load?host=%2Ftmp%2Fsocket','postgres://ih2:synthetic@127.0.0.1:55432/ih2_load#routing'])assert.throws(()=>localDatabaseUrl(url),/loopback/);
  for(const url of ['postgres://ih2:synthetic@127.0.0.1:55432/ih2_preview','postgres://ih2:synthetic@127.0.0.1:55432/ih2_http_test'])await assert.rejects(()=>loadTown({url,resetSynthetic:true,output:'test-results/server/load'}),/ih2_load/);
+ await assert.rejects(()=>loadTown({url:'postgres://ih2:synthetic@127.0.0.1:55432/ih2_load',resetSynthetic:true,output:'test-results/server/load'}),/protected55432/);
  await assert.rejects(()=>loadTown({url:'postgres://ih2:synthetic@127.0.0.1:55432/ih2_load',resetSynthetic:false,output:'test-results/server/load'}),/explicit loopback/);
 });
 

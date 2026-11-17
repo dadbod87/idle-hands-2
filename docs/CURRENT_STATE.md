@@ -1,3 +1,7 @@
+# November 17 — IH2-120 profiling candidate in progress
+
+Isolated branch `perf/shared-loop-profile` in `work/idle-hands-2-performance`, over accepted119closeout ba10743/main ed1dc9d. Tools/tests/docs only; all232game bytes, client/server rules, nine migrations and normal saved previews remain unchanged. Seventeen backend measurements retain five500ms-budget failures; all conserve140unique/20replayed commands and zero idle SQL/cleanup. Controlled database-link latency amplifies pool pressure; single-resident render results are separate. No universal cause, hosted capacity or performance fix is claimed. Full exact-source gates pending. [Report](evidence/IH2-120/REPORT.md), [method](evidence/IH2-120/METHOD.md), [current handoff](idle-hands-2/handoffs/2026-11-17-performance-profile.md).121snapshot batching is queued, not implemented. Earlier entries below are historical.
+
 # November 17 —119 woodland outing accepted
 
 Main ed1dc9d / PR #51, exact PR/main490 domain tests/ 188 browser cases/all four/raw gates; matched232-file client/API 9 and original-saved preservation/native/Terra checks complete.IH2-119 done; IH2-120 queued. See [current session](idle-hands-2/CURRENT_SESSION.md) and [119report](evidence/IH2-119/REPORT.md). Local timing and original-cookie scope limits remain explicit; no cloud/original-game release.

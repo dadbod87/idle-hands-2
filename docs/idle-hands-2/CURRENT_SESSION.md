@@ -1,3 +1,13 @@
+# November 17 — IH2-120 profiling candidate in progress
+
+Current isolated source `work/idle-hands-2-performance`, branch `perf/shared-loop-profile`, over pushed119closeout ba10743 and accepted main ed1dc9d. Normal saved previews remain the accepted232client/API9; no normal service, key, protected database, gameplay or migration changes. No concurrent sequel PR/active run at startup.
+
+Seventeen complete20-client measurements retain five500ms-budget failures, alongside conserved stock/140unique receipts/20replays/zero idle SQL/cleanup. Instrumentation separates connection acquisition, safe SQL categories, request spans, transaction spans and sampled PostgreSQL waits. Both Node24/26vary; 2/5ms-per-chunk database-link fixtures exceed the unchanged target. Four focused unit tests, types/build and232byte equality pass; full local/PR/main/raw gates pending. See [report](../evidence/IH2-120/REPORT.md), [method](../evidence/IH2-120/METHOD.md), [handoff](handoffs/2026-11-17-performance-profile.md).
+
+Native offline one-resident desktop2K/4K/phone360render collection and Terra6.1still review pass, with explicit callback/physical-device limits. Backend tests are protocol clients, not rendered humans. No paid setup or hosted-capacity claim. Full runtime sources/art/nineSQL/lockfile remain unchanged; no normal preview update is needed for tools-only work, but exact-source gates and read-only preservation checks still apply.
+
+Owner renewed sequential work until November18at7AMPacific/15:00UTC or about10%weekly allowance remaining. Usage initially11%used, latest12%used; check boundaries, no reset credit/purchase.120is sole active task.121coherent snapshot batching is queued only after120acceptance, using retained27–28query baseline and same-clock conservation. Hosting and unrelated major systems remain separately gated. Earlier entries below are historical.
+
 # November 17 —119 woodland outing accepted
 
 [PR #51](https://github.com/dadbod87/idle-hands-2/pull/51), candidate **c9eb4cc5e35e353e4f8f0a676410d7dae38a9f60**, main **ed1dc9da784bcf014060282c4dc89cf5819d9647**, identical tree. PR run 44183097512 and main run 44186532443 each pass all four jobs/raw490 domain tests/ 188 browser cases95 + 93, zero errors; all 183 old and 5 new cases coverage, restart/restore/same-session and cached-version-8 gate/nine migration checksums and conservation and unchanged 500 ms budgets.232 compiled bytes match local/PR/main/normal;125 old-study responses exact. [Report](../evidence/IH2-119/REPORT.md), [proof](../evidence/IH2-119/source-closeout.json), [actual saved preview](../evidence/IH2-119/ACTUAL_SAVED.md).

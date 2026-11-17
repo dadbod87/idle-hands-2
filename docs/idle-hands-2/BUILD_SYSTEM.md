@@ -64,3 +64,7 @@ Nick explicitly requested continuing through successive sections while away unti
 ## Preserve local server evidence before browser cleanup
 
 After system/restart checks, copy `test-results/server/` to a task artifact directory outside Playwright's `test-results/` output tree before starting the browser suite. Playwright clears that output tree at startup. Keep system/restart logs outside it from the beginning. If a raw report is lost, label its values unavailable; do not fabricate a previous measurement or quietly reuse an older task's proof. The hosted server job already archives its raw evidence before the separate browser jobs.
+
+## Renewed owner-authorized sequential run — November 17
+
+The owner asked to continue safe work through successive sections until November18at7AM Pacific (15:00UTC) or roughly10%weekly allowance remains. This supersedes the one-task-per-prompt stop for this run. Keep one task active; finish its validation/source/main/closeout before selecting the next. Recheck account-wide usage at task and major-validation boundaries; initial read11%used/89%remaining. Do not consume reset credits, buy anything or infer hosting/real-player authorization. Stop new work with time to leave a precise handoff; retain pending gates honestly. No background automation is created.

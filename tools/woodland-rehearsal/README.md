@@ -52,6 +52,8 @@ The original V1 four static rehearsal files total **11,081 raw bytes / 5,219 sep
 
 ## Next bounded step
 
+The [proposed integration contract](../../docs/idle-hands-2/design/OUTING_INTEGRATION_CONTRACT.md) records current resource/skill constraints, the selected visible-outcome/private-journal first proof, retry/ownership requirements and separate future cooperation/reward gates. It is design only and does not register an outing or close the home-update gate.
+
 Phone route orientation is now revised. Next, test whether another visit changes a player's decision without relying on text quizzes. Keep this separate from the game until the existing home-update gate is satisfied and a bounded integration task is selected. Before durable rewards, specify ownership, capacity, replay, disconnect/reload, solo/cooperative contributions and an explicit useful connection to current crafting/garden/home play. Do not infer a new wallet, resource entitlement, skill multiplier or permanent reward from this diagram.
 
 The current test is enough to review the interaction sketch; it is not enough to conclude coworkers will choose to replay it. A short observed human trial should measure understood choices, confusion, voluntary second visits and whether the repair feels worthwhile.

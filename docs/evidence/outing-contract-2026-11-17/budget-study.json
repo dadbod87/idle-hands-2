@@ -1,0 +1,64 @@
+{
+  "status": "Design analysis only; not an implemented reward, runtime test or save fixture.",
+  "sourceRules": {
+    "pinePoolCap": 6,
+    "carriedCap": 24,
+    "refillMs": 14400000
+  },
+  "method": "Enumerate every integer available/carried tuple; 100 hypothetical one-pine outing claims and one ordinary batch claim, in both orders, with no time elapsed. Both actions consume the same abstract personal pool. No clock, save, authority, server, concurrency, migration or inventory sink is modeled.",
+  "results": {
+    "tuples": 175,
+    "orderCases": 350,
+    "claimsPerOrder": 100,
+    "capacityBlockedTuples": 7,
+    "conservationAssertionsPassed": true
+  },
+  "examples": [
+    {
+      "before": {
+        "available": 6,
+        "carried": 0
+      },
+      "oneCandidateClaim": {
+        "available": 5,
+        "carried": 1,
+        "taken": 1
+      }
+    },
+    {
+      "before": {
+        "available": 6,
+        "carried": 23
+      },
+      "oneCandidateClaim": {
+        "available": 5,
+        "carried": 24,
+        "taken": 1
+      }
+    },
+    {
+      "before": {
+        "available": 6,
+        "carried": 24
+      },
+      "oneCandidateClaim": {
+        "available": 6,
+        "carried": 24,
+        "taken": 0
+      }
+    },
+    {
+      "before": {
+        "available": 0,
+        "carried": 0
+      },
+      "oneCandidateClaim": {
+        "available": 0,
+        "carried": 0,
+        "taken": 0
+      }
+    }
+  ],
+  "conclusion": "Sharing the existing pool prevents extra entitlement in this model, but gives no material payoff when the bag is full or the pool empty. It cannot alone solve the audited busy/full-player gap.",
+  "excluded": "Independent outing pools, refill settlement, pending claims, item use during an outing, latency, transactions and human enjoyment are not validated. Do not interpret this study as authorization to register a reward."
+}

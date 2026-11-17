@@ -1,0 +1,1262 @@
+{
+  "source": "161be1e83f1e11e37a3e6136829fc2587bfdf040",
+  "disclosure": "Synthetic browser-only fixtures built through legal current pure commands at advanced historical timestamps; no grants, real accounts, API/DB writes or real waiting. Each eligibility probe is independent against an unchanged snapshot; it is not a sequence or a human enjoyment result.",
+  "profiles": {
+    "fresh": {
+      "valid": true,
+      "notes": [
+        {
+          "id": "bench",
+          "title": "Work bench",
+          "phase": "idle",
+          "summary": "Bench available",
+          "detail": "Check recipes and your held materials. Depots recover on their own real-time schedule.",
+          "readyAt": null
+        },
+        {
+          "id": "rack",
+          "title": "Pine finishing rack",
+          "phase": "idle",
+          "summary": "Rack available",
+          "detail": "Meet Nella for the free saw lesson, then explore pine work.",
+          "readyAt": null
+        },
+        {
+          "id": "garden",
+          "title": "Your allotment",
+          "phase": "idle",
+          "summary": "Beds available",
+          "detail": "3 empty beds. Preview planting or choose an outdoor errand.",
+          "readyAt": null
+        }
+      ],
+      "held": {
+        "materials": {
+          "scrap": 0,
+          "timber": 0,
+          "supplies": 0
+        },
+        "pine": 0,
+        "produce": {
+          "radish": 0,
+          "marigold": 0
+        }
+      },
+      "completed": {
+        "sketches": 0,
+        "markers": 0,
+        "letterbox": 0,
+        "tastings": 0
+      },
+      "actions": [
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "scrap"
+          },
+          "ok": true,
+          "message": "Gathered 6 scrap. 0 left in the bin."
+        },
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "timber"
+          },
+          "ok": true,
+          "message": "Gathered 6 timber. 0 left in the bin."
+        },
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "supplies"
+          },
+          "ok": true,
+          "message": "Gathered 6 supplies. 0 left in the bin."
+        },
+        {
+          "action": {
+            "kind": "craft",
+            "recipe": "bridge-kit"
+          },
+          "ok": false,
+          "message": "Make and place your first planter before taking committee work."
+        },
+        {
+          "action": {
+            "kind": "claim"
+          },
+          "ok": false,
+          "message": "There is no job to collect."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "oak",
+            "choice": "broad-crown"
+          },
+          "ok": true,
+          "message": "Tree study recorded. A useful observation. The committee is visibly relieved."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "birch",
+            "choice": "pale-bark"
+          },
+          "ok": true,
+          "message": "Tree study recorded. A useful observation. The committee is visibly relieved."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "fruit",
+            "choice": "round-fruit"
+          },
+          "ok": true,
+          "message": "Tree study recorded. A useful observation. The committee is visibly relieved."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "learn-saw"
+            }
+          },
+          "ok": true,
+          "message": "Bound hand saw received. Equip it explicitly to prepare fallen pine. Certified to divide one problem into two smaller problems."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "gather-pine",
+              "station": "crooked"
+            }
+          },
+          "ok": false,
+          "message": "Equip your bound hand saw before preparing fallen pine."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "start-easel"
+            }
+          },
+          "ok": false,
+          "message": "Equip your bound saw before starting the easel."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "claim-easel"
+            }
+          },
+          "ok": false,
+          "message": "There is no easel to collect."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "deliver-hamper"
+            }
+          },
+          "ok": false,
+          "message": "The hamper needs 1 pine, 2 radishes and 1 marigold."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "record-easel"
+            }
+          },
+          "ok": false,
+          "message": "No unrecorded completed easel is available. Each craft can be recorded once, and its item stays yours."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 0
+            }
+          },
+          "ok": false,
+          "message": "There is no crop in this bed. The soil is considering its options."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 1
+            }
+          },
+          "ok": false,
+          "message": "There is no crop in this bed. The soil is considering its options."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 2
+            }
+          },
+          "ok": false,
+          "message": "There is no crop in this bed. The soil is considering its options."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 0
+            }
+          },
+          "ok": false,
+          "message": "Plant a seed here before inspecting it."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 1
+            }
+          },
+          "ok": false,
+          "message": "Plant a seed here before inspecting it."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 2
+            }
+          },
+          "ok": false,
+          "message": "Plant a seed here before inspecting it."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "submit-request"
+            }
+          },
+          "ok": false,
+          "message": "This request needs one radish and one marigold. No one is taking your seeds."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "assemble-marker"
+            }
+          },
+          "ok": false,
+          "message": "Inspect all three different stake pieces before assembling the marker."
+        },
+        {
+          "action": {
+            "kind": "commission",
+            "commissionAction": {
+              "action": "accept"
+            }
+          },
+          "ok": true,
+          "message": "Three addressed parcels accepted. No bag space, payment or deadline. The route is circular. For once, this is intentional."
+        },
+        {
+          "action": {
+            "kind": "commission",
+            "commissionAction": {
+              "action": "make",
+              "motif": "leaf"
+            }
+          },
+          "ok": false,
+          "message": "Complete the free route for the letterbox plan first."
+        }
+      ],
+      "markerAttempts": [
+        {
+          "action": {
+            "action": "assemble-marker"
+          },
+          "ok": false,
+          "message": "Inspect all three different stake pieces before assembling the marker."
+        }
+      ],
+      "cafe": {
+        "ok": false,
+        "message": "One harvested radish is needed. Nothing changed."
+      }
+    },
+    "established": {
+      "valid": true,
+      "notes": [
+        {
+          "id": "bench",
+          "title": "Work bench",
+          "phase": "idle",
+          "summary": "Bench available",
+          "detail": "Choose a recipe. One job at a time; opening the bench spends nothing.",
+          "readyAt": null
+        },
+        {
+          "id": "rack",
+          "title": "Pine finishing rack",
+          "phase": "idle",
+          "summary": "Rack available",
+          "detail": "An easel uses 4 pine and 1 marigold. Its job is separate from your work bench.",
+          "readyAt": null
+        },
+        {
+          "id": "garden",
+          "title": "Your allotment",
+          "phase": "blocked",
+          "summary": "3 crops ready · 3 need room",
+          "detail": "0 can fit in produce storage now. Use held produce with Marlow, Nella or a recipe; ripe crops stay in their beds.",
+          "readyAt": null
+        }
+      ],
+      "held": {
+        "materials": {
+          "scrap": 20,
+          "timber": 20,
+          "supplies": 20
+        },
+        "pine": 24,
+        "produce": {
+          "radish": 12,
+          "marigold": 12
+        }
+      },
+      "completed": {
+        "sketches": 3,
+        "markers": 4,
+        "letterbox": 1,
+        "tastings": 12
+      },
+      "actions": [
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "scrap"
+          },
+          "ok": false,
+          "message": "Your material bag is full (60). Use materials at the bench first."
+        },
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "timber"
+          },
+          "ok": false,
+          "message": "Your material bag is full (60). Use materials at the bench first."
+        },
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "supplies"
+          },
+          "ok": false,
+          "message": "Your material bag is full (60). Use materials at the bench first."
+        },
+        {
+          "action": {
+            "kind": "craft",
+            "recipe": "bridge-kit"
+          },
+          "ok": true,
+          "message": "Bridge repair kit started. Materials spent: 3 scrap, 2 timber, 1 supplies."
+        },
+        {
+          "action": {
+            "kind": "claim"
+          },
+          "ok": false,
+          "message": "There is no job to collect."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "oak",
+            "choice": "broad-crown"
+          },
+          "ok": false,
+          "message": "Already recorded. Your sketch is still here; the tree has nothing to add."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "birch",
+            "choice": "pale-bark"
+          },
+          "ok": false,
+          "message": "Already recorded. Your sketch is still here; the tree has nothing to add."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "fruit",
+            "choice": "round-fruit"
+          },
+          "ok": false,
+          "message": "Already recorded. Your sketch is still here; the tree has nothing to add."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "learn-saw"
+            }
+          },
+          "ok": false,
+          "message": "Your practical lesson is already recorded. A missing bound saw can be recovered for free."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "gather-pine",
+              "station": "crooked"
+            }
+          },
+          "ok": false,
+          "message": "Pine storage is full (24). Use some at the finishing rack or in a hamper."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "start-easel"
+            }
+          },
+          "ok": true,
+          "message": "Garden study easel started: 4 pine + 1 marigold spent. Twelve real hours at its own rack; your ordinary bench stays available."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "claim-easel"
+            }
+          },
+          "ok": false,
+          "message": "There is no easel to collect."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "deliver-hamper"
+            }
+          },
+          "ok": true,
+          "message": "Hamper delivered: 1 pine, 2 radishes and 1 marigold spent. +1 private carpentry practice. Locally sourced. Extensively documented."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "record-easel"
+            }
+          },
+          "ok": false,
+          "message": "No unrecorded completed easel is available. Each craft can be recorded once, and its item stays yours."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 0
+            }
+          },
+          "ok": false,
+          "message": "Radish with ambitions: storage is full. Use a mixed request or another ready bed. This plant and seed will wait."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 1
+            }
+          },
+          "ok": false,
+          "message": "Radish with ambitions: storage is full. Use a mixed request or another ready bed. This plant and seed will wait."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 2
+            }
+          },
+          "ok": false,
+          "message": "Out-of-office marigold: storage is full. Use a mixed request or another ready bed. This plant and seed will wait."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 0
+            }
+          },
+          "ok": true,
+          "message": "Soil checked, leaves admired. No speed or yield bonus — just a well-informed gardener."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 1
+            }
+          },
+          "ok": true,
+          "message": "Soil checked, leaves admired. No speed or yield bonus — just a well-informed gardener."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 2
+            }
+          },
+          "ok": true,
+          "message": "Soil checked, leaves admired. No speed or yield bonus — just a well-informed gardener."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "submit-request"
+            }
+          },
+          "ok": true,
+          "message": "One radish and one marigold contributed. A public improvement, suspiciously improved by the public."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "assemble-marker"
+            }
+          },
+          "ok": false,
+          "message": "Your almost-straight marker is already owned and can be selected again."
+        },
+        {
+          "action": {
+            "kind": "commission",
+            "commissionAction": {
+              "action": "accept"
+            }
+          },
+          "ok": false,
+          "message": "Your original parcels and receipts are already kept. Resume the same route."
+        },
+        {
+          "action": {
+            "kind": "commission",
+            "commissionAction": {
+              "action": "make",
+              "motif": "leaf"
+            }
+          },
+          "ok": false,
+          "message": "Your one letterbox is already owned. Move it or change its motif for free."
+        }
+      ],
+      "markerAttempts": [
+        {
+          "action": {
+            "action": "make-marker",
+            "marker": "sunburst"
+          },
+          "ok": false,
+          "message": "You already own this marker. Choose it for display whenever you like."
+        },
+        {
+          "action": {
+            "action": "make-marker",
+            "marker": "leaf-fan"
+          },
+          "ok": false,
+          "message": "You already own this marker. Choose it for display whenever you like."
+        },
+        {
+          "action": {
+            "action": "make-marker",
+            "marker": "little-pennant"
+          },
+          "ok": false,
+          "message": "You already own this marker. Choose it for display whenever you like."
+        },
+        {
+          "action": {
+            "action": "assemble-marker"
+          },
+          "ok": false,
+          "message": "Your almost-straight marker is already owned and can be selected again."
+        }
+      ],
+      "cafe": {
+        "ok": false,
+        "message": "Your teapot is earned and the café is funded. Keep your radish."
+      }
+    },
+    "busy": {
+      "valid": true,
+      "notes": [
+        {
+          "id": "bench",
+          "title": "Work bench",
+          "phase": "running",
+          "summary": "Bridge repair kit in progress",
+          "detail": "Finishes by its real-time deadline. The finished job waits for you.",
+          "readyAt": 1794938750253
+        },
+        {
+          "id": "rack",
+          "title": "Pine finishing rack",
+          "phase": "running",
+          "summary": "Easel in progress",
+          "detail": "Its own real-time deadline. Your other activities remain available.",
+          "readyAt": 1794938750253
+        },
+        {
+          "id": "garden",
+          "title": "Your allotment",
+          "phase": "running",
+          "summary": "3 beds growing",
+          "detail": "0 empty beds. Growing does not prevent other town activities.",
+          "readyAt": 1794897350253
+        }
+      ],
+      "held": {
+        "materials": {
+          "scrap": 23,
+          "timber": 18,
+          "supplies": 19
+        },
+        "pine": 24,
+        "produce": {
+          "radish": 11,
+          "marigold": 10
+        }
+      },
+      "completed": {
+        "sketches": 3,
+        "markers": 4,
+        "letterbox": 1,
+        "tastings": 12
+      },
+      "actions": [
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "scrap"
+          },
+          "ok": false,
+          "message": "Your material bag is full (60). Use materials at the bench first."
+        },
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "timber"
+          },
+          "ok": false,
+          "message": "Your material bag is full (60). Use materials at the bench first."
+        },
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "supplies"
+          },
+          "ok": false,
+          "message": "Your material bag is full (60). Use materials at the bench first."
+        },
+        {
+          "action": {
+            "kind": "craft",
+            "recipe": "bridge-kit"
+          },
+          "ok": false,
+          "message": "The bench already has a job. Collect it before starting another."
+        },
+        {
+          "action": {
+            "kind": "claim"
+          },
+          "ok": false,
+          "message": "The job is still working. Its remaining time is shown at the bench."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "oak",
+            "choice": "broad-crown"
+          },
+          "ok": false,
+          "message": "Already recorded. Your sketch is still here; the tree has nothing to add."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "birch",
+            "choice": "pale-bark"
+          },
+          "ok": false,
+          "message": "Already recorded. Your sketch is still here; the tree has nothing to add."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "fruit",
+            "choice": "round-fruit"
+          },
+          "ok": false,
+          "message": "Already recorded. Your sketch is still here; the tree has nothing to add."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "learn-saw"
+            }
+          },
+          "ok": false,
+          "message": "Your practical lesson is already recorded. A missing bound saw can be recovered for free."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "gather-pine",
+              "station": "crooked"
+            }
+          },
+          "ok": false,
+          "message": "Pine storage is full (24). Use some at the finishing rack or in a hamper."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "start-easel"
+            }
+          },
+          "ok": false,
+          "message": "The finishing rack already has a job. Its easel waits safely for collection."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "claim-easel"
+            }
+          },
+          "ok": false,
+          "message": "The easel is still finishing. Its original deadline is unchanged."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "deliver-hamper"
+            }
+          },
+          "ok": false,
+          "message": "The groundskeeper hamper is on its four-hour cooldown. Nothing was spent."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "record-easel"
+            }
+          },
+          "ok": false,
+          "message": "No unrecorded completed easel is available. Each craft can be recorded once, and its item stays yours."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 0
+            }
+          },
+          "ok": false,
+          "message": "This crop is still growing. No extra attendance is required."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 1
+            }
+          },
+          "ok": false,
+          "message": "This crop is still growing. No extra attendance is required."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 2
+            }
+          },
+          "ok": false,
+          "message": "This crop is still growing. No extra attendance is required."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 0
+            }
+          },
+          "ok": false,
+          "message": "Already inspected this cycle. The plant has no further questions."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 1
+            }
+          },
+          "ok": false,
+          "message": "Already inspected this cycle. The plant has no further questions."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 2
+            }
+          },
+          "ok": false,
+          "message": "Already inspected this cycle. The plant has no further questions."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "submit-request"
+            }
+          },
+          "ok": false,
+          "message": "The mixed produce request is on its real twenty-four-hour cooldown. Your produce stays here."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "assemble-marker"
+            }
+          },
+          "ok": false,
+          "message": "Your almost-straight marker is already owned and can be selected again."
+        },
+        {
+          "action": {
+            "kind": "commission",
+            "commissionAction": {
+              "action": "accept"
+            }
+          },
+          "ok": false,
+          "message": "Your original parcels and receipts are already kept. Resume the same route."
+        },
+        {
+          "action": {
+            "kind": "commission",
+            "commissionAction": {
+              "action": "make",
+              "motif": "leaf"
+            }
+          },
+          "ok": false,
+          "message": "Your one letterbox is already owned. Move it or change its motif for free."
+        }
+      ],
+      "markerAttempts": [
+        {
+          "action": {
+            "action": "make-marker",
+            "marker": "sunburst"
+          },
+          "ok": false,
+          "message": "You already own this marker. Choose it for display whenever you like."
+        },
+        {
+          "action": {
+            "action": "make-marker",
+            "marker": "leaf-fan"
+          },
+          "ok": false,
+          "message": "You already own this marker. Choose it for display whenever you like."
+        },
+        {
+          "action": {
+            "action": "make-marker",
+            "marker": "little-pennant"
+          },
+          "ok": false,
+          "message": "You already own this marker. Choose it for display whenever you like."
+        },
+        {
+          "action": {
+            "action": "assemble-marker"
+          },
+          "ok": false,
+          "message": "Your almost-straight marker is already owned and can be selected again."
+        }
+      ],
+      "cafe": {
+        "ok": false,
+        "message": "Your teapot is earned and the café is funded. Keep your radish."
+      }
+    },
+    "returning": {
+      "valid": true,
+      "notes": [
+        {
+          "id": "bench",
+          "title": "Work bench",
+          "phase": "ready",
+          "summary": "Bridge repair kit ready to collect",
+          "detail": "Open the bench to collect explicitly. This notebook never collects for you.",
+          "readyAt": 1794852350253
+        },
+        {
+          "id": "rack",
+          "title": "Pine finishing rack",
+          "phase": "ready",
+          "summary": "Easel ready to collect",
+          "detail": "Open the finishing rack to review and collect. No automatic repeating job.",
+          "readyAt": 1794852350253
+        },
+        {
+          "id": "garden",
+          "title": "Your allotment",
+          "phase": "ready",
+          "summary": "3 crops ready · 1 need room",
+          "detail": "2 can fit in produce storage now. Use held produce with Marlow, Nella or a recipe; ripe crops stay in their beds.",
+          "readyAt": null
+        }
+      ],
+      "held": {
+        "materials": {
+          "scrap": 23,
+          "timber": 18,
+          "supplies": 19
+        },
+        "pine": 24,
+        "produce": {
+          "radish": 11,
+          "marigold": 10
+        }
+      },
+      "completed": {
+        "sketches": 3,
+        "markers": 4,
+        "letterbox": 1,
+        "tastings": 12
+      },
+      "actions": [
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "scrap"
+          },
+          "ok": false,
+          "message": "Your material bag is full (60). Use materials at the bench first."
+        },
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "timber"
+          },
+          "ok": false,
+          "message": "Your material bag is full (60). Use materials at the bench first."
+        },
+        {
+          "action": {
+            "kind": "gather",
+            "resource": "supplies"
+          },
+          "ok": false,
+          "message": "Your material bag is full (60). Use materials at the bench first."
+        },
+        {
+          "action": {
+            "kind": "craft",
+            "recipe": "bridge-kit"
+          },
+          "ok": false,
+          "message": "The bench already has a job. Collect it before starting another."
+        },
+        {
+          "action": {
+            "kind": "claim"
+          },
+          "ok": true,
+          "message": "Collected one bridge repair kit. +1 Making experience."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "oak",
+            "choice": "broad-crown"
+          },
+          "ok": false,
+          "message": "Already recorded. Your sketch is still here; the tree has nothing to add."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "birch",
+            "choice": "pale-bark"
+          },
+          "ok": false,
+          "message": "Already recorded. Your sketch is still here; the tree has nothing to add."
+        },
+        {
+          "action": {
+            "kind": "survey",
+            "station": "fruit",
+            "choice": "round-fruit"
+          },
+          "ok": false,
+          "message": "Already recorded. Your sketch is still here; the tree has nothing to add."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "learn-saw"
+            }
+          },
+          "ok": false,
+          "message": "Your practical lesson is already recorded. A missing bound saw can be recovered for free."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "gather-pine",
+              "station": "crooked"
+            }
+          },
+          "ok": false,
+          "message": "Pine storage is full (24). Use some at the finishing rack or in a hamper."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "start-easel"
+            }
+          },
+          "ok": false,
+          "message": "The finishing rack already has a job. Its easel waits safely for collection."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "claim-easel"
+            }
+          },
+          "ok": true,
+          "message": "Collected a Garden study easel. +3 carpentry practice. Keep it, place it, or separately record its craft for the noticeboard without giving it away."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "deliver-hamper"
+            }
+          },
+          "ok": true,
+          "message": "Hamper delivered: 1 pine, 2 radishes and 1 marigold spent. +1 private carpentry practice. Locally sourced. Extensively documented."
+        },
+        {
+          "action": {
+            "kind": "carpentry",
+            "carpentryAction": {
+              "action": "record-easel"
+            }
+          },
+          "ok": false,
+          "message": "No unrecorded completed easel is available. Each craft can be recorded once, and its item stays yours."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 0
+            }
+          },
+          "ok": true,
+          "message": "Harvested one produce and returned one bound seed. Promoted to vegetable management."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 1
+            }
+          },
+          "ok": true,
+          "message": "Harvested one produce and returned one bound seed. Promoted to vegetable management."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "harvest",
+              "bed": 2
+            }
+          },
+          "ok": true,
+          "message": "Harvested one produce and returned one bound seed. Promoted to vegetable management."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 0
+            }
+          },
+          "ok": false,
+          "message": "Already inspected this cycle. The plant has no further questions."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 1
+            }
+          },
+          "ok": false,
+          "message": "Already inspected this cycle. The plant has no further questions."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "observe",
+              "bed": 2
+            }
+          },
+          "ok": false,
+          "message": "Already inspected this cycle. The plant has no further questions."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "submit-request"
+            }
+          },
+          "ok": true,
+          "message": "One radish and one marigold contributed. A public improvement, suspiciously improved by the public."
+        },
+        {
+          "action": {
+            "kind": "garden",
+            "gardenAction": {
+              "action": "assemble-marker"
+            }
+          },
+          "ok": false,
+          "message": "Your almost-straight marker is already owned and can be selected again."
+        },
+        {
+          "action": {
+            "kind": "commission",
+            "commissionAction": {
+              "action": "accept"
+            }
+          },
+          "ok": false,
+          "message": "Your original parcels and receipts are already kept. Resume the same route."
+        },
+        {
+          "action": {
+            "kind": "commission",
+            "commissionAction": {
+              "action": "make",
+              "motif": "leaf"
+            }
+          },
+          "ok": false,
+          "message": "Your one letterbox is already owned. Move it or change its motif for free."
+        }
+      ],
+      "markerAttempts": [
+        {
+          "action": {
+            "action": "make-marker",
+            "marker": "sunburst"
+          },
+          "ok": false,
+          "message": "You already own this marker. Choose it for display whenever you like."
+        },
+        {
+          "action": {
+            "action": "make-marker",
+            "marker": "leaf-fan"
+          },
+          "ok": false,
+          "message": "You already own this marker. Choose it for display whenever you like."
+        },
+        {
+          "action": {
+            "action": "make-marker",
+            "marker": "little-pennant"
+          },
+          "ok": false,
+          "message": "You already own this marker. Choose it for display whenever you like."
+        },
+        {
+          "action": {
+            "action": "assemble-marker"
+          },
+          "ok": false,
+          "message": "Your almost-straight marker is already owned and can be selected again."
+        }
+      ],
+      "cafe": {
+        "ok": false,
+        "message": "Your teapot is earned and the café is funded. Keep your radish."
+      }
+    }
+  }
+}

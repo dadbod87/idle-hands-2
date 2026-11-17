@@ -1,0 +1,384 @@
+{
+  "source": "161be1e83f1e11e37a3e6136829fc2587bfdf040",
+  "disclosure": "Nine actual Chromium synthetic browser-only save audits, with real DOM clicks, keyboard and automatic walking; touch viewport emulation, not physical phones or human playtesting. Past-state fixtures, not elapsed-live-timer proof. No shared API/database/real player actions.",
+  "results": [
+    {
+      "profile": "fresh",
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "notes": [
+        {
+          "activity": "bench",
+          "phase": "idle",
+          "text": "Work bench\n\nBench available\n\nNothing queued.\n\nOpen work bench"
+        },
+        {
+          "activity": "rack",
+          "phase": "idle",
+          "text": "Pine finishing rack\n\nRack available\n\nNothing queued.\n\nOpen pine rack"
+        },
+        {
+          "activity": "garden",
+          "phase": "idle",
+          "text": "Your allotment\n\nBeds available\n\nNothing queued.\n\nYour allotment"
+        }
+      ],
+      "pineText": "Nella turns fallen wood into useful things. The paperwork is decorative.\n\nNo changes yet · previews are free.\n\nNEXT STEP\n\nStart with a hand saw\n\nOne bound hand saw. Free lesson with Nella; equip it when you are ready.\n\nVisit Nella · first lesson\nOther work, equipment & easel goal\nSupplies, noticeboard & Nella’s notes\nWalk to Nella\nFind fallen pine\nUse the finishing rack\nVisit your crops\n\nLocal practice · this browser only. Its personal noticeboard is separate from shared practice.",
+      "gardenText": "Bed 1 · Empty\nReady to plant\nBed 2 · Empty\nReady to plant\nBed 3 · Empty\nReady to plant\nChoose a bound seed\nRadish\n2 available\nMarigold\n1 available\nBed 1 · Radish with ambitions\nSeed\n1 seed · 2 held\nGrow\n5 min real · first crop\nHarvest\n1 radish + 1 seed back\nPreview planting · free\nHarvest · 1 produce + 1 seed\n\nEmpty · choose a seed and preview planting.\n\nInspect soil & leaves · no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nChoose a bed or preview an action. Your plants wait safely.",
+      "files": [
+        "fresh-desktop-notebook.png",
+        "fresh-desktop-pine.png",
+        "fresh-desktop-garden.png"
+      ],
+      "checks": {
+        "noPageErrors": true,
+        "noFailedRequests": true,
+        "noHorizontalOverflow": true,
+        "modalMovementLocked": true,
+        "jobMaterialsBedsRackUnchanged": true,
+        "reloadPreserved": true
+      },
+      "errors": [],
+      "failures": []
+    },
+    {
+      "profile": "fresh",
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "notes": [
+        {
+          "activity": "bench",
+          "phase": "idle",
+          "text": "Work bench\n\nBench available\n\nNothing queued.\n\nOpen work bench"
+        },
+        {
+          "activity": "rack",
+          "phase": "idle",
+          "text": "Pine finishing rack\n\nRack available\n\nNothing queued.\n\nOpen pine rack"
+        },
+        {
+          "activity": "garden",
+          "phase": "idle",
+          "text": "Your allotment\n\nBeds available\n\nNothing queued.\n\nYour allotment"
+        }
+      ],
+      "pineText": "Nella turns fallen wood into useful things. The paperwork is decorative.\n\nNo changes yet · previews are free.\n\nNEXT STEP\n\nStart with a hand saw\n\nOne bound hand saw. Free lesson with Nella; equip it when you are ready.\n\nVisit Nella · first lesson\nOther work, equipment & easel goal\nSupplies, noticeboard & Nella’s notes\nWalk to Nella\nFind fallen pine\nUse the finishing rack\nVisit your crops\n\nLocal practice · this browser only. Its personal noticeboard is separate from shared practice.",
+      "gardenText": "Bed 1 · Empty\nReady to plant\nBed 2 · Empty\nReady to plant\nBed 3 · Empty\nReady to plant\nChoose a bound seed\nRadish\n2 available\nMarigold\n1 available\nBed 1 · Radish with ambitions\nSeed\n1 seed · 2 held\nGrow\n5 min real · first crop\nHarvest\n1 radish + 1 seed back\nPreview planting · free\nHarvest · 1 produce + 1 seed\n\nEmpty · choose a seed and preview planting.\n\nInspect soil & leaves · no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nChoose a bed or preview an action. Your plants wait safely.",
+      "files": [
+        "fresh-phone-notebook.png",
+        "fresh-phone-pine.png",
+        "fresh-phone-garden.png"
+      ],
+      "checks": {
+        "noPageErrors": true,
+        "noFailedRequests": true,
+        "noHorizontalOverflow": true,
+        "modalMovementLocked": true,
+        "jobMaterialsBedsRackUnchanged": true,
+        "reloadPreserved": true
+      },
+      "errors": [],
+      "failures": []
+    },
+    {
+      "profile": "fresh",
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "notes": [
+        {
+          "activity": "bench",
+          "phase": "idle",
+          "text": "Work bench\n\nBench available\n\nNothing queued.\n\nOpen work bench"
+        },
+        {
+          "activity": "rack",
+          "phase": "idle",
+          "text": "Pine finishing rack\n\nRack available\n\nNothing queued.\n\nOpen pine rack"
+        },
+        {
+          "activity": "garden",
+          "phase": "idle",
+          "text": "Your allotment\n\nBeds available\n\nNothing queued.\n\nYour allotment"
+        }
+      ],
+      "pineText": "Nella turns fallen wood into useful things. The paperwork is decorative.\n\nNo changes yet · previews are free.\n\nNEXT STEP\n\nStart with a hand saw\n\nOne bound hand saw. Free lesson with Nella; equip it when you are ready.\n\nVisit Nella · first lesson\nOther work, equipment & easel goal\nSupplies, noticeboard & Nella’s notes\nWalk to Nella\nFind fallen pine\nUse the finishing rack\nVisit your crops\n\nLocal practice · this browser only. Its personal noticeboard is separate from shared practice.",
+      "gardenText": "Bed 1\nEmpty\nBed 2\nEmpty\nBed 3\nEmpty\nChoose a bound seed\nRadish\n2 available\nMarigold\n1 available\nBed 1 · Radish with ambitions\nSeed\n1 seed · 2 held\nGrow\n5 min real · first crop\nHarvest\n1 radish + 1 seed back\nPreview planting · free\nHarvest · 1 produce + 1 seed\n\nEmpty · choose a seed and preview planting.\n\nInspect soil & leaves · no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nChoose a bed or preview an action. Your plants wait safely.",
+      "files": [
+        "fresh-short200-notebook.png",
+        "fresh-short200-pine.png",
+        "fresh-short200-garden.png"
+      ],
+      "checks": {
+        "noPageErrors": true,
+        "noFailedRequests": true,
+        "noHorizontalOverflow": true,
+        "modalMovementLocked": true,
+        "jobMaterialsBedsRackUnchanged": true,
+        "reloadPreserved": true
+      },
+      "errors": [],
+      "failures": []
+    },
+    {
+      "profile": "busy",
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "notes": [
+        {
+          "activity": "bench",
+          "phase": "running",
+          "text": "Work bench\n\nBridge repair kit in progress\n\nLeft · 11h 56m\n\nOpen work bench"
+        },
+        {
+          "activity": "rack",
+          "phase": "running",
+          "text": "Pine finishing rack\n\nEasel in progress\n\nLeft · 11h 56m\n\nOpen pine rack"
+        },
+        {
+          "activity": "garden",
+          "phase": "running",
+          "text": "Your allotment\n\n3 beds growing\n\nLeft · 26:05\n\nYour allotment"
+        }
+      ],
+      "pineText": "Nella turns fallen wood into useful things. The paperwork is decorative.\n\nNo changes yet · previews are free.\n\nNEXT STEP\n\nAn easel is finishing\n\nIts own timer keeps going. Your ordinary workbench, crops and deliveries remain available.\n\nCheck rack\nOther work, equipment & easel goal\nSupplies, noticeboard & Nella’s notes\nWalk to Nella\nFind fallen pine\nUse the finishing rack\nVisit your crops\n\nLocal practice · this browser only. Its personal noticeboard is separate from shared practice.",
+      "gardenText": "Plants wait safely. A field marker uses clippings, not produce.\n\nMake a marker at the field\nBed 1 · Radish\n25:58\nBed 2 · Radish\n25:58\nBed 3 · Marigold\n3h 55m\nChoose a bound seed\nRadish\n0 available\nMarigold\n0 available\nBed 1 · Radish with ambitions\nSeed\n1 seed · 0 held\nGrow\n30 min real\nHarvest\n1 radish + 1 seed back\nPreview planting · free\nHarvest · 1 produce + 1 seed\n\nGrowing · 25:58 left. Ready plants wait safely.\n\nInspect soil & leaves · no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nSee chosen garden displays\nGarden notes & privacy\n\nPlants wait safely while you explore another activity.",
+      "files": [
+        "busy-desktop-notebook.png",
+        "busy-desktop-pine.png",
+        "busy-desktop-garden.png"
+      ],
+      "checks": {
+        "noPageErrors": true,
+        "noFailedRequests": true,
+        "noHorizontalOverflow": true,
+        "modalMovementLocked": true,
+        "jobMaterialsBedsRackUnchanged": true,
+        "reloadPreserved": true
+      },
+      "errors": [],
+      "failures": []
+    },
+    {
+      "profile": "busy",
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "notes": [
+        {
+          "activity": "bench",
+          "phase": "running",
+          "text": "Work bench\n\nBridge repair kit in progress\n\nLeft · 11h 55m\n\nOpen work bench"
+        },
+        {
+          "activity": "rack",
+          "phase": "running",
+          "text": "Pine finishing rack\n\nEasel in progress\n\nLeft · 11h 55m\n\nOpen pine rack"
+        },
+        {
+          "activity": "garden",
+          "phase": "running",
+          "text": "Your allotment\n\n3 beds growing\n\nLeft · 25:56\n\nYour allotment"
+        }
+      ],
+      "pineText": "Nella turns fallen wood into useful things. The paperwork is decorative.\n\nNo changes yet · previews are free.\n\nNEXT STEP\n\nAn easel is finishing\n\nIts own timer keeps going. Your ordinary workbench, crops and deliveries remain available.\n\nCheck rack\nOther work, equipment & easel goal\nSupplies, noticeboard & Nella’s notes\nWalk to Nella\nFind fallen pine\nUse the finishing rack\nVisit your crops\n\nLocal practice · this browser only. Its personal noticeboard is separate from shared practice.",
+      "gardenText": "Plants wait safely. A field marker uses clippings, not produce.\n\nMake a marker at the field\nBed 1 · Radish\n25:50\nBed 2 · Radish\n25:50\nBed 3 · Marigold\n3h 55m\nChoose a bound seed\nRadish\n0 available\nMarigold\n0 available\nBed 1 · Radish with ambitions\nSeed\n1 seed · 0 held\nGrow\n30 min real\nHarvest\n1 radish + 1 seed back\nPreview planting · free\nHarvest · 1 produce + 1 seed\n\nGrowing · 25:50 left. Ready plants wait safely.\n\nInspect soil & leaves · no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nSee chosen garden displays\nGarden notes & privacy\n\nPlants wait safely while you explore another activity.",
+      "files": [
+        "busy-phone-notebook.png",
+        "busy-phone-pine.png",
+        "busy-phone-garden.png"
+      ],
+      "checks": {
+        "noPageErrors": true,
+        "noFailedRequests": true,
+        "noHorizontalOverflow": true,
+        "modalMovementLocked": true,
+        "jobMaterialsBedsRackUnchanged": true,
+        "reloadPreserved": true
+      },
+      "errors": [],
+      "failures": []
+    },
+    {
+      "profile": "busy",
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "notes": [
+        {
+          "activity": "bench",
+          "phase": "running",
+          "text": "Work bench\n\nBridge repair kit in progress\n\nLeft · 11h 55m\n\nOpen work bench"
+        },
+        {
+          "activity": "rack",
+          "phase": "running",
+          "text": "Pine finishing rack\n\nEasel in progress\n\nLeft · 11h 55m\n\nOpen pine rack"
+        },
+        {
+          "activity": "garden",
+          "phase": "running",
+          "text": "Your allotment\n\n3 beds growing\n\nLeft · 25:47\n\nYour allotment"
+        }
+      ],
+      "pineText": "Nella turns fallen wood into useful things. The paperwork is decorative.\n\nNo changes yet · previews are free.\n\nNEXT STEP\n\nAn easel is finishing\n\nIts own timer keeps going. Your ordinary workbench, crops and deliveries remain available.\n\nCheck rack\nOther work, equipment & easel goal\nSupplies, noticeboard & Nella’s notes\nWalk to Nella\nFind fallen pine\nUse the finishing rack\nVisit your crops\n\nLocal practice · this browser only. Its personal noticeboard is separate from shared practice.",
+      "gardenText": "Plants wait safely. A field marker uses clippings, not produce.\n\nMake a marker at the field\nBed 1\n25:41\nBed 2\n25:41\nBed 3\n3h 55m\nChoose a bound seed\nRadish\n0 available\nMarigold\n0 available\nBed 1 · Radish with ambitions\nSeed\n1 seed · 0 held\nGrow\n30 min real\nHarvest\n1 radish + 1 seed back\nPreview planting · free\nHarvest · 1 produce + 1 seed\n\nGrowing · 25:41 left. Ready plants wait safely.\n\nInspect soil & leaves · no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nSee chosen garden displays\nGarden notes & privacy\n\nPlants wait safely while you explore another activity.",
+      "files": [
+        "busy-short200-notebook.png",
+        "busy-short200-pine.png",
+        "busy-short200-garden.png"
+      ],
+      "checks": {
+        "noPageErrors": true,
+        "noFailedRequests": true,
+        "noHorizontalOverflow": true,
+        "modalMovementLocked": true,
+        "jobMaterialsBedsRackUnchanged": true,
+        "reloadPreserved": true
+      },
+      "errors": [],
+      "failures": []
+    },
+    {
+      "profile": "returning",
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "notes": [
+        {
+          "activity": "bench",
+          "phase": "ready",
+          "text": "Work bench\n\nBridge repair kit ready to collect\n\nWaits safely.\n\nOpen work bench"
+        },
+        {
+          "activity": "rack",
+          "phase": "ready",
+          "text": "Pine finishing rack\n\nEasel ready to collect\n\nWaits safely.\n\nOpen pine rack"
+        },
+        {
+          "activity": "garden",
+          "phase": "ready",
+          "text": "Your allotment\n\n3 crops ready · 1 need room\n\nWaits safely.\n\nYour allotment"
+        }
+      ],
+      "pineText": "Nella turns fallen wood into useful things. The paperwork is decorative.\n\nNo changes yet · previews are free.\n\nNEXT STEP\n\nYour easel is ready\n\nCollect it explicitly at the finishing rack. It stays there safely until you do.\n\nVisit rack\nOther work, equipment & easel goal\nSupplies, noticeboard & Nella’s notes\nWalk to Nella\nFind fallen pine\nUse the finishing rack\nVisit your crops\n\nLocal practice · this browser only. Its personal noticeboard is separate from shared practice.",
+      "gardenText": "A harvest is ready. Nothing is collected until you confirm.\n\nReview ready harvest\nBed 1 · Radish\nReady\nBed 2 · Radish\nReady\nBed 3 · Marigold\nReady\nChoose a bound seed\nRadish\n0 available\nMarigold\n0 available\nBed 1 · Radish with ambitions\nSeed\n1 seed · 0 held\nGrow\n30 min real\nHarvest\n1 radish + 1 seed back\nPreview planting · free\nHarvest · 1 produce + 1 seed\n\nReady · harvest one produce, one seed and at least one practice point.\n\nInspect soil & leaves · no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nA harvest is ready. Review its bed before collecting.",
+      "files": [
+        "returning-desktop-notebook.png",
+        "returning-desktop-pine.png",
+        "returning-desktop-garden.png"
+      ],
+      "checks": {
+        "noPageErrors": true,
+        "noFailedRequests": true,
+        "noHorizontalOverflow": true,
+        "modalMovementLocked": true,
+        "jobMaterialsBedsRackUnchanged": true,
+        "reloadPreserved": true
+      },
+      "errors": [],
+      "failures": []
+    },
+    {
+      "profile": "returning",
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "notes": [
+        {
+          "activity": "bench",
+          "phase": "ready",
+          "text": "Work bench\n\nBridge repair kit ready to collect\n\nWaits safely.\n\nOpen work bench"
+        },
+        {
+          "activity": "rack",
+          "phase": "ready",
+          "text": "Pine finishing rack\n\nEasel ready to collect\n\nWaits safely.\n\nOpen pine rack"
+        },
+        {
+          "activity": "garden",
+          "phase": "ready",
+          "text": "Your allotment\n\n3 crops ready · 1 need room\n\nWaits safely.\n\nYour allotment"
+        }
+      ],
+      "pineText": "Nella turns fallen wood into useful things. The paperwork is decorative.\n\nNo changes yet · previews are free.\n\nNEXT STEP\n\nYour easel is ready\n\nCollect it explicitly at the finishing rack. It stays there safely until you do.\n\nVisit rack\nOther work, equipment & easel goal\nSupplies, noticeboard & Nella’s notes\nWalk to Nella\nFind fallen pine\nUse the finishing rack\nVisit your crops\n\nLocal practice · this browser only. Its personal noticeboard is separate from shared practice.",
+      "gardenText": "A harvest is ready. Nothing is collected until you confirm.\n\nReview ready harvest\nBed 1 · Radish\nReady\nBed 2 · Radish\nReady\nBed 3 · Marigold\nReady\nChoose a bound seed\nRadish\n0 available\nMarigold\n0 available\nBed 1 · Radish with ambitions\nSeed\n1 seed · 0 held\nGrow\n30 min real\nHarvest\n1 radish + 1 seed back\nPreview planting · free\nHarvest · 1 produce + 1 seed\n\nReady · harvest one produce, one seed and at least one practice point.\n\nInspect soil & leaves · no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nA harvest is ready. Review its bed before collecting.",
+      "files": [
+        "returning-phone-notebook.png",
+        "returning-phone-pine.png",
+        "returning-phone-garden.png"
+      ],
+      "checks": {
+        "noPageErrors": true,
+        "noFailedRequests": true,
+        "noHorizontalOverflow": true,
+        "modalMovementLocked": true,
+        "jobMaterialsBedsRackUnchanged": true,
+        "reloadPreserved": true
+      },
+      "errors": [],
+      "failures": []
+    },
+    {
+      "profile": "returning",
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "notes": [
+        {
+          "activity": "bench",
+          "phase": "ready",
+          "text": "Work bench\n\nBridge repair kit ready to collect\n\nWaits safely.\n\nOpen work bench"
+        },
+        {
+          "activity": "rack",
+          "phase": "ready",
+          "text": "Pine finishing rack\n\nEasel ready to collect\n\nWaits safely.\n\nOpen pine rack"
+        },
+        {
+          "activity": "garden",
+          "phase": "ready",
+          "text": "Your allotment\n\n3 crops ready · 1 need room\n\nWaits safely.\n\nYour allotment"
+        }
+      ],
+      "pineText": "Nella turns fallen wood into useful things. The paperwork is decorative.\n\nNo changes yet · previews are free.\n\nNEXT STEP\n\nYour easel is ready\n\nCollect it explicitly at the finishing rack. It stays there safely until you do.\n\nVisit rack\nOther work, equipment & easel goal\nSupplies, noticeboard & Nella’s notes\nWalk to Nella\nFind fallen pine\nUse the finishing rack\nVisit your crops\n\nLocal practice · this browser only. Its personal noticeboard is separate from shared practice.",
+      "gardenText": "A harvest is ready. Nothing is collected until you confirm.\n\nReview ready harvest\nBed 1\nReady\nBed 2\nReady\nBed 3\nReady\nChoose a bound seed\nRadish\n0 available\nMarigold\n0 available\nBed 1 · Radish with ambitions\nSeed\n1 seed · 0 held\nGrow\n30 min real\nHarvest\n1 radish + 1 seed back\nPreview planting · free\nHarvest · 1 produce + 1 seed\n\nReady · harvest one produce, one seed and at least one practice point.\n\nInspect soil & leaves · no production bonus\nPractice, bed arrangement & growing notes\nWalk to the beds\nVisit the allotment attendant\nMake a marker at the field\nSee chosen garden displays\nGarden notes & privacy\n\nA harvest is ready. Review its bed before collecting.",
+      "files": [
+        "returning-short200-notebook.png",
+        "returning-short200-pine.png",
+        "returning-short200-garden.png"
+      ],
+      "checks": {
+        "noPageErrors": true,
+        "noFailedRequests": true,
+        "noHorizontalOverflow": true,
+        "modalMovementLocked": true,
+        "jobMaterialsBedsRackUnchanged": true,
+        "reloadPreserved": true
+      },
+      "errors": [],
+      "failures": []
+    }
+  ]
+}

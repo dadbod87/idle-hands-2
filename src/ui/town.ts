@@ -1,4 +1,5 @@
 import{housingPanel,type HousingViewState}from'./housing.ts';
+import {furnishingCopies,homeDisplays,furnishingIcon} from '../game/home-identity.ts';
 import{housingPurchase}from'../game/housing-view.ts';
 import{addressForPlot}from'../game/neighborhood.ts';
 import {homeSlots,homeDisplay} from '../game/live-home-layout.ts';
@@ -132,8 +133,8 @@ export class TownUI {
    const info=document.createElement('div');
    if(plot.ownerId){const enter=this.button(owner?'Enter your house':'Visit '+(plot.ownerName??'this house'),()=>{if(this.busy)return;this.busy=true;void this.host.enterHome?.(plot.id).catch(error=>this.host.feedback(error.message)).finally(()=>this.busy=false);});enter.dataset.homeEnter=plot.id;if(!inThisHome)info.append(enter);}
    info.append(this.p(`${addressForPlot(plot.id).label} · ${plot.ownerName??'Unclaimed'} · level ${plot.level??plot.tier??0}`));
-   if(inThisHome)info.append(this.p('Practice town · fictional residents and test supplies. Confirmed changes are saved here.'));
-   if(plot.pennantOwned)info.append(this.p('Inkwood discovery pennant · earned and displayed at home'));
+   if(inThisHome&&owner)info.append(this.p('Practice town · fictional residents and test supplies. Confirmed changes are saved here.'));
+   if(plot.pennantOwned&&(!inThisHome||owner))info.append(this.p('Inkwood discovery pennant · earned and displayed at home'));
    if(owner){
     const upgrade=this.button(`Upgrade plot · ${PLOT_UPGRADE_KITS} bridge kits`,()=>void this.action({kind:'upgrade-plot',plotId:plot.id},rerender));
     upgrade.dataset.homeUpgrade=plot.id;upgrade.disabled=s.workshop.bridgeKits<PLOT_UPGRADE_KITS||plot.level>=2;
@@ -146,14 +147,15 @@ export class TownUI {
     for(const nook of homeSlots(plot.level)){const option=document.createElement('option'),placed=homeDisplay(plot)[nook.id];option.value=nook.id;option.textContent=(nook.id.startsWith('workroom-')?nook.label:nook.id)+' · '+(placed?PROPS[placed].name:'empty');slot.append(option);}
     if([...slot.options].some(o=>o.value===saved.slot))slot.value=saved.slot;saved.slot=slot.value;
     const preview=document.createElement('img');preview.alt='Selected owned furnishing';preview.width=56;preview.height=56;
-    const updatePreview=()=>{preview.src=prop.value==='letterbox'?'/art/commission/letterbox-'+s.workshop.commission.motif+'-closed.svg':'/art/homes/home-'+prop.value+'-icon.svg';};updatePreview();
+    const copies=this.p('');copies.className='home-copy-note';copies.dataset.homeCopyNote='';
+    const updatePreview=()=>{if(prop.value)preview.src=furnishingIcon(prop.value as keyof WorkshopState['owned'],s.workshop.commission.motif);copies.textContent=prop.value?furnishingCopies(s.workshop,plot,prop.value as keyof WorkshopState['owned']).text:'No owned furnishings yet.';};updatePreview();
     prop.onchange=()=>{saved.prop=prop.value;updatePreview();};slot.onchange=()=>saved.slot=slot.value;
     const furnitureLabel=document.createElement('label');furnitureLabel.append('Furniture',prop);
     const row=document.createElement('div');row.className='home-furniture-row';row.append(preview,furnitureLabel);
     const positionLabel=document.createElement('label');positionLabel.append('Position',slot);
     const place=this.button('Place owned furniture here',()=>this.placePlot(plot.id,prop.value,slot.value,rerender));place.dataset.homeAction='place';
     const remove=this.button('Return furniture to bag',()=>void this.action({kind:'edit-plot',plotId:plot.id,action:'remove',slot:slot.value},rerender));remove.dataset.homeAction='remove';
-    controls.append(row,positionLabel,place,remove);
+    controls.append(row,positionLabel,place,remove,copies);
     section.addEventListener('keydown',event=>{if(event.key==='Tab')this.homeKeyboard=true;});
     section.addEventListener('pointerdown',()=>this.homeKeyboard=false);
     section.addEventListener('focusin',event=>{if(this.homeKeyboard&&event.target instanceof HTMLElement)requestAnimationFrame(()=>this.revealHomeFocus(event.target as HTMLElement));});
@@ -165,7 +167,23 @@ export class TownUI {
     }else section.append(info,controls);
    }else if(!plot.ownerId){
     section.append(info);const claim=this.button(`Claim plot · ${PLOT_CLAIM_KITS} bridge kits`,()=>void this.action({kind:'claim-plot'},()=>this.showPlots(plotId)));claim.dataset.townClaim='new';claim.disabled=!!s.plot||s.workshop.bridgeKits<PLOT_CLAIM_KITS;section.append(this.purchaseFacts('claim',claim),claim);
-   }else{section.append(this.p('Visiting · only the owner can change this plot.'),info);}
+   }else{
+    const visiting=this.p('Visiting · only the owner can change this plot.');
+    if(inThisHome){
+     const display=document.createElement('section');display.className='home-displays';display.dataset.homeDisplays='';
+     const heading=document.createElement('h3');heading.textContent='On display';display.append(heading,visiting);
+     for(const item of homeDisplays(plot)){
+      const card=document.createElement('article');card.className='home-display';card.dataset.homeDisplay=item.prop;
+      const art=document.createElement('img');art.width=48;art.height=48;art.alt='';art.src=furnishingIcon(item.prop,plot.letterboxMotif??'leaf');
+      const description=document.createElement('div'),name=document.createElement('strong');name.textContent=item.name;description.append(name,this.p(item.story));card.append(art,description);display.append(card);
+     }
+     if(plot.pennantOwned)display.append(this.p('Inkwood discovery pennant · all three trail landmarks explored.'));
+     if(!homeDisplays(plot).length&&!plot.pennantOwned)display.append(this.p('A fresh start. The owner’s own finds and furnishings will appear here when displayed.'));
+     const details=document.createElement('details');details.className='home-secondary';
+     const summary=document.createElement('summary');summary.textContent='Address & house details';details.append(summary,info);
+     section.append(display,details);
+    }else section.append(visiting,info);
+   }
    (records&&!owner?records:this.host.body).append(section);
   }
   if(records)this.host.body.append(records);

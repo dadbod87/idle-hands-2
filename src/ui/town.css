@@ -5,6 +5,10 @@
 /* Inside a home, arranging is the current task; property history stays secondary. */
 .home-arrangement-panel .town-plot{border-top:0;padding:0}
 .home-arrange{display:grid;gap:8px;min-width:0}
+.home-copy-note{font-size:.85rem;line-height:1.4;overflow-wrap:anywhere;margin:.2rem 0}
+.home-displays{margin-top:1rem}.home-displays h3{margin:.5rem 0}
+.home-display{display:grid;grid-template-columns:48px minmax(0,1fr);gap:.65rem;border-top:1px dashed var(--line);padding:.6rem 0;align-items:start}
+.home-display img{width:48px;height:48px;object-fit:contain}.home-display p{margin:.25rem 0;line-height:1.4}.home-display div{min-width:0;overflow-wrap:anywhere}
 .home-arrange label{display:block;min-width:0;font-size:.85rem;font-weight:bold}
 .home-arrange select{display:block;margin:3px 0 0;font-size:1rem;font-weight:normal;min-width:0}
 .home-furniture-row{display:grid;grid-template-columns:56px minmax(0,1fr);align-items:center;gap:10px}

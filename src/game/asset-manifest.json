@@ -1003,6 +1003,16 @@
       "id": "housing-workshop-lodge-2",
       "path": "art/housing/workshop-lodge-2.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "cottage-expanded-interior",
+      "path": "art/interiors/cottage-expanded-interior.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "cottage-starter-interior",
+      "path": "art/interiors/cottage-starter-interior.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

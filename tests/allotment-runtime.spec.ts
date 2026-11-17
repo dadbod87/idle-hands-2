@@ -55,7 +55,12 @@ function checkRain(r:any){const mod=(n:number,p:number)=>((n%p)+p)%p,nearPeriod=
 test('actual scaled garden rain: both native movement axes and resize preserve world phase, coverage and reduced/hidden policy',async({browser})=>{
  const c=await browser.newContext({viewport:{width:320,height:640},hasTouch:true}),p=await c.newPage(),errors:string[]=[];p.on('pageerror',e=>errors.push(e.message));
  try{await garden(p,'drizzle');const initial=await workshop(p);await expect.poll(async()=>(await rain(p)).enabled).toBe(true);const before=await rain(p);checkRain(before);await p.keyboard.down('ArrowRight');await p.waitForTimeout(350);await p.keyboard.up('ArrowRight');const afterX=await rain(p);checkRain(afterX);expect(Math.abs(afterX.camera.worldView.x-before.camera.worldView.x)).toBeGreaterThan(5);await p.screenshot({path:dir+'/allotment-rain-phone.png'});
-  await p.setViewportSize({width:844,height:390});await expect.poll(async()=>(await rain(p)).camera.zoom).toBeCloseTo(266/312,3);
+  await p.setViewportSize({width:844,height:390});await settledGardenViewport(p);
+  // Header/font metrics vary by host. Assert the exact authored312px framing
+  // against the presented playfield, rather than an assumed266px CSS height.
+  const shortHeight=(await p.locator('.world-wrap').boundingBox())!.height;
+  expect(shortHeight).toBeGreaterThanOrEqual(390/2);
+  expect((await rain(p)).camera.zoom).toBeCloseTo(shortHeight/312,3);
   // ResizeObserver sets camera.zoom before Phaser's next render aligns the DOM rain.
   // Inspect a presented frame, retaining every exact phase/period/coverage assertion.
   await p.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));const short=await rain(p);checkRain(short);await p.keyboard.down('ArrowUp');await p.waitForTimeout(350);await p.keyboard.up('ArrowUp');const afterY=await rain(p);checkRain(afterY);expect(Math.abs(afterY.camera.worldView.y-short.camera.worldView.y)).toBeGreaterThan(5);expect(afterY.fall).not.toBe(before.fall);await p.screenshot({path:dir+'/allotment-rain-short.png'});

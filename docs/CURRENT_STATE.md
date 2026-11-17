@@ -1,3 +1,15 @@
+# IH2-116 accepted and actual local preview updated
+
+PR48/main **c4b275586bc652111493ed926591f4932527cf19**: exact PR/main4jobs and raw474/176passed. Actual221client/API8, additive migration, original signed session, saved data and125old-study responses verified. Continue from the pushed full-source playable-housing closeout branch and CURRENT_SESSION; next117is queued. No hosted launch or original-game change.
+
+# IH2-116 local integration complete; release gates pending
+
+Current full source is `work/idle-hands-2-playable-housing`, `feat/playable-housing`. Fresh474system, real dedicated PostgreSQL restart, full176browser and required local checks passed; Terra6.1desktop/mobile images reviewed. Actual practice remains114client/113API until exact PR/main4job and preserved matched-update gates. See116REPORT and CURRENT_SESSION; code backup is not acceptance.
+
+# IH2-116 candidate in progress
+
+Current complete source is work/idle-hands-2-playable-housing, feat/playable-housing. Read [CURRENT_SESSION](idle-hands-2/CURRENT_SESSION.md) and [116report](evidence/IH2-116/REPORT.md). Local474system/restart/focused6browser and Terra V3visual checks pass; full176browser/exact PR/main/actual update remain pending. Actual114game/113API remain unchanged until acceptance gates.
+
 # IH2-115 accepted — housing ownership and construction foundation
 
 [PR47](https://github.com/dadbod87/idle-hands-2/pull/47), main **3bff040ffdb2c539a19f6301df6125ba68ed9f80**, candidate **b0df8021853a9f14036410db6c6de41768032641**, identical tree. PR43953150524 and main43956473345 each passed all four jobs: **462system /173browser (91+82)**, zero failures/skips/flakes/report errors. Raw recovery/SQL/latency artifacts and all214default-game/31rehearsal/20earlier-study files verified. [Report](evidence/IH2-115/REPORT.md), [contract](evidence/IH2-115/CONTRACT.md), [closeout](evidence/IH2-115/source-closeout.json), [handoff](idle-hands-2/handoffs/2026-11-16-housing-contract.md).

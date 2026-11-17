@@ -1,0 +1,960 @@
+{
+  "run": 43982562207,
+  "sha": "c4b275586bc652111493ed926591f4932527cf19",
+  "all4JobsSuccess": true,
+  "system": 474,
+  "browser": 176,
+  "disjointShards": [
+    91,
+    85
+  ],
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "orderedFixtureFamily": {
+    "shared-town.spec.ts": [
+      2
+    ],
+    "starter-homes.spec.ts": [
+      2
+    ],
+    "trail.spec.ts": [
+      2
+    ],
+    "z-first-visit.spec.ts": [
+      2
+    ]
+  },
+  "all221DefaultClientFilesExactFrozenLocal": true,
+  "all194PreviousOriginalAssetsExact": true,
+  "all7HistoricalMigrationsPreservedByCurrentTest": true,
+  "currentHousingActiveBuildDumpRestoreFreshProcessAndRealPgRestartVerified": true,
+  "rawExistingHttpRestartSameSessionVerified": true,
+  "loadCommandP95Ms": 207.01628300000084,
+  "jobMinutesRoundedEstimate": 35,
+  "publicRepository": true,
+  "runnerLabels": [
+    [
+      "ubuntu-24.04"
+    ],
+    [
+      "ubuntu-24.04"
+    ],
+    [
+      "ubuntu-24.04"
+    ],
+    [
+      "ubuntu-24.04"
+    ]
+  ],
+  "noPaidResourceConfigured": true,
+  "shards": [
+    {
+      "shard": 1,
+      "stats": {
+        "total": 91,
+        "expected": 91,
+        "unexpected": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "ok": true
+      },
+      "durationMs": 625909.961,
+      "tests": [
+        {
+          "id": "d2632bca08c54899a104-ca39dc9c2362c5fbd2c7",
+          "file": "activity-notebook.spec.ts",
+          "title": "notebook: actual five-second job boundary keeps held target, focus, scroll and free inspector actions"
+        },
+        {
+          "id": "d2632bca08c54899a104-93dff602932072fcd129",
+          "file": "activity-notebook.spec.ts",
+          "title": "notebook: native isolated shared snapshots and all three free inspectors never issue a command"
+        },
+        {
+          "id": "d2632bca08c54899a104-8b2162ede12cae04f776",
+          "file": "activity-notebook.spec.ts",
+          "title": "notebook: full produce, independent work and doubled-text keyboard reading preserve controls on narrow and short views"
+        },
+        {
+          "id": "d174661fe20e259bd9c7-3694bb16bfc556158002",
+          "file": "allotment-runtime.spec.ts",
+          "title": "actual allotment: readable three-bed framing, native phone targets, modal lock and direct exit preserve all progress"
+        },
+        {
+          "id": "d174661fe20e259bd9c7-3fc750b0003b54b82681",
+          "file": "allotment-runtime.spec.ts",
+          "title": "actual scaled garden rain: both native movement axes and resize preserve world phase, coverage and reduced/hidden policy"
+        },
+        {
+          "id": "e4b35ba5ae3441035369-4142856062792e44a276",
+          "file": "allotment-study.spec.ts",
+          "title": "allotment study: actual original art, visible soil footprints, independent comparisons and crop illustrations stay separate from game state"
+        },
+        {
+          "id": "e4b35ba5ae3441035369-4f39ef84241b88992c62",
+          "file": "allotment-study.spec.ts",
+          "title": "allotment study: phone/short/enlarged controls, real CSS target sizes and native pan/reset keep the comparison usable"
+        },
+        {
+          "id": "22965094116db01d4b29-0e6d74b7b050a59d1efe",
+          "file": "bag.spec.ts",
+          "title": "bag: native claimed craft stacks, placed copies leave the bag, returned copies and reload conserve ownership"
+        },
+        {
+          "id": "22965094116db01d4b29-881a1a42108ad820e027",
+          "file": "bag.spec.ts",
+          "title": "bag: shared snapshots keep slot nodes, free pockets issue no command and identity changes clear old counts"
+        },
+        {
+          "id": "22965094116db01d4b29-7fbced7746e1d54bc863",
+          "file": "bag.spec.ts",
+          "title": "bag: pocket, keyboard shortcuts and original icons stay readable on narrow/short doubled-text views with art fallback"
+        },
+        {
+          "id": "22965094116db01d4b29-30a310b0f5a4b5a9fe35",
+          "file": "bag.spec.ts",
+          "title": "bag: declared shared home allocation snapshots subtract placed copies without rebuilding held slots"
+        },
+        {
+          "id": "22965094116db01d4b29-cfea3d54be02cb149bbe",
+          "file": "bag.spec.ts",
+          "title": "bag: failed local persistence is disclosed without calling held contents saved"
+        },
+        {
+          "id": "f07bd9fb3cc9c7bd03ba-a8bf5122ea4fdd91b140",
+          "file": "cafe-save.spec.ts",
+          "title": "caf\u00e9 save fixture: native isolated storage confirms the third reward only after a quota-failure retry"
+        },
+        {
+          "id": "f07bd9fb3cc9c7bd03ba-c22ca63165d287d72b41",
+          "file": "cafe-save.spec.ts",
+          "title": "caf\u00e9 save fixture: real cross-tab writer ownership refuses stale rebasing and duplicate spending"
+        },
+        {
+          "id": "f07bd9fb3cc9c7bd03ba-cdb014f5c54b6418da66",
+          "file": "cafe-save.spec.ts",
+          "title": "caf\u00e9 save fixture: phone legacy migration failure and corrupt current input preserve exact original text"
+        },
+        {
+          "id": "b332be89b657f257743c-1f7a94ab1a13ac3f0ffe",
+          "file": "cafe-writer.spec.ts",
+          "title": "coordinated writer: native lifetime lease saves complete ordinary practice before a separate cafe debit"
+        },
+        {
+          "id": "b332be89b657f257743c-b92e1e9e94da32c20031",
+          "file": "cafe-writer.spec.ts",
+          "title": "coordinated writer: phone third reward remains unconfirmed through failed native save and resolves once on retry"
+        },
+        {
+          "id": "b332be89b657f257743c-eebd66ec899ba9aa4872",
+          "file": "cafe-writer.spec.ts",
+          "title": "coordinated writer: native competing tabs and persisted lifecycle refuse dirty rebase but refresh a clean tab"
+        },
+        {
+          "id": "b332be89b657f257743c-1e263f6aadb69c3dec7b",
+          "file": "cafe-writer.spec.ts",
+          "title": "coordinated writer: migration/capability failure and late lifecycle acquisition cannot enable a stale legacy writer"
+        },
+        {
+          "id": "83658fb87a624000688b-926c8c889b643575fc2a",
+          "file": "carpentry-clarity.spec.ts",
+          "title": "pine menu clarity desktop: named preview, held ready control and Bag handoff preserve the kept easel"
+        },
+        {
+          "id": "83658fb87a624000688b-7ee7463975842464d1d9",
+          "file": "carpentry-clarity.spec.ts",
+          "title": "pine menu clarity phone: named preview, held ready control and Bag handoff preserve the kept easel"
+        },
+        {
+          "id": "83658fb87a624000688b-421e514ce0d8c7939591",
+          "file": "carpentry-clarity.spec.ts",
+          "title": "pine review: free cancel, exact named start and pending closed-panel guard on real shared reply"
+        },
+        {
+          "id": "83658fb87a624000688b-c499c77cf7413f7ff733",
+          "file": "carpentry-clarity.spec.ts",
+          "title": "fresh pine menu: remote Journal leads to Nella before a named free lesson and explicit equipment"
+        },
+        {
+          "id": "83658fb87a624000688b-1496e91901e488643a31",
+          "file": "carpentry-clarity.spec.ts",
+          "title": "pine rack: an explicitly reviewed second easel replaces the collected cue with its own held job"
+        },
+        {
+          "id": "b13dcafed2498211dc47-be15affdb58ffb2b29cf",
+          "file": "carpentry.spec.ts",
+          "title": "fresh phone carpentry: actual saw lesson, explicit equipment, direct pine tap, shared supply and safe workshop arrival"
+        },
+        {
+          "id": "b13dcafed2498211dc47-d9ce68b6b16e0d905ace",
+          "file": "carpentry.spec.ts",
+          "title": "elapsed pure-command fixture: kept easel, explicit recording, goal-flower hamper, cooldown, free placement and old job survive reload"
+        },
+        {
+          "id": "b13dcafed2498211dc47-d7741502bedde3522fb2",
+          "file": "carpentry.spec.ts",
+          "title": "original carpentry gallery: equipped walking and three-stage action sheets fit all four rigs; pine and easel silhouettes remain distinct"
+        },
+        {
+          "id": "b13dcafed2498211dc47-a5b573723d2c16c40738",
+          "file": "carpentry.spec.ts",
+          "title": "real shared carpentry: lost committed claim retries once, anonymous credit refreshes peer, kept easel is placed in an owned house"
+        },
+        {
+          "id": "8aebfd4801efe8ac43bc-6f7122fa0cf40db1d18e",
+          "file": "client-readiness.spec.ts",
+          "title": "idle and menu redraw are bounded while clocks, resize and immediate movement remain live"
+        },
+        {
+          "id": "8aebfd4801efe8ac43bc-d6d1f2652feeb63cc0f3",
+          "file": "client-readiness.spec.ts",
+          "title": "intercepted boot fixture: a saved resident arriving before art unlocks movement without opening a menu"
+        },
+        {
+          "id": "8aebfd4801efe8ac43bc-4d800b1dec87a0a7608e",
+          "file": "client-readiness.spec.ts",
+          "title": "activity artwork loads only the current rig and identity switches cannot apply an older tool sheet"
+        },
+        {
+          "id": "f4eb172d9da0990efdbc-1692ffc2de36e7657f12",
+          "file": "collection-receipt.spec.ts",
+          "title": "synthetic receipt study: original confirmations, stable held controls, retries, stale views, assets and responsive layouts"
+        },
+        {
+          "id": "53daf6101189a5174d06-5f18209e11074e65f355",
+          "file": "collection-runtime.spec.ts",
+          "title": "actual shared collection: snapshot before lost reply, original retry, stale view and legacy/corrupt metadata"
+        },
+        {
+          "id": "53daf6101189a5174d06-fb4290248ef782fdf27e",
+          "file": "collection-runtime.spec.ts",
+          "title": "local receipt: asset failure/late decode do not gate collection; responsive keyboard controls remain visible"
+        },
+        {
+          "id": "6d0220ea21ae2b4b9d87-d3f64c4455f7dd3d7509",
+          "file": "commission.spec.ts",
+          "title": "commission fresh phone: real route, wrong handover, keyboard receipt, pause and free saved card without stock grants"
+        },
+        {
+          "id": "6d0220ea21ae2b4b9d87-32711f0a7f8e9e2bb537",
+          "file": "commission.spec.ts",
+          "title": "commission paid elapsed fixture: exact review/cancel, one box, free motifs, opt-in style, short200 and actual placed world art"
+        },
+        {
+          "id": "6d0220ea21ae2b4b9d87-8013451fc5544fe4331f",
+          "file": "commission.spec.ts",
+          "title": "shared commission: lost paid reply retries exactly once; reopened panels reject stale feedback and pending requests block resident switching"
+        },
+        {
+          "id": "6d0220ea21ae2b4b9d87-f9aa793ab36cd8a2632c",
+          "file": "commission.spec.ts",
+          "title": "shared letterbox visitor: unpublished placed motif is visible, updates live, and publication never creates a second prop"
+        },
+        {
+          "id": "f0b50548e03b1bc3e5fa-2c299b62ed0344530fd7",
+          "file": "commons-life.spec.ts",
+          "title": "town life phone320: native scenic route reveals the named pond, preserves progress and keeps touch mapping exact"
+        },
+        {
+          "id": "f0b50548e03b1bc3e5fa-3ebb9b651c176375af01",
+          "file": "commons-life.spec.ts",
+          "title": "town life phone360: native scenic route reveals the named pond, preserves progress and keeps touch mapping exact"
+        },
+        {
+          "id": "f0b50548e03b1bc3e5fa-b1c76c6ac83eeb295893",
+          "file": "commons-life.spec.ts",
+          "title": "town life native2K/4K: distinct shore and gathering detail, stable world animation and motion/visibility policy"
+        },
+        {
+          "id": "f0b50548e03b1bc3e5fa-c94815d024c248996711",
+          "file": "commons-life.spec.ts",
+          "title": "town life short200: native arrival, water framing and enlarged controls remain usable"
+        },
+        {
+          "id": "ffe43b57a50c774d873b-d5f26e4285ea41fa9d99",
+          "file": "crafting-clarity.spec.ts",
+          "title": "crafting clarity desktop: native grouped travel, exact first output, stable real readiness and visible claimed Bag handoff"
+        },
+        {
+          "id": "ffe43b57a50c774d873b-045e9e821da5a1f95929",
+          "file": "crafting-clarity.spec.ts",
+          "title": "crafting clarity phone: native grouped travel, exact first output, stable real readiness and visible claimed Bag handoff"
+        },
+        {
+          "id": "ffe43b57a50c774d873b-d2a2d1f0442b04c59f72",
+          "file": "crafting-clarity.spec.ts",
+          "title": "shared crafting: pending server response preserves start and collection focus, closed panel stays closed"
+        },
+        {
+          "id": "1ccf298d61f9ec19cc03-07ecbb04400aab88142a",
+          "file": "current-actions.spec.ts",
+          "title": "returned post puts current choices before the kept story; revisiting and previewing never spend"
+        },
+        {
+          "id": "1ccf298d61f9ec19cc03-9bd4ccabf4d9ff1c5c26",
+          "file": "current-actions.spec.ts",
+          "title": "full and growing gardens offer an early useful route without consuming a crop or changing jobs"
+        },
+        {
+          "id": "3724cd507cbf3f3670f7-db2f238b19dab676f4f0",
+          "file": "depot-art.spec.ts",
+          "title": "depot vectors rasterize into three distinct unclipped material silhouettes"
+        },
+        {
+          "id": "1e939372e6786ea576d3-d1c93fde671283555195",
+          "file": "design-cafe.spec.ts",
+          "title": "caf\u00e9 study: clear free choices, exact confirmation, closed synthetic reply, complete and latecomer states never touch game storage"
+        },
+        {
+          "id": "1e939372e6786ea576d3-e9e02142d954e0fca420",
+          "file": "design-cafe.spec.ts",
+          "title": "caf\u00e9 study: desktop/phone/short/enlarged words and controls, art zoom and reduced opening remain readable"
+        },
+        {
+          "id": "9992bc839d7ec6faccf4-d0a83a53c466ff424e0f",
+          "file": "design-commission.spec.ts",
+          "title": "commission candidate art: fourteen original vectors and all motif/pose identities fit authored bounds"
+        },
+        {
+          "id": "9992bc839d7ec6faccf4-bb03a9f43b753cd32487",
+          "file": "design-commission.spec.ts",
+          "title": "commission phone concept: addressed handovers, lossless wrong recipient, all six route captions and free card stay separate from furniture"
+        },
+        {
+          "id": "9992bc839d7ec6faccf4-89d6f724e4e856ad6c53",
+          "file": "design-commission.spec.ts",
+          "title": "commission touch/keyboard concept: honest stock choices, free motif, one owned/placed copy, private publication and short200 controls"
+        },
+        {
+          "id": "f2db51f2ecd45f198658-911cf7ca29d43cb0f5bc",
+          "file": "design-documents.spec.ts",
+          "title": "design documents: candidate map and phone storyboards are labelled, legible and complete"
+        },
+        {
+          "id": "d5014de6fe564090361c-3889614f9837b327c53e",
+          "file": "design-garden.spec.ts",
+          "title": "garden design concepts: growth silhouettes, phone copy and proposed target bounds stay readable"
+        },
+        {
+          "id": "fc88c0422ab8e0cf718b-57c8da291daf75653058",
+          "file": "design-woodland.spec.ts",
+          "title": "woodland design concept is labelled, complete and bounded without implying runtime gear"
+        },
+        {
+          "id": "3158e2589e6cc5fc54e1-41335e58fc5b5442f908",
+          "file": "fieldwork.spec.ts",
+          "title": "off-bench sketchbook desktop: direct tree, keyboard choice, reload and unchanged long job"
+        },
+        {
+          "id": "3158e2589e6cc5fc54e1-1f0a22aa863d671c2840",
+          "file": "fieldwork.spec.ts",
+          "title": "off-bench sketchbook phone: direct tree, keyboard choice, reload and unchanged long job"
+        },
+        {
+          "id": "3158e2589e6cc5fc54e1-adb69b66c6141b2f7f86",
+          "file": "fieldwork.spec.ts",
+          "title": "shared sketchbook: actual UI command persists through the local API and SQL snapshot"
+        },
+        {
+          "id": "6cb56188241697f9b9d1-088b852aa686f8500d29",
+          "file": "garden-clarity.spec.ts",
+          "title": "planting facts desktop: selected seed, free cancel, named planting and reloaded actual crop stay clear"
+        },
+        {
+          "id": "6cb56188241697f9b9d1-f4e9d27c9e259c910c1d",
+          "file": "garden-clarity.spec.ts",
+          "title": "planting facts phone: selected seed, free cancel, named planting and reloaded actual crop stay clear"
+        },
+        {
+          "id": "6cb56188241697f9b9d1-36b80cdc25ae5f3bf450",
+          "file": "garden-clarity.spec.ts",
+          "title": "planting facts: elapsed full radish and ready marigold retain their own crop, deadline and explicit harvest output"
+        },
+        {
+          "id": "6cb56188241697f9b9d1-9f316c0295c299d16c77",
+          "file": "garden-clarity.spec.ts",
+          "title": "planting facts: delayed real shared reply cannot overwrite a newly opened garden panel or its chosen focus"
+        },
+        {
+          "id": "e3ea170796ed6535df49-5e0716cb8a6027354611",
+          "file": "garden-recovery.spec.ts",
+          "title": "pending garden save: lost committed planting is recovered once before a requested Places walk"
+        },
+        {
+          "id": "e3ea170796ed6535df49-3511ba896e312e9b30c3",
+          "file": "garden-recovery.spec.ts",
+          "title": "a definite failed planting retry cannot become a paid receipt after a later free bed swap"
+        },
+        {
+          "id": "e3ea170796ed6535df49-5c9a31e40e0fcd89d1c7",
+          "file": "garden-recovery.spec.ts",
+          "title": "elapsed garden fixture: readiness does not steal bed focus, goal-flower confirmation stays fixed and old work survives"
+        },
+        {
+          "id": "8d392b78b326e6f8de96-c935330d769e554f8de5",
+          "file": "garden.spec.ts",
+          "title": "phone garden: direct beds, free preview/cancel, stable planting controls, original action and short enlarged layout"
+        },
+        {
+          "id": "8d392b78b326e6f8de96-84d0b5145dfaaf989e14",
+          "file": "garden.spec.ts",
+          "title": "garden runtime art: all growth, seed, produce, marker and four-facing action frames render inside their authored bounds"
+        },
+        {
+          "id": "8d392b78b326e6f8de96-fa948739f1ba8eb26d61",
+          "file": "garden.spec.ts",
+          "title": "local save migration keeps legacy job and stock; a simulated old writer and unsupported current save cannot overwrite it"
+        },
+        {
+          "id": "8d392b78b326e6f8de96-ae819a90eee4d0b9d37d",
+          "file": "garden.spec.ts",
+          "title": "isolated elapsed fixture: ready crops wait at full capacity, another family harvests, a request frees space and the old job remains exact"
+        },
+        {
+          "id": "8d392b78b326e6f8de96-34c933b26d16e93feb29",
+          "file": "garden.spec.ts",
+          "title": "real shared garden: hand-made and quest markers, wrong-choice recovery, chosen owner projection and old property preservation"
+        },
+        {
+          "id": "b2fec585ae1ae0f9fc31-32cf713911d0afb8101d",
+          "file": "gathering-family.spec.ts",
+          "title": "collection family: all192actual cells, original feet and native gallery rig/material/facing changes"
+        },
+        {
+          "id": "5233dd0163c6756a7240-43c300357d4224aaf51f",
+          "file": "gathering-study.spec.ts",
+          "title": "candidate gathering art: actual raster feet/silhouettes, bounded replay and native phone/reduced/short gallery"
+        },
+        {
+          "id": "66529926458081fade17-55f4792fa5fc3bd2a3c5",
+          "file": "home-panel.spec.ts",
+          "title": "home panel phone/short: owner controls first, six/eight nooks and read-only visiting without a claim detour"
+        },
+        {
+          "id": "66529926458081fade17-7f8a28b45059e1711e80",
+          "file": "home-panel.spec.ts",
+          "title": "home choices survive reject/save/refresh/retry; passive updates and old panel replies cannot retarget actions"
+        },
+        {
+          "id": "ea4ba684506b18c864fd-9375a4d60af489282d28",
+          "file": "home-retry.spec.ts",
+          "title": "intercepted home-entry fixture: a lost committed response stays locked and retries the identical request"
+        },
+        {
+          "id": "c990b448bf1002b3d850-e68a2bc71f4cd91e5e12",
+          "file": "home-workroom.spec.ts",
+          "title": "expanded workroom actual owner/visitor: eight families, atomic moves, live unique motif and phone/short layouts"
+        },
+        {
+          "id": "c990b448bf1002b3d850-285c3f314797c3e7f698",
+          "file": "home-workroom.spec.ts",
+          "title": "intercepted current snapshot: missing, unknown and overallocated workroom maps never replace confirmed progress"
+        },
+        {
+          "id": "765307cb1b3bb0dc9633-00d4c4b7c99ed83d24cd",
+          "file": "housing-clarity.spec.ts",
+          "title": "housing claim: cost, missing stock and live availability remain readable and focus-stable on phones and short enlarged views"
+        },
+        {
+          "id": "765307cb1b3bb0dc9633-328476cf2d579d92c3b0",
+          "file": "housing-clarity.spec.ts",
+          "title": "housing expansion: owner disclosure, exact extra kits, saved furnishings and visitor read-only controls"
+        },
+        {
+          "id": "7ba8b3b5f7faaac64371-9fa291f07febffc16ce1",
+          "file": "housing-contract.spec.ts",
+          "title": "housing contract rehearsal desktop2k: complete quote, free cancel, fixed build, unchanged home and once-only finish"
+        },
+        {
+          "id": "7ba8b3b5f7faaac64371-2511a0eeca62057f96fc",
+          "file": "housing-contract.spec.ts",
+          "title": "housing contract rehearsal phone320: complete quote, free cancel, fixed build, unchanged home and once-only finish"
+        },
+        {
+          "id": "7ba8b3b5f7faaac64371-c964f16a3b95a61f1e07",
+          "file": "housing-contract.spec.ts",
+          "title": "housing contract rehearsal phone360: complete quote, free cancel, fixed build, unchanged home and once-only finish"
+        },
+        {
+          "id": "7ba8b3b5f7faaac64371-47d32ec8a104cf89ee74",
+          "file": "housing-contract.spec.ts",
+          "title": "housing contract rehearsal: poor, first-home, earned expanded rights, expiry and free yard arrangement are explicit"
+        },
+        {
+          "id": "7ba8b3b5f7faaac64371-e75f7fef0ff869ccb866",
+          "file": "housing-contract.spec.ts",
+          "title": "housing contract rehearsal: short200 keyboard review stays scrollable with stable cost, readable actions and no overflow"
+        },
+        {
+          "id": "7ba8b3b5f7faaac64371-f73ddfdeb004618e153e",
+          "file": "housing-contract.spec.ts",
+          "title": "housing street candidate: native2K/4K/phone framing fills decorative surround and keeps all24parcels, footprints and doors fixed"
+        },
+        {
+          "id": "2828ebb439ccd4d78a65-7411b39c847aeb2807db",
+          "file": "housing-study.spec.ts",
+          "title": "housing design study 2k has readable choices, conserved tier rights and zero game requests"
+        },
+        {
+          "id": "2828ebb439ccd4d78a65-ee0138e449d5d06ede22",
+          "file": "housing-study.spec.ts",
+          "title": "housing design study 4k has readable choices, conserved tier rights and zero game requests"
+        },
+        {
+          "id": "2828ebb439ccd4d78a65-2a186e2472aa66a20a48",
+          "file": "housing-study.spec.ts",
+          "title": "housing design study phone360 has readable choices, conserved tier rights and zero game requests"
+        },
+        {
+          "id": "2828ebb439ccd4d78a65-6b43f01114a521ba94fe",
+          "file": "housing-study.spec.ts",
+          "title": "housing design study phone320 has readable choices, conserved tier rights and zero game requests"
+        },
+        {
+          "id": "2828ebb439ccd4d78a65-653fc4fd3f4f07f461da",
+          "file": "housing-study.spec.ts",
+          "title": "housing design study short200 has readable choices, conserved tier rights and zero game requests"
+        }
+      ]
+    },
+    {
+      "shard": 2,
+      "stats": {
+        "total": 85,
+        "expected": 85,
+        "unexpected": 0,
+        "flaky": 0,
+        "skipped": 0,
+        "ok": true
+      },
+      "durationMs": 1039052.936,
+      "tests": [
+        {
+          "id": "d7111b6e41f34a639d72-0e036b491854b5ebe907",
+          "file": "maintenance-ui.spec.ts",
+          "title": "intercepted maintenance fixture: real-time countdown, unchanged queued work and explicit upkeep redemption"
+        },
+        {
+          "id": "52a92710fc0766407de3-511e780bedd967b97374",
+          "file": "movement-backpressure.spec.ts",
+          "title": "intercepted movement fixture: delayed acknowledgments bound prediction and preserve the walk and portal arrival"
+        },
+        {
+          "id": "52a92710fc0766407de3-50ff6ab510ef2fd6e1d9",
+          "file": "movement-backpressure.spec.ts",
+          "title": "intercepted movement fixture: switching residents while a movement is held cannot start old-resident recovery"
+        },
+        {
+          "id": "52a92710fc0766407de3-bf922b27dd80ed196dd9",
+          "file": "movement-backpressure.spec.ts",
+          "title": "intercepted movement fixture: automatic doors confirm the source approach and cancel superseded entry"
+        },
+        {
+          "id": "52a92710fc0766407de3-329200b1747f38c916f1",
+          "file": "movement-backpressure.spec.ts",
+          "title": "intercepted movement fixture: automatic doors confirm the source approach and cancel superseded entry (deterministic one-checkpoint approach)"
+        },
+        {
+          "id": "52a92710fc0766407de3-960cf55c7e0d570ec088",
+          "file": "movement-backpressure.spec.ts",
+          "title": "intercepted movement fixture: automatic doors confirm the source approach and cancel superseded entry (guide approach waits for final source ACK)"
+        },
+        {
+          "id": "43412f1ad17f173aee70-e81810286bbd5eb78022",
+          "file": "neighborhood-runtime.spec.ts",
+          "title": "addressed homes: actual owner/phone visitor, direct door, exact exit and reload preserve one home"
+        },
+        {
+          "id": "43412f1ad17f173aee70-d97c15562266596e7b91",
+          "file": "neighborhood-runtime.spec.ts",
+          "title": "phone later block: own address, cross-block directory, expanded neighbor and responsive street menu"
+        },
+        {
+          "id": "43412f1ad17f173aee70-59df0da35a54d7446b20",
+          "file": "neighborhood-runtime.spec.ts",
+          "title": "phone browser-only gate offers shared practice without importing or overwriting local progress"
+        },
+        {
+          "id": "5318b8bce1fe66d3594d-e9029f55867a5495c711",
+          "file": "neighborhood-study.spec.ts",
+          "title": "candidate neighborhood blueprint:24addresses, native desktop/touch locate, pan, zoom, keyboard and narrow/short reading without game requests"
+        },
+        {
+          "id": "41d01a1113a0b6582b81-eb85d05482fcb184c25e",
+          "file": "personal-tools.spec.ts",
+          "title": "personal tools: independent bag and journal, guarded play shortcuts, disclosure and free switching preserve holdings"
+        },
+        {
+          "id": "41d01a1113a0b6582b81-05ca055520b242b13a1b",
+          "file": "personal-tools.spec.ts",
+          "title": "personal tools: desktop and touch phone HUD, separate panels and doubled-text focus keep office usable"
+        },
+        {
+          "id": "41d01a1113a0b6582b81-7a40ba67e1eb882f1398",
+          "file": "personal-tools.spec.ts",
+          "title": "personal tools: actual isolated shared free switching and resident changes never leak another bag or send commands"
+        },
+        {
+          "id": "bf706a7ea69163a4835e-9c13e7f33aa856823513",
+          "file": "phone-clarity.spec.ts",
+          "title": "phone garden action layout: free previews, stable feedback, accessible arrangements and short text200 controls"
+        },
+        {
+          "id": "bf706a7ea69163a4835e-d4b99bdc17153f795be3",
+          "file": "phone-clarity.spec.ts",
+          "title": "named journeys: guide enters once, rental room is centered, current-stop reopening stays active and Places announces arrival"
+        },
+        {
+          "id": "bf706a7ea69163a4835e-12dd925938328700660b",
+          "file": "phone-clarity.spec.ts",
+          "title": "phone Places in overlapping ranges walks to the requested Inspect target before reporting arrival"
+        },
+        {
+          "id": "d00b723c21676cbb8e3f-3e6d1a6efbabe4614ad3",
+          "file": "pilot.spec.ts",
+          "title": "desktop: walk, collision, UI lock, tap, transition and reload"
+        },
+        {
+          "id": "d00b723c21676cbb8e3f-3433add1e215e3b5e5ac",
+          "file": "pilot.spec.ts",
+          "title": "phone: walk, collision, UI lock, tap, transition and reload"
+        },
+        {
+          "id": "d00b723c21676cbb8e3f-ba37ada536844a119534",
+          "file": "pilot.spec.ts",
+          "title": "narrow: walk, collision, UI lock, tap, transition and reload"
+        },
+        {
+          "id": "d00b723c21676cbb8e3f-5643a149bf9aabaf332a",
+          "file": "pilot.spec.ts",
+          "title": "short: walk, collision, UI lock, tap, transition and reload"
+        },
+        {
+          "id": "967ff67ece3fdb380689-8dbd058e5581629b415a",
+          "file": "playable-cafe.spec.ts",
+          "title": "fresh native phone finds actual caf\u00e9 in Places, walks there and sees a clear no-radish route"
+        },
+        {
+          "id": "967ff67ece3fdb380689-997df255bbcb14c3636a",
+          "file": "playable-cafe.spec.ts",
+          "title": "native local review and cancel are free; one serve saves the exact cost/cooldown through reload"
+        },
+        {
+          "id": "967ff67ece3fdb380689-de4c20a7f0569e502065",
+          "file": "playable-cafe.spec.ts",
+          "title": "third confirmed tasting: desktop earned receipt, stable controls and visible teapot in Bag"
+        },
+        {
+          "id": "967ff67ece3fdb380689-f8f51c1efa3dc4fc6e2e",
+          "file": "playable-cafe.spec.ts",
+          "title": "third confirmed tasting: phone320 earned receipt, stable controls and visible teapot in Bag"
+        },
+        {
+          "id": "967ff67ece3fdb380689-4bd59d1fd4b8adb010fa",
+          "file": "playable-cafe.spec.ts",
+          "title": "third confirmed tasting: short200 earned receipt, stable controls and visible teapot in Bag"
+        },
+        {
+          "id": "967ff67ece3fdb380689-8d7cd8dae68b37a0afd6",
+          "file": "playable-cafe.spec.ts",
+          "title": "native quota fault cannot confirm a tasting or animate a teapot; exact intent retry saves once"
+        },
+        {
+          "id": "967ff67ece3fdb380689-a54fe370694b469c9ede",
+          "file": "playable-cafe.spec.ts",
+          "title": "real shared commit with a lost response retries the same paid UUID once and uses current counter proximity"
+        },
+        {
+          "id": "6319980f18187dab646c-e61ca055b797b8119b40",
+          "file": "playable-housing.spec.ts",
+          "title": "native shared housing 2k reviewed cost, fixed builders, yard, visible street and reload"
+        },
+        {
+          "id": "6319980f18187dab646c-906fd8bab8551942edcc",
+          "file": "playable-housing.spec.ts",
+          "title": "native shared housing phone320 reviewed cost, fixed builders, yard, visible street and reload"
+        },
+        {
+          "id": "6319980f18187dab646c-314e8a82ce30738e2c5c",
+          "file": "playable-housing.spec.ts",
+          "title": "ordinary newcomer can compare prices, use keyboard free exit and cannot spend missing kits on short enlarged layout"
+        },
+        {
+          "id": "4700490f695de1d1b414-11831fc6efb5febbe498",
+          "file": "residential-life.spec.ts",
+          "title": "original residential illustrations: three starter/expanded identities and cosmetic textures decode at authored bounds"
+        },
+        {
+          "id": "4700490f695de1d1b414-ecd979d7323988f4e8b5",
+          "file": "residential-life.spec.ts",
+          "title": "actual residential street: native visits preserve identity while occupied smoke, windows and reduced/hidden/culling remain cosmetic"
+        },
+        {
+          "id": "dd40d61f2b5c2464ca59-fbf55dae0504ce3731f2",
+          "file": "serving-family.spec.ts",
+          "title": "serving family raster:80expanded uncropped frames keep exact feet, mirror bounds and four distinct rigs"
+        },
+        {
+          "id": "dd40d61f2b5c2464ca59-7c575d5733e0e81d6fa0",
+          "file": "serving-family.spec.ts",
+          "title": "teapot native raster:transparent corners, uncropped silhouettes and open Bag handle at target sizes"
+        },
+        {
+          "id": "dd40d61f2b5c2464ca59-881492859f1d11bef816",
+          "file": "serving-family.spec.ts",
+          "title": "serving family gallery:bounded replay, cancellation, accessible controls and desktop/mobile text200layouts"
+        },
+        {
+          "id": "afb43e3895672be94d0e-c49595089ced10e2e846",
+          "file": "serving-study.spec.ts",
+          "title": "serving study raster:20uncropped cells, mirrored contact and identical resting feet"
+        },
+        {
+          "id": "afb43e3895672be94d0e-c8729abd740a469890de",
+          "file": "serving-study.spec.ts",
+          "title": "serving gallery: bounded replay/cancel, native controls and complete phone/short200words"
+        },
+        {
+          "id": "051cc7b87cfe5607792a-99b943b356807aa5af60",
+          "file": "shared-client.spec.ts",
+          "title": "intercepted client fixture: old resident replies cannot replace a newer login"
+        },
+        {
+          "id": "051cc7b87cfe5607792a-d12ba8b2be17ea54c231",
+          "file": "shared-client.spec.ts",
+          "title": "intercepted client fixture: changes during a delayed snapshot trigger one fresh follow-up"
+        },
+        {
+          "id": "051cc7b87cfe5607792a-ab6751ea401e5ea3d017",
+          "file": "shared-client.spec.ts",
+          "title": "intercepted client fixture: returning after service restart uses the confirmed position"
+        },
+        {
+          "id": "051cc7b87cfe5607792a-86e2757360e1922cf781",
+          "file": "shared-client.spec.ts",
+          "title": "intercepted client fixture: an open bridge cannot regress within one server boot"
+        },
+        {
+          "id": "efb576cb0ad68e814151-0f676c265c8e7a0acde3",
+          "file": "shared-town.spec.ts",
+          "title": "desktop and narrow-phone residents cooperate, retain ownership and retry the same committed request"
+        },
+        {
+          "id": "efb576cb0ad68e814151-8bb45d043d50b6e2a283",
+          "file": "shared-town.spec.ts",
+          "title": "short shared-town menu scales text, preserves the playfield and switches residents safely"
+        },
+        {
+          "id": "60a563b078cc42cd29d2-247c0f03cba668496eb0",
+          "file": "stable-toolbar.spec.ts",
+          "title": "stable toolbar ordinary: native nearby states keep control positions, world space, whole labels and menu actions"
+        },
+        {
+          "id": "60a563b078cc42cd29d2-defea4fc3a6d171f9805",
+          "file": "stable-toolbar.spec.ts",
+          "title": "stable toolbar enlarged: native nearby states keep control positions, world space, whole labels and menu actions"
+        },
+        {
+          "id": "60a563b078cc42cd29d2-9fdeefa8968fb87f10f8",
+          "file": "stable-toolbar.spec.ts",
+          "title": "stable toolbar landscape and medium desktop: native nearby states keep control positions, world space, whole labels and menu actions"
+        },
+        {
+          "id": "05919300e17928579c6a-0e94e8ed08d165047ba3",
+          "file": "starter-homes.spec.ts",
+          "title": "real isolated town fixtures: physical home ownership, visiting, upgrade, reload and safe door return"
+        },
+        {
+          "id": "43d751636c7282f6eacb-e4704d8ad6f6ba73ae4b",
+          "file": "stream-reconnect.spec.ts",
+          "title": "native event stream recovers from a transient429 without reloading the page or changing progress"
+        },
+        {
+          "id": "75585812e4bc5a26bbbc-c45cb8b3aa333481373c",
+          "file": "town-expansion.spec.ts",
+          "title": "2K and 4K: authored ground covers the native viewport; direct eastbound travel, menu lock, southern loop and reload work"
+        },
+        {
+          "id": "75585812e4bc5a26bbbc-7678b4c47da252986883",
+          "file": "town-expansion.spec.ts",
+          "title": "expanded town phone320: native touch, keyboard, resize and controls"
+        },
+        {
+          "id": "75585812e4bc5a26bbbc-d88d8c5ec93d07f7de59",
+          "file": "town-expansion.spec.ts",
+          "title": "expanded town phone360: native touch, keyboard, resize and controls"
+        },
+        {
+          "id": "75585812e4bc5a26bbbc-780e62cbe9cfdc116bf3",
+          "file": "town-expansion.spec.ts",
+          "title": "expanded town short200: native touch, keyboard, resize and controls"
+        },
+        {
+          "id": "75585812e4bc5a26bbbc-7af85292e3e527307616",
+          "file": "town-expansion.spec.ts",
+          "title": "new civic roof softens behind the player while its solid footprint remains blocked"
+        },
+        {
+          "id": "be10d7a192cda5320974-cdf083a8caae279b1654",
+          "file": "town-focus.spec.ts",
+          "title": "town reply preserves chosen select on phone and short200 without retargeting the saved action"
+        },
+        {
+          "id": "be10d7a192cda5320974-cd10d0ff3b1b9be9cf24",
+          "file": "town-focus.spec.ts",
+          "title": "town reply preserves chosen summary on phone and short200 without retargeting the saved action"
+        },
+        {
+          "id": "be10d7a192cda5320974-236e7489f976feca8c0f",
+          "file": "town-focus.spec.ts",
+          "title": "town reply preserves chosen close on phone and short200 without retargeting the saved action"
+        },
+        {
+          "id": "be10d7a192cda5320974-dc6265860b851d059921",
+          "file": "town-focus.spec.ts",
+          "title": "town retry keeps original request and chosen control; failed, closed and reopened panels keep their own focus and feedback"
+        },
+        {
+          "id": "be10d7a192cda5320974-faf01d9f4501159d1b27",
+          "file": "town-focus.spec.ts",
+          "title": "town focus keys distinguish duplicate visitor labels and use safe status when a chosen refresh control disappears"
+        },
+        {
+          "id": "be10d7a192cda5320974-79c0fa86184a380bd707",
+          "file": "town-focus.spec.ts",
+          "title": "town close-only reply stays closed, keeps world focus and still saves the original bound action"
+        },
+        {
+          "id": "20f3d8e66c9defe70c7e-ee5747d30e703090444a",
+          "file": "town-rhythm.spec.ts",
+          "title": "day/night preserve jobs, readable controls and direct doors"
+        },
+        {
+          "id": "20f3d8e66c9defe70c7e-e717755b9c242f6c49c7",
+          "file": "town-rhythm.spec.ts",
+          "title": "day/night preserve jobs, readable controls and direct doors"
+        },
+        {
+          "id": "20f3d8e66c9defe70c7e-4ace9f5afe834a40fb34",
+          "file": "town-rhythm.spec.ts",
+          "title": "day/night preserve jobs, readable controls and direct doors"
+        },
+        {
+          "id": "20f3d8e66c9defe70c7e-ab8c64f87d5031e75cde",
+          "file": "town-rhythm.spec.ts",
+          "title": "town rhythm: dawn and dusk keep actual foliage intact with enlarged phone text"
+        },
+        {
+          "id": "20f3d8e66c9defe70c7e-347aeefe9430ba981908",
+          "file": "town-rhythm.spec.ts",
+          "title": "town rhythm: drizzle resets under reduced motion and synthetic hidden state without production changes"
+        },
+        {
+          "id": "20f3d8e66c9defe70c7e-8a6e31c107db259f7467",
+          "file": "town-rhythm.spec.ts",
+          "title": "body tap, keyboard action, all Places destinations and modal lock give no rewards"
+        },
+        {
+          "id": "8e53604ac27851a8555f-4f0c41148f6a64935823",
+          "file": "town-variety.spec.ts",
+          "title": "original silhouettes, direct door targets, enlarged text and comparison sheet"
+        },
+        {
+          "id": "8e53604ac27851a8555f-a2b448211761ad90cafc",
+          "file": "town-variety.spec.ts",
+          "title": "original silhouettes, direct door targets, enlarged text and comparison sheet"
+        },
+        {
+          "id": "8e53604ac27851a8555f-dbe3b69012ca7193ee3a",
+          "file": "town-variety.spec.ts",
+          "title": "original silhouettes, direct door targets, enlarged text and comparison sheet"
+        },
+        {
+          "id": "8e53604ac27851a8555f-70fd5ccb619ae343181a",
+          "file": "town-variety.spec.ts",
+          "title": "town variety: decorative motion runs locally and resets for reduced motion and synthetic hidden state"
+        },
+        {
+          "id": "05347657dfbc01dc56e6-66e4d8e88b57f2291467",
+          "file": "trail.spec.ts",
+          "title": "real isolated town: timed opening, personal trail journal and permanent home pennant"
+        },
+        {
+          "id": "1b5de3d1c978eeedc401-e18e0995b230b463642e",
+          "file": "visual-kit.spec.ts",
+          "title": "visual kit desktop: direction, guide, text scaling, contrast and study"
+        },
+        {
+          "id": "1b5de3d1c978eeedc401-d6ca53de23726b4bd320",
+          "file": "visual-kit.spec.ts",
+          "title": "visual kit narrow: direction, guide, text scaling, contrast and study"
+        },
+        {
+          "id": "1b5de3d1c978eeedc401-4be21400c02cd577683f",
+          "file": "visual-kit.spec.ts",
+          "title": "visual kit short: direction, guide, text scaling, contrast and study"
+        },
+        {
+          "id": "1b5de3d1c978eeedc401-da07c35f95d39cf75f87",
+          "file": "visual-kit.spec.ts",
+          "title": "reduced motion keeps the idle pose while movement and facing still work"
+        },
+        {
+          "id": "f85ffdd27c8b6467c8a1-3f547b20dee01cf10f82",
+          "file": "weather-readability.spec.ts",
+          "title": "weather readability: real idle motion, clear art, visible drizzle and distinct night preserve controls and holdings"
+        },
+        {
+          "id": "f85ffdd27c8b6467c8a1-52f9555576e59404e1c5",
+          "file": "weather-readability.spec.ts",
+          "title": "weather readability: reduced motion and hidden views stay still; guide explains cosmetic sky without touching production"
+        },
+        {
+          "id": "f85ffdd27c8b6467c8a1-9666732a198d8e5c72d2",
+          "file": "weather-readability.spec.ts",
+          "title": "world rain: native desktop and touch walking keep both world axes anchored, resize covers edges and fall continues"
+        },
+        {
+          "id": "65c53a506c6fc773dade-a4813c73c0fd8e7dd650",
+          "file": "workshop.spec.ts",
+          "title": "desktop: direct gather, craft, place, reload and queued job"
+        },
+        {
+          "id": "65c53a506c6fc773dade-ab82eeeac3238cf979e6",
+          "file": "workshop.spec.ts",
+          "title": "narrow: direct gather, craft, place, reload and queued job"
+        },
+        {
+          "id": "65c53a506c6fc773dade-568e49bcd0d1214a6975",
+          "file": "workshop.spec.ts",
+          "title": "short: direct gather, craft, place, reload and queued job"
+        },
+        {
+          "id": "65c53a506c6fc773dade-a7bf369248012388b93e",
+          "file": "workshop.spec.ts",
+          "title": "isolated elapsed-time fixture: queued kit survives absence and settles once"
+        },
+        {
+          "id": "65c53a506c6fc773dade-4c4aaf71a572354fdfc6",
+          "file": "workshop.spec.ts",
+          "title": "second tab cannot overwrite local workshop progress"
+        },
+        {
+          "id": "65c53a506c6fc773dade-ed4780fd790e9563b2e3",
+          "file": "workshop.spec.ts",
+          "title": "save failures remain visible after a successful practice action"
+        },
+        {
+          "id": "65c53a506c6fc773dade-3309f1de56166a5595db",
+          "file": "workshop.spec.ts",
+          "title": "page cache lifecycle keeps job timer and single-writer ownership usable"
+        },
+        {
+          "id": "a9a2f8e25071640193b7-af8db4efb8ddafad227c",
+          "file": "z-first-visit.spec.ts",
+          "title": "fresh phone resident: real first planter, queued return job, sixty-second upkeep and independent trail discovery"
+        }
+      ]
+    }
+  ],
+  "scope": "Integrated playable housing in synthetic local town, exact default client; protected actual update has separate backup/migration/native/125oldstudy gates. No hosted game release."
+}

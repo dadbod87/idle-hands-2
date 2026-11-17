@@ -1,3 +1,4 @@
+import{OUTING_STOPS}from'./outing.ts';
 import {TOWN_SIZE,COMMONS_STOPS,COMMONS_BLOCKED} from './town-expansion.ts';
 import{BLOCK_SIZE,PARCELS,TOWN_GATE,RESIDENTIAL_GATE,HOME_SITE_PREFIX,NEIGHBORHOOD_TREES}from'./neighborhood.ts';
 import {SURVEY_IDS,SURVEYS} from './fieldwork.ts';
@@ -37,6 +38,7 @@ export const worlds: Record<Room, World> = {
       ,{id:'pine-forked',name:'Forked pine deadfall',point:{x:7,y:41},doorArea:[5.75,37.25,3.5,4.5],text:'Two trunks. One supply entitlement. The tree has declined to form a subsidiary.'}
       ,{id:'pine-sheltered',name:'Sheltered pine deadfall',point:{x:40,y:41},doorArea:[38.75,36.25,3.5,5.5],text:'Fallen branches, not a license to demolish the forest. Your supply is personal.'}
       ,{id:'stake-notched',name:'Notched stake',point:{x:35,y:39},doorArea:[34.25,37.5,1.5,2],text:'A crosspiece goes here. Probably. Inspect it to be sure.'}
+      ,...OUTING_STOPS.map(s=>({...s,point:{...s.point},doorArea:[...s.doorArea] as [number,number,number,number]}))
     ]
   },
   trail: {

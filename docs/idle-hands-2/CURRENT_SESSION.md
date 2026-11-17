@@ -1,3 +1,11 @@
+# November17 —119 woodland outing in progress
+
+Current isolated source: work/idle-hands-2-woodland, feat/woodland-outing, over pushed118closeout edb2db9 / accepted main8ba0dec. Remote main and open PRs checked; no concurrent sequel PR found. Normal4175/4176remain accepted118client/API8; protected55432, keys, saved towns and125old-study responses must remain intact until owning gates.
+
+119implements a candidate independent versioned outing record: a separate local key with coordinated atomic writes and a private shared table. Old workshop/cafe writers cannot erase it. No root-save or economic equations change. A matched protocol9 client/API and additive ninth migration will gate new commands. These are implementation choices, not acceptance or hosting.
+
+One pre-bridge outskirts route, alternating wind/soft-bank conditions, free borrowed tools/exchange/detour, a hands-on sign repair and return-to-desk private journal outcome. No material/practice/furnishing/capacity/public credit. Only119active;120profiling stays queued. Read119PLAN and immutable Nov17contract. Full source/main/raw/native/saved-preview gates and Terra6.1 remain required. No119acceptance yet. Candidate details, honest local results and next gates: [119report](../evidence/IH2-119/REPORT.md) and [dated handoff](handoffs/2026-11-17-woodland-outing.md).
+
 # November 17 —118 accepted; next119 queued
 
 PR49's original saved-preview gate is complete; [117 report](../evidence/IH2-117/REPORT.md). PR50 /118 is now accepted in source and the normal saved preview: candidate **5c65356d0ad9381625664bc31d34fd2506dcef33**, main **8ba0dec41e81f625ecc797ec843b8bc2385037e4**, identical tree. PR **44147609039** and main **44151227514** each passed all four jobs and raw **482/183 (93+90)** with zero failures/skips/flakes/report errors; all223compiled files match local/PR/main/normal and217prior art files remain exact. [118 report](../evidence/IH2-118/REPORT.md), [closeout](../evidence/IH2-118/source-closeout.json).

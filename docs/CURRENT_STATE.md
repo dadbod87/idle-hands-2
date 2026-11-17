@@ -1,3 +1,7 @@
+# November17 —119 woodland outing candidate in progress
+
+Isolated source: `work/idle-hands-2-woodland`, branch `feat/woodland-outing`, from118closeout edb2db9 / accepted main8ba0dec. Local/shared versioned outing state, two route conditions, borrowed tools, staged repair and private journal are implemented as a candidate. Full regression, final Terra review and source/main/saved-preview acceptance remain pending. Normal practice/Tour stay at118client/API8. [Current handoff](idle-hands-2/handoffs/2026-11-17-woodland-outing.md), [implementation](evidence/IH2-119/IMPLEMENTATION.md), [validation history](evidence/IH2-119/VALIDATION_HISTORY.md). Earlier entries below are historical.
+
 # November17 —118 source and saved-preview acceptance complete
 
 PR50/main **8ba0dec41e81f625ecc797ec843b8bc2385037e4** accepted after exact PR/main **482domain /183browser /all4jobs /raw** gates. Normal223-file practice/Tour clients, same signed sessions, original API8/keys/protected data, all446static responses and125historical-study responses verified. [Current session](idle-hands-2/CURRENT_SESSION.md), [118 report](evidence/IH2-118/REPORT.md). Next119woodland gameplay and120profiling are queued, not implemented. No cloud or original-game release. Earlier entries below are historical.

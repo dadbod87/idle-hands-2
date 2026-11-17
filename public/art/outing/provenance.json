@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "path": "public/art/outing/desk.svg",
+      "sha256": "ee9521c4dcf407174b4eea14ca3178e9caadaffc693052ef6edd42368b56d8eb",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-outing-art.py"
+    },
+    {
+      "path": "public/art/outing/detour.svg",
+      "sha256": "d8fe0f7034b1e16a33de76af0588d7e77592451d04a369f9fa59812a6f4ce50f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-outing-art.py"
+    },
+    {
+      "path": "public/art/outing/post-aligned.svg",
+      "sha256": "0461655f8d13de79a8905b5ba5d3a56c6144e289cf01bd3e268e410d068a5576",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-outing-art.py"
+    },
+    {
+      "path": "public/art/outing/post-broken.svg",
+      "sha256": "c53800f75330dcec1779a5e2f71f60d182e83ffb783805f97d080bddde6e9d94",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-outing-art.py"
+    },
+    {
+      "path": "public/art/outing/post-pinned.svg",
+      "sha256": "f0ca9f44cda8c621719916a234c0f9e56c9e3f6aa3609050b0f53918751864ba",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-outing-art.py"
+    },
+    {
+      "path": "public/art/outing/post-repaired.svg",
+      "sha256": "7c10a2b954c6d938849b131457482027f8642580e3def77f2ff66215e521f24b",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-outing-art.py"
+    },
+    {
+      "path": "public/art/outing/soft-bank.svg",
+      "sha256": "977ea1024eb455203148914c6a3ac5b5a19d3a4aa798277b8a436876b1d03889",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-outing-art.py"
+    },
+    {
+      "path": "public/art/outing/wind.svg",
+      "sha256": "0d3f3b557f70e9e2e5c81c8e5a6162e6aced48455212f65d2a505ff71083ad38",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-outing-art.py"
+    }
+  ]
+}

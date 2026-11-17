@@ -25,3 +25,12 @@ The operator reports successful native complete journeys and recovery checks usi
 ## Latest journal follow-up
 
 The latest short-viewport/200% capture shows the expanded journal heading and complete first note below the sticky title and within the viewport, resolving the previous captured-view concern about the note being below the fold. The phone capture also shows the complete first note. The operator separately reports successful native journeys at desktop, phone, and short/200%, with assertions that the first note has focus and its full rectangle is unobscured; those focus and geometry results are not established by the stills alone. These remain fixture-based checks, not normal-town acceptance.
+
+
+## Actual saved preview still review
+
+Reviewed the supplied current practice and tour screenshots visually. The desktop assignment presents the condition, free borrowing, both tool choices, and journal together; the suitable brace is clearly labeled and has a visible focus outline. Both phone assignment captures show readable text and both large tool choices, with the condition and no-cost/unfinished-return explanation above them. At short viewport with 200% text, both complete choices are visible below the sticky title, but their explanatory condition is above the captured scroll position; the image alone does not establish how easily it can be revisited.
+
+The 4K world view shows the work desk, bend, detour sign, and waymarker as distinct labeled objects within a cohesive town scene. The phone world view shows a recognizable, clearly labeled desk and readable bottom navigation; the other outing objects are outside that frame. No visual blocker is apparent in these stills. Their visible focus outline does not alone prove keyboard/touch behavior, scrolling, or persistence.
+
+The operator reports native checks in three current signed saved sessions, including desktop, touch-phone and short/200% configurations, walks and reloads across an API-only restart. Those interaction results are separate from this still inspection. The assignment remained fresh in these actual towns. The reported full-repair and lost-response checks used separate synthetic fixtures; these screenshots do not establish a physical-phone experience, enjoyment, hosting status, or acceptance.

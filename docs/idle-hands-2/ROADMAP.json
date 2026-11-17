@@ -1994,7 +1994,7 @@
     {
       "id": "IH2-119",
       "title": "First playable woodland waymarker outing",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-118"
       ],
@@ -2012,7 +2012,9 @@
         "docs/evidence/IH2-119/NEXT_SECTION_REVIEW.md",
         "docs/evidence/IH2-119/REPORT.md",
         "docs/evidence/IH2-119/VALIDATION_HISTORY.md",
-        "docs/evidence/IH2-119/TERRA_REVIEW.md"
+        "docs/evidence/IH2-119/TERRA_REVIEW.md",
+        "docs/evidence/IH2-119/ACTUAL_SAVED.md",
+        "docs/evidence/IH2-119/source-closeout.json"
       ],
       "owner_branch": "feat/woodland-outing"
     },

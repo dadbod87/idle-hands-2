@@ -1,3 +1,9 @@
+# November 17 —119 woodland waymarker outing
+
+Free borrowed tools/direct or scenic route/staged repair/private return journal in existing East Commons; old economy and owned progress unchanged. Main ed1dc9d, PR #51,490/ 188exact PR/main, preserved saved previews and Terra6.1review. [Report](evidence/IH2-119/REPORT.md).
+
+Earlier entries below are historical.
+
 ## 2026-11-17 — IH2-119 candidate
 
 First pre-bridge woodland outing: free borrowed brace/rope and exchange, direct route or marked detour, illustrated alignment/pin/support steps, safe unfinished return and private repair journal. Independent local/shared records preserve existing production and belongings; protocol9and additive ninth migration remain candidate-only. Original art and focused recovery tests pass; full validation/source/main/original-saved update pending. No normal preview or original-game release yet.

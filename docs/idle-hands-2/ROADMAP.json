@@ -1920,7 +1920,7 @@
     {
       "id": "IH2-116",
       "title": "Playable shared housing choices, builders and conserved yard arrangement",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-115"
       ],
@@ -1936,7 +1936,9 @@
         "No cloud/public launch, real-player/account imports, paid assets, new wallet, extra production queues, unpriced yard recipes, sale/downgrade or relocation."
       ],
       "evidence": [
-        "docs/evidence/IH2-115/CONTRACT.md"
+        "docs/evidence/IH2-115/CONTRACT.md",
+        "docs/evidence/IH2-116/source-closeout.json",
+        "docs/evidence/IH2-116/actual-preserved.json"
       ],
       "owner_branch": "feat/playable-housing"
     },

@@ -1,3 +1,7 @@
+# IH2-116 accepted and actual local preview updated
+
+PR48/main **c4b275586bc652111493ed926591f4932527cf19**: exact PR/main4jobs and raw474/176passed. Actual221client/API8, additive migration, original signed session, saved data and125old-study responses verified. Continue from the pushed full-source playable-housing closeout branch and CURRENT_SESSION; next117is queued. No hosted launch or original-game change.
+
 # IH2-116 local integration complete; release gates pending
 
 Current full source is `work/idle-hands-2-playable-housing`, `feat/playable-housing`. Fresh474system, real dedicated PostgreSQL restart, full176browser and required local checks passed; Terra6.1desktop/mobile images reviewed. Actual practice remains114client/113API until exact PR/main4job and preserved matched-update gates. See116REPORT and CURRENT_SESSION; code backup is not acceptance.

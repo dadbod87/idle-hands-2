@@ -1,5 +1,15 @@
 # A little wayfinding — standalone interaction rehearsal
 
+## Current revision — readable routes, November 17
+
+V2 addresses the initial phone review: narrow and short layouts use readable text routes in place of the tiny diagram labels. Each branch states whether it is open or needs a brace/rope; after restoring the sign, paths read homeward. The current stop shows **Borrowed: none / brace / rope**, including away from the shed. Finishing or starting another walk clears the borrowed-tool display. Desktop retains the original diagram. No route rules or game systems change.
+
+The benefit is deciding where to go and whether to exchange a tool without decoding miniature labels or remembering a previous menu. Both walk and early-return buttons remain in the initial360×640view. This is a small useful equipment-slot principle to carry into the UO-inspired design: show what is held and its relevance to the current action, without making a large equipment window necessary.
+
+Three fresh Chromium two-walk cases passed at1440×900,360×640touch emulation and844×390/200%text. New assertions check branch status in both variants, repaired-branch status, homeward text, borrowed-tool reset/away display, the first phone action's viewport bounds, no overflow after every exercised action and44pxminimum exercised buttons. Existing wrong-tool/detour/keyboard/early-return/reload/storage/request checks remain intact. The seven-test pure model is unchanged; its earlier passing result is not presented as a new execution. Design/plan/forty pinned files, JS syntax and whitespace checks passed. One browser launch before installing the pinned browser did not execute the checks and is not a passing result.
+
+[V2 browser observations](../../docs/evidence/woodland-rehearsal-2026-11-16/v2/browser.json), [phone routes](../../docs/evidence/woodland-rehearsal-2026-11-16/v2/phone-arrival.png), [borrowed rope at the blocked ridge](../../docs/evidence/woodland-rehearsal-2026-11-16/v2/phone-wrong-tool.png). Original V1 evidence below is retained as history. Terra6.1 confirmed the text routes resolve the tiny-label concern and the borrowed-tool/available-action states are clear. Its final wording finding was corrected from “either open route” to “an open route”; the corrected returning phone capture was rechecked. Current four-file payload:12,161raw bytes /5,522separately gzipped bytes, measured deterministically as below. V2 remains a standalone design rehearsal; saved-preview, source acceptance, physical-device, human-playtest and game-integration gates remain outstanding.
+
 Design experiment, November 16, 2026, over audit checkpoint `a4f5ed8`. This is **not registered game functionality**, final terrain, continuous character movement, multiplayer or a release. PR49 and its saved-preview acceptance remain unchanged. The rehearsal imports no game modules, reads no saves, has no service/API, uses no inventory and awards nothing. Reload deliberately starts a new fictional walk. Original SVG diagram shapes and system fonts only; no external assets or proprietary UO content.
 
 ## Try it locally
@@ -10,7 +20,7 @@ From the repository root:
 python3 -m http.server 4194 --bind 127.0.0.1 --directory tools/woodland-rehearsal
 ```
 
-Open `http://127.0.0.1:4194/`. All controls are real buttons and support keyboard activation. Use the connected-stop buttons below the map; the small SVG diagram is a visual guide, not a pointer navigation surface. No installation, login or game-data transfer is needed for the rehearsal itself.
+Open `http://127.0.0.1:4194/`. All controls are real buttons and support keyboard activation. Use the connected-stop buttons below the diagram or text routes; the SVG is a visual guide, not a pointer navigation surface. No installation, login or game-data transfer is needed for the rehearsal itself.
 
 Restore the lookout sign, then return to the town gate. Borrow one tool at the shed or take the open detour. A wrong choice never traps you: exchange the tool for free, switch routes, or return unfinished. The second walk changes the weather condition and which crossing is blocked. The restored sign gains a homeward arrow; a repaired crossing visibly changes from a broken red path to an open path. These changes last only for this rehearsal.
 
@@ -36,12 +46,12 @@ node tools/woodland-rehearsal/browser-check.mjs
 - Terra6.1 independently reviewed four final rehearsal captures. No sampled blocking visual issue; the tiny phone diagram labels need a compact textual route summary or another treatment. Connected-stop button labels remain readable. Short-height captures are scrolled action views, not proof that all controls fit the initial viewport.
 - Design/plan validation (including ten tracker tests), forty pinned game-skill files, JavaScript syntax and whitespace checks passed. No registered game source, dependency, migration, asset manifest or task acceptance status changed. No full game suite, build, hosted CI, merge, physical-device test or saved-preview acceptance is claimed by this checkpoint.
 
-Four static rehearsal files total **11,081 raw bytes / 5,219 separately gzipped bytes**, measured from their file bytes with deterministic gzip; this excludes HTTP headers, browser cache and the rest of the game. This is not a frame-rate or real-device performance claim.
+The original V1 four static rehearsal files total **11,081 raw bytes / 5,219 separately gzipped bytes**, measured from their file bytes with deterministic gzip; this excludes HTTP headers, browser cache and the rest of the game. This is not a frame-rate or real-device performance claim.
 
 [Browser observations](../../docs/evidence/woodland-rehearsal-2026-11-16/browser.json), [phone arrival](../../docs/evidence/woodland-rehearsal-2026-11-16/phone-arrival.png), [restored desktop sign](../../docs/evidence/woodland-rehearsal-2026-11-16/desktop-restored.png). Browser outputs default to ignored `test-results/woodland-rehearsal`; optional first argument selects an output directory.
 
 ## Next bounded step
 
-Improve phone route orientation and test whether another visit changes a player's decision without relying on text quizzes. Keep this separate from the game until the existing home-update gate is satisfied and a bounded integration task is selected. Before durable rewards, specify ownership, capacity, replay, disconnect/reload, solo/cooperative contributions and an explicit useful connection to current crafting/garden/home play. Do not infer a new wallet, resource entitlement, skill multiplier or permanent reward from this diagram.
+Phone route orientation is now revised. Next, test whether another visit changes a player's decision without relying on text quizzes. Keep this separate from the game until the existing home-update gate is satisfied and a bounded integration task is selected. Before durable rewards, specify ownership, capacity, replay, disconnect/reload, solo/cooperative contributions and an explicit useful connection to current crafting/garden/home play. Do not infer a new wallet, resource entitlement, skill multiplier or permanent reward from this diagram.
 
 The current test is enough to review the interaction sketch; it is not enough to conclude coworkers will choose to replay it. A short observed human trial should measure understood choices, confusion, voluntary second visits and whether the repair feels worthwhile.

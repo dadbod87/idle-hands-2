@@ -9,7 +9,13 @@ function perform(a){const r=apply(state,a);if(r.ok)state=r.state;render();$('fee
 function button(text,action,id,disabled=false){const b=document.createElement('button');b.textContent=text;b.dataset.action=id;b.disabled=disabled;b.onclick=()=>perform(action);$('actions').append(b);}
 function render(){
  const v=variants[state.variant],p=stops[state.at];$('weather').textContent=v.name;$('place').textContent=p.name;
- $('objective').textContent=state.finished?'Walk complete · '+state.steps+' path sections walked.':state.sign?'Sign restored. Follow either open route home.':'Goal · restore the lookout sign, then return to town.';
+ $('kit').textContent='Borrowed: '+(state.tool??'none');
+ $('route-direction').textContent=state.sign?'Routes home from the lookout':'Routes from the borrowing shed';
+ const ridge=state.sign?'Lookout → Ridge → Shed → Town gate':'Shed → Ridge → Lookout';
+ const creek=state.sign?'Lookout → Fern bend → Creek → Shed → Town gate':'Shed → Creek → Fern bend → Lookout';
+ $('ridge-route').textContent=ridge+' · '+(!state.cleared&&state.variant===0?'repair with brace':'open')+'.';
+ $('creek-route').textContent=creek+' · '+(!state.cleared&&state.variant===1?'repair with rope':'open')+'.';
+ $('objective').textContent=state.finished?'Walk complete · '+state.steps+' path sections walked.':state.sign?'Sign restored. Follow an open route home.':'Goal · restore the lookout sign, then return to town.';
  $('hazard').textContent=state.cleared?'Crossing restored. Both routes are open.':v.hazard+' '+(v.tool==='brace'?'A brace can hold the limb clear.':'A rope can retrieve the plank.');
  $('paths').replaceChildren();for(const [a,b]of edges){const closed=!state.cleared&&v.blocked.includes(a)&&v.blocked.includes(b);$('paths').append(svg('line',{x1:stops[a].x,y1:stops[a].y,x2:stops[b].x,y2:stops[b].y,stroke:closed?'#aa694c':'#b4a57b','stroke-width':16,'stroke-linecap':'round','stroke-dasharray':closed?'8 10':'none'}));}
  $('stations').replaceChildren();for(const [id,s]of Object.entries(stops)){$('stations').append(svg('circle',{cx:s.x,cy:s.y,r:20,fill:id==='lookout'&&state.sign?'#61836a':'#f8f0d9',stroke:'#53654f','stroke-width':3}),svg('text',{x:s.x,y:s.y-30,'text-anchor':'middle'},s.name));}

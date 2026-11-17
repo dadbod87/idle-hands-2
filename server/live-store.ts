@@ -1,3 +1,5 @@
+import{privateOuting,outingAction}from'./outing.ts';
+import type{OutingState}from'../src/game/outing.ts';
 import{validPublicHouse,liveHousingAccount}from'../src/game/live-housing.ts';
 import{housingWorld}from'../src/game/housing-world.ts';
 import{housingAction,privateHousing,housingAccount}from'./housing.ts';
@@ -23,6 +25,7 @@ export type TownPosition = { room: Room; position: Point; homePlotId?: string; d
 export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'];workroomPlacements:HomeLayout['workroomPlacements']; pennantOwned:boolean;letterboxMotif:LetterboxMotif|null;planId?:string|null;yard?:ReturnType<typeof emptyYard>;construction?:string|null;housingRevision?:number };
 export type MaintenanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot = {
+  outing:OutingState;
   housingSites:Array<{plotId:string;ownerId:string;ownerName:string;phase:'building'|'ready'}>;housing:Awaited<ReturnType<typeof privateHousing>>;cafe:CafePublicState;
   playerId: string; name: string; workshop: WorkshopState; position: TownPosition;
   quest: { contentVersion: 1; awarded: string[] };
@@ -156,7 +159,7 @@ export class TownStore {
     const noticeboard:NoticeboardState={credits:bridgeRow.notice_credits,phase:bridgeRow.notice_phase,startedAt:bridgeRow.notice_started===null?null:Number(bridgeRow.notice_started),readyAt:bridgeRow.notice_ready===null?null:Number(bridgeRow.notice_ready),openedAt:bridgeRow.notice_opened===null?null:Number(bridgeRow.notice_opened)};
     const workshop=this.readState(player,now),own=plots.find(p=>p.ownerId===id);if(own&&!homeAllocationValid(workshop,own))throw new Error('Stored furniture allocation failed validation. Nothing was replaced.');
     const cafeRow=(await client.query('select * from ih2.cafe_project where id=1')).rows[0];const cafe=cafePublic(this.readCafe(cafeRow));
-    const housingSites=(await client.query("select b.plot_id::text as \"plotId\",b.owner_id as \"ownerId\",p.name as \"ownerName\",case when (b.build->>'readyAt')::bigint<=$1 then 'ready' else 'building' end as phase from ih2.housing_builds b join ih2.players p on p.id=b.owner_id where b.completed_at is null order by b.plot_id",[now])).rows;const housing=await privateHousing(client,id);liveHousingAccount(id,workshop,own??null,housing.build);return {housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    const housingSites=(await client.query("select b.plot_id::text as \"plotId\",b.owner_id as \"ownerId\",p.name as \"ownerName\",case when (b.build->>'readyAt')::bigint<=$1 then 'ready' else 'building' end as phase from ih2.housing_builds b join ih2.players p on p.id=b.owner_id where b.completed_at is null order by b.plot_id",[now])).rows;const housing=await privateHousing(client,id);liveHousingAccount(id,workshop,own??null,housing.build);return {outing:await privateOuting(client,id),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string): Promise<TownSnapshot> {
     const client = await this.pool.connect();
@@ -197,6 +200,11 @@ export class TownStore {
       else if (!(position.room==='neighborhood'?canStand(position.room,position.position,housingWorld((await client.query('select id::text,plan_id as "planId" from ih2.plots')).rows,position.districtId!)):validPosition(position))||!validContext) reject('A valid server position is required.');
       else if (now < state.observedAt) reject('The server clock moved backwards. Your progress is unchanged.');
       else if (state.revision >= 1_000_000) reject('Prototype command limit reached. Your progress is unchanged.');
+      else if(cmd.kind==='outing'){
+        const shape=z.object({...base,kind:z.literal('outing'),outingAction:z.unknown()}).strict().safeParse(raw);
+        if(!shape.success)reject('Invalid outing request. Nothing changed.');
+        else try{const applied=await outingAction(client,id,shape.data.outingAction,now,position);if(!applied.ok)reject(applied.message);else{state={...state,revision:state.revision+1,observedAt:now,lastMessage:applied.message};result={ok:true,message:applied.message,revision:state.revision};}}catch(error){if(error instanceof z.ZodError)reject('Invalid outing choice. Nothing changed.');else throw error;}
+      }
       else if(cmd.kind.startsWith('housing-')){
         const atHome=!!ownPlot&&isHome(position.room)&&position.homePlotId===ownPlot.id;
         const atYard=!!ownPlot&&position.room==='neighborhood'&&position.districtId===addressForPlot(ownPlot.id).block&&near(position,'neighborhood',HOME_SITE_PREFIX+addressForPlot(ownPlot.id).slot);

@@ -20,10 +20,10 @@
     }
   },
   "reviewedCurrent": {
-    "src/game/world.ts": "61912bb2fe7504d9fd47ad689161140c4035bb7677af70010a6f209a2ba91076",
-    "src/main.ts": "d9e85cebd109726312c36d17205148122e9ef99a9f03c02e0f3ee48136292b03",
-    "src/phaser/WorldScene.ts": "3dbf6ce463b35a4d09f263773db42e14cad230b008af542e4675577cf614af61",
+    "src/game/world.ts": "e7e5c432b1d2f614e048b02b19c2e23d64437f8c015d9e36c3175f23f879c3ab",
+    "src/main.ts": "0f331f5e2552887263144cb1ba8e1f651061b31a246389cfd5895229e016f8d1",
+    "src/phaser/WorldScene.ts": "29e0e5f1ba37271f36ba2563c9197cf369e3921985c0db2755a522ca36c9584c",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "IH2-117: one selected cottage interior and same-room visual refresh; unchanged historical snapshots, world geometry, main integration and study bytes. See117REPORT for validation."
+  "currentTask": "IH2-119 candidate: reviewed additive outing stops, DOM integration and confirmed-state scene props. Historical snapshots and generator outputs remain frozen; no acceptance implied. See119IMPLEMENTATION/validation history."
 }

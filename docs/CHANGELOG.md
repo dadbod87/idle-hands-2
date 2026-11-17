@@ -1,3 +1,11 @@
+## 2026-11-17 — IH2-119 candidate
+
+First pre-bridge woodland outing: free borrowed brace/rope and exchange, direct route or marked detour, illustrated alignment/pin/support steps, safe unfinished return and private repair journal. Independent local/shared records preserve existing production and belongings; protocol9and additive ninth migration remain candidate-only. Original art and focused recovery tests pass; full validation/source/main/original-saved update pending. No normal preview or original-game release yet.
+
+# November17 —118 source and saved-preview acceptance complete
+
+PR50/main **8ba0dec41e81f625ecc797ec843b8bc2385037e4** accepted after exact PR/main **482domain /183browser /all4jobs /raw** gates. Normal223-file practice/Tour clients, same signed sessions, original API8/keys/protected data, all446static responses and125historical-study responses verified. [Current session](idle-hands-2/CURRENT_SESSION.md), [118 report](evidence/IH2-118/REPORT.md). Next119woodland gameplay and120profiling are queued, not implemented. No cloud or original-game release. Earlier entries below are historical.
+
 # November17 — source117and saved-preview acceptance
 
 PR49/mainff87e3a accepted after exact PR/main raw479/180/all4gates and original saved-preview acceptance. Matched223file client now serves4175/localhost4176with original API8unchanged, exact16table/eight-migration data and originalkeys during static installation; same signed sessions and446served static responses verified. [Current session](idle-hands-2/CURRENT_SESSION.md), [117report](evidence/IH2-117/REPORT.md). Active118is a separate bounded guidance task, not accepted yet. Earlier entries below are historical.

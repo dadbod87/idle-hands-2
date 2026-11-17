@@ -1970,7 +1970,7 @@
     {
       "id": "IH2-118",
       "title": "Truthful next steps for busy residents",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-117"
       ],
@@ -1985,14 +1985,16 @@
         "No new outing, resource/practice/reward/capacity/state/schema/API/clock change, cloud/public release or real-player data."
       ],
       "evidence": [
-        "docs/evidence/IH2-118/PLAN.md"
+        "docs/evidence/IH2-118/PLAN.md",
+        "docs/evidence/IH2-118/REPORT.md",
+        "docs/evidence/IH2-118/source-closeout.json"
       ],
       "owner_branch": "feat/busy-resident-guidance"
     },
     {
       "id": "IH2-119",
       "title": "First playable woodland waymarker outing",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-118"
       ],
@@ -2006,8 +2008,13 @@
         "No resource/practice/furnishing reward, new capacity, full skill tree, shared-restoration credit, combat/chat, new regions, paid assets, real accounts or cloud/public launch."
       ],
       "evidence": [
-        "docs/evidence/IH2-119/PLAN.md"
-      ]
+        "docs/evidence/IH2-119/PLAN.md",
+        "docs/evidence/IH2-119/NEXT_SECTION_REVIEW.md",
+        "docs/evidence/IH2-119/REPORT.md",
+        "docs/evidence/IH2-119/VALIDATION_HISTORY.md",
+        "docs/evidence/IH2-119/TERRA_REVIEW.md"
+      ],
+      "owner_branch": "feat/woodland-outing"
     },
     {
       "id": "IH2-120",

@@ -1,0 +1,40 @@
+{
+  "run": 44151227514,
+  "sha": "8ba0dec41e81f625ecc797ec843b8bc2385037e4",
+  "all4JobsSuccess": true,
+  "domain": 482,
+  "browser": 183,
+  "disjointShards": [
+    93,
+    90
+  ],
+  "all180PriorBrowserCasesPreserved": true,
+  "all3NewGuidanceCases": true,
+  "localFullExecution": "Incomplete/failed attempts disclosed; collection proves membership only, not a local183pass.",
+  "orderedFixtureFamily": {
+    "shared-town.spec.ts": [
+      2
+    ],
+    "starter-homes.spec.ts": [
+      2
+    ],
+    "trail.spec.ts": [
+      2
+    ],
+    "z-first-visit.spec.ts": [
+      2
+    ]
+  },
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all223CompiledFilesExactFrozenLocal": true,
+  "all217PriorArtFilesExact": true,
+  "rawHousingRestartRestoreSameSessionAnd8MigrationChecksums": true,
+  "commandP95Ms": 87.70640099999991,
+  "neighborhoodSnapshotP95Ms": 85.1152530000004,
+  "unchanged500msBudgetsPass": true,
+  "runtime": "v24.22.2",
+  "publicStandardUbuntu": true,
+  "approxRoundedJobMinutes": 37,
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true
+}

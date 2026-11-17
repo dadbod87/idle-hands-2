@@ -33,7 +33,7 @@ test('isolated PostgreSQL housing quote, ownership, allocation and construction 
  t.beforeEach(async()=>{await pool.query('drop schema if exists ih2_housing_candidate cascade;drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');await migrate(pool);now=start;store=new HousingContractCandidate(pool,{now:()=>now});await store.install();await store.importAccount(housingFixture());await store.importAccount(housingFixture('bea',0));});
  try{
   await t.test('legacy import and read-only projection retain every source field and all seven immutable migration checksums',async()=>{
-   const a=await store.snapshot('aster'),before=await fingerprint(),hashes=await migrations();assert.deepEqual(a,housingFixture());assert.equal(hashes.length,8);await store.publicStreet();await store.snapshot('bea');assert.deepEqual(await fingerprint(),before);assert.deepEqual(await migrations(),hashes);
+   const a=await store.snapshot('aster'),before=await fingerprint(),hashes=await migrations();assert.deepEqual(a,housingFixture());assert.equal(hashes.length,9);await store.publicStreet();await store.snapshot('bea');assert.deepEqual(await fingerprint(),before);assert.deepEqual(await migrations(),hashes);
    const pub=(await store.publicStreet())[0];assert.deepEqual(Object.keys(pub!).sort(),Object.keys(publicHousing(a,now)!).sort());assert.equal(JSON.stringify(pub).includes('bridgeKits'),false);assert.equal(JSON.stringify(pub).includes('produce'),false);await assert.rejects(store.importAccount(a));
   });
   await t.test('atomic forward import copies real current schema rows, exact facade/creative rights and fails without partial migration',async()=>{

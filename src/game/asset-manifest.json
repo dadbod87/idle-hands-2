@@ -1013,6 +1013,46 @@
       "id": "cottage-starter-interior",
       "path": "art/interiors/cottage-starter-interior.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "outing-desk",
+      "path": "art/outing/desk.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "outing-detour",
+      "path": "art/outing/detour.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "outing-post-aligned",
+      "path": "art/outing/post-aligned.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "outing-post-broken",
+      "path": "art/outing/post-broken.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "outing-post-pinned",
+      "path": "art/outing/post-pinned.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "outing-post-repaired",
+      "path": "art/outing/post-repaired.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "outing-soft-bank",
+      "path": "art/outing/soft-bank.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "outing-wind",
+      "path": "art/outing/wind.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

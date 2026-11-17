@@ -1,0 +1,70 @@
+{
+  "scope": "Actual installed main-CI223file frontend against unchanged original API8/protected saved practice and Tour. Existing fictional Aster/Avery logins; Journal/Bag-free navigation and viewport/text/keyboard inspection only. No move, command, paid action, new player, interception, grant, fake time, migration, reset or reseed. Chrome emulation, not physical phone/Safari/cloud.",
+  "all446StaticResponsesExact": true,
+  "sameServerInstances": true,
+  "existingInventoryOwnershipJobsStatsPlotsAndQuestsPreserved": true,
+  "layouts": [
+    {
+      "prefix": "practice",
+      "size": {
+        "name": "desktop2k",
+        "w": 2560,
+        "h": 1440,
+        "text": 100
+      },
+      "bench": {
+        "x": 1081,
+        "y": 514.921875,
+        "width": 398,
+        "height": 51
+      }
+    },
+    {
+      "prefix": "practice",
+      "size": {
+        "name": "phone320",
+        "w": 320,
+        "h": 640,
+        "text": 100
+      },
+      "bench": {
+        "x": 43,
+        "y": 104.3125,
+        "width": 234,
+        "height": 51
+      }
+    },
+    {
+      "prefix": "practice",
+      "size": {
+        "name": "short200",
+        "w": 844,
+        "h": 390,
+        "text": 200
+      },
+      "bench": {
+        "x": 223,
+        "y": 122.6875,
+        "width": 398,
+        "height": 102
+      }
+    },
+    {
+      "prefix": "tour",
+      "size": {
+        "name": "phone360",
+        "w": 360,
+        "h": 640,
+        "text": 100
+      },
+      "bench": {
+        "x": 43,
+        "y": 294.3125,
+        "width": 274,
+        "height": 51
+      }
+    }
+  ],
+  "commands": [],
+  "errors": []
+}

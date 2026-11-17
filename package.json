@@ -17,7 +17,8 @@
     "town:server": "node --experimental-strip-types tools/run-local-server.ts",
     "town:test-server": "node --experimental-strip-types tools/browser-server.ts",
     "test:server": "node --experimental-strip-types tools/run-server-tests.ts",
-    "check:design": "tsc -p tsconfig.design.json && node --experimental-strip-types tools/check-design-plan.ts"
+    "check:design": "tsc -p tsconfig.design.json && node --experimental-strip-types tools/check-design-plan.ts",
+    "test:browser:shard": "node tools/run-browser-shard.mjs"
   },
   "dependencies": {
     "pg": "8.16.3",

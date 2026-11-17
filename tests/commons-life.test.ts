@@ -24,5 +24,8 @@ test('ambient composition is deterministic, bounded, world-anchored and stops it
 test('scenic browsing has its own concise group while all32existing destinations and useful-now routes remain intact',()=>{
  const s=createWorkshop(1000),before=structuredClone(s),v=placesView('square',worlds.square.stops,s,{id:'gather'},1000);
  assert.deepEqual(v.primary.map(p=>p.id),['scrap','timber','supplies']);const scenic=v.groups.find(g=>g.id==='walks')!;assert.equal(scenic.stops.length,6);assert.ok(scenic.stops.every(s=>s.id.startsWith('commons-')));assert.ok(v.groups.filter(g=>g.id!=='walks').every(g=>!g.stops.some(s=>s.id.startsWith('commons-'))));
- assert.equal(new Set([...v.primary,...v.groups.flatMap(g=>g.stops)].map(s=>s.id)).size,32);assert.deepEqual(s,before);
+ const legacy=['commons-riverwalk','commons-green','commons-orchard','commons-pond','commons-west','commons-meadow','residential-gate','scrap','timber','supplies','workshop','cafe','home-front','plot','survey-oak','survey-birch','survey-fruit','clerk','caretaker','courier','trail-gate','bridge','allotment','garden-registry','garden-field','stake-forked','stake-striped','carpentry-desk','pine-crooked','pine-forked','pine-sheltered','stake-notched'];
+ const added=['outing-desk','outing-crossing','outing-detour','outing-post'],listed=[...v.primary,...v.groups.flatMap(g=>g.stops)].map(s=>s.id);
+ assert.deepEqual(worlds.square.stops.filter(p=>!added.includes(p.id)).map(p=>p.id),legacy,'All32prior destination identities/order stay intact.');
+ assert.equal(new Set(listed).size,36);assert.deepEqual([...new Set(listed)].sort(),[...legacy,...added].sort(),'Every old and new destination is visible exactly once.');assert.equal(listed.length,36);assert.deepEqual(s,before);
 });

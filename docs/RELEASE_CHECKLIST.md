@@ -1,3 +1,21 @@
+## IH2-119 candidate gates — November17
+
+- [x] Isolated current source and unchanged prior public assets/eight migration bytes; no real accounts/cloud.
+- [x] Focused pure/local/shared ownership/order/replay/rollback/populated restore/fresh-process and art reproducibility.
+- [x] Terra preliminary actual desktop/phone/short200review; clarity and short-screen revisions prepared.
+- [ ] Final native complete local/shared journey, two tabs, quota/lost replies, reload and real dedicated restart.
+- [ ] Final Terra captures and current-action focus/geometry on short200.
+- [ ] Full required regression, build/design/plan/pinned checks, raw recovery and unchanged budgets.
+- [ ] Exact final PR all four jobs, complete disjoint raw browser shards, source and compiled manifests.
+- [ ] Exact merged main all four jobs/raw/build; matched client/API9 with additive-only original-saved migration, same keys/signed sessions and preservation of all old rows.
+- [ ] All normal static and125historical-study responses exact; evidence/handoff/tracker acceptance closeout.
+
+Normal118saved preview remains accepted and unchanged while these gates are pending. Earlier checklists are historical.
+
+# November17 —118 source and saved-preview acceptance complete
+
+PR50/main **8ba0dec41e81f625ecc797ec843b8bc2385037e4** accepted after exact PR/main **482domain /183browser /all4jobs /raw** gates. Normal223-file practice/Tour clients, same signed sessions, original API8/keys/protected data, all446static responses and125historical-study responses verified. [Current session](idle-hands-2/CURRENT_SESSION.md), [118 report](evidence/IH2-118/REPORT.md). Next119woodland gameplay and120profiling are queued, not implemented. No cloud or original-game release. Earlier entries below are historical.
+
 # November17 — source117and saved-preview acceptance
 
 PR49/mainff87e3a accepted after exact PR/main raw479/180/all4gates and original saved-preview acceptance. Matched223file client now serves4175/localhost4176with original API8unchanged, exact16table/eight-migration data and originalkeys during static installation; same signed sessions and446served static responses verified. [Current session](idle-hands-2/CURRENT_SESSION.md), [117report](evidence/IH2-117/REPORT.md). Active118is a separate bounded guidance task, not accepted yet. Earlier entries below are historical.

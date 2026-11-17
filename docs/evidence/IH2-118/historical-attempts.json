@@ -1,0 +1,77 @@
+{
+  "scope": "Approximate summed rounded job durations, not an invoice or billing-cycle balance. Public standard Ubuntu jobs; no paid setup/budget change. Final candidate/main recorded separately.",
+  "attempts": [
+    {
+      "run": 44139385579,
+      "reason": "Diagnosed completed-orientation selector collision; required source correction.",
+      "approxRoundedJobMinutes": 16,
+      "jobs": [
+        {
+          "name": "domain-build-plan",
+          "conclusion": "success"
+        },
+        {
+          "name": "browser-shard (2/2)",
+          "conclusion": "failure"
+        },
+        {
+          "name": "browser-shard (1/2)",
+          "conclusion": "cancelled"
+        },
+        {
+          "name": "browser-playtest",
+          "conclusion": "failure"
+        }
+      ],
+      "publicStandardUbuntu": true
+    },
+    {
+      "run": 44141032059,
+      "reason": "Superseded by measured repeated-live-status DOM correction.",
+      "approxRoundedJobMinutes": 34,
+      "jobs": [
+        {
+          "name": "domain-build-plan",
+          "conclusion": "success"
+        },
+        {
+          "name": "browser-shard (2/2)",
+          "conclusion": "cancelled"
+        },
+        {
+          "name": "browser-shard (1/2)",
+          "conclusion": "cancelled"
+        },
+        {
+          "name": "browser-playtest",
+          "conclusion": "failure"
+        }
+      ],
+      "publicStandardUbuntu": true
+    },
+    {
+      "run": 44143631252,
+      "reason": "Native house retry test exposed genuine Bag navigation regression; required baseline restoration.",
+      "approxRoundedJobMinutes": 36,
+      "jobs": [
+        {
+          "name": "domain-build-plan",
+          "conclusion": "success"
+        },
+        {
+          "name": "browser-shard (1/2)",
+          "conclusion": "success"
+        },
+        {
+          "name": "browser-shard (2/2)",
+          "conclusion": "failure"
+        },
+        {
+          "name": "browser-playtest",
+          "conclusion": "failure"
+        }
+      ],
+      "publicStandardUbuntu": true
+    }
+  ]
+}

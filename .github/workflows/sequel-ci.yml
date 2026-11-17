@@ -105,7 +105,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run build
       - name: Run assigned browser cases
-        run: npm run test:browser -- --shard=${{ matrix.shard }}/2
+        run: npm run test:browser:shard -- ${{ matrix.shard }}
         env:
           IH2_BROWSER_DATABASE_URL: postgres://ih2:local-synthetic-only@127.0.0.1:5432/ih2_browser
       - name: Preserve synthetic playtest evidence

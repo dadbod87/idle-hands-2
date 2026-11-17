@@ -1,0 +1,8 @@
+{
+  "all16TablesEveryFieldExactDuringStaticInstall": true,
+  "all8MigrationRowsExact": true,
+  "keysOriginal0600": true,
+  "apiProcessesUnchanged": true,
+  "onlyTwoStaticProcessesReplaced": true,
+  "noProtectedPgRestartResetSeedGrantOrMigration": true
+}

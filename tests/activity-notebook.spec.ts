@@ -21,6 +21,13 @@ test('notebook: native isolated shared snapshots and all three free inspectors n
  await(await refreshed).finished();
  await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');
  expect(await page.evaluate(()=>(window as any).__noteAnchor===document.querySelector('[data-activity-open=bench]'))).toBe(true);
+ await expect(page.locator('.workshop-status')).toHaveText('Confirmed work notes.');
+ // A stable live status must not be rewritten by each ordinary clock tick.
+ const statusMutations=()=>page.evaluate(()=>new Promise<number>(resolve=>{
+  const status=document.querySelector('.workshop-status')!;let updates=0;
+  const observer=new MutationObserver(()=>updates++);observer.observe(status,{childList:true,subtree:true,characterData:true});
+  setTimeout(()=>{observer.disconnect();resolve(updates);},2200);
+ }));expect(await statusMutations()).toBe(0);
  // Hold one actual read reply unchanged; cached notes remain useful, but a
  // spending pane must still wait for confirmation. No optimistic inventory.
  let hold=true,release=()=>{},received=()=>{};
@@ -38,6 +45,7 @@ test('notebook: native isolated shared snapshots and all three free inspectors n
    await expect(page.locator('.workshop-status')).toContainText('Last confirmed work · update pending.');
    for(const action of await page.locator('[data-activity-open]').all())await expect(action).toBeEnabled();
   }
+  expect(await statusMutations()).toBe(0);
   await page.screenshot({path:out+'/notebook-shared-pending-read.png'});
  }finally{release();}
  await expect(page.locator('.workshop-status')).toHaveText('Confirmed work notes.');

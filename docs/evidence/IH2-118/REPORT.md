@@ -1,6 +1,6 @@
 # IH2-118 — truthful next steps while work is running
 
-Implementation on feat/busy-resident-guidance (873e6c7backup plus the confirmed-note follow-up), over accepted117mainff87e3a. Acceptance is pending the complete matching-runtime local checks, exact-final-head source/main CI and preserved normal-preview update. The normal preview remains accepted117until those gates pass.
+Implementation is on feat/busy-resident-guidance over accepted117mainff87e3a. Acceptance remains pending complete exact-final-head source/main CI and the preserved normal-preview update. The normal preview stays accepted117until those gates pass.
 
 ## Player result
 
@@ -39,3 +39,11 @@ Final candidate local build, design/plan checks (74tasks),40pinned skill files, 
 PR50 first candidate d7f4468/run44139385579: browser shard2caught a strict-selector conflict because completed orientation reused journal-progress (also the existing Skills & town progress control). The new notes now have their own journal-completed class, sharing identical CSS declarations. Existing skills selectors and their assertions remain unchanged. This is a diagnosed source correction; an earlier run cannot validate the corrected commit.
 
 The first PR candidate’s domain/build/plan job passed the complete482cases; retained raw load evidence recorded command p95124.219ms and neighborhood snapshot p9577.810ms, under unchanged500mslimits with cleanup complete. These measurements belong to d7f4468, not acceptance of the subsequent CSS identifier correction. The corrected local build passed and the first focused desktop case passed; phone/short/full final-head checks remain pending. No performance improvement or local-only cause is inferred from differing environments.
+
+A readonly saved-town DOM audit measured two redundant rewrites of the unchanged confirmed live-status message in2.2seconds. The final guard now changes its text only when the message changes; the existing native notebook case checks that two ordinary clock ticks create zero status mutations. This is DOM evidence, not a screen-reader speech test. The coherent final candidate requires fresh exact-head validation.
+
+The unique-notes candidate91299d4 passed five local cases (three guidance layouts and two original personal-tool cases). That static-only diagnostic config mistakenly also selected a sixth shared case requiring an omitted API; it was interrupted, not counted as a pass. Terra6.1reviewed all six final-layout screenshots and the saved-town captures with no visual blocker. A short-screen scroll cue and existing4Khome-office label overlap remain polish opportunities, not implemented changes.
+
+Candidate91299d4 also passed native original saved-practice/Tour Journal inspection at2K,4K,320/360phone and short200, all446served static hashes, zero commands/errors and preserved holdings/jobs/quests/plots. Those temporary static services used the unchanged original APIs and existing fictional residents; no fixture state or response was injected. The quiet-status refinement then passed a separate original saved-town test: one real unchanged successful read reply was explicitly held, all three free inspectors remained usable, the spending control stayed blocked, and pending status produced zero redundant DOM mutations over2.2seconds. A separate confirmed-status audit also dropped from2to0mutations. This response-delay interception is disclosed, not natural-latency or physical-phone evidence. Existing progress stayed exact.
+
+Final local build and whitespace checks pass. No source caps, workflows, coverage or backend were altered. Source/main/raw CI and final normal-preview acceptance must still complete before task118is done.

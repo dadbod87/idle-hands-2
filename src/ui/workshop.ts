@@ -229,11 +229,11 @@ export class WorkshopUI {
   this.bag?.update(this.state,allocations,this.remote?(this.remoteBusy?'Checking town contents…':this.remoteError||this.remote.canRetry()?'Last confirmed contents · request unresolved.':'Confirmed town contents.'):this.localReadOnlyReason?'Kept save · read-only.':!this.saved?'Unsaved contents · keep this tab open.':!this.ownsSave?'Read-only contents · another tab may update them.':'Local contents · saved in this browser.');
   this.notebook?.update(this.state,this.gardenClock());if(!this.active)return;
   if(this.remote){
-   const pending=this.remoteBusy||!!this.remote.busy?.(),blocked=pending||!!this.remoteError||this.remote.canRetry();
+   const pending=this.remoteBusy||!!this.remote.busy?.(),blocked=this.remoteBusy||!!this.remoteError||this.remote.canRetry();
    // Journal controls only open inspectors. Keep confirmed notes navigable while
    // a read refreshes; spending/placement panels still use the ordinary guards.
    const confirmedNotes=this.remote.hasSnapshot?.()===true&&!!this.notebook&&this.host.body.contains(this.notebook.root);
-   this.host.body.setAttribute('aria-busy',String(pending&&!confirmedNotes));
+   this.host.body.setAttribute('aria-busy',String(this.remoteBusy&&!confirmedNotes));
    this.host.body.querySelectorAll<HTMLButtonElement>('button:not(.remote-retry):not(.collection-control)').forEach(button=>{if(blocked&&!confirmedNotes){if(button.dataset.remoteDisabled===undefined)button.dataset.remoteDisabled=String(button.disabled);button.disabled=true;}else if(button.dataset.remoteDisabled!==undefined){button.disabled=button.dataset.remoteDisabled==='true';delete button.dataset.remoteDisabled;}});
    if(confirmedNotes&&this.status&&!this.remoteError&&!this.remote.canRetry()){const message=pending?'Last confirmed work · update pending.':'Confirmed work notes.';if(this.status.textContent!==message)this.status.textContent=message;const retry=this.host.body.querySelector<HTMLButtonElement>('.remote-retry');if(retry){retry.hidden=true;retry.disabled=pending;}}else this.remoteNotice();
   }

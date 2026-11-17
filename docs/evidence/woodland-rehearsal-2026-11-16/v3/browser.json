@@ -1,0 +1,95 @@
+{
+  "scope": "Standalone design rehearsal, Chromium emulation, not the actual game or physical-device/human playtesting",
+  "records": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "checks": {
+        "keyboardAlignment": true,
+        "rangeFocusRetained": true,
+        "pointerOrTouchAlignment": true,
+        "continuousDrag": "pass",
+        "nudgeControls": true,
+        "misalignedRepairBlocked": true,
+        "routeTextUpdates": true,
+        "borrowedToolUpdates": true,
+        "initialPhoneAction": "not-applicable",
+        "exercisedButtons44px": true,
+        "detourAfterWrongTool": true,
+        "secondVariantRepair": true,
+        "keyboardBorrow": true,
+        "safeEarlyReturn": true,
+        "noOverflow": true,
+        "min44px": true,
+        "reloadResets": true,
+        "noStorage": true,
+        "noExternalRequests": true
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "checks": {
+        "keyboardAlignment": true,
+        "rangeFocusRetained": true,
+        "pointerOrTouchAlignment": true,
+        "continuousDrag": "not-applicable",
+        "nudgeControls": true,
+        "misalignedRepairBlocked": true,
+        "routeTextUpdates": true,
+        "borrowedToolUpdates": true,
+        "initialPhoneAction": "pass",
+        "exercisedButtons44px": true,
+        "detourAfterWrongTool": true,
+        "secondVariantRepair": true,
+        "keyboardBorrow": true,
+        "safeEarlyReturn": true,
+        "noOverflow": true,
+        "min44px": true,
+        "reloadResets": true,
+        "noStorage": true,
+        "noExternalRequests": true
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "checks": {
+        "keyboardAlignment": true,
+        "rangeFocusRetained": true,
+        "pointerOrTouchAlignment": true,
+        "continuousDrag": "not-applicable",
+        "nudgeControls": true,
+        "misalignedRepairBlocked": true,
+        "routeTextUpdates": true,
+        "borrowedToolUpdates": true,
+        "initialPhoneAction": "not-applicable",
+        "exercisedButtons44px": true,
+        "detourAfterWrongTool": true,
+        "secondVariantRepair": true,
+        "keyboardBorrow": true,
+        "safeEarlyReturn": true,
+        "noOverflow": true,
+        "min44px": true,
+        "reloadResets": true,
+        "noStorage": true,
+        "noExternalRequests": true
+      },
+      "errors": [],
+      "failed": []
+    }
+  ]
+}

@@ -14,10 +14,14 @@ export const variants = [
 ];
 export function create(variant=0){
  if(variant!==0&&variant!==1)throw Error('Unknown route');
- return {variant,at:'gate',tool:null,cleared:false,sign:false,finished:false,steps:0,history:[],message:'Restore the lookout sign. Borrow one tool or take the open route. Return to town whenever you like.'};
+ return {variant,at:'gate',tool:null,alignment:0,cleared:false,sign:false,finished:false,steps:0,history:[],message:'Restore the lookout sign. Borrow one tool or take the open route. Return to town whenever you like.'};
 }
 export const neighbors = at => edges.filter(e=>e.includes(at)).map(e=>e.find(n=>n!==at));
 export function blocked(s,to){return !s.cleared&&variants[s.variant].blocked.includes(s.at)&&variants[s.variant].blocked.includes(to);}
+export function repairSetup(s){
+ const v=variants[s.variant],target=s.variant===0?35:70;
+ return {target,tolerance:10,canAdjust:!s.finished&&!s.cleared&&v.blocked.includes(s.at)&&s.tool===v.tool,aligned:Math.abs(s.alignment-target)<=10};
+}
 export function apply(s,a){
  const fail=message=>({ok:false,state:s,message});
  if(s.finished)return fail('This walk is complete. Choose another walk to try a different route.');
@@ -31,9 +35,14 @@ export function apply(s,a){
   if(!['brace','rope',null].includes(a.tool))return fail('Choose a brace, rope or empty hands.');
   if(s.tool===a.tool)return fail('That is already your tool choice.');
   n.tool=a.tool;n.message=a.tool?'Borrowed one '+a.tool+'. You can exchange it here.':'Tool returned. Your hands are free.';
+ }else if(a.kind==='align'){
+  if(!repairSetup(s).canAdjust)return fail('Bring the matching borrowed tool to the blocked crossing first.');
+  if(!Number.isInteger(a.value)||a.value<0||a.value>100||a.value%5!==0)return fail('Choose a tool position from 0 to 100 in steps of five.');
+  n.alignment=a.value;n.message=repairSetup(n).aligned?'Tool lined up. Set the repair when ready.':'Move the tool toward the highlighted marker, or take the open detour.';
  }else if(a.kind==='clear'){
   if(!v.blocked.includes(s.at)||s.cleared)return fail('No blocked crossing to repair here.');
   if(s.tool!==v.tool)return fail('This repair needs the borrowed '+v.tool+'. The other route is open.');
+  if(!repairSetup(s).aligned)return fail('Line the tool up with the highlighted marker before setting the repair.');
   n.cleared=true;n.message='Crossing restored. The shortcut is visibly open for this rehearsal.';
  }else if(a.kind==='sign'){
   if(s.at!=='lookout'||s.sign)return fail('The damaged sign can be restored once at the lookout.');
@@ -42,6 +51,7 @@ export function apply(s,a){
   if(s.at!=='gate')return fail('Return to the town gate first.');
   n.finished=true;n.tool=null;n.message=s.sign?'Home again. The lookout sign is restored'+(s.cleared?' and the crossing is open.':'. You used the open detour.'):'Home safely. The sign can wait for another walk.';
  }else return fail('That route action is not available.');
+ if(a.kind==='align'&&n.history.at(-1)==='align')n.history.pop();
  n.history.push(a.kind==='travel'?'Walked to '+stops[n.at].name:a.kind);
  return {ok:true,state:n,message:n.message};
 }

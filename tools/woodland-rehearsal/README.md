@@ -1,6 +1,20 @@
 # A little wayfinding — standalone interaction rehearsal
 
-## Current revision — readable routes, November 17
+## Current revision — hands-on repair, November 17
+
+V3 replaces the correct-tool instant repair with a small spatial setup: position a brace under the load marker or line a rope hook up with the plank eye, then explicitly set the repair. The two conditions use different marker positions. The accepted band spans20points on a0–100diagram scale; it is an abstract interaction, not simulated physics or a real-world tool instruction. There is no reflex deadline, resource cost, failure penalty or reward. Leaving and the tool-free detour remain available.
+
+Use the native slider, keyboard arrows or44pxnudge buttons. The triangle is labelled as the brace/hook position; the dashed box is labelled LOAD/EYE. The repair button stays disabled while misaligned. Adjustments update the existing slider instead of replacing it during input, preserving keyboard focus and continuous dragging. Consecutive adjustment entries coalesce in the temporary route history. All state still resets on reload.
+
+The benefit is a visible action between choosing equipment and seeing the crossing reopen. It tests manipulation alongside route planning; it does not establish a satisfying three-to-five-minute session. Remaining opportunities are a less abstract world interaction, meaningful second-visit decisions and an observed human trial. Different target positions alone are not a claim of deep replay variety.
+
+Nine pure model tests passed, including the prior detours/repairs/refusals/return coverage plus invalid/remote positions, broad tolerance boundaries, misaligned refusal and safe unfinished exit after setup. Three fresh Chromium layouts each completed three walks: wrong-tool detour, rope repair by keyboard, and brace repair by pointer/touch with nudges. They preserve the earlier route/status/isolation checks and verify focus retention, disabled misaligned repair and continuous desktop dragging without replacing the input. Phone controls are touch-emulated, not physical-device tested. Aligned phone/short captures may require scrolling to the repair button; actual button clicks complete successfully in those checks.
+
+Terra6.1 reviewed four actual rehearsal captures and found no sampled blocking issue. Its small labelling recommendation was applied: the triangle is explicitly named in the control label and the target says LOAD/EYE. This remains review of a standalone rehearsal, not the saved game, final terrain, real physics or human enjoyment. Design/plan/forty pinned files, JavaScript syntax and whitespace checks passed. No registered game source, migration, economy, inventory, equipment ownership or task acceptance changes.
+
+Current four-file payload is **16,495raw bytes /6,932separately gzipped bytes**, using the deterministic file-byte method below. [V3 browser observations](../../docs/evidence/woodland-rehearsal-2026-11-16/v3/browser.json), [rope aligned](../../docs/evidence/woodland-rehearsal-2026-11-16/v3/phone-rope-aligned.png), [rope misaligned](../../docs/evidence/woodland-rehearsal-2026-11-16/v3/phone-rope-misaligned.png), [brace setup](../../docs/evidence/woodland-rehearsal-2026-11-16/v3/desktop-brace-aligned.png). The model/browser scripts reproduce this revision; historical V1/V2 numbers below belong to their original versions. No full game regression/build/hosted CI, merge or saved-preview acceptance is claimed here.
+
+## V2 — readable routes, November 17
 
 V2 addresses the initial phone review: narrow and short layouts use readable text routes in place of the tiny diagram labels. Each branch states whether it is open or needs a brace/rope; after restoring the sign, paths read homeward. The current stop shows **Borrowed: none / brace / rope**, including away from the shed. Finishing or starting another walk clears the borrowed-tool display. Desktop retains the original diagram. No route rules or game systems change.
 

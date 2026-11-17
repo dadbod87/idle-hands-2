@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "authority": "docs/idle-hands-2/README.md",
   "tasks": [
     {
@@ -1920,7 +1920,7 @@
     {
       "id": "IH2-116",
       "title": "Playable shared housing choices, builders and conserved yard arrangement",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-115"
       ],
@@ -1936,14 +1936,16 @@
         "No cloud/public launch, real-player/account imports, paid assets, new wallet, extra production queues, unpriced yard recipes, sale/downgrade or relocation."
       ],
       "evidence": [
-        "docs/evidence/IH2-115/CONTRACT.md"
+        "docs/evidence/IH2-115/CONTRACT.md",
+        "docs/evidence/IH2-116/source-closeout.json",
+        "docs/evidence/IH2-116/actual-preserved.json"
       ],
       "owner_branch": "feat/playable-housing"
     },
     {
       "id": "IH2-117",
       "title": "Lived-in home interiors and useful house visits",
-      "status": "queued",
+      "status": "done",
       "depends_on": [
         "IH2-116"
       ],
@@ -1958,8 +1960,33 @@
         "No new wallet, bonus production, free furnishings, unpriced yard recipes, combat/regions, relocation, cloud hosting or public launch."
       ],
       "evidence": [
-        "docs/evidence/IH2-116/REPORT.md"
-      ]
+        "docs/evidence/IH2-117/REPORT.md",
+        "docs/evidence/IH2-117/main-ci-verification.json",
+        "docs/evidence/IH2-117/install-preservation.json",
+        "docs/evidence/IH2-117/TERRA_REVIEW.md"
+      ],
+      "owner_branch": "feat/lived-in-homes"
+    },
+    {
+      "id": "IH2-118",
+      "title": "Truthful next steps for busy residents",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-117"
+      ],
+      "goal": "Remove misleading exhausted-marker recommendations and bring current work ahead of completed orientation on phones.",
+      "acceptance": [
+        "Recommend new field markers only when an unowned design and clipping stock allow it; retain ready harvest/full-produce priority and all ordinary navigation.",
+        "Fresh/unresolved orientation stays useful; completed notes are concise/expandable and current activity controls remain easy to reach.",
+        "Read-only presentation preserves exact progress, jobs, costs, deadlines, ownership and backend authority; native desktop/phone/short200/reload/input checks plus Terra6.1 and full owning source/main/preserved-preview gates."
+      ],
+      "exclusions": [
+        "No new outing, resource/practice/reward/capacity/state/schema/API/clock change, cloud/public release or real-player data."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-118/PLAN.md"
+      ],
+      "owner_branch": "feat/busy-resident-guidance"
     }
   ],
   "source_status_note": "Owner explicitly made the repository public November13,2026. Prior private-billing refusals in task histories remain dated evidence; standard free public CI may now validate authorized final candidates. No pending source/preview acceptance is satisfied by visibility alone. Read ACTIONS_USAGE_POLICY and CURRENT_SESSION."

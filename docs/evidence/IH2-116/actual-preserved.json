@@ -1,0 +1,13 @@
+{
+  "allOldDatabaseFieldsExactImmediatelyAfterAdditiveMigration": true,
+  "afterNativeProbeOnlyDeclaredMovementPositionAndCheckpointUpdatedAtAllowed": true,
+  "allStoredPlayerFieldsExceptPositionAndCheckpointUpdatedAtExact": true,
+  "allOtherOldTablesAllRowsFieldsAndSevenMigrationChecksumsExact": true,
+  "eightCurrentMigrations": true,
+  "privateHousingQuoteBuildTablesRemainEmptyOnProtectedData": true,
+  "originalKeysFingerprintAnd0600Exact": true,
+  "sameSignedSessionAndPrivateProgressPreserved": true,
+  "all442ActualStaticResponsesExactMainCI": true,
+  "noProtectedPgRestartResetSeedGrantKeyCopyOrRegeneration": true,
+  "scope": "Existing isolated local practice and fictional Tour only. Native protected probe uses no paid or quote command and no fake clock. Timed construction is proven separately in disposable fixtures."
+}

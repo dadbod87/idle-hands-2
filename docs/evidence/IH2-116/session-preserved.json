@@ -1,0 +1,11 @@
+{
+  "sameSignedSession": true,
+  "existingPlayer": "neighbor-01",
+  "allPersistentWorkshopQuestPositionAndOldPlotFieldsExact": true,
+  "derivedNodeRegenerationAllowed": true,
+  "allStoredRawFieldsHaveSeparateMigrationFingerprintProof": true,
+  "newServerInstance": true,
+  "cached7RefusedBeforeState": true,
+  "noCookieOrKeySerialized": true,
+  "noCommandsGrantsInterception": true
+}

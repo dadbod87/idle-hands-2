@@ -1,3 +1,11 @@
+# November17 — source117and saved-preview acceptance
+
+PR49/mainff87e3a accepted after exact PR/main raw479/180/all4gates and original saved-preview acceptance. Matched223file client now serves4175/localhost4176with original API8unchanged, exact16table/eight-migration data and originalkeys during static installation; same signed sessions and446served static responses verified. [Current session](idle-hands-2/CURRENT_SESSION.md), [117report](evidence/IH2-117/REPORT.md). Active118is a separate bounded guidance task, not accepted yet. Earlier entries below are historical.
+
+# IH2-116 accepted — playable shared housing
+
+PR48/main c4b275586bc652111493ed926591f4932527cf19: six original plans, reviewed complete costs, fixed builders, late-safe finish and conserved yard decorating. Existing homes/progress/keys retained; exact PR/main474/176/raw and actual local client/API8/migration/native gates passed. Terra6.1desktop/mobile visual review and fixture/device limits are in116REPORT/source-closeout. Next117: lived-in home interiors and useful visits. No hosted release.
+
 ## 2026-11-16 — IH2-116 housing integration candidate
 
 Server-owned quotes/builders/yard and current inventory conservation, protocol8/additive migration, six matched original house facades and real street navigation. Local474system/recovery and focused6native/Terra visual evidence pass; full browser/source/actual acceptance pending. Existing actual game has not been updated yet. See116report/current handoff.

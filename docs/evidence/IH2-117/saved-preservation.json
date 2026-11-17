@@ -1,0 +1,14 @@
+{
+  "allTablesExceptExpectedNativeMovementAndEntryReceiptsExact": true,
+  "changedTables": {
+    "ih2_preview": [],
+    "ih2_neighborhood_tour": [
+      "command_receipts",
+      "players"
+    ]
+  },
+  "all16TablesAnd8MigrationRowsInspected": true,
+  "originalKeysAndAll4ServicesExact": true,
+  "noResetGrantSeedMigrationOrPgRestart": true,
+  "declaredNativeEntryChanges": "Position/checkpoint, entry revision/observedAt/lastMessage, and idempotent entry receipts. Economy/owned/jobs/quest/plot preserved by native snapshots; other tables exact."
+}

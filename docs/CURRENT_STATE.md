@@ -1,3 +1,11 @@
+# November17 — source117and saved-preview acceptance
+
+PR49/mainff87e3a accepted after exact PR/main raw479/180/all4gates and original saved-preview acceptance. Matched223file client now serves4175/localhost4176with original API8unchanged, exact16table/eight-migration data and originalkeys during static installation; same signed sessions and446served static responses verified. [Current session](idle-hands-2/CURRENT_SESSION.md), [117report](evidence/IH2-117/REPORT.md). Active118is a separate bounded guidance task, not accepted yet. Earlier entries below are historical.
+
+# IH2-116 accepted and actual local preview updated
+
+PR48/main **c4b275586bc652111493ed926591f4932527cf19**: exact PR/main4jobs and raw474/176passed. Actual221client/API8, additive migration, original signed session, saved data and125old-study responses verified. Continue from the pushed full-source playable-housing closeout branch and CURRENT_SESSION; next117is queued. No hosted launch or original-game change.
+
 # IH2-116 local integration complete; release gates pending
 
 Current full source is `work/idle-hands-2-playable-housing`, `feat/playable-housing`. Fresh474system, real dedicated PostgreSQL restart, full176browser and required local checks passed; Terra6.1desktop/mobile images reviewed. Actual practice remains114client/113API until exact PR/main4job and preserved matched-update gates. See116REPORT and CURRENT_SESSION; code backup is not acceptance.

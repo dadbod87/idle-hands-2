@@ -1,3 +1,7 @@
+# Historical validation record
+
+Intermediate statuses and failed/incomplete attempts are preserved below. The accepted result is in [REPORT.md](REPORT.md) and [source-closeout.json](source-closeout.json); pending wording below describes its original checkpoint.
+
 # IH2-118 — truthful next steps while work is running
 
 Implementation is on feat/busy-resident-guidance over accepted117mainff87e3a. Acceptance remains pending complete exact-final-head source/main CI and the preserved normal-preview update. The normal preview stays accepted117until those gates pass.

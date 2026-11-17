@@ -1,0 +1,117 @@
+{
+  "pr": 50,
+  "candidate": "5c65356d0ad9381625664bc31d34fd2506dcef33",
+  "main": "8ba0dec41e81f625ecc797ec843b8bc2385037e4",
+  "sameTree": true,
+  "allSourceAndActualAcceptancePassed": true,
+  "sourceAcceptanceIsNotHostedRelease": true,
+  "domain": 482,
+  "browser": 183,
+  "shards": [
+    93,
+    90
+  ],
+  "prRun": 44147609039,
+  "mainRun": 44151227514,
+  "normalPorts": [
+    4175,
+    4176
+  ],
+  "unchangedApiPorts": [
+    4186,
+    4188
+  ],
+  "unchangedApiPids": [
+    43445,
+    43446
+  ],
+  "all223CompiledFilesExactLocalPrMainAndNormal": true,
+  "all217PriorArtFilesPreserved": true,
+  "all125HistoricalStudyResponsesExact": true,
+  "all16TablesEveryFieldExactDuringStaticInstall": true,
+  "all8MigrationRowsAndOriginalKeysPreserved": true,
+  "sameSignedSessions": true,
+  "fixtureAndDelayInterceptionDisclosed": true,
+  "physicalPhoneSafariAndHostedEvidence": "Not claimed; later gate",
+  "billingCycleUsageUnknown": true,
+  "publicStandardUbuntuVerified": true,
+  "noPaidConfiguration": true,
+  "approxRoundedPrJobMinutes": 40,
+  "approxRoundedMainJobMinutes": 37,
+  "earlierAttempts": [
+    {
+      "run": 44139385579,
+      "reason": "Diagnosed completed-orientation selector collision; required source correction.",
+      "approxRoundedJobMinutes": 16,
+      "jobs": [
+        {
+          "name": "domain-build-plan",
+          "conclusion": "success"
+        },
+        {
+          "name": "browser-shard (2/2)",
+          "conclusion": "failure"
+        },
+        {
+          "name": "browser-shard (1/2)",
+          "conclusion": "cancelled"
+        },
+        {
+          "name": "browser-playtest",
+          "conclusion": "failure"
+        }
+      ],
+      "publicStandardUbuntu": true
+    },
+    {
+      "run": 44141032059,
+      "reason": "Superseded by measured repeated-live-status DOM correction.",
+      "approxRoundedJobMinutes": 34,
+      "jobs": [
+        {
+          "name": "domain-build-plan",
+          "conclusion": "success"
+        },
+        {
+          "name": "browser-shard (2/2)",
+          "conclusion": "cancelled"
+        },
+        {
+          "name": "browser-shard (1/2)",
+          "conclusion": "cancelled"
+        },
+        {
+          "name": "browser-playtest",
+          "conclusion": "failure"
+        }
+      ],
+      "publicStandardUbuntu": true
+    },
+    {
+      "run": 44143631252,
+      "reason": "Native house retry test exposed genuine Bag navigation regression; required baseline restoration.",
+      "approxRoundedJobMinutes": 36,
+      "jobs": [
+        {
+          "name": "domain-build-plan",
+          "conclusion": "success"
+        },
+        {
+          "name": "browser-shard (1/2)",
+          "conclusion": "success"
+        },
+        {
+          "name": "browser-shard (2/2)",
+          "conclusion": "failure"
+        },
+        {
+          "name": "browser-playtest",
+          "conclusion": "failure"
+        }
+      ],
+      "publicStandardUbuntu": true
+    }
+  ],
+  "documentation": "Post-acceptance documentation backup branch, not another runtime merge",
+  "acceptedAt": "2026-11-17T19:11:02.779530+00:00"
+}

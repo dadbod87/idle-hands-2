@@ -1,0 +1,86 @@
+{
+  "scope": "Sequel synthetic protocol-load diagnostics only, not original Idle Hands production, rendered human clients, WAN or a controlled paired experiment. Runtime/platform/background conditions differ; no root cause or improvement is inferred. Final source/main results remain separate.",
+  "rows": [
+    {
+      "label": "Node26isolatedrecheck",
+      "path": "load-recheck-raw/load/load-town.json",
+      "reportAvailable": true,
+      "node": "v26.7.0",
+      "platform": "darwin",
+      "command": {
+        "count": 140,
+        "p50": 76.92012500000055,
+        "p95": 329.6310830000002,
+        "p99": 362.33795800000007,
+        "max": 362.9811249999984
+      },
+      "budgetPass": true,
+      "cleanupComplete": true
+    },
+    {
+      "label": "Node26fullfailure",
+      "path": "server-raw/load/load-town.json",
+      "reportAvailable": true,
+      "node": "v26.7.0",
+      "platform": "darwin",
+      "command": {
+        "count": 140,
+        "p50": 347.2430000000004,
+        "p95": 3177.092667,
+        "p99": 3429.168667,
+        "max": 3436.582624999999
+      },
+      "budgetPass": false,
+      "cleanupComplete": true
+    },
+    {
+      "label": "Node24fullbeforeJournal",
+      "path": "server-node24-raw/load/load-town.json",
+      "reportAvailable": true,
+      "node": "v24.22.2",
+      "platform": "darwin",
+      "command": {
+        "count": 140,
+        "p50": 90.27941699999792,
+        "p95": 195.1409590000003,
+        "p99": 218.0897500000001,
+        "max": 221.56908299999986
+      },
+      "budgetPass": true,
+      "cleanupComplete": true
+    },
+    {
+      "label": "PRfirstd7",
+      "path": "pr-first-server/load/load-town.json",
+      "reportAvailable": true,
+      "node": "v24.22.2",
+      "platform": "linux",
+      "command": {
+        "count": 140,
+        "p50": 46.27602399999887,
+        "p95": 124.21879400000034,
+        "p99": 127.48762699999997,
+        "max": 134.32496600000013
+      },
+      "budgetPass": true,
+      "cleanupComplete": true
+    },
+    {
+      "label": "PRquietd471",
+      "path": "pr-d471-diagnostic/sequel-server-evidence/load/load-town.json",
+      "reportAvailable": true,
+      "node": "v24.22.2",
+      "platform": "linux",
+      "command": {
+        "count": 140,
+        "p50": 44.52686199999971,
+        "p95": 78.04931399999987,
+        "p99": 82.72304599999916,
+        "max": 84.12421299999914
+      },
+      "budgetPass": true,
+      "cleanupComplete": true
+    }
+  ],
+  "newProfilingTask": "IH2-120queued, no optimization/budget/durability change implemented."
+}

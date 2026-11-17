@@ -15,3 +15,7 @@ Reviewed candidate 91299d4 screenshots of the saved fictional practice and Tour 
 Reviewed saved-delayed-desktop.png and saved-delayed-phone.png. The visible Journal text and workbench control are readable without overlap; the phone workbench button is fully visible. Neither screenshot visibly shows a pending message, so its wording, placement and overlap cannot be independently assessed from these stills. The separately reported delayed-read and DOM-mutation checks do not establish screen-reader speech, which was not examined in this visual review.
 
 The subsequent scrolled desktop and phone status screenshots show “Last confirmed work · update pending.” fully readable, with no overlap; it wraps cleanly on phone and distinguishes the displayed confirmed work from the pending update. These scrolled stills do not establish initial visibility or screen-reader speech.
+
+## Installed-main visual review
+
+Inspected the five installed normal-preview screenshots for main 8ba0dec. No task-118 visual blocker is apparent: desktop shows incomplete orientation before the current activity notebook and collapsed work notes afterward; focused workbench actions are legible and visibly outlined in the 320px practice, short200, and 360px Tour views. Those focused/scrolled captures do not establish initial phone position. The 4K town view retains its coherent visual identity; the existing registry artwork and label overlap remains a separate polish opportunity. This is a still-image review, not a physical-device or independent data-preservation test.

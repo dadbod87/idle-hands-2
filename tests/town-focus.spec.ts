@@ -1,5 +1,6 @@
 import{test,expect,type Page}from'@playwright/test';import{mkdirSync,writeFileSync}from'node:fs';import{homePanelFixture}from'./helpers/home-panel.ts';
 const out='test-results/browser',slot=(p:Page)=>p.getByRole('combobox',{name:'Plot furniture position'}),prop=(p:Page)=>p.getByRole('combobox',{name:'Owned furniture for plot'});
+test.beforeEach(()=>mkdirSync(out,{recursive:true}));
 async function arrange(p:Page){await p.locator('#bag').click();await p.getByRole('button',{name:'Inspect or arrange a house',exact:true}).click();}
 async function settle(p:Page){await p.evaluate(()=>new Promise<void>(r=>requestAnimationFrame(()=>requestAnimationFrame(()=>r()))));}
 async function begin(p:Page,c:Awaited<ReturnType<typeof homePanelFixture>>){await slot(p).selectOption('north-middle');c.holdNext=true;await p.locator('[data-home-action=remove]').click();await expect.poll(()=>c.commands.length).toBe(1);}

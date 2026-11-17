@@ -1,0 +1,7 @@
+{
+  "sameTwoSignedSessionsAfterStaticUpdate": true,
+  "sameTwoServerInstances": true,
+  "originalPlayerWorkshopQuestAndPlotPreserved": true,
+  "noCookieOrKeySerialized": true,
+  "noInterceptionOrCommands": true
+}

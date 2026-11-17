@@ -7,9 +7,52 @@ test('notebook: actual five-second job boundary keeps held target, focus, scroll
  writeFileSync(out+'/notebook-boundary.json',JSON.stringify({fixture:'Valid material save created by ordinary pure gathers and an explicit workshop spawn fixture. Craft starts through the actual UI after boot; the actual five-second teaching job is waited, not claimed. No accelerated time or response interception.',heldBounds:bounds,finalRevision:s.revision+1,ownedPlanter:0},null,2)+'\n');
 });
 test('notebook: native isolated shared snapshots and all three free inspectors never issue a command',async({page})=>{
- const commands:string[]=[],errors:string[]=[];page.on('request',r=>{if(r.url().endsWith('/api/town/command'))commands.push(r.postData()??'');});page.on('pageerror',e=>errors.push(e.message));await page.goto('/?town=1');await page.getByRole('button',{name:'Mira',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.town()?.playerId)).toBe('receipt-maker');await page.locator('#journal').click();await expect(page.locator('.activity-note')).toHaveCount(3);await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');await page.evaluate(()=>(window as any).__noteAnchor=document.querySelector('[data-activity-open=bench]'));await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');expect(await page.evaluate(()=>(window as any).__noteAnchor===document.querySelector('[data-activity-open=bench]'))).toBe(true);
- for(const[id,title]of[['bench','Your work bench'],['rack','Pine finishing rack'],['garden','Your rented allotment']]as const){await page.locator('[data-activity-open='+id+']').click();await expect(page.locator('#panel-title')).toHaveText(title);await page.getByRole('button',{name:'Close panel'}).click();await page.locator('#journal').click();await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');}
- await page.screenshot({path:out+'/notebook-shared-fresh.png'});expect(commands).toEqual([]);expect(errors).toEqual([]);expect(await page.evaluate(()=>(window as any).__pilot.town().workshop.inventory)).toEqual({scrap:0,timber:0,supplies:0});writeFileSync(out+'/notebook-shared.json',JSON.stringify({disclosure:'Actual disposable ih2_browser fresh zero-progress fictional Mira; normal server snapshots and existing free inspector navigation, synthetic visibility event only. No response/state/time/position/inventory interception or grant.',commandRequests:commands,errors},null,2)+'\n');
+ const commands:string[]=[],errors:string[]=[];
+ page.on('request',r=>{if(r.url().endsWith('/api/town/command'))commands.push(r.postData()??'');});
+ page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/?town=1');await page.getByRole('button',{name:'Mira',exact:true}).click();
+ await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.town()?.playerId)).toBe('receipt-maker');
+ await page.locator('#journal').click();await expect(page.locator('.activity-note')).toHaveCount(3);
+ await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');
+ await expect(page.locator('.workshop-status')).toHaveText('Confirmed work notes.');
+ await page.evaluate(()=>(window as any).__noteAnchor=document.querySelector('[data-activity-open=bench]'));
+ const refreshed=page.waitForResponse(r=>new URL(r.url()).pathname==='/api/town/snapshot'&&r.status()===200);
+ await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));
+ await(await refreshed).finished();
+ await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');
+ expect(await page.evaluate(()=>(window as any).__noteAnchor===document.querySelector('[data-activity-open=bench]'))).toBe(true);
+ await expect(page.locator('.workshop-status')).toHaveText('Confirmed work notes.');
+ // A stable live status must not be rewritten by each ordinary clock tick.
+ const statusMutations=()=>page.evaluate(()=>new Promise<number>(resolve=>{
+  const status=document.querySelector('.workshop-status')!;let updates=0;
+  const observer=new MutationObserver(()=>updates++);observer.observe(status,{childList:true,subtree:true,characterData:true});
+  setTimeout(()=>{observer.disconnect();resolve(updates);},2200);
+ }));expect(await statusMutations()).toBe(0);
+ // Hold one actual read reply unchanged; cached notes remain useful, but a
+ // spending pane must still wait for confirmation. No optimistic inventory.
+ let hold=true,release=()=>{},received=()=>{};
+ const gate=new Promise<void>(resolve=>release=resolve),seen=new Promise<void>(resolve=>received=resolve);
+ await page.route('**/api/town/snapshot',async route=>{
+  if(!hold)return route.continue();hold=false;
+  const response=await route.fetch();expect(response.status()).toBe(200);received();await gate;await route.fulfill({response}).catch(()=>{});
+ });
+ try{
+  for(const[id,title]of[['bench','Your work bench'],['rack','Pine finishing rack'],['garden','Your rented allotment']]as const){
+   await page.locator('[data-activity-open='+id+']').click();await expect(page.locator('#panel-title')).toHaveText(title);
+   if(id==='bench'){await seen;await expect(page.locator('[data-craft=planter]')).toBeDisabled();}
+   await page.getByRole('button',{name:'Close panel'}).click();await page.locator('#journal').click();
+   await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');
+   await expect(page.locator('.workshop-status')).toContainText('Last confirmed work · update pending.');
+   for(const action of await page.locator('[data-activity-open]').all())await expect(action).toBeEnabled();
+  }
+  expect(await statusMutations()).toBe(0);
+  await page.screenshot({path:out+'/notebook-shared-pending-read.png'});
+ }finally{release();}
+ await expect(page.locator('.workshop-status')).toHaveText('Confirmed work notes.');
+ await page.screenshot({path:out+'/notebook-shared-fresh.png'});
+ expect(commands).toEqual([]);expect(errors).toEqual([]);
+ expect(await page.evaluate(()=>(window as any).__pilot.town().workshop.inventory)).toEqual({scrap:0,timber:0,supplies:0});
+ writeFileSync(out+'/notebook-shared.json',JSON.stringify({disclosure:'Actual disposable ih2_browser fresh zero-progress fictional Mira; normal server snapshots, free inspector navigation and synthetic visibility event. One real unchanged read reply held while opening all3inspectors; no state/time/position/inventory injection or grant. Response-delay interception is explicit.',commandRequests:commands,errors,confirmedNavigationUsableDuringRead:true,spendingStillBlockedUntilReadConfirmed:true},null,2)+'\n');
 });
 test('notebook: full produce, independent work and doubled-text keyboard reading preserve controls on narrow and short views',async({page})=>{
  const now=Date.now(),s=createWorkshop(now),g=s.garden;g.firstRadishUsed=true;g.seeds.radish=1;g.beds=[{crop:'radish',plantedAt:now-300_000,readyAt:now,cared:false},null,null];g.produce.radish=12;g.harvested.radish=12;g.planted=13;g.practice=12;expect(isCurrentWorkshop(s)).toBe(true);await page.addInitScript(save=>localStorage.setItem('ih2:workshop:v2',JSON.stringify(save)),s);await page.goto('/');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await page.locator('#journal').click();await expect(note(page,'garden')).toHaveAttribute('data-phase','blocked');await expect(note(page,'garden').locator('.activity-status')).toContainText('1 need room');const layouts=[];

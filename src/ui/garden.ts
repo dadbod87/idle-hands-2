@@ -1,5 +1,5 @@
 import {CROP_IDS,CROP_DEFS,CLIPPING_MARKERS,MARKER_IDS,MARKER_DEFS,STAKE_IDS,STAKE_CHOICES,STAKE_STUDIES,settleGarden,gardenStage,type GardenState,type GardenAction,type CropId,type MarkerId,type StakeId} from '../game/live-garden.ts';
-import{gardenBedView,gardenGrowthLabel,plantingConfirmation}from'../game/garden-view.ts';
+import{gardenBedView,gardenGrowthLabel,plantingConfirmation,gardenSideActivity}from'../game/garden-view.ts';
 import {WorkshopUI,duration,type WorkshopCommandResult} from './workshop.ts';
 import './garden.css';
 type PublicGarden={credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};
@@ -55,7 +55,7 @@ export class GardenUI{
   const atBeds=this.host.canUse({action:'plant',bed:0,crop:'radish'});
   if(!atBeds)body.append(walk);else body.querySelector('.garden-scope')?.remove();
   const next=this.el('section','','garden-next'),nextReason=this.el('p'),nextActions=this.el('div');next.append(nextReason,nextActions);body.append(next);
-  let layoutMode:'harvest'|'attendant'|'field'|null|undefined,layoutRevision=-1,layoutSelection=-1,receiptBed:number|null=null;
+  let layoutMode:'harvest'|'attendant'|'field'|'errand'|'display'|null|undefined,layoutRevision=-1,layoutSelection=-1,receiptBed:number|null=null;
   const row=this.el('div','','garden-bed-list');
   const rows:Array<{button:HTMLButtonElement;img:HTMLImageElement;name:HTMLElement;crop:HTMLElement;time:HTMLElement;short:HTMLElement}>=[];
   for(let i=0;i<3;i++){
@@ -126,12 +126,14 @@ export class GardenUI{
    // Reorder only for an explicit selection or confirmed command, never a
    // passive one-second countdown. The existing route keeps its identity.
    if(layoutRevision!==this.workshop.state.revision||layoutSelection!==this.selected){
-    const mode=bed&&s.produce[bed.crop]>=12?'attendant':bed&&bed.readyAt<=now?'harvest':s.beds.every(Boolean)?'field':null;
+    const mode=bed&&s.produce[bed.crop]>=12?'attendant':bed&&bed.readyAt<=now?'harvest':s.beds.every(Boolean)?gardenSideActivity(s):null;
+    fieldNav.textContent=CLIPPING_MARKERS.every(id=>s.markers.includes(id))?'Review your field markers':'Make a marker at the field';
+    registryNav.textContent=mode==='display'?'Change an owned garden display':'See chosen garden displays';
     if(mode!==layoutMode){
      nav.append(attendantNav,fieldNav,registryNav);nextActions.replaceChildren();
-     if(mode==='attendant')nextActions.append(attendantNav);else if(mode==='field')nextActions.append(fieldNav);else if(mode==='harvest')nextActions.append(reviewHarvest);
+     if(mode==='attendant'||mode==='errand')nextActions.append(attendantNav);else if(mode==='field')nextActions.append(fieldNav);else if(mode==='harvest')nextActions.append(reviewHarvest);else if(mode==='display')nextActions.append(registryNav);
      next.hidden=mode===null;
-     nextReason.textContent=mode==='attendant'?'Your harvest stays safe. Review uses for full produce.':mode==='harvest'?'A harvest is ready. Nothing is collected until you confirm.':'Plants wait safely. A field marker uses clippings, not produce.';
+     nextReason.textContent=mode==='attendant'?'Your harvest stays safe. Review uses for full produce.':mode==='harvest'?'A harvest is ready. Nothing is collected until you confirm.':mode==='field'?'Plants wait safely. A new field marker uses clippings, not produce.':mode==='errand'?'Plants wait safely. The free stake errand is still unfinished.':'Owned display only. No new marker.';
      layoutMode=mode;
     }
     layoutRevision=this.workshop.state.revision;layoutSelection=this.selected!;

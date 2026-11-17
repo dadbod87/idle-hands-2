@@ -22,7 +22,7 @@ async function point(page:Page,x:number,y:number){
  expect(screen.y).toBeGreaterThan(0);expect(screen.y).toBeLessThan(canvas.height);
  await page.touchscreen.tap(canvas.x+screen.x,canvas.y+screen.y);
 }
-async function openPersonalJournal(page:Page){await page.getByRole('button',{name:'Journal',exact:true}).tap();await expect(page.locator('[data-quest]')).toBeVisible();}
+async function openPersonalJournal(page:Page){await page.getByRole('button',{name:'Journal',exact:true}).tap();const completed=page.locator('[data-completed-orientation]');if(await completed.isVisible())await completed.locator('summary').tap();await expect(page.locator('[data-quest]')).toBeVisible();}
 async function snapshot(page:Page){const response=await page.request.get('/api/town/snapshot',{headers:{'X-IH2-Schema':TOWN_SCHEMA}});expect(response.status()).toBe(200);return(await response.json()).snapshot;}
 
 test('fresh phone resident: real first planter, queued return job, sixty-second upkeep and independent trail discovery',async({browser})=>{

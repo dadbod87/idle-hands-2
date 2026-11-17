@@ -1,0 +1,9 @@
+{
+  "scope": "Original saved fictional Aster/API8, candidate static frontend. One real unchanged snapshot response held via explicit response-delay interception; no state/time/position/inventory injection, command, grant or player creation. Desktop/phone browser emulation; not physical device or natural-latency evidence.",
+  "all3InspectorsAndConfirmedNotesUsableDuringRead": true,
+  "spendingBlockedDuringRead": true,
+  "pendingStatusMutationsOver2200Ms": 0,
+  "existingHoldingsJobsQuestAndPlotPreserved": true,
+  "commands": [],
+  "errors": []
+}

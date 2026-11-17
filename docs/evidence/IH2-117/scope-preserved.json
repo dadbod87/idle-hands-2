@@ -1,0 +1,8 @@
+{
+  "allAuthorityProtocolMigrationsDependenciesWorkflowsViteUnchanged": true,
+  "oldArtFilesExact": 215,
+  "additiveArtFiles": [
+    "art/interiors/cottage-expanded-interior.svg",
+    "art/interiors/cottage-starter-interior.svg"
+  ]
+}

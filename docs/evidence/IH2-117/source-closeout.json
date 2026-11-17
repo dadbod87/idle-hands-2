@@ -1,0 +1,28 @@
+{
+  "pr-ci": {
+    "run": 44024121138,
+    "approxRoundedJobMinutes": 36
+  },
+  "main-ci": {
+    "run": 44111539591,
+    "approxRoundedJobMinutes": 40
+  },
+  "pr": 49,
+  "candidate": "161be1e83f1e11e37a3e6136829fc2587bfdf040",
+  "main": "ff87e3ab4a9a64063081de42c174fdb395f0cba0",
+  "sameTree": true,
+  "allSourceAndActualAcceptancePassed": true,
+  "sourceAcceptanceIsNotHostedRelease": true,
+  "billingCycleUsageUnknown": true,
+  "publicStandardUbuntuVerified": true,
+  "newPrReruns": 0,
+  "resumedSessionNewRun": "main push only",
+  "currentStaticPorts": [
+    4175,
+    4176
+  ],
+  "unchangedApiPorts": [
+    4186,
+    4188
+  ]
+}

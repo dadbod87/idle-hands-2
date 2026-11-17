@@ -1,0 +1,11 @@
+# Terra visual review — unique completed-notes class
+
+Reviewed the six final-candidate actual-game screenshots at desktop, phone and short200 sizes. These show synthetic elapsed local fixtures with browser/touch/text emulation, not a physical device or shared pending-read behavior.
+
+No visual blocker is apparent; the previous conclusion holds. The short200 garden presents the complete “Owned display only. No new marker.” directly above its action. On phone, the workbench action is fully visible initially and the bed choices remain distinct. Desktop shows current activities before the collapsed work notes. The warm paper and green styling remains coherent and readable. Short200 Journal activities remain below the fold; a more visible scroll cue would be a later usability improvement. Three native focused cases were reported passing separately; this review did not independently exercise interactions.
+
+Player benefit: active work is easier to resume while garden suggestions describe what they actually do. Friction removed: completed notes no longer precede current activities, and changing an owned display is distinguished from a new reward. Remaining opportunity: make below-fold content more discoverable on very short screens.
+
+## Independent saved-preview visual review
+
+Reviewed candidate 91299d4 screenshots of the saved fictional practice and Tour views separately from the synthetic fixture. No additional visual blocker is apparent. In the 2K practice view, the incomplete orientation appears before the activity notebook, while the work notes remain collapsed beneath the activities. The 320px practice, 360px Tour and short200 images show the focused workbench action visibly outlined and readable; these are focused/scroll-position captures, so they do not establish its initial position. The 4K town retains the cohesive, cozy palette and readable landmarks; overlapping lettering at the homes office is a later visual polish opportunity. Native keyboard/bounds results and preservation of saved state are separate reported evidence, not established by these stills. No physical-device claim is made.

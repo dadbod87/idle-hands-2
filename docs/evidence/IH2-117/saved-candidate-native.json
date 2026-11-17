@@ -1,0 +1,28 @@
+{
+  "base": "http://127.0.0.1:4198",
+  "scope": "Original saved fictional Tour and unchanged API8, temporary exact PR49 static client. Native signed login/walking/home entry/menu/exit only. No intercepted data, clock, grant, purchase, SQL write, migration or reset. Desktop Chrome/mobile emulation, not physical device.",
+  "results": [
+    {
+      "shape": "desktop",
+      "originalSavedResident": "neighbor-01",
+      "homes": 25,
+      "ownerCopyCounts": true,
+      "visitorReadOnlyDisplay": false,
+      "commands": [
+        "enter-home"
+      ],
+      "errors": []
+    },
+    {
+      "shape": "phone",
+      "originalSavedResident": "town-visitor",
+      "homes": 25,
+      "ownerCopyCounts": false,
+      "visitorReadOnlyDisplay": true,
+      "commands": [
+        "enter-home"
+      ],
+      "errors": []
+    }
+  ]
+}

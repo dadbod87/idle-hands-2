@@ -48,6 +48,8 @@ The final corrected returning phone capture correctly offers **Review ready harv
 
 ## Next gameplay direction
 
+A separate [woodland interaction rehearsal](../../../tools/woodland-rehearsal/README.md) now tests two routes, a borrowed-tool repair, an open detour and safe return. It is a resettable design sketch, not game integration or a solution to the complete activity gap. Its README records final checks, phone/Terra observations and the next bounded step.
+
 Prefer one small **woodland outing** over more menus or parallel timers. Prototype a three-to-five-minute route with two meaningful path choices and a few visible interactions: find the damaged waymarker, choose a route around an obstruction, and return with a clear result. Use a small existing outskirts area first. A readable route home and an immediate visible response matter more than another settlement.
 
 Start with an isolated interaction rehearsal. Compare two route variants and a second visit before choosing durable rewards. It must remain available with both production jobs busy, full pine/produce stores and all introductory errands complete. Do not spend the last orientation materials to enter. A person playing alone must be able to finish; a later cooperative version may let coworkers take complementary roles without requiring simultaneous attendance. No public identity, chat, combat or destructive loss is implied by this prototype.

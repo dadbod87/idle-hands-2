@@ -1,0 +1,65 @@
+{
+  "scope": "Standalone design rehearsal, Chromium emulation, not the actual game or physical-device/human playtesting",
+  "records": [
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      "checks": {
+        "detourAfterWrongTool": true,
+        "secondVariantRepair": true,
+        "keyboardBorrow": true,
+        "safeEarlyReturn": true,
+        "noOverflow": true,
+        "min44px": true,
+        "reloadResets": true,
+        "noStorage": true,
+        "noExternalRequests": true
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "shape": {
+        "name": "phone",
+        "width": 360,
+        "height": 640
+      },
+      "checks": {
+        "detourAfterWrongTool": true,
+        "secondVariantRepair": true,
+        "keyboardBorrow": true,
+        "safeEarlyReturn": true,
+        "noOverflow": true,
+        "min44px": true,
+        "reloadResets": true,
+        "noStorage": true,
+        "noExternalRequests": true
+      },
+      "errors": [],
+      "failed": []
+    },
+    {
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390
+      },
+      "checks": {
+        "detourAfterWrongTool": true,
+        "secondVariantRepair": true,
+        "keyboardBorrow": true,
+        "safeEarlyReturn": true,
+        "noOverflow": true,
+        "min44px": true,
+        "reloadResets": true,
+        "noStorage": true,
+        "noExternalRequests": true
+      },
+      "errors": [],
+      "failed": []
+    }
+  ]
+}

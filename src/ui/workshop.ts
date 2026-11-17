@@ -16,7 +16,7 @@ const SAVE_KEY=WORKSHOP_SAVE_KEY,LEGACY_SAVE_KEY='ih2:workshop:v1';
 const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Supplies',...Object.fromEntries(PROP_IDS.map(id=>[id,PROPS[id].name]))};
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Record<string,unknown>;playerId?:string;collection?:CollectionGrant};
-export type RemoteWorkshopAdapter={busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
+export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
 type PanelHost={owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
@@ -228,7 +228,15 @@ export class WorkshopUI {
   const allocations=Object.fromEntries(PROP_IDS.map(id=>[id,this.remote?.allocatedElsewhere?.(id)??0]));
   this.bag?.update(this.state,allocations,this.remote?(this.remoteBusy?'Checking town contents…':this.remoteError||this.remote.canRetry()?'Last confirmed contents · request unresolved.':'Confirmed town contents.'):this.localReadOnlyReason?'Kept save · read-only.':!this.saved?'Unsaved contents · keep this tab open.':!this.ownsSave?'Read-only contents · another tab may update them.':'Local contents · saved in this browser.');
   this.notebook?.update(this.state,this.gardenClock());if(!this.active)return;
-  if(this.remote){const blocked=this.remoteBusy||!!this.remoteError||this.remote.canRetry();this.host.body.setAttribute('aria-busy',String(this.remoteBusy));this.host.body.querySelectorAll<HTMLButtonElement>('button:not(.remote-retry):not(.collection-control)').forEach(button=>{if(blocked){if(button.dataset.remoteDisabled===undefined)button.dataset.remoteDisabled=String(button.disabled);button.disabled=true;}else if(button.dataset.remoteDisabled!==undefined){button.disabled=button.dataset.remoteDisabled==='true';delete button.dataset.remoteDisabled;}});this.remoteNotice();}
+  if(this.remote){
+   const pending=this.remoteBusy||!!this.remote.busy?.(),blocked=pending||!!this.remoteError||this.remote.canRetry();
+   // Journal controls only open inspectors. Keep confirmed notes navigable while
+   // a read refreshes; spending/placement panels still use the ordinary guards.
+   const confirmedNotes=this.remote.hasSnapshot?.()===true&&!!this.notebook&&this.host.body.contains(this.notebook.root);
+   this.host.body.setAttribute('aria-busy',String(pending&&!confirmedNotes));
+   this.host.body.querySelectorAll<HTMLButtonElement>('button:not(.remote-retry):not(.collection-control)').forEach(button=>{if(blocked&&!confirmedNotes){if(button.dataset.remoteDisabled===undefined)button.dataset.remoteDisabled=String(button.disabled);button.disabled=true;}else if(button.dataset.remoteDisabled!==undefined){button.disabled=button.dataset.remoteDisabled==='true';delete button.dataset.remoteDisabled;}});this.remoteNotice();
+   if(confirmedNotes&&this.status&&!this.remoteError&&!this.remote.canRetry())this.status.textContent=pending?'Last confirmed work · update pending.':'Confirmed work notes.';
+  }
   const now=this.remote?.now()??Date.now(),b=this.host.body;
   const sketches=this.state.sketches??[];
   const sketchProgress=b.querySelector('[data-sketch-progress]');if(sketchProgress)sketchProgress.textContent=sketches.length+' / 3 tree studies recorded'+(sketches.length===3?' · keepsake earned':' · choose your own order');

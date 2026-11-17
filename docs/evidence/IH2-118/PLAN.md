@@ -6,6 +6,8 @@ The independent [busy-player audit](https://github.com/dadbod87/idle-hands-2/blo
 
 Keep ready-harvest and full-produce routes. When plants are growing, recommend making a field marker only if an unowned clipping design and current clipping stock make it possible. Otherwise name an unfinished free stake errand, or explicitly offer changing an already-owned display. Keep all normal navigation accessible, even when not highlighted. State that crops wait safely rather than promising an unearned new reward. No automatic command, collection or spending.
 
+Keep confirmed Journal notes and their free inspector navigation usable during a slow background snapshot, clearly marked update pending. Never expose a default or previous-identity state as confirmed; mutation panels retain existing confirmation guards. Prove this with one held real unchanged read reply and zero command requests.
+
 Demote a completed orientation to concise expandable notes. New residents and unresolved orientation actions retain expanded useful guidance. Work bench, finishing rack and garden retain their independently confirmed clocks and ordinary navigation. Do not hide a real ready-job action inside completed notes.
 
 Acceptance: test new-marker eligibility, insufficient clippings, unfinished errand and exhausted collection; ready/full/empty-bed priority; completed-versus-fresh orientation. Native actual-game desktop/360phone/short200controls, keyboard/touch, scroll bounds, reload and exact synthetic progress preservation. Use Terra6.1 and full existing source/CI/main/preserved-preview gates. No new state, API/protocol, migration, resource/skill/reward/capacity/deadline change. No physical-phone or human-fun claim from automation.

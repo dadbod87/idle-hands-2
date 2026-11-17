@@ -75,10 +75,12 @@ test('same-epoch unmarked 4xx is definite but marked state cannot be replaced by
 
 test('unmarked legacy snapshots remain usable and wrong-resident or old-generation replies cannot replace identity',async()=>{
  const f=fixture();try{
-  f.set({...value(),serverInstance:undefined});await f.client.login('aster');f.set({...value('A',9,900),serverInstance:undefined});await f.client.load();assert.equal(f.client.snapshot!.workshop.revision,10);
+  const adapter=f.client.workshopAdapter();assert.equal(adapter.hasSnapshot!(),false);
+  f.set({...value(),serverInstance:undefined});await f.client.login('aster');assert.equal(adapter.hasSnapshot!(),true);f.set({...value('A',9,900),serverInstance:undefined});await f.client.load();assert.equal(f.client.snapshot!.workshop.revision,10);
   const held=deferred<Response>(),sent=deferred<void>();f.handle(request=>{if(request.path==='snapshot'){sent.resolve();return held.promise;}return json({snapshot:value('B',1,500,'bea')});});
-  const oldLoad=f.client.load(),aborted=assert.rejects(oldLoad,error=>(error as Error).name==='AbortError');await sent.promise;const oldSignal=f.requests.at(-1)!.signal;await f.client.login('bea');assert.equal(oldSignal!.aborted,true);held.resolve(json({snapshot:value('A',50,5000)}));await aborted;assert.equal(f.client.snapshot!.playerId,'bea');
+  const oldLoad=f.client.load(),aborted=assert.rejects(oldLoad,error=>(error as Error).name==='AbortError');await sent.promise;const oldSignal=f.requests.at(-1)!.signal;const nextResident=f.client.login('bea');assert.equal(adapter.hasSnapshot!(),false);await nextResident;assert.equal(adapter.hasSnapshot!(),true);assert.equal(oldSignal!.aborted,true);held.resolve(json({snapshot:value('A',50,5000)}));await aborted;assert.equal(f.client.snapshot!.playerId,'bea');
   f.handle(()=>json({snapshot:value('B',99,9999,'aster')}));await assert.rejects(f.client.load(),/different resident/);assert.equal(f.client.snapshot!.playerId,'bea');
+  f.handle(()=>json({ok:true}));await f.client.logout();assert.equal(adapter.hasSnapshot!(),false);
  }finally{await f.close();}
 });
 

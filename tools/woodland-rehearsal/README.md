@@ -1,5 +1,7 @@
 # A little wayfinding — standalone interaction rehearsal
 
+[Resume handoff: home candidate, verified source and remaining gate](../../docs/idle-hands-2/handoffs/2026-11-17-home-and-woodland.md).
+
 ## Current revision — hands-on repair, November 17
 
 V3 replaces the correct-tool instant repair with a small spatial setup: position a brace under the load marker or line a rope hook up with the plank eye, then explicitly set the repair. The two conditions use different marker positions. The accepted band spans20points on a0–100diagram scale; it is an abstract interaction, not simulated physics or a real-world tool instruction. There is no reflex deadline, resource cost, failure penalty or reward. Leaving and the tool-free detour remain available.

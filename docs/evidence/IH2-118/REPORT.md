@@ -1,6 +1,8 @@
-# IH2-118 — truthful next steps while work is running
+# IH2-118 — final source gate passed; saved-preview acceptance pending
 
-Implementation is on feat/busy-resident-guidance over accepted117mainff87e3a. Acceptance remains pending complete exact-final-head source/main CI and the preserved normal-preview update. The normal preview stays accepted117until those gates pass.
+PR50 candidate5c65356d0ad9381625664bc31d34fd2506dcef33 merged as8ba0dec41e81f625ecc797ec843b8bc2385037e4 (same tree). PR44147609039 passed all four jobs, complete482domain/183browser(93+90), zero failures/skips/flakes/report errors, all223compiled files exact,217prior art files unchanged, and raw housing/restart/restore/unchanged500msload gates. See [verified PR proof](pr-ci-verification.json).
+
+The main run44151227514and the preserved normal-preview installation remain pending. Normal4175/localhost4176still serve accepted117. Task118is not closed. Full [validation history](VALIDATION_HISTORY.md) preserves incomplete local checks, earlier failed/cancelled CI attempts, diagnoses and focused replays; these are not counted as acceptance. [Terra review](TERRA_FINAL.md) separates screenshot observations from native functional evidence and explicitly scopes fixture/interception/device limits.
 
 ## Player result
 

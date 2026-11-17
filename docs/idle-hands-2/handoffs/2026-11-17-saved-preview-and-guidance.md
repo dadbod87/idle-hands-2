@@ -1,3 +1,13 @@
+# November 17 — PR49 accepted; PR50 merged; final acceptance pending
+
+PR49 saved-preview acceptance is complete on main ff87e3a. The normal practice and Tour previews still serve its accepted223-file client against the original API8processes and protected saved towns.
+
+PR50 candidate **5c65356d0ad9381625664bc31d34fd2506dcef33** merged as **8ba0dec41e81f625ecc797ec843b8bc2385037e4**, identical tree. Exact PR run **44147609039** passed all4required jobs:482domain/183browser(93+90), zero failures/skips/flakes/report errors,223compiled files exact and217prior art files intact. Raw restore/restart and unchanged500msload gates verified. Post-merge run **44151227514** is in progress; its acceptance is separate.
+
+Full source is work/idle-hands-2-home-acceptance on **chore/guidance-closeout-2026-11-17**. Task118remains in progress until main raw checks, static-only normal-preview installation and original-session/data/native/125old-study verification complete. Do not restart or reset protected55432, change the original APIprocesses43445/43446, copy keys, grant stock or create players. Temporary candidate4198/4196services are stopped. Canonical work/idle-hands-2is old090runtime/bookkeeping/key home, not current implementation source.
+
+Next: inspect main44151227514, then follow work/idle-hands-2-artifacts/busy-guidance-2026-11-17/RUN_STATE.json and its guarded verification/install scripts. No118normal update or task closure is claimed yet.119woodland gameplay and120load profiling remain queued; no hosted release or original-game change.
+
 # November17 —117accepted;118active
 
 PR49candidate161be1e83f1e11e37a3e6136829fc2587bfdf040 merged as **ff87e3ab4a9a64063081de42c174fdb395f0cba0**. PR44024121138and main44111539591 passed all4required public Ubuntu jobs; raw479domain/180browser(90+90disjoint), zero failures/skips/flakes/report errors,223compiled files exact. Original saved-preview owner/visitor gate and matched normal-preview update completed; [117report](../evidence/IH2-117/REPORT.md). Accepted116closeout00e08f8documentation is reconciled here; no116runtime is reimplemented.

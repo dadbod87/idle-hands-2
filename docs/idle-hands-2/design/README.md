@@ -115,3 +115,8 @@ November11 owner refinement: [ACTIVITY_DEPTH](../ACTIVITY_DEPTH.md) audits long-
 
 
 - [Varied home sizes, yards and purchasable layouts](HOUSE_VARIETY_AND_YARDS.md): November13owner direction, persistent creative rights, meaningful added features and a staged future implementation plan. Not playable purchases.
+
+
+## November17 — current next gameplay proof
+
+[118guidance plan](../../evidence/IH2-118/PLAN.md) addresses two reproduced usability faults. [119playable outing brief](../../evidence/IH2-119/PLAN.md) selects the next bounded content prototype. The immutable [active-play audit](https://github.com/dadbod87/idle-hands-2/blob/a4f5ed8f9368139812adaab4c0b0357101c279c3/docs/idle-hands-2/design/ACTIVE_PLAY_REVIEW.md) and [outing integration contract](https://github.com/dadbod87/idle-hands-2/blob/9cc9c52a94eb0928bcc148b146da6899039540c3/docs/idle-hands-2/design/OUTING_INTEGRATION_CONTRACT.md) remain design evidence, not implemented reward/skill/cooperation systems. Source acceptance of homes is recorded in117; actual119work starts only after118acceptance.

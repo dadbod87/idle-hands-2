@@ -310,3 +310,8 @@ IH2-115selects a frozen isolated housing-v1 catalog: existing12/24kit rights,2ki
 ## November16 — housing integration accepted locally
 
 PR48/mainc4b275586bc652111493ed926591f4932527cf19 passed exact474/176PR/main and protected matched-update gates. The frozen115fees/build schedule are now active in shared local practice, with original property/progress/keys retained. Expanded interiors remain the same connected8nook room, and unconnected conveniences remain planned.117will improve one interior/arrival/owned-item navigation loop before broader expansion. No hosted/public launch or expense is included.
+
+
+## November17 — saved homes accepted, truthful guidance before the first outing
+
+PR49/mainff87e3a meets exact PR/main479/180/all4and original saved-preview gates. Static-only223client update leaves API8and all installed data/migrations/keys exact; same signed sessions survive.118removes exhausted-marker suggestions and demotes completed orientation, retaining current work/fresh teaching and all old authority. This small clarity repair does not fill the audited quiet-state gap. Queue119as a limited actual-game outing prototype under the existing November17contract: visible repair/private journal outcome only, free temporary tools/detour/unfinished return, no new resource/skill payout. Hands-on rehearsal supports testing the interaction, not a claim of replay enjoyment or human cooperation. Do not merge its design branch wholesale.

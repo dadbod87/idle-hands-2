@@ -1,3 +1,7 @@
+# November18 — IH2-123 active server-only session profiling
+
+122closed every gate and pushed e935cbae over main9afd70be. Current source work/idle-hands-2-session-profile, branch perf/bounded-session-churn; [declared plan](../evidence/IH2-123/PLAN.md). Tooling candidate prepared; pinned typecheck, safety/child smoke2/2 and all232game-byte equivalence pass. Three full measurements and all full/source/main acceptance gates remain pending. Normal122client/121API9 and saved data/keys/PIDs unchanged. Current services: menu-confirmation artifacts active-services.json. Deadline15UTC/7AMPacific, latest18%weeklyused. Earlier entries historical.
+
 # November18 — IH2-122 accepted; ready to select the next section
 
 Accepted main **9afd70be62811b48be7f2efeeafaaa188acb4898**, candidate **956ec4883457144eff92aea99372fca5b06ec086**, identical tree. PR55/main runs44259045365/44261396741 each pass five jobs/raw **503 domain +193 browser**, groups73/66/54, with zero failures/skips/flakes/report errors. All188 prior cases remain. [Readable report](../evidence/IH2-122/REPORT.md), [closeout](../evidence/IH2-122/source-closeout.json), [dated handoff](handoffs/2026-11-18-menu-confirmation-closeout.md).

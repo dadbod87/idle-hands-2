@@ -1,3 +1,7 @@
+# November18 — IH2-123 active server-only session profiling
+
+122closed every gate and pushed e935cbae over main9afd70be. Current source work/idle-hands-2-session-profile, branch perf/bounded-session-churn; [declared plan](evidence/IH2-123/PLAN.md). Tooling candidate prepared; pinned typecheck, safety/child smoke2/2 and all232game-byte equivalence pass. Three full measurements and all full/source/main acceptance gates remain pending. Normal122client/121API9 and saved data/keys/PIDs unchanged. Current services: menu-confirmation artifacts active-services.json. Deadline15UTC/7AMPacific, latest18%weeklyused. Earlier entries historical.
+
 # November18 — IH2-122 accepted menu confirmation
 
 Completed menu reads restore truthful feedback; successful/refused actions keep their specific receipts. Main **9afd70be62811b48be7f2efeeafaaa188acb4898** passes exact PR/main five-job/raw503-domain/193-browser gates and the actual saved-client/Terra checks. Original APIs, saved17-table fields,9 metadata records,0600 keys and226 art files remain preserved. Local timing/browser failures and earlier cancelled CI attempts remain disclosed. [Report](evidence/IH2-122/REPORT.md), [resume point](idle-hands-2/CURRENT_SESSION.md). No hosted or original-game release. Earlier entries below are historical.

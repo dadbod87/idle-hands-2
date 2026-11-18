@@ -1,0 +1,31 @@
+{
+  "scope": "Focused safety and actual child-stream smoke, not full five-minute study or full regression",
+  "tests": 2,
+  "passed": 2,
+  "failed": 0,
+  "skipped": 0,
+  "pinnedNode": "v24.22.2",
+  "separateServerPidAndResourceSamples": true,
+  "idleApplicationSql0": true,
+  "observerIdleSubmissions0": true,
+  "streamRequestCleanup0": true,
+  "forcedTermination": false,
+  "previousAttempts": [
+    {
+      "passed": 1,
+      "failed": 1,
+      "stage": "before child report"
+    },
+    {
+      "passed": 1,
+      "failed": 1,
+      "stage": "child exit1 before report; flush hardening did not fix"
+    },
+    {
+      "passed": 2,
+      "failed": 0,
+      "stage": "explicit-field syntax fix"
+    }
+  ],
+  "confirmedDiagnosis": "Unsupported TypeScript constructor parameter property under pinned strip-only runtime; no game code changed."
+}

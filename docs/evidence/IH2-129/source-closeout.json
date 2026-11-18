@@ -1,0 +1,34 @@
+{
+  "candidate": "44479b8e0cd77b8d11c7e72c0b530c2dc35d6cab",
+  "main": "221501ad09f83b4356069a97e099b69dd1554919",
+  "pr": 60,
+  "prRun": 44351428054,
+  "mainRun": 44356623283,
+  "sameTestedTree": true,
+  "fiveJobsEach": true,
+  "domain": 527,
+  "browser": 197,
+  "shards": [
+    73,
+    66,
+    58
+  ],
+  "all232GameFilesUnchanged": true,
+  "wavBytes": 3988878,
+  "allOriginalAudioAndScriptsRegenerateByteExactLinuxMac": true,
+  "original226GameArtUnchanged": true,
+  "normalServicesKeptStopped": true,
+  "original0600KeysReadOnlyExact": true,
+  "currentSavedTableEquality": "unavailable; no claim",
+  "newSavedSessionTestOrGameAudioInstall": "not performed",
+  "humanPhysicalListening": "not performed; browser hardware deliberately muted",
+  "approxPublicJobMinutes": 95,
+  "prAttempt": 1,
+  "mainAttempt": 1,
+  "localIndependent": {
+    "tests": 369,
+    "passed": 365,
+    "skipped": 4
+  },
+  "noPaidConfiguration": true
+}

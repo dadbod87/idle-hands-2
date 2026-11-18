@@ -1,3 +1,9 @@
+# November18 — IH2-125 observations complete
+
+The six fixed ordinary-session trials are complete and saved. No game/tool implementation or normal runtime changed. Every trial preserves checkpoint state, stream privacy/idle behavior and cleanup; every timing outcome, including misses, remains in the report. This is an **unmerged documentation backup**, not a new source/CI/runtime acceptance result. Accepted preview remains124API9/122client, movement-body active-services.json. Both source versions were separately accepted before measurement.
+
+[Study report](../evidence/IH2-125/REPORT.md), [current runtime report](../evidence/IH2-124/REPORT.md), [handoff](handoffs/2026-11-18-paired-sessions.md). Source: work/idle-hands-2-paired-sessions, branchchore/paired-session-study. Verify pushed remote head. No task remains active after this measurement closeout. Re-evaluate public refresh fanout or settlement roundtrips before a new bounded task; no cache/pool/economy change is justified by noisy timings alone. Protected55432and keys remain intact, all destructive fixtures on55434only. Stop byNov18 15:00UTC/7AM Pacific or roughly90%weekly use; latest21%used. Earlier entries below are historical.
+
 # November18 — IH2-125 fixed comparison active
 
 Source work/idle-hands-2-paired-sessions, chore/paired-session-study, based on124pushed closeout88c234e. [Plan](../evidence/IH2-125/PLAN.md). Six fixed300second old/current/current/old/old/current studies, unchanged accepted tools, explicit disposable55434only. No new game/tool code or Actions request. Current accepted runtime124main816d2b8/r124active-services. Protected55432/keys/normaldata never restart/reset/migrate/copy. Stop by15UTC/7AMPacific/latest21%weeklyused. Retain every timing miss; do not replace trials or claim capacity/speedup/public-refresh coverage.

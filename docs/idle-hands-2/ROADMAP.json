@@ -2202,7 +2202,7 @@
     {
       "id": "IH2-125",
       "title": "Compare fixed ordinary sessions on accepted old and corrected server",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-124"
       ],
@@ -2218,10 +2218,18 @@
       ],
       "evidence": [
         "docs/evidence/IH2-125/PLAN.md",
-        "docs/evidence/IH2-125/sources.json"
+        "docs/evidence/IH2-125/sources.json",
+        "docs/evidence/IH2-125/METHOD.md",
+        "docs/evidence/IH2-125/REPRODUCE.md",
+        "docs/evidence/IH2-125/PUBLIC_REFRESH_CANDIDATE.md",
+        "docs/evidence/IH2-125/REPORT.md",
+        "docs/evidence/IH2-125/measurements.json",
+        "docs/evidence/IH2-125/controller-result.json",
+        "docs/evidence/IH2-125/controller-files.json",
+        "docs/evidence/IH2-125/source-closeout.json"
       ],
       "owner_branch": "chore/paired-session-study"
     }
   ],
-  "source_status_note": "125fixed paired measurement active after124fullyclosed; accepted runtime remains124. See CURRENT_SESSION."
+  "source_status_note": "125measurementscomplete, documentationbackupunmerged; game/runtime remains124. Read CURRENT_SESSION."
 }

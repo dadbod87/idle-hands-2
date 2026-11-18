@@ -1,0 +1,3629 @@
+{
+  "declaredSequence": [
+    "control",
+    "current",
+    "current",
+    "control",
+    "control",
+    "current"
+  ],
+  "sixFixed300SecondTrialsComplete": true,
+  "allCorrectnessPrivacyIdleDurabilityCleanupPass": true,
+  "allOriginalLatencyAndLoopTargetsPass": false,
+  "allNormal17Tables9MetadataKeys4PidsAndBothPgStartsExact": true,
+  "measuredAcceptedMainSources": {
+    "control": "d4068f33fc9f3241d005013c9e62489a93a07ce6",
+    "current": "816d2b89479c1318ebe05b67339f3b71b1efcf92"
+  },
+  "identicalFiveToolFiles": {
+    "tools/session-profile.ts": "ad2f30cbed07e7d17aeeacf1daf79b2bded57f668f0c96eaa6aebcb2705b9e41",
+    "tools/session-child.ts": "49922a78033d4d2a132cb92a4dc501fde2e65236f339f2bddfc8dd66ed6f8ac2",
+    "tools/session-process.ts": "25f4cff818f791f870f958ef3c3a08e8e9e3ecdfc285e554111e746c2a6b3001",
+    "tools/session-target.ts": "d89def14b1269075c7fce09711137d0a5d224549e2e16214892071b9509746ba",
+    "tools/session-resources.ts": "8dcdde1e294e1f35fb0eb1e892fb9eefc9bcc3f687325af67ec2a8515bd37ceb"
+  },
+  "rows": [
+    {
+      "run": 1,
+      "version": "control",
+      "source": "d4068f33fc9f3241d005013c9e62489a93a07ce6",
+      "exitCode": 2,
+      "workloadMs": 300016.318292,
+      "wholeInvocationSeconds": 302.38317237499996,
+      "commandP95Ms": 356.92283399999997,
+      "replayP95Ms": 294.6607920000024,
+      "snapshotP95Ms": 536.1876249999987,
+      "serverResources": {
+        "pid": 37654,
+        "parentPid": 37645,
+        "elapsedMs": 300982.59970900003,
+        "cpuUserMs": 2515.962,
+        "cpuSystemMs": 942.982,
+        "cpuPercentOfOneCore": 1.1492172648333232,
+        "eventLoopP95Ms": 22.872063,
+        "eventLoopMaxMs": 70.057983,
+        "rssPeakBytes": 122765312,
+        "heapPeakBytes": 51553024,
+        "dropped": 0
+      },
+      "driverResources": {
+        "pid": 37645,
+        "parentPid": 37621,
+        "elapsedMs": 301707.62608300004,
+        "cpuUserMs": 1727.349,
+        "cpuSystemMs": 681.026,
+        "cpuPercentOfOneCore": 0.7982479698201113,
+        "eventLoopP95Ms": 23.003135,
+        "eventLoopMaxMs": 82.051071,
+        "rssPeakBytes": 119586816,
+        "heapPeakBytes": 47233736,
+        "dropped": 0
+      },
+      "budgets": {
+        "commandP95TargetMs": 500,
+        "replayP95TargetMs": 500,
+        "snapshotP95TargetMs": 500,
+        "serverEventLoopP95TargetMs": 50,
+        "commandP95Pass": true,
+        "replayP95Pass": true,
+        "snapshotP95Pass": false,
+        "serverEventLoopP95Pass": true
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueReceipts": 140,
+        "revisionEach": 7,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "ownedPlanters": 20,
+        "outputKits": 0,
+        "queuedKitHours": 12,
+        "all9MetadataChecksumsExact": true,
+        "durability": [
+          {
+            "name": "fsync",
+            "setting": "on"
+          },
+          {
+            "name": "full_page_writes",
+            "setting": "on"
+          },
+          {
+            "name": "synchronous_commit",
+            "setting": "on"
+          }
+        ],
+        "all17TablesEveryFieldMatchCheckpoint": true,
+        "tables": {
+          "bridge": {
+            "rows": 1,
+            "sha256": "bb7358e58e2b265889f54a8d201713f3088b507643859a203cec9b1470e2c8df"
+          },
+          "bridge_contributions": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "cafe_project": {
+            "rows": 1,
+            "sha256": "f908f74ffa6b9308f5922623ca7cc961eda3a0c7e383cf0a0fea7f4da9940dbd"
+          },
+          "command_receipts": {
+            "rows": 140,
+            "sha256": "25306f180fe45e8ccfe6e818506b92a4b45c7f53ac5929f4baa1d6a4c46ac059"
+          },
+          "garden_welcome": {
+            "rows": 1,
+            "sha256": "bfcfa1fd208f4c2c998c70193b6136b0d528058d0f6374095e671b4e744e4da8"
+          },
+          "housing_builds": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "housing_quotes": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_lessons": {
+            "rows": 20,
+            "sha256": "678fdff3437c0e3efdaef3fa93417c13e3f8d73d6303ffadba828df8457f4db0"
+          },
+          "noticeboard": {
+            "rows": 1,
+            "sha256": "bbc5e25c92c9fe696220221835709d97743646501db614e16a8b725b58ccc0a0"
+          },
+          "outings": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "players": {
+            "rows": 20,
+            "sha256": "2e0eb978533a5414084b0d975cfcc18ec84bfbe24e47a2987417fd975184b155"
+          },
+          "plots": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "project_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "quest_awards": {
+            "rows": 20,
+            "sha256": "56bc7b7f1fb902263bb80e3c61b35e46f3518fe3d792a6ca67c3f98bdd649988"
+          },
+          "season_scores": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "trail_stamps": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        }
+      },
+      "idle": {
+        "elapsedMs": 30007.17420899996,
+        "sqlQueries": 0,
+        "presenceEvents": 0,
+        "heartbeats": 60,
+        "individualHeartbeats": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "activeStreamsBefore": 20,
+        "activeStreamsAfter": 20,
+        "activeRequestsBefore": 0,
+        "activeRequestsAfter": 0
+      },
+      "waves": [
+        {
+          "wave": 1,
+          "atMs": 61076.285125,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 2,
+          "atMs": 105812.77587499999,
+          "reconnects": 20,
+          "relogins": 5
+        },
+        {
+          "wave": 3,
+          "atMs": 150725.217167,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 4,
+          "atMs": 195656.591125,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 5,
+          "atMs": 240624.927084,
+          "reconnects": 20,
+          "relogins": 0
+        }
+      ],
+      "http": {
+        "requests": 1350,
+        "requestBodyBytes": 73720,
+        "responseBodyBytes": 1496190,
+        "streamConnections": 120
+      },
+      "sqlByPhase": {
+        "setup": 32,
+        "load": 3870,
+        "verification": 44
+      },
+      "traceTotals": {
+        "seen": 5677,
+        "retained": 5677,
+        "dropped": 0
+      },
+      "traceSummary": {
+        "pool/setup/acquire": {
+          "count": 2,
+          "p50": 0.10829100000000835,
+          "p95": 13.315958000000023,
+          "p99": 13.315958000000023,
+          "max": 13.315958000000023,
+          "sum": 13.424249000000032
+        },
+        "sql/setup/other.other": {
+          "count": 7,
+          "p50": 18.187790999999947,
+          "p95": 216.791291,
+          "p99": 216.791291,
+          "max": 216.791291,
+          "sum": 346.07266500000014
+        },
+        "sql/setup/transaction.begin": {
+          "count": 1,
+          "p50": 0.9244590000000699,
+          "p95": 0.9244590000000699,
+          "p99": 0.9244590000000699,
+          "max": 0.9244590000000699,
+          "sum": 0.9244590000000699
+        },
+        "sql/setup/lock.advisory": {
+          "count": 1,
+          "p50": 1.911875000000009,
+          "p95": 1.911875000000009,
+          "p99": 1.911875000000009,
+          "max": 1.911875000000009,
+          "sum": 1.911875000000009
+        },
+        "sql/setup/read.other": {
+          "count": 9,
+          "p50": 0.9222080000000688,
+          "p95": 3.2870000000000346,
+          "p99": 3.2870000000000346,
+          "max": 3.2870000000000346,
+          "sum": 11.090915000000109
+        },
+        "sql/setup/other.bridge": {
+          "count": 2,
+          "p50": 24.157832999999982,
+          "p95": 89.77416599999992,
+          "p99": 89.77416599999992,
+          "max": 89.77416599999992,
+          "sum": 113.9319989999999
+        },
+        "sql/setup/write.other": {
+          "count": 9,
+          "p50": 0.9893329999999878,
+          "p95": 2.8581249999999727,
+          "p99": 2.8581249999999727,
+          "max": 2.8581249999999727,
+          "sum": 10.448249999999916
+        },
+        "sql/setup/other.players": {
+          "count": 1,
+          "p50": 35.60929199999998,
+          "p95": 35.60929199999998,
+          "p99": 35.60929199999998,
+          "max": 35.60929199999998,
+          "sum": 35.60929199999998
+        },
+        "sql/setup/other.cafe_project": {
+          "count": 1,
+          "p50": 22.292042000000038,
+          "p95": 22.292042000000038,
+          "p99": 22.292042000000038,
+          "max": 22.292042000000038,
+          "sum": 22.292042000000038
+        },
+        "sql/setup/transaction.commit": {
+          "count": 1,
+          "p50": 13.678292000000056,
+          "p95": 13.678292000000056,
+          "p99": 13.678292000000056,
+          "max": 13.678292000000056,
+          "sum": 13.678292000000056
+        },
+        "pool/load/acquire": {
+          "count": 455,
+          "p50": 97.4812910000037,
+          "p95": 300.65933399999994,
+          "p99": 431.55774999999994,
+          "max": 500.1526670000021,
+          "sum": 47920.358628999995
+        },
+        "sql/load/write.players": {
+          "count": 185,
+          "p50": 3.0652909999998883,
+          "p95": 18.30279200000041,
+          "p99": 33.83308300000135,
+          "max": 47.51079099999993,
+          "sum": 1030.472916000003
+        },
+        "sql/load/write.other": {
+          "count": 430,
+          "p50": 2.058667000004789,
+          "p95": 18.717875000002095,
+          "p99": 25.637541000000056,
+          "max": 93.36525000000074,
+          "sum": 1907.7405009999304
+        },
+        "sql/load/transaction.begin": {
+          "count": 530,
+          "p50": 1.9765840000036405,
+          "p95": 14.470166999999492,
+          "p99": 29.314665999999306,
+          "max": 51.065709000002244,
+          "sum": 2181.7266280000117
+        },
+        "sql/load/write.bridge": {
+          "count": 385,
+          "p50": 2.2302920000001905,
+          "p95": 18.92541600000004,
+          "p99": 47.7454579999976,
+          "max": 93.29316600000038,
+          "sum": 1829.47711999994
+        },
+        "sql/load/write.cafe_project": {
+          "count": 145,
+          "p50": 2.128833000002487,
+          "p95": 24.22849999999744,
+          "p99": 28.976792000001296,
+          "max": 31.073000000003958,
+          "sum": 732.6341249999709
+        },
+        "sql/load/transaction.commit": {
+          "count": 530,
+          "p50": 3.373416999995243,
+          "p95": 24.216709000000264,
+          "p99": 46.52037500000006,
+          "max": 66.41862499999843,
+          "sum": 3383.1032119997462
+        },
+        "sql/load/read.snapshot": {
+          "count": 385,
+          "p50": 8.291917000024114,
+          "p95": 46.87254200000007,
+          "p99": 84.61566699999821,
+          "max": 88.43341700000019,
+          "sum": 5287.608070999976
+        },
+        "http/load/login": {
+          "count": 25,
+          "p50": 325.593083,
+          "p95": 465.925125,
+          "p99": 501.73508300000003,
+          "max": 501.73508300000003,
+          "sum": 8655.603040000013
+        },
+        "http/load/movement": {
+          "count": 860,
+          "p50": 0.30004100000041944,
+          "p95": 2.876792000000023,
+          "p99": 12.622875000000931,
+          "max": 59.21137499999986,
+          "sum": 787.697369999936
+        },
+        "sql/load/other.other": {
+          "count": 240,
+          "p50": 1.7432919999996557,
+          "p95": 8.803833000005397,
+          "p99": 20.007958000000144,
+          "max": 91.74966700000004,
+          "sum": 819.4149600000087
+        },
+        "sql/load/lock.row": {
+          "count": 380,
+          "p50": 2.04558399997768,
+          "p95": 18.452875000002678,
+          "p99": 25.962542000001122,
+          "max": 31.722499999999854,
+          "sum": 1624.394246000014
+        },
+        "sql/load/read.command_receipts": {
+          "count": 240,
+          "p50": 2.008458000000246,
+          "p95": 11.587916999997105,
+          "p99": 18.317291999999725,
+          "max": 30.17466599999989,
+          "sum": 815.0430870001028
+        },
+        "sql/load/read.plots": {
+          "count": 140,
+          "p50": 1.8770000000004075,
+          "p95": 16.58874999999898,
+          "p99": 22.654375000000073,
+          "max": 30.036959000000024,
+          "sum": 594.4606800000238
+        },
+        "sql/load/read.housing_builds": {
+          "count": 140,
+          "p50": 2.0183749999996508,
+          "p95": 14.96270899999945,
+          "p99": 30.929958000000624,
+          "max": 85.1580840000006,
+          "sum": 629.1831340000053
+        },
+        "sql/load/write.command_receipts": {
+          "count": 140,
+          "p50": 2.649582999999893,
+          "p95": 13.263458000001265,
+          "p99": 19.65875000000233,
+          "max": 20.47754200000054,
+          "sum": 595.9497920000003
+        },
+        "http/load/command": {
+          "count": 240,
+          "p50": 146.5981669999892,
+          "p95": 335.94416699999783,
+          "p99": 454.03008300000056,
+          "max": 475.2520420000001,
+          "sum": 39886.194085999865
+        },
+        "pool/verification/acquire": {
+          "count": 44,
+          "p50": 0.016708999988622963,
+          "p95": 0.041458999970927835,
+          "p99": 64.51787500001956,
+          "max": 64.51787500001956,
+          "sum": 65.45075799992628
+        },
+        "sql/verification/read.players": {
+          "count": 4,
+          "p50": 6.3535419999971054,
+          "p95": 17.915542000031564,
+          "p99": 17.915542000031564,
+          "max": 17.915542000031564,
+          "sum": 36.99495900002876
+        },
+        "sql/verification/read.command_receipts": {
+          "count": 4,
+          "p50": 3.059499999973923,
+          "p95": 6.4177909999853,
+          "p99": 6.4177909999853,
+          "max": 6.4177909999853,
+          "sum": 15.290290999957506
+        },
+        "sql/verification/read.other": {
+          "count": 24,
+          "p50": 1.032708000002458,
+          "p95": 6.310249999980442,
+          "p99": 8.688958000002458,
+          "max": 8.688958000002458,
+          "sum": 42.855791999958456
+        },
+        "sql/verification/read.bridge": {
+          "count": 2,
+          "p50": 1.11225000000195,
+          "p95": 1.7136249999748543,
+          "p99": 1.7136249999748543,
+          "max": 1.7136249999748543,
+          "sum": 2.8258749999768042
+        },
+        "sql/verification/read.cafe_project": {
+          "count": 2,
+          "p50": 0.504583999998431,
+          "p95": 1.8379169999971054,
+          "p99": 1.8379169999971054,
+          "max": 1.8379169999971054,
+          "sum": 2.3425009999955364
+        },
+        "sql/verification/read.housing_builds": {
+          "count": 2,
+          "p50": 0.9423749999987194,
+          "p95": 1.7503329999744892,
+          "p99": 1.7503329999744892,
+          "max": 1.7503329999744892,
+          "sum": 2.6927079999732086
+        },
+        "sql/verification/read.housing_quotes": {
+          "count": 2,
+          "p50": 0.6865409999991243,
+          "p95": 0.9106660000397824,
+          "p99": 0.9106660000397824,
+          "max": 0.9106660000397824,
+          "sum": 1.5972070000389067
+        },
+        "sql/verification/read.outings": {
+          "count": 2,
+          "p50": 0.8833330000052229,
+          "p95": 0.9570410000014817,
+          "p99": 0.9570410000014817,
+          "max": 0.9570410000014817,
+          "sum": 1.8403740000067046
+        },
+        "sql/verification/read.plots": {
+          "count": 2,
+          "p50": 0.9584170000016456,
+          "p95": 1.355541999975685,
+          "p99": 1.355541999975685,
+          "max": 1.355541999975685,
+          "sum": 2.3139589999773307
+        },
+        "http/load/snapshot": {
+          "count": 100,
+          "p50": 168.10362500000338,
+          "p95": 500.47649999999703,
+          "p99": 595.676959000004,
+          "max": 601.7715409999946,
+          "sum": 21733.258709999987
+        },
+        "http/load/logout": {
+          "count": 5,
+          "p50": 0.07774999999674037,
+          "p95": 0.9631670000089798,
+          "p99": 0.9631670000089798,
+          "max": 0.9631670000089798,
+          "sum": 1.3102920000092126
+        }
+      },
+      "observerIdleSubmissions": 0,
+      "observerErrors": [],
+      "settings": [
+        {
+          "name": "fsync",
+          "setting": "on"
+        },
+        {
+          "name": "full_page_writes",
+          "setting": "on"
+        },
+        {
+          "name": "max_connections",
+          "setting": "100"
+        },
+        {
+          "name": "server_version",
+          "setting": "16.15 (Debian 16.15-1.pgdg13+2)"
+        },
+        {
+          "name": "synchronous_commit",
+          "setting": "on"
+        },
+        {
+          "name": "track_io_timing",
+          "setting": "off"
+        },
+        {
+          "name": "wal_sync_method",
+          "setting": "fdatasync"
+        }
+      ],
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0,
+        "errors": []
+      },
+      "rawSha256": {
+        "session-profile.json": "3835c22af33c6dcfc15a303bed279301cb3c745f614a23df72b2e8e4dbf152f8",
+        "server-process.json": "5080f5a6372f099440083343bfa68f6ebd4bae1b18a55d959111336002ad0241",
+        "load-profile.json": "7c69422e4a5628fcc189d2d19f15b37f7694afa327b7a585df1a04a042be9307",
+        "attempt.json": "482b03c37b5a577493ba340d58fa5308ffadf02e1d13abf8f668c9d14b7b35b3"
+      }
+    },
+    {
+      "run": 2,
+      "version": "current",
+      "source": "816d2b89479c1318ebe05b67339f3b71b1efcf92",
+      "exitCode": 0,
+      "workloadMs": 300022.885958,
+      "wholeInvocationSeconds": 301.888494708,
+      "commandP95Ms": 423.3206250000003,
+      "replayP95Ms": 232.51708399999188,
+      "snapshotP95Ms": 265.62087499999325,
+      "serverResources": {
+        "pid": 37769,
+        "parentPid": 37760,
+        "elapsedMs": 300840.77425,
+        "cpuUserMs": 2583.138,
+        "cpuSystemMs": 904.273,
+        "cpuPercentOfOneCore": 1.1592215213161052,
+        "eventLoopP95Ms": 22.888447,
+        "eventLoopMaxMs": 103.809023,
+        "rssPeakBytes": 126173184,
+        "heapPeakBytes": 56598624,
+        "dropped": 0
+      },
+      "driverResources": {
+        "pid": 37760,
+        "parentPid": 37621,
+        "elapsedMs": 301335.817791,
+        "cpuUserMs": 1701.99,
+        "cpuSystemMs": 698.8,
+        "cpuPercentOfOneCore": 0.7967157763054693,
+        "eventLoopP95Ms": 22.855679,
+        "eventLoopMaxMs": 157.810687,
+        "rssPeakBytes": 125698048,
+        "heapPeakBytes": 48700352,
+        "dropped": 0
+      },
+      "budgets": {
+        "commandP95TargetMs": 500,
+        "replayP95TargetMs": 500,
+        "snapshotP95TargetMs": 500,
+        "serverEventLoopP95TargetMs": 50,
+        "commandP95Pass": true,
+        "replayP95Pass": true,
+        "snapshotP95Pass": true,
+        "serverEventLoopP95Pass": true
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueReceipts": 140,
+        "revisionEach": 7,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "ownedPlanters": 20,
+        "outputKits": 0,
+        "queuedKitHours": 12,
+        "all9MetadataChecksumsExact": true,
+        "durability": [
+          {
+            "name": "fsync",
+            "setting": "on"
+          },
+          {
+            "name": "full_page_writes",
+            "setting": "on"
+          },
+          {
+            "name": "synchronous_commit",
+            "setting": "on"
+          }
+        ],
+        "all17TablesEveryFieldMatchCheckpoint": true,
+        "tables": {
+          "bridge": {
+            "rows": 1,
+            "sha256": "bb7358e58e2b265889f54a8d201713f3088b507643859a203cec9b1470e2c8df"
+          },
+          "bridge_contributions": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "cafe_project": {
+            "rows": 1,
+            "sha256": "f908f74ffa6b9308f5922623ca7cc961eda3a0c7e383cf0a0fea7f4da9940dbd"
+          },
+          "command_receipts": {
+            "rows": 140,
+            "sha256": "ac92f0ffb85c3286b08c66cadf2e0e01059803b11f9036a8d503a6b5b0e70447"
+          },
+          "garden_welcome": {
+            "rows": 1,
+            "sha256": "bfcfa1fd208f4c2c998c70193b6136b0d528058d0f6374095e671b4e744e4da8"
+          },
+          "housing_builds": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "housing_quotes": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_lessons": {
+            "rows": 20,
+            "sha256": "678fdff3437c0e3efdaef3fa93417c13e3f8d73d6303ffadba828df8457f4db0"
+          },
+          "noticeboard": {
+            "rows": 1,
+            "sha256": "bbc5e25c92c9fe696220221835709d97743646501db614e16a8b725b58ccc0a0"
+          },
+          "outings": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "players": {
+            "rows": 20,
+            "sha256": "71777cd6533c9889bc5c193cf1172c89dd9e39c0c9a02d956487f466b9550610"
+          },
+          "plots": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "project_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "quest_awards": {
+            "rows": 20,
+            "sha256": "0ee6a936aecddc0dd621ff831fd2fdd91d087760399316ca0a4a2a7ddd7aa6d0"
+          },
+          "season_scores": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "trail_stamps": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        }
+      },
+      "idle": {
+        "elapsedMs": 30008.657457999943,
+        "sqlQueries": 0,
+        "presenceEvents": 0,
+        "heartbeats": 40,
+        "individualHeartbeats": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "activeStreamsBefore": 20,
+        "activeStreamsAfter": 20,
+        "activeRequestsBefore": 0,
+        "activeRequestsAfter": 0
+      },
+      "waves": [
+        {
+          "wave": 1,
+          "atMs": 60678.091542,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 2,
+          "atMs": 105586.234,
+          "reconnects": 20,
+          "relogins": 5
+        },
+        {
+          "wave": 3,
+          "atMs": 150807.080208,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 4,
+          "atMs": 195558.426167,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 5,
+          "atMs": 240850.822292,
+          "reconnects": 20,
+          "relogins": 0
+        }
+      ],
+      "http": {
+        "requests": 1350,
+        "requestBodyBytes": 73720,
+        "responseBodyBytes": 1496190,
+        "streamConnections": 120
+      },
+      "sqlByPhase": {
+        "setup": 32,
+        "load": 3870,
+        "verification": 44
+      },
+      "traceTotals": {
+        "seen": 5677,
+        "retained": 5677,
+        "dropped": 0
+      },
+      "traceSummary": {
+        "pool/setup/acquire": {
+          "count": 2,
+          "p50": 0.12016699999992397,
+          "p95": 36.18599999999998,
+          "p99": 36.18599999999998,
+          "max": 36.18599999999998,
+          "sum": 36.3061669999999
+        },
+        "sql/setup/other.other": {
+          "count": 7,
+          "p50": 15.789250000000038,
+          "p95": 146.76345800000007,
+          "p99": 146.76345800000007,
+          "max": 146.76345800000007,
+          "sum": 263.24433400000015
+        },
+        "sql/setup/transaction.begin": {
+          "count": 1,
+          "p50": 1.2224579999999605,
+          "p95": 1.2224579999999605,
+          "p99": 1.2224579999999605,
+          "max": 1.2224579999999605,
+          "sum": 1.2224579999999605
+        },
+        "sql/setup/lock.advisory": {
+          "count": 1,
+          "p50": 1.110416999999984,
+          "p95": 1.110416999999984,
+          "p99": 1.110416999999984,
+          "max": 1.110416999999984,
+          "sum": 1.110416999999984
+        },
+        "sql/setup/read.other": {
+          "count": 9,
+          "p50": 1.2472080000000005,
+          "p95": 3.4007080000000087,
+          "p99": 3.4007080000000087,
+          "max": 3.4007080000000087,
+          "sum": 14.893288999999982
+        },
+        "sql/setup/other.bridge": {
+          "count": 2,
+          "p50": 25.110207999999943,
+          "p95": 86.83720800000003,
+          "p99": 86.83720800000003,
+          "max": 86.83720800000003,
+          "sum": 111.94741599999998
+        },
+        "sql/setup/write.other": {
+          "count": 9,
+          "p50": 1.6154169999999795,
+          "p95": 14.470416,
+          "p99": 14.470416,
+          "max": 14.470416,
+          "sum": 33.85129200000006
+        },
+        "sql/setup/other.players": {
+          "count": 1,
+          "p50": 23.318917000000056,
+          "p95": 23.318917000000056,
+          "p99": 23.318917000000056,
+          "max": 23.318917000000056,
+          "sum": 23.318917000000056
+        },
+        "sql/setup/other.cafe_project": {
+          "count": 1,
+          "p50": 12.836167000000046,
+          "p95": 12.836167000000046,
+          "p99": 12.836167000000046,
+          "max": 12.836167000000046,
+          "sum": 12.836167000000046
+        },
+        "sql/setup/transaction.commit": {
+          "count": 1,
+          "p50": 2.111874999999941,
+          "p95": 2.111874999999941,
+          "p99": 2.111874999999941,
+          "max": 2.111874999999941,
+          "sum": 2.111874999999941
+        },
+        "pool/load/acquire": {
+          "count": 455,
+          "p50": 73.69320800000014,
+          "p95": 182.48695799999405,
+          "p99": 362.8365410000001,
+          "max": 398.9967499999998,
+          "sum": 35277.47424700012
+        },
+        "sql/load/write.players": {
+          "count": 185,
+          "p50": 2.91058300000077,
+          "p95": 23.0854589999999,
+          "p99": 48.51691699999992,
+          "max": 65.27258299999994,
+          "sum": 1304.099920999999
+        },
+        "sql/load/write.other": {
+          "count": 430,
+          "p50": 1.5060410000005504,
+          "p95": 12.039584000000104,
+          "p99": 29.243083999986993,
+          "max": 65.54133300000012,
+          "sum": 1372.7369569999853
+        },
+        "sql/load/transaction.begin": {
+          "count": 530,
+          "p50": 1.730875000008382,
+          "p95": 10.482334000000264,
+          "p99": 20.23216699999989,
+          "max": 23.194792000000234,
+          "sum": 1623.7389279999327
+        },
+        "sql/load/write.bridge": {
+          "count": 385,
+          "p50": 1.8591669999877922,
+          "p95": 12.210000000000036,
+          "p99": 52.8876250000003,
+          "max": 68.64329200000066,
+          "sum": 1575.9340850000224
+        },
+        "sql/load/write.cafe_project": {
+          "count": 145,
+          "p50": 1.2745830000203568,
+          "p95": 6.6940410000001975,
+          "p99": 15.101499999999987,
+          "max": 19.430207999999993,
+          "sum": 330.7141169999411
+        },
+        "sql/load/transaction.commit": {
+          "count": 530,
+          "p50": 2.512625000003027,
+          "p95": 18.06108299997868,
+          "p99": 45.117249999999785,
+          "max": 67.17887499998324,
+          "sum": 2676.5418839999356
+        },
+        "sql/load/read.snapshot": {
+          "count": 385,
+          "p50": 8.010458000004292,
+          "p95": 43.292459000018425,
+          "p99": 54.19129200000316,
+          "max": 55.92395900000702,
+          "sum": 5016.459998999862
+        },
+        "http/load/login": {
+          "count": 25,
+          "p50": 384.58454199999994,
+          "p95": 459.68008299999997,
+          "p99": 482.7769169999999,
+          "max": 482.7769169999999,
+          "sum": 8477.259337999993
+        },
+        "http/load/movement": {
+          "count": 860,
+          "p50": 0.3103339999997843,
+          "p95": 4.268291999999747,
+          "p99": 20.551291999999194,
+          "max": 65.3055000000004,
+          "sum": 1169.1203489999004
+        },
+        "sql/load/other.other": {
+          "count": 240,
+          "p50": 1.4369999999998981,
+          "p95": 13.165667000000212,
+          "p99": 17.335959000000003,
+          "max": 21.53416599999764,
+          "sum": 708.1235820001302
+        },
+        "sql/load/lock.row": {
+          "count": 380,
+          "p50": 1.8914169999998194,
+          "p95": 15.295458000000508,
+          "p99": 33.08650000000034,
+          "max": 35.05420800000002,
+          "sum": 1503.6778799999174
+        },
+        "sql/load/read.command_receipts": {
+          "count": 240,
+          "p50": 1.5047080000003916,
+          "p95": 11.998500000016065,
+          "p99": 37.66737499999999,
+          "max": 54.22133299999996,
+          "sum": 860.2989999998449
+        },
+        "sql/load/read.plots": {
+          "count": 140,
+          "p50": 1.867167000000336,
+          "p95": 12.163249999999607,
+          "p99": 24.627792000000227,
+          "max": 29.34308400000009,
+          "sum": 526.683622999989
+        },
+        "sql/load/read.housing_builds": {
+          "count": 140,
+          "p50": 1.5292499999995925,
+          "p95": 15.158583000000363,
+          "p99": 46.80629199999976,
+          "max": 60.81429200000002,
+          "sum": 581.3072870000024
+        },
+        "sql/load/write.command_receipts": {
+          "count": 140,
+          "p50": 2.141082999999526,
+          "p95": 16.954624999998487,
+          "p99": 21.54962499999965,
+          "max": 47.0959170000001,
+          "sum": 657.036044999998
+        },
+        "http/load/command": {
+          "count": 240,
+          "p50": 113.56262499999866,
+          "p95": 282.1600000000035,
+          "p99": 648.2751250000001,
+          "max": 653.836875,
+          "sum": 31486.758327000032
+        },
+        "pool/verification/acquire": {
+          "count": 44,
+          "p50": 0.024333000008482486,
+          "p95": 0.13216599999941536,
+          "p99": 70.02995799999917,
+          "max": 70.02995799999917,
+          "sum": 71.65987599988148
+        },
+        "sql/verification/read.players": {
+          "count": 4,
+          "p50": 7.5581249999813735,
+          "p95": 27.07433299999684,
+          "p99": 27.07433299999684,
+          "max": 27.07433299999684,
+          "sum": 48.77166599997872
+        },
+        "sql/verification/read.command_receipts": {
+          "count": 4,
+          "p50": 3.9503749999967113,
+          "p95": 38.11074999999255,
+          "p99": 38.11074999999255,
+          "max": 38.11074999999255,
+          "sum": 50.23591600000145
+        },
+        "sql/verification/read.other": {
+          "count": 24,
+          "p50": 1.6110000000335276,
+          "p95": 7.182334000011906,
+          "p99": 18.04870799999844,
+          "max": 18.04870799999844,
+          "sum": 68.96242000008351
+        },
+        "sql/verification/read.bridge": {
+          "count": 2,
+          "p50": 4.652874999970663,
+          "p95": 8.700624999997672,
+          "p99": 8.700624999997672,
+          "max": 8.700624999997672,
+          "sum": 13.353499999968335
+        },
+        "sql/verification/read.cafe_project": {
+          "count": 2,
+          "p50": 0.8120000000017171,
+          "p95": 3.2498340000165626,
+          "p99": 3.2498340000165626,
+          "max": 3.2498340000165626,
+          "sum": 4.06183400001828
+        },
+        "sql/verification/read.housing_builds": {
+          "count": 2,
+          "p50": 1.188332999998238,
+          "p95": 1.2849170000008598,
+          "p99": 1.2849170000008598,
+          "max": 1.2849170000008598,
+          "sum": 2.473249999999098
+        },
+        "sql/verification/read.housing_quotes": {
+          "count": 2,
+          "p50": 1.5452089999998861,
+          "p95": 1.6140829999931157,
+          "p99": 1.6140829999931157,
+          "max": 1.6140829999931157,
+          "sum": 3.159291999993002
+        },
+        "sql/verification/read.outings": {
+          "count": 2,
+          "p50": 1.1450420000001031,
+          "p95": 1.8596249999827705,
+          "p99": 1.8596249999827705,
+          "max": 1.8596249999827705,
+          "sum": 3.0046669999828737
+        },
+        "sql/verification/read.plots": {
+          "count": 2,
+          "p50": 2.160291000000143,
+          "p95": 2.5476250000065193,
+          "p99": 2.5476250000065193,
+          "max": 2.5476250000065193,
+          "sum": 4.707916000006662
+        },
+        "http/load/snapshot": {
+          "count": 100,
+          "p50": 150.93162499999744,
+          "p95": 250.0545839999977,
+          "p99": 271.53833300000406,
+          "max": 283.283792000002,
+          "sum": 14808.118751999944
+        },
+        "http/load/logout": {
+          "count": 5,
+          "p50": 0.36462500000197906,
+          "p95": 0.5247500000114087,
+          "p99": 0.5247500000114087,
+          "max": 0.5247500000114087,
+          "sum": 1.6015000000188593
+        }
+      },
+      "observerIdleSubmissions": 0,
+      "observerErrors": [],
+      "settings": [
+        {
+          "name": "fsync",
+          "setting": "on"
+        },
+        {
+          "name": "full_page_writes",
+          "setting": "on"
+        },
+        {
+          "name": "max_connections",
+          "setting": "100"
+        },
+        {
+          "name": "server_version",
+          "setting": "16.15 (Debian 16.15-1.pgdg13+2)"
+        },
+        {
+          "name": "synchronous_commit",
+          "setting": "on"
+        },
+        {
+          "name": "track_io_timing",
+          "setting": "off"
+        },
+        {
+          "name": "wal_sync_method",
+          "setting": "fdatasync"
+        }
+      ],
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0,
+        "errors": []
+      },
+      "rawSha256": {
+        "session-profile.json": "0c1f33639c04456ab7d02f2cc1f365a57bcd48bb7a3e322268a237d57952581d",
+        "server-process.json": "d3ccbed828365cc9d4271df39b98367c18db6170710ed8e8d55e4a5f3b8586e7",
+        "load-profile.json": "2535888a63740d9567f5f17a64d043b0f2332358058e7b2bd603995354160b4f",
+        "attempt.json": "42d744ea806cde0e6544ba5e5824e87bdf9f2ff13e58f581f49590b35697aa23"
+      }
+    },
+    {
+      "run": 3,
+      "version": "current",
+      "source": "816d2b89479c1318ebe05b67339f3b71b1efcf92",
+      "exitCode": 0,
+      "workloadMs": 300021.078708,
+      "wholeInvocationSeconds": 302.285896125,
+      "commandP95Ms": 431.9389590000005,
+      "replayP95Ms": 368.04120800000965,
+      "snapshotP95Ms": 277.3710419999843,
+      "serverResources": {
+        "pid": 37891,
+        "parentPid": 37882,
+        "elapsedMs": 301209.296417,
+        "cpuUserMs": 2539.433,
+        "cpuSystemMs": 976.916,
+        "cpuPercentOfOneCore": 1.1674105154881735,
+        "eventLoopP95Ms": 22.872063,
+        "eventLoopMaxMs": 63.504383,
+        "rssPeakBytes": 124993536,
+        "heapPeakBytes": 45849192,
+        "dropped": 0
+      },
+      "driverResources": {
+        "pid": 37882,
+        "parentPid": 37621,
+        "elapsedMs": 301734.54037500004,
+        "cpuUserMs": 1768.768,
+        "cpuSystemMs": 705.734,
+        "cpuPercentOfOneCore": 0.8200923888013129,
+        "eventLoopP95Ms": 22.937599,
+        "eventLoopMaxMs": 85.065727,
+        "rssPeakBytes": 126697472,
+        "heapPeakBytes": 49711520,
+        "dropped": 0
+      },
+      "budgets": {
+        "commandP95TargetMs": 500,
+        "replayP95TargetMs": 500,
+        "snapshotP95TargetMs": 500,
+        "serverEventLoopP95TargetMs": 50,
+        "commandP95Pass": true,
+        "replayP95Pass": true,
+        "snapshotP95Pass": true,
+        "serverEventLoopP95Pass": true
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueReceipts": 140,
+        "revisionEach": 7,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "ownedPlanters": 20,
+        "outputKits": 0,
+        "queuedKitHours": 12,
+        "all9MetadataChecksumsExact": true,
+        "durability": [
+          {
+            "name": "fsync",
+            "setting": "on"
+          },
+          {
+            "name": "full_page_writes",
+            "setting": "on"
+          },
+          {
+            "name": "synchronous_commit",
+            "setting": "on"
+          }
+        ],
+        "all17TablesEveryFieldMatchCheckpoint": true,
+        "tables": {
+          "bridge": {
+            "rows": 1,
+            "sha256": "bb7358e58e2b265889f54a8d201713f3088b507643859a203cec9b1470e2c8df"
+          },
+          "bridge_contributions": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "cafe_project": {
+            "rows": 1,
+            "sha256": "f908f74ffa6b9308f5922623ca7cc961eda3a0c7e383cf0a0fea7f4da9940dbd"
+          },
+          "command_receipts": {
+            "rows": 140,
+            "sha256": "2ae0bd7020b322a1a043252df230bda8a20bbb9392df83ad47f4143858b3e145"
+          },
+          "garden_welcome": {
+            "rows": 1,
+            "sha256": "bfcfa1fd208f4c2c998c70193b6136b0d528058d0f6374095e671b4e744e4da8"
+          },
+          "housing_builds": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "housing_quotes": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_lessons": {
+            "rows": 20,
+            "sha256": "678fdff3437c0e3efdaef3fa93417c13e3f8d73d6303ffadba828df8457f4db0"
+          },
+          "noticeboard": {
+            "rows": 1,
+            "sha256": "bbc5e25c92c9fe696220221835709d97743646501db614e16a8b725b58ccc0a0"
+          },
+          "outings": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "players": {
+            "rows": 20,
+            "sha256": "8d194c1801a8a04deb22ac3ebd1b3787c9829c418f047b2e9c357c0ae73bc9ce"
+          },
+          "plots": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "project_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "quest_awards": {
+            "rows": 20,
+            "sha256": "60422bc0ef39b99603de2a4b0fc0b4b93a2fdbf70377cbeef10de53656437525"
+          },
+          "season_scores": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "trail_stamps": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        }
+      },
+      "idle": {
+        "elapsedMs": 30003.650667000038,
+        "sqlQueries": 0,
+        "presenceEvents": 0,
+        "heartbeats": 60,
+        "individualHeartbeats": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "activeStreamsBefore": 20,
+        "activeStreamsAfter": 20,
+        "activeRequestsBefore": 0,
+        "activeRequestsAfter": 0
+      },
+      "waves": [
+        {
+          "wave": 1,
+          "atMs": 60928.9495,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 2,
+          "atMs": 105671.89266700001,
+          "reconnects": 20,
+          "relogins": 5
+        },
+        {
+          "wave": 3,
+          "atMs": 150625.618792,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 4,
+          "atMs": 195766.582,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 5,
+          "atMs": 241134.256917,
+          "reconnects": 20,
+          "relogins": 0
+        }
+      ],
+      "http": {
+        "requests": 1350,
+        "requestBodyBytes": 73720,
+        "responseBodyBytes": 1496190,
+        "streamConnections": 120
+      },
+      "sqlByPhase": {
+        "setup": 32,
+        "load": 3870,
+        "verification": 44
+      },
+      "traceTotals": {
+        "seen": 5677,
+        "retained": 5677,
+        "dropped": 0
+      },
+      "traceSummary": {
+        "pool/setup/acquire": {
+          "count": 2,
+          "p50": 0.11924999999996544,
+          "p95": 19.546875,
+          "p99": 19.546875,
+          "max": 19.546875,
+          "sum": 19.666124999999965
+        },
+        "sql/setup/other.other": {
+          "count": 7,
+          "p50": 14.287417000000005,
+          "p95": 132.40412499999996,
+          "p99": 132.40412499999996,
+          "max": 132.40412499999996,
+          "sum": 274.6238749999998
+        },
+        "sql/setup/transaction.begin": {
+          "count": 1,
+          "p50": 11.415040999999974,
+          "p95": 11.415040999999974,
+          "p99": 11.415040999999974,
+          "max": 11.415040999999974,
+          "sum": 11.415040999999974
+        },
+        "sql/setup/lock.advisory": {
+          "count": 1,
+          "p50": 17.279209000000037,
+          "p95": 17.279209000000037,
+          "p99": 17.279209000000037,
+          "max": 17.279209000000037,
+          "sum": 17.279209000000037
+        },
+        "sql/setup/read.other": {
+          "count": 9,
+          "p50": 1.0559169999999085,
+          "p95": 11.44283299999995,
+          "p99": 11.44283299999995,
+          "max": 11.44283299999995,
+          "sum": 20.347666000000117
+        },
+        "sql/setup/other.bridge": {
+          "count": 2,
+          "p50": 47.863500000000045,
+          "p95": 319.779084,
+          "p99": 319.779084,
+          "max": 319.779084,
+          "sum": 367.64258400000006
+        },
+        "sql/setup/write.other": {
+          "count": 9,
+          "p50": 1.141958000000045,
+          "p95": 2.250541999999996,
+          "p99": 2.250541999999996,
+          "max": 2.250541999999996,
+          "sum": 10.60608300000024
+        },
+        "sql/setup/other.players": {
+          "count": 1,
+          "p50": 18.068583999999987,
+          "p95": 18.068583999999987,
+          "p99": 18.068583999999987,
+          "max": 18.068583999999987,
+          "sum": 18.068583999999987
+        },
+        "sql/setup/other.cafe_project": {
+          "count": 1,
+          "p50": 17.872749999999996,
+          "p95": 17.872749999999996,
+          "p99": 17.872749999999996,
+          "max": 17.872749999999996,
+          "sum": 17.872749999999996
+        },
+        "sql/setup/transaction.commit": {
+          "count": 1,
+          "p50": 3.4166669999999613,
+          "p95": 3.4166669999999613,
+          "p99": 3.4166669999999613,
+          "max": 3.4166669999999613,
+          "sum": 3.4166669999999613
+        },
+        "pool/load/acquire": {
+          "count": 455,
+          "p50": 68.66600000002654,
+          "p95": 253.21529200000805,
+          "p99": 423.46183299999984,
+          "max": 433.35275,
+          "sum": 41244.45877800024
+        },
+        "sql/load/write.players": {
+          "count": 185,
+          "p50": 2.9659169999999904,
+          "p95": 15.87433400000009,
+          "p99": 28.593791999999667,
+          "max": 33.608790999999655,
+          "sum": 983.8878829999626
+        },
+        "sql/load/write.other": {
+          "count": 430,
+          "p50": 1.733541999999943,
+          "p95": 11.206500000000233,
+          "p99": 17.41095900000073,
+          "max": 22.51720800000021,
+          "sum": 1359.7975809998163
+        },
+        "sql/load/transaction.begin": {
+          "count": 530,
+          "p50": 2.1005420000001322,
+          "p95": 16.842707999999902,
+          "p99": 26.308624999999665,
+          "max": 83.31162500000028,
+          "sum": 2268.4695790004425
+        },
+        "sql/load/write.bridge": {
+          "count": 385,
+          "p50": 2.0682920000108425,
+          "p95": 18.479707999998936,
+          "p99": 41.21700000000419,
+          "max": 55.646082999999635,
+          "sum": 1963.9868330000168
+        },
+        "sql/load/write.cafe_project": {
+          "count": 145,
+          "p50": 1.665792000014335,
+          "p95": 8.322499999994761,
+          "p99": 13.624166000023251,
+          "max": 20.592583000005106,
+          "sum": 381.62578999995844
+        },
+        "sql/load/transaction.commit": {
+          "count": 530,
+          "p50": 2.955832999999984,
+          "p95": 23.130292000016198,
+          "p99": 52.4435840000001,
+          "max": 134.78375000000005,
+          "sum": 3407.96937000005
+        },
+        "sql/load/read.snapshot": {
+          "count": 385,
+          "p50": 7.217541999998502,
+          "p95": 51.65037499999926,
+          "p99": 111.1241250000021,
+          "max": 137.69175000000087,
+          "sum": 5818.765104000157
+        },
+        "http/load/login": {
+          "count": 25,
+          "p50": 230.66337499999986,
+          "p95": 306.2547920000002,
+          "p99": 307.79204200000004,
+          "max": 307.79204200000004,
+          "sum": 5723.217955000003
+        },
+        "http/load/movement": {
+          "count": 860,
+          "p50": 0.29399999999986903,
+          "p95": 3.11974999999984,
+          "p99": 26.50683299999946,
+          "max": 50.927583000000595,
+          "sum": 1024.2280489999998
+        },
+        "sql/load/other.other": {
+          "count": 240,
+          "p50": 2.0460000000002765,
+          "p95": 11.1095000000023,
+          "p99": 40.623625000000175,
+          "max": 75.76895799999966,
+          "sum": 990.7907949998585
+        },
+        "sql/load/lock.row": {
+          "count": 380,
+          "p50": 2.224000000016531,
+          "p95": 14.426416999998764,
+          "p99": 40.08079199999338,
+          "max": 71.59295799999973,
+          "sum": 1835.019245999944
+        },
+        "sql/load/read.command_receipts": {
+          "count": 240,
+          "p50": 2.0856669999993755,
+          "p95": 11.94579200001317,
+          "p99": 50.42920800000047,
+          "max": 51.201875000000655,
+          "sum": 1015.0140360000305
+        },
+        "sql/load/read.plots": {
+          "count": 140,
+          "p50": 2.2637500000000728,
+          "p95": 8.736624999999549,
+          "p99": 30.857999999999265,
+          "max": 50.324499999999716,
+          "sum": 508.3110070000039
+        },
+        "sql/load/read.housing_builds": {
+          "count": 140,
+          "p50": 1.8925839999974414,
+          "p95": 7.643207999997685,
+          "p99": 11.124583000000712,
+          "max": 27.1617499999993,
+          "sum": 381.7634509999939
+        },
+        "sql/load/write.command_receipts": {
+          "count": 140,
+          "p50": 2.1460830000005444,
+          "p95": 17.35029200000008,
+          "p99": 89.1202089999997,
+          "max": 91.04579199999989,
+          "sum": 799.3601639999997
+        },
+        "http/load/command": {
+          "count": 240,
+          "p50": 130.43912500000442,
+          "p95": 386.983209,
+          "p99": 527.6016669999999,
+          "max": 535.0757080000003,
+          "sum": 41479.56983999997
+        },
+        "pool/verification/acquire": {
+          "count": 44,
+          "p50": 0.021999999997206032,
+          "p95": 0.04370800000106101,
+          "p99": 111.10345799999777,
+          "max": 111.10345799999777,
+          "sum": 112.07653899988873
+        },
+        "sql/verification/read.players": {
+          "count": 4,
+          "p50": 5.402125000000524,
+          "p95": 22.00570899999002,
+          "p99": 22.00570899999002,
+          "max": 22.00570899999002,
+          "sum": 45.2054169999974
+        },
+        "sql/verification/read.command_receipts": {
+          "count": 4,
+          "p50": 7.142707999999402,
+          "p95": 14.552750000031665,
+          "p99": 14.552750000031665,
+          "max": 14.552750000031665,
+          "sum": 30.791333000015584
+        },
+        "sql/verification/read.other": {
+          "count": 24,
+          "p50": 1.2236250000423752,
+          "p95": 10.21750000002794,
+          "p99": 22.086167000001296,
+          "max": 22.086167000001296,
+          "sum": 70.58846000001358
+        },
+        "sql/verification/read.bridge": {
+          "count": 2,
+          "p50": 0.7902499999981956,
+          "p95": 3.849707999965176,
+          "p99": 3.849707999965176,
+          "max": 3.849707999965176,
+          "sum": 4.6399579999633715
+        },
+        "sql/verification/read.cafe_project": {
+          "count": 2,
+          "p50": 0.47149999999965075,
+          "p95": 1.5789590000058524,
+          "p99": 1.5789590000058524,
+          "max": 1.5789590000058524,
+          "sum": 2.050459000005503
+        },
+        "sql/verification/read.housing_builds": {
+          "count": 2,
+          "p50": 0.8800840000003518,
+          "p95": 5.71875,
+          "p99": 5.71875,
+          "max": 5.71875,
+          "sum": 6.598834000000352
+        },
+        "sql/verification/read.housing_quotes": {
+          "count": 2,
+          "p50": 0.4639999999999418,
+          "p95": 2.35979200003203,
+          "p99": 2.35979200003203,
+          "max": 2.35979200003203,
+          "sum": 2.823792000031972
+        },
+        "sql/verification/read.outings": {
+          "count": 2,
+          "p50": 0.6663750000006985,
+          "p95": 1.6779169999645092,
+          "p99": 1.6779169999645092,
+          "max": 1.6779169999645092,
+          "sum": 2.3442919999652077
+        },
+        "sql/verification/read.plots": {
+          "count": 2,
+          "p50": 0.6439170000012382,
+          "p95": 2.0647500000195578,
+          "p99": 2.0647500000195578,
+          "max": 2.0647500000195578,
+          "sum": 2.708667000020796
+        },
+        "http/load/snapshot": {
+          "count": 100,
+          "p50": 166.78320900001563,
+          "p95": 253.96395899998606,
+          "p99": 277.48045899998397,
+          "max": 283.17533299999195,
+          "sum": 16572.95579499977
+        },
+        "http/load/logout": {
+          "count": 5,
+          "p50": 0.3457909999997355,
+          "p95": 5.692125000001397,
+          "p99": 5.692125000001397,
+          "max": 5.692125000001397,
+          "sum": 7.752498999980162
+        }
+      },
+      "observerIdleSubmissions": 0,
+      "observerErrors": [],
+      "settings": [
+        {
+          "name": "fsync",
+          "setting": "on"
+        },
+        {
+          "name": "full_page_writes",
+          "setting": "on"
+        },
+        {
+          "name": "max_connections",
+          "setting": "100"
+        },
+        {
+          "name": "server_version",
+          "setting": "16.15 (Debian 16.15-1.pgdg13+2)"
+        },
+        {
+          "name": "synchronous_commit",
+          "setting": "on"
+        },
+        {
+          "name": "track_io_timing",
+          "setting": "off"
+        },
+        {
+          "name": "wal_sync_method",
+          "setting": "fdatasync"
+        }
+      ],
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0,
+        "errors": []
+      },
+      "rawSha256": {
+        "session-profile.json": "7b7a2a2d77d7d5e6541db7e082028ec9ce82564f45708b0b79a551eb9842d693",
+        "server-process.json": "688ae9388c3a0cbf6608fa092f18089361d3ff7ea1302cc533ffb4853d454b8a",
+        "load-profile.json": "c027577307a0e95dde5f605ee3357a6f6b13adc01eb3be2bff8c1dc2b91d93d4",
+        "attempt.json": "70ff80886c2c1f61c79e3f406793add57ac89f7a1a198c3edaeb0cd555c6a6ae"
+      }
+    },
+    {
+      "run": 4,
+      "version": "control",
+      "source": "d4068f33fc9f3241d005013c9e62489a93a07ce6",
+      "exitCode": 0,
+      "workloadMs": 300011.09629200003,
+      "wholeInvocationSeconds": 302.60547725000004,
+      "commandP95Ms": 312.2087079999983,
+      "replayP95Ms": 263.0689169999969,
+      "snapshotP95Ms": 335.323166999995,
+      "serverResources": {
+        "pid": 38058,
+        "parentPid": 38049,
+        "elapsedMs": 301086.72562499996,
+        "cpuUserMs": 2431.459,
+        "cpuSystemMs": 920.278,
+        "cpuPercentOfOneCore": 1.1132131425065048,
+        "eventLoopP95Ms": 22.839295,
+        "eventLoopMaxMs": 86.835199,
+        "rssPeakBytes": 127287296,
+        "heapPeakBytes": 46982936,
+        "dropped": 0
+      },
+      "driverResources": {
+        "pid": 38049,
+        "parentPid": 37621,
+        "elapsedMs": 301799.98720900004,
+        "cpuUserMs": 1667.782,
+        "cpuSystemMs": 701.107,
+        "cpuPercentOfOneCore": 0.7849201790586945,
+        "eventLoopP95Ms": 22.822911,
+        "eventLoopMaxMs": 113.704959,
+        "rssPeakBytes": 123879424,
+        "heapPeakBytes": 57981656,
+        "dropped": 0
+      },
+      "budgets": {
+        "commandP95TargetMs": 500,
+        "replayP95TargetMs": 500,
+        "snapshotP95TargetMs": 500,
+        "serverEventLoopP95TargetMs": 50,
+        "commandP95Pass": true,
+        "replayP95Pass": true,
+        "snapshotP95Pass": true,
+        "serverEventLoopP95Pass": true
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueReceipts": 140,
+        "revisionEach": 7,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "ownedPlanters": 20,
+        "outputKits": 0,
+        "queuedKitHours": 12,
+        "all9MetadataChecksumsExact": true,
+        "durability": [
+          {
+            "name": "fsync",
+            "setting": "on"
+          },
+          {
+            "name": "full_page_writes",
+            "setting": "on"
+          },
+          {
+            "name": "synchronous_commit",
+            "setting": "on"
+          }
+        ],
+        "all17TablesEveryFieldMatchCheckpoint": true,
+        "tables": {
+          "bridge": {
+            "rows": 1,
+            "sha256": "bb7358e58e2b265889f54a8d201713f3088b507643859a203cec9b1470e2c8df"
+          },
+          "bridge_contributions": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "cafe_project": {
+            "rows": 1,
+            "sha256": "f908f74ffa6b9308f5922623ca7cc961eda3a0c7e383cf0a0fea7f4da9940dbd"
+          },
+          "command_receipts": {
+            "rows": 140,
+            "sha256": "acebb1649c552d42cd1a4c7a3a09bb382cf6cb139edcb43ec59326743870bb59"
+          },
+          "garden_welcome": {
+            "rows": 1,
+            "sha256": "bfcfa1fd208f4c2c998c70193b6136b0d528058d0f6374095e671b4e744e4da8"
+          },
+          "housing_builds": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "housing_quotes": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_lessons": {
+            "rows": 20,
+            "sha256": "678fdff3437c0e3efdaef3fa93417c13e3f8d73d6303ffadba828df8457f4db0"
+          },
+          "noticeboard": {
+            "rows": 1,
+            "sha256": "bbc5e25c92c9fe696220221835709d97743646501db614e16a8b725b58ccc0a0"
+          },
+          "outings": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "players": {
+            "rows": 20,
+            "sha256": "5b894ad33279a286903bde18a4268e25c4478a3f7041431d34bf991b1cb5f705"
+          },
+          "plots": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "project_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "quest_awards": {
+            "rows": 20,
+            "sha256": "ba20ecca799a8e7e43ee5ff2b2cfc0c604836f085ec09260273d16fd5934c226"
+          },
+          "season_scores": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "trail_stamps": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        }
+      },
+      "idle": {
+        "elapsedMs": 30008.054000000004,
+        "sqlQueries": 0,
+        "presenceEvents": 0,
+        "heartbeats": 40,
+        "individualHeartbeats": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "activeStreamsBefore": 20,
+        "activeStreamsAfter": 20,
+        "activeRequestsBefore": 0,
+        "activeRequestsAfter": 0
+      },
+      "waves": [
+        {
+          "wave": 1,
+          "atMs": 60854.971875,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 2,
+          "atMs": 105566.408834,
+          "reconnects": 20,
+          "relogins": 5
+        },
+        {
+          "wave": 3,
+          "atMs": 150911.398084,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 4,
+          "atMs": 195689.635834,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 5,
+          "atMs": 240782.04025,
+          "reconnects": 20,
+          "relogins": 0
+        }
+      ],
+      "http": {
+        "requests": 1350,
+        "requestBodyBytes": 73720,
+        "responseBodyBytes": 1496190,
+        "streamConnections": 120
+      },
+      "sqlByPhase": {
+        "setup": 32,
+        "load": 3870,
+        "verification": 44
+      },
+      "traceTotals": {
+        "seen": 5677,
+        "retained": 5677,
+        "dropped": 0
+      },
+      "traceSummary": {
+        "pool/setup/acquire": {
+          "count": 2,
+          "p50": 0.3786249999999427,
+          "p95": 38.873625000000004,
+          "p99": 38.873625000000004,
+          "max": 38.873625000000004,
+          "sum": 39.25224999999995
+        },
+        "sql/setup/other.other": {
+          "count": 7,
+          "p50": 19.64949999999999,
+          "p95": 185.37549999999993,
+          "p99": 185.37549999999993,
+          "max": 185.37549999999993,
+          "sum": 286.42062500000026
+        },
+        "sql/setup/transaction.begin": {
+          "count": 1,
+          "p50": 1.994209000000069,
+          "p95": 1.994209000000069,
+          "p99": 1.994209000000069,
+          "max": 1.994209000000069,
+          "sum": 1.994209000000069
+        },
+        "sql/setup/lock.advisory": {
+          "count": 1,
+          "p50": 1.6771250000000464,
+          "p95": 1.6771250000000464,
+          "p99": 1.6771250000000464,
+          "max": 1.6771250000000464,
+          "sum": 1.6771250000000464
+        },
+        "sql/setup/read.other": {
+          "count": 9,
+          "p50": 1.300707999999986,
+          "p95": 6.52537499999994,
+          "p99": 6.52537499999994,
+          "max": 6.52537499999994,
+          "sum": 20.298081999999795
+        },
+        "sql/setup/other.bridge": {
+          "count": 2,
+          "p50": 69.83950000000004,
+          "p95": 204.72508299999993,
+          "p99": 204.72508299999993,
+          "max": 204.72508299999993,
+          "sum": 274.56458299999997
+        },
+        "sql/setup/write.other": {
+          "count": 9,
+          "p50": 1.4585840000000871,
+          "p95": 42.54766600000005,
+          "p99": 42.54766600000005,
+          "max": 42.54766600000005,
+          "sum": 55.699208
+        },
+        "sql/setup/other.players": {
+          "count": 1,
+          "p50": 37.32400000000007,
+          "p95": 37.32400000000007,
+          "p99": 37.32400000000007,
+          "max": 37.32400000000007,
+          "sum": 37.32400000000007
+        },
+        "sql/setup/other.cafe_project": {
+          "count": 1,
+          "p50": 37.01079200000004,
+          "p95": 37.01079200000004,
+          "p99": 37.01079200000004,
+          "max": 37.01079200000004,
+          "sum": 37.01079200000004
+        },
+        "sql/setup/transaction.commit": {
+          "count": 1,
+          "p50": 3.3000419999998485,
+          "p95": 3.3000419999998485,
+          "p99": 3.3000419999998485,
+          "max": 3.3000419999998485,
+          "sum": 3.3000419999998485
+        },
+        "pool/load/acquire": {
+          "count": 455,
+          "p50": 86.39554199999998,
+          "p95": 239.1602499999999,
+          "p99": 319.73487500002375,
+          "max": 320.8761249999807,
+          "sum": 44292.66095499988
+        },
+        "sql/load/write.players": {
+          "count": 185,
+          "p50": 3.2709169999998267,
+          "p95": 19.011040999999977,
+          "p99": 39.72291700000005,
+          "max": 51.589292000000114,
+          "sum": 1090.336544000011
+        },
+        "sql/load/write.other": {
+          "count": 430,
+          "p50": 1.7968329999966954,
+          "p95": 8.29550000000745,
+          "p99": 20.673917000000074,
+          "max": 79.55895900001633,
+          "sum": 1331.3990500001312
+        },
+        "sql/load/transaction.begin": {
+          "count": 530,
+          "p50": 1.9798750000190921,
+          "p95": 13.192166999997426,
+          "p99": 33.41583300000639,
+          "max": 77.20925000001444,
+          "sum": 2053.296205999671
+        },
+        "sql/load/write.bridge": {
+          "count": 385,
+          "p50": 1.9004579999891575,
+          "p95": 14.109457999991719,
+          "p99": 30.758499999996275,
+          "max": 37.685541999999714,
+          "sum": 1381.344959999921
+        },
+        "sql/load/write.cafe_project": {
+          "count": 145,
+          "p50": 1.4735829999990528,
+          "p95": 8.212334000010742,
+          "p99": 14.509500000000116,
+          "max": 15.41924999999901,
+          "sum": 367.7645859998229
+        },
+        "sql/load/transaction.commit": {
+          "count": 530,
+          "p50": 2.355250000000524,
+          "p95": 16.977999999999838,
+          "p99": 41.345000000000255,
+          "max": 64.06683400000111,
+          "sum": 2585.0336980000916
+        },
+        "sql/load/read.snapshot": {
+          "count": 385,
+          "p50": 6.534749999991618,
+          "p95": 54.525916999999026,
+          "p99": 89.86724999998114,
+          "max": 100.7625410000037,
+          "sum": 5187.686662000177
+        },
+        "http/load/login": {
+          "count": 25,
+          "p50": 478.42545900000005,
+          "p95": 547.913458,
+          "p99": 547.932208,
+          "max": 547.932208,
+          "sum": 10420.076001999989
+        },
+        "http/load/movement": {
+          "count": 860,
+          "p50": 0.2644169999998667,
+          "p95": 3.0761670000001686,
+          "p99": 14.467291999999361,
+          "max": 22.47033300000112,
+          "sum": 695.1451170001733
+        },
+        "sql/load/other.other": {
+          "count": 240,
+          "p50": 1.5742079999763519,
+          "p95": 8.45233300000018,
+          "p99": 35.64920899999561,
+          "max": 39.73070899999948,
+          "sum": 726.6855459998142
+        },
+        "sql/load/lock.row": {
+          "count": 380,
+          "p50": 1.90625,
+          "p95": 12.189291000002413,
+          "p99": 28.403041999998095,
+          "max": 78.99679200001992,
+          "sum": 1435.5315610000725
+        },
+        "sql/load/read.command_receipts": {
+          "count": 240,
+          "p50": 1.9630840000027092,
+          "p95": 9.224416999990353,
+          "p99": 14.769750000000386,
+          "max": 33.24487499999668,
+          "sum": 713.8642909998966
+        },
+        "sql/load/read.plots": {
+          "count": 140,
+          "p50": 1.962916000000405,
+          "p95": 12.966750000000502,
+          "p99": 39.27795900000001,
+          "max": 48.010749999999916,
+          "sum": 578.2767030000155
+        },
+        "sql/load/read.housing_builds": {
+          "count": 140,
+          "p50": 1.8192500000004657,
+          "p95": 15.753249999999753,
+          "p99": 26.87166699999989,
+          "max": 38.00437499999998,
+          "sum": 539.7907489999989
+        },
+        "sql/load/write.command_receipts": {
+          "count": 140,
+          "p50": 2.4246249999996508,
+          "p95": 10.373207999999977,
+          "p99": 15.742666000001918,
+          "max": 19.36358300000029,
+          "sum": 521.0424560000088
+        },
+        "http/load/command": {
+          "count": 240,
+          "p50": 118.92391700000735,
+          "p95": 268.2212500000005,
+          "p99": 309.18983300000036,
+          "max": 312.0296669999989,
+          "sum": 33961.34421000024
+        },
+        "pool/verification/acquire": {
+          "count": 44,
+          "p50": 0.016666000010445714,
+          "p95": 0.08966599999985192,
+          "p99": 65.70166700001573,
+          "max": 65.70166700001573,
+          "sum": 66.71770700009802
+        },
+        "sql/verification/read.players": {
+          "count": 4,
+          "p50": 12.445333999989089,
+          "p95": 15.624875000001339,
+          "p99": 15.624875000001339,
+          "max": 15.624875000001339,
+          "sum": 46.964876999994885
+        },
+        "sql/verification/read.command_receipts": {
+          "count": 4,
+          "p50": 3.180083999999624,
+          "p95": 15.74395800003549,
+          "p99": 15.74395800003549,
+          "max": 15.74395800003549,
+          "sum": 29.182166000042344
+        },
+        "sql/verification/read.other": {
+          "count": 24,
+          "p50": 0.9942079999600537,
+          "p95": 6.620875000022352,
+          "p99": 17.78099999999904,
+          "max": 17.78099999999904,
+          "sum": 60.140335000025516
+        },
+        "sql/verification/read.bridge": {
+          "count": 2,
+          "p50": 1.4785000000010768,
+          "p95": 1.6510000000125729,
+          "p99": 1.6510000000125729,
+          "max": 1.6510000000125729,
+          "sum": 3.1295000000136497
+        },
+        "sql/verification/read.cafe_project": {
+          "count": 2,
+          "p50": 0.621833000001061,
+          "p95": 1.4942499999888241,
+          "p99": 1.4942499999888241,
+          "max": 1.4942499999888241,
+          "sum": 2.116082999989885
+        },
+        "sql/verification/read.housing_builds": {
+          "count": 2,
+          "p50": 1.4486250000190921,
+          "p95": 2.649375000000873,
+          "p99": 2.649375000000873,
+          "max": 2.649375000000873,
+          "sum": 4.098000000019965
+        },
+        "sql/verification/read.housing_quotes": {
+          "count": 2,
+          "p50": 0.8620840000003227,
+          "p95": 1.0377079999889247,
+          "p99": 1.0377079999889247,
+          "max": 1.0377079999889247,
+          "sum": 1.8997919999892474
+        },
+        "sql/verification/read.outings": {
+          "count": 2,
+          "p50": 0.4544580000001588,
+          "p95": 0.6597920000203885,
+          "p99": 0.6597920000203885,
+          "max": 0.6597920000203885,
+          "sum": 1.1142500000205473
+        },
+        "sql/verification/read.plots": {
+          "count": 2,
+          "p50": 0.6118330000026617,
+          "p95": 1.4363330000196584,
+          "p99": 1.4363330000196584,
+          "max": 1.4363330000196584,
+          "sum": 2.04816600002232
+        },
+        "http/load/snapshot": {
+          "count": 100,
+          "p50": 203.0734999999986,
+          "p95": 322.442584000004,
+          "p99": 346.9610840000096,
+          "max": 353.09679100001813,
+          "sum": 19256.828128000096
+        },
+        "http/load/logout": {
+          "count": 5,
+          "p50": 0.07454200000211131,
+          "p95": 1.3375420000083977,
+          "p99": 1.3375420000083977,
+          "max": 1.3375420000083977,
+          "sum": 1.6843340000050375
+        }
+      },
+      "observerIdleSubmissions": 0,
+      "observerErrors": [],
+      "settings": [
+        {
+          "name": "fsync",
+          "setting": "on"
+        },
+        {
+          "name": "full_page_writes",
+          "setting": "on"
+        },
+        {
+          "name": "max_connections",
+          "setting": "100"
+        },
+        {
+          "name": "server_version",
+          "setting": "16.15 (Debian 16.15-1.pgdg13+2)"
+        },
+        {
+          "name": "synchronous_commit",
+          "setting": "on"
+        },
+        {
+          "name": "track_io_timing",
+          "setting": "off"
+        },
+        {
+          "name": "wal_sync_method",
+          "setting": "fdatasync"
+        }
+      ],
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0,
+        "errors": []
+      },
+      "rawSha256": {
+        "session-profile.json": "56fe349f2cb06c303669a75a524bafcb0833ab200b250d3035cf84ecca8d67c8",
+        "server-process.json": "8a6cccec5f7c01779ecafb55c8502f66274de4c58fa991d7b9a4f7a0dd450924",
+        "load-profile.json": "9c03ea3a84391475390f78ce773a718a0e321cef76d5d2e67784e471a9f6a002",
+        "attempt.json": "2011dfd8235048be4c51708e50615213ad3fd3d70485c972997228178be82597"
+      }
+    },
+    {
+      "run": 5,
+      "version": "control",
+      "source": "d4068f33fc9f3241d005013c9e62489a93a07ce6",
+      "exitCode": 0,
+      "workloadMs": 300011.85075,
+      "wholeInvocationSeconds": 302.1616294579999,
+      "commandP95Ms": 446.14404099999956,
+      "replayP95Ms": 159.86887500000012,
+      "snapshotP95Ms": 221.78975000000355,
+      "serverResources": {
+        "pid": 38155,
+        "parentPid": 38146,
+        "elapsedMs": 300796.098917,
+        "cpuUserMs": 2469.413,
+        "cpuSystemMs": 919.879,
+        "cpuPercentOfOneCore": 1.1267739216708466,
+        "eventLoopP95Ms": 23.003135,
+        "eventLoopMaxMs": 65.535999,
+        "rssPeakBytes": 125075456,
+        "heapPeakBytes": 47302792,
+        "dropped": 0
+      },
+      "driverResources": {
+        "pid": 38146,
+        "parentPid": 37621,
+        "elapsedMs": 301276.90425,
+        "cpuUserMs": 1667.547,
+        "cpuSystemMs": 694.453,
+        "cpuPercentOfOneCore": 0.7839963723339406,
+        "eventLoopP95Ms": 23.035903,
+        "eventLoopMaxMs": 91.422719,
+        "rssPeakBytes": 128303104,
+        "heapPeakBytes": 48413536,
+        "dropped": 0
+      },
+      "budgets": {
+        "commandP95TargetMs": 500,
+        "replayP95TargetMs": 500,
+        "snapshotP95TargetMs": 500,
+        "serverEventLoopP95TargetMs": 50,
+        "commandP95Pass": true,
+        "replayP95Pass": true,
+        "snapshotP95Pass": true,
+        "serverEventLoopP95Pass": true
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueReceipts": 140,
+        "revisionEach": 7,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "ownedPlanters": 20,
+        "outputKits": 0,
+        "queuedKitHours": 12,
+        "all9MetadataChecksumsExact": true,
+        "durability": [
+          {
+            "name": "fsync",
+            "setting": "on"
+          },
+          {
+            "name": "full_page_writes",
+            "setting": "on"
+          },
+          {
+            "name": "synchronous_commit",
+            "setting": "on"
+          }
+        ],
+        "all17TablesEveryFieldMatchCheckpoint": true,
+        "tables": {
+          "bridge": {
+            "rows": 1,
+            "sha256": "bb7358e58e2b265889f54a8d201713f3088b507643859a203cec9b1470e2c8df"
+          },
+          "bridge_contributions": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "cafe_project": {
+            "rows": 1,
+            "sha256": "f908f74ffa6b9308f5922623ca7cc961eda3a0c7e383cf0a0fea7f4da9940dbd"
+          },
+          "command_receipts": {
+            "rows": 140,
+            "sha256": "2a8dd939f250e6a6d383e4ed3fcf3bc4bcecb11fbd8eede346eff367a620a43b"
+          },
+          "garden_welcome": {
+            "rows": 1,
+            "sha256": "bfcfa1fd208f4c2c998c70193b6136b0d528058d0f6374095e671b4e744e4da8"
+          },
+          "housing_builds": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "housing_quotes": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_lessons": {
+            "rows": 20,
+            "sha256": "678fdff3437c0e3efdaef3fa93417c13e3f8d73d6303ffadba828df8457f4db0"
+          },
+          "noticeboard": {
+            "rows": 1,
+            "sha256": "bbc5e25c92c9fe696220221835709d97743646501db614e16a8b725b58ccc0a0"
+          },
+          "outings": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "players": {
+            "rows": 20,
+            "sha256": "6a6e1acadf229c3cd7285dd44bc0f3b5502c302d58e9d764cee3b44d0abd4665"
+          },
+          "plots": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "project_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "quest_awards": {
+            "rows": 20,
+            "sha256": "1b6e0b9837e8acb644faa286c0671254b5e701f9797d3198b9d1dc07e6595135"
+          },
+          "season_scores": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "trail_stamps": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        }
+      },
+      "idle": {
+        "elapsedMs": 30004.82487499999,
+        "sqlQueries": 0,
+        "presenceEvents": 0,
+        "heartbeats": 60,
+        "individualHeartbeats": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "activeStreamsBefore": 20,
+        "activeStreamsAfter": 20,
+        "activeRequestsBefore": 0,
+        "activeRequestsAfter": 0
+      },
+      "waves": [
+        {
+          "wave": 1,
+          "atMs": 60871.668667,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 2,
+          "atMs": 105556.48999999999,
+          "reconnects": 20,
+          "relogins": 5
+        },
+        {
+          "wave": 3,
+          "atMs": 150519.17808399998,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 4,
+          "atMs": 195678.582917,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 5,
+          "atMs": 240583.960542,
+          "reconnects": 20,
+          "relogins": 0
+        }
+      ],
+      "http": {
+        "requests": 1350,
+        "requestBodyBytes": 73720,
+        "responseBodyBytes": 1496190,
+        "streamConnections": 120
+      },
+      "sqlByPhase": {
+        "setup": 32,
+        "load": 3870,
+        "verification": 44
+      },
+      "traceTotals": {
+        "seen": 5677,
+        "retained": 5677,
+        "dropped": 0
+      },
+      "traceSummary": {
+        "pool/setup/acquire": {
+          "count": 2,
+          "p50": 0.4889589999999657,
+          "p95": 16.512958000000026,
+          "p99": 16.512958000000026,
+          "max": 16.512958000000026,
+          "sum": 17.00191699999999
+        },
+        "sql/setup/other.other": {
+          "count": 7,
+          "p50": 16.324459000000047,
+          "p95": 215.605125,
+          "p99": 215.605125,
+          "max": 215.605125,
+          "sum": 319.1769580000001
+        },
+        "sql/setup/transaction.begin": {
+          "count": 1,
+          "p50": 2.797957999999994,
+          "p95": 2.797957999999994,
+          "p99": 2.797957999999994,
+          "max": 2.797957999999994,
+          "sum": 2.797957999999994
+        },
+        "sql/setup/lock.advisory": {
+          "count": 1,
+          "p50": 1.92108300000001,
+          "p95": 1.92108300000001,
+          "p99": 1.92108300000001,
+          "max": 1.92108300000001,
+          "sum": 1.92108300000001
+        },
+        "sql/setup/read.other": {
+          "count": 9,
+          "p50": 1.0140840000000253,
+          "p95": 3.870042000000012,
+          "p99": 3.870042000000012,
+          "max": 3.870042000000012,
+          "sum": 12.929376000000047
+        },
+        "sql/setup/other.bridge": {
+          "count": 2,
+          "p50": 24.342459000000076,
+          "p95": 92.39812500000005,
+          "p99": 92.39812500000005,
+          "max": 92.39812500000005,
+          "sum": 116.74058400000013
+        },
+        "sql/setup/write.other": {
+          "count": 9,
+          "p50": 1.1955840000000535,
+          "p95": 3.633874999999989,
+          "p99": 3.633874999999989,
+          "max": 3.633874999999989,
+          "sum": 14.066086000000155
+        },
+        "sql/setup/other.players": {
+          "count": 1,
+          "p50": 14.08558400000004,
+          "p95": 14.08558400000004,
+          "p99": 14.08558400000004,
+          "max": 14.08558400000004,
+          "sum": 14.08558400000004
+        },
+        "sql/setup/other.cafe_project": {
+          "count": 1,
+          "p50": 13.523709000000053,
+          "p95": 13.523709000000053,
+          "p99": 13.523709000000053,
+          "max": 13.523709000000053,
+          "sum": 13.523709000000053
+        },
+        "sql/setup/transaction.commit": {
+          "count": 1,
+          "p50": 2.199792000000002,
+          "p95": 2.199792000000002,
+          "p99": 2.199792000000002,
+          "max": 2.199792000000002,
+          "sum": 2.199792000000002
+        },
+        "pool/load/acquire": {
+          "count": 455,
+          "p50": 70.76174999997602,
+          "p95": 243.85012499999993,
+          "p99": 409.44445800000176,
+          "max": 417.4002920000021,
+          "sum": 43536.70987999991
+        },
+        "sql/load/write.players": {
+          "count": 185,
+          "p50": 3.036041999999725,
+          "p95": 25.393459000000007,
+          "p99": 54.02404100000058,
+          "max": 91.37958300000173,
+          "sum": 1147.9945819999962
+        },
+        "sql/load/write.other": {
+          "count": 430,
+          "p50": 1.5137089999916498,
+          "p95": 16.76837499999965,
+          "p99": 59.012917000000016,
+          "max": 120.76229100000273,
+          "sum": 2033.97920399989
+        },
+        "sql/load/transaction.begin": {
+          "count": 530,
+          "p50": 1.9710839999897871,
+          "p95": 15.749250000000757,
+          "p99": 28.9029579999999,
+          "max": 52.67991699999948,
+          "sum": 2118.103708000085
+        },
+        "sql/load/write.bridge": {
+          "count": 385,
+          "p50": 1.5577500000072177,
+          "p95": 10.839167000000089,
+          "p99": 46.79716700000063,
+          "max": 123.900875000003,
+          "sum": 1513.59778600016
+        },
+        "sql/load/write.cafe_project": {
+          "count": 145,
+          "p50": 1.5887920000095619,
+          "p95": 14.311292000005778,
+          "p99": 33.849249999999984,
+          "max": 47.18770799999993,
+          "sum": 621.8692449999259
+        },
+        "sql/load/transaction.commit": {
+          "count": 530,
+          "p50": 2.5599999999976717,
+          "p95": 18.317790999999488,
+          "p99": 43.49204099999997,
+          "max": 79.22383300000001,
+          "sum": 2837.4359180001943
+        },
+        "sql/load/read.snapshot": {
+          "count": 385,
+          "p50": 6.5396250000012515,
+          "p95": 45.17674999998417,
+          "p99": 78.11637500000143,
+          "max": 89.56387500000005,
+          "sum": 4666.227713999597
+        },
+        "http/load/login": {
+          "count": 25,
+          "p50": 550.532167,
+          "p95": 739.2163750000001,
+          "p99": 741.342542,
+          "max": 741.342542,
+          "sum": 12227.64871
+        },
+        "http/load/movement": {
+          "count": 860,
+          "p50": 0.27137500000026193,
+          "p95": 3.7927080000004025,
+          "p99": 14.828207999999904,
+          "max": 43.254791999999725,
+          "sum": 789.0225569996016
+        },
+        "sql/load/other.other": {
+          "count": 240,
+          "p50": 1.4667090000002645,
+          "p95": 7.644749999999476,
+          "p99": 18.157917000000452,
+          "max": 73.96933300000092,
+          "sum": 707.6429240000002
+        },
+        "sql/load/lock.row": {
+          "count": 380,
+          "p50": 1.8815830000003189,
+          "p95": 18.73883399999977,
+          "p99": 51.14566599999944,
+          "max": 99.15829200000007,
+          "sum": 1718.3002800000045
+        },
+        "sql/load/read.command_receipts": {
+          "count": 240,
+          "p50": 1.3401669999984733,
+          "p95": 15.966749999999593,
+          "p99": 34.16912499999671,
+          "max": 47.524499999999534,
+          "sum": 1001.5982580000668
+        },
+        "sql/load/read.plots": {
+          "count": 140,
+          "p50": 1.5663749999985157,
+          "p95": 18.05816699999923,
+          "p99": 37.20241700000042,
+          "max": 37.67583299999751,
+          "sum": 592.5781679999864
+        },
+        "sql/load/read.housing_builds": {
+          "count": 140,
+          "p50": 1.6049999999995634,
+          "p95": 10.760874999999942,
+          "p99": 32.867708000001585,
+          "max": 33.27612500000032,
+          "sum": 437.66386999999304
+        },
+        "sql/load/write.command_receipts": {
+          "count": 140,
+          "p50": 2.364207999999053,
+          "p95": 9.918582999998762,
+          "p99": 27.4639159999997,
+          "max": 31.768957999999657,
+          "sum": 552.1877879999915
+        },
+        "http/load/command": {
+          "count": 240,
+          "p50": 124.5925830000051,
+          "p95": 422.55558299999757,
+          "p99": 459.0107080000016,
+          "max": 460.4802500000005,
+          "sum": 39286.874489000074
+        },
+        "pool/verification/acquire": {
+          "count": 44,
+          "p50": 0.02091600000858307,
+          "p95": 0.06241700000828132,
+          "p99": 22.49254100001417,
+          "max": 22.49254100001417,
+          "sum": 23.626916000041092
+        },
+        "sql/verification/read.players": {
+          "count": 4,
+          "p50": 13.349500000011176,
+          "p95": 30.588833000001614,
+          "p99": 30.588833000001614,
+          "max": 30.588833000001614,
+          "sum": 60.34237500000381
+        },
+        "sql/verification/read.command_receipts": {
+          "count": 4,
+          "p50": 2.4526670000050217,
+          "p95": 4.515250000000378,
+          "p99": 4.515250000000378,
+          "max": 4.515250000000378,
+          "sum": 12.900917000017216
+        },
+        "sql/verification/read.other": {
+          "count": 24,
+          "p50": 1.340457999962382,
+          "p95": 10.931749999988824,
+          "p99": 26.774208999995608,
+          "max": 26.774208999995608,
+          "sum": 78.35062599997764
+        },
+        "sql/verification/read.bridge": {
+          "count": 2,
+          "p50": 1.5375829999684356,
+          "p95": 2.559499999999389,
+          "p99": 2.559499999999389,
+          "max": 2.559499999999389,
+          "sum": 4.097082999967824
+        },
+        "sql/verification/read.cafe_project": {
+          "count": 2,
+          "p50": 0.5511249999981374,
+          "p95": 0.7516670000040904,
+          "p99": 0.7516670000040904,
+          "max": 0.7516670000040904,
+          "sum": 1.3027920000022277
+        },
+        "sql/verification/read.housing_builds": {
+          "count": 2,
+          "p50": 0.6251669999983278,
+          "p95": 1.2401669999817386,
+          "p99": 1.2401669999817386,
+          "max": 1.2401669999817386,
+          "sum": 1.8653339999800664
+        },
+        "sql/verification/read.housing_quotes": {
+          "count": 2,
+          "p50": 0.5797920000004524,
+          "p95": 1.9048750000074506,
+          "p99": 1.9048750000074506,
+          "max": 1.9048750000074506,
+          "sum": 2.484667000007903
+        },
+        "sql/verification/read.outings": {
+          "count": 2,
+          "p50": 0.5634160000008706,
+          "p95": 1.8410000000149012,
+          "p99": 1.8410000000149012,
+          "max": 1.8410000000149012,
+          "sum": 2.4044160000157717
+        },
+        "sql/verification/read.plots": {
+          "count": 2,
+          "p50": 0.8273330000010901,
+          "p95": 6.6670000000158325,
+          "p99": 6.6670000000158325,
+          "max": 6.6670000000158325,
+          "sum": 7.494333000016923
+        },
+        "http/load/snapshot": {
+          "count": 100,
+          "p50": 134.060959000024,
+          "p95": 214.45762500000274,
+          "p99": 250.78662500000064,
+          "max": 267.01995799999713,
+          "sum": 12813.817246999839
+        },
+        "http/load/logout": {
+          "count": 5,
+          "p50": 0.1387080000131391,
+          "p95": 4.567084000009345,
+          "p99": 4.567084000009345,
+          "max": 4.567084000009345,
+          "sum": 5.17133300002024
+        }
+      },
+      "observerIdleSubmissions": 0,
+      "observerErrors": [],
+      "settings": [
+        {
+          "name": "fsync",
+          "setting": "on"
+        },
+        {
+          "name": "full_page_writes",
+          "setting": "on"
+        },
+        {
+          "name": "max_connections",
+          "setting": "100"
+        },
+        {
+          "name": "server_version",
+          "setting": "16.15 (Debian 16.15-1.pgdg13+2)"
+        },
+        {
+          "name": "synchronous_commit",
+          "setting": "on"
+        },
+        {
+          "name": "track_io_timing",
+          "setting": "off"
+        },
+        {
+          "name": "wal_sync_method",
+          "setting": "fdatasync"
+        }
+      ],
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0,
+        "errors": []
+      },
+      "rawSha256": {
+        "session-profile.json": "0e7d134a3218b93d78e12330df986955e59c46762026d895f8389e929f932ee4",
+        "server-process.json": "d8706365db02abe5ca08c4e20c89b016fff5ab6239c56a417459e5fdf18ea06e",
+        "load-profile.json": "fcde8b8d2a8a4069efa207d2efba0e4b2c130fee870e253532b3ad4e24f1be21",
+        "attempt.json": "0d488e08a278cecc5e7d328b93b897088a78ffef52d6551c235bfd2de6ad971f"
+      }
+    },
+    {
+      "run": 6,
+      "version": "current",
+      "source": "816d2b89479c1318ebe05b67339f3b71b1efcf92",
+      "exitCode": 0,
+      "workloadMs": 300008.08254100004,
+      "wholeInvocationSeconds": 302.14746149999996,
+      "commandP95Ms": 376.38824999999997,
+      "replayP95Ms": 182.65854200000467,
+      "snapshotP95Ms": 263.68879200000083,
+      "serverResources": {
+        "pid": 38317,
+        "parentPid": 38308,
+        "elapsedMs": 300633.767125,
+        "cpuUserMs": 2558.738,
+        "cpuSystemMs": 915.65,
+        "cpuPercentOfOneCore": 1.1556878767232392,
+        "eventLoopP95Ms": 22.872063,
+        "eventLoopMaxMs": 82.116607,
+        "rssPeakBytes": 125042688,
+        "heapPeakBytes": 58610288,
+        "dropped": 0
+      },
+      "driverResources": {
+        "pid": 38308,
+        "parentPid": 37621,
+        "elapsedMs": 301501.567625,
+        "cpuUserMs": 1686.392,
+        "cpuSystemMs": 701.436,
+        "cpuPercentOfOneCore": 0.7919786350729424,
+        "eventLoopP95Ms": 22.855679,
+        "eventLoopMaxMs": 143.785983,
+        "rssPeakBytes": 129204224,
+        "heapPeakBytes": 47116728,
+        "dropped": 0
+      },
+      "budgets": {
+        "commandP95TargetMs": 500,
+        "replayP95TargetMs": 500,
+        "snapshotP95TargetMs": 500,
+        "serverEventLoopP95TargetMs": 50,
+        "commandP95Pass": true,
+        "replayP95Pass": true,
+        "snapshotP95Pass": true,
+        "serverEventLoopP95Pass": true
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueReceipts": 140,
+        "revisionEach": 7,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "ownedPlanters": 20,
+        "outputKits": 0,
+        "queuedKitHours": 12,
+        "all9MetadataChecksumsExact": true,
+        "durability": [
+          {
+            "name": "fsync",
+            "setting": "on"
+          },
+          {
+            "name": "full_page_writes",
+            "setting": "on"
+          },
+          {
+            "name": "synchronous_commit",
+            "setting": "on"
+          }
+        ],
+        "all17TablesEveryFieldMatchCheckpoint": true,
+        "tables": {
+          "bridge": {
+            "rows": 1,
+            "sha256": "bb7358e58e2b265889f54a8d201713f3088b507643859a203cec9b1470e2c8df"
+          },
+          "bridge_contributions": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "cafe_project": {
+            "rows": 1,
+            "sha256": "f908f74ffa6b9308f5922623ca7cc961eda3a0c7e383cf0a0fea7f4da9940dbd"
+          },
+          "command_receipts": {
+            "rows": 140,
+            "sha256": "7d230fe71471c0fe9115f99e1582677249f031ebddcb1d3860ed981c743fbd76"
+          },
+          "garden_welcome": {
+            "rows": 1,
+            "sha256": "bfcfa1fd208f4c2c998c70193b6136b0d528058d0f6374095e671b4e744e4da8"
+          },
+          "housing_builds": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "housing_quotes": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_lessons": {
+            "rows": 20,
+            "sha256": "678fdff3437c0e3efdaef3fa93417c13e3f8d73d6303ffadba828df8457f4db0"
+          },
+          "noticeboard": {
+            "rows": 1,
+            "sha256": "bbc5e25c92c9fe696220221835709d97743646501db614e16a8b725b58ccc0a0"
+          },
+          "outings": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "players": {
+            "rows": 20,
+            "sha256": "0638eeb6734fb59a9de7912bbca51bdf5d2570ce582ff45e454d78ad0c67f775"
+          },
+          "plots": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "project_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "quest_awards": {
+            "rows": 20,
+            "sha256": "39c7e6703d9d1fd751bc57414d6ca891edb7b510442d191f5279c1c2a0dc568c"
+          },
+          "season_scores": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "trail_stamps": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        }
+      },
+      "idle": {
+        "elapsedMs": 30001.503000000026,
+        "sqlQueries": 0,
+        "presenceEvents": 0,
+        "heartbeats": 40,
+        "individualHeartbeats": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "activeStreamsBefore": 20,
+        "activeStreamsAfter": 20,
+        "activeRequestsBefore": 0,
+        "activeRequestsAfter": 0
+      },
+      "waves": [
+        {
+          "wave": 1,
+          "atMs": 60873.241541,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 2,
+          "atMs": 105665.927083,
+          "reconnects": 20,
+          "relogins": 5
+        },
+        {
+          "wave": 3,
+          "atMs": 150794.688458,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 4,
+          "atMs": 195714.89212499998,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 5,
+          "atMs": 240629.5845,
+          "reconnects": 20,
+          "relogins": 0
+        }
+      ],
+      "http": {
+        "requests": 1350,
+        "requestBodyBytes": 73720,
+        "responseBodyBytes": 1496190,
+        "streamConnections": 120
+      },
+      "sqlByPhase": {
+        "setup": 32,
+        "load": 3870,
+        "verification": 44
+      },
+      "traceTotals": {
+        "seen": 5677,
+        "retained": 5677,
+        "dropped": 0
+      },
+      "traceSummary": {
+        "pool/setup/acquire": {
+          "count": 2,
+          "p50": 0.12725000000000364,
+          "p95": 19.133167000000014,
+          "p99": 19.133167000000014,
+          "max": 19.133167000000014,
+          "sum": 19.260417000000018
+        },
+        "sql/setup/other.other": {
+          "count": 7,
+          "p50": 10.093000000000075,
+          "p95": 124.96587499999998,
+          "p99": 124.96587499999998,
+          "max": 124.96587499999998,
+          "sum": 206.52945899999997
+        },
+        "sql/setup/transaction.begin": {
+          "count": 1,
+          "p50": 1.860582999999906,
+          "p95": 1.860582999999906,
+          "p99": 1.860582999999906,
+          "max": 1.860582999999906,
+          "sum": 1.860582999999906
+        },
+        "sql/setup/lock.advisory": {
+          "count": 1,
+          "p50": 2.305084000000079,
+          "p95": 2.305084000000079,
+          "p99": 2.305084000000079,
+          "max": 2.305084000000079,
+          "sum": 2.305084000000079
+        },
+        "sql/setup/read.other": {
+          "count": 9,
+          "p50": 1.00649999999996,
+          "p95": 4.352500000000077,
+          "p99": 4.352500000000077,
+          "max": 4.352500000000077,
+          "sum": 13.770416000000068
+        },
+        "sql/setup/other.bridge": {
+          "count": 2,
+          "p50": 25.230166000000054,
+          "p95": 71.15350000000001,
+          "p99": 71.15350000000001,
+          "max": 71.15350000000001,
+          "sum": 96.38366600000006
+        },
+        "sql/setup/write.other": {
+          "count": 9,
+          "p50": 1.014458999999988,
+          "p95": 2.0650419999999485,
+          "p99": 2.0650419999999485,
+          "max": 2.0650419999999485,
+          "sum": 11.149124999999913
+        },
+        "sql/setup/other.players": {
+          "count": 1,
+          "p50": 17.471667000000025,
+          "p95": 17.471667000000025,
+          "p99": 17.471667000000025,
+          "max": 17.471667000000025,
+          "sum": 17.471667000000025
+        },
+        "sql/setup/other.cafe_project": {
+          "count": 1,
+          "p50": 13.51908400000002,
+          "p95": 13.51908400000002,
+          "p99": 13.51908400000002,
+          "max": 13.51908400000002,
+          "sum": 13.51908400000002
+        },
+        "sql/setup/transaction.commit": {
+          "count": 1,
+          "p50": 5.976916999999958,
+          "p95": 5.976916999999958,
+          "p99": 5.976916999999958,
+          "max": 5.976916999999958,
+          "sum": 5.976916999999958
+        },
+        "pool/load/acquire": {
+          "count": 455,
+          "p50": 76.14787499999511,
+          "p95": 227.60066700000016,
+          "p99": 295.19383299999936,
+          "max": 345.1937090000001,
+          "sum": 39917.64012800012
+        },
+        "sql/load/write.players": {
+          "count": 185,
+          "p50": 2.781750000000102,
+          "p95": 23.91662500000075,
+          "p99": 61.764875000000075,
+          "max": 288.51758300000074,
+          "sum": 1500.4495050000096
+        },
+        "sql/load/write.other": {
+          "count": 430,
+          "p50": 1.5802090000070166,
+          "p95": 7.584249999999884,
+          "p99": 25.18887499999255,
+          "max": 38.15662499998871,
+          "sum": 1202.730747000331
+        },
+        "sql/load/transaction.begin": {
+          "count": 530,
+          "p50": 1.858875000005355,
+          "p95": 13.425749999998516,
+          "p99": 26.57483400000001,
+          "max": 48.97099999999955,
+          "sum": 1977.5350009997849
+        },
+        "sql/load/write.bridge": {
+          "count": 385,
+          "p50": 1.670750000019325,
+          "p95": 9.34337499999674,
+          "p99": 19.934166999999434,
+          "max": 21.10695799998939,
+          "sum": 1153.8782379999793
+        },
+        "sql/load/write.cafe_project": {
+          "count": 145,
+          "p50": 1.4257499999948777,
+          "p95": 4.517749999999978,
+          "p99": 16.284541999993962,
+          "max": 17.348042000000078,
+          "sum": 297.8395040000303
+        },
+        "sql/load/transaction.commit": {
+          "count": 530,
+          "p50": 2.4748339999998734,
+          "p95": 14.513791000004858,
+          "p99": 31.594916000000012,
+          "max": 100.56375000000025,
+          "sum": 2496.3118010000608
+        },
+        "sql/load/read.snapshot": {
+          "count": 385,
+          "p50": 6.708374999987427,
+          "p95": 43.37091599999985,
+          "p99": 57.33679199999915,
+          "max": 148.188083,
+          "sum": 5017.471523999909
+        },
+        "http/load/login": {
+          "count": 25,
+          "p50": 399.4207919999999,
+          "p95": 441.8895,
+          "p99": 450.5900419999998,
+          "max": 450.5900419999998,
+          "sum": 8946.567460000027
+        },
+        "http/load/movement": {
+          "count": 860,
+          "p50": 0.30095799999980954,
+          "p95": 3.754665999998906,
+          "p99": 272.41970799999945,
+          "max": 303.7336660000001,
+          "sum": 3509.0597419999385
+        },
+        "sql/load/other.other": {
+          "count": 240,
+          "p50": 1.750292000011541,
+          "p95": 13.924290999999812,
+          "p99": 18.53070800000023,
+          "max": 22.918083999999908,
+          "sum": 823.800126999904
+        },
+        "sql/load/lock.row": {
+          "count": 380,
+          "p50": 1.7444170000017039,
+          "p95": 12.851958000002924,
+          "p99": 17.92162499999904,
+          "max": 20.11187500000233,
+          "sum": 1295.516165999999
+        },
+        "sql/load/read.command_receipts": {
+          "count": 240,
+          "p50": 1.6299589999998716,
+          "p95": 9.805833000000348,
+          "p99": 15.073583999999755,
+          "max": 24.861499999999978,
+          "sum": 719.9702889999471
+        },
+        "sql/load/read.plots": {
+          "count": 140,
+          "p50": 1.7899170000018785,
+          "p95": 13.7175000000002,
+          "p99": 26.236249999999927,
+          "max": 27.025250000000597,
+          "sum": 496.96099499998763
+        },
+        "sql/load/read.housing_builds": {
+          "count": 140,
+          "p50": 1.6114999999999782,
+          "p95": 23.216707999999926,
+          "p99": 33.46633400000064,
+          "max": 42.508209000000534,
+          "sum": 641.2437519999971
+        },
+        "sql/load/write.command_receipts": {
+          "count": 140,
+          "p50": 1.9749169999995502,
+          "p95": 15.493750000000091,
+          "p99": 39.4027500000002,
+          "max": 42.17274999999972,
+          "sum": 609.9464190000053
+        },
+        "http/load/command": {
+          "count": 240,
+          "p50": 127.8216250000005,
+          "p95": 340.638833,
+          "p99": 407.56416599999966,
+          "max": 417.6187909999999,
+          "sum": 34315.74041000001
+        },
+        "pool/verification/acquire": {
+          "count": 44,
+          "p50": 0.030750000034458935,
+          "p95": 0.15033300000141026,
+          "p99": 23.160000000032596,
+          "max": 23.160000000032596,
+          "sum": 24.79054300009011
+        },
+        "sql/verification/read.players": {
+          "count": 4,
+          "p50": 8.458624999970198,
+          "p95": 22.283500000001368,
+          "p99": 22.283500000001368,
+          "max": 22.283500000001368,
+          "sum": 47.358915999964665
+        },
+        "sql/verification/read.command_receipts": {
+          "count": 4,
+          "p50": 2.8774169999996957,
+          "p95": 10.917625000001863,
+          "p99": 10.917625000001863,
+          "max": 10.917625000001863,
+          "sum": 23.49841800005015
+        },
+        "sql/verification/read.other": {
+          "count": 24,
+          "p50": 2.562540999999328,
+          "p95": 41.44012499999735,
+          "p99": 56.35791700000118,
+          "max": 56.35791700000118,
+          "sum": 193.53899900004035
+        },
+        "sql/verification/read.bridge": {
+          "count": 2,
+          "p50": 1.0281670000003942,
+          "p95": 1.6994589999667369,
+          "p99": 1.6994589999667369,
+          "max": 1.6994589999667369,
+          "sum": 2.727625999967131
+        },
+        "sql/verification/read.cafe_project": {
+          "count": 2,
+          "p50": 1.0240829999675043,
+          "p95": 3.154624999999214,
+          "p99": 3.154624999999214,
+          "max": 3.154624999999214,
+          "sum": 4.1787079999667185
+        },
+        "sql/verification/read.housing_builds": {
+          "count": 2,
+          "p50": 7.995583000010811,
+          "p95": 9.246500000001106,
+          "p99": 9.246500000001106,
+          "max": 9.246500000001106,
+          "sum": 17.242083000011917
+        },
+        "sql/verification/read.housing_quotes": {
+          "count": 2,
+          "p50": 3.0445419999887235,
+          "p95": 33.601584,
+          "p99": 33.601584,
+          "max": 33.601584,
+          "sum": 36.646125999988726
+        },
+        "sql/verification/read.outings": {
+          "count": 2,
+          "p50": 0.96304100000998,
+          "p95": 1.0753750000003492,
+          "p99": 1.0753750000003492,
+          "max": 1.0753750000003492,
+          "sum": 2.0384160000103293
+        },
+        "sql/verification/read.plots": {
+          "count": 2,
+          "p50": 1.0352910000365227,
+          "p95": 2.103291999999783,
+          "p99": 2.103291999999783,
+          "max": 2.103291999999783,
+          "sum": 3.1385830000363057
+        },
+        "http/load/snapshot": {
+          "count": 100,
+          "p50": 162.2421250000043,
+          "p95": 255.38445800000045,
+          "p99": 290.1375829999961,
+          "max": 296.2267079999947,
+          "sum": 15421.302750999952
+        },
+        "http/load/logout": {
+          "count": 5,
+          "p50": 0.35754199999792036,
+          "p95": 3.7793340000062017,
+          "p99": 3.7793340000062017,
+          "max": 3.7793340000062017,
+          "sum": 5.274834000010742
+        }
+      },
+      "observerIdleSubmissions": 0,
+      "observerErrors": [],
+      "settings": [
+        {
+          "name": "fsync",
+          "setting": "on"
+        },
+        {
+          "name": "full_page_writes",
+          "setting": "on"
+        },
+        {
+          "name": "max_connections",
+          "setting": "100"
+        },
+        {
+          "name": "server_version",
+          "setting": "16.15 (Debian 16.15-1.pgdg13+2)"
+        },
+        {
+          "name": "synchronous_commit",
+          "setting": "on"
+        },
+        {
+          "name": "track_io_timing",
+          "setting": "off"
+        },
+        {
+          "name": "wal_sync_method",
+          "setting": "fdatasync"
+        }
+      ],
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0,
+        "errors": []
+      },
+      "rawSha256": {
+        "session-profile.json": "32cc5f387ab71e490fab15694b44e7ca8a467494b62de0695b0d73f1f0820d22",
+        "server-process.json": "629df30a857271e31f17e5b82f154fd46268f3f3038989cbbf14835936b085ce",
+        "load-profile.json": "c3442a00151fa5f902b32aefe8dd91fc1f0b4fac1ad4382d10fa1695bfe365ff",
+        "attempt.json": "2221f4bc3efc0cb1771a63c1d5b15853d32413e7e875cfb4762c42681a910646"
+      }
+    }
+  ],
+  "ranges": {
+    "control": {
+      "commandP95Ms": {
+        "values": [
+          356.92283399999997,
+          312.2087079999983,
+          446.14404099999956
+        ],
+        "min": 312.2087079999983,
+        "max": 446.14404099999956,
+        "median": 356.92283399999997
+      },
+      "replayP95Ms": {
+        "values": [
+          294.6607920000024,
+          263.0689169999969,
+          159.86887500000012
+        ],
+        "min": 159.86887500000012,
+        "max": 294.6607920000024,
+        "median": 263.0689169999969
+      },
+      "snapshotP95Ms": {
+        "values": [
+          536.1876249999987,
+          335.323166999995,
+          221.78975000000355
+        ],
+        "min": 221.78975000000355,
+        "max": 536.1876249999987,
+        "median": 335.323166999995
+      }
+    },
+    "current": {
+      "commandP95Ms": {
+        "values": [
+          423.3206250000003,
+          431.9389590000005,
+          376.38824999999997
+        ],
+        "min": 376.38824999999997,
+        "max": 431.9389590000005,
+        "median": 423.3206250000003
+      },
+      "replayP95Ms": {
+        "values": [
+          232.51708399999188,
+          368.04120800000965,
+          182.65854200000467
+        ],
+        "min": 182.65854200000467,
+        "max": 368.04120800000965,
+        "median": 232.51708399999188
+      },
+      "snapshotP95Ms": {
+        "values": [
+          265.62087499999325,
+          277.3710419999843,
+          263.68879200000083
+        ],
+        "min": 263.68879200000083,
+        "max": 277.3710419999843,
+        "median": 265.62087499999325
+      }
+    }
+  },
+  "pairedDirections": [
+    {
+      "controlRun": 1,
+      "currentRun": 2,
+      "currentMinusControlMs": {
+        "commandP95Ms": 66.39779100000032,
+        "replayP95Ms": -62.14370800001052,
+        "snapshotP95Ms": -270.5667500000054
+      }
+    },
+    {
+      "controlRun": 4,
+      "currentRun": 3,
+      "currentMinusControlMs": {
+        "commandP95Ms": 119.73025100000223,
+        "replayP95Ms": 104.97229100001277,
+        "snapshotP95Ms": -57.95212500001071
+      }
+    },
+    {
+      "controlRun": 5,
+      "currentRun": 6,
+      "currentMinusControlMs": {
+        "commandP95Ms": -69.75579099999959,
+        "replayP95Ms": 22.789667000004556,
+        "snapshotP95Ms": 41.89904199999728
+      }
+    }
+  ],
+  "limitations": "Three per version, fixed nonrandomized order, local host variation and diagnostic overhead; quiet time affects mean CPU,1s RSS samples,20ms event-loop sampling. Not a causal speedup/no-regression/capacity/leak/20rendered-client/public invalidation/WAN/physical-device or hosted claim. Unchanged raw tool method says three-run candidate; outer declared study is two cohorts of three in six fixed invocations. No raw metadata edited.",
+  "runtimeOrToolChanges": false,
+  "additionalActionsRuns": 0
+}

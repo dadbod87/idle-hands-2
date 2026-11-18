@@ -1,0 +1,302 @@
+{
+  "sources": {
+    "old": {
+      "sha": "f4d0203fda48912eccd1ab7be1304fcf50eae3a3",
+      "clean": true,
+      "files": {
+        "server/live-store.ts": "c7671588ee95054e84a6de745d7bd801fa6b5eca9059fe9c1b2d679c8f0683dc",
+        "tools/load-town.ts": "67dc0fe19a92639eabd0572d6208bd6547834f865f1b73937631e63a248bf8ae",
+        "tools/load-profile.ts": "e7c04f5b210604d595857d9f2366fafaac823db773a00ba9707567d9ce43f297",
+        "server/db.ts": "048b7acb44863e916451e6c495b6eddd9879524dc1cae73c4bde3b64d703f01e"
+      }
+    },
+    "new": {
+      "sha": "0c34d5b2a98eec59bf62095188c16c387cc697e2",
+      "clean": true,
+      "files": {
+        "server/live-store.ts": "44f67e5bde1efbae4bbc70b2f7617015224365d676120da2c4f3dc4430d060de",
+        "server/snapshot-rows.ts": "ded67f7891d6d34eeffc23a9bd4efd4935d99adb8d4e8dc33278671db3a6c076",
+        "tools/load-town.ts": "67dc0fe19a92639eabd0572d6208bd6547834f865f1b73937631e63a248bf8ae",
+        "tools/load-profile.ts": "de25c03617ba952ab4105552913558a3b00fe28562e5c97a99e97e43eb257251",
+        "server/db.ts": "048b7acb44863e916451e6c495b6eddd9879524dc1cae73c4bde3b64d703f01e"
+      }
+    }
+  },
+  "loadPhaseSqlReduction": {
+    "old": 5620,
+    "new": 2540,
+    "removed": 3080,
+    "percent": 54.804270462633454,
+    "snapshots": 220,
+    "queriesPerSnapshot": {
+      "old": 15,
+      "new": 1
+    }
+  },
+  "ordinaryCommandP95Ms": {
+    "old": {
+      "runs": [
+        241.85258299999987,
+        176.13700000000063,
+        772.6965830000008
+      ],
+      "median": 241.85258299999987,
+      "min": 176.13700000000063,
+      "max": 772.6965830000008
+    },
+    "new": {
+      "runs": [
+        264.9023750000001,
+        388.26824999999735,
+        198.73587499999985
+      ],
+      "median": 264.9023750000001,
+      "min": 198.73587499999985,
+      "max": 388.26824999999735
+    }
+  },
+  "allTenConservationIdleCleanupDurabilityPassed": true,
+  "interpretation": "All three new ordinary runs pass500ms; one old ordinary run fails. New ordinary median is slightly higher: no consistent workstation speedup is established. Delay fixtures test sensitivity to fewer sequential calls; not a WAN or hosted capacity claim. All failed budgets are retained, not retries. Query timing includes network/Node scheduling and pool waiting, not pure CPU or exclusive lock cause. Same observed original20-client workload, source-checkpoint hashes, no concurrent local build/test/render.",
+  "runs": [
+    {
+      "name": "ordinary-1-old",
+      "source": "old",
+      "delay": 0,
+      "code": 0,
+      "commandP95Ms": 241.85258299999987,
+      "loadQueries": 5620,
+      "commandQueryCountHistogram": {
+        "22": 20,
+        "27": 120,
+        "28": 20
+      },
+      "poolAcquireMs": {
+        "count": 280,
+        "p50": 46.727750000000015,
+        "p95": 128.88975000000005,
+        "p99": 216.05549999999857,
+        "max": 218.17891699999927,
+        "sum": 15697.16528700001
+      },
+      "fullQueryCallbackMsSum": 9401.79758900016,
+      "eventLoopP95Ms": 22.806527,
+      "allConservationIdleCleanupDurabilityPassed": true
+    },
+    {
+      "name": "ordinary-2-new",
+      "source": "new",
+      "delay": 0,
+      "code": 0,
+      "commandP95Ms": 264.9023750000001,
+      "loadQueries": 2540,
+      "commandQueryCountHistogram": {
+        "8": 20,
+        "13": 120,
+        "14": 20
+      },
+      "poolAcquireMs": {
+        "count": 280,
+        "p50": 36.67333299999973,
+        "p95": 136.68395799999996,
+        "p99": 218.48475000000008,
+        "max": 220.36466599999994,
+        "sum": 14413.485171000024
+      },
+      "fullQueryCallbackMsSum": 8825.930020000042,
+      "eventLoopP95Ms": 23.216127,
+      "allConservationIdleCleanupDurabilityPassed": true
+    },
+    {
+      "name": "ordinary-3-new",
+      "source": "new",
+      "delay": 0,
+      "code": 0,
+      "commandP95Ms": 388.26824999999735,
+      "loadQueries": 2540,
+      "commandQueryCountHistogram": {
+        "8": 20,
+        "13": 120,
+        "14": 20
+      },
+      "poolAcquireMs": {
+        "count": 280,
+        "p50": 57.41266600000017,
+        "p95": 307.85929199999737,
+        "p99": 329.29508299999725,
+        "max": 345.6632090000021,
+        "sum": 25011.651041999987
+      },
+      "fullQueryCallbackMsSum": 11102.047201999983,
+      "eventLoopP95Ms": 22.953983,
+      "allConservationIdleCleanupDurabilityPassed": true
+    },
+    {
+      "name": "ordinary-4-old",
+      "source": "old",
+      "delay": 0,
+      "code": 0,
+      "commandP95Ms": 176.13700000000063,
+      "loadQueries": 5620,
+      "commandQueryCountHistogram": {
+        "22": 20,
+        "27": 120,
+        "28": 20
+      },
+      "poolAcquireMs": {
+        "count": 280,
+        "p50": 39.0836249999993,
+        "p95": 131.73379099999875,
+        "p99": 135.416500000003,
+        "max": 138.94725000000108,
+        "sum": 14871.65378000002
+      },
+      "fullQueryCallbackMsSum": 8974.400751999987,
+      "eventLoopP95Ms": 23.511039,
+      "allConservationIdleCleanupDurabilityPassed": true
+    },
+    {
+      "name": "ordinary-5-old",
+      "source": "old",
+      "delay": 0,
+      "code": 1,
+      "commandP95Ms": 772.6965830000008,
+      "loadQueries": 5620,
+      "commandQueryCountHistogram": {
+        "22": 20,
+        "27": 120,
+        "28": 20
+      },
+      "poolAcquireMs": {
+        "count": 280,
+        "p50": 60.87908299999981,
+        "p95": 470.96770800000013,
+        "p99": 671.448292000001,
+        "max": 719.2552079999987,
+        "sum": 31308.381825999997
+      },
+      "fullQueryCallbackMsSum": 19442.904970000003,
+      "eventLoopP95Ms": 23.134207,
+      "allConservationIdleCleanupDurabilityPassed": true
+    },
+    {
+      "name": "ordinary-6-new",
+      "source": "new",
+      "delay": 0,
+      "code": 0,
+      "commandP95Ms": 198.73587499999985,
+      "loadQueries": 2540,
+      "commandQueryCountHistogram": {
+        "8": 20,
+        "13": 120,
+        "14": 20
+      },
+      "poolAcquireMs": {
+        "count": 280,
+        "p50": 33.879249999999956,
+        "p95": 135.84995799999888,
+        "p99": 159.07250000000022,
+        "max": 180.40387499999997,
+        "sum": 12855.780823000016
+      },
+      "fullQueryCallbackMsSum": 7307.686640000078,
+      "eventLoopP95Ms": 22.708223,
+      "allConservationIdleCleanupDurabilityPassed": true
+    },
+    {
+      "name": "latency-2-old",
+      "source": "old",
+      "delay": 2,
+      "code": 1,
+      "commandP95Ms": 2568.3627080000006,
+      "loadQueries": 5620,
+      "commandQueryCountHistogram": {
+        "22": 20,
+        "27": 120,
+        "28": 20
+      },
+      "poolAcquireMs": {
+        "count": 280,
+        "p50": 217.88000000000102,
+        "p95": 1526.8135840000032,
+        "p99": 2336.3602089999986,
+        "max": 2350.615417000001,
+        "sum": 113625.15263000006
+      },
+      "fullQueryCallbackMsSum": 55360.85630499998,
+      "eventLoopP95Ms": 22.986751,
+      "allConservationIdleCleanupDurabilityPassed": true
+    },
+    {
+      "name": "latency-2-new",
+      "source": "new",
+      "delay": 2,
+      "code": 0,
+      "commandP95Ms": 430.8534579999978,
+      "loadQueries": 2540,
+      "commandQueryCountHistogram": {
+        "8": 20,
+        "13": 120,
+        "14": 20
+      },
+      "poolAcquireMs": {
+        "count": 280,
+        "p50": 77.74645899999996,
+        "p95": 322.4123749999999,
+        "p99": 368.28654200000165,
+        "max": 370.6845420000027,
+        "sum": 32971.55695400001
+      },
+      "fullQueryCallbackMsSum": 19656.49859200002,
+      "eventLoopP95Ms": 22.773759,
+      "allConservationIdleCleanupDurabilityPassed": true
+    },
+    {
+      "name": "latency-5-old",
+      "source": "old",
+      "delay": 5,
+      "code": 1,
+      "commandP95Ms": 1964.0239580000007,
+      "loadQueries": 5620,
+      "commandQueryCountHistogram": {
+        "22": 20,
+        "27": 120,
+        "28": 20
+      },
+      "poolAcquireMs": {
+        "count": 280,
+        "p50": 614.276167,
+        "p95": 1213.273792,
+        "p99": 1548.4782500000001,
+        "max": 1559.421209,
+        "sum": 161102.97804599997
+      },
+      "fullQueryCallbackMsSum": 88297.56143199997,
+      "eventLoopP95Ms": 22.839295,
+      "allConservationIdleCleanupDurabilityPassed": true
+    },
+    {
+      "name": "latency-5-new",
+      "source": "new",
+      "delay": 5,
+      "code": 1,
+      "commandP95Ms": 954.9509169999983,
+      "loadQueries": 2540,
+      "commandQueryCountHistogram": {
+        "8": 20,
+        "13": 120,
+        "14": 20
+      },
+      "poolAcquireMs": {
+        "count": 280,
+        "p50": 229.9459169999991,
+        "p95": 695.6422080000011,
+        "p99": 835.3764999999985,
+        "max": 836.1867910000001,
+        "sum": 77705.221293
+      },
+      "fullQueryCallbackMsSum": 43433.48702400003,
+      "eventLoopP95Ms": 22.659071,
+      "allConservationIdleCleanupDurabilityPassed": true
+    }
+  ]
+}

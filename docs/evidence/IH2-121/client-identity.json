@@ -1,0 +1,11 @@
+{
+  "compiledFiles": 232,
+  "artFiles": 226,
+  "allClientFilesExactlyAccepted119": true,
+  "allSrcPublicNineMigrationsAndLockfileUnchanged": true,
+  "serverOnlyRuntimeChange": [
+    "server/live-store.ts",
+    "server/snapshot-rows.ts"
+  ],
+  "noNormalRuntimeUpdateYet": true
+}

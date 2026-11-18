@@ -1,3 +1,9 @@
+# November 17 — IH2-121 coherent snapshot candidate under validation
+
+The snapshot reader now uses one parameterized database statement instead of 15, with unchanged authority, strict validation, caller transactions, pool size and client design. Eight focused checks pass against the frozen accepted reader, including rich progress, 26 homes, privacy, construction clocks and concurrent writers. The original 20-client workload uses 2,540 rather than 5,620 load-phase queries. All ten comparison runs conserve stock/receipts and keep idle SQL at zero; failures remain recorded. Delayed-link samples improve, but the ordinary workstation results do not establish a consistent speedup.
+
+Full local regression is running; exact final PR/main/raw evidence and saved-preview acceptance remain pending. Normal previews still serve the accepted 119 runtime. [Report](evidence/IH2-121/REPORT.md), [method](evidence/IH2-121/METHOD.md), [current source](idle-hands-2/CURRENT_SESSION.md). Earlier entries below are historical.
+
 # November17 —120 profiling accepted;121 queued
 
 PR52/main **1999f83b6a8b13e5fbdde81b003ba9af8b58bcc3** accepted after exact PR/main all4/raw495domain/188browser gates and read-only normal preservation.232game bytes, all17table fields/nine metadata/originalkeys/PIDs/464normal+125historical responses remain exact119. No runtime update/speedup claimed. [Report](evidence/IH2-120/REPORT.md), [current source/next121](idle-hands-2/CURRENT_SESSION.md). Earlier entries below are historical.

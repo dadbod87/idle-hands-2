@@ -118,6 +118,7 @@ export async function runPublicRefresh(options:Options){
  return JSON.parse(readFileSync(resolve(output,'public-refresh.json'),'utf8'));
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
- const root=process.env.IH2_PUBLIC_OUT??'test-results/public-refresh';
- for(const n of[1,2])await runPublicRefresh({url:process.env.IH2_LOAD_DATABASE_URL,reset:process.env.IH2_LOAD_RESET,container:process.env.IH2_PG_CONTAINER,ci:process.env.CI,output:root+'/trial-'+n,mode:'observation'});
+ const root=process.env.IH2_PUBLIC_OUT??'test-results/public-refresh',trial=process.env.IH2_PUBLIC_TRIAL;
+ assert.ok(trial==='1'||trial==='2','Use the optional workflow with an explicit trial; it starts a fresh driver for each observation.');
+ await runPublicRefresh({url:process.env.IH2_LOAD_DATABASE_URL,reset:process.env.IH2_LOAD_RESET,container:process.env.IH2_PG_CONTAINER,ci:process.env.CI,output:root+'/trial-'+trial,mode:'observation'});
 }

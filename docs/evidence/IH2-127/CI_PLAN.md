@@ -4,7 +4,7 @@ Owner explicitly keeps Docker and existing saved previews stopped. Use only an e
 
 ## Predeclared method
 
-Two fixed180-second observations on the same accepted source, new API/driver/browser sessions and a freshly reset guarded ih2_load for each. The ephemeral PostgreSQL service may be reused; this is not a cold-cache comparison. No replacement run for timing green. Stop on target/authority/conservation/cleanup failure. All original500ms command/snapshot targets stay unchanged; keep every miss. A diagnostic workflow outcome must distinguish successful capture from a passed timing budget.
+Two fixed180-second observations on the same accepted source; the workflow invokes a separate Node process per explicit trial, with new API/driver/browser sessions and a freshly reset guarded ih2_load for each. The ephemeral PostgreSQL service may be reused; this is not a cold-cache comparison. No replacement run for timing green. Stop on target/authority/conservation/cleanup failure. All original500ms command/snapshot targets stay unchanged; keep every miss. A diagnostic workflow outcome must distinguish successful capture from a passed timing budget.
 
 Twenty distinct fictional identities total:18unrendered participants using the actual TownClient with a bounded real-cookie/SSE Node transport, plus2actual native headless Chromium pages (desktop and emulated touch). Not20rendered players, real phones, WAN or hosted capacity. Cross-check stream-open refresh, one in-flight plus dirty follow-up, visibility/identity generation and eventual exact state with native observations. Unexpected transport loss must be retained; do not fake a recovered confirmation. Native network retry/boot recovery beyond the declared phases is not established by this study.
 

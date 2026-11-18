@@ -1,4 +1,5 @@
 import {test} from 'node:test';
+import {spawnSync} from 'node:child_process';
 import assert from 'node:assert/strict';
 import {createServer,type ServerResponse} from 'node:http';
 import {setTimeout as delay} from 'node:timers/promises';
@@ -58,6 +59,7 @@ test('public refresh runner refuses normal, remote and local Docker targets befo
   ['postgres://ih2:synthetic@127.0.0.1:5432/ih2_load?host=remote.example','true','a'.repeat(64)],
   ['postgres://ih2:synthetic@127.0.0.1:5432/ih2_load','true','idle-hands-2-pg'],
  ]){await assert.rejects(runPublicRefresh({url,ci,container,reset:'1',output,mode:'smoke'}));assert.equal(existsSync(output),false);}
+ const cli=spawnSync(process.execPath,['--experimental-strip-types','tools/public-refresh.ts'],{encoding:'utf8',timeout:10000,env:{...process.env,CI:'true',IH2_PUBLIC_TRIAL:'1',IH2_LOAD_DATABASE_URL:'postgres://ih2:PRIVATE_SENTINEL@127.0.0.1:55432/ih2_load',IH2_LOAD_RESET:'1',IH2_PG_CONTAINER:'idle-hands-2-pg',IH2_PUBLIC_OUT:output}});assert.equal(cli.status,1);assert.ok(!String(cli.stderr).includes('PRIVATE_SENTINEL'));assert.equal(existsSync(output),false);
  mkdirSync(output);writeFileSync(join(output,'partial.json'),'PRIOR_PARTIAL_EVIDENCE');await assert.rejects(runPublicRefresh({url:'postgres://ih2:synthetic@127.0.0.1:5432/ih2_load',ci:'true',container:'a'.repeat(64),reset:'1',output,mode:'smoke'}),/partial observations/);assert.equal(readFileSync(join(output,'partial.json'),'utf8'),'PRIOR_PARTIAL_EVIDENCE');}
  finally{rmSync(root,{recursive:true,force:true});}
 });

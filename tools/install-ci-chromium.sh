@@ -8,6 +8,17 @@ if [[ ${GITHUB_ACTIONS:-} != true || ${RUNNER_OS:-} != Linux ]]; then
   exit 1
 fi
 
+# The runner image usually references this list through mirror+file:. Keep
+# Ubuntu's existing fallback sources and only demote the slow regional mirror.
+mirrors=/etc/apt/apt-mirrors.txt
+if [[ -f "$mirrors" ]] &&
+   grep -Eq '^https://archive\.ubuntu\.com/ubuntu/?[[:space:]]' "$mirrors" &&
+   grep -Eq '^https?://[a-z0-9.-]+\.ec2\.archive\.ubuntu\.com/ubuntu/?[[:space:]]+priority:1$' "$mirrors"; then
+  echo 'Preferring the primary Ubuntu archive in the runner mirror list.'
+  sudo sed -Ei '/^https?:\/\/[a-z0-9.-]+\.ec2\.archive\.ubuntu\.com\/ubuntu\/?[[:space:]]+priority:1$/ s/priority:1$/priority:4/' "$mirrors"
+fi
+
+# Some runner images configure the regional mirror as a direct source instead.
 shopt -s nullglob
 for source in /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do
   [[ -f "$source" ]] || continue

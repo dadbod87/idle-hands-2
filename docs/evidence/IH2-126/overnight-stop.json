@@ -14,7 +14,8 @@
   "noNewRuntimeRestartOrDatabaseActionsInStopHandoff": true,
   "normalServiceAuthority": "work/idle-hands-2-artifacts/movement-body-2026-11-18/active-services.json",
   "latestReadOnlyPreservationProof": "docs/evidence/IH2-126/saved-preservation.json",
-  "latestReportedWeeklyUsagePercent": 22,
+  "latestReportedWeeklyUsagePercent": 23,
   "weeklyWindowMinutes": 10080,
-  "nextContinuationRequired": true
+  "nextContinuationRequired": true,
+  "weeklyUsageObservedAtUtc": "2026-11-18T14:58:20.366848+00:00"
 }

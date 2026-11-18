@@ -6,4 +6,4 @@ Accepted main: `6c150fb6f10df6ac6decd2377cd96448e8c6d028`. Exact PR58/main check
 
 [Morning review](2026-11-18-morning-review.md) gives the outcomes, previews and limits. [Current session](../CURRENT_SESSION.md) identifies source/runtime authority. IH2-127 is queued, not started; the planner’s next prompt points there. Begin only on the next continuation instruction. Hosting and public launch remain separately gated.
 
-The detailed [stop record](../../evidence/IH2-126/overnight-stop.json) records the observation time and unchanged-service scope. Latest reported weekly usage was about22%, so the time window ended before the10%-remaining boundary. No active benchmark, test run or autonomous goal is left to continue implementation.
+The detailed [stop record](../../evidence/IH2-126/overnight-stop.json) records the observation time and unchanged-service scope. Latest reported weekly usage was about 23%, so the time window ended before the 10%-remaining boundary. No active benchmark, test run or autonomous goal is left to continue implementation.

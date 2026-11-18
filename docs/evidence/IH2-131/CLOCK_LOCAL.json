@@ -1,0 +1,37 @@
+{
+  "status": "candidate; full PG/PR/main pending",
+  "controlledScheduling": {
+    "before": {
+      "pass": 1,
+      "fail": 3
+    },
+    "after": {
+      "pass": 4,
+      "fail": 0
+    },
+    "method": "Actual TownStore execute path, controlled query schedule, captured receipt sentinel before projection/commit; not PostgreSQL durability proof"
+  },
+  "focused": 33,
+  "independent": {
+    "collected": 415,
+    "pass": 395,
+    "databaseUnavailableSkips": 20
+  },
+  "compiledClient": {
+    "all232ExactToPR61": true,
+    "all226ArtExact": true
+  },
+  "sourceTests": [
+    "tests/server-command-clock.test.ts",
+    "tests/server-playable-cafe.test.ts"
+  ],
+  "preservedRawHashes": {
+    "server-clock-before.log": "e37c59f2cbd42ac16beacb2952319794a2fb2f30e1cc854e2f62b76b06f0916f",
+    "server-clock-after.log": "729b079ae2bb04440f528e09e23305cc745ecf3b7ed066c689adc9568cfd7530",
+    "clock-focused.log": "85be71b01557cd5d37b0962516cebc680b4730d52584425c9df37653f229a1bf",
+    "clock-independent.log": "65a09c3599280ca07e91ec0b5b8f91ccec4407e045b19cbced6924c70c3ff5b4",
+    "clock-build-final.log": "516f03f8fa410f208e67255136cdab7aef962ff70da3ae69f9e5d2276261799c",
+    "clock-plan-final.log": "dbe6429f6dae4031d7a80ada34be321d255f2f62a3fba8f0c4438a3c8b198765"
+  },
+  "normalServicesKeptStopped": true
+}

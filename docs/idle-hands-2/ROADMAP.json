@@ -2299,7 +2299,7 @@
         "docs/evidence/IH2-127/CI_PLAN.md"
       ],
       "owner_branch": "perf/public-refresh-ci",
-      "blocked_reason": "Real198smoke exposed a same-boot command/public-read clock race; controlled actual-TownClient probe reproduces loss of confirmed higher revision. Fixed observations have not started. IH2-131must correct confirmation handling and accept source first."
+      "blocked_reason": "Client confirmation correction and queued cafe clock follow-up131await exact final543domain/198browser PR/main gates. Keep immediate smoke assertions and preserve all failures; no fixed observations have run."
     },
     {
       "id": "IH2-128",
@@ -2374,19 +2374,20 @@
     },
     {
       "id": "IH2-131",
-      "title": "Keep committed personal progress visible during shared updates",
+      "title": "Confirm shared actions coherently under concurrent updates",
       "status": "in_progress",
       "depends_on": [
         "IH2-129"
       ],
-      "owner_branch": "perf/public-refresh-ci",
-      "goal": "Correct the reproduced actual-client command/public-read ordering race before accepting public-refresh diagnostic source or measurements.",
+      "owner_branch": "fix/shared-cafe-clock",
+      "goal": "Correct actual-client confirmation ordering and queued cafe transaction clock sampling before accepting public-refresh measurements.",
       "acceptance": [
         "Preserve all stale same-boot/retired boot/identity/time/holding/allocation guards; do not merge incompatible snapshots or change server authority/economy/timers.",
         "Defer ordinary public invalidations while a command is pending; retain one dirty follow-up and forced reconnect refresh across any existing read. When a valid command reply was superseded by a newer-clock lower-revision read, confirm via a bounded single fresh snapshot after the existing read settles. Preserve pending UUID on failed/unconfirmed refresh or boot change; never repeat a spend as a new action.",
         "Add controlled actual-TownClient regression coverage for the reproduced timestamp/revision ordering, dirty burst coalescing, confirmation failure/retry, one-read unconfirmed-revision bound and boot change, without weakening prior cases.",
+        "Sample the transaction clock after acquiring the player row; for cafe serves read the actual clock again after the shared project lock and reproject private state at that time. Preserve genuine backward-clock refusal, exact UUID/debit/replay/deadline rules and all SQL lock order; no clamp to stored future time or added query. Verify controlled no-database schedule cases and real PostgreSQL delayed-lock/debit/replay/backward-clock cases.",
         "Keep real20-client smoke immediate private revision/conservation/deadline/replay/cleanup assertions. Record actual one-or-two unauthenticated setup reads separately from authenticated/load traffic; no intercepted confirmations.",
-        "Complete applicable local checks plus exact final PR/main all-five/raw full existing530domain/198browser plus additions and original500ms/recovery gates; inspect actual native desktop/phone game captures with Terra6.1.",
+        "Complete applicable local checks plus exact final PR/main all-five/raw full existing537domain/198browser plus six clock regressions (543/198) and original500ms/recovery gates; inspect actual native desktop/phone game captures with Terra6.1.",
         "Save failure evidence, exact source/build scope and next steps. Keep owner-stopped normal services off; do not dispatch fixed observations until accepted source. No real-player/paid/cloud/original-game work."
       ],
       "exclusions": [
@@ -2398,5 +2399,5 @@
       ]
     }
   ],
-  "source_status_note": "129source accepted with exact527/197PR/main and original audio study.127independent CI measurement is queued under a revised method; owner-stopped local services remain stopped.130optional game audio is queued. Read CURRENT_SESSION."
+  "source_status_note": "131remains active: PR61client correction merged but main smoke failed during public wave3 before its job cap. A controlled server clock schedule also reproduces a queued cafe refusal. Corrective source fix/shared-cafe-clock is pending full543/198 PR/main;127fixed observations remain blocked and owner-stopped local services remain stopped."
 }

@@ -1,3 +1,9 @@
+# November18 — queued café clock correction pending
+
+131remains active on fix/shared-cafe-clock. PR61client correction passed537/198on its PR, but main86cef8's public smoke failed in the third shared-action wave before a20minute job cancellation. The initial cancellation-only diagnosis was incomplete. Controlled actual-server scheduling reproduces a pre-lock timestamp refusal; the candidate samples real time after queued locks while preserving genuine backward-clock refusal. Four no-DB cases pass; two actual PostgreSQL regressions await CI. Final543/198PR/main acceptance and unchanged500ms/recovery gates are required. [Follow-up](evidence/IH2-131/CAFE_CLOCK_FOLLOWUP.md).
+
+All232compiled client files/all226art remain exact toPR61; only server clock sampling and diagnostic evidence change in this follow-up. No normal local service starts, real progress, paid/cloud setup or fixed observations.127remains blocked until source acceptance. DeadlineNovember18at2PM Pacific/22UTC; last28%weeklyused. Earlier entries below are historical.
+
 # November18 — client confirmation correction in progress
 
 IH2-131fixes the reproduced actual-client command/public-read ordering race discovered by127's real smoke. Candidate source/PR61is not accepted yet; expected final537domain/198browser/all-five plus original500ms/recovery gates. Seven focused regression cases added;29focused tests/build pass. No fixed performance observation, normal-runtime installation, hosting or real-player change. Docker/normal saved previews remain stopped by owner instruction; original keys read-only. [131report](evidence/IH2-131/REPORT.md). Earlier entries below are historical.

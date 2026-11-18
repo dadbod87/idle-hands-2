@@ -1,6 +1,10 @@
+# Follow-up candidate: queued café time
+
+PR61passed537/198but main smoke failed before the job cap. Source acceptance remains incomplete. [Failure, correction and six new cases](CAFE_CLOCK_FOLLOWUP.md). Final543/198PR/main gates are required; fixed observations remain unexecuted. Earlier client correction details follow.
+
 # Committed personal progress during public updates — candidate correction
 
-Status: source candidate; full exact PR/main acceptance pending.127fixed performance observations remain unexecuted. No normal saved service, original key, real player, server, economy, protocol, schema, rate, pool or timer changed.
+Status: source candidate; full exact PR/main acceptance pending.127fixed performance observations remain unexecuted. No normal saved service, original key, real player, economy, protocol, schema, rate, pool or timer changed. The queued-clock follow-up changes server clock sampling only; see CAFE_CLOCK_FOLLOWUP.md.
 
 ## Finding and correction
 

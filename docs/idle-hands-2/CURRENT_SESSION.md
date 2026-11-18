@@ -1,3 +1,7 @@
+# November18 —131queued café clock correction active
+
+Source work/idle-hands-2-public-refresh-ci, branch fix/shared-cafe-clock. PR61client correction passed final PR537/198but main public smoke failed during third wave before the20minute cap. Initial cancellation-only diagnosis was incomplete; retry evidence remains retained. Controlled actual server scheduling reproduces stale pre-lock café time; four no-DB cases now pass and two actual PG cases await CI. Final543/198PR/main required.127fixed observations blocked; Docker/normal saved previews remain stopped, original keys read-only. [Follow-up](../evidence/IH2-131/CAFE_CLOCK_FOLLOWUP.md). Deadline22UTC/2PM Pacific; no paid/cloud/original-game work. Earlier entries below are historical.
+
 # November18 — IH2-131 command confirmation correction active
 
 Source work/idle-hands-2-public-refresh-ci, perf/public-refresh-ci, PR61.127measurements blocked by a reproduced actual-client clock/revision race; no fixed observation executed. [131plan](../evidence/IH2-131/PLAN.md). Preserve all prior guards and the real smoke assertions; exact final source/main gates remain mandatory. Docker/normal previews remain stopped, original keys read-only. Deadline22UTC/2PM Pacific, latest26%weeklyused. Earlier entries below are historical.

@@ -26,7 +26,7 @@ export async function runPublicRefresh(options:Options){
  let vite:ReturnType<typeof spawn>|undefined,viteExit:Promise<{code:number|null;signal:NodeJS.Signals|null}>|undefined,viteStopped:unknown,childStopped:unknown;
  let watchdog:ReturnType<typeof setTimeout>|undefined;
  const actors:PublicModelActor[]=[],contexts:BrowserContext[]=[],native:Array<{page:Page;invalidations:number;api:Array<{route:string;ms:number;status:number;phase:string;atMs:number}>;errors:string[];consoleErrors:Array<{phase:string;path:string;resource401:boolean}>;metricsBefore?:unknown;metricsAfter?:unknown}>=[];
- const waves:unknown[]=[],stateConfirmations:unknown[]=[],visibleConfirmations:unknown[]=[],replays:unknown[]=[],lifecycle:unknown[]=[];
+ const commandOutcomes:unknown[]=[],waves:unknown[]=[],stateConfirmations:unknown[]=[],visibleConfirmations:unknown[]=[],replays:unknown[]=[],lifecycle:unknown[]=[];
  let workloadAt=0,workloadEndedAt=0,checkpoint:unknown,idle:unknown,conservation:unknown,modelTotalsBeforeLifecycle:unknown,nativeTotalsBeforeLifecycle:unknown;
  const sourceFiles=['tools/public-refresh.ts','tools/public-client.ts','tools/public-refresh-fixture.ts','tools/session-child.ts','tools/session-process.ts','tools/session-target.ts','tools/session-resources.ts'];
  const provenance={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),files:Object.fromEntries(sourceFiles.map(p=>[p,createHash('sha256').update(readFileSync(p)).digest('hex')]))};
@@ -71,7 +71,7 @@ export async function runPublicRefresh(options:Options){
   const commands:Array<{actor:PublicModelActor;body:Record<string,unknown>}>=[];
   async function wave(indexes:number[],kind:'contribute'|'cafe-serve',bridge:number,cafe:number){
    const began=performance.now();await Promise.all(indexes.map(async i=>{const actor=actors[i]!,body={kind,id:randomUUID(),expectedRevision:0,...(kind==='cafe-serve'?{presentation:'slices'}:{})};commands.push({actor,body});
-    await actor.run(()=>actor.client.command(body));assert.equal(actor.client.snapshot!.workshop.revision,1);assert.equal(actor.client.retryAvailable,false);
+    await actor.run(()=>actor.client.command(body));const revision=actor.client.snapshot!.workshop.revision,retryAvailable=actor.client.retryAvailable;commandOutcomes.push({actor:i,kind,revision,retryAvailable,clockRefused:/clock.*backwards/.test(actor.client.lastMessage)});assert.equal(revision,1,'Public action must immediately confirm its private revision.');assert.equal(retryAvailable,false);
    }));waves.push({kind,actors:indexes.length,ms:performance.now()-began,atMs:performance.now()-workloadAt});await confirm(bridge,cafe,began);
   }
   await wave([0,1,2],'contribute',3,0);
@@ -109,7 +109,7 @@ export async function runPublicRefresh(options:Options){
   const report={method:'Two native headless Chromium pages plus18actual TownClient protocol models, not20rendered clients, physical phones, WAN or hosted capacity. Real API/cookies/SSE; no intercepted confirmations. Each fresh native context has one or two coalescible unauthenticated setup snapshot401reads before its actual resident selection (workshop boot and scene resume); every authenticated/load response must succeed. Explicit synthetic historical radishes/kits/feet before timing. Model visibility is controlled; native reload is real. Confirmation timings are observed accepted state/DOM text, not exact database-commit or presented-frame timestamps. CPU/RSS/event loop: API child and driver separated; browser CDP is page main-thread cumulative metrics, not Chrome total CPU/RSS. Diagnostic observer/automation/co-located scheduling overhead retained. No original UO assets; the diagnostic adds no further gameplay change beyond the explicit client confirmation correction.',
    mode:options.mode,completed:completed&&!failure,stage,errorCode:failure?safeDiagnosticError(failure):null,errors,provenance,elapsedMs:performance.now()-at,
    workloadMs:workloadAt&&workloadEndedAt?workloadEndedAt-workloadAt:null,fixedObservationMs:options.mode==='observation'?180000:null,sourceSchema:TOWN_SCHEMA,
-   waves,stateConfirmations,visibleConfirmations,replays,lifecycle,modelTotalsBeforeLifecycle,nativeTotalsBeforeLifecycle,checkpoint,idle,conservation,
+   commandOutcomes,waves,stateConfirmations,visibleConfirmations,replays,lifecycle,modelTotalsBeforeLifecycle,nativeTotalsBeforeLifecycle,checkpoint,idle,conservation,
    modelCounters:actors.map(a=>a.counts),native:native.map(n=>({invalidations:n.invalidations,api:n.api,errors:n.errors,expectedSetup401:n.api.filter(r=>r.status===401).length,consoleErrors:n.consoleErrors,metricsBefore:n.metricsBefore,metricsAfter:n.metricsAfter})),
    budgets,driverResources:resources.finish(),cleanup:{child:childStopped,static:viteStopped,modelsDrained:actors.every(a=>a.counts.active===0&&a.counts.streams===0),nativeContextsClosed:contexts.every(c=>!c.pages().length)}};
   writeFileSync(resolve(output,'public-refresh.json'),JSON.stringify(report,null,2)+'\n');

@@ -1,3 +1,7 @@
+# Queued café clock follow-up
+
+131is still active. Follow [CAFE_CLOCK_FOLLOWUP](CAFE_CLOCK_FOLLOWUP.md) on fix/shared-cafe-clock; preserve all prior client correction guards and every required case. Expected543domain/198browser, no normal service start or fixed observation before acceptance. Earlier client plan follows.
+
 # Confirmed command/public-read race — active correction
 
 The127real smoke failed after three successful public bridge commands: all stream invalidations arrived and cleanup drained, but an immediate client private-revision assertion failed. A controlled actual-TownClient probe independently reproduces the same class: newer-clock public read rev0/time1200arrives before an already-committed command reply rev1/time1100; existing accept rejects the latter by time and sendPending clears its UUID. Client remainsrev0while the committed change isrev1. Probe raw expected failure retained under ignored public-refresh-ci artifacts; not a real-player mutation or fixed performance observation.

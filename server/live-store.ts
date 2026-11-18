@@ -168,9 +168,9 @@ export class TownStore {
     try {
       await client.query('begin');
       await client.query("set local lock_timeout='3s'");
-      const now = this.clock();
       const player = (await client.query<PlayerRow>('select * from ih2.players where id=$1 for update', [id])).rows[0];
       if (!player) throw new Error('Unknown synthetic player.');
+      let now = this.clock();
       await this.settleBridge(client,now,false);
       let state = this.readState(player, now);let authoritativePosition=position;
       const prior = (await client.query('select payload_hash,result from ih2.command_receipts where player_id=$1 and command_id=$2', [id, cmd.id])).rows[0];
@@ -209,9 +209,17 @@ export class TownStore {
         else if(!near(position,'square','cafe'))reject('Walk to the café counter before serving.');
         else{
           const project=this.readCafe((await client.query('select * from ih2.cafe_project where id=1 for update')).rows[0]);
-          const applied=serveCafeCandidate(state,project,{expectedRevision:action.data.expectedRevision,presentation:action.data.presentation},now);
-          if(!applied.ok)reject(applied.message);
-          else{state=applied.state;const p=applied.project;await client.query('update ih2.cafe_project set credits=$1,observed_at=$2,funded_at=$3,ready_at=$4,opened_at=$5 where id=1',[p.credits,p.observedAt,p.fundedAt,p.readyAt,p.openedAt]);result={ok:true,message:applied.message,revision:state.revision,teapotAwarded:applied.teapotAwarded,publicChanged:applied.publicChanged};}
+          // Another resident can commit while this transaction is queued for
+          // the shared counter. Use the real clock after acquiring that row,
+          // not an earlier timestamp or a clamp to the stored project time.
+          const afterLock=this.clock();
+          if(afterLock<now)reject('The server clock moved backwards. Your progress is unchanged.');
+          else{
+            now=afterLock;state=this.readState(player,now);
+            const applied=serveCafeCandidate(state,project,{expectedRevision:action.data.expectedRevision,presentation:action.data.presentation},now);
+            if(!applied.ok)reject(applied.message);
+            else{state=applied.state;const p=applied.project;await client.query('update ih2.cafe_project set credits=$1,observed_at=$2,funded_at=$3,ready_at=$4,opened_at=$5 where id=1',[p.credits,p.observedAt,p.fundedAt,p.readyAt,p.openedAt]);result={ok:true,message:applied.message,revision:state.revision,teapotAwarded:applied.teapotAwarded,publicChanged:applied.publicChanged};}
+          }
         }
       }
       else if (specialKinds.includes(cmd.kind)) {

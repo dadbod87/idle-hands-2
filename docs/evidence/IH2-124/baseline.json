@@ -1,0 +1,19 @@
+{
+  "httpSha256": "6bbccaad9be5de4dc753095c205ab1b1508097fa5f9f9d374a04467f0cee7295",
+  "sourceMain": "d4068f33fc9f3241d005013c9e62489a93a07ce6",
+  "serverUnmodifiedBeforeReproduction": true,
+  "firstAttempt": {
+    "passed": 0,
+    "failed": 1,
+    "cause": "Independent movement hit declared1000ms abort while held body incomplete; doorway not reached. Retained first log."
+  },
+  "secondAttemptPurpose": "Observe both unrelated movement and protected doorway concurrently, retaining actual outcomes before assertions.",
+  "httpMatchesAcceptedMain": true,
+  "parallelAttempt": {
+    "passed": 0,
+    "failed": 1,
+    "bodyStillIncomplete": true,
+    "movement": "TimeoutError at1000ms",
+    "protectedDoorway": "TimeoutError at1000ms"
+  }
+}

@@ -1,0 +1,3 @@
+# November18 — IH2-124
+
+124soleactive after123fullyclosed/pushed d730ec3overmaind4068f3. New isolated work/idle-hands-2-movement-body, fix/movement-body-gate. Baseline reproduced both peer timeouts while body incomplete. Minimal server candidate waits on body only under own queue, then validates/mutates under shared lock; focused4/4/typecheck pass. Full510/193and all final-source/actual gates pending. [Plan](../../evidence/IH2-124/PLAN.md). Retain baseline failure before minimal change, full local/exact PR/main and safe actual API-only gates required. Normal122client/121API9/menu-confirmation active-services.json unchanged; protected55432/keys never reset/restart/migrate/copy. Deadline15UTC/7AMPacific, latest20%weeklyused. Earlier entries historical.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-17",
+  "updated": "2026-11-18",
   "authority": "docs/idle-hands-2/README.md",
   "tasks": [
     {
@@ -2157,7 +2157,32 @@
         "docs/evidence/IH2-123/saved-preservation.json"
       ],
       "owner_branch": "chore/session-profile-closeout-2026-11-18"
+    },
+    {
+      "id": "IH2-124",
+      "title": "Keep incomplete movement bodies from stalling other residents",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-123"
+      ],
+      "goal": "Confirm and fix cross-member movement head-of-line waiting while preserving own ordering and current occupancy authority.",
+      "acceptance": [
+        "Retain a bounded real HTTP baseline reproduction before a minimal shared-gate correction; cover own queue/rate, abort/malformed body and session/authority boundaries.",
+        "Keep original500ms budgets, all232client bytes and193browser identities; complete required local/exact PR/main five-job/raw gates.",
+        "Safely preserve actual saved feet,17table fields/nine metadata/original keys/signed sessions during any API-only update; push truthful closeout and next steps."
+      ],
+      "exclusions": [
+        "No economy/schema/protocol/art/client/rate/queue cap changes, paid/cloud/real players/original game.",
+        "No universal freeze/speedup/FPS/WAN/capacity claim; hold unsafe volatile-versus-durable foot preservation."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-124/PLAN.md",
+        "docs/evidence/IH2-124/baseline.json",
+        "docs/evidence/IH2-124/focused.json",
+        "docs/evidence/IH2-124/IMPLEMENTATION.md"
+      ],
+      "owner_branch": "fix/movement-body-gate"
     }
   ],
-  "source_status_note": "123fullyclosed with exact PR/main506/193and read-only saved preview; see CURRENT_SESSION for current source."
+  "source_status_note": "123fullyclosed;124bounded incomplete-body investigation active, see CURRENT_SESSION."
 }

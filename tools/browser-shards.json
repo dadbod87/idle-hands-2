@@ -22,8 +22,6 @@
     "garden-clarity.spec.ts",
     "garden-recovery.spec.ts",
     "garden.spec.ts",
-    "gathering-family.spec.ts",
-    "gathering-study.spec.ts",
     "home-builders.spec.ts",
     "home-identity.spec.ts",
     "home-neighborhood.spec.ts",
@@ -32,7 +30,6 @@
     "home-workroom.spec.ts",
     "housing-clarity.spec.ts",
     "weather-readability.spec.ts",
-    "woodland-outing.spec.ts",
     "woodland-shared.spec.ts"
   ],
   "2": [
@@ -40,6 +37,8 @@
     "design-documents.spec.ts",
     "design-garden.spec.ts",
     "design-woodland.spec.ts",
+    "gathering-family.spec.ts",
+    "gathering-study.spec.ts",
     "housing-contract.spec.ts",
     "housing-study.spec.ts",
     "maintenance-ui.spec.ts",
@@ -63,6 +62,7 @@
     "town-variety.spec.ts",
     "trail.spec.ts",
     "visual-kit.spec.ts",
+    "woodland-outing.spec.ts",
     "workshop.spec.ts",
     "z-first-visit.spec.ts"
   ]

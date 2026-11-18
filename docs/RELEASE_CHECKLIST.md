@@ -1,3 +1,19 @@
+# November 17 — IH2-120 profiling candidate in progress
+
+Isolated branch `perf/shared-loop-profile` in `work/idle-hands-2-performance`, over accepted119closeout ba10743/main ed1dc9d. Tools/tests/docs only; all232game bytes, client/server rules, nine migrations and normal saved previews remain unchanged. Seventeen backend measurements retain five500ms-budget failures; all conserve140unique/20replayed commands and zero idle SQL/cleanup. Controlled database-link latency amplifies pool pressure; single-resident render results are separate. No universal cause, hosted capacity or performance fix is claimed. Full exact-source gates pending. [Report](evidence/IH2-120/REPORT.md), [method](evidence/IH2-120/METHOD.md), [current handoff](idle-hands-2/handoffs/2026-11-17-performance-profile.md).121snapshot batching is queued, not implemented. Earlier entries below are historical.
+
+# November 17 —119 accepted local sequel checkpoint
+
+- [x] Exact PR/main all four jobs,490 domain tests/ 188complete browser cases, raw recovery/load/build evidence.
+- [x] Additive migration9only, old 16-table fields/eight metadata/original keys exact; no protected PG restart.
+- [x] Current native saved desktop/touch-phone/short / 200% text/reload/session recovery,464 game and 125 historical responses; Terra still review.
+- [x] Failed attempts and original-cookie scope limits disclosed;IH2-119 done / IH2-120 queued.
+- [ ] Physical-phone/Safari/human replay-fun and hosted/WAN acceptance remain future gates, not claimed.
+
+[Report](evidence/IH2-119/REPORT.md) · [actual verification](evidence/IH2-119/ACTUAL_SAVED.md).
+
+Earlier entries below are historical.
+
 ## IH2-119 candidate gates — November17
 
 - [x] Isolated current source and unchanged prior public assets/eight migration bytes; no real accounts/cloud.

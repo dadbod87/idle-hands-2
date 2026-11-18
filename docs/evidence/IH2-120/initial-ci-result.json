@@ -1,0 +1,49 @@
+{
+  "run": 44201751026,
+  "sha": "f76ec79708cf376809aa7287e245db3f97528af2",
+  "accepted": false,
+  "jobs": [
+    {
+      "name": "domain-build-plan",
+      "conclusion": "success",
+      "started_at": "2026-11-17T23:42:51Z",
+      "completed_at": "2026-11-17T23:46:07Z"
+    },
+    {
+      "name": "browser-shard (2/2)",
+      "conclusion": "success",
+      "started_at": "2026-11-17T23:42:50Z",
+      "completed_at": "2026-11-17T23:58:08Z"
+    },
+    {
+      "name": "browser-shard (1/2)",
+      "conclusion": "cancelled",
+      "started_at": "2026-11-17T23:42:51Z",
+      "completed_at": "2026-11-18T00:03:07Z"
+    },
+    {
+      "name": "browser-playtest",
+      "conclusion": "failure",
+      "started_at": "2026-11-18T00:03:11Z",
+      "completed_at": "2026-11-18T00:03:14Z"
+    }
+  ],
+  "domain": 495,
+  "domainPassed": 495,
+  "browserGroup2": {
+    "total": 93,
+    "expected": 93,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "browserGroup1": "90 of95 passed in rawlog then20minute cancellation; final report unavailable, no complete coverage claim",
+  "group1BrowserInstallSeconds": 242,
+  "group2BrowserInstallSeconds": 23,
+  "budgetsUnchanged": true,
+  "approxRoundedJobMinutes": 42,
+  "publicStandardUbuntu": true,
+  "billingCycleUsageUnknown": true,
+  "rerunReason": "Two independently diagnosed existing local browser synchronization races corrected; new candidate requires exact-head gates."
+}

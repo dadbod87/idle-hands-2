@@ -1,0 +1,136 @@
+[
+  {
+    "viewport": {
+      "name": "desktop2k",
+      "width": 2560,
+      "height": 1440,
+      "touch": false
+    },
+    "readyMs": 1628.2372499999997,
+    "reload": {
+      "ok": true,
+      "ms": 1054.319542000001
+    },
+    "rafGapP95Ms": 16.700000000000728,
+    "rafSamples": 241,
+    "nativeDisplacementWorldUnits": 20.08250000000004,
+    "browserErrors": [],
+    "networkErrors": [],
+    "apiRequests": [],
+    "movementWindow": {
+      "start": 1568.5,
+      "end": 5630.10000038147
+    },
+    "longTasks": [
+      {
+        "at": 244.80000019073486,
+        "ms": 213
+      },
+      {
+        "at": 942.4000005722046,
+        "ms": 58
+      },
+      {
+        "at": 1339.4000005722046,
+        "ms": 58
+      },
+      {
+        "at": 1399,
+        "ms": 117
+      }
+    ],
+    "method": "Single fresh offline fictional resident per size, actual native4sArrowRight keyboard movement at all sizes for comparable render windows (not a touch-input timing test) and15000msready bound. Chrome fine-pointerdesktop/coarse-touchphone; no interception/clock/stock/position injection. RequestAnimationFrame intervals measure browser callbacks, not guaranteed presented game frames, and cover the declared movement window; may include stalls/collision. Game metrics include10Hzidle and must not be treated as continuous FPS. Not20rendered players, physical-device/WAN/hosted proof."
+  },
+  {
+    "viewport": {
+      "name": "desktop4k",
+      "width": 3840,
+      "height": 2160,
+      "touch": false
+    },
+    "readyMs": 1580.2329590000008,
+    "reload": {
+      "ok": true,
+      "ms": 1215.8841670000002
+    },
+    "rafGapP95Ms": 33.30000000000018,
+    "rafSamples": 219,
+    "nativeDisplacementWorldUnits": 20.082500000000017,
+    "browserErrors": [],
+    "networkErrors": [],
+    "apiRequests": [],
+    "movementWindow": {
+      "start": 1620,
+      "end": 5672.199999809265
+    },
+    "longTasks": [
+      {
+        "at": 119.69999980926514,
+        "ms": 135
+      },
+      {
+        "at": 326.69999980926514,
+        "ms": 65
+      },
+      {
+        "at": 776.1000003814697,
+        "ms": 56
+      },
+      {
+        "at": 1352.5,
+        "ms": 73
+      },
+      {
+        "at": 1427.6000003814697,
+        "ms": 136
+      },
+      {
+        "at": 2468.8999996185303,
+        "ms": 84
+      },
+      {
+        "at": 3987.8999996185303,
+        "ms": 64
+      }
+    ],
+    "method": "Single fresh offline fictional resident per size, actual native4sArrowRight keyboard movement at all sizes for comparable render windows (not a touch-input timing test) and15000msready bound. Chrome fine-pointerdesktop/coarse-touchphone; no interception/clock/stock/position injection. RequestAnimationFrame intervals measure browser callbacks, not guaranteed presented game frames, and cover the declared movement window; may include stalls/collision. Game metrics include10Hzidle and must not be treated as continuous FPS. Not20rendered players, physical-device/WAN/hosted proof."
+  },
+  {
+    "viewport": {
+      "name": "phone360",
+      "width": 360,
+      "height": 640,
+      "touch": true
+    },
+    "readyMs": 1127.018250000001,
+    "reload": {
+      "ok": true,
+      "ms": 701.1692079999993
+    },
+    "rafGapP95Ms": 16.700000000000728,
+    "rafSamples": 241,
+    "nativeDisplacementWorldUnits": 20.082500000000003,
+    "browserErrors": [],
+    "networkErrors": [],
+    "apiRequests": [],
+    "movementWindow": {
+      "start": 1178.1999998092651,
+      "end": 5190.099999427795
+    },
+    "longTasks": [
+      {
+        "at": 156,
+        "ms": 150
+      },
+      {
+        "at": 967.5,
+        "ms": 53
+      },
+      {
+        "at": 1021.6999998092651,
+        "ms": 99
+      }
+    ],
+    "method": "Single fresh offline fictional resident per size, actual native4sArrowRight keyboard movement at all sizes for comparable render windows (not a touch-input timing test) and15000msready bound. Chrome fine-pointerdesktop/coarse-touchphone; no interception/clock/stock/position injection. RequestAnimationFrame intervals measure browser callbacks, not guaranteed presented game frames, and cover the declared movement window; may include stalls/collision. Game metrics include10Hzidle and must not be treated as continuous FPS. Not20rendered players, physical-device/WAN/hosted proof."
+  }
+]

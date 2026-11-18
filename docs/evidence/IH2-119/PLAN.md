@@ -1,6 +1,8 @@
+> Historical pre-implementation plan.IH2-119 is now accepted; see [current report](REPORT.md).
+
 # A first playable woodland outing
 
-Queued after118, not implemented. The [November17 contract](https://github.com/dadbod87/idle-hands-2/blob/9cc9c52a94eb0928bcc148b146da6899039540c3/docs/idle-hands-2/design/OUTING_INTEGRATION_CONTRACT.md) and [hands-on rehearsal](https://github.com/dadbod87/idle-hands-2/tree/2a398adb097fcc892cf8ffc0bcb3cf571c6832fe/tools/woodland-rehearsal) justify a limited actual-game prototype and Nick's local trial. They do not establish replay enjoyment, human cooperation or a finished three-to-five-minute session. Do not merge the design branch wholesale.
+Queued after118, not implemented. The [November 17 contract](https://github.com/dadbod87/idle-hands-2/blob/9cc9c52a94eb0928bcc148b146da6899039540c3/docs/idle-hands-2/design/OUTING_INTEGRATION_CONTRACT.md) and [hands-on rehearsal](https://github.com/dadbod87/idle-hands-2/tree/2a398adb097fcc892cf8ffc0bcb3cf571c6832fe/tools/woodland-rehearsal) justify a limited actual-game prototype and Nick's local trial. They do not establish replay enjoyment, human cooperation or a finished three-to-five-minute session. Do not merge the design branch wholesale.
 
 Use existing outskirts space before expanding the city again. Give the resident a clear way home, two readable route conditions, one visible hands-on repair and a private journal outcome. Borrowed brace/rope are temporary activity choices, distinct from owned equipment. Exchange freely, take an open detour or leave unfinished without losing ordinary progress. An unfinished departure is never a successful repair. Finishing must be possible alone with both production lanes busy, full stores and completed starter collections.
 

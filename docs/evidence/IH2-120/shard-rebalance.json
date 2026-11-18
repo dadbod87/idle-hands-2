@@ -1,0 +1,37 @@
+{
+  "basisRun": 44205543243,
+  "initialGroups": [
+    95,
+    93
+  ],
+  "proposedGroups": [
+    89,
+    99
+  ],
+  "movedOfflineSpecs": [
+    {
+      "file": "gathering-family.spec.ts",
+      "measuredSecondsRoundedLog": 9.8,
+      "from": 1,
+      "to": 2
+    },
+    {
+      "file": "gathering-study.spec.ts",
+      "measuredSecondsRoundedLog": 1.9,
+      "from": 1,
+      "to": 2
+    },
+    {
+      "file": "woodland-outing.spec.ts",
+      "measuredSecondsRoundedLog": 66.4,
+      "from": 1,
+      "to": 2
+    }
+  ],
+  "movedMeasuredSeconds": 78.1,
+  "disclosure": "Log durations rounded; balancing estimate is not a completed new-run timing. The three specs use independent browser-local/offline file galleries and do not mutate shared HTTP fixtures.",
+  "all188CasesPreserved": true,
+  "orderedSharedTownStarterHomesTrailFirstVisitStayInGroup2": true,
+  "sharedWoodlandAuthorityCaseStaysInGroup1": true,
+  "noWorkflowCapWorkerTimeoutWaitAssertionBrowserOrFixtureReduction": true
+}

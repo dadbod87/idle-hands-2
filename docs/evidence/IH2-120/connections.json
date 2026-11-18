@@ -1,0 +1,149 @@
+{
+  "method": "Three fresh processes per client, SELECT1 only. Node connect+query excludes module startup; parent wall includes startup/close. libpq SQL timing excludes most startup; Docker exec wall includes CLI/container process scheduling. Warm existing database/OS, not a cold boot. Query/connection5s and outer15s guards. No PostgreSQL restart/reset/configuration/stat reset or real-player access. URLs/passwords/command arguments omitted.",
+  "rows": [
+    {
+      "mode": "node24",
+      "run": 1,
+      "wallMs": 562.194625,
+      "code": 0,
+      "nodeDetail": {
+        "node": "v24.22.2",
+        "connectAndQueryMs": 54.165707999999995,
+        "value": 1
+      },
+      "libpqQueryMs": null,
+      "stdout": "{\"node\":\"v24.22.2\",\"connectAndQueryMs\":54.165707999999995,\"value\":1}\n",
+      "stderr": ""
+    },
+    {
+      "mode": "node24",
+      "run": 2,
+      "wallMs": 313.23770800000005,
+      "code": 0,
+      "nodeDetail": {
+        "node": "v24.22.2",
+        "connectAndQueryMs": 23.44004199999999,
+        "value": 1
+      },
+      "libpqQueryMs": null,
+      "stdout": "{\"node\":\"v24.22.2\",\"connectAndQueryMs\":23.44004199999999,\"value\":1}\n",
+      "stderr": ""
+    },
+    {
+      "mode": "node24",
+      "run": 3,
+      "wallMs": 324.09350000000006,
+      "code": 0,
+      "nodeDetail": {
+        "node": "v24.22.2",
+        "connectAndQueryMs": 30.679541999999998,
+        "value": 1
+      },
+      "libpqQueryMs": null,
+      "stdout": "{\"node\":\"v24.22.2\",\"connectAndQueryMs\":30.679541999999998,\"value\":1}\n",
+      "stderr": ""
+    },
+    {
+      "mode": "node26",
+      "run": 1,
+      "wallMs": 302.105125,
+      "code": 0,
+      "nodeDetail": {
+        "node": "v26.7.0",
+        "connectAndQueryMs": 26.66191699999999,
+        "value": 1
+      },
+      "libpqQueryMs": null,
+      "stdout": "{\"node\":\"v26.7.0\",\"connectAndQueryMs\":26.66191699999999,\"value\":1}\n",
+      "stderr": ""
+    },
+    {
+      "mode": "node26",
+      "run": 2,
+      "wallMs": 126.33033300000007,
+      "code": 0,
+      "nodeDetail": {
+        "node": "v26.7.0",
+        "connectAndQueryMs": 15.886125000000007,
+        "value": 1
+      },
+      "libpqQueryMs": null,
+      "stdout": "{\"node\":\"v26.7.0\",\"connectAndQueryMs\":15.886125000000007,\"value\":1}\n",
+      "stderr": ""
+    },
+    {
+      "mode": "node26",
+      "run": 3,
+      "wallMs": 139.78845900000005,
+      "code": 0,
+      "nodeDetail": {
+        "node": "v26.7.0",
+        "connectAndQueryMs": 24.320000000000007,
+        "value": 1
+      },
+      "libpqQueryMs": null,
+      "stdout": "{\"node\":\"v26.7.0\",\"connectAndQueryMs\":24.320000000000007,\"value\":1}\n",
+      "stderr": ""
+    },
+    {
+      "mode": "host-libpq",
+      "run": 1,
+      "wallMs": 345.7369160000001,
+      "code": 0,
+      "nodeDetail": null,
+      "libpqQueryMs": 0.791,
+      "stdout": "Timing is on.\n1\nTime: 0.791 ms\n",
+      "stderr": ""
+    },
+    {
+      "mode": "host-libpq",
+      "run": 2,
+      "wallMs": 77.4325410000003,
+      "code": 0,
+      "nodeDetail": null,
+      "libpqQueryMs": 0.605,
+      "stdout": "Timing is on.\n1\nTime: 0.605 ms\n",
+      "stderr": ""
+    },
+    {
+      "mode": "host-libpq",
+      "run": 3,
+      "wallMs": 67.87095799999987,
+      "code": 0,
+      "nodeDetail": null,
+      "libpqQueryMs": 2.248,
+      "stdout": "Timing is on.\n1\nTime: 2.248 ms\n",
+      "stderr": ""
+    },
+    {
+      "mode": "container-libpq",
+      "run": 1,
+      "wallMs": 750.1640420000002,
+      "code": 0,
+      "nodeDetail": null,
+      "libpqQueryMs": 1.905,
+      "stdout": "Timing is on.\n1\nTime: 1.905 ms\n",
+      "stderr": ""
+    },
+    {
+      "mode": "container-libpq",
+      "run": 2,
+      "wallMs": 235.53137499999988,
+      "code": 0,
+      "nodeDetail": null,
+      "libpqQueryMs": 0.858,
+      "stdout": "Timing is on.\n1\nTime: 0.858 ms\n",
+      "stderr": ""
+    },
+    {
+      "mode": "container-libpq",
+      "run": 3,
+      "wallMs": 157.14195799999996,
+      "code": 0,
+      "nodeDetail": null,
+      "libpqQueryMs": 0.309,
+      "stdout": "Timing is on.\n1\nTime: 0.309 ms\n",
+      "stderr": ""
+    }
+  ]
+}

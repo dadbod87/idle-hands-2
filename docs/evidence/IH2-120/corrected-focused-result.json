@@ -1,0 +1,14 @@
+{
+  "stats": {
+    "total": 5,
+    "expected": 5,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "errors": [],
+  "runtime": "v24.22.2",
+  "browser": "local Chrome",
+  "scope": "All3home-builders and2residential-life cases; not a second full188execution"
+}

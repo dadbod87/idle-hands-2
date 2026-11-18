@@ -272,7 +272,7 @@ Owner likes the neighborhood and requests distinct exterior sizes, varied yard d
 
 ## November13 —110source acceptance and next coherent slice
 
-PR41/main98d4d02 passes exact-head/main418system/146browser/all4jobs plus raw artifacts and preserved protected/client/source proof. Close110candidate task. Existing208game/all active server/art/migrations stay exact109, so no unnecessary accepted-service restart.111integrates a complete playable café, not removal of test guards or partial schema.112housing design remains discoverable and unimplemented. Documentation-only closeout/backups receive66task/10tracker/40pinned/whitespace checks without an unnecessary hosted full rerun; exact source CI claims remain candidate/main only.
+PR41/main98d4d02 passes exact-head/main418system/146browser/all fourjobs plus raw artifacts and preserved protected/client/source proof. Close110candidate task. Existing208game/all active server/art/migrations stay exact109, so no unnecessary accepted-service restart.111integrates a complete playable café, not removal of test guards or partial schema.112housing design remains discoverable and unimplemented. Documentation-only closeout/backups receive66task/10tracker/40pinned/whitespace checks without an unnecessary hosted full rerun; exact source CI claims remain candidate/main only.
 
 ## 2026-11-13 —111coherent café registration
 
@@ -281,7 +281,7 @@ Register root3/garden4/protocol6 with the same native key/lifetime lease and add
 
 ## November13 —111source and actual preview acceptance
 
-PR43/main056c3793 accepted after PR43522020468 and main43523926478, all4jobs each431system/153browser(77+76), zero skips/flakes/errors and exact214client/raw artifacts. Actual local4175/localhost4176/API6 refreshed with the same signed Tour, old13tables/allfields/keys/sixchecksums preserved; additive seventh migration only. Playable café menus, safe saves, confirmed rewards and conserved teapot allocation accepted. No public/cloud game launch. Next112housing variety. [Report](evidence/IH2-111/REPORT.md).
+PR43/main056c3793 accepted after PR43522020468 and main43523926478, all fourjobs each431system/153browser(77+76), zero skips/flakes/errors and exact214client/raw artifacts. Actual local4175/localhost4176/API6 refreshed with the same signed Tour, old13tables/allfields/keys/sixchecksums preserved; additive seventh migration only. Playable café menus, safe saves, confirmed rewards and conserved teapot allocation accepted. No public/cloud game launch. Next112housing variety. [Report](../evidence/IH2-111/REPORT.md).
 
 Close111;112housing design is next. Keep café interior, real identity/cloud launch and spending outside this task. Docs-only closeout uses local plan/pinned/diff checks; runtime CI claims apply to candidate/main.
 
@@ -314,4 +314,10 @@ PR48/mainc4b275586bc652111493ed926591f4932527cf19 passed exact474/176PR/main and
 
 ## November17 — saved homes accepted, truthful guidance before the first outing
 
-PR49/mainff87e3a meets exact PR/main479/180/all4and original saved-preview gates. Static-only223client update leaves API8and all installed data/migrations/keys exact; same signed sessions survive.118removes exhausted-marker suggestions and demotes completed orientation, retaining current work/fresh teaching and all old authority. This small clarity repair does not fill the audited quiet-state gap. Queue119as a limited actual-game outing prototype under the existing November17contract: visible repair/private journal outcome only, free temporary tools/detour/unfinished return, no new resource/skill payout. Hands-on rehearsal supports testing the interaction, not a claim of replay enjoyment or human cooperation. Do not merge its design branch wholesale.
+PR49/mainff87e3a meets exact PR/main479/180/all fourand original saved-preview gates. Static-only223client update leaves API8and all installed data/migrations/keys exact; same signed sessions survive.118removes exhausted-marker suggestions and demotes completed orientation, retaining current work/fresh teaching and all old authority. This small clarity repair does not fill the audited quiet-state gap. Queue119as a limited actual-game outing prototype under the existing November17contract: visible repair/private journal outcome only, free temporary tools/detour/unfinished return, no new resource/skill payout. Hands-on rehearsal supports testing the interaction, not a claim of replay enjoyment or human cooperation. Do not merge its design branch wholesale.
+
+## November 17 —119 accepted finite woodland activity
+
+Agent-selected within the owner-authorized prototype: one pre-bridge East Commons outing with alternating wind/soft-bank conditions, free temporary tools/exchange/detour, visible repair/private journal and safe unfinished return. No resource/practice/furniture/capacity/public credit or forced wait. Outingv1is an independent versioned ledger; future content must explicitly forward-migrate it rather than reinterpret an active run. Protocol9/private additive table preserve every old ledger/writer. Short layouts uncover current controls; completion/journal precede the next condition.
+
+Explicit complete file groups balance diagnosed20-minute CI work without changing workers, coverage, waits or caps; unassigned/duplicate files refuse. Full exact PR/main gates remain unchanged. Human repeat enjoyment and physical-phone experience remain unproven; profile load variance underIH2-120 before selecting a performance fix or hosting claim. [119report](../evidence/IH2-119/REPORT.md).

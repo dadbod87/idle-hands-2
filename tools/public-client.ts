@@ -8,8 +8,8 @@ import {safeDiagnosticError} from './session-target.ts';
 let installed = false;
 export type ModelCounters = {requests: number; active: number; snapshots: number; snapshotActive: number;
   snapshotMaximum: number; streams: number; opened: number; invalidations: number; heartbeats: number;
-  bytes: number; accepted: number; errors: string[]; timings: Array<{route: string; ms: number; status: number}>};
-export function installPublicModels(base: string) {
+  bytes: number; accepted: number; errors: string[]; timings: Array<{route: string; ms: number; status: number; phase: string; atMs: number}>};
+export function installPublicModels(base: string, phase:()=>string=()=>'transport-test') {
   const url = new URL(base);
   assert.ok(url.origin === base && url.hostname === '127.0.0.1' && url.protocol === 'http:' &&
     Number(url.port) >= 1024 && ![4175,4176,4186,4188,55432,55434].includes(Number(url.port)), 'Explicit ephemeral loopback API only.');
@@ -18,7 +18,7 @@ export function installPublicModels(base: string) {
   const originals = new Map(keys.map(k => [k,Object.getOwnPropertyDescriptor(globalThis,k)]));
   const realFetch = globalThis.fetch, scope = new AsyncLocalStorage<Actor>(), actors: Actor[] = [];
   const pumps = new Set<Promise<void>>();
-  let closing = false;
+  let closing = false;const started=performance.now();
   const current = () => {const a=scope.getStore();assert.ok(a, 'Explicit model actor context required.');return a;};
   const target = (value: string) => {
     const u = new URL(value, base);
@@ -89,10 +89,10 @@ export function installPublicModels(base: string) {
   }
   const modelFetch:typeof fetch = async(input,init) => {
     assert.equal(typeof input,'string');const u=target(input as string);assert.notEqual(u.pathname,'/api/town/events','Streams use the SSE lane.');
-    const a=current(),c=a.counts,at=performance.now(),route=u.pathname.slice('/api/town/'.length),snapshot=route==='snapshot';
+    const a=current(),c=a.counts,at=performance.now(),route=u.pathname.slice('/api/town/'.length),snapshot=route==='snapshot',submittedPhase=phase();
     c.requests++;c.active++;if(snapshot){c.snapshots++;c.snapshotActive++;c.snapshotMaximum=Math.max(c.snapshotMaximum,c.snapshotActive);}
     let ended=false;
-    const end=(status:number)=>{if(ended)return;ended=true;c.active--;if(snapshot)c.snapshotActive--;c.timings.push({route,ms:performance.now()-at,status});};
+    const end=(status:number)=>{if(ended)return;ended=true;c.active--;if(snapshot)c.snapshotActive--;c.timings.push({route,ms:performance.now()-at,status,phase:submittedPhase,atMs:at-started});};
     try {
       const response=await realFetch(u,{...init,headers:a.cookieHeaders(init?.headers),signal:AbortSignal.any([AbortSignal.timeout(5000),...(init?.signal?[init.signal]:[])])});
       a.saveCookie(response);

@@ -1,6 +1,6 @@
 /** Optional disposable CI diagnostic. Not a normal game/server entry point. */
 import assert from 'node:assert/strict';
-import {mkdirSync,existsSync,writeFileSync,readFileSync} from 'node:fs';
+import {mkdirSync,existsSync,readdirSync,writeFileSync,readFileSync} from 'node:fs';
 import {createHash,randomUUID} from 'node:crypto';
 import {spawn,execFileSync} from 'node:child_process';
 import {resolve} from 'node:path';
@@ -19,13 +19,13 @@ export async function runPublicRefresh(options:Options){
  const target=sessionTarget(options.url,options.reset,{ci:options.ci,container:options.container});
  assert.ok(options.ci==='true'&&new URL(target.url).port==='5432','This independent study accepts the explicit ephemeral CI service only; no local Docker start.');
  assert.ok(options.mode==='smoke'||options.mode==='observation');assert.equal(process.version,'v24.22.2');
- const output=resolve(options.output);assert.ok(!existsSync(resolve(output,'public-refresh.json')),'Preserve prior observations; choose an unused output.');mkdirSync(output,{recursive:true});
+ const output=resolve(options.output);assert.ok(!existsSync(output)||readdirSync(output).length===0,'Preserve complete or partial observations; choose an unused output.');mkdirSync(output,{recursive:true});
  const fetchHttp=globalThis.fetch;let phase='setup',completed=false,failure:unknown,stage='setup';
  const resources=new SessionResources(()=>phase),mark=(next:string)=>{resources.capture();phase=next;},at=performance.now(),errors:string[]=[];
  let child:Awaited<ReturnType<typeof startSessionServer>>|undefined,environment:PublicModelEnvironment|undefined,browser=options.browser;
  let vite:ReturnType<typeof spawn>|undefined,viteExit:Promise<{code:number|null;signal:NodeJS.Signals|null}>|undefined,viteStopped:unknown,childStopped:unknown;
  let watchdog:ReturnType<typeof setTimeout>|undefined;
- const actors:PublicModelActor[]=[],contexts:BrowserContext[]=[],native:Array<{page:Page;invalidations:number;api:Array<{route:string;ms:number;status:number}>;errors:string[];metricsBefore?:unknown;metricsAfter?:unknown}>=[];
+ const actors:PublicModelActor[]=[],contexts:BrowserContext[]=[],native:Array<{page:Page;invalidations:number;api:Array<{route:string;ms:number;status:number;phase:string;atMs:number}>;errors:string[];metricsBefore?:unknown;metricsAfter?:unknown}>=[];
  const waves:unknown[]=[],stateConfirmations:unknown[]=[],visibleConfirmations:unknown[]=[],replays:unknown[]=[],lifecycle:unknown[]=[];
  let workloadAt=0,workloadEndedAt=0,checkpoint:unknown,idle:unknown,conservation:unknown,modelTotalsBeforeLifecycle:unknown,nativeTotalsBeforeLifecycle:unknown;
  const sourceFiles=['tools/public-refresh.ts','tools/public-client.ts','tools/public-refresh-fixture.ts','tools/session-child.ts','tools/session-process.ts','tools/session-target.ts','tools/session-resources.ts'];
@@ -36,16 +36,16 @@ export async function runPublicRefresh(options:Options){
   viteExit=new Promise(r=>{vite!.once('close',(code,signal)=>r({code,signal}));vite!.once('error',()=>r({code:null,signal:'SIGTERM'}));});
   await until(async()=>{try{return(await fetchHttp('http://127.0.0.1:4251/',{signal:AbortSignal.timeout(1000)})).ok;}catch{return false;}},'Isolated Vite startup');
   browser??=await chromium.launch({headless:true,args:['--mute-audio']});
-  environment=installPublicModels(child.base);
+  environment=installPublicModels(child.base,()=>phase);
   for(let n=0;n<18;n++)actors.push(environment.actor());
   await Promise.all(actors.map((a,n)=>a.run(()=>a.client.login('session-'+String(n).padStart(2,'0')))));
   for(const [n,size]of[{width:1440,height:900,touch:false},{width:360,height:640,touch:true}].entries()){
    const context=await browser.newContext({viewport:{width:size.width,height:size.height},hasTouch:size.touch});contexts.push(context);context.setDefaultTimeout(15000);context.setDefaultNavigationTimeout(15000);const page=await context.newPage();
-   const record={page,invalidations:0,api:[]as Array<{route:string;ms:number;status:number}>,errors:[]as string[],metricsBefore:undefined as unknown,metricsAfter:undefined as unknown};native.push(record);
-   page.on('pageerror',()=>record.errors.push('NATIVE_PAGE_ERROR'));
-   const starts=new Map<object,number>();page.on('request',r=>{if(new URL(r.url()).pathname.startsWith('/api/'))starts.set(r,performance.now());});
+   const record={page,invalidations:0,api:[]as Array<{route:string;ms:number;status:number;phase:string;atMs:number}>,errors:[]as string[],metricsBefore:undefined as unknown,metricsAfter:undefined as unknown};native.push(record);
+   page.on('pageerror',()=>record.errors.push('NATIVE_PAGE_ERROR'));page.on('console',m=>{if(m.type()==='error')record.errors.push('NATIVE_CONSOLE_ERROR');});page.on('response',r=>{if(r.status()>=400&&!new URL(r.url()).pathname.startsWith('/api/'))record.errors.push('NATIVE_ASSET_HTTP_ERROR');});
+   const starts=new Map<object,{at:number;phase:string}>();page.on('request',r=>{if(new URL(r.url()).pathname.startsWith('/api/'))starts.set(r,{at:performance.now(),phase});});
    page.on('requestfailed',r=>{const path=new URL(r.url()).pathname;if(path.startsWith('/api/')&&!path.endsWith('/events'))record.errors.push('NATIVE_FINITE_REQUEST_FAILED');starts.delete(r);});
-   page.on('requestfinished',async r=>{const path=new URL(r.url()).pathname,begin=starts.get(r);if(begin!==undefined){starts.delete(r);if(!path.endsWith('/events'))record.api.push({route:path.split('/').at(-1)!,ms:performance.now()-begin,status:(await r.response())?.status()??0});}});
+   page.on('requestfinished',async r=>{const path=new URL(r.url()).pathname,begin=starts.get(r);if(begin!==undefined){starts.delete(r);if(!path.endsWith('/events'))record.api.push({route:path.split('/').at(-1)!,ms:performance.now()-begin.at,phase:begin.phase,atMs:begin.at-at,status:(await r.response())?.status()??0});}});
    const cdp=await context.newCDPSession(page);await cdp.send('Network.enable');await cdp.send('Performance.enable');
    cdp.on('Network.eventSourceMessageReceived',e=>{if(e.eventName==='invalidate')record.invalidations++;});
    await page.goto('http://127.0.0.1:4251/?town=1');await page.getByRole('button',{name:'Session fixture '+(18+n),exact:true}).click();
@@ -105,7 +105,7 @@ export async function runPublicRefresh(options:Options){
   if(vite&&viteExit){vite.kill('SIGTERM');let timer:ReturnType<typeof setTimeout>|undefined;try{viteStopped=await Promise.race([viteExit,new Promise<never>((_,reject)=>{timer=setTimeout(()=>{vite!.kill('SIGKILL');reject(Error('Static process cleanup timeout'));},5000);})]);}catch(error){failure??=error;completed=false;errors.push('STATIC_CLEANUP_FAILED');}finally{if(timer)clearTimeout(timer);}}
   if(child)try{const stopped=await child.stop(completed);childStopped=stopped;if(completed){assert.ok(stopped.report.completed&&stopped.report.traceComplete);assert.equal(stopped.report.observerIdleSubmissions,0);assert.deepEqual(stopped.report.observerErrors,[]);assert.equal(stopped.report.resources.dropped,0);assert.equal(stopped.exit.code,0);assert.equal(stopped.forceTerminated,false);}}catch(error){failure??=error;completed=false;errors.push('SERVER_CLEANUP_FAILED');}
   const timings=actors.flatMap(a=>a.counts.timings).concat(native.flatMap(n=>n.api));
-  const budgets=Object.fromEntries(['command','snapshot'].map(route=>{const values=timings.filter(t=>t.route===route).map(t=>t.ms),stats=distribution(values);return[route,{...stats,p95Under500:stats.p95<500,eachMissMs:values.filter(v=>v>=500)}];}));
+  const budgets=Object.fromEntries(['command','snapshot'].map(route=>{const values=timings.filter(t=>t.route===route&&t.phase==='load').map(t=>t.ms),stats=distribution(values);return[route,{...stats,p95Under500:stats.p95<500,eachMissMs:values.filter(v=>v>=500)}];}));
   const report={method:'Two native headless Chromium pages plus18actual TownClient protocol models, not20rendered clients, physical phones, WAN or hosted capacity. Real API/cookies/SSE; no intercepted confirmations. Explicit synthetic historical radishes/kits/feet before timing. Model visibility is controlled; native reload is real. Confirmation timings are observed accepted state/DOM text, not exact database-commit or presented-frame timestamps. CPU/RSS/event loop: API child and driver separated; browser CDP is page main-thread cumulative metrics, not Chrome total CPU/RSS. Diagnostic observer/automation/co-located scheduling overhead retained. No original UO assets or game runtime changes.',
    mode:options.mode,completed:completed&&!failure,stage,errorCode:failure?safeDiagnosticError(failure):null,errors,provenance,elapsedMs:performance.now()-at,
    workloadMs:workloadAt&&workloadEndedAt?workloadEndedAt-workloadAt:null,fixedObservationMs:options.mode==='observation'?180000:null,sourceSchema:TOWN_SCHEMA,

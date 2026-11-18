@@ -1,12 +1,12 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtempSync, existsSync} from 'node:fs';
+import {mkdtempSync, existsSync, mkdirSync, writeFileSync, readFileSync, rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {setTimeout as sleep} from 'node:timers/promises';
 import {sessionTarget} from '../tools/session-target.ts';
 import {startSessionServer} from '../tools/session-process.ts';
-import {runSessionProfile} from '../tools/session-profile.ts';
+import {runSessionProfile, consumeSessionStream} from '../tools/session-profile.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 
 test('session diagnostic refuses protected, remote and mismatched targets before spawn or output', async () => {
@@ -25,13 +25,31 @@ test('session diagnostic refuses protected, remote and mismatched targets before
   assert.throws(() => sessionTarget(valid.replace('55434', '5432'), '1', {ci: 'false', container: 'a'.repeat(64)}));
   assert.throws(() => sessionTarget('invalid PRIVATE_SENTINEL', '1', options), error =>
     error instanceof Error && !String(error).includes('PRIVATE_SENTINEL'));
-  const output = join(mkdtempSync(join(tmpdir(), 'ih2-session-refuse-')), 'not-created');
-  await assert.rejects(() => startSessionServer({url: valid.replace('55434', '55432'), reset: '1', ...options, output}));
-  await assert.rejects(() => runSessionProfile({url: valid.replace('55434', '55432'), reset: '1', ...options, output}));
-  assert.equal(existsSync(output), false);
+  const temporary = mkdtempSync(join(tmpdir(), 'ih2-session-refuse-')), output = join(temporary, 'not-created');
+  try {
+    await assert.rejects(() => startSessionServer({url: valid.replace('55434', '55432'), reset: '1', ...options, output}));
+    await assert.rejects(() => runSessionProfile({url: valid.replace('55434', '55432'), reset: '1', ...options, output}));
+    assert.equal(existsSync(output), false);
+    mkdirSync(output); writeFileSync(join(output, 'session-profile.json'), 'PRIOR_EVIDENCE');
+    await assert.rejects(() => runSessionProfile({url: valid, reset: '1', ...options, output}), /unused diagnostic output/);
+    assert.equal(readFileSync(join(output, 'session-profile.json'), 'utf8'), 'PRIOR_EVIDENCE');
+  } finally {rmSync(temporary, {recursive: true, force: true});}
 });
 
 const testUrl = process.env.IH2_TEST_DATABASE_URL;
+test('session stream monitor distinguishes a silent EOF from deliberate closing and counts each heartbeat', async () => {
+  const frame = new TextEncoder().encode('event: presence\ndata: []\n\n: heartbeat\n\n');
+  const stream = () => new ReadableStream<Uint8Array>({start(c) {c.enqueue(frame); c.close();}});
+  const errors: string[] = []; let heartbeats = 0, presence = 0, bytes = 0;
+  const handlers = {bytes: (n: number) => {bytes += n;}, heartbeat: () => {heartbeats++;},
+    presence: (peers: Array<{id: string}>) => {assert.deepEqual(peers, []); presence++;}, error: (code: string) => {errors.push(code);}};
+  await consumeSessionStream(stream(), () => false, handlers);
+  assert.deepEqual(errors, ['UNEXPECTED_SSE_EOF']); assert.equal(heartbeats, 1); assert.equal(presence, 1); assert.equal(bytes, frame.length);
+  errors.length = 0;
+  await consumeSessionStream(stream(), () => true, handlers);
+  assert.deepEqual(errors, []); assert.equal(heartbeats, 2);
+});
+
 test('private diagnostic child has distinct resources and drains an actual isolated HTTP stream', {skip: !testUrl, timeout: 45000}, async () => {
   const url = new URL(testUrl!); assert.equal(url.pathname, '/ih2_test'); url.pathname = '/ih2_load';
   const output = 'test-results/server/session-child-smoke';

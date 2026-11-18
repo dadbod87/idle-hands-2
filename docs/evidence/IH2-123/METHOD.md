@@ -15,6 +15,12 @@ The fixed300second workload, five waves and final30second idle are in PLAN. A ch
 3. A direct import under the pinned Node24.22.2 identified ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX: the new sampler's constructor parameter property was not supported in strip-only mode. It was replaced with an explicit field/assignment. The import, typecheck and smoke2/2 then passed.
 4. After the full driver, stronger malformed-target guard and exactCI flag were added, typecheck and focused smoke2/2 passed again, zero skipped. The probe used one ordinary new fictional login and a real stream in disposableih2_load, sampled distinct child resources and proved cleanup. It is deliberately not the five-minute study.
 
-All initial/second/third/current logs remain under the dated local artifact folder. Required full local/exact-source/main checks and the three measurements are still pending at this candidate checkpoint. Full-suite results cannot be inferred from focused success.
+All initial/second/third/current logs remain under the dated local artifact folder. The stronger typecheck and focused3/3 now pass, including silent-EOF/deliberate-close observations and evidence-overwrite refusal. Full local193browser checks pass in the existing CI profile; initial505domain passes. Final506domain, three stronger-version measurements and exact-source/main checks remain pending at this checkpoint. Full-suite results cannot be inferred from focused success.
 
 Finite driver latency spans request start through complete body text, before its JSON parse. Child HTTP spans end at response finish; these are separate quantities. Resource event-loop figures cover the instrumented process after imports, including setup/verification/cleanup, not rendered FPS.
+
+## Connection-observation amendment
+
+The initial three f245a148runs completed with all original targets/met checks. Review found that silent EOF and aggregate heartbeats could miss individual stream loss; see CONNECTION_REVIEW.md. Stronger per-connection observations and one additional pure-stream test are being validated before three final-version runs. Initial reports remain retained. The first postprocessing pass also rejected Docker nanosecond timestamps; the reader now normalizes fractional precision, without rerunning/changing any measurement.
+
+Existing full browser regressions use separately labelled stock/elapsed synthetic fixtures (including the existing48-kit actors). The timed session studies use ordinary zero-progress only. Neither touches real or normal saved-player progress.

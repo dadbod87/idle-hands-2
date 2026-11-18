@@ -1,7 +1,7 @@
 /** Fixed five-minute opt-in diagnostic. Never changes normal saved previews. */
 import assert from 'node:assert/strict';
 import {randomUUID, createHash} from 'node:crypto';
-import {mkdirSync, readFileSync, writeFileSync} from 'node:fs';
+import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {performance} from 'node:perf_hooks';
 import {setTimeout as delay} from 'node:timers/promises';
@@ -18,10 +18,37 @@ import {SessionResources} from './session-resources.ts';
 
 type Actor = {
   id: string; cookie: string; snapshot: TownSnapshot; position: TownPosition;
-  peers: Array<{id: string}> | null; lastCommand?: Record<string, unknown>;
+  peers: Array<{id: string}> | null; heartbeats: number; lastCommand?: Record<string, unknown>;
   stream?: {abort: AbortController; pump: Promise<void>};
 };
 type Options = {url: string | undefined; reset: string | undefined; container?: string; ci?: string; output: string};
+
+/** A clean EOF is still a lost connection unless this client deliberately closed. */
+export async function consumeSessionStream(body: ReadableStream<Uint8Array>, closing: () => boolean,
+  handlers: {bytes: (n: number) => void; heartbeat: () => void;
+    presence: (peers: Array<{id: string}>) => void; error: (code: string) => void}) {
+  const reader = body.getReader(), decoder = new TextDecoder(); let buffer = '';
+  try {
+    while (true) {
+      const part = await reader.read();
+      if (part.done) {if (!closing()) handlers.error('UNEXPECTED_SSE_EOF'); break;}
+      handlers.bytes(part.value.byteLength); buffer += decoder.decode(part.value, {stream: true});
+      assert.ok(buffer.length < 65536, 'Bounded diagnostic SSE parser.');
+      let end: number;
+      while ((end = buffer.indexOf('\n\n')) >= 0) {
+        const frame = buffer.slice(0, end); buffer = buffer.slice(end + 2);
+        if (frame.startsWith(':')) {handlers.heartbeat(); continue;}
+        const name = frame.match(/^event: (.+)$/m)?.[1], data = frame.match(/^data: (.+)$/m)?.[1];
+        if (name === 'presence' && data) {
+          const peers = JSON.parse(data);
+          assert.ok(Array.isArray(peers) && peers.every(p => p && typeof p.id === 'string'));
+          handlers.presence(peers);
+        }
+      }
+    }
+  } catch (error) {if (!closing()) handlers.error(safeDiagnosticError(error));}
+  finally {await reader.cancel().catch(() => {});}
+}
 
 export async function runSessionProfile(options: Options) {
   const target = sessionTarget(options.url, options.reset, {ci: options.ci, container: options.container});
@@ -32,7 +59,11 @@ export async function runSessionProfile(options: Options) {
   const provenance = {head: execFileSync('git', ['rev-parse', 'HEAD'], {cwd: root, encoding: 'utf8'}).trim(),
     workingTreeCandidate: true, files: Object.fromEntries(provenanceFiles.map(name =>
       [name, createHash('sha256').update(readFileSync(new URL('../' + name, import.meta.url))).digest('hex')]))};
-  const output = resolve(options.output); mkdirSync(output, {recursive: true});
+  const output = resolve(options.output);
+  if (['session-profile.json', 'server-process.json', 'load-profile.json', 'wave-progress.json'].some(name => existsSync(resolve(output, name)))) {
+    throw Error('Choose an unused diagnostic output directory; previous evidence is preserved.');
+  }
+  mkdirSync(output, {recursive: true});
   const abort = new AbortController();
   const watchdog = setTimeout(() => abort.abort(), 330000); // reserves30seconds for bounded cleanup
   let phase = 'setup', stage = 'setup', app: Awaited<ReturnType<typeof startSessionServer>> | undefined;
@@ -100,25 +131,10 @@ export async function runSessionProfile(options: Options) {
         signal: AbortSignal.any([controller.signal, abort.signal])});
     } finally {clearTimeout(timer);}
     timing('eventsHeaders', at); assert.equal(response.status, 200);
-    const reader = response.body!.getReader();
-    const pump = (async () => {
-      let buffer = ''; const decoder = new TextDecoder();
-      try {
-        while (true) {
-          const part = await reader.read(); if (part.done) break;
-          sse.bytes += part.value.byteLength; buffer += decoder.decode(part.value, {stream: true});
-          assert.ok(buffer.length < 65536, 'Bounded diagnostic SSE parser.');
-          let end: number;
-          while ((end = buffer.indexOf('\n\n')) >= 0) {
-            const frame = buffer.slice(0, end); buffer = buffer.slice(end + 2);
-            if (frame.startsWith(':')) {sse.heartbeats++; continue;}
-            const name = frame.match(/^event: (.+)$/m)?.[1], data = frame.match(/^data: (.+)$/m)?.[1];
-            if (name === 'presence' && data) {actor.peers = JSON.parse(data); sse.presence++;}
-          }
-        }
-      } catch (error) {if (!controller.signal.aborted && !abort.signal.aborted) sse.errors.push(safeDiagnosticError(error));}
-      finally {await reader.cancel().catch(() => {});}
-    })();
+    const pump = consumeSessionStream(response.body!, () => controller.signal.aborted || abort.signal.aborted, {
+      bytes: n => {sse.bytes += n;}, heartbeat: () => {actor.heartbeats++; sse.heartbeats++;},
+      presence: peers => {actor.peers = peers; sse.presence++;}, error: code => {sse.errors.push(code);},
+    });
     actor.stream = {abort: controller, pump};
   }
   async function disconnect(actor: Actor) {
@@ -134,7 +150,7 @@ export async function runSessionProfile(options: Options) {
       const {response, data} = await request('login', undefined, {fixtureId: id});
       assert.equal(data.snapshot.playerId, id);
       assert.deepEqual(data.snapshot.workshop.inventory, {scrap: 0, timber: 0, supplies: 0});
-      return {id, cookie: response.headers.get('set-cookie')!.split(';')[0], snapshot: data.snapshot, position: data.snapshot.position, peers: null};
+      return {id, cookie: response.headers.get('set-cookie')!.split(';')[0], snapshot: data.snapshot, position: data.snapshot.position, peers: null, heartbeats: 0};
     })));
     await Promise.all(actors.map(events));
     await until(() => actors.every(a => a.peers?.length === 19), 'Initial public presence19peers.');
@@ -193,12 +209,19 @@ export async function runSessionProfile(options: Options) {
     }
     await sleep(workloadAt + 270000 - performance.now());
     const before = await app.phase('idle'), presenceBefore = sse.presence, heartbeatsBefore = sse.heartbeats;
+    const individualBefore = actors.map(a => a.heartbeats);
+    assert.equal(before.server.transport.activeStreams, 20); assert.equal(before.server.transport.activeRequests, 0);
     mark('idle'); const idleAt = performance.now(); await sleep(30000);
     const after = await app.metrics();
     workloadFinishedAt = performance.now();
     idle = {elapsedMs: performance.now() - idleAt, sqlQueries: (after.sql.idle ?? 0) - (before.sql.idle ?? 0),
-      presenceEvents: sse.presence - presenceBefore, heartbeats: sse.heartbeats - heartbeatsBefore};
+      presenceEvents: sse.presence - presenceBefore, heartbeats: sse.heartbeats - heartbeatsBefore,
+      individualHeartbeats: actors.map((a, i) => a.heartbeats - individualBefore[i]),
+      activeStreamsBefore: before.server.transport.activeStreams, activeStreamsAfter: after.server.transport.activeStreams,
+      activeRequestsBefore: before.server.transport.activeRequests, activeRequestsAfter: after.server.transport.activeRequests};
     assert.equal(idle.sqlQueries, 0); assert.equal(idle.presenceEvents, 0); assert.ok(idle.heartbeats >= 20);
+    assert.ok(idle.individualHeartbeats.every((n: number) => n >= 1));
+    assert.equal(idle.activeStreamsAfter, 20); assert.equal(idle.activeRequestsAfter, 0);
     assert.deepEqual(sse.errors, []); assert.equal(waves.length, 5);
     mark('verification'); await app.phase('verification'); conservation = await app.verify();
     assert.equal(conservation.all17TablesEveryFieldMatchCheckpoint, true);
@@ -224,6 +247,7 @@ export async function runSessionProfile(options: Options) {
         assert.equal(stopped.exit.code, 0); assert.equal(stopped.forceTerminated, false);
         assert.equal(server.completed, true); assert.equal(server.cleanup.completed, true);
         assert.equal(server.traceComplete, true); assert.equal(server.observerIdleSubmissions, 0);
+        assert.equal(server.server.sseBackpressure, 0); assert.equal(server.server.sseExpired, 0); assert.equal(server.server.sseOversize, 0);
         assert.deepEqual(server.observerErrors, []); assert.equal(driver.dropped, 0); assert.equal(server.resources.dropped, 0);
       } catch (error) {failure ??= error; failureStage ??= 'completion-verification'; completed = false;}
     }

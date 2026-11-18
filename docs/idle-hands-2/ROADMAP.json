@@ -2141,7 +2141,11 @@
       "evidence": [
         "docs/evidence/IH2-123/PLAN.md",
         "docs/evidence/IH2-123/METHOD.md",
-        "docs/evidence/IH2-123/focused-checks.json"
+        "docs/evidence/IH2-123/focused-checks.json",
+        "docs/evidence/IH2-123/CONNECTION_REVIEW.md",
+        "docs/evidence/IH2-123/INITIAL_OBSERVATIONS.md",
+        "docs/evidence/IH2-123/initial-measurements.json",
+        "docs/evidence/IH2-123/REPRODUCE.md"
       ],
       "owner_branch": "perf/bounded-session-churn"
     }

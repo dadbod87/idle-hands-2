@@ -1,0 +1,17 @@
+{
+  "run": 44209296179,
+  "attempt": 1,
+  "sha": "10351259497400a3a5d84ddb004a6149bf4f2dc8",
+  "accepted": false,
+  "domainPassed": 495,
+  "browserGroup2Passed": 99,
+  "browserGroup1PassedBeforeCancellation": 85,
+  "browserGroup1Total": 89,
+  "noFinalGroup1Report": true,
+  "diagnosis": "Ubuntu mirror fetched32.1MB in4min15s at126kB/s; browser setup293s, Chromium downloads themselves about8s. No test assertion failed before20mincap cancellation.",
+  "action": "One confirmed-infrastructure retry of failed jobs on the exact same source head; retain passing exact-head jobs and all failed-attempt evidence. No source/config/cap/dependency/wait change.",
+  "noBlindRerun": true,
+  "billingCycleUsageUnknown": true,
+  "publicStandardUbuntu": true,
+  "noPaidConfiguration": true
+}

@@ -1,0 +1,17 @@
+{
+  "classification": "Fresh candidate full browser captures, independently inspected by Terra6.1. Source client exactly accepted119; still review does not establish interaction or duration. Serial reproduction pending before acceptance.",
+  "black4kDayPondObserved": true,
+  "rendered2kDayAnd4kNightObserved": true,
+  "sourceCaseCapturesImmediatelyAfterResize": true,
+  "noCauseOrTransientClaim": true,
+  "images": {
+    "life-2k-square.png": "96cb7d1884461007a7ce17111c164b62ebf525490efdb224130311ddebe43705",
+    "notebook-phone360.png": "fadbc0df866674b39b71ee82b31f2d0157b1f34dab0d85580486357ada9c3053",
+    "notebook-phone200.png": "0bcc0389a3edfa72f9e1104f43eb665980ade502746a864c602b674b653278ad",
+    "notebook-short200.png": "ba55340bb1668ac92faeed8e38a1c10bdda6560695488164837f65db501fe39b",
+    "life-4k-night.png": "197c5d6c86ab4c86eb6a6281e3f5fd1dca26e9ae004fd2e0ff3070870b142079",
+    "life-4k-pond.png": "f6d30f3dee475c8620e1de027e3bbf71340170516dea56eda36cb9c9db71a258",
+    "life-2k-pond.png": "365a7a753a4d34a3a54e5f2d4edc01f6933651ad488405416e005bd3c11b830b",
+    "notebook-phone320.png": "e5e4085f355fa886e0b3dc8201588e4a51b76451cc8e7fcb0e303aaeb8d8ae83"
+  }
+}

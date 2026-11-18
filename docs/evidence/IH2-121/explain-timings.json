@@ -1,0 +1,89 @@
+{
+  "classification": "Read-only EXPLAIN ANALYZE on the existing isolated20-resident ih2_load fixture after the failed full run. No planner/settings/stats reset, writes or protected data. Statement includes planning/execution plus JSON result callbacks. Single sequential client, not the concurrent command workload or exclusive cause proof.",
+  "samples": [
+    {
+      "planningMs": 18.723,
+      "executionMs": 8.509,
+      "callbackMs": 60.27212499999996,
+      "sharedHitBlocks": 209,
+      "sharedReadBlocks": 0
+    },
+    {
+      "planningMs": 1.845,
+      "executionMs": 1.284,
+      "callbackMs": 9.320958000000019,
+      "sharedHitBlocks": 177,
+      "sharedReadBlocks": 0
+    },
+    {
+      "planningMs": 0.874,
+      "executionMs": 1.001,
+      "callbackMs": 5.860000000000014,
+      "sharedHitBlocks": 177,
+      "sharedReadBlocks": 0
+    },
+    {
+      "planningMs": 0.678,
+      "executionMs": 0.674,
+      "callbackMs": 6.203499999999963,
+      "sharedHitBlocks": 177,
+      "sharedReadBlocks": 0
+    },
+    {
+      "planningMs": 0.74,
+      "executionMs": 0.984,
+      "callbackMs": 4.724042000000054,
+      "sharedHitBlocks": 177,
+      "sharedReadBlocks": 0
+    },
+    {
+      "planningMs": 0.534,
+      "executionMs": 0.596,
+      "callbackMs": 3.9850830000000315,
+      "sharedHitBlocks": 177,
+      "sharedReadBlocks": 0
+    },
+    {
+      "planningMs": 0.646,
+      "executionMs": 0.583,
+      "callbackMs": 3.795749999999998,
+      "sharedHitBlocks": 177,
+      "sharedReadBlocks": 0
+    },
+    {
+      "planningMs": 0.882,
+      "executionMs": 0.607,
+      "callbackMs": 4.215874999999983,
+      "sharedHitBlocks": 177,
+      "sharedReadBlocks": 0
+    },
+    {
+      "planningMs": 0.684,
+      "executionMs": 0.662,
+      "callbackMs": 8.355542000000014,
+      "sharedHitBlocks": 177,
+      "sharedReadBlocks": 0
+    },
+    {
+      "planningMs": 0.67,
+      "executionMs": 0.684,
+      "callbackMs": 4.808042,
+      "sharedHitBlocks": 177,
+      "sharedReadBlocks": 0
+    },
+    {
+      "planningMs": 0.564,
+      "executionMs": 0.55,
+      "callbackMs": 4.001207999999906,
+      "sharedHitBlocks": 177,
+      "sharedReadBlocks": 0
+    },
+    {
+      "planningMs": 0.853,
+      "executionMs": 0.722,
+      "callbackMs": 10.054709000000003,
+      "sharedHitBlocks": 177,
+      "sharedReadBlocks": 0
+    }
+  ]
+}

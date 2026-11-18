@@ -14,6 +14,7 @@ import {loadTown} from '../tools/load-town.ts';
 test('profile target and query categories reject protected routing and never retain SQL values',()=>{
  for(const url of ['postgres://u:p@127.0.0.1:55432/ih2_load','postgres://u:p@127.0.0.1:55434/ih2_preview','postgres://u:p@example.com/ih2_load','postgres://u:p@127.0.0.1:55434/ih2_load?port=55432'])assert.throws(()=>profileTarget(url));
  assert.equal(queryCategory("select * from ih2.players where id='PRIVATE_SENTINEL' for update"),'lock.row');
+ assert.equal(queryCategory("select /* coherent-town-snapshot */ 'PRIVATE_SENTINEL'"),'read.snapshot');
  assert.equal(queryCategory('select pg_advisory_xact_lock(123)'),'lock.advisory');assert.equal(queryCategory('COMMIT'),'transaction.commit');assert.equal(queryCategory('select $1::text'),'read.other');
  assert.throws(()=>diagnosticTarget('postgres://u:p@127.0.0.1:4175/ih2_load'));assert.throws(()=>diagnosticTarget('postgres://u:p@127.0.0.1:55432/ih2_load'));
  assert.equal(distribution([5,1,3]).p95,5);assert.deepEqual(distribution([]),{count:0,p50:0,p95:0,p99:0,max:0,sum:0});

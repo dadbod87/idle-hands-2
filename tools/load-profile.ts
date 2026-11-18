@@ -11,6 +11,7 @@ type Sample={kind:'sql'|'pool'|'http';phase:Phase;atMs:number;ms:number;request:
 export function distribution(values:number[]){const a=[...values].sort((a,b)=>a-b);const q=(p:number)=>a[Math.max(0,Math.ceil(a.length*p)-1)]??0;return{count:a.length,p50:q(.5),p95:q(.95),p99:q(.99),max:a.at(-1)??0,sum:a.reduce((n,v)=>n+v,0)};}
 export function queryCategory(text:string){
  const q=text.trim().toLowerCase();
+ if(q.startsWith('select /* coherent-town-snapshot */'))return'read.snapshot';
  if(q.startsWith('begin'))return'transaction.begin';if(q.startsWith('commit'))return'transaction.commit';if(q.startsWith('rollback'))return'transaction.rollback';
  if(q.includes('pg_advisory_xact_lock'))return'lock.advisory';
  if(q.includes('for update'))return'lock.row';

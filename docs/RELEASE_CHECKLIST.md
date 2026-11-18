@@ -1,3 +1,15 @@
+# November 17 — IH2-121 candidate ready for exact-source validation
+
+A coherent parameterized snapshot read replaces 15 sequential database calls while retaining authority, locks, strict validation, pool size and all game rules. Eight new comparison tests preserve full same-clock state, privacy, construction deadlines, numeric 26-home order and concurrent public updates. The original 20-client workload uses 2,540 rather than 5,620 load-phase queries. All ten measured runs preserve stock/receipts, idle silence, cleanup and durability; all failed budgets remain recorded. Delayed-link samples improve, but ordinary workstation results do not establish a consistent speedup.
+
+Local domain: 501/503 pass, with two unchanged 500 ms timing failures at 595.703/915.518 ms and zero skipped. Build/plan/pinned/whitespace pass. Full local browser 188/188 passes; after Terra found an immediate black 4K resize capture, serial sampling measured one black frame at 123 ms and painting by 195 ms. The same capture case now requires visible compositor pixels under its unchanged timeout; focused 1/1 and corrected Terra still review pass. All 188 identities remain, and final hosted full-suite validation is mandatory. All 232 compiled client files, 226 art files, source rules, nine migrations and lockfile remain unchanged.
+
+Exact final PR/main/raw and actual original-key/saved-session/API-only preview acceptance are pending. Normal previews still serve accepted 119. [Report](evidence/IH2-121/REPORT.md), [method](evidence/IH2-121/METHOD.md), [current source](idle-hands-2/CURRENT_SESSION.md). Earlier entries below are historical.
+
+# November17 —120 profiling accepted;121 queued
+
+PR52/main **1999f83b6a8b13e5fbdde81b003ba9af8b58bcc3** accepted after exact PR/main all4/raw495domain/188browser gates and read-only normal preservation.232game bytes, all17table fields/nine metadata/originalkeys/PIDs/464normal+125historical responses remain exact119. No runtime update/speedup claimed. [Report](evidence/IH2-120/REPORT.md), [current source/next121](idle-hands-2/CURRENT_SESSION.md). Earlier entries below are historical.
+
 # November 17 — IH2-120 profiling candidate in progress
 
 Isolated branch `perf/shared-loop-profile` in `work/idle-hands-2-performance`, over accepted119closeout ba10743/main ed1dc9d. Tools/tests/docs only; all232game bytes, client/server rules, nine migrations and normal saved previews remain unchanged. Seventeen backend measurements retain five500ms-budget failures; all conserve140unique/20replayed commands and zero idle SQL/cleanup. Controlled database-link latency amplifies pool pressure; single-resident render results are separate. No universal cause, hosted capacity or performance fix is claimed. Full exact-source gates pending. [Report](evidence/IH2-120/REPORT.md), [method](evidence/IH2-120/METHOD.md), [current handoff](idle-hands-2/handoffs/2026-11-17-performance-profile.md).121snapshot batching is queued, not implemented. Earlier entries below are historical.

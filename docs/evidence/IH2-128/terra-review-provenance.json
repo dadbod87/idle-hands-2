@@ -1,0 +1,24 @@
+{
+  "reviewer": "Existing Terra6.1visual agent",
+  "kind": "Read-only still review, synthetic CI fixtures; no interactive/device/audio acceptance",
+  "run": 44334931292,
+  "attempt": 1,
+  "sha": "8e444760d6a76c6ff9fbbd14d0ad103674424510",
+  "artifact": {
+    "name": "sequel-browser-evidence-3",
+    "id": 14442496538,
+    "createdAt": "2026-11-18T15:38:16Z",
+    "zipSha256": "e673a7837133bf9b2523f811fa8b63a25d448e43274d3f8d4268f60d9223df3d"
+  },
+  "screenshots": {
+    "neighborhood-registry-desktop.png": "01ffd4ec590e5959ef0e2d01031354ecdaa59a2bec08422b8c2fbf6aabf5ae66",
+    "neighborhood-registry-phone.png": "5f19610eb2dab8470683511f1650c07b970f243645d73720dd958db699098750",
+    "tools-desktop-journal.png": "73ce837444bcbc1ea47bd70e159f3f1b71eb561e908ec9e36d47ca374234d742",
+    "tools-phone360-journal.png": "acf358052add185780dfcb40d8988de7513dfca72e8fb0d833a9e3b6c59be610",
+    "tools-phone320-journal.png": "dd43842c8bf6cf7c63d6c27013f243ad9747398c997dbf3b7f3965b115cf4cfb",
+    "tools-phone200-journal.png": "301df70e8999c06aacc9236e848285e66f0d83765695d5163ff361a42c627a20",
+    "tools-short200-journal.png": "185686e6c4c6c945eb327755ec900d54f7908ddf57a1d41558b04528390e65a2",
+    "guidance-phone-journal.png": "4ef4e01a5df6ce071e2f80665a6c6b4bff791e54758fba93a62b5fe082cf958b"
+  },
+  "wholeRun": "Cancelled; group3passed54cases, group2passed66, domain520passed; group1incomplete. Review does not establish overall acceptance."
+}

@@ -1,0 +1,255 @@
+{
+  "status": "Standalone original audition candidate, not loaded by the game",
+  "created": "2026-11-18",
+  "creator": "Codex, for The Patron Group project",
+  "authorship": "Independent original notes, score, integer-phase synthesis and seeded noise. No copied melody, recording, sampled instrument or third-party soundfont. No UO/Stones assets imported.",
+  "rights": "Original project study assets. Existing original project illustrations reused byte-exact; no new third-party asset license or public-domain dedication is implied.",
+  "externalAssetPurchases": 0,
+  "runtimeServiceOrTelemetry": false,
+  "node": "v24.22.2",
+  "method": "22050Hz mono16-bit WAV; bounded fixed-phase approximate sine harmonics, authored beat/note data, seeded noise, short dry-read room taps, attenuation-only peak limit and zero edges. Numerical checks are not human listening or physical-device evidence.",
+  "sourceSha256": {
+    "src/design/audio-sketch.ts": "dfca094ae6ce70f60d4608020fc42849b6adce4b277a848642847be20ae3dd0a",
+    "src/design/audio-audition.ts": "1cef5739d747e5128020f563db95bf4981f5d2a22564756e797e6e2d5b7bc63c",
+    "tools/create-audio-study.ts": "20602a54f9ec477a0f3b5c44f976b44e2726df13ec2fb703bf23bf48eddb6d72",
+    "tools/audio-study-template/index.html": "0ca503b7fb984b6e114b49da10778d93cc5a40f0f137c2608c7fb6e99bbff13a",
+    "tools/audio-study-template/style.css": "f1ad79e7fa1933ddeda8eb1846b6173ddd6b5ec380cbb024e0a6bd49e4b0ea27",
+    "tools/audio-study-template/study.js": "5da97c45339ae94aa1f50b98628fc9cf0f08d2272becc53073937e6043bf1065",
+    "public/art/variety/building-cafe.svg": "29faeaae7b996735ae97b5e3e156f6900bd1247e19ef95f4c344212e4f7a5078",
+    "public/art/original/tree.svg": "82c1db67d3a80e7f198f917842190d5d63fcaec99b19833cddba1728369ae57e",
+    "public/art/housing/porch-house-2.svg": "e0912300447004133c5efcd7f424df86eea4ab7db4aa60788970b0445f3e6de7",
+    "package-lock.json": "8f7dc3240bd0c6a16108ceac9f12d549023c1f7da4b85fbb1af8f9940da342b7"
+  },
+  "wavBytes": 3988878,
+  "clips": [
+    {
+      "id": "town",
+      "kind": "original-music",
+      "place": "Town square",
+      "title": "Business as unusual",
+      "bpm": 78,
+      "bars": 8,
+      "rate": 22050,
+      "frames": 569230,
+      "seconds": 25.815419501133785,
+      "peak": 0.2199999988079071,
+      "rms": 0.06729208576528452,
+      "dc": -0.000001646123245591183,
+      "maximumAdjacentDelta": 0.03569662623340264,
+      "first": 0,
+      "last": 0,
+      "bytes": 1138504,
+      "sha256": "00d8900145315ebf545a228173a61d7cf52d04dd56c1e7d812545de7a977c348"
+    },
+    {
+      "id": "woodland",
+      "kind": "original-music",
+      "place": "Inkwood",
+      "title": "The trees have seniority",
+      "bpm": 66,
+      "bars": 8,
+      "rate": 22050,
+      "frames": 667915,
+      "seconds": 30.29092970521542,
+      "peak": 0.2199999988079071,
+      "rms": 0.0669008961822019,
+      "dc": -0.000002059720984905842,
+      "maximumAdjacentDelta": 0.0323802437633276,
+      "first": 0,
+      "last": 0,
+      "bytes": 1335874,
+      "sha256": "abd9a0f5b33d6e6d0dd4df7d9551fbbcd4d09bca8214023a010145d109deac40"
+    },
+    {
+      "id": "home",
+      "kind": "original-music",
+      "place": "Home & café",
+      "title": "Furniture, finally",
+      "bpm": 68,
+      "bars": 8,
+      "rate": 22050,
+      "frames": 649049,
+      "seconds": 29.435328798185942,
+      "peak": 0.2199999988079071,
+      "rms": 0.04303719599178814,
+      "dc": 4.821571373726625e-7,
+      "maximumAdjacentDelta": 0.04618376377038658,
+      "first": 0,
+      "last": 0,
+      "bytes": 1298142,
+      "sha256": "465f2f2659e171717a3ec77d60e58b3efee81bf9af39a61cbd59376041cbee0d"
+    },
+    {
+      "id": "door",
+      "kind": "original-accent",
+      "name": "Wooden door",
+      "rate": 22050,
+      "frames": 9041,
+      "seconds": 0.41002267573696144,
+      "peak": 0.1103779524564743,
+      "rms": 0.027223613019502546,
+      "dc": -0.0000762157694372767,
+      "maximumAdjacentDelta": 0.009367847815155983,
+      "first": 0,
+      "last": 0,
+      "bytes": 18126,
+      "sha256": "f39749b6f72d005b9d85b22c2ffbdc9afaa0f863d0cde74df37ca0e1b666824b"
+    },
+    {
+      "id": "gather",
+      "kind": "original-accent",
+      "name": "Material collected",
+      "rate": 22050,
+      "frames": 13451,
+      "seconds": 0.6100226757369615,
+      "peak": 0.1684434413909912,
+      "rms": 0.040422795664432215,
+      "dc": -8.26119297350612e-7,
+      "maximumAdjacentDelta": 0.06147298589348793,
+      "first": 0,
+      "last": 0,
+      "bytes": 26946,
+      "sha256": "bda8b17d610f8197a95c0a94b4638afff947a2952a3d0e48c65228ba4be73466"
+    },
+    {
+      "id": "craft",
+      "kind": "original-accent",
+      "name": "Craft complete",
+      "rate": 22050,
+      "frames": 19625,
+      "seconds": 0.8900226757369615,
+      "peak": 0.2414216697216034,
+      "rms": 0.05426170218955063,
+      "dc": -0.000035543320269704984,
+      "maximumAdjacentDelta": 0.058904699981212616,
+      "first": 0,
+      "last": 0,
+      "bytes": 39294,
+      "sha256": "dbb2244523fe2f5b812c74d9baf94cff6bee40d6c4b307358e1d4fe6ecb29ba4"
+    },
+    {
+      "id": "opening",
+      "kind": "original-accent",
+      "name": "Town opening",
+      "rate": 22050,
+      "frames": 33075,
+      "seconds": 1.5,
+      "peak": 0.2800000011920929,
+      "rms": 0.08256990983439004,
+      "dc": -0.000003640912478610418,
+      "maximumAdjacentDelta": 0.031497783958911896,
+      "first": 0,
+      "last": 0,
+      "bytes": 66194,
+      "sha256": "b9e5f2a3405e929d77d409a888a955469224463b89fe261af8d6567c4d6c9daa"
+    },
+    {
+      "id": "return",
+      "kind": "original-accent",
+      "name": "Coming home",
+      "rate": 22050,
+      "frames": 25358,
+      "seconds": 1.1500226757369614,
+      "peak": 0.19047245383262634,
+      "rms": 0.05027946617957031,
+      "dc": 3.0187555786601806e-7,
+      "maximumAdjacentDelta": 0.027317767031490803,
+      "first": 0,
+      "last": 0,
+      "bytes": 50760,
+      "sha256": "98766e2108912a4094c61d6c21cfa5694fb3752f3db4ef7a3eaa80c356b07029"
+    },
+    {
+      "id": "menu",
+      "kind": "original-accent",
+      "name": "Menu tap",
+      "rate": 22050,
+      "frames": 7497,
+      "seconds": 0.34,
+      "peak": 0.0961591973900795,
+      "rms": 0.017866171857069728,
+      "dc": -0.0000034118239348170424,
+      "maximumAdjacentDelta": 0.024821285158395767,
+      "first": 0,
+      "last": 0,
+      "bytes": 15038,
+      "sha256": "e9d0b90c022008a90d33c1896d28b16e80daaa12629242827212e7b84ae2cea5"
+    }
+  ],
+  "files": {
+    "audio/town.wav": {
+      "bytes": 1138504,
+      "sha256": "00d8900145315ebf545a228173a61d7cf52d04dd56c1e7d812545de7a977c348"
+    },
+    "art/town.svg": {
+      "bytes": 4184,
+      "sha256": "29faeaae7b996735ae97b5e3e156f6900bd1247e19ef95f4c344212e4f7a5078"
+    },
+    "audio/woodland.wav": {
+      "bytes": 1335874,
+      "sha256": "abd9a0f5b33d6e6d0dd4df7d9551fbbcd4d09bca8214023a010145d109deac40"
+    },
+    "art/woodland.svg": {
+      "bytes": 984,
+      "sha256": "82c1db67d3a80e7f198f917842190d5d63fcaec99b19833cddba1728369ae57e"
+    },
+    "audio/home.wav": {
+      "bytes": 1298142,
+      "sha256": "465f2f2659e171717a3ec77d60e58b3efee81bf9af39a61cbd59376041cbee0d"
+    },
+    "art/home.svg": {
+      "bytes": 1516,
+      "sha256": "e0912300447004133c5efcd7f424df86eea4ab7db4aa60788970b0445f3e6de7"
+    },
+    "audio/door.wav": {
+      "bytes": 18126,
+      "sha256": "f39749b6f72d005b9d85b22c2ffbdc9afaa0f863d0cde74df37ca0e1b666824b"
+    },
+    "audio/gather.wav": {
+      "bytes": 26946,
+      "sha256": "bda8b17d610f8197a95c0a94b4638afff947a2952a3d0e48c65228ba4be73466"
+    },
+    "audio/craft.wav": {
+      "bytes": 39294,
+      "sha256": "dbb2244523fe2f5b812c74d9baf94cff6bee40d6c4b307358e1d4fe6ecb29ba4"
+    },
+    "audio/opening.wav": {
+      "bytes": 66194,
+      "sha256": "b9e5f2a3405e929d77d409a888a955469224463b89fe261af8d6567c4d6c9daa"
+    },
+    "audio/return.wav": {
+      "bytes": 50760,
+      "sha256": "98766e2108912a4094c61d6c21cfa5694fb3752f3db4ef7a3eaa80c356b07029"
+    },
+    "audio/menu.wav": {
+      "bytes": 15038,
+      "sha256": "e9d0b90c022008a90d33c1896d28b16e80daaa12629242827212e7b84ae2cea5"
+    },
+    "index.html": {
+      "bytes": 3858,
+      "sha256": "65c4b8fe5ff03e725bb42cf883a6519aea1509e197dceacc9d0c8425c3c7155a"
+    },
+    "style.css": {
+      "bytes": 5256,
+      "sha256": "f1ad79e7fa1933ddeda8eb1846b6173ddd6b5ec380cbb024e0a6bd49e4b0ea27"
+    },
+    "study.js": {
+      "bytes": 3189,
+      "sha256": "5da97c45339ae94aa1f50b98628fc9cf0f08d2272becc53073937e6043bf1065"
+    },
+    "score.js": {
+      "bytes": 8443,
+      "sha256": "15231c00a539e2b0b304224067672baa902448658da824feafbd185a91031578"
+    },
+    "audition.js": {
+      "bytes": 8078,
+      "sha256": "ed443b1d7c932c3ac7f04290588382c315a5065f545e8c7aa4bd0c144e1ab090"
+    }
+  },
+  "playback": "No context or rendering on arrival. Explicit gesture creates one AudioContext with separate music/effect gains. At most one music voice plus one accent and two cached themes. Hidden/mute stop playback; returning waits for Play. No storage/game/API calls.",
+  "references": [
+    "https://help.ea.com/en/articles/security-and-rules/ea-content-policy/",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices",
+    "https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume"
+  ]
+}

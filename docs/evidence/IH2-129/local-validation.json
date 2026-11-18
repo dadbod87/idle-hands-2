@@ -1,0 +1,31 @@
+{
+  "all232CompiledGameFilesExactAccepted122": true,
+  "original226GameArtFilesUnchanged": true,
+  "original0600KeysReadOnlyExact": true,
+  "allNormalServicesKeptStopped": true,
+  "currentSavedTableEquality": "unavailable; no claim",
+  "focusedNode": {
+    "tests": 7,
+    "passed": 7,
+    "skipped": 0
+  },
+  "focusedBrowser": {
+    "tests": 4,
+    "passed": 4,
+    "skipped": 0,
+    "layouts": 8,
+    "axeScans": 3,
+    "hardwareOutputMuted": true,
+    "controlledVisibilityDisclosed": true,
+    "fileOpeningWithoutHTTPDependency": true
+  },
+  "independentLocal": {
+    "tests": 369,
+    "passed": 365,
+    "skipped": 4,
+    "failed": 0,
+    "fullPostgresAndBrowser": "not executed locally; owner keep-services-stopped instruction"
+  },
+  "buildDesignPlanPinsDiff": "passed",
+  "humanListeningPhysicalPhoneHostedOrGameIntegration": "not claimed"
+}

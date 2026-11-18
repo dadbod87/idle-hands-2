@@ -1,0 +1,18 @@
+{
+  "kind": "Standalone audio study, final CSS/controller candidate; muted hardware",
+  "screenshots": {
+    "phone390.png": "e7d961a156d0d371191262a41c9eb3f4e5c81300d0a37f08b7a9e82eba99d769",
+    "desktop.png": "93f73f540521aa79dd78f9c8ed38ed1a6239a64f0865d4dfdf38c407cbf8f89a",
+    "phone320.png": "16f68c8eb800b4ac623395e3697e7e2a001fbb9eee5abb6d8669de7fe6873425",
+    "short.png": "6b2d610a0760e67738b7c0a49d008d24b61e731ffc852556a071362ad9c0221a",
+    "phone200.png": "b7080e4737da1c1171935680714b6264e71e376a4b4a0e20700290072bc54c92",
+    "short200.png": "8c07cf3282653dbb8ce0c0eee43b66532f366e7fb9a93031a2659c00177ba70d",
+    "phone360.png": "4beb46869a13dcab16dc6a7ee3f2e06d62b11a3bc9fc947549a9f9a521c12911",
+    "phone320-200.png": "4e93fc9d2c59e3552b4f9855ad4edd16c2c7edd9f25440291388f8641a114164"
+  },
+  "htmlSource": "0ca503b7fb984b6e114b49da10778d93cc5a40f0f137c2608c7fb6e99bbff13a",
+  "cssSource": "f1ad79e7fa1933ddeda8eb1846b6173ddd6b5ec380cbb024e0a6bd49e4b0ea27",
+  "focusedNodePassed": 7,
+  "focusedBrowserPassed": 4,
+  "physicalOrHumanListening": false
+}

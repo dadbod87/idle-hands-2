@@ -1,0 +1,66 @@
+{
+  "candidate": "8e444760d6a76c6ff9fbbd14d0ad103674424510",
+  "main": "9107143d3fb1c46ccd4bde6d3cfd38e2998daae3",
+  "pr": 59,
+  "prRun": 44334931292,
+  "mainRun": 44342290616,
+  "sameTestedTree": true,
+  "domain": 520,
+  "browser": 193,
+  "fiveJobsEach": true,
+  "all232GameFilesUnchanged": true,
+  "normalServicesKeptStopped": true,
+  "originalKeysReadOnlyExact": true,
+  "currentSavedTables": "unavailable, no equality claim",
+  "newSavedNativeCookieOrScreenshots": "not performed",
+  "publicRefreshMeasurements": "blocked; no study result",
+  "localChecks": {
+    "focusedPassed": 22,
+    "independentPassed": 358,
+    "unavailableSkipped": 4,
+    "fullDatabaseBrowser": "unavailable under owner stop instruction"
+  },
+  "approxPublicJobMinutes": 116,
+  "cancelledFirstAttempt": {
+    "run": 44334931292,
+    "sha": "8e444760d6a76c6ff9fbbd14d0ad103674424510",
+    "attempt": 1,
+    "outcome": "cancelled at unchanged20minute job cap",
+    "domainPassed": 520,
+    "browserGroup2Passed": 66,
+    "browserGroup3Passed": 54,
+    "browserGroup1LoggedCompletedPasses": 67,
+    "browserGroup1Total": 73,
+    "browserGroup1FullHTMLReport": "not produced before cancellation; partial screenshots retained by pinned artifact ID",
+    "dependencyFetch": "32.1MB in8min35seconds(62.2kB/s); group2same packages2min34,group3same3min59",
+    "diagnosis": "Observed dependency mirror/network delay consumed job headroom; no test failure logged before cancellation. No general speed/capacity claim.",
+    "authorizedRecovery": "Rerun only failed/cancelled jobs on same exact head, preserving passing group/domain results and all original settings; gh run rerun --failed requested.",
+    "noSourceChangesNoSkippedTestsNoRaisedCaps": true
+  },
+  "prAttempt": 2,
+  "mainAttempt": 1,
+  "sameHeadReuse": [
+    {
+      "name": "browser-shard (3/3)",
+      "actualExecutionJobId": 134908928022,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134924173620,
+      "latestLogicalAttempt": 2
+    },
+    {
+      "name": "domain-build-plan",
+      "actualExecutionJobId": 134908927287,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134924172294,
+      "latestLogicalAttempt": 2
+    },
+    {
+      "name": "browser-shard (2/3)",
+      "actualExecutionJobId": 134908927836,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134924174229,
+      "latestLogicalAttempt": 2
+    }
+  ],
+  "noPaidConfiguration": true
+}

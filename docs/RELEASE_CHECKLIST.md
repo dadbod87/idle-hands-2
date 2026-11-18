@@ -1,3 +1,9 @@
+# November18 — IH2-128 source accepted; local services kept stopped
+
+Browser fixture starters now require explicit disposable target/container identity. Actual-client regression tests protect public burst coalescing, hidden return and stale identities. Main **9107143d3fb1c46ccd4bde6d3cfd38e2998daae3** / [PR59](https://github.com/dadbod87/idle-hands-2/pull/59) has exact PR/main five-job/raw520domain+193browser acceptance with original budgets and unchanged232game files. Local22focused and358independent pass;4database skips remain disclosed, full local database/browser unavailable. First fixture/launcher errors retained.
+
+Owner explicitly kept Docker and normal previews stopped. No runtime installation/restart/new saved-session or current database-equality claim; original0600key hashes match read-only.127public refresh measurements are blocked.129original music audition study is next; UO files remain absent without exact rights clearance. Owner window ends November18about2PM Pacific/22UTC or roughly10%weekly allowance remains. No paid/cloud/original-game work. [Report](evidence/IH2-128/REPORT.md). Earlier entries below are historical.
+
 # November18 — IH2-126 complete
 
 Current shared-opening guard is complete on main **6c150fb6f10df6ac6decd2377cd96448e8c6d028** ([PR58](https://github.com/dadbod87/idle-hands-2/pull/58)). Four new current live-store cases pass, with exact PR/main five-job/raw514domain+193browser and original500ms/recovery/nine-metadata gates. Local512/514retains two existing timing misses; local193is a precise unchanged-input bridge, while fresh193executed on both CIheads. No runtime/economy/protocol/schema/art/configuration change.

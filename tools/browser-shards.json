@@ -55,6 +55,7 @@
     "collection-receipt.spec.ts",
     "crafting-clarity.spec.ts",
     "current-guidance.spec.ts",
+    "design-audio.spec.ts",
     "design-cafe.spec.ts",
     "design-documents.spec.ts",
     "garden-recovery.spec.ts",

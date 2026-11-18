@@ -1,3 +1,7 @@
+# November17 — IH2-122 final menu-feedback candidate
+
+Only WorkshopUI changes at runtime: completed reads restore truthful notices; errors/unresolved requests and command/refusal receipts remain distinct. New controlled-client5/5and clean existing-CI-profile orderedfamily5/5pass. Full local domain502/503retains632.147msprofiled500msfailure; full localChrome189/193retains two90second caps/two dependent-fixture failures. Build/plan/pinned pass; final exact PR/main503domain/193browser and actual saved-client gates remain pending. Normal121API9/119client, protected data/keys unchanged. [Report](evidence/IH2-122/REPORT.md), [current](idle-hands-2/CURRENT_SESSION.md). Earlier entries historical.
+
 # November 17 — IH2-121 accepted coherent snapshot update
 
 PR53/main **48ff0eb8e50dba35e3566add56836a75c5fa9d8f** accepted after exact PR/main all four/raw503domain/188browser and original-key saved-preview gates. Snapshot calls15→1, measured original load5620→2540calls; local timing failures and limited delay/render conclusions remain disclosed. Unchanged232client/226art/nineSQL/economy/timers; only two APIs updated. All17table fields/nine metadata/keys/static PIDs and464normal+125historical responses preserved. No protectedPGrestart/key copy, real-player/original-game/hosted release. [Report](evidence/IH2-121/REPORT.md), [current source](idle-hands-2/CURRENT_SESSION.md). Earlier entries below are historical.

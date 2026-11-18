@@ -2105,7 +2105,12 @@
         "docs/evidence/IH2-122/short200-confirmed.png",
         "docs/evidence/IH2-122/REPORT.md",
         "docs/evidence/IH2-122/local-domain-result.json",
-        "docs/evidence/IH2-122/local-load-summary.json"
+        "docs/evidence/IH2-122/local-load-summary.json",
+        "docs/evidence/IH2-122/local-profile-observations.json",
+        "docs/evidence/IH2-122/ci-family-result.json",
+        "docs/evidence/IH2-122/local-browser-result.json",
+        "docs/evidence/IH2-122/shared-flow-local-timeouts.json",
+        "docs/evidence/IH2-122/NEXT_PROFILING.md"
       ],
       "owner_branch": "fix/truthful-menu-confirmation"
     }

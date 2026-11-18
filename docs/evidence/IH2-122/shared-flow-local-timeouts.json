@@ -1,0 +1,110 @@
+[
+  {
+    "testArtifact": "shared-town-desktop-and-na-05e7f--the-same-committed-request",
+    "localExistingTestCapMs": 90000,
+    "ciExistingTestCapMs": 420000,
+    "lastActorStates": [
+      {
+        "endTime": 1570294.852,
+        "room": "neighborhood",
+        "position": {
+          "x": 34.51158318492951,
+          "y": 14.313947898116194
+        },
+        "locked": false,
+        "walking": true,
+        "nearby": null
+      },
+      {
+        "endTime": 1570572.516,
+        "room": "neighborhood",
+        "position": {
+          "x": 33.1055254336262,
+          "y": 14.138190679203278
+        },
+        "locked": false,
+        "walking": true,
+        "nearby": null
+      },
+      {
+        "endTime": 1571918.744,
+        "room": "neighborhood",
+        "position": {
+          "x": 31.85657588337497,
+          "y": 10.701245317624036
+        },
+        "locked": false,
+        "walking": true,
+        "nearby": null
+      }
+    ],
+    "errors": [
+      {
+        "endTime": 1570582.415,
+        "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"neighborhood-exit\"\nReceived: null"
+      },
+      {
+        "endTime": 1571927.333,
+        "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"neighborhood-exit\"\nReceived: null"
+      },
+      {
+        "endTime": 1571937.71,
+        "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"neighborhood-exit\"\nReceived: null\n\nCall Log:\n- Test timeout of 90000ms exceeded"
+      }
+    ]
+  },
+  {
+    "testArtifact": "starter-homes-real-isolate-6c82f-reload-and-safe-door-return",
+    "localExistingTestCapMs": 90000,
+    "ciExistingTestCapMs": 240000,
+    "lastActorStates": [
+      {
+        "endTime": 1664259.82,
+        "room": "square",
+        "position": {
+          "x": 30,
+          "y": 29
+        },
+        "locked": false,
+        "walking": false,
+        "nearby": "plot"
+      },
+      {
+        "endTime": 1671728.14,
+        "room": "home",
+        "position": {
+          "x": 9,
+          "y": 11
+        },
+        "locked": false,
+        "walking": false,
+        "nearby": null
+      },
+      {
+        "endTime": 1672587.624,
+        "room": "home",
+        "position": {
+          "x": 9,
+          "y": 11
+        },
+        "locked": false,
+        "walking": false,
+        "nearby": null
+      }
+    ],
+    "errors": [
+      {
+        "endTime": 1672023.049,
+        "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"planter\"\nReceived: null"
+      },
+      {
+        "endTime": 1672241.696,
+        "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"rug\"\nReceived: null"
+      },
+      {
+        "endTime": 1673676.634,
+        "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false"
+      }
+    ]
+  }
+]

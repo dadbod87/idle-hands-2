@@ -1,6 +1,6 @@
 # November17 — IH2-122 active truthful menu confirmation
 
-121fullyclosed: source main48ff0eb8 and pushed documentation13c487b. Isolated current source work/idle-hands-2-menu-status, fix/truthful-menu-confirmation. Soleactive122; [plan](../evidence/IH2-122/PLAN.md). Actual Bag stale waiting reproduced after successful read/unlocked controls, client-only repair next. Normal4175/localhost4176 remain121API9/119client, exact commands in snapshot-batch artifacts active-services.json. ProtectedPG55432/originalkeys unchanged; no real-player/original-game/hosted work. Deadline Nov18at15UTC/7AMPST or~90%weeklyused, latest16%. Earlier entries historical.
+121fullyclosed: source main48ff0eb8 and pushed documentation13c487b. Isolated current source work/idle-hands-2-menu-status, fix/truthful-menu-confirmation. Soleactive122; [plan](../evidence/IH2-122/PLAN.md). Actual Bag stale waiting repaired at the response-to-UI boundary. Focusednew5/5; full localdomain502/503(profiled632.147ms500msfailure retained); fullChrome189/193(two90second caps/two dependentfixtures retained), cleanexistingCIprofileorderedfamily5/5. Exact finalPR/main/raw and actualsavedclientupdate pending. Normal4175/localhost4176 remain121API9/119client, exact commands in snapshot-batch artifacts active-services.json. ProtectedPG55432/originalkeys unchanged; no real-player/original-game/hosted work. Deadline Nov18at15UTC/7AMPST or~90%weeklyused, latest16%. Earlier entries historical.
 
 # November 17 — IH2-121 accepted; next local polish to select
 

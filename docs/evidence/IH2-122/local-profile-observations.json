@@ -1,0 +1,71 @@
+{
+  "scope": "Single failed local122 profiled20-client workload. Aggregates describe observed driver/acquisition spans, not exclusive CPU/lock/disk cause or paired instrumentation overhead. No new benchmark or runtime change. Summed spans overlap across clients and are not wall-clock time; acquisition aggregates include all load acquisitions, not only command requests.",
+  "poolLoadAcquisition": {
+    "count": 280,
+    "p50": 58.152667000000065,
+    "p95": 432.73333400000047,
+    "p99": 519.2324590000026,
+    "max": 550.2452080000003,
+    "sum": 25670.92022099999
+  },
+  "coherentSnapshotRead": {
+    "count": 220,
+    "p50": 6.005042000000685,
+    "p95": 33.176666999999725,
+    "p99": 66.72562499999913,
+    "max": 90.48066600000311,
+    "sum": 2417.637953999982
+  },
+  "topLoadSqlBySummedObservedDuration": {
+    "sql/load/read.snapshot": {
+      "count": 220,
+      "p50": 6.005042000000685,
+      "p95": 33.176666999999725,
+      "p99": 66.72562499999913,
+      "max": 90.48066600000311,
+      "sum": 2417.637953999982
+    },
+    "sql/load/lock.row": {
+      "count": 300,
+      "p50": 1.8564160000023548,
+      "p95": 16.206084000001283,
+      "p99": 33.196124999998574,
+      "max": 57.915625000001455,
+      "sum": 1326.6949939999563
+    },
+    "sql/load/transaction.commit": {
+      "count": 280,
+      "p50": 2.391125000001921,
+      "p95": 17.509750000000167,
+      "p99": 40.42033299999821,
+      "max": 80.12887499999852,
+      "sum": 1317.494284999983
+    },
+    "sql/load/write.players": {
+      "count": 180,
+      "p50": 2.7531249999992724,
+      "p95": 22.8559580000001,
+      "p99": 74.86641700000109,
+      "max": 120.13295799999923,
+      "sum": 1128.4744179999839
+    },
+    "sql/load/write.other": {
+      "count": 260,
+      "p50": 1.6228749999972933,
+      "p95": 15.838292000000365,
+      "p99": 44.63991599999997,
+      "max": 45.80770800000005,
+      "sum": 1001.6811730000327
+    }
+  },
+  "sampleCount": {
+    "seen": 3862,
+    "retained": 3862,
+    "dropped": 0
+  },
+  "observerErrors": [],
+  "outcome": {
+    "completed": false,
+    "errorCode": "ERR_ASSERTION"
+  }
+}

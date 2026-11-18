@@ -33,7 +33,11 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  async function serial(id:string,res:ServerResponse,work:()=>Promise<unknown>,protectPresence=true){
   if((queued.get(id)??0)>=4)return json(res,429,{message:'The town is still confirming your last position. Try again shortly.'});
   const prior=operations.get(id)??Promise.resolve();let release!:()=>void;const gate=new Promise<void>(resolve=>release=resolve);operations.set(id,gate);queued.set(id,(queued.get(id)??0)+1);
-  await prior;let releasePresence=()=>{};if(protectPresence){const priorPresence=presenceGate;presenceGate=new Promise<void>(r=>releasePresence=r);await priorPresence;}try{return await work();}finally{releasePresence();release();queued.set(id,(queued.get(id)??1)-1);if(operations.get(id)===gate)operations.delete(id);}
+  await prior;try{return protectPresence?await withPresence(work):await work();}finally{release();queued.set(id,(queued.get(id)??1)-1);if(operations.get(id)===gate)operations.delete(id);}
+ }
+ async function withPresence<T>(work:()=>Promise<T>){
+  const prior=presenceGate;let release!:()=>void;presenceGate=new Promise<void>(resolve=>release=resolve);
+  await prior;try{return await work();}finally{release();}
  }
  const metrics={commands:0,snapshots:0,movementAccepted:0,movementRejected:0,presenceEvents:0,positionCheckpoints:0,transport:admission.metrics,sseSubmittedBytes:0,sseSubmittedFrames:0,sseSuppressedPresence:0,sseExpired:0,sseBackpressure:0,sseOversize:0};
  const sign=(value:string)=>createHmac('sha256',options.secret).update(value).digest('base64url');
@@ -79,7 +83,11 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(!rate(id,'movement',10,1000))return json(res,429,{message:'Movement is arriving too quickly.'});
     return await serial(id,res,async()=>{
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
-    const rawPosition=await payload;if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});const next=positionSchema.parse(rawPosition),previous=current.value,elapsed=Math.max(0,(now()-current.at)/1000);const credit=Math.min(2,current.credit+elapsed*5);const geometry=next.room==='neighborhood'?housingWorld([...homes.values()],next.districtId!):undefined;let spent=0,valid=canStand(next.room,next.position,geometry)&&(next.room!=='trail'||bridgeOpen)&&(!isHome(next.room)||next.homePlotId===previous.homePlotId&&!!homes.get(next.homePlotId!)&&next.room===(homes.get(next.homePlotId!)!.level===2?'home-expanded':'home'));
+    // Keep this actor's order while reading; other residents must not wait for its network body.
+    const rawPosition=await payload;if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
+    return await withPresence(async()=>{
+    if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
+    const next=positionSchema.parse(rawPosition),previous=current.value,elapsed=Math.max(0,(now()-current.at)/1000);const credit=Math.min(2,current.credit+elapsed*5);const geometry=next.room==='neighborhood'?housingWorld([...homes.values()],next.districtId!):undefined;let spent=0,valid=canStand(next.room,next.position,geometry)&&(next.room!=='trail'||bridgeOpen)&&(!isHome(next.room)||next.homePlotId===previous.homePlotId&&!!homes.get(next.homePlotId!)&&next.room===(homes.get(next.homePlotId!)!.level===2?'home-expanded':'home'));
     if(next.room===previous.room){valid=valid&&next.homePlotId===previous.homePlotId&&next.districtId===previous.districtId;const distance=Math.hypot(next.position.x-previous.position.x,next.position.y-previous.position.y),route=distance<.0001?[]:routeTo(next.room,previous.position,next.position,geometry);let prior=previous.position;const travelled=route.reduce((total,p)=>{const step=Math.hypot(p.x-prior.x,p.y-prior.y);prior=p;return total+step;},0);valid=valid&&(distance<.0001||route.length>0)&&travelled<=credit+.001;spent=travelled;}
     else{
      if(isHome(next.room)||next.room==='neighborhood'&&!isHome(previous.room))valid=false;
@@ -92,6 +100,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(next.room!==previous.room){await store.savePosition(id,next);metrics.positionCheckpoints++;}
     return json(res,200,{ok:true,position:next});
     });
+    },false);
    }
    if(path==='/api/town/command'&&req.method==='POST'){
     if(!rate(id,'command',30,60000))return json(res,429,{message:'Please give the clerk a moment before more requests.'});

@@ -1,0 +1,51 @@
+{
+  "fixedOrder": [
+    "old",
+    "new",
+    "new",
+    "old"
+  ],
+  "rows": [
+    {
+      "order": 1,
+      "httpVersion": "old",
+      "httpSha256": "6bbccaad9be5de4dc753095c205ab1b1508097fa5f9f9d374a04467f0cee7295",
+      "sameCandidateCwd": true,
+      "exit": 0,
+      "snapshotP95Ms": 125.53858299999956,
+      "targetMs": 500,
+      "elapsedSeconds": 9.387791
+    },
+    {
+      "order": 2,
+      "httpVersion": "new",
+      "httpSha256": "ff076128269f292fcbfcc35eded822b31a05bb3e95973d4100fa3caff2bace59",
+      "sameCandidateCwd": true,
+      "exit": 0,
+      "snapshotP95Ms": 155.46541699999943,
+      "targetMs": 500,
+      "elapsedSeconds": 9.110092583
+    },
+    {
+      "order": 3,
+      "httpVersion": "new",
+      "httpSha256": "ff076128269f292fcbfcc35eded822b31a05bb3e95973d4100fa3caff2bace59",
+      "sameCandidateCwd": true,
+      "exit": 0,
+      "snapshotP95Ms": 172.32820900000024,
+      "targetMs": 500,
+      "elapsedSeconds": 8.981653292
+    },
+    {
+      "order": 4,
+      "httpVersion": "old",
+      "httpSha256": "6bbccaad9be5de4dc753095c205ab1b1508097fa5f9f9d374a04467f0cee7295",
+      "sameCandidateCwd": true,
+      "exit": 0,
+      "snapshotP95Ms": 153.30445800000052,
+      "targetMs": 500,
+      "elapsedSeconds": 9.545944750000004
+    }
+  ],
+  "originalFullAndPairMissesRetained": true
+}

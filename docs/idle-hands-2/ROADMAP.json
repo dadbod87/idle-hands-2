@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-17",
+  "updated": "2026-11-18",
   "authority": "docs/idle-hands-2/README.md",
   "tasks": [
     {
@@ -2124,7 +2124,7 @@
     {
       "id": "IH2-123",
       "title": "Profile bounded sessions with server and driver resources separated",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-122"
       ],
@@ -2150,10 +2150,47 @@
         "docs/evidence/IH2-123/measurements.json",
         "docs/evidence/IH2-123/local-domain.json",
         "docs/evidence/IH2-123/local-browser-result.json",
-        "docs/evidence/IH2-123/local-byte-identity-bridge.json"
+        "docs/evidence/IH2-123/local-byte-identity-bridge.json",
+        "docs/evidence/IH2-123/source-closeout.json",
+        "docs/evidence/IH2-123/pr-source.json",
+        "docs/evidence/IH2-123/main-source.json",
+        "docs/evidence/IH2-123/saved-preservation.json"
       ],
-      "owner_branch": "perf/bounded-session-churn"
+      "owner_branch": "chore/session-profile-closeout-2026-11-18"
+    },
+    {
+      "id": "IH2-124",
+      "title": "Keep incomplete movement bodies from stalling other residents",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-123"
+      ],
+      "goal": "Confirm and fix cross-member movement head-of-line waiting while preserving own ordering and current occupancy authority.",
+      "acceptance": [
+        "Retain a bounded real HTTP baseline reproduction before a minimal shared-gate correction; cover own queue/rate, abort/malformed body and session/authority boundaries.",
+        "Keep original500ms budgets, all232client bytes and193browser identities; complete required local/exact PR/main five-job/raw gates.",
+        "Safely preserve actual saved feet,17table fields/nine metadata/original keys/signed sessions during any API-only update; push truthful closeout and next steps."
+      ],
+      "exclusions": [
+        "No economy/schema/protocol/art/client/rate/queue cap changes, paid/cloud/real players/original game.",
+        "No universal freeze/speedup/FPS/WAN/capacity claim; hold unsafe volatile-versus-durable foot preservation."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-124/PLAN.md",
+        "docs/evidence/IH2-124/baseline.json",
+        "docs/evidence/IH2-124/focused.json",
+        "docs/evidence/IH2-124/IMPLEMENTATION.md",
+        "docs/evidence/IH2-124/VALIDATION_HISTORY.md",
+        "docs/evidence/IH2-124/local-domain.json",
+        "docs/evidence/IH2-124/control-comparison.json",
+        "docs/evidence/IH2-124/same-checkout-snapshots.json",
+        "docs/evidence/IH2-124/same-checkout-profile.json",
+        "docs/evidence/IH2-124/REPORT.md",
+        "docs/evidence/IH2-124/local-browser.json",
+        "docs/evidence/IH2-124/focused-current.json"
+      ],
+      "owner_branch": "fix/movement-body-gate"
     }
   ],
-  "source_status_note": "122fullyclosed before active123server-only diagnostic; see CURRENT_SESSION."
+  "source_status_note": "123fullyclosed;124bounded incomplete-body investigation active, see CURRENT_SESSION."
 }

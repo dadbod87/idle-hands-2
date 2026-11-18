@@ -1,6 +1,6 @@
 # Bounded session performance study
 
-Status: implementation, three final-tool measurements and all required local checks complete; exact final PR/main and read-only saved-preview acceptance remain pending. No gameplay speedup or normal-runtime installation is claimed.
+Status: complete. [PR56](https://github.com/dadbod87/idle-hands-2/pull/56) merged **d4068f33fc9f3241d005013c9e62489a93a07ce6** with an identical candidate tree; exact PR/main five-job/raw506-domain/193-browser and read-only saved-preview gates pass. Profiling remains opt-in; timing misses below are retained. No gameplay speedup or normal-runtime installation is claimed.
 
 ## What this adds
 
@@ -36,9 +36,9 @@ The normal saved preview remained unchanged:17tables/everyfield,9metadata record
 
 ## Validation and limits
 
-Stronger focused3/3 and pinned server typecheck pass. All193browser cases pass under the existing CI=1bundledChromium profile, zero failures/skips/flakes/report errors; collection identity equals executed identity. All232compiled files and src/server/public/browser specs/config/lockfile remain exact accepted122. Full browser execution bridges the tool-only observation change by those unchanged bytes; final local506/506domain, build, tracker and40pinned-file checks pass, with ordinary/profiled original burst p95 369.278/464.933ms under500ms. Exact final PR/main506/193remain required. The initial505domain regression passed before the additional monitor test; it is not relabelled506.
+Stronger focused3/3 and pinned server typecheck pass. All193browser cases pass under the existing CI=1bundledChromium profile, zero failures/skips/flakes/report errors; collection identity equals executed identity. All232compiled files and src/server/public/browser specs/config/lockfile remain exact accepted122. Full browser execution bridges the tool-only observation change by those unchanged bytes; final local506/506domain, build, tracker and40pinned-file checks pass, with ordinary/profiled original burst p95 369.278/464.933ms under500ms. Exact final PR/main506/193also pass; see the source acceptance section below. The initial505domain regression passed before the additional monitor test; it is not relabelled506.
 
-Initial smoke failures and pinned-runtime syntax diagnosis remain in [method](METHOD.md). Three earlier f245observations remain [initial results](INITIAL_OBSERVATIONS.md); review found a silent-EOF/aggregate-heartbeat observation gap, not an actual diagnosed game disconnect. Stronger final monitoring and these three separate runs supersede their observational scope without deleting history. Browser regressions use separately labelled stock/elapsed fixtures; these timed studies do not.
+Initial smoke failures and pinned-runtime syntax diagnosis remain in [method](METHOD.md). Three earlier f245observations remain [initial results](INITIAL_OBSERVATIONS.md); review found a silent-EOF/aggregate-heartbeat observation gap, not an actual diagnosed game disconnect. Stronger final monitoring and these three separate runs supersede their observational scope without deleting history. Browser regressions retain the five existing intercepted HTTP menu-status cases and separately labelled stock/elapsed fixtures. The three timed studies use ordinary earned stock, real clocks and unmodified HTTP/SSE, without interception or grants; normal verification is read-only.
 
 This is20protocol identities in a private first-lesson workload, not20rendered clients, public-construction invalidation/TownClient coalescing, physical phones, WAN, hosted capacity or a continuous15minute soak. Normal preview/gameplay is not updated by a tool-only source merge. No original Idle Hands game, real accounts, Supabase cloud, hosting or paid resource changes. Terra's accepted122visual review and the unchanged full193browser checks remain relevant; no new visual change requires a duplicate art review.
 
@@ -47,3 +47,11 @@ This is20protocol identities in a private first-lesson workload, not20rendered c
 After this task's exact source/main and read-only saved-preview gates close, reproduce whether a slow movement request body can hold the shared presence gate and delay another player. Read-only source inspection suggests that possibility; it is not yet a reproduced bug or an explanation of reported freezes. A follow-up must preserve per-player ordering, bounded queues, session checks, movement/occupancy authority and current saved positions before considering a runtime change. Public snapshot coalescing and rendered multi-player profiling remain separate future work.
 
 See [declared plan](PLAN.md), [reproduction](REPRODUCE.md), [connection review](CONNECTION_REVIEW.md), [final compact data](measurements.json) and the dated handoff. Raw reports, traces, controllers and hashes remain under work/idle-hands-2-artifacts/session-churn-2026-11-18; keys/cookies/raw connection strings are not serialized.
+
+## Exact source and saved-preview acceptance
+
+PR [run44284738458](https://github.com/dadbod87/idle-hands-2/actions/runs/44284738458) passes all five jobs and raw506system/193browser(73+66+54), zero failures/skips/flakes/report errors, attempt1. All232compiled files/226art files, recovery/durability/nine migrations and rich26-home snapshots verified by artifact IDs/ZIP hashes. Original burst p95 ordinary/profiled 58.391/61.231ms; rich snapshot 62.101ms.
+
+Main [run44287636906](https://github.com/dadbod87/idle-hands-2/actions/runs/44287636906) passes all five jobs and raw506system/193browser(73+66+54), zero failures/skips/flakes/report errors, attempt1. All232compiled files/226art files, recovery/durability/nine migrations and rich26-home snapshots verified by artifact IDs/ZIP hashes. Original burst p95 ordinary/profiled 78.305/132.824ms; rich snapshot 70.409ms.
+
+Read-only actual-preview verification preserves all17saved-table fields/nine metadata rows/original0600keys/four service PIDs/protectedPGstart, all464normal game and125historical-study responses. No runtime restart/install was needed because the game/backend bytes are unchanged. Approximately97summed rounded standard-public job-minutes across both runs; 0CIreruns, no paid configuration, not an invoice/current billing balance. See [source closeout](source-closeout.json), [PR proof](pr-source.json), [main proof](main-source.json) and [saved proof](saved-preservation.json).

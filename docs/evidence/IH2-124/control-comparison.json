@@ -1,0 +1,116 @@
+{
+  "fixedOrder": [
+    "control",
+    "candidate",
+    "candidate",
+    "control"
+  ],
+  "sameSharedTestToolLockfileBytes": true,
+  "rows": [
+    {
+      "order": 1,
+      "kind": "control",
+      "httpSha256": "6bbccaad9be5de4dc753095c205ab1b1508097fa5f9f9d374a04467f0cee7295",
+      "sourceHead": "d730ec31986ed6145432ddeec6d4b0218c1a90c0",
+      "outcomes": {
+        "profile": {
+          "exitCode": 0,
+          "p95Ms": 233.89116599999943,
+          "budgetMs": 500,
+          "pass": true,
+          "expectedTimingFailureOnly": false,
+          "elapsedSeconds": 30.428127500000002
+        },
+        "snapshots": {
+          "exitCode": 0,
+          "p95Ms": 133.25637499999993,
+          "budgetMs": 500,
+          "pass": true,
+          "expectedTimingFailureOnly": false,
+          "elapsedSeconds": 8.857097249999999,
+          "currentScopeArtifact": "snapshot-scope.json matches observed p95"
+        }
+      }
+    },
+    {
+      "order": 2,
+      "kind": "candidate",
+      "httpSha256": "ff076128269f292fcbfcc35eded822b31a05bb3e95973d4100fa3caff2bace59",
+      "sourceHead": "4cb74d302a25cc16427dc9c1dd9efe5f7b411120",
+      "outcomes": {
+        "profile": {
+          "exitCode": 0,
+          "p95Ms": 474.0848340000002,
+          "budgetMs": 500,
+          "pass": true,
+          "expectedTimingFailureOnly": false,
+          "elapsedSeconds": 31.957098082999998
+        },
+        "snapshots": {
+          "exitCode": 0,
+          "p95Ms": 411.43095900000117,
+          "budgetMs": 500,
+          "pass": true,
+          "expectedTimingFailureOnly": false,
+          "elapsedSeconds": 19.641425624999997,
+          "currentScopeArtifact": "snapshot-scope.json matches observed p95"
+        }
+      }
+    },
+    {
+      "order": 3,
+      "kind": "candidate",
+      "httpSha256": "ff076128269f292fcbfcc35eded822b31a05bb3e95973d4100fa3caff2bace59",
+      "sourceHead": "4cb74d302a25cc16427dc9c1dd9efe5f7b411120",
+      "outcomes": {
+        "profile": {
+          "exitCode": 1,
+          "p95Ms": 805.4198339999994,
+          "budgetMs": 500,
+          "pass": false,
+          "expectedTimingFailureOnly": true,
+          "elapsedSeconds": 34.22041679200001
+        },
+        "snapshots": {
+          "exitCode": 1,
+          "p95Ms": 503.8489160000008,
+          "budgetMs": 500,
+          "pass": false,
+          "expectedTimingFailureOnly": true,
+          "elapsedSeconds": 8.98454579200002,
+          "currentScopeArtifact": "Not written by original test on timing failure; prior copied scope explicitly retained/excluded"
+        }
+      }
+    },
+    {
+      "order": 4,
+      "kind": "control",
+      "httpSha256": "6bbccaad9be5de4dc753095c205ab1b1508097fa5f9f9d374a04467f0cee7295",
+      "sourceHead": "d730ec31986ed6145432ddeec6d4b0218c1a90c0",
+      "outcomes": {
+        "profile": {
+          "exitCode": 0,
+          "p95Ms": 257.7360000000008,
+          "budgetMs": 500,
+          "pass": true,
+          "expectedTimingFailureOnly": false,
+          "elapsedSeconds": 30.289903124999995
+        },
+        "snapshots": {
+          "exitCode": 0,
+          "p95Ms": 225.80670800000007,
+          "budgetMs": 500,
+          "pass": true,
+          "expectedTimingFailureOnly": false,
+          "elapsedSeconds": 10.116886291999975,
+          "currentScopeArtifact": "snapshot-scope.json matches observed p95"
+        }
+      }
+    }
+  ],
+  "originalFull510TimingFailuresRetained": true,
+  "scope": "Two pairs on one local host. No universal causal/speedup/leak/capacity result; exact required source CI budgets remain unchanged.",
+  "preexistingSnapshotArtifactsExcluded": [
+    3
+  ]
+}

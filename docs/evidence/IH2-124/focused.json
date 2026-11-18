@@ -1,0 +1,60 @@
+{
+  "method": "Actual loopback HTTP and dedicated PostgreSQL.1000ms peer deadline while another body remains incomplete. All fixtures use a fixed synthetic application clock; only expiry cases advance it. HTTP deadlines/latencies use real time. No position/stock grants; expiry-presence alone pauses a real store call.",
+  "samples": [
+    {
+      "case": "independent-members-probe",
+      "bodyStillIncomplete": true,
+      "outcomes": [
+        {
+          "status": "fulfilled",
+          "httpStatus": 200,
+          "elapsedMs": 5.025541999999859
+        },
+        {
+          "status": "fulfilled",
+          "httpStatus": 200,
+          "elapsedMs": 29.467833000000155
+        }
+      ]
+    },
+    {
+      "case": "independent-members",
+      "peerMovementMs": 5.025541999999859,
+      "protectedRefusalMs": 29.467833000000155,
+      "bothBeforeBodyRelease": true,
+      "noStockOrPositionGrants": true
+    },
+    {
+      "case": "own-order-and-cap",
+      "pendingOwnReplies": 0,
+      "admittedOwnLimit": 4,
+      "overflowStatus": 429,
+      "malformedStatus": 400,
+      "recovered": true
+    },
+    {
+      "case": "abort-release",
+      "ownBlockedBeforeAbort": true,
+      "recovered": true,
+      "positionCheckpoints": 0
+    },
+    {
+      "case": "expiry-body",
+      "expiredStatus": 401,
+      "confirmedFeetPreserved": true,
+      "noMovementAccepted": true,
+      "syntheticAuthClock": true,
+      "realStorePauseOnly": false
+    },
+    {
+      "case": "expiry-presence",
+      "expiredStatus": 401,
+      "confirmedFeetPreserved": true,
+      "noMovementAccepted": true,
+      "syntheticAuthClock": true,
+      "realStorePauseOnly": true
+    }
+  ],
+  "originalMethodLabel": "Actual loopback HTTP and dedicated PostgreSQL.1000ms peer deadline while another body remains incomplete; no command/position/stock grants. Expiry cases alone use a disclosed synthetic auth clock and one real-store pause.",
+  "methodLabelCorrectionOnly": true
+}

@@ -1,0 +1,18 @@
+{
+  "tests": 510,
+  "pass": 509,
+  "fail": 1,
+  "cancelled": 0,
+  "skipped": 0,
+  "reasonForNewAttempt": "Necessary test precision change: server IncomingMessage end is observed before advancing expiry during global wait; no backend or browser change.",
+  "profiledCommandP95Ms": 605.6100000000006,
+  "rich26SnapshotP95Ms": 139.71116699999948,
+  "onlyFailure": "Existing profiled twenty-client command p95605.610ms versus unchanged500ms. No other failure/skip/cancel.",
+  "newMovementCases": {
+    "tests": 4,
+    "passed": 4
+  },
+  "rawLog": "full-domain-current.log",
+  "archivedServerArtifacts": "local-domain-artifacts-current/",
+  "noGreenChasingOrLimitChanges": true
+}

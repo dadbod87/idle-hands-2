@@ -7,3 +7,9 @@ Groups1/2then reached the unchanged20minute cap after66/73and65/66completed case
 This is runner setup variability, not a measurement of gameplay speed. It does not justify increasing the20minute cap, weakening assertions/coverage, adding a paid runner or attributing delays to the application database. A cache of the Chromium browser alone would not target the measured Ubuntu package-download bottleneck.
 
 A subsequent bounded CI reliability task should compare safe dependency-provisioning options with pinned Node/browser/OS, signed package provenance, complete ephemeral PostgreSQL/restart proof, separate shard reports and all existing gates. Any prebuilt image must retain explicit loopback/service-container safety checks and matching runtime; any package cache needs version/platform/integrity keys and no credentials or mutable test database. These are evaluation requirements, not an implemented cache/image/mirror or spending approval. Prefer one measured repair over repeated installation retries; no third blind rerun.
+
+## Repair submitted for validation
+
+The regression shards and optional observation job now install the same pinned Chromium and full Playwright dependency set via a shared installer. On the ephemeral Ubuntu runner, it substitutes the primary HTTPS Ubuntu archive for the regional EC2 archive while retaining the existing suites and Ubuntu package verification. The installer logs elapsed time. Shard, test, database, artifact, and job limits stay the same. CI will show whether this eliminates the observed setup delays.
+
+[Ubuntu archive verification](https://documentation.ubuntu.com/security/software-integrity/archive-verification/)

@@ -1,3 +1,7 @@
+# November18 morning continuation — IH2-128 active;127 measurements blocked
+
+Owner renewed work until about2PM Pacific /22UTC November18, or roughly10%weekly allowance remains. Current source work/idle-hands-2-public-refresh, feature perf/public-refresh-study; task128in_progress;127blocked by owner keep-services-stopped instruction. Accepted main6c150fb and normal124API/122client remain unchanged. Begin with explicit disposable browser-startup safeguards, then bounded public-client refresh study. [Plan](../evidence/IH2-127/PLAN.md). Initial weekly usage23%used. Preserve protected55432/keys/runtime and no paid/cloud/original-game work. Earlier windows below are historical.
+
 # November18 — IH2-126 complete
 
 Current shared-opening guard is complete on main **6c150fb6f10df6ac6decd2377cd96448e8c6d028** ([PR58](https://github.com/dadbod87/idle-hands-2/pull/58)). Four new current live-store cases pass, with exact PR/main five-job/raw514domain+193browser and original500ms/recovery/nine-metadata gates. Local512/514retains two existing timing misses; local193is a precise unchanged-input bridge, while fresh193executed on both CIheads. No runtime/economy/protocol/schema/art/configuration change.

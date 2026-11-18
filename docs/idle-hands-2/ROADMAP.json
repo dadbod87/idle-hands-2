@@ -2270,9 +2270,10 @@
     {
       "id": "IH2-127",
       "title": "Profile real client refresh fanout during shared town activity",
-      "status": "queued",
+      "status": "blocked",
       "depends_on": [
-        "IH2-126"
+        "IH2-126",
+        "IH2-128"
       ],
       "goal": "Measure public invalidation/request coalescing and confirmed state with native client cross-checks before selecting backend optimizations.",
       "acceptance": [
@@ -2292,7 +2293,31 @@
         "docs/evidence/IH2-126/NEXT_PERFORMANCE.md",
         "docs/idle-hands-2/handoffs/2026-11-18-morning-review.md",
         "docs/evidence/IH2-126/PUBLIC_REFRESH_REUSE.md"
-      ]
+      ],
+      "blocked_reason": "Owner November18 explicitly asked to keep Docker and normal previews stopped. Public refresh/database measurements wait for a later authorized local-service window. Startup/coalescing safety split into independent IH2-128."
+    },
+    {
+      "id": "IH2-128",
+      "title": "Require explicit disposable browser targets and guard public refresh coalescing",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-126"
+      ],
+      "goal": "Remove destructive browser startup fallbacks and prove the actual client coalesces public invalidation bursts without stale identity or visibility leaks.",
+      "acceptance": [
+        "Require explicit matching isolated55434or CI5432URL/container before all five destructive browser starters create a Pool/reset; refuse malformed/protected/remote/routing override targets without credential disclosure.",
+        "Preserve complete existing514domain/193browser cases and original budgets; add focused refusal/startup and actual-client burst/visibility/identity tests. No normal runtime/economy/schema/client changes.",
+        "Keep owner-stopped local services stopped. Record local checks that can execute independently, unavailable local PostgreSQL/full browser checks, and fresh exact candidate/main full CI raw coverage before source acceptance. Do not claim a saved-runtime install, new native saved-session test or capacity measurement.",
+        "Save source, evidence, player benefit and a precise next executable task; retain the deferred127measurement task as blocked."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-128/REPORT.md"
+      ],
+      "exclusions": [
+        "No normal database/startup/key/service changes, paid/cloud/original-game work or timer/economy/protocol optimization.",
+        "No public refresh capacity or latency result from controlled tests."
+      ],
+      "owner_branch": "Codex / perf/public-refresh-study"
     }
   ],
   "source_status_note": "126fullyaccepted main6c150fb with514/193and read-only preserved preview;127queued for the next continuation, not started. Read CURRENT_SESSION."

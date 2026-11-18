@@ -30,6 +30,45 @@ function fixture(){
  return{client,requests,messages,accepted,presence,Events,timers,delays,fire:()=>{assert.equal(timers.size,1);const[id,callback]=timers.entries().next().value!;timers.delete(id);callback();},set:(s:TownSnapshot)=>current=s,handle:(next:typeof handler)=>handler=next,stream:()=>Events.all.at(-1)!,async close(){client.close();await drain();Date.now=oldNow;for(const key of keys){const descriptor=originals.get(key);if(descriptor)Object.defineProperty(globalThis,key,descriptor);else delete(globalThis as any)[key];}}};
 }
 
+test('public invalidation burst keeps one in-flight read and one dirty follow-up with exact newest state',async()=>{
+ const f=fixture();try{
+  f.set({...value(),bridge:{contributed:0,target:3,restored:false,phase:'collecting'}});
+  await f.client.login('aster');const held=deferred<Response>();let reads=0,active=0,peak=0;
+  const newest={...value('A',10,1400),bridge:{contributed:3,target:3,restored:false,phase:'building' as const,startedAt:1200,readyAt:21601200}};
+  f.handle(async request=>{assert.equal(request.path,'snapshot');reads++;active++;peak=Math.max(peak,active);try{return reads===1?await held.promise:json({snapshot:newest});}finally{active--;}});
+  f.stream().onopen?.(new Event('open'));await drain();
+  for(let i=0;i<32;i++)f.stream().emit('invalidate',{});
+  await drain();assert.equal(reads,1);assert.equal(active,1);
+  held.resolve(json({snapshot:{...value('A',10,1100),bridge:{contributed:1,target:3,restored:false,phase:'collecting'}}}));
+  for(let i=0;i<8;i++)await drain();
+  assert.equal(reads,2);assert.equal(peak,1);assert.equal(active,0);
+  assert.deepEqual(f.client.snapshot,newest);assert.equal(f.client.snapshot!.workshop.revision,10);
+ }finally{await f.close();}
+});
+
+test('hidden client defers dirty public refresh until current stream opens on return',async()=>{
+ const f=fixture();try{
+  await f.client.login('aster');const held=deferred<Response>();let reads=0;
+  f.handle(()=>++reads===1?held.promise:json({snapshot:value('A',10,1500)}));
+  const old=f.stream();old.onopen?.(new Event('open'));await drain();old.emit('invalidate',{});
+  (document as any).hidden=true;document.dispatchEvent(new Event('visibilitychange'));assert.equal(old.closed,true);
+  held.resolve(json({snapshot:value('A',10,1200)}));for(let i=0;i<6;i++)await drain();assert.equal(reads,1);
+  (document as any).hidden=false;document.dispatchEvent(new Event('visibilitychange'));const current=f.stream();assert.notEqual(current,old);
+  old.emit('invalidate',{});await drain();assert.equal(reads,1);
+  current.onopen?.(new Event('open'));for(let i=0;i<6;i++)await drain();assert.equal(reads,2);assert.equal(f.client.snapshot!.serverTime,1500);
+ }finally{await f.close();}
+});
+
+test('dirty public read from a former identity cannot request or replace the next resident',async()=>{
+ const f=fixture();try{
+  await f.client.login('aster');const held=deferred<Response>();let reads=0;
+  f.handle(request=>{if(request.path==='snapshot'){reads++;return held.promise;}return json({snapshot:value('A',2,1500,'bea')});});
+  const operation=f.client.load(),obsolete=assert.rejects(operation,error=>(error as Error).name==='AbortError');
+  f.stream().emit('invalidate',{});await f.client.login('bea');held.resolve(json({snapshot:value('A',10,1100)}));await obsolete;
+  for(let i=0;i<6;i++)await drain();assert.equal(reads,1);assert.equal(f.client.snapshot!.playerId,'bea');assert.equal(f.client.snapshot!.workshop.revision,2);
+ }finally{await f.close();}
+});
+
 test('new confirmed boot accepts older saved state, while same-boot stale state and retired stream events cannot regress it',async()=>{
  const f=fixture();try{
   await f.client.login('aster');const old=f.stream(),b=value('B',5,500);b.bridge={contributed:0,target:3,restored:false,phase:'collecting'};b.position={room:'workshop',position:{x:9,y:11}};f.set(b);

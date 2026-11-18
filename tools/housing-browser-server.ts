@@ -1,6 +1,7 @@
 /** Explicit disposable fixture. No route/clock override is registered in the game server. */
 import{database,migrate}from'../server/db.ts';import{createTownServer}from'../server/http.ts';import{createServer}from'node:http';
-const u=new URL(process.env.IH2_BROWSER_DATABASE_URL??'postgres://ih2:local-synthetic-only@127.0.0.1:55434/ih2_browser');if(u.port==='55432')throw Error('Housing fixtures refuse protected55432');if(u.pathname!='/ih2_browser'||u.search||u.hash)throw Error('Expected explicit isolated browser database URL');const review=process.env.IH2_HOUSING_REVIEW==='1',apiPort=review?4240:4230,controlPort=review?4242:4232,gamePort=review?4241:4231;u.pathname=review?'/ih2_housing_review':'/ih2_housing_browser';const pool=database(u.href);
+import{browserEnvironmentTarget}from'./browser-target.ts';
+const review=process.env.IH2_HOUSING_REVIEW==='1',apiPort=review?4240:4230,controlPort=review?4242:4232,gamePort=review?4241:4231;const pool=database(browserEnvironmentTarget(review?'ih2_housing_review':'ih2_housing_browser'));
 await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');await migrate(pool);
 let offset=0;const now=()=>Date.now()+offset;const app=createTownServer({pool,secret:'isolated-housing-browser-synthetic-key-116',port:apiPort,now,fixtureResidents:[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'},{id:'drew',name:'Drew'}],allowedOrigins:['http://127.0.0.1:'+gamePort]});
 for(const id of ['aster','bea']){const s=await app.store.ensurePlayer(id,id==='aster'?'Aster':'Bea');s.workshop.bridgeKits=48;s.workshop.owned.planter=2;await pool.query('update ih2.players set workshop=$2 where id=$1',[id,s.workshop]);}

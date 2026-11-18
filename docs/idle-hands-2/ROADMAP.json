@@ -2229,7 +2229,35 @@
         "docs/evidence/IH2-125/source-closeout.json"
       ],
       "owner_branch": "chore/paired-session-study"
+    },
+    {
+      "id": "IH2-126",
+      "title": "Guard current combined project deadlines and opening rollback",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-125"
+      ],
+      "goal": "Protect current shared opening semantics before performance optimization, without runtime changes.",
+      "acceptance": [
+        "Four observable current-store deadline/concurrency/failure/retry/latch cases on guarded isolated realPostgreSQL.",
+        "Full514domain/build/plan/pins, exact runtime/browser-input byte bridge to prior local193; fresh exactPR/main all5/raw514+193/original500ms/recovery/nine metadata.",
+        "Read-only actual data/key/PID/PG/464+125preservation; clear prior-native-evidence scope and pushed closeout, or exact pending handoff at deadline."
+      ],
+      "exclusions": [
+        "No runtime/tool/economy/protocol/migration/art/client/config/rate/queue/pool/hosting/billing changes.",
+        "No early project opening, new progress grant, speedup/capacity/FPS/physical-device claim."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-126/PLAN.md",
+        "docs/evidence/IH2-126/METHOD.md",
+        "docs/evidence/IH2-126/REPORT.md",
+        "docs/evidence/IH2-126/focused.json",
+        "docs/evidence/IH2-126/full-current-settlement.json",
+        "docs/evidence/IH2-126/local-domain.json",
+        "docs/evidence/IH2-126/local-browser-byte-bridge.json"
+      ],
+      "owner_branch": "test/shared-opening-atomicity"
     }
   ],
-  "source_status_note": "125measurementscomplete, documentationbackupunmerged; game/runtime remains124. Read CURRENT_SESSION."
+  "source_status_note": "126test-onlycurrentopeningguardactive after125closed; accepted runtime remains124."
 }

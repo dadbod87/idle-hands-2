@@ -1,0 +1,11 @@
+# Fixture scope and source freshness
+
+The four cases call the current live TownStore public methods against real isolated PostgreSQL. They do not call its private settlement helper, replace its queries or intercept HTTP. Actor identity is supplied at this trusted store boundary; HTTP authentication/movement tests remain separately preserved. The plan wording was clarified from signed-revision to revision-checked command; these cases do not claim cookie/signature testing.
+
+Direct SQL prepares synthetic historical funded projects, respecting the café monotone-credit trigger and all current lifecycle constraints. A fixed synthetic application clock crosses shared deadlines. The ordinary gather is executed through unchanged revision/UUID command authority; its once-only result is checked. One real fixture-only PostgreSQL trigger rejects the final café opening write, then is removed before retry. None of these are normal saved-state or production observations.
+
+Every fixture starts from all nine unchanged migrations and a fresh explicit matching55434/ih2_test schema; CI uses only its own5432service container. Target guards precede Pool, reject protected55432and malformed URLs without exposing their values. Full repository checks must not skip them. No game, protocol, migrations, economy, assets, configuration, pool or queue/rate limits change.
+
+The normal preservation baseline is imported byte-for-byte from125's read-only post-study record, which predates126fixtures, rather than labelled a fresh pre126read. Subsequent comparison must match every17-table field/nine metadata/original key/four PIDs/protected PG start. Candidate restarts in existing recovery tests are legitimate only on55434and do not justify rerunning125's historical phase-specific guard after the fact.
+
+Local browser evidence is an explicit unchanged-input bridge: full193cases already executed on the exact same runtime/client/browser specs/configuration/fixtures/dependencies. Verify the entire source diff permits only docs and this new Node file, rebuild and compare all232compiled client bytes, and retain the prior raw193report hash. Do not claim a new local browser execution. Exact final PR and main require fresh raw193on their full tested commits, alongside514domain, original500ms/recovery/nine metadata and the four new structured fixture results.

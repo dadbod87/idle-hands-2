@@ -1,0 +1,28 @@
+{
+  "baseAcceptedMain": "816d2b89479c1318ebe05b67339f3b71b1efcf92",
+  "onlyNonDocumentationChange": "tests/server-settlement.test.ts",
+  "allRuntimeConfigDependenciesBrowserSpecsFixturesUnchanged": true,
+  "all232CompiledClientFilesExactAccepted122and124": true,
+  "runtimeHttpSha256": "ff076128269f292fcbfcc35eded822b31a05bb3e95973d4100fa3caff2bace59",
+  "priorLocalBrowser": {
+    "profile": "CI=1existing bundledChromium, actual corrected backend; viewport/touch, not physical/Safari/WAN",
+    "stats": {
+      "startTime": "2026-11-18T11:35:15.557Z",
+      "duration": 2767269.052,
+      "expected": 193,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "errors": [],
+    "all193ExecutedIdentitiesEqualCurrentCollection": true,
+    "allPrior188AndExistingFiveMenuCasesRetained": true,
+    "runtimeHttpSha256": "ff076128269f292fcbfcc35eded822b31a05bb3e95973d4100fa3caff2bace59",
+    "fixtureDisclosure": "Explicit intercepted-response cases (including menu/home-entry/snapshot failures) plus separate stock/deadline fixtures remain in fullregression. Normal preview not yet updated; no normal data used."
+  },
+  "priorRawReportSha256": "5df93be5855325b96600ab565191ceadc6f0534cacfd8dfdcaa507efcb9abdb3",
+  "currentCollection193WithNoExecution": true,
+  "newLocalBrowserRunClaimed": false,
+  "freshExactPRMainAll193StillRequired": true,
+  "scope": "Exact unchanged browser/backend/client input bridge. New Node-only regression fixture is not a browser input; actual new source-head browser evidence must come from exactCI."
+}

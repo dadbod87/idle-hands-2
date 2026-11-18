@@ -1,3 +1,7 @@
+# November18 — IH2-126 current opening guard active
+
+Source work/idle-hands-2-settlement-guard/test/shared-opening-atomicity, basedon125complete ef60445. [Plan](../evidence/IH2-126/PLAN.md). Test-only current live-store deadline/rollback coverage before any optimization; runtime remainsaccepted124. Four new Node cases target514; all runtime/browserinputs mustremainbyte-identical, local193existingexact-bytebridge/freshfinalPR+main514193all5 required. No protected55432/key/normalprogress changes. Deadline15UTC/7AMPacific/latest21%weeklyused; savependinggatesifnotcomplete, no blindretry/limitweakening.
+
 # November18 — IH2-125 observations complete
 
 The six fixed ordinary-session trials are complete and saved. No game/tool implementation or normal runtime changed. Every trial preserves checkpoint state, stream privacy/idle behavior and cleanup; every timing outcome, including misses, remains in the report. This is an **unmerged documentation backup**, not a new source/CI/runtime acceptance result. Accepted preview remains124API9/122client, movement-body active-services.json. Both source versions were separately accepted before measurement.

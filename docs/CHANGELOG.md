@@ -1,3 +1,7 @@
+# November18 — IH2-126 current opening guard candidate
+
+126test-only current live-store opening guard: focused4/4; full local512/514retains ordinary710.601/profile1286.392ms500ms misses, no other observed failure or skips. Build/plan10/40pins/whitespace and all232runtime-client-byte identity pass. Prior local193browser pass is explicitly bridged through unchanged runtime/spec/fixture/config/dependency bytes; not a new local execution. Fresh exactPR/mainall5/raw514193/original500ms/recovery and read-only normal preservation remain required. Synthetic funded-project/clock/trigger fixtures disclosed. No game/tool/economy/protocol/schema/art/config/runtime/paid change. [Report](evidence/IH2-126/REPORT.md). Source work/idle-hands-2-settlement-guard/test/shared-opening-atomicity. Acceptednormal124API9/122client/r124active-services; protected55432/keys/data untouched. Deadline15UTC/7AMPacific/latest21%used; hold pending gates atdeadline. Earlier entries historical.
+
 # November18 — IH2-125 observations complete
 
 The six fixed ordinary-session trials are complete and saved. No game/tool implementation or normal runtime changed. Every trial preserves checkpoint state, stream privacy/idle behavior and cleanup; every timing outcome, including misses, remains in the report. This is an **unmerged documentation backup**, not a new source/CI/runtime acceptance result. Accepted preview remains124API9/122client, movement-body active-services.json. Both source versions were separately accepted before measurement.

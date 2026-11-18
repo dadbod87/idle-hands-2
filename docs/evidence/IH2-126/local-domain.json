@@ -1,0 +1,21 @@
+{
+  "tests": 514,
+  "pass": 512,
+  "fail": 2,
+  "cancelled": 0,
+  "skipped": 0,
+  "newCurrentSettlementCases": {
+    "tests": 4,
+    "passed": 4
+  },
+  "actualTimingMissesMs": {
+    "load": 710.6006249999991,
+    "profiled-load": 1286.3924590000006
+  },
+  "originalTargetMs": 500,
+  "onlyFailures": "Two existing command-p95 budgets, no other failure observed; all new current-settlement cases pass.",
+  "runtimeChange": false,
+  "noReplacementFullRun": true,
+  "rawLog": "full-domain.log",
+  "archivedArtifacts": "local-domain-artifacts/"
+}

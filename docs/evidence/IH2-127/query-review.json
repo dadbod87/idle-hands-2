@@ -1,0 +1,146 @@
+{
+  "notStudyAcceptance": true,
+  "method": "Read retained exact HTTP request IDs and SQL categories, load phase only, no dropped samples. Categories are statement labels, not affected-row counts or CPU. Pool time includes scheduling/network/connect/queue. Setup/lifecycle included where phase load; no physical/WAN/capacity claim.",
+  "trials": [
+    {
+      "trial": 1,
+      "qualifiedWindowOnly": true,
+      "sqlTotal": 2091,
+      "routes": {
+        "command": {
+          "requests": 30,
+          "sqlStatements": 417,
+          "categories": {
+            "transaction.begin": 30,
+            "other.other": 30,
+            "lock.row": 120,
+            "write.bridge": 33,
+            "write.other": 42,
+            "read.command_receipts": 30,
+            "read.plots": 15,
+            "read.housing_builds": 15,
+            "write.players": 15,
+            "write.command_receipts": 15,
+            "read.snapshot": 30,
+            "transaction.commit": 30,
+            "write.cafe_project": 12
+          },
+          "poolWaitMs": {
+            "count": 30,
+            "p50": 0.01527299999997922,
+            "p95": 0.04730000000017753,
+            "max": 0.061410000000250875
+          }
+        },
+        "snapshot": {
+          "requests": 208,
+          "sqlStatements": 1664,
+          "categories": {
+            "transaction.begin": 416,
+            "write.bridge": 208,
+            "write.other": 208,
+            "write.cafe_project": 208,
+            "transaction.commit": 416,
+            "read.snapshot": 208
+          },
+          "poolWaitMs": {
+            "count": 208,
+            "p50": 31.340299000000414,
+            "p95": 48.10741000000053,
+            "max": 62.16765200000009
+          }
+        },
+        "login": {
+          "requests": 1,
+          "sqlStatements": 10,
+          "categories": {
+            "write.players": 1,
+            "write.other": 2,
+            "transaction.begin": 2,
+            "write.bridge": 1,
+            "write.cafe_project": 1,
+            "transaction.commit": 2,
+            "read.snapshot": 1
+          },
+          "poolWaitMs": {
+            "count": 3,
+            "p50": 0.013619999999718857,
+            "p95": 0.02317399999992631,
+            "max": 0.02317399999992631
+          }
+        }
+      },
+      "httpAttributedSql": 2091
+    },
+    {
+      "trial": 2,
+      "qualifiedWindowOnly": true,
+      "sqlTotal": 2059,
+      "routes": {
+        "command": {
+          "requests": 30,
+          "sqlStatements": 417,
+          "categories": {
+            "transaction.begin": 30,
+            "other.other": 30,
+            "lock.row": 120,
+            "write.bridge": 33,
+            "write.other": 42,
+            "read.command_receipts": 30,
+            "read.plots": 15,
+            "read.housing_builds": 15,
+            "write.players": 15,
+            "write.command_receipts": 15,
+            "read.snapshot": 30,
+            "transaction.commit": 30,
+            "write.cafe_project": 12
+          },
+          "poolWaitMs": {
+            "count": 30,
+            "p50": 0.017104999999901338,
+            "p95": 0.05636300000060146,
+            "max": 0.0744299999996656
+          }
+        },
+        "snapshot": {
+          "requests": 204,
+          "sqlStatements": 1632,
+          "categories": {
+            "transaction.begin": 408,
+            "write.bridge": 204,
+            "write.other": 204,
+            "write.cafe_project": 204,
+            "transaction.commit": 408,
+            "read.snapshot": 204
+          },
+          "poolWaitMs": {
+            "count": 204,
+            "p50": 31.092514999999366,
+            "p95": 50.950581999999486,
+            "max": 66.7902410000006
+          }
+        },
+        "login": {
+          "requests": 1,
+          "sqlStatements": 10,
+          "categories": {
+            "write.players": 1,
+            "write.other": 2,
+            "transaction.begin": 2,
+            "write.bridge": 1,
+            "write.cafe_project": 1,
+            "transaction.commit": 2,
+            "read.snapshot": 1
+          },
+          "poolWaitMs": {
+            "count": 3,
+            "p50": 0.014011000000209606,
+            "p95": 0.025457000000642438,
+            "max": 0.025457000000642438
+          }
+        }
+      },
+      "httpAttributedSql": 2059
+    }
+  ]
+}

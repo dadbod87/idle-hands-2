@@ -1,0 +1,16 @@
+[
+  {
+    "artifactId": 14472882124,
+    "name": "sequel-browser-evidence-3",
+    "reportStats": {
+      "total": 59,
+      "expected": 59,
+      "unexpected": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "ok": true
+    },
+    "reportErrors": [],
+    "notFullAcceptance": true
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "at": "2026-11-18T21:59:49.072057+00:00",
+  "pr": 63,
+  "candidate": "e364ef5179052e096502f4b73a0b4ba88a9526aa",
+  "candidateRun": 44401163885,
+  "candidateConclusion": "cancelled",
+  "candidateRaw549198Verified": false,
+  "mergedMain": null,
+  "mainRaw549198Verified": false,
+  "correctedSourceObservationsVerified": false,
+  "originalQualifiedRun": 44397607793,
+  "originalWindowMissRetained": true,
+  "IH2-127": "in_progress",
+  "IH2-131": "done; maineb40476/raw545198",
+  "IH2-130": "queued; no actual game audio",
+  "normalSavedServicesKeptOff": true,
+  "keysReadOnlyExact": true,
+  "docker": "Preexisting engine/other containers untouched",
+  "deadline": "2026-11-18T22:00:00Z/about2PM Pacific",
+  "jobs": [
+    {
+      "id": 135157400616,
+      "name": "browser-shard (1/3)",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 135157401204,
+      "name": "browser-shard (2/3)",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 135157403325,
+      "name": "browser-shard (3/3)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 135157404958,
+      "name": "domain-build-plan",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 135164580564,
+      "name": "browser-playtest",
+      "status": "completed",
+      "conclusion": "failure"
+    }
+  ]
+}

@@ -1,0 +1,314 @@
+{
+  "run": 44397607793,
+  "source": "eb40476ac3d364dc276996e22102e5d9055ab8ef",
+  "workflowSingleAttempt": true,
+  "twoFixedObservationsComplete": false,
+  "bothCapturesCompleted": true,
+  "qualifiedCapture": true,
+  "notStudyAcceptance": true,
+  "strictWindowAccepted": false,
+  "scheduledWindowMs": 180000,
+  "recordedWindowLowerBoundMs": 179999,
+  "timerGranularityToleranceMs": 1,
+  "freshDriverAndApiProcesses": true,
+  "pgServiceReusedNotColdCacheComparison": true,
+  "trials": [
+    {
+      "trial": 1,
+      "mode": "fixed180s",
+      "actualWindowMs": 179999.727987,
+      "strictWindowAccepted": true,
+      "earlyByMs": 0.27201300000888295,
+      "quietMs": 31874.600896999997,
+      "counts": {
+        "identities": 20,
+        "protocolModels": 18,
+        "nativeObservers": 2,
+        "publicChanges": 15,
+        "exactReplays": 15,
+        "invalidateFrames": 285
+      },
+      "confirmedStateAndVisibleNotes": true,
+      "stateConvergenceSinceWaveStartMs": {
+        "count": 4,
+        "p50": 134.08163400000012,
+        "p95": 234.0289899999998,
+        "max": 234.0289899999998,
+        "each500msMiss": []
+      },
+      "visibleNoteSinceWaveStartMsByContext": {
+        "0": {
+          "count": 4,
+          "p50": 152.7509259999997,
+          "p95": 236.90827799999988,
+          "max": 236.90827799999988,
+          "each500msMiss": []
+        },
+        "1": {
+          "count": 4,
+          "p50": 160.4357829999999,
+          "p95": 239.1118489999999,
+          "max": 239.1118489999999,
+          "each500msMiss": []
+        }
+      },
+      "all17TablesAnd9MetadataConserved": true,
+      "cleanupDrained": true,
+      "laneLatencyMs": {
+        "command": {
+          "protocolFullJson": {
+            "count": 30,
+            "p50": 6.528471999999965,
+            "p95": 67.62933499999963,
+            "max": 70.73098500000015,
+            "each500msMiss": []
+          },
+          "nativeNetworkFinished": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "max": null,
+            "each500msMiss": []
+          }
+        },
+        "snapshot": {
+          "protocolFullJson": {
+            "count": 182,
+            "p50": 47.339317999999366,
+            "p95": 72.94029499999942,
+            "max": 91.827945,
+            "each500msMiss": []
+          },
+          "nativeNetworkFinished": {
+            "count": 26,
+            "p50": 40.999203999999736,
+            "p95": 104.04400599999826,
+            "max": 176.93955000000005,
+            "each500msMiss": []
+          }
+        }
+      },
+      "uniqueModelCommandHttpJsonMs": {
+        "count": 15,
+        "p50": 31.78856999999971,
+        "p95": 70.73098500000015,
+        "max": 70.73098500000015,
+        "each500msMiss": []
+      },
+      "exactReplayModelCommandHttpJsonMs": {
+        "count": 15,
+        "p50": 4.7113939999999275,
+        "p95": 6.528471999999965,
+        "max": 6.528471999999965,
+        "each500msMiss": []
+      },
+      "loadSqlStatements": 2091,
+      "rawCombinedBudget": {
+        "command": {
+          "count": 30,
+          "p50": 6.528471999999965,
+          "p95": 67.62933499999963,
+          "p99": 70.73098500000015,
+          "max": 70.73098500000015,
+          "sum": 626.9507740000035,
+          "p95Under500": true,
+          "eachMissMs": []
+        },
+        "snapshot": {
+          "count": 208,
+          "p50": 46.89197199999944,
+          "p95": 75.44665800000075,
+          "p99": 91.827945,
+          "max": 176.93955000000005,
+          "sum": 9898.203614999999,
+          "p95Under500": true,
+          "eachMissMs": []
+        }
+      },
+      "driverResources": {
+        "elapsedMs": 187109.60252199997,
+        "cpuUserMs": 1834.052,
+        "cpuSystemMs": 287.904,
+        "cpuPercentOfOneCore": 1.1340711387329812,
+        "eventLoopP95Ms": 21.217279,
+        "eventLoopMaxMs": 33.046527,
+        "rssPeakBytes": 227713024
+      },
+      "apiResources": {
+        "elapsedMs": 186889.096536,
+        "cpuUserMs": 1234.27,
+        "cpuSystemMs": 310.545,
+        "cpuPercentOfOneCore": 0.8265945037100794,
+        "eventLoopP95Ms": 21.135359,
+        "eventLoopMaxMs": 209.321983,
+        "rssPeakBytes": 159072256
+      },
+      "captures": [
+        {
+          "path": "fixed-study/trial-1/native-0.png",
+          "sha256": "9b5ef0a4ca2c570798bf3d071f806c5d014ae6cd2ab95cea662e3449772aca09"
+        },
+        {
+          "path": "fixed-study/trial-1/native-1.png",
+          "sha256": "91f84ade66b844e530f1b872b1904545df08bb01b82a084e6a1aac9990a44f39"
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "mode": "fixed180s",
+      "actualWindowMs": 179998.699137,
+      "strictWindowAccepted": false,
+      "earlyByMs": 1.3008630000113044,
+      "quietMs": 31873.941067999986,
+      "counts": {
+        "identities": 20,
+        "protocolModels": 18,
+        "nativeObservers": 2,
+        "publicChanges": 15,
+        "exactReplays": 15,
+        "invalidateFrames": 285
+      },
+      "confirmedStateAndVisibleNotes": true,
+      "stateConvergenceSinceWaveStartMs": {
+        "count": 4,
+        "p50": 162.97666800000025,
+        "p95": 223.3597520000003,
+        "max": 223.3597520000003,
+        "each500msMiss": []
+      },
+      "visibleNoteSinceWaveStartMsByContext": {
+        "0": {
+          "count": 4,
+          "p50": 171.8351929999999,
+          "p95": 230.76623500000005,
+          "max": 230.76623500000005,
+          "each500msMiss": []
+        },
+        "1": {
+          "count": 4,
+          "p50": 173.8613409999998,
+          "p95": 235.11133299999983,
+          "max": 235.11133299999983,
+          "each500msMiss": []
+        }
+      },
+      "all17TablesAnd9MetadataConserved": true,
+      "cleanupDrained": true,
+      "laneLatencyMs": {
+        "command": {
+          "protocolFullJson": {
+            "count": 30,
+            "p50": 6.5181830000001355,
+            "p95": 81.32401200000004,
+            "max": 97.07194299999992,
+            "each500msMiss": []
+          },
+          "nativeNetworkFinished": {
+            "count": 0,
+            "p50": null,
+            "p95": null,
+            "max": null,
+            "each500msMiss": []
+          }
+        },
+        "snapshot": {
+          "protocolFullJson": {
+            "count": 181,
+            "p50": 48.98488299999917,
+            "p95": 77.19393599999967,
+            "max": 87.68364600000041,
+            "each500msMiss": []
+          },
+          "nativeNetworkFinished": {
+            "count": 23,
+            "p50": 49.63706499999989,
+            "p95": 95.90198099999998,
+            "max": 124.62783199999922,
+            "each500msMiss": []
+          }
+        }
+      },
+      "uniqueModelCommandHttpJsonMs": {
+        "count": 15,
+        "p50": 39.56481099999928,
+        "p95": 97.07194299999992,
+        "max": 97.07194299999992,
+        "each500msMiss": []
+      },
+      "exactReplayModelCommandHttpJsonMs": {
+        "count": 15,
+        "p50": 4.6662679999999455,
+        "p95": 6.5181830000001355,
+        "max": 6.5181830000001355,
+        "each500msMiss": []
+      },
+      "loadSqlStatements": 2059,
+      "rawCombinedBudget": {
+        "command": {
+          "count": 30,
+          "p50": 6.5181830000001355,
+          "p95": 81.32401200000004,
+          "p99": 97.07194299999992,
+          "max": 97.07194299999992,
+          "sum": 708.7931169999965,
+          "p95Under500": true,
+          "eachMissMs": []
+        },
+        "snapshot": {
+          "count": 204,
+          "p50": 48.99671499999931,
+          "p95": 81.14570900000035,
+          "p99": 87.68364600000041,
+          "max": 124.62783199999922,
+          "sum": 10122.559858000004,
+          "p95Under500": true,
+          "eachMissMs": []
+        }
+      },
+      "driverResources": {
+        "elapsedMs": 185697.886208,
+        "cpuUserMs": 1865.071,
+        "cpuSystemMs": 253.23,
+        "cpuPercentOfOneCore": 1.140724347086694,
+        "eventLoopP95Ms": 21.233663,
+        "eventLoopMaxMs": 46.465023,
+        "rssPeakBytes": 227557376
+      },
+      "apiResources": {
+        "elapsedMs": 185474.55269399998,
+        "cpuUserMs": 1324.457,
+        "cpuSystemMs": 264.657,
+        "cpuPercentOfOneCore": 0.8567827644915555,
+        "eventLoopP95Ms": 21.168127,
+        "eventLoopMaxMs": 31.358975,
+        "rssPeakBytes": 160817152
+      },
+      "captures": [
+        {
+          "path": "fixed-study/trial-2/native-0.png",
+          "sha256": "cddff6920f8b6d96e36424741876e86d4753383a0a49612dfbeb3aa44a54e157"
+        },
+        {
+          "path": "fixed-study/trial-2/native-1.png",
+          "sha256": "c5efdc1a3b5ccf659f27eda12c5a3a35f3425377f83fa5c29e23c48b6b0e949e"
+        }
+      ]
+    }
+  ],
+  "approxPublicJobMinutes": 8,
+  "timingCaptureIsNotBudgetOrCapacityPass": true,
+  "resourceAveragesIncludeSetupAndLongQuietWaiting": true,
+  "laneLimit": "This is a brief public burst/lifecycle plus quiet, not180s of sustained mutation load; whole-process averages include setup/quiet. Model timing includes JSON consumption; native timing ends at Playwright requestfinished. Accepted-state/DOM observations are not exact DB-commit/presented-frame timestamps. Do not subtract unlike pre/post navigation CDP counters. API/driver resources separate;18co-located models are not18rendered devices. No physical phone, WAN, hosted capacity, normal saved-runtime installation or speedup claim.",
+  "artifact": {
+    "run": 44397607793,
+    "sha": "eb40476ac3d364dc276996e22102e5d9055ab8ef",
+    "runAttempt": 1,
+    "conclusion": "success",
+    "id": 14471843371,
+    "createdAt": "2026-11-18T21:11:29Z",
+    "zipSha256": "7c92ca9f97c114148879b13bcc20aaf2b76d2abbf538c00643557d795e69aabd",
+    "bytes": 703492,
+    "selectedBy": "newest same-run/head named artifact, explicitly downloaded by ID; no old pass substituted"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "candidate": "ce417cd56b9a24c4051265bf823e75a7b930a203",
+  "main": "eb40476ac3d364dc276996e22102e5d9055ab8ef",
+  "pr": 62,
+  "prRun": 44389304996,
+  "mainRun": 44393346381,
+  "sameTestedTree": true,
+  "allFiveEach": true,
+  "domain": 545,
+  "browser": 198,
+  "shards": [
+    73,
+    66,
+    59
+  ],
+  "priorTestsAndAcceptReplyGuardsByteExact": true,
+  "newClientRegressions": 7,
+  "newServerClockRegressions": 8,
+  "serverClockSamplingAfterQueuedLocks": true,
+  "cafeAdditionalLockReads": 2,
+  "ordinaryQueryCountUnchanged": true,
+  "globalBridgeNoticeCafeLockOrder": true,
+  "realPublicSmoke": {
+    "distinctFictionalIdentities": 20,
+    "actualTownClientModels": 18,
+    "nativeContexts": 2,
+    "changes": 15,
+    "replays": 15,
+    "invalidateFrames": 285,
+    "conservedAndDrained": true,
+    "interceptedConfirmations": false,
+    "setup401": "one-or-two expected fresh-context unauthenticated reads; authenticated/load responses succeed"
+  },
+  "runtimeScope": {
+    "mainJsAndIndexChanged": true,
+    "other230CompiledFilesExact": true,
+    "all226ArtExact": true
+  },
+  "normalServicesKeptStopped": true,
+  "dockerEngineObservedAlreadyRunning": true,
+  "dockerNotStartedOrStoppedByThisContinuation": true,
+  "original0600KeysReadOnlyExact": true,
+  "currentSavedTableEquality": "unavailable; not claimed",
+  "normalRuntimeInstallOrHostedRelease": false,
+  "local": {
+    "focusedPass": 34,
+    "independentPass": 396,
+    "databaseUnavailableSkips": 20,
+    "collected": 416
+  },
+  "Terra61": "two actual CI game stills; no new blocker, not interaction/device proof",
+  "fixed180sObservations": "not executed;127queued",
+  "publicJobMinutes": {
+    "priorCandidatesAndFailedMain": 386,
+    "acceptedPrAndMain": 101,
+    "total": 487,
+    "notInvoiceOrCycleBalance": true
+  },
+  "noPaidConfiguration": true
+}

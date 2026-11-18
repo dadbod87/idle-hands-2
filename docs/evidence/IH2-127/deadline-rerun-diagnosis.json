@@ -1,0 +1,26 @@
+{
+  "run": 44401163885,
+  "sha": "e364ef5179052e096502f4b73a0b4ba88a9526aa",
+  "diagnosis": "Slow external browser dependency installation consumed570/608seconds versus23seconds on passed group3; groups1/2made65/66and66/73progress without an observed assertion failure. This supports one unchanged-head failed-job rerun, not increased caps or a full new run.",
+  "rows": [
+    {
+      "group": "browser-shard (1/3)",
+      "browserInstallSeconds": 608.0,
+      "completedNativeBrowserCases": 66,
+      "lastCompleted": "2026-11-18T21:44:33.4666230Z   \u2713  66 tests/woodland-shared.spec.ts:7:1 \u203a woodland shared: native phone walk and repair, lost completion reply and exact once-only retry (17.8s)",
+      "cancelledAtUnchanged20MinuteCap": true,
+      "noAssertionFailureObserved": true
+    },
+    {
+      "group": "browser-shard (2/3)",
+      "browserInstallSeconds": 570.0,
+      "completedNativeBrowserCases": 65,
+      "lastCompleted": "2026-11-18T21:43:40.7846621Z   \u2713  65 tests/woodland-outing.spec.ts:191:1 \u203a woodland local: native two tabs share one borrowed run and storage failures retry without changing ordinary progress (3.7s)",
+      "cancelledAtUnchanged20MinuteCap": true,
+      "noAssertionFailureObserved": true
+    }
+  ],
+  "plannedRerun": "only failed/cancelled jobs; retain domain549and group3success for same head; at mostone; stop/cancel before2PM if incomplete",
+  "noThirdBlindRetry": true,
+  "predeclaredAt": "2026-11-18T21:46:22.423428+00:00"
+}

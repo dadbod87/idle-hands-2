@@ -1,0 +1,47 @@
+[
+  {
+    "job": "browser-shard (3/3)",
+    "excerpts": [
+      "2026-11-18T21:24:40.4386248Z 393ce45a5829: Download complete",
+      "2026-11-18T21:24:40.4922906Z 25140b6d6501: Download complete",
+      "2026-11-18T21:24:40.5766490Z c79a7210985e: Download complete",
+      "2026-11-18T21:24:40.6146391Z f2010d5c8971: Download complete",
+      "2026-11-18T21:25:07.0580437Z Fetched 13.2 MB in 1s (12.7 MB/s)",
+      "2026-11-18T21:25:09.8531841Z Fetched 32.1 MB in 1s (28.7 MB/s)",
+      "2026-11-18T21:25:14.9154181Z Downloading Chromium 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-linux.zip",
+      "2026-11-18T21:25:20.4480639Z Chromium 141.0.7390.37 (playwright build v1194) downloaded to /home/runner/.cache/ms-playwright/chromium-1194",
+      "2026-11-18T21:25:20.8187918Z Downloading Chromium Headless Shell 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-headless-shell-linux.zip",
+      "2026-11-18T21:25:23.5587280Z Chromium Headless Shell 141.0.7390.37 (playwright build v1194) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1194"
+    ]
+  },
+  {
+    "job": "browser-shard (1/3)",
+    "excerpts": [
+      "2026-11-18T21:24:43.9123239Z 393ce45a5829: Download complete",
+      "2026-11-18T21:24:43.9177311Z 25140b6d6501: Download complete",
+      "2026-11-18T21:24:43.9520536Z f2010d5c8971: Download complete",
+      "2026-11-18T21:24:46.4381218Z c79a7210985e: Download complete",
+      "2026-11-18T21:25:31.6701728Z Fetched 13.2 MB in 8s (1634 kB/s)",
+      "2026-11-18T21:34:53.0586468Z Fetched 32.1 MB in 9min 19s (57.4 kB/s)",
+      "2026-11-18T21:35:08.3310715Z Downloading Chromium 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-linux.zip",
+      "2026-11-18T21:35:12.0362180Z Chromium 141.0.7390.37 (playwright build v1194) downloaded to /home/runner/.cache/ms-playwright/chromium-1194",
+      "2026-11-18T21:35:12.2111299Z Downloading Chromium Headless Shell 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-headless-shell-linux.zip",
+      "2026-11-18T21:35:19.0071388Z Chromium Headless Shell 141.0.7390.37 (playwright build v1194) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1194"
+    ]
+  },
+  {
+    "job": "browser-shard (2/3)",
+    "excerpts": [
+      "2026-11-18T21:24:43.8456858Z 393ce45a5829: Download complete",
+      "2026-11-18T21:24:43.8938973Z f2010d5c8971: Download complete",
+      "2026-11-18T21:24:43.8964109Z 25140b6d6501: Download complete",
+      "2026-11-18T21:24:44.9112961Z c79a7210985e: Download complete",
+      "2026-11-18T21:25:55.6229718Z Fetched 12.9 MB in 34s (382 kB/s)",
+      "2026-11-18T21:34:10.1537223Z Fetched 32.1 MB in 8min 12s (65.2 kB/s)",
+      "2026-11-18T21:34:29.5337469Z Downloading Chromium 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-linux.zip",
+      "2026-11-18T21:34:35.1004079Z Chromium 141.0.7390.37 (playwright build v1194) downloaded to /home/runner/.cache/ms-playwright/chromium-1194",
+      "2026-11-18T21:34:35.2639895Z Downloading Chromium Headless Shell 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-headless-shell-linux.zip",
+      "2026-11-18T21:34:38.4692230Z Chromium Headless Shell 141.0.7390.37 (playwright build v1194) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1194"
+    ]
+  }
+]

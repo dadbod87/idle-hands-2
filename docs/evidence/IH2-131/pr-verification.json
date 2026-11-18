@@ -1,0 +1,90 @@
+{
+  "run": 44389304996,
+  "sha": "ce417cd56b9a24c4051265bf823e75a7b930a203",
+  "allRequiredJobsSuccess": true,
+  "requiredJobCount": 5,
+  "domain": 545,
+  "browser": 198,
+  "disjointShards": [
+    73,
+    66,
+    59
+  ],
+  "newCommandConfirmationDomainCases": 7,
+  "newServerClockDomainCases": 8,
+  "serverClockSamplingAfterCanonicalSharedLocks": true,
+  "cafeAdditionalLockReads": 2,
+  "ordinaryQueryDelta": 0,
+  "newPublicTransportDomainCasesStillPass": 3,
+  "newPublicBrowserSmoke": 1,
+  "realPublicSmokeConservedAndDrained": true,
+  "fixedObservationsExecuted": false,
+  "originalAudioDomainCasesStillPass": 7,
+  "newAudioBrowserCases": 4,
+  "all537PriorDomainAnd198BrowserCasesPreserved": true,
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all232GameFilesExactCorrectedLocalCandidate": true,
+  "all230OtherFilesExactAccepted122": true,
+  "mainJsAndIndexChangedForConfirmationFix": true,
+  "allPriorClientTestsAndReplyAcceptGuardsByteExact": true,
+  "all226ArtFilesExact": true,
+  "rawHousingOutingRestartRestoreAnd9MetadataVerified": true,
+  "fourCurrentSettlementCasesVerified": true,
+  "movementBodyAndMenuRetryGuardsVerified": true,
+  "unchanged500msBudgetsPass": true,
+  "commandP95Ms": 68.38308599999982,
+  "profiledCommandP95Ms": 55.859997999999905,
+  "rich26HomeSnapshotP95Ms": 66.98901999999998,
+  "audioPackByteExactAcrossPinnedLinuxAndMac": true,
+  "wavBytes": 3988878,
+  "emittedScriptsAndAllFilesVerified": true,
+  "audioFocusedBrowser": {
+    "cases": 4,
+    "layouts": 8,
+    "axeScans": 3,
+    "hardwareOutputMuted": true,
+    "controlledVisibilityDisclosed": true,
+    "fileOpenWithoutHTTPDependency": true,
+    "humanListeningPhysicalPhone": "not claimed"
+  },
+  "normalServicesKeptStopped": true,
+  "localExecution": "396independent passes/20database-unavailable skips;34focused client/realHTTP guard passes; no full local PG/browser execution",
+  "approxRoundedJobMinutes": 50,
+  "runAttempt": 1,
+  "sameHeadReuse": [],
+  "standardPublicUbuntu": true,
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true,
+  "artifactsPinnedById": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14468650101,
+      "createdAt": "2026-11-18T20:19:58Z",
+      "zipSha256": "2eb0ba338e0e3fd3de5260173915e6514f8664c9cafee9d130595d06de5cc653"
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14466684764,
+      "createdAt": "2026-11-18T20:19:59Z",
+      "zipSha256": "2d3ade900adac342526f3334cfe0181b4d5a689f8b6dd1da4f0dcca0ec4c05af"
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14469815500,
+      "createdAt": "2026-11-18T20:30:16Z",
+      "zipSha256": "bd3fabc817e30123bd81637e6bdfe5a65b8bf647bb76f6b5b41415ef543dfcf2"
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14469591522,
+      "createdAt": "2026-11-18T20:34:09Z",
+      "zipSha256": "50cc55e4138c80fb4b11d3f796dce61fdb71c6241e5b66a9c3280f3bab0397b9"
+    },
+    {
+      "name": "sequel-browser-evidence-3",
+      "id": 14469715659,
+      "createdAt": "2026-11-18T20:30:26Z",
+      "zipSha256": "e898e54ca4799698d7c82c7a6ea48cc33b0591545f711438c2cade066a493d00"
+    }
+  ]
+}

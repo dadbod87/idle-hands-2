@@ -1,0 +1,14 @@
+{
+  "run": 44397607793,
+  "source": "eb40476ac3d364dc276996e22102e5d9055ab8ef",
+  "scheduledWindowMs": 180000,
+  "predeclaredMinimumMs": 179999,
+  "predeclaredToleranceMs": 1,
+  "trial1ActualMs": 179999.727987,
+  "trial2ActualMs": 179998.699137,
+  "trial2EarlyByMs": 1.300863,
+  "trial2OutsideAllowedByMs": 0.300863,
+  "strictFixedWindowAcceptance": false,
+  "originalFailingVerifierSha256": "bccfe097218f4b37628ed923114ecf294ce5dec01d5e6544b44362a7bedf1d91",
+  "response": "Retain both observations as qualified evidence. Do not replace them for timing green or relax tolerance. Diagnose source deadline wait and keep task127in_progress. Other checks are verified separately by the qualified-analysis reader."
+}

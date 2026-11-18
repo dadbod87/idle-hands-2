@@ -1,0 +1,159 @@
+{
+  "at": "2026-11-18T21:58:20.832914+00:00",
+  "run": 44401163885,
+  "sha": "e364ef5179052e096502f4b73a0b4ba88a9526aa",
+  "runAttempt": 2,
+  "status": "completed",
+  "conclusion": "cancelled",
+  "approxUniquePublicJobMinutes": 85,
+  "estimateIncludesElapsedIncompleteJobs": false,
+  "notInvoiceOrBillingBalance": true,
+  "initialAttemptFullyPreserved": "deadline-setup-cancelled/preserved.json",
+  "retryRawLogFiles": [
+    "deadline-boundary-logs/135157403325.log",
+    "deadline-boundary-logs/135157404958.log"
+  ],
+  "artifacts": [
+    {
+      "id": 14474628113,
+      "name": "sequel-browser-evidence-1",
+      "created_at": "2026-11-18T21:44:51Z",
+      "size_in_bytes": 15420926
+    },
+    {
+      "id": 14474525253,
+      "name": "sequel-client-build",
+      "created_at": "2026-11-18T21:28:03Z",
+      "size_in_bytes": 721579
+    },
+    {
+      "id": 14473495681,
+      "name": "sequel-server-evidence",
+      "created_at": "2026-11-18T21:28:01Z",
+      "size_in_bytes": 130788
+    },
+    {
+      "id": 14473433348,
+      "name": "sequel-browser-evidence-2",
+      "created_at": "2026-11-18T21:44:51Z",
+      "size_in_bytes": 14596972
+    },
+    {
+      "id": 14472882124,
+      "name": "sequel-browser-evidence-3",
+      "created_at": "2026-11-18T21:35:24Z",
+      "size_in_bytes": 19242571
+    }
+  ],
+  "jobs": [
+    {
+      "id": 135144232781,
+      "name": "domain-build-plan",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-18T21:24:37Z",
+      "completed_at": "2026-11-18T21:28:07Z",
+      "labels": [
+        "ubuntu-24.04"
+      ]
+    },
+    {
+      "id": 135144233114,
+      "name": "browser-shard (3/3)",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-18T21:24:37Z",
+      "completed_at": "2026-11-18T21:35:27Z",
+      "labels": [
+        "ubuntu-24.04"
+      ]
+    },
+    {
+      "id": 135144233332,
+      "name": "browser-shard (1/3)",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "cancelled",
+      "started_at": "2026-11-18T21:24:37Z",
+      "completed_at": "2026-11-18T21:44:54Z",
+      "labels": [
+        "ubuntu-24.04"
+      ]
+    },
+    {
+      "id": 135144233360,
+      "name": "browser-shard (2/3)",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "cancelled",
+      "started_at": "2026-11-18T21:24:37Z",
+      "completed_at": "2026-11-18T21:44:53Z",
+      "labels": [
+        "ubuntu-24.04"
+      ]
+    },
+    {
+      "id": 135156484186,
+      "name": "browser-playtest",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-18T21:44:57Z",
+      "completed_at": "2026-11-18T21:44:59Z",
+      "labels": [
+        "ubuntu-24.04"
+      ]
+    },
+    {
+      "id": 135157400616,
+      "name": "browser-shard (1/3)",
+      "run_attempt": 2,
+      "status": "in_progress",
+      "conclusion": null,
+      "started_at": "2026-11-18T21:46:29Z",
+      "completed_at": null,
+      "labels": [
+        "ubuntu-24.04"
+      ]
+    },
+    {
+      "id": 135157401204,
+      "name": "browser-shard (2/3)",
+      "run_attempt": 2,
+      "status": "in_progress",
+      "conclusion": null,
+      "started_at": "2026-11-18T21:46:29Z",
+      "completed_at": null,
+      "labels": [
+        "ubuntu-24.04"
+      ]
+    },
+    {
+      "id": 135157403325,
+      "name": "browser-shard (3/3)",
+      "run_attempt": 2,
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-18T21:24:37Z",
+      "completed_at": "2026-11-18T21:35:27Z",
+      "labels": [
+        "ubuntu-24.04"
+      ]
+    },
+    {
+      "id": 135157404958,
+      "name": "domain-build-plan",
+      "run_attempt": 2,
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-18T21:24:37Z",
+      "completed_at": "2026-11-18T21:28:07Z",
+      "labels": [
+        "ubuntu-24.04"
+      ]
+    }
+  ],
+  "retryArtifactsNotYetDownloaded": "All IDs retained; initial five ZIPs pinned locally. Download new attempt artifacts by ID next session before7dayexpiry; do not substitute old passing reports for failed/incomplete groups."
+}

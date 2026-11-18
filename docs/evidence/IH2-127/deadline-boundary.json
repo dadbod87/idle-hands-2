@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-18T21:58:13.640711+00:00",
+  "run": 44401163885,
+  "attempt": 2,
+  "cancelRequested": true,
+  "reason": "Owner work window ends about2PM/22UTC; delayed first group cannot finish. Preserve useful same-head successes and all incomplete evidence. No third blind retry. PR63unmerged; no main/study dispatch.",
+  "notAnAssertionFailureClaim": true
+}

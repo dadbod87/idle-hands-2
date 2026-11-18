@@ -1,3 +1,4 @@
+import {waitForMonotonicDeadline} from './monotonic-deadline.ts';
 /** Optional disposable CI diagnostic. Not a normal game/server entry point. */
 import assert from 'node:assert/strict';
 import {mkdirSync,existsSync,readdirSync,writeFileSync,readFileSync} from 'node:fs';
@@ -28,7 +29,7 @@ export async function runPublicRefresh(options:Options){
  const actors:PublicModelActor[]=[],contexts:BrowserContext[]=[],native:Array<{page:Page;invalidations:number;api:Array<{route:string;ms:number;status:number;phase:string;atMs:number}>;errors:string[];consoleErrors:Array<{phase:string;path:string;resource401:boolean}>;metricsBefore?:unknown;metricsAfter?:unknown}>=[];
  const commandOutcomes:unknown[]=[],waves:unknown[]=[],stateConfirmations:unknown[]=[],visibleConfirmations:unknown[]=[],replays:unknown[]=[],lifecycle:unknown[]=[];
  let workloadAt=0,workloadEndedAt=0,checkpoint:unknown,idle:unknown,conservation:unknown,modelTotalsBeforeLifecycle:unknown,nativeTotalsBeforeLifecycle:unknown;
- const sourceFiles=['tools/public-refresh.ts','tools/public-client.ts','tools/public-refresh-fixture.ts','tools/session-child.ts','tools/session-process.ts','tools/session-target.ts','tools/session-resources.ts'];
+ const sourceFiles=['tools/public-refresh.ts','tools/monotonic-deadline.ts','tools/public-client.ts','tools/public-refresh-fixture.ts','tools/session-child.ts','tools/session-process.ts','tools/session-target.ts','tools/session-resources.ts'];
  const provenance={head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),files:Object.fromEntries(sourceFiles.map(p=>[p,createHash('sha256').update(readFileSync(p)).digest('hex')]))};
  try{
   child=await startSessionServer({...options,workload:'public'});
@@ -88,7 +89,7 @@ export async function runPublicRefresh(options:Options){
   await confirm(3,12);await until(async()=>(await child!.metrics()).server.transport.activeStreams===20&&actors.every(a=>a.counts.active===0),'Lifecycle20streams settled');
   if(options.mode==='observation'){assert.ok(performance.now()-workloadAt<148000,'Work/lifecycle must leave the fixed30squiet interval.');await delay(148000-(performance.now()-workloadAt));}
   stage='checkpoint';await until(async()=>(await child!.metrics()).server.transport.activeRequests===0,'All native/model finite requests settle');await delay(100);checkpoint=await child.checkpoint();const before=await child.phase('idle');mark('idle');const idleAt=performance.now();
-  await delay(options.mode==='observation'?Math.max(0,180000-(performance.now()-workloadAt)):500);
+  if(options.mode==='observation')await waitForMonotonicDeadline(workloadAt+180000);else await delay(500);
   workloadEndedAt=performance.now();const after=await child.metrics();idle={ms:performance.now()-idleAt,appSqlBefore:before.sql.idle??0,appSqlAfter:after.sql.idle??0,activeStreams:after.server.transport.activeStreams};
   assert.equal(after.sql.idle??0,before.sql.idle??0);assert.equal(after.server.transport.activeStreams,20);
   if(options.mode==='observation')assert.ok((idle as any).ms>=30000,'Fixed quiet interval retained without extending observation.');

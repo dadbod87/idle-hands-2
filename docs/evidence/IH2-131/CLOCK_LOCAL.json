@@ -59,5 +59,7 @@
   "serverClockRegressions": 8,
   "realPgCasesPendingCurrentSource": 3,
   "dockerEngine": "Observed preexisting running engine; no game/DB service started or engine/container stopped by this continuation",
-  "realPgMethod": "Delay first real SQL submission after initial clock sample, compatible with settlement-first and pre-lock paths; no query/result/confirmation substitution"
+  "realPgMethod": "Delay first real SQL submission after initial clock sample, compatible with settlement-first and pre-lock paths; no query/result/confirmation substitution",
+  "recordKind": "Historical pre-CI local-check snapshot",
+  "currentAcceptance": "source-closeout.json"
 }

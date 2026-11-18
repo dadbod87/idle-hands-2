@@ -1,0 +1,70 @@
+[
+  {
+    "workload": "load",
+    "commandP95Ms": 259.713375000003,
+    "budgets": {
+      "commandP95TargetMs": 500,
+      "commandP95Pass": true,
+      "physicalPhoneAndHostedProof": "PENDING"
+    },
+    "cleanup": {
+      "completed": true,
+      "activeStreamsAfter": 0,
+      "activeRequestsAfter": 0
+    },
+    "idle": {
+      "seconds": 10,
+      "sqlQueries": 0,
+      "presenceEvents": 0
+    },
+    "conservation": {
+      "residents": 20,
+      "uniqueCommands": 140,
+      "replayedCommands": 20,
+      "receiptRows": 140,
+      "inventoryEach": {
+        "scrap": 1,
+        "timber": 2,
+        "supplies": 4
+      },
+      "outputKits": 0,
+      "realJobHours": 12,
+      "firstPlanterSeconds": 5
+    },
+    "loadSqlCount": 2540
+  },
+  {
+    "workload": "profiled-load",
+    "commandP95Ms": 632.1474999999991,
+    "budgets": {
+      "commandP95TargetMs": 500,
+      "commandP95Pass": false,
+      "physicalPhoneAndHostedProof": "PENDING"
+    },
+    "cleanup": {
+      "completed": true,
+      "activeStreamsAfter": 0,
+      "activeRequestsAfter": 0
+    },
+    "idle": {
+      "seconds": 10,
+      "sqlQueries": 0,
+      "presenceEvents": 0
+    },
+    "conservation": {
+      "residents": 20,
+      "uniqueCommands": 140,
+      "replayedCommands": 20,
+      "receiptRows": 140,
+      "inventoryEach": {
+        "scrap": 1,
+        "timber": 2,
+        "supplies": 4
+      },
+      "outputKits": 0,
+      "realJobHours": 12,
+      "firstPlanterSeconds": 5
+    },
+    "loadSqlCount": 2540
+  }
+]

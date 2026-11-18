@@ -1,0 +1,5 @@
+{
+  "passed": 0,
+  "failed": 3,
+  "cause": "New intercept fixture incorrectly asserted signed-in actor on ordinary initial anonymous snapshot. Corrected to401 before fixture login as established client harness. No runtime authority/assertion/budget change."
+}

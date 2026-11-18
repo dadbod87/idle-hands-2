@@ -1,3 +1,7 @@
+# November17 — IH2-122 active truthful menu confirmation
+
+121fullyclosed: source main48ff0eb8 and pushed documentation13c487b. Isolated current source work/idle-hands-2-menu-status, fix/truthful-menu-confirmation. Soleactive122; [plan](../evidence/IH2-122/PLAN.md). Actual Bag stale waiting reproduced after successful read/unlocked controls, client-only repair next. Normal4175/localhost4176 remain121API9/119client, exact commands in snapshot-batch artifacts active-services.json. ProtectedPG55432/originalkeys unchanged; no real-player/original-game/hosted work. Deadline Nov18at15UTC/7AMPST or~90%weeklyused, latest16%. Earlier entries historical.
+
 # November 17 — IH2-121 accepted; next local polish to select
 
 Candidate **4080b8df23104c2015929aba126ee1f5a6ab17db**, main **48ff0eb8e50dba35e3566add56836a75c5fa9d8f**, identical tree. Exact PR44228943821/main44231690183 all four/raw503domain/188browser89+99, zero failures/skips/flakes/errors. [Report](../evidence/IH2-121/REPORT.md), [closeout](../evidence/IH2-121/source-closeout.json). All prior188cases and232client/226art bytes preserved.15→1snapshot /5620→2540load calls, unchanged authority/economy/timers/nineSQL. Local two500ms timing failures, variable ordinary results, delayed failures and original brief4Kblack capture remain disclosed; test-only compositor guard and corrected Terra stills pass.

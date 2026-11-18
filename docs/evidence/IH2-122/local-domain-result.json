@@ -1,0 +1,15 @@
+{
+  "total": 503,
+  "passed": 502,
+  "failed": 1,
+  "skipped": 0,
+  "durationMs": 250126.760208,
+  "failures": [
+    {
+      "test": "profiled twenty-player run keeps the existing workload, budget, idle silence and complete traces",
+      "p95Ms": 632.1474999999991,
+      "unchangedBudgetMs": 500
+    }
+  ],
+  "noRerunOrRelaxation": true
+}

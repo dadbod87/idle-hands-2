@@ -1,4 +1,4 @@
-# Batch coherent snapshot reads — active after accepted IH2-120
+# Coherent snapshot plan — implemented and accepted
 
 The retained120trace attributes140unique commands/20replays, with27–28SQLround trips per ordinary command. Slow sampled commands spend most of their time acquiring a pooled connection or completing database calls. Injected2/5msper-TCP-chunk direction raises command p95to1.48/1.83s without losing stock/receipts. This supports testing fewer sequential reads, not claiming a unique cause of workstation stalls.
 
@@ -14,3 +14,5 @@ Keep all mutable authority in the existing transactions. Use a single SQLproject
 Measure old/new sequentially with the same Node24and dedicated55434fixture, observation and original20-client workload; keep exact source hashes and failed reports. Do not call a lower query count alone a measured speedup. Added network fixtures remain declared, not WAN evidence. Browser/device/render and hosted limits remain separate.
 
 Player benefit sought: faster confirmed actions and coherent town views, with every earned item and timer intact. Friction removed would be repeated sequential reads holding a limited connection pool. Remaining opportunity is realistic-device/hosting validation at its separate gate; this work does not add another player-facing panel or change progression.
+
+Acceptance and retained limits are recorded in REPORT.md and source-closeout.json.

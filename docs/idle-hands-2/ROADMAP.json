@@ -2047,7 +2047,7 @@
     {
       "id": "IH2-121",
       "title": "Batch coherent town snapshot reads without changing authority",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-120"
       ],
@@ -2061,10 +2061,59 @@
         "No new economy, pool-size increase, weakened isolation/durability/budgets, real-player load, cloud setup, expense or unrelated UI expansion."
       ],
       "evidence": [
-        "docs/evidence/IH2-121/PLAN.md"
+        "docs/evidence/IH2-121/PLAN.md",
+        "docs/evidence/IH2-121/REPORT.md",
+        "docs/evidence/IH2-121/METHOD.md",
+        "docs/evidence/IH2-121/VALIDATION_HISTORY.md",
+        "docs/evidence/IH2-121/comparison-summary.json",
+        "docs/evidence/IH2-121/transaction-analysis.json",
+        "docs/evidence/IH2-121/pr-ci-verification.json",
+        "docs/evidence/IH2-121/main-ci-verification.json",
+        "docs/evidence/IH2-121/actual-saved.json",
+        "docs/evidence/IH2-121/saved-preservation.json",
+        "docs/evidence/IH2-121/TERRA_ACTUAL_SAVED.md",
+        "docs/evidence/IH2-121/source-closeout.json"
       ],
       "owner_branch": "perf/coherent-town-snapshot"
+    },
+    {
+      "id": "IH2-122",
+      "title": "Clear truthful remote-menu confirmation after completed reads",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-121"
+      ],
+      "goal": "Remove misleading stale waiting/error text while preserving confirmed command receipts, retry safety, stable controls and all authoritative state.",
+      "acceptance": [
+        "Reproduce the actual saved Bag stale waiting message and distinguish it from real server latency.",
+        "Present pending, failed, unresolved and confirmed menu state truthfully; preserve command/refusal messages and do not rewrite unchanged live status on every clock tick.",
+        "Controlled intercepted client fixtures cover delayed success, failed-read recovery, unresolved command/replay and panel changes; disclose fixtures. Actual saved desktop/mobile/short menu checks and Terra6.1 still review, no real-player changes.",
+        "All required local and exact final PR/main/raw gates; preserve original keys, protected database and all saved progress during matched local client update. Record failures, source, screenshots and next steps."
+      ],
+      "exclusions": [
+        "No economy, server, protocol, movement, migration, art, hosting, directory or unrelated layout changes.",
+        "No new polling, weakened budgets/timeouts, real-player data or spending."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-122/PLAN.md",
+        "docs/evidence/IH2-122/METHOD.md",
+        "docs/evidence/IH2-122/TERRA_FOCUSED.md",
+        "docs/evidence/IH2-122/initial-focused-result.json",
+        "docs/evidence/IH2-122/second-focused-result.json",
+        "docs/evidence/IH2-122/third-focused-result.json",
+        "docs/evidence/IH2-122/phone-confirmed.png",
+        "docs/evidence/IH2-122/short200-confirmed.png",
+        "docs/evidence/IH2-122/REPORT.md",
+        "docs/evidence/IH2-122/local-domain-result.json",
+        "docs/evidence/IH2-122/local-load-summary.json",
+        "docs/evidence/IH2-122/local-profile-observations.json",
+        "docs/evidence/IH2-122/ci-family-result.json",
+        "docs/evidence/IH2-122/local-browser-result.json",
+        "docs/evidence/IH2-122/shared-flow-local-timeouts.json",
+        "docs/evidence/IH2-122/NEXT_PROFILING.md"
+      ],
+      "owner_branch": "fix/truthful-menu-confirmation"
     }
   ],
-  "source_status_note": "Owner explicitly made the repository public November13,2026. Prior private-billing refusals in task histories remain dated evidence; standard free public CI may now validate authorized final candidates. No pending source/preview acceptance is satisfied by visibility alone. Read ACTIONS_USAGE_POLICY and CURRENT_SESSION."
+  "source_status_note": "IH2-121 accepted after exact PR53/main503domain/188browser/raw and original-key saved API-only preservation. See CURRENT_SESSION; physical/hosted gates remain separate."
 }

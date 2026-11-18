@@ -1,3 +1,19 @@
+# November17 — IH2-122 active truthful menu confirmation
+
+121fullyclosed: source main48ff0eb8 and pushed documentation13c487b. Isolated current source work/idle-hands-2-menu-status, fix/truthful-menu-confirmation. Soleactive122; [plan](../evidence/IH2-122/PLAN.md). Actual Bag stale waiting repaired at the response-to-UI boundary. Focusednew5/5; full localdomain502/503(profiled632.147ms500msfailure retained); fullChrome189/193(two90second caps/two dependentfixtures retained), cleanexistingCIprofileorderedfamily5/5. Exact finalPR/main/raw and actualsavedclientupdate pending. Normal4175/localhost4176 remain121API9/119client, exact commands in snapshot-batch artifacts active-services.json. ProtectedPG55432/originalkeys unchanged; no real-player/original-game/hosted work. Deadline Nov18at15UTC/7AMPST or~90%weeklyused, latest16%. Earlier entries historical.
+
+# November 17 — IH2-121 accepted; next local polish to select
+
+Candidate **4080b8df23104c2015929aba126ee1f5a6ab17db**, main **48ff0eb8e50dba35e3566add56836a75c5fa9d8f**, identical tree. Exact PR44228943821/main44231690183 all four/raw503domain/188browser89+99, zero failures/skips/flakes/errors. [Report](../evidence/IH2-121/REPORT.md), [closeout](../evidence/IH2-121/source-closeout.json). All prior188cases and232client/226art bytes preserved.15→1snapshot /5620→2540load calls, unchanged authority/economy/timers/nineSQL. Local two500ms timing failures, variable ordinary results, delayed failures and original brief4Kblack capture remain disclosed; test-only compositor guard and corrected Terra stills pass.
+
+Current complete source is work/idle-hands-2-snapshots on post-acceptance docs branch **chore/snapshot-closeout-2026-11-17** over main above. Commit/push docs and verify remote before starting another task. This backup is not a new runtime merge or hosted CI claim. Old canonical work/idle-hands-2 remains only runtime/key/bookkeeping; preserve its historical tail.
+
+Normal4175/localhost4176 retain unchanged232-file119client and now immutable accepted121API9. Resolve exact current PIDs/commands from snapshot-batch-2026-11-17/active-services.json. Protected55432and original0600keys were never restarted/reset/reseeded/migrated/copied; all17table fields/nine metadata/static PIDs preserved. Initial119→121 position comparison failed on volatile versus durable feet; original contexts closed unaccepted. A separate three fresh current121 fictional contexts survived a second same-key API-only restart/reload. No other historical cookie claim; see POSITION_DISPOSITION.md. Actual native menu-only desktop/touch-phone/short200, compositor/reload/464game+125historical and Terra still review accepted. No real-player/original-game/cloud release.
+
+No task active after closeout. Select bounded truthful remote-menu status repair next: successful Bag reads can leave waiting text after controls/aria-busy recover; see STATUS_DISPOSITION.md. Registry obsolete sign and Journal below-fold discovery are later polish candidates. Read next-polish-conditions/Terra notes in snapshot-batch artifacts; preserve controls/hit geometry, pressed-target stability, original art and data. Do not invent implemented features. Hosting070 remains separately blocked; no expense or infrastructure approval.
+
+Owner run ends Nov18at15UTC/7AMPST or~90%weekly used; latest16%used. Recheck boundaries; no resetcredit/purchase/paid setup. Continue only within current authority and complete each task's full source/main/saved gates before the next. Earlier entries below are historical.
+
 # November 17 — IH2-121 final candidate, acceptance pending
 
 Current source: `work/idle-hands-2-snapshots`, branch `perf/coherent-town-snapshot`, over accepted main1999f83 and pushed120closeoutf4d0203. Runtime-code measurement checkpoint0c34d5b; backup ee164a4. Candidate SHA is recorded by the next validation artifacts. 121 is the sole active task. [Report](../evidence/IH2-121/REPORT.md).

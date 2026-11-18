@@ -29,6 +29,7 @@
     "home-retry.spec.ts",
     "home-workroom.spec.ts",
     "housing-clarity.spec.ts",
+    "remote-menu-status.spec.ts",
     "weather-readability.spec.ts",
     "woodland-shared.spec.ts"
   ],

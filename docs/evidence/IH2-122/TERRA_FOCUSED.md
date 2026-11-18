@@ -1,0 +1,5 @@
+# Focused menu confirmation still review
+
+All seven requested images were inspected. The desktop and 320-wide confirmed states display the complete “Town state confirmed” message and footer. The short/200% capture displays the complete status, but the footer continues below the captured viewport and the preceding content is partly behind the sticky title at this scroll position; the still alone does not establish its reachability. The phone recovery status is fully legible. The same-request, refusal, and command-receipt captures show their full status messages without covering the visible controls. No clipped status or visibly obscured action appears in these sampled states; content outside a captured viewport cannot be assessed from the still alone.
+
+These are intercepted client-only fictional fixtures with controlled replies, not database or real-player evidence. Focus, state transitions, and interactions are operator-tested rather than inferred here. Actual saved runtime update and full source/main gates remain pending.

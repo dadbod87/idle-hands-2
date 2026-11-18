@@ -1,0 +1,15 @@
+{
+  "sha": "48ff0eb8e50dba35e3566add56836a75c5fa9d8f",
+  "all17TablesEveryFieldExact": true,
+  "all9MigrationRowsExact": true,
+  "original0600KeysExact": true,
+  "staticPidsExactOnly2ApisIntentionallyUpdated": true,
+  "all464NormalGameResponsesExactAccepted119": true,
+  "all125HistoricalStudyResponsesExact": true,
+  "noClientRulesNineMigrationsOrLockfileChange": true,
+  "noPgRestartMigrationResetReseedKeyCopyMovementOrGrant": true,
+  "previewRuntimeAuthority": "Accepted121 immutable API9 source, unchanged accepted119232-file static client. Three fresh current121 contexts survive second same-key API-only restart and reload. Initial119-to121 volatile-versus-durable position comparison failed; original contexts closed unaccepted. No historical browser cookie claim.",
+  "physicalPhoneHostedOrHumanAcceptance": "Not claimed",
+  "initial119To121PositionComparisonFailed": true,
+  "recoveryScope": "Current121 three-context same-key restart only"
+}

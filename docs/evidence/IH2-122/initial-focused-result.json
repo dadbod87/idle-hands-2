@@ -1,0 +1,1 @@
+{"passed":0,"failed":3,"cause":"New fixture incorrectly gathered each bin twice; ordinary gather collects the whole6-unit bin. Corrected fixture uses one pure gather per resource. No game rule/assertion/budget relaxation."}

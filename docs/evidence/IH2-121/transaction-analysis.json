@@ -1,0 +1,213 @@
+{
+  "method": "Per HTTP command request: real client BEGIN invocation to COMMIT callback finish, measured from retained bounded AsyncLocalStorage traces. Approximates the transaction-held part of a leased connection, excludes pool-acquisition wait and small pre-BEGIN/post-COMMIT processing. Counts classify20replays by known workload SQL histograms,140ordinary commands. Does not isolate PostgreSQL CPU, exclusive lock cost or total request latency. No new workload/retries/configuration.",
+  "rows": [
+    {
+      "name": "ordinary-1-old",
+      "source": "old",
+      "delay": 0,
+      "ordinaryTransactionSpanMs": {
+        "count": 140,
+        "median": 38.120833499999435,
+        "p95": 100.8284590000003,
+        "max": 121.74716699999772,
+        "sum": 6416.000005
+      },
+      "receiptReplayTransactionSpanMs": {
+        "count": 20,
+        "median": 26.834999500000777,
+        "p95": 49.4173750000009,
+        "max": 54.38987500000076,
+        "sum": 613.0688760000085
+      }
+    },
+    {
+      "name": "ordinary-2-new",
+      "source": "new",
+      "delay": 0,
+      "ordinaryTransactionSpanMs": {
+        "count": 140,
+        "median": 35.81391650000114,
+        "p95": 128.56166600000006,
+        "max": 168.7693750000003,
+        "sum": 6788.5329640000145
+      },
+      "receiptReplayTransactionSpanMs": {
+        "count": 20,
+        "median": 22.613208500000837,
+        "p95": 56.29308400000082,
+        "max": 62.28924999999799,
+        "sum": 566.0947940000078
+      }
+    },
+    {
+      "name": "ordinary-3-new",
+      "source": "new",
+      "delay": 0,
+      "ordinaryTransactionSpanMs": {
+        "count": 140,
+        "median": 50.12377050000009,
+        "p95": 157.41120800000044,
+        "max": 259.6627499999995,
+        "sum": 9056.301340000005
+      },
+      "receiptReplayTransactionSpanMs": {
+        "count": 20,
+        "median": 24.328437499998472,
+        "p95": 74.34454199999891,
+        "max": 93.36666600000171,
+        "sum": 661.921290000002
+      }
+    },
+    {
+      "name": "ordinary-4-old",
+      "source": "old",
+      "delay": 0,
+      "ordinaryTransactionSpanMs": {
+        "count": 140,
+        "median": 39.087666499999614,
+        "p95": 76.72600000000239,
+        "max": 104.98274999999921,
+        "sum": 6094.4358780000075
+      },
+      "receiptReplayTransactionSpanMs": {
+        "count": 20,
+        "median": 28.843645999999353,
+        "p95": 54.22820900000079,
+        "max": 54.40954200000124,
+        "sum": 671.4645030000029
+      }
+    },
+    {
+      "name": "ordinary-5-old",
+      "source": "old",
+      "delay": 0,
+      "ordinaryTransactionSpanMs": {
+        "count": 140,
+        "median": 51.02925049999976,
+        "p95": 277.25237500000003,
+        "max": 483.14708299999984,
+        "sum": 11812.554168999974
+      },
+      "receiptReplayTransactionSpanMs": {
+        "count": 20,
+        "median": 106.37572949999958,
+        "p95": 404.0091659999998,
+        "max": 421.97270800000115,
+        "sum": 2919.108082999992
+      }
+    },
+    {
+      "name": "ordinary-6-new",
+      "source": "new",
+      "delay": 0,
+      "ordinaryTransactionSpanMs": {
+        "count": 140,
+        "median": 30.78008300000147,
+        "p95": 83.41933400000198,
+        "max": 143.11583299999984,
+        "sum": 5309.793879000003
+      },
+      "receiptReplayTransactionSpanMs": {
+        "count": 20,
+        "median": 13.387958000001163,
+        "p95": 63.33958300000086,
+        "max": 64.62045800000124,
+        "sum": 483.5277879999994
+      }
+    },
+    {
+      "name": "latency-2-old",
+      "source": "old",
+      "delay": 2,
+      "ordinaryTransactionSpanMs": {
+        "count": 140,
+        "median": 208.66360399999985,
+        "p95": 901.9925000000003,
+        "max": 1562.2391659999994,
+        "sum": 39510.19774899999
+      },
+      "receiptReplayTransactionSpanMs": {
+        "count": 20,
+        "median": 167.07197949999863,
+        "p95": 252.61337499999718,
+        "max": 259.44483299999774,
+        "sum": 3724.509622999987
+      }
+    },
+    {
+      "name": "latency-2-new",
+      "source": "new",
+      "delay": 2,
+      "ordinaryTransactionSpanMs": {
+        "count": 140,
+        "median": 94.47618750000038,
+        "p95": 156.48774999999978,
+        "max": 176.10412499999984,
+        "sum": 14278.881410999986
+      },
+      "receiptReplayTransactionSpanMs": {
+        "count": 20,
+        "median": 51.76993699999912,
+        "p95": 59.315958000002865,
+        "max": 62.64879099999962,
+        "sum": 1057.833494999999
+      }
+    },
+    {
+      "name": "latency-5-old",
+      "source": "old",
+      "delay": 5,
+      "ordinaryTransactionSpanMs": {
+        "count": 140,
+        "median": 391.05937500000164,
+        "p95": 701.6209159999999,
+        "max": 1054.394416000002,
+        "sum": 60563.61183500002
+      },
+      "receiptReplayTransactionSpanMs": {
+        "count": 20,
+        "median": 335.50718750000124,
+        "p95": 378.9303749999999,
+        "max": 380.7783329999984,
+        "sum": 6720.311750000004
+      }
+    },
+    {
+      "name": "latency-5-new",
+      "source": "new",
+      "delay": 5,
+      "ordinaryTransactionSpanMs": {
+        "count": 140,
+        "median": 205.02210450000075,
+        "p95": 406.81912499999817,
+        "max": 643.2863749999997,
+        "sum": 32683.41071
+      },
+      "receiptReplayTransactionSpanMs": {
+        "count": 20,
+        "median": 130.064958500001,
+        "p95": 172.38895799999955,
+        "max": 176.87945799999943,
+        "sum": 2686.102912000002
+      }
+    }
+  ],
+  "ordinaryAcrossRuns": {
+    "old": {
+      "medianOfRunP95Ms": 100.8284590000003,
+      "runP95Ms": [
+        100.8284590000003,
+        76.72600000000239,
+        277.25237500000003
+      ]
+    },
+    "new": {
+      "medianOfRunP95Ms": 128.56166600000006,
+      "runP95Ms": [
+        128.56166600000006,
+        157.41120800000044,
+        83.41933400000198
+      ]
+    }
+  }
+}

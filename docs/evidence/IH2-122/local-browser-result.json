@@ -1,0 +1,44 @@
+{
+  "total": 193,
+  "passed": 189,
+  "failed": 4,
+  "skipped": 0,
+  "flaky": 0,
+  "reportErrors": 0,
+  "failures": [
+    {
+      "file": "shared-town.spec.ts",
+      "title": "desktop and narrow-phone residents cooperate, retain ownership and retry the same committed request",
+      "outcome": "unexpected",
+      "durationMs": 89950
+    },
+    {
+      "file": "starter-homes.spec.ts",
+      "title": "real isolated town fixtures: physical home ownership, visiting, upgrade, reload and safe door return",
+      "outcome": "unexpected",
+      "durationMs": 90161
+    },
+    {
+      "file": "trail.spec.ts",
+      "title": "real isolated town: timed opening, personal trail journal and permanent home pennant",
+      "outcome": "unexpected",
+      "durationMs": 3916
+    },
+    {
+      "file": "z-first-visit.spec.ts",
+      "title": "fresh phone resident: real first planter, queued return job, sixty-second upkeep and independent trail discovery",
+      "outcome": "unexpected",
+      "durationMs": 3299
+    }
+  ],
+  "allFiveNewClientCasesPass": true,
+  "runtimeCheckpoint": "28610e267b9bda96a9c89d0b02de0f883e5ee0da",
+  "profile": "Node24.22.2 local Chrome, unchanged90second caps on longshared/homeflows",
+  "limits": "Not a pass of the separate configured CI profile or physical devices.",
+  "all188PriorCasesExecuted": true,
+  "all193CasesExecutedNoCoverageDrop": true,
+  "runnerDiagnosticsRetained": [
+    "Internal error: step id not found: fixture@463",
+    "Internal error: step id not found: fixture@54"
+  ]
+}

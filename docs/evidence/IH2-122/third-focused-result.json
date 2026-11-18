@@ -1,0 +1,5 @@
+{
+  "passed": 1,
+  "failed": 2,
+  "cause": "Test assumptions: hidden retry is omitted from role locator during read; intentional main pending-request guard opens Confirm pending request instead of Bag. Correct tests retain both existing safeguards, no runtime relaxation."
+}

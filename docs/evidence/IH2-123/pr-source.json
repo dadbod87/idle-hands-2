@@ -1,0 +1,125 @@
+{
+  "run": 44284738458,
+  "sha": "dc2766a40034dcb1d0ccd764dbad9518c519b8d6",
+  "allRequiredJobsSuccess": true,
+  "requiredJobCount": 5,
+  "artifactsPinnedById": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14418367690,
+      "createdAt": "2026-11-18T10:24:53Z",
+      "zipSha256": "1095c38e7197635bebb1bf3b3ee46027f28b78d5c0c1950207f5b62add77b899"
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14417654182,
+      "createdAt": "2026-11-18T10:24:54Z",
+      "zipSha256": "a33f2c3d645afa742ed16ee2a1f7b2e6434f13eb8bea51541b6381cb687dadad"
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14420035548,
+      "createdAt": "2026-11-18T10:34:27Z",
+      "zipSha256": "57e62129df59b01e3aa4c0d4eb8d6d5f151dfaeb7d36e3caea70daedf50e9064"
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14418629583,
+      "createdAt": "2026-11-18T10:38:02Z",
+      "zipSha256": "7119d379afec7780daf99b4db86c3d86d25e030e120d1a0f2ab7c5a451c4b03c"
+    },
+    {
+      "name": "sequel-browser-evidence-3",
+      "id": 14418713994,
+      "createdAt": "2026-11-18T10:36:13Z",
+      "zipSha256": "21fe4cc3bb9f326eedf6c1dd3ca43409723ccd83725b6abae75cc2fa35b8ce5f"
+    }
+  ],
+  "domain": 506,
+  "browser": 193,
+  "disjointShards": [
+    73,
+    66,
+    54
+  ],
+  "all188PriorBrowserCasesPreserved": true,
+  "newControlledClientCases": 5,
+  "localFullExecution": "Inspect this phase local-domain-result.json/local-browser-result.json and all retained timing/diagnostic failures; no previous result is relabelled.",
+  "orderedFixtureFamily": {
+    "shared-town.spec.ts": [
+      2
+    ],
+    "starter-homes.spec.ts": [
+      2
+    ],
+    "trail.spec.ts": [
+      2
+    ],
+    "z-first-visit.spec.ts": [
+      2
+    ]
+  },
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all232CompiledFilesExactFrozenLocal": true,
+  "all226PriorArtFilesExact": true,
+  "rawHousingAndOutingRestartRestoreSameSessionAnd9MigrationChecksums": true,
+  "commandP95Ms": 58.391240000000835,
+  "neighborhoodSnapshotP95Ms": 53.342460000000074,
+  "profiledCommandP95Ms": 61.23092099999849,
+  "rich26HomeSnapshotP95Ms": 62.10113999999976,
+  "acceptedReader15To1AndAllFieldEquivalence": true,
+  "corrected4KCompositorPixelsVerified": true,
+  "profileTraceCompleteObserverIdle0DurabilityOn": true,
+  "same2540LoadQueriesAnd140Unique20Replay": true,
+  "all232GameFilesExactAccepted122": true,
+  "runtimeSourceChanges": [],
+  "newSafetySmokeDomainCases": 3,
+  "menuPendingSuccessFailureRefusalAndRetryProof": true,
+  "unchanged500msBudgetsPass": true,
+  "runtime": "v24.22.2",
+  "publicStandardUbuntu": true,
+  "approxRoundedJobMinutes": 48,
+  "approxLatestSuccessfulExecutionJobMinutes": 48,
+  "jobEvidence": [
+    {
+      "name": "browser-playtest",
+      "actualExecutionJobId": 134742972368,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134742972368,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-shard (2/3)",
+      "actualExecutionJobId": 134734364444,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134734364444,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-shard (3/3)",
+      "actualExecutionJobId": 134734364548,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134734364548,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-shard (1/3)",
+      "actualExecutionJobId": 134734364395,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134734364395,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "domain-build-plan",
+      "actualExecutionJobId": 134734364435,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134734364435,
+      "latestLogicalAttempt": 1
+    }
+  ],
+  "runAttempt": 1,
+  "sameHeadSuccessReuseDisclosed": false,
+  "accountingMethod": "All distinct name/start/end executions across attempts, excluding GitHub logical clones of reused successful jobs; includes cancelled/failed attempts, not an invoice.",
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true
+}

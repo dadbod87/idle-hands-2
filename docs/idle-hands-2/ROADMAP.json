@@ -2124,7 +2124,7 @@
     {
       "id": "IH2-123",
       "title": "Profile bounded sessions with server and driver resources separated",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-122"
       ],
@@ -2150,10 +2150,14 @@
         "docs/evidence/IH2-123/measurements.json",
         "docs/evidence/IH2-123/local-domain.json",
         "docs/evidence/IH2-123/local-browser-result.json",
-        "docs/evidence/IH2-123/local-byte-identity-bridge.json"
+        "docs/evidence/IH2-123/local-byte-identity-bridge.json",
+        "docs/evidence/IH2-123/source-closeout.json",
+        "docs/evidence/IH2-123/pr-source.json",
+        "docs/evidence/IH2-123/main-source.json",
+        "docs/evidence/IH2-123/saved-preservation.json"
       ],
-      "owner_branch": "perf/bounded-session-churn"
+      "owner_branch": "chore/session-profile-closeout-2026-11-18"
     }
   ],
-  "source_status_note": "122fullyclosed before active123server-only diagnostic; see CURRENT_SESSION."
+  "source_status_note": "123fullyclosed with exact PR/main506/193and read-only saved preview; see CURRENT_SESSION for current source."
 }

@@ -24,3 +24,7 @@ Finite driver latency spans request start through complete body text, before its
 The initial three f245a148runs completed with all original targets/met checks. Review found that silent EOF and aggregate heartbeats could miss individual stream loss; see CONNECTION_REVIEW.md. Stronger per-connection observations and one additional pure-stream test are being validated before three final-version runs. Initial reports remain retained. The first postprocessing pass also rejected Docker nanosecond timestamps; the reader now normalizes fractional precision, without rerunning/changing any measurement.
 
 Existing full browser regressions use separately labelled stock/elapsed synthetic fixtures (including the existing48-kit actors). The timed session studies use ordinary zero-progress only. Neither touches real or normal saved-player progress.
+
+## Rejected later review hypothesis
+
+A truncated read briefly suggested stale peer state could satisfy reconnect privacy. Full function inspection confirmed the existing `http.streamConnections++; actor.peers = null;` before every connection; disconnect already awaits the previous pump. The unnecessary uncommitted draft was reverted before commit/push/CI/measurement, and all original tool/raw hashes verified. The public progress claim was corrected. No extra study or source change was required for that rejected hypothesis. This is separate from the actual earlier EOF-observation amendment. Final exact PR/main/local and saved-preview acceptance are recorded in REPORT/source-closeout.

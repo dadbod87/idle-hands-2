@@ -1,0 +1,38 @@
+{
+  "task": "IH2-123",
+  "status": "complete",
+  "candidate": "dc2766a40034dcb1d0ccd764dbad9518c519b8d6",
+  "main": "d4068f33fc9f3241d005013c9e62489a93a07ce6",
+  "identicalCandidateAndMainTree": true,
+  "pr": 56,
+  "prRun": 44284738458,
+  "mainRun": 44287636906,
+  "exactFiveJobsAndRaw506Domain193BrowserBothHeads": true,
+  "all232GameBytesUnchangedNoRuntimeInstall": true,
+  "savedPreviewAcceptedReadOnly": true,
+  "all17Fields9MetadataOriginalKeys4PidsProtectedPgPreserved": true,
+  "all464CurrentAnd125HistoricalResponsesExact": true,
+  "threeFixed300SecondFinalToolStudiesComplete": true,
+  "diagnosticTimingMissesRetained": [
+    {
+      "run": 1,
+      "targets": [
+        "command",
+        "replay"
+      ]
+    },
+    {
+      "run": 3,
+      "targets": [
+        "snapshot"
+      ]
+    }
+  ],
+  "noTimingTargetRaisedOrGreenChasing": true,
+  "approxRoundedPublicJobMinutes": 97,
+  "ciRetries": 0,
+  "billingCycleUsageUnknown": true,
+  "paidConfigurationChanges": false,
+  "runtimeAuthority": "Accepted122client and unchanged121API9 processes; source opt-in profiling only",
+  "rejectedReviewHypothesis": "Existing per-connection peers=null barrier verified; unnecessary uncommitted draft reverted with all raw/source hashes exact. No extra run or commit."
+}

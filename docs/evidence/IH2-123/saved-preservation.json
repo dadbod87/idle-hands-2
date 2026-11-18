@@ -1,0 +1,13 @@
+{
+  "sha": "d4068f33fc9f3241d005013c9e62489a93a07ce6",
+  "all17TablesEveryFieldExact": true,
+  "all9MetadataRowsExact": true,
+  "original0600KeysExact": true,
+  "allFourNormalServicePidsExact": true,
+  "protectedPgStartedAtExact": true,
+  "all464NormalGameResponsesExactAccepted122": true,
+  "all125HistoricalStudyResponsesExact": true,
+  "noRuntimeSourceChangesOrInstallation": true,
+  "noPgRestartMigrationResetReseedKeyCopyMovementOrGrant": true,
+  "runtimeAuthority": "Accepted122compiled client and unchanged121API9processes; source profiling is opt-in only. No fresh cookie/restart or physical-device/hosted/human acceptance claim."
+}

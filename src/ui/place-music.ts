@@ -39,8 +39,9 @@ export function mountPlaceMusic({ room, settings, quick, body, open }: {
     quick.title = action;
     if (!controls?.root.isConnected) return;
     controls.play.textContent = action;
-    controls.status.textContent = music.status === 'playing'
+    const status = music.status === 'playing'
       ? 'Playing · ' + SCORE_NAMES[music.score] : statusText[music.status];
+    if (controls.status.textContent !== status) controls.status.textContent = status;
     controls.level.value = Math.round(music.volume * 100) + '%';
   }
 

@@ -3,6 +3,7 @@
   top: 14px;
   right: 14px;
   width: auto;
+  height: auto;
   min-width: 64px;
   padding: 2px 6px;
   gap: 0;
@@ -20,7 +21,8 @@
   place-items: center;
 }
 
-.sound-icon[hidden] { display: none; }
+.sound-icon[hidden],
+#panel:has(.place-music-controls) #quick-music { display: none; }
 .sound-icon[data-on="true"] { background: #dfe7ce; }
 .sound-icon:not([data-on="true"]) .sound-waves,
 .sound-icon[data-on="true"] .sound-slash { display: none; }

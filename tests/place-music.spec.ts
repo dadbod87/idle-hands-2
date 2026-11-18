@@ -122,6 +122,8 @@ test('place music controls fit narrow touch and enlarged landscape layouts', asy
       const box = (await sound.boundingBox())!;
       expect(box.width).toBeGreaterThanOrEqual(44);
       expect(box.height).toBeGreaterThanOrEqual(44);
+      const label = (await sound.locator('.sound-label').boundingBox())!;
+      expect(label.y + label.height).toBeLessThan(box.y + box.height);
       const location = await page.locator('#location').boundingBox();
       if (location) expect(location.x + location.width).toBeLessThan(box.x);
       await page.screenshot({ path: output + '/' + layout.name + '-world.png' });
@@ -138,12 +140,12 @@ test('place music controls fit narrow touch and enlarged landscape layouts', asy
       await page.keyboard.press('Home');
       await expect(volume).toHaveValue('0');
       await page.screenshot({ path: output + '/' + layout.name + '-settings.png' });
-      const quick = page.locator('#quick-music');
+      const pause = sheet.getByRole('button', { name: 'Pause music' });
       const close = page.getByRole('button', { name: 'Close panel', exact: true });
-      expect((await quick.boundingBox())!.width).toBeGreaterThanOrEqual(44);
+      expect((await pause.boundingBox())!.width).toBeGreaterThanOrEqual(44);
       expect((await close.boundingBox())!.width).toBeGreaterThanOrEqual(44);
       expect(await page.getByRole('dialog').evaluate(e => e.scrollWidth <= e.clientWidth)).toBe(true);
-      await quick.tap();
+      await pause.tap();
       await expect(sheet.getByRole('status')).toHaveText('Music paused.');
       await close.tap();
       await expect(sound).toBeFocused();

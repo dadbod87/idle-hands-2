@@ -55,9 +55,13 @@ async function setup() {
   }
   const actors = {a: await login('aster'), b: await login('bea'), c: await login('casey')};
   async function partial(body: string, cookie = actors.a.cookie) {
-    let seen!: () => void; const started = new Promise<void>(resolve => {seen = resolve;});
+    let seen!: () => void, ended!: () => void;
+    const started = new Promise<void>(resolve => {seen = resolve;}), bodyEnded = new Promise<void>(resolve => {ended = resolve;});
     const observe = (req: IncomingMessage) => {
-      if (req.url === '/api/town/movement' && req.headers.cookie === cookie) req.once('data', () => {app.server.off('request', observe); seen();});
+      if (req.url === '/api/town/movement' && req.headers.cookie === cookie) {
+        req.once('end', ended);
+        req.once('data', () => {app.server.off('request', observe); seen();});
+      }
     };
     app.server.on('request', observe); let writer!: ClientRequest, finished = false;
     const response = new Promise<{status: number; body: string}>((resolve, reject) => {
@@ -72,7 +76,7 @@ async function setup() {
     try {await bounded(started, 'Raw body admission', 1000); await nextTurn();}
     catch (error) {writer.destroy(); throw error;}
     finally {app.server.off('request', observe);}
-    return {response, isFinished: () => finished, finish: () => {finished = true; writer.end(body.slice(1));}, abort: () => {writer.destroy();}};
+    return {response, bodyEnded, isFinished: () => finished, finish: () => {finished = true; writer.end(body.slice(1));}, abort: () => {writer.destroy();}};
   }
   function bodies(count: number, cookie = actors.a.cookie) {
     let seen = 0, resolve!: () => void; const done = new Promise<void>(r => {resolve = r;});
@@ -158,14 +162,14 @@ test('movement body: auth expiry during body or shared presence wait cannot move
     }
     const held = await f.partial(JSON.stringify(a.snapshot.position));
     try {
-      if (phase === 'presence') {held.finish(); await nextTurn();}
+      if (phase === 'presence') {held.finish(); await bounded(held.bodyEnded, 'Server body completion before expiry', 1000); await nextTurn();}
       f.advance(24 * 3600_000 + 1); release();
       if (phase === 'body') held.finish();
       assert.equal((await bounded(held.response, 'Expired movement')).status, 401);
       if (doorway) assert.equal((await doorway).status, 200);
       const returned = await f.login('aster'); assert.deepEqual(returned.snapshot.position, a.snapshot.position); await f.unchanged('aster', a.snapshot.workshop);
       assert.equal(f.app.metrics.movementAccepted, 0); assert.equal(f.app.metrics.positionCheckpoints, 0);
-      record({case: 'expiry-' + phase, expiredStatus: 401, confirmedFeetPreserved: true, noMovementAccepted: true, syntheticAuthClock: true, realStorePauseOnly: phase === 'presence'});
+      record({case: 'expiry-' + phase, expiredStatus: 401, confirmedFeetPreserved: true, noMovementAccepted: true, syntheticAuthClock: true, serverBodyCompleteBeforeExpiry: phase === 'presence', realStorePauseOnly: phase === 'presence'});
     } finally {release(); f.app.store.execute = original; held.abort(); if (doorway) await doorway.catch(() => {});}
   });
 });

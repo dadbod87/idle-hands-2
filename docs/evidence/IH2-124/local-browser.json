@@ -1,0 +1,16 @@
+{
+  "profile": "CI=1existing bundledChromium, actual corrected backend; viewport/touch, not physical/Safari/WAN",
+  "stats": {
+    "startTime": "2026-11-18T11:35:15.557Z",
+    "duration": 2767269.052,
+    "expected": 193,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "all193ExecutedIdentitiesEqualCurrentCollection": true,
+  "allPrior188AndExistingFiveMenuCasesRetained": true,
+  "runtimeHttpSha256": "ff076128269f292fcbfcc35eded822b31a05bb3e95973d4100fa3caff2bace59",
+  "fixtureDisclosure": "Explicit intercepted-response cases (including menu/home-entry/snapshot failures) plus separate stock/deadline fixtures remain in fullregression. Normal preview not yet updated; no normal data used."
+}

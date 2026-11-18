@@ -2184,7 +2184,10 @@
         "docs/evidence/IH2-124/local-domain.json",
         "docs/evidence/IH2-124/control-comparison.json",
         "docs/evidence/IH2-124/same-checkout-snapshots.json",
-        "docs/evidence/IH2-124/same-checkout-profile.json"
+        "docs/evidence/IH2-124/same-checkout-profile.json",
+        "docs/evidence/IH2-124/REPORT.md",
+        "docs/evidence/IH2-124/local-browser.json",
+        "docs/evidence/IH2-124/focused-current.json"
       ],
       "owner_branch": "fix/movement-body-gate"
     }

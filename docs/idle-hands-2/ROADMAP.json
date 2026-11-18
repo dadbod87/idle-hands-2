@@ -2161,7 +2161,7 @@
     {
       "id": "IH2-124",
       "title": "Keep incomplete movement bodies from stalling other residents",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-123"
       ],
@@ -2187,10 +2187,18 @@
         "docs/evidence/IH2-124/same-checkout-profile.json",
         "docs/evidence/IH2-124/REPORT.md",
         "docs/evidence/IH2-124/local-browser.json",
-        "docs/evidence/IH2-124/focused-current.json"
+        "docs/evidence/IH2-124/focused-current.json",
+        "docs/evidence/IH2-124/local-domain-current.json",
+        "docs/evidence/IH2-124/source-closeout.json",
+        "docs/evidence/IH2-124/pr-source.json",
+        "docs/evidence/IH2-124/main-source.json",
+        "docs/evidence/IH2-124/saved-preservation.json",
+        "docs/evidence/IH2-124/actual-saved.json",
+        "docs/evidence/IH2-124/api-restart-preservation.json",
+        "docs/evidence/IH2-124/terra-actual-saved.md"
       ],
-      "owner_branch": "fix/movement-body-gate"
+      "owner_branch": "chore/movement-body-closeout-2026-11-18"
     }
   ],
-  "source_status_note": "123fullyclosed;124bounded incomplete-body investigation active, see CURRENT_SESSION."
+  "source_status_note": "124complete: exactPR/main510/193and actual saved API-only acceptance; use CURRENT_SESSION for next source."
 }

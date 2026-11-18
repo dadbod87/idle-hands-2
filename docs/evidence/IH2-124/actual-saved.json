@@ -1,0 +1,296 @@
+{
+  "sha": "816d2b89479c1318ebe05b67339f3b71b1efcf92",
+  "scope": "Actual existing fictional Aster/Avery. Three fresh pre-update sign-ins; live confirmed feet matched normalized durable checkpoints via SELECT-only and pure canonicalHomePosition before any API stop. Same in-memory signed contexts across API-only restart/reload, changed server instances, no post-update login or other historical-cookie claim. Native pointer/touch menus only, no HTTP interception, movement/commands, stock/economic clock or position grants. Original keys stay in their existing protected paths; no credentials/cookies serialized. Immediate and later600msstills retained; no exclusive transient rectangle cause inferred.",
+  "footPreflight": [
+    {
+      "prefix": "practice",
+      "id": "aster",
+      "durableMatch": true,
+      "positionSha256": "824070591851a3db6259e92dce5e77c8e1e22b8fcfa080e8f47325548130b239"
+    },
+    {
+      "prefix": "practice-touch",
+      "id": "aster",
+      "durableMatch": true,
+      "positionSha256": "824070591851a3db6259e92dce5e77c8e1e22b8fcfa080e8f47325548130b239"
+    },
+    {
+      "prefix": "tour",
+      "id": "neighbor-01",
+      "durableMatch": true,
+      "positionSha256": "824070591851a3db6259e92dce5e77c8e1e22b8fcfa080e8f47325548130b239"
+    }
+  ],
+  "signed": [
+    {
+      "prefix": "practice",
+      "id": "aster",
+      "sameSignedSession": true,
+      "noPostUpdateLogin": true,
+      "changedServerInstance": true,
+      "allSnapshotFieldsPreservedExceptNormalClockAndInstance": true
+    },
+    {
+      "prefix": "practice-touch",
+      "id": "aster",
+      "sameSignedSession": true,
+      "noPostUpdateLogin": true,
+      "changedServerInstance": true,
+      "allSnapshotFieldsPreservedExceptNormalClockAndInstance": true
+    },
+    {
+      "prefix": "tour",
+      "id": "neighbor-01",
+      "sameSignedSession": true,
+      "noPostUpdateLogin": true,
+      "changedServerInstance": true,
+      "allSnapshotFieldsPreservedExceptNormalClockAndInstance": true
+    }
+  ],
+  "all464GameResponsesExact": true,
+  "allReturnedStatePreservedWithNormalClockObservation": true,
+  "noMovementOrCommands": true,
+  "layouts": [
+    {
+      "prefix": "practice",
+      "name": "desktop2k",
+      "w": 2560,
+      "h": 1440,
+      "text": 100,
+      "view": "world",
+      "compositorSamples": [
+        {
+          "ms": 263,
+          "visibleFraction": 1
+        }
+      ]
+    },
+    {
+      "prefix": "practice",
+      "name": "desktop4k",
+      "w": 3840,
+      "h": 2160,
+      "text": 100,
+      "view": "world",
+      "compositorSamples": [
+        {
+          "ms": 261,
+          "visibleFraction": 1
+        }
+      ]
+    },
+    {
+      "prefix": "practice",
+      "name": "desktop2k",
+      "w": 2560,
+      "h": 1440,
+      "text": 100,
+      "view": "journal",
+      "noHorizontalOverflow": true,
+      "keyboardContained": true
+    },
+    {
+      "prefix": "practice",
+      "name": "desktop2k",
+      "w": 2560,
+      "h": 1440,
+      "text": 100,
+      "view": "bag",
+      "noHorizontalOverflow": true,
+      "keyboardContained": true
+    },
+    {
+      "prefix": "practice-touch",
+      "name": "phone360",
+      "w": 360,
+      "h": 640,
+      "text": 100,
+      "view": "world",
+      "compositorSamples": [
+        {
+          "ms": 146,
+          "visibleFraction": 1
+        }
+      ]
+    },
+    {
+      "prefix": "practice-touch",
+      "name": "phone320",
+      "w": 320,
+      "h": 640,
+      "text": 100,
+      "view": "journal",
+      "noHorizontalOverflow": true,
+      "keyboardContained": true
+    },
+    {
+      "prefix": "practice-touch",
+      "name": "phone320",
+      "w": 320,
+      "h": 640,
+      "text": 100,
+      "view": "bag",
+      "noHorizontalOverflow": true,
+      "keyboardContained": true
+    },
+    {
+      "prefix": "practice-touch",
+      "name": "phone360",
+      "w": 360,
+      "h": 640,
+      "text": 100,
+      "view": "journal",
+      "noHorizontalOverflow": true,
+      "keyboardContained": true
+    },
+    {
+      "prefix": "practice-touch",
+      "name": "phone360",
+      "w": 360,
+      "h": 640,
+      "text": 100,
+      "view": "bag",
+      "noHorizontalOverflow": true,
+      "keyboardContained": true
+    },
+    {
+      "prefix": "practice-touch",
+      "name": "short200",
+      "w": 844,
+      "h": 390,
+      "text": 200,
+      "view": "journal-footer",
+      "nativeWheelRevealsFullStatus": true,
+      "scrollSamples": [
+        {
+          "statusBox": {
+            "x": 210,
+            "y": 275.6875,
+            "width": 424,
+            "height": 96
+          },
+          "dialogBox": {
+            "x": 192,
+            "y": 14,
+            "width": 460,
+            "height": 362
+          },
+          "headerBox": {
+            "x": 194,
+            "y": 16,
+            "width": 456,
+            "height": 99
+          }
+        }
+      ]
+    },
+    {
+      "prefix": "practice-touch",
+      "name": "short200",
+      "w": 844,
+      "h": 390,
+      "text": 200,
+      "view": "journal",
+      "noHorizontalOverflow": true,
+      "keyboardContained": true
+    },
+    {
+      "prefix": "practice-touch",
+      "name": "short200",
+      "w": 844,
+      "h": 390,
+      "text": 200,
+      "view": "bag-footer",
+      "nativeWheelRevealsFullStatus": true,
+      "scrollSamples": [
+        {
+          "statusBox": {
+            "x": 210,
+            "y": 819.609375,
+            "width": 424,
+            "height": 96
+          },
+          "dialogBox": {
+            "x": 192,
+            "y": 14,
+            "width": 460,
+            "height": 362
+          },
+          "headerBox": {
+            "x": 194,
+            "y": 16,
+            "width": 456,
+            "height": 99
+          }
+        },
+        {
+          "statusBox": {
+            "x": 210,
+            "y": 122.609375,
+            "width": 424,
+            "height": 96
+          },
+          "dialogBox": {
+            "x": 192,
+            "y": 14,
+            "width": 460,
+            "height": 362
+          },
+          "headerBox": {
+            "x": 194,
+            "y": 16,
+            "width": 456,
+            "height": 99
+          }
+        }
+      ]
+    },
+    {
+      "prefix": "practice-touch",
+      "name": "short200",
+      "w": 844,
+      "h": 390,
+      "text": 200,
+      "view": "bag",
+      "noHorizontalOverflow": true,
+      "keyboardContained": true
+    },
+    {
+      "prefix": "tour",
+      "name": "phone360",
+      "w": 360,
+      "h": 640,
+      "text": 100,
+      "view": "world",
+      "compositorSamples": [
+        {
+          "ms": 172,
+          "visibleFraction": 1
+        }
+      ]
+    },
+    {
+      "prefix": "tour",
+      "name": "phone360",
+      "w": 360,
+      "h": 640,
+      "text": 100,
+      "view": "journal",
+      "noHorizontalOverflow": true,
+      "keyboardContained": true
+    },
+    {
+      "prefix": "tour",
+      "name": "phone360",
+      "w": 360,
+      "h": 640,
+      "text": 100,
+      "view": "bag",
+      "noHorizontalOverflow": true,
+      "keyboardContained": true
+    }
+  ],
+  "mutations": [],
+  "errors": [],
+  "limits": "Headless Chrome viewport/touch emulation, not physical devices/Safari/WAN/hosted deployment or human enjoyment acceptance."
+}

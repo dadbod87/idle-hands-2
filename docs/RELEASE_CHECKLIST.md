@@ -1,3 +1,9 @@
+# November18 —127qualified capture and deadline repair active
+
+Source branch fix/public-observation-deadline. Run44397607793on accepted eb40476completed both captures and all functional/conservation/latency/quiet/cleanup checks, but trial2ended1.301msearly (0.301msoutside predeclared tolerance). Strict fixed-window acceptance failed; old data is retained, no rerun for green. A measurement-only monotonic deadline repair has4focused checks/types/build passing; exact549/198PR/main and separate corrected-source observations remain pending. [Report](evidence/IH2-127/REPORT.md).131source acceptance remains complete;130audio integration remains queued.
+
+Saved game/database services remain off, keys read-only; preexisting Docker/other containers untouched. No game/runtime/economy/target/tolerance change. Stop about2PM Pacific/22UTC November18; last29%weeklyused. Earlier entries below historical.
+
 # November18 — IH2-131 confirmation correction accepted
 
 Queued café serves now use real server time after row waits and preserve actual backward-clock refusal, ordinary SQL count/global shared lock order and economy rules. Committed personal progress also confirms coherently during public updates; ordinary invalidations defer while a request is pending, and forced reconnect reads still detect a changed service. Original tests/reply/accept guards remain byte-exact, with seven added client regressions and eight server-clock regressions. Café requests deliberately add two lock reads. Main **eb40476ac3d364dc276996e22102e5d9055ab8ef** ([PR62](https://github.com/dadbod87/idle-hands-2/pull/62)) has exact PR/main five-job/raw545domain+198browser acceptance and original500ms/recovery gates. Actual20-fictional-client smoke preserves15writes/replays, materials/deadlines/nine metadata and drained requests/streams. Terra6.1reviewed real CI desktop/phone stills; physical/device/normal-preview proof is not claimed. [Report](evidence/IH2-131/REPORT.md).

@@ -1,3 +1,11 @@
+# November18 —127qualified capture and deadline repair active
+
+Source branch fix/public-observation-deadline. Run44397607793on accepted eb40476completed both captures and all functional/conservation/latency/quiet/cleanup checks, but trial2ended1.301msearly (0.301msoutside predeclared tolerance). Strict fixed-window acceptance failed; old data is retained, no rerun for green. A measurement-only monotonic deadline repair has4focused checks/types/build passing; exact549/198PR/main and separate corrected-source observations remain pending. [Report](../evidence/IH2-127/REPORT.md).131source acceptance remains complete;130audio integration remains queued.
+
+Saved game/database services remain off, keys read-only; preexisting Docker/other containers untouched. No game/runtime/economy/target/tolerance change. Stop about2PM Pacific/22UTC November18; last29%weeklyused. Earlier entries below historical.
+
+Latest source work/idle-hands-2-public-refresh-ci. Keep qualified data and failed window; followDEADLINE_REPAIRbefore any new observation.
+
 # November18 —127fixed observations active
 
 Branch perf/public-refresh-observations from pushed131closeout469fe614dbc508dc527a2d0b8ba72f2c3e71e7ac. Source is accepted main eb40476ac3d364dc276996e22102e5d9055ab8ef, exact545/198PR/main. Read [predispatch method](../evidence/IH2-127/OBSERVATION_METHOD.md), CI_PLANand PREDECLARED_ACCEPTANCE. No fixed observation has completed. Keep saved game/database off, preexisting Docker/other containers alone; no key/progress change. Deadline22UTC/about2PM Pacific; last29%weeklyused.130audio/worker planning queued. Earlier entries below historical.

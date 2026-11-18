@@ -1,8 +1,10 @@
-# November 17 — IH2-121 coherent snapshot candidate under validation
+# November 17 — IH2-121 candidate ready for exact-source validation
 
-The snapshot reader now uses one parameterized database statement instead of 15, with unchanged authority, strict validation, caller transactions, pool size and client design. Eight focused checks pass against the frozen accepted reader, including rich progress, 26 homes, privacy, construction clocks and concurrent writers. The original 20-client workload uses 2,540 rather than 5,620 load-phase queries. All ten comparison runs conserve stock/receipts and keep idle SQL at zero; failures remain recorded. Delayed-link samples improve, but the ordinary workstation results do not establish a consistent speedup.
+A coherent parameterized snapshot read replaces 15 sequential database calls while retaining authority, locks, strict validation, pool size and all game rules. Eight new comparison tests preserve full same-clock state, privacy, construction deadlines, numeric 26-home order and concurrent public updates. The original 20-client workload uses 2,540 rather than 5,620 load-phase queries. All ten measured runs preserve stock/receipts, idle silence, cleanup and durability; all failed budgets remain recorded. Delayed-link samples improve, but ordinary workstation results do not establish a consistent speedup.
 
-Full local regression is running; exact final PR/main/raw evidence and saved-preview acceptance remain pending. Normal previews still serve the accepted 119 runtime. [Report](evidence/IH2-121/REPORT.md), [method](evidence/IH2-121/METHOD.md), [current source](idle-hands-2/CURRENT_SESSION.md). Earlier entries below are historical.
+Local domain: 501/503 pass, with two unchanged 500 ms timing failures at 595.703/915.518 ms and zero skipped. Build/plan/pinned/whitespace pass. Full local browser 188/188 passes; after Terra found an immediate black 4K resize capture, serial sampling measured one black frame at 123 ms and painting by 195 ms. The same capture case now requires visible compositor pixels under its unchanged timeout; focused 1/1 and corrected Terra still review pass. All 188 identities remain, and final hosted full-suite validation is mandatory. All 232 compiled client files, 226 art files, source rules, nine migrations and lockfile remain unchanged.
+
+Exact final PR/main/raw and actual original-key/saved-session/API-only preview acceptance are pending. Normal previews still serve accepted 119. [Report](evidence/IH2-121/REPORT.md), [method](evidence/IH2-121/METHOD.md), [current source](idle-hands-2/CURRENT_SESSION.md). Earlier entries below are historical.
 
 # November17 —120 profiling accepted;121 queued
 

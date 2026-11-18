@@ -1,0 +1,10 @@
+{
+  "tests": 188,
+  "passed": 188,
+  "unexpected": 0,
+  "flaky": 0,
+  "skipped": 0,
+  "errors": [],
+  "black4kCaptureStillUnresolved": true,
+  "notSubstituteForVisualReview": true
+}

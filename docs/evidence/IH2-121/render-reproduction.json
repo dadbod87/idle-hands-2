@@ -1,0 +1,199 @@
+{
+  "classification": "Serial native local ordinary Places walk then3daytime2K→4Kresizes and night navigation. Existing client232files unchanged; no API/stock/time/position injection. Center160x120compositor PNG samples decoded independently of WebGL readback. Recorded requested sampling times are not exact deadlines; screenshot/decode overhead is included. No physical-device or exclusive cause claim.",
+  "records": [
+    {
+      "iteration": 1,
+      "samples": [
+        {
+          "elapsedMs": 211.414166999999,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 911,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 293.67691699999705,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 912,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 346.96729199999754,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 912,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 818.3952079999981,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 917,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 1555.4867079999967,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 924,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "samples": [
+        {
+          "elapsedMs": 152.2275410000002,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 940,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 238.8190829999985,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 941,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 340.2904579999995,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 942,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 889.7989579999994,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 947,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 1575.7455410000002,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 954,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "samples": [
+        {
+          "elapsedMs": 122.94908299999952,
+          "visibleFraction": 0,
+          "colors": 1,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 970,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 195.4484999999986,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 970,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 303.5649169999997,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 971,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 851.5225419999988,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 977,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        },
+        {
+          "elapsedMs": 1592.1865419999995,
+          "visibleFraction": 1,
+          "colors": 345,
+          "presentation": {
+            "menuBackdropPaused": false,
+            "renderedFrames": 984,
+            "idleFrameLimit": 10,
+            "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+          }
+        }
+      ]
+    },
+    {
+      "night": {
+        "visibleFraction": 1,
+        "colors": 440,
+        "presentation": {
+          "menuBackdropPaused": false,
+          "renderedFrames": 20,
+          "idleFrameLimit": 10,
+          "frameSamplePolicy": "Visible mixed normal and 10Hz idle intervals; modal gaps excluded"
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "api": []
+}

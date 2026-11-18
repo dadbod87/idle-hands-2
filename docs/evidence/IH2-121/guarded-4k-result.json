@@ -1,0 +1,26 @@
+{
+  "case": "town life native2K/4K: distinct shore and gathering detail, stable world animation and motion/visibility policy",
+  "passed": 1,
+  "failed": 0,
+  "seconds": 44.1,
+  "existingTitleAnd188CaseCoveragePreserved": true,
+  "expectTimeoutUnchanged": true,
+  "compositorSamples": {
+    "resizePaint": [
+      {
+        "ms": 110,
+        "visible": 1,
+        "frames": 913
+      }
+    ],
+    "nightPaint": [
+      {
+        "ms": 134,
+        "visible": 1,
+        "frames": 22
+      }
+    ]
+  },
+  "compiledClientUnchanged": true,
+  "originalBlackCaptureRetained": true
+}

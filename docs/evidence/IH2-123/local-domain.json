@@ -1,0 +1,47 @@
+{
+  "tests": 506,
+  "passed": 506,
+  "failed": 0,
+  "skipped": 0,
+  "cancelled": 0,
+  "profile": "Pinned Node24.22.2, guarded disposable55434, complete new3safety/monitor/smoke cases",
+  "loads": [
+    {
+      "kind": "load/load-town.json",
+      "p95Ms": 369.27783299999965,
+      "loadQueries": 2540,
+      "uniqueCommands": 140,
+      "replayedCommands": 20,
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      }
+    },
+    {
+      "kind": "profiled-load/load-town.json",
+      "p95Ms": 464.9330839999998,
+      "loadQueries": 2540,
+      "uniqueCommands": 140,
+      "replayedCommands": 20,
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      }
+    }
+  ],
+  "buildPlanPinnedWhitespacePass": true,
+  "all232GameBytesExactAccepted122": true,
+  "domainLogSha256": "ece4f1d1e64a5766201fd22037d7247eb15ddd3dbff854d9229bc7fec4d38a1b"
+}

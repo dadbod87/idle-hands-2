@@ -2145,7 +2145,12 @@
         "docs/evidence/IH2-123/CONNECTION_REVIEW.md",
         "docs/evidence/IH2-123/INITIAL_OBSERVATIONS.md",
         "docs/evidence/IH2-123/initial-measurements.json",
-        "docs/evidence/IH2-123/REPRODUCE.md"
+        "docs/evidence/IH2-123/REPRODUCE.md",
+        "docs/evidence/IH2-123/REPORT.md",
+        "docs/evidence/IH2-123/measurements.json",
+        "docs/evidence/IH2-123/local-domain.json",
+        "docs/evidence/IH2-123/local-browser-result.json",
+        "docs/evidence/IH2-123/local-byte-identity-bridge.json"
       ],
       "owner_branch": "perf/bounded-session-churn"
     }

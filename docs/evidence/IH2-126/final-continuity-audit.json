@@ -17,5 +17,8 @@
   "prior48LocalDocLinksVerified": true,
   "noNewGameDatabaseOrServiceActionsInFinalAudit": true,
   "ownerWindowEnds": "2026-11-18T15:00:00Z",
-  "resumeRequiresNextContinuationInstruction": true
+  "resumeRequiresNextContinuationInstruction": true,
+  "localDocLinksVerified": 58,
+  "queuedPublicRefreshReuseMapWritten": true,
+  "legacyFixtureDefaultDocumentedNotExecutedOrFixed": true
 }

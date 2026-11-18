@@ -2275,6 +2275,7 @@
       ],
       "goal": "Measure public invalidation/request coalescing and confirmed state with native client cross-checks before selecting backend optimizations.",
       "acceptance": [
+        "Audit fixture startup before reuse: never execute the legacy browser-server55432fallback. Require explicit matching isolated URL/container before Pool/reset, with refusal/privacy coverage; use the guarded diagnostic starter.",
         "Declare bounded workload, valid public-event counts, historical-fixture scope, phases, original latency targets, resource attribution and cleanup before measurement; preserve real project targets and timers.",
         "Use20distinct fictional identities at most:18modeled protocol participants plus2native desktop/touch clients. Model actual TownClient stream-open/visibility/identity/loading/refreshDirty behavior and cross-check against native observations; never claim20rendered clients.",
         "Use only an explicitly guarded named disposable local database, isolated API and in-memory synthetic sessions. Keep pool5/observer1/durable settings/pinned runtime/normal saved towns/keys/PIDs intact; disclose any historical preparation or auxiliary intercepted test separately. No intercepted confirmations in timing runs.",
@@ -2288,7 +2289,8 @@
       "evidence": [
         "docs/evidence/IH2-125/PUBLIC_REFRESH_CANDIDATE.md",
         "docs/evidence/IH2-126/NEXT_PERFORMANCE.md",
-        "docs/idle-hands-2/handoffs/2026-11-18-morning-review.md"
+        "docs/idle-hands-2/handoffs/2026-11-18-morning-review.md",
+        "docs/evidence/IH2-126/PUBLIC_REFRESH_REUSE.md"
       ]
     }
   ],

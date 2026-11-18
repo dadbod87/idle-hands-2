@@ -9,3 +9,5 @@ Measure end-to-end confirmation and eventual exact public/private state, not onl
 Before combining settlement statements, evaluate transaction/lock-order behavior across simultaneous snapshot settlement and café-serving commands as well as the new126atomic deadline/rollback guards. Fewer statements alone do not prove safe concurrency. No cache, pool, timer/economy or schema change has been selected. An optimization requires its own predeclared comparison and full source/runtime acceptance.
 
 Visual follow-ups remain the partially hidden old Housing Registry sign, clearer Journal activity discovery and the observed immediate-touch gray rectangles (cause and input effect not established). These are small candidates, not blockers or implemented fixes. Keep menus concise and progression persistent; avoid adding another explanatory panel solely to describe engineering work.
+
+Use the [verified reuse map](PUBLIC_REFRESH_REUSE.md), including the legacy browser-startup default gap. This is queued follow-up guidance, not an implemented guard correction or evidence that protected data was reset.

@@ -1,6 +1,6 @@
 # Fixed ordinary-session comparison
 
-Status: six measurements complete. This branch saves observations and planning only; it is an **unmerged documentation backup**, not a new game/tool implementation, CI head, runtime install or hosted release. The normal preview stays on accepted124API9/122client. Both measured source commits already passed their own exact-source/raw CI; see source acceptance below.
+Status: six measurements complete. The original study saved an unmerged documentation backup; its observations are now included in accepted126main **6c150fb6f10df6ac6decd2377cd96448e8c6d028** through PR58. The study itself changed no game/tool implementation or runtime and did not create a hosted release. The normal preview stays on accepted124API9/122client. Both measured source commits already passed their own exact-source/raw CI; see source acceptance below.
 
 ## What was measured
 
@@ -59,3 +59,7 @@ control: **d4068f33fc9f3241d005013c9e62489a93a07ce6**, [main run44287636906](htt
 
 current: **816d2b89479c1318ebe05b67339f3b71b1efcf92**, [main run44308040580](https://github.com/dadbod87/idle-hands-2/actions/runs/44308040580), five required jobs/raw510domain/193browser, zero failures/skips/flakes/report errors. These checks validate the exact measured code, not this later documentation branch.
 
+
+## Subsequent canonical source
+
+The initial125documentation backup described above was subsequently included in accepted126main **6c150fb6f10df6ac6decd2377cd96448e8c6d028** through PR58. Its measurements still refer to the two original accepted code versions, with no new trial or runtime change. The125source-closeout JSON remains the historical checkpoint; CURRENT_SESSION/126closeout supplies the latest source and acceptance pointer.

@@ -108,6 +108,7 @@ jobs:
         run: npm run test:browser:shard -- ${{ matrix.shard }}
         env:
           IH2_BROWSER_DATABASE_URL: postgres://ih2:local-synthetic-only@127.0.0.1:5432/ih2_browser
+          IH2_PG_CONTAINER: ${{ job.services.postgres.id }}
       - name: Preserve synthetic playtest evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

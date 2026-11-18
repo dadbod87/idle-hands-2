@@ -26,3 +26,9 @@ Chrome viewport/touch checks are not physical-phone, Safari, WAN, hosted perform
 4. Gameplay candidates remain a clearer housing-registry sign and easier Journal activity discovery. These are candidates, not implemented work or reasons to expand the town prematurely.
 
 Current source and actual service authority are in CURRENT_SESSION and movement-body artifact active-services.json. Preserve protected55432and original key files; all destructive fixtures belong only to dedicated55434candidate. Continue one bounded section at a time, close its source/runtime gates and save the next handoff. Stop by7AM Pacific/15UTC or around90%weeklyusage, whichever comes first.
+
+## Later overnight work:125and126
+
+Six fixed ordinary-session comparisons completed with all state/privacy/idle/cleanup checks passing; one old-server snapshot536.188ms miss remains, and the other five trials meet their timing targets. Smalln/mixed paired directions do not establish a causal speedup or capacity. [125report](../../evidence/IH2-125/REPORT.md) retains all ranges/raw hashes and a public-refresh candidate.
+
+Four current live-store opening guards then added exact-deadline/concurrency, final-write rollback, ordinary-command/replay separation and latched-timestamp preservation coverage. PR58/main **6c150fb6f10df6ac6decd2377cd96448e8c6d028** pass exact514domain/193browser and unchanged500ms/recovery gates. Local512/514timing misses remain recorded. No runtime install: existing124API9/122client are byte-equivalent and all normal data/keys/PIDs/previews remain intact. [126report](../../evidence/IH2-126/REPORT.md) and CURRENT_SESSION are the latest source pointers.

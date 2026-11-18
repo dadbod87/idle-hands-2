@@ -1,0 +1,15 @@
+{
+  "localMarkdownLinksChecked": 58,
+  "allExist": true,
+  "files": {
+    "docs/idle-hands-2/README.md": "cd785912cc6f8df733fc6809ad171c4bd49eb750e7e5f46d57b6d3eb9722643b",
+    "docs/idle-hands-2/handoffs/2026-11-18-morning-review.md": "0700521d7ed0ed59ff3f8dbe693f1819429f01a27ea6b214553c974718af0250",
+    "docs/evidence/IH2-126/METHOD.md": "402b82d92f95d92e221a6d6deb59158e5f0d1d5ad98cda0a6726130227a88667",
+    "docs/evidence/IH2-126/REPORT.md": "db132612af4ae49b08956ac3b2e3a61cf2a1e44aa8ab235171d34df1fb699233",
+    "docs/evidence/IH2-126/NEXT_PERFORMANCE.md": "09a1a4eb8a1c544db18252c21d2e1cf6d8fcadd195f4e916c309c4f08dd64f69",
+    "docs/evidence/IH2-126/PLAN.md": "a2f9b28788b8a338aab7c615596f4b1dfa4e90f3edcaf949a1d146c73f891ce6",
+    "docs/evidence/IH2-126/PUBLIC_REFRESH_REUSE.md": "8897be08052001b238eb7c562460d15bde5c47c8e8cae640322663ccdb560095"
+  },
+  "scope": "Updated development index, morning review and current126markdown evidence, including the queued reuse map. No game or database actions.",
+  "observedAtUtc": "2026-11-18T14:54:05.620577+00:00"
+}

@@ -1,6 +1,14 @@
-# November18 — IH2-126 current opening guard active
+# November18 morning continuation — IH2-128 active;127 measurements blocked
 
-Source work/idle-hands-2-settlement-guard/test/shared-opening-atomicity, basedon125complete ef60445. [Plan](../evidence/IH2-126/PLAN.md). Test-only current live-store deadline/rollback coverage before any optimization; runtime remainsaccepted124. Four new Node cases target514; all runtime/browserinputs mustremainbyte-identical, local193existingexact-bytebridge/freshfinalPR+main514193all5 required. No protected55432/key/normalprogress changes. Deadline15UTC/7AMPacific/latest21%weeklyused; savependinggatesifnotcomplete, no blindretry/limitweakening.
+Owner renewed work until about2PM Pacific /22UTC November18, or roughly10%weekly allowance remains. Current source work/idle-hands-2-public-refresh, feature perf/public-refresh-study; task128in_progress;127blocked by owner keep-services-stopped instruction. Accepted main6c150fb and normal124API/122client remain unchanged. Begin with explicit disposable browser-startup safeguards, then bounded public-client refresh study. [Plan](../evidence/IH2-127/PLAN.md). Initial weekly usage23%used. Preserve protected55432/keys/runtime and no paid/cloud/original-game work. Earlier windows below are historical.
+
+# November18 — IH2-126 complete
+
+Current shared-opening guard is complete on main **6c150fb6f10df6ac6decd2377cd96448e8c6d028** ([PR58](https://github.com/dadbod87/idle-hands-2/pull/58)). Four new current live-store cases pass, with exact PR/main five-job/raw514domain+193browser and original500ms/recovery/nine-metadata gates. Local512/514retains two existing timing misses; local193is a precise unchanged-input bridge, while fresh193executed on both CIheads. No runtime/economy/protocol/schema/art/configuration change.
+
+Normal preview remains existing124API9/122client, byte-equivalent to accepted126runtime. Read-only all17table fields/nine metadata/original keys/four PIDs/protectedPG/464current+125historical responses pass. No install/restart or new126native-cookie/screenshot claim; prior124native/Terra evidence remains explicit. Service authority: work/idle-hands-2-artifacts/movement-body-2026-11-18/active-services.json.
+
+[Report](../evidence/IH2-126/REPORT.md), [source closeout](../evidence/IH2-126/source-closeout.json), [handoff](handoffs/2026-11-18-settlement-guard.md). Latest source work/idle-hands-2-settlement-guard, docsbranchchore/shared-opening-closeout-2026-11-18; verify its pushed remote head. Main now carries completed124/125reports and their performance/UX candidates. No task active after this closeout. The final stop handoff records no further implementation within the ending overnight window. **Next ready: IH2-127**, public client refresh profiling, queued for the next continuation instruction. It has not started. Re-evaluate the public-refresh candidate before optimizing queries/cache/pools; preserve deadlines and slow persistent progression. Stop byNov18 15:00UTC/7AM Pacific or roughly90%weeklyusage. No paid/cloud/original-game work. Earlier entries below are historical.
 
 # November18 — IH2-125 observations complete
 

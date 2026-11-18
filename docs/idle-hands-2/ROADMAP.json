@@ -2047,7 +2047,7 @@
     {
       "id": "IH2-121",
       "title": "Batch coherent town snapshot reads without changing authority",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-120"
       ],
@@ -2061,10 +2061,21 @@
         "No new economy, pool-size increase, weakened isolation/durability/budgets, real-player load, cloud setup, expense or unrelated UI expansion."
       ],
       "evidence": [
-        "docs/evidence/IH2-121/PLAN.md"
+        "docs/evidence/IH2-121/PLAN.md",
+        "docs/evidence/IH2-121/REPORT.md",
+        "docs/evidence/IH2-121/METHOD.md",
+        "docs/evidence/IH2-121/VALIDATION_HISTORY.md",
+        "docs/evidence/IH2-121/comparison-summary.json",
+        "docs/evidence/IH2-121/transaction-analysis.json",
+        "docs/evidence/IH2-121/pr-ci-verification.json",
+        "docs/evidence/IH2-121/main-ci-verification.json",
+        "docs/evidence/IH2-121/actual-saved.json",
+        "docs/evidence/IH2-121/saved-preservation.json",
+        "docs/evidence/IH2-121/TERRA_ACTUAL_SAVED.md",
+        "docs/evidence/IH2-121/source-closeout.json"
       ],
       "owner_branch": "perf/coherent-town-snapshot"
     }
   ],
-  "source_status_note": "Owner explicitly made the repository public November13,2026. Prior private-billing refusals in task histories remain dated evidence; standard free public CI may now validate authorized final candidates. No pending source/preview acceptance is satisfied by visibility alone. Read ACTIONS_USAGE_POLICY and CURRENT_SESSION."
+  "source_status_note": "IH2-121 accepted after exact PR53/main503domain/188browser/raw and original-key saved API-only preservation. See CURRENT_SESSION; physical/hosted gates remain separate."
 }

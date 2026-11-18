@@ -1,0 +1,62 @@
+{
+  "scope": "Additional read-only actual Aster native menu samples, no intercept/movement/commands.600ms diagnostic separates immediate screenshot appearance from later still, no source timeout change.",
+  "results": [
+    {
+      "w": 320,
+      "h": 640,
+      "text": 100,
+      "menu": "journal",
+      "ordinarySnapshotSettled": true,
+      "staleWaitingText": false,
+      "scroll": {
+        "before": 0,
+        "after": 1137,
+        "scrollHeight": 1745,
+        "clientHeight": 608
+      }
+    },
+    {
+      "w": 360,
+      "h": 640,
+      "text": 100,
+      "menu": "bag",
+      "ordinarySnapshotSettled": true,
+      "staleWaitingText": true,
+      "scroll": {
+        "before": 0,
+        "after": 1096,
+        "scrollHeight": 1704,
+        "clientHeight": 608
+      }
+    },
+    {
+      "w": 2560,
+      "h": 1440,
+      "text": 100,
+      "menu": "bag",
+      "ordinarySnapshotSettled": true,
+      "staleWaitingText": true,
+      "scroll": {
+        "before": 0,
+        "after": 0,
+        "scrollHeight": 1259,
+        "clientHeight": 1259
+      }
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "text": 200,
+      "menu": "journal",
+      "ordinarySnapshotSettled": true,
+      "staleWaitingText": false,
+      "scroll": {
+        "before": 0,
+        "after": 2605,
+        "scrollHeight": 2963,
+        "clientHeight": 358
+      }
+    }
+  ],
+  "events": []
+}

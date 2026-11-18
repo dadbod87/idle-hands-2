@@ -1,0 +1,111 @@
+{
+  "initialMainCi": {
+    "run": 44231690183,
+    "sha": "48ff0eb8e50dba35e3566add56836a75c5fa9d8f",
+    "runAttempt": 1,
+    "conclusion": "cancelled",
+    "domainAndGroup1Success": true,
+    "group2CancelledAtUnchanged20MinuteCap": true,
+    "browserInstallSeconds": 478.0,
+    "lastLoggedPassedCase": 88,
+    "requiredGroup2Cases": 99,
+    "aggregateFailed": true,
+    "installSucceededButConsumedJobBudget": true,
+    "approxRoundedJobMinutes": 43,
+    "billingCycleUsageUnknown": true,
+    "noPaidConfiguration": true,
+    "noNewRunYet": false,
+    "loggedPassedCases": 88,
+    "completeGroup2Report": false,
+    "noAssertionFailureLoggedBeforeCancellation": true,
+    "slowPackageDownload": "32.1MB in7min1s at76.2kB/s",
+    "caseCountMethod": "Only checkmark-number-tests/path lines; non-test installation checkmarks excluded.",
+    "initialBroadRegexCorrectionDisclosed": true,
+    "sameHeadFailedOnlyRetryRequested": true,
+    "retryReason": "Confirmed slow dependency download consumed478s before tests; existing20min cap cancelled group2after88/99. No source, runner, browser, budget, timeout, wait or coverage change.",
+    "retryRequestedAt": "2026-11-18T03:59:48.629920+00:00"
+  },
+  "pr": 53,
+  "candidate": "4080b8df23104c2015929aba126ee1f5a6ab17db",
+  "main": "48ff0eb8e50dba35e3566add56836a75c5fa9d8f",
+  "sameTree": true,
+  "sourceAndSavedPreviewAccepted": true,
+  "domain": 503,
+  "browser": 188,
+  "shards": [
+    89,
+    99
+  ],
+  "prRun": 44228943821,
+  "mainRun": 44231690183,
+  "serverRuntimeOnly": [
+    "server/live-store.ts",
+    "server/snapshot-rows.ts"
+  ],
+  "all232ClientBytesAnd226ArtExact119": true,
+  "nineMigrationsEconomyTimersAndProgressUnchanged": true,
+  "sameOriginalKeyThreeFreshCurrent121ContextsSurviveSecondApiOnlyRestart": true,
+  "initial119To121PositionComparisonFailed": true,
+  "initial119To121OriginalSignedContextsNotAccepted": true,
+  "anotherHistoricalBrowserCookieNotTested": true,
+  "all17TableFieldsNineMetadataOriginal0600KeysPreserved": true,
+  "staticPidsUnchangedOnly2ApisUpdated": true,
+  "protectedPostgreSqlNotRestartedResetReseededOrMigrated": true,
+  "noKeysCopiedOrRecreated": true,
+  "all464GameAnd125HistoricalResponsesExact": true,
+  "actualNativeMenuOnlyNoCommandsMovementOrInterceptedData": true,
+  "localDomain": {
+    "tests": 503,
+    "pass": 501,
+    "fail": 2,
+    "skipped": 0,
+    "cancelled": 0,
+    "ordinaryCommandP95Ms": 595.7029169999987,
+    "profiledCommandP95Ms": 915.5184579999986,
+    "unchangedTargetMs": 500,
+    "allOtherCasesPassed": true,
+    "notRetried": true
+  },
+  "localBrowserFullBeforeStronger4KCaptureGuard": {
+    "tests": 188,
+    "passed": 188,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "errors": [],
+    "black4kCaptureStillUnresolved": true,
+    "notSubstituteForVisualReview": true
+  },
+  "correctedExisting4KCase": {
+    "case": "town life native2K/4K: distinct shore and gathering detail, stable world animation and motion/visibility policy",
+    "passed": 1,
+    "failed": 0,
+    "seconds": 44.1,
+    "existingTitleAnd188CaseCoveragePreserved": true,
+    "expectTimeoutUnchanged": true,
+    "compositorSamples": {
+      "resizePaint": [
+        {
+          "ms": 110,
+          "visible": 1,
+          "frames": 913
+        }
+      ],
+      "nightPaint": [
+        {
+          "ms": 134,
+          "visible": 1,
+          "frames": 22
+        }
+      ]
+    },
+    "compiledClientUnchanged": true,
+    "originalBlackCaptureRetained": true
+  },
+  "approxRoundedPrJobMinutes": 42,
+  "approxRoundedMainJobMinutes": 62,
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true,
+  "noHostedOrPhysicalDeviceAcceptance": true,
+  "acceptedAt": "2026-11-18T04:41:09.088853+00:00"
+}

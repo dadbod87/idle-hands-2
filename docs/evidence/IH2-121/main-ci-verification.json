@@ -1,0 +1,107 @@
+{
+  "run": 44231690183,
+  "sha": "48ff0eb8e50dba35e3566add56836a75c5fa9d8f",
+  "all4JobsSuccess": true,
+  "artifactsPinnedById": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14394144934,
+      "createdAt": "2026-11-18T03:40:00Z",
+      "zipSha256": "bd1215fbbebb5e81978637c37460de5518267cfb94bf005326668c6a6f4fd170"
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14394788720,
+      "createdAt": "2026-11-18T03:40:02Z",
+      "zipSha256": "3f004d6681f40da8a428af633e5e24b4c8e34088b58ea46e22ba2c1016d638eb"
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14395948289,
+      "createdAt": "2026-11-18T03:54:22Z",
+      "zipSha256": "8ac4d0d7c4b28c4df4e24d420b19b7d3e1247b2d412509352c91677b74040bfb"
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14397297529,
+      "createdAt": "2026-11-18T04:17:10Z",
+      "zipSha256": "b34afb0bd0bbdd617f6796cbe576671d3aedfed532bbd4b891a2d149b5765a3d"
+    }
+  ],
+  "domain": 503,
+  "browser": 188,
+  "disjointShards": [
+    89,
+    99
+  ],
+  "all188PriorBrowserCasesPreserved": true,
+  "noNewBrowserCases": true,
+  "localFullExecution": "See local-checks.json; no result inferred from collection.",
+  "orderedFixtureFamily": {
+    "shared-town.spec.ts": [
+      2
+    ],
+    "starter-homes.spec.ts": [
+      2
+    ],
+    "trail.spec.ts": [
+      2
+    ],
+    "z-first-visit.spec.ts": [
+      2
+    ]
+  },
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all232CompiledFilesExactFrozenLocal": true,
+  "all226PriorArtFilesExact": true,
+  "rawHousingAndOutingRestartRestoreSameSessionAnd9MigrationChecksums": true,
+  "commandP95Ms": 63.11723499999971,
+  "neighborhoodSnapshotP95Ms": 60.050993999999946,
+  "profiledCommandP95Ms": 58.7540110000009,
+  "rich26HomeSnapshotP95Ms": 59.84208499999977,
+  "acceptedReader15To1AndAllFieldEquivalence": true,
+  "corrected4KCompositorPixelsVerified": true,
+  "profileTraceCompleteObserverIdle0DurabilityOn": true,
+  "same2540LoadQueriesAnd140Unique20Replay": true,
+  "all232GameFilesEqualAccepted119": true,
+  "unchanged500msBudgetsPass": true,
+  "runtime": "v24.22.2",
+  "publicStandardUbuntu": true,
+  "approxRoundedJobMinutes": 62,
+  "approxLatestSuccessfulExecutionJobMinutes": 40,
+  "jobEvidence": [
+    {
+      "name": "domain-build-plan",
+      "actualExecutionJobId": 134558004954,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134566345912,
+      "latestLogicalAttempt": 2
+    },
+    {
+      "name": "browser-shard (2/2)",
+      "actualExecutionJobId": 134566343673,
+      "actualExecutionAttempt": 2,
+      "latestLogicalJobId": 134566343673,
+      "latestLogicalAttempt": 2
+    },
+    {
+      "name": "browser-shard (1/2)",
+      "actualExecutionJobId": 134558005233,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134566391406,
+      "latestLogicalAttempt": 2
+    },
+    {
+      "name": "browser-playtest",
+      "actualExecutionJobId": 134573021969,
+      "actualExecutionAttempt": 2,
+      "latestLogicalJobId": 134573021969,
+      "latestLogicalAttempt": 2
+    }
+  ],
+  "runAttempt": 2,
+  "sameHeadSuccessReuseDisclosed": true,
+  "accountingMethod": "All distinct name/start/end executions across attempts, excluding GitHub logical clones of reused successful jobs; includes cancelled/failed attempts, not an invoice.",
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true
+}

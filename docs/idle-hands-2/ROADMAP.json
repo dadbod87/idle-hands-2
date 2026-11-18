@@ -2270,7 +2270,7 @@
     {
       "id": "IH2-127",
       "title": "Profile real client refresh fanout during shared town activity",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-126",
         "IH2-128",
@@ -2299,7 +2299,7 @@
         "docs/evidence/IH2-127/CI_PLAN.md",
         "docs/evidence/IH2-131/source-closeout.json"
       ],
-      "owner_branch": "perf/public-refresh-ci"
+      "owner_branch": "perf/public-refresh-observations"
     },
     {
       "id": "IH2-128",
@@ -2399,5 +2399,5 @@
       ]
     }
   ],
-  "source_status_note": "131client confirmation correction and127diagnostic source accepted with exact545/198PR/main. Fixed public observations queued/unexecuted; owner-stopped normal services remain stopped.130optional game audio queued. Read CURRENT_SESSION."
+  "source_status_note": "131source accepted on eb40476with exact545/198PR/main.127two predeclared180sdisposable-CI observations now active; no observation completed yet. No normal service start.130audio integration/worker plan queued."
 }

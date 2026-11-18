@@ -2047,7 +2047,7 @@
     {
       "id": "IH2-121",
       "title": "Batch coherent town snapshot reads without changing authority",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-120"
       ],
@@ -2062,7 +2062,8 @@
       ],
       "evidence": [
         "docs/evidence/IH2-121/PLAN.md"
-      ]
+      ],
+      "owner_branch": "perf/coherent-town-snapshot"
     }
   ],
   "source_status_note": "Owner explicitly made the repository public November13,2026. Prior private-billing refusals in task histories remain dated evidence; standard free public CI may now validate authorized final candidates. No pending source/preview acceptance is satisfied by visibility alone. Read ACTIONS_USAGE_POLICY and CURRENT_SESSION."

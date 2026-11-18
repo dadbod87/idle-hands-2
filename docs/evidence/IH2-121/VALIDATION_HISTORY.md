@@ -1,0 +1,9 @@
+# Validation history — IH2-121, active
+
+Frozen multi-query reference: accepted1999f83server/live-store.ts readSnapshot, provenance hash in tests/helpers/accepted-snapshot-120.ts. New production projection performs one statement inside unchanged caller transactions; oracle15queries. Same-clock full deep equality, not selected-field comparison.
+
+Initial8focused tests now PASS on Node24/dedicated55434ih2_test; server TypeScript PASS. Cases: numeric26-home defaults/unknown bound identity; rich private workshop/jobs/outing journal/pending run/café/awards/stamps/lesson/paid construction/latestquote/public sites/placement-vs-consent; exact Friday16Pacific score boundary/ties; stale-room normalization and corrupt-data refusals with all table rows unchanged;24concurrent publication generations and16paired/ordinary snapshots;20authenticated concurrent rich26-home HTTP snapshots under unchanged500ms. No movement writes/checkpoints. Explicit isolated merged component fixtures are not a fresh-player playthrough or real accounts.
+
+Fixture preparation failures were retained in external artifacts: rich-equivalence first used historical v2workshop without current migration and a test assertion with wrong job property; corrected fixture migrates through existing loader and checks recipe. Second exposed fixture SQL parameter inference as integer for millisecond arithmetic; explicit bigint fixes test SQL only. No production workaround, trigger disabling, schema or economy change. rich-equivalence-3 and extended/transport equivalence passed. Earlier logs are not relabeled passes.
+
+Full local checks, measured old/new workload/latency matrix, final exact-head PR/main/raw and actual saved-preview API-only acceptance remain pending. No game-speed or hosted-capacity claim yet. Protected55432/originalkeys/data/runningpreview untouched.

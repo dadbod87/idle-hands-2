@@ -1,0 +1,39 @@
+{
+  "classification": "Isolated fictional housing fixture; safe trace subset, no account/session/body values",
+  "initialCandidate": "f76ec79708cf376809aa7287e245db3f97528af2",
+  "test": "native shared housing 2k reviewed cost, fixed builders, yard, visible street and reload",
+  "failedAssertion": "[data-housing-finish] enabled after guarded clock advance",
+  "observedEvents": [
+    {
+      "monotonicMs": 792636.167,
+      "event": "housing-confirm starts",
+      "durationMs": 272.169,
+      "message": "This quote expired. Review a fresh price; nothing was spent."
+    },
+    {
+      "monotonicMs": 792670.01,
+      "event": "guarded fixture advance-six-hours starts",
+      "durationMs": 8.336
+    }
+  ],
+  "diagnosis": "The isolated test clock advanced while confirmation was in flight. The game correctly rejected the expired quote.",
+  "correction": "Wait for authoritative housing.build.target garden-studio-2 and assert remaining10kits before advancing the isolated clock.",
+  "unchanged": [
+    "game runtime",
+    "quote expiry rules",
+    "test timeouts",
+    "fixed6hourconstruction",
+    "all188browsercases"
+  ],
+  "rawTraceRetainedOutsideRepository": true,
+  "correctedValidation": "All5focused housing/residential cases pass on Node24.22.2/localChrome with zero failures/skips/flakes/report errors. Full exact final-head PR/main gates pending.",
+  "secondFixtureRace": {
+    "test": "actual residential street: native visits preserve identity while occupied smoke, windows and reduced/hidden/culling remain cosmetic",
+    "visibilityRestoreMs": 1198710.337,
+    "snapshotStartsMs": 1198722.629,
+    "snapshotDurationMs": 444.865,
+    "homeClickMs": 1198978.391,
+    "observed": "Walking remains locked with Refresh confirmed position; no game command sent.",
+    "correction": "Await the confirmed unlocked actor after restoring synthetic visibility before starting native house visits."
+  }
+}

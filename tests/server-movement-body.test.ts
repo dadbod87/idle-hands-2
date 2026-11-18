@@ -23,7 +23,7 @@ const samples: Array<Record<string, unknown>> = [];
 function record(value: Record<string, unknown>) {
   samples.push(value); mkdirSync('test-results/server', {recursive: true});
   writeFileSync('test-results/server/movement-body.json', JSON.stringify({
-    method: 'Actual loopback HTTP and dedicated PostgreSQL.1000ms peer deadline while another body remains incomplete; no command/position/stock grants. Expiry cases alone use a disclosed synthetic auth clock and one real-store pause.', samples,
+    method: 'Actual loopback HTTP and dedicated PostgreSQL.1000ms peer deadline while another body remains incomplete. All fixtures use a fixed synthetic application clock; only expiry cases advance it. HTTP deadlines/latencies use real time. No position/stock grants; expiry-presence alone pauses a real store call.', samples,
   }, null, 2) + '\n');
 }
 async function bounded<T>(promise: Promise<T>, label: string, ms = 5000): Promise<T> {
@@ -127,7 +127,7 @@ test('movement body: own queue stays ordered and bounded while malformed JSON re
       assert.equal((await f.post('movement', a.snapshot.position, a.cookie)).status, 200);
       await f.unchanged('aster', a.snapshot.workshop);
       assert.equal((await f.pool.query('select count(*)::int n from ih2.command_receipts')).rows[0].n, 0);
-      record({case: 'own-order-and-cap', pendingOwnReplies: 0, admittedOwnLimit: 4, overflowStatus: 429, malformedStatus: 400, recovered: true});
+      record({case: 'own-order-and-cap', ownRepliesCompletedBeforeBodyRelease: 0, queuedFollowers: 3, admittedOwnLimit: 4, overflowStatus: 429, malformedStatus: 400, recovered: true});
     } finally {observed.close(); held.abort(); await Promise.allSettled(queued);}
   });
 });

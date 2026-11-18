@@ -1,0 +1,55 @@
+{
+  "fixedOrder": [
+    "old",
+    "new",
+    "new",
+    "old"
+  ],
+  "rows": [
+    {
+      "order": 1,
+      "httpVersion": "old",
+      "httpSha256": "6bbccaad9be5de4dc753095c205ab1b1508097fa5f9f9d374a04467f0cee7295",
+      "sameCandidateCwd": true,
+      "exit": 0,
+      "commandP95Ms": 411.802334,
+      "targetMs": 500,
+      "elapsedSeconds": 30.534290290999998,
+      "allConservationIdleCleanupChecksBeforeBudgetPassed": true
+    },
+    {
+      "order": 2,
+      "httpVersion": "new",
+      "httpSha256": "ff076128269f292fcbfcc35eded822b31a05bb3e95973d4100fa3caff2bace59",
+      "sameCandidateCwd": true,
+      "exit": 0,
+      "commandP95Ms": 274.80633300000045,
+      "targetMs": 500,
+      "elapsedSeconds": 31.075126584,
+      "allConservationIdleCleanupChecksBeforeBudgetPassed": true
+    },
+    {
+      "order": 3,
+      "httpVersion": "new",
+      "httpSha256": "ff076128269f292fcbfcc35eded822b31a05bb3e95973d4100fa3caff2bace59",
+      "sameCandidateCwd": true,
+      "exit": 0,
+      "commandP95Ms": 483.7882500000014,
+      "targetMs": 500,
+      "elapsedSeconds": 30.415352249999998,
+      "allConservationIdleCleanupChecksBeforeBudgetPassed": true
+    },
+    {
+      "order": 4,
+      "httpVersion": "old",
+      "httpSha256": "6bbccaad9be5de4dc753095c205ab1b1508097fa5f9f9d374a04467f0cee7295",
+      "sameCandidateCwd": true,
+      "exit": 0,
+      "commandP95Ms": 197.55483300000014,
+      "targetMs": 500,
+      "elapsedSeconds": 29.762334208,
+      "allConservationIdleCleanupChecksBeforeBudgetPassed": true
+    }
+  ],
+  "allPriorMissesRetained": true
+}

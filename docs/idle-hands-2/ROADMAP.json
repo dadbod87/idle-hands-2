@@ -2179,7 +2179,12 @@
         "docs/evidence/IH2-124/PLAN.md",
         "docs/evidence/IH2-124/baseline.json",
         "docs/evidence/IH2-124/focused.json",
-        "docs/evidence/IH2-124/IMPLEMENTATION.md"
+        "docs/evidence/IH2-124/IMPLEMENTATION.md",
+        "docs/evidence/IH2-124/VALIDATION_HISTORY.md",
+        "docs/evidence/IH2-124/local-domain.json",
+        "docs/evidence/IH2-124/control-comparison.json",
+        "docs/evidence/IH2-124/same-checkout-snapshots.json",
+        "docs/evidence/IH2-124/same-checkout-profile.json"
       ],
       "owner_branch": "fix/movement-body-gate"
     }

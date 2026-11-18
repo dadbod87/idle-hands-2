@@ -1,5 +1,5 @@
 {
-  "method": "Actual loopback HTTP and dedicated PostgreSQL.1000ms peer deadline while another body remains incomplete; no command/position/stock grants. Expiry cases alone use a disclosed synthetic auth clock and one real-store pause.",
+  "method": "Actual loopback HTTP and dedicated PostgreSQL.1000ms peer deadline while another body remains incomplete. All fixtures use a fixed synthetic application clock; only expiry cases advance it. HTTP deadlines/latencies use real time. No position/stock grants; expiry-presence alone pauses a real store call.",
   "samples": [
     {
       "case": "independent-members-probe",
@@ -54,5 +54,7 @@
       "syntheticAuthClock": true,
       "realStorePauseOnly": true
     }
-  ]
+  ],
+  "originalMethodLabel": "Actual loopback HTTP and dedicated PostgreSQL.1000ms peer deadline while another body remains incomplete; no command/position/stock grants. Expiry cases alone use a disclosed synthetic auth clock and one real-store pause.",
+  "methodLabelCorrectionOnly": true
 }

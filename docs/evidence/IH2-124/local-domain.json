@@ -1,0 +1,92 @@
+{
+  "tests": 510,
+  "passed": 507,
+  "failed": 3,
+  "skipped": 0,
+  "cancelled": 0,
+  "actualDistinctTimingMisses": [
+    {
+      "case": "profiled twenty-player",
+      "p95Ms": 506.3041250000001,
+      "targetMs": 500
+    },
+    {
+      "case": "rich26-home snapshot",
+      "p95Ms": 773.6919999999991,
+      "targetMs": 500
+    }
+  ],
+  "thirdFailureIsParentOfSnapshotTimingCase": true,
+  "newMovementCases": {
+    "tests": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "next": "Fixed two-pair accepted-control/candidate comparison, original failed run retained. No target or assertion change.",
+  "loads": [
+    {
+      "case": "load/load-town.json",
+      "p95Ms": 322.72137499999917,
+      "budgetPass": true,
+      "loadQueries": 2540,
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      }
+    },
+    {
+      "case": "profiled-load/load-town.json",
+      "p95Ms": 506.3041250000001,
+      "budgetPass": false,
+      "loadQueries": 2540,
+      "conservation": {
+        "residents": 20,
+        "uniqueCommands": 140,
+        "replayedCommands": 20,
+        "receiptRows": 140,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "outputKits": 0,
+        "realJobHours": 12,
+        "firstPlanterSeconds": 5
+      },
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0
+      },
+      "idle": {
+        "seconds": 10,
+        "sqlQueries": 0,
+        "presenceEvents": 0
+      }
+    }
+  ],
+  "allOriginalDomainCasesPreserved": true,
+  "noCapOrAssertionChanges": true,
+  "buildPlanPinsWhitespacePass": true,
+  "all232ClientFilesExactAccepted122": true
+}

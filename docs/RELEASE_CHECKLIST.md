@@ -1,3 +1,7 @@
+# November18 — client confirmation correction in progress
+
+IH2-131fixes the reproduced actual-client command/public-read ordering race discovered by127's real smoke. Candidate source/PR61is not accepted yet; expected final536domain/198browser/all-five plus original500ms/recovery gates. Six focused regression cases added;28focused tests/build pass. No fixed performance observation, normal-runtime installation, hosting or real-player change. Docker/normal saved previews remain stopped by owner instruction; original keys read-only. [131report](evidence/IH2-131/REPORT.md). Earlier entries below are historical.
+
 # November18 — IH2-129 original audio study accepted
 
 Three original place scores/six accents and a silent-by-default file-openable audition page are accepted on main **221501ad09f83b4356069a97e099b69dd1554919** ([PR60](https://github.com/dadbod87/idle-hands-2/pull/60)). Exact PR/main five-job/raw527domain+197browser gates pass; complete audio/scripts regenerate byte-exact on Linux/Mac. Focused7Node/4native muted-browser cases, eight layouts/three Axe scans and final Terra6.1still review pass. Human listening/physical iPhone/Safari remain unverified. No UO assets, added dependency, paid service or actual game audio integration.

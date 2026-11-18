@@ -1,3 +1,7 @@
+# November18 — IH2-131 command confirmation correction active
+
+Source work/idle-hands-2-public-refresh-ci, perf/public-refresh-ci, PR61.127measurements blocked by a reproduced actual-client clock/revision race; no fixed observation executed. [131plan](../evidence/IH2-131/PLAN.md). Preserve all prior guards and the real smoke assertions; exact final source/main gates remain mandatory. Docker/normal previews remain stopped, original keys read-only. Deadline22UTC/2PM Pacific, latest26%weeklyused. Earlier entries below are historical.
+
 # November18 — IH2-127 independent public-refresh CI tooling active
 
 Source work/idle-hands-2-public-refresh-ci, branch perf/public-refresh-ci, parent129closeoutf4b46b8. Accepted main221501a has exact527/197all-five acceptance. Follow [CI_PLAN](../evidence/IH2-127/CI_PLAN.md); no fixed public observations executed yet. Docker/normal previews remain stopped by owner instruction; only explicit ephemeral standard-public CI5432/ih2_load is eligible. No real progress, paid/cloud hosting or original-game changes. Stop about2PM Pacific/22UTC or roughly10%weekly remaining; latest25%used.

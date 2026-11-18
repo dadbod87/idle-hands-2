@@ -1,3 +1,7 @@
+# Public-refresh study — blocked pending IH2-131 confirmation correction
+
+No fixed observation has run. The first real smoke on894385dfailed after its bridge wave and independently exposed an actual-client timestamp/revision race; see [131report](../IH2-131/REPORT.md). Source acceptance now covers the explicit131client correction plus diagnostic tools, expected536domain/198browser on final PR/main. The earlier no-runtime-change candidate description below is historical and does not describe the corrected bundle.
+
 # Public-refresh diagnostic — candidate, not measured
 
 Owner keeps Docker and normal saved previews stopped. This candidate adds only diagnostic tools/tests and an optional standard-public CI workflow; no game runtime, economy, pool, schema, asset or normal-service change. Source parent129closeoutf4b46b8 / accepted main221501a. No fixed public observation has run. [Predeclared method](CI_PLAN.md).

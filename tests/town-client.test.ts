@@ -142,7 +142,8 @@ test('terminally closed EventSource retries once with bounded backoff, preserves
   for(const delay of [10_000,20_000,30_000,30_000]){f.fire();const stream=f.stream();stream.readyState=2;stream.onerror?.(new Event('error'));stream.onerror?.(new Event('error'));assert.equal(f.timers.size,1);assert.equal(f.delays.at(-1),delay);assert.equal(f.messages.at(-1),retryNotice);assert.equal(f.client.retryAvailable,true);}
   f.fire();const opened=f.stream();opened.readyState=1;opened.onopen?.(new Event('open'));await drain();assert.equal(f.timers.size,0);assert.equal(f.messages.at(-1),retryNotice);assert.equal(f.client.retryAvailable,true);
   opened.readyState=2;opened.onerror?.(new Event('error'));assert.equal(f.delays.at(-1),5000);assert.equal(f.timers.size,1);
-  f.handle(request=>{assert.equal(request.path,'command');assert.deepEqual(request.body,original);return json({ok:true,replayed:true,message:'Same request confirmed',snapshot:value('A',11,1100)});});await f.client.retry();assert.equal(f.client.retryAvailable,false);assert.equal(f.requests.filter(r=>r.path==='command').length,2);
+  assert.equal(f.requests.filter(r=>r.path==='snapshot').length,0);
+  f.handle(request=>{if(request.path==='snapshot')return json({snapshot:value('A',11,1200)});assert.equal(request.path,'command');assert.deepEqual(request.body,original);return json({ok:true,replayed:true,message:'Same request confirmed',snapshot:value('A',11,1100)});});await f.client.retry();await drain();assert.equal(f.client.retryAvailable,false);assert.equal(f.requests.filter(r=>r.path==='command').length,2);assert.equal(f.requests.filter(r=>r.path==='snapshot').length,1);
   // Hiding cancels rather than waking an obsolete stream in the background.
   (document as any).hidden=true;document.dispatchEvent(new Event('visibilitychange'));assert.equal(f.timers.size,0);
   (document as any).hidden=false;document.dispatchEvent(new Event('visibilitychange'));f.stream().readyState=2;f.stream().onerror?.(new Event('error'));assert.equal(f.timers.size,1);
@@ -205,5 +206,47 @@ test('cafe public projection uses one deadline wakeup, rejects private fields an
   f.handle(()=>json({snapshot:{...value('A',11,14400000),cafe:{credits:12,phase:'open',readyAt:14400000}}}));await f.client.load();assert.equal(f.timers.size,0);
   f.handle(()=>json({snapshot:{...value('A',12,14400100),cafe:{credits:0,phase:'collecting',readyAt:null}}}));await f.client.load();assert.equal(f.client.snapshot?.cafe?.phase,'open');assert.equal(f.client.snapshot?.cafe?.readyAt,14400000);
   f.handle(()=>json({snapshot:{...value('A',13,14400200),cafe:{credits:12,phase:'open',readyAt:28800000}}}));await f.client.load();assert.equal(f.client.snapshot?.cafe?.readyAt,14400000);
+ }finally{await f.close();}
+});
+
+
+test('command confirmation: a newer-clock precommit read requires one fresh coherent revision before success',async()=>{
+ const f=fixture();try{
+  f.set(value('A',0,1000));await f.client.login('aster');const held=deferred<Response>(),read=deferred<Response>(),sent=deferred<void>();let reads=0;
+  f.handle(request=>{if(request.path==='command'){sent.resolve();return held.promise;}reads++;return reads===1?read.promise:json({snapshot:value('A',1,1300)});});
+  f.stream().emit('invalidate',{});await drain();
+  const pending=f.client.command({kind:'contribute'});await sent.promise;read.resolve(json({snapshot:value('A',0,1200)}));await drain();assert.equal(f.client.snapshot!.workshop.revision,0);
+  held.resolve(json({ok:true,revision:1,message:'Command committed',snapshot:value('A',1,1100)}));const confirmed=await pending;
+  assert.equal(confirmed.workshop.revision,1);assert.equal(confirmed.serverTime,1300);assert.equal(f.client.snapshot!.workshop.revision,1);assert.equal(reads,2);assert.equal(f.requests.filter(r=>r.path==='command').length,1);assert.equal(f.client.retryAvailable,false);
+ }finally{await f.close();}
+});
+
+test('command confirmation: pending public bursts keep one dirty follow-up after the committed response',async()=>{
+ const f=fixture();try{
+  f.set(value('A',0,1000));await f.client.login('aster');const held=deferred<Response>(),sent=deferred<void>();let reads=0;
+  f.handle(request=>{if(request.path==='command'){sent.resolve();return held.promise;}reads++;return json({snapshot:value('A',1,1300)});});
+  const pending=f.client.command({kind:'contribute'});await sent.promise;for(let n=0;n<32;n++)f.stream().emit('invalidate',{});await drain();assert.equal(reads,0);
+  held.resolve(json({ok:true,revision:1,snapshot:value('A',1,1100)}));assert.equal((await pending).workshop.revision,1);for(let n=0;n<5;n++)await drain();
+  assert.equal(reads,1);assert.equal(f.client.snapshot!.workshop.revision,1);assert.equal(f.requests.filter(r=>r.path==='command').length,1);
+ }finally{await f.close();}
+});
+
+for(const failure of ['network','401','old-revision']as const)test('command confirmation: '+failure+' refresh failure preserves the exact pending command for retry',async()=>{
+ const f=fixture();try{
+  f.set(value('A',0,1000));await f.client.login('aster');const held=deferred<Response>(),sent=deferred<void>();let reads=0;
+  f.handle(request=>{if(request.path==='command'){sent.resolve();return held.promise;}reads++;if(reads===1)return json({snapshot:value('A',0,1200)});if(failure==='network')throw new TypeError('Controlled confirmation failure');if(failure==='old-revision')return json({snapshot:value('A',0,1300)});return json({message:'Session refresh failed'},401);});
+  const pending=f.client.command({kind:'contribute'});await sent.promise;await f.client.load();held.resolve(json({ok:true,revision:1,message:'Command committed',snapshot:value('A',1,1100)}));await assert.rejects(pending,/Retry the same request/);
+  assert.equal(f.client.retryAvailable,true);assert.equal(f.client.snapshot!.workshop.revision,0);assert.equal(reads,2);assert.equal(f.messages.some(m=>m.includes('Command committed')),false);const first=f.requests.find(r=>r.path==='command')!.body;
+  f.handle(request=>{assert.equal(request.path,'command');assert.deepEqual(request.body,first);return json({ok:true,replayed:true,revision:1,snapshot:value('A',1,1400)});});
+  assert.equal((await f.client.retry()).workshop.revision,1);assert.equal(f.client.retryAvailable,false);assert.equal(f.requests.filter(r=>r.path==='command').length,2);
+ }finally{await f.close();}
+});
+
+test('command confirmation: a fresh-read reboot keeps its coherent recovery and the old UUID pending',async()=>{
+ const f=fixture();try{
+  f.set(value('A',0,1000));await f.client.login('aster');const held=deferred<Response>(),sent=deferred<void>();let reads=0;
+  f.handle(request=>{if(request.path==='command'){sent.resolve();return held.promise;}reads++;return json({snapshot:reads===1?value('A',0,1200):value('B',0,900)});});
+  const pending=f.client.command({kind:'contribute'});await sent.promise;await f.client.load();held.resolve(json({ok:true,revision:1,message:'Command committed',snapshot:value('A',1,1100)}));await assert.rejects(pending,/service changed/);
+  assert.equal(f.client.snapshot!.serverInstance,'B');assert.equal(f.client.snapshot!.workshop.revision,0);assert.equal(f.client.retryAvailable,true);assert.equal(f.messages.some(m=>m.includes('Command committed')),false);
  }finally{await f.close();}
 });

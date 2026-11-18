@@ -1,3 +1,15 @@
+# November18 — coherent queued openings candidate
+
+131is active on fix/shared-cafe-clock /PR62. Review added an opening-boundary regression after the first candidate543domain pass: café requests now acquire bridge→noticeboard→café shared locks before effective clock, common settlement and private projection. This adds two café row-lock reads; ordinary query counts/economy/durations/pool remain unchanged. Five no-DB schedule cases and focused34pass; three actual PostgreSQL cases and full final545/198PR/main remain required. No fixed observation has run. [Follow-up](../evidence/IH2-131/CAFE_CLOCK_FOLLOWUP.md).
+
+Normal saved previews/practice-database ports remain off and keys read-only. Read-only inspection found a preexisting Docker engine with other running containers; this continuation did not start or stop it. No real-player, paid/cloud/original-game change. DeadlineNovember18at2PM Pacific/22UTC; last28%weeklyused. Earlier entries below are historical.
+
+Current source work/idle-hands-2-public-refresh-ci. Preserve PR62firstcandidate bf5b7f4and its run/duplicate evidence; exact final source gates are still required.127blocked/130queued.
+
+# November18 —131queued café clock correction active
+
+Source work/idle-hands-2-public-refresh-ci, branch fix/shared-cafe-clock. PR61client correction passed final PR537/198but main public smoke failed during third wave before the20minute cap. Initial cancellation-only diagnosis was incomplete; retry evidence remains retained. Controlled actual server scheduling reproduces stale pre-lock café time; four no-DB cases now pass and two actual PG cases await CI. Final543/198PR/main required.127fixed observations blocked; Docker/normal saved previews remain stopped, original keys read-only. [Follow-up](../evidence/IH2-131/CAFE_CLOCK_FOLLOWUP.md). Deadline22UTC/2PM Pacific; no paid/cloud/original-game work. Earlier entries below are historical.
+
 # November18 — IH2-131 command confirmation correction active
 
 Source work/idle-hands-2-public-refresh-ci, perf/public-refresh-ci, PR61.127measurements blocked by a reproduced actual-client clock/revision race; no fixed observation executed. [131plan](../evidence/IH2-131/PLAN.md). Preserve all prior guards and the real smoke assertions; exact final source/main gates remain mandatory. Docker/normal previews remain stopped, original keys read-only. Deadline22UTC/2PM Pacific, latest26%weeklyused. Earlier entries below are historical.

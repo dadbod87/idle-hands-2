@@ -2322,7 +2322,7 @@
     {
       "id": "IH2-129",
       "title": "Original town music and sound audition study",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-128"
       ],
@@ -2339,8 +2339,10 @@
         "Study acceptance does not by itself promote audio into the game or establish subjective musical quality."
       ],
       "evidence": [
-        "docs/evidence/IH2-129/PLAN.md"
-      ]
+        "docs/evidence/IH2-129/PLAN.md",
+        "docs/evidence/IH2-129/REPORT.md"
+      ],
+      "owner_branch": "Codex / feat/original-audio-study"
     }
   ],
   "source_status_note": "128source accepted with exact520/193PR/main;127measurement blocked by owner keep-services-stopped direction;129original audio study queued. Read CURRENT_SESSION."

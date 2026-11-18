@@ -131,7 +131,9 @@
     "tests/housing-contract.test.ts",
     "tests/housing-contract.spec.ts",
     "tools/housing-contract-study/street.ts",
-    "tools/earned-housing-fixture.ts"
+    "tools/earned-housing-fixture.ts",
+    "tools/create-audio-study.ts",
+    "tests/design-audio.spec.ts"
   ],
   "compilerOptions": {
     "types": [

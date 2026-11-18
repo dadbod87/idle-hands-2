@@ -72,3 +72,7 @@ After system/restart checks, copy `test-results/server/` to a task artifact dire
 ## Renewed owner-authorized sequential run — November 17
 
 The owner asked to continue safe work through successive sections until November18at7AM Pacific (15:00UTC) or roughly10%weekly allowance remains. This supersedes the one-task-per-prompt stop for this run. Keep one task active; finish its validation/source/main/closeout before selecting the next. Recheck account-wide usage at task and major-validation boundaries; initial read11%used/89%remaining. Do not consume reset credits, buy anything or infer hosting/real-player authorization. Stop new work with time to leave a precise handoff; retain pending gates honestly. No background automation is created.
+
+## Original standalone script generation — November18
+
+The installed TypeScript7CLI does not expose the old transpileModule/ModuleKind API assumed by the first129generator. For the two reviewed import-free own study modules,129uses the pinned Node24.22.2native type eraser and an explicit small export list, alongside the real tsc checks and emitted-script/WAV equivalence tests. Do not treat erasure as typechecking, strip arbitrary third-party code, add a compiler dependency silently, or infer cross-platform byte regeneration until its exact Linux check passes.

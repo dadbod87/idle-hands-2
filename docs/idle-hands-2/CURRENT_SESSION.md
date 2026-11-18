@@ -1,3 +1,7 @@
+# November18 — IH2-129 original audio study active
+
+Current source work/idle-hands-2-audio-study, feature feat/original-audio-study, from pushed128closeoutff48902. Accepted main9107143 has exact520/193all-five acceptance. Owner explicitly keeps Docker and existing normal game previews stopped; do not start them. New129is a standalone original music/sound audition study, not runtime integration. No UO tracks imported. [Plan](../evidence/IH2-129/PLAN.md). Continue until about2PM Pacific/22UTC November18or roughly10%weekly allowance remains; latest24%used.127local measurement blocked; disposableCIoption remains unimplemented. No paid/cloud/original-game work. Earlier entries are historical.
+
 Latest observed weekly allowance24%used /76%remaining; ordinary usage allowed. No reset credits consumed.
 
 # November18 — IH2-128 source accepted; local services kept stopped

@@ -1,0 +1,21 @@
+{
+  "initialWavePack": {
+    "bytes": 4015338,
+    "declaredLimit": 4000000,
+    "outcome": "failed; shortened only unused tail from1.4to1.2seconds, preserving score and limit",
+    "raw": "initial tool transcript; durable observation saved here"
+  },
+  "initialGenerator": "Installed TypeScript7CLI package had no transpileModule/ModuleKind API; switched to pinned Node native type erasure, no new package. Initial generator errors were in tool transcript.",
+  "initialBuild": "Typed-array ArrayBufferLike widening rejected by Web Audio copyToChannel; corrected render helper to retain concrete ArrayBuffer type. Raw build-first.log retained.",
+  "firstBrowser": {
+    "passed": 2,
+    "failed": 1,
+    "reason": "Homecoming label clipped at320px/200%; corrected to Coming home, compact enlarged header and reserved feedback. Raw first report/screenshots retained."
+  },
+  "v1Browser": {
+    "passed": 4,
+    "failed": 0,
+    "Terra": "No blocker; improve crowded volume label and compact enlarged place cards. Changes require fresh rerun."
+  },
+  "stagedWhitespace": "Native erasure left whitespace-only lines in emitted scripts. Staged diff check caught it before commit/CI; generator now trims line ends rather than weakening the check."
+}

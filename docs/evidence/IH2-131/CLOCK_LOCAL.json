@@ -45,7 +45,8 @@
     "clock-opening-focused-final.log": "c35105ce4d620085c88d5d601ca967861df4da2272d9a758e5c66520fc090b04",
     "clock-opening-independent.log": "dbd2d0fd425edd41a49bf915a483e023ba958c38777a3f1f7d5d7276faedf4bd",
     "clock-opening-build.log": "99b6f7168c3d682362470ee9a6a2cb02cbbf3feec4b9032d5e57883c664e9e40",
-    "clock-opening-plan.log": "dbe6429f6dae4031d7a80ada34be321d255f2f62a3fba8f0c4438a3c8b198765"
+    "clock-opening-plan.log": "dbe6429f6dae4031d7a80ada34be321d255f2f62a3fba8f0c4438a3c8b198765",
+    "clock-opening-build-semantic.log": "fb3b34bfb776b7c5b0e49ab895719e3d0f5449c6296e55cd23737bfa9a20b269"
   },
   "normalServicesKeptStopped": true,
   "cafeQueryDelta": 2,
@@ -57,5 +58,6 @@
   ],
   "serverClockRegressions": 8,
   "realPgCasesPendingCurrentSource": 3,
-  "dockerEngine": "Observed preexisting running engine; no game/DB service started or engine/container stopped by this continuation"
+  "dockerEngine": "Observed preexisting running engine; no game/DB service started or engine/container stopped by this continuation",
+  "realPgMethod": "Delay first real SQL submission after initial clock sample, compatible with settlement-first and pre-lock paths; no query/result/confirmation substitution"
 }

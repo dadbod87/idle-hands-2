@@ -1,0 +1,16 @@
+{
+  "run": 44334931292,
+  "sha": "8e444760d6a76c6ff9fbbd14d0ad103674424510",
+  "attempt": 1,
+  "outcome": "cancelled at unchanged20minute job cap",
+  "domainPassed": 520,
+  "browserGroup2Passed": 66,
+  "browserGroup3Passed": 54,
+  "browserGroup1LoggedCompletedPasses": 67,
+  "browserGroup1Total": 73,
+  "browserGroup1FullHTMLReport": "not produced before cancellation; partial screenshots retained by pinned artifact ID",
+  "dependencyFetch": "32.1MB in8min35seconds(62.2kB/s); group2same packages2min34,group3same3min59",
+  "diagnosis": "Observed dependency mirror/network delay consumed job headroom; no test failure logged before cancellation. No general speed/capacity claim.",
+  "authorizedRecovery": "Rerun only failed/cancelled jobs on same exact head, preserving passing group/domain results and all original settings; gh run rerun --failed requested.",
+  "noSourceChangesNoSkippedTestsNoRaisedCaps": true
+}

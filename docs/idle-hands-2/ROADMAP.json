@@ -2282,7 +2282,7 @@
         "Use20distinct fictional identities at most:18modeled protocol participants plus2native desktop/touch clients. Model actual TownClient stream-open/visibility/identity/loading/refreshDirty behavior and cross-check against native observations; never claim20rendered clients.",
         "Use only an explicitly guarded named disposable local database, isolated API and in-memory synthetic sessions. Keep pool5/observer1/durable settings/pinned runtime/normal saved towns/keys/PIDs intact; disclose any historical preparation or auxiliary intercepted test separately. No intercepted confirmations in timing runs.",
         "Retain every trial/miss and verify exact unique/replayed commands, private/public eventual state, project totals/deadlines, inventory/rewards, idle work, privacy and zero leaked streams/requests. Stop on authority/source/target/conservation/cleanup failure; no replacement runs for green.",
-        "Any new tools/source require applicable local checks and fresh exact finalPR/main complete raw coverage, preserving all existing514domain/193browser cases plus new cases and original500ms/recovery gates. Verify actual runtime scope and push precise report/handoff before another section."
+        "Any new tools/source require applicable local checks and fresh exact finalPR/main complete raw coverage, preserving all existing520domain/193browser cases plus new cases and original500ms/recovery gates. Verify actual runtime scope and push precise report/handoff before another section."
       ],
       "exclusions": [
         "No runtime/economy/protocol/schema/cache/pool/rate/queue/timer change selected; an optimization needs its own evidence-based section.",
@@ -2299,7 +2299,7 @@
     {
       "id": "IH2-128",
       "title": "Require explicit disposable browser targets and guard public refresh coalescing",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-126"
       ],
@@ -2318,7 +2318,30 @@
         "No public refresh capacity or latency result from controlled tests."
       ],
       "owner_branch": "Codex / perf/public-refresh-study"
+    },
+    {
+      "id": "IH2-129",
+      "title": "Original town music and sound audition study",
+      "status": "queued",
+      "depends_on": [
+        "IH2-128"
+      ],
+      "goal": "Explore an original nostalgic fantasy soundtrack with concise comfortable desktop/phone audition controls, without importing UO tracks or changing the game runtime.",
+      "acceptance": [
+        "Author three independent bounded original melodies and a small subtle action-accent family with exact reproducible source/provenance/hashes, no copied melody/recording/soundfont or asset expense.",
+        "Provide a standalone audition study with silence by default, deliberate playback, immediate pause/mute, clear current mood, comfortable keyboard/touch/short/200%text layouts and no game save/API use.",
+        "Validate finite waveform/peak/DC/tail/duration and loading/voice budgets, deterministic regeneration and no audio on load; human listening and physical-device quality remain explicitly pending.",
+        "Use Terra6.1 for actual standalone desktop/mobile screenshots; no claim of shared-game/runtime integration or physical-device listening.",
+        "Save checks, artifact/source/main acceptance and next steps; keep owner-stopped local services stopped and preserve all existing full regression gates."
+      ],
+      "exclusions": [
+        "No UO/Stones or other uncleared music imported; no paid assets/services/hosting, real progress or backend/economy changes.",
+        "Study acceptance does not by itself promote audio into the game or establish subjective musical quality."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-129/PLAN.md"
+      ]
     }
   ],
-  "source_status_note": "126fullyaccepted main6c150fb with514/193and read-only preserved preview;127queued for the next continuation, not started. Read CURRENT_SESSION."
+  "source_status_note": "128source accepted with exact520/193PR/main;127measurement blocked by owner keep-services-stopped direction;129original audio study queued. Read CURRENT_SESSION."
 }

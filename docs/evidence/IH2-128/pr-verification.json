@@ -1,0 +1,103 @@
+{
+  "run": 44334931292,
+  "sha": "8e444760d6a76c6ff9fbbd14d0ad103674424510",
+  "allRequiredJobsSuccess": true,
+  "requiredJobCount": 5,
+  "domain": 520,
+  "browser": 193,
+  "disjointShards": [
+    73,
+    66,
+    54
+  ],
+  "newStartupAndClientCases": 6,
+  "old514DomainAndAll193BrowserCasesPreserved": true,
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all232GameFilesExactAccepted122": true,
+  "all226ArtFilesExact": true,
+  "rawHousingOutingRestartRestoreAnd9MetadataVerified": true,
+  "fourCurrentSettlementCasesVerified": true,
+  "movementBodyAndMenuRetryGuardsVerified": true,
+  "unchanged500msBudgetsPass": true,
+  "commandP95Ms": 74.90059900000051,
+  "profiledCommandP95Ms": 136.56176700000105,
+  "rich26HomeSnapshotP95Ms": 76.57455200000004,
+  "localExecution": "22focused/358independent passes;4local database skips explicitly unavailable; full local PostgreSQL/browser unavailable under owner stop instruction",
+  "savedLocalRuntime": "No restart/install/native saved-cookie or current table equality claim",
+  "approxRoundedJobMinutes": 73,
+  "runAttempt": 2,
+  "sameHeadReuse": [
+    {
+      "name": "browser-shard (3/3)",
+      "actualExecutionJobId": 134908928022,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134924173620,
+      "latestLogicalAttempt": 2
+    },
+    {
+      "name": "domain-build-plan",
+      "actualExecutionJobId": 134908927287,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134924172294,
+      "latestLogicalAttempt": 2
+    },
+    {
+      "name": "browser-shard (2/3)",
+      "actualExecutionJobId": 134908927836,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134924174229,
+      "latestLogicalAttempt": 2
+    }
+  ],
+  "cancelledFirstAttempt": {
+    "run": 44334931292,
+    "sha": "8e444760d6a76c6ff9fbbd14d0ad103674424510",
+    "attempt": 1,
+    "outcome": "cancelled at unchanged20minute job cap",
+    "domainPassed": 520,
+    "browserGroup2Passed": 66,
+    "browserGroup3Passed": 54,
+    "browserGroup1LoggedCompletedPasses": 67,
+    "browserGroup1Total": 73,
+    "browserGroup1FullHTMLReport": "not produced before cancellation; partial screenshots retained by pinned artifact ID",
+    "dependencyFetch": "32.1MB in8min35seconds(62.2kB/s); group2same packages2min34,group3same3min59",
+    "diagnosis": "Observed dependency mirror/network delay consumed job headroom; no test failure logged before cancellation. No general speed/capacity claim.",
+    "authorizedRecovery": "Rerun only failed/cancelled jobs on same exact head, preserving passing group/domain results and all original settings; gh run rerun --failed requested.",
+    "noSourceChangesNoSkippedTestsNoRaisedCaps": true
+  },
+  "standardPublicUbuntu": true,
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true,
+  "artifactsPinnedById": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14441945361,
+      "createdAt": "2026-11-18T15:25:57Z",
+      "zipSha256": "8579a22bbb757a2876df5b4c4425f4cf8a5a0fd363a0199999625abafb1850e0"
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14441316570,
+      "createdAt": "2026-11-18T15:25:59Z",
+      "zipSha256": "8608d12aae75676ad19694d54ca069d3eada6eedb998a7b36785650543aa959d"
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14442864622,
+      "createdAt": "2026-11-18T15:58:15Z",
+      "zipSha256": "e117f0d9bc2625cf155bc017989ee10276c35a80cccd68d977fd33ead2207922"
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14443115619,
+      "createdAt": "2026-11-18T15:38:01Z",
+      "zipSha256": "2d57e8af80358e2eef84c7452ef465b6cbe74f4d4f029b724d97c9516c859d86"
+    },
+    {
+      "name": "sequel-browser-evidence-3",
+      "id": 14442496538,
+      "createdAt": "2026-11-18T15:38:16Z",
+      "zipSha256": "e673a7837133bf9b2523f811fa8b63a25d448e43274d3f8d4268f60d9223df3d"
+    }
+  ]
+}

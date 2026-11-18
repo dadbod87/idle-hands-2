@@ -1,0 +1,66 @@
+{
+  "run": 44342290616,
+  "sha": "9107143d3fb1c46ccd4bde6d3cfd38e2998daae3",
+  "allRequiredJobsSuccess": true,
+  "requiredJobCount": 5,
+  "domain": 520,
+  "browser": 193,
+  "disjointShards": [
+    73,
+    66,
+    54
+  ],
+  "newStartupAndClientCases": 6,
+  "old514DomainAndAll193BrowserCasesPreserved": true,
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all232GameFilesExactAccepted122": true,
+  "all226ArtFilesExact": true,
+  "rawHousingOutingRestartRestoreAnd9MetadataVerified": true,
+  "fourCurrentSettlementCasesVerified": true,
+  "movementBodyAndMenuRetryGuardsVerified": true,
+  "unchanged500msBudgetsPass": true,
+  "commandP95Ms": 89.2839640000002,
+  "profiledCommandP95Ms": 97.96397600000091,
+  "rich26HomeSnapshotP95Ms": 101.23864400000002,
+  "localExecution": "22focused/358independent passes;4local database skips explicitly unavailable; full local PostgreSQL/browser unavailable under owner stop instruction",
+  "savedLocalRuntime": "No restart/install/native saved-cookie or current table equality claim",
+  "approxRoundedJobMinutes": 43,
+  "runAttempt": 1,
+  "sameHeadReuse": [],
+  "cancelledFirstAttempt": null,
+  "standardPublicUbuntu": true,
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true,
+  "artifactsPinnedById": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14443374412,
+      "createdAt": "2026-11-18T16:04:36Z",
+      "zipSha256": "71f9996cdba7ed217fe2526bc42c7c8a3f38d18d712537f681a91b53896deb5f"
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14445515505,
+      "createdAt": "2026-11-18T16:04:39Z",
+      "zipSha256": "1cb7b7107e7c769c62f32fe5f60816e3146ce2e59884710ee24c3c103a39e46a"
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14444518460,
+      "createdAt": "2026-11-18T16:13:22Z",
+      "zipSha256": "a671ec0e22cfb053b8c84ababdb1df36ca9f51d0e079381eaf258a261cc23a51"
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14445776151,
+      "createdAt": "2026-11-18T16:12:45Z",
+      "zipSha256": "9e746fc9028e553e23c9672a735e0f8cb721cc268a17d99208ec0a53a98e55af"
+    },
+    {
+      "name": "sequel-browser-evidence-3",
+      "id": 14445123120,
+      "createdAt": "2026-11-18T16:13:41Z",
+      "zipSha256": "582416117edcacac35323c000aa98d26006c9bf6bcdd261d0a58b4e4759b690d"
+    }
+  ]
+}

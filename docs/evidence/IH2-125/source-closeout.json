@@ -1,0 +1,26 @@
+{
+  "task": "IH2-125",
+  "status": "measurements-complete-documentation-backup-unmerged",
+  "measuredAcceptedMainSources": {
+    "control": "d4068f33fc9f3241d005013c9e62489a93a07ce6",
+    "current": "816d2b89479c1318ebe05b67339f3b71b1efcf92"
+  },
+  "sequence": [
+    "control",
+    "current",
+    "current",
+    "control",
+    "control",
+    "current"
+  ],
+  "sixTrialsComplete": true,
+  "allCorrectnessPrivacyIdleDurabilityCleanupPass": true,
+  "allLatencyAndLoopTargetsMet": false,
+  "normal17Tables9MetadataOriginalKeysFourPidsBothPgStartsPreserved": true,
+  "gameOrToolCodeChanges": false,
+  "normalRuntimeInstall": false,
+  "newActionsRuns": 0,
+  "noReplacementTrialsOrChangedTargets": true,
+  "runtimeAuthority": "Accepted124main816d2b89479c1318ebe05b67339f3b71b1efcf92API9 plus unchanged122client; movement-body active-services.json",
+  "noCausalSpeedupCapacityLeakPublicRefreshPhysicalDeviceClaim": true
+}

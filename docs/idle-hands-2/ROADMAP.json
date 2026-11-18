@@ -2161,7 +2161,7 @@
     {
       "id": "IH2-124",
       "title": "Keep incomplete movement bodies from stalling other residents",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-123"
       ],
@@ -2187,10 +2187,77 @@
         "docs/evidence/IH2-124/same-checkout-profile.json",
         "docs/evidence/IH2-124/REPORT.md",
         "docs/evidence/IH2-124/local-browser.json",
-        "docs/evidence/IH2-124/focused-current.json"
+        "docs/evidence/IH2-124/focused-current.json",
+        "docs/evidence/IH2-124/local-domain-current.json",
+        "docs/evidence/IH2-124/source-closeout.json",
+        "docs/evidence/IH2-124/pr-source.json",
+        "docs/evidence/IH2-124/main-source.json",
+        "docs/evidence/IH2-124/saved-preservation.json",
+        "docs/evidence/IH2-124/actual-saved.json",
+        "docs/evidence/IH2-124/api-restart-preservation.json",
+        "docs/evidence/IH2-124/terra-actual-saved.md"
       ],
-      "owner_branch": "fix/movement-body-gate"
+      "owner_branch": "chore/movement-body-closeout-2026-11-18"
+    },
+    {
+      "id": "IH2-125",
+      "title": "Compare fixed ordinary sessions on accepted old and corrected server",
+      "status": "done",
+      "depends_on": [
+        "IH2-124"
+      ],
+      "goal": "Separate ordinary-session timing variation from the demonstrated slow-body fix without changing runtime or authority.",
+      "acceptance": [
+        "Six declared old/current300second studies retain every outcome and original latency targets; stop on correctness/source/target/cleanup failure.",
+        "Verify all17table fields/nine metadata,20live streams/individual heartbeat/idle silence/privacy/durability/cleanup and separate resources.",
+        "Keep tool/game bytes unchanged; preserve normal data/keys/PIDs/protectedPG; save pushed report and clear measured-source versus documentation-backup distinction."
+      ],
+      "exclusions": [
+        "No game/tool/economy/protocol/schema/art/client/hosting/paid configuration change.",
+        "No capacity/FPS/WAN/physical-phone/causal speedup or public invalidation claim."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-125/PLAN.md",
+        "docs/evidence/IH2-125/sources.json",
+        "docs/evidence/IH2-125/METHOD.md",
+        "docs/evidence/IH2-125/REPRODUCE.md",
+        "docs/evidence/IH2-125/PUBLIC_REFRESH_CANDIDATE.md",
+        "docs/evidence/IH2-125/REPORT.md",
+        "docs/evidence/IH2-125/measurements.json",
+        "docs/evidence/IH2-125/controller-result.json",
+        "docs/evidence/IH2-125/controller-files.json",
+        "docs/evidence/IH2-125/source-closeout.json"
+      ],
+      "owner_branch": "chore/paired-session-study"
+    },
+    {
+      "id": "IH2-126",
+      "title": "Guard current combined project deadlines and opening rollback",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-125"
+      ],
+      "goal": "Protect current shared opening semantics before performance optimization, without runtime changes.",
+      "acceptance": [
+        "Four observable current-store deadline/concurrency/failure/retry/latch cases on guarded isolated realPostgreSQL.",
+        "Full514domain/build/plan/pins, exact runtime/browser-input byte bridge to prior local193; fresh exactPR/main all5/raw514+193/original500ms/recovery/nine metadata.",
+        "Read-only actual data/key/PID/PG/464+125preservation; clear prior-native-evidence scope and pushed closeout, or exact pending handoff at deadline."
+      ],
+      "exclusions": [
+        "No runtime/tool/economy/protocol/migration/art/client/config/rate/queue/pool/hosting/billing changes.",
+        "No early project opening, new progress grant, speedup/capacity/FPS/physical-device claim."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-126/PLAN.md",
+        "docs/evidence/IH2-126/METHOD.md",
+        "docs/evidence/IH2-126/REPORT.md",
+        "docs/evidence/IH2-126/focused.json",
+        "docs/evidence/IH2-126/full-current-settlement.json",
+        "docs/evidence/IH2-126/local-domain.json",
+        "docs/evidence/IH2-126/local-browser-byte-bridge.json"
+      ],
+      "owner_branch": "test/shared-opening-atomicity"
     }
   ],
-  "source_status_note": "123fullyclosed;124bounded incomplete-body investigation active, see CURRENT_SESSION."
+  "source_status_note": "126test-onlycurrentopeningguardactive after125closed; accepted runtime remains124."
 }

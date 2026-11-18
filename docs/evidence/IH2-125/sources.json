@@ -1,0 +1,27 @@
+{
+  "control": "d4068f33fc9f3241d005013c9e62489a93a07ce6",
+  "current": "816d2b89479c1318ebe05b67339f3b71b1efcf92",
+  "sequence": [
+    "control",
+    "current",
+    "current",
+    "control",
+    "control",
+    "current"
+  ],
+  "runtimeChanged": [
+    "server/http.ts"
+  ],
+  "sameToolFiles": {
+    "tools/session-profile.ts": "ad2f30cbed07e7d17aeeacf1daf79b2bded57f668f0c96eaa6aebcb2705b9e41",
+    "tools/session-child.ts": "49922a78033d4d2a132cb92a4dc501fde2e65236f339f2bddfc8dd66ed6f8ac2",
+    "tools/session-process.ts": "25f4cff818f791f870f958ef3c3a08e8e9e3ecdfc285e554111e746c2a6b3001",
+    "tools/session-target.ts": "d89def14b1269075c7fce09711137d0a5d224549e2e16214892071b9509746ba",
+    "tools/session-resources.ts": "8dcdde1e294e1f35fb0eb1e892fb9eefc9bcc3f687325af67ec2a8515bd37ceb"
+  },
+  "sourceWorktrees": {
+    "control": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-paired-control",
+    "current": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-paired-current"
+  },
+  "node": "/Users/nicksummerlin/Documents/Codex/2026-10-22/continue-the-game-room-wording-update/work/idle-hands-2-artifacts/busy-guidance-2026-11-17/runtime/node-v24.22.2-darwin-arm64/bin/node"
+}

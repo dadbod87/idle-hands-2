@@ -1,0 +1,8 @@
+{
+  "sha": "816d2b89479c1318ebe05b67339f3b71b1efcf92",
+  "all17TablesAnd9MetadataEveryFieldExact": true,
+  "originalKeysExact0600": true,
+  "staticProcessesUnchanged": true,
+  "readOnlyPopulatedBackups": true,
+  "noMigrationResetSeedGrantOrPgRestart": true
+}

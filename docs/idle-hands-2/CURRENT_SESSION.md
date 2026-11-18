@@ -1,6 +1,24 @@
-# November18 — IH2-124 bounded movement investigation
+# November18 — IH2-126 current opening guard active
 
-124soleactive after123fullyclosed/pushed d730ec3overmaind4068f3. New isolated work/idle-hands-2-movement-body, fix/movement-body-gate. Baseline reproduced both peer timeouts while body incomplete. Minimal server candidate waits on body only under own queue, then validates/mutates under shared lock; focused4/4/typecheck pass. First local507/510retains two500ms timing misses plus failed parent; stronger expiry fixture current509/510retains one profile605.610ms miss (rich139.711ms passes), zero skipped/cancelled; all4newcases pass in both. Fixed pair/same-checkout diagnostics retained, no consistent performance claim; build/plan/pins and232client identity pass. Full193/193browser PASSzeroexceptions; exactPR/main510/193and safeactualAPI-onlygates pending. [Plan](../evidence/IH2-124/PLAN.md). Retain baseline failure before minimal change, full local/exact PR/main and safe actual API-only gates required. Normal122client/121API9/menu-confirmation active-services.json unchanged; protected55432/keys never reset/restart/migrate/copy. Deadline15UTC/7AMPacific, latest21%weeklyused. Earlier entries historical.
+Source work/idle-hands-2-settlement-guard/test/shared-opening-atomicity, basedon125complete ef60445. [Plan](../evidence/IH2-126/PLAN.md). Test-only current live-store deadline/rollback coverage before any optimization; runtime remainsaccepted124. Four new Node cases target514; all runtime/browserinputs mustremainbyte-identical, local193existingexact-bytebridge/freshfinalPR+main514193all5 required. No protected55432/key/normalprogress changes. Deadline15UTC/7AMPacific/latest21%weeklyused; savependinggatesifnotcomplete, no blindretry/limitweakening.
+
+# November18 — IH2-125 observations complete
+
+The six fixed ordinary-session trials are complete and saved. No game/tool implementation or normal runtime changed. Every trial preserves checkpoint state, stream privacy/idle behavior and cleanup; every timing outcome, including misses, remains in the report. This is an **unmerged documentation backup**, not a new source/CI/runtime acceptance result. Accepted preview remains124API9/122client, movement-body active-services.json. Both source versions were separately accepted before measurement.
+
+[Study report](../evidence/IH2-125/REPORT.md), [current runtime report](../evidence/IH2-124/REPORT.md), [handoff](handoffs/2026-11-18-paired-sessions.md). Source: work/idle-hands-2-paired-sessions, branchchore/paired-session-study. Verify pushed remote head. No task remains active after this measurement closeout. Re-evaluate public refresh fanout or settlement roundtrips before a new bounded task; no cache/pool/economy change is justified by noisy timings alone. Protected55432and keys remain intact, all destructive fixtures on55434only. Stop byNov18 15:00UTC/7AM Pacific or roughly90%weekly use; latest21%used. Earlier entries below are historical.
+
+# November18 — IH2-125 fixed comparison active
+
+Source work/idle-hands-2-paired-sessions, chore/paired-session-study, based on124pushed closeout88c234e. [Plan](../evidence/IH2-125/PLAN.md). Six fixed300second old/current/current/old/old/current studies, unchanged accepted tools, explicit disposable55434only. No new game/tool code or Actions request. Current accepted runtime124main816d2b8/r124active-services. Protected55432/keys/normaldata never restart/reset/migrate/copy. Stop by15UTC/7AMPacific/latest21%weeklyused. Retain every timing miss; do not replace trials or claim capacity/speedup/public-refresh coverage.
+
+# November18 — IH2-124 complete
+
+The slow-body correction is complete on main **816d2b89479c1318ebe05b67339f3b71b1efcf92** ([PR57](https://github.com/dadbod87/idle-hands-2/pull/57)). Exact PR/main checks pass all five jobs and raw510domain/193browser cases with the original500ms limits. Both local full-run timing failures and fixed comparisons remain disclosed. All232client/art bytes are unchanged.
+
+The saved local preview now runs accepted122client/124API9. Three existing fictional sessions preserve their original cookies and saved feet across the API-only restart. All17saved tables/nine metadata/original keys/static processes/protected PostgreSQL remain intact; native16desktop/mobile/short layouts and464current+125historical responses pass. Current service authority is `work/idle-hands-2-artifacts/movement-body-2026-11-18/active-services.json`.
+
+[Report](../evidence/IH2-124/REPORT.md), [source closeout](../evidence/IH2-124/source-closeout.json), [dated handoff](handoffs/2026-11-18-movement-body.md). Source is `work/idle-hands-2-movement-body`, documentation branch `chore/movement-body-closeout-2026-11-18`; verify its remote head before resuming. No task remains active after this closeout. Re-evaluate profiling evidence before adding a new section; keep phone menus concise and progress persistent. Continue only within the owner deadline Nov18 15:00UTC/7AM Pacific or about90%weekly use. No paid/cloud/original-game work. Earlier entries are historical.
 
 # November18 — IH2-123 complete
 

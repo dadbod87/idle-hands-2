@@ -1,0 +1,157 @@
+{
+  "run": 44305545886,
+  "sha": "f80e7a92bdaf06095192cf19b8d08276deab8705",
+  "allRequiredJobsSuccess": true,
+  "requiredJobCount": 5,
+  "artifactsPinnedById": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14427464866,
+      "createdAt": "2026-11-18T12:39:21Z",
+      "zipSha256": "6289af6daf216ea7f588a353aa3dee90c04fdd969a7d28e7dfd3ab0934349804"
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14428096946,
+      "createdAt": "2026-11-18T12:39:22Z",
+      "zipSha256": "2e3197b57ca5585e0084238c68e46a23292df926e25b6786a4ff7fd417c2713e"
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14428502771,
+      "createdAt": "2026-11-18T12:49:44Z",
+      "zipSha256": "cf4a23adb6fbfeea5c71422e57cf64833b7114848e3c6fa59239bc42107c8de5"
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14429236336,
+      "createdAt": "2026-11-18T12:50:12Z",
+      "zipSha256": "bf0736810a06d93c6ba3482be961e03aaebbe90fa0557d921c8099d73104a232"
+    },
+    {
+      "name": "sequel-browser-evidence-3",
+      "id": 14429016724,
+      "createdAt": "2026-11-18T12:46:36Z",
+      "zipSha256": "323e05ff3adfe9dca24aacb260174463b6327fabefbce9bfc9416f58e32cfccc"
+    }
+  ],
+  "domain": 510,
+  "browser": 193,
+  "disjointShards": [
+    73,
+    66,
+    54
+  ],
+  "all188PriorBrowserCasesPreserved": true,
+  "newControlledClientCases": 5,
+  "localFullExecution": "First local full suite retains507/510with2actual500msmisses+failedparent. Current fixture-strengthened full suite recorded separately; local-browser-result.json records complete193. Fixed controls retained; no prior result relabelled.",
+  "orderedFixtureFamily": {
+    "shared-town.spec.ts": [
+      2
+    ],
+    "starter-homes.spec.ts": [
+      2
+    ],
+    "trail.spec.ts": [
+      2
+    ],
+    "z-first-visit.spec.ts": [
+      2
+    ]
+  },
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all232CompiledFilesExactFrozenLocal": true,
+  "all226PriorArtFilesExact": true,
+  "rawHousingAndOutingRestartRestoreSameSessionAnd9MigrationChecksums": true,
+  "commandP95Ms": 56.02098999999998,
+  "neighborhoodSnapshotP95Ms": 50.13802200000009,
+  "profiledCommandP95Ms": 52.44002999999975,
+  "rich26HomeSnapshotP95Ms": 58.21386699999994,
+  "acceptedReader15To1AndAllFieldEquivalence": true,
+  "corrected4KCompositorPixelsVerified": true,
+  "profileTraceCompleteObserverIdle0DurabilityOn": true,
+  "same2540LoadQueriesAnd140Unique20Replay": true,
+  "all232GameFilesExactAccepted122": true,
+  "runtimeSourceChanges": [
+    "server/http.ts"
+  ],
+  "newSafetySmokeDomainCases": 3,
+  "newMovementBodyDomainCases": 4,
+  "localDomainFirstFull": {
+    "tests": 510,
+    "passed": 507,
+    "failed": 3,
+    "actualTimingMissesMs": [
+      506.3041250000001,
+      773.6919999999991
+    ]
+  },
+  "localDomainCurrentFull": {
+    "tests": 510,
+    "pass": 509,
+    "fail": 1,
+    "cancelled": 0,
+    "skipped": 0,
+    "reasonForNewAttempt": "Necessary test precision change: server IncomingMessage end is observed before advancing expiry during global wait; no backend or browser change.",
+    "profiledCommandP95Ms": 605.6100000000006,
+    "rich26SnapshotP95Ms": 139.71116699999948,
+    "onlyFailure": "Existing profiled twenty-client command p95605.610ms versus unchanged500ms. No other failure/skip/cancel.",
+    "newMovementCases": {
+      "tests": 4,
+      "passed": 4
+    },
+    "rawLog": "full-domain-current.log",
+    "archivedServerArtifacts": "local-domain-artifacts-current/",
+    "noGreenChasingOrLimitChanges": true
+  },
+  "fixedLocalDiagnosticMissesRetained": true,
+  "incompleteBodyPeerAndOwnOrderingExpiryProof": true,
+  "menuPendingSuccessFailureRefusalAndRetryProof": true,
+  "unchanged500msBudgetsPass": true,
+  "runtime": "v24.22.2",
+  "publicStandardUbuntu": true,
+  "approxRoundedJobMinutes": 43,
+  "approxLatestSuccessfulExecutionJobMinutes": 43,
+  "jobEvidence": [
+    {
+      "name": "browser-playtest",
+      "actualExecutionJobId": 134813524734,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134813524734,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "domain-build-plan",
+      "actualExecutionJobId": 134806037550,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134806037550,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-shard (1/3)",
+      "actualExecutionJobId": 134806038059,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134806038059,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-shard (3/3)",
+      "actualExecutionJobId": 134806038160,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134806038160,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-shard (2/3)",
+      "actualExecutionJobId": 134806038170,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134806038170,
+      "latestLogicalAttempt": 1
+    }
+  ],
+  "runAttempt": 1,
+  "sameHeadSuccessReuseDisclosed": false,
+  "accountingMethod": "All distinct name/start/end executions across attempts, excluding GitHub logical clones of reused successful jobs; includes cancelled/failed attempts, not an invoice.",
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true
+}

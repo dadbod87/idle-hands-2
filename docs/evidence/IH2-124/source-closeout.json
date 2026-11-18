@@ -1,0 +1,40 @@
+{
+  "task": "IH2-124",
+  "status": "complete",
+  "candidate": "f80e7a92bdaf06095192cf19b8d08276deab8705",
+  "main": "816d2b89479c1318ebe05b67339f3b71b1efcf92",
+  "identicalCandidateAndMainTree": true,
+  "pr": 57,
+  "prRun": 44305545886,
+  "mainRun": 44308040580,
+  "exactFiveJobsRaw510Domain193BrowserBothHeads": true,
+  "all232ClientBytesExactAccepted122": true,
+  "runtimeSourceChanges": [
+    "server/http.ts"
+  ],
+  "localFullAttempts": [
+    {
+      "tests": 510,
+      "pass": 507,
+      "fail": 3
+    },
+    {
+      "tests": 510,
+      "pass": 509,
+      "fail": 1
+    }
+  ],
+  "localFailuresAndFixedControlsRetained": true,
+  "savedApiOnlyUpdateAccepted": true,
+  "same3RamSignedContextsNoPostUpdateLogin": true,
+  "liveFeetMatchedNormalizedDurableBeforeRestart": true,
+  "all17Fields9MetadataOriginalKeysStaticPidsProtectedPgPreserved": true,
+  "all464Current125HistoricalResponsesExact": true,
+  "approxRoundedPublicJobMinutes": 93,
+  "ciRetries": 0,
+  "billingCycleUsageUnknown": true,
+  "paidConfigurationChanges": false,
+  "runtimeAuthority": "Accepted122immutable client plus accepted124API9; movement shared-gate correction only",
+  "terra61ReviewedAll26Stills": true,
+  "noGeneralSpeedupCapacityWanPhysicalDeviceClaim": true
+}

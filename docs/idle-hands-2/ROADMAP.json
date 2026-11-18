@@ -2262,7 +2262,8 @@
         "docs/evidence/IH2-126/source-closeout.json",
         "docs/evidence/IH2-126/NEXT_PERFORMANCE.md",
         "docs/evidence/IH2-126/final-doc-audit.json",
-        "docs/evidence/IH2-126/final-continuity-audit.json"
+        "docs/evidence/IH2-126/final-continuity-audit.json",
+        "docs/evidence/IH2-126/overnight-stop.json"
       ],
       "owner_branch": "chore/shared-opening-closeout-2026-11-18"
     },

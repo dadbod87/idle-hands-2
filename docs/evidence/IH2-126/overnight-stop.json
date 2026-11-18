@@ -1,0 +1,20 @@
+{
+  "observedAtUtc": "2026-11-18T14:57:38.435850+00:00",
+  "ownerDeadlineUtc": "2026-11-18T15:00:00Z",
+  "status": "Selected work accepted; final handoff ready; no further implementation in this window",
+  "acceptedMain": "6c150fb6f10df6ac6decd2377cd96448e8c6d028",
+  "documentationBranch": "chore/shared-opening-closeout-2026-11-18",
+  "resolveRemoteHeadOnResume": true,
+  "completedThrough": "IH2-126",
+  "nextQueued": "IH2-127",
+  "nextTaskStarted": false,
+  "activeImplementationTasks": 0,
+  "activeGoal": false,
+  "normalPreviewServicesLeftRunning": true,
+  "noNewRuntimeRestartOrDatabaseActionsInStopHandoff": true,
+  "normalServiceAuthority": "work/idle-hands-2-artifacts/movement-body-2026-11-18/active-services.json",
+  "latestReadOnlyPreservationProof": "docs/evidence/IH2-126/saved-preservation.json",
+  "latestReportedWeeklyUsagePercent": 22,
+  "weeklyWindowMinutes": 10080,
+  "nextContinuationRequired": true
+}

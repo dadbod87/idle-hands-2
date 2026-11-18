@@ -28,3 +28,5 @@ These links work on this computer while its services run. The performance fix is
 **IH2-127 is queued, not started:** measure how public town activity causes real clients to refresh. Use the [prepared candidate](../../evidence/IH2-125/PUBLIC_REFRESH_CANDIDATE.md) and [latest safeguards](../../evidence/IH2-126/NEXT_PERFORMANCE.md). Preserve actual targets and timers, disclose historical fixtures, and verify eventual public/private state with native desktop/touch clients. Do not add caches, increase pools or change the economy based only on noisy timings.
 
 [Source and preservation report](../../evidence/IH2-126/REPORT.md) contains exact checks and limitations. CURRENT_SESSION and the dated handoff identify the current source/documentation branch; verify its remote head on resume. Actual service commands/PIDs remain in movement-body-2026-11-18/active-services.json. The overnight work window ends at 7 AM Pacific (15:00 UTC); resume further implementation only with the next instruction.
+
+[Final stop handoff](2026-11-18-overnight-stop.md): selected work accepted, next task queued and existing preview services left running.

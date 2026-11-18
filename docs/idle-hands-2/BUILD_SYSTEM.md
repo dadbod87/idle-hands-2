@@ -76,3 +76,7 @@ The owner asked to continue safe work through successive sections until November
 ## Original standalone script generation — November18
 
 The installed TypeScript7CLI does not expose the old transpileModule/ModuleKind API assumed by the first129generator. For the two reviewed import-free own study modules,129uses the pinned Node24.22.2native type eraser and an explicit small export list, alongside the real tsc checks and emitted-script/WAV equivalence tests. Do not treat erasure as typechecking, strip arbitrary third-party code, add a compiler dependency silently, or infer cross-platform byte regeneration until its exact Linux check passes.
+
+## Independent public-refresh diagnostic candidate — November18
+
+IH2-127adds optional workflow public-refresh-study.yml and tools/public-refresh.ts. No ordinary source/CI gate is replaced: all530domain/198browser/current500msrecovery checks must pass on exact PR/main before manual diagnostic dispatch. The workflow requires exact current main SHA and an explicit ephemeral CI5432service/ih2_load. It runs two fixed180sobservations with real20fictional identities (18protocol models+2native pages); source reports/cookies remain separate, and timing misses are retained rather than hidden by a green capture result. No local Docker/previews may restart under the current owner hold. This paragraph describes a candidate; see127REPORTfor actual acceptance/execution.

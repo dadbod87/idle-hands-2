@@ -9,6 +9,7 @@ import {database, migrate} from '../server/db.ts';
 import {createTownServer} from '../server/http.ts';
 import {LoadProfile} from './load-profile.ts';
 import {sessionTarget, safeDiagnosticError} from './session-target.ts';
+import {preparePublicRefresh,verifyPublicRefresh} from './public-refresh-fixture.ts';
 import {SessionResources} from './session-resources.ts';
 
 type Phase = 'setup' | 'load' | 'idle' | 'verification' | 'cleanup';
@@ -30,6 +31,9 @@ export async function sessionChild() {
   if (!process.send || process.env.IH2_SESSION_CHILD !== '1') throw Error('Private IPC child required.');
   const target = sessionTarget(process.env.IH2_LOAD_DATABASE_URL, process.env.IH2_LOAD_RESET,
     {ci: process.env.CI, container: process.env.IH2_PG_CONTAINER});
+  const publicWorkload = process.env.IH2_SESSION_WORKLOAD === 'public';
+  if (process.env.IH2_SESSION_WORKLOAD && !publicWorkload) throw Error('Unknown diagnostic workload.');
+  assert.ok(!publicWorkload || process.env.CI==='true'&&new URL(target.url).port==='5432','Public study child requires the explicit CI service.');
   const output = resolve(process.env.IH2_SESSION_OUT ?? 'test-results/server/session');
   mkdirSync(output, {recursive: true});
   let phase: Phase = 'setup', closing = false, verified = false;
@@ -72,6 +76,7 @@ export async function sessionChild() {
   }
 
   async function conservation() {
+    if (publicWorkload) return verifyPublicRefresh(pool, SESSION_ROSTER.map(r => r.id));
     const rows = (await pool.query('select id,workshop from ih2.players order by id')).rows;
     assert.deepEqual(rows.map(r => r.id), SESSION_ROSTER.map(r => r.id));
     for (const {workshop: s} of rows) {
@@ -125,7 +130,8 @@ export async function sessionChild() {
     await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');
     await migrate(pool);
     app = createTownServer({pool, secret: randomBytes(32).toString('base64url'),
-      fixtureResidents: SESSION_ROSTER, port: 0});
+      fixtureResidents: SESSION_ROSTER, port: 0, allowedOrigins: publicWorkload ? ['http://127.0.0.1:4251'] : []});
+    if (publicWorkload) await preparePublicRefresh(pool, app.store, SESSION_ROSTER);
     profile.attachHttp(app.server);
     const port = await app.listen();
     process.on('message', (raw: unknown) => {

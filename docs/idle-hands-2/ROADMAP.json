@@ -2270,7 +2270,7 @@
     {
       "id": "IH2-127",
       "title": "Profile real client refresh fanout during shared town activity",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-126",
         "IH2-128",
@@ -2296,7 +2296,8 @@
         "docs/idle-hands-2/handoffs/2026-11-18-morning-review.md",
         "docs/evidence/IH2-126/PUBLIC_REFRESH_REUSE.md",
         "docs/evidence/IH2-127/CI_PLAN.md"
-      ]
+      ],
+      "owner_branch": "perf/public-refresh-ci"
     },
     {
       "id": "IH2-128",

@@ -1,3 +1,7 @@
+# November18 — IH2-127 independent public-refresh CI tooling active
+
+Source work/idle-hands-2-public-refresh-ci, branch perf/public-refresh-ci, parent129closeoutf4b46b8. Accepted main221501a has exact527/197all-five acceptance. Follow [CI_PLAN](../evidence/IH2-127/CI_PLAN.md); no fixed public observations executed yet. Docker/normal previews remain stopped by owner instruction; only explicit ephemeral standard-public CI5432/ih2_load is eligible. No real progress, paid/cloud hosting or original-game changes. Stop about2PM Pacific/22UTC or roughly10%weekly remaining; latest25%used.
+
 # November18 — IH2-129 original audio study accepted
 
 Three original place scores/six accents and a silent-by-default file-openable audition page are accepted on main **221501ad09f83b4356069a97e099b69dd1554919** ([PR60](https://github.com/dadbod87/idle-hands-2/pull/60)). Exact PR/main five-job/raw527domain+197browser gates pass; complete audio/scripts regenerate byte-exact on Linux/Mac. Focused7Node/4native muted-browser cases, eight layouts/three Axe scans and final Terra6.1still review pass. Human listening/physical iPhone/Safari remain unverified. No UO assets, added dependency, paid service or actual game audio integration.

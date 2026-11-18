@@ -6,15 +6,16 @@ import {sessionTarget} from './session-target.ts';
 import type {SessionMessage} from './session-child.ts';
 
 export async function startSessionServer(options: {
-  url: string | undefined; reset: string | undefined; container?: string; ci?: string; output: string;
+  url: string | undefined; reset: string | undefined; container?: string; ci?: string; output: string; workload?: 'public';
 }) {
   // Must precede fork and any file/socket/database work.
   const target = sessionTarget(options.url, options.reset, {ci: options.ci, container: options.container});
+  if(options.workload==='public' && (options.ci!=='true'||new URL(target.url).port!=='5432'))throw Error('Public study child requires the explicit CI service.');
   const child = fork(fileURLToPath(new URL('./session-child.ts', import.meta.url)), [], {
     execPath: process.execPath, execArgv: ['--experimental-strip-types'],
     stdio: ['ignore', 'ignore', 'pipe', 'ipc'],
     env: {PATH: process.env.PATH ?? '', TMPDIR: process.env.TMPDIR ?? '',
-      IH2_SESSION_CHILD: '1', IH2_LOAD_DATABASE_URL: target.url, IH2_LOAD_RESET: '1',
+      IH2_SESSION_CHILD: '1', IH2_SESSION_WORKLOAD: options.workload ?? '', IH2_LOAD_DATABASE_URL: target.url, IH2_LOAD_RESET: '1',
       IH2_PG_CONTAINER: target.container, IH2_SESSION_OUT: resolve(options.output), CI: options.ci ?? ''},
   });
   let stderrBytes = 0, sequence = 0, stopped = false, forceTerminated = false;

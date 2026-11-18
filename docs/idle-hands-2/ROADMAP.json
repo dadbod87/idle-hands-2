@@ -2110,10 +2110,11 @@
         "docs/evidence/IH2-122/ci-family-result.json",
         "docs/evidence/IH2-122/local-browser-result.json",
         "docs/evidence/IH2-122/shared-flow-local-timeouts.json",
-        "docs/evidence/IH2-122/NEXT_PROFILING.md"
+        "docs/evidence/IH2-122/NEXT_PROFILING.md",
+        "docs/evidence/IH2-122/CI_RECOVERY.md"
       ],
-      "owner_branch": "fix/truthful-menu-confirmation"
+      "owner_branch": "fix/browser-check-headroom"
     }
   ],
-  "source_status_note": "IH2-121 accepted after exact PR53/main503domain/188browser/raw and original-key saved API-only preservation. See CURRENT_SESSION; physical/hosted gates remain separate."
+  "source_status_note": "122 main acceptance blocked on measured three-group recovery; no new gameplay task. See CURRENT_SESSION."
 }

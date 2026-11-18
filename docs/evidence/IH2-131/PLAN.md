@@ -1,3 +1,7 @@
+# Coherent queued openings candidate
+
+Final expected545domain/198browser. Read CAFE_CLOCK_FOLLOWUP.md opening-boundary review; two extra café lock reads are deliberate, ordinary query counts unchanged. No normal game/database start or fixed observation before final gates.
+
 # Queued café clock follow-up
 
 131is still active. Follow [CAFE_CLOCK_FOLLOWUP](CAFE_CLOCK_FOLLOWUP.md) on fix/shared-cafe-clock; preserve all prior client correction guards and every required case. Expected543domain/198browser, no normal service start or fixed observation before acceptance. Earlier client plan follows.

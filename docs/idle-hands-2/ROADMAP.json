@@ -2299,7 +2299,7 @@
         "docs/evidence/IH2-127/CI_PLAN.md"
       ],
       "owner_branch": "perf/public-refresh-ci",
-      "blocked_reason": "Client confirmation correction and queued cafe clock follow-up131await exact final543domain/198browser PR/main gates. Keep immediate smoke assertions and preserve all failures; no fixed observations have run."
+      "blocked_reason": "131final coherent shared-clock source awaits545domain/198browser PR/main; preserve prior failed main/smoke and opening-boundary review. No fixed observations have run. Normal saved game services remain stopped."
     },
     {
       "id": "IH2-128",
@@ -2385,9 +2385,9 @@
         "Preserve all stale same-boot/retired boot/identity/time/holding/allocation guards; do not merge incompatible snapshots or change server authority/economy/timers.",
         "Defer ordinary public invalidations while a command is pending; retain one dirty follow-up and forced reconnect refresh across any existing read. When a valid command reply was superseded by a newer-clock lower-revision read, confirm via a bounded single fresh snapshot after the existing read settles. Preserve pending UUID on failed/unconfirmed refresh or boot change; never repeat a spend as a new action.",
         "Add controlled actual-TownClient regression coverage for the reproduced timestamp/revision ordering, dirty burst coalescing, confirmation failure/retry, one-read unconfirmed-revision bound and boot change, without weakening prior cases.",
-        "Sample the transaction clock after acquiring the player row; for cafe serves read the actual clock again after the shared project lock and reproject private state at that time. Preserve genuine backward-clock refusal, exact UUID/debit/replay/deadline rules and all SQL lock order; no clamp to stored future time or added query. Verify controlled no-database schedule cases and real PostgreSQL delayed-lock/debit/replay/backward-clock cases.",
+        "Sample real time after the player row and, for cafe requests, acquire shared bridge/noticeboard/cafe rows in that order before effective time, common opening settlement and private projection. Preserve genuine backward-clock refusal, exact UUID/debit/replay/deadline rules and ordinary query counts; disclose the two additional cafe row-lock reads. Verify five controlled no-DB scheduling cases and three real PostgreSQL queued-lock/replay/backward-clock/opening-boundary cases.",
         "Keep real20-client smoke immediate private revision/conservation/deadline/replay/cleanup assertions. Record actual one-or-two unauthenticated setup reads separately from authenticated/load traffic; no intercepted confirmations.",
-        "Complete applicable local checks plus exact final PR/main all-five/raw full existing537domain/198browser plus six clock regressions (543/198) and original500ms/recovery gates; inspect actual native desktop/phone game captures with Terra6.1.",
+        "Complete applicable local checks plus exact final PR/main all-five/raw full existing537domain/198browser plus eight clock regressions (545/198) and original500ms/recovery gates; inspect actual native desktop/phone game captures with Terra6.1.",
         "Save failure evidence, exact source/build scope and next steps. Keep owner-stopped normal services off; do not dispatch fixed observations until accepted source. No real-player/paid/cloud/original-game work."
       ],
       "exclusions": [
@@ -2399,5 +2399,5 @@
       ]
     }
   ],
-  "source_status_note": "131remains active: PR61client correction merged but main smoke failed during public wave3 before its job cap. A controlled server clock schedule also reproduces a queued cafe refusal. Corrective source fix/shared-cafe-clock is pending full543/198 PR/main;127fixed observations remain blocked and owner-stopped local services remain stopped."
+  "source_status_note": "131active fix/shared-cafe-clock: first543domain candidate passed domain checks, but opening-boundary review added coherent pre-settlement shared locking and two regressions. Final545/198PR/main pending.127fixed study blocked; normal game/database services remain stopped, preexisting Docker engine left alone."
 }

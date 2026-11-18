@@ -13,7 +13,7 @@ test('registered café current PostgreSQL authority',{skip:!url},async t=>{
  async function act(id:string,body:Record<string,unknown>,position=counter){const s=await store.snapshot(id);return store.execute(id,{id:randomUUID(),expectedRevision:s.workshop.revision,...body},position);}
  async function construct(id:string,target:string){let r=await act(id,{kind:'housing-quote',target,plotId:(await store.snapshot(id)).plot?.id??(await store.snapshot(id)).housing.nextPlotId},housing);assert.ok(r.ok,r.message);r=await act(id,{kind:'housing-confirm',quoteId:r.snapshot.housing.quote.id},housing);assert.ok(r.ok,r.message);now+=6*H;r=await act(id,{kind:'housing-finish'},housing);assert.ok(r.ok,r.message);return r;}
  const serve=(id='aster')=>act(id,{kind:'cafe-serve',presentation:'slices'});
- async function waitForProject(waiting:Promise<void>,pending:Promise<unknown>){let timer:ReturnType<typeof setTimeout>|undefined;try{await Promise.race([waiting,pending.then(()=>{throw Error('Expected the controlled project-lock wait.');}),new Promise<never>((_,reject)=>{timer=setTimeout(()=>reject(Error('Controlled project wait timed out.')),5000);})]);}finally{if(timer)clearTimeout(timer);}}
+ async function waitForSharedLock(waiting:Promise<void>,pending:Promise<unknown>){let timer:ReturnType<typeof setTimeout>|undefined;try{await Promise.race([waiting,pending.then(()=>{throw Error('Expected the controlled shared-lock wait.');}),new Promise<never>((_,reject)=>{timer=setTimeout(()=>reject(Error('Controlled shared wait timed out.')),5000);})]);}finally{if(timer)clearTimeout(timer);}}
  const raw=async(id='aster')=>(await pool.query('select workshop from ih2.players where id=$1',[id])).rows[0].workshop;
  t.beforeEach(async()=>{await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');await migrate(pool);now=start;store=new TownStore(pool,{now:()=>now});await seed('aster');await seed('bea');});
  try{
@@ -34,16 +34,16 @@ test('registered café current PostgreSQL authority',{skip:!url},async t=>{
   await t.test('queued shared cafe lock samples actual commit-side time and preserves both residents, receipts and fixed cooldown',async()=>{
    let unblock!:()=>void,arrived!:()=>void;
    const gate=new Promise<void>(r=>unblock=r),waiting=new Promise<void>(r=>arrived=r);
-   // Only delay submission of Aster's real project-lock query. All SQL,
+   // Only delay submission of Aster's first real shared-lock query. All SQL,
    // transactions, rows, results and commits remain actual PostgreSQL.
    const queuedPool={connect:async()=>{const c=await pool.connect();return new Proxy(c,{get(target,key){
-    if(key==='query')return async(...args:unknown[])=>{if(args[0]==='select * from ih2.cafe_project where id=1 for update'){arrived();await gate;}return Reflect.apply(target.query,target,args);};
+    if(key==='query')return async(...args:unknown[])=>{if(args[0]==='select id from ih2.bridge where id=1 for update'){arrived();await gate;}return Reflect.apply(target.query,target,args);};
     const v=Reflect.get(target,key,target);return typeof v==='function'?v.bind(target):v;
    }});}}as unknown as Pool;
    const queuedStore=new TownStore(queuedPool,{now:()=>now}),body={id:randomUUID(),expectedRevision:0,kind:'cafe-serve',presentation:'slices'};
    const pending=queuedStore.execute('aster',body,counter);void pending.catch(()=>{});
    try{
-    await waitForProject(waiting,pending);now+=100;
+    await waitForSharedLock(waiting,pending);now+=100;
     const neighbor=await serve('bea');assert.ok(neighbor.ok,neighbor.message);
     unblock();const r=await pending;assert.ok(r.ok,r.message);assert.equal(r.snapshot.serverTime,now);assert.equal(r.snapshot.workshop.observedAt,now);assert.equal(r.snapshot.workshop.cafe.lastServeAt,now);assert.equal(r.snapshot.workshop.cafe.nextServeAt,now+4*H);assert.equal(r.snapshot.cafe.credits,2);
     assert.equal((await raw('aster')).garden.produce.radish,11);assert.equal((await raw('bea')).garden.produce.radish,11);
@@ -53,11 +53,21 @@ test('registered café current PostgreSQL authority',{skip:!url},async t=>{
   });
   await t.test('actual backward cafe clock after queued lock refuses once and exact retry keeps stock and failed receipt',async()=>{
    let unblock!:()=>void,arrived!:()=>void;const gate=new Promise<void>(r=>unblock=r),waiting=new Promise<void>(r=>arrived=r);
-   const delayed={connect:async()=>{const c=await pool.connect();return new Proxy(c,{get(target,key){if(key==='query')return async(...args:unknown[])=>{if(args[0]==='select * from ih2.cafe_project where id=1 for update'){arrived();await gate;}return Reflect.apply(target.query,target,args);};const v=Reflect.get(target,key,target);return typeof v==='function'?v.bind(target):v;}});}}as unknown as Pool;
+   const delayed={connect:async()=>{const c=await pool.connect();return new Proxy(c,{get(target,key){if(key==='query')return async(...args:unknown[])=>{if(args[0]==='select id from ih2.bridge where id=1 for update'){arrived();await gate;}return Reflect.apply(target.query,target,args);};const v=Reflect.get(target,key,target);return typeof v==='function'?v.bind(target):v;}});}}as unknown as Pool;
    const before=await raw(),body={id:randomUUID(),expectedRevision:0,kind:'cafe-serve',presentation:'slices'},pending=new TownStore(delayed,{now:()=>now}).execute('aster',body,counter);
    void pending.catch(()=>{});
-   try{await waitForProject(waiting,pending);now--;unblock();const r=await pending;assert.equal(r.ok,false);assert.match(r.message,/clock.*backwards/);assert.deepEqual(await raw(),before);now=start;const replay=await store.execute('aster',body,counter);assert.ok(replay.replayed);assert.equal(replay.ok,false);assert.deepEqual(await raw(),before);assert.equal((await store.snapshot('aster')).cafe.credits,0);assert.equal((await pool.query('select count(*)::int n from ih2.command_receipts')).rows[0].n,1);}
+   try{await waitForSharedLock(waiting,pending);now--;unblock();const r=await pending;assert.equal(r.ok,false);assert.match(r.message,/clock.*backwards/);assert.deepEqual(await raw(),before);now=start;const replay=await store.execute('aster',body,counter);assert.ok(replay.replayed);assert.equal(replay.ok,false);assert.deepEqual(await raw(),before);assert.equal((await store.snapshot('aster')).cafe.credits,0);assert.equal((await pool.query('select count(*)::int n from ih2.command_receipts')).rows[0].n,1);}
    finally{unblock();await pending.catch(()=>{});}
+  });
+  await t.test('queued cafe crossing timed openings returns both open projects and one exact historical opening event',async()=>{
+   const due=now+50;await pool.query("update ih2.bridge set contributed=3,phase='building',started_at=$1,ready_at=$2,opened_at=null,grandfathered=false where id=1",[due-6*H,due]);
+   await pool.query("update ih2.noticeboard set credits=6,phase='installing',started_at=$1,ready_at=$2,opened_at=null where id=1",[due-24*H,due]);
+   let unblock!:()=>void,arrived!:()=>void;const gate=new Promise<void>(r=>unblock=r),waiting=new Promise<void>(r=>arrived=r);
+   const delayed={connect:async()=>{const c=await pool.connect();return new Proxy(c,{get(target,key){if(key==='query')return async(...args:unknown[])=>{if(args[0]==='select id from ih2.bridge where id=1 for update'){arrived();await gate;}return Reflect.apply(target.query,target,args);};const v=Reflect.get(target,key,target);return typeof v==='function'?v.bind(target):v;}});}}as unknown as Pool;
+   const body={id:randomUUID(),expectedRevision:0,kind:'cafe-serve',presentation:'slices'},pending=new TownStore(delayed,{now:()=>now}).execute('aster',body,counter);void pending.catch(()=>{});
+   try{await waitForSharedLock(waiting,pending);now+=100;unblock();const r=await pending;assert.ok(r.ok,r.message);assert.equal(r.snapshot.serverTime,now);assert.equal(r.snapshot.workshop.observedAt,now);assert.equal(r.snapshot.bridge.phase,'open');assert.equal(r.snapshot.bridge.openedAt,due);assert.equal(r.snapshot.noticeboard.phase,'open');assert.equal(r.snapshot.noticeboard.openedAt,due);assert.equal(r.snapshot.cafe.credits,1);assert.equal(r.snapshot.workshop.garden.produce.radish,11);
+    const events=(await pool.query('select id,kind,effective_at,recorded_at from ih2.project_events order by id')).rows;assert.deepEqual(events,[{id:'bridge-opened-v2',kind:'opened',effective_at:String(due),recorded_at:String(now)}]);assert.ok((await store.execute('aster',body,counter)).replayed);assert.deepEqual((await pool.query('select id,kind,effective_at,recorded_at from ih2.project_events order by id')).rows,events);
+   }finally{unblock();await pending.catch(()=>{});}
   });
   await t.test('injected receipt failure rolls back private state, public credit and migration then same request retries',async()=>{
    const before=await raw(),body={id:randomUUID(),expectedRevision:0,kind:'cafe-serve',presentation:'slices'};await pool.query("create function ih2.reject_paid_receipt() returns trigger language plpgsql as $$begin raise exception 'isolated paid receipt failure';end$$;create trigger reject_paid_receipt before insert on ih2.command_receipts for each row execute function ih2.reject_paid_receipt()");await assert.rejects(()=>store.execute('aster',body,counter),/isolated paid receipt/);assert.deepEqual(await raw(),before);assert.equal((await store.snapshot('aster')).cafe.credits,0);await pool.query('drop function ih2.reject_paid_receipt() cascade');assert.ok((await store.execute('aster',body,counter)).ok);assert.ok((await store.execute('aster',body,counter)).replayed);

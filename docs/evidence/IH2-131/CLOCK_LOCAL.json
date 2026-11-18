@@ -1,20 +1,28 @@
 {
-  "status": "candidate; full PG/PR/main pending",
+  "status": "coherent-opening candidate; full final545/198PR/main pending",
   "controlledScheduling": {
-    "before": {
+    "initialBefore": {
       "pass": 1,
       "fail": 3
     },
-    "after": {
+    "firstCorrection": {
       "pass": 4,
       "fail": 0
     },
-    "method": "Actual TownStore execute path, controlled query schedule, captured receipt sentinel before projection/commit; not PostgreSQL durability proof"
+    "openingReviewBefore": {
+      "pass": 4,
+      "fail": 1
+    },
+    "currentAfter": {
+      "pass": 5,
+      "fail": 0
+    },
+    "method": "Actual TownStore execute path, controlled query schedule and shared-lock-order assertion, captured receipt sentinel before projection/commit; not PostgreSQL durability proof"
   },
-  "focused": 33,
+  "focused": 34,
   "independent": {
-    "collected": 415,
-    "pass": 395,
+    "collected": 416,
+    "pass": 396,
     "databaseUnavailableSkips": 20
   },
   "compiledClient": {
@@ -31,7 +39,23 @@
     "clock-focused.log": "85be71b01557cd5d37b0962516cebc680b4730d52584425c9df37653f229a1bf",
     "clock-independent.log": "65a09c3599280ca07e91ec0b5b8f91ccec4407e045b19cbced6924c70c3ff5b4",
     "clock-build-final.log": "516f03f8fa410f208e67255136cdab7aef962ff70da3ae69f9e5d2276261799c",
-    "clock-plan-final.log": "dbe6429f6dae4031d7a80ada34be321d255f2f62a3fba8f0c4438a3c8b198765"
+    "clock-plan-final.log": "dbe6429f6dae4031d7a80ada34be321d255f2f62a3fba8f0c4438a3c8b198765",
+    "clock-crossing-before.log": "9e76a1b586b28f7f8c214e4e4eed57df5f8a4b8d4fcd27ec56130e526b457761",
+    "clock-crossing-after.log": "38391eaac0239e3c73c423dffb408730e254ebdc8d1f1d2b0e11e44ccf30f470",
+    "clock-opening-focused-final.log": "c35105ce4d620085c88d5d601ca967861df4da2272d9a758e5c66520fc090b04",
+    "clock-opening-independent.log": "dbd2d0fd425edd41a49bf915a483e023ba958c38777a3f1f7d5d7276faedf4bd",
+    "clock-opening-build.log": "99b6f7168c3d682362470ee9a6a2cb02cbbf3feec4b9032d5e57883c664e9e40",
+    "clock-opening-plan.log": "dbe6429f6dae4031d7a80ada34be321d255f2f62a3fba8f0c4438a3c8b198765"
   },
-  "normalServicesKeptStopped": true
+  "normalServicesKeptStopped": true,
+  "cafeQueryDelta": 2,
+  "ordinaryQueryDelta": 0,
+  "globalSharedLockOrder": [
+    "bridge",
+    "noticeboard",
+    "cafe"
+  ],
+  "serverClockRegressions": 8,
+  "realPgCasesPendingCurrentSource": 3,
+  "dockerEngine": "Observed preexisting running engine; no game/DB service started or engine/container stopped by this continuation"
 }

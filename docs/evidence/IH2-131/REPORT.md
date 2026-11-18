@@ -1,3 +1,7 @@
+# Opening-boundary candidate pending
+
+PR62first543-domain candidate prompted another controlled opening-boundary correction. Final545/198PR/main required. Two extra café lock reads, no ordinary query/pool/economy/duration change. Current compiled232client/art bytes stay exact. Read CAFE_CLOCK_FOLLOWUP.md; prior text is historical.
+
 # Follow-up candidate: queued café time
 
 PR61passed537/198but main smoke failed before the job cap. Source acceptance remains incomplete. [Failure, correction and six new cases](CAFE_CLOCK_FOLLOWUP.md). Final543/198PR/main gates are required; fixed observations remain unexecuted. Earlier client correction details follow.

@@ -171,6 +171,17 @@ export class TownStore {
       const player = (await client.query<PlayerRow>('select * from ih2.players where id=$1 for update', [id])).rows[0];
       if (!player) throw new Error('Unknown synthetic player.');
       let now = this.clock();
+      let cafeRow:Record<string,unknown>|undefined,clockWentBack=false;
+      if(cmd.kind==='cafe-serve'){
+        // Keep the shared bridge -> noticeboard -> cafe lock order. Sample
+        // after all three so a queued serve also settles openings at the
+        // same observation time, rather than returning an overdue closed door.
+        await client.query('select id from ih2.bridge where id=1 for update');
+        await client.query('select id from ih2.noticeboard where id=1 for update');
+        cafeRow=(await client.query('select * from ih2.cafe_project where id=1 for update')).rows[0];
+        const afterLock=this.clock();clockWentBack=afterLock<now;
+        if(!clockWentBack)now=afterLock;
+      }
       await this.settleBridge(client,now,false);
       let state = this.readState(player, now);let authoritativePosition=position;
       const prior = (await client.query('select payload_hash,result from ih2.command_receipts where player_id=$1 and command_id=$2', [id, cmd.id])).rows[0];
@@ -190,7 +201,7 @@ export class TownStore {
       const reject = (message: string) => { result = { ok: false, message, revision: state.revision }; };
       if (cmd.expectedRevision !== state.revision) reject('Your town state changed. Review the refreshed bag and try again.');
       else if (!(position.room==='neighborhood'?canStand(position.room,position.position,housingWorld((await client.query('select id::text,plan_id as "planId" from ih2.plots')).rows,position.districtId!)):validPosition(position))||!validContext) reject('A valid server position is required.');
-      else if (now < state.observedAt) reject('The server clock moved backwards. Your progress is unchanged.');
+      else if (clockWentBack || now < state.observedAt) reject('The server clock moved backwards. Your progress is unchanged.');
       else if (state.revision >= 1_000_000) reject('Prototype command limit reached. Your progress is unchanged.');
       else if(cmd.kind==='outing'){
         const shape=z.object({...base,kind:z.literal('outing'),outingAction:z.unknown()}).strict().safeParse(raw);
@@ -208,18 +219,10 @@ export class TownStore {
         if(!action.success)reject('Invalid tasting request. Nothing changed.');
         else if(!near(position,'square','cafe'))reject('Walk to the café counter before serving.');
         else{
-          const project=this.readCafe((await client.query('select * from ih2.cafe_project where id=1 for update')).rows[0]);
-          // Another resident can commit while this transaction is queued for
-          // the shared counter. Use the real clock after acquiring that row,
-          // not an earlier timestamp or a clamp to the stored project time.
-          const afterLock=this.clock();
-          if(afterLock<now)reject('The server clock moved backwards. Your progress is unchanged.');
-          else{
-            now=afterLock;state=this.readState(player,now);
-            const applied=serveCafeCandidate(state,project,{expectedRevision:action.data.expectedRevision,presentation:action.data.presentation},now);
-            if(!applied.ok)reject(applied.message);
-            else{state=applied.state;const p=applied.project;await client.query('update ih2.cafe_project set credits=$1,observed_at=$2,funded_at=$3,ready_at=$4,opened_at=$5 where id=1',[p.credits,p.observedAt,p.fundedAt,p.readyAt,p.openedAt]);result={ok:true,message:applied.message,revision:state.revision,teapotAwarded:applied.teapotAwarded,publicChanged:applied.publicChanged};}
-          }
+          const project=this.readCafe(cafeRow!);
+          const applied=serveCafeCandidate(state,project,{expectedRevision:action.data.expectedRevision,presentation:action.data.presentation},now);
+          if(!applied.ok)reject(applied.message);
+          else{state=applied.state;const p=applied.project;await client.query('update ih2.cafe_project set credits=$1,observed_at=$2,funded_at=$3,ready_at=$4,opened_at=$5 where id=1',[p.credits,p.observedAt,p.fundedAt,p.readyAt,p.openedAt]);result={ok:true,message:applied.message,revision:state.revision,teapotAwarded:applied.teapotAwarded,publicChanged:applied.publicChanged};}
         }
       }
       else if (specialKinds.includes(cmd.kind)) {

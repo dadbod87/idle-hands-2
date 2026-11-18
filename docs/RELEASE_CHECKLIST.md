@@ -1,3 +1,7 @@
+# November18 — IH2-122 accepted menu confirmation
+
+Completed menu reads restore truthful feedback; successful/refused actions keep their specific receipts. Main **9afd70be62811b48be7f2efeeafaaa188acb4898** passes exact PR/main five-job/raw503-domain/193-browser gates and the actual saved-client/Terra checks. Original APIs, saved17-table fields,9 metadata records,0600 keys and226 art files remain preserved. Local timing/browser failures and earlier cancelled CI attempts remain disclosed. [Report](evidence/IH2-122/REPORT.md), [resume point](idle-hands-2/CURRENT_SESSION.md). No hosted or original-game release. Earlier entries below are historical.
+
 # November18 — IH2-122 final acceptance recovery
 
 Original UI PR54 passed503domain/193browser; identical main6cc2f96 remains unaccepted after two fixed20minute browser-job cancellations. Second attempt logged94/94pass but cancelled during upload. Necessary test-only recovery uses three measured groups73/66/54, preserving all193cases, ordered fixture family, runner/worker/caps/authority. Require new exact candidate/main **five jobs/raw503+193** and original saved-client/Terra gates. [Recovery](evidence/IH2-122/CI_RECOVERY.md). Source work/idle-hands-2-menu-status, branchfix/browser-check-headroom. No other task active. Normal121API9/119client and protected55432/originalkeys unchanged. Userdeadline15UTCNov18/latest18%weeklyused. Earlier entries historical.

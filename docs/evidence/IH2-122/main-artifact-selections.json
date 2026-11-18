@@ -1,0 +1,53 @@
+{
+  "run": 44261396741,
+  "sha": "9afd70be62811b48be7f2efeeafaaa188acb4898",
+  "runAttempt": 1,
+  "method": "Newest created same-run/same-head artifact for each required name, explicitly downloaded by ID. Older ambiguous downloads retained separately; extracted paths checked. Raw verifier still requires complete passing HTML reports and source/build/recovery identity.",
+  "artifacts": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14409010074,
+      "createdAt": "2026-11-18T07:48:27Z",
+      "sha": "9afd70be62811b48be7f2efeeafaaa188acb4898",
+      "zipSha256": "b7c2e243e86bdceb2670456d7f7c569ab1b734dba27732580a81ce8c47dc43c8",
+      "size": 123678,
+      "otherSameNameArtifacts": []
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14408800474,
+      "createdAt": "2026-11-18T07:48:28Z",
+      "sha": "9afd70be62811b48be7f2efeeafaaa188acb4898",
+      "zipSha256": "711209ee5f0409bfa4365e487207c6ab43c5456032783fdb5490893c7a0ae3ac",
+      "size": 721401,
+      "otherSameNameArtifacts": []
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14408648225,
+      "createdAt": "2026-11-18T07:58:56Z",
+      "sha": "9afd70be62811b48be7f2efeeafaaa188acb4898",
+      "zipSha256": "db0d6d38e2d07ee2a45f74b62624c18766ec19ef10642e0045552427541561ae",
+      "size": 17447755,
+      "otherSameNameArtifacts": []
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14408328952,
+      "createdAt": "2026-11-18T07:59:34Z",
+      "sha": "9afd70be62811b48be7f2efeeafaaa188acb4898",
+      "zipSha256": "dcae858c0e242d3fb19e1cac2b123373870ee3e72dc2d4c41cc28e2b35b47775",
+      "size": 15732863,
+      "otherSameNameArtifacts": []
+    },
+    {
+      "name": "sequel-browser-evidence-3",
+      "id": 14408228992,
+      "createdAt": "2026-11-18T08:00:18Z",
+      "sha": "9afd70be62811b48be7f2efeeafaaa188acb4898",
+      "zipSha256": "db43a9d9d9004ca179b80bc9c6fc88cb41d14839f9dd441011425849a596226d",
+      "size": 14701644,
+      "otherSameNameArtifacts": []
+    }
+  ]
+}

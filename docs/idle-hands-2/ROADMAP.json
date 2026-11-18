@@ -2079,7 +2079,7 @@
     {
       "id": "IH2-122",
       "title": "Clear truthful remote-menu confirmation after completed reads",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-121"
       ],
@@ -2111,10 +2111,16 @@
         "docs/evidence/IH2-122/local-browser-result.json",
         "docs/evidence/IH2-122/shared-flow-local-timeouts.json",
         "docs/evidence/IH2-122/NEXT_PROFILING.md",
-        "docs/evidence/IH2-122/CI_RECOVERY.md"
+        "docs/evidence/IH2-122/CI_RECOVERY.md",
+        "docs/evidence/IH2-122/pr-ci-verification.json",
+        "docs/evidence/IH2-122/main-ci-verification.json",
+        "docs/evidence/IH2-122/actual-saved.json",
+        "docs/evidence/IH2-122/saved-preservation.json",
+        "docs/evidence/IH2-122/TERRA_ACTUAL_SAVED.md",
+        "docs/evidence/IH2-122/source-closeout.json"
       ],
       "owner_branch": "fix/browser-check-headroom"
     }
   ],
-  "source_status_note": "122 main acceptance blocked on measured three-group recovery; no new gameplay task. See CURRENT_SESSION."
+  "source_status_note": "IH2-122 accepted after exact503domain/193browser/raw and saved-client update; see CURRENT_SESSION. No hosted/physical-device acceptance."
 }

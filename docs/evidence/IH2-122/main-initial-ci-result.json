@@ -1,0 +1,304 @@
+{
+  "run": 44252104780,
+  "sha": "6cc2f9602f19da553af4fe3cfb0852495bdda232",
+  "attempt": 1,
+  "conclusion": "cancelled",
+  "jobs": [
+    {
+      "id": 134625005335,
+      "name": "browser-shard (1/2)",
+      "conclusion": "cancelled",
+      "startedAt": "2026-11-18T06:32:38Z",
+      "completedAt": "2026-11-18T06:52:55Z",
+      "loggedPassingCaseCount": 81,
+      "lastLoggedPassingCase": 81,
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success",
+          "seconds": 3.0
+        },
+        {
+          "name": "Initialize containers",
+          "conclusion": "success",
+          "seconds": 12.0
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "conclusion": "success",
+          "seconds": 6.0
+        },
+        {
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "conclusion": "success",
+          "seconds": 6.0
+        },
+        {
+          "name": "Run npm ci --ignore-scripts",
+          "conclusion": "success",
+          "seconds": 4.0
+        },
+        {
+          "name": "Prepare isolated fixture databases",
+          "conclusion": "success",
+          "seconds": 0.0
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "conclusion": "success",
+          "seconds": 305.0
+        },
+        {
+          "name": "Run npm run build",
+          "conclusion": "success",
+          "seconds": 2.0
+        },
+        {
+          "name": "Run assigned browser cases",
+          "conclusion": "cancelled",
+          "seconds": 874.0
+        },
+        {
+          "name": "Preserve synthetic playtest evidence",
+          "conclusion": "success",
+          "seconds": 2.0
+        },
+        {
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "conclusion": "skipped",
+          "seconds": 0.0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "conclusion": "success",
+          "seconds": 0.0
+        },
+        {
+          "name": "Stop containers",
+          "conclusion": "success",
+          "seconds": 1.0
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success",
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "id": 134625005699,
+      "name": "domain-build-plan",
+      "conclusion": "success",
+      "startedAt": "2026-11-18T06:32:39Z",
+      "completedAt": "2026-11-18T06:35:34Z",
+      "loggedPassingCaseCount": 0,
+      "lastLoggedPassingCase": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success",
+          "seconds": 3.0
+        },
+        {
+          "name": "Initialize containers",
+          "conclusion": "success",
+          "seconds": 14.0
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "conclusion": "success",
+          "seconds": 6.0
+        },
+        {
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "conclusion": "success",
+          "seconds": 9.0
+        },
+        {
+          "name": "Run npm ci --ignore-scripts",
+          "conclusion": "success",
+          "seconds": 4.0
+        },
+        {
+          "name": "Prepare isolated fixture databases",
+          "conclusion": "success",
+          "seconds": 0.0
+        },
+        {
+          "name": "Run npm run test",
+          "conclusion": "success",
+          "seconds": 127.0
+        },
+        {
+          "name": "Prove isolated database restart recovery",
+          "conclusion": "success",
+          "seconds": 1.0
+        },
+        {
+          "name": "Run npm run build",
+          "conclusion": "success",
+          "seconds": 2.0
+        },
+        {
+          "name": "Run npm run check:plan",
+          "conclusion": "success",
+          "seconds": 0.0
+        },
+        {
+          "name": "Run python3 tools/verify-game-skills.py",
+          "conclusion": "success",
+          "seconds": 0.0
+        },
+        {
+          "name": "Run git diff --check",
+          "conclusion": "success",
+          "seconds": 1.0
+        },
+        {
+          "name": "Preserve synthetic server evidence",
+          "conclusion": "success",
+          "seconds": 2.0
+        },
+        {
+          "name": "Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "conclusion": "success",
+          "seconds": 2.0
+        },
+        {
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "conclusion": "success",
+          "seconds": 0.0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "conclusion": "success",
+          "seconds": 0.0
+        },
+        {
+          "name": "Stop containers",
+          "conclusion": "success",
+          "seconds": 0.0
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success",
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "id": 134625005837,
+      "name": "browser-shard (2/2)",
+      "conclusion": "success",
+      "startedAt": "2026-11-18T06:32:39Z",
+      "completedAt": "2026-11-18T06:51:39Z",
+      "loggedPassingCaseCount": 99,
+      "lastLoggedPassingCase": 99,
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success",
+          "seconds": 1.0
+        },
+        {
+          "name": "Initialize containers",
+          "conclusion": "success",
+          "seconds": 15.0
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "conclusion": "success",
+          "seconds": 2.0
+        },
+        {
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "conclusion": "success",
+          "seconds": 3.0
+        },
+        {
+          "name": "Run npm ci --ignore-scripts",
+          "conclusion": "success",
+          "seconds": 4.0
+        },
+        {
+          "name": "Prepare isolated fixture databases",
+          "conclusion": "success",
+          "seconds": 1.0
+        },
+        {
+          "name": "Run npx playwright install --with-deps chromium",
+          "conclusion": "success",
+          "seconds": 22.0
+        },
+        {
+          "name": "Run npm run build",
+          "conclusion": "success",
+          "seconds": 3.0
+        },
+        {
+          "name": "Run assigned browser cases",
+          "conclusion": "success",
+          "seconds": 1082.0
+        },
+        {
+          "name": "Preserve synthetic playtest evidence",
+          "conclusion": "success",
+          "seconds": 3.0
+        },
+        {
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "conclusion": "success",
+          "seconds": 1.0
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "conclusion": "success",
+          "seconds": 0.0
+        },
+        {
+          "name": "Stop containers",
+          "conclusion": "success",
+          "seconds": 0.0
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success",
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "id": 134633191956,
+      "name": "browser-playtest",
+      "conclusion": "failure",
+      "startedAt": "2026-11-18T06:52:59Z",
+      "completedAt": "2026-11-18T06:53:03Z",
+      "loggedPassingCaseCount": 0,
+      "lastLoggedPassingCase": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success",
+          "seconds": 0.0
+        },
+        {
+          "name": "Require both complete browser shards",
+          "conclusion": "failure",
+          "seconds": 2.0
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success",
+          "seconds": 0.0
+        }
+      ]
+    }
+  ],
+  "completeSourceAcceptance": false,
+  "rawLogsRetained": true,
+  "passCountMethod": "Only numbered checkmarks immediately followed by tests/; installation checkmarks are excluded. Incomplete logs do not establish complete coverage.",
+  "diagnosis": "Only browser1hit unchanged20mincap after81/94logged passes, noassertionfailurelogged. Install305seconds;32.1MBUbuntudownload4m21s@123kB/s. Browser2all99anddomain503succeed; incomplete94coverageisnotacceptance.",
+  "diagnosedFailedOnlySameHeadRetryPlanned": true,
+  "failedOnlySameHeadRetryRequestedAt": "2026-11-18T06:55:28.161882+00:00",
+  "sourceRunnerBrowserCapsWaitsCoverageUnchanged": true
+}

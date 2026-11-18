@@ -1,0 +1,43 @@
+{
+  "sha": "9afd70be62811b48be7f2efeeafaaa188acb4898",
+  "stillsReviewed": true,
+  "noTask122BlockerInSampledStills": true,
+  "reviewer": "Terra6.1 all26actualstills; root additionally inspected desktop2Kworld and native short200Bagfooter.",
+  "nativeChecksAreSeparateEvidence": "actual-saved.json,16layoutchecks,noerrors/commands/movement;stills do not establish interactions.",
+  "inheritedPolish": [
+    "Obsolete Registry planned-home sign fragment",
+    "Journal belowfold activity discovery",
+    "Short enlarged Bag explanatory footer continues below first/captured frame"
+  ],
+  "transientObservation": "Gray rectangles in several immediate touch captures absent in later600mscaptures. Cause and interaction impact not established; not fixed or hidden.",
+  "limits": "Headless Chrome viewport/touch emulation; no physical phone/Safari/WAN/hosted or human-fun acceptance.",
+  "images": {
+    "actual-practice-desktop2k-bag-immediate.png": "c7d13b7149b54de0825342af0f700d56c96bed154fcafdbc08c00bf302bbe290",
+    "actual-practice-desktop2k-bag.png": "ab9e83ae9be6c0069e317cccb56a3d5c4242446e5d1844dc82446018682131aa",
+    "actual-practice-desktop2k-journal-immediate.png": "564360f6f78d34791f9f909aae62585a9d6421d7df9ff0c87c1c63628c8532d3",
+    "actual-practice-desktop2k-journal.png": "a049335e6a6435ec29bccfcd8be4e7e3789b23c5570948de71d15f40ca7b7b79",
+    "actual-practice-desktop2k-world.png": "35ee18e4e6106c21e18390652ce556fca4260660f0a8286f77a49ec45250ab2a",
+    "actual-practice-desktop4k-world.png": "cf8b0b66b8eb8cecfdca151aaa6ffdcd1545aa700788596664c1ef3eca34a72b",
+    "actual-practice-touch-phone320-bag-immediate.png": "9bb936eefed28e848df2a3888a161822e9f761a13d5bfb01973fca7be635f2e9",
+    "actual-practice-touch-phone320-bag.png": "9d8eb93978f1912d49ac5579a134b36e6389e2e145f77200920a4a8d58a2086d",
+    "actual-practice-touch-phone320-journal-immediate.png": "dbd7d8f8b7ea73447a8e173dd4a562462388b0935dd56b3735960dd382d503f0",
+    "actual-practice-touch-phone320-journal.png": "6dcf799df5d6ca6643a057560eca8c5a2be6248bb8c5b1c5f596c17409920191",
+    "actual-practice-touch-phone360-bag-immediate.png": "11637618e5e9a241d59386ddde75cba6bb88c3679b2446028355bcf45deda5b3",
+    "actual-practice-touch-phone360-bag.png": "6a6f2ed442bd86e48573108cf374da00832a96f4d51ddfafcb4318fb71358612",
+    "actual-practice-touch-phone360-journal-immediate.png": "40fcc805dc6140baec71f7e25c8ccbe8ecb1d5bc4018530e3f93e090cfab453a",
+    "actual-practice-touch-phone360-journal.png": "bc24465b284204df6f0c4d9df90d201760f1f88c9c7e9170c30468b336a6a447",
+    "actual-practice-touch-phone360-world.png": "190b59b962f3a45db712b53a81d3fdd23d79c7180df379977bbdbf27b28b6b76",
+    "actual-practice-touch-short200-bag-footer.png": "12cc158aec48b9c9f85e344a5ab1b0b962524dcc6207d71537b1221f6d1fc4c0",
+    "actual-practice-touch-short200-bag-immediate.png": "af01ed16cc967434d460ed43c99b44916e715382f53562bf6d819dd738fc501d",
+    "actual-practice-touch-short200-bag.png": "2ac459882a8d4d58f75b92fc03f2f0dfaee3525787a8a2e1b6f364968f58a960",
+    "actual-practice-touch-short200-journal-footer.png": "72632fc8a530900f937f9b161c4ebd6eddfbc376ae00ada5b5f38477fe731d02",
+    "actual-practice-touch-short200-journal-immediate.png": "5efdc18a2653701a26819394a380662410a7ceeaca48430db0c1e969746971a4",
+    "actual-practice-touch-short200-journal.png": "17741b2e2e50e868d6e12501790a9651b2e011f14ef86c4077a86804d086cc47",
+    "actual-tour-phone360-bag-immediate.png": "380bfc5c1fc128dfd0519c74354eb5bb297199966095e722370f024c16562683",
+    "actual-tour-phone360-bag.png": "5984d78dd21c93e96c8499e9d3162808c0aa7d4377f0fc40a8b21617844098b6",
+    "actual-tour-phone360-journal-immediate.png": "16b1e8a264d2384dc0bf52043d27c1ec0cf24b7046d04158d1d85d8c856aaa05",
+    "actual-tour-phone360-journal.png": "8eb88f7705d1cd7d60f910e6aa39d97632fac25353fa184baa600efa8b7ce86a",
+    "actual-tour-phone360-world.png": "2723e4fd648638dccab358cc4b779a4629b6b698b2ea82059fcc8161e2a454b2"
+  },
+  "reviewedAt": "2026-11-18T08:05:52.763271+00:00"
+}

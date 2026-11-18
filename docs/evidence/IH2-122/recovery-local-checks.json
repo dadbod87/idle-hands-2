@@ -1,0 +1,14 @@
+{
+  "groups": [
+    73,
+    66,
+    54
+  ],
+  "all193PriorCaseIdentitiesExact": true,
+  "noDuplicatesOrMissing": true,
+  "all232CompiledFilesExactUiCandidate": true,
+  "noRuntimeAuthorityBrowserConfigPinOrTimeoutChange": true,
+  "focusedGroupingUnitTest": true,
+  "buildPlanPinnedWhitespacePass": true,
+  "fullLocalDomainAndChromeFailuresRemainRecordedNotRerun": true
+}

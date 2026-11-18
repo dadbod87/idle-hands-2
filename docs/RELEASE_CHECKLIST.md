@@ -1,3 +1,7 @@
+# November18 — IH2-122 final acceptance recovery
+
+Original UI PR54 passed503domain/193browser; identical main6cc2f96 remains unaccepted after two fixed20minute browser-job cancellations. Second attempt logged94/94pass but cancelled during upload. Necessary test-only recovery uses three measured groups73/66/54, preserving all193cases, ordered fixture family, runner/worker/caps/authority. Require new exact candidate/main **five jobs/raw503+193** and original saved-client/Terra gates. [Recovery](evidence/IH2-122/CI_RECOVERY.md). Source work/idle-hands-2-menu-status, branchfix/browser-check-headroom. No other task active. Normal121API9/119client and protected55432/originalkeys unchanged. Userdeadline15UTCNov18/latest18%weeklyused. Earlier entries historical.
+
 # November17 — IH2-122 final menu-feedback candidate
 
 Only WorkshopUI changes at runtime: completed reads restore truthful notices; errors/unresolved requests and command/refusal receipts remain distinct. New controlled-client5/5and clean existing-CI-profile orderedfamily5/5pass. Full local domain502/503retains632.147msprofiled500msfailure; full localChrome189/193retains two90second caps/two dependent-fixture failures. Build/plan/pinned pass; final exact PR/main503domain/193browser and actual saved-client gates remain pending. Normal121API9/119client, protected data/keys unchanged. [Report](evidence/IH2-122/REPORT.md), [current](idle-hands-2/CURRENT_SESSION.md). Earlier entries historical.

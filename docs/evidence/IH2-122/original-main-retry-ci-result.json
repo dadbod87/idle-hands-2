@@ -1,0 +1,76 @@
+{
+  "run": 44252104780,
+  "sha": "6cc2f9602f19da553af4fe3cfb0852495bdda232",
+  "attempt": 2,
+  "conclusion": "cancelled",
+  "all94CasesLoggedPass": true,
+  "rawReportUploadStartedButJobNotSuccessful": true,
+  "completeSourceAcceptance": false,
+  "diagnosis": "Fast22s browser install; all94cases passed19.3minutes. Fixed20minute overall job cancelled immediately after suite completion/during evidence upload. No third rerun. Three smaller measured groups required before another source acceptance attempt.",
+  "jobs": [
+    {
+      "name": "browser-shard (1/2)",
+      "id": 134625005335,
+      "attempt": 1,
+      "conclusion": "cancelled",
+      "startedAt": "2026-11-18T06:32:38Z",
+      "completedAt": "2026-11-18T06:52:55Z"
+    },
+    {
+      "name": "domain-build-plan",
+      "id": 134625005699,
+      "attempt": 1,
+      "conclusion": "success",
+      "startedAt": "2026-11-18T06:32:39Z",
+      "completedAt": "2026-11-18T06:35:34Z"
+    },
+    {
+      "name": "browser-shard (2/2)",
+      "id": 134625005837,
+      "attempt": 1,
+      "conclusion": "success",
+      "startedAt": "2026-11-18T06:32:39Z",
+      "completedAt": "2026-11-18T06:51:39Z"
+    },
+    {
+      "name": "browser-playtest",
+      "id": 134633191956,
+      "attempt": 1,
+      "conclusion": "failure",
+      "startedAt": "2026-11-18T06:52:59Z",
+      "completedAt": "2026-11-18T06:53:03Z"
+    },
+    {
+      "name": "browser-shard (1/2)",
+      "id": 134634227046,
+      "attempt": 2,
+      "conclusion": "cancelled",
+      "startedAt": "2026-11-18T06:55:34Z",
+      "completedAt": "2026-11-18T07:15:44Z"
+    },
+    {
+      "name": "browser-shard (2/2)",
+      "id": 134634228661,
+      "attempt": 2,
+      "conclusion": "success",
+      "startedAt": "2026-11-18T06:32:39Z",
+      "completedAt": "2026-11-18T06:51:39Z"
+    },
+    {
+      "name": "domain-build-plan",
+      "id": 134634229394,
+      "attempt": 2,
+      "conclusion": "success",
+      "startedAt": "2026-11-18T06:32:39Z",
+      "completedAt": "2026-11-18T06:35:34Z"
+    },
+    {
+      "name": "browser-playtest",
+      "id": 134642571171,
+      "attempt": 2,
+      "conclusion": "failure",
+      "startedAt": "2026-11-18T07:15:48Z",
+      "completedAt": "2026-11-18T07:15:53Z"
+    }
+  ]
+}

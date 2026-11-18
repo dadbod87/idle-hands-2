@@ -13,6 +13,14 @@ const town=(page:Page)=>page.evaluate(()=>(window as any).__pilot.town());
 const actor=(page:Page)=>page.evaluate(()=>(window as any).__pilot.snapshot());
 const economy=(snapshot:any)=>({inventory:snapshot.workshop.inventory,kits:snapshot.workshop.bridgeKits,owned:snapshot.workshop.owned,job:snapshot.workshop.job,skills:snapshot.workshop.skills,scores:snapshot.scores});
 async function close(page:Page){await page.getByRole('button',{name:'Close panel',exact:true}).click();}
+async function confirmScore(page: Page, title: string, start = false) {
+ await page.getByRole('button', {name:'Sound settings', exact:true}).click();
+ const sound = page.locator('.place-music-controls');
+ if (start) await sound.getByRole('button', {name:'Play music', exact:true}).click();
+ await expect(sound.getByRole('status')).toHaveText('Playing · ' + title);
+ await close(page);
+}
+
 async function ready(page:Page,name:string){
  await page.goto('/?town=1&sky-study=1&phase=day&weather=clear');
  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
@@ -88,9 +96,11 @@ test('real isolated town: timed opening, personal trail journal and permanent ho
   expect((await town(owner)).bridge.readyAt).toBe(opened.bridge.readyAt);
   await owner.screenshot({path:evidence+'/trail-desktop-opening-journal.png'});await close(owner);
   await owner.reload();await expect.poll(async()=>(await town(owner))?.bridge.phase).toBe('open');
+  await confirmScore(owner, 'Business as unusual', true);
   // Actual direct canvas doorway input; no position injection or movement API shortcut.
   await point(owner,25.5,11.25);await expect.poll(async()=>(await actor(owner)).room,{timeout:arrivalTimeout}).toBe('trail');
   expect((await actor(owner)).position).toEqual({x:9,y:22});
+  await confirmScore(owner, 'The trees have seniority');
   await owner.screenshot({path:evidence+'/trail-desktop-entry.png'});
   for(const landmarkId of TRAIL_LANDMARK_IDS){
    await walkTo(owner,landmarkId);
@@ -114,6 +124,7 @@ test('real isolated town: timed opening, personal trail journal and permanent ho
   await owner.locator('#places').click();await (await revealPlace(owner,'[data-destination=residential-gate]')).click();await expect.poll(async()=>(await actor(owner)).room,{timeout:arrivalTimeout}).toBe('neighborhood');await owner.locator('#places').click();await (await revealPlace(owner,'[data-destination="'+HOME_SITE_PREFIX+addressForPlot(plotId).slot+'"]')).click();
   await expect.poll(async()=>(await actor(owner)).room,{timeout:arrivalTimeout}).toBe('home-expanded');
   await expect.poll(()=>owner.evaluate(()=>(window as any).__pilot.metrics().visual.home.plotId)).toBe(plotId);
+  await confirmScore(owner, 'Furniture, finally', true);
   const homeVisual=await owner.evaluate(()=>(window as any).__pilot.metrics().visual.home);
   // Renderer diagnostic assertion is paired with the actual in-game PNG review.
   expect(homeVisual.pennantVisible).toBe(true);await owner.screenshot({path:evidence+'/trail-desktop-home-wall-pennant.png'});

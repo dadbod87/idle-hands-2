@@ -6,7 +6,7 @@ import {installPublicModels} from '../tools/public-client.ts';
 import {createWorkshop} from '../src/game/live-workshop.ts';
 import {startSessionServer} from '../tools/session-process.ts';
 import {runPublicRefresh} from '../tools/public-refresh.ts';
-import {existsSync,mkdtempSync,rmSync} from 'node:fs';
+import {existsSync,mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
@@ -57,6 +57,7 @@ test('public refresh runner refuses normal, remote and local Docker targets befo
   ['postgres://ih2:synthetic@remote.example:5432/ih2_load','true','a'.repeat(64)],
   ['postgres://ih2:synthetic@127.0.0.1:5432/ih2_load?host=remote.example','true','a'.repeat(64)],
   ['postgres://ih2:synthetic@127.0.0.1:5432/ih2_load','true','idle-hands-2-pg'],
- ]){await assert.rejects(runPublicRefresh({url,ci,container,reset:'1',output,mode:'smoke'}));assert.equal(existsSync(output),false);}}
+ ]){await assert.rejects(runPublicRefresh({url,ci,container,reset:'1',output,mode:'smoke'}));assert.equal(existsSync(output),false);}
+ mkdirSync(output);writeFileSync(join(output,'partial.json'),'PRIOR_PARTIAL_EVIDENCE');await assert.rejects(runPublicRefresh({url:'postgres://ih2:synthetic@127.0.0.1:5432/ih2_load',ci:'true',container:'a'.repeat(64),reset:'1',output,mode:'smoke'}),/partial observations/);assert.equal(readFileSync(join(output,'partial.json'),'utf8'),'PRIOR_PARTIAL_EVIDENCE');}
  finally{rmSync(root,{recursive:true,force:true});}
 });

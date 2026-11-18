@@ -25,7 +25,7 @@ export async function runPublicRefresh(options:Options){
  let child:Awaited<ReturnType<typeof startSessionServer>>|undefined,environment:PublicModelEnvironment|undefined,browser=options.browser;
  let vite:ReturnType<typeof spawn>|undefined,viteExit:Promise<{code:number|null;signal:NodeJS.Signals|null}>|undefined,viteStopped:unknown,childStopped:unknown;
  let watchdog:ReturnType<typeof setTimeout>|undefined;
- const actors:PublicModelActor[]=[],contexts:BrowserContext[]=[],native:Array<{page:Page;invalidations:number;api:Array<{route:string;ms:number;status:number;phase:string;atMs:number}>;errors:string[];metricsBefore?:unknown;metricsAfter?:unknown}>=[];
+ const actors:PublicModelActor[]=[],contexts:BrowserContext[]=[],native:Array<{page:Page;invalidations:number;api:Array<{route:string;ms:number;status:number;phase:string;atMs:number}>;errors:string[];consoleErrors:Array<{phase:string;path:string;resource401:boolean}>;metricsBefore?:unknown;metricsAfter?:unknown}>=[];
  const waves:unknown[]=[],stateConfirmations:unknown[]=[],visibleConfirmations:unknown[]=[],replays:unknown[]=[],lifecycle:unknown[]=[];
  let workloadAt=0,workloadEndedAt=0,checkpoint:unknown,idle:unknown,conservation:unknown,modelTotalsBeforeLifecycle:unknown,nativeTotalsBeforeLifecycle:unknown;
  const sourceFiles=['tools/public-refresh.ts','tools/public-client.ts','tools/public-refresh-fixture.ts','tools/session-child.ts','tools/session-process.ts','tools/session-target.ts','tools/session-resources.ts'];
@@ -36,13 +36,13 @@ export async function runPublicRefresh(options:Options){
   viteExit=new Promise(r=>{vite!.once('close',(code,signal)=>r({code,signal}));vite!.once('error',()=>r({code:null,signal:'SIGTERM'}));});
   await until(async()=>{try{return(await fetchHttp('http://127.0.0.1:4251/',{signal:AbortSignal.timeout(1000)})).ok;}catch{return false;}},'Isolated Vite startup');
   browser??=await chromium.launch({headless:true,args:['--mute-audio']});
-  environment=installPublicModels(child.base,()=>phase);
+  environment=installPublicModels(child.base,()=>phase,at);
   for(let n=0;n<18;n++)actors.push(environment.actor());
   await Promise.all(actors.map((a,n)=>a.run(()=>a.client.login('session-'+String(n).padStart(2,'0')))));
   for(const [n,size]of[{width:1440,height:900,touch:false},{width:360,height:640,touch:true}].entries()){
    const context=await browser.newContext({viewport:{width:size.width,height:size.height},hasTouch:size.touch});contexts.push(context);context.setDefaultTimeout(15000);context.setDefaultNavigationTimeout(15000);const page=await context.newPage();
-   const record={page,invalidations:0,api:[]as Array<{route:string;ms:number;status:number;phase:string;atMs:number}>,errors:[]as string[],metricsBefore:undefined as unknown,metricsAfter:undefined as unknown};native.push(record);
-   page.on('pageerror',()=>record.errors.push('NATIVE_PAGE_ERROR'));page.on('console',m=>{if(m.type()==='error')record.errors.push('NATIVE_CONSOLE_ERROR');});page.on('response',r=>{if(r.status()>=400&&!new URL(r.url()).pathname.startsWith('/api/'))record.errors.push('NATIVE_ASSET_HTTP_ERROR');});
+   const record={page,invalidations:0,api:[]as Array<{route:string;ms:number;status:number;phase:string;atMs:number}>,errors:[]as string[],consoleErrors:[]as Array<{phase:string;path:string;resource401:boolean}>,metricsBefore:undefined as unknown,metricsAfter:undefined as unknown};native.push(record);
+   page.on('pageerror',()=>record.errors.push('NATIVE_PAGE_ERROR'));page.on('console',m=>{if(m.type()==='error'){let path='';try{path=new URL(m.location().url).pathname;}catch{}record.consoleErrors.push({phase,path,resource401:/\b401\b/.test(m.text())});}});page.on('response',r=>{if(r.status()>=400&&!new URL(r.url()).pathname.startsWith('/api/'))record.errors.push('NATIVE_ASSET_HTTP_ERROR');});
    const starts=new Map<object,{at:number;phase:string}>();page.on('request',r=>{if(new URL(r.url()).pathname.startsWith('/api/'))starts.set(r,{at:performance.now(),phase});});
    page.on('requestfailed',r=>{const path=new URL(r.url()).pathname;if(path.startsWith('/api/')&&!path.endsWith('/events'))record.errors.push('NATIVE_FINITE_REQUEST_FAILED');starts.delete(r);});
    page.on('requestfinished',async r=>{const path=new URL(r.url()).pathname,begin=starts.get(r);if(begin!==undefined){starts.delete(r);if(!path.endsWith('/events'))record.api.push({route:path.split('/').at(-1)!,ms:performance.now()-begin.at,phase:begin.phase,atMs:begin.at-at,status:(await r.response())?.status()??0});}});
@@ -54,7 +54,7 @@ export async function runPublicRefresh(options:Options){
    record.metricsBefore=(await cdp.send('Performance.getMetrics')).metrics.filter(x=>['TaskDuration','ScriptDuration','JSHeapUsedSize','JSHeapTotalSize','Nodes','LayoutCount'].includes(x.name));
    (record as any).cdp=cdp;
   }
-  await until(async()=>actors.every(a=>a.counts.active===0&&a.counts.opened===1)&&((await child!.metrics()).server.transport.activeStreams===20),'All20real streams and setup reads settle');
+  await until(async()=>{const m=await child!.metrics();return actors.every(a=>a.counts.active===0&&a.counts.opened===1)&&native.every(n=>n.api.some(r=>r.route==='snapshot'&&r.status===200))&&m.server.transport.activeStreams===20&&m.server.transport.activeRequests===0;},'All20real streams and initial authenticated reads settle');
   stage='public changes';mark('load');await child.phase('load');workloadAt=performance.now();
   watchdog=setTimeout(()=>{errors.push('PUBLIC_OBSERVATION_WATCHDOG');for(const a of actors)a.close();void Promise.all(contexts.map(c=>c.close())).catch(()=>{});},options.mode==='observation'?200000:60000);watchdog.unref();
   const nativeState=(p:Page)=>p.evaluate(()=>(window as any).__pilot.town());
@@ -93,7 +93,7 @@ export async function runPublicRefresh(options:Options){
   assert.equal(after.sql.idle??0,before.sql.idle??0);assert.equal(after.server.transport.activeStreams,20);
   if(options.mode==='observation')assert.ok((idle as any).ms>=30000,'Fixed quiet interval retained without extending observation.');
   mark('verification');await child.phase('verification');conservation=await child.verify();
-  assert.ok(actors.every(a=>a.counts.errors.length===0&&a.counts.snapshotMaximum===1));assert.ok(native.every(n=>n.errors.length===0&&n.api.every(r=>r.status===200)));assert.deepEqual(errors,[]);
+  assert.ok(actors.every(a=>a.counts.errors.length===0&&a.counts.snapshotMaximum===1));assert.ok(native.every(n=>n.errors.length===0&&n.api.every(r=>r.status===200||r.status===401&&r.phase==='setup'&&r.route==='snapshot')&&n.api.filter(r=>r.status===401).length===1&&n.consoleErrors.every(e=>e.phase==='setup'&&e.path==='/api/town/snapshot'&&e.resource401)));assert.deepEqual(errors,[]);
   for(const n of native){n.metricsAfter=(await(n as any).cdp.send('Performance.getMetrics')).metrics.filter((x:any)=>['TaskDuration','ScriptDuration','JSHeapUsedSize','JSHeapTotalSize','Nodes','LayoutCount'].includes(x.name));await n.page.screenshot({path:output+'/native-'+native.indexOf(n)+'.png'});}
   completed=true;
  }catch(error){failure=error;for(const [index,n]of native.entries())await n.page.screenshot({path:output+'/incomplete-native-'+index+'.png'}).catch(()=>{});}
@@ -106,11 +106,11 @@ export async function runPublicRefresh(options:Options){
   if(child)try{const stopped=await child.stop(completed);childStopped=stopped;if(completed){assert.ok(stopped.report.completed&&stopped.report.traceComplete);assert.equal(stopped.report.observerIdleSubmissions,0);assert.deepEqual(stopped.report.observerErrors,[]);assert.equal(stopped.report.resources.dropped,0);assert.equal(stopped.exit.code,0);assert.equal(stopped.forceTerminated,false);}}catch(error){failure??=error;completed=false;errors.push('SERVER_CLEANUP_FAILED');}
   const timings=actors.flatMap(a=>a.counts.timings).concat(native.flatMap(n=>n.api));
   const budgets=Object.fromEntries(['command','snapshot'].map(route=>{const values=timings.filter(t=>t.route===route&&t.phase==='load').map(t=>t.ms),stats=distribution(values);return[route,{...stats,p95Under500:stats.p95<500,eachMissMs:values.filter(v=>v>=500)}];}));
-  const report={method:'Two native headless Chromium pages plus18actual TownClient protocol models, not20rendered clients, physical phones, WAN or hosted capacity. Real API/cookies/SSE; no intercepted confirmations. Explicit synthetic historical radishes/kits/feet before timing. Model visibility is controlled; native reload is real. Confirmation timings are observed accepted state/DOM text, not exact database-commit or presented-frame timestamps. CPU/RSS/event loop: API child and driver separated; browser CDP is page main-thread cumulative metrics, not Chrome total CPU/RSS. Diagnostic observer/automation/co-located scheduling overhead retained. No original UO assets or game runtime changes.',
+  const report={method:'Two native headless Chromium pages plus18actual TownClient protocol models, not20rendered clients, physical phones, WAN or hosted capacity. Real API/cookies/SSE; no intercepted confirmations. Each fresh native context has one expected unauthenticated setup snapshot401 before its actual resident selection; every authenticated/load response must succeed. Explicit synthetic historical radishes/kits/feet before timing. Model visibility is controlled; native reload is real. Confirmation timings are observed accepted state/DOM text, not exact database-commit or presented-frame timestamps. CPU/RSS/event loop: API child and driver separated; browser CDP is page main-thread cumulative metrics, not Chrome total CPU/RSS. Diagnostic observer/automation/co-located scheduling overhead retained. No original UO assets or game runtime changes.',
    mode:options.mode,completed:completed&&!failure,stage,errorCode:failure?safeDiagnosticError(failure):null,errors,provenance,elapsedMs:performance.now()-at,
    workloadMs:workloadAt&&workloadEndedAt?workloadEndedAt-workloadAt:null,fixedObservationMs:options.mode==='observation'?180000:null,sourceSchema:TOWN_SCHEMA,
    waves,stateConfirmations,visibleConfirmations,replays,lifecycle,modelTotalsBeforeLifecycle,nativeTotalsBeforeLifecycle,checkpoint,idle,conservation,
-   modelCounters:actors.map(a=>a.counts),native:native.map(n=>({invalidations:n.invalidations,api:n.api,errors:n.errors,metricsBefore:n.metricsBefore,metricsAfter:n.metricsAfter})),
+   modelCounters:actors.map(a=>a.counts),native:native.map(n=>({invalidations:n.invalidations,api:n.api,errors:n.errors,expectedSetup401:n.api.filter(r=>r.status===401).length,consoleErrors:n.consoleErrors,metricsBefore:n.metricsBefore,metricsAfter:n.metricsAfter})),
    budgets,driverResources:resources.finish(),cleanup:{child:childStopped,static:viteStopped,modelsDrained:actors.every(a=>a.counts.active===0&&a.counts.streams===0),nativeContextsClosed:contexts.every(c=>!c.pages().length)}};
   writeFileSync(resolve(output,'public-refresh.json'),JSON.stringify(report,null,2)+'\n');
  }

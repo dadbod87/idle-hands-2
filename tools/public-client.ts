@@ -9,7 +9,7 @@ let installed = false;
 export type ModelCounters = {requests: number; active: number; snapshots: number; snapshotActive: number;
   snapshotMaximum: number; streams: number; opened: number; invalidations: number; heartbeats: number;
   bytes: number; accepted: number; errors: string[]; timings: Array<{route: string; ms: number; status: number; phase: string; atMs: number}>};
-export function installPublicModels(base: string, phase:()=>string=()=>'transport-test') {
+export function installPublicModels(base: string, phase:()=>string=()=>'transport-test',origin=performance.now()) {
   const url = new URL(base);
   assert.ok(url.origin === base && url.hostname === '127.0.0.1' && url.protocol === 'http:' &&
     Number(url.port) >= 1024 && ![4175,4176,4186,4188,55432,55434].includes(Number(url.port)), 'Explicit ephemeral loopback API only.');
@@ -18,7 +18,7 @@ export function installPublicModels(base: string, phase:()=>string=()=>'transpor
   const originals = new Map(keys.map(k => [k,Object.getOwnPropertyDescriptor(globalThis,k)]));
   const realFetch = globalThis.fetch, scope = new AsyncLocalStorage<Actor>(), actors: Actor[] = [];
   const pumps = new Set<Promise<void>>();
-  let closing = false;const started=performance.now();
+  let closing = false;const started=origin;
   const current = () => {const a=scope.getStore();assert.ok(a, 'Explicit model actor context required.');return a;};
   const target = (value: string) => {
     const u = new URL(value, base);

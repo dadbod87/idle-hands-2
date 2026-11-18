@@ -1,6 +1,6 @@
 # November18 public-refresh deadline handoff
 
-PR #63 full checks remain pending; domain 549/549 raw checks passed. Latest run status: in_progress / None. Focused rerun stopped/requested to stop at the owner work-window boundary; no third blind retry. PR #63 remains unmerged. No corrected-source fixed observations accepted; IH2-127 remains in_progress.
+PR #63 full checks remain pending; domain 549/549 raw checks passed. Latest run status: completed / cancelled. Focused rerun stopped at the owner work-window boundary; no third blind retry. PR #63 remains unmerged. No corrected-source fixed observations accepted; IH2-127 remains in_progress.
 
 Candidate **e364ef5179052e096502f4b73a0b4ba88a9526aa**, [PR63](https://github.com/dadbod87/idle-hands-2/pull/63), run **44401163885**. Read [deadline-status](../../evidence/IH2-127/deadline-status.json) and exact raw verification files before claiming acceptance. IH2-131 is accepted on main eb40476 with all five jobs and raw 545-domain/198-browser reports verified. The deadline repair changes diagnostic tooling only; server/game/art/packages/workflows remain byte-exact to eb40476.
 

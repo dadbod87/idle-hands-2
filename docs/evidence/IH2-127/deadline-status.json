@@ -1,9 +1,9 @@
 {
-  "at": "2026-11-18T21:58:24.479619+00:00",
+  "at": "2026-11-18T21:59:49.072057+00:00",
   "pr": 63,
   "candidate": "e364ef5179052e096502f4b73a0b4ba88a9526aa",
   "candidateRun": 44401163885,
-  "candidateConclusion": null,
+  "candidateConclusion": "cancelled",
   "candidateRaw549198Verified": false,
   "mergedMain": null,
   "mainRaw549198Verified": false,
@@ -21,14 +21,14 @@
     {
       "id": 135157400616,
       "name": "browser-shard (1/3)",
-      "status": "in_progress",
-      "conclusion": null
+      "status": "completed",
+      "conclusion": "cancelled"
     },
     {
       "id": 135157401204,
       "name": "browser-shard (2/3)",
-      "status": "in_progress",
-      "conclusion": null
+      "status": "completed",
+      "conclusion": "cancelled"
     },
     {
       "id": 135157403325,
@@ -41,6 +41,12 @@
       "name": "domain-build-plan",
       "status": "completed",
       "conclusion": "success"
+    },
+    {
+      "id": 135164580564,
+      "name": "browser-playtest",
+      "status": "completed",
+      "conclusion": "failure"
     }
   ]
 }

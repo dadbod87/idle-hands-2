@@ -1,6 +1,6 @@
 # November18 — public-refresh checkpoint
 
-PR63full checks remain pending; domain549/549rawpassed. Latest run status: in_progress / None. Focused rerun stopped/requested to stop at the owner work-window boundary; no third blind retry. PR63remains unmerged. No corrected-source fixed observations accepted;127remains in_progress. [Latest handoff](idle-hands-2/handoffs/2026-11-18-public-refresh.md). Normal saved services remain off; no runtime/hosting or game-audio installation. Earlier dated entries below are historical.
+PR63full checks remain pending; domain549/549rawpassed. Latest run status: completed / cancelled. Focused rerun stopped at the owner work-window boundary; no third blind retry. PR63remains unmerged. No corrected-source fixed observations accepted;127remains in_progress. [Latest handoff](idle-hands-2/handoffs/2026-11-18-public-refresh.md). Normal saved services remain off; no runtime/hosting or game-audio installation. Earlier dated entries below are historical.
 
 # November18 —127qualified capture and deadline repair active
 

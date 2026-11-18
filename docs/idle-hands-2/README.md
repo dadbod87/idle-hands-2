@@ -2,7 +2,9 @@ Public source verified November13 at https://github.com/dadbod87/idle-hands-2 af
 
 # Idle Hands 2.0 — planning and build home
 
-Status: **private local shared-town prototype; garden, pine and Pip activity slices accepted; combined audit, phone action hierarchy, depot art and workroom nooks accepted; inside-home arrangement accepted; Aster collection art study accepted outside runtime; remaining rig family queued** (2026-11-12). Separate game, with an isolated local command service and fictional practice identities. No hosted sequel, real accounts or paid assets. The original Idle Hands remains separate.
+Status, November 18: **persistent local town prototype, with crafting, homes, woodland outings and shared café work; performance and safety checks accepted through IH2-126**. The sequel has its own public source repository and an isolated local command service with fictional practice identities. No hosted sequel, real accounts or paid assets are configured. The original Idle Hands remains separate.
+
+Read the [morning review](handoffs/2026-11-18-morning-review.md) for the overnight results, previews, limitations and next steps. [CURRENT_SESSION](CURRENT_SESSION.md) identifies the latest accepted code and pushed documentation branch; verify both remote pointers when resuming. Accepted main is `6c150fb6f10df6ac6decd2377cd96448e8c6d028` ([PR #58](https://github.com/dadbod87/idle-hands-2/pull/58)). Its final PR/main checks each pass 514 domain and 193 browser cases. Test-only source now carries the completed profiling evidence; the running game code remains unchanged from the accepted performance fix.
 
 Nick has delegated routine design and technical choices, asked for free assets and a system that can progress one prompt at a time. The agent selects reasonable defaults, tests them and records decisions. No large upfront questionnaire is required.
 
@@ -10,9 +12,9 @@ Nick has delegated routine design and technical choices, asked for free assets a
 
 1. Read [current handoff](CURRENT_SESSION.md) and the latest dated closeout it links.
 2. Read [build protocol](BUILD_SYSTEM.md), [decision log](DECISIONS.md), [first-session brief](EXPERIENCE_BRIEF.md) and [free-assets policy](FREE_ASSETS.md).
-3. Run `python3 tools/idle-hands-2.py status`, `check` and `prompt` from the repository root. Say **“Continue Idle Hands 2.0”** to work on the next ready task. This is an on-demand workflow, not unattended background execution.
+3. Run `python3 tools/idle-hands-2.py status`, `check` and `prompt` from the repository root. Say **“Continue Idle Hands 2.0”** to work on the next ready task. Ordinary continuation is on demand. Any unattended work uses an explicitly bounded owner window recorded in CURRENT_SESSION; the November 17–18 window ends at 7 AM Pacific.
 
-The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/dependencies/acceptance/evidence. The script is read-only and validates the records; an agent must inspect the actual evidence and update them honestly. A fresh session must inspect the current local source, handoff and any newly added remote before acting. Canonical private remote is https://github.com/dadbod87/idle-hands-2, main; fetch current source/PR checks before work.
+The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/dependencies/acceptance/evidence. The script is read-only and validates the records; an agent must inspect the actual evidence and update them honestly. A fresh session must inspect the current local source, handoff and any newly added remote before acting. Canonical public remote is https://github.com/dadbod87/idle-hands-2, main; fetch current source/PR checks before work.
 
 - [Combined neighborhood audit and ranked follow-ups](../evidence/IH2-072/REPORT.md)
 - [Expanded-world design package: systems, world map, content/art catalog, phone storyboards and pacing experiments](design/README.md)
@@ -20,16 +22,18 @@ The [machine-readable roadmap](ROADMAP.json) is authoritative for task status/de
 - [Deep resource, growing, equipment, home and animation plan](DEEP_SYSTEMS_PLAN.md)
 - [Living-town quests, skills and restoration design](LIVING_TOWN_SYSTEMS.md)
 
-- [Mandatory Actions usage and release rules](ACTIONS_USAGE_POLICY.md): read before PR updates, hosted tests or merges; preserves the billing hold and exact-head gates.
+- [Mandatory Actions usage and release rules](ACTIONS_USAGE_POLICY.md): read before PR updates, hosted tests or merges; standard public Ubuntu checks are authorized, with exact-head gates and paid-resource limits intact. The earlier private billing hold is historical.
 
 ## Chosen direction
 
-- [Engine comparison and decision](ENGINE_DECISION.md): **Phaser 4 + TypeScript + Vite + DOM UI**, selected after current source/documentation review; validate desktop/phone in IH2-010. RPGJS offers more built-in RPG systems and remains the fallback if the pilot changes the tradeoff. The Phaser pilot has now been tested locally; RPGJS has not been runtime-benchmarked. See CURRENT_SESSION and pilot evidence.
+- [Engine comparison and decision](ENGINE_DECISION.md): **Phaser 4 + TypeScript + Vite + DOM UI**, selected after source/documentation review and validated in the IH2-010 desktop/phone pilot. Current acceptance is recorded in CURRENT_SESSION. RPGJS offers more built-in RPG systems and remains the fallback if the pilot changes the tradeoff. The Phaser pilot has now been tested locally; RPGJS has not been runtime-benchmarked. See CURRENT_SESSION and pilot evidence.
 - A humorous shared company town: personal workshop/home, cooperative visible construction and modest exploration. [Experience brief](EXPERIENCE_BRIEF.md) defines the first five/twenty minutes and persistence boundaries.
 - Original or verified CC0 assets first; $0 asset purchases. No mandatory monetization in the first release. Free hosting feasibility remains unproven and has its own measured gate.
 - This separate local repository now owns sequel source; no sequel runtime inside 1.0. Its exact source location is recorded in CURRENT_SESSION and in the 1.0 bridge pointer. No account imports or new cloud resources assumed.
 
 ## Stages
+
+This table preserves the original staged plan. Historical private-source labels describe their original checkpoint; use ROADMAP and CURRENT_SESSION for current source visibility, status and evidence.
 
 | Task | Reviewable result | Gate |
 |---|---|---|

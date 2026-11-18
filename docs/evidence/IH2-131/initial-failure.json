@@ -38,11 +38,17 @@
   "initialFocusedCorrection": {
     "passed": 26,
     "failed": 1,
-    "cause": "Existing stream-retry fixture assumed no delayed dirty follow-up; retains exact command/UUID/timer checks and now serves/asserts single delayed snapshot."
+    "cause": "Overly broad reconnect deferral; original stream-retry fixture restored byte-exact after review. A sticky forced reconnect refresh plus seventh regression preserves boot recovery."
   },
   "finalFocused": {
-    "passed": 28,
+    "passed": 29,
     "failed": 0,
     "priorGuardsRelaxed": false
+  },
+  "intermediateCandidate": {
+    "sha": "c4408e0604b09dbcc4b611a9263de55c04ff8999",
+    "run": 44368468323,
+    "status": "cancelled during review; no acceptance",
+    "reason": "Preserve forced reconnect refresh during pending commands and across a coalesced in-flight read."
   }
 }

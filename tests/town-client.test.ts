@@ -142,8 +142,7 @@ test('terminally closed EventSource retries once with bounded backoff, preserves
   for(const delay of [10_000,20_000,30_000,30_000]){f.fire();const stream=f.stream();stream.readyState=2;stream.onerror?.(new Event('error'));stream.onerror?.(new Event('error'));assert.equal(f.timers.size,1);assert.equal(f.delays.at(-1),delay);assert.equal(f.messages.at(-1),retryNotice);assert.equal(f.client.retryAvailable,true);}
   f.fire();const opened=f.stream();opened.readyState=1;opened.onopen?.(new Event('open'));await drain();assert.equal(f.timers.size,0);assert.equal(f.messages.at(-1),retryNotice);assert.equal(f.client.retryAvailable,true);
   opened.readyState=2;opened.onerror?.(new Event('error'));assert.equal(f.delays.at(-1),5000);assert.equal(f.timers.size,1);
-  assert.equal(f.requests.filter(r=>r.path==='snapshot').length,0);
-  f.handle(request=>{if(request.path==='snapshot')return json({snapshot:value('A',11,1200)});assert.equal(request.path,'command');assert.deepEqual(request.body,original);return json({ok:true,replayed:true,message:'Same request confirmed',snapshot:value('A',11,1100)});});await f.client.retry();await drain();assert.equal(f.client.retryAvailable,false);assert.equal(f.requests.filter(r=>r.path==='command').length,2);assert.equal(f.requests.filter(r=>r.path==='snapshot').length,1);
+  f.handle(request=>{assert.equal(request.path,'command');assert.deepEqual(request.body,original);return json({ok:true,replayed:true,message:'Same request confirmed',snapshot:value('A',11,1100)});});await f.client.retry();assert.equal(f.client.retryAvailable,false);assert.equal(f.requests.filter(r=>r.path==='command').length,2);
   // Hiding cancels rather than waking an obsolete stream in the background.
   (document as any).hidden=true;document.dispatchEvent(new Event('visibilitychange'));assert.equal(f.timers.size,0);
   (document as any).hidden=false;document.dispatchEvent(new Event('visibilitychange'));f.stream().readyState=2;f.stream().onerror?.(new Event('error'));assert.equal(f.timers.size,1);
@@ -248,5 +247,19 @@ test('command confirmation: a fresh-read reboot keeps its coherent recovery and 
   f.handle(request=>{if(request.path==='command'){sent.resolve();return held.promise;}reads++;return json({snapshot:reads===1?value('A',0,1200):value('B',0,900)});});
   const pending=f.client.command({kind:'contribute'});await sent.promise;await f.client.load();held.resolve(json({ok:true,revision:1,message:'Command committed',snapshot:value('A',1,1100)}));await assert.rejects(pending,/service changed/);
   assert.equal(f.client.snapshot!.serverInstance,'B');assert.equal(f.client.snapshot!.workshop.revision,0);assert.equal(f.client.retryAvailable,true);assert.equal(f.messages.some(m=>m.includes('Command committed')),false);
+ }finally{await f.close();}
+});
+
+
+test('command confirmation: reconnect refresh follows an existing read during pending command and retires the old boot',async()=>{
+ const f=fixture();try{
+  await f.client.login('aster');const oldRead=deferred<Response>(),reply=deferred<Response>(),sent=deferred<void>();let reads=0;
+  f.handle(request=>{if(request.path==='command'){sent.resolve();return reply.promise;}reads++;return reads===1?oldRead.promise:json({snapshot:value('B',5,900)});});
+  const reading=f.client.load(),pending=f.client.command({kind:'gather',resource:'scrap'});const rejected=assert.rejects(pending,/service changed/);await sent.promise;
+  f.stream().onopen?.(new Event('open'));await drain();assert.equal(reads,1);
+  oldRead.resolve(json({snapshot:value('A',10,1100)}));await reading;for(let n=0;n<5;n++)await drain();
+  assert.equal(reads,2);assert.equal(f.client.snapshot!.serverInstance,'B');assert.equal(f.client.snapshot!.workshop.revision,5);
+  reply.resolve(json({ok:true,revision:11,message:'Old command must not show',snapshot:value('A',11,1200)}));await rejected;
+  assert.equal(f.client.retryAvailable,true);assert.equal(f.messages.some(m=>m.includes('Old command must not show')),false);assert.equal(f.requests.filter(r=>r.path==='command').length,1);
  }finally{await f.close();}
 });

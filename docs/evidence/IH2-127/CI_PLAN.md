@@ -1,6 +1,6 @@
 # IH2-127 revised independent CI study plan (not implemented or run)
 
-Owner explicitly keeps Docker and existing saved previews stopped. Use only an existing-authorized standard public Ubuntu24.04 Actions runner with a fresh explicit CI5432service-container ID and disposable ih2_load database. No protected55432, normal data, original keys, real users, hosted game/backend, spending setting or paid runner. Source129was fully accepted before selecting this task. The failed smoke stopped fixed observations; source131confirmation correction and its exact536domain/198browser final PR/main gates are now required before dispatch.
+Owner explicitly keeps Docker and existing saved previews stopped. Use only an existing-authorized standard public Ubuntu24.04 Actions runner with a fresh explicit CI5432service-container ID and disposable ih2_load database. No protected55432, normal data, original keys, real users, hosted game/backend, spending setting or paid runner. Source129was fully accepted before selecting this task. The failed smoke stopped fixed observations; source131confirmation correction and its exact537domain/198browser final PR/main gates are now required before dispatch.
 
 ## Predeclared method
 
@@ -18,4 +18,4 @@ Bound setup/requests/stream parser/watchdog and preserve every outcome. API proc
 
 ## Source and execution gates
 
-Keep the five existing PR/main jobs/caps/workers/536domain+198browser/original500ms/recovery gates. Add source-level guard/transport and real isolated public-fixture/native smoke coverage as appropriate, clearly separate from fixed observations. A new optional manual diagnostic workflow may use the same standard public runner and20minute bound; it is not a substitute for any required check. Review and accept its exact source before dispatch. Pin accepted source SHA and artifact IDs; preserve failed/cancelled/timing outcomes and stop/closeout before2PMPacific/22UTC or roughly90%weekly use. No local services may be restarted under this method.
+Keep the five existing PR/main jobs/caps/workers/537domain+198browser/original500ms/recovery gates. Add source-level guard/transport and real isolated public-fixture/native smoke coverage as appropriate, clearly separate from fixed observations. A new optional manual diagnostic workflow may use the same standard public runner and20minute bound; it is not a substitute for any required check. Review and accept its exact source before dispatch. Pin accepted source SHA and artifact IDs; preserve failed/cancelled/timing outcomes and stop/closeout before2PMPacific/22UTC or roughly90%weekly use. No local services may be restarted under this method.

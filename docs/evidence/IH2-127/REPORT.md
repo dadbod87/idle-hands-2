@@ -1,6 +1,6 @@
 # Public-refresh study — blocked pending IH2-131 confirmation correction
 
-No fixed observation has run. The first real smoke on894385dfailed after its bridge wave and independently exposed an actual-client timestamp/revision race; see [131report](../IH2-131/REPORT.md). Source acceptance now covers the explicit131client correction plus diagnostic tools, expected536domain/198browser on final PR/main. The earlier no-runtime-change candidate description below is historical and does not describe the corrected bundle.
+No fixed observation has run. The first real smoke on894385dfailed after its bridge wave and independently exposed an actual-client timestamp/revision race; see [131report](../IH2-131/REPORT.md). Source acceptance now covers the explicit131client correction plus diagnostic tools, expected537domain/198browser on final PR/main. The earlier no-runtime-change candidate description below is historical and does not describe the corrected bundle.
 
 # Public-refresh diagnostic — candidate, not measured
 

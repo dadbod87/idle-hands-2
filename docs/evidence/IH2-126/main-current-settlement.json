@@ -1,0 +1,38 @@
+{
+  "method": "Current live TownStore public methods and real isolated PostgreSQL. Synthetic historical funded projects and application clock; no runtime/migration changes, HTTP interception or normal saved data. One real trigger injects a final opening failure.",
+  "samples": [
+    {
+      "case": "exact-deadline-concurrency",
+      "snapshots": 12,
+      "independentStores": 2,
+      "noEarlyOpening": true,
+      "allThreeOpenedAtReady": true,
+      "oneHistoryEvent": true,
+      "allPersonalTablesAnd9MetadataExact": true
+    },
+    {
+      "case": "final-write-rollback",
+      "injectedRealPostgresTrigger": true,
+      "all17TablesAnd9MetadataExactAfterFailure": true,
+      "retryOpensAllThreeOnce": true,
+      "noPartialOpeningOrHistory": true
+    },
+    {
+      "case": "command-separation-and-replay",
+      "ordinaryGatherEarnsScrap": 6,
+      "oneReceipt": true,
+      "replayDoesNotPayTwice": true,
+      "commandKeepsCafeUnopened": true,
+      "snapshotThenOpensCafe": true,
+      "unrelatedStateExact": true
+    },
+    {
+      "case": "latched-opening-observations",
+      "lateOpeningUsesReadyNotRequestTime": true,
+      "freshStores": 3,
+      "backwardObservationDoesNotCloseOrRetime": true,
+      "all17TablesAnd9MetadataExact": true,
+      "oneHistoryEvent": true
+    }
+  ]
+}

@@ -2233,7 +2233,7 @@
     {
       "id": "IH2-126",
       "title": "Guard current combined project deadlines and opening rollback",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-125"
       ],
@@ -2254,10 +2254,16 @@
         "docs/evidence/IH2-126/focused.json",
         "docs/evidence/IH2-126/full-current-settlement.json",
         "docs/evidence/IH2-126/local-domain.json",
-        "docs/evidence/IH2-126/local-browser-byte-bridge.json"
+        "docs/evidence/IH2-126/local-browser-byte-bridge.json",
+        "docs/evidence/IH2-126/pr-source.json",
+        "docs/evidence/IH2-126/main-source.json",
+        "docs/evidence/IH2-126/saved-preservation.json",
+        "docs/evidence/IH2-126/main-current-settlement.json",
+        "docs/evidence/IH2-126/source-closeout.json",
+        "docs/evidence/IH2-126/NEXT_PERFORMANCE.md"
       ],
-      "owner_branch": "test/shared-opening-atomicity"
+      "owner_branch": "chore/shared-opening-closeout-2026-11-18"
     }
   ],
-  "source_status_note": "126test-onlycurrentopeningguardactive after125closed; accepted runtime remains124."
+  "source_status_note": "126fullyaccepted514/193andread-onlysavedpreview; exactmaincontains124/125closeouts. See CURRENT_SESSION for source."
 }

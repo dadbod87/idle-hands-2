@@ -1,0 +1,179 @@
+{
+  "run": 44323217023,
+  "sha": "6c150fb6f10df6ac6decd2377cd96448e8c6d028",
+  "allRequiredJobsSuccess": true,
+  "requiredJobCount": 5,
+  "artifactsPinnedById": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14436725127,
+      "createdAt": "2026-11-18T14:23:50Z",
+      "zipSha256": "733c855d00c8a3c79a5e5a47979091e0b49c201f01acb3f69b234ec9d2d68598"
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14435288407,
+      "createdAt": "2026-11-18T14:23:52Z",
+      "zipSha256": "cd2b3e005ffe5d5e0f43059b01fb619664d18d59015c6bd5071371ac6d82fb49"
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14436811660,
+      "createdAt": "2026-11-18T14:33:28Z",
+      "zipSha256": "36ac55ebed22daf054721630e48cfce479a57bdb7e6fa626035e52bb07b9a534"
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14436228187,
+      "createdAt": "2026-11-18T14:31:57Z",
+      "zipSha256": "729bb535528b4597527f301b06c858b8b98190b2c6886b1f395114f39687c09c"
+    },
+    {
+      "name": "sequel-browser-evidence-3",
+      "id": 14436367297,
+      "createdAt": "2026-11-18T14:32:00Z",
+      "zipSha256": "25616e15a77323c33a59ac9167ab685313f7e457219d5ca9b90e80d7dd4c474b"
+    }
+  ],
+  "domain": 514,
+  "browser": 193,
+  "disjointShards": [
+    73,
+    66,
+    54
+  ],
+  "all188PriorBrowserCasesPreserved": true,
+  "preservedControlledClientCases": 5,
+  "localFullExecution": "Current514local run recorded in local-domain.json. Prior local193browser execution is linked through exact unchanged runtime/browser-input byte identity; fresh exact-head CI193required. Ancestor124timing failures remain separate.",
+  "orderedFixtureFamily": {
+    "shared-town.spec.ts": [
+      2
+    ],
+    "starter-homes.spec.ts": [
+      2
+    ],
+    "trail.spec.ts": [
+      2
+    ],
+    "z-first-visit.spec.ts": [
+      2
+    ]
+  },
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all232CompiledFilesExactFrozenLocal": true,
+  "all226PriorArtFilesExact": true,
+  "rawHousingAndOutingRestartRestoreSameSessionAnd9MigrationChecksums": true,
+  "commandP95Ms": 104.5850989999999,
+  "neighborhoodSnapshotP95Ms": 72.29657899999984,
+  "profiledCommandP95Ms": 87.95906800000012,
+  "rich26HomeSnapshotP95Ms": 73.21281900000031,
+  "acceptedReader15To1AndAllFieldEquivalence": true,
+  "corrected4KCompositorPixelsVerified": true,
+  "profileTraceCompleteObserverIdle0DurabilityOn": true,
+  "same2540LoadQueriesAnd140Unique20Replay": true,
+  "all232GameFilesExactAccepted122": true,
+  "runtimeSourceChanges": [],
+  "newCurrentSettlementCases": 4,
+  "currentLiveStore4CasesVerified": true,
+  "noRuntimeChangeFromAccepted124": true,
+  "preservedSafetySmokeDomainCases": 3,
+  "preservedMovementBodyDomainCases": 4,
+  "localTestOnlyFullExecution": {
+    "tests": 514,
+    "pass": 512,
+    "fail": 2,
+    "cancelled": 0,
+    "skipped": 0,
+    "newCurrentSettlementCases": {
+      "tests": 4,
+      "passed": 4
+    },
+    "actualTimingMissesMs": {
+      "load": 710.6006249999991,
+      "profiled-load": 1286.3924590000006
+    },
+    "originalTargetMs": 500,
+    "onlyFailures": "Two existing command-p95 budgets, no other failure observed; all new current-settlement cases pass.",
+    "runtimeChange": false,
+    "noReplacementFullRun": true,
+    "rawLog": "full-domain.log",
+    "archivedArtifacts": "local-domain-artifacts/"
+  },
+  "ancestor124LocalDomainFirstFull": {
+    "tests": 510,
+    "passed": 507,
+    "failed": 3,
+    "actualTimingMissesMs": [
+      506.3041250000001,
+      773.6919999999991
+    ]
+  },
+  "ancestor124LocalDomainCurrentFull": {
+    "tests": 510,
+    "pass": 509,
+    "fail": 1,
+    "cancelled": 0,
+    "skipped": 0,
+    "reasonForNewAttempt": "Necessary test precision change: server IncomingMessage end is observed before advancing expiry during global wait; no backend or browser change.",
+    "profiledCommandP95Ms": 605.6100000000006,
+    "rich26SnapshotP95Ms": 139.71116699999948,
+    "onlyFailure": "Existing profiled twenty-client command p95605.610ms versus unchanged500ms. No other failure/skip/cancel.",
+    "newMovementCases": {
+      "tests": 4,
+      "passed": 4
+    },
+    "rawLog": "full-domain-current.log",
+    "archivedServerArtifacts": "local-domain-artifacts-current/",
+    "noGreenChasingOrLimitChanges": true
+  },
+  "fixedLocalDiagnosticMissesRetained": true,
+  "incompleteBodyPeerAndOwnOrderingExpiryProof": true,
+  "menuPendingSuccessFailureRefusalAndRetryProof": true,
+  "unchanged500msBudgetsPass": true,
+  "runtime": "v24.22.2",
+  "publicStandardUbuntu": true,
+  "approxRoundedJobMinutes": 42,
+  "approxLatestSuccessfulExecutionJobMinutes": 42,
+  "jobEvidence": [
+    {
+      "name": "browser-shard (3/3)",
+      "actualExecutionJobId": 134867442307,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134867442307,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-shard (2/3)",
+      "actualExecutionJobId": 134867442056,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134867442056,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-playtest",
+      "actualExecutionJobId": 134875775719,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134875775719,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-shard (1/3)",
+      "actualExecutionJobId": 134867442157,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134867442157,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "domain-build-plan",
+      "actualExecutionJobId": 134867441761,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134867441761,
+      "latestLogicalAttempt": 1
+    }
+  ],
+  "runAttempt": 1,
+  "sameHeadSuccessReuseDisclosed": false,
+  "accountingMethod": "All distinct name/start/end executions across attempts, excluding GitHub logical clones of reused successful jobs; includes cancelled/failed attempts, not an invoice.",
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true
+}

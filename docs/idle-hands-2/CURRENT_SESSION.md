@@ -1,6 +1,10 @@
-# November18 — IH2-126 current opening guard active
+# November18 — IH2-126 complete
 
-Source work/idle-hands-2-settlement-guard/test/shared-opening-atomicity, basedon125complete ef60445. [Plan](../evidence/IH2-126/PLAN.md). Test-only current live-store deadline/rollback coverage before any optimization; runtime remainsaccepted124. Four new Node cases target514; all runtime/browserinputs mustremainbyte-identical, local193existingexact-bytebridge/freshfinalPR+main514193all5 required. No protected55432/key/normalprogress changes. Deadline15UTC/7AMPacific/latest21%weeklyused; savependinggatesifnotcomplete, no blindretry/limitweakening.
+Current shared-opening guard is complete on main **6c150fb6f10df6ac6decd2377cd96448e8c6d028** ([PR58](https://github.com/dadbod87/idle-hands-2/pull/58)). Four new current live-store cases pass, with exact PR/main five-job/raw514domain+193browser and original500ms/recovery/nine-metadata gates. Local512/514retains two existing timing misses; local193is a precise unchanged-input bridge, while fresh193executed on both CIheads. No runtime/economy/protocol/schema/art/configuration change.
+
+Normal preview remains existing124API9/122client, byte-equivalent to accepted126runtime. Read-only all17table fields/nine metadata/original keys/four PIDs/protectedPG/464current+125historical responses pass. No install/restart or new126native-cookie/screenshot claim; prior124native/Terra evidence remains explicit. Service authority: work/idle-hands-2-artifacts/movement-body-2026-11-18/active-services.json.
+
+[Report](../evidence/IH2-126/REPORT.md), [source closeout](../evidence/IH2-126/source-closeout.json), [handoff](handoffs/2026-11-18-settlement-guard.md). Latest source work/idle-hands-2-settlement-guard, docsbranchchore/shared-opening-closeout-2026-11-18; verify its pushed remote head. Main now carries completed124/125reports and their performance/UX candidates. No task active after this closeout. Re-evaluate the public-refresh candidate before optimizing queries/cache/pools; preserve deadlines and slow persistent progression. Stop byNov18 15:00UTC/7AM Pacific or roughly90%weeklyusage. No paid/cloud/original-game work. Earlier entries below are historical.
 
 # November18 — IH2-125 observations complete
 

@@ -4,6 +4,8 @@ Public source verified November13 at https://github.com/dadbod87/idle-hands-2 af
 
 Status, November 18: **persistent local town prototype, with crafting, homes, woodland outings and shared café work; performance and safety checks accepted through IH2-126**. The sequel has its own public source repository and an isolated local command service with fictional practice identities. No hosted sequel, real accounts or paid assets are configured. The original Idle Hands remains separate.
 
+**Next ready: IH2-127**, public client refresh profiling, queued for the next continuation instruction. No new work starts automatically from this queue.
+
 Read the [morning review](handoffs/2026-11-18-morning-review.md) for the overnight results, previews, limitations and next steps. [CURRENT_SESSION](CURRENT_SESSION.md) identifies the latest accepted code and pushed documentation branch; verify both remote pointers when resuming. Accepted main is `6c150fb6f10df6ac6decd2377cd96448e8c6d028` ([PR #58](https://github.com/dadbod87/idle-hands-2/pull/58)). Its final PR/main checks each pass 514 domain and 193 browser cases. Test-only source now carries the completed profiling evidence; the running game code remains unchanged from the accepted performance fix.
 
 Nick has delegated routine design and technical choices, asked for free assets and a system that can progress one prompt at a time. The agent selects reasonable defaults, tests them and records decisions. No large upfront questionnaire is required.

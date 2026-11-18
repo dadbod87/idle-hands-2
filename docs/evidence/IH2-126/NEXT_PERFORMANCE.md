@@ -1,6 +1,6 @@
-# Next performance work — unselected candidate
+# Next performance work — IH2-127 queued
 
-Start from the current accepted main plus the pushed closeout; verify repository/remote/source/runtime freshness before selecting a task. No new implementation or capacity result is implied here.
+Start from the current accepted main plus the pushed closeout; verify repository/remote/source/runtime freshness before selecting a task. IH2-127 is queued for the next user continuation instruction, not started within the ending overnight window. No implementation or capacity result is implied here.
 
 The strongest remaining gap is real client refresh behavior during shared public activity. Use the125PUBLIC_REFRESH_CANDIDATE plan, including stream-open refreshes, coalescing, identity/visibility and native desktop/touch cross-checks. Preserve the actual project targets: do not increase a target or count rejected late contributions as successful public changes merely to generate load. Use fewer valid events or multiple legitimate systems with explicitly disclosed historical fixtures where needed.
 

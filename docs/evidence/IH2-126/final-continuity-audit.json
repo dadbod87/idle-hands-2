@@ -1,0 +1,21 @@
+{
+  "acceptedMain": "6c150fb6f10df6ac6decd2377cd96448e8c6d028",
+  "finalPR": 58,
+  "prRun": 44320434511,
+  "mainRun": 44323217023,
+  "exact514Domain193BrowserFiveJobsVerifiedBothHeads": true,
+  "documentationBranch": "chore/shared-opening-closeout-2026-11-18",
+  "documentationBackupIsNotAnotherRuntimeOrCIRelease": true,
+  "onlyDocumentationChangedAfterAcceptance": true,
+  "roadmapTasks": 81,
+  "activeTasks": 0,
+  "nextQueuedTask": "IH2-127",
+  "nextTaskNotStarted": true,
+  "hosting070StillBlocked": true,
+  "publicLaunch080StillDependsOn070": true,
+  "actionsPolicyUnchanged": true,
+  "prior48LocalDocLinksVerified": true,
+  "noNewGameDatabaseOrServiceActionsInFinalAudit": true,
+  "ownerWindowEnds": "2026-11-18T15:00:00Z",
+  "resumeRequiresNextContinuationInstruction": true
+}

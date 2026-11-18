@@ -2261,10 +2261,36 @@
         "docs/evidence/IH2-126/main-current-settlement.json",
         "docs/evidence/IH2-126/source-closeout.json",
         "docs/evidence/IH2-126/NEXT_PERFORMANCE.md",
-        "docs/evidence/IH2-126/final-doc-audit.json"
+        "docs/evidence/IH2-126/final-doc-audit.json",
+        "docs/evidence/IH2-126/final-continuity-audit.json"
       ],
       "owner_branch": "chore/shared-opening-closeout-2026-11-18"
+    },
+    {
+      "id": "IH2-127",
+      "title": "Profile real client refresh fanout during shared town activity",
+      "status": "queued",
+      "depends_on": [
+        "IH2-126"
+      ],
+      "goal": "Measure public invalidation/request coalescing and confirmed state with native client cross-checks before selecting backend optimizations.",
+      "acceptance": [
+        "Declare bounded workload, valid public-event counts, historical-fixture scope, phases, original latency targets, resource attribution and cleanup before measurement; preserve real project targets and timers.",
+        "Use20distinct fictional identities at most:18modeled protocol participants plus2native desktop/touch clients. Model actual TownClient stream-open/visibility/identity/loading/refreshDirty behavior and cross-check against native observations; never claim20rendered clients.",
+        "Use only an explicitly guarded named disposable local database, isolated API and in-memory synthetic sessions. Keep pool5/observer1/durable settings/pinned runtime/normal saved towns/keys/PIDs intact; disclose any historical preparation or auxiliary intercepted test separately. No intercepted confirmations in timing runs.",
+        "Retain every trial/miss and verify exact unique/replayed commands, private/public eventual state, project totals/deadlines, inventory/rewards, idle work, privacy and zero leaked streams/requests. Stop on authority/source/target/conservation/cleanup failure; no replacement runs for green.",
+        "Any new tools/source require applicable local checks and fresh exact finalPR/main complete raw coverage, preserving all existing514domain/193browser cases plus new cases and original500ms/recovery gates. Verify actual runtime scope and push precise report/handoff before another section."
+      ],
+      "exclusions": [
+        "No runtime/economy/protocol/schema/cache/pool/rate/queue/timer change selected; an optimization needs its own evidence-based section.",
+        "No paid/cloud/hosted/original-game/real-player work, unsupported capacity/FPS/physical-device claim or renewed unattended window from merely queuing this task. Begin on the next user continuation instruction."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-125/PUBLIC_REFRESH_CANDIDATE.md",
+        "docs/evidence/IH2-126/NEXT_PERFORMANCE.md",
+        "docs/idle-hands-2/handoffs/2026-11-18-morning-review.md"
+      ]
     }
   ],
-  "source_status_note": "126fullyaccepted514/193andread-onlysavedpreview; exactmaincontains124/125closeouts. See CURRENT_SESSION for source."
+  "source_status_note": "126fullyaccepted main6c150fb with514/193and read-only preserved preview;127queued for the next continuation, not started. Read CURRENT_SESSION."
 }

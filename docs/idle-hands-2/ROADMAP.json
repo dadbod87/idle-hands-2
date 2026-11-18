@@ -2376,7 +2376,8 @@
         "Do not label muted automated audio graphs or still review as human listening or physical-device acceptance."
       ],
       "evidence": [
-        "docs/evidence/IH2-130/PLAN.md"
+        "docs/evidence/IH2-130/PLAN.md",
+        "docs/evidence/IH2-130/PLACE_MUSIC.md"
       ]
     },
     {

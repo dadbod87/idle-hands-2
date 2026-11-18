@@ -1,3 +1,7 @@
+# November18 — IH2-125 fixed comparison active
+
+Source work/idle-hands-2-paired-sessions, chore/paired-session-study, based on124pushed closeout88c234e. [Plan](../evidence/IH2-125/PLAN.md). Six fixed300second old/current/current/old/old/current studies, unchanged accepted tools, explicit disposable55434only. No new game/tool code or Actions request. Current accepted runtime124main816d2b8/r124active-services. Protected55432/keys/normaldata never restart/reset/migrate/copy. Stop by15UTC/7AMPacific/latest21%weeklyused. Retain every timing miss; do not replace trials or claim capacity/speedup/public-refresh coverage.
+
 # November18 — IH2-124 complete
 
 The slow-body correction is complete on main **816d2b89479c1318ebe05b67339f3b71b1efcf92** ([PR57](https://github.com/dadbod87/idle-hands-2/pull/57)). Exact PR/main checks pass all five jobs and raw510domain/193browser cases with the original500ms limits. Both local full-run timing failures and fixed comparisons remain disclosed. All232client/art bytes are unchanged.

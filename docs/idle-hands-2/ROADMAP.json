@@ -2198,7 +2198,30 @@
         "docs/evidence/IH2-124/terra-actual-saved.md"
       ],
       "owner_branch": "chore/movement-body-closeout-2026-11-18"
+    },
+    {
+      "id": "IH2-125",
+      "title": "Compare fixed ordinary sessions on accepted old and corrected server",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-124"
+      ],
+      "goal": "Separate ordinary-session timing variation from the demonstrated slow-body fix without changing runtime or authority.",
+      "acceptance": [
+        "Six declared old/current300second studies retain every outcome and original latency targets; stop on correctness/source/target/cleanup failure.",
+        "Verify all17table fields/nine metadata,20live streams/individual heartbeat/idle silence/privacy/durability/cleanup and separate resources.",
+        "Keep tool/game bytes unchanged; preserve normal data/keys/PIDs/protectedPG; save pushed report and clear measured-source versus documentation-backup distinction."
+      ],
+      "exclusions": [
+        "No game/tool/economy/protocol/schema/art/client/hosting/paid configuration change.",
+        "No capacity/FPS/WAN/physical-phone/causal speedup or public invalidation claim."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-125/PLAN.md",
+        "docs/evidence/IH2-125/sources.json"
+      ],
+      "owner_branch": "chore/paired-session-study"
     }
   ],
-  "source_status_note": "124complete: exactPR/main510/193and actual saved API-only acceptance; use CURRENT_SESSION for next source."
+  "source_status_note": "125fixed paired measurement active after124fullyclosed; accepted runtime remains124. See CURRENT_SESSION."
 }

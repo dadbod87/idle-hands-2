@@ -1,3 +1,13 @@
+# November18 — client confirmation correction in progress
+
+IH2-131fixes the reproduced actual-client command/public-read ordering race discovered by127's real smoke. Candidate source/PR61is not accepted yet; expected final537domain/198browser/all-five plus original500ms/recovery gates. Seven focused regression cases added;29focused tests/build pass. No fixed performance observation, normal-runtime installation, hosting or real-player change. Docker/normal saved previews remain stopped by owner instruction; original keys read-only. [131report](evidence/IH2-131/REPORT.md). Earlier entries below are historical.
+
+# November18 — IH2-129 original audio study accepted
+
+Three original place scores/six accents and a silent-by-default file-openable audition page are accepted on main **221501ad09f83b4356069a97e099b69dd1554919** ([PR60](https://github.com/dadbod87/idle-hands-2/pull/60)). Exact PR/main five-job/raw527domain+197browser gates pass; complete audio/scripts regenerate byte-exact on Linux/Mac. Focused7Node/4native muted-browser cases, eight layouts/three Axe scans and final Terra6.1still review pass. Human listening/physical iPhone/Safari remain unverified. No UO assets, added dependency, paid service or actual game audio integration.
+
+All232compiled game files/226art bytes remain unchanged. Owner keeps Docker and normal saved previews stopped; original0600key hashes match read-only, current database equality/new saved-session execution are unavailable and unclaimed.127is now queued as a separate predeclared disposable-CI public refresh study; it must not reopen local services.130optional game audio is queued. Continue only untilNovember18about2PMPacific/22UTC or roughly10%weekly allowance remains; last25%used. No paid/cloud/original-game work. [Report](evidence/IH2-129/REPORT.md). Earlier entries below are historical.
+
 # November18 — IH2-128 source accepted; local services kept stopped
 
 Browser fixture starters now require explicit disposable target/container identity. Actual-client regression tests protect public burst coalescing, hidden return and stale identities. Main **9107143d3fb1c46ccd4bde6d3cfd38e2998daae3** / [PR59](https://github.com/dadbod87/idle-hands-2/pull/59) has exact PR/main five-job/raw520domain+193browser acceptance with original budgets and unchanged232game files. Local22focused and358independent pass;4database skips remain disclosed, full local database/browser unavailable. First fixture/launcher errors retained.

@@ -1,0 +1,54 @@
+{
+  "realSmoke": {
+    "run": 44362916999,
+    "candidate": "894385d51a176e4c9043bde67b053faadf24d612",
+    "group3": {
+      "oldPassed": 58,
+      "newFailed": 1,
+      "caseSeconds": 9.3,
+      "artifactId": 14456895615
+    },
+    "stage": "first public bridge wave",
+    "initialInvalidationsReceived": {
+      "contributingModelsEach": 2,
+      "otherModelsAndNativeEach": 3
+    },
+    "modelSnapshotMaximum": 1,
+    "modelAndNativeErrors": [],
+    "cleanupZeroStreamsAndRequests": true,
+    "fixedObservationsExecuted": false
+  },
+  "controlledProbe": {
+    "actualTownClient": true,
+    "syntheticTransportOnly": true,
+    "acceptedPublicRead": {
+      "revision": 0,
+      "time": 1200
+    },
+    "committedCommandReply": {
+      "revision": 1,
+      "time": 1100
+    },
+    "observedClientBeforeFix": {
+      "revision": 0,
+      "retryAvailable": false
+    },
+    "expectedFailureRetained": true
+  },
+  "initialFocusedCorrection": {
+    "passed": 26,
+    "failed": 1,
+    "cause": "Overly broad reconnect deferral; original stream-retry fixture restored byte-exact after review. A sticky forced reconnect refresh plus seventh regression preserves boot recovery."
+  },
+  "finalFocused": {
+    "passed": 29,
+    "failed": 0,
+    "priorGuardsRelaxed": false
+  },
+  "intermediateCandidate": {
+    "sha": "c4408e0604b09dbcc4b611a9263de55c04ff8999",
+    "run": 44368468323,
+    "status": "cancelled during review; no acceptance",
+    "reason": "Preserve forced reconnect refresh during pending commands and across a coalesced in-flight read."
+  }
+}

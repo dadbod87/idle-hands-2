@@ -2273,16 +2273,19 @@
       "status": "blocked",
       "depends_on": [
         "IH2-126",
-        "IH2-128"
+        "IH2-128",
+        "IH2-129",
+        "IH2-131"
       ],
-      "goal": "Measure public invalidation/request coalescing and confirmed state with native client cross-checks before selecting backend optimizations.",
+      "goal": "Measure public invalidation/request coalescing and confirmed state in an independent disposable CI study while normal local services stay stopped.",
       "acceptance": [
         "Audit fixture startup before reuse: never execute the legacy browser-server55432fallback. Require explicit matching isolated URL/container before Pool/reset, with refusal/privacy coverage; use the guarded diagnostic starter.",
         "Declare bounded workload, valid public-event counts, historical-fixture scope, phases, original latency targets, resource attribution and cleanup before measurement; preserve real project targets and timers.",
         "Use20distinct fictional identities at most:18modeled protocol participants plus2native desktop/touch clients. Model actual TownClient stream-open/visibility/identity/loading/refreshDirty behavior and cross-check against native observations; never claim20rendered clients.",
-        "Use only an explicitly guarded named disposable local database, isolated API and in-memory synthetic sessions. Keep pool5/observer1/durable settings/pinned runtime/normal saved towns/keys/PIDs intact; disclose any historical preparation or auxiliary intercepted test separately. No intercepted confirmations in timing runs.",
+        "Use only the explicit guarded CI5432service-container/ih2_load database, isolated API and in-memory synthetic sessions. Keep pool5/observer1/durable settings/pinned runtime/normal saved towns/keys/PIDs intact; disclose any historical preparation or auxiliary intercepted test separately. No intercepted confirmations in timing runs.",
         "Retain every trial/miss and verify exact unique/replayed commands, private/public eventual state, project totals/deadlines, inventory/rewards, idle work, privacy and zero leaked streams/requests. Stop on authority/source/target/conservation/cleanup failure; no replacement runs for green.",
-        "Any new tools/source require applicable local checks and fresh exact finalPR/main complete raw coverage, preserving all existing520domain/193browser cases plus new cases and original500ms/recovery gates. Verify actual runtime scope and push precise report/handoff before another section."
+        "Any new tools/source require applicable local checks and fresh exact finalPR/main complete raw coverage, preserving all existing527domain/197browser cases plus new cases and original500ms/recovery gates. Verify actual runtime scope and push precise report/handoff before another section.",
+        "Follow the revised predeclared CI_PLAN: two fixed180second observations,18actual-TownClient protocol participants plus2native browser contexts, no local service start, unchanged real targets/deadlines/527+197source gates and retained timing misses. Review/accept source and optional standard-public diagnostic workflow before dispatch; no paid/hosted game resource."
       ],
       "exclusions": [
         "No runtime/economy/protocol/schema/cache/pool/rate/queue/timer change selected; an optimization needs its own evidence-based section.",
@@ -2292,9 +2295,11 @@
         "docs/evidence/IH2-125/PUBLIC_REFRESH_CANDIDATE.md",
         "docs/evidence/IH2-126/NEXT_PERFORMANCE.md",
         "docs/idle-hands-2/handoffs/2026-11-18-morning-review.md",
-        "docs/evidence/IH2-126/PUBLIC_REFRESH_REUSE.md"
+        "docs/evidence/IH2-126/PUBLIC_REFRESH_REUSE.md",
+        "docs/evidence/IH2-127/CI_PLAN.md"
       ],
-      "blocked_reason": "Owner November18 explicitly asked to keep Docker and normal previews stopped. Public refresh/database measurements wait for a later authorized local-service window. Startup/coalescing safety split into independent IH2-128."
+      "owner_branch": "perf/public-refresh-ci",
+      "blocked_reason": "Real198smoke exposed a same-boot command/public-read clock race; controlled actual-TownClient probe reproduces loss of confirmed higher revision. Fixed observations have not started. IH2-131must correct confirmation handling and accept source first."
     },
     {
       "id": "IH2-128",
@@ -2322,7 +2327,7 @@
     {
       "id": "IH2-129",
       "title": "Original town music and sound audition study",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-128"
       ],
@@ -2343,7 +2348,55 @@
         "docs/evidence/IH2-129/REPORT.md"
       ],
       "owner_branch": "Codex / feat/original-audio-study"
+    },
+    {
+      "id": "IH2-130",
+      "title": "Optional original place audio with quiet game controls",
+      "status": "queued",
+      "depends_on": [
+        "IH2-129"
+      ],
+      "goal": "Connect the accepted original audio family as optional client presentation while preserving a simple phone HUD and all progress authority.",
+      "acceptance": [
+        "No audio context, synthesis/fetch or autoplay before deliberate enable; clear discoverable mute/music/effects controls without crowding320px/short/enlarged-text gameplay.",
+        "Follow acknowledged place changes with restrained original cues, bounded voices/cache and quiet pause/hidden/reload behavior. Avoid repeated receipt or unconfirmed-action sounds; no server queries, economy, timers or progress changes.",
+        "Preserve original score provenance/free asset policy and distinguish original compositions from UO tracks; physical-device/music taste limits remain explicit.",
+        "Verify actual isolated offline/shared CI desktop/mobile/short input/layouts plus Terra6.1and complete exact PR/main full prior527/197coverage plus additions, original500ms/recovery gates. Owner-stopped normal services stay stopped; no normal-runtime install claim.",
+        "Save source/next steps and honest remaining limits before another section; no paid/cloud/original-game work."
+      ],
+      "exclusions": [
+        "No uncleared third-party music or paid service; no mandatory audio, real-player mutation, new server authority or public hosting.",
+        "Do not label muted automated audio graphs or still review as human listening or physical-device acceptance."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-130/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-131",
+      "title": "Keep committed personal progress visible during shared updates",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-129"
+      ],
+      "owner_branch": "perf/public-refresh-ci",
+      "goal": "Correct the reproduced actual-client command/public-read ordering race before accepting public-refresh diagnostic source or measurements.",
+      "acceptance": [
+        "Preserve all stale same-boot/retired boot/identity/time/holding/allocation guards; do not merge incompatible snapshots or change server authority/economy/timers.",
+        "Defer ordinary public invalidations while a command is pending; retain one dirty follow-up and forced reconnect refresh across any existing read. When a valid command reply was superseded by a newer-clock lower-revision read, confirm via a bounded single fresh snapshot after the existing read settles. Preserve pending UUID on failed/unconfirmed refresh or boot change; never repeat a spend as a new action.",
+        "Add controlled actual-TownClient regression coverage for the reproduced timestamp/revision ordering, dirty burst coalescing, confirmation failure/retry, one-read unconfirmed-revision bound and boot change, without weakening prior cases.",
+        "Keep real20-client smoke immediate private revision/conservation/deadline/replay/cleanup assertions. Record actual one-or-two unauthenticated setup reads separately from authenticated/load traffic; no intercepted confirmations.",
+        "Complete applicable local checks plus exact final PR/main all-five/raw full existing530domain/198browser plus additions and original500ms/recovery gates; inspect actual native desktop/phone game captures with Terra6.1.",
+        "Save failure evidence, exact source/build scope and next steps. Keep owner-stopped normal services off; do not dispatch fixed observations until accepted source. No real-player/paid/cloud/original-game work."
+      ],
+      "exclusions": [
+        "No economy/protocol/schema/server pool/rate/timer/cache change; no treating a diagnostic capture as performance improvement or20rendered-client/physical-device capacity."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-131/PLAN.md",
+        "docs/evidence/IH2-131/REPORT.md"
+      ]
     }
   ],
-  "source_status_note": "128source accepted with exact520/193PR/main;127measurement blocked by owner keep-services-stopped direction;129original audio study queued. Read CURRENT_SESSION."
+  "source_status_note": "129source accepted with exact527/197PR/main and original audio study.127independent CI measurement is queued under a revised method; owner-stopped local services remain stopped.130optional game audio is queued. Read CURRENT_SESSION."
 }

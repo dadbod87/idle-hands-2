@@ -1,0 +1,78 @@
+{
+  "run": 44356623283,
+  "sha": "221501ad09f83b4356069a97e099b69dd1554919",
+  "allRequiredJobsSuccess": true,
+  "requiredJobCount": 5,
+  "domain": 527,
+  "browser": 197,
+  "disjointShards": [
+    73,
+    66,
+    58
+  ],
+  "newOriginalAudioDomainCases": 7,
+  "newAudioBrowserCases": 4,
+  "all520PriorDomainAnd193PriorBrowserCasesPreserved": true,
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all232GameFilesExactAccepted122": true,
+  "all226ArtFilesExact": true,
+  "rawHousingOutingRestartRestoreAnd9MetadataVerified": true,
+  "fourCurrentSettlementCasesVerified": true,
+  "movementBodyAndMenuRetryGuardsVerified": true,
+  "unchanged500msBudgetsPass": true,
+  "commandP95Ms": 68.22563200000013,
+  "profiledCommandP95Ms": 69.56399000000056,
+  "rich26HomeSnapshotP95Ms": 69.45415099999991,
+  "audioPackByteExactAcrossPinnedLinuxAndMac": true,
+  "wavBytes": 3988878,
+  "emittedScriptsAndAllFilesVerified": true,
+  "audioFocusedBrowser": {
+    "cases": 4,
+    "layouts": 8,
+    "axeScans": 3,
+    "hardwareOutputMuted": true,
+    "controlledVisibilityDisclosed": true,
+    "fileOpenWithoutHTTPDependency": true,
+    "humanListeningPhysicalPhone": "not claimed"
+  },
+  "normalServicesKeptStopped": true,
+  "localExecution": "365independent passes/4database unavailable skips;7focused Node/4focused browser; no full local PG/full browser execution",
+  "approxRoundedJobMinutes": 43,
+  "runAttempt": 1,
+  "sameHeadReuse": [],
+  "standardPublicUbuntu": true,
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true,
+  "artifactsPinnedById": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14453111802,
+      "createdAt": "2026-11-18T17:18:33Z",
+      "zipSha256": "a4181c19b83d83baebdc85fe6db315359813e9972a3d9fb329758c6d39a23498"
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14451792004,
+      "createdAt": "2026-11-18T17:18:34Z",
+      "zipSha256": "ad73e32af9480a916124b4267e221347208fbeae77db64f93e4fe05f1d02a74f"
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14453508324,
+      "createdAt": "2026-11-18T17:28:59Z",
+      "zipSha256": "190b2761fe2c3227c2a2db3c773048b80a0ad549bd60e60b8521ddacf921617d"
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14451933482,
+      "createdAt": "2026-11-18T17:27:37Z",
+      "zipSha256": "ad1bd28b31ad792dcad224f9d37f91446c29d9aa665c83358fa2f743061904b7"
+    },
+    {
+      "name": "sequel-browser-evidence-3",
+      "id": 14453517925,
+      "createdAt": "2026-11-18T17:26:09Z",
+      "zipSha256": "0f44dd597ffb39b65c3de634a772abd59cc531cfba63a54dfdf3a5d067357780"
+    }
+  ]
+}

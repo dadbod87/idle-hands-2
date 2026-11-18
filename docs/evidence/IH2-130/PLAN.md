@@ -1,0 +1,3 @@
+# Optional original game audio — queued
+
+After accepted129study, choose a bounded optional presentation integration using the existing original scores/controller contract, a concise discoverable control and restrained acknowledged-place cues. No backend/progress/timer change, UO import, mandatory sound or restart of owner-stopped normal services. Evaluate actual phone HUD/input and source/resource costs before deciding exact integration. Human/physical listening remains a disclosed limit, not an inferred new approval flow.127independent CI profiling is the next tracker task first. No130implementation exists yet.

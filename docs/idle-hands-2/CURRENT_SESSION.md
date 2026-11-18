@@ -1,3 +1,7 @@
+# November18 — public-refresh checkpoint
+
+PR63full checks remain pending; domain549/549rawpassed. Latest run status: in_progress / None. Focused rerun stopped/requested to stop at the owner work-window boundary; no third blind retry. PR63remains unmerged. No corrected-source fixed observations accepted;127remains in_progress. [Latest handoff](handoffs/2026-11-18-public-refresh.md). Normal saved services remain off; no runtime/hosting or game-audio installation. Earlier dated entries below are historical.
+
 # November18 —127qualified capture and deadline repair active
 
 Source branch fix/public-observation-deadline. Run44397607793on accepted eb40476completed both captures and all functional/conservation/latency/quiet/cleanup checks, but trial2ended1.301msearly (0.301msoutside predeclared tolerance). Strict fixed-window acceptance failed; old data is retained, no rerun for green. A measurement-only monotonic deadline repair has4focused checks/types/build passing; exact549/198PR/main and separate corrected-source observations remain pending. [Report](../evidence/IH2-127/REPORT.md).131source acceptance remains complete;130audio integration remains queued.

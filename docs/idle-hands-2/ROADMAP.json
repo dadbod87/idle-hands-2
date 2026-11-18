@@ -2300,7 +2300,10 @@
         "docs/evidence/IH2-131/source-closeout.json",
         "docs/evidence/IH2-127/qualified-analysis.json",
         "docs/evidence/IH2-127/acceptance-failure.json",
-        "docs/evidence/IH2-127/DEADLINE_REPAIR.md"
+        "docs/evidence/IH2-127/DEADLINE_REPAIR.md",
+        "docs/evidence/IH2-127/deadline-status.json",
+        "docs/evidence/IH2-127/QUERY_REVIEW.md",
+        "docs/idle-hands-2/handoffs/2026-11-18-public-refresh.md"
       ],
       "owner_branch": "fix/public-observation-deadline",
       "latest_outcome": "Both captures complete and functional/conservation/latency/quiet/cleanup pass; trial2fixed-window gate fails by0.301msoutside declared tolerance. Retain qualified data; diagnostic deadline repair pending549/198PR/main. Not accepted as two fixed observations."
@@ -2403,5 +2406,5 @@
       ]
     }
   ],
-  "source_status_note": "131accepted eb40476with545/198.127in_progress: qualified run44397607793has strict trial2window miss; timer-only deadline repair awaits549/198PR/main and separate corrected-source validation. Normal services off;130audio planning queued."
+  "source_status_note": "PR63full checks remain pending; domain549/549rawpassed. Latest run status: in_progress / None. Focused rerun stopped/requested to stop at the owner work-window boundary; no third blind retry. PR63remains unmerged. No corrected-source fixed observations accepted;127remains in_progress. Owner-stopped normal game/database remain off;130queued."
 }

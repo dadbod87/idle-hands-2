@@ -1,0 +1,38 @@
+{
+  "run": 44401163885,
+  "sha": "e364ef5179052e096502f4b73a0b4ba88a9526aa",
+  "reason": "Groups1/2cancelled at unchanged20mincap after lengthy browser dependency installation; exact setup/test durations and completed counts require retained raw-log review. Domain549and group3passed; full198incomplete. PR63unmerged, no accepted corrected-source observation.",
+  "approxSummedPublicJobMinutes": 58,
+  "artifacts": [
+    {
+      "id": 14474628113,
+      "name": "sequel-browser-evidence-1",
+      "zipSha256": "67d4301a311b5402dc7b52545da70b511fac656533e2d3aa50abb1b7504aea53",
+      "notAcceptance": true
+    },
+    {
+      "id": 14474525253,
+      "name": "sequel-client-build",
+      "zipSha256": "7cad87c347cbb8395f3794fac6601fb26a219f52e5f6ee7444dff025211861b3",
+      "notAcceptance": true
+    },
+    {
+      "id": 14473495681,
+      "name": "sequel-server-evidence",
+      "zipSha256": "4a1c171e7b1f54b706382606eb173bffad8502c92b8076f8de708290a9834787",
+      "notAcceptance": true
+    },
+    {
+      "id": 14473433348,
+      "name": "sequel-browser-evidence-2",
+      "zipSha256": "9f64823f234f57749bb1bb342fc7b9e36e2e6b856c56fd2146c1997ee1d26a9a",
+      "notAcceptance": true
+    },
+    {
+      "id": 14472882124,
+      "name": "sequel-browser-evidence-3",
+      "zipSha256": "c6a680d98197b8e3cba09c614fa57b289671d1179123f28440c4c7fd3a03e12f",
+      "notAcceptance": true
+    }
+  ]
+}

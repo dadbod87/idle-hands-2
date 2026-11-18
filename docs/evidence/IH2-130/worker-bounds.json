@@ -1,0 +1,37 @@
+{
+  "planningOnly": true,
+  "fromFrozen129Manifest": true,
+  "clips": {
+    "town": {
+      "frames": 569230,
+      "rate": 22050,
+      "channels": 1,
+      "pcmFloat32Bytes": 2276920,
+      "wav16Bytes": 1138504
+    },
+    "woodland": {
+      "frames": 667915,
+      "rate": 22050,
+      "channels": 1,
+      "pcmFloat32Bytes": 2671660,
+      "wav16Bytes": 1335874
+    },
+    "home": {
+      "frames": 649049,
+      "rate": 22050,
+      "channels": 1,
+      "pcmFloat32Bytes": 2596196,
+      "wav16Bytes": 1298142
+    },
+    "door": {
+      "frames": 9041,
+      "rate": 22050,
+      "channels": 1,
+      "pcmFloat32Bytes": 36164,
+      "wav16Bytes": 18126
+    }
+  },
+  "largestSingleThemeBytes": 2671660,
+  "twoLargestThemePcmBytes": 5267856,
+  "includesDecodedGraphMemory": false
+}

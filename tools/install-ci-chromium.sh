@@ -8,10 +8,14 @@ if [[ ${GITHUB_ACTIONS:-} != true || ${RUNNER_OS:-} != Linux ]]; then
   exit 1
 fi
 
-sources=/etc/apt/sources.list.d/ubuntu.sources
-if [[ -f "$sources" ]]; then
-  sudo sed -Ei '/^URIs:/ s|https?://[a-z0-9.-]+\.ec2\.archive\.ubuntu\.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' "$sources"
-fi
+shopt -s nullglob
+for source in /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do
+  [[ -f "$source" ]] || continue
+  if grep -Eq '^[[:space:]]*(deb(-src)?[[:space:]]|URIs:).*\.ec2\.archive\.ubuntu\.com/ubuntu' "$source"; then
+    echo "Using the primary Ubuntu archive in $source."
+    sudo sed -Ei '/^[[:space:]]*(deb(-src)?[[:space:]]|URIs:)/ s|https?://[a-z0-9.-]+\.ec2\.archive\.ubuntu\.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' "$source"
+  fi
+done
 
 start=$SECONDS
 ./node_modules/.bin/playwright install --with-deps chromium

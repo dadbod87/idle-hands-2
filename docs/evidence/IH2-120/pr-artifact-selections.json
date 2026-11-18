@@ -1,0 +1,50 @@
+{
+  "run": 44209296179,
+  "sha": "10351259497400a3a5d84ddb004a6149bf4f2dc8",
+  "runAttempt": 2,
+  "method": "Newest created same-run/same-head artifact for each required name, explicitly downloaded by ID. Older ambiguous downloads retained separately; extracted paths checked. Raw verifier still requires complete passing HTML reports and source/build/recovery identity.",
+  "artifacts": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14386080315,
+      "createdAt": "2026-11-18T00:39:48Z",
+      "sha": "10351259497400a3a5d84ddb004a6149bf4f2dc8",
+      "zipSha256": "a0f311c16c0d16bd27522189a326e7c524ce130cf46b31a8d9bd46b35e2df7d2",
+      "size": 180566,
+      "otherSameNameArtifacts": []
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14385058227,
+      "createdAt": "2026-11-18T00:39:49Z",
+      "sha": "10351259497400a3a5d84ddb004a6149bf4f2dc8",
+      "zipSha256": "28fcb765edb5f413a01d785743bfec9b34f5228df957b388e9a40eb758552f51",
+      "size": 721365,
+      "otherSameNameArtifacts": []
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14386974803,
+      "createdAt": "2026-11-18T01:19:35Z",
+      "sha": "10351259497400a3a5d84ddb004a6149bf4f2dc8",
+      "zipSha256": "9e1faec024339aa16aec05866999dfaba603e944c6b177bd401af21753df0f71",
+      "size": 22634478,
+      "otherSameNameArtifacts": [
+        {
+          "id": 14387230166,
+          "created_at": "2026-11-18T00:57:27Z",
+          "size_in_bytes": 20050332
+        }
+      ]
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14385249950,
+      "createdAt": "2026-11-18T00:52:41Z",
+      "sha": "10351259497400a3a5d84ddb004a6149bf4f2dc8",
+      "zipSha256": "c2af27f0057c46093b0c87fdda6b239aab57317a1461f0b2dc23f0bf07d1097e",
+      "size": 24050416,
+      "otherSameNameArtifacts": []
+    }
+  ]
+}

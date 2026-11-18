@@ -1,0 +1,207 @@
+{
+  "pr": 52,
+  "candidate": "10351259497400a3a5d84ddb004a6149bf4f2dc8",
+  "main": "1999f83b6a8b13e5fbdde81b003ba9af8b58bcc3",
+  "sameTree": true,
+  "sourceAndReadOnlySavedPreservationAccepted": true,
+  "domain": 495,
+  "browser": 188,
+  "shards": [
+    89,
+    99
+  ],
+  "prRun": 44209296179,
+  "mainRun": 44215967092,
+  "noGameRuntimeChange": true,
+  "normalPreviewAuthority": "Accepted119 frozen232-file client/API9 retained",
+  "all232GameBytesEqual119": true,
+  "all226PriorArtFilesExact": true,
+  "all17TablesEveryFieldExact": true,
+  "all9MigrationRowsAndOriginal0600KeysExact": true,
+  "all4NormalServicePidsExact": true,
+  "all464NormalAnd125HistoricalResponsesExact": true,
+  "noInstallRestartMigrationResetReseedLoginMovementOrGrant": true,
+  "initialLocalDomain": {
+    "pass": 494,
+    "fail": 1,
+    "skipped": 0,
+    "failure": "Unchanged500msbaseline target at564.302ms"
+  },
+  "initialLocalBrowser": {
+    "pass": 186,
+    "fail": 2,
+    "skipped": 0,
+    "failures": "Two independently diagnosed existing test synchronization races"
+  },
+  "correctedLocalFocused": {
+    "stats": {
+      "total": 5,
+      "expected": 5,
+      "unexpected": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "ok": true
+    },
+    "errors": [],
+    "runtime": "v24.22.2",
+    "browser": "local Chrome",
+    "scope": "All3home-builders and2residential-life cases; not a second full188execution"
+  },
+  "initialCi": {
+    "run": 44201751026,
+    "sha": "f76ec79708cf376809aa7287e245db3f97528af2",
+    "accepted": false,
+    "jobs": [
+      {
+        "name": "domain-build-plan",
+        "conclusion": "success",
+        "started_at": "2026-11-17T23:42:51Z",
+        "completed_at": "2026-11-17T23:46:07Z"
+      },
+      {
+        "name": "browser-shard (2/2)",
+        "conclusion": "success",
+        "started_at": "2026-11-17T23:42:50Z",
+        "completed_at": "2026-11-17T23:58:08Z"
+      },
+      {
+        "name": "browser-shard (1/2)",
+        "conclusion": "cancelled",
+        "started_at": "2026-11-17T23:42:51Z",
+        "completed_at": "2026-11-18T00:03:07Z"
+      },
+      {
+        "name": "browser-playtest",
+        "conclusion": "failure",
+        "started_at": "2026-11-18T00:03:11Z",
+        "completed_at": "2026-11-18T00:03:14Z"
+      }
+    ],
+    "domain": 495,
+    "domainPassed": 495,
+    "browserGroup2": {
+      "total": 93,
+      "expected": 93,
+      "unexpected": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "ok": true
+    },
+    "browserGroup1": "90 of95 passed in rawlog then20minute cancellation; final report unavailable, no complete coverage claim",
+    "group1BrowserInstallSeconds": 242,
+    "group2BrowserInstallSeconds": 23,
+    "budgetsUnchanged": true,
+    "approxRoundedJobMinutes": 42,
+    "publicStandardUbuntu": true,
+    "billingCycleUsageUnknown": true,
+    "rerunReason": "Two independently diagnosed existing local browser synchronization races corrected; new candidate requires exact-head gates."
+  },
+  "secondCi": {
+    "run": 44205543243,
+    "sha": "eeb1e3da9981cbf8a979bf482dce44e81c519cb0",
+    "accepted": false,
+    "domain": 495,
+    "domainPassed": 495,
+    "browserGroup2": {
+      "total": 93,
+      "expected": 93,
+      "unexpected": 0,
+      "flaky": 0,
+      "skipped": 0,
+      "ok": true
+    },
+    "browserGroup1": "94of95passed; original20minute cap cancelled the last shared outing case, no finalgroup1report",
+    "jobs": [
+      {
+        "name": "domain-build-plan",
+        "conclusion": "success",
+        "started_at": "2026-11-18T00:10:00Z",
+        "completed_at": "2026-11-18T00:12:53Z"
+      },
+      {
+        "name": "browser-shard (2/2)",
+        "conclusion": "success",
+        "started_at": "2026-11-18T00:10:00Z",
+        "completed_at": "2026-11-18T00:27:53Z"
+      },
+      {
+        "name": "browser-shard (1/2)",
+        "conclusion": "cancelled",
+        "started_at": "2026-11-18T00:10:00Z",
+        "completed_at": "2026-11-18T00:30:18Z"
+      },
+      {
+        "name": "browser-playtest",
+        "conclusion": "failure",
+        "started_at": "2026-11-18T00:30:20Z",
+        "completed_at": "2026-11-18T00:30:23Z"
+      }
+    ],
+    "approxRoundedJobMinutes": 43,
+    "budgetsCapsCoverageUnchanged": true,
+    "publicStandardUbuntu": true,
+    "billingCycleUsageUnknown": true,
+    "noPaidConfiguration": true,
+    "nextAction": "Rebalance independently scoped offline specs using measured durations. No blind rerun or cap extension."
+  },
+  "sameHeadInfrastructureRetry": {
+    "run": 44209296179,
+    "attempt": 1,
+    "sha": "10351259497400a3a5d84ddb004a6149bf4f2dc8",
+    "accepted": false,
+    "domainPassed": 495,
+    "browserGroup2Passed": 99,
+    "browserGroup1PassedBeforeCancellation": 85,
+    "browserGroup1Total": 89,
+    "noFinalGroup1Report": true,
+    "diagnosis": "Ubuntu mirror fetched32.1MB in4min15s at126kB/s; browser setup293s, Chromium downloads themselves about8s. No test assertion failed before20mincap cancellation.",
+    "action": "One confirmed-infrastructure retry of failed jobs on the exact same source head; retain passing exact-head jobs and all failed-attempt evidence. No source/config/cap/dependency/wait change.",
+    "noBlindRerun": true,
+    "billingCycleUsageUnknown": true,
+    "publicStandardUbuntu": true,
+    "noPaidConfiguration": true
+  },
+  "measuredRebalance": {
+    "basisRun": 44205543243,
+    "initialGroups": [
+      95,
+      93
+    ],
+    "proposedGroups": [
+      89,
+      99
+    ],
+    "movedOfflineSpecs": [
+      {
+        "file": "gathering-family.spec.ts",
+        "measuredSecondsRoundedLog": 9.8,
+        "from": 1,
+        "to": 2
+      },
+      {
+        "file": "gathering-study.spec.ts",
+        "measuredSecondsRoundedLog": 1.9,
+        "from": 1,
+        "to": 2
+      },
+      {
+        "file": "woodland-outing.spec.ts",
+        "measuredSecondsRoundedLog": 66.4,
+        "from": 1,
+        "to": 2
+      }
+    ],
+    "movedMeasuredSeconds": 78.1,
+    "disclosure": "Log durations rounded; balancing estimate is not a completed new-run timing. The three specs use independent browser-local/offline file galleries and do not mutate shared HTTP fixtures.",
+    "all188CasesPreserved": true,
+    "orderedSharedTownStarterHomesTrailFirstVisitStayInGroup2": true,
+    "sharedWoodlandAuthorityCaseStaysInGroup1": true,
+    "noWorkflowCapWorkerTimeoutWaitAssertionBrowserOrFixtureReduction": true
+  },
+  "approxRoundedFinalPrJobMinutes": 62,
+  "approxRoundedMainJobMinutes": 40,
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true,
+  "sourceAcceptanceIsNotHostedRelease": true,
+  "acceptedAt": "2026-11-18T01:48:40.600425+00:00"
+}

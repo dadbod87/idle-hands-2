@@ -1,0 +1,13 @@
+{
+  "sha": "1999f83b6a8b13e5fbdde81b003ba9af8b58bcc3",
+  "all17TablesEveryFieldExact": true,
+  "all9MigrationRowsExact": true,
+  "original0600KeysExact": true,
+  "all4ServicePidsExact": true,
+  "all464NormalGameResponsesExactAccepted119": true,
+  "all125HistoricalStudyResponsesExact": true,
+  "noRuntimeSourceOrLockfileChange": true,
+  "noInstallRestartMigrationResetReseedLoginMovementOrGrant": true,
+  "previewRuntimeAuthority": "Accepted119 frozen232-file client/API9 retained; profiling tools are source acceptance only.",
+  "physicalPhoneHostedOrHumanAcceptance": "Not claimed"
+}

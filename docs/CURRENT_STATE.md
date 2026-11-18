@@ -1,3 +1,7 @@
+# November17 —120 profiling accepted;121 queued
+
+PR52/main **1999f83b6a8b13e5fbdde81b003ba9af8b58bcc3** accepted after exact PR/main all4/raw495domain/188browser gates and read-only normal preservation.232game bytes, all17table fields/nine metadata/originalkeys/PIDs/464normal+125historical responses remain exact119. No runtime update/speedup claimed. [Report](evidence/IH2-120/REPORT.md), [current source/next121](idle-hands-2/CURRENT_SESSION.md). Earlier entries below are historical.
+
 # November 17 — IH2-120 profiling candidate in progress
 
 Isolated branch `perf/shared-loop-profile` in `work/idle-hands-2-performance`, over accepted119closeout ba10743/main ed1dc9d. Tools/tests/docs only; all232game bytes, client/server rules, nine migrations and normal saved previews remain unchanged. Seventeen backend measurements retain five500ms-budget failures; all conserve140unique/20replayed commands and zero idle SQL/cleanup. Controlled database-link latency amplifies pool pressure; single-resident render results are separate. No universal cause, hosted capacity or performance fix is claimed. Full exact-source gates pending. [Report](evidence/IH2-120/REPORT.md), [method](evidence/IH2-120/METHOD.md), [current handoff](idle-hands-2/handoffs/2026-11-17-performance-profile.md).121snapshot batching is queued, not implemented. Earlier entries below are historical.

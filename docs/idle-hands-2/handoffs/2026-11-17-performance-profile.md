@@ -2,6 +2,8 @@
 
 Current source: `work/idle-hands-2-performance`, `perf/shared-loop-profile`, from accepted119closeout ba10743 / runtime main ed1dc9d.120active;121queued. Normal4175/localhost4176and protected55432keys/data/PIDs remain unchanged. Raw work: `work/idle-hands-2-artifacts/performance-profile-2026-11-17`; read RUN_STATE for current processes.
 
+Second eeb1e3d run44205543243domain495/group2all93pass; group1cancelled20min after94/95withnormalsetup, aggregatefailure. Three independent offline specs/six cases (78.1logged seconds) are now rebalanced1→2, preserving all188case identities as89+99, ordered shared-town family in2 and shared woodland in1. Runner/unit and exact/disjoint collection checks pass. No workflow/cap/wait/coverage/game change; final exact-head full gates pending.
+
 Initial local full gates retain494/495domain and186/188browser failures. Two existing browser fixture races were independently diagnosed and corrected by awaiting authoritative construction/position; corrected5-case focus and strict build pass, game232bytes remain exact119. Initial PR52/f76 run44201751026domain495/group2all93pass, group1cancelled20min after90/95passes with242second browser installation; aggregatefailure, no full acceptance. Final corrected exact-head gates remain pending. No timeout, wait, case or runtime rule was weakened. See120VALIDATION_HISTORY and initial/focused JSON.
 
 After exact acceptance, the post-acceptance documentation/next-task pointer will be the pushed [performance closeout branch](https://github.com/dadbod87/idle-hands-2/tree/chore/performance-closeout-2026-11-17). Its existence and head must be checked; this candidate does not claim that future closeout has passed.

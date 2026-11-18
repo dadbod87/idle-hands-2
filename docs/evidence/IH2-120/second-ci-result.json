@@ -1,0 +1,48 @@
+{
+  "run": 44205543243,
+  "sha": "eeb1e3da9981cbf8a979bf482dce44e81c519cb0",
+  "accepted": false,
+  "domain": 495,
+  "domainPassed": 495,
+  "browserGroup2": {
+    "total": 93,
+    "expected": 93,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "ok": true
+  },
+  "browserGroup1": "94of95passed; original20minute cap cancelled the last shared outing case, no finalgroup1report",
+  "jobs": [
+    {
+      "name": "domain-build-plan",
+      "conclusion": "success",
+      "started_at": "2026-11-18T00:10:00Z",
+      "completed_at": "2026-11-18T00:12:53Z"
+    },
+    {
+      "name": "browser-shard (2/2)",
+      "conclusion": "success",
+      "started_at": "2026-11-18T00:10:00Z",
+      "completed_at": "2026-11-18T00:27:53Z"
+    },
+    {
+      "name": "browser-shard (1/2)",
+      "conclusion": "cancelled",
+      "started_at": "2026-11-18T00:10:00Z",
+      "completed_at": "2026-11-18T00:30:18Z"
+    },
+    {
+      "name": "browser-playtest",
+      "conclusion": "failure",
+      "started_at": "2026-11-18T00:30:20Z",
+      "completed_at": "2026-11-18T00:30:23Z"
+    }
+  ],
+  "approxRoundedJobMinutes": 43,
+  "budgetsCapsCoverageUnchanged": true,
+  "publicStandardUbuntu": true,
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true,
+  "nextAction": "Rebalance independently scoped offline specs using measured durations. No blind rerun or cap extension."
+}

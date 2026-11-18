@@ -4,7 +4,7 @@ import {browserShards} from '../tools/run-browser-shard.mjs';
 
 test('browser groups cover all files exactly once and retain the ordered real-town journey',()=>{
  const groups=browserShards();
- assert.ok(groups['1'].includes('woodland-outing.spec.ts'));
+ for(const file of ['gathering-family.spec.ts','gathering-study.spec.ts','woodland-outing.spec.ts'])assert.ok(groups['2'].includes(file));
  assert.ok(groups['1'].includes('woodland-shared.spec.ts'));
  assert.ok(groups['1'].includes('weather-readability.spec.ts'));
  assert.ok(groups['2'].includes('housing-contract.spec.ts'));

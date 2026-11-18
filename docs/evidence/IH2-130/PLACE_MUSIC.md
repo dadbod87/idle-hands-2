@@ -1,0 +1,11 @@
+# Optional place music
+
+The Sound button opens music settings. Play starts the original score for the current place, and Pause stays available in open panels once music has been used. Keyboard and touch controls share the same actions. Closing Sound returns focus to its button. The game remembers volume locally and starts each page silent.
+
+The square, neighborhood, workshop and allotment share “Business as unusual.” Inkwood uses “The trees have seniority,” and homes use “Furniture, finally.” Shared practice switches scores when the server confirms the room. Visits within a score family keep the phrase playing. Hiding or leaving the page or switching residents pauses music until another deliberate action. Each original phrase ends with eight seconds of quiet before repeating. That interval and the default 45 percent volume are first-playtest choices.
+
+The browser loads one dedicated worker after Play. It renders the original score and transfers mono PCM to Web Audio. The player keeps up to two decoded buffers, one active voice and one pending worker. Pause and superseding room changes terminate old work. There are no soundtrack requests before Play and no server requests for sound. This slice covers place music. Confirmed door and reward accents are future playtest opportunities.
+
+Validation uses an isolated built client and desktop, 320-pixel touch and 200 percent short-landscape Chromium views. The tests verify the original town PCM hash through the bundled worker and actual Web Audio buffer, silence before a gesture and after reload, continued playback entering the workshop, pause and resume from Bag, volume persistence, keyboard focus and a readable short layout. A controlled visibility event and a held/failed worker script request exercise cancellation and recovery. Those cases use deliberate browser fixtures. Listening on speakers and physical phone or Safari playback remain open playtest checks.
+
+The worker reuses the original score from IH2-129. See [audition and provenance](../IH2-129/REPORT.md) and [worker readiness](AUDIO_WORKER_READINESS.md).

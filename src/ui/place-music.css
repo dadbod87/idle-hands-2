@@ -1,0 +1,44 @@
+#place-sound.sound-icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: auto;
+  min-width: 64px;
+  padding: 2px 6px;
+  gap: 0;
+}
+
+.world-wrap:has(#place-sound) .location-tag { max-width: calc(100% - 110px); }
+
+.sound-icon,
+.dialog-head .sound-icon {
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+}
+
+.sound-icon[hidden] { display: none; }
+.sound-icon[data-on="true"] { background: #dfe7ce; }
+.sound-icon:not([data-on="true"]) .sound-waves,
+.sound-icon[data-on="true"] .sound-slash { display: none; }
+
+.dialog-actions { display: flex; flex: none; gap: 6px; }
+.dialog-head > div:first-child { min-width: 0; overflow-wrap: anywhere; }
+.place-music-controls { display: grid; gap: 14px; }
+#panel-body .place-music-controls p { margin: 0; }
+.place-music-controls label { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; }
+.place-music-controls input { width: 100%; min-height: 44px; margin: 0; accent-color: var(--sage); }
+
+.sound-label {
+  font: 700 0.6875rem/1 Georgia, serif;
+}
+
+@media (max-height: 480px) {
+  #panel:has(.place-music-controls) .dialog-head { padding: 8px 12px; }
+  #panel:has(.place-music-controls) .dialog-head h2 { font-size: 1rem; }
+  #panel-body:has(.place-music-controls) { padding: 12px; }
+  .place-music-controls { gap: 8px; }
+}

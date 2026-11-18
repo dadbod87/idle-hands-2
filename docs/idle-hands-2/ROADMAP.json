@@ -2270,7 +2270,7 @@
     {
       "id": "IH2-127",
       "title": "Profile real client refresh fanout during shared town activity",
-      "status": "blocked",
+      "status": "queued",
       "depends_on": [
         "IH2-126",
         "IH2-128",
@@ -2284,8 +2284,8 @@
         "Use20distinct fictional identities at most:18modeled protocol participants plus2native desktop/touch clients. Model actual TownClient stream-open/visibility/identity/loading/refreshDirty behavior and cross-check against native observations; never claim20rendered clients.",
         "Use only the explicit guarded CI5432service-container/ih2_load database, isolated API and in-memory synthetic sessions. Keep pool5/observer1/durable settings/pinned runtime/normal saved towns/keys/PIDs intact; disclose any historical preparation or auxiliary intercepted test separately. No intercepted confirmations in timing runs.",
         "Retain every trial/miss and verify exact unique/replayed commands, private/public eventual state, project totals/deadlines, inventory/rewards, idle work, privacy and zero leaked streams/requests. Stop on authority/source/target/conservation/cleanup failure; no replacement runs for green.",
-        "Any new tools/source require applicable local checks and fresh exact finalPR/main complete raw coverage, preserving all existing527domain/197browser cases plus new cases and original500ms/recovery gates. Verify actual runtime scope and push precise report/handoff before another section.",
-        "Follow the revised predeclared CI_PLAN: two fixed180second observations,18actual-TownClient protocol participants plus2native browser contexts, no local service start, unchanged real targets/deadlines/527+197source gates and retained timing misses. Review/accept source and optional standard-public diagnostic workflow before dispatch; no paid/hosted game resource."
+        "Any new tools/source require applicable local checks and fresh exact finalPR/main complete raw coverage, preserving all existing545domain/198browser cases plus new cases and original500ms/recovery gates. Verify actual runtime scope and push precise report/handoff before another section.",
+        "Follow the revised predeclared CI_PLAN: two fixed180second observations,18actual-TownClient protocol participants plus2native browser contexts, no local service start, unchanged real targets/deadlines/545+198source gates and retained timing misses. Review/accept source and optional standard-public diagnostic workflow before dispatch; no paid/hosted game resource."
       ],
       "exclusions": [
         "No runtime/economy/protocol/schema/cache/pool/rate/queue/timer change selected; an optimization needs its own evidence-based section.",
@@ -2296,10 +2296,10 @@
         "docs/evidence/IH2-126/NEXT_PERFORMANCE.md",
         "docs/idle-hands-2/handoffs/2026-11-18-morning-review.md",
         "docs/evidence/IH2-126/PUBLIC_REFRESH_REUSE.md",
-        "docs/evidence/IH2-127/CI_PLAN.md"
+        "docs/evidence/IH2-127/CI_PLAN.md",
+        "docs/evidence/IH2-131/source-closeout.json"
       ],
-      "owner_branch": "perf/public-refresh-ci",
-      "blocked_reason": "131final coherent shared-clock source awaits545domain/198browser PR/main; preserve prior failed main/smoke and opening-boundary review. No fixed observations have run. Normal saved game services remain stopped."
+      "owner_branch": "perf/public-refresh-ci"
     },
     {
       "id": "IH2-128",
@@ -2361,7 +2361,7 @@
         "No audio context, synthesis/fetch or autoplay before deliberate enable; clear discoverable mute/music/effects controls without crowding320px/short/enlarged-text gameplay.",
         "Follow acknowledged place changes with restrained original cues, bounded voices/cache and quiet pause/hidden/reload behavior. Avoid repeated receipt or unconfirmed-action sounds; no server queries, economy, timers or progress changes.",
         "Preserve original score provenance/free asset policy and distinguish original compositions from UO tracks; physical-device/music taste limits remain explicit.",
-        "Verify actual isolated offline/shared CI desktop/mobile/short input/layouts plus Terra6.1and complete exact PR/main full prior527/197coverage plus additions, original500ms/recovery gates. Owner-stopped normal services stay stopped; no normal-runtime install claim.",
+        "Verify actual isolated offline/shared CI desktop/mobile/short input/layouts plus Terra6.1and complete exact PR/main full prior545/198coverage plus additions, original500ms/recovery gates. Owner-stopped normal services stay stopped; no normal-runtime install claim.",
         "Save source/next steps and honest remaining limits before another section; no paid/cloud/original-game work."
       ],
       "exclusions": [
@@ -2375,7 +2375,7 @@
     {
       "id": "IH2-131",
       "title": "Confirm shared actions coherently under concurrent updates",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-129"
       ],
@@ -2399,5 +2399,5 @@
       ]
     }
   ],
-  "source_status_note": "131active fix/shared-cafe-clock: first543domain candidate passed domain checks, but opening-boundary review added coherent pre-settlement shared locking and two regressions. Final545/198PR/main pending.127fixed study blocked; normal game/database services remain stopped, preexisting Docker engine left alone."
+  "source_status_note": "131client confirmation correction and127diagnostic source accepted with exact545/198PR/main. Fixed public observations queued/unexecuted; owner-stopped normal services remain stopped.130optional game audio queued. Read CURRENT_SESSION."
 }

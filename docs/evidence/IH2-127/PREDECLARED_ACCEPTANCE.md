@@ -1,0 +1,7 @@
+# Observation acceptance supplements — before dispatch
+
+No fixed observation has run. Use the accepted main and single optional workflow attempt; two fresh Node drivers/API/browser/session sets, reused ephemeral PG service, explicit historical preparation, unchanged original500msbudgets and all correctness/cleanup checks. Retain both results/misses; stop on authority/target/source/conservation/cleanup failure, never replace a trial for green.
+
+The source schedules180000ms from timed start. Node timer rounding/scheduling cannot certify perfect submillisecond equality: retain actual measured duration and accept at least179999ms for the scheduled180swindow (predeclared1msgranularity tolerance). The real query-free idle interval still must be≥30000ms, with unchanged state/metadata/live20streams and no app/observer submissions. Do not change500msbudgets or extend a run to earn quiet time; the source checkpoint reservation remains148s.
+
+Keep model full-JSON, native requestfinished and API HTTP-finish timing interpretations separate. Aggregate diagnostic budgets do not establish server capacity or presented-frame latency. The public15-write burst/lifecycle is not180sof sustainedmutation load; full-process CPU averages include setup/wait/quiet. Preserve per-phase raw samples, including diagnostic observer overhead. Two native contexts plus18co-located protocol models are not20rendered clients, physical phones, WAN or hosted capacity. Native pre/post reload CDP counters are raw snapshots; do not subtract unlike navigation bases.

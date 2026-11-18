@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-18T20:47:56.535373+00:00",
+  "readOnlyInspection": true,
+  "originalSessionKeyCount": 2,
+  "allOriginalBytesAnd0600ModesExact": true,
+  "allSixNormalAndDisposableLocalGamePortsOff": {
+    "4175": true,
+    "4176": true,
+    "4186": true,
+    "4188": true,
+    "55432": true,
+    "55434": true
+  },
+  "dockerEngineObservedPreexistingRunning": true,
+  "engineAndOtherContainersNotStartedOrStoppedByThisContinuation": true,
+  "currentSavedTableEquality": "Unavailable; not claimed",
+  "normalRuntimeInstallOrHostedRelease": false
+}

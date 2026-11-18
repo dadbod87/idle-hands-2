@@ -1,0 +1,15 @@
+# Next bounded audio foundation — proposal, not implemented
+
+After131source acceptance and127observations/closeout, implement a small reusable score-preparation worker before the full130game control/room-cue integration. If the2PMboundary leaves insufficient time for all source gates, keep it as an explicit unaccepted branch/handoff; never mark130done for a helper alone.
+
+Player purpose: original place music should not briefly stop movement or require an eager3.77MBdownload. The18Node/36Chromium probes support off-thread preparation, not a universal phone/FPS claim. Keep the frozen129study/source scores unchanged.
+
+Proposed modules: a small catalog/preparer API plus one dedicated worker entry importing the existing original renderer. No main game wiring, AudioContext, server, persistence or backend query in this foundation. The worker receives only whitelisted theme/accent identifiers and an ephemeral request ID; it returns bounded PCM buffers/metadata using transfer lists. It must not receive player state, names, cookies, commands, URLs or arbitrary code.
+
+Bound one live worker/pending job. A new request cancels the old job; cancel/close/failure terminates the worker, clears callbacks and settles the pending promise exactly once. Late results/errors from an older generation cannot replace the current preparation. Timeout is bounded and tested. Invalid identifiers refuse before creating a worker. Unsupported Worker availability fails recoverably on explicit use, with no work merely from importing the module.
+
+Prepare a theme plus optional short door cue in one job; do not create competing workers for each voice. Validate rate/frame/byte bounds and finiteness off-thread, then validate structured result shape, request ID, buffer lengths and declared bounds before use. Preserve exact original PCM in Node/browser proof; no unreviewed dependency or borrowed MIDI/soundfont. The future audio controller owns two-theme/decoded-byte cache, gains and one-music/one-effect graph; do not add that authority to this preparer.
+
+Use an actual Vite module-worker graph for browser proof; the earlier Blob probe is only readiness evidence. Test deliberate request, identical original PCM, immediate cancellation, rapid replacement, unknown/malformed responses, worker errors/timeout and complete thread/URL cleanup. Isolated static test-asset interception, if used, must be disclosed; no fake game/server confirmation. No normal game/database start, progress mutation, public hosting or paid resource. Keep every prior545domain/198browser case and current source/main gates, with meaningful additions counted after collection.
+
+Type the worker boundary locally or in a dedicated config; avoid adding the WebWorker global library to the entire DOM game compilation. Default worker construction must stay lazy. Confirm emitted worker assets are local and bounded, no boot-time worker/network/context, no added package/lockfile change, and exact original score provenance. Actual in-game HUD/room/lifecycle/audio-output acceptance belongs to130later; physical-phone/Safari/human listening stay explicit limits.

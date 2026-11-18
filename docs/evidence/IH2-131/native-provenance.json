@@ -1,0 +1,31 @@
+{
+  "source": "ce417cd56b9a24c4051265bf823e75a7b930a203",
+  "run": 44389304996,
+  "artifact": 14469715659,
+  "reviewer": "Terra6.1",
+  "noNewVisualBlocker": true,
+  "stillReviewOnly": true,
+  "captures": [
+    {
+      "sha256": "ecf61a8084056e40e69096ad9f1b5218d9916497908f27a51a08144f809b707f",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "sourceArtifactRelative": "clock-pr-ci/sequel-browser-evidence-3/test-results/browser/public-refresh-smoke/native-0.png"
+    },
+    {
+      "sha256": "75fed3445ae29f86ded7046f46e0bb1fb45b397ba1d4962c98ff0d13220c4be6",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "sourceArtifactRelative": "clock-pr-ci/sequel-browser-evidence-3/test-results/browser/public-refresh-smoke/native-1.png"
+    }
+  ],
+  "limits": [
+    "Phone explanation continues below frame; stills cannot prove scrolling/discoverability.",
+    "Modal obscures fixture crowding.",
+    "Actual synthetic CI sessions, no physical-device or normal saved-preview acceptance."
+  ]
+}

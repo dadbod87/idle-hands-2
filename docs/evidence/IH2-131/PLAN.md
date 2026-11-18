@@ -1,3 +1,7 @@
+# Historical candidate record
+
+131is source-accepted on main **eb40476ac3d364dc276996e22102e5d9055ab8ef**. [Final report](REPORT.md) and source-closeout.json are current; pending labels below describe earlier checkpoints.
+
 # Coherent queued openings candidate
 
 Final expected545domain/198browser. Read CAFE_CLOCK_FOLLOWUP.md opening-boundary review; two extra café lock reads are deliberate, ordinary query counts unchanged. No normal game/database start or fixed observation before final gates.

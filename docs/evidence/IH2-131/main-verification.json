@@ -1,0 +1,90 @@
+{
+  "run": 44393346381,
+  "sha": "eb40476ac3d364dc276996e22102e5d9055ab8ef",
+  "allRequiredJobsSuccess": true,
+  "requiredJobCount": 5,
+  "domain": 545,
+  "browser": 198,
+  "disjointShards": [
+    73,
+    66,
+    59
+  ],
+  "newCommandConfirmationDomainCases": 7,
+  "newServerClockDomainCases": 8,
+  "serverClockSamplingAfterCanonicalSharedLocks": true,
+  "cafeAdditionalLockReads": 2,
+  "ordinaryQueryDelta": 0,
+  "newPublicTransportDomainCasesStillPass": 3,
+  "newPublicBrowserSmoke": 1,
+  "realPublicSmokeConservedAndDrained": true,
+  "fixedObservationsExecuted": false,
+  "originalAudioDomainCasesStillPass": 7,
+  "newAudioBrowserCases": 4,
+  "all537PriorDomainAnd198BrowserCasesPreserved": true,
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all232GameFilesExactCorrectedLocalCandidate": true,
+  "all230OtherFilesExactAccepted122": true,
+  "mainJsAndIndexChangedForConfirmationFix": true,
+  "allPriorClientTestsAndReplyAcceptGuardsByteExact": true,
+  "all226ArtFilesExact": true,
+  "rawHousingOutingRestartRestoreAnd9MetadataVerified": true,
+  "fourCurrentSettlementCasesVerified": true,
+  "movementBodyAndMenuRetryGuardsVerified": true,
+  "unchanged500msBudgetsPass": true,
+  "commandP95Ms": 76.5041369999999,
+  "profiledCommandP95Ms": 57.809446999999636,
+  "rich26HomeSnapshotP95Ms": 61.59846400000015,
+  "audioPackByteExactAcrossPinnedLinuxAndMac": true,
+  "wavBytes": 3988878,
+  "emittedScriptsAndAllFilesVerified": true,
+  "audioFocusedBrowser": {
+    "cases": 4,
+    "layouts": 8,
+    "axeScans": 3,
+    "hardwareOutputMuted": true,
+    "controlledVisibilityDisclosed": true,
+    "fileOpenWithoutHTTPDependency": true,
+    "humanListeningPhysicalPhone": "not claimed"
+  },
+  "normalServicesKeptStopped": true,
+  "localExecution": "396independent passes/20database-unavailable skips;34focused client/realHTTP guard passes; no full local PG/browser execution",
+  "approxRoundedJobMinutes": 51,
+  "runAttempt": 1,
+  "sameHeadReuse": [],
+  "standardPublicUbuntu": true,
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true,
+  "artifactsPinnedById": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14469623085,
+      "createdAt": "2026-11-18T20:42:52Z",
+      "zipSha256": "c463ad33c113a5d7e26c6c8a47eb135e56e7055bd19d8534d085f8e64896cdac"
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14469428230,
+      "createdAt": "2026-11-18T20:42:54Z",
+      "zipSha256": "cdddb65817ce629de0386dc863f402d7e075dbe278eccb5f1af1c617bba76161"
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14470625282,
+      "createdAt": "2026-11-18T20:52:52Z",
+      "zipSha256": "f8aa1168d89cadbb202741524d90c7b80238ea9b65d30bd2cdcb56b299f9ec0a"
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14471836038,
+      "createdAt": "2026-11-18T20:59:24Z",
+      "zipSha256": "7734d8ba4ce17d6905a5812ced61d8c448c89752c41ad00b515abc99ad5e61d9"
+    },
+    {
+      "name": "sequel-browser-evidence-3",
+      "id": 14469649593,
+      "createdAt": "2026-11-18T20:51:34Z",
+      "zipSha256": "04241b342230f2568250c2ba52c6ec02f9828b180316b5b38c2c2da0ee4dec5b"
+    }
+  ]
+}

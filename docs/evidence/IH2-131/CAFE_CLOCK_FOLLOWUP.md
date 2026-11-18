@@ -1,3 +1,7 @@
+# Historical candidate record
+
+131is source-accepted on main **eb40476ac3d364dc276996e22102e5d9055ab8ef**. [Final report](REPORT.md) and source-closeout.json are current; pending labels below describe earlier checkpoints.
+
 # Queued café clock follow-up — candidate, not accepted
 
 PR61/e8ff767passed all five required PR checks/raw537domain+198browser. Main86cef8de46e381d1662087bca7c3a8f7dc1d3752 run44378424656attempt1completed domain/groups1/2but group3used about10minutes setup. Its public smoke failed during the third wave before the20minute cancellation: two waves/four visible confirmations were complete; four third-wave command HTTP replies were200but the immediate private-revision assertion failed. Cleanup drained. The report retained only ERR_ASSERTION, not the receipt reason. The initial cancellation-only diagnosis was incomplete. A same-head incomplete-job retry had already started; retain that result and do not use a passing retry to erase this failure.

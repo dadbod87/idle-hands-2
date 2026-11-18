@@ -1,3 +1,7 @@
+# Public-refresh measurements — queued on accepted131source
+
+Diagnostic/client source accepted on main **eb40476ac3d364dc276996e22102e5d9055ab8ef**, exact545domain/198browser PR/main and actual20-client correctness smoke.131fixes the reproduced confirmation race. Two fixed180sobservations have not run; follow CI_PLANwith this exact accepted main source and keep local services stopped. The accepted source corrects both client confirmation ordering and server café clock sampling after queued locks. Earlier candidate/failure history below remains retained.
+
 # Public-refresh study — blocked pending IH2-131 confirmation correction
 
 No fixed observation has run. The first real smoke on894385dfailed after its bridge wave and independently exposed an actual-client timestamp/revision race; see [131report](../IH2-131/REPORT.md). Source acceptance now covers the explicit131client correction plus diagnostic tools, expected537domain/198browser on final PR/main. The earlier no-runtime-change candidate description below is historical and does not describe the corrected bundle.

@@ -19,7 +19,8 @@
     "test:server": "node --experimental-strip-types tools/run-server-tests.ts",
     "check:design": "tsc -p tsconfig.design.json && node --experimental-strip-types tools/check-design-plan.ts",
     "test:browser:shard": "node tools/run-browser-shard.mjs",
-    "profile:shared": "node --experimental-strip-types tools/profile-shared-loop.ts"
+    "profile:shared": "node --experimental-strip-types tools/profile-shared-loop.ts",
+    "profile:sessions": "node --experimental-strip-types tools/session-profile.ts"
   },
   "dependencies": {
     "pg": "8.16.3",

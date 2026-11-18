@@ -1,0 +1,13 @@
+{
+  "sha": "9afd70be62811b48be7f2efeeafaaa188acb4898",
+  "all17TablesEveryFieldExact": true,
+  "all9MigrationRowsExact": true,
+  "original0600KeysExact": true,
+  "apiPidsExactOnly2StaticPreviewsUpdated": true,
+  "all464NormalGameResponsesExactAccepted122": true,
+  "all125HistoricalStudyResponsesExact": true,
+  "onlyRuntimeChangeWorkshopUi": true,
+  "noPgRestartMigrationResetReseedKeyCopyMovementOrGrant": true,
+  "previewRuntimeAuthority": "Accepted122immutable compiled client; unchanged121API9source byte-equivalent to accepted122. Three fresh current fictional signed contexts across client-only update/reload, no relogin; no other historical cookie claim.",
+  "physicalPhoneHostedOrHumanAcceptance": "Not claimed"
+}

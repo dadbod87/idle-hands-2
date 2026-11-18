@@ -2079,7 +2079,7 @@
     {
       "id": "IH2-122",
       "title": "Clear truthful remote-menu confirmation after completed reads",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-121"
       ],
@@ -2111,10 +2111,49 @@
         "docs/evidence/IH2-122/local-browser-result.json",
         "docs/evidence/IH2-122/shared-flow-local-timeouts.json",
         "docs/evidence/IH2-122/NEXT_PROFILING.md",
-        "docs/evidence/IH2-122/CI_RECOVERY.md"
+        "docs/evidence/IH2-122/CI_RECOVERY.md",
+        "docs/evidence/IH2-122/pr-ci-verification.json",
+        "docs/evidence/IH2-122/main-ci-verification.json",
+        "docs/evidence/IH2-122/actual-saved.json",
+        "docs/evidence/IH2-122/saved-preservation.json",
+        "docs/evidence/IH2-122/TERRA_ACTUAL_SAVED.md",
+        "docs/evidence/IH2-122/source-closeout.json"
       ],
       "owner_branch": "fix/browser-check-headroom"
+    },
+    {
+      "id": "IH2-123",
+      "title": "Profile bounded sessions with server and driver resources separated",
+      "status": "in_progress",
+      "depends_on": [
+        "IH2-122"
+      ],
+      "goal": "Measure reconnect/retry/idle behavior and cleanup without confusing driver and server resources or changing authority.",
+      "acceptance": [
+        "Refuse protected/remote/mismatched targets before any connection; prove separate child resource attribution and bounded shutdown.",
+        "Three declared300-second20protocol runs use ordinary earned progress, legal movement, finite reconnect/retry and30-second idle; retain all failures and prove conservation/privacy/durability/cleanup.",
+        "Keep original500ms burst gates, all232game bytes,193browser cases and saved data/keys/PIDs unchanged; complete exact PR/main five-job/raw gates and pushed closeout."
+      ],
+      "exclusions": [
+        "No runtime game/server/protocol/economy/schema/art change, paid/cloud service, real-player or original game.",
+        "No20rendered-client, physical/WAN/capacity/leak/speedup claim from bounded protocol measurements."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-123/PLAN.md",
+        "docs/evidence/IH2-123/METHOD.md",
+        "docs/evidence/IH2-123/focused-checks.json",
+        "docs/evidence/IH2-123/CONNECTION_REVIEW.md",
+        "docs/evidence/IH2-123/INITIAL_OBSERVATIONS.md",
+        "docs/evidence/IH2-123/initial-measurements.json",
+        "docs/evidence/IH2-123/REPRODUCE.md",
+        "docs/evidence/IH2-123/REPORT.md",
+        "docs/evidence/IH2-123/measurements.json",
+        "docs/evidence/IH2-123/local-domain.json",
+        "docs/evidence/IH2-123/local-browser-result.json",
+        "docs/evidence/IH2-123/local-byte-identity-bridge.json"
+      ],
+      "owner_branch": "perf/bounded-session-churn"
     }
   ],
-  "source_status_note": "122 main acceptance blocked on measured three-group recovery; no new gameplay task. See CURRENT_SESSION."
+  "source_status_note": "122fullyclosed before active123server-only diagnostic; see CURRENT_SESSION."
 }

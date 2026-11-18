@@ -1,0 +1,124 @@
+{
+  "run": 44261396741,
+  "sha": "9afd70be62811b48be7f2efeeafaaa188acb4898",
+  "allRequiredJobsSuccess": true,
+  "requiredJobCount": 5,
+  "artifactsPinnedById": [
+    {
+      "name": "sequel-server-evidence",
+      "id": 14409010074,
+      "createdAt": "2026-11-18T07:48:27Z",
+      "zipSha256": "b7c2e243e86bdceb2670456d7f7c569ab1b734dba27732580a81ce8c47dc43c8"
+    },
+    {
+      "name": "sequel-client-build",
+      "id": 14408800474,
+      "createdAt": "2026-11-18T07:48:28Z",
+      "zipSha256": "711209ee5f0409bfa4365e487207c6ab43c5456032783fdb5490893c7a0ae3ac"
+    },
+    {
+      "name": "sequel-browser-evidence-1",
+      "id": 14408648225,
+      "createdAt": "2026-11-18T07:58:56Z",
+      "zipSha256": "db0d6d38e2d07ee2a45f74b62624c18766ec19ef10642e0045552427541561ae"
+    },
+    {
+      "name": "sequel-browser-evidence-2",
+      "id": 14408328952,
+      "createdAt": "2026-11-18T07:59:34Z",
+      "zipSha256": "dcae858c0e242d3fb19e1cac2b123373870ee3e72dc2d4c41cc28e2b35b47775"
+    },
+    {
+      "name": "sequel-browser-evidence-3",
+      "id": 14408228992,
+      "createdAt": "2026-11-18T08:00:18Z",
+      "zipSha256": "db43a9d9d9004ca179b80bc9c6fc88cb41d14839f9dd441011425849a596226d"
+    }
+  ],
+  "domain": 503,
+  "browser": 193,
+  "disjointShards": [
+    73,
+    66,
+    54
+  ],
+  "all188PriorBrowserCasesPreserved": true,
+  "newControlledClientCases": 5,
+  "localFullExecution": "See local-domain-result.json, local-browser-result.json and separate ci-family-result.json; failures remain retained.",
+  "orderedFixtureFamily": {
+    "shared-town.spec.ts": [
+      2
+    ],
+    "starter-homes.spec.ts": [
+      2
+    ],
+    "trail.spec.ts": [
+      2
+    ],
+    "z-first-visit.spec.ts": [
+      2
+    ]
+  },
+  "zeroFailuresSkippedFlakyReportErrors": true,
+  "all232CompiledFilesExactFrozenLocal": true,
+  "all226PriorArtFilesExact": true,
+  "rawHousingAndOutingRestartRestoreSameSessionAnd9MigrationChecksums": true,
+  "commandP95Ms": 65.68938199999866,
+  "neighborhoodSnapshotP95Ms": 60.39289299999996,
+  "profiledCommandP95Ms": 57.52459699999963,
+  "rich26HomeSnapshotP95Ms": 52.32474400000001,
+  "acceptedReader15To1AndAllFieldEquivalence": true,
+  "corrected4KCompositorPixelsVerified": true,
+  "profileTraceCompleteObserverIdle0DurabilityOn": true,
+  "same2540LoadQueriesAnd140Unique20Replay": true,
+  "all226ArtAndEveryOtherNonHtmlNonJsFileExact119": true,
+  "onlyRuntimeSourceChanged": "src/ui/workshop.ts",
+  "menuPendingSuccessFailureRefusalAndRetryProof": true,
+  "unchanged500msBudgetsPass": true,
+  "runtime": "v24.22.2",
+  "publicStandardUbuntu": true,
+  "approxRoundedJobMinutes": 47,
+  "approxLatestSuccessfulExecutionJobMinutes": 47,
+  "jobEvidence": [
+    {
+      "name": "browser-shard (1/3)",
+      "actualExecutionJobId": 134655340705,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134655340705,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "domain-build-plan",
+      "actualExecutionJobId": 134655340446,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134655340446,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-playtest",
+      "actualExecutionJobId": 134661630192,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134661630192,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-shard (3/3)",
+      "actualExecutionJobId": 134655340733,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134655340733,
+      "latestLogicalAttempt": 1
+    },
+    {
+      "name": "browser-shard (2/3)",
+      "actualExecutionJobId": 134655340758,
+      "actualExecutionAttempt": 1,
+      "latestLogicalJobId": 134655340758,
+      "latestLogicalAttempt": 1
+    }
+  ],
+  "runAttempt": 1,
+  "sameHeadSuccessReuseDisclosed": false,
+  "accountingMethod": "All distinct name/start/end executions across attempts, excluding GitHub logical clones of reused successful jobs; includes cancelled/failed attempts, not an invoice.",
+  "billingCycleUsageUnknown": true,
+  "noPaidConfiguration": true
+}

@@ -1,0 +1,31 @@
+{
+  "run": 44261396741,
+  "sha": "9afd70be62811b48be7f2efeeafaaa188acb4898",
+  "rows": [
+    {
+      "group": 1,
+      "cases": 73,
+      "testReportSeconds": 738.847487,
+      "installSeconds": 21.0,
+      "wholeJobSeconds": 793.0,
+      "marginBelowUnchanged1200sCap": 407.0
+    },
+    {
+      "group": 2,
+      "cases": 66,
+      "testReportSeconds": 631.6081860000002,
+      "installSeconds": 164.0,
+      "wholeJobSeconds": 831.0,
+      "marginBelowUnchanged1200sCap": 369.0
+    },
+    {
+      "group": 3,
+      "cases": 54,
+      "testReportSeconds": 598.045386,
+      "installSeconds": 238.0,
+      "wholeJobSeconds": 876.0,
+      "marginBelowUnchanged1200sCap": 324.0
+    }
+  ],
+  "scope": "One measured successful exact-head run. Setup remains variable; no general reliability, billing or runtime-speed guarantee."
+}

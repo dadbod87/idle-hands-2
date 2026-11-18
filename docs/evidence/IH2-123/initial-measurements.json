@@ -1,0 +1,680 @@
+{
+  "source": "f245a148da0a00e68ba178dd12562f78637a1175",
+  "classification": "Initial observations only; stronger EOF/per-connection checks pending before acceptance. No actual disconnection diagnosed.",
+  "allInitialTargetsMet": true,
+  "allOriginalConservationAndCleanupAssertionsPassed": true,
+  "doesNotProveEveryStreamStayedOpenDuringIdle": true,
+  "originalSummarySha256": "39732c14e2115123f7d79d3bc55e3bdab17468c2306663a32ea4e1ce49a7ae3f",
+  "scope": "20protocol identities, fixed private first-lesson/reconnect/5relogin workload. Appmax5plusobservermax1 and diagnostic retention/sampling overhead included. AverageCPU includes long quiet periods, RSS sampled1s, event-loop resolution20ms after imports including setup/verification/cleanup. No20rendered/TownClient public invalidation, leak/capacity/overhead/WAN/physical-device or speedup claim.",
+  "rows": [
+    {
+      "run": 1,
+      "source": {
+        "head": "f245a148da0a00e68ba178dd12562f78637a1175",
+        "workingTreeCandidate": true,
+        "files": {
+          "tools/session-profile.ts": "66ee087c557639359a3b26073dee60e306a12f5bc1ea5ee5972b9bb35f1e3e15",
+          "tools/session-child.ts": "49922a78033d4d2a132cb92a4dc501fde2e65236f339f2bddfc8dd66ed6f8ac2",
+          "tools/session-process.ts": "25f4cff818f791f870f958ef3c3a08e8e9e3ecdfc285e554111e746c2a6b3001",
+          "tools/session-target.ts": "d89def14b1269075c7fce09711137d0a5d224549e2e16214892071b9509746ba",
+          "tools/session-resources.ts": "8dcdde1e294e1f35fb0eb1e892fb9eefc9bcc3f687325af67ec2a8515bd37ceb"
+        }
+      },
+      "workloadMs": 300026.083459,
+      "wholeInvocationSeconds": 302.321006,
+      "ordinaryCommandP95Ms": 203.94774999999936,
+      "replayP95Ms": 147.54708399999072,
+      "snapshotP95Ms": 234.30837500000052,
+      "waves": [
+        {
+          "wave": 1,
+          "atMs": 60734.886125,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 2,
+          "atMs": 105657.243667,
+          "reconnects": 20,
+          "relogins": 5
+        },
+        {
+          "wave": 3,
+          "atMs": 150554.47875,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 4,
+          "atMs": 195665.942542,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 5,
+          "atMs": 240579.9725,
+          "reconnects": 20,
+          "relogins": 0
+        }
+      ],
+      "http": {
+        "requests": 1350,
+        "requestBodyBytes": 73720,
+        "responseBodyBytes": 1496190,
+        "streamConnections": 120
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueReceipts": 140,
+        "revisionEach": 7,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "ownedPlanters": 20,
+        "outputKits": 0,
+        "queuedKitHours": 12,
+        "all9MetadataChecksumsExact": true,
+        "durability": [
+          {
+            "name": "fsync",
+            "setting": "on"
+          },
+          {
+            "name": "full_page_writes",
+            "setting": "on"
+          },
+          {
+            "name": "synchronous_commit",
+            "setting": "on"
+          }
+        ],
+        "all17TablesEveryFieldMatchCheckpoint": true,
+        "tables": {
+          "bridge": {
+            "rows": 1,
+            "sha256": "bb7358e58e2b265889f54a8d201713f3088b507643859a203cec9b1470e2c8df"
+          },
+          "bridge_contributions": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "cafe_project": {
+            "rows": 1,
+            "sha256": "f908f74ffa6b9308f5922623ca7cc961eda3a0c7e383cf0a0fea7f4da9940dbd"
+          },
+          "command_receipts": {
+            "rows": 140,
+            "sha256": "d74d44aeccdf66ce22db4f00bb896d745842ce9e4ffc5139fe6e6b39a5e9d8ed"
+          },
+          "garden_welcome": {
+            "rows": 1,
+            "sha256": "bfcfa1fd208f4c2c998c70193b6136b0d528058d0f6374095e671b4e744e4da8"
+          },
+          "housing_builds": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "housing_quotes": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_lessons": {
+            "rows": 20,
+            "sha256": "678fdff3437c0e3efdaef3fa93417c13e3f8d73d6303ffadba828df8457f4db0"
+          },
+          "noticeboard": {
+            "rows": 1,
+            "sha256": "bbc5e25c92c9fe696220221835709d97743646501db614e16a8b725b58ccc0a0"
+          },
+          "outings": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "players": {
+            "rows": 20,
+            "sha256": "7cc9da7aeef86783e8646e396a54ecafe41017ece7a4e07260dca212eb3bf200"
+          },
+          "plots": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "project_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "quest_awards": {
+            "rows": 20,
+            "sha256": "d12c03010579b65df0063ac6714a0367c7837b780fad369f1932b15dfb4d84fc"
+          },
+          "season_scores": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "trail_stamps": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        }
+      },
+      "idle": {
+        "elapsedMs": 30017.29270800005,
+        "sqlQueries": 0,
+        "presenceEvents": 0,
+        "heartbeats": 60
+      },
+      "serverResources": {
+        "pid": 20280,
+        "parentPid": 20274,
+        "elapsedMs": 301116.642958,
+        "cpuUserMs": 2379.084,
+        "cpuSystemMs": 889.113,
+        "cpuPercentOfOneCore": 1.0853591378726453,
+        "eventLoopP95Ms": 22.675455,
+        "eventLoopMaxMs": 72.351743,
+        "rssPeakBytes": 124403712,
+        "heapPeakBytes": 46980656,
+        "dropped": 0
+      },
+      "driverResources": {
+        "pid": 20274,
+        "parentPid": 20256,
+        "elapsedMs": 301666.399416,
+        "cpuUserMs": 1630.455,
+        "cpuSystemMs": 659.799,
+        "cpuPercentOfOneCore": 0.7592008935810329,
+        "eventLoopP95Ms": 22.691839,
+        "eventLoopMaxMs": 77.201407,
+        "rssPeakBytes": 128401408,
+        "heapPeakBytes": 47112888,
+        "dropped": 0
+      },
+      "sqlByPhase": {
+        "setup": 32,
+        "load": 3870,
+        "verification": 44
+      },
+      "traceTotals": {
+        "seen": 5677,
+        "retained": 5677,
+        "dropped": 0
+      },
+      "observerIdleSubmissions": 0,
+      "observerErrors": [],
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0,
+        "errors": []
+      },
+      "budgets": {
+        "commandP95TargetMs": 500,
+        "replayP95TargetMs": 500,
+        "snapshotP95TargetMs": 500,
+        "serverEventLoopP95TargetMs": 50,
+        "commandP95Pass": true,
+        "replayP95Pass": true,
+        "snapshotP95Pass": true,
+        "serverEventLoopP95Pass": true
+      },
+      "rawSha256": {
+        "session-profile.json": "392e54d570d40d0ea6670a15bad63091f9c0a70df809eb70276741719a27679c",
+        "server-process.json": "970f554d8742a288ac8c011e5157d8c1d26072cfebf44d05a15c3dedeac53441",
+        "load-profile.json": "62a8f6536cd16759687e7b3ca52474a8035f50f96a5f56d95e804affd3344a10",
+        "attempt.json": "3b5ca214a28daaeb5e182bbe5f8432808d1168c3d06b795e02ec154e7ff9eca5"
+      },
+      "observationVersion": "initial f245a148: no per-connection idle heartbeat/live-stream bookend capture"
+    },
+    {
+      "run": 2,
+      "source": {
+        "head": "f245a148da0a00e68ba178dd12562f78637a1175",
+        "workingTreeCandidate": true,
+        "files": {
+          "tools/session-profile.ts": "66ee087c557639359a3b26073dee60e306a12f5bc1ea5ee5972b9bb35f1e3e15",
+          "tools/session-child.ts": "49922a78033d4d2a132cb92a4dc501fde2e65236f339f2bddfc8dd66ed6f8ac2",
+          "tools/session-process.ts": "25f4cff818f791f870f958ef3c3a08e8e9e3ecdfc285e554111e746c2a6b3001",
+          "tools/session-target.ts": "d89def14b1269075c7fce09711137d0a5d224549e2e16214892071b9509746ba",
+          "tools/session-resources.ts": "8dcdde1e294e1f35fb0eb1e892fb9eefc9bcc3f687325af67ec2a8515bd37ceb"
+        }
+      },
+      "workloadMs": 300014.13945799996,
+      "wholeInvocationSeconds": 301.96547016600005,
+      "ordinaryCommandP95Ms": 389.71070899999904,
+      "replayP95Ms": 215.59799999999814,
+      "snapshotP95Ms": 288.3893340000068,
+      "waves": [
+        {
+          "wave": 1,
+          "atMs": 60629.644250000005,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 2,
+          "atMs": 105532.78304200001,
+          "reconnects": 20,
+          "relogins": 5
+        },
+        {
+          "wave": 3,
+          "atMs": 150818.162375,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 4,
+          "atMs": 195526.02762500002,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 5,
+          "atMs": 240676.85995800002,
+          "reconnects": 20,
+          "relogins": 0
+        }
+      ],
+      "http": {
+        "requests": 1350,
+        "requestBodyBytes": 73720,
+        "responseBodyBytes": 1496190,
+        "streamConnections": 120
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueReceipts": 140,
+        "revisionEach": 7,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "ownedPlanters": 20,
+        "outputKits": 0,
+        "queuedKitHours": 12,
+        "all9MetadataChecksumsExact": true,
+        "durability": [
+          {
+            "name": "fsync",
+            "setting": "on"
+          },
+          {
+            "name": "full_page_writes",
+            "setting": "on"
+          },
+          {
+            "name": "synchronous_commit",
+            "setting": "on"
+          }
+        ],
+        "all17TablesEveryFieldMatchCheckpoint": true,
+        "tables": {
+          "bridge": {
+            "rows": 1,
+            "sha256": "bb7358e58e2b265889f54a8d201713f3088b507643859a203cec9b1470e2c8df"
+          },
+          "bridge_contributions": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "cafe_project": {
+            "rows": 1,
+            "sha256": "f908f74ffa6b9308f5922623ca7cc961eda3a0c7e383cf0a0fea7f4da9940dbd"
+          },
+          "command_receipts": {
+            "rows": 140,
+            "sha256": "ad161c00f80729eb9af4468ea37547b2cabf255167dc212350fbb6c3bba68504"
+          },
+          "garden_welcome": {
+            "rows": 1,
+            "sha256": "bfcfa1fd208f4c2c998c70193b6136b0d528058d0f6374095e671b4e744e4da8"
+          },
+          "housing_builds": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "housing_quotes": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_lessons": {
+            "rows": 20,
+            "sha256": "678fdff3437c0e3efdaef3fa93417c13e3f8d73d6303ffadba828df8457f4db0"
+          },
+          "noticeboard": {
+            "rows": 1,
+            "sha256": "bbc5e25c92c9fe696220221835709d97743646501db614e16a8b725b58ccc0a0"
+          },
+          "outings": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "players": {
+            "rows": 20,
+            "sha256": "b0d446ef7a79644f0ae19974af361d526849887f589161418ae1da9041cb5794"
+          },
+          "plots": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "project_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "quest_awards": {
+            "rows": 20,
+            "sha256": "abcb357472e94baf10d2e9af89b8498251825b7b967051a88cf41cfd47256d09"
+          },
+          "season_scores": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "trail_stamps": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        }
+      },
+      "idle": {
+        "elapsedMs": 30003.971250000002,
+        "sqlQueries": 0,
+        "presenceEvents": 0,
+        "heartbeats": 40
+      },
+      "serverResources": {
+        "pid": 20452,
+        "parentPid": 20446,
+        "elapsedMs": 300916.0215,
+        "cpuUserMs": 2527.659,
+        "cpuSystemMs": 876.456,
+        "cpuPercentOfOneCore": 1.1312508330501105,
+        "eventLoopP95Ms": 22.675455,
+        "eventLoopMaxMs": 61.997055,
+        "rssPeakBytes": 127942656,
+        "heapPeakBytes": 59158816,
+        "dropped": 0
+      },
+      "driverResources": {
+        "pid": 20446,
+        "parentPid": 20256,
+        "elapsedMs": 301404.605792,
+        "cpuUserMs": 1691.221,
+        "cpuSystemMs": 658.436,
+        "cpuPercentOfOneCore": 0.7795690426912399,
+        "eventLoopP95Ms": 22.740991,
+        "eventLoopMaxMs": 124.059647,
+        "rssPeakBytes": 127139840,
+        "heapPeakBytes": 49366120,
+        "dropped": 0
+      },
+      "sqlByPhase": {
+        "setup": 32,
+        "load": 3870,
+        "verification": 44
+      },
+      "traceTotals": {
+        "seen": 5677,
+        "retained": 5677,
+        "dropped": 0
+      },
+      "observerIdleSubmissions": 0,
+      "observerErrors": [],
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0,
+        "errors": []
+      },
+      "budgets": {
+        "commandP95TargetMs": 500,
+        "replayP95TargetMs": 500,
+        "snapshotP95TargetMs": 500,
+        "serverEventLoopP95TargetMs": 50,
+        "commandP95Pass": true,
+        "replayP95Pass": true,
+        "snapshotP95Pass": true,
+        "serverEventLoopP95Pass": true
+      },
+      "rawSha256": {
+        "session-profile.json": "641eeafd469fede1a507991b63afbefd2cd7b938471a6cd1f6a2fa4378653340",
+        "server-process.json": "f883bbf112a895b967852e725601031be33278ca9933049123b767db58e5a6e2",
+        "load-profile.json": "88ebb5da91ed2f70595352e748eb2c261b33793c1155c9fc8445a7c8b89f98a5",
+        "attempt.json": "f56867880d2e866f6f2df3834c919df6fdfa097eafd85a453d55e1ddbe114bce"
+      },
+      "observationVersion": "initial f245a148: no per-connection idle heartbeat/live-stream bookend capture"
+    },
+    {
+      "run": 3,
+      "source": {
+        "head": "f245a148da0a00e68ba178dd12562f78637a1175",
+        "workingTreeCandidate": true,
+        "files": {
+          "tools/session-profile.ts": "66ee087c557639359a3b26073dee60e306a12f5bc1ea5ee5972b9bb35f1e3e15",
+          "tools/session-child.ts": "49922a78033d4d2a132cb92a4dc501fde2e65236f339f2bddfc8dd66ed6f8ac2",
+          "tools/session-process.ts": "25f4cff818f791f870f958ef3c3a08e8e9e3ecdfc285e554111e746c2a6b3001",
+          "tools/session-target.ts": "d89def14b1269075c7fce09711137d0a5d224549e2e16214892071b9509746ba",
+          "tools/session-resources.ts": "8dcdde1e294e1f35fb0eb1e892fb9eefc9bcc3f687325af67ec2a8515bd37ceb"
+        }
+      },
+      "workloadMs": 300016.796708,
+      "wholeInvocationSeconds": 302.81854229199996,
+      "ordinaryCommandP95Ms": 258.6197910000001,
+      "replayP95Ms": 268.0618750000067,
+      "snapshotP95Ms": 428.52937500000553,
+      "waves": [
+        {
+          "wave": 1,
+          "atMs": 61038.79475,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 2,
+          "atMs": 105569.945375,
+          "reconnects": 20,
+          "relogins": 5
+        },
+        {
+          "wave": 3,
+          "atMs": 150889.205791,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 4,
+          "atMs": 195616.778625,
+          "reconnects": 20,
+          "relogins": 0
+        },
+        {
+          "wave": 5,
+          "atMs": 240726.31675,
+          "reconnects": 20,
+          "relogins": 0
+        }
+      ],
+      "http": {
+        "requests": 1350,
+        "requestBodyBytes": 73720,
+        "responseBodyBytes": 1496190,
+        "streamConnections": 120
+      },
+      "conservation": {
+        "residents": 20,
+        "uniqueReceipts": 140,
+        "revisionEach": 7,
+        "inventoryEach": {
+          "scrap": 1,
+          "timber": 2,
+          "supplies": 4
+        },
+        "ownedPlanters": 20,
+        "outputKits": 0,
+        "queuedKitHours": 12,
+        "all9MetadataChecksumsExact": true,
+        "durability": [
+          {
+            "name": "fsync",
+            "setting": "on"
+          },
+          {
+            "name": "full_page_writes",
+            "setting": "on"
+          },
+          {
+            "name": "synchronous_commit",
+            "setting": "on"
+          }
+        ],
+        "all17TablesEveryFieldMatchCheckpoint": true,
+        "tables": {
+          "bridge": {
+            "rows": 1,
+            "sha256": "bb7358e58e2b265889f54a8d201713f3088b507643859a203cec9b1470e2c8df"
+          },
+          "bridge_contributions": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "cafe_project": {
+            "rows": 1,
+            "sha256": "f908f74ffa6b9308f5922623ca7cc961eda3a0c7e383cf0a0fea7f4da9940dbd"
+          },
+          "command_receipts": {
+            "rows": 140,
+            "sha256": "088ef7dd66b96314f03871f64ed292f0b3320afd8432598e4a51fc62db355973"
+          },
+          "garden_welcome": {
+            "rows": 1,
+            "sha256": "bfcfa1fd208f4c2c998c70193b6136b0d528058d0f6374095e671b4e744e4da8"
+          },
+          "housing_builds": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "housing_quotes": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "maintenance_lessons": {
+            "rows": 20,
+            "sha256": "678fdff3437c0e3efdaef3fa93417c13e3f8d73d6303ffadba828df8457f4db0"
+          },
+          "noticeboard": {
+            "rows": 1,
+            "sha256": "bbc5e25c92c9fe696220221835709d97743646501db614e16a8b725b58ccc0a0"
+          },
+          "outings": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "players": {
+            "rows": 20,
+            "sha256": "a119dd80d4aa79593ffbec50deb94b3380a6977fbe37bf578f0cb5babb3b6502"
+          },
+          "plots": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "project_events": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "quest_awards": {
+            "rows": 20,
+            "sha256": "e916fb8b3a4eaa6dd53ea0d77ce7e5a363e91e16474a7f93f5fb778282fca761"
+          },
+          "season_scores": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "trail_stamps": {
+            "rows": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        }
+      },
+      "idle": {
+        "elapsedMs": 30005.029708999966,
+        "sqlQueries": 0,
+        "presenceEvents": 0,
+        "heartbeats": 40
+      },
+      "serverResources": {
+        "pid": 20619,
+        "parentPid": 20608,
+        "elapsedMs": 300984.777916,
+        "cpuUserMs": 2400.972,
+        "cpuSystemMs": 853.604,
+        "cpuPercentOfOneCore": 1.081309168700983,
+        "eventLoopP95Ms": 22.740991,
+        "eventLoopMaxMs": 93.978623,
+        "rssPeakBytes": 129794048,
+        "heapPeakBytes": 49986920,
+        "dropped": 0
+      },
+      "driverResources": {
+        "pid": 20608,
+        "parentPid": 20256,
+        "elapsedMs": 301598.890917,
+        "cpuUserMs": 1644.938,
+        "cpuSystemMs": 652.025,
+        "cpuPercentOfOneCore": 0.761595307269258,
+        "eventLoopP95Ms": 22.691839,
+        "eventLoopMaxMs": 65.175551,
+        "rssPeakBytes": 118571008,
+        "heapPeakBytes": 47178272,
+        "dropped": 0
+      },
+      "sqlByPhase": {
+        "setup": 32,
+        "load": 3870,
+        "verification": 44
+      },
+      "traceTotals": {
+        "seen": 5677,
+        "retained": 5677,
+        "dropped": 0
+      },
+      "observerIdleSubmissions": 0,
+      "observerErrors": [],
+      "cleanup": {
+        "completed": true,
+        "activeStreamsAfter": 0,
+        "activeRequestsAfter": 0,
+        "errors": []
+      },
+      "budgets": {
+        "commandP95TargetMs": 500,
+        "replayP95TargetMs": 500,
+        "snapshotP95TargetMs": 500,
+        "serverEventLoopP95TargetMs": 50,
+        "commandP95Pass": true,
+        "replayP95Pass": true,
+        "snapshotP95Pass": true,
+        "serverEventLoopP95Pass": true
+      },
+      "rawSha256": {
+        "session-profile.json": "cfacde5066cdc405a869f437d7bd42d1d34710150d46a4a5882d1bd23d1195f3",
+        "server-process.json": "fdb1e6ae542813ac0cefb61039de59d9bd8e803d891386c741397cc6234531dd",
+        "load-profile.json": "16a2f52f75c63e47da7ddf03cbed2e8f05413bb14123723f41f7137be02d1a79",
+        "attempt.json": "52acaec528a4b72c8a1e48081b0a617f2748bd1735267eb8608e9766f6a8a431"
+      },
+      "observationVersion": "initial f245a148: no per-connection idle heartbeat/live-stream bookend capture"
+    }
+  ]
+}

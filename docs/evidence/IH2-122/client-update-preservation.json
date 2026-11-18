@@ -1,0 +1,9 @@
+{
+  "sha": "9afd70be62811b48be7f2efeeafaaa188acb4898",
+  "all17TablesAnd9MetadataEveryFieldExact": true,
+  "originalKeysExact0600": true,
+  "apiProcessesUnchanged": true,
+  "apiSourceByteEquivalentToAcceptedMain": true,
+  "onlyTwoKnownStaticProcessesUpdated": true,
+  "noMigrationResetSeedGrantPgRestartOrKeyCopy": true
+}

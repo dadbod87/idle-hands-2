@@ -1,0 +1,12 @@
+{
+  "profile": "CI=1 existing bundled Chromium, all193 actual browser cases; tool-only observation hardening leaves src/server/public/spec/config bytes unchanged",
+  "stats": {
+    "startTime": "2026-11-18T09:13:43.297Z",
+    "duration": 2646733.1149999998,
+    "expected": 193,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": []
+}

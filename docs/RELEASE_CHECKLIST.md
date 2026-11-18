@@ -1,6 +1,14 @@
+# November18 — IH2-123 active server-only session profiling
+
+123implementation and3final300second studies complete at e092161; all conservation/privacy/20connection/idle/cleanup gates pass. Run1command/replay and run3snapshot miss unchanged500ms diagnostic targets; all retained, no green-chasing. Strong focused3/3, final506/506domain, unchanged193/193browser, build/plan/pinned checks pass; original500ms bursts369.278/464.933ms. Exact final PR/main five-job/raw gates and read-only preview closeout pending. Normal122client/121API9/data/keys/fourPIDs unchanged; no runtime update expected. [Report](evidence/IH2-123/REPORT.md). Current source work/idle-hands-2-session-profile, perf/bounded-session-churn. Deadline15UTC/7AMPacific; latest20%weeklyused. Earlier entries historical.
+
+# November18 — IH2-122 accepted menu confirmation
+
+Completed menu reads restore truthful feedback; successful/refused actions keep their specific receipts. Main **9afd70be62811b48be7f2efeeafaaa188acb4898** passes exact PR/main five-job/raw503-domain/193-browser gates and the actual saved-client/Terra checks. Original APIs, saved17-table fields,9 metadata records,0600 keys and226 art files remain preserved. Local timing/browser failures and earlier cancelled CI attempts remain disclosed. [Report](evidence/IH2-122/REPORT.md), [resume point](idle-hands-2/CURRENT_SESSION.md). No hosted or original-game release. Earlier entries below are historical.
+
 # November18 — IH2-122 final acceptance recovery
 
-Original UI PR54 passed503domain/193browser; identical main6cc2f96 remains unaccepted after two fixed20minute browser-job cancellations. Second attempt logged94/94pass but cancelled during upload. Necessary test-only recovery uses three measured groups73/66/54, preserving all193cases, ordered fixture family, runner/worker/caps/authority. Require new exact candidate/main **five jobs/raw503+193** and original saved-client/Terra gates. [Recovery](evidence/IH2-122/CI_RECOVERY.md). Source work/idle-hands-2-menu-status, branchfix/browser-check-headroom. No other task active. Normal121API9/119client and protected55432/originalkeys unchanged. Userdeadline15UTCNov18/latest18%weeklyused. Earlier entries historical.
+Original UI PR54 passed503domain/193browser; identical main6cc2f96 remains unaccepted after two fixed20minute browser-job cancellations. Second attempt logged94/94pass but cancelled during upload. Necessary test-only recovery uses three measured groups73/66/54, preserving all193cases, ordered fixture family, runner/worker/caps/authority. Require new exact candidate/main **five jobs/raw503+193** and original saved-client/Terra gates. [Recovery](evidence/IH2-122/CI_RECOVERY.md). Source work/idle-hands-2-menu-status, branchfix/browser-check-headroom. No other task active. Normal121API9/119client and protected55432/originalkeys unchanged. Userdeadline15UTCNov18/latest20%weeklyused. Earlier entries historical.
 
 # November17 — IH2-122 final menu-feedback candidate
 

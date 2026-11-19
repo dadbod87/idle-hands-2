@@ -48,3 +48,20 @@ test('unreadable or future browser character records are never overwritten',()=>
  assert.equal(readBrowserResident(unavailable).status,'unavailable');
  assert.equal(saveBrowserResident(unavailable,null,'Casey','casey').status,'unavailable');
 });
+
+test('headwear is a separate cosmetic choice that preserves legacy records until an explicit save',()=>{
+ const raw=JSON.stringify({version:1,name:'Bea',look:'bea'});
+ const f=roomFixture(raw);
+ assert.equal(readBrowserResident(f.storage).resident?.version,1);
+ assert.equal(f.item.get(BROWSER_RESIDENT_KEY),raw);
+ const cap=saveBrowserResident(f.storage,raw,'Bea','bea','clerk');
+ assert.equal(cap.status,'saved');
+ if(cap.status!=='saved')return;
+ assert.deepEqual(readBrowserResident(f.storage).resident,{version:2,name:'Bea',look:'bea',headwear:'clerk'});
+ assert.equal(saveBrowserResident(f.storage,raw,'Bea','bea','inkwood').status,'changed');
+ assert.equal(browserResident('Bea','bea','mystery'),null);
+ assert.equal(f.item.get('ih2:workshop:v2'),'personal-progress');
+ const original=saveBrowserResident(f.storage,cap.raw,'Bea','bea',null);
+ assert.equal(original.status,'saved');
+ assert.equal(f.item.get(BROWSER_RESIDENT_KEY),raw);
+});

@@ -2181,6 +2181,26 @@
       "source": "tools/orchard-study/orchard-snack.svg",
       "date": "2026-11-19",
       "modifications": "Byte-identical promotion of the original orchard study illustration."
+    },
+    {
+      "id": "headwear-clerk",
+      "path": "public/art/headwear/clerk.svg",
+      "sha256": "f923240604933011a9f1425dbcd3e3d1169b00e79d93b1a9b9c0eeeef2cc3dc1",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/wardrobe-study/create.py --promote-overlays",
+      "date": "2026-11-19",
+      "modifications": "Original four-facing headwear overlay with stable actor feet. No imported media."
+    },
+    {
+      "id": "headwear-inkwood",
+      "path": "public/art/headwear/inkwood.svg",
+      "sha256": "1a11d2bd3999a762fa5266bde420189d2844935936a6b93f4881e4a96e210bbb",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/wardrobe-study/create.py --promote-overlays",
+      "date": "2026-11-19",
+      "modifications": "Original four-facing headwear overlay with stable actor feet. No imported media."
     }
   ],
   "comparison": {

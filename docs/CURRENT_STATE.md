@@ -1,3 +1,7 @@
+# November 19 — a private café parcel shelf
+
+Shared practice residents can leave one real orchard snack for a neighbor, who can accept it or decline. Both sides see the pickup deadline in local time. The sender can reclaim an unaccepted parcel after expiry. Main `26fea9631260c80f08f9de114cdcddeeca5f533e` passed 571 domain tests and 223 browser cases. [PR #73 evidence](evidence/IH2-150/SNACK_SHELF_CI.json).
+
 # November 19 — less tree work and a rehearsal for small favors
 
 Visible tree sway now skips unchanged transform assignments. Native desktop, narrow phone and 2K checks verify that a canopy begins and ends visible motion when the camera passes. A separate café parcel rehearsal demonstrates a small neighbor gift. Main `68619d549a01c10f80a2780e61e0cba2d6cfd219` passed 566 domain tests and 220 browser cases. [PR #72 evidence](evidence/IH2-148/CANOPY_AND_PARCEL_CI.json).

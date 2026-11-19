@@ -1,0 +1,48 @@
+{
+  "classification": "Original project headwear on byte-identical base resident sheets. Standalone study only.",
+  "width": 64,
+  "height": 80,
+  "foot": [
+    32,
+    72
+  ],
+  "facings": [
+    "south",
+    "north",
+    "east",
+    "west"
+  ],
+  "posesPerFacing": 7,
+  "files": {
+    "aster-none.svg": "ea9299bd173705f45c4990802f609cad51cfbc8523cf7a3e51ec4ebb9e499688",
+    "aster-clerk.svg": "13eadebaa91ff2c9cab8b0041fe3348882db2e18724345e3d6d6974c39aa7e3f",
+    "aster-inkwood.svg": "9e7016fa50a02d0ea9ec7805ae2781ac6d1202da7dd3ee9270d92bad00778bd4",
+    "bea-none.svg": "cff1de8e1db2980a42c5ff046e6c05578f7da6559f94bd0a07f7b99b51d31134",
+    "bea-clerk.svg": "aba125d7f4f83db1413a6e02cd841226fbd32be9b8a50265d91ccd6a7bc51da6",
+    "bea-inkwood.svg": "5d603c0b899d70dce81b15c2447252c9f14fc4e3bfd1ce303ed92dbc769e62cf",
+    "casey-none.svg": "c54f655493894813963dee09475e333e20abd0f7640751a657368597a107b39c",
+    "casey-clerk.svg": "0232d8ca918c97194d703685fdec5fa22d730047186483213046cbcac838f722",
+    "casey-inkwood.svg": "af31301354841639093dd841167f088a65ff128a5dfefb6e80595689cc35cbc7",
+    "devon-none.svg": "bb536c20d5f8a81f8ce1be95a19819c01d95f0107118fc774f39ca6346661298",
+    "devon-clerk.svg": "1884ff5e5b0b9606827101ee58a1ed1529f2f4f7907a960002029987b696aa5f",
+    "devon-inkwood.svg": "1f1456db4df8a83bb9bfaa09aa6ca59b732285766ab89ddbf5da83aa7d5bc70e",
+    "overlay-clerk.svg": "f923240604933011a9f1425dbcd3e3d1169b00e79d93b1a9b9c0eeeef2cc3dc1",
+    "overlay-inkwood.svg": "1a11d2bd3999a762fa5266bde420189d2844935936a6b93f4881e4a96e210bbb",
+    "aster-orchard.svg": "88ad7b595096bdef2f809f8bf9a888d1dce7bd5a3feb3165095f9de82306a305",
+    "aster-garden.svg": "6d5ca5a94ba2a23f42fae6200182b60a3a5ff895f7160c5ba6e1fa9e49324ef9",
+    "aster-saw.svg": "c544f43771f44faadf4012a85e815833730f5523c87051e5567c3dcff70d15e4",
+    "aster-serve.svg": "ddc3614614a7bb57df4c5c399cacfd352a78f272ba9d5f6311e34b3bfcc8c4f4",
+    "bea-orchard.svg": "326cbd34935d19315b854fd6a1cba4c1470b9c9e02fcd5f75620a456c4096be2",
+    "bea-garden.svg": "51d921b4b9caf8f1a71b33a57a0e0b2933490d4051c16e4a935bb7bf0390581d",
+    "bea-saw.svg": "02a5dd786789731bbe881f5e710d16e3c207d25696ad05e9adc4391940d5e68a",
+    "bea-serve.svg": "3edd84982413489a76b6f99eef9f6e9a5804ccf74d7d11eefafe2c15d032375d",
+    "casey-orchard.svg": "0cd234abb8184ef0d6ce42223eef443efa4f8cc384471a29d296c5d853a6d9a5",
+    "casey-garden.svg": "b811dd44519af995cbbf76cdbece4e7af2c3ec13ea9810fe7530012698e7f289",
+    "casey-saw.svg": "b786ae07c8e4d38df2b7fcb6bda72c3b32722c126e33be3470db54dc219b04d0",
+    "casey-serve.svg": "9547480ab49f3525a19bc615115801acff364a58493c340102aa350d87906c64",
+    "devon-orchard.svg": "57171eb35b2806efc97f4ef411ea050ffe70ee0734b461e62ee8a8f2ef5293c3",
+    "devon-garden.svg": "20e54145e6238dd7491a6031130468c37d9ced5aaa53faebbd4d25003b090b57",
+    "devon-saw.svg": "f94a16084fd0a33c869ccdb10eb45aa6c6ec41d808250511620206e1b78eb6c6",
+    "devon-serve.svg": "985af57505eb1a1a79d98d3fd11f35206ad82992c4338bf7bb400f9fbfbbf328"
+  }
+}

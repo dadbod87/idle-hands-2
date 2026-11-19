@@ -1,3 +1,4 @@
+import {HEADWEAR,headwearName,isHeadwear} from '../art/headwear.ts';
 import {RESIDENT_IDS, type ResidentId} from '../art/variety.ts';
 import {BROWSER_RESIDENT_KEY, readBrowserResident, saveBrowserResident, type BrowserResident} from '../game/browser-resident.ts';
 import './browser-resident.css';
@@ -55,6 +56,7 @@ export function mountBrowserResident(host:Host) {
   const looks=document.createElement('div');
   looks.className='resident-profile-looks';
   let selected=current.resident?.look??'devon';
+  const previews:HTMLElement[]=[];
   for(const look of RESIDENT_IDS){
    const choice=document.createElement('label');
    const radio=document.createElement('input');
@@ -70,17 +72,39 @@ export function mountBrowserResident(host:Host) {
    const art=document.createElement('span');
    art.className='resident-profile-art';
    art.style.backgroundImage='url(/art/variety/resident-'+look+'.svg)';
+   const top=document.createElement('span');
+   top.className='resident-profile-headwear';
+   art.append(top);
+   previews.push(top);
    preview.append(art);
    choice.append(radio,preview);
    looks.append(choice);
   }
   options.append(looks);
 
+  const headwearLabel=document.createElement('label');
+  headwearLabel.textContent='Headwear';
+  headwearLabel.htmlFor='resident-headwear';
+  const headwear=document.createElement('select');
+  headwear.id=headwearLabel.htmlFor;
+  headwear.append(new Option('Original look','none'));
+  for(const hat of HEADWEAR)headwear.append(new Option(headwearName[hat],hat));
+  headwear.value=current.resident?.version===2?current.resident.headwear:'none';
+  const previewHeadwear=()=>{
+   const value=headwear.value;
+   for(const layer of previews)layer.style.backgroundImage=isHeadwear(value)?'url(/art/headwear/'+value+'.svg)':'none';
+  };
+  headwear.addEventListener('change',previewHeadwear);
+  previewHeadwear();
+  const headwearChoice=document.createElement('div');
+  headwearChoice.className='resident-profile-headwear-choice';
+  headwearChoice.append(headwearLabel,headwear);
+
   const submit=document.createElement('button');
   submit.type='button';
   submit.className='destination';
   submit.textContent='Save changes';
-  editor.append(label,options,submit,status);
+  editor.append(label,options,headwearChoice,submit,status);
   host.body.append(editor);
 
   async function save(){
@@ -89,10 +113,12 @@ export function mountBrowserResident(host:Host) {
    submit.disabled=true;
    name.readOnly=true;
    options.disabled=true;
+   headwear.disabled=true;
    name.removeAttribute('aria-invalid');
    name.removeAttribute('aria-describedby');
    const submittedName=name.value,submittedLook=selected;
-   const write=()=>saveBrowserResident(storage,baseline,submittedName,submittedLook);
+   const submittedHat=isHeadwear(headwear.value)?headwear.value:null;
+   const write=()=>saveBrowserResident(storage,baseline,submittedName,submittedLook,submittedHat);
    try{
     const result=navigator.locks?await navigator.locks.request(BROWSER_RESIDENT_KEY,write):write();
     if(result.status==='saved'){
@@ -117,6 +143,7 @@ export function mountBrowserResident(host:Host) {
     submit.disabled=false;
     name.readOnly=false;
     options.disabled=false;
+    headwear.disabled=false;
    }
   }
   submit.onclick=()=>void save();
@@ -124,7 +151,7 @@ export function mountBrowserResident(host:Host) {
    const target=event.target;
    const dialog=editor.closest('dialog'),header=dialog?.querySelector('.dialog-head');
    if(!(target instanceof HTMLElement)||!target.matches(':focus-visible')||!dialog||!header)return;
-   const item=target===name?label:target.closest('label')??target;
+   const item=target===name?label:target===headwear?headwearChoice:target.closest('label')??target;
    const bounds=item.getBoundingClientRect();
    const top=header.getBoundingClientRect().bottom+6,bottom=dialog.getBoundingClientRect().bottom-6;
    if(bounds.top<top)dialog.scrollTop+=bounds.top-top;

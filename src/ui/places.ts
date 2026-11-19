@@ -1,9 +1,10 @@
 import {placesView} from '../game/places-view.ts';
 import type {WorkshopState} from '../game/live-workshop.ts';
-import type {Room, Stop} from '../game/world.ts';
+import type {Point, Room, Stop} from '../game/world.ts';
+import {townMap} from './town-map.ts';
 
 export function renderPlaces(body: HTMLElement, options: {
- room: Room; stops: Stop[]; state: WorkshopState; goal: {id: string; destination?: string};
+ room: Room; position: Point; stops: Stop[]; state: WorkshopState; goal: {id: string; destination?: string};
  now: number; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void;
 }) {
  const view = placesView(options.room, options.stops, options.state, options.goal, options.now, options.neighborhood);
@@ -44,6 +45,7 @@ export function renderPlaces(body: HTMLElement, options: {
   appendStops(detail, group.stops);
   browse.append(detail);
  }
+ if (options.room === 'square') browse.append(townMap({...options.position}));
  body.append(browse);
 
  if (!view.groups.length) return;

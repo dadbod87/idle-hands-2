@@ -142,7 +142,7 @@ export class SnackShelfUI {
   art.alt='';
   art.width=48;
   art.height=48;
-  summary.append(art,element('p',count+' available'+(held?' · 1 on hold':'')+' · '+SNACK_CAP+' pouch spaces'));
+  summary.append(art,element('p',count+' available'+(held?' · 1 on hold':'')+' · pouch capacity '+SNACK_CAP));
   const lastChoice=contents.querySelector<HTMLSelectElement>('#snack-recipient');
   const neighbor=lastChoice?.value??'';
   const focusId=(document.activeElement===lastChoice||document.activeElement?.id==='leave-parcel')

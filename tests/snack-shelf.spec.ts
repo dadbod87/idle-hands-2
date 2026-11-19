@@ -98,7 +98,7 @@ test('café parcel shelf shows full and held pouches and confirms a lost reply w
    await expect(page.getByRole('dialog')).toHaveAccessibleName('Café parcel shelf');
    await expect(page.getByRole('heading',{name:'A snack from Flint'})).toBeVisible();
    await expect(controls('Accept snack')).toBeDisabled();
-   await expect(page.getByText('3 available · 3 pouch spaces')).toBeVisible();
+   await expect(page.getByText('3 available · pouch capacity 3')).toBeVisible();
    const taste=controls('Taste a snack');
    await taste.scrollIntoViewIfNeeded();
    await page.screenshot({path:output+'/'+size.name+'-full.png'});
@@ -135,7 +135,7 @@ test('café parcel shelf shows full and held pouches and confirms a lost reply w
    await press('Leave snack');
    await expect(page.getByRole('heading',{name:'Waiting for Jun'})).toBeVisible();
    await expect(page.getByRole('dialog').locator('time')).toHaveAttribute('datetime',new Date(fixtureAt+SNACK_OFFER_MS).toISOString());
-   await expect(page.getByText('2 available · 1 on hold · 3 pouch spaces')).toBeVisible();
+   await expect(page.getByText('2 available · 1 on hold · pouch capacity 3')).toBeVisible();
    expect(reads).toBe(4);
    await controls('Take back snack').scrollIntoViewIfNeeded();
    await expect(controls('Take back snack')).toBeInViewport();

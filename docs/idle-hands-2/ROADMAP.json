@@ -2629,7 +2629,7 @@
     {
       "id": "IH2-141",
       "title": "Model a private orchard and first snack",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/town-work-moments",
       "depends_on": [
         "IH2-113"
@@ -2643,13 +2643,15 @@
         "Saved services remain stopped. No original-game, hosted, paid or economy changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-141/PLAN.md"
-      ]
+        "docs/evidence/IH2-141/PLAN.md",
+        "docs/evidence/IH2-142/TOWN_MOMENTS_CI.json"
+      ],
+      "progress_note": "Accepted standalone study. Independent eight-hour branches and one bounded 30-minute snack recipe selected for browser practice."
     },
     {
       "id": "IH2-142",
       "title": "Show the ordinary workbench job on the tabletop",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/town-work-moments",
       "depends_on": [
         "IH2-118"
@@ -2663,13 +2665,15 @@
         "Saved services remain stopped. No original-game, hosted, paid or economy changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-142/PLAN.md"
-      ]
+        "docs/evidence/IH2-142/PLAN.md",
+        "docs/evidence/IH2-142/TOWN_MOMENTS_CI.json"
+      ],
+      "progress_note": "Accepted runtime scene presentation of confirmed ordinary work, with no fake cue after a failed save."
     },
     {
       "id": "IH2-143",
       "title": "Mark a freshly confirmed bridge opening",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/town-work-moments",
       "depends_on": [
         "IH2-053",
@@ -2684,13 +2688,15 @@
         "Saved services remain stopped. No original-game, hosted, paid or economy changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-143/PLAN.md"
-      ]
+        "docs/evidence/IH2-143/PLAN.md",
+        "docs/evidence/IH2-142/TOWN_MOMENTS_CI.json"
+      ],
+      "progress_note": "Accepted presentation of a fresh authoritative Inkwood opening. Replay, recovery and reload stay quiet."
     },
     {
       "id": "IH2-144",
       "title": "Author the orchard picking poses",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/town-work-moments",
       "depends_on": [
         "IH2-141"
@@ -2704,7 +2710,49 @@
         "Saved services remain stopped. No original-game, hosted, paid or economy changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-144/PLAN.md"
+        "docs/evidence/IH2-144/PLAN.md",
+        "docs/evidence/IH2-142/TOWN_MOMENTS_CI.json"
+      ],
+      "progress_note": "Accepted standalone art study with 64 original poses and native reduced-motion/keyboard/touch review."
+    },
+    {
+      "id": "IH2-145",
+      "title": "Choose a landmark directly from the town map",
+      "status": "queued",
+      "owner_branch": "feat/orchard-and-map-travel",
+      "depends_on": [
+        "IH2-139"
+      ],
+      "goal": "Let a resident use the folded map to deliberately start a known walk.",
+      "acceptance": [
+        "Show clear native selection and an independent travel action. Preserve old routes, search and fit at enlarged text."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, paid or hosted change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-145/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-146",
+      "title": "Pick and pack a first orchard snack in browser practice",
+      "status": "in_progress",
+      "owner_branch": "feat/orchard-and-map-travel",
+      "depends_on": [
+        "IH2-141",
+        "IH2-144"
+      ],
+      "goal": "Make a short solo outing and give residents something to return for.",
+      "acceptance": [
+        "Use original authored art and a separate protected browser pantry. Preserve unrelated bytes, strict lock and duplicate refusal.",
+        "Exercise real terrain, the timer boundary, Bag, Journal, a fresh action pose, desktop and narrow or enlarged layouts."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, paid or hosted change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-146/PLAN.md"
       ]
     }
   ],

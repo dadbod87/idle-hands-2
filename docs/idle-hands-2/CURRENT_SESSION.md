@@ -1,3 +1,9 @@
+# November 19 — workshop moments accepted, browser orchard next
+
+[PR #69](https://github.com/dadbod87/idle-hands-2/pull/69) is verified on exact main `6f9245a8772a858c1e26104b249e50e6c5162f09`. The ordinary bench shows its confirmed piece and the bridge celebrates a fresh opening. Both exact runs passed 558 domain tests and 213 browser cases. The orchard study and picking art were standalone in that release. [Exact checks and limits](../evidence/IH2-142/TOWN_MOMENTS_CI.json).
+
+The current candidate makes the browser-practice orchard playable, with three personal branches, timed snack packing, an explicit collection and a tasting note. It also adds deliberate map travel from existing landmarks. Both passed local browser checks. [Orchard](../evidence/IH2-146/PLAN.md) · [Map travel](../evidence/IH2-145/PLAN.md).
+
 # November 19 — town orientation accepted, workshop moments next
 
 PR #68 is accepted on main `c965eed86097bdc1cdf50cdd873f5f9a9f43b240`. Both exact runs passed 557 domain and 209 browser cases. Residents see an accepted walking destination, a foldout town map, a clear path from the browser-practice bridge to shared practice, and an optional browser-local name and look. The rented-room opening remains a standalone design. [Exact gate and limits](../evidence/IH2-137/TOWN_ORIENTATION_CI.json).

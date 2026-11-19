@@ -1,0 +1,7 @@
+# Opening rehearsal evidence
+
+The [standalone page](../../../tools/lodging-study/README.md) uses four existing original directional sprites and two [new original room views](ART.json). Choose a name, appearance and backstory. The resident appears in the bed, gets up and steps outside the same boarding house. The exit scene now gives a landmark toward Marlow in the square. Arrival flavors are author choices for review, with no stat effects or costs.
+
+Two pure model tests and one browser scenario passed locally. The scenario exercises keyboard and native touch emulation at 1440 × 900, 320 × 640, and 844 × 390 with 200% text. It checks invalid input focus, selection and turning, a matching outfit in all scenes, reduced motion, exit focus, request scope and no stored data. Terra's preliminary stills were clear on desktop and narrow phone and found the outside handoff vague. The revision adds the named next resident, a town-square sign and a side-by-side short-landscape layout. Screenshot focus and view positions are recorded by the browser test. Human reading time and physical device behavior remain unmeasured.
+
+This study does not connect to the game, simulate collision, move an actual player or confirm a shared profile. The launch option remains a separate future implementation with room ownership, old-resident preservation and exact authority tests in [the plan](PLAN.md). No saved preview or database was needed.

@@ -1,5 +1,5 @@
 import {APPLE_CAP, APPLES_PER_SNACK, BROWSER_ORCHARD_KEY, ORCHARD_STOPS, SNACK_CAP,
- orchardBranchFromStop, readOrchard, writeOrchard, type BranchId, type OrchardAction,
+ orchardBranchFromStop, readOrchard, writeOrchard, type BranchId, type Orchard, type OrchardAction, type OrchardRead,
 } from '../game/orchard.ts';
 import type {Stop} from '../game/world.ts';
 import {duration} from './workshop.ts';
@@ -13,20 +13,34 @@ type Host = {
  walk:(stop:Stop)=>void; at:(stop:Stop)=>boolean; pick:(branch:BranchId)=>void;
 };
 
+type OrchardResult=ReturnType<typeof writeOrchard>&{fresh?:boolean};
+export type SharedOrchardPort={
+ read:()=>OrchardRead;
+ state:()=>Orchard|null;
+ now:()=>number;
+ canWrite:()=>boolean;
+ retryAvailable:()=>boolean;
+ save:(baseline:string|null,action:OrchardAction|null,present:()=>boolean)=>Promise<OrchardResult>;
+};
+
 export class OrchardUI {
  private clock?: number;
- private current = readOrchard(storage);
+ private current: OrchardRead;
  private visible?: HTMLElement;
  private readonly reload = (event:StorageEvent) => {
   if (event.key===BROWSER_ORCHARD_KEY || event.key===null) this.current=readOrchard(storage);
  };
 
- constructor(private host:Host, private table:Stop) {
-  window.addEventListener('storage',this.reload);
-  window.addEventListener('pageshow',()=>{this.current=readOrchard(storage);});
+ constructor(private host:Host, private table:Stop, private shared?:SharedOrchardPort) {
+  this.current=this.read();
+  if(!shared){
+   window.addEventListener('storage',this.reload);
+   window.addEventListener('pageshow',()=>{this.current=readOrchard(storage);});
+  }
  }
 
- get state(){return this.current.status==='ready'?this.current.state:null;}
+ private read(){return this.shared?this.shared.read():readOrchard(storage);}
+ get state(){return this.shared?this.shared.state():this.current.status==='ready'?this.current.state:null;}
 
  closed(){
   if (this.clock!==undefined) window.clearInterval(this.clock);
@@ -40,7 +54,8 @@ export class OrchardUI {
  private show(stop:Stop, branch?:BranchId) {
   if (!this.host.at(stop)) return;
   this.host.open(branch?stop.name:'Orchard packing table');
-  this.current=readOrchard(storage);
+  this.current=this.read();
+  const shared=this.shared;
   const section=document.createElement('section');
   section.className='orchard';
   this.visible=section;
@@ -74,6 +89,7 @@ export class OrchardUI {
 
   let ready = this.current;
   let saving = false;
+  let confirmingPrevious=false;
   let packingReceiptExpires:number|null=null;
   const button=(label:string, click:()=>void)=>{
    const node=document.createElement('button');
@@ -91,6 +107,9 @@ export class OrchardUI {
   actions.className='orchard-actions';
   actions.append(primary);
   if (!branch) actions.append(taste);
+  const retry=button('Confirm the same request',()=>void submit(null));
+  retry.hidden=true;
+  if(shared)actions.append(retry);
   section.append(stage,actions,status,quantities,details);
 
   const routes=document.createElement('details');
@@ -108,18 +127,23 @@ export class OrchardUI {
   this.clock=window.setInterval(refresh,1000);
 
   function refresh(){
-   const canWrite=!!navigator.locks;
+   const canWrite=shared?shared.canWrite():!!navigator.locks;
+   const recovering=confirmingPrevious||!!shared?.retryAvailable();
+   retry.hidden=!recovering;
+   retry.disabled=saving;
+   primary.hidden=recovering;
+   taste.hidden=recovering;
    const state=ready.status==='ready'?ready.state:null;
    apples(state?.apples??null,APPLE_CAP);
    snacks(state?.snacks??null,SNACK_CAP);
-   const now=Date.now();
+   const now=shared?.now()??Date.now();
    if (packingReceiptExpires!==null && now>=packingReceiptExpires) {
     status.textContent='';
     packingReceiptExpires=null;
    }
    const nextText=branch||!state?.parcel?(branch?'Pick an apple':'Pack snack'):'Collect snack';
    if (primary.textContent!==nextText) primary.textContent=nextText;
-   const message=state===null?(ready.status==='unreadable'?unreadable:unavailable):!canWrite?unavailable:
+   const message=recovering?'Confirm your last request.':state===null?(ready.status==='unreadable'?unreadable:unavailable):!canWrite?(shared?'Waiting for the town to confirm progress.':unavailable):
     branch?(state.ripeAt[branch]>now?'Ripens in '+duration(state.ripeAt[branch]-now):
      state.apples>=APPLE_CAP?'Your basket is full.':'Ripe now'):
     state.parcel?(state.parcel.readyAt>now?'Ready in '+duration(state.parcel.readyAt-now):'Ready to collect'):
@@ -132,44 +156,57 @@ export class OrchardUI {
   }
 
   const owner=this;
-  async function submit(action:OrchardAction) {
-   if (saving || ready.status!=='ready' || !navigator.locks) return;
+  async function submit(action:OrchardAction|null) {
+   if (saving || ready.status!=='ready' || (!shared && (!navigator.locks || !action))) return;
    const baseline=ready.raw;
    const present=()=>owner.visible===section&&section.isConnected&&owner.host.at(stop)&&!document.hidden;
    if (!present()) return;
    saving=true;
+   confirmingPrevious=action===null;
    refresh();
    try {
-    const result=await navigator.locks.request(BROWSER_ORCHARD_KEY, ()=>
-     present()?writeOrchard(storage,baseline,action,Date.now()):null);
+    const result:OrchardResult|null=shared
+     ?await shared.save(baseline,action,present)
+     :await navigator.locks.request(BROWSER_ORCHARD_KEY,()=>present()?writeOrchard(storage,baseline,action!,Date.now()):null);
     if (!result) return;
     if (result.status==='saved') {
      ready=owner.current={status:'ready',raw:result.raw,state:result.state};
      if (!present()) return;
      owner.host.feedback(result.message);
-     if (action.kind==='pick') {
+     if (action?.kind==='pick' && result.fresh!==false) {
       owner.host.close();
       owner.host.pick(action.branch);
      } else {
-      packingReceiptExpires=action.kind==='pack'?result.state.parcel?.readyAt??null:null;
+      packingReceiptExpires=action?.kind==='pack'?result.state.parcel?.readyAt??null:null;
       status.textContent=result.message;
      }
      return;
     }
     if (!present()) return;
     if (result.status==='changed') {
-     ready=owner.current=readOrchard(storage);
-     status.textContent='Another tab changed the pantry. Check these counts and choose again.';
+     ready=owner.current=owner.read();
+     status.textContent=shared?'The town pantry changed. Review the refreshed counts and choose again.':
+      'Another tab changed the pantry. Check these counts and choose again.';
     } else if (result.status==='refused') {
+     if(shared)ready=owner.current=owner.read();
      status.textContent=result.message;
     } else {
      status.textContent='Your action could not be saved. The previous pantry is kept.';
     }
    } catch {
-    if (present()) status.textContent='Your action could not be saved. The previous pantry is kept.';
+    if (present()){
+     if(shared?.retryAvailable()){
+      status.textContent='The reply was interrupted. Confirm the same request before making another change.';
+      owner.host.feedback('Confirm the last orchard request to finish.');
+     }else status.textContent='Your action could not be saved. The previous pantry is kept.';
+    }
    } finally {
     saving=false;
-    if (present()) refresh();
+    confirmingPrevious=false;
+    if (present()){
+     refresh();
+     if(!retry.hidden)retry.focus({preventScroll:true});
+    }
    }
   }
  }

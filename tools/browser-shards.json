@@ -42,6 +42,8 @@
     "orchard-practice.spec.ts",
     "residential-life.spec.ts",
     "serving-family.spec.ts",
+    "shared-orchard-native.spec.ts",
+    "shared-orchard.spec.ts",
     "shared-town.spec.ts",
     "starter-homes.spec.ts",
     "town-expansion.spec.ts",

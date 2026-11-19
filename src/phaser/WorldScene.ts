@@ -142,25 +142,48 @@ export class WorldScene extends Phaser.Scene {
   private carpentryNextDraw=0;private carpentryKey='';private noticeReveal=0;
   private carpentryMotion:{action:CarpentryAnimation;started:number;facing:Facing}|null=null;
   private lastCarpentryAction:{action:CarpentryAnimation;renderedFrames:number;frames:number[]}|null=null;
-  orchardState?:()=>Orchard|null;
+  orchardState?:()=>Orchard|null|undefined;
+  orchardNow:()=>number=Date.now;
+  private orchardTable?:Phaser.GameObjects.Image;
+  private orchardMotion:{started:number;facing:Facing}|null=null;
   private orchardLabels:Array<{stop:typeof ORCHARD_STOPS[number];label:Phaser.GameObjects.Text}>=[];
   private orchardLabelTick=0;
   private paintOrchardTags(){
-    if(!this.orchardLabels.length||!this.closeToOrchard())return;
+    if(this.room!=='square'||!this.orchardState)return;
+    const state=this.orchardState();
+    if(state===undefined){
+      if(this.orchardLabels.length){
+        for(const item of this.orchardLabels)item.label.destroy();
+        this.orchardLabels=[];
+        this.orchardTable?.destroy();
+        this.orchardTable=undefined;
+      }
+      return;
+    }
+    if(!this.orchardLabels.length){
+      for(const stop of ORCHARD_STOPS){
+        const x=(stop.point.x+.5)*TILE,y=(stop.point.y+1.12)*TILE;
+        const label=this.add.text(x,y,stop.name,{fontFamily:'Georgia,serif',fontSize:12,color:'#343c36',
+          backgroundColor:'#f3e6c5',padding:{x:5,y:3}}).setOrigin(.5).setDepth(y);
+        this.orchardLabels.push({stop,label});
+      }
+      const stand=COMMONS_STOPS.find(stop=>stop.id==='commons-orchard')!.point;
+      const depth=(stand.y+.08)*TILE;
+      this.orchardTable=this.add.image((stand.x+1.22)*TILE,depth,'orchard-packing-table').setScale(.72).setOrigin(.5,.93).setDepth(depth);
+    }
     const tick=performance.now();
-    if(tick<this.orchardLabelTick)return;
+    if(tick<this.orchardLabelTick||!this.closeToOrchard())return;
     this.orchardLabelTick=tick+1000;
-    const state=this.orchardState?.(),now=Date.now();
+    const now=this.orchardNow();
     for(const item of this.orchardLabels){
       const id=orchardBranchFromStop(item.stop.id)!;
       const text=item.stop.name+(state?(state.ripeAt[id]<=now?' · ripe':' · ripening'):'');
       if(item.label.text!==text)item.label.setText(text);
     }
   }
-  private orchardMotion:{started:number;facing:Facing}|null=null;
   private closeToOrchard(){
-    return !!this.orchardState&&this.session.room==='square'&&this.session.position.x>85&&
-      this.session.position.y>25&&this.session.position.y<58;
+    return this.session.room==='square'&&this.session.position.x>85&&this.session.position.y>25&&
+      this.session.position.y<58&&this.orchardState?.()!==undefined;
   }
   playOrchardPick(branch:{x:number;y:number}){
     if(!this.closeToOrchard()||document.hidden||!this.actor?.active)return;
@@ -279,7 +302,7 @@ export class WorldScene extends Phaser.Scene {
     for(const key of keys)this.load.svg('variety-'+key,`/art/variety/${key}.svg`);
   }
   create() {
-    this.orchardMotion=null;this.orchardLabels=[];this.orchardLabelTick=0;
+    this.orchardMotion=null;this.orchardLabels=[];this.orchardLabelTick=0;this.orchardTable=undefined;
     this.outingPost=undefined;this.outingCrossing=undefined;this.outingKey='';this.depotViews=[];
     this.bridgeRibbon=undefined;this.bridgeRibbonLabel=undefined;this.bridgeRevealAt=null;
     this.pineViews=[];this.rackView=undefined;this.noticeboardView=undefined;this.carpentryMotion=null;this.lastCarpentryAction=null;this.carpentryKey='';this.carpentryNextDraw=0;this.noticeReveal=0;
@@ -339,15 +362,6 @@ export class WorldScene extends Phaser.Scene {
         const meta=art('tree-'+kind+'-canopy'),foot=meta.foot!,footX=(x+1)*TILE,footY=(y+2)*TILE+4;
         for(const layer of ['trunk','canopy']){const tree=this.add.image(footX,footY,'variety-tree-'+kind+'-'+layer).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(footY+(layer==='canopy'?.1:0));
          if(layer==='canopy'){this.canopies.push({key:kind,image:tree,phase:index*1.7,baseX:footX});const bounds=meta.occlusion??{x:4,y:0,width:meta.width-8,height:foot.y};this.occluders.push({image:tree,x:footX-foot.x+bounds.x,y:footY-foot.y+bounds.y+bounds.height,width:bounds.width,height:bounds.height});}}
-      }
-      if(this.orchardState){
-        for(const stop of ORCHARD_STOPS){
-          const sign=label(stop.point.x+.5,stop.point.y+1.12,stop.name).setFontSize(12).setPadding(5,3,5,3);
-          this.orchardLabels.push({stop,label:sign});
-        }
-        const stand=COMMONS_STOPS.find(stop=>stop.id==='commons-orchard')!.point;
-        const depth=(stand.y+.08)*TILE;
-        this.add.image((stand.x+1.22)*TILE,depth,'orchard-packing-table').setScale(.72).setOrigin(.5,.93).setDepth(depth);
       }
       for(const id of SURVEY_IDS){const point=SURVEYS[id].point;label(point.x+.5,point.y+.8,'Sketch study');}
       if(this.showTownfolk)for(const person of TOWN_PEOPLE){const py=(person.point.y+.5)*TILE,px=(person.point.x+.5)*TILE;const view=this.add.image(px,py,'variety-resident-'+person.rig,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale).setDepth(py);const tag=this.add.text(px,py-62,person.name+' · '+person.role.split(' · ')[0],{fontFamily:'Georgia',fontSize:11,color:'#343c36',backgroundColor:'#f8f1df',padding:{x:3,y:2}}).setOrigin(.5,1).setDepth(py+1);this.townfolk.push({id:person.id,image:view,label:tag});}

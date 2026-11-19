@@ -66,6 +66,7 @@
     "movement-backpressure.spec.ts",
     "personal-tools.spec.ts",
     "place-music.spec.ts",
+    "places-search.spec.ts",
     "public-refresh.spec.ts",
     "serving-study.spec.ts",
     "stable-toolbar.spec.ts",

@@ -1,0 +1,9 @@
+# Find a destination by name
+
+The square's Places menu covers 36 stops. Group browsing and current suggestions help when exploring, but finding one known stop on a phone can require opening several categories. In grouped menus, a single Find a place field filters the visible destination names. Words may be typed in any order and accents are optional. Clearing the field restores the original groups, including their expanded state. Short room lists remain directly browsable.
+
+The field stays unfocused until deliberately selected, so opening Places never raises a phone keyboard on its own. Results are ordinary keyboard- and touch-accessible Walk to buttons. They use the existing room-local routes, arrival and Enter or Inspect controls. Search does not plan multi-room routes or open a locked destination. It makes no requests and changes no inventory, quests or save schema. A world map with district bearings remains a separate exploration opportunity.
+
+The focused browser case uses a freshly loaded static build with the ordinary browser-only workshop. It tests case- and accent-insensitive results, empty search, restored groups, keyboard and touch travel followed by Enter into the workshop, and brief room menus. It captures desktop 1440 × 900, a 320 × 640 phone and 844 × 390 at 200% text. No data or responses are intercepted. These are browser emulations, and saved previews and databases stay stopped. Full source acceptance requires current main, all required exact-head checks and main regression.
+
+Terra reviewed the original stills. Desktop and 320 px phone results were clear. At 200% in short landscape the sticky title and scrollbar meant only the first result fit entirely in the initial crop. The final browser test tabs to the second result, verifies its full bounds beneath the title, and tabs back to the first. The short modal still scrolls.

@@ -29,3 +29,31 @@
 
 /* Expanded-town inspection must keep the optional brand clear at doubled text. */
 @media(min-width:651px) and (max-width:1100px){.shell.large-text>header .pilot-tag{display:none}.shell.large-text>header .brand{flex:1;min-width:0}.shell.large-text>header .brand-mark{flex-shrink:0;width:1.65em;height:1.9em}}
+
+.places-search {
+ display: grid;
+ gap: .25rem;
+ font-weight: bold;
+}
+.places-search input {
+ width: 100%;
+ min-width: 0;
+ min-height: 44px;
+ padding: .35rem .6rem;
+ border: 1px solid var(--line);
+ border-radius: 3px;
+ background: #fffaf0;
+ color: var(--ink);
+ font: inherit;
+ font-weight: normal;
+}
+.places-search input:focus-visible {
+ outline: 3px solid #b8653e;
+ outline-offset: 2px;
+}
+#panel-body .places-search-status {
+ margin: .65rem 0;
+}
+#panel-body .places-search-status:empty {
+ margin: 0;
+}

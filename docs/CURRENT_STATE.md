@@ -1,3 +1,7 @@
+# November 19 — original headwear accepted in browser practice
+
+The resident editor now offers the Clerk cap and Inkwood hood. Free previews use the same feet and acting poses as the selected resident, and only explicit Save changes the appearance. Main `bc61186865a1c781e8eaf5fde18d1176d61fdec4` passed 572 domain tests and 224 browser cases. [Exact checks](evidence/IH2-153/BROWSER_HEADWEAR_CI.json).
+
 # November 19 — a private café parcel shelf
 
 Shared practice residents can leave one real orchard snack for a neighbor, who can accept it or decline. Both sides see the pickup deadline in local time. The sender can reclaim an unaccepted parcel after expiry. Main `26fea9631260c80f08f9de114cdcddeeca5f533e` passed 571 domain tests and 223 browser cases. [PR #73 evidence](evidence/IH2-150/SNACK_SHELF_CI.json).

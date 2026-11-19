@@ -1,3 +1,9 @@
+# November 19 — original headwear accepted, Jun's orchard directions next
+
+[PR #74](https://github.com/dadbod87/idle-hands-2/pull/74) is verified on exact main `bc61186865a1c781e8eaf5fde18d1176d61fdec4`. Both exact checks passed 572 domain tests and 224 browser cases. [Evidence](../evidence/IH2-153/BROWSER_HEADWEAR_CI.json).
+
+The current candidate puts one clearly labeled trip into Jun’s conversation based on confirmed orchard progress. Starting a walk cannot pick or spend anything. [Plan](../evidence/IH2-154/PLAN.md).
+
 # November 19 — private parcels accepted, wearable art next
 
 [PR #73](https://github.com/dadbod87/idle-hands-2/pull/73) is verified on exact main `26fea9631260c80f08f9de114cdcddeeca5f533e`. Both runs passed 571 domain tests and 223 browser cases. [Exact checks and limitations](../evidence/IH2-150/SNACK_SHELF_CI.json).

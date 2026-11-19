@@ -176,3 +176,42 @@ test('orchard refuses an older branch view in a second tab', async ({context}) =
  await first.close();
  await second.close();
 });
+
+test('Jun gives a narrow-phone resident one useful orchard walk without changing their apples',async({browser})=>{
+ const context=await browser.newContext({viewport:{width:320,height:650},hasTouch:true,reducedMotion:'reduce'});
+ try{
+  const page=await context.newPage(),api:string[]=[];
+  page.on('request',request=>{
+   const url=new URL(request.url());
+   if(url.pathname.startsWith('/api/'))api.push(url.pathname);
+  });
+  const prior={version:1,observedAt:at,picked:1,packed:0,tasted:0,apples:1,snacks:0,
+   parcel:null,ripeAt:{'low-branch':at+8*3_600_000,'two-forks':0,'over-the-path':0}};
+  await page.clock.setFixedTime(new Date(at));
+  await page.addInitScript(({feetKey,orchardKey,value})=>{
+   localStorage.setItem(feetKey,JSON.stringify({version:1,room:'square',position:{x:32,y:24}}));
+   localStorage.setItem(orchardKey,value);
+  },{feetKey,orchardKey:BROWSER_ORCHARD_KEY,value:JSON.stringify(prior)});
+  await page.goto('/');
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+  await expect(page.locator('#interact')).toHaveAccessibleName(/Jun/);
+  await page.locator('#interact').tap();
+  await expect(page.getByRole('dialog')).toHaveAccessibleName('Jun · Grounds caretaker');
+  const card=page.locator('.jun-orchard');
+  await expect(card.getByText('You have one apple. Forked branch has the next one.')).toBeVisible();
+  const travel=card.getByRole('button',{name:'Walk to Forked branch',exact:true});
+  const button=(await travel.boundingBox())!;
+  const head=(await page.locator('.dialog-head').boundingBox())!;
+  const dialog=(await page.getByRole('dialog').boundingBox())!;
+  expect(button.height).toBeGreaterThanOrEqual(44);
+  expect(button.y).toBeGreaterThanOrEqual(head.y+head.height);
+  expect(button.y+button.height).toBeLessThanOrEqual(dialog.y+dialog.height);
+  mkdirSync(output,{recursive:true});
+  await page.screenshot({path:output+'/jun-phone.png'});
+  await travel.tap();
+  await expect(page.getByRole('dialog')).toHaveAccessibleName('Forked branch',{timeout:25000});
+  await expect(page.getByRole('button',{name:'Pick an apple'})).toBeEnabled();
+  expect(await pantry(page)).toEqual(prior);
+  expect(api).toEqual([]);
+ }finally{await context.close();}
+});

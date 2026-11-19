@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="416" viewBox="0 0 512 416">
+  <defs>
+    <pattern id="boards" width="72" height="22" patternUnits="userSpaceOnUse">
+      <path d="M0 0h72v22H0z" fill="#c7a87d"/>
+      <path d="M0 1h72M28 2v20" stroke="#aa895f" fill="none"/>
+      <path d="M31 5h21M5 14h14" stroke="#dec198" opacity=".7"/>
+    </pattern>
+    <pattern id="rug" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M0 0h28v28H0z" fill="#819480"/>
+      <path d="M14 2 26 14 14 26 2 14z" fill="none" stroke="#aabb9b" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <path d="M0 0h512v416H0z" fill="#c5b28d"/>
+  <g stroke="#434d43" stroke-width="3" stroke-linejoin="round">
+    <rect x="22" y="22" width="468" height="360" rx="4" fill="url(#boards)"/>
+    <path d="M22 23h468v59H22z" fill="#e5d4ae"/>
+    <path d="M24 74h463" stroke="#9a8263" stroke-width="6"/>
+    <path d="M180 31h112v29H180z" fill="#8da9a2"/>
+    <path d="M236 32v27m-54-13h108" stroke="#eee1c4" stroke-width="2"/>
+    <path d="M179 60h114v6H179z" fill="#a28a65"/>
+    <path d="M101 99h119v54H101z" fill="#7b674e"/>
+    <path d="M105 104h105v44H105z" fill="#f0e4c9"/>
+    <path d="M111 109h34v14h-34zm0 18h34v14h-34z" fill="#f7edd5" stroke="#b7a78b" stroke-width="1.5"/>
+    <path d="M149 105h64v44h-64z" fill="#92745d"/>
+    <path d="M152 109h59m-59 12h59m-59 12h59m-59 11h59" stroke="#b09777" stroke-width="2"/>
+    <path d="M316 85h63v54h-63z" fill="#af8d63"/>
+    <path d="M317 101h61m-61 16h61m-61 16h61" stroke="#75664f" stroke-width="2"/>
+    <path d="M342 95h10m-10 18h10m-10 17h10" stroke="#e4bd72" stroke-width="3"/>
+    <path d="M420 106h34v105h-34z" fill="#897457"/>
+    <path d="M423 142h28m-28 29h28m-28 27h28" stroke="#cbb18b" stroke-width="2"/>
+    <rect x="87" y="222" width="220" height="92" rx="4" fill="url(#rug)" stroke="#56664e"/>
+    <path d="M92 229h210v79H92z" fill="none" stroke="#d2c2a0" stroke-width="2"/>
+    <g transform="translate(-65)">
+    <path d="M357 352h100v38H357z" fill="#856f54"/>
+    <path d="M365 356h84v30h-84z" fill="#577267"/>
+    <path d="M369 362h76v20h-76z" fill="#637f72" stroke="none"/>
+    <path d="M386 372h42" stroke="#dbc499" stroke-width="2"/>
+    </g>
+  </g>
+  <path d="m262 35 9 0-24 24h-11zm15 0h5l-19 24h-7z" fill="#ede8ca" opacity=".53"/>
+</svg>

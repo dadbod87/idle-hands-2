@@ -2201,6 +2201,26 @@
       "source": "tools/wardrobe-study/create.py --promote-overlays",
       "date": "2026-11-19",
       "modifications": "Original four-facing headwear overlay with stable actor feet. No imported media."
+    },
+    {
+      "id": "lodging-boarding-front",
+      "path": "public/art/lodging/boarding-front.svg",
+      "sha256": "ef29a4f4a4b5fe382c0c2129ed5d0250e47f9cbc158efacf7a60daab45fb5f39",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/lodging/boarding-front.svg",
+      "date": "2026-11-19",
+      "modifications": "Original boarding-house study adapted to the browser practice map and its walkable footprints."
+    },
+    {
+      "id": "lodging-rented-room",
+      "path": "public/art/lodging/rented-room.svg",
+      "sha256": "a77ed2c824559d945f1ddbd39c76b981e529e4b6c7a681bc547894b568fa036f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/lodging/rented-room.svg",
+      "date": "2026-11-19",
+      "modifications": "Original boarding-house study adapted to the browser practice map and its walkable footprints."
     }
   ],
   "comparison": {

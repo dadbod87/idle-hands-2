@@ -1,0 +1,274 @@
+{
+  "classification": "Design model only. No tool edits game state, saves, clocks or server.",
+  "rules": {
+    "appleCap": 6,
+    "snackCap": 3,
+    "recipeApples": 2,
+    "prepMs": 1800000
+  },
+  "routes": [
+    {
+      "id": "low-branch",
+      "feet": {
+        "x": 95.8,
+        "y": 50.6
+      },
+      "outboundTiles": 9.929753269845131,
+      "returnTiles": 9.929753269845131
+    },
+    {
+      "id": "two-forks",
+      "feet": {
+        "x": 97.4,
+        "y": 36.6
+      },
+      "outboundTiles": 10.682696288858908,
+      "returnTiles": 10.682696288858908
+    },
+    {
+      "id": "over-the-path",
+      "feet": {
+        "x": 104.8,
+        "y": 39.2
+      },
+      "outboundTiles": 5.854912467321776,
+      "returnTiles": 5.854912467321776
+    }
+  ],
+  "schedules": [
+    {
+      "visitEveryHours": 8,
+      "regrowHours": 6,
+      "tasteEachDay": false,
+      "firstSnack": 8,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 12,
+      "tasted": 0,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 8,
+      "regrowHours": 6,
+      "tasteEachDay": true,
+      "firstSnack": 8,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 26,
+      "tasted": 7,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 8,
+      "regrowHours": 8,
+      "tasteEachDay": false,
+      "firstSnack": 8,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 12,
+      "tasted": 0,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 8,
+      "regrowHours": 8,
+      "tasteEachDay": true,
+      "firstSnack": 8,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 26,
+      "tasted": 7,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 8,
+      "regrowHours": 12,
+      "tasteEachDay": false,
+      "firstSnack": 8,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 12,
+      "tasted": 0,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 8,
+      "regrowHours": 12,
+      "tasteEachDay": true,
+      "firstSnack": 8,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 26,
+      "tasted": 7,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 12,
+      "regrowHours": 6,
+      "tasteEachDay": false,
+      "firstSnack": 12,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 12,
+      "tasted": 0,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 12,
+      "regrowHours": 6,
+      "tasteEachDay": true,
+      "firstSnack": 12,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 26,
+      "tasted": 7,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 12,
+      "regrowHours": 8,
+      "tasteEachDay": false,
+      "firstSnack": 12,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 12,
+      "tasted": 0,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 12,
+      "regrowHours": 8,
+      "tasteEachDay": true,
+      "firstSnack": 12,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 26,
+      "tasted": 7,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 12,
+      "regrowHours": 12,
+      "tasteEachDay": false,
+      "firstSnack": 12,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 12,
+      "tasted": 0,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 12,
+      "regrowHours": 12,
+      "tasteEachDay": true,
+      "firstSnack": 12,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 26,
+      "tasted": 7,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 24,
+      "regrowHours": 6,
+      "tasteEachDay": false,
+      "firstSnack": 24,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 12,
+      "tasted": 0,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 24,
+      "regrowHours": 6,
+      "tasteEachDay": true,
+      "firstSnack": 24,
+      "apples": 4,
+      "snacks": 0,
+      "picked": 18,
+      "tasted": 6,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": true
+    },
+    {
+      "visitEveryHours": 24,
+      "regrowHours": 8,
+      "tasteEachDay": false,
+      "firstSnack": 24,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 12,
+      "tasted": 0,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 24,
+      "regrowHours": 8,
+      "tasteEachDay": true,
+      "firstSnack": 24,
+      "apples": 4,
+      "snacks": 0,
+      "picked": 18,
+      "tasted": 6,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": true
+    },
+    {
+      "visitEveryHours": 24,
+      "regrowHours": 12,
+      "tasteEachDay": false,
+      "firstSnack": 24,
+      "apples": 6,
+      "snacks": 3,
+      "picked": 12,
+      "tasted": 0,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": false
+    },
+    {
+      "visitEveryHours": 24,
+      "regrowHours": 12,
+      "tasteEachDay": true,
+      "firstSnack": 24,
+      "apples": 4,
+      "snacks": 0,
+      "picked": 18,
+      "tasted": 6,
+      "heldPlusSpentIsPicked": true,
+      "heldPlusUsedIsMade": true,
+      "pending": true
+    }
+  ]
+}

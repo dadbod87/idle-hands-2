@@ -21,12 +21,19 @@ test('walk mark follows accepted ground routes and disappears when travel stops'
   try {
    await page.goto('/');
    await expect.poll(() => page.evaluate(() => (window as any).__pilot?.metrics().ready)).toBe(true);
-   await page.evaluate(percent => document.documentElement.style.fontSize = percent + '%', size.text);
-   await page.waitForFunction(() => {
-    const current=(window as any).__pilot.metrics().visual.camera;
+   const resizeFrame=await page.evaluate(percent => {
+    document.documentElement.style.fontSize = percent + '%';
+    return (window as any).__pilot.metrics().presentation.renderedFrames;
+   },size.text);
+   // A new CSS box can be visible before the camera has published its resized
+   // matrix. Wait through the idle renderer, not a count of browser animation frames.
+   await page.waitForFunction(frame => {
+    const metrics=(window as any).__pilot.metrics();
+    const current=metrics.visual.camera;
     const canvas=document.querySelector('canvas')!;
-    return Math.abs(current.worldView.height * current.zoom - canvas.clientHeight) < 2;
-   });
+    return metrics.presentation.renderedFrames>=frame+3 &&
+     Math.abs(current.worldView.height * current.zoom - canvas.clientHeight) < 2;
+   },resizeFrame);
    const mark = () => page.evaluate(() => (window as any).__pilot.metrics().visual.walkTarget);
    const position = () => page.evaluate(() => (window as any).__pilot.snapshot().position);
    const ground = async (x:number,y:number) => {

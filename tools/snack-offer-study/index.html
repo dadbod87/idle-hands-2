@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The café parcel shelf · Idle Hands 2</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <span>THE ALMOST OPEN CAFÉ</span>
+      <h1>The parcel shelf</h1>
+      <p>Leave something nice for a neighbor.</p>
+    </header>
+    <div class="workspace">
+      <section aria-label="Your parcel shelf" class="counter">
+        <section aria-label="Snack pouch" class="pouch">
+          <img src="../../public/art/orchard/orchard-snack.svg" alt="" width="62" height="62">
+          <div><span>YOUR SNACK POUCH</span><p id="pouch-count"></p></div>
+        </section>
+        <section id="work" aria-labelledby="work-title"></section>
+        <p id="receipt" role="status"></p>
+      </section>
+      <aside aria-label="Study settings">
+        <h2>Try the shelf</h2>
+        <p>This design preview uses fictional residents. It resets on reload.</p>
+        <label for="scenario">Try a situation</label>
+        <select id="scenario">
+          <option value="leave">Leave a snack</option>
+          <option value="receive">A snack from Flint</option>
+          <option value="full">Your pouch is full</option>
+          <option value="return">A parcel to take back</option>
+        </select>
+      </aside>
+    </div>
+  </main>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>

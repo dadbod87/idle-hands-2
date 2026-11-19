@@ -11,3 +11,5 @@ The focused local browser case uses fictional intercepted snapshots, movement ac
 After the first native playtest, check whether a small personal notice on returning would help more than asking residents to revisit the shelf. Keep any notice private and event-driven. The source candidate includes a migration file for its isolated test database only. Saved previews, hosted services and current player data are outside this slice.
 
 The first full run at `46d9aa4bca128c564904381da1ae45a9dd78fdd7` passed the new private parcel transaction cases. Two existing backup/restore fixtures still expected a ten-row migration ledger. Both now compare every applied filename and checksum with the current migration files, including the new parcel migration. The original restored-state, replay, and deliberate corrupt-checksum assertions remain. [Initial run](https://github.com/dadbod87/idle-hands-2/actions/runs/44606523432).
+
+The corrected candidate also shows the pickup deadline to both residents and keeps a selected neighbor when another parcel expires. [Deadline presentation and fixture](../IH2-164/PLAN.md).

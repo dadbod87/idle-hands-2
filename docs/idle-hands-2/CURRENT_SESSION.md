@@ -1,3 +1,9 @@
+# November 19 — private parcels accepted, wearable art next
+
+[PR #73](https://github.com/dadbod87/idle-hands-2/pull/73) is verified on exact main `26fea9631260c80f08f9de114cdcddeeca5f533e`. Both runs passed 571 domain tests and 223 browser cases. [Exact checks and limitations](../evidence/IH2-150/SNACK_SHELF_CI.json).
+
+The current candidate lets a browser resident preview and wear the Clerk cap or Inkwood hood. Storage changes only with a deliberate save. The two original overlay sheets follow body movement and confirmed orchard picking. [Playable headwear](../evidence/IH2-153/PLAN.md).
+
 # November 19 — canopy and parcel rehearsal accepted, shared delivery next
 
 [PR #72](https://github.com/dadbod87/idle-hands-2/pull/72) is verified on exact main `68619d549a01c10f80a2780e61e0cba2d6cfd219`. Both runs passed 566 domain tests and 220 browser cases. The native stage measures transform writes on visible motion. [Check results](../evidence/IH2-148/CANOPY_AND_PARCEL_CI.json).

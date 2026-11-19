@@ -1,4 +1,5 @@
-import {orchardStateSchema,type Orchard,type OrchardAction} from '../game/orchard.ts';
+import {snackShelfSchema,type SnackAction,type SnackShelf} from '../game/snack-shelf.ts';
+import {sharedPantrySchema,type OrchardPantry,type OrchardAction} from '../game/orchard.ts';
 import{outingSchema,type OutingState}from'../game/outing.ts';
 import{validPublicHouse,validPrivateHousing}from'../game/live-housing.ts';
 import type{HousingBuild,HousingQuote,emptyYard}from'../design/housing-contract.ts';
@@ -15,7 +16,7 @@ import type {RemoteWorkshopAdapter} from './workshop.ts';
 export type TownPosition={room:Room;position:Point;homePlotId?:string;districtId?:string};
 export type TownPlot={id:string;ownerId:string|null;ownerName?:string;tier?:number;level:1|2;placements:HomeLayout['placements'];workroomPlacements:HomeLayout['workroomPlacements'];pennantOwned?:boolean;letterboxMotif?:LetterboxMotif|null;planId?:string|null;yard?:ReturnType<typeof emptyYard>};
 export type TownLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
-export type TownSnapshot={orchard?:Orchard|'unavailable'|null;outing?:OutingState;housingSites?:Array<{plotId:string;ownerId:string;ownerName:string;phase:string}>;housing?:{build:HousingBuild|null;quote:HousingQuote|null;nextPlotId:string};cafe?:CafePublicState;commissionTown?:{styles:Array<{ownerId:string;ownerName:string;motif:LetterboxMotif}>};serverInstance?:string;noticeboard?:NoticeboardState;playerId:string;name:string;workshop:WorkshopState;position:TownPosition;quest:{contentVersion:string|number;awarded:unknown};bridge:{contributed:number;target:number;restored:boolean;phase?:'collecting'|'building'|'open';startedAt?:number|null;readyAt?:number|null;openedAt?:number|null;grandfathered?:boolean};trail?:{stamps:string[];pennantOwned:boolean};projectJournal?:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;plot:TownPlot|null;plots:TownPlot[];seasonKey:string;scores:unknown;serverTime:number;gardenTown?:{credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};lesson?:TownLesson;lessonQuote?:{route:'construction'|'upkeep';expectedBridgeContributed:number}};
+export type TownSnapshot={orchard?:OrchardPantry|'unavailable'|null;outing?:OutingState;housingSites?:Array<{plotId:string;ownerId:string;ownerName:string;phase:string}>;housing?:{build:HousingBuild|null;quote:HousingQuote|null;nextPlotId:string};cafe?:CafePublicState;commissionTown?:{styles:Array<{ownerId:string;ownerName:string;motif:LetterboxMotif}>};serverInstance?:string;noticeboard?:NoticeboardState;playerId:string;name:string;workshop:WorkshopState;position:TownPosition;quest:{contentVersion:string|number;awarded:unknown};bridge:{contributed:number;target:number;restored:boolean;phase?:'collecting'|'building'|'open';startedAt?:number|null;readyAt?:number|null;openedAt?:number|null;grandfathered?:boolean};trail?:{stamps:string[];pennantOwned:boolean};projectJournal?:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;plot:TownPlot|null;plots:TownPlot[];seasonKey:string;scores:unknown;serverTime:number;gardenTown?:{credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};lesson?:TownLesson;lessonQuote?:{route:'construction'|'upkeep';expectedBridgeContributed:number}};
 export type TownCommand=Record<string,unknown>&{kind:string;id?:string;expectedRevision?:number};
 export type TownHooks={onConfirmedCommand?:(command:TownCommand, reward:{collection:boolean;teapot:boolean})=>void;beforeCommand?:()=>Promise<void>;onSnapshot?:(snapshot:TownSnapshot,previous?:TownSnapshot|null)=>void;onPresence?:(presence:unknown)=>void;onConnection?:(state:string)=>void};
 type CommandOutcome={snapshot:TownSnapshot;message:string;ok:boolean;replayed:boolean;command:TownCommand;playerId:string;collection?:CollectionGrant};
@@ -69,6 +70,28 @@ export class TownClient {
   if(!result||result.command.kind!=='orchard')throw new Error('The town did not confirm this orchard request.');
   return result;
  }
+ get snackRetryAvailable(){return this.retryAvailable&&this.pending?.kind==='snack-parcel';}
+ async snackShelf():Promise<SnackShelf>{
+  const before=this.snapshot;
+  if(!before)throw new Error('Choose a practice resident first.');
+  const {data}=await this.request('snack-shelf');
+  if(data.playerId!==before.playerId||data.serverInstance!==before.serverInstance||
+     this.snapshot?.playerId!==before.playerId||this.snapshot?.serverInstance!==before.serverInstance)throw this.staleBoot();
+  const result=snackShelfSchema.safeParse(data.shelf);
+  if(!result.success)throw new Error('The café parcel shelf could not be read.');
+  return result.data;
+ }
+ async snackCommand(action:SnackAction|null,expectedRevision:number,present:()=>boolean){
+  const snapshot=this.snapshot;
+  if(!snapshot||this.inFlight||action&&this.pending||!action&&!this.snackRetryAvailable){
+   throw new Error('Confirm the current town request before moving a parcel.');
+  }
+  const run=action?this.command({kind:'snack-parcel',action,expectedPlayerId:snapshot.playerId,expectedRevision},present):this.retry(present);
+  await run;
+  const result=await this.outcomes.get(run);
+  if(!result||result.command.kind!=='snack-parcel')throw new Error('The parcel request has not been confirmed.');
+  return result;
+ }
  private obsolete(){return new DOMException('The practice resident changed; the old request was discarded.','AbortError');}
  private changeIdentity(){this.generation++;this.identityAbort.abort();this.identityAbort=new AbortController();this.loading=null;this.refreshDirty=false;this.refreshRecovery=false;this.cancelPublicRefresh();this.cancelClock();this.cancelStreamRetry(true);this.events?.close();this.events=null;this.bootEpoch++;this.retiredBoots.clear();this.recovery='';}
  private staleBoot():TownRequestError{return Object.assign(new Error('The service changed before this reply could be confirmed. Retry the same request to confirm it.'),{staleBoot:true});}
@@ -106,7 +129,7 @@ export class TownClient {
   }
   if(snapshot.cafe&&!cafePublicSchema.safeParse(snapshot.cafe).success)throw new Error('The café project could not be confirmed.');
   if(snapshot.outing&&!outingSchema.safeParse(snapshot.outing).success)throw new Error('The outing record could not be confirmed.');
-  if(snapshot.orchard!==undefined&&snapshot.orchard!==null&&snapshot.orchard!=='unavailable'&&!orchardStateSchema.safeParse(snapshot.orchard).success){
+  if(snapshot.orchard!==undefined&&snapshot.orchard!==null&&snapshot.orchard!=='unavailable'&&!sharedPantrySchema.safeParse(snapshot.orchard).success){
    throw new Error('The orchard record could not be confirmed.');
   }
   this.snapshot=snapshot;this.offset=snapshot.serverTime-Date.now();this.scheduleClock();this.hooks.onSnapshot?.(snapshot,previous);for(const listener of this.listeners)listener(snapshot);
@@ -177,7 +200,7 @@ export class TownClient {
     try{this.hooks.onConfirmedCommand?.(command,{collection:!!collection,teapot:data.teapotAwarded===true});}catch{/* Keep the confirmed receipt. */}
    }
    return{snapshot,message,ok,replayed:data.replayed===true,command,playerId:snapshot.playerId,collection};
-  }).catch((error:Error&{definite?:boolean})=>{if(generation===this.generation){if(error.definite)this.pending=null;if(present())this.notify(error.message);}throw error;});
+  }).catch((error:Error&{definite?:boolean})=>{if(generation===this.generation){if(error.definite)this.pending=null;if(present())this.notify(command.kind==='snack-parcel'&&!error.definite?'Parcel reply interrupted. Confirm the same request.':error.message);}throw error;});
   const run=outcome.then(result=>result.snapshot).finally(()=>{if(this.inFlight===run){this.inFlight=null;if(this.refreshDirty&&!this.pending&&generation===this.generation&&!this.closed&&!document.hidden)this.refreshFromEvent();}});this.inFlight=run;this.outcomes.set(run,outcome);return run;
  }
  private async workshopOutcome(operation:Promise<TownSnapshot>){

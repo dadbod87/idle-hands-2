@@ -1,5 +1,6 @@
+import {atParcelShelf,lockSnackParcel,readSnackShelf,snackCommandSchema,snackSlotHeld,writeSnackParcel} from './snack-shelf.ts';
 import {confirmOrchardAction,orchardSnapshot} from './orchard-command.ts';
-import {orchardActionSchema,type Orchard} from '../src/game/orchard.ts';
+import {orchardActionSchema,type OrchardPantry} from '../src/game/orchard.ts';
 import{readSnapshotRows}from'./snapshot-rows.ts';
 import{outingAction}from'./outing.ts';
 import{outingSchema,createOuting,type OutingState}from'../src/game/outing.ts';
@@ -29,7 +30,7 @@ export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 
 export type MaintenanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot = {
   outing:OutingState;
-  orchard?: Orchard | 'unavailable' | null;
+  orchard?: OrchardPantry | 'unavailable' | null;
   housingSites:Array<{plotId:string;ownerId:string;ownerName:string;phase:'building'|'ready'}>;housing:Awaited<ReturnType<typeof privateHousing>>;cafe:CafePublicState;
   playerId: string; name: string; workshop: WorkshopState; position: TownPosition;
   quest: { contentVersion: 1; awarded: string[] };
@@ -99,8 +100,8 @@ export function seasonKey(now: number): string {
 /** Trusted server boundary only. Caller authenticates synthetic identity and validates movement/rate before execute. */
 export class TownStore {
   readonly pool: Pool;
-  private now: () => number;private occupants:()=>readonly Occupant[];
-  constructor(pool: Pool, options: { now?: () => number;occupants?:()=>readonly Occupant[] } = {}) { this.pool = pool; this.now = options.now ?? Date.now;this.occupants=options.occupants??(()=>[]); }
+  private now: () => number;private occupants:()=>readonly Occupant[];private roster?:ReadonlySet<string>;
+  constructor(pool: Pool, options: { now?: () => number;occupants?:()=>readonly Occupant[]; roster?:readonly string[] } = {}) { this.roster=options.roster?new Set(options.roster):undefined;this.pool = pool; this.now = options.now ?? Date.now;this.occupants=options.occupants??(()=>[]); }
   private clock(): number {
     const now = this.now();
     if (!Number.isSafeInteger(now) || now < 0 || now > Number.MAX_SAFE_INTEGER - 86400_000) throw new Error('Invalid server clock.');
@@ -163,6 +164,7 @@ export class TownStore {
     catch (error) { await client.query('rollback'); throw error; }
     finally { client.release(); }
   }
+  snackShelf(id:string) { return readSnackShelf(this.pool,id,this.clock(),this.roster?[...this.roster]:undefined); }
   private readCafe(row:Record<string,unknown>):CafeProject{return cafeProjectSchema.parse({version:1,credits:row.credits,observedAt:Number(row.observed_at),fundedAt:row.funded_at===null?null:Number(row.funded_at),readyAt:row.ready_at===null?null:Number(row.ready_at),openedAt:row.opened_at===null?null:Number(row.opened_at)});}
   async execute(id: string, raw: unknown, position: TownPosition): Promise<TownResult> {
     const envelope = envelopeSchema.safeParse(raw);
@@ -172,8 +174,17 @@ export class TownStore {
     try {
       await client.query('begin');
       await client.query("set local lock_timeout='3s'");
-      const player = (await client.query<PlayerRow>('select * from ih2.players where id=$1 for update', [id])).rows[0];
+      const request=cmd.kind==='snack-parcel'?snackCommandSchema.safeParse(raw):null;
+      const snack=request?.success && request.data.expectedPlayerId===id && atParcelShelf(position)?request.data.action:null;
+      const recipient=snack?.kind==='leave' && snack.recipientId!==id && (!this.roster||this.roster.has(snack.recipientId))?snack.recipientId:null;
+      // Only sending needs the recipient's foreign-key target. Match lock order
+      // for crossed sends. Accept, decline and return lock the actor and parcel.
+      const lockedPlayers=recipient===null
+       ?await client.query<PlayerRow>('select * from ih2.players where id=$1 for update',[id])
+       :await client.query<PlayerRow>('select * from ih2.players where id in ($1,$2) order by id for update',[id,recipient]);
+      const player=lockedPlayers.rows.find(row=>row.id===id);
       if (!player) throw new Error('Unknown synthetic player.');
+      const parcel=snack && 'parcelId' in snack?await lockSnackParcel(client,id,snack):null;
       let now = this.clock();
       let cafeRow:Record<string,unknown>|undefined,clockWentBack=false;
       if(cmd.kind==='cafe-serve'){
@@ -188,7 +199,7 @@ export class TownStore {
       }
       await this.settleBridge(client,now,false);
       let state = this.readState(player, now);let authoritativePosition=position;
-      let orchardUpdate:Orchard|undefined;
+      let orchardUpdate:OrchardPantry|undefined;
       const prior = (await client.query('select payload_hash,result from ih2.command_receipts where player_id=$1 and command_id=$2', [id, cmd.id])).rows[0];
       if (prior) {
         const result: Receipt = prior.payload_hash === hash(raw) ? prior.result : { ok: false, message: 'That command ID was already used for a different request.', revision: state.revision };
@@ -208,12 +219,31 @@ export class TownStore {
       else if (!(position.room==='neighborhood'?canStand(position.room,position.position,housingWorld((await client.query('select id::text,plan_id as "planId" from ih2.plots')).rows,position.districtId!)):validPosition(position))||!validContext) reject('A valid server position is required.');
       else if (clockWentBack || now < state.observedAt) reject('The server clock moved backwards. Your progress is unchanged.');
       else if (state.revision >= 1_000_000) reject('Prototype command limit reached. Your progress is unchanged.');
+      else if(cmd.kind==='snack-parcel') {
+        if(!request?.success)reject('That parcel request is invalid.');
+        else if(request.data.expectedPlayerId!==id)reject('The active resident changed. No parcel was moved.');
+        else if(!snack)reject('Walk to the café parcel shelf first.');
+        else{
+          const outcome=await writeSnackParcel(client,id,snack,orchardSnapshot(player.orchard),parcel,
+            recipient!==null&&lockedPlayers.rows.some(row=>row.id===recipient),now);
+          if(!outcome.ok)reject(outcome.message);
+          else{
+            orchardUpdate=outcome.pantry;
+            state={...state,revision:state.revision+1,observedAt:now,lastMessage:outcome.message};
+            result={ok:true,message:outcome.message,revision:state.revision};
+          }
+        }
+      }
       else if(cmd.kind==='orchard'){
         const request=orchardCommandSchema.safeParse(raw);
         if(!request.success)reject('That orchard request is invalid.');
         else if(request.data.expectedPlayerId!==id)reject('The active resident changed. Nothing was picked or packed.');
         else {
-          const applied=confirmOrchardAction(player.orchard,request.data.action,position,now);
+          const pantry=orchardSnapshot(player.orchard);
+          const needSlot=pantry && pantry!=='unavailable' && pantry.version===2 &&
+            pantry.gifts.offered>pantry.gifts.returned && ['pack','collect'].includes(request.data.action.kind);
+          const reservedSlot=!!needSlot && await snackSlotHeld(client,id);
+          const applied=confirmOrchardAction(player.orchard,request.data.action,position,now,reservedSlot);
           if(!applied.ok)reject(applied.message);
           else {
             orchardUpdate=applied.state;

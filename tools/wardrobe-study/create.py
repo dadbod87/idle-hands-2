@@ -13,12 +13,19 @@ import json
 import shutil
 
 ROOT = Path(__file__).resolve().parents[2]
-ORIGINAL = ROOT / 'public/art/variety'
+ART = ROOT / 'public/art'
+ORIGINAL = ART / 'variety'
 SOURCE = ROOT / 'tools/wardrobe-study'
 FACINGS = ('south', 'north', 'east', 'west')
 HATS = ('none', 'clerk', 'inkwood')
 RIGS = run_path(str(ROOT / 'tools/create-town-variety.py'))
 INK = '#343c36'
+ACTIVITIES = {
+    'orchard': 'orchard/{rig}-picking.svg',
+    'garden': 'garden/garden-actions-{rig}.svg',
+    'saw': 'carpentry/carpentry-actions-{rig}.svg',
+    'serve': 'cafe/{rig}-serving.svg',
+}
 
 
 def path(d, fill='none', stroke=INK, width=1.65):
@@ -98,6 +105,15 @@ def opening_sheet(rig, hat):
     )
 
 
+def overlay_sheet(hat):
+    cells = []
+    for row, facing in enumerate(FACINGS):
+        for pose in range(7):
+            number = row * 7 + pose
+            cells.append(f'<g transform="translate({number * 64} 0)">{overlay(hat, facing, pose)}</g>')
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="1792" height="80">' + ''.join(cells) + '</svg>\n'
+
+
 def create(destination):
     assets = destination / 'sheets'
     assets.mkdir(parents=True, exist_ok=True)
@@ -108,6 +124,14 @@ def create(destination):
             shutil.copyfile(ORIGINAL / f'resident-{rig}.svg', assets / name)
         else:
             (assets / name).write_text(opening_sheet(rig, hat))
+        generated[name] = sha256((assets / name).read_bytes()).hexdigest()
+    for hat in ('clerk', 'inkwood'):
+        name = f'overlay-{hat}.svg'
+        (assets / name).write_text(overlay_sheet(hat))
+        generated[name] = sha256((assets / name).read_bytes()).hexdigest()
+    for rig, activity in product(RIGS['RESIDENTS'], ACTIVITIES):
+        name = f'{rig}-{activity}.svg'
+        shutil.copyfile(ART / ACTIVITIES[activity].format(rig=rig), assets / name)
         generated[name] = sha256((assets / name).read_bytes()).hexdigest()
     for name in ('index.html', 'wardrobe.css', 'wardrobe.mjs'):
         shutil.copyfile(SOURCE / name, destination / name)

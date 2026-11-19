@@ -1,5 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
 
 const out='test-results/browser/wardrobe-preview';
 const residents=['Aster','Bea','Casey','Devon'];
@@ -102,4 +104,49 @@ for(const size of [
   expect(requests).toEqual([]);
   expect(errors).toEqual([]);
  }finally{await context.close();}
+});
+
+test('the hat stays on when changing into the existing orchard, garden, saw and café poses',async({page})=>{
+ mkdirSync(out,{recursive:true});
+ await page.goto('/');
+ await page.getByLabel('Resident',{exact:true}).selectOption('Aster');
+ await page.getByRole('radio',{name:'Clerk cap'}).press('Space');
+ const activities=page.getByLabel('Activity',{exact:true});
+ const facing=page.getByLabel('View from',{exact:true});
+ const overlay=page.locator('#headwear');
+ const actor=page.getByRole('img');
+ for(const activity of ['orchard','garden','saw','serve']){
+  await activities.selectOption(activity);
+  await facing.selectOption('east');
+  await expect(overlay).toBeVisible();
+  await expect(actor).toHaveAccessibleName('Aster · Clerk cap · East side');
+  expect(await overlay.evaluate(el=>getComputedStyle(el).backgroundPositionX)).toBe('-1792px');
+  const art=await actor.evaluate(el=>getComputedStyle(el).backgroundImage);
+  expect(art).toContain('aster-'+activity+'.svg');
+  const missing=await page.evaluate(async(url:string)=>{
+   const image=new Image();
+   image.src=url;
+   await image.decode();
+   return !image.naturalWidth;
+  },art.slice(5,-2));
+  expect(missing).toBe(false);
+  await page.getByRole('button',{name:'Preview activity'}).press('Enter');
+  await expect(page.getByRole('status')).toHaveText('Playing one activity.');
+  await expect(page.getByRole('status')).toHaveText('Activity preview complete.');
+  await expect(overlay).toBeVisible();
+  await page.screenshot({path:out+'/desktop-'+activity+'.png',fullPage:true});
+ }
+ await page.getByRole('radio',{name:'Original look'}).press('Space');
+ await expect(overlay).toBeHidden();
+});
+
+
+test('the fitting-room preview works directly from its generated HTML file',async({page})=>{
+ await page.goto(pathToFileURL(resolve('test-results/browser/wardrobe-study/index.html')).href);
+ const actor=page.getByRole('img');
+ await expect(actor).toHaveAccessibleName('Aster · Original look · Front');
+ await page.getByRole('radio',{name:'Clerk cap'}).press('Space');
+ await expect(actor).toHaveAccessibleName('Aster · Clerk cap · Front');
+ await page.getByLabel('Activity',{exact:true}).selectOption('orchard');
+ await expect(page.locator('#headwear')).toBeVisible();
 });

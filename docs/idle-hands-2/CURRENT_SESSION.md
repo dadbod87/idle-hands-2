@@ -1,3 +1,9 @@
+# November 18 — browser CI repair, corrected observations and original music
+
+PR #63 passed its final PR and main regression runs and both corrected observation windows. PR #64 added optional original music and passed 549 domain tests and 201 browser cases on both its final PR and main runs. The saved local previews and databases remain stopped. [Closeout](handoffs/2026-11-18-music-and-ci.md)
+
+Earlier dated entries below describe historical states.
+
 # November18 — public-refresh checkpoint
 
 PR63full checks remain pending; domain549/549rawpassed. Latest run status: completed / cancelled. Focused rerun stopped at the owner work-window boundary; no third blind retry. PR63remains unmerged. No corrected-source fixed observations accepted;127remains in_progress. [Latest handoff](handoffs/2026-11-18-public-refresh.md). Normal saved services remain off; no runtime/hosting or game-audio installation. Earlier dated entries below are historical.

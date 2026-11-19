@@ -1,0 +1,222 @@
+{
+  "pr": {
+    "run": 44422579863,
+    "sha": "ff5052936a63270778f6af7b18c4e29eebb7cc3d",
+    "allRequiredJobsSuccess": true,
+    "requiredJobCount": 5,
+    "domain": 549,
+    "newDeadlineDomainCases": 4,
+    "all545PriorDomainCasesPreserved": true,
+    "browser": 198,
+    "disjointShards": [
+      73,
+      66,
+      59
+    ],
+    "newCommandConfirmationDomainCases": 7,
+    "newServerClockDomainCases": 8,
+    "serverClockSamplingAfterCanonicalSharedLocks": true,
+    "cafeAdditionalLockReads": 2,
+    "ordinaryQueryDelta": 0,
+    "newPublicTransportDomainCasesStillPass": 3,
+    "newPublicBrowserSmoke": 1,
+    "realPublicSmokeConservedAndDrained": true,
+    "fixedObservationsExecuted": false,
+    "originalAudioDomainCasesStillPass": 7,
+    "newAudioBrowserCases": 4,
+    "all537PriorDomainAnd198BrowserCasesPreserved": true,
+    "zeroFailuresSkippedFlakyReportErrors": true,
+    "all232GameFilesExactCorrectedLocalCandidate": true,
+    "all230OtherFilesExactAccepted122": true,
+    "mainJsAndIndexChangedForConfirmationFix": true,
+    "allPriorClientTestsAndReplyAcceptGuardsByteExact": true,
+    "all226ArtFilesExact": true,
+    "rawHousingOutingRestartRestoreAnd9MetadataVerified": true,
+    "fourCurrentSettlementCasesVerified": true,
+    "movementBodyAndMenuRetryGuardsVerified": true,
+    "unchanged500msBudgetsPass": true,
+    "commandP95Ms": 90.43954099999792,
+    "profiledCommandP95Ms": 79.8112489999985,
+    "rich26HomeSnapshotP95Ms": 92.24931000000015,
+    "audioPackByteExactAcrossPinnedLinuxAndMac": true,
+    "wavBytes": 3988878,
+    "emittedScriptsAndAllFilesVerified": true,
+    "audioFocusedBrowser": {
+      "cases": 4,
+      "layouts": 8,
+      "axeScans": 3,
+      "hardwareOutputMuted": true,
+      "controlledVisibilityDisclosed": true,
+      "fileOpenWithoutHTTPDependency": true,
+      "humanListeningPhysicalPhone": "not claimed"
+    },
+    "normalServicesKeptStopped": true,
+    "localExecution": "400independent passes/20database-unavailable skips;4deadline cases; no full local PG/browser execution",
+    "approxRoundedJobMinutes": 43,
+    "runAttempt": 1,
+    "sameHeadReuse": [],
+    "standardPublicUbuntu": true,
+    "billingCycleUsageUnknown": true,
+    "noPaidConfiguration": true,
+    "artifactsPinnedById": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14480984725,
+        "createdAt": "2026-11-18T23:42:42Z",
+        "zipSha256": "abd62012d92633ce9fd4c20680015ee49d606231a3e5fd57a21d699f86d8ba1c"
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14482976395,
+        "createdAt": "2026-11-18T23:42:43Z",
+        "zipSha256": "ccfe5a25535b79b65691d9e68df8374612f87833eb31bea6436c077ebab258c2"
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14482768439,
+        "createdAt": "2026-11-18T23:51:10Z",
+        "zipSha256": "73eeeaa97db84faf2d72fa4ab06f2314973f3eac24f850eb047fea082dd5e47a"
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14483645693,
+        "createdAt": "2026-11-18T23:51:01Z",
+        "zipSha256": "a4c20d9bd0dca8caaf48bf43fba594a21e1d843540ce3299e1a9547b386e4e7a"
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14483596413,
+        "createdAt": "2026-11-18T23:52:45Z",
+        "zipSha256": "a31a2781b19179439f5e32889ee92bf73e7714387a11ba37f55351c1ebd44680"
+      }
+    ]
+  },
+  "main": {
+    "run": 44424566689,
+    "sha": "5af4bba4ad36601948573e91395a1ce653215d75",
+    "allRequiredJobsSuccess": true,
+    "requiredJobCount": 5,
+    "domain": 549,
+    "newDeadlineDomainCases": 4,
+    "all545PriorDomainCasesPreserved": true,
+    "browser": 198,
+    "disjointShards": [
+      73,
+      66,
+      59
+    ],
+    "newCommandConfirmationDomainCases": 7,
+    "newServerClockDomainCases": 8,
+    "serverClockSamplingAfterCanonicalSharedLocks": true,
+    "cafeAdditionalLockReads": 2,
+    "ordinaryQueryDelta": 0,
+    "newPublicTransportDomainCasesStillPass": 3,
+    "newPublicBrowserSmoke": 1,
+    "realPublicSmokeConservedAndDrained": true,
+    "fixedObservationsExecuted": false,
+    "originalAudioDomainCasesStillPass": 7,
+    "newAudioBrowserCases": 4,
+    "all537PriorDomainAnd198BrowserCasesPreserved": true,
+    "zeroFailuresSkippedFlakyReportErrors": true,
+    "all232GameFilesExactCorrectedLocalCandidate": true,
+    "all230OtherFilesExactAccepted122": true,
+    "mainJsAndIndexChangedForConfirmationFix": true,
+    "allPriorClientTestsAndReplyAcceptGuardsByteExact": true,
+    "all226ArtFilesExact": true,
+    "rawHousingOutingRestartRestoreAnd9MetadataVerified": true,
+    "fourCurrentSettlementCasesVerified": true,
+    "movementBodyAndMenuRetryGuardsVerified": true,
+    "unchanged500msBudgetsPass": true,
+    "commandP95Ms": 63.00062499999967,
+    "profiledCommandP95Ms": 65.81552200000078,
+    "rich26HomeSnapshotP95Ms": 60.87371699999994,
+    "audioPackByteExactAcrossPinnedLinuxAndMac": true,
+    "wavBytes": 3988878,
+    "emittedScriptsAndAllFilesVerified": true,
+    "audioFocusedBrowser": {
+      "cases": 4,
+      "layouts": 8,
+      "axeScans": 3,
+      "hardwareOutputMuted": true,
+      "controlledVisibilityDisclosed": true,
+      "fileOpenWithoutHTTPDependency": true,
+      "humanListeningPhysicalPhone": "not claimed"
+    },
+    "normalServicesKeptStopped": true,
+    "localExecution": "400independent passes/20database-unavailable skips;4deadline cases; no full local PG/browser execution",
+    "approxRoundedJobMinutes": 40,
+    "runAttempt": 1,
+    "sameHeadReuse": [],
+    "standardPublicUbuntu": true,
+    "billingCycleUsageUnknown": true,
+    "noPaidConfiguration": true,
+    "artifactsPinnedById": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14482804423,
+        "createdAt": "2026-11-18T23:56:41Z",
+        "zipSha256": "7bec33967b0a3227b62d9a21329890a1f446067989039b41a805bc7423132a6d"
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14482819358,
+        "createdAt": "2026-11-18T23:56:42Z",
+        "zipSha256": "a0e1a7fe63fc0f36496108861c2f314ac2b6c7b92fa24e6cdb0df08d32ac1f21"
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14485055456,
+        "createdAt": "2026-11-19T00:05:36Z",
+        "zipSha256": "581919b8e77cf6f337e328d0029256b714a9a46f46810d5f44d01462f74e35ec"
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14485175039,
+        "createdAt": "2026-11-19T00:05:36Z",
+        "zipSha256": "e85abfb5e1bed49e198bd2c30fb60d90c1cf989934b51f9fd9a8564d8db1b685"
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14483688381,
+        "createdAt": "2026-11-19T00:05:23Z",
+        "zipSha256": "c3dc1e5c31e4691159f1811fb4b968b7789aabd04f37c1de4d997af3f1a2187b"
+      }
+    ]
+  },
+  "setup": {
+    "deadline-resumed-pr-ci": [
+      {
+        "job": "browser-shard (2/3)",
+        "id": 135219078441,
+        "installSeconds": 36
+      },
+      {
+        "job": "browser-shard (3/3)",
+        "id": 135219078510,
+        "installSeconds": 25
+      },
+      {
+        "job": "browser-shard (1/3)",
+        "id": 135219078486,
+        "installSeconds": 42
+      }
+    ],
+    "deadline-main-ci": [
+      {
+        "job": "browser-shard (1/3)",
+        "id": 135225937214,
+        "installSeconds": 40
+      },
+      {
+        "job": "browser-shard (2/3)",
+        "id": 135225937361,
+        "installSeconds": 41
+      },
+      {
+        "job": "browser-shard (3/3)",
+        "id": 135225937343,
+        "installSeconds": 23
+      }
+    ]
+  }
+}

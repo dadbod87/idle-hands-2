@@ -2270,7 +2270,7 @@
     {
       "id": "IH2-127",
       "title": "Profile real client refresh fanout during shared town activity",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-126",
         "IH2-128",
@@ -2303,7 +2303,9 @@
         "docs/evidence/IH2-127/DEADLINE_REPAIR.md",
         "docs/evidence/IH2-127/deadline-status.json",
         "docs/evidence/IH2-127/QUERY_REVIEW.md",
-        "docs/idle-hands-2/handoffs/2026-11-18-public-refresh.md"
+        "docs/idle-hands-2/handoffs/2026-11-18-public-refresh.md",
+        "docs/evidence/IH2-127/RESUMED_CI.json",
+        "docs/evidence/IH2-127/corrected-study-verification.json"
       ],
       "owner_branch": "fix/public-observation-deadline",
       "latest_outcome": "Both captures complete and functional/conservation/latency/quiet/cleanup pass; trial2fixed-window gate fails by0.301msoutside declared tolerance. Retain qualified data; diagnostic deadline repair pending549/198PR/main. Not accepted as two fixed observations."
@@ -2359,7 +2361,7 @@
     {
       "id": "IH2-130",
       "title": "Optional original place audio with quiet game controls",
-      "status": "queued",
+      "status": "in_progress",
       "depends_on": [
         "IH2-129"
       ],
@@ -2377,8 +2379,11 @@
       ],
       "evidence": [
         "docs/evidence/IH2-130/PLAN.md",
-        "docs/evidence/IH2-130/PLACE_MUSIC.md"
-      ]
+        "docs/evidence/IH2-130/PLACE_MUSIC.md",
+        "docs/evidence/IH2-130/MUSIC_CI.json"
+      ],
+      "progress_note": "Original place music passed and is merged. Optional effects and their controls remain in the broader sound task.",
+      "owner_branch": "feat/original-place-audio"
     },
     {
       "id": "IH2-131",
@@ -2407,5 +2412,5 @@
       ]
     }
   ],
-  "source_status_note": "PR63full checks remain pending; domain549/549rawpassed. Latest run status: in_progress / None. Focused rerun stopped/requested to stop at the owner work-window boundary; no third blind retry. PR63remains unmerged. No corrected-source fixed observations accepted;127remains in_progress. Owner-stopped normal game/database remain off;130queued."
+  "source_status_note": "IH2-127 observations passed. The IH2-130 music portion passed and optional effects remain open. Local saved services remain stopped. Read the latest CURRENT_SESSION handoff."
 }

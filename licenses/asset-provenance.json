@@ -2111,6 +2111,76 @@
       "source": "tools/create-outing-art.py",
       "date": "2026-11-17",
       "modifications": "Original borrowed-tool desk, route conditions, detour and confirmed waymarker repair stages. No imported media or reward authority."
+    },
+    {
+      "id": "orchard-apple",
+      "path": "public/art/orchard/apple.svg",
+      "sha256": "67ebc689fa20c7e165191d15600cc12ee29feb9cea36f825f7049136904a6c02",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/orchard-study/apple.svg",
+      "date": "2026-11-19",
+      "modifications": "Byte-identical promotion of the original orchard study illustration."
+    },
+    {
+      "id": "orchard-aster-picking",
+      "path": "public/art/orchard/aster-picking.svg",
+      "sha256": "88ad7b595096bdef2f809f8bf9a888d1dce7bd5a3feb3165095f9de82306a305",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "docs/evidence/IH2-144/sheets/aster-picking.svg",
+      "date": "2026-11-19",
+      "modifications": "Byte-identical promotion of the original orchard study illustration."
+    },
+    {
+      "id": "orchard-bea-picking",
+      "path": "public/art/orchard/bea-picking.svg",
+      "sha256": "326cbd34935d19315b854fd6a1cba4c1470b9c9e02fcd5f75620a456c4096be2",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "docs/evidence/IH2-144/sheets/bea-picking.svg",
+      "date": "2026-11-19",
+      "modifications": "Byte-identical promotion of the original orchard study illustration."
+    },
+    {
+      "id": "orchard-casey-picking",
+      "path": "public/art/orchard/casey-picking.svg",
+      "sha256": "0cd234abb8184ef0d6ce42223eef443efa4f8cc384471a29d296c5d853a6d9a5",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "docs/evidence/IH2-144/sheets/casey-picking.svg",
+      "date": "2026-11-19",
+      "modifications": "Byte-identical promotion of the original orchard study illustration."
+    },
+    {
+      "id": "orchard-devon-picking",
+      "path": "public/art/orchard/devon-picking.svg",
+      "sha256": "57171eb35b2806efc97f4ef411ea050ffe70ee0734b461e62ee8a8f2ef5293c3",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "docs/evidence/IH2-144/sheets/devon-picking.svg",
+      "date": "2026-11-19",
+      "modifications": "Byte-identical promotion of the original orchard study illustration."
+    },
+    {
+      "id": "orchard-packing-table",
+      "path": "public/art/orchard/packing-table.svg",
+      "sha256": "5acf7de533871d6ce6e6ba17d71f8f764736ec1d2e7b218529e57be9f08b6b5a",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/orchard/packing-table.svg",
+      "date": "2026-11-19",
+      "modifications": "Original hand-authored packing station."
+    },
+    {
+      "id": "orchard-snack",
+      "path": "public/art/orchard/orchard-snack.svg",
+      "sha256": "31c302a7ec82240369ded55141891623552fa80bf064143f7776f7edcf7803a5",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/orchard-study/orchard-snack.svg",
+      "date": "2026-11-19",
+      "modifications": "Byte-identical promotion of the original orchard study illustration."
     }
   ],
   "comparison": {

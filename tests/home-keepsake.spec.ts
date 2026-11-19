@@ -69,12 +69,19 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
    if (endpoint==='command') {
     const command=route.request().postDataJSON();
     expect(isOwner).toBe(true);
-    expect(command).toMatchObject({kind:'display-home-keepsake',plotId:'1',expectedRevision:ownerState.revision});
+    expect(command).toMatchObject({kind:'display-home-keepsake',plotId:'1'});
+    const replay=commands.find(previous=>previous.id===command.id);
     commands.push(command);
+    if(replay){
+     expect(command).toEqual(replay);
+     return route.fulfill({json:{ok:true,replayed:true,message:'Certificate displayed for visitors.',snapshot:snapshot()}});
+    }
+    expect(command.expectedRevision).toBe(ownerState.revision);
     if(command.keepsake==='naturalist')await held;
     keepsake=command.keepsake;
     ownerState={...ownerState,revision:ownerState.revision+1};
-    return route.fulfill({json:{ok:true,message:keepsake?'Certificate displayed for visitors.':'Frame taken down.',snapshot:snapshot()}});
+    if(keepsake)return route.abort('failed');
+    return route.fulfill({json:{ok:true,message:'Frame taken down.',snapshot:snapshot()}});
    }
    return route.fulfill({status:404});
   });
@@ -109,7 +116,12 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   await expect.poll(async()=>({count:commands.length,status:await owner.locator('.town-status').textContent()})).toMatchObject({count:1});
   await expect.poll(()=>visual(owner)).toBe(false);
   release();
+  const retry=owner.getByRole('button',{name:'Retry the same request'});
+  await expect(retry).toBeVisible();
+  await expect.poll(()=>visual(owner)).toBe(false);
+  await retry.click();
   await expect(owner.getByRole('button',{name:'Take down frame'})).toBeVisible();
+  expect(commands.slice(0,2)[0]).toEqual(commands.slice(0,2)[1]);
   await close(owner);
   await expect.poll(()=>visual(owner)).toBe(true);
   await owner.screenshot({path:output+'/desktop-hung.png'});
@@ -133,7 +145,7 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   expect(await owner.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await owner.screenshot({path:output+'/short-owner.png'});
   await owner.keyboard.press('Enter');
-  await expect.poll(()=>commands.length).toBe(2);
+  await expect.poll(()=>commands.length).toBe(3);
   await expect(owner.getByRole('button',{name:'Preview your certificate'})).toBeVisible();
   await close(owner);
   await expect.poll(()=>visual(owner)).toBe(false);

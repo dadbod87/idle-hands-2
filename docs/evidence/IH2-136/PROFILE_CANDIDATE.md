@@ -1,0 +1,9 @@
+# Profile and arrival boundaries
+
+The separate pure contract in the opening study records identity, version and a checkpoint. Eligibility for the new-resident bed is an input from the trusted account adapter. An existing resident can opt in to a profile without a move. A new resident has three ordered transactions: enroll, get up and leave. The last two require the canonical bed or door spot, and each verified mutation uses a stable receipt and expected revision.
+
+A replay returns the same receipt and the current record with no new movement. The model refuses another account, a reused request ID with different intent, old revision, backward time or false location. It never accepts a client's arbitrary destination and does not return any stock, house, score or skill grant. Room anchor strings are planned selectors, not current world coordinates.
+
+The model is executable but unconnected. A future adapter must hold the resident and private room transition in one transaction, retain receipt identity through storage failures and restart, and prove neighboring and existing saves untouched. Fixture unit tests use serialized round trips and old requests. They do not establish HTTP authentication, durable locks, key ownership, collision, save migration, release or normal-preview acceptance.
+
+The [layout rehearsal](../../../tools/lodging-study/layout.ts) places the candidate boarding house west of the workshop in the current square. It uses the game's pure collision and routing helpers on temporary geometry. It proves walkable bed-side and door anchors, foot-level outdoor arrival and a route to Marlow. It also checks all previously reachable stops and inbound square doors. A historical position can still be inside the proposed new building footprint. Before adding that collision to the actual game, decide and test a bounded recovery for those exact affected positions. No durable positions change in this study.

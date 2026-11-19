@@ -30,7 +30,7 @@ test('native café parcel shelf delivers one snack between signed-in practice re
   await signIn(sender,'Fern');
   await sender.bringToFront();
   await openShelf(sender);
-  await expect(sender.getByText('1 available · 3 pouch spaces')).toBeVisible();
+  await expect(sender.getByText('1 available · pouch capacity 3')).toBeVisible();
   await sender.getByLabel('Choose a neighbor',{exact:true}).selectOption('parcel-cedar');
   const sent=sender.waitForResponse(response=>new URL(response.url()).pathname==='/api/town/command'&&response.ok());
   await sender.getByRole('button',{name:'Leave snack'}).press('Enter');
@@ -49,7 +49,7 @@ test('native café parcel shelf delivers one snack between signed-in practice re
   const delivered=await (await accepted).json();
   expect(delivered.ok).toBe(true);
   expect(delivered.snapshot.orchard).toMatchObject({version:2,snacks:1,packed:0,tasted:0,gifts:{offered:0,received:1,returned:0}});
-  await expect(recipient.getByText('1 available · 3 pouch spaces')).toBeVisible();
+  await expect(recipient.getByText('1 available · pouch capacity 3')).toBeVisible();
 
   await recipient.reload();
   await expect(recipient.getByRole('dialog')).toBeHidden();
@@ -59,7 +59,7 @@ test('native café parcel shelf delivers one snack between signed-in practice re
   await sender.bringToFront();
   await sender.getByRole('button',{name:'Close panel'}).click();
   await openShelf(sender);
-  await expect(sender.getByText('0 available · 3 pouch spaces')).toBeVisible();
+  await expect(sender.getByText('0 available · pouch capacity 3')).toBeVisible();
   await expect(sender.getByRole('heading',{name:'Waiting for Cedar'})).toHaveCount(0);
   expect(errors).toEqual([]);
  }finally{await desktop.close();await narrow.close();}

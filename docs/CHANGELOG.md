@@ -1,3 +1,27 @@
+# November 19 — Jun’s orchard directions accepted
+
+One contextual suggestion points to confirmed orchard work. A narrow phone can follow its route without picking or spending. Main `c9353926a5f6f57230eb601e206a72567d69ffeb` passed 575 domain tests and 225 browser cases. [Exact verification](evidence/IH2-154/EXACT_CI.json).
+
+# November 19 — original headwear accepted in browser practice
+
+The resident editor now offers the Clerk cap and Inkwood hood. Free previews use the same feet and acting poses as the selected resident, and only explicit Save changes the appearance. Main `bc61186865a1c781e8eaf5fde18d1176d61fdec4` passed 572 domain tests and 224 browser cases. [Exact checks](evidence/IH2-153/BROWSER_HEADWEAR_CI.json).
+
+# November 19 — a private café parcel shelf
+
+Shared practice residents can leave one real orchard snack for a neighbor, who can accept it or decline. Both sides see the pickup deadline in local time. The sender can reclaim an unaccepted parcel after expiry. Main `26fea9631260c80f08f9de114cdcddeeca5f533e` passed 571 domain tests and 223 browser cases. [PR #73 evidence](evidence/IH2-150/SNACK_SHELF_CI.json).
+
+# November 19 — less tree work and a rehearsal for small favors
+
+Visible tree sway now skips unchanged transform assignments. Native desktop, narrow phone and 2K checks verify that a canopy begins and ends visible motion when the camera passes. A separate café parcel rehearsal demonstrates a small neighbor gift. Main `68619d549a01c10f80a2780e61e0cba2d6cfd219` passed 566 domain tests and 220 browser cases. [PR #72 evidence](evidence/IH2-148/CANOPY_AND_PARCEL_CI.json).
+
+# November 19 — a shared orchard with personal stock
+
+The shared practice town supports independent apples and timed snack packing. Verified feet and server time control each action. Main `55d75c58e9922377f262af9fc284f26470aab3d0` passed 566 domain tests and 219 browser cases. [PR #71 evidence](evidence/IH2-147/SHARED_ORCHARD_CI.json).
+
+# November 19 — map walks and browser orchard
+
+Residents can select known walks from the town map. The browser-practice orchard has three personal branches, a timed snack, deliberate collection, Bag quantities and a Journal note. Main `1266efcbff502bcd8e0683ea342cf5fdc19aed4f` passed 562 domain tests and 217 browser cases. [PR #70 evidence](evidence/IH2-146/ORCHARD_PRACTICE_CI.json).
+
 # November 19 — visible work and a town opening
 
 The ordinary workbench shows its confirmed materials or finished piece. Nearby residents can see a brief Inkwood opening celebration. The orchard pacing model and original picking poses are available as standalone studies. Main `6f9245a8772a858c1e26104b249e50e6c5162f09` passed 558 domain tests and 213 browser cases. [PR #69 gate and evidence](evidence/IH2-142/TOWN_MOMENTS_CI.json).

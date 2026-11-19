@@ -1,3 +1,5 @@
+import {orchardGuide} from './game/orchard-guide.ts';
+import './ui/jun-orchard.css';
 import {SnackShelfUI} from './ui/snack-shelf.ts';
 import { rewardCue } from './audio/world-sounds.ts';
 import { mountPlaceMusic } from './ui/place-music.ts';
@@ -230,7 +232,7 @@ function followNamedWalk(){
  if(namedWalk.owner!==(town?.snapshot?.playerId??'local')){namedWalk=null;return;}
  if(namedWalk.startedRoom===session.room)return;
  const target=namedWalk,portal=target.room==='garden'?'allotment':target.room==='workshop'?'workshop':null;
- const stop=session.room===target.room?worlds[session.room].stops.find(s=>s.id===target.stopId):session.room==='square'?(portal?worlds.square.stops.find(s=>s.id===portal):undefined):worlds[session.room].stops.find(s=>s.transition==='square');
+ const stop=session.room===target.room?session.stops.find(s=>s.id===target.stopId):session.room==='square'?(portal?worlds.square.stops.find(s=>s.id===portal):undefined):worlds[session.room].stops.find(s=>s.transition==='square');
  if(!stop){namedWalk=null;feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
  if(Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.25){
   if(session.room===target.room&&stop.id===target.stopId)namedWalk=null;
@@ -363,6 +365,26 @@ function activate(stop: Stop) {
     openPanel(dialogue.title);for(const line of dialogue.lines)body.append(paragraph(line));
     if(['courier','clerk','caretaker'].includes(stop.id))commissionUI?.addNpcLink(stop.id as RecipientId|'courier');
     if(dialogue.action){const action=dialogue.action,button=document.createElement('button');button.type='button';button.className='destination';button.dataset.npcAction=action.destination;button.textContent=action.label;button.addEventListener('click',()=>{if(action.destination==='journal'){workshop.showJournal();return;}const target=worlds[session.room].stops.find(s=>s.id===action.destination||(action.destination==='workshop'&&s.id==='bench'));if(target)walkToPlace(target);});body.append(button);}
+    if(stop.id==='caretaker'&&orchardAvailable()){
+      const pantry=orchardUI.state;
+      if(pantry&&(pantry.picked>0||pantry.snacks>0||objective.id==='bridge'||objective.id==='complete')){
+        const guide=orchardGuide(pantry,orchardPort?.now()??Date.now(),townMode);
+        const card=document.createElement('section'),title=document.createElement('h3');
+        card.className='jun-orchard';
+        title.textContent='Orchard work';
+        card.append(title,paragraph(guide.detail));
+        if(guide.to&&guide.button){
+          const destination=guide.to;
+          const button=document.createElement('button');
+          button.type='button';
+          button.className='destination';
+          button.textContent=guide.button;
+          button.onclick=()=>goNamedDestination('square',destination);
+          card.append(button);
+        }
+        body.append(card);
+      }
+    }
     return;
   }
   const study=stop.id.startsWith('survey-')?surveyId(stop.id.slice(7)):undefined;if(study){workshop.showSketchbook(study);return;}

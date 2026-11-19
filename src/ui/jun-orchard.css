@@ -1,0 +1,11 @@
+#panel-body .jun-orchard {
+ display:grid;
+ gap:.5rem;
+ padding:.65rem .75rem;
+ margin:.85rem 0;
+ border:1px solid #8f9d7b;
+ border-radius:5px;
+ background:#e8ecd9;
+}
+#panel-body .jun-orchard h3, #panel-body .jun-orchard p { margin:0; }
+#panel-body .jun-orchard button { margin:0; min-height:44px; }

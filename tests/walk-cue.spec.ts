@@ -57,9 +57,19 @@ test('walk mark follows accepted ground routes and disappears when travel stops'
    await ground(24,25);
    await seekMark(24,25,tapTolerance);
    await ground(30.5,24.5);
-   await seekMark(30.5,24.5,tapTolerance);
-   const redirected=await mark();
-   expect(redirected).not.toBeNull();
+   // The rendered camera is advancing during this tap. The new endpoint must
+   // be on the east side of the courtyard, away from the westbound route.
+   // The stationary tap above separately checks exact endpoint and arrival.
+   let redirected:{x:number;y:number}|null=null;
+   await expect.poll(async()=>{
+    const target=await mark();
+    if(target&&target.x>=27.5&&target.x<=32&&target.y>=22.5&&target.y<=26){
+     redirected=target;
+     return true;
+    }
+    return false;
+   },{intervals:[20,30,50],timeout:1000}).toBe(true);
+   if(!redirected)throw new Error('The redirected walk did not get a new world-space mark.');
    if (size.touch) {
     await page.locator('#places').tap();
     await expect(page.getByRole('dialog')).toBeVisible();

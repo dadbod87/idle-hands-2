@@ -1,3 +1,4 @@
+import {FIRST_MORNING_KEY,readFirstMorning,saveFirstMorning,type MorningRead} from './game/first-morning.ts';
 import {mountDoorLight} from './ui/door-light.ts';
 import {ARRIVAL_STORIES} from './game/arrival-stories.ts';
 import type {BrowserResident} from './game/browser-resident.ts';
@@ -45,12 +46,20 @@ const townMode=new URLSearchParams(window.location.search).has('town');
 const saveKey = 'ih2:pilot-position:v1';
 let stored: unknown;
 try { stored = townMode?null:JSON.parse(localStorage.getItem(saveKey) ?? 'null'); } catch { stored = null; }
-const session = new Session(townMode?null:stored,townMode?undefined:ORCHARD_STOPS,!townMode);
+const morningStorage={
+  getItem:(key:string)=>localStorage.getItem(key),
+  setItem:(key:string,value:string)=>localStorage.setItem(key,value),
+};
+let morning:MorningRead=townMode?{status:'unavailable',record:null}:readFirstMorning(morningStorage);
+let morningWriting=false;
+const resting=()=>morning.record?.phase==='bed';
+const session = new Session(townMode?null:morning.record?.saved??stored,townMode?undefined:ORCHARD_STOPS,!townMode);
+if(resting())session.lock(true);
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
  <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">${townMode?'NEIGHBORHOOD STUDY':'<strong id="local-resident-badge" dir="auto">NEIGHBORHOOD STUDY</strong>'}<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
- <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div id="door-light" aria-hidden="true"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
+ <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div id="door-light" aria-hidden="true"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><button id="wake-resident" class="primary" type="button" hidden>Get up</button><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
  <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal</button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav></footer>
 </main>
 <dialog id="panel" aria-labelledby="panel-title"><form method="dialog"><header class="dialog-head"><div><p class="eyebrow">TOWN INFORMATION SERVICES</p><h2 id="panel-title">Places to go</h2></div><div class="dialog-actions"><button id="quick-music" class="sound-icon" type="button" hidden></button><button aria-label="Close panel" value="close">×</button></div></header><div id="panel-body"></div></form></dialog>`;
@@ -74,15 +83,24 @@ function confirmedDoor() {
 
 const feedback = document.querySelector<HTMLElement>('#feedback')!;
 new MutationObserver(()=>{feedback.scrollTop=0;}).observe(feedback,{childList:true,characterData:true,subtree:true});
-if(session.room==='lodging')feedback.textContent='Read the note by the bed, or step outside to find Marlow.';
+if(session.room==='lodging')feedback.textContent=resting()?'Your first morning in Ledgerwick. Get up when you’re ready.':'Read the note by the bed, or step outside to find Marlow.';
 if(session.recoveredLodgingFootprint){
  feedback.textContent='You’re by the boarding house. The new front steps are just behind you.';
  save();
 }
+const wakeButton=document.querySelector<HTMLButtonElement>('#wake-resident')!;
 const interactButton = document.querySelector<HTMLButtonElement>('#interact')!;
+function showRestingControl(){
+  const asleep=resting();
+  wakeButton.hidden=!asleep;
+  interactButton.hidden=asleep;
+  app.querySelector('.shell')?.classList.toggle('first-morning-resting',asleep);
+}
+showRestingControl();
 const interactLabel = document.querySelector<HTMLElement>('#interaction-label')!;
 const location = document.querySelector<HTMLElement>('#location')!;
 const scene = new WorldScene(session);
+scene.resting=resting();
 const residentBadge=document.querySelector('#local-resident-badge');
 let localResident:BrowserResident|null=null;
 const showBrowserResident=townMode?null:mountBrowserResident({open:openPanel,body,appearance:profile=>{
@@ -144,9 +162,60 @@ function refreshMenuFrame(frames=1){
 // DOM clocks and authoritative requests keep running. Only the noninteractive
 // backdrop redraws once a second while a modal covers the locked world.
 window.setInterval(()=>refreshMenuFrame(),1000);
-function save() { if(townMode)return; try { localStorage.setItem(saveKey, JSON.stringify(session.save())); } catch { feedback.textContent = 'Position could not be saved in this browser. The pilot remains playable.'; } }
+function save() {
+  if(townMode)return;
+  if(morning.record){
+    if(morning.status!=='ready'||morning.record.phase!=='finished')return;
+    const result=saveFirstMorning(morningStorage,morning.raw,{kind:'position',saved:session.save()});
+    if(result.status==='saved')morning={status:'ready',raw:result.raw,record:result.record};
+    else feedback.textContent='Your position could not be saved in this browser.';
+    return;
+  }
+  try{localStorage.setItem(saveKey,JSON.stringify(session.save()));}
+  catch{feedback.textContent='Position could not be saved in this browser. The pilot remains playable.';}
+}
+async function changeMorning(kind:'start'|'wake'|'leave'){
+  if(townMode||morningWriting||morning.status!=='ready')return;
+  const expected=morning.raw;
+  const showError=(message:string)=>{
+    feedback.textContent=message;
+    if(kind==='start'&&panel.open){
+      const status=body.querySelector<HTMLElement>('[data-morning-feedback]');
+      if(status)status.textContent=message;
+    }
+  };
+  morningWriting=true;
+  wakeButton.disabled=true;
+  session.lock(true);
+  try{
+    const write=()=>saveFirstMorning(morningStorage,expected,{kind});
+    const result=navigator.locks?await navigator.locks.request(FIRST_MORNING_KEY,write):write();
+    if(result.status!=='saved'){
+      showError(result.status==='changed'?'This room changed in another tab. Reload to continue there.':'The room could not be saved. Try again.');
+      return;
+    }
+    morning={status:'ready',raw:result.raw,record:result.record};
+    if(kind!=='wake')session.enter(result.record.saved.room,result.record.saved.position);
+    scene.resting=resting();
+    showRestingControl();
+    if(kind==='start'){
+      namedWalk=null;
+      placeWalk=null;
+      if(panel.open)closePanel();
+      feedback.textContent='Your first morning in Ledgerwick. Get up when you’re ready.';
+    }else if(kind==='wake'){
+      feedback.textContent='Read the note by the bed, or step outside to find Marlow.';
+    }else{
+      music.setLocation(session.room,session.position);
+      confirmedDoor();
+      feedback.textContent='The square is east of the front steps. Look for Marlow at the clerk’s desk.';
+    }
+    if(resting()){wakeButton.disabled=false;wakeButton.focus();}else focusWorld();
+  }catch{showError('The room could not be saved. Try again.');}
+  finally{morningWriting=false;wakeButton.disabled=false;unlockWorld();}
+}
 function focusWorld() { document.querySelector('canvas')?.focus(); }
-function unlockWorld(){if(session.locked&&!panel.open&&!transitionBusy&&!gardenUI?.isSaving&&!carpentryUI?.isSaving&&!commissionUI?.isSaving&&(!townMode||!!town?.snapshot&&!needResync&&!town.retryAvailable))session.lock(false);}
+function unlockWorld(){if(!resting()&&!morningWriting&&session.locked&&!panel.open&&!transitionBusy&&!gardenUI?.isSaving&&!carpentryUI?.isSaving&&!commissionUI?.isSaving&&(!townMode||!!town?.snapshot&&!needResync&&!town.retryAvailable))session.lock(false);}
 let pendingExplicitPanelCloses=0;
 function restorePanelFocus() {
   if (title.textContent === 'Sound settings') document.querySelector<HTMLButtonElement>('#place-sound')?.focus();
@@ -235,6 +304,7 @@ carpentryUI=new CarpentryUI({open:openPanel,body,feedback:message=>feedback.text
 commissionUI=new CommissionUI({open:openPanel,body,feedback:message=>feedback.textContent=message,changed:()=>{scene.refreshDecorations();refreshMenuFrame(2);unlockWorld();},owner:()=>town?.snapshot?.playerId??'local',shared:townMode,styles:()=>town?town.snapshot?.commissionTown?.styles:workshop.state.commission.published?[{ownerId:'local',ownerName:'Your local resident',motif:workshop.state.commission.motif}]:[],canUse:action=>{const location=commissionLocation(action),stop=worlds[location.room].stops.find(s=>s.id===location.stopId);return session.room===location.room&&!!stop&&Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.4;},go:goNamedDestination},workshop);
 scene.carpentryState=()=>workshop.state.carpentry;scene.noticeboardState=currentNoticeboard;
 function routeAvailable(){
+ if(resting()||morningWriting){feedback.textContent=resting()?'Get up before walking.':'Saving your room…';return false;}
  if(town?.isSaving){feedback.textContent='Finish confirming the current change before walking.';return false;}
  if(town&&(town.retryAvailable||needResync||transitionBusy||!town.snapshot)){showPendingRequest('Confirm your current location or pending request before walking.');return false;}
  if(gardenUI?.isSaving||carpentryUI?.isSaving||commissionUI?.isSaving){feedback.textContent='Finish confirming the current change before walking.';return false;}
@@ -304,6 +374,17 @@ document.querySelector('#field-guide')!.addEventListener('click',()=>{
    appearance.textContent='Edit your resident';
    appearance.onclick=showBrowserResident;
    body.append(appearance);
+   if(localResident&&morning.status==='ready'&&!morning.record){
+    const first=document.createElement('button');
+    first.type='button';
+    first.className='destination';
+    first.textContent='Try a first morning';
+    const firstStatus=paragraph('');
+    firstStatus.setAttribute('role','status');
+    firstStatus.dataset.morningFeedback='';
+    first.onclick=()=>void changeMorning('start');
+    body.append(first,firstStatus);
+   }
    if(session.room==='square'){
     const lodging=document.createElement('button');
     lodging.type='button';
@@ -452,6 +533,7 @@ function activate(stop: Stop) {
     return;
   }
   if (stop.transition) {
+    if(stop.id==='lodging-exit'&&morning.record?.phase==='awake'){void changeMorning('leave');return;}
     if(town){void enterRemotePortal(stop);return;}
     session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='lodging-exit'?'The square is east of the front steps. Look for Marlow at the clerk’s desk.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
@@ -460,13 +542,15 @@ function activate(stop: Stop) {
   }
 }
 function interact() {
+  if (resting()&&!panel.open){void changeMorning('wake');return;}
   if (session.locked) return;
   const stop = session.nearby();
   if (stop){namedWalk=null;placeWalk=null;session.stop();activate(stop);}
 }
+wakeButton.addEventListener('click', interact);
 interactButton.addEventListener('click', interact);
 document.addEventListener('keydown', e => {
-  if (e.repeat || session.locked || !(e.key === 'e' || e.key === 'E' || e.key === 'Enter')) return;
+  if (e.repeat || (session.locked&&!resting()) || !(e.key === 'e' || e.key === 'E' || e.key === 'Enter')) return;
   if (e.target instanceof HTMLElement && e.target.closest('button,input,dialog,[data-ui-scroll]')) return;
   e.preventDefault(); interact();
 });
@@ -489,7 +573,7 @@ scene.onFrame = () => {
   followNamedWalk();paintPlaceArrival();
   const nearby=session.nearby(),stop=nearby?resolvedStop(nearby):undefined;
   const district=session.room==='square'?townDistrict(session.position):null;
-  const state = (district?.name??'')+contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored));
+  const state = (district?.name??'')+contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored))+':'+String(resting());
   if (state !== lastContext) {
     lastContext = state;
     const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='garden'?'Your allotment':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';

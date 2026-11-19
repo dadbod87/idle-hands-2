@@ -3,3 +3,6 @@
 #panel-body .cafe-panel p{margin:0}.cafe-progress{padding:10px;gap:6px}.cafe-progress p{min-height:2.7em}.cafe-status{box-sizing:border-box}.cafe-panel [data-cafe-bag]:focus-visible{outline:3px solid #9c4b32;outline-offset:3px}
 
 .cafe-panel summary{min-height:44px;box-sizing:border-box;display:list-item;padding:12px 0;cursor:pointer}.cafe-panel summary:focus-visible{outline:3px solid #b8653e;outline-offset:2px}
+
+.cafe-actor { position: relative; }
+.cafe-headwear { position: absolute; inset: 0; background-size: 1792px 80px; background-repeat: no-repeat; }

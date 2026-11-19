@@ -40,6 +40,14 @@ for p in sorted((root/'public/art/interiors').glob('*.svg')):
 for p in sorted((root/'public/art/outing').glob('*.svg')):
  certificate=p.stem=='field-certificate'
  original.append({'id':'outing-'+p.stem,'path':str(p.relative_to(root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'creator':'Original code-authored for Idle Hands 2','license':'project-original','source':'tools/create-outing-art.py','date':'2026-11-19' if certificate else '2026-11-17','modifications':'Original journal illustration derived from recorded repairs. No imported media.' if certificate else 'Original borrowed-tool desk, route conditions, detour and confirmed waymarker repair stages. No imported media or reward authority.'})
+for name in ('apple','aster-picking','bea-picking','casey-picking','devon-picking','packing-table','orchard-snack'):
+ p=root/'public/art/orchard'/(name+'.svg')
+ source=(('docs/evidence/IH2-144/sheets/' if name.endswith('-picking') else 'tools/orchard-study/')+p.name
+         if name!='packing-table' else str(p.relative_to(root)))
+ description='Original hand-authored packing station.' if name=='packing-table' else 'Byte-identical promotion of the original orchard study illustration.'
+ original.append({'id':name if name=='orchard-snack' else 'orchard-'+name,'path':str(p.relative_to(root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'creator':'Original code-authored for Idle Hands 2','license':'project-original','source':source,'date':'2026-11-19','modifications':description})
+for p in sorted((root/'public/art/headwear').glob('*.svg')):
+ original.append({'id':'headwear-'+p.stem,'path':str(p.relative_to(root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'creator':'Original code-authored for Idle Hands 2','license':'project-original','source':'tools/wardrobe-study/create.py --promote-overlays','date':'2026-11-19','modifications':'Original four-facing headwear overlay with stable actor feet. No imported media.'})
 kenney=json.loads((root/'licenses/kenney-evaluation.json').read_text())
 kenney['usage']='Unmodified sheets and included notices; CSS sprite crops composed into a comparison scene. Not used by playable runtime.'
 (root/'licenses/asset-provenance.json').write_text(json.dumps({'schema_version':1,'selected_direction':'original illustrated company town','original':original,'comparison':kenney,'cost':'No paid assets/fonts/API services.','font_policy':'System Georgia/Times New Roman/Courier New; no font files imported.'},indent=2)+'\n')

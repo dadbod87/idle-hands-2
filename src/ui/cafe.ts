@@ -1,9 +1,10 @@
+import type {Headwear} from '../art/headwear.ts';
 import {cafeProjectFromPublic,type CafePublicState} from '../game/cafe-public.ts';
 import {localCafeProject,projectCafeCandidate,CAFE_PRESENTATIONS} from '../game/cafe-candidate.ts';
 import {WorkshopUI,duration} from './workshop.ts';
 import {residentArt} from '../art/variety.ts';
 import './cafe.css';
-type Host={open:(title:string)=>void;body:HTMLElement;owner:()=>string;rig:()=>string;canUse:()=>boolean;project:()=>CafePublicState|undefined;shared:boolean;parcelShelf?:()=>void;bag:()=>void;garden:()=>void;feedback:(s:string)=>void};
+type Host={open:(title:string)=>void;body:HTMLElement;owner:()=>string;rig:()=>string;headwear?:()=>Headwear|null;canUse:()=>boolean;project:()=>CafePublicState|undefined;shared:boolean;parcelShelf?:()=>void;bag:()=>void;garden:()=>void;feedback:(s:string)=>void};
 /** One stable form per panel/owner. Only a durable confirmed result can start a
  * bounded gesture; hidden, closed, replaced and reduced-motion views stay still. */
 export class CafeUI{
@@ -16,7 +17,7 @@ export class CafeUI{
  show(){this.close();this.host.open('The Almost Open Café');this.active=true;this.owner=this.host.owner();this.reviewed=false;this.earnedHere=false;this.quotedRevision=this.workshop.state.revision;
   const root=document.createElement('section');root.dataset.cafePanel='';root.className='cafe-panel';this.host.body.append(root);
   const el=(tag:string,text='',cls='')=>{const e=document.createElement(tag);e.textContent=text;e.className=cls;return e;};const button=(text:string,fn:()=>void)=>{const b=document.createElement('button');b.type='button';b.textContent=text;b.className='destination';b.onclick=fn;return b;};
-  const lead=el('div','','cafe-lead'),actor=el('div','','cafe-actor');actor.dataset.cafeActor='';actor.setAttribute('role','img');actor.setAttribute('aria-label','Your employee at the tasting counter');actor.style.backgroundImage=`url('/art/cafe/${residentArt(this.host.rig())}-serving.svg')`;lead.append(actor,el('p','One radish. One highly qualified tasting committee.'));root.append(lead);
+  const lead=el('div','','cafe-lead'),actor=el('div','','cafe-actor');actor.dataset.cafeActor='';actor.setAttribute('role','img');actor.setAttribute('aria-label','Your employee at the tasting counter');actor.style.backgroundImage=`url('/art/cafe/${residentArt(this.host.rig())}-serving.svg')`;const hat=this.host.headwear?.();if(hat){const layer=el('span','','cafe-headwear');layer.style.backgroundImage=`url('/art/headwear/${hat}.svg')`;actor.append(layer);}lead.append(actor,el('p','One radish. One highly qualified tasting committee.'));root.append(lead);
   const progress=el('div','','cafe-progress'),personal=el('p'),publicNote=el('p');personal.dataset.cafePersonal='';publicNote.dataset.cafePublic='';progress.append(personal,publicNote);root.append(progress);
   const cost=el('p','','cafe-cost');cost.dataset.cafeCost='';const warning=el('p','','cafe-warning');warning.dataset.cafeWarning='';root.append(cost,warning);
   const details=document.createElement('details');details.append(el('summary','Presentation · free, purely cosmetic'));const choices=document.createElement('select');choices.setAttribute('aria-label','Radish presentation');for(const [value,label]of [['slices','Respectable slices'],['soup','Soup, on paper'],['formal','Formal vegetable']]){const o=document.createElement('option');o.value=value;o.textContent=label;choices.append(o);}choices.value=this.presentation;choices.onchange=()=>{this.presentation=choices.value as typeof this.presentation;this.reviewed=false;this.refresh();};details.append(choices);root.append(details);

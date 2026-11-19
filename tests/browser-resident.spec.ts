@@ -89,3 +89,98 @@ test('browser resident handles a saved appearance from another tab without overw
   expect(await preferences(b)).toEqual(accepted);
  }finally{await c.close();}
 });
+
+test('browser headwear previews freely, saves once and follows the actor through movement and apple picking',async({browser})=>{
+ mkdirSync(output,{recursive:true});
+ for(const shape of [
+  {name:'desktop',width:1440,height:900,touch:false,text:100},
+  {name:'phone',width:320,height:650,touch:true,text:100},
+  {name:'short',width:844,height:390,touch:true,text:200},
+ ]){
+  const context=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch});
+  try{
+   const page=await context.newPage(),requests:string[]=[],errors:string[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   page.on('request',request=>requests.push(new URL(request.url()).pathname));
+   const raw=JSON.stringify({version:1,name:'Casey',look:'casey'});
+   await page.addInitScript(({key,raw})=>{
+    if(!localStorage.getItem(key))localStorage.setItem(key,raw);
+    const feetKey='ih2:pilot-position:v1';
+    if(!localStorage.getItem(feetKey))localStorage.setItem(feetKey,JSON.stringify({version:1,room:'square',position:{x:95.8,y:50.8}}));
+   },{key:BROWSER_RESIDENT_KEY,raw});
+   const metrics=()=>page.evaluate(()=>{
+    const pilot=(window as any).__pilot;
+    const visual=pilot.metrics().visual;
+    return{hat:visual.headwear,body:visual.variety.actorTexture,feet:pilot.snapshot().position,frame:visual.frame};
+   });
+   const selection=page.getByLabel('Headwear',{exact:true});
+   const save=page.getByRole('button',{name:'Save changes'});
+   const chooseHat=shape.name==='phone'?'inkwood':'clerk';
+   await page.goto('/');
+   await ready(page);
+   expect(requests.some(path=>path.startsWith('/art/headwear/'))).toBe(false);
+   await page.evaluate(scale=>document.documentElement.style.fontSize=scale+'%',shape.text);
+   const original=await preferences(page);
+   await edit(page);
+   await selection.selectOption(chooseHat);
+   expect((await metrics()).hat).toBeNull();
+   await close(page);
+   expect((await preferences(page)).profile).toBe(raw);
+   await edit(page);
+   await expect(selection).toHaveValue('none');
+   await selection.selectOption(chooseHat);
+   await save.focus();
+   await page.keyboard.press('Shift+Tab');
+   await expect(selection).toBeFocused();
+   const choice=(await selection.locator('..').boundingBox())!;
+   const title=(await page.locator('.dialog-head').boundingBox())!;
+   expect(choice.y).toBeGreaterThanOrEqual(title.y+title.height-1);
+   const dialog=(await page.getByRole('dialog').boundingBox())!;
+   expect(choice.y+choice.height).toBeLessThanOrEqual(dialog.y+dialog.height);
+   await page.screenshot({path:output+'/headwear-'+shape.name+'-editor.png'});
+   if(shape.touch)await save.tap();
+   else await save.press('Enter');
+   await expect(page.locator('.resident-profile-status')).toHaveText('Resident saved in this browser.');
+   expect(JSON.parse((await preferences(page)).profile!)).toEqual({version:2,name:'Casey',look:'casey',headwear:chooseHat});
+   expect((await preferences(page)).workshop).toBe(original.workshop);
+   await close(page);
+   await expect.poll(async()=>(await metrics()).hat?.texture).toBe('headwear-'+chooseHat);
+
+   await page.reload();
+   await ready(page);
+   await page.evaluate(scale=>document.documentElement.style.fontSize=scale+'%',shape.text);
+   await expect.poll(async()=>(await metrics()).hat?.texture).toBe('headwear-'+chooseHat);
+   await expect(page.locator('#interact')).toHaveAccessibleName(/low branch/i);
+   if(shape.touch)await page.locator('#interact').tap();
+   else await page.locator('canvas').press('e');
+   const pick=page.getByRole('button',{name:'Pick an apple'});
+   if(shape.touch)await pick.tap();
+   else await pick.press('Enter');
+   await expect.poll(async()=>(await metrics()).body,{intervals:[20,35,55]}).toBe('orchard-picking-casey');
+   const picking=await metrics();
+   expect(picking.hat?.texture).toBe('headwear-'+chooseHat);
+   expect(Number(picking.hat?.frame)).toBe(7);
+   expect(picking.hat?.x).toBeCloseTo((picking.feet.x+.5)*32);
+   expect(picking.hat?.y).toBeCloseTo((picking.feet.y+.5)*32);
+   await page.screenshot({path:output+'/headwear-'+shape.name+'-world.png'});
+
+   await page.keyboard.down('ArrowDown');
+   await expect.poll(async()=>(await metrics()).feet.y).toBeGreaterThan(picking.feet.y+.3);
+   const moving=await metrics();
+   expect(moving.hat?.texture).toBe('headwear-'+chooseHat);
+   expect(Number(moving.hat?.frame)).toBe(moving.frame);
+   await page.keyboard.up('ArrowDown');
+   await expect.poll(async()=>Number((await metrics()).hat?.frame)).toBe(0);
+   await page.screenshot({path:output+'/headwear-'+shape.name+'-front.png'});
+   await edit(page);
+   await expect(selection).toHaveValue(chooseHat);
+   await selection.selectOption('none');
+   await save.press('Enter');
+   await expect(page.locator('.resident-profile-status')).toHaveText('Resident saved in this browser.');
+   await close(page);
+   await expect.poll(async()=>(await metrics()).hat).toBeNull();
+   expect(requests.filter(path=>path.startsWith('/api/'))).toEqual([]);
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});

@@ -1093,6 +1093,16 @@
       "id": "orchard-snack",
       "path": "art/orchard/orchard-snack.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "headwear-clerk",
+      "path": "art/headwear/clerk.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "headwear-inkwood",
+      "path": "art/headwear/inkwood.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

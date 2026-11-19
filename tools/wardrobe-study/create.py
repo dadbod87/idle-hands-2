@@ -145,4 +145,12 @@ def create(destination):
 if __name__ == '__main__':
     parser = ArgumentParser()
     parser.add_argument('--out', type=Path, default=ROOT / 'test-results/browser/wardrobe-study')
-    create(parser.parse_args().out)
+    parser.add_argument('--promote-overlays', action='store_true')
+    args=parser.parse_args()
+    if args.promote_overlays:
+        destination=ART / 'headwear'
+        destination.mkdir(parents=True, exist_ok=True)
+        for hat in ('clerk', 'inkwood'):
+            (destination / f'{hat}.svg').write_text(overlay_sheet(hat))
+    else:
+        create(args.out)

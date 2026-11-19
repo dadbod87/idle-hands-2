@@ -16,7 +16,7 @@ export type TownPlot={id:string;ownerId:string|null;ownerName?:string;tier?:numb
 export type TownLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot={outing?:OutingState;housingSites?:Array<{plotId:string;ownerId:string;ownerName:string;phase:string}>;housing?:{build:HousingBuild|null;quote:HousingQuote|null;nextPlotId:string};cafe?:CafePublicState;commissionTown?:{styles:Array<{ownerId:string;ownerName:string;motif:LetterboxMotif}>};serverInstance?:string;noticeboard?:NoticeboardState;playerId:string;name:string;workshop:WorkshopState;position:TownPosition;quest:{contentVersion:string|number;awarded:unknown};bridge:{contributed:number;target:number;restored:boolean;phase?:'collecting'|'building'|'open';startedAt?:number|null;readyAt?:number|null;openedAt?:number|null;grandfathered?:boolean};trail?:{stamps:string[];pennantOwned:boolean};projectJournal?:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;plot:TownPlot|null;plots:TownPlot[];seasonKey:string;scores:unknown;serverTime:number;gardenTown?:{credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};lesson?:TownLesson;lessonQuote?:{route:'construction'|'upkeep';expectedBridgeContributed:number}};
 export type TownCommand=Record<string,unknown>&{kind:string;id?:string;expectedRevision?:number};
-export type TownHooks={onConfirmedCommand?:(command:TownCommand, reward:{collection:boolean;teapot:boolean})=>void;beforeCommand?:()=>Promise<void>;onSnapshot?:(snapshot:TownSnapshot)=>void;onPresence?:(presence:unknown)=>void;onConnection?:(state:string)=>void};
+export type TownHooks={onConfirmedCommand?:(command:TownCommand, reward:{collection:boolean;teapot:boolean})=>void;beforeCommand?:()=>Promise<void>;onSnapshot?:(snapshot:TownSnapshot,previous?:TownSnapshot|null)=>void;onPresence?:(presence:unknown)=>void;onConnection?:(state:string)=>void};
 type CommandOutcome={snapshot:TownSnapshot;message:string;ok:boolean;command:TownCommand;playerId:string;collection?:CollectionGrant};
 type Provenance={generation:number;epoch:number;playerId?:string};
 type TownRequestError=Error&{definite?:boolean;staleBoot?:boolean};
@@ -94,7 +94,7 @@ export class TownClient {
   }
   if(snapshot.cafe&&!cafePublicSchema.safeParse(snapshot.cafe).success)throw new Error('The café project could not be confirmed.');
   if(snapshot.outing&&!outingSchema.safeParse(snapshot.outing).success)throw new Error('The outing record could not be confirmed.');
-  this.snapshot=snapshot;this.offset=snapshot.serverTime-Date.now();this.scheduleClock();this.hooks.onSnapshot?.(snapshot);for(const listener of this.listeners)listener(snapshot);
+  this.snapshot=snapshot;this.offset=snapshot.serverTime-Date.now();this.scheduleClock();this.hooks.onSnapshot?.(snapshot,previous);for(const listener of this.listeners)listener(snapshot);
   if(changed&&this.recovery)this.notify('Confirmed state loaded.');
   if(reconnect){const generation=this.generation,epoch=this.bootEpoch;queueMicrotask(()=>{if(generation===this.generation&&epoch===this.bootEpoch&&!this.closed&&!document.hidden)this.connect();});}
   return snapshot;

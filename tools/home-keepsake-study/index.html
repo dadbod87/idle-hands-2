@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>Idle Hands 2 · Wall keepsake study</title>
+ <link rel="stylesheet" href="style.css">
+ <script type="module" src="study.mjs"></script>
+</head>
+<body>
+ <main>
+  <header>
+   <h1>A place on the wall</h1>
+   <p>Housing study · Fictional resident, no game save</p>
+  </header>
+  <nav aria-label="Viewing the home">
+   <button id="owner" aria-pressed="true">Owner</button>
+   <button id="visitor" aria-pressed="false">Visitor</button>
+  </nav>
+  <div class="study">
+   <figure aria-label="Rowan's home">
+    <img class="room" src="../../public/art/homes/home-starter-interior.svg" alt="">
+    <img class="lamp" src="../../public/art/homes/home-lamp-world.svg" alt="">
+    <img class="rug" src="../../public/art/homes/home-rug-world.svg" alt="">
+    <div class="frame" id="frame" hidden>
+     <img src="../../public/art/fieldwork/naturalist-keepsake.svg" alt="Framed Neighborhood Naturalist certificate">
+    </div>
+    <figcaption id="caption">Rowan’s home</figcaption>
+   </figure>
+   <section>
+    <h2 id="heading">Home keepsake</h2>
+    <p id="description"></p>
+    <div id="owner-actions">
+     <button id="journey">Preview on wall</button>
+     <div id="preview-actions" hidden>
+      <button id="hang" class="primary">Hang for visitors</button>
+      <button id="cancel">Cancel preview</button>
+     </div>
+     <button id="remove" hidden>Take down frame</button>
+    </div>
+    <p id="status" role="status"></p>
+   </section>
+  </div>
+ </main>
+</body>
+</html>

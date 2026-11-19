@@ -1,0 +1,83 @@
+:root {
+ color-scheme: light;
+ font-family: Georgia, serif;
+ color: #303930;
+ background: #e5dfcc;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; padding: 12px; }
+main {
+ max-width: 70rem;
+ margin: auto;
+ border: 2px solid #303930;
+ border-radius: 8px;
+ background: #f7efdc;
+ box-shadow: 4px 4px #918a75;
+ overflow: hidden;
+}
+header { background: #dfe6cc; padding: .8rem 1rem; border-bottom: 2px solid #303930; }
+h1, h2, p { margin: 0 0 .55em; overflow-wrap: break-word; }
+header p { font-size: .85rem; margin: 0; }
+nav { display: flex; gap: .5rem; padding: .65rem 1rem; }
+button {
+ min-height: 44px;
+ border: 2px solid #334139;
+ border-radius: 5px;
+ padding: .4rem .7rem;
+ color: #303930;
+ background: #fff8e8;
+ font: 700 1rem/1.25 Georgia, serif;
+ overflow-wrap: break-word;
+ cursor: pointer;
+}
+button:focus-visible { outline: 3px solid #ac512c; outline-offset: 2px; }
+button[aria-pressed=true], .primary { background: #3d5a49; color: #fff8e8; }
+.study { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: .8rem; padding: 0 1rem 1rem; align-items: start; }
+figure { position: relative; margin: 0; height: auto; overflow: hidden; border: 2px solid #303930; border-radius: 7px; background: #ccb28b; }
+.room { display: block; width: 100%; height: auto; }
+.lamp, .rug, .frame { position: absolute; }
+.lamp { width: 13%; right: 18%; bottom: 32%; }
+.rug { width: 40%; left: 23%; bottom: 18%; }
+.frame {
+ top: 20%;
+ left: 38%;
+ width: 25%;
+ padding: 3px;
+ border: 2px solid #303930;
+ background: #795840;
+ box-shadow: 2px 2px #876751;
+}
+.frame.preview { outline: 2px dashed #303930; outline-offset: 3px; }
+.frame img { display: block; width: 100%; height: auto; }
+figcaption {
+ position: absolute;
+ bottom: 3%;
+ left: 3%;
+ padding: .25em .5em;
+ background: #f7efdc;
+ border: 1px solid #303930;
+ font-size: .85rem;
+}
+section { min-width: 0; padding: .75rem; border: 1px solid #b1a58a; border-radius: 5px; }
+#owner-actions button { width: 100%; margin: 0 0 .4rem; }
+#status { margin: .5em 0 0; font-weight: bold; }
+#status:empty { margin: 0; }
+@media (max-width: 620px) {
+ .study { grid-template-columns: 1fr; }
+ figure { max-width: 30rem; }
+}
+@media (max-height: 500px) and (min-width: 621px) {
+ .study { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+ figure { max-width: 25rem; }
+}
+
+@media (max-width: 400px) {
+ h1 { font-size: 1.65rem; }
+ .study { padding-inline: .7rem; }
+}
+@media (max-height: 500px) {
+ header { padding: .4rem .6rem; }
+ h1 { font-size: 1.15rem; }
+ h2 { font-size: 1.05rem; overflow-wrap: normal; }
+}

@@ -2416,7 +2416,7 @@
     {
       "id": "IH2-132",
       "title": "Group routine town refreshes during shared activity",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "perf/coalesce-town-refresh",
       "depends_on": [
         "IH2-127",
@@ -2433,8 +2433,11 @@
         "Saved local services stay stopped. No server, economy, schema, content, cloud, paid or original-game changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-132/PLAN.md"
-      ]
+        "docs/evidence/IH2-132/PLAN.md",
+        "docs/evidence/IH2-132/REPORT.md",
+        "docs/evidence/IH2-132/COMPARISON.json"
+      ],
+      "progress_note": "Passed full exact PR and main gates. Paired observations used 86 snapshots per trial versus 204 to 205 and conserved all progress."
     },
     {
       "id": "IH2-133",
@@ -2449,15 +2452,16 @@
         "Recheck before walking. Preserve native navigation, room checks and explicit claims.",
         "Verify keyboard, touch and stale cross-tab progress with source gates."
       ],
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/return-trip-shortcuts",
       "exclusions": [
         "Keep saved previews and databases stopped. No hosting, original-game or paid changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-133/PLAN.md"
+        "docs/evidence/IH2-133/PLAN.md",
+        "docs/evidence/IH2-133/PLAYER_PATHS_CI.json"
       ],
-      "progress_note": "Focused browser candidate saved. Exact source acceptance awaits completion of IH2-132 measurement."
+      "progress_note": "Accepted on main. Confirmed ready work routes preserve explicit claims."
     },
     {
       "id": "IH2-134",
@@ -2471,15 +2475,16 @@
         "Verify no automatic focus on open, no overflow, and full keyboard/touch access at the existing viewports.",
         "Use the existing enter and inspect steps. No new search service or movement rules."
       ],
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/return-trip-shortcuts",
       "exclusions": [
         "Keep saved previews and databases stopped. No hosting, original-game or paid changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-134/PLAN.md"
+        "docs/evidence/IH2-134/PLAN.md",
+        "docs/evidence/IH2-133/PLAYER_PATHS_CI.json"
       ],
-      "progress_note": "Focused browser candidate saved. Exact source acceptance awaits completion of IH2-132 measurement."
+      "progress_note": "Accepted on main. Search and existing neighborhood keyboard paths are verified at enlarged text."
     },
     {
       "id": "IH2-135",
@@ -2493,16 +2498,124 @@
         "Supply original reproducible artwork. No currency, inventory, travel or public reward.",
         "Exercise both real repair paths, explicit return, persistence, original gameplay conservation and phone layout."
       ],
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/return-trip-shortcuts",
       "exclusions": [
         "Keep saved previews and databases stopped. No hosting, original-game or paid changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-135/PLAN.md"
+        "docs/evidence/IH2-135/PLAN.md",
+        "docs/evidence/IH2-133/PLAYER_PATHS_CI.json"
       ],
-      "progress_note": "Focused browser candidate saved. Exact source acceptance awaits completion of IH2-132 measurement."
+      "progress_note": "Accepted on main. Both recorded conditions unlock the private certificate without new state."
+    },
+    {
+      "id": "IH2-136",
+      "title": "Rehearse character creation and a first morning in Ledgerwick",
+      "status": "queued",
+      "owner_branch": "feat/walk-destination-cue",
+      "depends_on": [
+        "IH2-050"
+      ],
+      "goal": "Explore a name, appearance and backstory before the first rented-room wakeup.",
+      "acceptance": [
+        "Exercise one nonpersistent standalone flow using original assets, keyboard and touch.",
+        "Model distinct new and existing resident transitions, stable receipts and a valid room layout.",
+        "Keep the study separate from auth, game saves and runtime rooms until integration is designed."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, cloud, paid or production changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-136/PLAN.md",
+        "docs/evidence/IH2-136/ART.json",
+        "docs/evidence/IH2-136/REHEARSAL.md",
+        "docs/evidence/IH2-136/PROFILE_CANDIDATE.md"
+      ]
+    },
+    {
+      "id": "IH2-137",
+      "title": "Show the accepted walking destination on the ground",
+      "status": "in_progress",
+      "owner_branch": "feat/walk-destination-cue",
+      "depends_on": [
+        "IH2-113",
+        "IH2-134"
+      ],
+      "goal": "Confirm a tapped destination without a new overlay or movement rule.",
+      "acceptance": [
+        "Use a small still world-space cue that follows the existing path and clears on stop, cancel and room change.",
+        "Check native destination arrival and camera behavior on desktop, touch and enlarged short viewports."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, cloud, paid or production changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-137/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-138",
+      "title": "Offer shared bridge play from browser practice",
+      "status": "queued",
+      "owner_branch": "feat/walk-destination-cue",
+      "depends_on": [
+        "IH2-053"
+      ],
+      "goal": "Make the separate bridge and Inkwood route discoverable from the browser-only stops.",
+      "acceptance": [
+        "Keep separate saves, native arrival, real bridge eligibility and an explicit choice to enter shared practice.",
+        "Check both overlapping browser stops and deliberate navigation without granting progress."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, cloud, paid or production changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-138/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-139",
+      "title": "Show a folded map of the town in Places",
+      "status": "queued",
+      "owner_branch": "feat/walk-destination-cue",
+      "depends_on": [
+        "IH2-113",
+        "IH2-134"
+      ],
+      "goal": "Help residents orient in the widened town without adding a persistent HUD.",
+      "acceptance": [
+        "Show real terrain, landmarks and a room-local You are here marker.",
+        "Keep a folded map, keyboard and touch controls, native travel and accessible current location at narrow and short sizes."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, cloud, paid or production changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-139/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-140",
+      "title": "Choose a resident appearance in browser practice",
+      "status": "queued",
+      "owner_branch": "feat/walk-destination-cue",
+      "depends_on": [
+        "IH2-136"
+      ],
+      "goal": "Make a personal name and look usable now within browser practice.",
+      "acceptance": [
+        "Save only after explicit confirmation and keep its versioned record independent of workshop and shared saves.",
+        "Apply the chosen runtime rig, retain it on reload, and check cancellation, blocked storage and a stale second tab.",
+        "Use clear keyboard and touch controls and a readable short-landscape editor."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, cloud, paid or production changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-140/PLAN.md"
+      ]
     }
   ],
-  "source_status_note": "Optional sounds are accepted on main. The routine-refresh source is under measurement. A single player-flow candidate groups return routes, Places search and the woodland certificate."
+  "source_status_note": "Refresh optimization and player paths are accepted. The next candidate holds the map, walking cue, bridge guidance, local resident editor and independent opening rehearsal."
 }

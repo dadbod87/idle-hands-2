@@ -1,3 +1,11 @@
+# November 19 — optional sounds, fewer town reads, and player paths
+
+Optional door and reward cues have their own volume control. Busy public updates now share a short refresh window. In two equal synthetic trials, the typical town read count fell from about 205 to 86 and median load SQL fell 46%. [Sounds](evidence/IH2-130/WORLD_SOUNDS_CI.json) and [refresh measurements](evidence/IH2-132/REPORT.md).
+
+The Journal routes returning residents to confirmed ready work. Larger Places menus search names, and the woodland journal shows a certificate after both conditions. Main `9bc2172c5bf561a4eb9ac1d91735b116290babac` passed all 554 domain and 205 browser cases. [Player-flow verification](evidence/IH2-133/PLAYER_PATHS_CI.json).
+
+The [current handoff](idle-hands-2/CURRENT_SESSION.md) tracks the upcoming navigation, local appearance and character opening work. Saved previews and databases remain stopped. Earlier dated entries describe their historical states.
+
 # November 18 — browser CI repair, corrected observations and original music
 
 PR #63 passed its final PR and main regression runs and both corrected observation windows. PR #64 added optional original music and passed 549 domain tests and 201 browser cases on both its final PR and main runs. The saved local previews and databases remain stopped. [Closeout](idle-hands-2/handoffs/2026-11-18-music-and-ci.md)

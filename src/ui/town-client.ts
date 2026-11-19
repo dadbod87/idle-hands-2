@@ -21,12 +21,14 @@ type CommandOutcome={snapshot:TownSnapshot;message:string;ok:boolean;command:Tow
 type Provenance={generation:number;epoch:number;playerId?:string};
 type TownRequestError=Error&{definite?:boolean;staleBoot?:boolean};
 const marker=(snapshot:TownSnapshot|null|undefined)=>typeof snapshot?.serverInstance==='string'&&snapshot.serverInstance.length>0?snapshot.serverInstance:null;
+export const PUBLIC_REFRESH_WINDOW_MS = 75;
 export class TownClient {
  snapshot:TownSnapshot|null=null;
  lastMessage='';
  private loading:Promise<TownSnapshot>|null=null;
  private refreshDirty=false;
  private refreshRecovery=false;
+ private refreshTimer:number|null=null;
  private pending:TownCommand|null=null;
  private inFlight:Promise<TownSnapshot>|null=null;
  private outcomes=new WeakMap<Promise<TownSnapshot>,Promise<CommandOutcome>>();
@@ -46,7 +48,7 @@ export class TownClient {
  private streamRetryTimer:number|null=null;
  private streamRetryDelay=5_000;
  private hooks:TownHooks;
- constructor(hooks:TownHooks={}){this.hooks=hooks;document.addEventListener('visibilitychange',()=>{if(document.hidden){this.events?.close();this.events=null;this.cancelClock();this.cancelStreamRetry();}else if(this.snapshot&&!this.closed){this.connect();}});}
+ constructor(hooks:TownHooks={}){this.hooks=hooks;document.addEventListener('visibilitychange',()=>{if(document.hidden){this.events?.close();this.events=null;this.cancelClock();this.cancelStreamRetry();this.cancelPublicRefresh();}else if(this.snapshot&&!this.closed){this.connect();}});}
  serverNow=()=>Date.now()+this.offset;
  private cancelClock(){if(this.clockTimer!==null)window.clearTimeout(this.clockTimer);this.clockTimer=null;}
  private cancelStreamRetry(reset=false){if(this.streamRetryTimer!==null)window.clearTimeout(this.streamRetryTimer);this.streamRetryTimer=null;if(reset)this.streamRetryDelay=5_000;}
@@ -56,7 +58,7 @@ export class TownClient {
  get isSaving(){return!!this.inFlight;}
  get retryAvailable(){return !!this.pending&&!this.inFlight;}
  private obsolete(){return new DOMException('The practice resident changed; the old request was discarded.','AbortError');}
- private changeIdentity(){this.generation++;this.identityAbort.abort();this.identityAbort=new AbortController();this.loading=null;this.refreshDirty=false;this.refreshRecovery=false;this.cancelClock();this.cancelStreamRetry(true);this.events?.close();this.events=null;this.bootEpoch++;this.retiredBoots.clear();this.recovery='';}
+ private changeIdentity(){this.generation++;this.identityAbort.abort();this.identityAbort=new AbortController();this.loading=null;this.refreshDirty=false;this.refreshRecovery=false;this.cancelPublicRefresh();this.cancelClock();this.cancelStreamRetry(true);this.events?.close();this.events=null;this.bootEpoch++;this.retiredBoots.clear();this.recovery='';}
  private staleBoot():TownRequestError{return Object.assign(new Error('The service changed before this reply could be confirmed. Retry the same request to confirm it.'),{staleBoot:true});}
  private provenance(generation=this.generation,playerId=this.snapshot?.playerId):Provenance{return{generation,epoch:this.bootEpoch,playerId};}
  private validateReply(context:Provenance,snapshot?:TownSnapshot){
@@ -88,7 +90,7 @@ export class TownClient {
    if(old){this.retiredBoots.add(old);if(this.retiredBoots.size>16)this.retiredBoots.delete(this.retiredBoots.values().next().value!);}
    this.bootEpoch++;
    if(previous?.playerId===snapshot.playerId&&(snapshot.workshop.revision<previous.workshop.revision||snapshot.serverTime<previous.serverTime))this.recovery='The service recovered an earlier saved state. The confirmed town below may have older progress.';
-   reconnect=!!this.events||this.streamRetryTimer!==null;this.cancelStreamRetry(true);this.events?.close();this.events=null;
+   reconnect=!!this.events||this.streamRetryTimer!==null;this.cancelPublicRefresh();this.cancelStreamRetry(true);this.events?.close();this.events=null;
   }
   if(snapshot.cafe&&!cafePublicSchema.safeParse(snapshot.cafe).success)throw new Error('The café project could not be confirmed.');
   if(snapshot.outing&&!outingSchema.safeParse(snapshot.outing).success)throw new Error('The outing record could not be confirmed.');
@@ -109,7 +111,35 @@ export class TownClient {
  async fixtures(){const {data}=await this.request('fixtures');return (data.fixtures??data) as Array<{id:string;name:string}>;}
  async login(fixtureId:string){if(this.pending)throw new Error('Resolve the previous resident’s pending request before switching residents.');this.changeIdentity();this.snapshot=null;this.closed=false;const generation=this.generation;const {data,context}=await this.request('login',{fixtureId},generation,fixtureId);const snapshot=data.snapshot??data;this.accept(snapshot,context);this.connect();return snapshot as TownSnapshot;}
  load():Promise<TownSnapshot>{if(this.loading)return this.loading;const generation=this.generation;const run=this.request('snapshot',undefined,generation).then(({data,context})=>this.accept(data.snapshot??data,context)).catch((error:TownRequestError)=>{if(error.staleBoot&&generation===this.generation&&this.snapshot)return this.snapshot;throw error;}).finally(()=>{if(this.loading===run){this.loading=null;if(this.refreshDirty&&generation===this.generation&&!this.closed&&!document.hidden)this.refreshFromEvent();}});this.loading=run;return run;}
- private refreshFromEvent(recovery=false){this.refreshDirty=true;this.refreshRecovery||=recovery;if(this.loading||this.pending&&!this.refreshRecovery||this.closed||document.hidden)return;this.refreshDirty=false;this.refreshRecovery=false;const generation=this.generation;void this.load().catch(error=>{if(generation===this.generation&&!this.pending)this.notify(error.message);});}
+ private cancelPublicRefresh(){
+  if(this.refreshTimer!==null)window.clearTimeout(this.refreshTimer);
+  this.refreshTimer=null;
+ }
+ private canRefreshPublic(){
+  return this.refreshDirty&&!this.loading&&(!this.pending||this.refreshRecovery)&&!this.closed&&!document.hidden;
+ }
+ private refreshFromEvent(recovery=false){
+  this.refreshDirty=true;
+  this.refreshRecovery||=recovery;
+  if(this.refreshRecovery)this.cancelPublicRefresh();
+  if(!this.canRefreshPublic())return;
+  if(this.refreshRecovery){this.readPublicRefresh();return;}
+  if(this.refreshTimer!==null)return;
+  // Keep the first event's deadline. A busy stream cannot keep postponing it.
+  const handle=window.setTimeout(()=>{
+   if(this.refreshTimer!==handle)return;
+   this.refreshTimer=null;
+   this.readPublicRefresh();
+  },PUBLIC_REFRESH_WINDOW_MS);
+  this.refreshTimer=handle;
+ }
+ private readPublicRefresh(){
+  if(!this.canRefreshPublic())return;
+  this.refreshDirty=false;
+  this.refreshRecovery=false;
+  const generation=this.generation;
+  void this.load().catch(error=>{if(generation===this.generation&&!this.pending)this.notify(error.message);});
+ }
  command(command:TownCommand,present:()=>boolean=()=>true):Promise<TownSnapshot>{if(this.inFlight)return this.inFlight;if(this.pending)return Promise.reject(new Error('Retry the previous request before making another change.'));if(!this.snapshot)return Promise.reject(new Error('Choose a practice player first.'));this.pending={...command,id:command.id??crypto.randomUUID(),expectedRevision:command.expectedRevision??this.snapshot.workshop.revision};return this.sendPending(present);}
  retry(present:()=>boolean=()=>true){if(this.inFlight)return this.inFlight;if(!this.pending)return this.load();return this.sendPending(present);}
  private sendPending(present:()=>boolean){
@@ -143,6 +173,6 @@ export class TownClient {
  async movement(position:TownPosition){const generation=this.generation;const {data,context}=await this.request('movement',position,generation);if(data.snapshot)this.accept(data.snapshot,context);return data;}
  async logout(){this.changeIdentity();await this.request('logout',{});this.close();this.snapshot=null;this.pending=null;}
  close(){this.closed=true;this.changeIdentity();}
- connect(){this.cancelStreamRetry();this.events?.close();this.events=null;if(this.closed||document.hidden)return;const generation=this.generation,epoch=this.bootEpoch;const source=new EventSource('/api/town/events?schema='+TOWN_SCHEMA,{withCredentials:true});this.events=source;const current=()=>generation===this.generation&&epoch===this.bootEpoch&&this.events===source;const reload=()=>{if(current())this.refreshFromEvent();};source.onopen=()=>{if(!current())return;this.cancelStreamRetry(true);if(!this.pending)this.notify('Connected · practice town');this.refreshFromEvent(true);};source.onerror=()=>{if(!current())return;if(!this.pending)this.notify('Connection interrupted. Reconnecting; changes require server confirmation.');if(source.readyState===2){source.close();this.events=null;this.retryClosedStream(generation,epoch);}};source.addEventListener('invalidate',reload);source.addEventListener('snapshot',event=>{if(!current())return;try{const data=JSON.parse((event as MessageEvent).data);this.accept(data.snapshot??data,{generation,epoch,playerId:this.snapshot?.playerId});}catch{reload();}});source.addEventListener('presence',event=>{if(!current())return;try{this.hooks.onPresence?.(JSON.parse((event as MessageEvent).data));}catch{/* Next presence update replaces this one. */}});}
+ connect(){this.cancelPublicRefresh();this.cancelStreamRetry();this.events?.close();this.events=null;if(this.closed||document.hidden)return;const generation=this.generation,epoch=this.bootEpoch;const source=new EventSource('/api/town/events?schema='+TOWN_SCHEMA,{withCredentials:true});this.events=source;const current=()=>generation===this.generation&&epoch===this.bootEpoch&&this.events===source;const reload=()=>{if(current())this.refreshFromEvent();};source.onopen=()=>{if(!current())return;this.cancelStreamRetry(true);if(!this.pending)this.notify('Connected · practice town');this.refreshFromEvent(true);};source.onerror=()=>{if(!current())return;if(!this.pending)this.notify('Connection interrupted. Reconnecting; changes require server confirmation.');if(source.readyState===2){this.cancelPublicRefresh();source.close();this.events=null;this.retryClosedStream(generation,epoch);}};source.addEventListener('invalidate',reload);source.addEventListener('snapshot',event=>{if(!current())return;try{const data=JSON.parse((event as MessageEvent).data);this.accept(data.snapshot??data,{generation,epoch,playerId:this.snapshot?.playerId});}catch{reload();}});source.addEventListener('presence',event=>{if(!current())return;try{this.hooks.onPresence?.(JSON.parse((event as MessageEvent).data));}catch{/* Next presence update replaces this one. */}});}
  workshopAdapter():RemoteWorkshopAdapter{return{hasSnapshot:()=>this.snapshot!==null,allocatedElsewhere:prop=>this.snapshot?.plot?homeAllocation(this.snapshot.plot,prop):0,initial:this.snapshot?.workshop,load:async()=>{try{return (await this.load()).workshop;}catch(error){if((error as Error).name==='AbortError'&&this.snapshot)return this.snapshot.workshop;throw error;}},command:(command,present)=>this.workshopOutcome(this.command(command as TownCommand,present)),retry:(present)=>this.workshopOutcome(this.retry(present)),busy:()=>!!this.inFlight,canRetry:()=>this.retryAvailable,now:this.serverNow,subscribe:listener=>{const handle=(snapshot:TownSnapshot)=>listener(snapshot.workshop);this.listeners.add(handle);return()=>this.listeners.delete(handle);}};}
 }

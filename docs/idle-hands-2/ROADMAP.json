@@ -2361,7 +2361,7 @@
     {
       "id": "IH2-130",
       "title": "Optional original place audio with quiet game controls",
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [
         "IH2-129"
       ],
@@ -2381,9 +2381,10 @@
         "docs/evidence/IH2-130/PLAN.md",
         "docs/evidence/IH2-130/PLACE_MUSIC.md",
         "docs/evidence/IH2-130/MUSIC_CI.json",
-        "docs/evidence/IH2-130/WORLD_SOUNDS.md"
+        "docs/evidence/IH2-130/WORLD_SOUNDS.md",
+        "docs/evidence/IH2-130/WORLD_SOUNDS_CI.json"
       ],
-      "progress_note": "Original music is on main. Door and confirmed reward sounds with a separate effects volume passed focused local checks and are awaiting the full PR checks.",
+      "progress_note": "Optional music and effects are accepted on main. Physical-device listening remains open for future playtesting.",
       "owner_branch": "feat/optional-world-sounds"
     },
     {
@@ -2411,7 +2412,30 @@
         "docs/evidence/IH2-131/PLAN.md",
         "docs/evidence/IH2-131/REPORT.md"
       ]
+    },
+    {
+      "id": "IH2-132",
+      "title": "Group routine town refreshes during shared activity",
+      "status": "in_progress",
+      "owner_branch": "perf/coalesce-town-refresh",
+      "depends_on": [
+        "IH2-127",
+        "IH2-130",
+        "IH2-131"
+      ],
+      "goal": "Reduce repeated town snapshot reads during busy shared activity with a bounded client scheduling window.",
+      "acceptance": [
+        "Use one 75 ms window from the first runnable event and preserve one active read with a pending follow-up.",
+        "Keep immediate reconnect, project wake-up and personal receipt handling, boot recovery and identity boundaries.",
+        "Preserve all original domain/browser checks and the same fixed two-trial measurement. Document the counts and convergence."
+      ],
+      "exclusions": [
+        "Saved local services stay stopped. No server, economy, schema, content, cloud, paid or original-game changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-132/PLAN.md"
+      ]
     }
   ],
-  "source_status_note": "IH2-127 observations passed. The IH2-130 music portion passed and optional effects remain open. Local saved services remain stopped. Read the latest CURRENT_SESSION handoff."
+  "source_status_note": "Optional sounds are accepted on main. IH2-132 is validating a bounded public refresh window. Return shortcuts are saved separately and have local checks."
 }

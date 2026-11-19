@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orchard walk · Picking study</title>
+<style>
+:root{color-scheme:light;color:#343c36;background:#d9d2bf;font:100%/1.5 Georgia,serif}
+*{box-sizing:border-box}
+body{margin:0;padding:1rem}
+main{max-width:38rem;margin:auto;border:2px solid #3b463a;border-radius:.5rem;background:#f8f1df;padding:1rem}
+h1{font-size:1.8rem;line-height:1.17;margin:0}
+p{margin:.5rem 0}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1rem 0}
+.controls label{font-weight:bold}
+.controls select{width:100%;display:block}
+select,button{font:inherit;min-height:44px;color:inherit;border:2px solid #54624d;border-radius:.3rem;background:#f6edd5;padding:.3rem .55rem}
+button{cursor:pointer}
+button:focus-visible,select:focus-visible{outline:3px solid #af4e33;outline-offset:3px}
+figure{margin:.8rem 0}
+.scene{position:relative;height:176px;border:2px solid #63745b;border-radius:.3rem;overflow:hidden;background:repeating-conic-gradient(#b6c39a 0 25%,#aebe94 0 50%) 0 0/70px 70px}
+.scene .branch{position:absolute;width:98px;height:68px;top:35px;left:calc(50% + 15px);transform-origin:center}
+.scene[data-facing="west"] .branch{left:auto;right:calc(50% + 15px);transform:scaleX(-1)}
+.scene[data-pose="pick"] .hanging,.scene[data-pose="pocket"] .hanging{visibility:hidden}
+.actor{position:absolute;top:69px;left:calc(50% - 28.8px);width:57.6px;height:72px;background-repeat:no-repeat;background-size:230.4px 288px}
+figcaption{min-height:1.6rem;margin-top:.4rem}
+@media(max-width:340px){body{padding:.5rem} main{padding:.75rem}}
+</style>
+</head>
+<body>
+<main>
+<h1>Picking an orchard apple</h1>
+<p>Reach, pick and pocket. The committee has authorized one apple.</p>
+<div class="controls">
+<label>Resident<select id="resident"><option value="aster">Aster</option><option value="bea">Bea</option><option value="casey">Casey</option><option value="devon">Devon</option></select></label>
+<label>Facing<select id="facing"><option value="east">East</option><option value="west">West</option><option value="south">South</option><option value="north">North</option></select></label>
+</div>
+<button id="replay" type="button">Replay pick</button>
+<button id="next" type="button">Next pose</button>
+<figure>
+<div class="scene" id="scene" aria-hidden="true">
+<svg class="branch" viewBox="0 0 98 68" aria-hidden="true">
+<path d="M97 11Q67 30 8 47m69-25 7-13M56 35l-13-12" fill="none" stroke="#735c43" stroke-width="5" stroke-linecap="round"/>
+<path d="M50 35C25 38 24 13 47 18c10-19 31-4 28 8 19-12 27 9 10 19-11 9-26 8-35-10Z" fill="#79996e" stroke="#4a6b50" stroke-width="2"/>
+<path d="M40 24q18-5 32 7" stroke="#a7bd8c" stroke-width="2" fill="none" stroke-linecap="round"/>
+<g class="hanging">
+<path d="M4 47c1-3 3-4 6-4" fill="none" stroke="#525d38" stroke-width="2"/>
+<path d="M5 48c-9-4-7 10-1 10l2-1 2 1c7 0 7-14-3-10Z" fill="#ba6553" stroke="#343c36"/>
+</g>
+</svg>
+<div class="actor"></div>
+</div>
+<figcaption id="pose" aria-live="polite">Idle</figcaption>
+</figure>
+<p>Standalone art study. Use <strong>Next pose</strong> for stills. Replay also uses a still when reduced motion is enabled.</p>
+</main>
+<script src="pick-preview.js"></script>
+</body>
+</html>

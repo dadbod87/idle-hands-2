@@ -1,0 +1,896 @@
+{
+  "frameSize": [
+    64,
+    80
+  ],
+  "foot": [
+    32,
+    72
+  ],
+  "facings": [
+    "south",
+    "north",
+    "east",
+    "west"
+  ],
+  "poses": [
+    "idle",
+    "reach",
+    "pick",
+    "pocket"
+  ],
+  "sheets": {
+    "aster": {
+      "file": "aster-picking.svg",
+      "sha256": "88ad7b595096bdef2f809f8bf9a888d1dce7bd5a3feb3165095f9de82306a305",
+      "frames": [
+        {
+          "index": 0,
+          "facing": "south",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 1,
+          "facing": "south",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 2,
+          "facing": "south",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 3,
+          "facing": "south",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            43,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 4,
+          "facing": "north",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 5,
+          "facing": "north",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 6,
+          "facing": "north",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 7,
+          "facing": "north",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            43,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 8,
+          "facing": "east",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 9,
+          "facing": "east",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 10,
+          "facing": "east",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 11,
+          "facing": "east",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            40,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 12,
+          "facing": "west",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 13,
+          "facing": "west",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            13,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 14,
+          "facing": "west",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            11,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 15,
+          "facing": "west",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            24,
+            48
+          ],
+          "holdsFruit": true
+        }
+      ]
+    },
+    "bea": {
+      "file": "bea-picking.svg",
+      "sha256": "326cbd34935d19315b854fd6a1cba4c1470b9c9e02fcd5f75620a456c4096be2",
+      "frames": [
+        {
+          "index": 0,
+          "facing": "south",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 1,
+          "facing": "south",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 2,
+          "facing": "south",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 3,
+          "facing": "south",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            43,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 4,
+          "facing": "north",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 5,
+          "facing": "north",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 6,
+          "facing": "north",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 7,
+          "facing": "north",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            43,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 8,
+          "facing": "east",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 9,
+          "facing": "east",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 10,
+          "facing": "east",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 11,
+          "facing": "east",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            40,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 12,
+          "facing": "west",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 13,
+          "facing": "west",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            13,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 14,
+          "facing": "west",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            11,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 15,
+          "facing": "west",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            24,
+            48
+          ],
+          "holdsFruit": true
+        }
+      ]
+    },
+    "casey": {
+      "file": "casey-picking.svg",
+      "sha256": "0cd234abb8184ef0d6ce42223eef443efa4f8cc384471a29d296c5d853a6d9a5",
+      "frames": [
+        {
+          "index": 0,
+          "facing": "south",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 1,
+          "facing": "south",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 2,
+          "facing": "south",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 3,
+          "facing": "south",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            43,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 4,
+          "facing": "north",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 5,
+          "facing": "north",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 6,
+          "facing": "north",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 7,
+          "facing": "north",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            43,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 8,
+          "facing": "east",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 9,
+          "facing": "east",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 10,
+          "facing": "east",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 11,
+          "facing": "east",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            40,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 12,
+          "facing": "west",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 13,
+          "facing": "west",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            13,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 14,
+          "facing": "west",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            11,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 15,
+          "facing": "west",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            24,
+            48
+          ],
+          "holdsFruit": true
+        }
+      ]
+    },
+    "devon": {
+      "file": "devon-picking.svg",
+      "sha256": "57171eb35b2806efc97f4ef411ea050ffe70ee0734b461e62ee8a8f2ef5293c3",
+      "frames": [
+        {
+          "index": 0,
+          "facing": "south",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 1,
+          "facing": "south",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 2,
+          "facing": "south",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 3,
+          "facing": "south",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            43,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 4,
+          "facing": "north",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 5,
+          "facing": "north",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 6,
+          "facing": "north",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 7,
+          "facing": "north",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            43,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 8,
+          "facing": "east",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 9,
+          "facing": "east",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            51,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 10,
+          "facing": "east",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            53,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 11,
+          "facing": "east",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            40,
+            48
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 12,
+          "facing": "west",
+          "pose": "idle",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": null,
+          "holdsFruit": false
+        },
+        {
+          "index": 13,
+          "facing": "west",
+          "pose": "reach",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            13,
+            25
+          ],
+          "holdsFruit": false
+        },
+        {
+          "index": 14,
+          "facing": "west",
+          "pose": "pick",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            11,
+            20
+          ],
+          "holdsFruit": true
+        },
+        {
+          "index": 15,
+          "facing": "west",
+          "pose": "pocket",
+          "foot": [
+            32,
+            72
+          ],
+          "wrist": [
+            24,
+            48
+          ],
+          "holdsFruit": true
+        }
+      ]
+    }
+  }
+}

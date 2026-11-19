@@ -87,7 +87,7 @@ export function dialogueFor(id: string, context: DialogueContext): TownDialogue 
     const title = 'Jun · Grounds caretaker';
     if (!context.shared) return {
       title,
-      lines: ['I look after the grounds. The grounds have declined to provide a reference.', 'This bridge is only a preview in browser practice. To help repair the town’s bridge, use the shared town.', 'Your rented allotment grows radishes and marigolds. Nella’s free saw lesson opens fallen pine work. Shared practice keeps the separate bridge and trail; fruit harvesting is not open.'],
+      lines: ['I look after the grounds. The grounds have declined to provide a reference.', 'This bridge is only a preview in browser practice. To help repair the town’s bridge, use the shared town.', 'Your allotment grows radishes and marigolds. Nella teaches you to use a saw. For apples, follow Places to Orchard walk and look for the marked branches.'],
       action: context.questStage === 'gather' ? journal() : bridge()
     };
     if (context.bridgeRestored) return {

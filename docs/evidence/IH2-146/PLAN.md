@@ -11,3 +11,5 @@ The Journal shows the parcel while it is packing or waiting to collect. The rout
 Native Chromium isolated fixtures start with only known test feet and a known workshop baseline. All apples are picked through the normal controls. The timer test sets the browser clock on either side of the exact 30-minute deadline without changing pantry bytes. A second tab and a targeted blocked storage write exercise both refusal paths. Terra reviewed desktop, 320 px and short 200% stills. A separate short capture confirmed the gray native tap highlight fades and leaves the action and panel unobstructed. No physical-device acceptance or saved practice town restart is implied.
 
 [Shared practice design](SHARED_NEXT.md)
+
+The packing table is beside the orchard sign at the same station. Native clicks on the table and taps on its label use the established walk-up route. The table remains visible beside the resident on arrival. Jun points to the orchard while the corner fruit tree remains a sketchbook stop.

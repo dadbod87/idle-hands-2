@@ -65,7 +65,10 @@ test('browser orchard: pick along real paths, pack, explicitly collect and taste
  await expect(page.getByRole('dialog')).not.toBeVisible();
  expect((await pantry(page)).apples).toBe(2);
  await walk(page,'Orchard walk','commons-orchard');
- await inspect(page);
+ await page.screenshot({path:output+'/desktop-at-table.png'});
+ const table=await page.evaluate(()=>(window as any).__pilot.screenPoint(105.7,44));
+ await page.locator('canvas').click({position:table});
+ await expect(page.getByRole('dialog')).toHaveAccessibleName('Orchard packing table');
  await page.getByRole('button',{name:'Pack snack'}).click();
  await expect(page.getByText('Ready in 30:00')).toBeVisible();
  const cooking=await pantry(page);
@@ -137,6 +140,15 @@ test('orchard touch fits narrow and short screens and an unconfirmed pick grants
    expect(await pantry(page)).toBeNull();
    expect(await page.evaluate(key=>localStorage.getItem(key),workshopKey)).toBe(original);
    await expect(page.getByRole('dialog')).toHaveAccessibleName('Low branch');
+   if(size.name==='phone'){
+    await page.getByRole('button',{name:'Close panel'}).tap();
+    await walk(page,'Orchard walk','commons-orchard');
+    await page.screenshot({path:output+'/phone-at-table.png'});
+    const table=await page.evaluate(()=>(window as any).__pilot.screenPoint(105.7,44));
+    await page.locator('canvas').tap({position:table});
+    await expect(page.getByRole('dialog')).toHaveAccessibleName('Orchard packing table');
+    expect(await pantry(page)).toBeNull();
+   }
   }finally{await context.close();}
  }
 });

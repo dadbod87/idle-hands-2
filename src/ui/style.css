@@ -94,6 +94,12 @@
  white-space: nowrap;
 }
 .town-map-landmark[data-landmark='commons-green'] { transform: translate(-58%, .65rem); }
+.town-map-landmark.map-destination {
+ z-index: 2;
+ border-color: #35483e;
+ outline: 2px solid #35483e;
+ background: #ffedaa;
+}
 .town-map-landmark[data-landmark='commons-pond'] { transform: translate(-43%, .53rem); }
 .town-map-player,
 .places-map figcaption::before {
@@ -124,6 +130,33 @@
  content: '';
  display: inline-block;
  flex: 0 0 auto;
+}
+.town-map-route {
+ display: grid;
+ grid-template-columns: minmax(0, 1fr) auto;
+ align-items: end;
+ gap: .5rem;
+ padding: .45rem 0 .7rem;
+}
+.town-map-route label {
+ display: grid;
+ gap: .2rem;
+ min-width: 0;
+ font-weight: bold;
+}
+.town-map-route select {
+ width: 100%;
+ min-height: 46px;
+ padding: .3rem;
+ border: 2px solid var(--line);
+ border-radius: 5px;
+ background: #fff8e6;
+ font: inherit;
+ color: var(--ink);
+}
+.town-map-route select:focus-visible { outline: 3px solid #b8653e; outline-offset: 2px; }
+@media (max-width: 365px), (max-height: 480px) {
+ .town-map-route { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-height: 480px) {
  .places-map > summary { padding: 6px 0; min-height: 44px; font-size: .85rem; }

@@ -45,7 +45,7 @@ export function renderPlaces(body: HTMLElement, options: {
   appendStops(detail, group.stops);
   browse.append(detail);
  }
- if (options.room === 'square') browse.append(townMap({...options.position}));
+ if (options.room === 'square') browse.append(townMap({...options.position}, options.stops, options.walk));
  body.append(browse);
 
  if (!view.groups.length) return;

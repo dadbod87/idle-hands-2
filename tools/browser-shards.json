@@ -69,6 +69,7 @@
     "home-neighborhood.spec.ts",
     "home-workroom.spec.ts",
     "housing-study.spec.ts",
+    "map-landmark-walk.spec.ts",
     "movement-backpressure.spec.ts",
     "orchard-picking-study.spec.ts",
     "personal-tools.spec.ts",

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-18",
+  "updated": "2026-11-19",
   "authority": "docs/idle-hands-2/README.md",
   "tasks": [
     {
@@ -2512,7 +2512,7 @@
     {
       "id": "IH2-136",
       "title": "Rehearse character creation and a first morning in Ledgerwick",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/walk-destination-cue",
       "depends_on": [
         "IH2-050"
@@ -2530,13 +2530,15 @@
         "docs/evidence/IH2-136/PLAN.md",
         "docs/evidence/IH2-136/ART.json",
         "docs/evidence/IH2-136/REHEARSAL.md",
-        "docs/evidence/IH2-136/PROFILE_CANDIDATE.md"
-      ]
+        "docs/evidence/IH2-136/PROFILE_CANDIDATE.md",
+        "docs/evidence/IH2-137/TOWN_ORIENTATION_CI.json"
+      ],
+      "progress_note": "Standalone opening and save/movement models accepted as design on main. Actual shared login and room integration remain future work."
     },
     {
       "id": "IH2-137",
       "title": "Show the accepted walking destination on the ground",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/walk-destination-cue",
       "depends_on": [
         "IH2-113",
@@ -2551,13 +2553,15 @@
         "Saved services remain stopped. No original-game, cloud, paid or production changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-137/PLAN.md"
-      ]
+        "docs/evidence/IH2-137/PLAN.md",
+        "docs/evidence/IH2-137/TOWN_ORIENTATION_CI.json"
+      ],
+      "progress_note": "Exact PR and main native paths verified. The stationary check ties the marker to the accepted endpoint and final feet. Redirect is verified across the moving courtyard."
     },
     {
       "id": "IH2-138",
       "title": "Offer shared bridge play from browser practice",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/walk-destination-cue",
       "depends_on": [
         "IH2-053"
@@ -2571,13 +2575,15 @@
         "Saved services remain stopped. No original-game, cloud, paid or production changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-138/PLAN.md"
-      ]
+        "docs/evidence/IH2-138/PLAN.md",
+        "docs/evidence/IH2-137/TOWN_ORIENTATION_CI.json"
+      ],
+      "progress_note": "Direct local entry and an explicit separate practice boundary verified. The shared bridge remains server-authorized."
     },
     {
       "id": "IH2-139",
       "title": "Show a folded map of the town in Places",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/walk-destination-cue",
       "depends_on": [
         "IH2-113",
@@ -2592,13 +2598,15 @@
         "Saved services remain stopped. No original-game, cloud, paid or production changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-139/PLAN.md"
-      ]
+        "docs/evidence/IH2-139/PLAN.md",
+        "docs/evidence/IH2-137/TOWN_ORIENTATION_CI.json"
+      ],
+      "progress_note": "Town navigation sketch fits desktop, narrow and short enlarged viewports. Its player pin follows actual movement."
     },
     {
       "id": "IH2-140",
       "title": "Choose a resident appearance in browser practice",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/walk-destination-cue",
       "depends_on": [
         "IH2-136"
@@ -2613,7 +2621,90 @@
         "Saved services remain stopped. No original-game, cloud, paid or production changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-140/PLAN.md"
+        "docs/evidence/IH2-140/PLAN.md",
+        "docs/evidence/IH2-137/TOWN_ORIENTATION_CI.json"
+      ],
+      "progress_note": "Local name/rig changes explicitly save and persist. Cancel, blocked storage and stale tab preserve original bytes."
+    },
+    {
+      "id": "IH2-141",
+      "title": "Model a private orchard and first snack",
+      "status": "queued",
+      "owner_branch": "feat/town-work-moments",
+      "depends_on": [
+        "IH2-113"
+      ],
+      "goal": "Plan one paced outing and useful preparation path.",
+      "acceptance": [
+        "Use actual safe routes and personal ripe capacity. Compare multiple visit and regrowth cadences.",
+        "Keep the original apple and snack sketches outside game runtime."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, hosted, paid or economy changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-141/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-142",
+      "title": "Show the ordinary workbench job on the tabletop",
+      "status": "in_progress",
+      "owner_branch": "feat/town-work-moments",
+      "depends_on": [
+        "IH2-118"
+      ],
+      "goal": "Make work in progress or ready for collection visible in the workshop.",
+      "acceptance": [
+        "Use confirmed jobs and existing time/recipes. Show materials or finished work and clear it on claim.",
+        "Verify native desktop/touch and no display after an unconfirmed save."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, hosted, paid or economy changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-142/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-143",
+      "title": "Mark a freshly confirmed bridge opening",
+      "status": "queued",
+      "owner_branch": "feat/town-work-moments",
+      "depends_on": [
+        "IH2-053",
+        "IH2-131"
+      ],
+      "goal": "Give nearby residents a short celebration when Inkwood opens.",
+      "acceptance": [
+        "Match current identity, process and project history. Keep recovery and replay quiet.",
+        "Verify desktop and phone, a static reduced-motion moment, and no gameplay mutation."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, hosted, paid or economy changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-143/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-144",
+      "title": "Author the orchard picking poses",
+      "status": "queued",
+      "owner_branch": "feat/town-work-moments",
+      "depends_on": [
+        "IH2-141"
+      ],
+      "goal": "Show reach, pick and pocket at the existing scale in every resident rig.",
+      "acceptance": [
+        "Produce original guarded sheets with the same feet, plus a standalone view and tests.",
+        "Check both east and west contact at desktop, narrow and enlarged short sizes."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, hosted, paid or economy changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-144/PLAN.md"
       ]
     }
   ],

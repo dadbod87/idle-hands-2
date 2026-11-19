@@ -1,0 +1,30 @@
+{
+  "classification": "Original project headwear on byte-identical base resident sheets. Standalone study only.",
+  "width": 64,
+  "height": 80,
+  "foot": [
+    32,
+    72
+  ],
+  "facings": [
+    "south",
+    "north",
+    "east",
+    "west"
+  ],
+  "posesPerFacing": 7,
+  "files": {
+    "aster-none.svg": "ea9299bd173705f45c4990802f609cad51cfbc8523cf7a3e51ec4ebb9e499688",
+    "aster-clerk.svg": "13eadebaa91ff2c9cab8b0041fe3348882db2e18724345e3d6d6974c39aa7e3f",
+    "aster-inkwood.svg": "9e7016fa50a02d0ea9ec7805ae2781ac6d1202da7dd3ee9270d92bad00778bd4",
+    "bea-none.svg": "cff1de8e1db2980a42c5ff046e6c05578f7da6559f94bd0a07f7b99b51d31134",
+    "bea-clerk.svg": "aba125d7f4f83db1413a6e02cd841226fbd32be9b8a50265d91ccd6a7bc51da6",
+    "bea-inkwood.svg": "5d603c0b899d70dce81b15c2447252c9f14fc4e3bfd1ce303ed92dbc769e62cf",
+    "casey-none.svg": "c54f655493894813963dee09475e333e20abd0f7640751a657368597a107b39c",
+    "casey-clerk.svg": "0232d8ca918c97194d703685fdec5fa22d730047186483213046cbcac838f722",
+    "casey-inkwood.svg": "af31301354841639093dd841167f088a65ff128a5dfefb6e80595689cc35cbc7",
+    "devon-none.svg": "bb536c20d5f8a81f8ce1be95a19819c01d95f0107118fc774f39ca6346661298",
+    "devon-clerk.svg": "1884ff5e5b0b9606827101ee58a1ed1529f2f4f7907a960002029987b696aa5f",
+    "devon-inkwood.svg": "1f1456db4df8a83bb9bfaa09aa6ca59b732285766ab89ddbf5da83aa7d5bc70e"
+  }
+}

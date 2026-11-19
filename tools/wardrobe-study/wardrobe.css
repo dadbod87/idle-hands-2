@@ -1,0 +1,31 @@
+:root { color:#263b34; background:#d8cfb8; font:100%/1.45 Georgia,serif; }
+* { box-sizing:border-box; }
+body { margin:0; }
+main { container-type:inline-size; width:min(800px,100% - 24px); margin:18px auto; }
+header { background:#354f43; color:#fff5dd; padding:16px clamp(12px,4vw,28px); border:2px solid #263b34; border-radius:8px 8px 0 0; }
+header span { font: bold .75rem 'Courier New',monospace; letter-spacing:.08em; }
+h1 { font-size:clamp(1.45rem,6vw,2.75rem); line-height:1.08; margin:.2em 0 .3em; }
+p { margin:0; }
+.fitting { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:16px; background:#f9f2df; padding:16px; border:solid #263b34; border-width:0 2px 2px; }
+.view { min-width:0; display:grid; justify-items:center; align-content:center; gap:10px; min-height:228px; padding:12px;
+ background:repeating-conic-gradient(#afbe99 0 25%,#bac7a3 0 50%) 0/48px 48px; border:1px solid #718263; border-radius:4px; }
+#actor { width:128px; height:160px; background-repeat:no-repeat; background-size:3584px 160px; }
+#current { text-align:center; background:#faeed4; border:1px solid #718263; padding:.35em .6em; font-weight:bold; }
+.choices { min-width:0; display:grid; gap:8px; }
+label,legend { font-weight:bold; }
+fieldset { margin:2px 0 0; border:1px solid #9e9073; border-radius:5px; min-width:0; padding:3px 9px 6px; }
+fieldset label { display:flex; gap:8px; min-height:44px; align-items:center; }
+input { flex:none; width:19px; height:19px; accent-color:#435f4c; }
+select,button { min-height:44px; min-width:0; font:inherit; background:#fff5dd; color:#263b34; border:2px solid #263b34; padding:.25em .5em; border-radius:4px; }
+button { background:#435f4c; color:#fff5dd; font-weight:bold; cursor:pointer; }
+:focus-visible { outline:3px solid #a9553b; outline-offset:2px; }
+#motion:empty { display:none; }
+footer { background:#eadcc0; border:solid #263b34; border-width:0 2px 2px; padding:10px 14px; border-radius:0 0 6px 6px; font-size:.89rem; }
+@container (max-width:34em) {
+ .fitting { grid-template-columns:minmax(0,1fr); }
+ .view { min-height:180px; }
+}
+@media (max-height:480px) {
+ main { margin-top:8px; }
+ header { padding-block:10px; }
+}

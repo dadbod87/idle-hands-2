@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledgerwick fitting room · Idle Hands 2</title>
+<link rel="stylesheet" href="./wardrobe.css">
+</head>
+<body>
+<main>
+<header><span>LEDGERWICK FITTING ROOM</span><h1>Make it your own.</h1><p>Try two original hats on four residents.</p></header>
+<div class="fitting">
+<section aria-label="Appearance preview" class="view">
+  <div id="actor" role="img"></div><p id="current"></p>
+</section>
+<div class="choices">
+<label for="resident">Resident</label>
+<select id="resident"><option>Aster</option><option>Bea</option><option>Casey</option><option>Devon</option></select>
+<fieldset>
+<legend>Headwear</legend>
+<label><input type="radio" name="hat" value="none" checked> Original look</label>
+<label><input type="radio" name="hat" value="clerk"> Clerk cap</label>
+<label><input type="radio" name="hat" value="inkwood"> Inkwood hood</label>
+</fieldset>
+<label for="facing">View from</label>
+<select id="facing"><option value="south">Front</option><option value="north">Back</option><option value="east">East side</option><option value="west">West side</option></select>
+<button id="walk" type="button">Preview walk</button>
+<p id="motion" role="status"></p>
+</div>
+</div>
+<footer>Standalone design preview. Your game and saved clothes are separate.</footer>
+</main>
+<script type="module" src="./wardrobe.mjs"></script>
+</body>
+</html>

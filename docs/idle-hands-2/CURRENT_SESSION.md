@@ -1,3 +1,15 @@
+# November 19 — workshop moments accepted, browser orchard next
+
+[PR #69](https://github.com/dadbod87/idle-hands-2/pull/69) is verified on exact main `6f9245a8772a858c1e26104b249e50e6c5162f09`. The ordinary bench shows its confirmed piece and the bridge celebrates a fresh opening. Both exact runs passed 558 domain tests and 213 browser cases. The orchard study and picking art were standalone in that release. [Exact checks and limits](../evidence/IH2-142/TOWN_MOMENTS_CI.json).
+
+The current candidate makes the browser-practice orchard playable, with three personal branches, timed snack packing, an explicit collection and a tasting note. It also adds deliberate map travel from existing landmarks. Both passed local browser checks. [Orchard](../evidence/IH2-146/PLAN.md) · [Map travel](../evidence/IH2-145/PLAN.md).
+
+# November 19 — town orientation accepted, workshop moments next
+
+PR #68 is accepted on main `c965eed86097bdc1cdf50cdd873f5f9a9f43b240`. Both exact runs passed 557 domain and 209 browser cases. Residents see an accepted walking destination, a foldout town map, a clear path from the browser-practice bridge to shared practice, and an optional browser-local name and look. The rented-room opening remains a standalone design. [Exact gate and limits](../evidence/IH2-137/TOWN_ORIENTATION_CI.json).
+
+The next candidate adds a visible ordinary bench job and a brief animation when the shared bridge opens. The first apple and snack study and the original picking poses stay outside runtime in this candidate. [Handoff](handoffs/2026-11-19-town-orientation.md).
+
 # November 19 — measured refresh gains and player paths accepted
 
 PR #66 reduced the median number of snapshots from 204.5 to 86 and load SQL from 2,063 to 1,115 in two paired 20-resident synthetic trials. The medians for visible updates rose from 148.4 to 183.9 ms. All personal receipts, deadlines and cleanup held. Read [the comparison](../evidence/IH2-132/REPORT.md) for the exact source and limits.

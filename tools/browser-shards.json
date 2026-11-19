@@ -2,6 +2,7 @@
   "1": [
     "allotment-runtime.spec.ts",
     "allotment-study.spec.ts",
+    "canopy-transform-budget.spec.ts",
     "collection-runtime.spec.ts",
     "commons-life.spec.ts",
     "current-actions.spec.ts",
@@ -71,6 +72,7 @@
     "home-neighborhood.spec.ts",
     "home-workroom.spec.ts",
     "housing-study.spec.ts",
+    "map-landmark-walk.spec.ts",
     "movement-backpressure.spec.ts",
     "orchard-picking-study.spec.ts",
     "personal-tools.spec.ts",

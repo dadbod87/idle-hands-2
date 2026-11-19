@@ -1,3 +1,11 @@
+# November 19 — visible work and a town opening
+
+The ordinary workbench shows its confirmed materials or finished piece. Nearby residents can see a brief Inkwood opening celebration. The orchard pacing model and original picking poses are available as standalone studies. Main `6f9245a8772a858c1e26104b249e50e6c5162f09` passed 558 domain tests and 213 browser cases. [PR #69 gate and evidence](evidence/IH2-142/TOWN_MOMENTS_CI.json).
+
+# November 19 — town orientation
+
+Places has a foldout town map. The ground now marks accepted walks. Browser practice offers an optional resident name and look and explains how to reach the separate shared bridge. The rented-room opening is available as a standalone rehearsal. [PR #68 gate and evidence](evidence/IH2-137/TOWN_ORIENTATION_CI.json). Saved services remain stopped.
+
 # November 19 — optional sounds, fewer town reads, and player paths
 
 Optional door and reward cues have their own volume control. Busy public updates now share a short refresh window. In two equal synthetic trials, the typical town read count fell from about 205 to 86 and median load SQL fell 46%. [Sounds](evidence/IH2-130/WORLD_SOUNDS_CI.json) and [refresh measurements](evidence/IH2-132/REPORT.md).

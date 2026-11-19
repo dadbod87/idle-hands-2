@@ -1,0 +1,7 @@
+# Skip redundant canopy transform writes
+
+The visible trees keep their current movement, world anchors and phase. The renderer already checks which canopies are near the camera. It still calculates an idle pose and writes two transforms for every tree every tick. Only write a transform when it changes. A tree going offscreen or entering reduced motion returns to its existing neutral position once.
+
+Check normal weather motion and stationary reduced-motion trees on desktop, a narrow phone viewport and 2560 × 1440. Compare actual candidate transform writes per update to the previous loop's two writes per tree. Re-entry must pick up the current scene phase without jumping its base position. Preserve the existing weather, camera, real-time game timers, art and network behavior. Do not infer GPU speed or physical-phone battery life from this count.
+
+Five native Chromium samples in each view showed six writes per update on desktop, three on the 320 px phone layout and eleven at 2560 × 1440. The preceding code performed 110 per update for the same 55 canopy objects. All sampled layouts reached zero steady writes with reduced motion. A native phone walk to the orchard moved new trees into the update area and returned departing trees to their base positions. The existing weather, tree life and rain cases also passed. [Counts and method](OBSERVATIONS.json). These numbers describe the specific transform setters, without a frame-rate or device claim.

@@ -57,7 +57,7 @@ export class TownSky {
    this.cameraX=x;this.cameraY=y;this.cameraZoom=zoom;
    this.lamps.style.transform=`translate(${-x*zoom}px,${-y*zoom}px) scale(${zoom})`;
   }
-  this.alignRain();
+  if(this.enabled)this.alignRain();
  }
  private alignRain(){const p=rainLayer(this.cameraX,this.cameraY,this.offset,this.cameraZoom);const transform=`translate(${p.x}px,${p.y}px)`;if(transform!==this.rainTransform){this.rainTransform=transform;this.rain.style.transform=transform;}}
  update(now:number,delta:number,interior:boolean,motion:boolean,fixture:TownClimate|null){
@@ -73,9 +73,18 @@ export class TownSky {
   this.alignCamera();this.motion(delta,motion);
  }
  motion(delta:number,motion:boolean){
+  const wasEnabled=this.enabled;
   this.enabled=motion&&!this.interior&&this.state.weather==='drizzle';
-  if(this.enabled)this.offset=(this.offset+cosmeticStep(delta)*.085)%96;else this.offset=0;
-  this.rain.style.visibility=this.enabled?'visible':'hidden';this.alignRain();
+  if(!this.enabled){
+   if(wasEnabled){
+    this.offset=0;
+    this.rain.style.visibility='hidden';
+   }
+   return;
+  }
+  this.offset=(this.offset+cosmeticStep(delta)*.085)%96;
+  this.alignRain();
+  if(!wasEnabled)this.rain.style.visibility='visible';
  }
  snapshot(){return {...this.state,tint:{...this.state.tint},effectiveAlpha:this.effectiveAlpha,fixture:this.fixture,interior:this.interior,precipitation:{enabled:this.enabled,offset:this.offset}};}
 }

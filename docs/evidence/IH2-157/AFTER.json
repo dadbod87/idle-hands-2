@@ -1,0 +1,30 @@
+{
+  "scope": "Native Chromium phone emulation. Actual style assignments counted after each fixture settles for at least 12 compositor frames. This is not CPU time or an FPS claim.",
+  "clear": {
+    "frames": 12,
+    "visibility": 0,
+    "transform": 0
+  },
+  "drizzle": {
+    "frames": 12,
+    "visibility": 0,
+    "transform": 12
+  },
+  "reduced": {
+    "frames": 12,
+    "visibility": 0,
+    "transform": 0
+  },
+  "resumed": {
+    "frames": 12,
+    "visibility": 0,
+    "transform": 12
+  },
+  "interior": {
+    "frames": 12,
+    "visibility": 0,
+    "transform": 0
+  },
+  "hiding": 1,
+  "showing": 1
+}

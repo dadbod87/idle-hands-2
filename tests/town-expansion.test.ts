@@ -6,7 +6,12 @@ test('expanded town covers 2K and 4K at native scale; larger screens cannot expo
 });
 test('additive geography preserves every historical stop, doorway and walkable saved coordinate in the starter square',()=>{
  const old=JSON.parse(readFileSync('docs/evidence/IH2-113/starter-geography.json','utf8')).square;
- for(const stop of old.stops)assert.deepEqual(worlds.square.stops.find(s=>s.id===stop.id),stop);
+ for(const stop of old.stops){
+  const current=worlds.square.stops.find(s=>s.id===stop.id);
+  assert.deepEqual(current,stop.id==='survey-fruit'?{
+   ...stop,text:'The round shapes among the leaves are fruit. This corner tree is here for your sketchbook.',
+  }:stop);
+ }
  for(const box of old.blocked.filter((b:number[])=>b[1]!==10))assert.ok(worlds.square.blocked.some(b=>JSON.stringify(b)===JSON.stringify(box)));
  assert.equal(new Set(worlds.square.stops.map(s=>s.id)).size,worlds.square.stops.length);
  // Explicit authoritative saved doors remain stable; interiors and addresses are untouched.

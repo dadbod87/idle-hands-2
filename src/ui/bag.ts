@@ -1,3 +1,4 @@
+import type {Orchard} from '../game/orchard.ts';
 import type {WorkshopState as LegacyWorkshopState} from '../game/workshop.ts';
 type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
 import {bagStacks,BAG_GROUPS,type BagGroup} from '../game/bag.ts';
@@ -12,7 +13,7 @@ export class BagView {
  private groups=new Map<BagGroup,HTMLElement>();
  private status=document.createElement('p');
  private countKey=document.createElement('p');
- constructor(state:WorkshopState){
+ constructor(state:WorkshopState,private orchard?:()=>Orchard|null){
   this.root.className='canvas-bag';this.root.setAttribute('aria-label','Your bag');
   const heading=document.createElement('h3');heading.textContent='Your bag';
   this.countKey.className='bag-intro bag-count-key';this.countKey.id='bag-count-key';this.countKey.textContent=COUNT_KEYS.furniture;
@@ -22,7 +23,7 @@ export class BagView {
   const shortcuts=document.createElement('div');shortcuts.className='bag-shortcuts';for(const [label,selector]of [['Arrange furniture','select[aria-label="Furniture to place"]']]){const button=document.createElement('button');button.type='button';button.textContent=label;button.dataset.bagArrange='';button.onclick=()=>this.arrange();shortcuts.append(button);}
   this.root.append(heading,shortcuts,filters,this.countKey,this.status);
   for(const group of BAG_GROUPS){const list=document.createElement('ul');list.className='bag-slots';list.setAttribute('aria-describedby',this.countKey.id);list.setAttribute('aria-label',group==='garden'?'Garden and tools':group==='furniture'?'Furniture':'Materials');list.hidden=group!=='furniture';this.groups.set(group,list);this.root.append(list);}
-  for(const stack of bagStacks(state)){const card=document.createElement('li');card.className='bag-slot';card.dataset.bagItem=stack.id;
+  for(const stack of bagStacks(state,{},this.orchard?.())){const card=document.createElement('li');card.className='bag-slot';card.dataset.bagItem=stack.id;
    const art=document.createElement('div');art.className='bag-slot-art';const image=document.createElement('img');image.alt='';image.width=64;image.height=64;image.loading='lazy';const fallback=document.createElement('span');fallback.className='bag-art-fallback';fallback.textContent='Item';fallback.hidden=true;image.onerror=()=>{image.hidden=true;fallback.hidden=false;};image.onload=()=>{image.hidden=false;fallback.hidden=true;};art.append(image,fallback);
    const name=document.createElement('h4');name.textContent=stack.name;const count=document.createElement('span');count.className='bag-stack-count';count.setAttribute('role','img');art.append(count);const detail=document.createElement('p');detail.className='bag-slot-detail';card.append(art,name,detail);this.slots.set(stack.id,{card,count,detail,image,fallback});this.groups.get(stack.group)!.append(card);
   }
@@ -32,7 +33,7 @@ export class BagView {
  private focused=(event:FocusEvent)=>{const t=event.target;if(!(t instanceof HTMLElement)||!t.matches(':focus-visible'))return;const dialog=this.root.closest('dialog'),header=dialog?.querySelector('header');if(!dialog||!header)return;const b=t.getBoundingClientRect(),h=header.getBoundingClientRect(),d=dialog.getBoundingClientRect();if(b.top<h.bottom+8||b.bottom>d.bottom-8)dialog.scrollTop+=b.top-h.bottom-8;};
  update(state:WorkshopState,elsewhere:Partial<Record<PropId,number>>,confirmation:string){
   if(this.status.textContent!==confirmation)this.status.textContent=confirmation;
-  for(const item of bagStacks(state,elsewhere)){const slot=this.slots.get(item.id)!;const count=item.quantity===null?'?':String(item.quantity);if(slot.count.textContent!==count)slot.count.textContent=count;const meaning=item.group==='furniture'?'available to place':item.group==='materials'?'carried':'kept';slot.count.setAttribute('aria-label',item.name+': '+(item.quantity===null?'Available copies unconfirmed':item.quantity+' '+meaning));slot.card.dataset.empty=String(item.quantity===0);if(slot.detail.textContent!==item.detail)slot.detail.textContent=item.detail;if(slot.image.getAttribute('src')!==item.icon)slot.image.src=item.icon;}
+  for(const item of bagStacks(state,elsewhere,this.orchard?.())){const slot=this.slots.get(item.id)!;const count=item.quantity===null?'?':String(item.quantity);if(slot.count.textContent!==count)slot.count.textContent=count;const meaning=item.group==='furniture'?'available to place':item.group==='materials'?'carried':'kept';slot.count.setAttribute('aria-label',item.name+': '+(item.quantity===null?(item.group==='furniture'?'Available copies unconfirmed':'Saved count unconfirmed'):item.quantity+' '+meaning));slot.card.dataset.empty=String(item.quantity===0);if(slot.detail.textContent!==item.detail)slot.detail.textContent=item.detail;if(slot.image.getAttribute('src')!==item.icon)slot.image.src=item.icon;}
  }
  destroy(){this.root.removeEventListener('focusin',this.focused);}
 }

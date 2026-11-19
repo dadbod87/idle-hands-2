@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="92" height="65" viewBox="0 0 92 65">
+ <title>Orchard packing table</title>
+ <ellipse cx="48" cy="60" rx="38" ry="4" fill="#475642" opacity=".24"/>
+ <g stroke="#3c4739" stroke-width="2.4" stroke-linejoin="round">
+  <path d="M19 33h7l-2 25h-6Zm54 0h7l1 25h-6Z" fill="#9a7753"/>
+  <path d="M22 46h55v5H22Z" fill="#b6915f"/>
+  <path d="M12 25h65l10 8H6Z" fill="#cbab71"/>
+  <path d="M6 33h81v7H6Z" fill="#ab8154"/>
+  <path d="M30 20l12-8 17 4 5 11H27Z" fill="#f1dbaf"/>
+  <path d="M30 20l18 4 11-8m-11 8v4" fill="none" stroke="#8e7658" stroke-width="1.5"/>
+  <path d="M67 22c-5-5-11 4-5 8 6 3 12-7 5-8Z" fill="#b65b47"/>
+  <path d="M66 23l2-6 5-2" fill="none" stroke="#5b744f" stroke-width="1.5"/>
+ </g>
+ <path d="M12 37h69" fill="none" stroke="#725b42"/>
+</svg>

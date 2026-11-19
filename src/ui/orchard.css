@@ -1,0 +1,17 @@
+.orchard-quantities { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .8rem; }
+.orchard-quantities > span {
+ display: flex;
+ align-items: center;
+ padding: .2rem .45rem;
+ border: 1px solid var(--line);
+ border-radius: 4px;
+ background: #fff7df;
+ font-weight: bold;
+}
+#panel-body .orchard-stage { font-weight: bold; margin-bottom: .6rem; }
+#panel-body .orchard-note { font-size: .875rem; margin: .8rem 0; }
+#panel-body .orchard-confirmation:empty { display: none; }
+#panel-body .orchard-confirmation { margin: .7rem 0; }
+.orchard-actions { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit,minmax(min(100%,9rem),1fr)); }
+.orchard summary { min-height: 44px; padding: .65rem 0; cursor: pointer; font-weight: bold; }
+.orchard summary:focus-visible { outline: 3px solid #b8653e; outline-offset: 2px; }

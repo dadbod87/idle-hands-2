@@ -1,0 +1,123 @@
+{
+  "pullRequest": 69,
+  "pr": {
+    "sha": "3ebdefbaa1f597f69fe9f13e78f149bdf9486cb6",
+    "run": 44578625160,
+    "domain": 558,
+    "browser": 213,
+    "browserGroups": [
+      73,
+      66,
+      74
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14558860777,
+        "createdAt": "2026-11-19T17:38:00Z",
+        "sha": "3ebdefbaa1f597f69fe9f13e78f149bdf9486cb6",
+        "zipSha256": "1c560d63956b55482c28ec9dc023bfc12db33bddce0432e6cfce93936ff41fd1",
+        "size": 130415,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14558431852,
+        "createdAt": "2026-11-19T17:38:02Z",
+        "sha": "3ebdefbaa1f597f69fe9f13e78f149bdf9486cb6",
+        "zipSha256": "e585bcb90cc0db1745a79d9af2aa71aba0f1b5a0107f8ec58f529f1bd58b903e",
+        "size": 736722,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14557759448,
+        "createdAt": "2026-11-19T17:46:46Z",
+        "sha": "3ebdefbaa1f597f69fe9f13e78f149bdf9486cb6",
+        "zipSha256": "4dd02c70a7227cd03a56c12f055ee8d06d6769d42596d61f298a7d8aa1404c22",
+        "size": 18408038,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14558343154,
+        "createdAt": "2026-11-19T17:48:11Z",
+        "sha": "3ebdefbaa1f597f69fe9f13e78f149bdf9486cb6",
+        "zipSha256": "84bd056587dd155c51611f855f14f7ec828e2da971527af8e686de5a8329a02e",
+        "size": 16112159,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14558877540,
+        "createdAt": "2026-11-19T17:48:38Z",
+        "sha": "3ebdefbaa1f597f69fe9f13e78f149bdf9486cb6",
+        "zipSha256": "6e9c606c5def97232e1d38729c27e8d5577a2ea211051adec9a78c2428165bb9",
+        "size": 23800631,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "6f9245a8772a858c1e26104b249e50e6c5162f09",
+    "run": 44581349103,
+    "domain": 558,
+    "browser": 213,
+    "browserGroups": [
+      73,
+      66,
+      74
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14560210683,
+        "createdAt": "2026-11-19T17:53:22Z",
+        "sha": "6f9245a8772a858c1e26104b249e50e6c5162f09",
+        "zipSha256": "96f4d600b8f3a2a4fa310fd55629e74524ee5fe12c42ffb39849743e360cbc3b",
+        "size": 130895,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14560040831,
+        "createdAt": "2026-11-19T17:53:24Z",
+        "sha": "6f9245a8772a858c1e26104b249e50e6c5162f09",
+        "zipSha256": "73cfb836c5618071453c05b2650016d4b0d09479cd5d391c7f3d80f12ef5dfd7",
+        "size": 736722,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14560850552,
+        "createdAt": "2026-11-19T18:01:52Z",
+        "sha": "6f9245a8772a858c1e26104b249e50e6c5162f09",
+        "zipSha256": "fb48fcb347bc848ab374f8e5d8e1925f0a76531933bf3b207870f7437839afa0",
+        "size": 17684899,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14559731687,
+        "createdAt": "2026-11-19T18:01:57Z",
+        "sha": "6f9245a8772a858c1e26104b249e50e6c5162f09",
+        "zipSha256": "11c2bc1f52918af0322602b51d48ae2a423535b6183f35f73928385b507c3ac3",
+        "size": 15824829,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14560791394,
+        "createdAt": "2026-11-19T18:04:46Z",
+        "sha": "6f9245a8772a858c1e26104b249e50e6c5162f09",
+        "zipSha256": "038a0d5986dcca74c9119246b57bc56b44ad7ae153f6135b8e7523618bfb4987",
+        "size": 23144741,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Isolated fictional bench work and targeted save failure. Intercepted fictional snapshots and events for the bridge ceremony. Orchard design is outside game runtime. Browser layouts and Terra stills, no physical-device or hosted acceptance."
+}

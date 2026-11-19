@@ -4,7 +4,8 @@ import{yardAnchors,contractPlan,residentialFrame}from'../design/housing-contract
 import {TownCommonsLife} from './TownCommonsLife.ts';
 import {commonsFrame,type CommonsSign} from '../art/commons-life.ts';
 import {drawTownCommons} from './TownCommons.ts';
-import {COMMONS_TREES,outdoorZoom} from '../game/town-expansion.ts';
+import {ORCHARD_STOPS,orchardBranchFromStop,type Orchard} from '../game/orchard.ts';
+import {COMMONS_STOPS,COMMONS_TREES,outdoorZoom} from '../game/town-expansion.ts';
 import {ALLOTMENT_LAYERS,ALLOTMENT_BED_FEET,allotmentCamera} from '../art/allotment.ts';
 import{HOUSING_ASSETS,RESIDENTIAL_ASSETS,residentialArt,homeExteriorForPlot}from'../art/residential.ts';
 import{ResidentialLife,type ChimneyAnchor}from'./ResidentialLife.ts';
@@ -70,7 +71,7 @@ export class WorldScene extends Phaser.Scene {
   }
   resetPresentationFrame(activePlay=true){
     this.samplePresentationFrames=activePlay;this.keys.clear();this.movementReset=true;this.lastFrame=0;
-    if (!activePlay) this.walkMark?.setVisible(false);
+    if (!activePlay) { this.walkMark?.setVisible(false); this.orchardMotion=null; }
   }
   private canopies:Array<{key:string;image:Phaser.GameObjects.Image;phase:number;baseX:number}>=[];
   private townfolk:Array<{id:string;image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text}>=[];
@@ -141,12 +142,49 @@ export class WorldScene extends Phaser.Scene {
   private carpentryNextDraw=0;private carpentryKey='';private noticeReveal=0;
   private carpentryMotion:{action:CarpentryAnimation;started:number;facing:Facing}|null=null;
   private lastCarpentryAction:{action:CarpentryAnimation;renderedFrames:number;frames:number[]}|null=null;
+  orchardState?:()=>Orchard|null;
+  private orchardLabels:Array<{stop:typeof ORCHARD_STOPS[number];label:Phaser.GameObjects.Text}>=[];
+  private orchardLabelTick=0;
+  private orchardTable?:Phaser.GameObjects.Image;
+  private orchardTableLabel?:Phaser.GameObjects.Text;
+  private paintOrchardTags(){
+    if(!this.orchardLabels.length||!this.closeToOrchard())return;
+    const tick=performance.now();
+    if(tick<this.orchardLabelTick)return;
+    this.orchardLabelTick=tick+1000;
+    const state=this.orchardState?.(),now=Date.now();
+    for(const item of this.orchardLabels){
+      const id=orchardBranchFromStop(item.stop.id)!;
+      const text=item.stop.name+(state?(state.ripeAt[id]<=now?' · ripe':' · ripening'):'');
+      if(item.label.text!==text)item.label.setText(text);
+    }
+  }
+  private orchardMotion:{started:number;facing:Facing}|null=null;
+  private closeToOrchard(){
+    return !!this.orchardState&&this.session.room==='square'&&this.session.position.x>85&&
+      this.session.position.y>25&&this.session.position.y<58;
+  }
+  playOrchardPick(branch:{x:number;y:number}){
+    if(!this.closeToOrchard()||document.hidden||!this.actor?.active)return;
+    const feet=this.session.position;
+    this.gardenMotion=null;
+    this.carpentryMotion=null;
+    this.orchardMotion={started:performance.now(),facing:facingFor(branch.x-feet.x,branch.y-feet.y,this.facing)};
+  }
   private activityLoading=new Set<string>();
-  private activityPrefixes=['garden-actions-','saw-equipped-','carpentry-actions-'] as const;
+  private activityPrefixes=['garden-actions-','saw-equipped-','carpentry-actions-','orchard-picking-'] as const;
   private parseActivityTexture(key:string){if(!this.activityPrefixes.some(prefix=>key.startsWith(prefix))||!this.textures.exists(key))return;const texture=this.textures.get(key);if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});}
   private warmActivityArt(){
     const rig=residentArt(this.residentId);let queued=false;
-    for(const prefix of this.activityPrefixes){const key=prefix+rig;if(this.textures.exists(key)||this.activityLoading.has(key))continue;this.activityLoading.add(key);this.load.svg(key,'/art/'+(prefix==='garden-actions-'?'garden':'carpentry')+'/'+key+'.svg');queued=true;}
+    for(const prefix of this.activityPrefixes){
+      if(prefix==='orchard-picking-'&&!this.closeToOrchard())continue;
+      const key=prefix+rig;
+      if(this.textures.exists(key)||this.activityLoading.has(key))continue;
+      this.activityLoading.add(key);
+      const file=prefix==='orchard-picking-'?'orchard/'+rig+'-picking':(prefix==='garden-actions-'?'garden':'carpentry')+'/'+key;
+      this.load.svg(key,'/art/'+file+'.svg');
+      queued=true;
+    }
     if(queued&&!this.load.isLoading())this.load.start();
   }
   refreshCarpentry(){this.carpentryKey='';this.carpentryNextDraw=0;}
@@ -199,7 +237,7 @@ export class WorldScene extends Phaser.Scene {
   private lastFrame = 0;
   private movementReset=true;
   frameSamples: number[] = [];
-  needsFullRate(){return (this.bridgeRevealAt!==null&&!this.reducedMotion.matches&&performance.now()-this.bridgeRevealAt<950)||this.keys.size>0||this.session.snapshot().walking||!!this.gardenMotion||!!this.carpentryMotion||this.noticeReveal>0&&performance.now()-this.noticeReveal<800;}
+  needsFullRate(){return (this.bridgeRevealAt!==null&&!this.reducedMotion.matches&&performance.now()-this.bridgeRevealAt<950)||this.keys.size>0||this.session.snapshot().walking||!!this.gardenMotion||!!this.carpentryMotion||!!this.orchardMotion||this.noticeReveal>0&&performance.now()-this.noticeReveal<800;}
   onFrame?: () => void;
   onWalkFailure?:()=>void;
   movementBudget?:()=>number;
@@ -225,6 +263,11 @@ export class WorldScene extends Phaser.Scene {
     // Peer sprites use the four ordinary rigs. Activity/equipment sheets belong
     // only to self; avoid rasterizing nine unused sheets on every fresh visit.
     const rig=residentArt(this.residentId);
+    if(this.orchardState)this.load.svg('orchard-packing-table','/art/orchard/packing-table.svg');
+    if(this.closeToOrchard()){
+      this.activityLoading.add('orchard-picking-'+rig);
+      this.load.svg('orchard-picking-'+rig,'/art/orchard/'+rig+'-picking.svg');
+    }
     for(const key of CARPENTRY_ASSETS)if(!/^(saw-equipped-|carpentry-actions-)/.test(key)||key.endsWith('-'+rig)){if(/^(saw-equipped-|carpentry-actions-)/.test(key))this.activityLoading.add(key);this.load.svg(key,'/art/carpentry/'+key+'.svg');}
     for(const key of ALLOTMENT_LAYERS)this.load.svg(key,`/art/allotment/${key}.svg`);
     for(const key of GARDEN_ASSETS)if(!key.startsWith('garden-actions-')||key.endsWith('-'+rig)){if(key.startsWith('garden-actions-'))this.activityLoading.add(key);this.load.svg(key,'/art/garden/'+key+'.svg');}
@@ -238,6 +281,8 @@ export class WorldScene extends Phaser.Scene {
     for(const key of keys)this.load.svg('variety-'+key,`/art/variety/${key}.svg`);
   }
   create() {
+    this.orchardMotion=null;this.orchardLabels=[];this.orchardLabelTick=0;
+    this.orchardTable=undefined;this.orchardTableLabel=undefined;
     this.outingPost=undefined;this.outingCrossing=undefined;this.outingKey='';this.depotViews=[];
     this.bridgeRibbon=undefined;this.bridgeRibbonLabel=undefined;this.bridgeRevealAt=null;
     this.pineViews=[];this.rackView=undefined;this.noticeboardView=undefined;this.carpentryMotion=null;this.lastCarpentryAction=null;this.carpentryKey='';this.carpentryNextDraw=0;this.noticeReveal=0;
@@ -297,6 +342,16 @@ export class WorldScene extends Phaser.Scene {
         const meta=art('tree-'+kind+'-canopy'),foot=meta.foot!,footX=(x+1)*TILE,footY=(y+2)*TILE+4;
         for(const layer of ['trunk','canopy']){const tree=this.add.image(footX,footY,'variety-tree-'+kind+'-'+layer).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(footY+(layer==='canopy'?.1:0));
          if(layer==='canopy'){this.canopies.push({key:kind,image:tree,phase:index*1.7,baseX:footX});const bounds=meta.occlusion??{x:4,y:0,width:meta.width-8,height:foot.y};this.occluders.push({image:tree,x:footX-foot.x+bounds.x,y:footY-foot.y+bounds.y+bounds.height,width:bounds.width,height:bounds.height});}}
+      }
+      if(this.orchardState){
+        for(const stop of ORCHARD_STOPS){
+          const sign=label(stop.point.x+.5,stop.point.y+1.12,stop.name).setFontSize(12).setPadding(5,3,5,3);
+          this.orchardLabels.push({stop,label:sign});
+        }
+        const stand=COMMONS_STOPS.find(stop=>stop.id==='commons-orchard')!.point;
+        const depth=(stand.y+.08)*TILE;
+        this.orchardTable=this.add.image((stand.x+2.2)*TILE,depth,'orchard-packing-table').setScale(.72).setOrigin(.5,.93).setDepth(depth);
+        this.orchardTableLabel=label(stand.x+2.2,stand.y+.62,'Packing table').setFontSize(12).setPadding(5,3,5,3);
       }
       for(const id of SURVEY_IDS){const point=SURVEYS[id].point;label(point.x+.5,point.y+.8,'Sketch study');}
       if(this.showTownfolk)for(const person of TOWN_PEOPLE){const py=(person.point.y+.5)*TILE,px=(person.point.x+.5)*TILE;const view=this.add.image(px,py,'variety-resident-'+person.rig,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale).setDepth(py);const tag=this.add.text(px,py-62,person.name+' · '+person.role.split(' · ')[0],{fontFamily:'Georgia',fontSize:11,color:'#343c36',backgroundColor:'#f8f1df',padding:{x:3,y:2}}).setOrigin(.5,1).setDepth(py+1);this.townfolk.push({id:person.id,image:view,label:tag});}
@@ -367,7 +422,7 @@ export class WorldScene extends Phaser.Scene {
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd'].includes(key)) {if(!this.session.locked)this.onSteer?.(); this.keys.add(key); e.preventDefault(); }
     };
     const onUp = (e: KeyboardEvent) => this.keys.delete(e.key.length === 1 ? e.key.toLowerCase() : e.key);
-    const clear = () => { this.gardenMotion=null;this.carpentryMotion=null;this.noticeReveal=0;this.noticeboardView?.setAlpha(1);this.movementReset=true;this.keys.clear(); this.session.stop();this.walkMark?.setVisible(false);this.clearBridgeCeremony();this.updateAmbient(0); };
+    const clear = () => { this.orchardMotion=null;this.gardenMotion=null;this.carpentryMotion=null;this.noticeReveal=0;this.noticeboardView?.setAlpha(1);this.movementReset=true;this.keys.clear(); this.session.stop();this.walkMark?.setVisible(false);this.clearBridgeCeremony();this.updateAmbient(0); };
     const readingFocus=(event:FocusEvent)=>{if(event.target instanceof HTMLElement&&event.target.closest('[data-ui-scroll]')){this.keys.clear();this.movementReset=true;}};
     document.addEventListener('focusin',readingFocus);
     const motionChanged=()=>this.updateAmbient(0);this.reducedMotion.addEventListener('change',motionChanged);
@@ -384,7 +439,11 @@ export class WorldScene extends Phaser.Scene {
         // Caption taps use the same approach/arrival validation as a body tap.
         // They never open a panel or authorize a command from a distance.
         const sign=this.room==='square'?this.commonsSigns.find(s=>pos.x>=s.hit.x&&pos.x<=s.hit.x+s.hit.width&&pos.y>=s.hit.y&&pos.y<=s.hit.y+s.hit.height):undefined;
-        const accepted=label>=0?this.session.approach(this.gardenLabelTargets[label]):sign?this.session.approach(sign.id):this.session.point(to);
+        const branch=this.orchardLabels.find(item=>this.gardenLabelHit(item.label).contains(pos.x,pos.y));
+        const table=this.orchardTable?.getBounds().contains(pos.x,pos.y)||
+          this.orchardTableLabel&&this.gardenLabelHit(this.orchardTableLabel).contains(pos.x,pos.y);
+        const target=label>=0?this.gardenLabelTargets[label]:branch?.stop.id??(table?'commons-orchard':sign?.id);
+        const accepted=target?this.session.approach(target):this.session.point(to);
         if(!accepted)this.onWalkFailure?.();
       }
     });
@@ -449,6 +508,7 @@ export class WorldScene extends Phaser.Scene {
     this.movementReset=document.hidden;
     this.paintWalkMark();
     this.paintOrdinaryBench();
+    this.paintOrchardTags();
     const dx=this.session.position.x-before.x,dy=this.session.position.y-before.y;
     const moving=Math.hypot(dx,dy)>.00001;
     if(moving)this.travelled+=Math.hypot(dx,dy)*TILE;
@@ -461,10 +521,14 @@ export class WorldScene extends Phaser.Scene {
     if(moving||document.hidden||this.carpentryMotion&&performance.now()-this.carpentryMotion.started>760)this.carpentryMotion=null;
     const motion=this.carpentryMotion,saw=this.carpentryState?.()?.saw.equipped;
     if(motion&&this.lastCarpentryAction){const frame=carpentryActionFrame(motion.facing,motion.action,performance.now()-motion.started,reduced);this.lastCarpentryAction.renderedFrames++;if(!this.lastCarpentryAction.frames.includes(frame))this.lastCarpentryAction.frames.push(frame);}
-    const texture=motion?'carpentry-actions-':gardenMotion?'garden-actions-':saw?'saw-equipped-':'variety-resident-';
+    const orchardAge=this.orchardMotion?performance.now()-this.orchardMotion.started:0;
+    if(moving||document.hidden||this.session.locked||orchardAge>=615)this.orchardMotion=null;
+    const orchard=this.orchardMotion;
+    const texture=orchard?'orchard-picking-':motion?'carpentry-actions-':gardenMotion?'garden-actions-':saw?'saw-equipped-':'variety-resident-';
     this.warmActivityArt();
     const desiredKey=texture+residentArt(this.residentId),available=this.textures.exists(desiredKey),actorKey=available?desiredKey:'variety-resident-'+residentArt(this.residentId);
-    const actorFrame=available&&motion?carpentryActionFrame(motion.facing,motion.action,performance.now()-motion.started,reduced):available&&gardenMotion?gardenActionFrame(gardenMotion.facing,gardenMotion.action,performance.now()-gardenMotion.started,reduced):residentFrame(this.facing,this.frame);
+    const orchardFrame=orchard?['south','north','east','west'].indexOf(orchard.facing)*4+(reduced?2:orchardAge<190?1:orchardAge<345?2:3):0;
+    const actorFrame=available&&orchard?orchardFrame:available&&motion?carpentryActionFrame(motion.facing,motion.action,performance.now()-motion.started,reduced):available&&gardenMotion?gardenActionFrame(gardenMotion.facing,gardenMotion.action,performance.now()-gardenMotion.started,reduced):residentFrame(this.facing,this.frame);
     if(this.actor.texture.key!==actorKey||String(this.actor.frame.name)!==String(actorFrame))this.actor.setTexture(actorKey,actorFrame);
     const x=(this.session.position.x+.5)*TILE,y=(this.session.position.y+.5)*TILE;
     this.actor.setPosition(x,y).setDepth(y);

@@ -77,6 +77,7 @@ export function renderPlaces(body: HTMLElement, options: {
  };
  label.addEventListener('focusin', keepFocusInView);
  results.addEventListener('focusin', keepFocusInView);
+ browse.addEventListener('focusin', keepFocusInView);
 
  const searchKey = (value: string) => value.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
  const searchable = options.stops.map(stop => ({stop, name: searchKey(stop.name)}));

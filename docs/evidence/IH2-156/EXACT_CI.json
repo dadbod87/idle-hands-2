@@ -1,0 +1,123 @@
+{
+  "pullRequest": 77,
+  "pr": {
+    "sha": "dd4daf8928e2e8577bf6f443c42ae148ae5a497e",
+    "run": 44636988009,
+    "domain": 581,
+    "browser": 229,
+    "browserGroups": [
+      74,
+      77,
+      78
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14584473376,
+        "createdAt": "2026-11-19T23:24:54Z",
+        "sha": "dd4daf8928e2e8577bf6f443c42ae148ae5a497e",
+        "zipSha256": "6e2d21ccaf30ce0312d7f33146a25209567511a18380c62f6157d7175ad9cd1f",
+        "size": 132008,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14584588121,
+        "createdAt": "2026-11-19T23:24:55Z",
+        "sha": "dd4daf8928e2e8577bf6f443c42ae148ae5a497e",
+        "zipSha256": "7ec3c13b69dfd6128167448e4a6d825c01707d0cff6a441353b48469fc77a4c7",
+        "size": 760123,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14585855632,
+        "createdAt": "2026-11-19T23:35:30Z",
+        "sha": "dd4daf8928e2e8577bf6f443c42ae148ae5a497e",
+        "zipSha256": "3c425fbd5452ee9a242ece439d6a3017cbedd29ff5d145498a6284ff96bd6050",
+        "size": 18490936,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14583329893,
+        "createdAt": "2026-11-19T23:37:48Z",
+        "sha": "dd4daf8928e2e8577bf6f443c42ae148ae5a497e",
+        "zipSha256": "21cf48fe77160814d169ce4ff1d8120d999b255e85d4a186e88834d52fc0b3a1",
+        "size": 19132393,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14586001123,
+        "createdAt": "2026-11-19T23:39:25Z",
+        "sha": "dd4daf8928e2e8577bf6f443c42ae148ae5a497e",
+        "zipSha256": "a146620a536aef74f72e15b4773e977df55265c345943004e8acddac97a4808d",
+        "size": 24589531,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "5d0e3b76b30435c3fc618b165dba426f3a85172e",
+    "run": 44639583360,
+    "domain": 581,
+    "browser": 229,
+    "browserGroups": [
+      74,
+      77,
+      78
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14586270452,
+        "createdAt": "2026-11-19T23:43:23Z",
+        "sha": "5d0e3b76b30435c3fc618b165dba426f3a85172e",
+        "zipSha256": "9dc9b488f5870580cb17339d6a5c75c6db7800d50c9a60b88470f9e7d9320c47",
+        "size": 132130,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14585866930,
+        "createdAt": "2026-11-19T23:43:25Z",
+        "sha": "5d0e3b76b30435c3fc618b165dba426f3a85172e",
+        "zipSha256": "572b2353ce7fed544e7fb2597de2381cd8ac225ebe17e755ec6213875e887767",
+        "size": 760123,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14586840839,
+        "createdAt": "2026-11-19T23:52:26Z",
+        "sha": "5d0e3b76b30435c3fc618b165dba426f3a85172e",
+        "zipSha256": "8eb667beb6f050de7b6abd391d2739c4cc660e6f191ab8724845ce002f66083e",
+        "size": 18333320,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14586029138,
+        "createdAt": "2026-11-19T23:55:50Z",
+        "sha": "5d0e3b76b30435c3fc618b165dba426f3a85172e",
+        "zipSha256": "f808d511d95659fc952a9d792406caa13106fbcb11a625bcc073d5fad5a9d459",
+        "size": 19071531,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14585064919,
+        "createdAt": "2026-11-19T23:54:32Z",
+        "sha": "5d0e3b76b30435c3fc618b165dba426f3a85172e",
+        "zipSha256": "6cf93d9692807135f34a11b852da96154b3e8abecfa2922a6a8e8d993da93c0f",
+        "size": 24465077,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Actual Chromium navigation with fictional browser files, including reload and narrow/short layouts. Database/hosted and physical devices remain out of scope."
+}

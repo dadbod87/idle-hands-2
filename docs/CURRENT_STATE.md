@@ -1,3 +1,7 @@
+# November 19 — walkable boarding house accepted
+
+Browser practice has a real door and room, a note to Marlow, and a safely restored position. Main `5d0e3b76b30435c3fc618b165dba426f3a85172e` passed 581 domain tests and 229 browser cases. [Exact verification](evidence/IH2-156/EXACT_CI.json).
+
 # November 19 — optional orchard music accepted
 
 Little brass labels plays in the orchard after confirmed arrival, reusing the original gather voice. Main `d422168f896a6cc4ede31a1993479a9751350b34` passed 577 domain tests and 227 browser cases. [Exact verification](evidence/IH2-155/EXACT_CI.json).

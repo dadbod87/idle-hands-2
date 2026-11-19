@@ -1,0 +1,15 @@
+{
+  "classification": "Original project-authored icon drafts, not registered playable art",
+  "assets": [
+    {
+      "path": "tools/orchard-study/apple.svg",
+      "sha256": "67ebc689fa20c7e165191d15600cc12ee29feb9cea36f825f7049136904a6c02",
+      "license": "project-original"
+    },
+    {
+      "path": "tools/orchard-study/orchard-snack.svg",
+      "sha256": "31c302a7ec82240369ded55141891623552fa80bf064143f7776f7edcf7803a5",
+      "license": "project-original"
+    }
+  ]
+}

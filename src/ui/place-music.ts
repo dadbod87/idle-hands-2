@@ -1,7 +1,7 @@
 import { WorldSounds } from '../audio/world-sounds.ts';
 import { PlaceMusic, type MusicStatus } from '../audio/place-music.ts';
-import { SCORE_NAMES, scoreForRoom } from '../audio/score.ts';
-import type { Room } from '../game/world.ts';
+import { SCORE_NAMES, scoreForLocation } from '../audio/score.ts';
+import type { Point, Room } from '../game/world.ts';
 import './place-music.css';
 
 const statusText: Record<MusicStatus, string> = {
@@ -14,8 +14,9 @@ const statusText: Record<MusicStatus, string> = {
 
 const speaker = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 9h4l5-4v14l-5-4H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path class="sound-waves" d="M15 9q3 3 0 6m3-9q5 6 0 12" fill="none" stroke="currentColor" stroke-width="2"/><path class="sound-slash" d="m15 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
 
-export function mountPlaceMusic({ room, settings, quick, body, open }: {
+export function mountPlaceMusic({ room, position, settings, quick, body, open }: {
   room: Room;
+  position?: Point;
   settings: HTMLButtonElement;
   quick: HTMLButtonElement;
   body: HTMLElement;
@@ -25,7 +26,7 @@ export function mountPlaceMusic({ room, settings, quick, body, open }: {
   let effectsControls: { button: HTMLButtonElement; level: HTMLOutputElement } | undefined;
   settings.innerHTML = speaker + '<span class="sound-label">Sound</span>';
   quick.innerHTML = speaker;
-  const music = new PlaceMusic(scoreForRoom(room), paint);
+  const music = new PlaceMusic(scoreForLocation(room,position), paint);
   const effects = new WorldSounds(paint);
   try {
     const effectLevel = localStorage.getItem('ih2:effects-volume');
@@ -101,7 +102,7 @@ export function mountPlaceMusic({ room, settings, quick, body, open }: {
   paint();
 
   return {
-    setRoom: (nextRoom: Room) => music.setPlace(scoreForRoom(nextRoom)),
+    setLocation: (nextRoom:Room,nextPosition?:Point) => music.setPlace(scoreForLocation(nextRoom,nextPosition,music.score)),
     pause,
     cue: (cue: Parameters<WorldSounds['play']>[0]) => effects.play(cue),
   };

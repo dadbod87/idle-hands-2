@@ -1,3 +1,5 @@
+import {SCORE_FRAMES} from '../src/audio/score.ts';
+import {createWorkshop} from '../src/game/live-workshop.ts';
 import { test, expect, type Page } from '@playwright/test';
 import { mkdirSync } from 'node:fs';
 import { revealPlace } from './helpers/places.ts';
@@ -6,8 +8,8 @@ const output = 'test-results/browser/place-music';
 mkdirSync(output, { recursive: true });
 
 async function instrument(page: Page) {
-  await page.addInitScript(() => {
-    const evidence = { contexts: 0, workers: 0, terminated: 0, starts: 0, stops: 0, frames: 0, effects: [] as number[], scoreHash: "" };
+  await page.addInitScript((orchardFrames) => {
+    const evidence = { contexts: 0, workers: 0, terminated: 0, starts: 0, stops: 0, frames: 0, effects: [] as number[], scoreHash: "", orchardHash: "" };
     Object.assign(window, { __musicEvidence: evidence });
     const NativeContext = window.AudioContext;
     window.AudioContext = class extends NativeContext {
@@ -32,6 +34,12 @@ async function instrument(page: Page) {
           evidence.scoreHash = Array.from(new Uint8Array(hash), byte => byte.toString(16).padStart(2, '0')).join('');
         });
       }
+      if (this.buffer && this.loop && evidence.frames === orchardFrames+176400) {
+        const samples=this.buffer.getChannelData(0).slice(0,orchardFrames);
+        void crypto.subtle.digest('SHA-256',samples.buffer).then(hash=>{
+          evidence.orchardHash=Array.from(new Uint8Array(hash),byte=>byte.toString(16).padStart(2,'0')).join('');
+        });
+      }
       return start.apply(this, args);
     };
     const stop = AudioBufferSourceNode.prototype.stop;
@@ -39,7 +47,7 @@ async function instrument(page: Page) {
       evidence.stops++;
       return stop.apply(this, args);
     };
-  });
+  },SCORE_FRAMES.orchard);
 }
 
 const evidence = (page: Page) => page.evaluate(() => (window as any).__musicEvidence);
@@ -241,4 +249,104 @@ test('optional effects play once for saved gathering and door entry, with indepe
   await expect(page.getByRole('button', { name: 'Turn on effects' })).toBeVisible();
   await expect(volume).toHaveValue('100');
   expect(await evidence(page)).toMatchObject({ contexts: 0, starts: 0 });
+});
+
+test('native orchard travel switches once per area and reuses the original town voice buffer',async({page})=>{
+ await instrument(page);
+ await page.addInitScript(()=>{
+  localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:91.5,y:40}}));
+ });
+ await ready(page);
+ const sound=page.getByRole('button',{name:'Sound settings',exact:true});
+ const sheet=page.locator('.place-music-controls');
+ const status=sheet.getByRole('status');
+ const closer=page.getByRole('button',{name:'Close panel',exact:true});
+ async function walk(x:number){
+  const point=await page.evaluate(x=>(window as any).__pilot.screenPoint(x,40),x);
+  await page.locator('canvas').click({position:point});
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().walking)).toBe(false);
+  await expect.poll(async()=>Math.abs((await page.evaluate(()=>(window as any).__pilot.snapshot().position.x))-x)).toBeLessThan(.12);
+ }
+ await sound.click();
+ await sheet.getByRole('button',{name:'Play music'}).click();
+ await expect(status).toHaveText('Playing · Business as unusual');
+ await closer.click();
+ await walk(94.5);
+ await sound.click();
+ await expect(status).toHaveText('Playing · Little brass labels');
+ await expect.poll(async()=>(await evidence(page)).orchardHash).toBe(
+  'e32c9f2466682a645261205417e089673348fc48d7e79403d2d93d74000d3f19');
+ expect(await evidence(page)).toMatchObject({workers:2,starts:2,stops:1});
+ await page.screenshot({path:output+'/orchard-track.png'});
+ await closer.click();
+ await walk(91.5);
+ expect(await evidence(page)).toMatchObject({workers:2,starts:2,stops:1});
+ await walk(88.5);
+ await sound.click();
+ await expect(status).toHaveText('Playing · Business as unusual');
+ expect(await evidence(page)).toMatchObject({workers:2,starts:3,stops:2});
+ await sheet.getByRole('button',{name:'Pause music'}).click();
+});
+
+test('shared orchard music follows confirmed feet while a fictional move reply is held',async({page})=>{
+ await instrument(page);
+ const at=Date.now();
+ const initial={playerId:'aster',name:'Aster',serverInstance:'score-test',serverTime:at,
+  workshop:createWorkshop(at),position:{room:'square',position:{x:92.5,y:40}},
+  quest:{contentVersion:1,awarded:[]},bridge:{restored:false,phase:'collecting',contributed:0,target:3},
+  plot:null,plots:[],seasonKey:'fixture',scores:[],orchard:null};
+ let logged=false,held=false;
+ let release!:()=>void;
+ const gate=new Promise<void>(resolve=>{release=resolve;});
+ const confirmed:number[]=[];
+ await page.addInitScript(()=>{
+  class Stream extends EventTarget{
+   onopen:((event:Event)=>void)|null=null;
+   constructor(){super();queueMicrotask(()=>this.onopen?.(new Event('open')));}
+   close(){}
+  }
+  window.EventSource=Stream as unknown as typeof EventSource;
+ });
+ await page.route('**/api/town/**',async route=>{
+  const kind=new URL(route.request().url()).pathname.split('/').at(-1);
+  if(kind==='fixtures')return route.fulfill({json:{fixtures:[{id:'aster',name:'Aster'}]}});
+  if(kind==='login'){logged=true;return route.fulfill({json:{snapshot:initial}});}
+  if(kind==='snapshot')return logged?route.fulfill({json:{snapshot:initial}}):
+   route.fulfill({status:401,json:{message:'Choose a resident.'}});
+  if(kind==='movement'){
+   const value=route.request().postDataJSON();
+   if(!held){held=true;await gate;}
+   confirmed.push(value.position.x);
+   return route.fulfill({json:{ok:true,position:value}});
+  }
+  return route.abort();
+ });
+ try{
+  await page.goto('/?town=1');
+  await page.getByRole('button',{name:'Aster',exact:true}).click();
+  await expect(page.getByRole('dialog')).toBeHidden();
+  const sound=page.getByRole('button',{name:'Sound settings',exact:true});
+  const sheet=page.locator('.place-music-controls');
+  const status=sheet.getByRole('status');
+  await sound.click();
+  await sheet.getByRole('button',{name:'Play music'}).click();
+  await expect(status).toHaveText('Playing · Business as unusual');
+  await page.getByRole('button',{name:'Close panel',exact:true}).click();
+  const target=await page.evaluate(()=>(window as any).__pilot.screenPoint(94.5,40));
+  await page.locator('canvas').click({position:target});
+  await expect.poll(()=>held,{timeout:6000}).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().position.x)).toBeGreaterThan(93.1);
+  await sound.click();
+  await expect(status).toHaveText('Playing · Business as unusual');
+  expect(confirmed).toEqual([]);
+  expect(await evidence(page)).toMatchObject({workers:1,starts:1});
+  release();
+  await expect.poll(()=>confirmed.some(x=>x>=93)).toBe(true);
+  await expect(status).toHaveText('Playing · Little brass labels');
+  expect(await evidence(page)).toMatchObject({workers:2,starts:2});
+  await sheet.getByRole('button',{name:'Pause music'}).click();
+ }finally{
+  release();
+  await page.unrouteAll({behavior:'wait'});
+ }
 });

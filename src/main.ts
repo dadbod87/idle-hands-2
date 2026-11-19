@@ -319,9 +319,12 @@ function activate(stop: Stop) {
     return;
   }
   const study=stop.id.startsWith('survey-')?surveyId(stop.id.slice(7)):undefined;if(study){workshop.showSketchbook(study);return;}
-  if(stop.id==='trail-gate'&&!scene.bridgeRestored){if(town)townUI!.showBridge();else{openPanel('Bridge committee');body.append(paragraph('Shared practice keeps bridge construction and trail discoveries. This browser-only workshop has a separate save.'));}return;}
+  if (stop.id === 'bridge' || stop.id === 'trail-gate' && !scene.bridgeRestored) {
+    if (town) townUI!.showBridge();
+    else openSharedTownChoice('Bridge committee', 'Help repair the bridge and explore Inkwood in shared practice. Your workshop in this browser has its own save.');
+    return;
+  }
   if(town&&session.room==='trail'&&(TRAIL_LANDMARK_IDS as readonly string[]).includes(stop.id)){townUI!.showTrail(stop.id);return;}
-  if(town&&stop.id==='bridge'){townUI!.showBridge();return;}
   if(!town&&(stop.id==='plot'||stop.id==='home-front')){openSharedTownChoice(stop.id==='plot'?'Housing Registry':'Home visits',stop.id==='plot'?stop.text:'Earned homes and their front doors are in shared practice. Your browser-only workshop stays saved separately.');return;}
   if(town&&stop.id==='plot'){townUI!.showPlots();return;}
   if(town&&stop.id==='home-front'){const target=pendingHomePlotId??town.snapshot?.plot?.id;pendingHomePlotId=undefined;if(target)void enterHome(target);else townUI!.showPlots();return;}
@@ -333,7 +336,7 @@ function activate(stop: Stop) {
     session.enter(stop.transition, stop.arrival); music.setRoom(stop.transition); music.cue('door'); save(); focusWorld(); feedback.textContent = stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
-    const note = paragraph(townMode?'Shared practice keeps your bridge donations and plot progress. The café and wider trail are still being prepared.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);
+    const note = paragraph(townMode?'Shared practice keeps your town projects and home progress.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);
   }
 }
 function interact() {

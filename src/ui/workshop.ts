@@ -1,3 +1,4 @@
+import { rewardCue, type WorldCue } from '../audio/world-sounds.ts';
 import {CafeWriterCandidate,type WriterOutcome} from '../persistence/cafe-writer-candidate.ts';
 import {collectionGrant,type CollectionGrant} from '../game/collection-receipt.ts';
 import {recipeView,benchWork,craftDuration} from '../game/crafting-view.ts';
@@ -17,7 +18,7 @@ const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Suppl
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Record<string,unknown>;playerId?:string;collection?:CollectionGrant};
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
+type PanelHost={cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -64,7 +65,7 @@ export class WorkshopUI {
   window.addEventListener('storage',e=>{if(e.key===SAVE_KEY||e.key===LEGACY_SAVE_KEY){const r=this.localWriter?.reload();if(r)this.acceptLocal(r);}});
   this.ticker=window.setInterval(()=>{const state=this.localWriter?.snapshot();if(state)this.state=settleWorkshop(state,Date.now());this.updateClocks();},1000);
  }
- private acceptLocal(r:WriterOutcome){this.localOutcome=r;this.ownsSave=r.ownsLease&&r.working!==null;this.saved=!r.dirty&&!['save-failed','unreadable','unavailable','conflict'].includes(r.status);if(r.working)this.state=r.working;this.localReadOnlyReason=['ready','saved','unsaved'].includes(r.status)?'':r.message+(r.status==='unreadable'?' Saved data kept unchanged; actions are read-only.':'');if(this.localReadOnlyReason)this.host.feedback(this.localReadOnlyReason);const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=r.dirty?'Unsaved practice · keep tab open':r.status==='ready'||r.status==='saved'?'Local workshop · saved here':'Kept save · read-only';this.host.changed();this.updateClocks();}
+ private acceptLocal(r:WriterOutcome){if(r.status==='saved'&&r.teapotAwarded)this.host.cue?.('craft');this.localOutcome=r;this.ownsSave=r.ownsLease&&r.working!==null;this.saved=!r.dirty&&!['save-failed','unreadable','unavailable','conflict'].includes(r.status);if(r.working)this.state=r.working;this.localReadOnlyReason=['ready','saved','unsaved'].includes(r.status)?'':r.message+(r.status==='unreadable'?' Saved data kept unchanged; actions are read-only.':'');if(this.localReadOnlyReason)this.host.feedback(this.localReadOnlyReason);const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=r.dirty?'Unsaved practice · keep tab open':r.status==='ready'||r.status==='saved'?'Local workshop · saved here':'Kept save · read-only';this.host.changed();this.updateClocks();}
  public localSaveRecovery(action:'retry'|'flush'|'reload'|'cancel'){if(!this.localWriter)return;const r=action==='retry'?this.localWriter.retry():action==='flush'?this.localWriter.flush():action==='reload'?this.localWriter.discardAndReload():null;if(action==='cancel'&&this.localWriter.cancelPending())this.acceptLocal(this.localWriter.reload());if(r)this.acceptLocal(r);}
 
  snapshot(){return JSON.parse(JSON.stringify(this.state));}
@@ -130,6 +131,10 @@ export class WorkshopUI {
   const receipt=this.localWriter!.command({...command,id,expectedRevision:typeof command.expectedRevision==='number'?command.expectedRevision:this.state.revision});this.acceptLocal(receipt);const message=receipt.message;this.host.feedback(message);this.host.changed();
   // Keep the action controls stable: update quantities/timers without rebuilding the form.
   const grant=receipt.ordinaryAccepted&&command.kind==='gather'?collectionGrant(id,this.host.owner?.()??'local',command.resource,before,this.state):undefined;
+  if(receipt.status==='saved'&&receipt.ordinaryAccepted&&(command.kind!=='gather'||grant)){
+   const cue=rewardCue(command);
+   if(cue)this.host.cue?.(cue);
+  }
   this.finishCollection({state:this.state,message,ok:receipt.ordinaryAccepted,command:{...command,id},playerId:this.host.owner?.()??'local',collection:grant},this.saved);
   this.updateClocks();if(this.status&&!this.collectionView)this.status.textContent=message;
   this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>{el.textContent=String(this.state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]);});

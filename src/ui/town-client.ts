@@ -16,7 +16,7 @@ export type TownPlot={id:string;ownerId:string|null;ownerName?:string;tier?:numb
 export type TownLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot={outing?:OutingState;housingSites?:Array<{plotId:string;ownerId:string;ownerName:string;phase:string}>;housing?:{build:HousingBuild|null;quote:HousingQuote|null;nextPlotId:string};cafe?:CafePublicState;commissionTown?:{styles:Array<{ownerId:string;ownerName:string;motif:LetterboxMotif}>};serverInstance?:string;noticeboard?:NoticeboardState;playerId:string;name:string;workshop:WorkshopState;position:TownPosition;quest:{contentVersion:string|number;awarded:unknown};bridge:{contributed:number;target:number;restored:boolean;phase?:'collecting'|'building'|'open';startedAt?:number|null;readyAt?:number|null;openedAt?:number|null;grandfathered?:boolean};trail?:{stamps:string[];pennantOwned:boolean};projectJournal?:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;plot:TownPlot|null;plots:TownPlot[];seasonKey:string;scores:unknown;serverTime:number;gardenTown?:{credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};lesson?:TownLesson;lessonQuote?:{route:'construction'|'upkeep';expectedBridgeContributed:number}};
 export type TownCommand=Record<string,unknown>&{kind:string;id?:string;expectedRevision?:number};
-export type TownHooks={beforeCommand?:()=>Promise<void>;onSnapshot?:(snapshot:TownSnapshot)=>void;onPresence?:(presence:unknown)=>void;onConnection?:(state:string)=>void};
+export type TownHooks={onConfirmedCommand?:(command:TownCommand, reward:{collection:boolean;teapot:boolean})=>void;beforeCommand?:()=>Promise<void>;onSnapshot?:(snapshot:TownSnapshot)=>void;onPresence?:(presence:unknown)=>void;onConnection?:(state:string)=>void};
 type CommandOutcome={snapshot:TownSnapshot;message:string;ok:boolean;command:TownCommand;playerId:string;collection?:CollectionGrant};
 type Provenance={generation:number;epoch:number;playerId?:string};
 type TownRequestError=Error&{definite?:boolean;staleBoot?:boolean};
@@ -127,6 +127,10 @@ export class TownClient {
    const ok=data.ok!==false,message=this.message(data.message??snapshot.workshop.lastMessage),parsed=collectionGrantSchema.safeParse(data.collection);
    const collection=data.ok===true&&command.kind==='gather'&&parsed.success&&parsed.data.commandId===command.id&&parsed.data.playerId===snapshot.playerId&&parsed.data.resource===command.resource&&parsed.data.revision===data.revision?parsed.data:undefined;
    this.lastMessage=message;this.pending=null;if(present())this.notify(data.message??'Saved to the local town server.');
+   if(data.ok===true&&generation===this.generation){
+    // Presentation must never turn a confirmed transaction into a failed request.
+    try{this.hooks.onConfirmedCommand?.(command,{collection:!!collection,teapot:data.teapotAwarded===true});}catch{/* Keep the confirmed receipt. */}
+   }
    return{snapshot,message,ok,command,playerId:snapshot.playerId,collection};
   }).catch((error:Error&{definite?:boolean})=>{if(generation===this.generation){if(error.definite)this.pending=null;if(present())this.notify(error.message);}throw error;});
   const run=outcome.then(result=>result.snapshot).finally(()=>{if(this.inFlight===run){this.inFlight=null;if(this.refreshDirty&&!this.pending&&generation===this.generation&&!this.closed&&!document.hidden)this.refreshFromEvent();}});this.inFlight=run;this.outcomes.set(run,outcome);return run;

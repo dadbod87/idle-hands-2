@@ -2380,10 +2380,11 @@
       "evidence": [
         "docs/evidence/IH2-130/PLAN.md",
         "docs/evidence/IH2-130/PLACE_MUSIC.md",
-        "docs/evidence/IH2-130/MUSIC_CI.json"
+        "docs/evidence/IH2-130/MUSIC_CI.json",
+        "docs/evidence/IH2-130/WORLD_SOUNDS.md"
       ],
-      "progress_note": "Original place music passed and is merged. Optional effects and their controls remain in the broader sound task.",
-      "owner_branch": "feat/original-place-audio"
+      "progress_note": "Original music is on main. Door and confirmed reward sounds with a separate effects volume passed focused local checks and are awaiting the full PR checks.",
+      "owner_branch": "feat/optional-world-sounds"
     },
     {
       "id": "IH2-131",

@@ -1,0 +1,9 @@
+# Put the next task first in the field guide
+
+The guide begins with the same current objective as Journal. When a new resident in the square needs supplies, **Find material depots** opens Places with the first missing depot focused. Residents can still choose their own destination. **Enter your workshop** and **Open Journal** remain available. The workshop action retains its existing route or room-specific bench and exit behavior. The guide now points returning players to Journal for progress. Bag still holds their belongings.
+
+First-planter and bridge instructions are optional details. The live clock, weather notes, profile editor and browser boarding-house actions remain available. No route, job, clock, quest reward or save rule changed. Navigation uses the same controls and protections as the footer. Opening Places holds the player's position and does not start a walk.
+
+The native Chromium guide and accessibility cases exercise the first objective, the exact depot focus, the Journal switch, close-button focus, locked movement, 200% text and zero axe violations in the scanned views. The existing named-travel, live backdrop and climate cases cover the real workshop route and clock. The shared first-visit case adds a Journal hop and accepts the original maintenance transition if the one-minute deadline falls between the two views. Its actual disposable PostgreSQL run remains pending.
+
+Terra 6.1 identified competing shortcuts and below-the-fold controls in the first draft. The revised hierarchy exposes the relevant depot action first. Short landscape at 200% shows all three actions together. The narrow enlarged view scrolls to Journal, and the local keyboard check reaches and opens it. The evidence uses emulated views and isolated browser saves. Saved previews and their databases remain stopped.

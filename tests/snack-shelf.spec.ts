@@ -270,8 +270,15 @@ test('Journal checks private café parcels on request and links to the real coun
   for(const [name,width,height,text] of [['phone',320,650,100],['desktop',1440,900,100],['short',844,390,200]] as const){
    await page.setViewportSize({width,height});
    await page.evaluate(size=>{document.documentElement.style.fontSize=size+'%';},text);
-   await expect(walk).toBeInViewport();
-   expect((await walk.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+   const panelBounds=(await dialog.boundingBox())!;
+   const titleBounds=(await page.locator('.dialog-head').boundingBox())!;
+   for(const button of [walk,dialog.getByRole('button',{name:'Check again',exact:true})]) {
+    await expect(button).toBeInViewport();
+    const bounds=(await button.boundingBox())!;
+    expect(bounds.height).toBeGreaterThanOrEqual(44);
+    expect(bounds.y).toBeGreaterThanOrEqual(titleBounds.y+titleBounds.height);
+    expect(bounds.y+bounds.height).toBeLessThanOrEqual(panelBounds.y+panelBounds.height);
+   }
    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
    await page.screenshot({path:output+'/journal-note-'+name+'.png'});
   }

@@ -10,7 +10,7 @@ export function showCafeParcelNote(host: Host, town: Pick<TownClient, 'snackShel
   host.open('Café parcels');
   const dialog = host.body.closest('dialog');
   const note = document.createElement('section');
-  note.className = 'quest-card';
+  note.className = 'quest-card cafe-parcel-note';
   const status = document.createElement('p');
   status.setAttribute('role', 'status');
   const walk = document.createElement('button');
@@ -44,7 +44,10 @@ export function showCafeParcelNote(host: Host, town: Pick<TownClient, 'snackShel
   };
   check.addEventListener('click', () => void read());
   note.append(status);
-  host.body.append(note, walk, check);
+  const actions = document.createElement('div');
+  actions.className = 'cafe-parcel-note-actions';
+  actions.append(walk, check);
+  host.body.append(note, actions);
   dialog?.querySelector<HTMLButtonElement>('[aria-label="Close panel"]')?.focus({preventScroll:true});
   void read();
 }

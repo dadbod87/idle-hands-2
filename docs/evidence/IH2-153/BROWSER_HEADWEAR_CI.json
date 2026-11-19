@@ -1,0 +1,123 @@
+{
+  "pullRequest": 74,
+  "pr": {
+    "sha": "eacb8d6fd3c04463e6a2fcb06369fc9540fc3e36",
+    "run": 44614934206,
+    "domain": 572,
+    "browser": 224,
+    "browserGroups": [
+      74,
+      74,
+      76
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14572909513,
+        "createdAt": "2026-11-19T21:06:50Z",
+        "sha": "eacb8d6fd3c04463e6a2fcb06369fc9540fc3e36",
+        "zipSha256": "1ac50c91dff0d774f9c72f24e66c1f297977dbdcd10660a0641cde4407ba1bde",
+        "size": 132184,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14574377678,
+        "createdAt": "2026-11-19T21:06:51Z",
+        "sha": "eacb8d6fd3c04463e6a2fcb06369fc9540fc3e36",
+        "zipSha256": "7c05eab3b1d38d2bcc2471c46a92271b6126c5c4a22db3a00281129cddb9fee4",
+        "size": 755776,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14574039786,
+        "createdAt": "2026-11-19T21:15:58Z",
+        "sha": "eacb8d6fd3c04463e6a2fcb06369fc9540fc3e36",
+        "zipSha256": "61466996963e5e874d789ffd23aedf395d5ddf649dd59498874c035e8b1a6609",
+        "size": 19225168,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14574559300,
+        "createdAt": "2026-11-19T21:16:51Z",
+        "sha": "eacb8d6fd3c04463e6a2fcb06369fc9540fc3e36",
+        "zipSha256": "a28c584fe5d87cd452f314051d702d6550005f8a9d4873af8f298d6ce161791a",
+        "size": 18718427,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14575022298,
+        "createdAt": "2026-11-19T21:18:33Z",
+        "sha": "eacb8d6fd3c04463e6a2fcb06369fc9540fc3e36",
+        "zipSha256": "96e798b7d6d9cb6862c2c328a69ccfdf5fb6b308696f1236e8c4c0d283b278b2",
+        "size": 25410282,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "bc61186865a1c781e8eaf5fde18d1176d61fdec4",
+    "run": 44617600844,
+    "domain": 572,
+    "browser": 224,
+    "browserGroups": [
+      74,
+      74,
+      76
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14577030002,
+        "createdAt": "2026-11-19T21:22:36Z",
+        "sha": "bc61186865a1c781e8eaf5fde18d1176d61fdec4",
+        "zipSha256": "324adf16541e9811dbe16440dd0f26d6d7fc1bee20f1388293431896cb8cf9ac",
+        "size": 132020,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14576625894,
+        "createdAt": "2026-11-19T21:22:37Z",
+        "sha": "bc61186865a1c781e8eaf5fde18d1176d61fdec4",
+        "zipSha256": "257ce51262122dc204ac51d64149a12609ec125d79fe735be65de64cc62d0718",
+        "size": 755776,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14576467668,
+        "createdAt": "2026-11-19T21:31:14Z",
+        "sha": "bc61186865a1c781e8eaf5fde18d1176d61fdec4",
+        "zipSha256": "8ce485b80300d5067cc592240499e4dd390050ee8fa158a4ac1fc1db888bfd97",
+        "size": 18540376,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14576532776,
+        "createdAt": "2026-11-19T21:32:11Z",
+        "sha": "bc61186865a1c781e8eaf5fde18d1176d61fdec4",
+        "zipSha256": "7c405d1cff2ab9c8a14ce52f14df6086ed3b6add96df5189fc4cd02a3e5926c8",
+        "size": 18409732,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14576009186,
+        "createdAt": "2026-11-19T21:34:48Z",
+        "sha": "bc61186865a1c781e8eaf5fde18d1176d61fdec4",
+        "zipSha256": "a218d9608f828589ef11cf29f5ccc61591e4115740a964ed0ac598be8c1a01ee",
+        "size": 24746220,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Browser practice preserves the old records. Native Chromium uses fictional saved profile/starting feet, and an emulated phone. Shared wardrobe and physical devices are outside the sample."
+}

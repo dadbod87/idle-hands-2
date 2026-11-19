@@ -145,6 +145,7 @@ export class WorldScene extends Phaser.Scene {
   orchardState?:()=>Orchard|null|undefined;
   orchardNow:()=>number=Date.now;
   private orchardTable?:Phaser.GameObjects.Image;
+  private orchardTableLabel?:Phaser.GameObjects.Text;
   private orchardMotion:{started:number;facing:Facing}|null=null;
   private orchardLabels:Array<{stop:typeof ORCHARD_STOPS[number];label:Phaser.GameObjects.Text}>=[];
   private orchardLabelTick=0;
@@ -157,6 +158,7 @@ export class WorldScene extends Phaser.Scene {
         this.orchardLabels=[];
         this.orchardTable?.destroy();
         this.orchardTable=undefined;
+        this.orchardTableLabel?.destroy();this.orchardTableLabel=undefined;
       }
       return;
     }
@@ -169,7 +171,10 @@ export class WorldScene extends Phaser.Scene {
       }
       const stand=COMMONS_STOPS.find(stop=>stop.id==='commons-orchard')!.point;
       const depth=(stand.y+.08)*TILE;
-      this.orchardTable=this.add.image((stand.x+1.22)*TILE,depth,'orchard-packing-table').setScale(.72).setOrigin(.5,.93).setDepth(depth);
+      const x=(stand.x+2.2)*TILE,y=(stand.y+.62)*TILE;
+      this.orchardTable=this.add.image(x,depth,'orchard-packing-table').setScale(.72).setOrigin(.5,.93).setDepth(depth);
+      this.orchardTableLabel=this.add.text(x,y,'Packing table',{fontFamily:'Georgia,serif',fontSize:12,color:'#343c36',
+        backgroundColor:'#f3e6c5',padding:{x:5,y:3}}).setOrigin(.5).setDepth(y);
     }
     const tick=performance.now();
     if(tick<this.orchardLabelTick||!this.closeToOrchard())return;
@@ -302,7 +307,7 @@ export class WorldScene extends Phaser.Scene {
     for(const key of keys)this.load.svg('variety-'+key,`/art/variety/${key}.svg`);
   }
   create() {
-    this.orchardMotion=null;this.orchardLabels=[];this.orchardLabelTick=0;this.orchardTable=undefined;
+    this.orchardMotion=null;this.orchardLabels=[];this.orchardLabelTick=0;this.orchardTable=undefined;this.orchardTableLabel=undefined;
     this.outingPost=undefined;this.outingCrossing=undefined;this.outingKey='';this.depotViews=[];
     this.bridgeRibbon=undefined;this.bridgeRibbonLabel=undefined;this.bridgeRevealAt=null;
     this.pineViews=[];this.rackView=undefined;this.noticeboardView=undefined;this.carpentryMotion=null;this.lastCarpentryAction=null;this.carpentryKey='';this.carpentryNextDraw=0;this.noticeReveal=0;
@@ -450,7 +455,10 @@ export class WorldScene extends Phaser.Scene {
         // They never open a panel or authorize a command from a distance.
         const sign=this.room==='square'?this.commonsSigns.find(s=>pos.x>=s.hit.x&&pos.x<=s.hit.x+s.hit.width&&pos.y>=s.hit.y&&pos.y<=s.hit.y+s.hit.height):undefined;
         const branch=this.orchardLabels.find(item=>this.gardenLabelHit(item.label).contains(pos.x,pos.y));
-        const accepted=label>=0?this.session.approach(this.gardenLabelTargets[label]):branch?this.session.approach(branch.stop.id):sign?this.session.approach(sign.id):this.session.point(to);
+        const table=this.orchardTable?.getBounds().contains(pos.x,pos.y)||
+          this.orchardTableLabel&&this.gardenLabelHit(this.orchardTableLabel).contains(pos.x,pos.y);
+        const target=label>=0?this.gardenLabelTargets[label]:branch?.stop.id??(table?'commons-orchard':sign?.id);
+        const accepted=target?this.session.approach(target):this.session.point(to);
         if(!accepted)this.onWalkFailure?.();
       }
     });

@@ -2718,7 +2718,7 @@
     {
       "id": "IH2-145",
       "title": "Choose a landmark directly from the town map",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/orchard-and-map-travel",
       "depends_on": [
         "IH2-139"
@@ -2731,13 +2731,15 @@
         "Saved services remain stopped. No original-game, paid or hosted change."
       ],
       "evidence": [
-        "docs/evidence/IH2-145/PLAN.md"
-      ]
+        "docs/evidence/IH2-145/PLAN.md",
+        "docs/evidence/IH2-146/ORCHARD_PRACTICE_CI.json"
+      ],
+      "progress_note": "Accepted native map selection and walk using the same Places route. The selected landmark stays marked."
     },
     {
       "id": "IH2-146",
       "title": "Pick and pack a first orchard snack in browser practice",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/orchard-and-map-travel",
       "depends_on": [
         "IH2-141",
@@ -2752,7 +2754,210 @@
         "Saved services remain stopped. No original-game, paid or hosted change."
       ],
       "evidence": [
-        "docs/evidence/IH2-146/PLAN.md"
+        "docs/evidence/IH2-146/PLAN.md",
+        "docs/evidence/IH2-146/ORCHARD_PRACTICE_CI.json"
+      ],
+      "progress_note": "Accepted browser-only orchard with safe paths, timed packing, explicit collection, inventory and a tasting note."
+    },
+    {
+      "id": "IH2-147",
+      "title": "Share the orchard without sharing personal stock",
+      "status": "done",
+      "owner_branch": "feat/shared-orchard",
+      "depends_on": [
+        "IH2-146",
+        "IH2-131"
+      ],
+      "goal": "Let residents harvest and pack in the practice town while conserving each separate pantry.",
+      "acceptance": [
+        "Keep orchard state private on the actor’s locked row, with no additional ordinary snapshot read.",
+        "Validate confirmed feet, server time, exact replay, timed collection, and rollback in disposable database checks.",
+        "Exercise independent residents, reload, a lost reply, keyboard and touch using fictional participants only."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, paid or hosted change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-147/PLAN.md",
+        "docs/evidence/IH2-147/SHARED_ORCHARD_CI.json"
+      ],
+      "progress_note": "Accepted shared practice keeps independent pantry state, actual position authority, exact replay and rollback."
+    },
+    {
+      "id": "IH2-148",
+      "title": "Skip invisible canopy transform writes",
+      "status": "done",
+      "owner_branch": "perf/town-sway-and-parcel-study",
+      "depends_on": [
+        "IH2-113",
+        "IH2-147"
+      ],
+      "goal": "Reduce ambient tree work while maintaining existing wind and weather cues.",
+      "acceptance": [
+        "Keep deterministic visible motion and reduced motion. Count actual writes during equal sample frames and exercise camera travel."
+      ],
+      "exclusions": [
+        "No saved preview, original-game, hosted or paid change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-148/PLAN.md",
+        "docs/evidence/IH2-148/CANOPY_AND_PARCEL_CI.json"
+      ],
+      "progress_note": "Accepted same visible sway with fewer actual canopy assignments. Native phone travel exercises entering and leaving visibility."
+    },
+    {
+      "id": "IH2-149",
+      "title": "Rehearse a private parcel shelf at the café",
+      "status": "done",
+      "owner_branch": "perf/town-sway-and-parcel-study",
+      "depends_on": [
+        "IH2-147"
+      ],
+      "goal": "Prove an optional act of teamwork with concise actions and recoverable private stock.",
+      "acceptance": [
+        "Test conserved held stock, exact expiry and refunds, full pouch, desktop keyboard, narrow touch and shortened enlarged layout in the standalone study."
+      ],
+      "exclusions": [
+        "No saved preview, original-game, hosted or paid change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-149/PLAN.md",
+        "docs/evidence/IH2-148/CANOPY_AND_PARCEL_CI.json"
+      ],
+      "progress_note": "Accepted standalone player-experience review only. No shared item or delivery in this slice."
+    },
+    {
+      "id": "IH2-150",
+      "title": "Deliver one private snack from the café shelf",
+      "status": "done",
+      "owner_branch": "feat/private-snack-shelf",
+      "depends_on": [
+        "IH2-147",
+        "IH2-149"
+      ],
+      "goal": "Make one delightfully small act of neighbor teamwork playable.",
+      "acceptance": [
+        "Conserve pantry and reserved slot across offer, accept, decline, expiry, exact replay, lost reply and simultaneous return.",
+        "Use only the signed-in actor and allowed named residents. Hold linked changes in one transaction and leave public reads/scores alone.",
+        "Verify desktop and narrow touch plus enlarged retry, two native fictional residents, process reload, and isolated transaction rollback."
+      ],
+      "exclusions": [
+        "Saved local services remain stopped. No hosted migration, chat, buffs, trade, paid resource, old game or real account."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-150/PLAN.md",
+        "docs/evidence/IH2-150/SNACK_SHELF_CI.json"
+      ],
+      "progress_note": "Accepted private shelf delivery conserves one packed snack. Exact PostgreSQL and native browser check proof."
+    },
+    {
+      "id": "IH2-151",
+      "title": "Rehearse two original pieces of headwear",
+      "status": "done",
+      "owner_branch": "feat/browser-headwear",
+      "goal": "Prove distinct silhouettes and the same readable resident body.",
+      "depends_on": [
+        "IH2-140"
+      ],
+      "acceptance": [
+        "Show the original, cap and hood on four residents, with four facings and existing actions. Measure untouched feet and front eyes."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No shared wardrobe grant, original-game, paid or hosted change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-151/PLAN.md",
+        "docs/evidence/IH2-153/BROWSER_HEADWEAR_CI.json"
+      ],
+      "progress_note": "Accepted original Clerk cap and Inkwood hood with legacy profile and native motion checks."
+    },
+    {
+      "id": "IH2-153",
+      "title": "Wear optional original headwear in browser practice",
+      "status": "done",
+      "owner_branch": "feat/browser-headwear",
+      "goal": "Make one independent cosmetic slot playable in the existing resident editor.",
+      "depends_on": [
+        "IH2-140"
+      ],
+      "acceptance": [
+        "Keep version 1 selections compatible, and confirm version 2 only after explicit save.",
+        "Use the same actor anchor and authored alternative poses. Check direct keyboard, phone, short enlarged layout, cancellation and reload."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No shared wardrobe grant, original-game, paid or hosted change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-153/PLAN.md",
+        "docs/evidence/IH2-153/BROWSER_HEADWEAR_CI.json"
+      ],
+      "progress_note": "Accepted original Clerk cap and Inkwood hood with legacy profile and native motion checks."
+    },
+    {
+      "id": "IH2-154",
+      "title": "Offer one contextual orchard direction from Jun",
+      "status": "done",
+      "owner_branch": "feat/jun-orchard-guidance",
+      "goal": "Make one clear useful next trip available without adding a permanent quest panel.",
+      "depends_on": [
+        "IH2-146",
+        "IH2-150"
+      ],
+      "acceptance": [
+        "Use current confirmed orchard stock and deadlines.",
+        "A narrow-phone tap can walk the actual route; guidance changes no apple, snack or reward balance."
+      ],
+      "exclusions": [
+        "Keep saved services stopped. No original-game or hosted change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-154/PLAN.md",
+        "docs/evidence/IH2-154/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. One contextual suggestion points to confirmed orchard work. A narrow phone can follow its route without picking or spending."
+    },
+    {
+      "id": "IH2-155",
+      "title": "Play an optional original orchard score",
+      "status": "done",
+      "owner_branch": "feat/orchard-music",
+      "goal": "Give the orchard an audible identity when a player explicitly enables music.",
+      "depends_on": [
+        "IH2-154",
+        "IH2-146"
+      ],
+      "acceptance": [
+        "Use confirmed feet for shared practice and a small buffer across the boundary.",
+        "Native Web Audio samples match the original phrase. Verify quiet opt-out and independent volume."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-155/PLAN.md",
+        "docs/evidence/IH2-155/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Little brass labels plays in the orchard after confirmed arrival, reusing the original gather voice."
+    },
+    {
+      "id": "IH2-156",
+      "title": "Visit the boarding house in browser practice",
+      "status": "in_progress",
+      "owner_branch": "feat/local-lodging-visit",
+      "goal": "Give the first-morning design a real room, a visible door and a safe step into town.",
+      "depends_on": [
+        "IH2-155",
+        "IH2-136"
+      ],
+      "acceptance": [
+        "Enter by direct tap or Places and leave from the same visible front steps.",
+        "Preserve safe existing positions and shared room authority; verify narrow, enlarged short and ordinary desktop."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-156/PLAN.md"
       ]
     }
   ],

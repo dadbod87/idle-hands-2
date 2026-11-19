@@ -18,6 +18,18 @@ function button(label:string,run:()=>void,primary=false){
  return node;
 }
 
+const deadlineFormat=new Intl.DateTimeFormat(undefined,{weekday:'short',hour:'numeric',minute:'2-digit'});
+
+function collectBy(timestamp:number){
+ const date=new Date(timestamp);
+ if(!Number.isFinite(date.getTime()))return element('p','Ask the sender when they left this parcel.');
+ const time=element('time',deadlineFormat.format(date));
+ time.dateTime=date.toISOString();
+ const row=element('p','Collect by ');
+ row.append(time,document.createTextNode(' · local time'));
+ return row;
+}
+
 export class SnackShelfUI {
  private root:HTMLElement|null=null;
  private status:HTMLElement|null=null;
@@ -130,19 +142,25 @@ export class SnackShelfUI {
   art.alt='';
   art.width=48;
   art.height=48;
-  summary.append(art,element('p',count+' available'+(held?' · 1 on hold':'')+' · '+SNACK_CAP+' pouch spaces'));
+  summary.append(art,element('p',count+' available'+(held?' · 1 on hold':'')+' · pouch capacity '+SNACK_CAP));
+  const lastChoice=contents.querySelector<HTMLSelectElement>('#snack-recipient');
+  const neighbor=lastChoice?.value??'';
+  const focusId=(document.activeElement===lastChoice||document.activeElement?.id==='leave-parcel')
+   ?document.activeElement?.id:'';
   contents.replaceChildren(summary);
   const command=(label:string,action:SnackAction,primary=false)=>
    button(label,()=>void this.act(root,action,view.revision),primary);
   const incoming=view.incoming.filter(parcel=>parcel.expiresAt>now);
   for(const parcel of incoming){
-   contents.append(this.incoming(parcel,count+held>=SNACK_CAP,command,now));
+   contents.append(this.incoming(parcel,count+held>=SNACK_CAP,command));
   }
   if(view.outgoing) {
    const parcel=view.outgoing;
    const outgoing=element('section');
    const title=parcel.state==='declined'?'Declined by '+parcel.name:parcel.expiresAt<=now?'Parcel expired':'Waiting for '+parcel.name;
-   outgoing.append(element('h3',title),element('p','This parcel reserves one pouch space.'),
+   outgoing.append(element('h3',title));
+   if(parcel.state==='waiting'&&parcel.expiresAt>now)outgoing.append(collectBy(parcel.expiresAt));
+   outgoing.append(element('p','This parcel reserves one pouch space.'),
     command('Take back snack',{kind:'reclaim',parcelId:parcel.id},true));
    contents.append(outgoing);
   }else{
@@ -160,11 +178,14 @@ export class SnackShelfUI {
     const leave=button('Leave snack',()=>{
      if(names.value)void this.act(root,{kind:'leave',recipientId:names.value},view.revision);
     },true);
-    leave.disabled=true;
+    leave.id='leave-parcel';
+    if(neighbor&&view.neighbors.some(person=>person.id===neighbor))names.value=neighbor;
+    leave.disabled=!names.value;
     names.onchange=()=>{leave.disabled=!names.value;};
     send.append(element('p','They have 24 hours to pick it up.'),label,names,leave);
    }
    contents.append(send);
+   if(focusId)contents.querySelector<HTMLElement>('#'+focusId)?.focus({preventScroll:true});
   }
   const next=Math.min(...[...incoming,...(view.outgoing&&view.outgoing.state==='waiting'?[view.outgoing]:[])]
    .map(parcel=>parcel.expiresAt).filter(expiry=>expiry>now));
@@ -175,11 +196,10 @@ export class SnackShelfUI {
  }
 
  private incoming(parcel:SnackParcel,full:boolean,
-  command:(label:string,action:SnackAction,primary?:boolean)=>HTMLButtonElement,now:number){
+  command:(label:string,action:SnackAction,primary?:boolean)=>HTMLButtonElement){
   const card=element('section');
-  const hours=Math.ceil((parcel.expiresAt-now)/3_600_000);
   card.append(element('h3','A snack from '+parcel.name),
-   element('p','“The committee saved you lunch.” · '+hours+' h to collect'));
+   element('p','“The committee saved you lunch.”'),collectBy(parcel.expiresAt));
   const actions=element('div');
   actions.className='snack-shelf-actions';
   const accept=command('Accept snack',{kind:'accept',parcelId:parcel.id},true);

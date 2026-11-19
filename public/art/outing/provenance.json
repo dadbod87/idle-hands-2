@@ -16,6 +16,13 @@
       "source": "tools/create-outing-art.py"
     },
     {
+      "path": "public/art/outing/field-certificate.svg",
+      "sha256": "2be464c84bcb5b74407acdf967b893b2e03658846eb5ce2e3720a100268536da",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-outing-art.py"
+    },
+    {
       "path": "public/art/outing/post-aligned.svg",
       "sha256": "0461655f8d13de79a8905b5ba5d3a56c6144e289cf01bd3e268e410d068a5576",
       "creator": "Original code-authored for Idle Hands 2",

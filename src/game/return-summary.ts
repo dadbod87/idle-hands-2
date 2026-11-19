@@ -27,3 +27,18 @@ export function returnSummary(current:VisitSnapshot,previous:VisitBaseline|null)
  lines.push('Personal depots recover one unit every 4 real hours, up to 6 each and at most 24 hours per absence. Completed work waits for collection.');
  lines.push('No currency or items are awarded by this summary. Your bag shows the server-confirmed quantities.');return lines;
 }
+
+type ReturnStop =
+ | { room:'workshop'; stop:'bench'; label:string }
+ | { room:'square'; stop:'bridge'; label:string };
+
+export function returnStops(current:VisitSnapshot):ReturnStop[]{
+ const {job}=current.workshop,lesson=current.lesson,now=current.serverTime;
+ const pendingLesson=lesson&&!lesson.legacySatisfied&&!lesson.redeemed?lesson:undefined;
+ const stops:ReturnStop[]=[];
+ if((job&&job.readyAt<=now)||(pendingLesson&&!pendingLesson.completed&&pendingLesson.startedAt!==null&&pendingLesson.readyAt!==null&&pendingLesson.readyAt<=now)){
+  stops.push({room:'workshop',stop:'bench',label:'Walk to the workbench'});
+ }
+ if(pendingLesson?.completed)stops.push({room:'square',stop:'bridge',label:'Walk to the bridge committee'});
+ return stops;
+}

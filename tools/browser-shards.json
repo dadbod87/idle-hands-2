@@ -66,10 +66,13 @@
     "movement-backpressure.spec.ts",
     "personal-tools.spec.ts",
     "place-music.spec.ts",
+    "places-search.spec.ts",
     "public-refresh.spec.ts",
+    "return-trip.spec.ts",
     "serving-study.spec.ts",
     "stable-toolbar.spec.ts",
     "stream-reconnect.spec.ts",
-    "visual-kit.spec.ts"
+    "visual-kit.spec.ts",
+    "woodland-certificate.spec.ts"
   ]
 }

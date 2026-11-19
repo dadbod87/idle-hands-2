@@ -1,3 +1,7 @@
+# November 19 — Jun’s orchard directions accepted
+
+One contextual suggestion points to confirmed orchard work. A narrow phone can follow its route without picking or spending. Main `c9353926a5f6f57230eb601e206a72567d69ffeb` passed 575 domain tests and 225 browser cases. [Exact verification](evidence/IH2-154/EXACT_CI.json).
+
 # November 19 — original headwear accepted in browser practice
 
 The resident editor now offers the Clerk cap and Inkwood hood. Free previews use the same feet and acting poses as the selected resident, and only explicit Save changes the appearance. Main `bc61186865a1c781e8eaf5fde18d1176d61fdec4` passed 572 domain tests and 224 browser cases. [Exact checks](evidence/IH2-153/BROWSER_HEADWEAR_CI.json).

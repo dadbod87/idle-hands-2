@@ -123,12 +123,26 @@ test('phone Places in overlapping ranges walks to the requested Inspect target b
  // No inventory/time/API grants, and actual walking must resolve the target.
  await page.addInitScript(()=>localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:24.6,y:12.6}})));
  await boot(page);const initial=await saved(page);expect((await feet(page)).nearby).toBe('trail-gate');
+ await page.locator('#interact').tap();
+ await expect(page.getByRole('button',{name:'Open shared practice town',exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Close panel',exact:true}).tap();
  await page.locator('#places').tap();await (await revealPlace(page,'[data-destination=bridge]')).tap();
  await expect.poll(async()=>(await feet(page)).nearby,{timeout:arrival}).toBe('bridge');await expect.poll(async()=>(await feet(page)).walking).toBe(false);
  expect((await feet(page)).position).toEqual({x:24,y:13});await expect(page.locator('#feedback')).toHaveText('At Bridge committee. Choose Inspect.');
  await expect(page.locator('#interact')).toHaveAttribute('aria-label','Inspect Bridge committee');await page.screenshot({path:evidence+'/clarity-phone-places-overlap.png'});
- await page.locator('#interact').tap();await expect(page.locator('#panel-title')).toHaveText('Bridge committee');expect((await saved(page)).revision).toBe(initial.revision);
+ await page.locator('#interact').tap();await expect(page.locator('#panel-title')).toHaveText('Bridge committee');
+ expect(new URL(page.url()).searchParams.has('town')).toBe(false);
+ await expect(page.getByText(/Your workshop in this browser has its own save/)).toBeVisible();
+ const shared=page.getByRole('button',{name:'Open shared practice town',exact:true});
+ await expect(shared).toBeEnabled();
+ expect((await saved(page)).revision).toBe(initial.revision);
  for(const key of ['inventory','owned','placements','job','stats','skills','bridgeKits']as const)expect((await saved(page))[key]).toEqual(initial[key]);
- writeFileSync(evidence+'/clarity-places-overlap.json',JSON.stringify({disclosure:'Isolated browser-only position fixture inside overlapping authored ranges. Actual touch Places walk and Inspect, no time/inventory/API grants. Emulated phone, not a real device or server-authority proof.',startedAt:{x:24.6,y:12.6},initialNearby:'trail-gate',arrivedAt:{x:24,y:13},finalNearby:'bridge',revisionUnchanged:true},null,2));
+ await page.screenshot({path:evidence+'/clarity-phone-shared-bridge.png'});
+ const localRaw=await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'));
+ await shared.tap();
+ await page.waitForURL(url=>url.searchParams.get('town')==='1');
+ await expect(page.locator('#resident')).toBeVisible();
+ expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toBe(localRaw);
+ writeFileSync(evidence+'/clarity-places-overlap.json',JSON.stringify({disclosure:'Isolated browser-only position fixture inside overlapping ranges. Real touch Inspect and Places walk, explicit navigation to shared-practice selection with local save preserved. Emulated phone; no shared command or authority check.',startedAt:{x:24.6,y:12.6},initialNearby:'trail-gate',arrivedAt:{x:24,y:13},finalNearby:'bridge',revisionUnchanged:true,openedSharedTownDeliberately:true},null,2));
  }finally{await context.close();}
 });

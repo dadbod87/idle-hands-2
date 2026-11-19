@@ -1,0 +1,629 @@
+{
+  "workload": "Same scripted 180-second synthetic scenario. 18 protocol models and two rendered Chromium views over disposable CI loopback.",
+  "sourceValidation": {
+    "pr": {
+      "sha": "286b44d22c26a0cb5b3a2e9935477f21e4613da1",
+      "run": 44551759306,
+      "domain": 553,
+      "browser": 202,
+      "browserGroups": [
+        73,
+        66,
+        63
+      ],
+      "allPriorCasesPreserved": true,
+      "artifacts": [
+        {
+          "name": "sequel-server-evidence",
+          "id": 14543068677,
+          "createdAt": "2026-11-19T15:13:50Z",
+          "sha": "286b44d22c26a0cb5b3a2e9935477f21e4613da1",
+          "zipSha256": "1adf9687797970d2bd85675dcf4c027f2b98440d0facbc7fa9004efa03d49cb5",
+          "size": 130923,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-client-build",
+          "id": 14543337741,
+          "createdAt": "2026-11-19T15:13:52Z",
+          "sha": "286b44d22c26a0cb5b3a2e9935477f21e4613da1",
+          "zipSha256": "91b2dd32905cf21185ef3d1452e69981afda8f31bae64b758a4eabac5a3bfedf",
+          "size": 730441,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-1",
+          "id": 14544930810,
+          "createdAt": "2026-11-19T15:24:08Z",
+          "sha": "286b44d22c26a0cb5b3a2e9935477f21e4613da1",
+          "zipSha256": "e4961baff8bb418d83a7bb2843b741f6c17fa4e336a307ebd0f9b9ad4c4fb1f8",
+          "size": 18335034,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-2",
+          "id": 14542593685,
+          "createdAt": "2026-11-19T15:23:58Z",
+          "sha": "286b44d22c26a0cb5b3a2e9935477f21e4613da1",
+          "zipSha256": "c375f66590cec664af6625b5ca39f2b15e1d565d9498b1a89990d7327875e1bf",
+          "size": 16178998,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-3",
+          "id": 14542323742,
+          "createdAt": "2026-11-19T15:22:27Z",
+          "sha": "286b44d22c26a0cb5b3a2e9935477f21e4613da1",
+          "zipSha256": "4ebd0da5b5bbe65d9e7a279bf347b5ade2d936a33378dd7933b6dc54488351c1",
+          "size": 20837288,
+          "otherSameNameArtifacts": []
+        }
+      ]
+    },
+    "main": {
+      "sha": "2129560f2bd8606c28431df37e5c1290450f6b2e",
+      "run": 44554786010,
+      "domain": 553,
+      "browser": 202,
+      "browserGroups": [
+        73,
+        66,
+        63
+      ],
+      "allPriorCasesPreserved": true,
+      "artifacts": [
+        {
+          "name": "sequel-server-evidence",
+          "id": 14546100091,
+          "createdAt": "2026-11-19T15:29:30Z",
+          "sha": "2129560f2bd8606c28431df37e5c1290450f6b2e",
+          "zipSha256": "d8d501c4a6ff03da520b732b138e81f3f58a23a033598bef3631da9fd281352a",
+          "size": 129826,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-client-build",
+          "id": 14546265007,
+          "createdAt": "2026-11-19T15:29:31Z",
+          "sha": "2129560f2bd8606c28431df37e5c1290450f6b2e",
+          "zipSha256": "94314f78ce9e3aa541f0593e4bf41806e81366cc4b53328878a47c995ef0e1cf",
+          "size": 730441,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-1",
+          "id": 14546480810,
+          "createdAt": "2026-11-19T15:38:21Z",
+          "sha": "2129560f2bd8606c28431df37e5c1290450f6b2e",
+          "zipSha256": "038731b5ccfb20658cdc22f550669d9a73720137585d6e1b344e1142da8ef812",
+          "size": 17539047,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-2",
+          "id": 14546855204,
+          "createdAt": "2026-11-19T15:38:10Z",
+          "sha": "2129560f2bd8606c28431df37e5c1290450f6b2e",
+          "zipSha256": "a8c6c0e9c25824303159b844c54fba6a952d667690ac797dfcf61f43f33e16ee",
+          "size": 15820978,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-3",
+          "id": 14544753616,
+          "createdAt": "2026-11-19T15:38:16Z",
+          "sha": "2129560f2bd8606c28431df37e5c1290450f6b2e",
+          "zipSha256": "4c6c9ff0a0637f53b539fab91afe6942ef08790c5d4930b5e444cbd5b8e426f0",
+          "size": 19949553,
+          "otherSameNameArtifacts": []
+        }
+      ]
+    }
+  },
+  "fixedObservation": {
+    "run": 44557233485,
+    "source": "2129560f2bd8606c28431df37e5c1290450f6b2e",
+    "workflowSingleAttempt": true,
+    "twoFixedObservationsComplete": true,
+    "scheduledWindowMs": 180000,
+    "recordedWindowLowerBoundMs": 179999,
+    "timerGranularityToleranceMs": 1,
+    "freshDriverAndApiProcesses": true,
+    "pgServiceReusedNotColdCacheComparison": true,
+    "trials": [
+      {
+        "trial": 1,
+        "mode": "fixed180s",
+        "actualWindowMs": 180000.433464,
+        "quietMs": 31876.869214000006,
+        "counts": {
+          "identities": 20,
+          "protocolModels": 18,
+          "nativeObservers": 2,
+          "publicChanges": 15,
+          "exactReplays": 15,
+          "invalidateFrames": 285
+        },
+        "confirmedStateAndVisibleNotes": true,
+        "stateConvergenceSinceWaveStartMs": {
+          "count": 4,
+          "p50": 168.6027240000003,
+          "p95": 229.5847219999996,
+          "max": 229.5847219999996,
+          "each500msMiss": []
+        },
+        "visibleNoteSinceWaveStartMsByContext": {
+          "0": {
+            "count": 4,
+            "p50": 171.23518200000035,
+            "p95": 232.32786299999952,
+            "max": 232.32786299999952,
+            "each500msMiss": []
+          },
+          "1": {
+            "count": 4,
+            "p50": 173.0342499999997,
+            "p95": 234.4474309999996,
+            "max": 234.4474309999996,
+            "each500msMiss": []
+          }
+        },
+        "all17TablesAnd9MetadataConserved": true,
+        "cleanupDrained": true,
+        "laneLatencyMs": {
+          "command": {
+            "protocolFullJson": {
+              "count": 30,
+              "p50": 6.795494999999391,
+              "p95": 36.027094000000034,
+              "max": 43.891263000000436,
+              "each500msMiss": []
+            },
+            "nativeNetworkFinished": {
+              "count": 0,
+              "p50": null,
+              "p95": null,
+              "max": null,
+              "each500msMiss": []
+            }
+          },
+          "snapshot": {
+            "protocolFullJson": {
+              "count": 75,
+              "p50": 35.854881999999634,
+              "p95": 65.84026900000026,
+              "max": 72.08202400000027,
+              "each500msMiss": []
+            },
+            "nativeNetworkFinished": {
+              "count": 11,
+              "p50": 20.993650000000343,
+              "p95": 69.69954099999995,
+              "max": 69.69954099999995,
+              "each500msMiss": []
+            }
+          }
+        },
+        "uniqueModelCommandHttpJsonMs": {
+          "count": 15,
+          "p50": 23.90032499999961,
+          "p95": 43.891263000000436,
+          "max": 43.891263000000436,
+          "each500msMiss": []
+        },
+        "exactReplayModelCommandHttpJsonMs": {
+          "count": 15,
+          "p50": 4.870884999999362,
+          "p95": 6.795494999999391,
+          "max": 6.795494999999391,
+          "each500msMiss": []
+        },
+        "loadSqlStatements": 1115,
+        "rawCombinedBudget": {
+          "command": {
+            "count": 30,
+            "p50": 6.795494999999391,
+            "p95": 36.027094000000034,
+            "p99": 43.891263000000436,
+            "max": 43.891263000000436,
+            "sum": 443.23857000000135,
+            "p95Under500": true,
+            "eachMissMs": []
+          },
+          "snapshot": {
+            "count": 86,
+            "p50": 34.98536400000012,
+            "p95": 65.84026900000026,
+            "p99": 72.08202400000027,
+            "max": 72.08202400000027,
+            "sum": 3081.1310919999996,
+            "p95Under500": true,
+            "eachMissMs": []
+          }
+        },
+        "driverResources": {
+          "elapsedMs": 186585.353411,
+          "cpuUserMs": 1841.619,
+          "cpuSystemMs": 271.248,
+          "cpuPercentOfOneCore": 1.132386310808594,
+          "eventLoopP95Ms": 21.233663,
+          "eventLoopMaxMs": 38.043647,
+          "rssPeakBytes": 207245312
+        },
+        "apiResources": {
+          "elapsedMs": 186338.735862,
+          "cpuUserMs": 1178.827,
+          "cpuSystemMs": 272.235,
+          "cpuPercentOfOneCore": 0.7787226811899364,
+          "eventLoopP95Ms": 21.151743,
+          "eventLoopMaxMs": 316.932095,
+          "rssPeakBytes": 155639808
+        },
+        "captures": [
+          {
+            "path": "coalesced-fixed-study/trial-1/native-0.png",
+            "sha256": "72beec06d1dbfd866768e0a18d71a515d92f0717f432b4e62c44247dadc023b4"
+          },
+          {
+            "path": "coalesced-fixed-study/trial-1/native-1.png",
+            "sha256": "f3eb3e5ca0e6c31b0685f6bac90c12a1c66abd3b84685a655e8dbf071a3e8d90"
+          }
+        ]
+      },
+      {
+        "trial": 2,
+        "mode": "fixed180s",
+        "actualWindowMs": 180001.05326900003,
+        "quietMs": 31873.742100000003,
+        "counts": {
+          "identities": 20,
+          "protocolModels": 18,
+          "nativeObservers": 2,
+          "publicChanges": 15,
+          "exactReplays": 15,
+          "invalidateFrames": 285
+        },
+        "confirmedStateAndVisibleNotes": true,
+        "stateConvergenceSinceWaveStartMs": {
+          "count": 4,
+          "p50": 173.81848099999934,
+          "p95": 197.8580950000005,
+          "max": 197.8580950000005,
+          "each500msMiss": []
+        },
+        "visibleNoteSinceWaveStartMsByContext": {
+          "0": {
+            "count": 4,
+            "p50": 176.4758809999994,
+            "p95": 200.069794,
+            "max": 200.069794,
+            "each500msMiss": []
+          },
+          "1": {
+            "count": 4,
+            "p50": 178.48478999999952,
+            "p95": 202.2886840000001,
+            "max": 202.2886840000001,
+            "each500msMiss": []
+          }
+        },
+        "all17TablesAnd9MetadataConserved": true,
+        "cleanupDrained": true,
+        "laneLatencyMs": {
+          "command": {
+            "protocolFullJson": {
+              "count": 30,
+              "p50": 16.377580000000307,
+              "p95": 79.52340200000071,
+              "max": 88.40170599999965,
+              "each500msMiss": []
+            },
+            "nativeNetworkFinished": {
+              "count": 0,
+              "p50": null,
+              "p95": null,
+              "max": null,
+              "each500msMiss": []
+            }
+          },
+          "snapshot": {
+            "protocolFullJson": {
+              "count": 75,
+              "p50": 31.451113999999507,
+              "p95": 50.13300799999979,
+              "max": 59.73288799999955,
+              "each500msMiss": []
+            },
+            "nativeNetworkFinished": {
+              "count": 11,
+              "p50": 15.848402999999962,
+              "p95": 49.352766999998494,
+              "max": 49.352766999998494,
+              "each500msMiss": []
+            }
+          }
+        },
+        "uniqueModelCommandHttpJsonMs": {
+          "count": 15,
+          "p50": 58.94391799999994,
+          "p95": 88.40170599999965,
+          "max": 88.40170599999965,
+          "each500msMiss": []
+        },
+        "exactReplayModelCommandHttpJsonMs": {
+          "count": 15,
+          "p50": 7.303299000000152,
+          "p95": 48.009484999999586,
+          "max": 48.009484999999586,
+          "each500msMiss": []
+        },
+        "loadSqlStatements": 1115,
+        "rawCombinedBudget": {
+          "command": {
+            "count": 30,
+            "p50": 16.377580000000307,
+            "p95": 79.52340200000071,
+            "p99": 88.40170599999965,
+            "max": 88.40170599999965,
+            "sum": 932.680260000001,
+            "p95Under500": true,
+            "eachMissMs": []
+          },
+          "snapshot": {
+            "count": 86,
+            "p50": 30.413228999999774,
+            "p95": 49.352766999998494,
+            "p99": 59.73288799999955,
+            "max": 59.73288799999955,
+            "sum": 2494.8661939999984,
+            "p95Under500": true,
+            "eachMissMs": []
+          }
+        },
+        "driverResources": {
+          "elapsedMs": 185852.712531,
+          "cpuUserMs": 1967.813,
+          "cpuSystemMs": 292.549,
+          "cpuPercentOfOneCore": 1.2162114661753858,
+          "eventLoopP95Ms": 21.250047,
+          "eventLoopMaxMs": 46.006271,
+          "rssPeakBytes": 209137664
+        },
+        "apiResources": {
+          "elapsedMs": 185625.884345,
+          "cpuUserMs": 1265.863,
+          "cpuSystemMs": 247.561,
+          "cpuPercentOfOneCore": 0.8153087083411196,
+          "eventLoopP95Ms": 21.151743,
+          "eventLoopMaxMs": 29.032447,
+          "rssPeakBytes": 155320320
+        },
+        "captures": [
+          {
+            "path": "coalesced-fixed-study/trial-2/native-0.png",
+            "sha256": "b52c84cfeeff533cbca3a4701038ac5d645999287ada0c6cded89f6866789404"
+          },
+          {
+            "path": "coalesced-fixed-study/trial-2/native-1.png",
+            "sha256": "3e6f4770d31a6da0f1d60e916fccd1db7745f4c06f00cd7fa0093a96f1a4d5f6"
+          }
+        ]
+      }
+    ],
+    "approxPublicJobMinutes": 8,
+    "timingCaptureIsNotBudgetOrCapacityPass": true,
+    "resourceAveragesIncludeSetupAndLongQuietWaiting": true,
+    "laneLimit": "This is a brief public burst/lifecycle plus quiet, not180s of sustained mutation load; whole-process averages include setup/quiet. Model timing includes JSON consumption; native timing ends at Playwright requestfinished. Accepted-state/DOM observations are not exact DB-commit/presented-frame timestamps. Do not subtract unlike pre/post navigation CDP counters. API/driver resources separate;18co-located models are not18rendered devices. No physical phone, WAN, hosted capacity, normal saved-runtime installation or speedup claim.",
+    "artifact": {
+      "run": 44557233485,
+      "sha": "2129560f2bd8606c28431df37e5c1290450f6b2e",
+      "runAttempt": 1,
+      "conclusion": "success",
+      "id": 14547405096,
+      "createdAt": "2026-11-19T15:46:25Z",
+      "zipSha256": "8ecdb4c96b87eeae2211b3a04a4319920ff34679a64913a5a5d5903a44199cce",
+      "bytes": 652793,
+      "selectedBy": "newest same-run/head named artifact, explicitly downloaded by ID; no old pass substituted"
+    }
+  },
+  "comparison": {
+    "baseline": {
+      "run": 44426254500,
+      "trials": [
+        {
+          "trial": 1,
+          "measuredWindowMs": 180000.01148800002,
+          "quietMs": 31877.288247999997,
+          "quietSql": 0,
+          "budgets": {
+            "command": {
+              "count": 30,
+              "p95": 49.89043800000036,
+              "max": 61.97259200000008,
+              "eachMissMs": [],
+              "p95Under500": true
+            },
+            "snapshot": {
+              "count": 204,
+              "p95": 56.1762920000001,
+              "max": 133.0302049999991,
+              "eachMissMs": [],
+              "p95Under500": true
+            }
+          },
+          "loadSqlStatements": 2059,
+          "stateSinceWaveStartMs": [
+            113.03484200000003,
+            217.43174100000033,
+            147.93919900000037,
+            111.59330799999952
+          ],
+          "visibleSinceWaveStartMs": [
+            119.64117799999985,
+            126.20380999999998,
+            221.8812080000007,
+            224.17738200000167,
+            153.18310399999973,
+            155.66626499999984,
+            121.87387599999965,
+            127.14432999999917
+          ],
+          "rawSha256": {
+            "public-refresh.json": "845b41252a041de119f0440150060c6403b9567dccf1497f280dbdf1c355e4bc",
+            "load-profile.json": "c350929991b6ca607fc6e47d2e50e8e099aa6f8b9b0c175a3884e45cff4377d6"
+          }
+        },
+        {
+          "trial": 2,
+          "measuredWindowMs": 180000.389845,
+          "quietMs": 31878.601934999984,
+          "quietSql": 0,
+          "budgets": {
+            "command": {
+              "count": 30,
+              "p95": 71.57794899999953,
+              "max": 74.21069400000033,
+              "eachMissMs": [],
+              "p95Under500": true
+            },
+            "snapshot": {
+              "count": 205,
+              "p95": 54.243397000000186,
+              "max": 162.87207399999988,
+              "eachMissMs": [],
+              "p95Under500": true
+            }
+          },
+          "loadSqlStatements": 2067,
+          "stateSinceWaveStartMs": [
+            106.70579700000053,
+            138.52429800000027,
+            216.97286900000017,
+            134.55317300000024
+          ],
+          "visibleSinceWaveStartMs": [
+            113.71950800000013,
+            118.67833400000018,
+            150.45611999999983,
+            158.36731300000065,
+            221.10255400000005,
+            223.05200500000046,
+            141.38957800000026,
+            146.32442900000024
+          ],
+          "rawSha256": {
+            "public-refresh.json": "dc79f9d18dbc662976af9e9266207a09ed2340e27c14bd40b84bd8796be50faa",
+            "load-profile.json": "95dfb7bf372b9e3ea227e39968cfa12e3f6f211a3c0987ae6ac622b179284eff"
+          }
+        }
+      ],
+      "sha": "5af4bba4ad36601948573e91395a1ce653215d75",
+      "medianLoadSql": 2063.0,
+      "medianSnapshotRequests": 204.5,
+      "medianVisibleSinceWaveStartMs": 148.39027450000003,
+      "everyRouteP95Under500": true,
+      "everyMeasuredRouteSampleUnder500": true
+    },
+    "grouped": {
+      "run": 44557233485,
+      "trials": [
+        {
+          "trial": 1,
+          "measuredWindowMs": 180000.433464,
+          "quietMs": 31876.869214000006,
+          "quietSql": 0,
+          "budgets": {
+            "command": {
+              "count": 30,
+              "p95": 36.027094000000034,
+              "max": 43.891263000000436,
+              "eachMissMs": [],
+              "p95Under500": true
+            },
+            "snapshot": {
+              "count": 86,
+              "p95": 65.84026900000026,
+              "max": 72.08202400000027,
+              "eachMissMs": [],
+              "p95Under500": true
+            }
+          },
+          "loadSqlStatements": 1115,
+          "stateSinceWaveStartMs": [
+            189.7997860000005,
+            229.5847219999996,
+            162.88926900000024,
+            168.6027240000003
+          ],
+          "visibleSinceWaveStartMs": [
+            192.7113330000002,
+            195.022199,
+            232.32786299999952,
+            234.4474309999996,
+            165.03908599999977,
+            166.83166400000027,
+            171.23518200000035,
+            173.0342499999997
+          ],
+          "rawSha256": {
+            "public-refresh.json": "8e2710904e734033dcf84f3b8af0aadfcd3857cae05a14d3f31df4a39b4e43a4",
+            "load-profile.json": "ee4c88b4206176853f49ca34f5191595feb17639cd69992a28db87b01023c026"
+          }
+        },
+        {
+          "trial": 2,
+          "measuredWindowMs": 180001.05326900003,
+          "quietMs": 31873.742100000003,
+          "quietSql": 0,
+          "budgets": {
+            "command": {
+              "count": 30,
+              "p95": 79.52340200000071,
+              "max": 88.40170599999965,
+              "eachMissMs": [],
+              "p95Under500": true
+            },
+            "snapshot": {
+              "count": 86,
+              "p95": 49.352766999998494,
+              "max": 59.73288799999955,
+              "eachMissMs": [],
+              "p95Under500": true
+            }
+          },
+          "loadSqlStatements": 1115,
+          "stateSinceWaveStartMs": [
+            185.66157099999964,
+            173.81848099999934,
+            152.50416700000005,
+            197.8580950000005
+          ],
+          "visibleSinceWaveStartMs": [
+            189.27927499999987,
+            191.81156999999985,
+            176.4758809999994,
+            178.48478999999952,
+            155.84185700000035,
+            157.94592699999976,
+            200.069794,
+            202.2886840000001
+          ],
+          "rawSha256": {
+            "public-refresh.json": "621678fd5431cc7cc93cf0eb9b0781eead66f3d3ea50cabdcbdff5897aff61ec",
+            "load-profile.json": "15b4885f1292a6631fafdae6bd000a2e3012e3cb16146ab67af7db37637f99f2"
+          }
+        }
+      ],
+      "sha": "2129560f2bd8606c28431df37e5c1290450f6b2e",
+      "medianLoadSql": 1115.0,
+      "medianSnapshotRequests": 86.0,
+      "medianVisibleSinceWaveStartMs": 183.8820324999997,
+      "everyRouteP95Under500": true,
+      "everyMeasuredRouteSampleUnder500": true
+    }
+  },
+  "medianSnapshotRequestReductionPercent": 57.94621026894866,
+  "medianLoadSqlReductionPercent": 45.95249636451769,
+  "targetMinimumSnapshotReductionPercent": 15,
+  "targetMet": true
+}

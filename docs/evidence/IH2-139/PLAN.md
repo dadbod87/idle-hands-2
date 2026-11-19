@@ -1,0 +1,7 @@
+# A paper map of Ledgerwick
+
+The wider town has a searchable destination list and several distinct districts. A folded Town map underneath Places lets players see the river, paths, ponds and landmarks in relation to their current location. The diamond follows the actual foot position when Places opens. The location is repeated in an accessible caption. The paper map loads only when opened and adds no persistent HUD. Travel remains an explicit choice through Places or the world.
+
+The terrain uses the existing world constants. Labels identify landmarks and can be moved slightly to stay readable. The pond label belongs to the terrain feature rather than the nearby sign. The player marker always uses the unshifted world coordinate. This is an orientation aid, without a separate route finder, unlocked-area claim or new movement rule.
+
+The focused case opens the map by touch and keyboard at desktop, 320 px phone and short 200% landscape. It checks actual map bounds below the sticky title, caption reachability, seven landmarks, position preservation and native travel from the square to the riverwalk. Reopening at the riverwalk uses the new location. No fake game response, API action or existing save is involved. Terra's initial review found small phone labels and short scrolling, then the revision tightened the short layout and separated the pond label. Browser emulation and stills do not establish physical phone readability.

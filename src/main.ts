@@ -6,6 +6,7 @@ import {townDistrict} from './game/town-expansion.ts';
 import {CafeUI} from './ui/cafe.ts';
 import{addressForPlot,plotAtAddress,frontForPlot,exitForHome,HOME_SITE_PREFIX}from'./game/neighborhood.ts';
 import {renderPlaces} from './ui/places.ts';
+import {mountBrowserResident} from './ui/browser-resident.ts';
 import {homeDisplay} from './game/live-home-layout.ts';
 import {CommissionUI} from './ui/commission.ts';
 import {commissionLocation,type RecipientId} from './game/commission.ts';
@@ -38,7 +39,7 @@ const session = new Session(townMode?null:stored);
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
- <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">NEIGHBORHOOD STUDY<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
+ <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">${townMode?'NEIGHBORHOOD STUDY':'<strong id="local-resident-badge" dir="auto">NEIGHBORHOOD STUDY</strong>'}<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
  <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
  <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal</button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav></footer>
 </main>
@@ -60,6 +61,13 @@ const interactButton = document.querySelector<HTMLButtonElement>('#interact')!;
 const interactLabel = document.querySelector<HTMLElement>('#interaction-label')!;
 const location = document.querySelector<HTMLElement>('#location')!;
 const scene = new WorldScene(session);
+const residentBadge=document.querySelector('#local-resident-badge');
+const showBrowserResident=townMode?null:mountBrowserResident({open:openPanel,body,appearance:profile=>{
+ scene.residentId=profile?.look??'devon';
+ if(residentBadge)residentBadge.textContent=profile?.name??'NEIGHBORHOOD STUDY';
+ if(scene.actor?.active)refreshMenuFrame(2);
+}});
+
 let skyOffset=0;scene.skyNow=()=>Date.now()+skyOffset;scene.skyFixture=climateFixture(new URLSearchParams(window.location.search));
 const game = new Phaser.Game({
   type: Phaser.AUTO, parent: 'world', backgroundColor: '#a3b090',
@@ -242,6 +250,14 @@ let guidanceSecond=-1;
 document.querySelector('#field-guide')!.addEventListener('click',()=>{
   openPanel('Town field guide');body.innerHTML=guideContents(session.room==='workshop',townMode,session.room!=='square'&&session.room!=='workshop');if(scene.skyFixture){const live=document.createElement('a');live.className='destination live-clock';live.href=townMode?'/?town=1':'/';live.textContent='Return to the live town clock';body.prepend(live);}const objective=currentObjective();const note=paragraph(objective.title+' — '+objective.detail);note.className='quest-card';note.dataset.guideObjective='';body.prepend(note);const climate=scene.climateState();if(climate){const clock=paragraph('Town time · '+String(Math.floor(climate.minute/60)).padStart(2,'0')+':'+String(climate.minute%60).padStart(2,'0')+' · '+climate.label+(climate.fixture?' · Lighting study':''));clock.id='guide-sky';body.prepend(clock);}
   const skyNotes=document.createElement('details'),skySummary=document.createElement('summary');skyNotes.className='sky-notes';skySummary.textContent='Weather & daylight';skyNotes.append(skySummary,paragraph('A town day lasts 48 real minutes. Weather can change every 12 minutes. Daylight, warm windows and passing drizzle are cosmetic; your work uses real time.'));const motionNote=paragraph(window.matchMedia('(prefers-reduced-motion: reduce)').matches?'Your device requests reduced motion, so tree sway and animated rain are turned off.':'Trees sway outdoors, and drizzle moves when it is raining. Indoors stays sheltered.');skyNotes.append(motionNote);body.append(skyNotes);
+  if(showBrowserResident){
+   const appearance=document.createElement('button');
+   appearance.type='button';
+   appearance.className='destination';
+   appearance.textContent='Edit your resident';
+   appearance.onclick=showBrowserResident;
+   body.append(appearance);
+  }
   body.querySelector('#guide-workshop')!.addEventListener('click',()=>{
    if(session.room==='square'){goNamedDestination('square','workshop');return;}
    if(session.room==='workshop'){goNamedDestination('workshop','bench');return;}
@@ -250,7 +266,7 @@ document.querySelector('#field-guide')!.addEventListener('click',()=>{
 });
 document.querySelector('#places')!.addEventListener('click', () => {
   openPanel('Places to go');
-  renderPlaces(body,{room:session.room,stops:currentStops(),state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),neighborhood:districtId?{districtId,ownerPlotId:town?.snapshot?.plot?.id}:undefined,walk:walkToPlace});
+  renderPlaces(body,{room:session.room,position:session.position,stops:currentStops(),state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),neighborhood:districtId?{districtId,ownerPlotId:town?.snapshot?.plot?.id}:undefined,walk:walkToPlace});
 });
 function openSharedTownChoice(heading:string,intro='Homes live in shared practice. Your browser-only workshop stays saved here; shared town progress is separate.'){openPanel(heading);body.append(paragraph(intro));const enter=document.createElement('button');enter.type='button';enter.className='destination';enter.dataset.openTown='';enter.textContent='Open shared practice town';enter.onclick=()=>{const url=new URL(window.location.href);url.searchParams.set('town','1');window.location.assign(url);};body.append(enter);}
 function resolvedStop(stop:Stop):Stop{if(stop.id==='home-door'&&districtId){const exit=exitForHome({homePlotId,districtId});return{...stop,name:'Front door',transition:exit.room,arrival:exit.position};}return stop;}
@@ -319,9 +335,12 @@ function activate(stop: Stop) {
     return;
   }
   const study=stop.id.startsWith('survey-')?surveyId(stop.id.slice(7)):undefined;if(study){workshop.showSketchbook(study);return;}
-  if(stop.id==='trail-gate'&&!scene.bridgeRestored){if(town)townUI!.showBridge();else{openPanel('Bridge committee');body.append(paragraph('Shared practice keeps bridge construction and trail discoveries. This browser-only workshop has a separate save.'));}return;}
+  if (stop.id === 'bridge' || stop.id === 'trail-gate' && !scene.bridgeRestored) {
+    if (town) townUI!.showBridge();
+    else openSharedTownChoice('Bridge committee', 'Help repair the bridge and explore Inkwood in shared practice. Your workshop in this browser has its own save.');
+    return;
+  }
   if(town&&session.room==='trail'&&(TRAIL_LANDMARK_IDS as readonly string[]).includes(stop.id)){townUI!.showTrail(stop.id);return;}
-  if(town&&stop.id==='bridge'){townUI!.showBridge();return;}
   if(!town&&(stop.id==='plot'||stop.id==='home-front')){openSharedTownChoice(stop.id==='plot'?'Housing Registry':'Home visits',stop.id==='plot'?stop.text:'Earned homes and their front doors are in shared practice. Your browser-only workshop stays saved separately.');return;}
   if(town&&stop.id==='plot'){townUI!.showPlots();return;}
   if(town&&stop.id==='home-front'){const target=pendingHomePlotId??town.snapshot?.plot?.id;pendingHomePlotId=undefined;if(target)void enterHome(target);else townUI!.showPlots();return;}
@@ -333,7 +352,7 @@ function activate(stop: Stop) {
     session.enter(stop.transition, stop.arrival); music.setRoom(stop.transition); music.cue('door'); save(); focusWorld(); feedback.textContent = stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
-    const note = paragraph(townMode?'Shared practice keeps your bridge donations and plot progress. The café and wider trail are still being prepared.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);
+    const note = paragraph(townMode?'Shared practice keeps your town projects and home progress.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);
   }
 }
 function interact() {

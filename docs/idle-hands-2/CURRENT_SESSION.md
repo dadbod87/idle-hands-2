@@ -1,3 +1,11 @@
+# November 19 — measured refresh gains and player paths accepted
+
+PR #66 reduced the median number of snapshots from 204.5 to 86 and load SQL from 2,063 to 1,115 in two paired 20-resident synthetic trials. The medians for visible updates rose from 148.4 to 183.9 ms. All personal receipts, deadlines and cleanup held. Read [the comparison](../evidence/IH2-132/REPORT.md) for the exact source and limits.
+
+PR #67 is accepted on main `9bc2172c5bf561a4eb9ac1d91735b116290babac`. Both exact checks passed 554 domain tests and 205 browser cases. [Verification](../evidence/IH2-133/PLAYER_PATHS_CI.json). The first browser run found a changed Places tab order. The corrected candidate retains the original fully visible first destination after the new search field.
+
+The next candidate adds a small walking cue, a folded town map, the bridge entry from browser practice and an optional local name and appearance. The separate [opening rehearsal](../evidence/IH2-136/REHEARSAL.md) explores naming and dressing your resident, backstory and getting up in a rented room. Its profile and layout models remain unconnected to real game state. Saved previews and databases are still off.
+
 # November 19 — three player-flow candidates
 
 IH2-133 adds shortcuts to confirmed ready work in the Journal. IH2-134 adds local destination-name search to the larger Places menus. IH2-135 adds a private original field certificate after both woodland conditions are recorded. Each item has independent focused evidence and a task plan. They share one source candidate to keep hosted validation focused. See [return trips](../evidence/IH2-133/PLAN.md), [Places](../evidence/IH2-134/PLAN.md) and [woodland certificate](../evidence/IH2-135/PLAN.md). Exact full checks are pending. Saved previews and databases remain stopped.

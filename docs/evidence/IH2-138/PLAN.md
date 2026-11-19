@@ -1,0 +1,7 @@
+# Reach shared bridge play from browser practice
+
+The browser-only practice bridge introduced the community activity with outdated future-project text. The nearby trail entrance explained the separate save without offering a way to continue. Both now use the established Open shared practice town action, as housing already does. The short explanation identifies the bridge and Inkwood path and tells the resident where the browser workshop stays saved. A shared resident still opens the real bridge committee, with existing eligibility, confirmation and construction rules.
+
+The action is deliberate. Inspecting the bridge has no spend, construction, login, mode change or save conversion. Existing shared access rules still apply after a resident opens the separate town. Browser checks should prove the native arrival, visible action, preserved local progress and navigation to the shared selection page. The existing actual shared bridge, trail and conserved housing checks remain required.
+
+The focused browser test passed with only synthetic initial feet in the two overlapping stop ranges. Both stops show the new action. Normal touch navigation targets the committee, keeps local progress byte-for-byte when entering shared mode, and stops on the shared shell without performing a shared command. The static run has no database, so its initial shared snapshot read has no backend. The disposable full suite still covers the real shared bridge and trail.

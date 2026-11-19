@@ -68,6 +68,10 @@ export class WorkshopUI {
  private acceptLocal(r:WriterOutcome){if(r.status==='saved'&&r.teapotAwarded)this.host.cue?.('craft');this.localOutcome=r;this.ownsSave=r.ownsLease&&r.working!==null;this.saved=!r.dirty&&!['save-failed','unreadable','unavailable','conflict'].includes(r.status);if(r.working)this.state=r.working;this.localReadOnlyReason=['ready','saved','unsaved'].includes(r.status)?'':r.message+(r.status==='unreadable'?' Saved data kept unchanged; actions are read-only.':'');if(this.localReadOnlyReason)this.host.feedback(this.localReadOnlyReason);const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=r.dirty?'Unsaved practice · keep tab open':r.status==='ready'||r.status==='saved'?'Local workshop · saved here':'Kept save · read-only';this.host.changed();this.updateClocks();}
  public localSaveRecovery(action:'retry'|'flush'|'reload'|'cancel'){if(!this.localWriter)return;const r=action==='retry'?this.localWriter.retry():action==='flush'?this.localWriter.flush():action==='reload'?this.localWriter.discardAndReload():null;if(action==='cancel'&&this.localWriter.cancelPending())this.acceptLocal(this.localWriter.reload());if(r)this.acceptLocal(r);}
 
+ confirmedBenchJob():WorkshopState['job']{
+  if(this.remote)return this.remote.hasSnapshot?.()?this.state.job:null;
+  return this.localOutcome?.state?.job??null;
+ }
  snapshot(){return JSON.parse(JSON.stringify(this.state));}
  closed(){this.bag?.destroy();this.bag=null;this.notebook?.destroy();this.notebook=null;this.host.body.closest('dialog')?.classList.remove('notebook-dialog');this.collectionView?.destroy();this.collectionView=null;this.host.body.classList.remove('collection-panel');this.host.body.closest('dialog')?.classList.remove('collection-dialog');this.active=null;this.status=null;this.preview=null;}
  private acceptRemote(state:WorkshopState){this.state=state;if(!this.remote?.canRetry())this.remoteError='';this.host.changed();this.updateClocks();this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>el.textContent=String(state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]));}

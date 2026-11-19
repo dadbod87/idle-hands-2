@@ -134,6 +134,7 @@ test('café parcel shelf shows full and held pouches and confirms a lost reply w
    await page.getByLabel('Choose a neighbor',{exact:true}).selectOption('jun');
    await press('Leave snack');
    await expect(page.getByRole('heading',{name:'Waiting for Jun'})).toBeVisible();
+   await expect(page.getByRole('dialog').locator('time')).toHaveAttribute('datetime',new Date(fixtureAt+SNACK_OFFER_MS).toISOString());
    await expect(page.getByText('2 available · 1 on hold · 3 pouch spaces')).toBeVisible();
    expect(reads).toBe(4);
    await controls('Take back snack').scrollIntoViewIfNeeded();
@@ -144,4 +145,67 @@ test('café parcel shelf shows full and held pouches and confirms a lost reply w
    expect(errors).toEqual([]);
   }finally{await context.close();}
  }
+});
+
+test('a collection deadline preserves the selected neighbor and focus when the parcel expires', async ({browser}) => {
+ const context=await browser.newContext({viewport:{width:320,height:650},hasTouch:true,timezoneId:'UTC',locale:'en-US'});
+ try{
+  const page=await context.newPage();
+  await page.clock.install({time:new Date(fixtureAt)});
+  await page.addInitScript(()=>{
+   class Stream extends EventTarget{
+    onopen:((event:Event)=>void)|null=null;
+    constructor(){super();queueMicrotask(()=>this.onopen?.(new Event('open')));}
+    close(){}
+   }
+   window.EventSource=Stream as unknown as typeof EventSource;
+  });
+  const expiry=fixtureAt+60_000;
+  const snapshot:TownSnapshot={
+   playerId:'sorrel',name:'Sorrel',workshop:createWorkshop(fixtureAt),serverTime:fixtureAt,serverInstance:'parcel-deadline-fixture',
+   position:{room:'square',position:{x:30,y:22}},quest:{contentVersion:1,awarded:[]},
+   bridge:{restored:false,phase:'collecting',contributed:0,target:3},plot:null,plots:[],seasonKey:'fixture',scores:[],
+   orchard:{...newOrchard(),picked:2,packed:1,snacks:1,observedAt:fixtureAt},
+   cafe:{credits:0,phase:'collecting',readyAt:null},
+  };
+  const shelf:SnackShelf={
+   outgoing:null,incoming:[{id:parcelId,name:'Flint',state:'waiting',placedAt:expiry-SNACK_OFFER_MS,expiresAt:expiry}],
+   neighbors:[{id:'jun',name:'Jun'}],serverTime:fixtureAt,revision:0,
+  };
+  let logged=false,reads=0,commands=0;
+  await page.route('**/api/town/**',route=>{
+   switch(new URL(route.request().url()).pathname.split('/').at(-1)){
+   case 'fixtures':return route.fulfill({json:{fixtures:[{id:'sorrel',name:'Sorrel'}]}});
+   case 'login':logged=true;return route.fulfill({json:{snapshot}});
+   case 'snapshot':return logged?route.fulfill({json:{snapshot}}):route.fulfill({status:401,json:{message:'Choose a resident.'}});
+   case 'movement':return route.fulfill({json:{ok:true}});
+   case 'snack-shelf':reads++;return route.fulfill({json:{shelf,playerId:snapshot.playerId,serverInstance:snapshot.serverInstance}});
+   case 'command':commands++;return route.abort();
+   default:return route.abort();
+   }
+  });
+  await page.goto('/?town=1');
+  await page.getByRole('button',{name:'Sorrel',exact:true}).click();
+  const counter=page.locator('#interact');
+  await expect(counter).toHaveAccessibleName(/café tasting counter/i);
+  await counter.tap();
+  await page.getByRole('button',{name:'Visit the parcel shelf'}).tap();
+  const panel=page.getByRole('dialog',{name:'Café parcel shelf'});
+  const deadline=panel.locator('time');
+  await expect(deadline).toHaveAttribute('datetime',new Date(expiry).toISOString());
+  await expect(deadline).toHaveText(new Intl.DateTimeFormat('en-US',{weekday:'short',hour:'numeric',minute:'2-digit',timeZone:'UTC'}).format(expiry));
+  const select=panel.getByLabel('Choose a neighbor',{exact:true});
+  await select.selectOption('jun');
+  await select.focus();
+  await expect(select).toBeFocused();
+  await page.clock.fastForward(61_000);
+  await expect(panel.getByRole('heading',{name:'A snack from Flint'})).toHaveCount(0);
+  await expect(deadline).toHaveCount(0);
+  await expect(select).toHaveValue('jun');
+  await expect(select).toBeFocused();
+  await expect(panel.getByRole('button',{name:'Leave snack'})).toBeEnabled();
+  expect(reads).toBe(1);
+  expect(commands).toBe(0);
+  await page.screenshot({path:output+'/deadline-after.png'});
+ }finally{await context.close();}
 });

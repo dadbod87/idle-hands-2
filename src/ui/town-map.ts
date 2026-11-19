@@ -1,14 +1,5 @@
 import {COMMONS_PATHS, COMMONS_PONDS, COMMONS_STOPS, COMMONS_TREES, TOWN_SIZE, townDistrict} from '../game/town-expansion.ts';
-import type {Point} from '../game/world.ts';
-
-const titles: Record<(typeof COMMONS_STOPS)[number]['id'],string> = {
- 'commons-riverwalk': 'Riverwalk',
- 'commons-green': 'East Commons',
- 'commons-orchard': 'Orchard',
- 'commons-pond': 'Pond',
- 'commons-west': 'Willow meadow',
- 'commons-meadow': 'South meadow',
-};
+import type {Point, Stop} from '../game/world.ts';
 
 const x = (value: number) => 100 * value / TOWN_SIZE.width + '%';
 const y = (value: number) => 100 * value / TOWN_SIZE.height + '%';
@@ -28,8 +19,8 @@ function rectangle(className: string, left: number, top: number, width: number, 
  return element;
 }
 
-/** Optional paper-map view built once. Movement authority stays with the Places list. */
-export function townMap(position: Point) {
+/** Use the same current room stops and walk callback as every other Places control. */
+export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => void) {
  const details = document.createElement('details');
  details.className = 'places-group places-map';
  const summary = document.createElement('summary');
@@ -53,17 +44,19 @@ export function townMap(position: Point) {
    sketch.append(rectangle('town-map-pond', left, top, width, height));
   }
   for (const tree of COMMONS_TREES) sketch.append(placed('town-map-tree', tree.x, tree.y));
+  const pins = new Map<string, HTMLSpanElement>();
   const [pondLeft, pondTop, pondWidth, pondHeight] = COMMONS_PONDS[1];
   for (const {id,name,point} of [
    {id:'square',name:'Town square',point:{x:24,y:25}},
    ...COMMONS_STOPS.map(stop => ({
-    id:stop.id,name:titles[stop.id],
+    id:stop.id,name:stop.name,
     point:stop.id==='commons-pond'?{x:pondLeft+pondWidth/2,y:pondTop+pondHeight/2}:stop.point,
    })),
   ]) {
    const pin = placed('town-map-landmark', point.x + .5, point.y + .5);
    pin.dataset.landmark = id;
    pin.textContent = name;
+   pins.set(id, pin);
    sketch.append(pin);
   }
   const here = placed('town-map-player', position.x + .5, position.y + .5);
@@ -77,6 +70,34 @@ export function townMap(position: Point) {
   caption.textContent = 'You are here · ' + townDistrict(position).name;
   figure.append(sketch, caption);
   details.append(figure);
+  const landmarks = stops.filter(stop => pins.has(stop.id));
+  if (landmarks.length) {
+   const controls = document.createElement('div');
+   controls.className = 'town-map-route';
+   const label = document.createElement('label');
+   label.textContent = 'Map destination';
+   const select = document.createElement('select');
+   select.add(new Option('Choose a landmark', ''));
+   for (const stop of landmarks) select.add(new Option(stop.name, stop.id));
+   label.append(select);
+
+   const button = document.createElement('button');
+   button.type = 'button';
+   button.textContent = 'Walk there';
+   button.className = 'primary';
+   button.disabled = true;
+
+   let selected: Stop | undefined;
+   select.onchange = () => {
+    if (selected) pins.get(selected.id)?.classList.remove('map-destination');
+    selected = landmarks.find(stop => stop.id === select.value);
+    if (selected) pins.get(selected.id)?.classList.add('map-destination');
+    button.disabled = !selected;
+   };
+   button.onclick = () => { if (selected) walk(selected); };
+   controls.append(label, button);
+   details.append(controls);
+  }
   const dialog = details.closest('dialog');
   const header = dialog?.querySelector('.dialog-head');
   if (dialog && header) dialog.scrollTop += summary.getBoundingClientRect().top - header.getBoundingClientRect().bottom - 8;

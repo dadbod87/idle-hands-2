@@ -1058,6 +1058,41 @@
       "id": "outing-wind",
       "path": "art/outing/wind.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "orchard-apple",
+      "path": "art/orchard/apple.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "orchard-aster-picking",
+      "path": "art/orchard/aster-picking.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "orchard-bea-picking",
+      "path": "art/orchard/bea-picking.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "orchard-casey-picking",
+      "path": "art/orchard/casey-picking.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "orchard-devon-picking",
+      "path": "art/orchard/devon-picking.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "orchard-packing-table",
+      "path": "art/orchard/packing-table.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "orchard-snack",
+      "path": "art/orchard/orchard-snack.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

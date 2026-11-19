@@ -10,7 +10,10 @@ export class Session {
   locked = false;
   private moving = false;
   private pendingStop: string | null = null;
-  constructor(saved?: unknown) {
+  private squareStops: readonly Stop[];
+  get stops(): readonly Stop[] { return this.room==='square'?this.squareStops:worlds[this.room].stops; }
+  constructor(saved?: unknown, extraSquareStops: readonly Stop[] = []) {
+    this.squareStops = extraSquareStops.length?[...worlds.square.stops,...extraSquareStops]:worlds.square.stops;
     if (!saved || typeof saved !== 'object') return;
     const s = saved as Partial<SavedPosition>;
     if (s.version === 1 && (s.room === 'square' || s.room === 'workshop'||s.room==='garden') && s.position && canStand(s.room, s.position)) {
@@ -26,7 +29,7 @@ export class Session {
   }
   point(to: Point): boolean {
     if (this.locked) return false;
-    const target = worlds[this.room].stops.find(stop => {
+    const target = this.stops.find(stop => {
       if (!stop.doorArea) return false;
       const [x, y, width, height] = stop.doorArea;
       return to.x + .5 >= x && to.x + .5 <= x + width && to.y + .5 >= y && to.y + .5 <= y + height;
@@ -34,13 +37,13 @@ export class Session {
     return target?this.approach(target.id):this.walk(to);
   }
   approach(stopId:string):boolean{
-    const target=worlds[this.room].stops.find(stop=>stop.id===stopId);
+    const target=this.stops.find(stop=>stop.id===stopId);
     if(!target||this.locked)return false;
     const accepted=this.walk(target.point);if(accepted)this.pendingStop=target.id;return accepted;
   }
   takeArrival(): Stop | undefined {
     if (this.locked || !this.pendingStop) return;
-    const target = worlds[this.room].stops.find(stop => stop.id === this.pendingStop);
+    const target = this.stops.find(stop => stop.id === this.pendingStop);
     if (!target || Math.hypot(this.position.x - target.point.x, this.position.y - target.point.y) > 1.25) return;
     this.stop();
     return target;
@@ -79,7 +82,7 @@ export class Session {
     }
     this.moving = Math.hypot(this.position.x - before.x, this.position.y - before.y) > .00001;
   }
-  nearby(): Stop | undefined { return worlds[this.room].stops.find(s => Math.hypot(this.position.x - s.point.x, this.position.y - s.point.y) <= 1.25); }
+  nearby(): Stop | undefined { return this.stops.find(s => Math.hypot(this.position.x - s.point.x, this.position.y - s.point.y) <= 1.25); }
   enter(room: Room, arrival: Point = spawn[room]): void {
     if (!canStand(room, arrival,room==='neighborhood'?this.geometry:undefined)) throw new Error('Transition arrival must be collision-safe.');
     this.stop(); this.room = room; this.position = { ...arrival };

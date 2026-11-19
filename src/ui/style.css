@@ -172,3 +172,11 @@
   #panel-body .lodging-note p { margin: 0; }
   .lodging-note .destination { white-space: nowrap; }
 }
+
+#door-light {
+ position: absolute;
+ inset: 0;
+ background: #f0dfb6;
+ opacity: 0;
+ pointer-events: none;
+}

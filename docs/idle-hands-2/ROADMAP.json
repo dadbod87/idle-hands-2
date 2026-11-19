@@ -2829,7 +2829,7 @@
     {
       "id": "IH2-150",
       "title": "Deliver one private snack from the café shelf",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/private-snack-shelf",
       "depends_on": [
         "IH2-147",
@@ -2845,7 +2845,48 @@
         "Saved local services remain stopped. No hosted migration, chat, buffs, trade, paid resource, old game or real account."
       ],
       "evidence": [
-        "docs/evidence/IH2-150/PLAN.md"
+        "docs/evidence/IH2-150/PLAN.md",
+        "docs/evidence/IH2-150/SNACK_SHELF_CI.json"
+      ],
+      "progress_note": "Accepted private shelf delivery conserves one packed snack. Exact PostgreSQL and native browser check proof."
+    },
+    {
+      "id": "IH2-151",
+      "title": "Rehearse two original pieces of headwear",
+      "status": "queued",
+      "owner_branch": "feat/browser-headwear",
+      "goal": "Prove distinct silhouettes and the same readable resident body.",
+      "depends_on": [
+        "IH2-140"
+      ],
+      "acceptance": [
+        "Show the original, cap and hood on four residents, with four facings and existing actions. Measure untouched feet and front eyes."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No shared wardrobe grant, original-game, paid or hosted change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-151/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-153",
+      "title": "Wear optional original headwear in browser practice",
+      "status": "in_progress",
+      "owner_branch": "feat/browser-headwear",
+      "goal": "Make one independent cosmetic slot playable in the existing resident editor.",
+      "depends_on": [
+        "IH2-140"
+      ],
+      "acceptance": [
+        "Keep version 1 selections compatible, and confirm version 2 only after explicit save.",
+        "Use the same actor anchor and authored alternative poses. Check direct keyboard, phone, short enlarged layout, cancellation and reload."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No shared wardrobe grant, original-game, paid or hosted change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-153/PLAN.md"
       ]
     }
   ],

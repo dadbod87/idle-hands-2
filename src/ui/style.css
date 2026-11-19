@@ -57,3 +57,75 @@
 #panel-body .places-search-status:empty {
  margin: 0;
 }
+
+.places-map figure { margin: 0 0 .65rem; }
+.town-map-sketch {
+ position: relative;
+ aspect-ratio: 4 / 3;
+ overflow: hidden;
+ isolation: isolate;
+ container-type: inline-size;
+ border: 2px solid #596952;
+ border-radius: 5px;
+ background: #c5ceaa;
+}
+.town-map-sketch > span { position: absolute; }
+.town-map-path { border-radius: 6px; background: #ead9af; }
+.town-map-river, .town-map-pond { background: #83aeb0; }
+.town-map-river { border-block: 1px solid #5b8484; }
+.town-map-pond { border: 1px solid #648783; border-radius: 48%; }
+.town-map-tree {
+ width: 1.55%;
+ height: 2.2%;
+ border-radius: 50%;
+ background: #8ca17b;
+}
+.town-map-landmark {
+ transform: translate(-50%, .32rem);
+ padding: 0 4px;
+ border: 1px solid #a8a080;
+ border-radius: 2px;
+ background: #f5e7bd;
+ color: #34443b;
+ font-size: 11px;
+ font-size: clamp(10px, 4cqi, 13px);
+ font-weight: bold;
+ line-height: 1.2;
+ white-space: nowrap;
+}
+.town-map-landmark[data-landmark='commons-green'] { transform: translate(-58%, .65rem); }
+.town-map-landmark[data-landmark='commons-pond'] { transform: translate(-43%, .53rem); }
+.town-map-player,
+.places-map figcaption::before {
+ width: .6rem;
+ height: .6rem;
+ transform: rotate(45deg);
+ border: 2px solid #3f4033;
+ border-radius: 1px;
+ background: #e89b77;
+}
+.town-map-player {
+ z-index: 1;
+ transform: translate(-50%, -50%) rotate(45deg);
+}
+.town-map-north {
+ top: .25rem;
+ right: .35rem;
+ font: bold 12px/1.2 'Courier New', monospace;
+}
+.places-map figcaption {
+ display: flex;
+ align-items: baseline;
+ gap: .45rem;
+ margin-top: .4rem;
+ font-weight: bold;
+}
+.places-map figcaption::before {
+ content: '';
+ display: inline-block;
+ flex: 0 0 auto;
+}
+@media (max-height: 480px) {
+ .places-map > summary { padding: 6px 0; min-height: 44px; font-size: .85rem; }
+ .places-map .town-map-sketch { width: min(100%, 66dvh); margin-inline: auto; }
+}

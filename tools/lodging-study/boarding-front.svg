@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="320" viewBox="0 0 640 320">
+ <path d="M0 0h640v320H0z" fill="#aeb999"/>
+ <path d="M260 196h139l77 124H184z" fill="#d4ba93"/>
+ <path d="M229 293h173M251 261h134" stroke="#ba9d78" opacity=".55"/>
+ <ellipse cx="331" cy="215" rx="132" ry="23" fill="#829274" opacity=".38"/>
+ <ellipse cx="115" cy="211" rx="46" ry="9" fill="#829274" opacity=".48"/>
+ <ellipse cx="505" cy="233" rx="55" ry="11" fill="#829274" opacity=".48"/>
+ <g stroke="#414b41" stroke-width="3" stroke-linejoin="round">
+  <path d="M212 88h231v116H212z" fill="#e0c79e"/>
+  <path d="M220 106h215m-215 30h215m-215 53h215" stroke="#b59870" stroke-width="1"/>
+  <path d="M425 54h14v38h-14z" fill="#b68468"/>
+  <path d="M198 95 233 44h183l43 51z" fill="#9b694f"/>
+  <path d="M217 84h226m-216-14h202m-193-13h181" stroke="#c29570" stroke-width="2"/>
+  <path d="M204 95h251" stroke="#6e6250" stroke-width="6"/>
+  <path d="M254 104h146v23H254z" fill="#ecddb7"/>
+  <text x="327" y="120" text-anchor="middle" font-family="Georgia, serif" font-weight="bold" font-size="13" fill="#465343" stroke="none">BOARDING HOUSE</text>
+  <path d="M304 145h49v59h-49z" fill="#627e72"/>
+  <path d="M311 154h34v23h-34z" fill="#a5bbaf" stroke-width="1.5"/>
+  <path d="M341 183h6" stroke="#e7c36d"/>
+  <path d="M295 204h66v10h-66z" fill="#a68d72"/>
+  <path d="M228 142h49v40h-49zM382 142h44v40h-44z" fill="#82a39d"/>
+  <path d="M251 143v38m-22-20h46m127-18v38m-19-20h42" stroke="#f2e6bd" stroke-width="3"/>
+  <path d="M222 184h61m93 0h56" stroke="#8b755b" stroke-width="4"/>
+  <path d="M447 209v57" stroke="#85664c" stroke-width="6"/>
+  <path d="M406 204h104l12 13-12 13H406z" fill="#ead6a7"/>
+  <text x="458" y="221" text-anchor="middle" font-family="Georgia, serif" font-size="12" font-weight="bold" fill="#435a4a" stroke="none">TOWN SQUARE</text>
+  <path d="M112 106h14v101h-14zM494 114h14v109h-14z" fill="#9a7759"/>
+  <path d="M75 119q-7-35 29-41 19-30 43-1 32 0 25 43-14 23-44 13-29 16-53-14z" fill="#7b9571"/>
+  <path d="M463 131q-10-37 27-42 25-31 53 6 31 7 20 42-26 23-43 6-31 19-57-12z" fill="#778f6b"/>
+  <path d="M90 108q8-14 22-10m374 17q11-14 18-10m28 22 12-10" fill="none" stroke="#a3b58c" stroke-width="3"/>
+ </g>
+ <path d="m89 249 4-6 5 5m446 25 3-5 5 4m-391 14 5-6 6 4m309 12 4-6 6 4" fill="none" stroke="#7f966f" stroke-width="2"/>
+</svg>

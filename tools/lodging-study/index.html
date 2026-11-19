@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Idle Hands 2 · A first morning</title>
+ <link rel="stylesheet" href="opening.css">
+ <script type="module" src="screen.mjs"></script>
+</head>
+<body>
+ <main class="opening">
+  <header class="masthead"><span class="brand" aria-hidden="true">II</span><div><p>Idle Hands 2 · Opening study</p><h1>Arrive in Ledgerwick</h1></div></header>
+
+  <form id="arrival" class="paper" novalidate>
+   <div class="portrait">
+    <div class="sprite" data-look="aster" id="preview" role="img" aria-label="Resident preview, front"></div>
+    <button class="turn" type="button" id="turn" aria-label="Turn the resident">Turn ↻</button>
+   </div>
+   <div class="choices">
+    <label for="resident-name">Name on your badge</label>
+    <input id="resident-name" name="name" required maxlength="120" autocomplete="off" autocapitalize="words" dir="auto" aria-describedby="name-error">
+    <p role="alert" id="name-error" class="error" hidden></p>
+
+    <fieldset><legend>Appearance</legend><div id="looks" class="looks"></div></fieldset>
+
+    <label for="story">Before Ledgerwick</label>
+    <select id="story" name="story"></select>
+    <button class="primary" type="submit">Continue to your room</button>
+   </div>
+  </form>
+
+  <section id="lodging" class="paper scene-card" hidden>
+   <h2 id="room-title" tabindex="-1">Your rented room</h2>
+   <div class="room scene">
+    <img class="backdrop" src="rented-room.svg" alt="" width="640" height="320">
+    <div class="sprite room-person" id="room-person" data-look="aster" aria-hidden="true"></div>
+    <button type="button" id="door" class="door primary" hidden>Leave room</button>
+   </div>
+   <div class="scene-copy">
+    <p id="welcome" dir="auto"></p>
+    <p id="story-note"></p>
+    <button type="button" class="primary" id="wake">Get up</button>
+   </div>
+  </section>
+
+  <section id="street" class="paper scene-card" hidden>
+   <h2 id="street-title" tabindex="-1">Outside the boarding house</h2>
+   <div class="street scene">
+    <img class="backdrop" src="boarding-front.svg" alt="" width="640" height="320">
+    <div class="sprite street-person" id="street-person" data-look="aster" aria-hidden="true"></div>
+   </div>
+   <div class="scene-copy">
+    <p><strong>Find Marlow in the town square.</strong> Orientation has been postponed until you are experienced.</p>
+    <button type="button" id="restart">Try another arrival</button>
+   </div>
+  </section>
+ </main>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "scope": "Standalone design study. These images are not added to the playable asset manifest.",
+  "asset_storage": "Git",
+  "assets": [
+    {
+      "path": "tools/lodging-study/rented-room.svg",
+      "sha256": "1480c31eb202547c4222ac6247d4b6593ac9108c2e0d3b058279f98b73188d33",
+      "license": "project-original",
+      "authorship": "Original room artwork for this study"
+    },
+    {
+      "path": "tools/lodging-study/boarding-front.svg",
+      "sha256": "d7a3fc0c645946a79e6297fc8808908237b32697dc0c5a4d5eca443f88afd97c",
+      "license": "project-original",
+      "authorship": "Original room artwork for this study"
+    },
+    {
+      "path": "public/art/variety/resident-aster.svg",
+      "sha256": "ea9299bd173705f45c4990802f609cad51cfbc8523cf7a3e51ec4ebb9e499688",
+      "license": "project-original",
+      "authorship": "Unchanged existing original resident sheet"
+    },
+    {
+      "path": "public/art/variety/resident-bea.svg",
+      "sha256": "cff1de8e1db2980a42c5ff046e6c05578f7da6559f94bd0a07f7b99b51d31134",
+      "license": "project-original",
+      "authorship": "Unchanged existing original resident sheet"
+    },
+    {
+      "path": "public/art/variety/resident-casey.svg",
+      "sha256": "c54f655493894813963dee09475e333e20abd0f7640751a657368597a107b39c",
+      "license": "project-original",
+      "authorship": "Unchanged existing original resident sheet"
+    },
+    {
+      "path": "public/art/variety/resident-devon.svg",
+      "sha256": "bb536c20d5f8a81f8ce1be95a19819c01d95f0107118fc774f39ca6346661298",
+      "license": "project-original",
+      "authorship": "Unchanged existing original resident sheet"
+    }
+  ]
+}

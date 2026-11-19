@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-19
 
-Last inspected at 2026-11-19 15:40 PST. The separate sequel repository was at `5d0e3b76b30435c3fc618b165dba426f3a85172e`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-19 15:50 PST. The separate sequel repository was at `5d0e3b76b30435c3fc618b165dba426f3a85172e`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -28,6 +28,8 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 | Balanced browser checks | `perf/browser-shard-balance` at `d9469234203c` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/d9469234203c0e1f69edc326625558c426f08cc1/docs/evidence/IH2-168/PLAN.md) |
 | The second blanket room score | `feat/boarding-house-music` at `862b544fb84c` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/862b544fb84c746535c3c9514a36ab7f937d8822/docs/evidence/IH2-170/PLAN.md) |
 | Earned Naturalist display for home visitors | `feat/home-keepsake-display` at `0d1c82d066bb` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0d1c82d066bbe3796febab10c2e4c40234df7968/docs/evidence/IH2-171/PLAN.md) |
+| Read the framed certificate directly | `feat/read-home-keepsake` at `0efccbf9fb8d` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0efccbf9fb8d121379aaf53c827fe995e3ce820b/docs/evidence/IH2-172/PLAN.md) |
+| Ready allotment trip during workshop work | `feat/bench-ready-allotment` at `18f1afcf8bf9` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/18f1afcf8bf9859726caf3c657bd981598f65e9c/docs/evidence/IH2-173/PLAN.md) |
 
 Resume with the first pending exact gate. Verify current main and preserve concurrent changes. No cloud setup, live-game change or spending was part of this work.
 

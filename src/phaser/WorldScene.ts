@@ -145,6 +145,8 @@ export class WorldScene extends Phaser.Scene {
   orchardState?:()=>Orchard|null;
   private orchardLabels:Array<{stop:typeof ORCHARD_STOPS[number];label:Phaser.GameObjects.Text}>=[];
   private orchardLabelTick=0;
+  private orchardTable?:Phaser.GameObjects.Image;
+  private orchardTableLabel?:Phaser.GameObjects.Text;
   private paintOrchardTags(){
     if(!this.orchardLabels.length||!this.closeToOrchard())return;
     const tick=performance.now();
@@ -280,6 +282,7 @@ export class WorldScene extends Phaser.Scene {
   }
   create() {
     this.orchardMotion=null;this.orchardLabels=[];this.orchardLabelTick=0;
+    this.orchardTable=undefined;this.orchardTableLabel=undefined;
     this.outingPost=undefined;this.outingCrossing=undefined;this.outingKey='';this.depotViews=[];
     this.bridgeRibbon=undefined;this.bridgeRibbonLabel=undefined;this.bridgeRevealAt=null;
     this.pineViews=[];this.rackView=undefined;this.noticeboardView=undefined;this.carpentryMotion=null;this.lastCarpentryAction=null;this.carpentryKey='';this.carpentryNextDraw=0;this.noticeReveal=0;
@@ -347,7 +350,8 @@ export class WorldScene extends Phaser.Scene {
         }
         const stand=COMMONS_STOPS.find(stop=>stop.id==='commons-orchard')!.point;
         const depth=(stand.y+.08)*TILE;
-        this.add.image((stand.x+1.22)*TILE,depth,'orchard-packing-table').setScale(.72).setOrigin(.5,.93).setDepth(depth);
+        this.orchardTable=this.add.image((stand.x+2.2)*TILE,depth,'orchard-packing-table').setScale(.72).setOrigin(.5,.93).setDepth(depth);
+        this.orchardTableLabel=label(stand.x+2.2,stand.y+.62,'Packing table').setFontSize(12).setPadding(5,3,5,3);
       }
       for(const id of SURVEY_IDS){const point=SURVEYS[id].point;label(point.x+.5,point.y+.8,'Sketch study');}
       if(this.showTownfolk)for(const person of TOWN_PEOPLE){const py=(person.point.y+.5)*TILE,px=(person.point.x+.5)*TILE;const view=this.add.image(px,py,'variety-resident-'+person.rig,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale).setDepth(py);const tag=this.add.text(px,py-62,person.name+' · '+person.role.split(' · ')[0],{fontFamily:'Georgia',fontSize:11,color:'#343c36',backgroundColor:'#f8f1df',padding:{x:3,y:2}}).setOrigin(.5,1).setDepth(py+1);this.townfolk.push({id:person.id,image:view,label:tag});}
@@ -436,7 +440,10 @@ export class WorldScene extends Phaser.Scene {
         // They never open a panel or authorize a command from a distance.
         const sign=this.room==='square'?this.commonsSigns.find(s=>pos.x>=s.hit.x&&pos.x<=s.hit.x+s.hit.width&&pos.y>=s.hit.y&&pos.y<=s.hit.y+s.hit.height):undefined;
         const branch=this.orchardLabels.find(item=>this.gardenLabelHit(item.label).contains(pos.x,pos.y));
-        const accepted=label>=0?this.session.approach(this.gardenLabelTargets[label]):branch?this.session.approach(branch.stop.id):sign?this.session.approach(sign.id):this.session.point(to);
+        const table=this.orchardTable?.getBounds().contains(pos.x,pos.y)||
+          this.orchardTableLabel&&this.gardenLabelHit(this.orchardTableLabel).contains(pos.x,pos.y);
+        const target=label>=0?this.gardenLabelTargets[label]:branch?.stop.id??(table?'commons-orchard':sign?.id);
+        const accepted=target?this.session.approach(target):this.session.point(to);
         if(!accepted)this.onWalkFailure?.();
       }
     });

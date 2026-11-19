@@ -22,7 +22,6 @@ test('walk mark follows accepted ground routes and disappears when travel stops'
    await page.goto('/');
    await expect.poll(() => page.evaluate(() => (window as any).__pilot?.metrics().ready)).toBe(true);
    await page.evaluate(percent => document.documentElement.style.fontSize = percent + '%', size.text);
-   const canvas = page.locator('canvas');
    await page.waitForFunction(() => {
     const current=(window as any).__pilot.metrics().visual.camera;
     const canvas=document.querySelector('canvas')!;
@@ -31,14 +30,16 @@ test('walk mark follows accepted ground routes and disappears when travel stops'
    const mark = () => page.evaluate(() => (window as any).__pilot.metrics().visual.walkTarget);
    const position = () => page.evaluate(() => (window as any).__pilot.snapshot().position);
    const ground = async (x:number,y:number) => {
-    const target = await page.evaluate(([x,y]) => (window as any).__pilot.screenPoint(x,y),[x,y]);
-    const bounds = (await canvas.boundingBox())!;
-    expect(target.x).toBeGreaterThan(0);
-    expect(target.x).toBeLessThan(bounds.width);
-    expect(target.y).toBeGreaterThan(0);
-    expect(target.y).toBeLessThan(bounds.height);
-    if (size.touch) await canvas.tap({position:target});
-    else await canvas.click({position:target});
+    const tap = await page.evaluate(([x,y]) => {
+     const point = (window as any).__pilot.screenPoint(x,y);
+     const bounds = document.querySelector('canvas')!.getBoundingClientRect();
+     return {x:bounds.left+point.x, y:bounds.top+point.y,
+      inCanvas:point.x>0 && point.x<bounds.width && point.y>0 && point.y<bounds.height};
+    },[x,y]);
+    expect(tap.inCanvas).toBe(true);
+    // Avoid the locator's stability wait while the camera is following the first route.
+    if (size.touch) await page.touchscreen.tap(tap.x,tap.y);
+    else await page.mouse.click(tap.x,tap.y);
    };
    const near = (v:{x:number;y:number}|null, x:number, y:number, tolerance=.12) => !!v && Math.hypot(v.x-x,v.y-y)<tolerance;
    const seekMark = (x:number,y:number,tolerance?:number) => expect.poll(async () => near(await mark(),x,y,tolerance), {intervals:[20,30,50],timeout:1000}).toBe(true);
@@ -55,8 +56,8 @@ test('walk mark follows accepted ground routes and disappears when travel stops'
 
    await ground(24,25);
    await seekMark(24,25,tapTolerance);
-   await ground(29,23.5);
-   await seekMark(29,23.5,tapTolerance);
+   await ground(30.5,24.5);
+   await seekMark(30.5,24.5,tapTolerance);
    const redirected=await mark();
    expect(redirected).not.toBeNull();
    if (size.touch) {

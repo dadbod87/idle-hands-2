@@ -1,0 +1,50 @@
+{
+  "scope": "Native browser transform setters. Previous comparison is the exact old loop formula, not a measured timing.",
+  "samples": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "trees": 55,
+      "previousWritesPerUpdate": 110,
+      "currentWrites": [
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "reducedMotionSteadyWrites": 0
+    },
+    {
+      "name": "phone",
+      "width": 320,
+      "height": 650,
+      "trees": 55,
+      "previousWritesPerUpdate": 110,
+      "currentWrites": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "reducedMotionSteadyWrites": 0
+    },
+    {
+      "name": "wide2k",
+      "width": 2560,
+      "height": 1440,
+      "trees": 55,
+      "previousWritesPerUpdate": 110,
+      "currentWrites": [
+        11,
+        11,
+        11,
+        11,
+        11
+      ],
+      "reducedMotionSteadyWrites": 0
+    }
+  ]
+}

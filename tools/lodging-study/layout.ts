@@ -24,3 +24,12 @@ export function rehearsalRoutes() {
  const roomRoute = routeTo('workshop',besideBed,threshold,rentedRoom);
  return {clerk:clerk.point,firstRoute,roomRoute};
 }
+
+/** For a trusted historical square position, rehearse a single bounded recovery. */
+export function rehearseFacadeRecovery(feet: Point) {
+ if (!Number.isFinite(feet.x)||!Number.isFinite(feet.y)||!canStand('square',feet)) {
+  return {kind:'unavailable'} as const;
+ }
+ if (!displacedByFacade(feet)) return {kind:'keep',feet} as const;
+ return {kind:'arrive-outside',oldFeet:feet,feet:{...landing}} as const;
+}

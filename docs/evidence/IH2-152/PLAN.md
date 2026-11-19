@@ -1,0 +1,7 @@
+# Keep returning residents out of the new lodging façade
+
+The candidate lodging house occupies a small area west of the workshop. Someone might already have safe feet in its future footprint. The rehearsal classifies the prior square position against the old and proposed geometry. Resident feet already safe in both stay exactly in place. Only a formerly safe point covered by the façade would move once, to the same safe point outside the lodging door that a departing resident uses. An old point that was already invalid needs its existing recovery path.
+
+The pure test samples the site and the edges on a quarter-tile mesh. It checks that every newly obstructed sampled point moves within seven tiles and that restoring the accepted outdoor position a second time leaves it where it is. The route to Marlow and all previously reachable stops and inbound square doors still pass. Existing homes, rooms and player records are outside this rehearsal.
+
+Run `node --experimental-strip-types --test tools/lodging-study/layout.test.ts`. At integration, use confirmed transit or login placement after verifying the current resident, room and previous geometry version. Keep any actual position recovery in the same durable operation as the new geometry revision. A browser-side fallback alone cannot authorize a shared move. Prove reload and return from the door in the real isolated browser before advancing any saved preview.

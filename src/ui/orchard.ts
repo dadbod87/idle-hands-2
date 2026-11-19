@@ -1,5 +1,5 @@
 import {APPLE_CAP, APPLES_PER_SNACK, BROWSER_ORCHARD_KEY, ORCHARD_STOPS, SNACK_CAP,
- orchardBranchFromStop, readOrchard, writeOrchard, type BranchId, type Orchard, type OrchardAction, type OrchardRead,
+ orchardBranchFromStop, readOrchard, writeOrchard, type BranchId, type OrchardPantry, type OrchardAction, type OrchardRead,
 } from '../game/orchard.ts';
 import type {Stop} from '../game/world.ts';
 import {duration} from './workshop.ts';
@@ -16,7 +16,7 @@ type Host = {
 type OrchardResult=ReturnType<typeof writeOrchard>&{fresh?:boolean};
 export type SharedOrchardPort={
  read:()=>OrchardRead;
- state:()=>Orchard|null;
+ state:()=>OrchardPantry|null;
  now:()=>number;
  canWrite:()=>boolean;
  retryAvailable:()=>boolean;

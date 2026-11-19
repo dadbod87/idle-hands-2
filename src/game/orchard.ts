@@ -31,8 +31,7 @@ export function orchardBranchFromStop(stopId: string): BranchId | undefined {
 const maximum = Number.MAX_SAFE_INTEGER - APPLE_REGROW_MS;
 const timestamp = z.number().int().min(0).max(maximum);
 const total = z.number().int().min(0).max(1_000_000);
-export const orchardStateSchema = z.object({
- version: z.literal(1),
+const pantryFields = {
  observedAt: timestamp,
  picked: total,
  packed: total,
@@ -41,15 +40,30 @@ export const orchardStateSchema = z.object({
  snacks: total.max(SNACK_CAP),
  ripeAt: z.object(Object.fromEntries(BRANCH_IDS.map(id => [id,timestamp])) as Record<BranchId,typeof timestamp>).strict(),
  parcel: z.object({startedAt: timestamp, readyAt: timestamp}).strict().nullable(),
-}).strict().refine(state => {
- const inPreparation = Number(state.parcel!==null);
+};
+
+function validHarvest(state:z.infer<z.ZodObject<typeof pantryFields>>) {
+ const inPreparation = Number(state.parcel !== null);
  return state.picked === state.apples + APPLES_PER_SNACK * (state.packed + inPreparation) &&
-  state.packed === state.snacks + state.tasted &&
-  Object.values(state.ripeAt).every(at=>at<=state.observedAt+APPLE_REGROW_MS) &&
-  (state.parcel===null ||
-   state.parcel.startedAt<=state.observedAt && state.parcel.readyAt-state.parcel.startedAt===PACK_SNACK_MS);
-});
+  Object.values(state.ripeAt).every(at => at <= state.observedAt + APPLE_REGROW_MS) &&
+  (state.parcel === null ||
+   state.parcel.startedAt <= state.observedAt && state.parcel.readyAt - state.parcel.startedAt === PACK_SNACK_MS);
+}
+
+// Browser practice retains its original strict v1 record.
+export const orchardStateSchema = z.object({version:z.literal(1),...pantryFields}).strict().refine(state =>
+ validHarvest(state) && state.packed === state.snacks + state.tasted);
+export const sharedGiftPantrySchema = z.object({
+ version:z.literal(2),
+ ...pantryFields,
+ gifts:z.object({offered:total,received:total,returned:total}).strict(),
+}).strict().refine(state =>
+ validHarvest(state) && state.gifts.returned <= state.gifts.offered &&
+ state.packed + state.gifts.received + state.gifts.returned === state.snacks + state.tasted + state.gifts.offered);
+export const sharedPantrySchema = z.union([orchardStateSchema,sharedGiftPantrySchema]);
 export type Orchard = z.infer<typeof orchardStateSchema>;
+export type OrchardPantry = z.infer<typeof sharedPantrySchema>;
+export type GiftPantry = z.infer<typeof sharedGiftPantrySchema>;
 export const newOrchard = (): Orchard => ({
  version:1, observedAt:0, picked:0, packed:0, tasted:0, apples:0, snacks:0,
  ripeAt:{'low-branch':0,'two-forks':0,'over-the-path':0}, parcel:null,
@@ -62,11 +76,11 @@ export const orchardActionSchema = z.discriminatedUnion('kind',[
  z.object({kind:z.literal('taste')}).strict(),
 ]);
 export type OrchardAction = z.infer<typeof orchardActionSchema>;
-type Result = {ok:true; state:Orchard; message:string} | {ok:false; message:string};
+type Result<T> = {ok:true; state:T; message:string} | {ok:false; message:string};
 
-export function orchardAction(state: Orchard, raw: OrchardAction, now: number): Result {
+export function orchardAction<T extends OrchardPantry>(state: T, raw: OrchardAction, now: number, reservedSlot = false): Result<T> {
  const checked = orchardActionSchema.safeParse(raw);
- if (!checked.success || !orchardStateSchema.safeParse(state).success) return {ok:false,message:'The orchard record could not be confirmed.'};
+ if (!checked.success || !sharedPantrySchema.safeParse(state).success) return {ok:false,message:'The orchard record could not be confirmed.'};
  if (!timestamp.safeParse(now).success || now < state.observedAt || now + APPLE_REGROW_MS > maximum) {
   return {ok:false,message:'The browser clock needs to catch up. Your orchard is unchanged.'};
  }
@@ -85,14 +99,14 @@ export function orchardAction(state: Orchard, raw: OrchardAction, now: number): 
  case 'pack':
   if (state.parcel) return {ok:false,message:'Collect your first parcel before packing another.'};
   if (state.apples < APPLES_PER_SNACK) return {ok:false,message:'Bring two apples to pack one snack.'};
-  if (state.snacks >= SNACK_CAP) return {ok:false,message:'Your snack pouch is full.'};
+  if (state.snacks + Number(reservedSlot) >= SNACK_CAP) return {ok:false,message:'Your snack pouch is full.'};
   next.apples -= APPLES_PER_SNACK;
   next.parcel = {startedAt:now,readyAt:now+PACK_SNACK_MS};
   message = 'Snack packing started. The parcel will wait for collection.';
   break;
  case 'collect':
   if (!state.parcel || state.parcel.readyAt > now) return {ok:false,message:'There is no finished parcel to collect yet.'};
-  if (state.snacks >= SNACK_CAP) return {ok:false,message:'Your snack pouch is full. The parcel will wait.'};
+  if (state.snacks + Number(reservedSlot) >= SNACK_CAP) return {ok:false,message:'Your snack pouch is full. The parcel will wait.'};
   next.parcel = null;
   next.snacks++;
   next.packed++;
@@ -105,13 +119,13 @@ export function orchardAction(state: Orchard, raw: OrchardAction, now: number): 
   message = 'Tasted an orchard snack. A crisp result with very little paperwork.';
   break;
  }
- return orchardStateSchema.safeParse(next).success ? {ok:true,state:next,message} :
+ return sharedPantrySchema.safeParse(next).success ? {ok:true,state:next,message} :
   {ok:false,message:'The orchard record reached its limit. Nothing was changed.'};
 }
 
 export const BROWSER_ORCHARD_KEY = 'ih2:orchard:v1';
 type StoragePort = Pick<Storage,'getItem'|'setItem'>;
-export type OrchardRead = {status:'ready';raw:string|null;state:Orchard} | {status:'unreadable'|'unavailable'};
+export type OrchardRead = {status:'ready';raw:string|null;state:OrchardPantry} | {status:'unreadable'|'unavailable'};
 export function readOrchard(storage: StoragePort): OrchardRead {
  let raw: string | null;
  try { raw=storage.getItem(BROWSER_ORCHARD_KEY); }

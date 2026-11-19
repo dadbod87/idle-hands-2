@@ -1,4 +1,4 @@
-import type {Orchard} from '../game/orchard.ts';
+import type {OrchardPantry} from '../game/orchard.ts';
 import type {WorkshopState as LegacyWorkshopState} from '../game/workshop.ts';
 type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
 import {bagStacks,BAG_GROUPS,type BagGroup} from '../game/bag.ts';
@@ -13,7 +13,7 @@ export class BagView {
  private groups=new Map<BagGroup,HTMLElement>();
  private status=document.createElement('p');
  private countKey=document.createElement('p');
- constructor(state:WorkshopState,private orchard?:()=>Orchard|null){
+ constructor(state:WorkshopState,private orchard?:()=>OrchardPantry|null){
   this.root.className='canvas-bag';this.root.setAttribute('aria-label','Your bag');
   const heading=document.createElement('h3');heading.textContent='Your bag';
   this.countKey.className='bag-intro bag-count-key';this.countKey.id='bag-count-key';this.countKey.textContent=COUNT_KEYS.furniture;

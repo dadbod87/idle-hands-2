@@ -1,3 +1,9 @@
+# November 19 — canopy and parcel rehearsal accepted, shared delivery next
+
+[PR #72](https://github.com/dadbod87/idle-hands-2/pull/72) is verified on exact main `68619d549a01c10f80a2780e61e0cba2d6cfd219`. Both runs passed 566 domain tests and 220 browser cases. The native stage measures transform writes on visible motion. [Check results](../evidence/IH2-148/CANOPY_AND_PARCEL_CI.json).
+
+The actual café parcel shelf candidate transfers one conserved snack. Its local browser presentation uses fictional intercepted replies. Full isolated PostgreSQL and native two-resident evidence are still required. [Playable shelf candidate](../evidence/IH2-150/PLAN.md).
+
 # November 19 — shared orchard accepted, ambient performance and the café shelf next
 
 [PR #71](https://github.com/dadbod87/idle-hands-2/pull/71) is verified on main `55d75c58e9922377f262af9fc284f26470aab3d0`. Disposable database and native browser residents verified separate harvest, exact replay, rollback and reload. Both exact runs passed 566 domain tests and 219 browser cases. [Proof](../evidence/IH2-147/SHARED_ORCHARD_CI.json).

@@ -46,6 +46,8 @@
     "shared-orchard-native.spec.ts",
     "shared-orchard.spec.ts",
     "shared-town.spec.ts",
+    "snack-shelf-native.spec.ts",
+    "snack-shelf.spec.ts",
     "starter-homes.spec.ts",
     "town-expansion.spec.ts",
     "trail.spec.ts",

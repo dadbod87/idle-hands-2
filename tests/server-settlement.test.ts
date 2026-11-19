@@ -41,11 +41,11 @@ async function setup(){
   clock=ready-1;
   async function raw(){
     const names=(await pool.query("select tablename from pg_tables where schemaname='ih2' order by tablename")).rows.map(r=>String(r.tablename));
-    assert.equal(names.length,17);assert.ok(names.every(n=>/^[a-z_]+$/.test(n)));
+    assert.equal(names.length,18);assert.ok(names.every(n=>/^[a-z_]+$/.test(n)));
     const pairs=names.flatMap(n=>["'"+n+"'",`(select coalesce(jsonb_agg(to_jsonb(t) order by to_jsonb(t)::text),'[]'::jsonb) from ih2."${n}" t)`]);
     pairs.push("'$migrations'","(select jsonb_agg(to_jsonb(m) order by version) from ih2_meta.migrations m)");
     const value=(await pool.query('select jsonb_build_object('+pairs.join(',')+') value')).rows[0].value as Record<string,any[]>;
-    assert.equal(value.$migrations.length,10);return value;
+    assert.equal(value.$migrations.length,11);return value;
   }
   const personal=(value:Record<string,any[]>)=>Object.fromEntries(Object.entries(value).filter(([n])=>!['bridge','noticeboard','cafe_project','project_events'].includes(n)));
   const fresh=()=>new TownStore(pool,{now:()=>clock});

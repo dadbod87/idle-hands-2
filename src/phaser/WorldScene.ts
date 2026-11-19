@@ -4,7 +4,7 @@ import{yardAnchors,contractPlan,residentialFrame}from'../design/housing-contract
 import {TownCommonsLife} from './TownCommonsLife.ts';
 import {commonsFrame,type CommonsSign} from '../art/commons-life.ts';
 import {drawTownCommons} from './TownCommons.ts';
-import {ORCHARD_STOPS,orchardBranchFromStop,type Orchard} from '../game/orchard.ts';
+import {ORCHARD_STOPS,orchardBranchFromStop,type OrchardPantry} from '../game/orchard.ts';
 import {COMMONS_STOPS,COMMONS_TREES,outdoorZoom} from '../game/town-expansion.ts';
 import {ALLOTMENT_LAYERS,ALLOTMENT_BED_FEET,allotmentCamera} from '../art/allotment.ts';
 import{HOUSING_ASSETS,RESIDENTIAL_ASSETS,residentialArt,homeExteriorForPlot}from'../art/residential.ts';
@@ -143,7 +143,7 @@ export class WorldScene extends Phaser.Scene {
   private carpentryNextDraw=0;private carpentryKey='';private noticeReveal=0;
   private carpentryMotion:{action:CarpentryAnimation;started:number;facing:Facing}|null=null;
   private lastCarpentryAction:{action:CarpentryAnimation;renderedFrames:number;frames:number[]}|null=null;
-  orchardState?:()=>Orchard|null|undefined;
+  orchardState?:()=>OrchardPantry|null|undefined;
   orchardNow:()=>number=Date.now;
   private orchardTable?:Phaser.GameObjects.Image;
   private orchardTableLabel?:Phaser.GameObjects.Text;

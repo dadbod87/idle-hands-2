@@ -20,7 +20,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  const admission=new TransportAdmission(fixtures.map(f=>f.id),options.transportNow);
  const serverInstance=randomUUID();
  const now=options.now??Date.now;
- const store=new TownStore(options.pool,{now,occupants:()=>[...residents.values()].filter(r=>r.value.room==='neighborhood'&&(now()-r.at<60000||[...connections].some(c=>residents.get(c.id)===r))).map(r=>({districtId:r.value.districtId!,point:{x:r.value.position.x+.5,y:r.value.position.y+.5}}))});
+ const store=new TownStore(options.pool,{now,roster:fixtures.map(f=>f.id),occupants:()=>[...residents.values()].filter(r=>r.value.room==='neighborhood'&&(now()-r.at<60000||[...connections].some(c=>residents.get(c.id)===r))).map(r=>({districtId:r.value.districtId!,point:{x:r.value.position.x+.5,y:r.value.position.y+.5}}))});
  const homes=new Map<string,TownPlot>();let bridgeOpen=false;let cafeOpened=false;
  function cacheHomes(snapshot:Pick<TownSnapshot,'plots'|'bridge'>&{cafe?:TownSnapshot['cafe']}){if(snapshot.cafe?.phase==='open'&&!cafeOpened){cafeOpened=true;invalidate('');}bridgeOpen=bridgeOpen||snapshot.bridge.phase==='open';for(const plot of snapshot.plots){const previous=homes.get(plot.id);if(!previous||plot.level>=previous.level&&(plot.housingRevision??0)>=(previous.housingRevision??0))homes.set(plot.id,plot);}for(const entry of residents.values()){const normalized=canonicalHomePosition(entry.value,[...homes.values()]);if(JSON.stringify(normalized)!==JSON.stringify(entry.value)){entry.value=normalized;entry.credit=1;entry.at=now();dirty=true;}}}
  const residents=new Map<string,{value:TownPosition;at:number;credit:number}>();
@@ -72,6 +72,16 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
    const session=identity(req);if(!session)return json(res,401,{message:'Choose a synthetic practice resident to continue.'});
    const {id}=session;
    if(path==='/api/town/snapshot'&&req.method==='GET'){if(!admission.rate('snapshot',id))return throttled(res);const release=admission.acquire('snapshot',id);if(!release)return throttled(res);try{const current=await resident(id);if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});metrics.snapshots++;const snapshot=await store.snapshot(id);cacheHomes(snapshot);snapshot.position=current.value;return json(res,200,{snapshot:{...snapshot,serverInstance}});}finally{release();}}
+   if(path==='/api/town/snack-shelf'&&req.method==='GET'){
+    if(!admission.rate('shelf',id))return throttled(res);
+    const release=admission.acquire('shelf',id);
+    if(!release)return throttled(res);
+    try{
+     const shelf=await store.snackShelf(id);
+     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
+     return json(res,200,{shelf,playerId:id,serverInstance});
+    }finally{release();}
+   }
    if(path==='/api/town/events'&&req.method==='GET'){
     if(!admission.rate('events',id))return throttled(res);const release=admission.acquire('events',id);if(!release)return throttled(res);try{await resident(id);}catch(error){release();throw error;}if(session.expires<=now()){release();return json(res,401,{message:'Your practice session expired.'});}
     res.writeHead(200,{'Content-Type':'text/event-stream','Cache-Control':'no-cache,no-transform','Connection':'keep-alive','X-Accel-Buffering':'no'});res.flushHeaders();

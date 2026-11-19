@@ -1,19 +1,19 @@
 import {
- ORCHARD_STOPS, newOrchard, orchardAction, orchardActionSchema, orchardBranchFromStop, orchardStateSchema, type Orchard,
+ ORCHARD_STOPS, newOrchard, orchardAction, orchardActionSchema, orchardBranchFromStop, sharedPantrySchema, type OrchardPantry,
 } from '../src/game/orchard.ts';
 import {clearSegment, worlds} from '../src/game/world.ts';
 import type {TownPosition} from './live-store.ts';
 
 const table = worlds.square.stops.find(stop=>stop.id==='commons-orchard')!;
 
-export function orchardSnapshot(saved: unknown): Orchard | 'unavailable' | null {
+export function orchardSnapshot(saved: unknown): OrchardPantry | 'unavailable' | null {
  if (saved===null) return null;
- const parsed=orchardStateSchema.safeParse(saved);
+ const parsed=sharedPantrySchema.safeParse(saved);
  return parsed.success?parsed.data:'unavailable';
 }
 
 /** The caller supplies the locked player row and the server's accepted position. */
-export function confirmOrchardAction(saved: unknown, raw: unknown, position: TownPosition, now: number) {
+export function confirmOrchardAction(saved: unknown, raw: unknown, position: TownPosition, now: number, reservedSlot=false) {
  const parsed=orchardActionSchema.safeParse(raw);
  if (!parsed.success) return {ok:false,message:'That orchard request is invalid.'} as const;
  const action=parsed.data;
@@ -26,5 +26,5 @@ export function confirmOrchardAction(saved: unknown, raw: unknown, position: Tow
  }
  const pantry=orchardSnapshot(saved);
  if (pantry==='unavailable') return {ok:false,message:'Your pantry could not be read. Its existing record is kept.'} as const;
- return orchardAction(pantry??newOrchard(),action,now);
+ return orchardAction(pantry??newOrchard(),action,now,reservedSlot);
 }

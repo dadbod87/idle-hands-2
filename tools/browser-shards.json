@@ -10,6 +10,7 @@
     "garden.spec.ts",
     "home-identity.spec.ts",
     "maintenance-ui.spec.ts",
+    "neighborhood-art-loading.spec.ts",
     "phone-clarity.spec.ts",
     "pilot.spec.ts",
     "playable-cafe.spec.ts",

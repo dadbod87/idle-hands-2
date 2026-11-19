@@ -350,9 +350,14 @@ export class WorldScene extends Phaser.Scene {
     }
     for(const key of TRAIL_ASSETS)this.load.svg(key,'/art/trail/'+key+'.svg');
     for(const key of HOME_ASSETS)this.load.svg(key,'/art/homes/'+key+'.svg');
-    for(const asset of HOUSING_ASSETS)this.load.svg(asset.id,'/art/housing/'+asset.file);
-    for(const asset of RESIDENTIAL_ASSETS)this.load.svg(asset.id,(asset.id.startsWith('housing-')?'/art/housing/':'/art/residential/')+asset.file);
-    for(const asset of NEIGHBORHOOD_ASSETS)this.load.svg(asset.id,'/art/neighborhood/'+asset.file);
+    if(this.loadingRoom==='neighborhood'){
+      for(const asset of HOUSING_ASSETS)this.load.svg(asset.id,'/art/housing/'+asset.file);
+      for(const asset of RESIDENTIAL_ASSETS)this.load.svg(asset.id,'/art/residential/'+asset.file);
+    }
+    for(const asset of NEIGHBORHOOD_ASSETS){
+      const room=asset.id==='housing-registry'?'square':'neighborhood';
+      if(this.loadingRoom===room)this.load.svg(asset.id,'/art/neighborhood/'+asset.file);
+    }
     for (const key of ORIGINAL_STATIC) if(!['ground-square','workshop','cafe','tree'].includes(key))this.load.svg(key, `/art/original/${key}.svg`);
     const keys=['ground-square',...BUILDING_KINDS.map(k=>'building-'+k),...TREE_KINDS.flatMap(k=>['tree-'+k+'-trunk','tree-'+k+'-canopy']),...RESIDENT_IDS.map(k=>'resident-'+k)];
     for(const key of keys)this.load.svg('variety-'+key,`/art/variety/${key}.svg`);

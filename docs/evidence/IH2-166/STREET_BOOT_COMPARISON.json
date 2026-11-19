@@ -1,0 +1,207 @@
+{
+  "groupedByWidth": {
+    "1440": {
+      "before": {
+        "samples": [
+          {
+            "squareMs": 1204,
+            "streetMs": 123,
+            "square": {
+              "files": 114,
+              "decodedBytes": 675320
+            },
+            "street": {
+              "files": 0,
+              "decodedBytes": 0
+            }
+          },
+          {
+            "squareMs": 1080,
+            "streetMs": 117,
+            "square": {
+              "files": 114,
+              "decodedBytes": 675320
+            },
+            "street": {
+              "files": 0,
+              "decodedBytes": 0
+            }
+          },
+          {
+            "squareMs": 1098,
+            "streetMs": 107,
+            "square": {
+              "files": 114,
+              "decodedBytes": 675320
+            },
+            "street": {
+              "files": 0,
+              "decodedBytes": 0
+            }
+          }
+        ],
+        "medianSquareMs": 1098,
+        "medianStreetMs": 117,
+        "medianPairedTotalMs": 1205
+      },
+      "after": {
+        "samples": [
+          {
+            "squareMs": 1169,
+            "streetMs": 242,
+            "square": {
+              "files": 98,
+              "decodedBytes": 600584
+            },
+            "street": {
+              "files": 16,
+              "decodedBytes": 74736
+            }
+          },
+          {
+            "squareMs": 1092,
+            "streetMs": 225,
+            "square": {
+              "files": 98,
+              "decodedBytes": 600584
+            },
+            "street": {
+              "files": 16,
+              "decodedBytes": 74736
+            }
+          },
+          {
+            "squareMs": 1055,
+            "streetMs": 227,
+            "square": {
+              "files": 98,
+              "decodedBytes": 600584
+            },
+            "street": {
+              "files": 16,
+              "decodedBytes": 74736
+            }
+          }
+        ],
+        "medianSquareMs": 1092,
+        "medianStreetMs": 227,
+        "medianPairedTotalMs": 1317
+      }
+    },
+    "320": {
+      "before": {
+        "samples": [
+          {
+            "squareMs": 1086,
+            "streetMs": 160,
+            "square": {
+              "files": 114,
+              "decodedBytes": 675320
+            },
+            "street": {
+              "files": 0,
+              "decodedBytes": 0
+            }
+          },
+          {
+            "squareMs": 1058,
+            "streetMs": 125,
+            "square": {
+              "files": 114,
+              "decodedBytes": 675320
+            },
+            "street": {
+              "files": 0,
+              "decodedBytes": 0
+            }
+          },
+          {
+            "squareMs": 1088,
+            "streetMs": 142,
+            "square": {
+              "files": 114,
+              "decodedBytes": 675320
+            },
+            "street": {
+              "files": 0,
+              "decodedBytes": 0
+            }
+          }
+        ],
+        "medianSquareMs": 1086,
+        "medianStreetMs": 142,
+        "medianPairedTotalMs": 1230
+      },
+      "after": {
+        "samples": [
+          {
+            "squareMs": 1058,
+            "streetMs": 275,
+            "square": {
+              "files": 98,
+              "decodedBytes": 600584
+            },
+            "street": {
+              "files": 16,
+              "decodedBytes": 74736
+            }
+          },
+          {
+            "squareMs": 1056,
+            "streetMs": 259,
+            "square": {
+              "files": 98,
+              "decodedBytes": 600584
+            },
+            "street": {
+              "files": 16,
+              "decodedBytes": 74736
+            }
+          },
+          {
+            "squareMs": 1087,
+            "streetMs": 275,
+            "square": {
+              "files": 98,
+              "decodedBytes": 600584
+            },
+            "street": {
+              "files": 16,
+              "decodedBytes": 74736
+            }
+          }
+        ],
+        "medianSquareMs": 1058,
+        "medianStreetMs": 275,
+        "medianPairedTotalMs": 1333
+      }
+    }
+  },
+  "browser": "157.0.8103.79",
+  "svgDelayMs": 75,
+  "method": "Fresh Chromium contexts. Adds 75 ms to each loopback SVG response. Uses the same fictional intercepted town and actual renderer. Measures usable square and painted street, along with response counts and decoded bytes. No bandwidth model, saved service, database, or physical-device measurement.",
+  "beforeSource": "0a8f0dccd629c20df9573a5fa1603ec846fcb9b5",
+  "candidateSceneSha256": "87b770e4bc5a35a5bf8e6126f17d71b94e21d82e5a1af450eff87785e9e8d1d7",
+  "indexSha256": {
+    "before": "b5bd9c6cda495c9372e8b5a9fce07dc449bd57a581a18edbdad320cfb09a5eb1",
+    "after": "ef7b4ed7abd32aaf2896a487b82065087e7f3b12694791faa92d35deb2c74be5"
+  },
+  "shiftedPaths": [
+    "/art/housing/garden-studio-2.svg",
+    "/art/housing/pocket-cottage-1.svg",
+    "/art/housing/pocket-cottage-2.svg",
+    "/art/housing/porch-house-1.svg",
+    "/art/housing/porch-house-2.svg",
+    "/art/housing/workshop-lodge-2.svg",
+    "/art/neighborhood/future-home-site.svg",
+    "/art/neighborhood/home-site-boundary.svg",
+    "/art/neighborhood/neighborhood-ground.svg",
+    "/art/residential/residential-brick-expanded.svg",
+    "/art/residential/residential-brick-starter.svg",
+    "/art/residential/residential-chimney-smoke.svg",
+    "/art/residential/residential-timber-expanded.svg",
+    "/art/residential/residential-timber-starter.svg",
+    "/art/residential/residential-verge-daisies.svg",
+    "/art/residential/residential-verge-lavender.svg"
+  ]
+}

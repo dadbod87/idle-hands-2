@@ -3,7 +3,7 @@ export const TOWN_SIZE={width:128,height:96} as const;
 export const COMMONS_STOPS=[
  {id:'commons-riverwalk',name:'Riverwalk',point:{x:70,y:17},doorArea:[69,15.5,2,2],text:'The riverwalk is open. Fishing is not implemented yet; the fish have requested a longer consultation period.'},
  {id:'commons-green',name:'East Commons',point:{x:65,y:30},doorArea:[64,28.5,2,2],text:'A public green between the old square and the orchard. Plenty of room for future town projects. No donations are being collected here yet.'},
- {id:'commons-orchard',name:'Orchard walk',point:{x:104,y:45},doorArea:[103,43.5,2,2],text:'A long walk among the fruit trees. Harvesting this orchard is a future system; for now, the apples are decorative and deeply committed to the role.'},
+ {id:'commons-orchard',name:'Orchard walk',point:{x:104,y:45},doorArea:[103,43.5,2,2],text:'A long walk among the fruit trees. Take the east path through the commons.'},
  {id:'commons-pond',name:'Founders’ pond',point:{x:69,y:68},doorArea:[68,66.5,2,2],text:'A quiet spot on the southern loop. The founders commissioned a pond because a second committee would have cost more.'},
  {id:'commons-west',name:'Willow meadow',point:{x:27,y:62},doorArea:[26,60.5,2,2],text:'The quiet western end of the southern loop. Officially designated a thinking space. Thinking remains optional.'},
  {id:'commons-meadow',name:'South meadow',point:{x:101,y:80},doorArea:[100,78.5,2,2],text:'Room to grow. Future neighborhood projects belong in deliberate spaces, not on top of somebody’s front door.'}

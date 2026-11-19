@@ -2853,7 +2853,7 @@
     {
       "id": "IH2-151",
       "title": "Rehearse two original pieces of headwear",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/browser-headwear",
       "goal": "Prove distinct silhouettes and the same readable resident body.",
       "depends_on": [
@@ -2866,13 +2866,15 @@
         "Saved services remain stopped. No shared wardrobe grant, original-game, paid or hosted change."
       ],
       "evidence": [
-        "docs/evidence/IH2-151/PLAN.md"
-      ]
+        "docs/evidence/IH2-151/PLAN.md",
+        "docs/evidence/IH2-153/BROWSER_HEADWEAR_CI.json"
+      ],
+      "progress_note": "Accepted original Clerk cap and Inkwood hood with legacy profile and native motion checks."
     },
     {
       "id": "IH2-153",
       "title": "Wear optional original headwear in browser practice",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/browser-headwear",
       "goal": "Make one independent cosmetic slot playable in the existing resident editor.",
       "depends_on": [
@@ -2886,7 +2888,30 @@
         "Saved services remain stopped. No shared wardrobe grant, original-game, paid or hosted change."
       ],
       "evidence": [
-        "docs/evidence/IH2-153/PLAN.md"
+        "docs/evidence/IH2-153/PLAN.md",
+        "docs/evidence/IH2-153/BROWSER_HEADWEAR_CI.json"
+      ],
+      "progress_note": "Accepted original Clerk cap and Inkwood hood with legacy profile and native motion checks."
+    },
+    {
+      "id": "IH2-154",
+      "title": "Offer one contextual orchard direction from Jun",
+      "status": "in_progress",
+      "owner_branch": "feat/jun-orchard-guidance",
+      "goal": "Make one clear useful next trip available without adding a permanent quest panel.",
+      "depends_on": [
+        "IH2-146",
+        "IH2-150"
+      ],
+      "acceptance": [
+        "Use current confirmed orchard stock and deadlines.",
+        "A narrow-phone tap can walk the actual route; guidance changes no apple, snack or reward balance."
+      ],
+      "exclusions": [
+        "Keep saved services stopped. No original-game or hosted change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-154/PLAN.md"
       ]
     }
   ],

@@ -28,6 +28,32 @@ export class OutingUI{
    this.host.changed();
   }catch(error){this.message=(error as Error).message;}finally{this.busy=false;if(this.opened&&this.epoch===epoch&&this.owner===owner){this.render();if(innerHeight<500||parseFloat(getComputedStyle(document.documentElement).fontSize)>20)this.focusNext();else{const status=this.host.body.querySelector<HTMLElement>('.outing-status');if(status){status.focus({preventScroll:true});this.reveal(status);}}}}
  }
+ private fieldCertificate(entries:OutingState['journal']){
+  const completed=new Set(entries.map(entry=>entry.variant));
+  const signoff=document.createElement('section');
+  signoff.className='outing-signoff';
+  signoff.dataset.outingCertificate=completed.size===2?'earned':'in-progress';
+  if(completed.size===2){
+   const art=document.createElement('img');
+   art.src='/art/outing/field-certificate.svg';art.alt='';art.width=144;art.height=110;art.loading='lazy';
+   signoff.append(art);
+  }
+  const copy=document.createElement('div');
+  const title=document.createElement('h4');
+  title.textContent='Field certificate';
+  const progress=this.p(completed.size===2
+   ?'Earned · Qualified to point left.'
+   :'One more condition to sign off.');
+  const checks=document.createElement('ul');
+  for(const variant of ['wind','soft-bank'] as const){
+   const check=document.createElement('li');
+   check.textContent=condition(variant).title+' · '+(completed.has(variant)?'recorded':'still to try');
+   checks.append(check);
+  }
+  copy.append(title,progress,checks);
+  signoff.append(copy);
+  return signoff;
+ }
  private render(){
   const b=this.host.body,s=this.snapshot(),run=s.active,station=this.near();this.key=JSON.stringify([this.town?.snapshot?.playerId??'local',s.revision]);b.replaceChildren();b.classList.add('outing-panel');
   if(!run)b.append(this.p('A little woodland work. Your other jobs keep going.','outing-scope'));
@@ -53,7 +79,24 @@ export class OutingUI{
    if(station==='outing-desk'){for(const tool of['brace','rope']as const)if(tool!==run.tool)b.append(this.button('Exchange for '+tool+' · free',()=>void this.act({action:'borrow',runId:run.id,tool}),'borrow-'+tool));if(run.stage<4){const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent='End this outing';details.append(summary,this.p('Return the tool without recording a repair. Your other progress is untouched.'),this.button('Return tool · leave unfinished',()=>void this.act({action:'leave',runId:run.id}),'leave'));b.append(details);}}
    else this.walk('outing-desk','Back to the tool desk');
   }
-  const journal=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Woodland journal · '+s.journal.length+(s.journal.length===1?' repair':' repairs');journal.append(summary);for(const entry of s.journal.slice(-10).reverse()){const note=this.p(condition(entry.variant).title+' · '+(entry.route==='main'?'secured route':'scenic detour')+' · '+new Date(entry.finishedAt).toLocaleDateString());note.dataset.outingNote='';note.tabIndex=-1;journal.append(note);}journal.addEventListener('toggle',()=>{if(this.opened&&journal.open&&journal.isConnected&&document.activeElement===summary){const note=journal.querySelector<HTMLElement>('[data-outing-note]');if(note){note.focus({preventScroll:true});this.reveal(note);}}});if(!s.journal.length)journal.append(this.p('Your first recorded repair will appear here.'));const journalAnchor=b.querySelector('.outing-condition');if(!run&&s.journal.length&&journalAnchor)journalAnchor.before(journal);else b.append(journal);
+  const journal=document.createElement('details'),summary=document.createElement('summary');
+  summary.textContent='Woodland journal · '+s.journal.length+(s.journal.length===1?' repair':' repairs');
+  journal.append(summary);
+  const notes=s.journal.slice(-10).reverse().map(entry=>{
+   const note=this.p(condition(entry.variant).title+' · '+(entry.route==='main'?'secured route':'scenic detour')+' · '+new Date(entry.finishedAt).toLocaleDateString());
+   note.dataset.outingNote='';note.tabIndex=-1;
+   return note;
+  });
+  if(notes.length)journal.append(...notes,this.fieldCertificate(s.journal));
+  else journal.append(this.p('Your first recorded repair will appear here.'));
+  journal.addEventListener('toggle',()=>{
+   if(this.opened&&journal.open&&journal.isConnected&&document.activeElement===summary&&notes.length){
+    notes[0].focus({preventScroll:true});this.reveal(notes[0]);
+   }
+  });
+  const journalAnchor=b.querySelector('.outing-condition');
+  if(!run&&s.journal.length&&journalAnchor)journalAnchor.before(journal);
+  else b.append(journal);
   const status=this.p(this.message||(!this.town&&this.local.blocked?this.local.message:run?'Tools are borrowed. Follow the marked stops, then return to the desk.':s.journal.length?'Tool returned. Your repair is saved.':'Borrowing is free. You can return unfinished.'),'outing-status');status.role='status';status.tabIndex=-1;const conditionLine=b.querySelector('.outing-condition');if(!run&&s.journal.length)journal.after(status);else if(conditionLine)conditionLine.after(status);else b.append(status);
   if(this.town?.retryAvailable||this.local.canRetry)b.append(this.button('Retry the same pending request',()=>void this.act(run?{action:'finish',runId:run.id}:{action:'start',tool:'brace'},true),'retry'));
   if(!this.town&&this.local.blocked)for(const button of b.querySelectorAll<HTMLButtonElement>('[data-outing-action]'))button.disabled=true;

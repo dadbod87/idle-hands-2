@@ -1025,6 +1025,11 @@
       "kind": "original-svg"
     },
     {
+      "id": "outing-field-certificate",
+      "path": "art/outing/field-certificate.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "outing-post-aligned",
       "path": "art/outing/post-aligned.svg",
       "kind": "original-svg"

@@ -2043,6 +2043,16 @@
       "modifications": "Original borrowed-tool desk, route conditions, detour and confirmed waymarker repair stages. No imported media or reward authority."
     },
     {
+      "id": "outing-field-certificate",
+      "path": "public/art/outing/field-certificate.svg",
+      "sha256": "2be464c84bcb5b74407acdf967b893b2e03658846eb5ce2e3720a100268536da",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-outing-art.py",
+      "date": "2026-11-19",
+      "modifications": "Original journal illustration derived from recorded repairs. No imported media."
+    },
+    {
       "id": "outing-post-aligned",
       "path": "public/art/outing/post-aligned.svg",
       "sha256": "0461655f8d13de79a8905b5ba5d3a56c6144e289cf01bd3e268e410d068a5576",

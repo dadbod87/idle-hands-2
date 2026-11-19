@@ -70,6 +70,7 @@
     "serving-study.spec.ts",
     "stable-toolbar.spec.ts",
     "stream-reconnect.spec.ts",
-    "visual-kit.spec.ts"
+    "visual-kit.spec.ts",
+    "woodland-certificate.spec.ts"
   ]
 }

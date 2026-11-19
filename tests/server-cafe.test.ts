@@ -34,7 +34,9 @@ test('isolated PostgreSQL cafe atomic authority and recovery',{skip:!candidateUr
  for(const name of ['ih2_cafe_test','ih2_cafe_restore'])if(!(await admin.query('select 1 from pg_database where datname=$1',[name])).rowCount)await admin.query('create database '+name);
  await admin.end();const pool=new Pool({connectionString:url,max:12,connectionTimeoutMillis:5000,statement_timeout:7000});
  let now=start,store:CafeTransactionCandidate;
- const clocks=async()=> (await pool.query("select version,checksum from ih2_meta.migrations where version not like '%_cafe_tastings.sql' and version not like '%_housing.sql' and version not like '%_outing.sql' order by version")).rows;
+ const recordedLegacy=JSON.parse(await readFile('docs/evidence/IH2-111/old-migrations.json','utf8')).checksums;
+ const allClocks=async(source=pool)=> (await source.query('select version,checksum from ih2_meta.migrations order by version')).rows;
+ const clocks=async(source=pool)=> (await allClocks(source)).filter(row=>Object.hasOwn(recordedLegacy,row.version));
  async function add(id:string,stock=12){await pool.query('insert into ih2.players(id,name,workshop,position) values($1,$1,$2,$3)',[id,legacy(stock),point]);}
  async function serve(id='aster',extra:Record<string,unknown>={}){const s=await store.snapshot(id);return store.serve(id,{id:randomUUID(),expectedRevision:s.workshop.revision,kind:'cafe-serve-candidate',presentation:'slices',...extra});}
  async function state(id='aster'){return(await pool.query('select workshop from ih2.players where id=$1',[id])).rows[0].workshop;}
@@ -49,10 +51,10 @@ test('isolated PostgreSQL cafe atomic authority and recovery',{skip:!candidateUr
   await t.test('read-only migration/projection preserves raw legacy, six checksums, jobs, seeds, receipts and does not expose other private state',async()=>{
    const old=legacy();old.inventory={scrap:3,timber:2,supplies:1};old.job={recipe:'bridge-kit',startedAt:start,readyAt:start+12*H};old.receipts=[{id:'old-ordinary',revision:0,message:'Historical ordinary command'}];
    assert.equal(loadWorkshop(old,start).recovered,false);await pool.query('update ih2.players set workshop=$2 where id=$1',['aster',old]);
-   const hashes=await clocks(),allMigrations=(await pool.query('select version,checksum from ih2_meta.migrations order by version')).rows,before=await fingerprint();assert.equal(allMigrations.length,10);now+=H;const s=await store.snapshot('aster');assert.equal(s.workshop.version,3);assert.deepEqual(s.workshop.job,old.job);assert.deepEqual(await fingerprint(),before);
+   const hashes=await clocks(),allMigrations=await allClocks(),before=await fingerprint();assert.equal(allMigrations.length,10);assert.deepEqual(Object.fromEntries(hashes.map(row=>[row.version,row.checksum])),recordedLegacy);now+=H;const s=await store.snapshot('aster');assert.equal(s.workshop.version,3);assert.deepEqual(s.workshop.job,old.job);assert.deepEqual(await fingerprint(),before);
    assert.deepEqual(Object.keys(s.public).sort(),['credits','phase','readyAt']);assert.equal('players' in s,false);assert.deepEqual(await state(),old);
    const r=await serve();assert.ok(r.ok,r.message);assert.equal((await state()).version,3);for(const k of ['job','inventory','receipts','stats','skills','sketches','carpentry','commission'])assert.deepEqual(r.snapshot.workshop[k as keyof typeof r.snapshot.workshop],old[k as keyof typeof old],k);
-   assert.deepEqual(r.snapshot.workshop.garden.seeds,old.garden.seeds);assert.equal(r.snapshot.workshop.garden.harvested.radish,12);assert.equal(r.snapshot.workshop.garden.produce.radish,11);assert.equal(r.snapshot.workshop.garden.consumed.cafe.radish,1);assert.deepEqual(await clocks(),hashes);assert.equal(hashes.length,6);assert.deepEqual((await pool.query('select version,checksum from ih2_meta.migrations order by version')).rows,allMigrations);
+   assert.deepEqual(r.snapshot.workshop.garden.seeds,old.garden.seeds);assert.equal(r.snapshot.workshop.garden.harvested.radish,12);assert.equal(r.snapshot.workshop.garden.produce.radish,11);assert.equal(r.snapshot.workshop.garden.consumed.cafe.radish,1);assert.deepEqual(await clocks(),hashes);assert.equal(hashes.length,6);assert.deepEqual(await allClocks(),allMigrations);
   });
   await t.test('exact older tuple migrates on successful serve without resetting garden or ordinary progress',async()=>{
    const old=preCommissionWorkshop(legacy());old.inventory={scrap:2,timber:1,supplies:1};old.job={recipe:'bridge-kit',startedAt:start,readyAt:start+12*H};
@@ -137,14 +139,16 @@ test('isolated PostgreSQL cafe atomic authority and recovery',{skip:!candidateUr
    const container=process.env.IH2_CAFE_PG_CONTAINER??process.env.IH2_PG_CONTAINER??'idle-hands-2-pg';assert.match(container,/^[a-zA-Z0-9_-]+$/);
    const old=legacy();old.job={recipe:'planter',startedAt:start,readyAt:start+5000};assert.equal(loadWorkshop(old,start).recovered,false);await pool.query('update ih2.players set workshop=$2 where id=$1',['aster',old]);
    let original:Record<string,unknown>={};for(let i=0;i<3;i++){now=start+i*4*H;original={id:randomUUID(),expectedRevision:i,kind:'cafe-serve-candidate',presentation:'slices'};assert.ok((await store.serve('aster',original)).ok);}
-   const ready=await fill();now=ready;await store.settleOpening();const before=await store.snapshot('aster'),checksums=await clocks();
+   const ready=await fill();now=ready;await store.settleOpening();const before=await store.snapshot('aster'),checksums=await clocks(),allChecksums=await allClocks();
    const restoredUrl=new URL(url);restoredUrl.pathname='/ih2_cafe_restore';const restore=new Pool({connectionString:restoredUrl.href,max:2});
    try{
     await restore.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');
     const dump=spawnSync('docker',['exec',container,'pg_dump','-U','ih2','-d','ih2_cafe_test','--schema=ih2','--schema=ih2_meta','--no-owner','--no-acl'],{encoding:'utf8',maxBuffer:8*1024*1024});assert.equal(dump.status,0,dump.stderr);
     const imported=spawnSync('docker',['exec','-i',container,'psql','-v','ON_ERROR_STOP=1','-U','ih2','-d','ih2_cafe_restore'],{encoding:'utf8',input:dump.stdout,maxBuffer:8*1024*1024});assert.equal(imported.status,0,imported.stderr);
     const recovered=new CafeTransactionCandidate(restore,{now:()=>now});assert.deepEqual(await recovered.snapshot('aster'),before);const replay=await recovered.serve('aster',original);assert.ok(replay.replayed&&replay.ok&&replay.teapotAwarded);assert.equal(replay.snapshot.workshop.garden.consumed.cafe.radish,3);assert.equal(replay.snapshot.workshop.owned.teapot,1);assert.deepEqual(replay.snapshot.workshop.job,old.job);
-    assert.deepEqual((await restore.query("select version,checksum from ih2_meta.migrations where version not like '%_cafe_tastings.sql' and version not like '%_housing.sql' and version not like '%_outing.sql' order by version")).rows,checksums);
+    assert.deepEqual(await allClocks(restore),allChecksums);
+    assert.deepEqual(await clocks(restore),checksums);
+    assert.deepEqual(Object.fromEntries(checksums.map(row=>[row.version,row.checksum])),recordedLegacy);
     await mkdir('test-results/server',{recursive:true});await writeFile('test-results/server/cafe-candidate.json',JSON.stringify({classification:'Isolated candidate DB only; conserved synthetic harvested stock and declared server clocks; no live API/counter/auth registration or real data',database:'ih2_cafe_test',restoredDatabase:'ih2_cafe_restore',realPostgresDumpRestore:true,storeReconnect:true,sixChecksumsPreserved:checksums.length===6,queuedJobUnchanged:true,privateSinkTeapotUUIDReplayPreserved:true,fixedOpeningDeadline:ready,projectFingerprint:digest(before.project),rules:CAFE_RULES,candidateTargetGeometry:CAFE_CANDIDATE_TARGET,limits:'Target is synthetic spawn-point binding, not actual cafe counter reachability. Complete all-home teapot maps/protocol/cache/UI still later integration.'},null,2)+'\n');
    }finally{await restore.end();}
   });

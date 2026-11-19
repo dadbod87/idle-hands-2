@@ -49,6 +49,7 @@
     "z-first-visit.spec.ts"
   ],
   "3": [
+    "bench-visual.spec.ts",
     "browser-resident.spec.ts",
     "cafe-save.spec.ts",
     "carpentry.spec.ts",

@@ -1,3 +1,21 @@
+# November 19 — canopy and parcel rehearsal accepted, shared delivery next
+
+[PR #72](https://github.com/dadbod87/idle-hands-2/pull/72) is verified on exact main `68619d549a01c10f80a2780e61e0cba2d6cfd219`. Both runs passed 566 domain tests and 220 browser cases. The native stage measures transform writes on visible motion. [Check results](../evidence/IH2-148/CANOPY_AND_PARCEL_CI.json).
+
+The actual café parcel shelf candidate transfers one conserved snack. Its local browser presentation uses fictional intercepted replies. Full isolated PostgreSQL and native two-resident evidence are still required. [Playable shelf candidate](../evidence/IH2-150/PLAN.md).
+
+# November 19 — shared orchard accepted, ambient performance and the café shelf next
+
+[PR #71](https://github.com/dadbod87/idle-hands-2/pull/71) is verified on main `55d75c58e9922377f262af9fc284f26470aab3d0`. Disposable database and native browser residents verified separate harvest, exact replay, rollback and reload. Both exact runs passed 566 domain tests and 219 browser cases. [Proof](../evidence/IH2-147/SHARED_ORCHARD_CI.json).
+
+The next candidate limits canopy writes to changed transforms and includes a standalone shelf that rehearses leaving a single snack for a neighbor. [Measured rendering](../evidence/IH2-148/PLAN.md) · [Parcel study](../evidence/IH2-149/PLAN.md).
+
+# November 19 — browser orchard accepted, shared orchard next
+
+[PR #70](https://github.com/dadbod87/idle-hands-2/pull/70) is verified on exact main `1266efcbff502bcd8e0683ea342cf5fdc19aed4f`. Native keyboard, pointer and touch checks cover the orchard and its separate packing table. Both exact runs passed 562 domain tests and 217 browser cases. [Exact checks and limits](../evidence/IH2-146/ORCHARD_PRACTICE_CI.json).
+
+The shared practice orchard candidate keeps an independent pantry on the existing actor row. A targeted browser fixture tests how the game recovers after a successful reply is lost. The full checkout still needs exact disposable PostgreSQL and two-resident browser verification. [Shared orchard](../evidence/IH2-147/PLAN.md).
+
 # November 19 — workshop moments accepted, browser orchard next
 
 [PR #69](https://github.com/dadbod87/idle-hands-2/pull/69) is verified on exact main `6f9245a8772a858c1e26104b249e50e6c5162f09`. The ordinary bench shows its confirmed piece and the bridge celebrates a fresh opening. Both exact runs passed 558 domain tests and 213 browser cases. The orchard study and picking art were standalone in that release. [Exact checks and limits](../evidence/IH2-142/TOWN_MOMENTS_CI.json).

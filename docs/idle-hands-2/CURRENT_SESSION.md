@@ -1,3 +1,9 @@
+# November 19 — sounds accepted, town refresh candidate in progress
+
+Optional original door and reward sounds are accepted in PR #65 on main **38d3b88466e2f63c12e9c226d6f4468bf7eb0b73**. PR and main each passed 550 domain tests and 202 browser cases. Build and test evidence are in [the sound closeout](../evidence/IH2-130/WORLD_SOUNDS_CI.json). Saved previews and databases remain stopped. Physical-device listening remains unverified.
+
+IH2-132 prepares a 75 ms window for ordinary shared invalidations, preserving immediate confirmation and reconnect behavior. [Plan](../evidence/IH2-132/PLAN.md). Thirty-three focused tests and the build passed locally. Full CI and the paired 180-second measurement are pending. Independently, return-screen ready-work shortcuts passed focused browser and Terra still checks on branch `feat/return-trip-shortcuts`.
+
 # November 18 — browser CI repair, corrected observations and original music
 
 PR #63 passed its final PR and main regression runs and both corrected observation windows. PR #64 added optional original music and passed 549 domain tests and 201 browser cases on both its final PR and main runs. The saved local previews and databases remain stopped. [Closeout](handoffs/2026-11-18-music-and-ci.md)

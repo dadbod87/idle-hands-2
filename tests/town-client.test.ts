@@ -1,7 +1,7 @@
 import {applyGarden} from '../src/game/live-garden.ts';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {TownClient,type TownHooks,type TownSnapshot} from '../src/ui/town-client.ts';
+import {PUBLIC_REFRESH_WINDOW_MS,TownClient,type TownHooks,type TownSnapshot} from '../src/ui/town-client.ts';
 import {createWorkshop} from '../src/game/live-workshop.ts';
 
 // Transport-only fixtures have full garden banks and no pending economy deadlines.
@@ -40,7 +40,8 @@ test('public invalidation burst keeps one in-flight read and one dirty follow-up
   for(let i=0;i<32;i++)f.stream().emit('invalidate',{});
   await drain();assert.equal(reads,1);assert.equal(active,1);
   held.resolve(json({snapshot:{...value('A',10,1100),bridge:{contributed:1,target:3,restored:false,phase:'collecting'}}}));
-  for(let i=0;i<8;i++)await drain();
+  await drain();assert.equal(reads,1);
+  assert.equal(f.delays.at(-1),PUBLIC_REFRESH_WINDOW_MS);f.fire();await drain();
   assert.equal(reads,2);assert.equal(peak,1);assert.equal(active,0);
   assert.deepEqual(f.client.snapshot,newest);assert.equal(f.client.snapshot!.workshop.revision,10);
  }finally{await f.close();}
@@ -213,7 +214,7 @@ test('command confirmation: a newer-clock precommit read requires one fresh cohe
  const f=fixture();try{
   f.set(value('A',0,1000));await f.client.login('aster');const held=deferred<Response>(),read=deferred<Response>(),sent=deferred<void>();let reads=0;
   f.handle(request=>{if(request.path==='command'){sent.resolve();return held.promise;}reads++;return reads===1?read.promise:json({snapshot:value('A',1,1300)});});
-  f.stream().emit('invalidate',{});await drain();
+  f.stream().emit('invalidate',{});f.fire();await drain();
   const pending=f.client.command({kind:'contribute'});await sent.promise;read.resolve(json({snapshot:value('A',0,1200)}));await drain();assert.equal(f.client.snapshot!.workshop.revision,0);
   held.resolve(json({ok:true,revision:1,message:'Command committed',snapshot:value('A',1,1100)}));const confirmed=await pending;
   assert.equal(confirmed.workshop.revision,1);assert.equal(confirmed.serverTime,1300);assert.equal(f.client.snapshot!.workshop.revision,1);assert.equal(reads,2);assert.equal(f.requests.filter(r=>r.path==='command').length,1);assert.equal(f.client.retryAvailable,false);
@@ -226,6 +227,7 @@ test('command confirmation: pending public bursts keep one dirty follow-up after
   f.handle(request=>{if(request.path==='command'){sent.resolve();return held.promise;}reads++;return json({snapshot:value('A',1,1300)});});
   const pending=f.client.command({kind:'contribute'});await sent.promise;for(let n=0;n<32;n++)f.stream().emit('invalidate',{});await drain();assert.equal(reads,0);
   held.resolve(json({ok:true,revision:1,snapshot:value('A',1,1100)}));assert.equal((await pending).workshop.revision,1);for(let n=0;n<5;n++)await drain();
+  assert.equal(reads,0);assert.equal(f.delays.at(-1),PUBLIC_REFRESH_WINDOW_MS);f.fire();await drain();
   assert.equal(reads,1);assert.equal(f.client.snapshot!.workshop.revision,1);assert.equal(f.requests.filter(r=>r.path==='command').length,1);
  }finally{await f.close();}
 });
@@ -289,5 +291,54 @@ test('reward presentation runs once after a lost reply is confirmed and ignores 
   f.handle(()=>json({snapshot:value('A',11,1200)}));
   await f.client.load();
   assert.deepEqual(rewards,['reward']);
+ }finally{await f.close();}
+});
+
+
+test('ordinary public bursts share the first deadline and dispatch only one newest-state read',async()=>{
+ const f=fixture();try{
+  await f.client.login('aster');
+  let reads=0;f.handle(()=>{reads++;return json({snapshot:value('A',10,1400)});});
+  f.stream().emit('invalidate',{});
+  const first=[...f.timers.entries()];
+  assert.equal(first.length,1);assert.equal(f.delays.at(-1),PUBLIC_REFRESH_WINDOW_MS);
+  for(let i=0;i<32;i++)f.stream().emit('invalidate',{});
+  await drain();assert.equal(reads,0);assert.deepEqual([...f.timers.entries()],first);
+  f.fire();await drain();assert.equal(reads,1);assert.equal(f.client.snapshot!.serverTime,1400);assert.equal(f.timers.size,0);
+ }finally{await f.close();}
+});
+
+test('visibility and resident changes cancel scheduled public reads; reconnect reads immediately',async()=>{
+ const f=fixture();try{
+  await f.client.login('aster');let reads=0;
+  f.handle(request=>{if(request.path==='snapshot')reads++;return json({snapshot:value('A',10,1500)});});
+  const original=f.stream();original.emit('invalidate',{});const old=f.timers.values().next().value!;
+  (document as any).hidden=true;document.dispatchEvent(new Event('visibilitychange'));
+  assert.equal(f.timers.size,0);old();await drain();assert.equal(reads,0);
+  (document as any).hidden=false;document.dispatchEvent(new Event('visibilitychange'));
+  const current=f.stream();current.onopen?.(new Event('open'));await drain();
+  assert.equal(reads,1);assert.equal(f.timers.size,0);
+  current.emit('invalidate',{});const scheduled=f.timers.values().next().value!;
+  f.handle(()=>json({snapshot:value('A',0,1600,'bea')}));
+  await f.client.login('bea');scheduled();await drain();
+  assert.equal(reads,1);assert.equal(f.timers.size,0);assert.equal(f.client.snapshot!.playerId,'bea');
+ }finally{await f.close();}
+});
+
+test('an already scheduled public read yields to a command and catches up after success',async()=>{
+ const f=fixture();try{
+  await f.client.login('aster');let reads=0;
+  const reply=deferred<Response>(),sent=deferred<void>();
+  f.handle(request=>{
+   if(request.path==='command'){sent.resolve();return reply.promise;}
+   reads++;return json({snapshot:value('A',11,1300)});
+  });
+  f.stream().emit('invalidate',{});
+  const saving=f.client.command({kind:'claim'});await sent.promise;
+  f.fire();await drain();assert.equal(reads,0);
+  reply.resolve(json({ok:true,snapshot:value('A',11,1200)}));
+  assert.equal((await saving).workshop.revision,11);
+  assert.equal(reads,0);assert.equal(f.delays.at(-1),PUBLIC_REFRESH_WINDOW_MS);
+  f.fire();await drain();assert.equal(reads,1);assert.equal(f.client.snapshot!.serverTime,1300);
  }finally{await f.close();}
 });

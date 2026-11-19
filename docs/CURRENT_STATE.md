@@ -1,3 +1,7 @@
+# November 19 — less tree work and a rehearsal for small favors
+
+Visible tree sway now skips unchanged transform assignments. Native desktop, narrow phone and 2K checks verify that a canopy begins and ends visible motion when the camera passes. A separate café parcel rehearsal demonstrates a small neighbor gift. Main `68619d549a01c10f80a2780e61e0cba2d6cfd219` passed 566 domain tests and 220 browser cases. [PR #72 evidence](evidence/IH2-148/CANOPY_AND_PARCEL_CI.json).
+
 # November 19 — a shared orchard with personal stock
 
 The shared practice town supports independent apples and timed snack packing. Verified feet and server time control each action. Main `55d75c58e9922377f262af9fc284f26470aab3d0` passed 566 domain tests and 219 browser cases. [PR #71 evidence](evidence/IH2-147/SHARED_ORCHARD_CI.json).

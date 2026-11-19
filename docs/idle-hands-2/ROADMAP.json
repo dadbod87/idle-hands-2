@@ -2786,7 +2786,7 @@
     {
       "id": "IH2-148",
       "title": "Skip invisible canopy transform writes",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "perf/town-sway-and-parcel-study",
       "depends_on": [
         "IH2-113",
@@ -2800,13 +2800,15 @@
         "No saved preview, original-game, hosted or paid change."
       ],
       "evidence": [
-        "docs/evidence/IH2-148/PLAN.md"
-      ]
+        "docs/evidence/IH2-148/PLAN.md",
+        "docs/evidence/IH2-148/CANOPY_AND_PARCEL_CI.json"
+      ],
+      "progress_note": "Accepted same visible sway with fewer actual canopy assignments. Native phone travel exercises entering and leaving visibility."
     },
     {
       "id": "IH2-149",
       "title": "Rehearse a private parcel shelf at the café",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "perf/town-sway-and-parcel-study",
       "depends_on": [
         "IH2-147"
@@ -2819,7 +2821,31 @@
         "No saved preview, original-game, hosted or paid change."
       ],
       "evidence": [
-        "docs/evidence/IH2-149/PLAN.md"
+        "docs/evidence/IH2-149/PLAN.md",
+        "docs/evidence/IH2-148/CANOPY_AND_PARCEL_CI.json"
+      ],
+      "progress_note": "Accepted standalone player-experience review only. No shared item or delivery in this slice."
+    },
+    {
+      "id": "IH2-150",
+      "title": "Deliver one private snack from the café shelf",
+      "status": "in_progress",
+      "owner_branch": "feat/private-snack-shelf",
+      "depends_on": [
+        "IH2-147",
+        "IH2-149"
+      ],
+      "goal": "Make one delightfully small act of neighbor teamwork playable.",
+      "acceptance": [
+        "Conserve pantry and reserved slot across offer, accept, decline, expiry, exact replay, lost reply and simultaneous return.",
+        "Use only the signed-in actor and allowed named residents. Hold linked changes in one transaction and leave public reads/scores alone.",
+        "Verify desktop and narrow touch plus enlarged retry, two native fictional residents, process reload, and isolated transaction rollback."
+      ],
+      "exclusions": [
+        "Saved local services remain stopped. No hosted migration, chat, buffs, trade, paid resource, old game or real account."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-150/PLAN.md"
       ]
     }
   ],

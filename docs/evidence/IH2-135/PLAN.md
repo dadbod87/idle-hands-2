@@ -1,0 +1,7 @@
+# Woodland field certificate
+
+The woodland route gives players useful active work while production runs. It already alternates two conditions and records completed returns. A private illustrated certificate makes a second visit worthwhile. Repairs in wind and at the soft bank each count once, by either route. Fastening the sign is only part of the job. Returning the borrowed tool and recording the repair confirms it for the journal.
+
+The certificate appears below the repair log. A single recorded condition shows the other as still to try. Existing completed entries count and repeated variants do not add rewards. The design derives this keepsake from private confirmed history and adds a reproducible original vector. It adds no economy, output, achievement write, trade, public profile or display right. A public exhibit, if selected later, needs its own choice and authority design.
+
+Focused checks use a disposable browser context with desk starting feet and fresh ordinary progress. Players take both native routes, walk to each existing stop, complete both repairs, and explicitly return the borrowed tools. The test sees no certificate art before the second confirmed return, retains ordinary save bytes, and checks the private award through reload. Desktop, 320 px phone and short landscape at 200% are captured. No API requests or intercepted responses. Terra found both states legible and suggested moving the certificate after both notes. Emulated browser checks do not establish physical-phone or subjective replay quality.

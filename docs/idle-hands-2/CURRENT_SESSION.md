@@ -1,3 +1,7 @@
+# November 19 — three player-flow candidates
+
+IH2-133 adds shortcuts to confirmed ready work in the Journal. IH2-134 adds local destination-name search to the larger Places menus. IH2-135 adds a private original field certificate after both woodland conditions are recorded. Each item has independent focused evidence and a task plan. They share one source candidate to keep hosted validation focused. See [return trips](../evidence/IH2-133/PLAN.md), [Places](../evidence/IH2-134/PLAN.md) and [woodland certificate](../evidence/IH2-135/PLAN.md). Exact full checks are pending. Saved previews and databases remain stopped.
+
 # November 19 — sounds accepted, town refresh candidate in progress
 
 Optional original door and reward sounds are accepted in PR #65 on main **38d3b88466e2f63c12e9c226d6f4468bf7eb0b73**. PR and main each passed 550 domain tests and 202 browser cases. Build and test evidence are in [the sound closeout](../evidence/IH2-130/WORLD_SOUNDS_CI.json). Saved previews and databases remain stopped. Physical-device listening remains unverified.

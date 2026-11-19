@@ -2435,7 +2435,74 @@
       "evidence": [
         "docs/evidence/IH2-132/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-133",
+      "title": "Walk to confirmed ready tasks from the return summary",
+      "depends_on": [
+        "IH2-118",
+        "IH2-131"
+      ],
+      "goal": "Let returning residents resume confirmed work from the journal with fewer menus.",
+      "acceptance": [
+        "Show only confirmed ready work and one route per stop.",
+        "Recheck before walking. Preserve native navigation, room checks and explicit claims.",
+        "Verify keyboard, touch and stale cross-tab progress with source gates."
+      ],
+      "status": "queued",
+      "owner_branch": "feat/return-trip-shortcuts",
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosting, original-game or paid changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-133/PLAN.md"
+      ],
+      "progress_note": "Focused browser candidate saved. Exact source acceptance awaits completion of IH2-132 measurement."
+    },
+    {
+      "id": "IH2-134",
+      "title": "Find an existing destination in larger Places menus",
+      "depends_on": [
+        "IH2-113"
+      ],
+      "goal": "Find a named stop within the current room without opening multiple categories.",
+      "acceptance": [
+        "Filter existing labels by words, including unaccented queries. Preserve group state and room-local routes.",
+        "Verify no automatic focus on open, no overflow, and full keyboard/touch access at the existing viewports.",
+        "Use the existing enter and inspect steps. No new search service or movement rules."
+      ],
+      "status": "queued",
+      "owner_branch": "feat/return-trip-shortcuts",
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosting, original-game or paid changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-134/PLAN.md"
+      ],
+      "progress_note": "Focused browser candidate saved. Exact source acceptance awaits completion of IH2-132 measurement."
+    },
+    {
+      "id": "IH2-135",
+      "title": "Earn a woodland field certificate",
+      "depends_on": [
+        "IH2-119"
+      ],
+      "goal": "Give the two woodland conditions a private illustrated journal reward for players looking for something active.",
+      "acceptance": [
+        "Base the certificate on completed recorded repairs in both distinct conditions. Preserve any route and legacy history.",
+        "Supply original reproducible artwork. No currency, inventory, travel or public reward.",
+        "Exercise both real repair paths, explicit return, persistence, original gameplay conservation and phone layout."
+      ],
+      "status": "queued",
+      "owner_branch": "feat/return-trip-shortcuts",
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosting, original-game or paid changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-135/PLAN.md"
+      ],
+      "progress_note": "Focused browser candidate saved. Exact source acceptance awaits completion of IH2-132 measurement."
     }
   ],
-  "source_status_note": "Optional sounds are accepted on main. IH2-132 is validating a bounded public refresh window. Return shortcuts are saved separately and have local checks."
+  "source_status_note": "Optional sounds are accepted on main. The routine-refresh source is under measurement. A single player-flow candidate groups return routes, Places search and the woodland certificate."
 }

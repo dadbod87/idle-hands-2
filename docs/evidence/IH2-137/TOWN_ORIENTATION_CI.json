@@ -1,0 +1,127 @@
+{
+  "pullRequest": 68,
+  "pr": {
+    "sha": "1d70c5969cb698f6aa983befd993ef1e74358cb2",
+    "run": 44569628183,
+    "domain": 557,
+    "browser": 209,
+    "browserGroups": [
+      73,
+      66,
+      70
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14553287351,
+        "createdAt": "2026-11-19T16:48:11Z",
+        "sha": "1d70c5969cb698f6aa983befd993ef1e74358cb2",
+        "zipSha256": "8b7a22d575205bca3df1c2e7b501d99e41519f81a1fa10d09aeef591d5e08c78",
+        "size": 130130,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14552354455,
+        "createdAt": "2026-11-19T16:48:13Z",
+        "sha": "1d70c5969cb698f6aa983befd993ef1e74358cb2",
+        "zipSha256": "250d3ef089cd09d8205249c2e463a0ed69622504aef196bca86aa1882a604e49",
+        "size": 735573,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14554338783,
+        "createdAt": "2026-11-19T16:57:17Z",
+        "sha": "1d70c5969cb698f6aa983befd993ef1e74358cb2",
+        "zipSha256": "88139c1e94b672f45b3cc25ec893c05b61f32e19986f1fd30df057f62052da7f",
+        "size": 17716133,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14553094733,
+        "createdAt": "2026-11-19T16:57:23Z",
+        "sha": "1d70c5969cb698f6aa983befd993ef1e74358cb2",
+        "zipSha256": "b436110565b4f790c90c810e5809f670187015b98b2df1e1ba2c765c97cf7d09",
+        "size": 15858292,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14554018282,
+        "createdAt": "2026-11-19T16:58:40Z",
+        "sha": "1d70c5969cb698f6aa983befd993ef1e74358cb2",
+        "zipSha256": "97b0a5ed3e2b49674781e61d58b227d38ef6fbf28178f5631d082814af0710a1",
+        "size": 22205208,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "c965eed86097bdc1cdf50cdd873f5f9a9f43b240",
+    "run": 44572346365,
+    "domain": 557,
+    "browser": 209,
+    "browserGroups": [
+      73,
+      66,
+      70
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14554314683,
+        "createdAt": "2026-11-19T17:03:05Z",
+        "sha": "c965eed86097bdc1cdf50cdd873f5f9a9f43b240",
+        "zipSha256": "76327623b5cb5ac32120c88aff6dc0ba524a85cd67693ac30c72915d8b8df325",
+        "size": 129813,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14555765290,
+        "createdAt": "2026-11-19T17:03:06Z",
+        "sha": "c965eed86097bdc1cdf50cdd873f5f9a9f43b240",
+        "zipSha256": "9b85bab6b0fdb7a24e23bb255b53d337f03b6c73bf161d9c155df23c908f6696",
+        "size": 735573,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14555023750,
+        "createdAt": "2026-11-19T17:13:32Z",
+        "sha": "c965eed86097bdc1cdf50cdd873f5f9a9f43b240",
+        "zipSha256": "19807ea80a9a23d6e7b47ada3f89730374a05b73abd7765fa14e1fde1c8c79bd",
+        "size": 17677031,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14555158423,
+        "createdAt": "2026-11-19T17:12:14Z",
+        "sha": "c965eed86097bdc1cdf50cdd873f5f9a9f43b240",
+        "zipSha256": "f84134120a7924fd6962611be32535184084ce502ffd4d872f44c5a6cc26a263",
+        "size": 15828595,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14555956835,
+        "createdAt": "2026-11-19T17:13:32Z",
+        "sha": "c965eed86097bdc1cdf50cdd873f5f9a9f43b240",
+        "zipSha256": "3043cfa14a12987772affaa99047afb6e1297950e96107df0bd15ad78d4ae262",
+        "size": 22187392,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "supersededFailedRuns": [
+    44563713859,
+    44566594340
+  ],
+  "sameBuildBytes": true,
+  "limitations": "Synthetic repository fixtures, browser viewport checks and Terra stills. No deployed game, physical phone or saved service restart."
+}

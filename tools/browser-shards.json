@@ -49,6 +49,8 @@
     "z-first-visit.spec.ts"
   ],
   "3": [
+    "bench-visual.spec.ts",
+    "bridge-ceremony.spec.ts",
     "browser-resident.spec.ts",
     "cafe-save.spec.ts",
     "carpentry.spec.ts",
@@ -65,6 +67,7 @@
     "home-workroom.spec.ts",
     "housing-study.spec.ts",
     "movement-backpressure.spec.ts",
+    "orchard-picking-study.spec.ts",
     "personal-tools.spec.ts",
     "place-music.spec.ts",
     "places-search.spec.ts",

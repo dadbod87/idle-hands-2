@@ -1103,6 +1103,16 @@
       "id": "headwear-inkwood",
       "path": "art/headwear/inkwood.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "lodging-boarding-front",
+      "path": "art/lodging/boarding-front.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "lodging-rented-room",
+      "path": "art/lodging/rented-room.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="184" height="206" viewBox="0 0 184 206">
+  <ellipse cx="92" cy="190" rx="88" ry="13" fill="#6e765b" opacity=".29"/>
+  <g stroke="#3e473d" stroke-width="3" stroke-linejoin="round">
+    <path d="M4 79h176v109H4z" fill="#dcc29a"/>
+    <path d="M8 90h168M8 109h168M8 128h168M8 147h168M8 166h168" stroke="#b49a75" stroke-width="1.5"/>
+    <path d="M138 21h19v57h-19z" fill="#a16e57"/>
+    <path d="M134 21h27v8h-27z" fill="#bd8d70"/>
+    <path d="M2 86 35 31h114l33 55z" fill="#945e49"/>
+    <path d="M20 69h145M27 55h129M35 41h113" stroke="#c89876" stroke-width="2"/>
+    <path d="M2 85h180v9H2z" fill="#495749"/>
+    <path d="M20 103h46v33H20zm102 0h41v33h-41z" fill="#88a6a3"/>
+    <path d="M43 104v31m-22-16h44m77-15v31m-19-16h39" stroke="#e6d6ab" stroke-width="2"/>
+    <path d="M18 137h50v5H18zm102 0h45v5h-45z" fill="#68725b"/>
+    <path d="M69 145h54v44H69z" fill="#ac9471"/>
+    <path d="M77 145h38v44H77z" fill="#54726a"/>
+    <path d="M83 151h26v13H83z" fill="#cfd1aa" stroke-width="2"/>
+    <circle cx="108" cy="173" r="2.4" fill="#d8b86f" stroke="none"/>
+    <path d="M73 188h47v6H73zm-4 6h55v6H69z" fill="#bea580" stroke-width="2"/>
+    <path d="M51 117h82v20H51z" fill="#4a594b" stroke-width="2"/>
+  </g>
+  <text x="92" y="130" text-anchor="middle" fill="#f1e3c8" font-family="Georgia,serif" font-weight="bold" font-size="9">BOARDING HOUSE</text>
+</svg>

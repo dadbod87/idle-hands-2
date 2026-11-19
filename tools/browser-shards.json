@@ -39,6 +39,7 @@
     "home-retry.spec.ts",
     "housing-clarity.spec.ts",
     "housing-contract.spec.ts",
+    "lodging-room.spec.ts",
     "neighborhood-study.spec.ts",
     "orchard-practice.spec.ts",
     "residential-life.spec.ts",

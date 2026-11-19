@@ -13,7 +13,7 @@ export function placesView(room:Room,stops:Stop[],state:WorkshopState,goal:{id:s
  else if(goal.id==='craft'||goal.id==='place'||goal.id==='bridge'||goal.destination==='bench'||state.job&&state.job.readyAt<=now)preferred=['workshop'];
  else preferred=['allotment','carpentry-desk','courier'];
  const primary=preferred.map(id=>stops.find(s=>s.id===id)).filter((s):s is Stop=>!!s).slice(0,3),chosen=new Set(primary.map(s=>s.id));
- const groups:PlaceGroup[]=[{id:'work',title:'Work & materials',stops:[]},{id:'town',title:'Town & neighbors',stops:[]},{id:'outdoors',title:'Outdoors & exploring',stops:[]},{id:'walks',title:'Town walks & scenery',stops:[]}],work=new Set(['scrap','timber','supplies','workshop','carpentry-desk']),town=new Set(['home-front','plot','clerk','courier','caretaker','cafe','bridge','garden-registry','residential-gate']);
+ const groups:PlaceGroup[]=[{id:'work',title:'Work & materials',stops:[]},{id:'town',title:'Town & neighbors',stops:[]},{id:'outdoors',title:'Outdoors & exploring',stops:[]},{id:'walks',title:'Town walks & scenery',stops:[]}],work=new Set(['scrap','timber','supplies','workshop','carpentry-desk']),town=new Set(['home-front','plot','clerk','courier','caretaker','cafe','bridge','garden-registry','residential-gate','lodging-door']);
  for(const s of stops){if(chosen.has(s.id))continue;groups[s.id.startsWith('commons-')?3:work.has(s.id)?0:town.has(s.id)?1:2].stops.push(s);}
  return{primary,groups:groups.filter(g=>g.stops.length),heading:'Useful now'};
 }

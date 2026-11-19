@@ -1,3 +1,7 @@
+# November 19 — optional orchard music accepted
+
+Little brass labels plays in the orchard after confirmed arrival, reusing the original gather voice. Main `d422168f896a6cc4ede31a1993479a9751350b34` passed 577 domain tests and 227 browser cases. [Exact verification](evidence/IH2-155/EXACT_CI.json).
+
 # November 19 — Jun’s orchard directions accepted
 
 One contextual suggestion points to confirmed orchard work. A narrow phone can follow its route without picking or spending. Main `c9353926a5f6f57230eb601e206a72567d69ffeb` passed 575 domain tests and 225 browser cases. [Exact verification](evidence/IH2-154/EXACT_CI.json).

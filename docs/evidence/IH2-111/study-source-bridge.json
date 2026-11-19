@@ -20,9 +20,9 @@
     }
   },
   "reviewedCurrent": {
-    "src/game/world.ts": "e7e5c432b1d2f614e048b02b19c2e23d64437f8c015d9e36c3175f23f879c3ab",
-    "src/main.ts": "41c92499d3d63ba07a4ca6df1896dc754931e886aac14639074e0c3cfeee92fb",
-    "src/phaser/WorldScene.ts": "368a1c2ca5ad6b1d937505bcb3020456457b852c4757d85888253cee7cd30324",
+    "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
+    "src/main.ts": "17326944f9526e441dcf8b00309fc567d0fde5d9e8d03d086ea10b9cc925a038",
+    "src/phaser/WorldScene.ts": "6d0e8a64cc90b1c4aaa4d0097e4f0ced1e562d1f3f35b60871aedda17d308dea",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
   "currentTask": "IH2-119 candidate: reviewed additive outing stops, DOM integration and confirmed-state scene props. Historical snapshots and generator outputs remain frozen; no acceptance implied. See119IMPLEMENTATION/validation history."

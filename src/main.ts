@@ -42,7 +42,7 @@ const townMode=new URLSearchParams(window.location.search).has('town');
 const saveKey = 'ih2:pilot-position:v1';
 let stored: unknown;
 try { stored = townMode?null:JSON.parse(localStorage.getItem(saveKey) ?? 'null'); } catch { stored = null; }
-const session = new Session(townMode?null:stored,townMode?undefined:ORCHARD_STOPS);
+const session = new Session(townMode?null:stored,townMode?undefined:ORCHARD_STOPS,!townMode);
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
@@ -56,6 +56,7 @@ const title = document.querySelector<HTMLElement>('#panel-title')!;
 const body = document.querySelector<HTMLDivElement>('#panel-body')!;
 const music = mountPlaceMusic({
   room: session.room,
+  position: session.position,
   settings: document.querySelector<HTMLButtonElement>('#place-sound')!,
   quick: document.querySelector<HTMLButtonElement>('#quick-music')!,
   body,
@@ -64,6 +65,11 @@ const music = mountPlaceMusic({
 
 const feedback = document.querySelector<HTMLElement>('#feedback')!;
 new MutationObserver(()=>{feedback.scrollTop=0;}).observe(feedback,{childList:true,characterData:true,subtree:true});
+if(session.room==='lodging')feedback.textContent='Read the note by the bed, or step outside to find Marlow.';
+if(session.recoveredLodgingFootprint){
+ feedback.textContent='You’re by the boarding house. The new front steps are just behind you.';
+ save();
+}
 const interactButton = document.querySelector<HTMLButtonElement>('#interact')!;
 const interactLabel = document.querySelector<HTMLElement>('#interaction-label')!;
 const location = document.querySelector<HTMLElement>('#location')!;
@@ -158,7 +164,7 @@ scene.onMovement=distance=>{if(townMode)walkedDistance+=distance;};
 function adoptTownPosition(snapshot:TownSnapshot, throughDoor=false){
  const entered=throughDoor&&contextKey(snapshot.position.room,snapshot.position.homePlotId,snapshot.position.districtId)!==confirmedContext;
  if (residentId !== snapshot.playerId) music.pause();
- music.setRoom(snapshot.position.room);
+ music.setLocation(snapshot.position.room,snapshot.position.position);
  namedWalk=null;placeWalk=null;
  portalIntent++;scene.residents=[];homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);walkedDistance=0;confirmedDistance=0;confirmedContext=contextKey(snapshot.position.room,homePlotId);movementEpoch++;residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);scene.homePlotId=homePlotId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??districtId??'1');scene.neighborhoodPlots=snapshot.plots;scene.constructionSites=snapshot.housingSites??[];const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;unlockWorld();
  if(entered)music.cue('door');
@@ -186,7 +192,7 @@ async function flushMovement(force=false):Promise<void>{
  const value={room:session.room,position:{...session.position},...(session.room.startsWith('home')&&homePlotId?{homePlotId}:{}),...(districtId?{districtId}:{})},hash=JSON.stringify(value);if(hash===lastSent){if(!movement&&!needResync&&contextKey(value.room,homePlotId)===confirmedContext)confirmedDistance=walkedDistance;return;}
  const sentDistance=walkedDistance,epoch=movementEpoch,sentPlayerId=town.snapshot.playerId;
  lastMove=Date.now();
- const action=town.movement(value).then(()=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;lastSent=hash;confirmedDistance=Math.max(confirmedDistance,sentDistance);const nextContext=contextKey(value.room,value.homePlotId,value.districtId);if(nextContext!==confirmedContext)music.cue('door');confirmedContext=nextContext;music.setRoom(value.room);moveBackoff=0;}).catch(async error=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;moveBackoff=Date.now()+2000;needResync=true;session.lock(true);feedback.textContent='Movement could not be confirmed. Reconnecting to the local town…';try{const snapshot=await town.load();if(snapshot.playerId!==sentPlayerId||town.snapshot?.playerId!==sentPlayerId)return;homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);lastSent=JSON.stringify(snapshot.position);}catch{/* SSE reconnect reloads the authoritative position. */}if(force)throw error;}).finally(()=>{if(movement===action)movement=null;});
+ const action=town.movement(value).then(()=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;lastSent=hash;confirmedDistance=Math.max(confirmedDistance,sentDistance);const nextContext=contextKey(value.room,value.homePlotId,value.districtId);if(nextContext!==confirmedContext)music.cue('door');confirmedContext=nextContext;music.setLocation(value.room,value.position);moveBackoff=0;}).catch(async error=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;moveBackoff=Date.now()+2000;needResync=true;session.lock(true);feedback.textContent='Movement could not be confirmed. Reconnecting to the local town…';try{const snapshot=await town.load();if(snapshot.playerId!==sentPlayerId||town.snapshot?.playerId!==sentPlayerId)return;homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);lastSent=JSON.stringify(snapshot.position);}catch{/* SSE reconnect reloads the authoritative position. */}if(force)throw error;}).finally(()=>{if(movement===action)movement=null;});
  movement=action;await action;
 }
 const remoteWorkshop=town?.workshopAdapter();
@@ -243,6 +249,8 @@ function followNamedWalk(){
 }
 function placeArrival(stop:Stop){
  stop=resolvedStop(stop);if(stop.id==='home-door'&&stop.transition==='neighborhood'){feedback.textContent='At the front door. Choose Enter street.';return;}
+ if(stop.id==='lodging-door'){feedback.textContent='At the boarding house. Choose Enter lodging.';return;}
+ if(stop.id==='lodging-exit'){feedback.textContent='At the door. Choose Step outside.';return;}
  const next=stop.id==='trail-gate'&&!scene.bridgeRestored?'Inspect the bridge committee':stop.transition?'Enter':'Inspect';
  feedback.textContent='At '+stop.name+'. Choose '+next+'.';
 }
@@ -285,6 +293,15 @@ document.querySelector('#field-guide')!.addEventListener('click',()=>{
    appearance.textContent='Edit your resident';
    appearance.onclick=showBrowserResident;
    body.append(appearance);
+   if(session.room==='square'){
+    const lodging=document.createElement('button');
+    lodging.type='button';
+    lodging.className='destination';
+    lodging.textContent='Visit the boarding house';
+    lodging.onclick=()=>goNamedDestination('square','lodging-door');
+    body.append(lodging);
+   }
+
   }
   body.querySelector('#guide-workshop')!.addEventListener('click',()=>{
    if(session.room==='square'){goNamedDestination('square','workshop');return;}
@@ -400,9 +417,23 @@ function activate(stop: Stop) {
   if(['scrap','timber','supplies'].includes(stop.id)){workshop.showResource(stop.id as 'scrap'|'timber'|'supplies');return;}
   if(stop.id==='bench'){workshop.showBench();return;}
   if(stop.id.startsWith('commons-')){openPanel(stop.name);body.append(paragraph(stop.text));const back=document.createElement('button');back.type='button';back.textContent='Walk to the old square';back.onclick=()=>goNamedDestination('square','workshop');body.append(back);return;}
+  if (stop.id==='lodging-note') {
+    openPanel(stop.name);
+    const note=document.createElement('div');
+    note.className='lodging-note';
+    note.append(paragraph(stop.text));
+    const leave=document.createElement('button');
+    leave.type='button';
+    leave.className='destination';
+    leave.textContent='Step outside';
+    leave.onclick=()=>goNamedDestination('lodging','lodging-exit');
+    note.append(leave);
+    body.append(note);
+    return;
+  }
   if (stop.transition) {
     if(town){void enterRemotePortal(stop);return;}
-    session.enter(stop.transition, stop.arrival); music.setRoom(stop.transition); music.cue('door'); save(); focusWorld(); feedback.textContent = stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
+    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); music.cue('door'); save(); focusWorld(); feedback.textContent = stop.id==='lodging-exit'?'The square is east of the front steps. Look for Marlow at the clerk’s desk.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
     const note = paragraph(townMode?'Shared practice keeps your town projects and home progress.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);
@@ -423,6 +454,7 @@ scene.onFrame = () => {
   frameLimit(!ready||panel.open||performance.now()<wakeRenderUntil||scene.needsFullRate()?0:10);
   if(panel.open){const second=Math.floor((town?.serverNow()??Date.now())/1000);if(second!==guidanceSecond){guidanceSecond=second;paintGuideObjective();}}
   if(town&&!document.hidden)void flushMovement().catch(()=>{});
+  else if(!town)music.setLocation(session.room,session.position);
   if (!ready) {
     ready = true; document.querySelector('#boot')?.remove();
     const canvas = document.querySelector('canvas')!; canvas.tabIndex = 0; canvas.setAttribute('aria-label', 'Walkable neighborhood. Use Places for named destinations.'); canvas.setAttribute('aria-describedby', 'instructions'); focusWorld();
@@ -440,16 +472,18 @@ scene.onFrame = () => {
   const state = (district?.name??'')+contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored));
   if (state !== lastContext) {
     lastContext = state;
-    const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='garden'?'Your allotment':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
-    const hint=session.room==='square'?district!.hint:session.room==='neighborhood'?'Homes, not cubicles.':session.room==='trail'?'A path worth the paperwork.':session.room==='garden'?'Ready plants wait safely.':session.room.startsWith('home')?(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved'):'Great things take time.';
+    const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='garden'?'Your allotment':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
+    const hint=session.room==='square'?district!.hint:session.room==='neighborhood'?'Homes, not cubicles.':session.room==='trail'?'A path worth the paperwork.':session.room==='garden'?'Ready plants wait safely.':session.room==='lodging'?'Your rented room. Nothing due today.':session.room.startsWith('home')?(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved'):'Great things take time.';
     if(district&&district.name!=='Town square'&&(feedback.textContent?.startsWith('Tap the three material depots')||feedback.textContent===lastDistrictHint)){feedback.textContent=district.hint;lastDistrictHint=district.hint;}
     location.textContent=roomName;const sub=document.createElement('span');sub.textContent=hint;location.append(sub);
     if(town){const label=document.createElement('small');label.className='fixture-label';label.textContent='Practice town · '+(town.snapshot?.name??'choose a resident');location.append(label);}
     interactLabel.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby';
+    if(stop?.id==='lodging-door')interactLabel.textContent='Enter lodging';
+    if(stop?.id==='lodging-exit')interactLabel.textContent='Step outside';
     if(stop&&orchardAvailable()&&orchardBranchFromStop(stop.id))interactLabel.textContent='Inspect branch';
     if(stop?.id==='trail-gate'&&!scene.bridgeRestored)interactLabel.textContent='Inspect bridge';
 
-    interactButton.setAttribute('aria-label', stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
+    interactButton.setAttribute('aria-label', stop?.id==='lodging-door'?'Enter boarding house':stop?.id==='lodging-exit'?'Step outside to the square':stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
   }
   // A named stop can be visible while its restored shared position is still syncing.
   // Keep Inspect unavailable until the same input guard would accept its click.

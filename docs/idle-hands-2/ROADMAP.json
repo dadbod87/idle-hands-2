@@ -2896,7 +2896,7 @@
     {
       "id": "IH2-154",
       "title": "Offer one contextual orchard direction from Jun",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/jun-orchard-guidance",
       "goal": "Make one clear useful next trip available without adding a permanent quest panel.",
       "depends_on": [
@@ -2911,7 +2911,53 @@
         "Keep saved services stopped. No original-game or hosted change."
       ],
       "evidence": [
-        "docs/evidence/IH2-154/PLAN.md"
+        "docs/evidence/IH2-154/PLAN.md",
+        "docs/evidence/IH2-154/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. One contextual suggestion points to confirmed orchard work. A narrow phone can follow its route without picking or spending."
+    },
+    {
+      "id": "IH2-155",
+      "title": "Play an optional original orchard score",
+      "status": "done",
+      "owner_branch": "feat/orchard-music",
+      "goal": "Give the orchard an audible identity when a player explicitly enables music.",
+      "depends_on": [
+        "IH2-154",
+        "IH2-146"
+      ],
+      "acceptance": [
+        "Use confirmed feet for shared practice and a small buffer across the boundary.",
+        "Native Web Audio samples match the original phrase. Verify quiet opt-out and independent volume."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-155/PLAN.md",
+        "docs/evidence/IH2-155/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Little brass labels plays in the orchard after confirmed arrival, reusing the original gather voice."
+    },
+    {
+      "id": "IH2-156",
+      "title": "Visit the boarding house in browser practice",
+      "status": "in_progress",
+      "owner_branch": "feat/local-lodging-visit",
+      "goal": "Give the first-morning design a real room, a visible door and a safe step into town.",
+      "depends_on": [
+        "IH2-155",
+        "IH2-136"
+      ],
+      "acceptance": [
+        "Enter by direct tap or Places and leave from the same visible front steps.",
+        "Preserve safe existing positions and shared room authority; verify narrow, enlarged short and ordinary desktop."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-156/PLAN.md"
       ]
     }
   ],

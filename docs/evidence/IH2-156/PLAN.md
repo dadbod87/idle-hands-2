@@ -1,0 +1,9 @@
+# A walkable boarding house in browser practice
+
+Visit a small rented room west of the workshop. Tap the front door to approach it from the square, or use Places on a phone. Inside, the note by the bed gives one direction to Marlow. The step outside is the same front step you reached on entry. Reloading keeps the current room and exact safe feet. A browser position valid before construction is moved only if the new façade covers it, and goes to that same step.
+
+The browser room adds two original illustrations adapted from the standalone opening rehearsal. Feet, camera, movement and door input use the ordinary game session. Existing browser names and clothing render as usual. No quest, housing right, cost, inventory or reward comes from the visit. Shared practice does not accept this room or use the new footprint. The shared HTTP room list and database remain unchanged.
+
+Four pure checks cover original-footprint recovery, routes from the bed to the door and the step to Marlow, exact room restore, and shared refusal before a persistence call. Two native local cases cover desktop, 320-pixel phone, and short landscape at 200% text. They use fictional saved feet and a fictional outfit with no game API. Both direct door input and Places lead to the same exact room. Terra caught the entry label obscured on narrow screens and the short enlarged action below its note. The label now shows beneath the front step, the interior label and exit are closer to the player, and the short note keeps its full action alongside the text. A screenshot pixel sample confirms the actual room has repainted after enlarging the text. No physical-device test has run.
+
+Next, separately rehearse an explicit first-morning opt-in that can re-use the safe room checkpoint. Continue to treat account identity, a once-only shared welcome and a future death return as separate durable operations.

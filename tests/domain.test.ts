@@ -5,12 +5,14 @@ import { worlds, walkable, pathTo, canStand, clearSegment, routeTo, type Room } 
 
 test('every named destination has a walkable route and never crosses blocked cells', () => {
  for (const room of Object.keys(worlds) as Room[]) {
-  const session=new Session();session.enter(room);const start={...session.position};
+  const localRoom=room==='lodging';
+  const geometry=localRoom?worlds.lodging:undefined;
+  const session=new Session(undefined,undefined,localRoom);session.enter(room);const start={...session.position};
   for (const stop of worlds[room].stops) {
-   if(!Number.isInteger(stop.point.x)||!Number.isInteger(stop.point.y)){const route=routeTo(room,start,stop.point);assert.ok(route.length,room+':'+stop.id);let previous=start;for(const point of route){assert.ok(clearSegment(room,previous,point));previous=point;}assert.deepEqual(previous,stop.point);continue;}
-   const path=pathTo(room,start,stop.point); assert.ok(path.length,room+':'+stop.id);
+   if(!Number.isInteger(stop.point.x)||!Number.isInteger(stop.point.y)){const route=routeTo(room,start,stop.point,geometry);assert.ok(route.length,room+':'+stop.id);let previous=start;for(const point of route){assert.ok(clearSegment(room,previous,point,geometry));previous=point;}assert.deepEqual(previous,stop.point);continue;}
+   const path=pathTo(room,start,stop.point,geometry); assert.ok(path.length,room+':'+stop.id);
    let previous=start;
-   for(const p of path){ assert.ok(walkable(room,p));assert.equal(Math.abs(previous.x-p.x)+Math.abs(previous.y-p.y),1);previous=p; }
+   for(const p of path){ assert.ok(walkable(room,p,geometry));assert.equal(Math.abs(previous.x-p.x)+Math.abs(previous.y-p.y),1);previous=p; }
    assert.deepEqual(previous,stop.point);
   }
  }

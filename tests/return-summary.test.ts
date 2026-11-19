@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {createWorkshop} from '../src/game/workshop.ts';
-import {parseVisit,visitBaseline,returnSummary,type VisitSnapshot} from '../src/game/return-summary.ts';
+import {parseVisit,visitBaseline,returnSummary,returnStops,type VisitSnapshot} from '../src/game/return-summary.ts';
 const snapshot=(time:number):VisitSnapshot=>({playerId:'aster',serverTime:time,workshop:createWorkshop(time),plot:null,bridge:{contributed:0,target:3,restored:false}});
 test('return summary describes ready work and durable changes without awarding or mutating anything',()=>{
  const before=snapshot(1_000),b=visitBaseline(before),now=snapshot(86_401_000);now.workshop.job={recipe:'bridge-kit',startedAt:1000,readyAt:43_201_000};now.bridge.contributed=3;now.bridge.restored=true;const serialized=JSON.stringify(now);const lines=returnSummary(now,b).join(' ');assert.match(lines,/ready to collect/);assert.match(lines,/not been added/);assert.match(lines,/from 0 to 3/);assert.equal(JSON.stringify(now),serialized);assert.equal(now.workshop.bridgeKits,0);
@@ -32,4 +32,21 @@ test('unredeemed paid credit, recorded participation and legacy satisfaction des
 test('missing lesson data invents no participation status, while confirmed unstarted state points to the quote',()=>{
  const now=snapshot(5000),baseline=visitBaseline(now),without=returnSummary(now,baseline);assert.doesNotMatch(without.join(' '),/maintenance|participation/);assert.equal(without.length,5);
  now.lesson={...lesson(),startedAt:null,readyAt:null};assert.match(returnSummary(now,baseline).join(' '),/has not started. Review its quote/);assert.deepEqual(visitBaseline(now),baseline);
+});
+
+test('return shortcuts only use confirmed ready work and group same-stop tasks',()=>{
+ const state=snapshot(5_000);
+ state.workshop.job={recipe:'planter',startedAt:1_000,readyAt:5_001};
+ state.lesson={startedAt:1_000,readyAt:5_001,completed:false,redeemed:false,legacySatisfied:false};
+ assert.deepEqual(returnStops(state),[]);
+ state.serverTime=5_001;
+ assert.deepEqual(returnStops(state).map(stop=>stop.stop),['bench']);
+ state.lesson.completed=true;
+ assert.deepEqual(returnStops(state).map(stop=>stop.stop),['bench','bridge']);
+ state.workshop.job=null;
+ assert.deepEqual(returnStops(state).map(stop=>stop.stop),['bridge']);
+ state.lesson.redeemed=true;
+ assert.deepEqual(returnStops(state),[]);
+ state.lesson.redeemed=false;state.lesson.legacySatisfied=true;
+ assert.deepEqual(returnStops(state),[]);
 });

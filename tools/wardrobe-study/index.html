@@ -11,7 +11,7 @@
 <header><span>LEDGERWICK FITTING ROOM</span><h1>Make it your own.</h1><p>Try two original hats on four residents.</p></header>
 <div class="fitting">
 <section aria-label="Appearance preview" class="view">
-  <div id="actor" role="img"></div><p id="current"></p>
+  <div id="actor" role="img"><div id="headwear" aria-hidden="true"></div></div><p id="current"></p>
 </section>
 <div class="choices">
 <label for="resident">Resident</label>
@@ -24,12 +24,14 @@
 </fieldset>
 <label for="facing">View from</label>
 <select id="facing"><option value="south">Front</option><option value="north">Back</option><option value="east">East side</option><option value="west">West side</option></select>
+<label for="activity">Activity</label>
+<select id="activity"><option value="walk">Walk</option><option value="orchard">Pick an apple</option><option value="garden">Plant a seed</option><option value="saw">Use the saw</option><option value="serve">Serve a tasting</option></select>
 <button id="walk" type="button">Preview walk</button>
 <p id="motion" role="status"></p>
 </div>
 </div>
 <footer>Standalone design preview. Your game and saved clothes are separate.</footer>
 </main>
-<script type="module" src="./wardrobe.mjs"></script>
+<script defer src="./wardrobe.mjs"></script>
 </body>
 </html>

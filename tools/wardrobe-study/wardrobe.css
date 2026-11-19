@@ -9,7 +9,8 @@ p { margin:0; }
 .fitting { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:16px; background:#f9f2df; padding:16px; border:solid #263b34; border-width:0 2px 2px; }
 .view { min-width:0; display:grid; justify-items:center; align-content:center; gap:10px; min-height:228px; padding:12px;
  background:repeating-conic-gradient(#afbe99 0 25%,#bac7a3 0 50%) 0/48px 48px; border:1px solid #718263; border-radius:4px; }
-#actor { width:128px; height:160px; background-repeat:no-repeat; background-size:3584px 160px; }
+#actor { position:relative; width:128px; height:160px; background-repeat:no-repeat; }
+#headwear { position:absolute; inset:0; background-repeat:no-repeat; background-size:3584px 160px; }
 #current { text-align:center; background:#faeed4; border:1px solid #718263; padding:.35em .6em; font-weight:bold; }
 .choices { min-width:0; display:grid; gap:8px; }
 label,legend { font-weight:bold; }

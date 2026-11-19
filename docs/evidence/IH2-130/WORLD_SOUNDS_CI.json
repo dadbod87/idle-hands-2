@@ -1,0 +1,120 @@
+{
+  "pr": {
+    "sha": "64a7aa87a2b37177f653381cbc1e4d088f704ce5",
+    "run": 44545263350,
+    "domain": 550,
+    "browser": 202,
+    "browserGroups": [
+      73,
+      66,
+      63
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14541391165,
+        "createdAt": "2026-11-19T14:37:50Z",
+        "sha": "64a7aa87a2b37177f653381cbc1e4d088f704ce5",
+        "zipSha256": "58ec818a7a4f19dece19ce668b6380fcf58e56a847561a641a0fcf992198e5a2",
+        "size": 129925,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14540901629,
+        "createdAt": "2026-11-19T14:37:51Z",
+        "sha": "64a7aa87a2b37177f653381cbc1e4d088f704ce5",
+        "zipSha256": "5fdb9db3f840abc63062f16956d43041d88851128104c60a0ef9a1dfb9d40e3b",
+        "size": 730301,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14540274775,
+        "createdAt": "2026-11-19T14:48:10Z",
+        "sha": "64a7aa87a2b37177f653381cbc1e4d088f704ce5",
+        "zipSha256": "b296a05e19f3f75e3ca54e6505895de7ba7c392dae9f9fd23264e67359b41b9e",
+        "size": 17665910,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14540863384,
+        "createdAt": "2026-11-19T14:46:53Z",
+        "sha": "64a7aa87a2b37177f653381cbc1e4d088f704ce5",
+        "zipSha256": "24a10ae26ba6f73d6d8517e1932c567566b37ee521126f56f64326ec555391a1",
+        "size": 15847103,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14539748387,
+        "createdAt": "2026-11-19T14:46:41Z",
+        "sha": "64a7aa87a2b37177f653381cbc1e4d088f704ce5",
+        "zipSha256": "534964bfd69c0ffc23c02fc03f8feb81c44563d4b2177dac57e26dbdbfd8b5b4",
+        "size": 20006824,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "38d3b88466e2f63c12e9c226d6f4468bf7eb0b73",
+    "run": 44548950004,
+    "domain": 550,
+    "browser": 202,
+    "browserGroups": [
+      73,
+      66,
+      63
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14542410431,
+        "createdAt": "2026-11-19T14:58:08Z",
+        "sha": "38d3b88466e2f63c12e9c226d6f4468bf7eb0b73",
+        "zipSha256": "23bcf979d8b4c6cfdba0d05b7e608c54a8925877aadef8258cb6d3bd66744796",
+        "size": 129477,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14542331032,
+        "createdAt": "2026-11-19T14:58:10Z",
+        "sha": "38d3b88466e2f63c12e9c226d6f4468bf7eb0b73",
+        "zipSha256": "df1f82d245fb79ff5a737dfdc165d31f2ac489a9e8314d0b1a3a90e660f69195",
+        "size": 730301,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14543241729,
+        "createdAt": "2026-11-19T15:06:34Z",
+        "sha": "38d3b88466e2f63c12e9c226d6f4468bf7eb0b73",
+        "zipSha256": "1ad1ce26b3104638a81536dd692b0389837297ce510ba49ded1567932a04bd62",
+        "size": 18004053,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14543567203,
+        "createdAt": "2026-11-19T15:08:56Z",
+        "sha": "38d3b88466e2f63c12e9c226d6f4468bf7eb0b73",
+        "zipSha256": "1d380383f4b2be0c336baa19bebf79f3cad3771e996ac1409053b2ada4653dab",
+        "size": 16009423,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14543391666,
+        "createdAt": "2026-11-19T15:07:23Z",
+        "sha": "38d3b88466e2f63c12e9c226d6f4468bf7eb0b73",
+        "zipSha256": "9ec6ff2113501696ccff795a7d2f018f0c7021062c99d866d885af3173905f55",
+        "size": 20666028,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  }
+}

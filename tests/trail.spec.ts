@@ -100,6 +100,7 @@ test('real isolated town: timed opening, personal trail journal and permanent ho
   // Actual direct canvas doorway input; no position injection or movement API shortcut.
   await point(owner,25.5,11.25);await expect.poll(async()=>(await actor(owner)).room,{timeout:arrivalTimeout}).toBe('trail');
   expect((await actor(owner)).position).toEqual({x:9,y:22});
+  await expect.poll(async () => (await apiSnapshot(owner)).position.room).toBe('trail');
   await confirmScore(owner, 'The trees have seniority');
   await owner.screenshot({path:evidence+'/trail-desktop-entry.png'});
   for(const landmarkId of TRAIL_LANDMARK_IDS){

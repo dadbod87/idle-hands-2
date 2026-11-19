@@ -200,8 +200,12 @@ test('Jun gives a narrow-phone resident one useful orchard walk without changing
   const card=page.locator('.jun-orchard');
   await expect(card.getByText('You have one apple. Forked branch has the next one.')).toBeVisible();
   const travel=card.getByRole('button',{name:'Walk to Forked branch',exact:true});
-  await travel.scrollIntoViewIfNeeded();
-  expect((await travel.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  const button=(await travel.boundingBox())!;
+  const head=(await page.locator('.dialog-head').boundingBox())!;
+  const dialog=(await page.getByRole('dialog').boundingBox())!;
+  expect(button.height).toBeGreaterThanOrEqual(44);
+  expect(button.y).toBeGreaterThanOrEqual(head.y+head.height);
+  expect(button.y+button.height).toBeLessThanOrEqual(dialog.y+dialog.height);
   mkdirSync(output,{recursive:true});
   await page.screenshot({path:output+'/jun-phone.png'});
   await travel.tap();

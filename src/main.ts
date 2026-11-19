@@ -382,7 +382,7 @@ function activate(stop: Stop) {
           button.onclick=()=>goNamedDestination('square',destination);
           card.append(button);
         }
-        body.append(card);
+        body.querySelector('p')?.after(card);
       }
     }
     return;

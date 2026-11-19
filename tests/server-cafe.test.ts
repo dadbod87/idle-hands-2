@@ -1,3 +1,4 @@
+import { expectedMigrationLedger } from './pg-fixture-tools.ts';
 import {test} from 'node:test';
 import {preCommissionWorkshop} from './legacy-workshop.ts';
 import assert from 'node:assert/strict';
@@ -51,7 +52,7 @@ test('isolated PostgreSQL cafe atomic authority and recovery',{skip:!candidateUr
   await t.test('read-only migration/projection preserves raw legacy, six checksums, jobs, seeds, receipts and does not expose other private state',async()=>{
    const old=legacy();old.inventory={scrap:3,timber:2,supplies:1};old.job={recipe:'bridge-kit',startedAt:start,readyAt:start+12*H};old.receipts=[{id:'old-ordinary',revision:0,message:'Historical ordinary command'}];
    assert.equal(loadWorkshop(old,start).recovered,false);await pool.query('update ih2.players set workshop=$2 where id=$1',['aster',old]);
-   const hashes=await clocks(),allMigrations=await allClocks(),before=await fingerprint();assert.equal(allMigrations.length,11);assert.deepEqual(Object.fromEntries(hashes.map(row=>[row.version,row.checksum])),recordedLegacy);now+=H;const s=await store.snapshot('aster');assert.equal(s.workshop.version,3);assert.deepEqual(s.workshop.job,old.job);assert.deepEqual(await fingerprint(),before);
+   const hashes=await clocks(),allMigrations=await allClocks(),before=await fingerprint();assert.deepEqual(allMigrations,await expectedMigrationLedger());assert.deepEqual(Object.fromEntries(hashes.map(row=>[row.version,row.checksum])),recordedLegacy);now+=H;const s=await store.snapshot('aster');assert.equal(s.workshop.version,3);assert.deepEqual(s.workshop.job,old.job);assert.deepEqual(await fingerprint(),before);
    assert.deepEqual(Object.keys(s.public).sort(),['credits','phase','readyAt']);assert.equal('players' in s,false);assert.deepEqual(await state(),old);
    const r=await serve();assert.ok(r.ok,r.message);assert.equal((await state()).version,3);for(const k of ['job','inventory','receipts','stats','skills','sketches','carpentry','commission'])assert.deepEqual(r.snapshot.workshop[k as keyof typeof r.snapshot.workshop],old[k as keyof typeof old],k);
    assert.deepEqual(r.snapshot.workshop.garden.seeds,old.garden.seeds);assert.equal(r.snapshot.workshop.garden.harvested.radish,12);assert.equal(r.snapshot.workshop.garden.produce.radish,11);assert.equal(r.snapshot.workshop.garden.consumed.cafe.radish,1);assert.deepEqual(await clocks(),hashes);assert.equal(hashes.length,6);assert.deepEqual(await allClocks(),allMigrations);

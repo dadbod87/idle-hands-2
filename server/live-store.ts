@@ -1,3 +1,4 @@
+import { earnedNaturalist, type HomeKeepsake } from '../src/game/home-keepsake.ts';
 import {atParcelShelf,lockSnackParcel,readSnackShelf,snackCommandSchema,snackSlotHeld,writeSnackParcel} from './snack-shelf.ts';
 import {confirmOrchardAction,orchardSnapshot} from './orchard-command.ts';
 import {orchardActionSchema,type OrchardPantry} from '../src/game/orchard.ts';
@@ -26,7 +27,7 @@ import { canStand, worlds, TRAIL_LANDMARK_IDS, type Point, type Room } from '../
 import { PLOT_CLAIM_KITS, PLOT_UPGRADE_KITS, MAINTENANCE_MS, MAINTENANCE_COST, BRIDGE_BUILD_MS, TRAIL_PENNANT_AWARD } from '../src/game/town-rules.ts';
 
 export type TownPosition = { room: Room; position: Point; homePlotId?: string; districtId?:string };
-export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'];workroomPlacements:HomeLayout['workroomPlacements']; pennantOwned:boolean;letterboxMotif:LetterboxMotif|null;planId?:string|null;yard?:ReturnType<typeof emptyYard>;construction?:string|null;housingRevision?:number };
+export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'];workroomPlacements:HomeLayout['workroomPlacements']; pennantOwned:boolean;letterboxMotif:LetterboxMotif|null;planId?:string|null;yard?:ReturnType<typeof emptyYard>;construction?:string|null;housingRevision?:number;keepsake?:HomeKeepsake|null };
 export type MaintenanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot = {
   outing:OutingState;
@@ -60,6 +61,7 @@ const specialSchema = z.discriminatedUnion('kind', [
   z.object({ ...base, kind:z.literal('redeem-lesson'),route:z.enum(['construction','upkeep']),expectedBridgeContributed:z.number().int().min(0).max(3) }).strict(),
   z.object({ ...base, kind: z.literal('claim-plot') }).strict(),
   z.object({ ...base, kind: z.literal('upgrade-plot'), plotId: z.string().regex(/^[1-9][0-9]{0,17}$/) }).strict(),
+  z.object({...base,kind:z.literal('display-home-keepsake'),plotId:z.string().regex(/^[1-9][0-9]{0,17}$/),keepsake:z.literal('naturalist').nullable()}).strict(),
   z.object({ ...base, kind: z.literal('edit-plot'), plotId: z.string().regex(/^[1-9][0-9]{0,17}$/), action: z.enum(['place', 'remove']), slot: slotSchema, prop: z.enum(PROP_IDS).optional(), fromSlot: slotSchema.optional() }).strict()
 ]);
 const orchardCommandSchema = z.object({...base,kind:z.literal('orchard'),expectedPlayerId:idSchema,action:orchardActionSchema}).strict();
@@ -140,7 +142,8 @@ export class TownStore {
     const player=data.player;
     // A visitor sees the selected appearance only when the one owned box is
     // actually placed in this home. Register consent is a separate projection.
-    const plots = data.plots.map(p => ({ id:p.id,ownerId:p.owner_id,ownerName:p.name,level:p.level as 1|2,placements:p.placements,workroomPlacements:p.workroom_placements,pennantOwned:p.pennant_owned,planId:p.plan_id,yard:p.yard,housingRevision:p.housing_revision,letterboxMotif:(MOTIFS as readonly unknown[]).includes(p.letterbox_motif)?p.letterbox_motif as LetterboxMotif:null }));
+    const visitingId = isHome(player.position.room) ? player.position.homePlotId : undefined;
+    const plots = data.plots.map(p => ({ id:p.id,ownerId:p.owner_id,ownerName:p.name,...(p.id===visitingId?{keepsake:p.keepsake}:{}),level:p.level as 1|2,placements:p.placements,workroomPlacements:p.workroom_placements,pennantOwned:p.pennant_owned,planId:p.plan_id,yard:p.yard,housingRevision:p.housing_revision,letterboxMotif:(MOTIFS as readonly unknown[]).includes(p.letterbox_motif)?p.letterbox_motif as LetterboxMotif:null }));
     if(plots.some(p=>!validPublicHouse(p)))throw new Error('Stored home layout failed validation. Progress was not replaced.');
     const bridgeRow = data.bridge;
     // Explicit projection only: never select other residents' private garden JSON.
@@ -207,11 +210,12 @@ export class TownStore {
         return { ...result, replayed: prior.payload_hash === hash(raw), snapshot };
       }
       let result: Receipt = { ok: false, message: '', revision: state.revision };
-      const ownPlot = (await client.query('select id::text,owner_id,level,placements,workroom_placements,plan_id,yard from ih2.plots where owner_id=$1 for update', [id])).rows[0];
+      const keepsakeColumn = cmd.kind==='display-home-keepsake'?',keepsake':'';
+      const ownPlot = (await client.query('select id::text,owner_id,level,placements,workroom_placements,plan_id,yard'+keepsakeColumn+' from ih2.plots where owner_id=$1 for update', [id])).rows[0];
       const ownLayout:(HomeLayout&{yard?:ReturnType<typeof emptyYard>})|null=ownPlot?{level:ownPlot.level,placements:ownPlot.placements,workroomPlacements:ownPlot.workroom_placements,yard:ownPlot.yard}:null;
       if(ownLayout&&(!isCurrentHomeLayout(ownLayout)||!homeAllocationValid(state,ownLayout)))throw new Error('Stored home layout failed validation. Nothing was replaced.');
       const special = specialSchema.safeParse(raw);
-      const specialKinds = ['contribute', 'claim-plot', 'upgrade-plot', 'edit-plot','enter-home','enter-neighborhood','start-lesson','complete-lesson','redeem-lesson','stamp-trail'];
+      const specialKinds = ['contribute', 'claim-plot', 'upgrade-plot', 'edit-plot','display-home-keepsake','enter-home','enter-neighborhood','start-lesson','complete-lesson','redeem-lesson','stamp-trail'];
       const contextPlot=isHome(position.room)?(await client.query('select id::text,owner_id,level from ih2.plots where id=$1',[position.homePlotId])).rows[0]:null;
       const validContext=(!isHome(position.room)||!!contextPlot&&position.room===(contextPlot.level===2?'home-expanded':'home'))&&(position.room!=='neighborhood'||districtExists(position.districtId!, (await client.query('select id::text from ih2.plots')).rows))&&(position.room!=='trail'||(await client.query('select phase from ih2.bridge where id=1')).rows[0].phase==='open');
       const reject = (message: string) => { result = { ok: false, message, revision: state.revision }; };
@@ -297,6 +301,20 @@ export class TownStore {
             if(!streetDoor&&!near(position,'square','plot')&&!near(position,'square','home-front'))reject('Walk to the home entrance before entering.');
             else if(!target)reject('That home does not exist.');
             else{authoritativePosition={room:target.level===2?'home-expanded':'home',homePlotId:target.id,...(streetDoor?{districtId:address.block}:{}),position:{x:9,y:11}};state.revision++;state.observedAt=now;state.lastMessage='Entered home '+target.id+'. Visitors may look; only the owner may arrange it.';result={ok:true,message:state.lastMessage,revision:state.revision};}
+          }else if(action.kind==='display-home-keepsake'){
+            if(!ownPlot||ownPlot.id!==action.plotId||!isHome(position.room)||position.homePlotId!==ownPlot.id)
+              reject('Only the owner can change the keepsake from inside this home.');
+            else if(action.keepsake&&!earnedNaturalist(state.sketches))
+              reject('Record all three tree studies to earn the certificate.');
+            else if(action.keepsake===ownPlot.keepsake)
+              reject(action.keepsake?'This certificate is already displayed.':'The display is already empty.');
+            else {
+              await client.query('update ih2.plots set keepsake=$2 where owner_id=$1',[id,action.keepsake]);
+              state.revision++;
+              state.observedAt=now;
+              state.lastMessage=action.keepsake?'Certificate displayed for visitors.':'Frame taken down. The certificate stays in Journal.';
+              result={ok:true,message:state.lastMessage,revision:state.revision,publicChanged:true};
+            }
           }else if(action.kind==='start-lesson'||action.kind==='complete-lesson'||action.kind==='redeem-lesson'){
             await client.query('insert into ih2.maintenance_lessons(player_id) values($1) on conflict do nothing',[id]);
             const lesson=(await client.query('select * from ih2.maintenance_lessons where player_id=$1 for update',[id])).rows[0];

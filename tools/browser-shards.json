@@ -9,6 +9,7 @@
     "depot-art.spec.ts",
     "garden.spec.ts",
     "home-identity.spec.ts",
+    "home-keepsake.spec.ts",
     "maintenance-ui.spec.ts",
     "phone-clarity.spec.ts",
     "pilot.spec.ts",

@@ -2,6 +2,7 @@
   "1": [
     "allotment-runtime.spec.ts",
     "allotment-study.spec.ts",
+    "canopy-transform-budget.spec.ts",
     "collection-runtime.spec.ts",
     "commons-life.spec.ts",
     "current-actions.spec.ts",

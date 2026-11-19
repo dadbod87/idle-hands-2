@@ -31,7 +31,7 @@ export function orchardBranchFromStop(stopId: string): BranchId | undefined {
 const maximum = Number.MAX_SAFE_INTEGER - APPLE_REGROW_MS;
 const timestamp = z.number().int().min(0).max(maximum);
 const total = z.number().int().min(0).max(1_000_000);
-const record = z.object({
+export const orchardStateSchema = z.object({
  version: z.literal(1),
  observedAt: timestamp,
  picked: total,
@@ -49,24 +49,24 @@ const record = z.object({
   (state.parcel===null ||
    state.parcel.startedAt<=state.observedAt && state.parcel.readyAt-state.parcel.startedAt===PACK_SNACK_MS);
 });
-export type Orchard = z.infer<typeof record>;
+export type Orchard = z.infer<typeof orchardStateSchema>;
 export const newOrchard = (): Orchard => ({
  version:1, observedAt:0, picked:0, packed:0, tasted:0, apples:0, snacks:0,
  ripeAt:{'low-branch':0,'two-forks':0,'over-the-path':0}, parcel:null,
 });
 
-const actionSchema = z.discriminatedUnion('kind',[
+export const orchardActionSchema = z.discriminatedUnion('kind',[
  z.object({kind:z.literal('pick'),branch:z.enum(BRANCH_IDS)}).strict(),
  z.object({kind:z.literal('pack')}).strict(),
  z.object({kind:z.literal('collect')}).strict(),
  z.object({kind:z.literal('taste')}).strict(),
 ]);
-export type OrchardAction = z.infer<typeof actionSchema>;
+export type OrchardAction = z.infer<typeof orchardActionSchema>;
 type Result = {ok:true; state:Orchard; message:string} | {ok:false; message:string};
 
 export function orchardAction(state: Orchard, raw: OrchardAction, now: number): Result {
- const checked = actionSchema.safeParse(raw);
- if (!checked.success || !record.safeParse(state).success) return {ok:false,message:'The orchard record could not be confirmed.'};
+ const checked = orchardActionSchema.safeParse(raw);
+ if (!checked.success || !orchardStateSchema.safeParse(state).success) return {ok:false,message:'The orchard record could not be confirmed.'};
  if (!timestamp.safeParse(now).success || now < state.observedAt || now + APPLE_REGROW_MS > maximum) {
   return {ok:false,message:'The browser clock needs to catch up. Your orchard is unchanged.'};
  }
@@ -105,7 +105,7 @@ export function orchardAction(state: Orchard, raw: OrchardAction, now: number): 
   message = 'Tasted an orchard snack. A crisp result with very little paperwork.';
   break;
  }
- return record.safeParse(next).success ? {ok:true,state:next,message} :
+ return orchardStateSchema.safeParse(next).success ? {ok:true,state:next,message} :
   {ok:false,message:'The orchard record reached its limit. Nothing was changed.'};
 }
 
@@ -119,7 +119,7 @@ export function readOrchard(storage: StoragePort): OrchardRead {
  if (raw === null) return {status:'ready',raw,state:newOrchard()};
  if (raw.length <= 1500) {
   try {
-   const parsed=record.safeParse(JSON.parse(raw));
+   const parsed=orchardStateSchema.safeParse(JSON.parse(raw));
    if (parsed.success) return {status:'ready',raw,state:parsed.data};
   } catch { /* Keep the unreadable record for possible recovery. */ }
  }

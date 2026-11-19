@@ -9,6 +9,7 @@ import {renderPlaces} from './ui/places.ts';
 import {freshBridgeOpening} from './game/bridge-ceremony.ts';
 import {mountBrowserResident} from './ui/browser-resident.ts';
 import {OrchardUI} from './ui/orchard.ts';
+import {sharedOrchard} from './ui/town-orchard.ts';
 import {ORCHARD_BRANCHES,ORCHARD_STOPS,orchardBranchFromStop} from './game/orchard.ts';
 import {homeDisplay} from './game/live-home-layout.ts';
 import {CommissionUI} from './ui/commission.ts';
@@ -38,7 +39,7 @@ const townMode=new URLSearchParams(window.location.search).has('town');
 const saveKey = 'ih2:pilot-position:v1';
 let stored: unknown;
 try { stored = townMode?null:JSON.parse(localStorage.getItem(saveKey) ?? 'null'); } catch { stored = null; }
-const session = new Session(townMode?null:stored,townMode?[]:ORCHARD_STOPS);
+const session = new Session(townMode?null:stored,townMode?undefined:ORCHARD_STOPS);
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
@@ -164,6 +165,7 @@ const town=townMode?new TownClient({
   if(cue)music.cue(cue);
  },
  onSnapshot:(snapshot,previous)=>{
+ session.setSquareStops(snapshot.orchard!==undefined?ORCHARD_STOPS:undefined);
  const celebrateBridge=!needResync&&freshBridgeOpening(previous??null,snapshot);
  skyOffset=snapshot.serverTime-Date.now();const identityChanged=residentId!==snapshot.playerId;const expandedInPlace=session.room==='home'&&snapshot.position.room==='home-expanded'&&snapshot.position.homePlotId===homePlotId;
  // Ordinary snapshots can race acknowledged movement. Only explicit entry/resume or an in-place forward expansion adopts feet.
@@ -187,17 +189,20 @@ const remoteWorkshop=town?.workshopAdapter();
 const outingUI=new OutingUI({open:openPanel,body,position:()=>({room:session.room,position:session.position}),go:id=>goNamedDestination('square',id),changed:()=>{scene.refreshOuting();refreshMenuFrame(2);},feedback:message=>feedback.textContent=message},town);
 scene.outingState=()=>outingUI.snapshot();
 const orchardTable=worlds.square.stops.find(stop=>stop.id==='commons-orchard')!;
-const orchardUI=townMode?null:new OrchardUI({
+const orchardAvailable=()=>!town||town.snapshot?.orchard!==undefined;
+const orchardPort=town?sharedOrchard(town,()=>!needResync&&!transitionBusy&&contextKey(session.room,homePlotId)===confirmedContext):undefined;
+const orchardUI=new OrchardUI({
  open:openPanel,close:closePanel,body,feedback:message=>feedback.textContent=message,walk:walkToPlace,
- at:stop=>session.room==='square'&&Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.25,
+ at:stop=>session.room==='square'&&session.nearby()?.id===stop.id,
  pick:id=>{
   const branch=ORCHARD_BRANCHES.find(branch=>branch.id===id)!;
   scene.playOrchardPick(branch);
   music.cue('gather');
  },
-},orchardTable);
-if(orchardUI)scene.orchardState=()=>orchardUI.state;
-const workshop=new WorkshopUI({...(orchardUI?{orchard:()=>orchardUI.state,orchardWalk:()=>goNamedDestination('square',orchardTable.id)}:{}),cue:music.cue,outings:()=>outingUI.show(),owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
+},orchardTable,orchardPort);
+scene.orchardState=()=>orchardAvailable()?orchardUI.state:undefined;
+scene.orchardNow=orchardPort?.now??Date.now;
+const workshop=new WorkshopUI({orchard:()=>orchardAvailable()?orchardUI.state:undefined,orchardWalk:()=>goNamedDestination('square',orchardTable.id),cue:music.cue,outings:()=>outingUI.show(),owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
 cafeUI=new CafeUI({open:openPanel,body,owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,canUse:()=>session.room==='square'&&Math.hypot(session.position.x-30,session.position.y-22)<=1.4,project:()=>town?.snapshot?.cafe,shared:townMode,bag:()=>workshop.showInventory(),garden:()=>goNamedDestination('square','allotment'),feedback:message=>feedback.textContent=message},workshop);
 gardenUI=new GardenUI({open:openPanel,body,feedback:message=>feedback.textContent=message,shared:townMode,owner:()=>town?.snapshot?.playerId??'local',publicState:()=>town?.snapshot?.gardenTown,changed:()=>{scene.refreshGarden();refreshMenuFrame(2);unlockWorld();},canUse:action=>gardenActionLocations(action).some(location=>{const stop=worlds[location.room].stops.find(s=>s.id===location.stopId);return session.room===location.room&&!!stop&&Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.4;}),go:goNamedDestination,accepted:action=>{if(action.action==='plant')scene.playGardenAction('sow');else if(action.action==='harvest')scene.playGardenAction('harvest');else if(action.action==='observe')scene.playGardenAction('inspect');}},workshop);
 scene.ordinaryJob=()=>workshop.confirmedBenchJob();
@@ -325,7 +330,7 @@ async function enterRemotePortal(stop:Stop){
  }
 }
 function activate(stop: Stop) {
-  if(orchardUI){
+  if(orchardAvailable()){
    if(stop.id===orchardTable.id){orchardUI.showTable();return;}
    const branch=orchardBranchFromStop(stop.id);
    if(branch){orchardUI.showBranch(stop,branch);return;}
@@ -415,7 +420,7 @@ scene.onFrame = () => {
     location.textContent=roomName;const sub=document.createElement('span');sub.textContent=hint;location.append(sub);
     if(town){const label=document.createElement('small');label.className='fixture-label';label.textContent='Practice town · '+(town.snapshot?.name??'choose a resident');location.append(label);}
     interactLabel.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby';
-    if(stop&&orchardUI&&orchardBranchFromStop(stop.id))interactLabel.textContent='Inspect branch';
+    if(stop&&orchardAvailable()&&orchardBranchFromStop(stop.id))interactLabel.textContent='Inspect branch';
     if(stop?.id==='trail-gate'&&!scene.bridgeRestored)interactLabel.textContent='Inspect bridge';
 
     interactButton.setAttribute('aria-label', stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');

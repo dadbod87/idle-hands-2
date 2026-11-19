@@ -44,7 +44,9 @@ test('coherent snapshot projection preserves the accepted reader and authoritati
     const before=await counted(client,()=>acceptedSnapshot120(client,id,now));
     const after=await counted(client,()=>reader.readSnapshot(client,id,now));
     assert.equal(before.queries,15);assert.equal(after.queries,1);
-    assert.deepEqual(after.value,before.value);return after.value;
+    const {orchard,...unchanged}=after.value;
+    assert.equal(orchard,null);
+    assert.deepEqual(unchanged,before.value);return after.value;
    }finally{await client.query('rollback');client.release();}
   }
   await t.test('one read exactly preserves defaults and numeric26-home order for owner and visitor',async()=>{

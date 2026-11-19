@@ -95,7 +95,7 @@ export async function sessionChild() {
     for (const version of (await readdir(dir)).filter(f => /^\d+_.+\.sql$/.test(f)).sort()) {
       expected.push({version, checksum: createHash('sha256').update(await readFile(new URL(version, dir))).digest('hex')});
     }
-    assert.equal(migrations.length, 9); assert.deepEqual(migrations, expected);
+    assert.equal(migrations.length, 10); assert.deepEqual(migrations, expected);
     const settings = (await pool.query("select name,setting from pg_settings where name in ('fsync','full_page_writes','synchronous_commit') order by name")).rows;
     assert.equal(settings.length, 3); assert.ok(settings.every(r => r.setting === 'on'));
     return {residents: 20, uniqueReceipts: 140, revisionEach: 7,

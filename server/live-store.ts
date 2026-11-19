@@ -1,3 +1,5 @@
+import {confirmOrchardAction,orchardSnapshot} from './orchard-command.ts';
+import {orchardActionSchema,type Orchard} from '../src/game/orchard.ts';
 import{readSnapshotRows}from'./snapshot-rows.ts';
 import{outingAction}from'./outing.ts';
 import{outingSchema,createOuting,type OutingState}from'../src/game/outing.ts';
@@ -27,6 +29,7 @@ export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 
 export type MaintenanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot = {
   outing:OutingState;
+  orchard?: Orchard | 'unavailable' | null;
   housingSites:Array<{plotId:string;ownerId:string;ownerName:string;phase:'building'|'ready'}>;housing:Awaited<ReturnType<typeof privateHousing>>;cafe:CafePublicState;
   playerId: string; name: string; workshop: WorkshopState; position: TownPosition;
   quest: { contentVersion: 1; awarded: string[] };
@@ -42,7 +45,7 @@ export type TownSnapshot = {
 };
 export type TownResult = { ok: boolean; message: string; replayed: boolean; revision: number; snapshot: TownSnapshot; publicChanged?:boolean;collection?:CollectionGrant;teapotAwarded?:boolean };
 type Receipt = Omit<TownResult, 'snapshot' | 'replayed'>;
-type PlayerRow = { id: string; name: string; workshop: WorkshopState; position: TownPosition; quest_content_version: number };
+type PlayerRow = { id: string; name: string; workshop: WorkshopState; position: TownPosition; quest_content_version: number; orchard:unknown };
 const idSchema = z.string().regex(/^[a-zA-Z0-9:_-]{1,80}$/);
 const base = { id: idSchema, expectedRevision: z.number().int().min(0).max(1_000_000) };
 const slotSchema = z.enum(HOME_SLOTS.map(s => s.id) as [string, ...string[]]);
@@ -58,6 +61,7 @@ const specialSchema = z.discriminatedUnion('kind', [
   z.object({ ...base, kind: z.literal('upgrade-plot'), plotId: z.string().regex(/^[1-9][0-9]{0,17}$/) }).strict(),
   z.object({ ...base, kind: z.literal('edit-plot'), plotId: z.string().regex(/^[1-9][0-9]{0,17}$/), action: z.enum(['place', 'remove']), slot: slotSchema, prop: z.enum(PROP_IDS).optional(), fromSlot: slotSchema.optional() }).strict()
 ]);
+const orchardCommandSchema = z.object({...base,kind:z.literal('orchard'),expectedPlayerId:idSchema,action:orchardActionSchema}).strict();
 const envelopeSchema = z.object({ ...base, kind: z.string().max(30) }).passthrough();
 const initialPosition: TownPosition = { room: 'square', position: { x: 24, y: 25 } };
 function emptyPlacements(): WorkshopState['placements'] { return Object.fromEntries(PLACEMENT_SLOTS.map(s => [s.id, null])) as WorkshopState['placements']; }
@@ -151,7 +155,7 @@ export class TownStore {
     const noticeboard:NoticeboardState={credits:bridgeRow.notice_credits,phase:bridgeRow.notice_phase,startedAt:bridgeRow.notice_started===null?null:Number(bridgeRow.notice_started),readyAt:bridgeRow.notice_ready===null?null:Number(bridgeRow.notice_ready),openedAt:bridgeRow.notice_opened===null?null:Number(bridgeRow.notice_opened)};
     const workshop=this.readState(player,now),own=plots.find(p=>p.ownerId===id);if(own&&!homeAllocationValid(workshop,own))throw new Error('Stored furniture allocation failed validation. Nothing was replaced.');
     const cafeRow=data.cafe;const cafe=cafePublic(this.readCafe(cafeRow));
-    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {orchard:orchardSnapshot(player.orchard),outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position: canonicalHomePosition(player.position,plots), lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string): Promise<TownSnapshot> {
     const client = await this.pool.connect();
@@ -184,6 +188,7 @@ export class TownStore {
       }
       await this.settleBridge(client,now,false);
       let state = this.readState(player, now);let authoritativePosition=position;
+      let orchardUpdate:Orchard|undefined;
       const prior = (await client.query('select payload_hash,result from ih2.command_receipts where player_id=$1 and command_id=$2', [id, cmd.id])).rows[0];
       if (prior) {
         const result: Receipt = prior.payload_hash === hash(raw) ? prior.result : { ok: false, message: 'That command ID was already used for a different request.', revision: state.revision };
@@ -203,6 +208,20 @@ export class TownStore {
       else if (!(position.room==='neighborhood'?canStand(position.room,position.position,housingWorld((await client.query('select id::text,plan_id as "planId" from ih2.plots')).rows,position.districtId!)):validPosition(position))||!validContext) reject('A valid server position is required.');
       else if (clockWentBack || now < state.observedAt) reject('The server clock moved backwards. Your progress is unchanged.');
       else if (state.revision >= 1_000_000) reject('Prototype command limit reached. Your progress is unchanged.');
+      else if(cmd.kind==='orchard'){
+        const request=orchardCommandSchema.safeParse(raw);
+        if(!request.success)reject('That orchard request is invalid.');
+        else if(request.data.expectedPlayerId!==id)reject('The active resident changed. Nothing was picked or packed.');
+        else {
+          const applied=confirmOrchardAction(player.orchard,request.data.action,position,now);
+          if(!applied.ok)reject(applied.message);
+          else {
+            orchardUpdate=applied.state;
+            state={...state,revision:state.revision+1,observedAt:now,lastMessage:applied.message};
+            result={ok:true,message:applied.message,revision:state.revision};
+          }
+        }
+      }
       else if(cmd.kind==='outing'){
         const shape=z.object({...base,kind:z.literal('outing'),outingAction:z.unknown()}).strict().safeParse(raw);
         if(!shape.success)reject('Invalid outing request. Nothing changed.');
@@ -362,7 +381,8 @@ export class TownStore {
       if(result.ok){await housingAccount(client,id,state,(await client.query('select id::text,level,placements,workroom_placements,plan_id,yard from ih2.plots where owner_id=$1',[id])).rows[0]??null);}
       if (result.ok) {
         if (questStep(state).complete) await client.query('insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing', [id, 'orientation-v1']);
-        await client.query('update ih2.players set workshop=$2,position=$3,quest_content_version=1,updated_at=now() where id=$1', [id, state, authoritativePosition]);
+        if(orchardUpdate)await client.query('update ih2.players set workshop=$2,position=$3,quest_content_version=1,updated_at=now(),orchard=$4 where id=$1', [id,state,authoritativePosition,orchardUpdate]);
+        else await client.query('update ih2.players set workshop=$2,position=$3,quest_content_version=1,updated_at=now() where id=$1', [id, state, authoritativePosition]);
       } else if (player.quest_content_version === 0) {
         // Content migration changes metadata only; stable award IDs survive and no reward is reissued.
         await client.query('update ih2.players set quest_content_version=1 where id=$1', [id]);

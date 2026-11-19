@@ -1,4 +1,4 @@
-import { worlds, canStand, routeTo, type Room, type Point, type Stop,type World } from './world.ts';
+import { worlds, canStand, clearSegment, routeTo, type Room, type Point, type Stop,type World } from './world.ts';
 export type SavedPosition = { version: 1; room: Room; position: Point };
 const spawn: Record<Room, Point> = { neighborhood:{x:31.5,y:2.5}, square: { x: 24, y: 25 }, workshop: { x: 9, y: 11 }, home: {x:9,y:11}, 'home-expanded': {x:9,y:11},trail:{x:9,y:22},garden:{x:9,y:14} };
 export const WALK_SPEED = 5; // World tiles per second; the actor is never snapped to them.
@@ -10,10 +10,16 @@ export class Session {
   locked = false;
   private moving = false;
   private pendingStop: string | null = null;
-  private squareStops: readonly Stop[];
+  private squareStops: readonly Stop[] = worlds.square.stops;
+  private extraSquareStops?:readonly Stop[];
   get stops(): readonly Stop[] { return this.room==='square'?this.squareStops:worlds[this.room].stops; }
-  constructor(saved?: unknown, extraSquareStops: readonly Stop[] = []) {
-    this.squareStops = extraSquareStops.length?[...worlds.square.stops,...extraSquareStops]:worlds.square.stops;
+  setSquareStops(extra?:readonly Stop[]){
+    if(this.extraSquareStops===extra)return;
+    this.extraSquareStops=extra;
+    this.squareStops=extra?.length?[...worlds.square.stops,...extra]:worlds.square.stops;
+  }
+  constructor(saved?: unknown, extraSquareStops?: readonly Stop[]) {
+    this.setSquareStops(extraSquareStops);
     if (!saved || typeof saved !== 'object') return;
     const s = saved as Partial<SavedPosition>;
     if (s.version === 1 && (s.room === 'square' || s.room === 'workshop'||s.room==='garden') && s.position && canStand(s.room, s.position)) {
@@ -41,10 +47,14 @@ export class Session {
     if(!target||this.locked)return false;
     const accepted=this.walk(target.point);if(accepted)this.pendingStop=target.id;return accepted;
   }
+  private canInspect(stop:Stop):boolean {
+    return Math.hypot(this.position.x-stop.point.x,this.position.y-stop.point.y)<=1.25 &&
+      (!this.extraSquareStops?.includes(stop)||clearSegment(this.room,this.position,stop.point));
+  }
   takeArrival(): Stop | undefined {
     if (this.locked || !this.pendingStop) return;
     const target = this.stops.find(stop => stop.id === this.pendingStop);
-    if (!target || Math.hypot(this.position.x - target.point.x, this.position.y - target.point.y) > 1.25) return;
+    if (!target || !this.canInspect(target)) return;
     this.stop();
     return target;
   }
@@ -82,7 +92,7 @@ export class Session {
     }
     this.moving = Math.hypot(this.position.x - before.x, this.position.y - before.y) > .00001;
   }
-  nearby(): Stop | undefined { return this.stops.find(s => Math.hypot(this.position.x - s.point.x, this.position.y - s.point.y) <= 1.25); }
+  nearby(): Stop | undefined { return this.stops.find(stop=>this.canInspect(stop)); }
   enter(room: Room, arrival: Point = spawn[room]): void {
     if (!canStand(room, arrival,room==='neighborhood'?this.geometry:undefined)) throw new Error('Transition arrival must be collision-safe.');
     this.stop(); this.room = room; this.position = { ...arrival };

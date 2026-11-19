@@ -2718,7 +2718,7 @@
     {
       "id": "IH2-145",
       "title": "Choose a landmark directly from the town map",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/orchard-and-map-travel",
       "depends_on": [
         "IH2-139"
@@ -2731,13 +2731,15 @@
         "Saved services remain stopped. No original-game, paid or hosted change."
       ],
       "evidence": [
-        "docs/evidence/IH2-145/PLAN.md"
-      ]
+        "docs/evidence/IH2-145/PLAN.md",
+        "docs/evidence/IH2-146/ORCHARD_PRACTICE_CI.json"
+      ],
+      "progress_note": "Accepted native map selection and walk using the same Places route. The selected landmark stays marked."
     },
     {
       "id": "IH2-146",
       "title": "Pick and pack a first orchard snack in browser practice",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/orchard-and-map-travel",
       "depends_on": [
         "IH2-141",
@@ -2752,7 +2754,31 @@
         "Saved services remain stopped. No original-game, paid or hosted change."
       ],
       "evidence": [
-        "docs/evidence/IH2-146/PLAN.md"
+        "docs/evidence/IH2-146/PLAN.md",
+        "docs/evidence/IH2-146/ORCHARD_PRACTICE_CI.json"
+      ],
+      "progress_note": "Accepted browser-only orchard with safe paths, timed packing, explicit collection, inventory and a tasting note."
+    },
+    {
+      "id": "IH2-147",
+      "title": "Share the orchard without sharing personal stock",
+      "status": "in_progress",
+      "owner_branch": "feat/shared-orchard",
+      "depends_on": [
+        "IH2-146",
+        "IH2-131"
+      ],
+      "goal": "Let residents harvest and pack in the practice town while conserving each separate pantry.",
+      "acceptance": [
+        "Keep orchard state private on the actor’s locked row, with no additional ordinary snapshot read.",
+        "Validate confirmed feet, server time, exact replay, timed collection, and rollback in disposable database checks.",
+        "Exercise independent residents, reload, a lost reply, keyboard and touch using fictional participants only."
+      ],
+      "exclusions": [
+        "Saved services remain stopped. No original-game, paid or hosted change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-147/PLAN.md"
       ]
     }
   ],

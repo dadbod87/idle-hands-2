@@ -54,7 +54,7 @@ export async function verifyPublicRefresh(pool: Pool, ids: string[]) {
   for (const version of (await readdir(dir)).filter(f => /^\d+_.+\.sql$/.test(f)).sort()) {
     expected.push({version, checksum: createHash('sha256').update(await readFile(new URL(version, dir))).digest('hex')});
   }
-  assert.equal(expected.length, 9); assert.deepEqual(migrations, expected);
+  assert.equal(expected.length, 10); assert.deepEqual(migrations, expected);
   const settings = (await pool.query("select name,setting from pg_settings where name in ('fsync','full_page_writes','synchronous_commit') order by name")).rows;
   assert.equal(settings.length, 3); assert.ok(settings.every(r => r.setting === 'on'));
   return {residents: 20, uniqueReceipts: 15, publicChanges: 15, consumedKits: 3, consumedRadishes: 12,

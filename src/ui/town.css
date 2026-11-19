@@ -90,3 +90,7 @@
 }
 .keepsake-frame-preview::before { left: 10%; }
 .keepsake-frame-preview::after { right: 10%; }
+
+.reading-keepsake { margin: 0; }
+.reading-keepsake img { display: block; max-width: 100%; height: auto; margin: 0 auto .75rem; }
+.reading-keepsake figcaption { padding: .45rem 0; }

@@ -1,3 +1,4 @@
+import { NATURALIST_KEEPSAKE } from './game/home-keepsake.ts';
 import {FIRST_MORNING_KEY,readFirstMorning,saveFirstMorning,type MorningRead} from './game/first-morning.ts';
 import {mountDoorLight} from './ui/door-light.ts';
 import {ARRIVAL_STORIES} from './game/arrival-stories.ts';
@@ -249,7 +250,7 @@ function adoptTownPosition(snapshot:TownSnapshot, throughDoor=false){
  if (residentId !== snapshot.playerId) music.pause();
  music.setLocation(snapshot.position.room,snapshot.position.position);
  namedWalk=null;placeWalk=null;
- portalIntent++;scene.residents=[];homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);walkedDistance=0;confirmedDistance=0;confirmedContext=contextKey(snapshot.position.room,homePlotId);movementEpoch++;residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);scene.homePlotId=homePlotId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??districtId??'1');scene.neighborhoodPlots=snapshot.plots;scene.constructionSites=snapshot.housingSites??[];const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;if(scene.setHomeKeepsake(visited?.keepsake==='naturalist'))refreshMenuFrame(2);unlockWorld();
+ portalIntent++;scene.residents=[];homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);walkedDistance=0;confirmedDistance=0;confirmedContext=contextKey(snapshot.position.room,homePlotId);movementEpoch++;residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);scene.homePlotId=homePlotId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??districtId??'1');scene.neighborhoodPlots=snapshot.plots;scene.constructionSites=snapshot.housingSites??[];const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;syncHomeKeepsake(visited?.keepsake==='naturalist');unlockWorld();
  if(entered)confirmedDoor();
 }
 const town=townMode?new TownClient({
@@ -263,7 +264,7 @@ const town=townMode?new TownClient({
  skyOffset=snapshot.serverTime-Date.now();const identityChanged=residentId!==snapshot.playerId;const expandedInPlace=session.room==='home'&&snapshot.position.room==='home-expanded'&&snapshot.position.homePlotId===homePlotId;
  // Ordinary snapshots can race acknowledged movement. Only explicit entry/resume or an in-place forward expansion adopts feet.
  if(identityChanged||needResync||expandedInPlace||(snapshot.serverInstance&&snapshot.serverInstance!==serverInstance))adoptTownPosition(snapshot);
- scene.homePlotId=homePlotId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??districtId??'1');scene.neighborhoodPlots=snapshot.plots;scene.constructionSites=snapshot.housingSites??[];const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;if(scene.setHomeKeepsake(visited?.keepsake==='naturalist'))refreshMenuFrame(2);scene.houseLevel=Number(snapshot.plot?.level??snapshot.plots[0]?.level??0);scene.residentId=snapshot.playerId;scene.bridgeRestored=snapshot.bridge.restored;scene.bridgePhase=snapshot.bridge.phase;scene.bridgeReadyAt=snapshot.bridge.readyAt??null;if(celebrateBridge&&!panel.open&&scene.playBridgeCeremony())feedback.textContent='Inkwood is open. The bridge has filed its paperwork.';scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();scene.refreshOuting();outingUI?.refresh();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();paintGuideObjective();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
+ scene.homePlotId=homePlotId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??districtId??'1');scene.neighborhoodPlots=snapshot.plots;scene.constructionSites=snapshot.housingSites??[];const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;syncHomeKeepsake(visited?.keepsake==='naturalist');scene.houseLevel=Number(snapshot.plot?.level??snapshot.plots[0]?.level??0);scene.residentId=snapshot.playerId;scene.bridgeRestored=snapshot.bridge.restored;scene.bridgePhase=snapshot.bridge.phase;scene.bridgeReadyAt=snapshot.bridge.readyAt??null;if(celebrateBridge&&!panel.open&&scene.playBridgeCeremony())feedback.textContent='Inkwood is open. The bridge has filed its paperwork.';scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();scene.refreshOuting();outingUI?.refresh();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();paintGuideObjective();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
  onPresence:presence=>{scene.residents=Array.isArray(presence)?presence:[];},
  onConnection:message=>{feedback.textContent=message;if(message.includes('interrupted')){needResync=true;session.lock(true);}},
  beforeCommand:()=>flushMovement(true)
@@ -481,7 +482,28 @@ async function enterRemotePortal(stop:Stop){
   unlockWorld();
  }
 }
+function syncHomeKeepsake(shown:boolean){
+ session.setHomeKeepsake(shown);
+ if(scene.setHomeKeepsake(shown))refreshMenuFrame(2);
+ if(!shown&&panel.open&&body.querySelector('[data-reading-keepsake]'))closePanel();
+}
+function readHomeKeepsake(){
+ if(!session.stops.some(stop=>stop.id==='home-keepsake'))return;
+ openPanel(NATURALIST_KEEPSAKE.name);
+ const card=document.createElement('figure');
+ card.className='reading-keepsake';
+ card.dataset.readingKeepsake='';
+ const art=document.createElement('img');
+ art.src=NATURALIST_KEEPSAKE.art;
+ art.alt='Neighborhood Naturalist certificate with two leaves and a gold seal';
+ art.width=300;art.height=200;
+ const caption=document.createElement('figcaption');
+ caption.textContent=NATURALIST_KEEPSAKE.story;
+ card.append(art,caption);
+ body.append(card);
+}
 function activate(stop: Stop) {
+  if(stop.id==='home-keepsake'){readHomeKeepsake();return;}
   if(orchardAvailable()){
    if(stop.id===orchardTable.id){orchardUI.showTable();return;}
    const branch=orchardBranchFromStop(stop.id);

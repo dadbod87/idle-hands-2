@@ -1,3 +1,7 @@
+# November 19 — a shared orchard with personal stock
+
+The shared practice town supports independent apples and timed snack packing. Verified feet and server time control each action. Main `55d75c58e9922377f262af9fc284f26470aab3d0` passed 566 domain tests and 219 browser cases. [PR #71 evidence](evidence/IH2-147/SHARED_ORCHARD_CI.json).
+
 # November 19 — map walks and browser orchard
 
 Residents can select known walks from the town map. The browser-practice orchard has three personal branches, a timed snack, deliberate collection, Bag quantities and a Journal note. Main `1266efcbff502bcd8e0683ea342cf5fdc19aed4f` passed 562 domain tests and 217 browser cases. [PR #70 evidence](evidence/IH2-146/ORCHARD_PRACTICE_CI.json).

@@ -2762,7 +2762,7 @@
     {
       "id": "IH2-147",
       "title": "Share the orchard without sharing personal stock",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/shared-orchard",
       "depends_on": [
         "IH2-146",
@@ -2778,7 +2778,48 @@
         "Saved services remain stopped. No original-game, paid or hosted change."
       ],
       "evidence": [
-        "docs/evidence/IH2-147/PLAN.md"
+        "docs/evidence/IH2-147/PLAN.md",
+        "docs/evidence/IH2-147/SHARED_ORCHARD_CI.json"
+      ],
+      "progress_note": "Accepted shared practice keeps independent pantry state, actual position authority, exact replay and rollback."
+    },
+    {
+      "id": "IH2-148",
+      "title": "Skip invisible canopy transform writes",
+      "status": "in_progress",
+      "owner_branch": "perf/town-sway-and-parcel-study",
+      "depends_on": [
+        "IH2-113",
+        "IH2-147"
+      ],
+      "goal": "Reduce ambient tree work while maintaining existing wind and weather cues.",
+      "acceptance": [
+        "Keep deterministic visible motion and reduced motion. Count actual writes during equal sample frames and exercise camera travel."
+      ],
+      "exclusions": [
+        "No saved preview, original-game, hosted or paid change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-148/PLAN.md"
+      ]
+    },
+    {
+      "id": "IH2-149",
+      "title": "Rehearse a private parcel shelf at the café",
+      "status": "queued",
+      "owner_branch": "perf/town-sway-and-parcel-study",
+      "depends_on": [
+        "IH2-147"
+      ],
+      "goal": "Prove an optional act of teamwork with concise actions and recoverable private stock.",
+      "acceptance": [
+        "Test conserved held stock, exact expiry and refunds, full pouch, desktop keyboard, narrow touch and shortened enlarged layout in the standalone study."
+      ],
+      "exclusions": [
+        "No saved preview, original-game, hosted or paid change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-149/PLAN.md"
       ]
     }
   ],

@@ -145,3 +145,88 @@ test('café parcel shelf shows full and held pouches and confirms a lost reply w
   }finally{await context.close();}
  }
 });
+
+test('Journal checks private café parcels on request and links to the real counter', async ({browser, baseURL}) => {
+ const context=await browser.newContext({viewport:{width:320,height:650},hasTouch:true,reducedMotion:'reduce',baseURL});
+ try {
+  const page=await context.newPage();
+  const now=Date.now();
+  const position={room:'square' as const,position:{x:30,y:25}};
+  const snapshot:TownSnapshot={
+   playerId:'sorrel',name:'Sorrel',workshop:createWorkshop(now),serverTime:now,serverInstance:'journal-parcels-fixture',
+   position,quest:{contentVersion:1,awarded:[]},bridge:{restored:false,phase:'collecting',contributed:0,target:3},
+   plot:null,plots:[],seasonKey:'fixture',scores:[],orchard:null,cafe:{credits:0,phase:'collecting',readyAt:null},
+  };
+  const shelf:SnackShelf={
+   outgoing:null,incoming:[{id:parcelId,name:'Flint',state:'waiting',placedAt:now,expiresAt:now+SNACK_OFFER_MS}],
+   neighbors:[{id:'flint',name:'Flint'}],serverTime:now,revision:0,
+  };
+  let logged=false,reads=0,commands=0;
+  await page.addInitScript(()=>{
+   class Stream extends EventTarget {
+    onopen:((event:Event)=>void)|null=null;
+    constructor(){super();queueMicrotask(()=>this.onopen?.(new Event('open')));}
+    close(){}
+   }
+   window.EventSource=Stream as unknown as typeof EventSource;
+  });
+  await page.route('**/api/town/**',route=>{
+   switch(new URL(route.request().url()).pathname.split('/').at(-1)){
+    case 'fixtures':return route.fulfill({json:{fixtures:[{id:'sorrel',name:'Sorrel'}]}});
+    case 'login':logged=true;return route.fulfill({json:{snapshot}});
+    case 'snapshot':return logged?route.fulfill({json:{snapshot}}):route.fulfill({status:401,json:{message:'Choose a resident.'}});
+    case 'movement':return route.fulfill({json:{ok:true}});
+    case 'snack-shelf':
+     reads++;
+     if(reads===1)return route.fulfill({status:503,json:{message:'The shelf is busy.'}});
+     return route.fulfill({json:{shelf,playerId:snapshot.playerId,serverInstance:snapshot.serverInstance}});
+    case 'command':commands++;return route.abort();
+    default:return route.abort();
+   }
+  });
+  await page.goto('/?town=1');
+  const dialog=page.getByRole('dialog');
+  const close=page.getByRole('button',{name:'Close panel'});
+  await page.getByRole('button',{name:'Sorrel',exact:true}).click();
+  await expect(dialog).toBeHidden();
+  await page.locator('#journal').tap();
+  const checkNote=page.getByRole('button',{name:'Check for café parcels',exact:true});
+  await expect(checkNote).toBeEnabled();
+  expect(reads).toBe(0);
+  await checkNote.tap();
+  await expect(dialog).toHaveAccessibleName('Café parcels');
+  await expect(close).toBeFocused();
+  await expect(dialog.getByRole('status')).toHaveText('The parcel shelf could not be checked.');
+  expect(reads).toBe(1);
+  await dialog.getByRole('button',{name:'Check again',exact:true}).tap();
+  await expect(dialog.getByRole('status')).toHaveText('One snack was waiting for you.');
+  await expect(dialog.getByText('Flint')).toHaveCount(0);
+  expect(reads).toBe(2);
+  const walk=dialog.getByRole('button',{name:'Walk to the café',exact:true});
+  for(const [name,width,height,text] of [['phone',320,650,100],['desktop',1440,900,100],['short',844,390,200]] as const){
+   await page.setViewportSize({width,height});
+   await page.evaluate(size=>{document.documentElement.style.fontSize=size+'%';},text);
+   await expect(walk).toBeInViewport();
+   expect((await walk.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+   await page.screenshot({path:output+'/journal-note-'+name+'.png'});
+  }
+  await page.setViewportSize({width:320,height:650});
+  await page.evaluate(()=>{document.documentElement.style.fontSize='100%';});
+  await walk.tap();
+  await expect(dialog.getByRole('button',{name:'Visit the parcel shelf'})).toBeVisible({timeout:20000});
+  expect(reads).toBe(2);
+  await dialog.getByRole('button',{name:'Visit the parcel shelf'}).tap();
+  await expect(dialog.getByRole('heading',{name:'A snack from Flint'})).toBeVisible();
+  expect(reads).toBe(3);
+  expect(commands).toBe(0);
+
+  const local=await context.newPage();
+  await local.goto('/');
+  await local.locator('#journal').tap();
+  await expect(local.getByRole('dialog')).toHaveAccessibleName('Journal');
+  await expect(local.getByRole('button',{name:'Check for café parcels'})).toHaveCount(0);
+ } finally {
+  await context.close();
+ }
+});

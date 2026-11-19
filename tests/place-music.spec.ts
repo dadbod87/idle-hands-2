@@ -7,7 +7,7 @@ mkdirSync(output, { recursive: true });
 
 async function instrument(page: Page) {
   await page.addInitScript(() => {
-    const evidence = { contexts: 0, workers: 0, terminated: 0, starts: 0, stops: 0, frames: 0, scoreHash: "" };
+    const evidence = { contexts: 0, workers: 0, terminated: 0, starts: 0, stops: 0, frames: 0, effects: [] as number[], scoreHash: "" };
     Object.assign(window, { __musicEvidence: evidence });
     const NativeContext = window.AudioContext;
     window.AudioContext = class extends NativeContext {
@@ -25,6 +25,7 @@ async function instrument(page: Page) {
     AudioBufferSourceNode.prototype.start = function (...args: Parameters<typeof start>) {
       evidence.starts++;
       evidence.frames = this.buffer?.length ?? 0;
+      if (!this.loop) evidence.effects.push(evidence.frames);
       if (this.buffer && evidence.frames === 745630) {
         const samples = this.buffer.getChannelData(0).slice(0, 569230);
         void crypto.subtle.digest('SHA-256', samples.buffer).then(hash => {
@@ -140,6 +141,13 @@ test('place music controls fit narrow touch and enlarged landscape layouts', asy
       await page.keyboard.press('Home');
       await expect(volume).toHaveValue('0');
       await page.screenshot({ path: output + '/' + layout.name + '-settings.png' });
+      await page.keyboard.press('Tab');
+      await expect(page.locator('#toggle-effects')).toBeFocused();
+      await page.keyboard.press('Tab');
+      const effectsVolume = page.getByRole('slider', { name: 'Effects volume' });
+      await expect(effectsVolume).toBeFocused();
+      await expect(effectsVolume).toBeInViewport();
+      await page.screenshot({ path: output + '/' + layout.name + '-effects.png' });
       const pause = sheet.getByRole('button', { name: 'Pause music' });
       const close = page.getByRole('button', { name: 'Close panel', exact: true });
       expect((await pause.boundingBox())!.width).toBeGreaterThanOrEqual(44);
@@ -187,4 +195,50 @@ test('place music cancels preparation and recovers after a worker load failure',
   await sheet.getByRole('button', { name: 'Play music' }).click();
   await expect(status).toHaveText('Playing · Business as unusual');
   expect(await evidence(page)).toMatchObject({ starts: 1, workers: 3, terminated: 3 });
+});
+
+
+test('optional effects play once for saved gathering and door entry, with independent volume', async ({ page }) => {
+  await instrument(page);
+  await ready(page);
+  const sound = page.getByRole('button', { name: 'Sound settings', exact: true });
+  const close = page.getByRole('button', { name: 'Close panel', exact: true });
+  const openPlace = async (id: string, interaction: string) => {
+    await page.locator('#places').click();
+    await (await revealPlace(page, `[data-destination="${id}"]`)).click();
+    await expect(page.locator('#interact')).toHaveText(interaction, { timeout: 30_000 });
+    await page.locator('#interact').click();
+  };
+  await sound.click();
+  expect(await evidence(page)).toMatchObject({ contexts: 0, starts: 0 });
+  const volume = page.getByRole('slider', { name: 'Effects volume' });
+  await volume.focus();
+  await page.keyboard.press('End');
+  await expect(page.getByRole('slider', { name: 'Music volume' })).toHaveValue('45');
+  await page.getByRole('button', { name: 'Turn on effects' }).click();
+  await expect(page.getByRole('button', { name: 'Turn off effects' })).toBeVisible();
+  await expect(page.getByRole('status').filter({ hasText: 'Music is off.' })).toBeVisible();
+  await page.screenshot({ path: output + '/desktop-effects.png' });
+  await close.click();
+
+  await openPlace('scrap', 'Inspect');
+  await page.getByRole('button', { name: 'Collect available scrap' }).click();
+  await expect(page.locator('.collection-receipt')).toHaveAttribute('data-collection-saved', 'true');
+  expect(await evidence(page)).toMatchObject({ contexts: 1, effects: [13451] });
+  await close.click();
+
+  await openPlace('workshop', 'Enter workshop');
+  await expect.poll(() => page.evaluate(() => (window as any).__pilot.snapshot().room)).toBe('workshop');
+  expect(await evidence(page)).toMatchObject({ effects: [13451, 9041] });
+
+  await sound.click();
+  await page.getByRole('button', { name: 'Turn off effects' }).click();
+  await close.click();
+  await openPlace('door', 'Enter square');
+  expect(await evidence(page)).toMatchObject({ effects: [13451, 9041] });
+  await page.reload();
+  await sound.click();
+  await expect(page.getByRole('button', { name: 'Turn on effects' })).toBeVisible();
+  await expect(volume).toHaveValue('100');
+  expect(await evidence(page)).toMatchObject({ contexts: 0, starts: 0 });
 });

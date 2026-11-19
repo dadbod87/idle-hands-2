@@ -1,3 +1,4 @@
+import { WorldSounds } from '../audio/world-sounds.ts';
 import { PlaceMusic, type MusicStatus } from '../audio/place-music.ts';
 import { SCORE_NAMES, scoreForRoom } from '../audio/score.ts';
 import type { Room } from '../game/world.ts';
@@ -21,23 +22,31 @@ export function mountPlaceMusic({ room, settings, quick, body, open }: {
   open: () => void;
 }) {
   let controls: { root: HTMLElement; status: HTMLElement; play: HTMLButtonElement; level: HTMLOutputElement } | undefined;
+  let effectsControls: { button: HTMLButtonElement; level: HTMLOutputElement } | undefined;
   settings.innerHTML = speaker + '<span class="sound-label">Sound</span>';
   quick.innerHTML = speaker;
   const music = new PlaceMusic(scoreForRoom(room), paint);
+  const effects = new WorldSounds(paint);
   try {
+    const effectLevel = localStorage.getItem('ih2:effects-volume');
+    if (effectLevel !== null) effects.setVolume(Number(effectLevel));
     const level = localStorage.getItem('ih2:music-volume');
     if (level !== null) music.setVolume(Number(level));
   } catch { /* Volume can still be changed for this visit. */ }
 
   function paint() {
-    settings.dataset.on = String(music.active);
-    settings.title = music.active ? 'Sound settings · music on' : 'Sound settings · music off';
+    settings.dataset.on = String(music.active || effects.enabled);
+    settings.title = music.active || effects.enabled ? 'Sound settings · sound on' : 'Sound settings · sound off';
     quick.hidden = music.status === 'off';
     quick.dataset.on = String(music.active);
     const action = music.active ? 'Pause music' : 'Play music';
     quick.setAttribute('aria-label', action);
     quick.title = action;
     if (!controls?.root.isConnected) return;
+    if (effectsControls) {
+      effectsControls.button.textContent = effects.enabled ? 'Turn off effects' : effects.error ? 'Retry effects' : 'Turn on effects';
+      effectsControls.level.value = Math.round(effects.volume * 100) + '%';
+    }
     controls.play.textContent = action;
     const status = music.status === 'playing'
       ? 'Playing · ' + SCORE_NAMES[music.score] : statusText[music.status];
@@ -56,7 +65,10 @@ export function mountPlaceMusic({ room, settings, quick, body, open }: {
     root.className = 'place-music-controls';
     root.innerHTML = `<p role="status"></p><button type="button" class="primary"></button>
       <label for="place-music-volume">Music volume <output for="place-music-volume" aria-hidden="true"></output></label>
-      <input id="place-music-volume" type="range" min="0" max="100" step="1">`;
+      <input id="place-music-volume" type="range" min="0" max="100" step="1">
+      <button id="toggle-effects" type="button">Turn on effects</button>
+      <label for="effects-volume">Effects volume <output for="effects-volume" aria-hidden="true"></output></label>
+      <input id="effects-volume" type="range" min="0" max="100" step="1">`;
     const play = root.querySelector('button')!;
     const range = root.querySelector('input')!;
     range.value = String(Math.round(music.volume * 100));
@@ -66,17 +78,31 @@ export function mountPlaceMusic({ room, settings, quick, body, open }: {
       music.setVolume(range.valueAsNumber / 100);
       try { localStorage.setItem('ih2:music-volume', String(music.volume)); } catch { /* Optional preference. */ }
     });
+    const effectsButton = root.querySelector<HTMLButtonElement>('#toggle-effects')!;
+    const effectsRange = root.querySelector<HTMLInputElement>('#effects-volume')!;
+    effectsRange.value = String(Math.round(effects.volume * 100));
+    effectsControls = { button: effectsButton, level: root.querySelector('output[for="effects-volume"]')! };
+    effectsButton.addEventListener('click', () => void effects.toggle());
+    effectsRange.addEventListener('input', () => {
+      effects.setVolume(effectsRange.valueAsNumber / 100);
+      try { localStorage.setItem('ih2:effects-volume', String(effects.volume)); } catch { /* Optional preference. */ }
+    });
     body.append(root);
     paint();
   });
+  const pause = () => {
+    music.pause();
+    effects.disable();
+  };
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) music.pause();
+    if (document.hidden) pause();
   });
-  window.addEventListener('pagehide', () => music.pause());
+  window.addEventListener('pagehide', pause);
   paint();
 
   return {
     setRoom: (nextRoom: Room) => music.setPlace(scoreForRoom(nextRoom)),
-    pause: () => music.pause(),
+    pause,
+    cue: (cue: Parameters<WorldSounds['play']>[0]) => effects.play(cue),
   };
 }

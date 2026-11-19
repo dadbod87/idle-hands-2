@@ -1,7 +1,7 @@
 import {applyGarden} from '../src/game/live-garden.ts';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {TownClient,type TownSnapshot} from '../src/ui/town-client.ts';
+import {TownClient,type TownHooks,type TownSnapshot} from '../src/ui/town-client.ts';
 import {createWorkshop} from '../src/game/live-workshop.ts';
 
 // Transport-only fixtures have full garden banks and no pending economy deadlines.
@@ -10,7 +10,7 @@ const value=(boot:string|undefined='A',revision=10,time=1000,playerId='aster'):T
 const json=(data:unknown,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json'}});
 const deferred=<T>()=>{let resolve!:(value:T)=>void,reject!:(error:Error)=>void;const promise=new Promise<T>((r,j)=>{resolve=r;reject=j;});return{promise,resolve,reject};};
 const drain=async()=>{for(let i=0;i<12;i++)await Promise.resolve();};
-function fixture(){
+function fixture(onConfirmedCommand?:TownHooks['onConfirmedCommand']){
  const keys=['document','window','EventSource','fetch'] as const,originals=new Map(keys.map(key=>[key,Object.getOwnPropertyDescriptor(globalThis,key)]));
  const oldNow=Date.now;Date.now=()=>2_000_000;
  class Document extends EventTarget{hidden=false;}
@@ -26,7 +26,7 @@ function fixture(){
   document:{configurable:true,value:new Document()},window:{configurable:true,value:{setTimeout:(callback:()=>void,delay:number)=>{delays.push(delay);timers.set(++timer,callback);return timer;},clearTimeout:(id:number)=>timers.delete(id)}},EventSource:{configurable:true,value:Events},
   fetch:{configurable:true,value:async(url:string,options:RequestInit)=>{const request={path:url.split('/').at(-1)!,body:options.body?JSON.parse(String(options.body)):undefined,signal:options.signal??undefined};requests.push(request);return handler?handler(request):json({snapshot:structuredClone(current)});}}
  });
- const client=new TownClient({onSnapshot:s=>accepted.push(structuredClone(s)),onConnection:m=>messages.push(m),onPresence:p=>presence.push(p)});
+ const client=new TownClient({onConfirmedCommand,onSnapshot:s=>accepted.push(structuredClone(s)),onConnection:m=>messages.push(m),onPresence:p=>presence.push(p)});
  return{client,requests,messages,accepted,presence,Events,timers,delays,fire:()=>{assert.equal(timers.size,1);const[id,callback]=timers.entries().next().value!;timers.delete(id);callback();},set:(s:TownSnapshot)=>current=s,handle:(next:typeof handler)=>handler=next,stream:()=>Events.all.at(-1)!,async close(){client.close();await drain();Date.now=oldNow;for(const key of keys){const descriptor=originals.get(key);if(descriptor)Object.defineProperty(globalThis,key,descriptor);else delete(globalThis as any)[key];}}};
 }
 
@@ -261,5 +261,33 @@ test('command confirmation: reconnect refresh follows an existing read during pe
   assert.equal(reads,2);assert.equal(f.client.snapshot!.serverInstance,'B');assert.equal(f.client.snapshot!.workshop.revision,5);
   reply.resolve(json({ok:true,revision:11,message:'Old command must not show',snapshot:value('A',11,1200)}));await rejected;
   assert.equal(f.client.retryAvailable,true);assert.equal(f.messages.some(m=>m.includes('Old command must not show')),false);assert.equal(f.requests.filter(r=>r.path==='command').length,1);
+ }finally{await f.close();}
+});
+
+
+test('reward presentation runs once after a lost reply is confirmed and ignores rejections and refreshes', async () => {
+ const rewards:string[]=[];
+ const f=fixture(command=>{
+  rewards.push(command.id!);
+  throw new Error('Audio device unavailable');
+ });
+ try{
+  await f.client.login('aster');
+  f.handle(()=>json({ok:false,snapshot:value(),message:'Rejected'}));
+  await f.client.command({kind:'claim',id:'rejected'});
+  assert.deepEqual(rewards,[]);
+  f.handle(()=>{throw new TypeError('Dropped response');});
+  await assert.rejects(f.client.command({kind:'claim',id:'reward'}),/Dropped response/);
+  assert.deepEqual(rewards,[]);
+  f.handle(request=>{
+   assert.equal(request.body.id,'reward');
+   return json({ok:true,replayed:true,snapshot:value('A',11,1100)});
+  });
+  const saved=await f.client.retry();
+  assert.equal(saved.workshop.revision,11);
+  assert.equal(f.client.retryAvailable,false);
+  f.handle(()=>json({snapshot:value('A',11,1200)}));
+  await f.client.load();
+  assert.deepEqual(rewards,['reward']);
  }finally{await f.close();}
 });

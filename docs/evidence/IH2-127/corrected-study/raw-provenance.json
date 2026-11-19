@@ -1,0 +1,35 @@
+{
+  "artifact": {
+    "run": 44426254500,
+    "sha": "5af4bba4ad36601948573e91395a1ce653215d75",
+    "runAttempt": 1,
+    "conclusion": "success",
+    "id": 14485131808,
+    "createdAt": "2026-11-19T00:13:53Z",
+    "zipSha256": "29999ebe70d4e6c094f6663cbcf4ee55d8a4948be9173dca689d300653731e75",
+    "bytes": 722778,
+    "selectedBy": "newest same-run/head named artifact, explicitly downloaded by ID; no old pass substituted"
+  },
+  "raw": [
+    {
+      "path": "trial-1-public-refresh.json.gz",
+      "sourceSha256": "845b41252a041de119f0440150060c6403b9567dccf1497f280dbdf1c355e4bc",
+      "compressedSha256": "b516db08636d656758b69581ac91677a8807f4dcdd695c4bc9c01e381d08c2e1"
+    },
+    {
+      "path": "trial-1-load-profile.json.gz",
+      "sourceSha256": "c350929991b6ca607fc6e47d2e50e8e099aa6f8b9b0c175a3884e45cff4377d6",
+      "compressedSha256": "d55741f00d11053bb7f98d255c0f2b3f5190d41f7326b0c1f9d35d56378579be"
+    },
+    {
+      "path": "trial-2-public-refresh.json.gz",
+      "sourceSha256": "dc79f9d18dbc662976af9e9266207a09ed2340e27c14bd40b84bd8796be50faa",
+      "compressedSha256": "4d577f54ceeb8a6389b65eda21f74646cc4591a7ca16fa0335d16304e1d0e4bf"
+    },
+    {
+      "path": "trial-2-load-profile.json.gz",
+      "sourceSha256": "95dfb7bf372b9e3ea227e39968cfa12e3f6f211a3c0987ae6ac622b179284eff",
+      "compressedSha256": "ef8aaab931613ae6839415bac4603e66bc8855945624857196c063c728c3c162"
+    }
+  ]
+}

@@ -61,16 +61,18 @@ test('walk mark follows accepted ground routes and disappears when travel stops'
    expect(near(await position(),accepted.x,accepted.y)).toBe(true);
    await expect.poll(mark).toBeNull();
 
+   const places = await page.locator('#places').boundingBox();
+   expect(places).not.toBeNull();
    await ground(24,25);
    await seekMark(24,25,tapTolerance);
-   await ground(30.5,24.5);
+   await ground(size.name==='phone'?29:32, size.name==='phone'?29:24.5);
    // The rendered camera is advancing during this tap. The new endpoint must
    // be on the east side of the courtyard, away from the westbound route.
    // The stationary tap above separately checks exact endpoint and arrival.
    let redirected:{x:number;y:number}|null=null;
    await expect.poll(async()=>{
     const target=await mark();
-    if(target&&target.x>=27.5&&target.x<=32&&target.y>=22.5&&target.y<=26){
+    if(target&&target.x>=27.5&&target.x<=34&&target.y>=22.5&&target.y<=31){
      redirected=target;
      return true;
     }
@@ -78,7 +80,9 @@ test('walk mark follows accepted ground routes and disappears when travel stops'
    },{intervals:[20,30,50],timeout:1000}).toBe(true);
    if(!redirected)throw new Error('The redirected walk did not get a new world-space mark.');
    if (size.touch) {
-    await page.locator('#places').tap();
+    // Use the stationary HUD coordinates so an actionability wait cannot
+    // finish the route before the native tap is sent.
+    await page.touchscreen.tap(places!.x+places!.width/2,places!.y+places!.height/2);
     await expect(page.getByRole('dialog')).toBeVisible();
     await expect.poll(mark).toBeNull();
     await page.getByRole('button',{name:'Close panel'}).tap();

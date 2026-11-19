@@ -1,3 +1,9 @@
+# November 19 — town orientation accepted, workshop moments next
+
+PR #68 is accepted on main `c965eed86097bdc1cdf50cdd873f5f9a9f43b240`. Both exact runs passed 557 domain and 209 browser cases. Residents see an accepted walking destination, a foldout town map, a clear path from the browser-practice bridge to shared practice, and an optional browser-local name and look. The rented-room opening remains a standalone design. [Exact gate and limits](../evidence/IH2-137/TOWN_ORIENTATION_CI.json).
+
+The next candidate adds a visible ordinary bench job and a brief animation when the shared bridge opens. The first apple and snack study and the original picking poses stay outside runtime in this candidate. [Handoff](handoffs/2026-11-19-town-orientation.md).
+
 # November 19 — measured refresh gains and player paths accepted
 
 PR #66 reduced the median number of snapshots from 204.5 to 86 and load SQL from 2,063 to 1,115 in two paired 20-resident synthetic trials. The medians for visible updates rose from 148.4 to 183.9 ms. All personal receipts, deadlines and cleanup held. Read [the comparison](../evidence/IH2-132/REPORT.md) for the exact source and limits.

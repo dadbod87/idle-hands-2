@@ -1,0 +1,7 @@
+# Town orientation and the next workshop candidate
+
+[PR #68](https://github.com/dadbod87/idle-hands-2/pull/68) passed exact-head 557 domain tests and 209 browser cases. Its verified merge is `c965eed86097bdc1cdf50cdd873f5f9a9f43b240`. All previous cases and all 227 compiled art files remain accounted for. The PR and main client builds have matching bytes. See [raw artifact references](../../evidence/IH2-137/TOWN_ORIENTATION_CI.json).
+
+The first two Linux runs found the walk test's moving-camera coordinate assumption. Those redirects did move the resident. The corrected case uses native pointer/touch input for the east-courtyard redirect, keeps the precise stationary marker/final-position check, and verifies steering or opening a menu cancels the journey. The correction was confined to browser assertions.
+
+Resume `feat/town-work-moments` from current main with IH2-142 active. It bundles the ordinary bench display, one confirmed bridge celebration and two orchard studies. Read each plan before reviewing local proofs. Native bench checks use isolated craft actions and a blocked-save fixture. The bridge animation uses intercepted fictional snapshots and event delivery in the browser. The orchard model and original picking poses are standalone studies, with no new items supplied in this candidate. The saved previews and databases stay stopped. No cloud or original-game change. The current owner window ends at 2 p.m. Pacific, November 19.

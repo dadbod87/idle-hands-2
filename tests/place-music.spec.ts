@@ -8,8 +8,8 @@ const output = 'test-results/browser/place-music';
 mkdirSync(output, { recursive: true });
 
 async function instrument(page: Page) {
-  await page.addInitScript((orchardFrames) => {
-    const evidence = { contexts: 0, workers: 0, terminated: 0, starts: 0, stops: 0, frames: 0, effects: [] as number[], scoreHash: "", orchardHash: "" };
+  await page.addInitScript(({ orchard:orchardFrames, lodging:lodgingFrames }) => {
+    const evidence = { contexts: 0, workers: 0, terminated: 0, starts: 0, stops: 0, frames: 0, effects: [] as number[], scoreHash: "", orchardHash: "", lodgingHash: "" };
     Object.assign(window, { __musicEvidence: evidence });
     const NativeContext = window.AudioContext;
     window.AudioContext = class extends NativeContext {
@@ -40,6 +40,12 @@ async function instrument(page: Page) {
           evidence.orchardHash=Array.from(new Uint8Array(hash),byte=>byte.toString(16).padStart(2,'0')).join('');
         });
       }
+      if (this.buffer && this.loop && evidence.frames === lodgingFrames + 176400) {
+        const samples = this.buffer.getChannelData(0).slice(0, lodgingFrames);
+        void crypto.subtle.digest('SHA-256', samples.buffer).then(hash => {
+          evidence.lodgingHash = Array.from(new Uint8Array(hash), byte => byte.toString(16).padStart(2, '0')).join('');
+        });
+      }
       return start.apply(this, args);
     };
     const stop = AudioBufferSourceNode.prototype.stop;
@@ -47,7 +53,7 @@ async function instrument(page: Page) {
       evidence.stops++;
       return stop.apply(this, args);
     };
-  },SCORE_FRAMES.orchard);
+  }, SCORE_FRAMES);
 }
 
 const evidence = (page: Page) => page.evaluate(() => (window as any).__musicEvidence);
@@ -459,4 +465,43 @@ test('a shared doorway waits for its fictional accepted movement reply before li
     release();
     await page.unrouteAll({behavior:'wait'});
   }
+});
+
+test('the quiet boarding-house score waits for audio opt-in and follows the real doorway', async ({ browser }) => {
+ const context = await browser.newContext({ viewport: { width:320, height:650 }, hasTouch:true });
+ try {
+  const page = await context.newPage();
+  const errors: string[] = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await instrument(page);
+  await ready(page);
+  await page.locator('#field-guide').tap();
+  await page.getByRole('button', { name:'Visit the boarding house', exact:true }).tap();
+  await expect(page.locator('#location')).toContainText('Boarding house', { timeout:20000 });
+  expect(await evidence(page)).toMatchObject({ contexts:0, workers:0, starts:0 });
+
+  const sound = page.getByRole('button', { name:'Sound settings' });
+  await sound.tap();
+  const sheet = page.locator('.place-music-controls');
+  await expect(sheet.getByRole('status')).toHaveText('Music is off.');
+  await sheet.getByRole('button', { name:'Play music' }).tap();
+  await expect(sheet.getByRole('status')).toHaveText('Playing · The second blanket');
+  await expect.poll(async () => (await evidence(page)).lodgingHash).toBe(
+   'f183c5ebf110d751f32f03fb492f84a708652ff1e1993bcddf20a2bef8485a1b',
+  );
+  expect(await evidence(page)).toMatchObject({ contexts:1, workers:1, starts:1, effects:[] });
+  await page.screenshot({path:output + '/boarding-house-score.png'});
+  await page.getByRole('button', { name:'Close panel' }).tap();
+  await page.getByRole('button', { name:'Inspect A note by the bed' }).tap();
+  await page.getByRole('button', { name:'Step outside', exact:true }).tap();
+  await expect(page.locator('#location')).toContainText('Town square');
+  await sound.tap();
+  await expect(sheet.getByRole('status')).toHaveText('Playing · Business as unusual');
+  expect(await evidence(page)).toMatchObject({ contexts:1, workers:2, starts:2, stops:1, effects:[] });
+  await sheet.getByRole('button', { name:'Pause music' }).tap();
+  await expect(sheet.getByRole('status')).toHaveText('Music paused.');
+  expect(errors).toEqual([]);
+ } finally {
+  await context.close();
+ }
 });

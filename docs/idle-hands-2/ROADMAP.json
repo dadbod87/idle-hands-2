@@ -3172,7 +3172,7 @@
     {
       "id": "IH2-168",
       "title": "Balance three existing browser groups",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "perf/browser-shard-balance",
       "goal": "Reduce time spent waiting for the final browser group with exact same cases and runner count.",
       "depends_on": [
@@ -3186,7 +3186,31 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-168/PLAN.md"
+        "docs/evidence/IH2-168/PLAN.md",
+        "docs/evidence/IH2-168/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The same suite moves the local toolbar and woodland certificate files to the first group, preserving the ordered shared cases and exact built game."
+    },
+    {
+      "id": "IH2-170",
+      "title": "Play an original optional boarding-house score",
+      "status": "in_progress",
+      "owner_branch": "feat/boarding-house-music",
+      "goal": "Give the room a quieter sound identity using the existing lightweight original music system.",
+      "depends_on": [
+        "IH2-168",
+        "IH2-156",
+        "IH2-160"
+      ],
+      "acceptance": [
+        "Use native audio to verify first entry stays silent without explicit opt-in. Verify audio buffer on opt-in and original square phrase after exit.",
+        "Keep existing audio source evidence and all original PCM fixtures exact."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-170/PLAN.md"
       ]
     }
   ],

@@ -1,3 +1,7 @@
+# November 19 — arrival stories and a route to Marlow accepted
+
+A browser resident can choose an optional backstory and walk to the clerk from the boarding-house note. Main `6a2b3f1abaaf4f5db393c88d996a4e480eca3114` passed 583 domain tests and 231 browser cases. [Exact verification](evidence/IH2-158/EXACT_CI.json).
+
 # November 19 — quieter rain-layer updates accepted
 
 Steady weather and indoors skip redundant visibility changes while visible rain keeps moving with the world. Main `2166d2a3cdaf7e5a4381e0c5ebc10a504a479f4f` passed 581 domain tests and 230 browser cases. [Exact verification](evidence/IH2-157/EXACT_CI.json).

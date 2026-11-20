@@ -3443,7 +3443,7 @@
     {
       "id": "IH2-181",
       "title": "Give the Workshop Lodge its own drafting wing",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/workshop-lodge-interior",
       "goal": "Make a second expanded housing choice visibly distinct and walkable.",
       "depends_on": [
@@ -3458,7 +3458,30 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-181/PLAN.md"
+        "docs/evidence/IH2-181/PLAN.md",
+        "docs/evidence/IH2-181/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. An owner and guest can walk into its plan-selected ash-board drafting wing, retaining the same exits and allocations."
+    },
+    {
+      "id": "IH2-182",
+      "title": "Show private work status on the Lodge drafting board",
+      "status": "in_progress",
+      "owner_branch": "feat/lodge-drafting-board",
+      "goal": "Make its drafting wing useful during long work, with a deliberate route to the existing bench and public-only visits.",
+      "depends_on": [
+        "IH2-181",
+        "IH2-167"
+      ],
+      "acceptance": [
+        "Show the owner’s already confirmed result or local-time schedule. Preserve the current job and all workshop authority.",
+        "Walk through the real scene path to the bench. Keep the guest’s panel private and verify no game command or allocation edits."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-182/PLAN.md"
       ]
     }
   ],

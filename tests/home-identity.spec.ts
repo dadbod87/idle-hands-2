@@ -272,3 +272,47 @@ test('the confirmed Workshop Lodge presents a distinct drafting wing without mov
   } finally { await context.close(); }
  }
 });
+
+test('the Lodge drafting board previews the owner’s confirmed work and guides them to the existing bench', async ({ browser }) => {
+ for (const visitor of [false, true]) {
+  const context = await browser.newContext({ viewport: { width: visitor ? 320 : 1440, height: visitor ? 640 : 900 }, hasTouch: visitor });
+  const page = await context.newPage();
+  const errors: string[] = [];
+  page.on('pageerror', e => errors.push(e.message));
+  try {
+   const control = await homePanelFixture(page, { level: 2, visitor, planId: 'workshop-lodge-2' });
+   const before = control.saved();
+   expect(before.state.job).not.toBeNull();
+   await expect.poll(() => page.evaluate(() => (window as any).__pilot.metrics().visual.home.interiorTexture)).toBe('workshop-lodge-interior');
+   await page.locator('#places').click();
+   await page.getByRole('button',{name:/Walk to Drafting board/}).click();
+   const inspect=page.getByRole('button',{name:'Inspect Drafting board',exact:true});
+   await expect(inspect).toBeEnabled({timeout:process.env.CI?40000:15000});
+   if(visitor)await inspect.tap();
+   else{
+    await inspect.focus();
+    await page.keyboard.press('Enter');
+   }
+   const board=page.locator('[data-lodge-board]');
+   await expect(board).toBeVisible();
+   const walk=board.getByRole('button',{name:'Walk to the work bench',exact:true});
+   mkdirSync('test-results/browser',{recursive:true});
+   await page.screenshot({path:'test-results/browser/lodge-board-'+(visitor?'visitor':'owner')+'.png'});
+   if(visitor){
+    await expect(board).toContainText('work schedule is private');
+    await expect(board.locator('[data-lodge-work]')).toHaveCount(0);
+    await expect(walk).toHaveCount(0);
+   }else{
+    await expect(board.locator('[data-lodge-work]')).toContainText('Ready to collect into Bag');
+    await expect(board.getByRole('button',{name:'Collect finished work'})).toHaveCount(0);
+    await walk.click();
+    await expect(page.getByRole('heading',{name:'Your work bench',exact:true})).toBeVisible({timeout:process.env.CI?45000:25000});
+    await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().room)).toBe('workshop');
+    await expect(page.getByRole('button',{name:'Collect finished work'})).toBeVisible();
+   }
+   expect(control.commands).toEqual([]);
+   expect(control.saved()).toEqual(before);
+   expect(errors).toEqual([]);
+  } finally { await context.close(); }
+ }
+});

@@ -1,3 +1,9 @@
+# November 20 — the Workshop Lodge interior accepted
+
+An owner and guest can walk into its plan-selected ash-board drafting wing, retaining the same exits and allocations. Main `0a334866b1bcb08ec47f7db762857944f7c2b8a0` passed 592 domain tests and 249 browser cases. [Exact verification](../evidence/IH2-181/EXACT_CI.json).
+
+The next candidate is [`IH2-182` and its plan](../evidence/IH2-182/PLAN.md), on `feat/lodge-drafting-board`. Make its drafting wing useful during long work, with a deliberate route to the existing bench and public-only visits. Continue with the ordinary exact-head gates and keep saved services stopped.
+
 # November 20 — the Garden Studio’s private allotment link accepted
 
 The active expanded plan has a walkable notebook. Owners open their own allotment view and guests see a general house note. Main `c3f7d33d4f2f59a3f75e784a38ab62575672a46f` passed 591 domain tests and 248 browser cases. [Exact verification](../evidence/IH2-180/EXACT_CI.json).

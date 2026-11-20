@@ -1,4 +1,3 @@
-import { SUNROOM_NOTEBOOK } from './home-sunroom.ts';
 import { NATURALIST_KEEPSAKE } from './home-keepsake.ts';
 import { TILE, worlds, canStand, clearSegment, routeTo, type Room, type Point, type Stop,type World } from './world.ts';
 import { LODGING_BEDSIDE, LODGING_FRONT, LODGING_ROOM, squareWithLodging } from './lodging.ts';
@@ -32,15 +31,15 @@ export class Session {
   }
   private homeStops={home:worlds.home.stops,'home-expanded':worlds['home-expanded'].stops};
   private keepsakeShown=false;
-  private hasSunroom=false;
-  setHomeStops(keepsake:boolean,sunroom:boolean){
-    if(keepsake===this.keepsakeShown&&sunroom===this.hasSunroom)return;
+  private roomNote:Stop|null=null;
+  setHomeStops(keepsake:boolean,note:Stop|null){
+    if(keepsake===this.keepsakeShown&&note===this.roomNote)return;
     this.keepsakeShown=keepsake;
-    this.hasSunroom=sunroom;
+    this.roomNote=note;
     const common=keepsake?[keepsakeStop]:[];
     this.homeStops={
       home:[...worlds.home.stops,...common],
-      'home-expanded':sunroom?[...worlds['home-expanded'].stops,...common,SUNROOM_NOTEBOOK]:[...worlds['home-expanded'].stops,...common],
+      'home-expanded':[...worlds['home-expanded'].stops,...common,...(note?[note]:[])],
     };
     if(this.pendingStop&&!this.stops.some(stop=>stop.id===this.pendingStop))this.stop();
   }

@@ -99,12 +99,67 @@ test('activity artwork loads only the current rig and identity switches cannot a
  await page.route(/\/art\/(garden|carpentry)\/(garden-actions-|saw-equipped-|carpentry-actions-)/,async route=>{const key=new URL(route.request().url()).pathname;requests.push(key);if(key.endsWith('saw-equipped-bea.svg')){if(failBea){failedBeaAttempts++;return route.abort();}await heldBea;}await route.continue();});
  const choose=async(id:string)=>{await page.getByRole('dialog').getByRole('button',{name:id,exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.town()?.playerId)).toBe(id);};
  const texture=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.variety.actorTexture);
- try{await page.goto('/?town=1');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);expect(requests.length).toBe(3);expect(requests.every(r=>r.endsWith('-devon.svg'))).toBe(true);await choose('aster');await expect.poll(texture).toBe('saw-equipped-aster');expect(requests.length).toBe(6);
- await page.locator('#resident').click();await choose('bea');await expect.poll(()=>requests.some(r=>r.endsWith('saw-equipped-bea.svg'))).toBe(true);await page.locator('#resident').click();await choose('casey');await expect.poll(texture).toBe('saw-equipped-casey');releaseBea();await expect.poll(()=>requests.length).toBe(12);await page.waitForTimeout(120);expect(await texture()).toBe('saw-equipped-casey');await page.locator('#resident').click();await choose('aster');await expect.poll(texture).toBe('saw-equipped-aster');expect(requests.length).toBe(12);expect(commands).toBe(0);expect(errors).toEqual([]);expect(await page.evaluate(()=>(window as any).__pilot.town().workshop)).toEqual(players.aster.workshop);
- await page.screenshot({path:evidence+'/activity-art-switched-rig.png'});
- failBea=true;actor='bea';await page.reload();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await expect.poll(()=>failedBeaAttempts).toBe(3);await expect.poll(texture).toBe('variety-resident-bea');await page.waitForTimeout(350);expect(failedBeaAttempts).toBe(3);
- const from=await page.evaluate(()=>(window as any).__pilot.snapshot().position.x);await page.keyboard.down('ArrowRight');try{await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().position.x)).toBeGreaterThan(from+.2);}finally{await page.keyboard.up('ArrowRight');}expect(failedBeaAttempts).toBe(3);expect(commands).toBe(0);
- failBea=false;await page.reload();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await expect.poll(texture).toBe('saw-equipped-bea');expect(failedBeaAttempts).toBe(3);expect(errors).toEqual([]);
- mkdirSync(evidence,{recursive:true});writeFileSync(evidence+'/activity-art-loading.json',JSON.stringify({disclosure:'Intercepted fictional API/EventSource; pure free saw/equipment history in four snapshots. Held Bea asset then switched Casey; then one intentionally aborted Bea sheet exhausts Phaser’s two built-in retries, stays on usable ordinary art without re-enqueue, and recovers on reload. No database or real progress. All256art frames retain their independent gallery coverage.',initialSheets:3,totalUniqueSheets:new Set(requests).size,failedBeaAttempts,phaserBuiltInRetries:2,failureFallsBackWithoutFetchLoop:true,reloadPermitsRecovery:true,requests,commands,olderCompletionCannotReplaceCurrentRig:true,cachedRevisitLoadsNoExtraSheets:true,errors},null,2));
+ const squareSheets=(rig:string)=>[
+  '/art/carpentry/carpentry-actions-'+rig+'.svg',
+  '/art/carpentry/saw-equipped-'+rig+'.svg',
+ ].sort();
+ try{
+  await page.goto('/?town=1');
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+  expect([...requests].sort()).toEqual(squareSheets('devon'));
+  await choose('aster');
+  await expect.poll(texture).toBe('saw-equipped-aster');
+  expect([...requests].sort()).toEqual([...squareSheets('devon'),...squareSheets('aster')].sort());
+
+  await page.locator('#resident').click();await choose('bea');
+  await expect.poll(()=>requests.some(r=>r.endsWith('saw-equipped-bea.svg'))).toBe(true);
+  await page.locator('#resident').click();await choose('casey');
+  await expect.poll(texture).toBe('saw-equipped-casey');
+  releaseBea();
+  const expectedSquare=['devon','aster','bea','casey'].flatMap(squareSheets).sort();
+  await expect.poll(()=>[...requests].sort()).toEqual(expectedSquare);
+  await page.waitForTimeout(120);
+  expect(await texture()).toBe('saw-equipped-casey');
+  await page.locator('#resident').click();await choose('aster');
+  await expect.poll(texture).toBe('saw-equipped-aster');
+  expect([...requests].sort()).toEqual(expectedSquare);
+  expect(commands).toBe(0);
+  expect(errors).toEqual([]);
+  expect(await page.evaluate(()=>(window as any).__pilot.town().workshop)).toEqual(players.aster.workshop);
+  await page.screenshot({path:evidence+'/activity-art-switched-rig.png'});
+
+  failBea=true;actor='bea';await page.reload();
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+  await expect.poll(()=>failedBeaAttempts).toBe(3);
+  await expect.poll(texture).toBe('variety-resident-bea');
+  await page.waitForTimeout(350);
+  expect(failedBeaAttempts).toBe(3);
+  const from=await page.evaluate(()=>(window as any).__pilot.snapshot().position.x);
+  await page.keyboard.down('ArrowRight');
+  try{await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().position.x)).toBeGreaterThan(from+.2);}
+  finally{await page.keyboard.up('ArrowRight');}
+  expect(failedBeaAttempts).toBe(3);
+  expect(commands).toBe(0);
+
+  failBea=false;await page.reload();
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+  await expect.poll(texture).toBe('saw-equipped-bea');
+  expect(failedBeaAttempts).toBe(3);
+  expect(requests.filter(path=>path.startsWith('/art/garden/'))).toEqual([]);
+  await page.locator('#journal').click();
+  await page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true}).click();
+  await page.getByRole('button',{name:'Walk to the beds',exact:true}).click();
+  await expect(page.locator('#panel-title')).toHaveText('Your rented allotment',{timeout:process.env.CI?40000:15000});
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().room)).toBe('garden');
+  const allotmentSheets=requests.filter(path=>path.startsWith('/art/garden/'));
+  expect(allotmentSheets).toEqual(['/art/garden/garden-actions-bea.svg']);
+  expect(commands).toBe(0);
+  expect(errors).toEqual([]);
+  writeFileSync(evidence+'/activity-art-loading.json',JSON.stringify({
+   disclosure:'Intercepted fictional API/EventSource; pure free saw/equipment history in four snapshots. The square loads two carpentry sheets per active rig. The actual allotment first visit then requests the current gardener’s sheet. A held Bea asset, bounded load failure, movement fallback, cache revisit and reload recover through native Chromium. No database or real progress. All 256 art frames retain their independent gallery coverage.',
+   initialSheets:2,allotmentSheets,totalUniqueSheets:new Set(requests).size,failedBeaAttempts,phaserBuiltInRetries:2,
+   failureFallsBackWithoutFetchLoop:true,reloadPermitsRecovery:true,requests,commands,
+   olderCompletionCannotReplaceCurrentRig:true,cachedRevisitLoadsNoExtraSheets:true,errors,
+  },null,2));
  }finally{releaseBea();}
 });

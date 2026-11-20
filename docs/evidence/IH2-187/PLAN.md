@@ -7,3 +7,5 @@ This follows the Ubuntu diagnostic that sampled 33 dark points out of 35 in the 
 The ordinary Chrome and software-rendered Chromium runs each passed the existing Sound and menu-redraw cases. They covered 1440 × 900 through short landscape at doubled text and portrait, pointer and keyboard focus, and pixel checks behind a resized open menu. Movement stayed locked while the menu was open and resumed on close. [Local measurements](LOCAL_RESIZE.json).
 
 The browser tests use a disposable local build. Full exact hosted checks and physical-device verification remain pending. Keep the early and settled screenshots when doing the later exact-source check so intermittent flashes remain visible. Nothing in the saved previews or databases was started.
+
+Terra reviewed six actual Chromium stills. The early and settled town views were readable in both renderers, and the Sound and footer buttons remained clear. The open guide intentionally covered much of the dimmed town. Field-note text extends below the short viewport. The stills cover the emulated short layout, so a physical-device rotation check is still open.

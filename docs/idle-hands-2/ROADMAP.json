@@ -3264,7 +3264,7 @@
     {
       "id": "IH2-173",
       "title": "Suggest a ready allotment visit during long workshop work",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/bench-ready-allotment",
       "goal": "Give returning players one useful repeatable optional outing after their first tree studies.",
       "depends_on": [
@@ -3279,7 +3279,29 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-173/PLAN.md"
+        "docs/evidence/IH2-173/PLAN.md",
+        "docs/evidence/IH2-173/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A long workshop job can suggest a ready garden bed after the tree studies, without collecting the crop."
+    },
+    {
+      "id": "IH2-174",
+      "title": "Keep the location and action HUD steady while walking",
+      "status": "in_progress",
+      "owner_branch": "perf/stable-context-hud",
+      "goal": "Remove redundant browser work from the location and action controls during ordinary movement.",
+      "depends_on": [
+        "IH2-173"
+      ],
+      "acceptance": [
+        "Retain location hint and weather nodes while the nearby action changes.",
+        "Preserve action availability, touch and keyboard access and toolbar geometry across nine layouts."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-174/PLAN.md"
       ]
     }
   ],

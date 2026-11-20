@@ -1,3 +1,7 @@
+# November 19 — confirmed door light accepted
+
+A 220 ms paper-colored fade follows an accepted room transition. Main `efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6` passed 583 domain tests and 233 browser cases. [Exact verification](evidence/IH2-159/EXACT_CI.json).
+
 # November 19 — arrival stories and a route to Marlow accepted
 
 A browser resident can choose an optional backstory and walk to the clerk from the boarding-house note. Main `6a2b3f1abaaf4f5db393c88d996a4e480eca3114` passed 583 domain tests and 231 browser cases. [Exact verification](evidence/IH2-158/EXACT_CI.json).

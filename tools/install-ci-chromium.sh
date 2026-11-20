@@ -10,21 +10,24 @@ fi
 
 # The runner image usually references this list through mirror+file:. Keep
 # Ubuntu's existing fallback sources and only demote the slow regional mirror.
+regional_mirror='(azure|[a-z0-9.-]+\.ec2)\.archive\.ubuntu\.com'
+priority_one="^https?://$regional_mirror/ubuntu/?[[:space:]]+priority:1$"
 mirrors=/etc/apt/apt-mirrors.txt
 if [[ -f "$mirrors" ]] &&
-   grep -Eq '^https://archive\.ubuntu\.com/ubuntu/?[[:space:]]' "$mirrors" &&
-   grep -Eq '^https?://[a-z0-9.-]+\.ec2\.archive\.ubuntu\.com/ubuntu/?[[:space:]]+priority:1$' "$mirrors"; then
+   grep -Eq '^https?://archive\.ubuntu\.com/ubuntu/?[[:space:]]' "$mirrors" &&
+   grep -Eq "$priority_one" "$mirrors"; then
   echo 'Preferring the primary Ubuntu archive in the runner mirror list.'
-  sudo sed -Ei '/^https?:\/\/[a-z0-9.-]+\.ec2\.archive\.ubuntu\.com\/ubuntu\/?[[:space:]]+priority:1$/ s/priority:1$/priority:4/' "$mirrors"
+  sudo sed -Ei "\#$priority_one# s/priority:1$/priority:4/" "$mirrors"
 fi
 
 # Some runner images configure the regional mirror as a direct source instead.
+regional_url="https?://$regional_mirror/ubuntu(/?[[:space:]]|/?$)"
 shopt -s nullglob
 for source in /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do
   [[ -f "$source" ]] || continue
-  if grep -Eq '^[[:space:]]*(deb(-src)?[[:space:]]|URIs:).*\.ec2\.archive\.ubuntu\.com/ubuntu' "$source"; then
+  if grep -Eq "^[[:space:]]*(deb(-src)?[[:space:]]|URIs:).*$regional_url" "$source"; then
     echo "Using the primary Ubuntu archive in $source."
-    sudo sed -Ei '/^[[:space:]]*(deb(-src)?[[:space:]]|URIs:)/ s|https?://[a-z0-9.-]+\.ec2\.archive\.ubuntu\.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' "$source"
+    sudo sed -Ei "/^[[:space:]]*(deb(-src)?[[:space:]]|URIs:)/ s#$regional_url#https://archive.ubuntu.com/ubuntu\\2#g" "$source"
   fi
 done
 

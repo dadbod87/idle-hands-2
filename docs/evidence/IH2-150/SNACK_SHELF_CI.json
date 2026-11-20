@@ -1,0 +1,125 @@
+{
+  "pullRequest": 73,
+  "pr": {
+    "sha": "021ee269eea463c66055c28c0512bdda0e935480",
+    "run": 44609479031,
+    "domain": 571,
+    "browser": 223,
+    "browserGroups": [
+      74,
+      74,
+      75
+    ],
+    "allPriorCasesPreserved": true,
+    "restoredMigrationCount": 11,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14572635845,
+        "createdAt": "2026-11-19T20:34:17Z",
+        "sha": "021ee269eea463c66055c28c0512bdda0e935480",
+        "zipSha256": "afd35907bc830b616bb509fef2ab152bab963b5dbbf5bf34ad5a8f8b788c559a",
+        "size": 131690,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14572302325,
+        "createdAt": "2026-11-19T20:34:19Z",
+        "sha": "021ee269eea463c66055c28c0512bdda0e935480",
+        "zipSha256": "ef82e68a8a464ecd9a8993c13eb2c01ad6fe545639b5b62cbd1ddb7264c25221",
+        "size": 753210,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14573725023,
+        "createdAt": "2026-11-19T20:43:13Z",
+        "sha": "021ee269eea463c66055c28c0512bdda0e935480",
+        "zipSha256": "b1eeef57bbab3eef609397f9c6cbbd0ac7a993e79fda2093e06ca1730d3cb9eb",
+        "size": 18286979,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14573261059,
+        "createdAt": "2026-11-19T20:43:59Z",
+        "sha": "021ee269eea463c66055c28c0512bdda0e935480",
+        "zipSha256": "58794c569623695682c39bb8389f53c6b336f523137443a42ea1aea3ab60653c",
+        "size": 18277797,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14573530581,
+        "createdAt": "2026-11-19T20:45:52Z",
+        "sha": "021ee269eea463c66055c28c0512bdda0e935480",
+        "zipSha256": "f7638d12549dec66a67fffba18547e34267b8989ba8db44b2c171eb02e4c9477",
+        "size": 23597469,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "26fea9631260c80f08f9de114cdcddeeca5f533e",
+    "run": 44612226962,
+    "domain": 571,
+    "browser": 223,
+    "browserGroups": [
+      74,
+      74,
+      75
+    ],
+    "allPriorCasesPreserved": true,
+    "restoredMigrationCount": 11,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14574120328,
+        "createdAt": "2026-11-19T20:50:18Z",
+        "sha": "26fea9631260c80f08f9de114cdcddeeca5f533e",
+        "zipSha256": "687b6f9b0a3a82d6033bf993be38c9a24377f504d79eb8d898b07f0a311c50ef",
+        "size": 131821,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14572777727,
+        "createdAt": "2026-11-19T20:50:20Z",
+        "sha": "26fea9631260c80f08f9de114cdcddeeca5f533e",
+        "zipSha256": "2678fa6ad109a827baa20cc39d921d6bc1f287b8774be5140731b208722355e8",
+        "size": 753210,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14574346533,
+        "createdAt": "2026-11-19T20:59:36Z",
+        "sha": "26fea9631260c80f08f9de114cdcddeeca5f533e",
+        "zipSha256": "9048dcbab2ff6aea47678bc790788bc13da2398769cb15b9f0dabbd38fb77e00",
+        "size": 18384360,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14572763836,
+        "createdAt": "2026-11-19T21:00:15Z",
+        "sha": "26fea9631260c80f08f9de114cdcddeeca5f533e",
+        "zipSha256": "677013d8e9ce73748b6cc5624b811d429debc86ae5b5b47c6f7eee282be739b7",
+        "size": 18297450,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14572779157,
+        "createdAt": "2026-11-19T21:02:09Z",
+        "sha": "26fea9631260c80f08f9de114cdcddeeca5f533e",
+        "zipSha256": "627695086515234f1208f41cde6b7da5f92c42eb2606f67f52f89eec61247a90",
+        "size": 23968875,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "The authentic stage uses disposable PostgreSQL and two fictional residents. Fern starts with one ordinary snack. One separate UI case intercepts fictional shelf reads and command replies for interrupted confirmation. Emulated phones only. No hosted change."
+}

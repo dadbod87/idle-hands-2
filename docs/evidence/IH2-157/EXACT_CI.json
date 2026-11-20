@@ -1,0 +1,123 @@
+{
+  "pullRequest": 78,
+  "pr": {
+    "sha": "828d32e2588b07921b4a806ac4a499d55eb96570",
+    "run": 44641881230,
+    "domain": 581,
+    "browser": 230,
+    "browserGroups": [
+      75,
+      77,
+      78
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14587051611,
+        "createdAt": "2026-11-20T00:00:20Z",
+        "sha": "828d32e2588b07921b4a806ac4a499d55eb96570",
+        "zipSha256": "05a518619b511d789571427d8ec849f16e30e53051e431d411fa76faa6ebae5c",
+        "size": 132304,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14587360989,
+        "createdAt": "2026-11-20T00:00:21Z",
+        "sha": "828d32e2588b07921b4a806ac4a499d55eb96570",
+        "zipSha256": "68da9e944d79b5c22bfa43094652dea6c987581abf05b2c4a022fe7cb14a24e6",
+        "size": 760146,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14587836960,
+        "createdAt": "2026-11-20T00:09:42Z",
+        "sha": "828d32e2588b07921b4a806ac4a499d55eb96570",
+        "zipSha256": "b5904e6583f0125ab48ab91207b3834fd7e7978ba51c41bc1a066d98f11d7490",
+        "size": 18506830,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14587857031,
+        "createdAt": "2026-11-20T00:10:48Z",
+        "sha": "828d32e2588b07921b4a806ac4a499d55eb96570",
+        "zipSha256": "e7bad5937cd868fc3a8773f7baa8863de1840ae3fcd6121cf51600bc3ad3f5aa",
+        "size": 19121275,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14586858828,
+        "createdAt": "2026-11-20T00:12:21Z",
+        "sha": "828d32e2588b07921b4a806ac4a499d55eb96570",
+        "zipSha256": "442d70e597c760f12aa562fe70151370950fee2944ea58638967f972380bca9b",
+        "size": 24586210,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "2166d2a3cdaf7e5a4381e0c5ebc10a504a479f4f",
+    "run": 44644093361,
+    "domain": 581,
+    "browser": 230,
+    "browserGroups": [
+      75,
+      77,
+      78
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14588510038,
+        "createdAt": "2026-11-20T00:16:37Z",
+        "sha": "2166d2a3cdaf7e5a4381e0c5ebc10a504a479f4f",
+        "zipSha256": "43b2c71badc45f905928621fac1b047a43a9bd1f53687c7214233e430c76e5ac",
+        "size": 131787,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14587992917,
+        "createdAt": "2026-11-20T00:16:40Z",
+        "sha": "2166d2a3cdaf7e5a4381e0c5ebc10a504a479f4f",
+        "zipSha256": "0fcc8c5350a88988f090208b5d31fbaf2dfceae62ed32134e28c4943b9395946",
+        "size": 760146,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14589445192,
+        "createdAt": "2026-11-20T00:27:16Z",
+        "sha": "2166d2a3cdaf7e5a4381e0c5ebc10a504a479f4f",
+        "zipSha256": "8db6356c89b0e2b429a0e304c9a6552efafddebc8528e60978eba718fd48cc38",
+        "size": 18478920,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14588955814,
+        "createdAt": "2026-11-20T00:27:41Z",
+        "sha": "2166d2a3cdaf7e5a4381e0c5ebc10a504a479f4f",
+        "zipSha256": "e493fef6fd79d80caf7e455412e2af7340b8e0f25260694a83914a7d5db27b81",
+        "size": 19098810,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14587524768,
+        "createdAt": "2026-11-20T00:31:02Z",
+        "sha": "2166d2a3cdaf7e5a4381e0c5ebc10a504a479f4f",
+        "zipSha256": "eacf0927fa58e338ac6f1e258fefae18ee2e0fd504d0fa8d92a3368d8251ea3c",
+        "size": 24567629,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Counts style assignments in Chromium only. Device speed, FPS and CPU are outside the observed measure."
+}

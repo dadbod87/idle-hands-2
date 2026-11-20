@@ -2169,9 +2169,119 @@
         }
       ],
       "roundedRunnerMinutes": 52
+    },
+    {
+      "run": 44748047628,
+      "phase": "short-sound-placement-pr",
+      "sha": "a71c443961e9a7bfc3217f45bae9910f7a64c112",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 852.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 968.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 199.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 828.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 51
+    },
+    {
+      "run": 44750626324,
+      "phase": "short-sound-placement-main",
+      "sha": "cd0501924bd3fc9479cceadcf4c7a87947711001",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 179.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "cancelled",
+              "seconds": 1220.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 1002.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 844.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "failure",
+              "seconds": 4.0
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "jobs": [
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 775.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 179.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 1002.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 844.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 106
     }
   ],
-  "completedRoundedMinutes": 2692,
-  "failedRoundedMinutes": 512,
+  "completedRoundedMinutes": 2849,
+  "failedRoundedMinutes": 569,
   "limitations": "Time derived from named GitHub Ubuntu jobs, rounded to minutes per job. Partial running jobs have no final time. No billing conclusion."
 }

@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-19
 
-Last inspected at 2026-11-19 22:07 PST. The separate sequel repository was at `5440e24c4c9098113c3662f7f29affe0f2c5d856`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-19 23:35 PST. The separate sequel repository was at `34ec2e208434ac70548f5b1dd476e009fc6f40ad`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -20,14 +20,14 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 | Shorter field guide and direct task links | [#84](https://github.com/dadbod87/idle-hands-2/pull/84) | `32c76200d352` | 586 domain, 237 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44674248417) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44676114775) |
 | A deliberate private parcel check in Journal | [#85](https://github.com/dadbod87/idle-hands-2/pull/85) | `7cf5f49698d4` | 586 domain, 238 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44678192237) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44679987072) |
 | An unfinished tree sketch during long bench work | [#86](https://github.com/dadbod87/idle-hands-2/pull/86) | `5440e24c4c90` | 586 domain, 239 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44681875414) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44683634905) |
+| Balanced browser checks | [#87](https://github.com/dadbod87/idle-hands-2/pull/87) | `19709bab5334` | 586 domain, 239 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44685653274) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44687421155) |
+| The second blanket room score | [#88](https://github.com/dadbod87/idle-hands-2/pull/88) | `34ec2e208434` | 587 domain, 240 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44689518964) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44691499881) |
 
 ## Saved work in dependency order
 
 | Work | Branch | Status |
 |---|---|---|
-| Balanced browser checks | `perf/browser-shard-balance` at `d9469234203c` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/d9469234203c0e1f69edc326625558c426f08cc1/docs/evidence/IH2-168/PLAN.md) |
-| The second blanket room score | `feat/boarding-house-music` at `862b544fb84c` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/862b544fb84c746535c3c9514a36ab7f937d8822/docs/evidence/IH2-170/PLAN.md) |
-| Earned Naturalist display for home visitors | `feat/home-keepsake-display` at `0d1c82d066bb` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0d1c82d066bbe3796febab10c2e4c40234df7968/docs/evidence/IH2-171/PLAN.md) |
+| Earned Naturalist display for home visitors | `feat/home-keepsake-display` at `bd9451d88538` | [PR #89](https://github.com/dadbod87/idle-hands-2/pull/89) · open · [failure](https://github.com/dadbod87/idle-hands-2/actions/runs/44693655992) · [Plan](https://github.com/dadbod87/idle-hands-2/blob/bd9451d88538f6a21c6e1863c4214af8f20ff152/docs/evidence/IH2-171/PLAN.md) |
 | Read the framed certificate directly | `feat/read-home-keepsake` at `0efccbf9fb8d` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0efccbf9fb8d121379aaf53c827fe995e3ce820b/docs/evidence/IH2-172/PLAN.md) |
 | Ready allotment trip during workshop work | `feat/bench-ready-allotment` at `18f1afcf8bf9` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/18f1afcf8bf9859726caf3c657bd981598f65e9c/docs/evidence/IH2-173/PLAN.md) |
 | Steadier location and action HUD updates | `perf/stable-context-hud` at `886b534de30f` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/886b534de30fd284a8b741996e27c74f9026d908/docs/evidence/IH2-174/PLAN.md) |
@@ -49,7 +49,7 @@ The [2K, 4K and phone sample](../../evidence/overnight-render-2026-11-19/README.
 
 The [separate street art study](https://github.com/dadbod87/idle-hands-2/blob/c1e65d44d255cd63dbb3e1977d5a9768c0179df0/docs/evidence/IH2-166/PLAN.md) moved 16 images and 74,736 decoded bytes out of the square’s first requests. Under a fixed 75 ms response delay, the combined square-plus-first-street median was 112 ms slower on desktop and 103 ms slower at narrow-phone size. Keep that study separate until its entry cost improves in repeatable trials.
 
-The [browser scheduling study](https://github.com/dadbod87/idle-hands-2/blob/d9469234203c0e1f69edc326625558c426f08cc1/docs/evidence/IH2-168/PLAN.md) preserved all 239 collected browser identities locally. The historical candidate predicts 51–77 seconds lower max-shard case time in three recorded suites, with the same summed case time. The planning estimate describes test scheduling, with no evidence of billing savings.
+The [browser scheduling study](https://github.com/dadbod87/idle-hands-2/blob/263aa716e4e0de82716633758f0b867d00322a6c/docs/evidence/IH2-168/PLAN.md) preserved all 239 collected browser identities locally. The historical candidate predicts 51–77 seconds lower max-shard case time in three recorded suites, with the same summed case time. The planning estimate describes test scheduling, with no evidence of billing savings. The exact main jobs recorded 932 to 954 seconds on the slowest shard. The exact PR jobs recorded 918 to 849 seconds. These are individual GitHub runner samples with variable setup and case speeds.
 
 The [home keepsake design study](https://github.com/dadbod87/idle-hands-2/blob/ad255fd7f4c56a19d4750d048e26bbd03622bd95/docs/evidence/IH2-169/PLAN.md) demonstrates a private preview and a deliberate visitor-visible frame using the original tree certificate. Native Chromium verified both roles and removal in three layouts. The standalone study has no persistent game changes. A playable integration will need separate owner, permission, persistence and layout checks.
 

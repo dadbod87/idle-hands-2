@@ -1,3 +1,51 @@
+# November 19 — walkable boarding house accepted
+
+Browser practice has a real door and room, a note to Marlow, and a safely restored position. Main `5d0e3b76b30435c3fc618b165dba426f3a85172e` passed 581 domain tests and 229 browser cases. [Exact verification](../evidence/IH2-156/EXACT_CI.json).
+
+The next candidate is [`IH2-157` and its plan](../evidence/IH2-157/PLAN.md), on `perf/quiet-rain-layer`. Keep rain anchored and visible while avoiding repeated hidden-layer work. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — optional orchard music accepted
+
+Little brass labels plays in the orchard after confirmed arrival, reusing the original gather voice. Main `d422168f896a6cc4ede31a1993479a9751350b34` passed 577 domain tests and 227 browser cases. [Exact verification](../evidence/IH2-155/EXACT_CI.json).
+
+The next candidate is [`IH2-156` and its plan](../evidence/IH2-156/PLAN.md), on `feat/local-lodging-visit`. Give the first-morning design a real room, a visible door and a safe step into town. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — Jun’s orchard directions accepted
+
+One contextual suggestion points to confirmed orchard work. A narrow phone can follow its route without picking or spending. Main `c9353926a5f6f57230eb601e206a72567d69ffeb` passed 575 domain tests and 225 browser cases. [Exact verification](../evidence/IH2-154/EXACT_CI.json).
+
+The next candidate is [`IH2-155` and its plan](../evidence/IH2-155/PLAN.md), on `feat/orchard-music`. Give the orchard an audible identity when a player explicitly enables music. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — original headwear accepted, Jun's orchard directions next
+
+[PR #74](https://github.com/dadbod87/idle-hands-2/pull/74) is verified on exact main `bc61186865a1c781e8eaf5fde18d1176d61fdec4`. Both exact checks passed 572 domain tests and 224 browser cases. [Evidence](../evidence/IH2-153/BROWSER_HEADWEAR_CI.json).
+
+The current candidate puts one clearly labeled trip into Jun’s conversation based on confirmed orchard progress. Starting a walk cannot pick or spend anything. [Plan](../evidence/IH2-154/PLAN.md).
+
+# November 19 — private parcels accepted, wearable art next
+
+[PR #73](https://github.com/dadbod87/idle-hands-2/pull/73) is verified on exact main `26fea9631260c80f08f9de114cdcddeeca5f533e`. Both runs passed 571 domain tests and 223 browser cases. [Exact checks and limitations](../evidence/IH2-150/SNACK_SHELF_CI.json).
+
+The current candidate lets a browser resident preview and wear the Clerk cap or Inkwood hood. Storage changes only with a deliberate save. The two original overlay sheets follow body movement and confirmed orchard picking. [Playable headwear](../evidence/IH2-153/PLAN.md).
+
+# November 19 — canopy and parcel rehearsal accepted, shared delivery next
+
+[PR #72](https://github.com/dadbod87/idle-hands-2/pull/72) is verified on exact main `68619d549a01c10f80a2780e61e0cba2d6cfd219`. Both runs passed 566 domain tests and 220 browser cases. The native stage measures transform writes on visible motion. [Check results](../evidence/IH2-148/CANOPY_AND_PARCEL_CI.json).
+
+The actual café parcel shelf candidate transfers one conserved snack. Its local browser presentation uses fictional intercepted replies. Full isolated PostgreSQL and native two-resident evidence are still required. [Playable shelf candidate](../evidence/IH2-150/PLAN.md).
+
+# November 19 — shared orchard accepted, ambient performance and the café shelf next
+
+[PR #71](https://github.com/dadbod87/idle-hands-2/pull/71) is verified on main `55d75c58e9922377f262af9fc284f26470aab3d0`. Disposable database and native browser residents verified separate harvest, exact replay, rollback and reload. Both exact runs passed 566 domain tests and 219 browser cases. [Proof](../evidence/IH2-147/SHARED_ORCHARD_CI.json).
+
+The next candidate limits canopy writes to changed transforms and includes a standalone shelf that rehearses leaving a single snack for a neighbor. [Measured rendering](../evidence/IH2-148/PLAN.md) · [Parcel study](../evidence/IH2-149/PLAN.md).
+
+# November 19 — browser orchard accepted, shared orchard next
+
+[PR #70](https://github.com/dadbod87/idle-hands-2/pull/70) is verified on exact main `1266efcbff502bcd8e0683ea342cf5fdc19aed4f`. Native keyboard, pointer and touch checks cover the orchard and its separate packing table. Both exact runs passed 562 domain tests and 217 browser cases. [Exact checks and limits](../evidence/IH2-146/ORCHARD_PRACTICE_CI.json).
+
+The shared practice orchard candidate keeps an independent pantry on the existing actor row. A targeted browser fixture tests how the game recovers after a successful reply is lost. The full checkout still needs exact disposable PostgreSQL and two-resident browser verification. [Shared orchard](../evidence/IH2-147/PLAN.md).
+
 # November 19 — workshop moments accepted, browser orchard next
 
 [PR #69](https://github.com/dadbod87/idle-hands-2/pull/69) is verified on exact main `6f9245a8772a858c1e26104b249e50e6c5162f09`. The ordinary bench shows its confirmed piece and the bridge celebrates a fresh opening. Both exact runs passed 558 domain tests and 213 browser cases. The orchard study and picking art were standalone in that release. [Exact checks and limits](../evidence/IH2-142/TOWN_MOMENTS_CI.json).

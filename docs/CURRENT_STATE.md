@@ -1,3 +1,87 @@
+# November 20 — the Garden Studio sunroom accepted
+
+The confirmed plan selects original glazed and tiled art on the existing expanded footprint for residents and visitors. Main `864886674bd6268733dd41a0728838ba1bd049eb` passed 590 domain tests and 245 browser cases. [Exact verification](evidence/IH2-177/EXACT_CI.json).
+
+# November 20 — a way to stop a guided walk accepted
+
+A temporary playfield action or Escape clears a guided target while still travelling and restores focus to the world. Main `b3b350c5d70ce9a4c95074cf4209e6cc74c41ea7` passed 589 domain tests and 244 browser cases. [Exact verification](evidence/IH2-176/EXACT_CI.json).
+
+# November 20 — one announcement when a crop is ready accepted
+
+The selected bed publishes new readiness once. Bed controls keep their identity and avoid repeated unchanged source assignments. Main `03637c000ff744aedca83c5cb503868a02422784` passed 589 domain tests and 243 browser cases. [Exact verification](evidence/IH2-175/EXACT_CI.json).
+
+# November 20 — the stable location and action HUD accepted
+
+The location hint and sky elements survive nearby-action changes. The action button updates its disabled state only when eligibility changes. Main `d0aad8d331fdd42f63c890447d4ea2a173b655e9` passed 589 domain tests and 242 browser cases. [Exact verification](evidence/IH2-174/EXACT_CI.json).
+
+# November 20 — the ready allotment suggestion accepted
+
+A long workshop job can suggest a ready garden bed after the tree studies, without collecting the crop. Main `78a886b54dff396cc9ba5bc80c6b526f712e2185` passed 589 domain tests and 242 browser cases. [Exact verification](evidence/IH2-173/EXACT_CI.json).
+
+# November 20 — direct certificate reading accepted
+
+A tap approaches the keepsake and opens the full artwork. The temporary stop goes away when the owner removes the stand. Main `2b88eca11c5c508376e1767cc21a3513032bc6ea` passed 589 domain tests and 241 browser cases. [Exact verification](evidence/IH2-172/EXACT_CI.json).
+
+# November 20 — the Naturalist keepsake display accepted
+
+Three recorded tree studies unlock one private preview and owner-selected certificate display. Current visitors see the stand and story. Main `1aed806e2797417e7c5dded720166c419e528474` passed 588 domain tests and 241 browser cases. [Exact verification](evidence/IH2-171/EXACT_CI.json).
+
+# November 19 — the original boarding-house score accepted
+
+The second blanket plays only after opt-in and hands back to the existing square score after exit. Main `34ec2e208434ac70548f5b1dd476e009fc6f40ad` passed 587 domain tests and 240 browser cases. [Exact verification](evidence/IH2-170/EXACT_CI.json).
+
+# November 19 — the balanced browser groups accepted
+
+The same suite moves the local toolbar and woodland certificate files to the first group, preserving the ordered shared cases and exact built game. Main `19709bab53349d65d4ac6a484ebf802557626d48` passed 586 domain tests and 239 browser cases. [Exact verification](evidence/IH2-168/EXACT_CI.json).
+
+# November 19 — a tree-study outing during long bench work accepted
+
+A confirmed long job offers a free named walk to an unfinished sketch and holds the action in place through readiness. Main `5440e24c4c9098113c3662f7f29affe0f2c5d856` passed 586 domain tests and 239 browser cases. [Exact verification](evidence/IH2-167/EXACT_CI.json).
+
+# November 19 — the Journal café note accepted
+
+A resident can check the count of waiting snacks deliberately and follow the walk to the café counter. Main `7cf5f49698d49ee47856ee5f8a7909b7f8a19038` passed 586 domain tests and 238 browser cases. [Exact verification](evidence/IH2-165/EXACT_CI.json).
+
+# November 19 — task-first field guide accepted
+
+The guide opens useful material depots for the first gathering task and gives a concise route to Journal or Workshop. Main `32c76200d352eb6db771ea22483184a0f1fedef2` passed 586 domain tests and 237 browser cases. [Exact verification](evidence/IH2-163/EXACT_CI.json).
+
+# November 19 — free room and yard previews accepted
+
+The Housing Registry draws the accepted furnishing nooks, floor footprint and yard spots before a quote. Main `0f09487c648e8f97428aaaf5938218f92131e3e7` passed 586 domain tests and 237 browser cases. [Exact verification](evidence/IH2-162/EXACT_CI.json).
+
+# November 19 — room-specific garden loading accepted
+
+The outdoor first frame requests fewer images and the first named garden visit waits for the mounted room. Main `ded1071f4d5b334f438588f4305645a6ac64a7a2` passed 586 domain tests and 236 browser cases. [Exact verification](evidence/IH2-161/EXACT_CI.json).
+
+# November 19 — the optional first morning accepted
+
+An explicitly chosen browser-practice arrival now starts in the boarding-house bed, wakes on request and exits through the real front door. Main `8b4921c1c20c3c8dcf425f59d557c452380e9d75` passed 586 domain tests and 235 browser cases. [Exact verification](evidence/IH2-160/EXACT_CI.json).
+
+# November 19 — confirmed door light accepted
+
+A 220 ms paper-colored fade follows an accepted room transition. Main `efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6` passed 583 domain tests and 233 browser cases. [Exact verification](evidence/IH2-159/EXACT_CI.json).
+
+# November 19 — arrival stories and a route to Marlow accepted
+
+A browser resident can choose an optional backstory and walk to the clerk from the boarding-house note. Main `6a2b3f1abaaf4f5db393c88d996a4e480eca3114` passed 583 domain tests and 231 browser cases. [Exact verification](evidence/IH2-158/EXACT_CI.json).
+
+# November 19 — quieter rain-layer updates accepted
+
+Steady weather and indoors skip redundant visibility changes while visible rain keeps moving with the world. Main `2166d2a3cdaf7e5a4381e0c5ebc10a504a479f4f` passed 581 domain tests and 230 browser cases. [Exact verification](evidence/IH2-157/EXACT_CI.json).
+
+# November 19 — walkable boarding house accepted
+
+Browser practice has a real door and room, a note to Marlow, and a safely restored position. Main `5d0e3b76b30435c3fc618b165dba426f3a85172e` passed 581 domain tests and 229 browser cases. [Exact verification](evidence/IH2-156/EXACT_CI.json).
+
+# November 19 — optional orchard music accepted
+
+Little brass labels plays in the orchard after confirmed arrival, reusing the original gather voice. Main `d422168f896a6cc4ede31a1993479a9751350b34` passed 577 domain tests and 227 browser cases. [Exact verification](evidence/IH2-155/EXACT_CI.json).
+
+# November 19 — Jun’s orchard directions accepted
+
+One contextual suggestion points to confirmed orchard work. A narrow phone can follow its route without picking or spending. Main `c9353926a5f6f57230eb601e206a72567d69ffeb` passed 575 domain tests and 225 browser cases. [Exact verification](evidence/IH2-154/EXACT_CI.json).
+
 # November 19 — original headwear accepted in browser practice
 
 The resident editor now offers the Clerk cap and Inkwood hood. Free previews use the same feet and acting poses as the selected resident, and only explicit Save changes the appearance. Main `bc61186865a1c781e8eaf5fde18d1176d61fdec4` passed 572 domain tests and 224 browser cases. [Exact checks](evidence/IH2-153/BROWSER_HEADWEAR_CI.json).

@@ -3194,7 +3194,7 @@
     {
       "id": "IH2-170",
       "title": "Play an original optional boarding-house score",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/boarding-house-music",
       "goal": "Give the room a quieter sound identity using the existing lightweight original music system.",
       "depends_on": [
@@ -3210,7 +3210,31 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-170/PLAN.md"
+        "docs/evidence/IH2-170/PLAN.md",
+        "docs/evidence/IH2-170/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The second blanket plays only after opt-in and hands back to the existing square score after exit."
+    },
+    {
+      "id": "IH2-171",
+      "title": "Display an earned Naturalist certificate for home visitors",
+      "status": "in_progress",
+      "owner_branch": "feat/home-keepsake-display",
+      "goal": "Give a resident a private preview and a deliberate way to show one earned accomplishment at home.",
+      "depends_on": [
+        "IH2-170",
+        "IH2-156",
+        "IH2-162"
+      ],
+      "acceptance": [
+        "Verify ownership, earned status, current home, private projection, exact replay, lost reply and write rollback.",
+        "Only current guests receive an invalidation. Verify the actual room and readable visitor card at desktop, narrow and short enlarged sizes."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-171/PLAN.md"
       ]
     }
   ],

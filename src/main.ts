@@ -1,3 +1,4 @@
+import {mountDoorLight} from './ui/door-light.ts';
 import {ARRIVAL_STORIES} from './game/arrival-stories.ts';
 import type {BrowserResident} from './game/browser-resident.ts';
 import {orchardGuide} from './game/orchard-guide.ts';
@@ -49,7 +50,7 @@ const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
  <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">${townMode?'NEIGHBORHOOD STUDY':'<strong id="local-resident-badge" dir="auto">NEIGHBORHOOD STUDY</strong>'}<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
- <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
+ <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div id="door-light" aria-hidden="true"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
  <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal</button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav></footer>
 </main>
 <dialog id="panel" aria-labelledby="panel-title"><form method="dialog"><header class="dialog-head"><div><p class="eyebrow">TOWN INFORMATION SERVICES</p><h2 id="panel-title">Places to go</h2></div><div class="dialog-actions"><button id="quick-music" class="sound-icon" type="button" hidden></button><button aria-label="Close panel" value="close">×</button></div></header><div id="panel-body"></div></form></dialog>`;
@@ -64,6 +65,12 @@ const music = mountPlaceMusic({
   body,
   open: () => openPanel('Sound settings'),
 });
+
+const doorLight = mountDoorLight(document.querySelector<HTMLElement>('#door-light')!);
+function confirmedDoor() {
+  music.cue('door');
+  doorLight();
+}
 
 const feedback = document.querySelector<HTMLElement>('#feedback')!;
 new MutationObserver(()=>{feedback.scrollTop=0;}).observe(feedback,{childList:true,characterData:true,subtree:true});
@@ -171,7 +178,7 @@ function adoptTownPosition(snapshot:TownSnapshot, throughDoor=false){
  music.setLocation(snapshot.position.room,snapshot.position.position);
  namedWalk=null;placeWalk=null;
  portalIntent++;scene.residents=[];homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);walkedDistance=0;confirmedDistance=0;confirmedContext=contextKey(snapshot.position.room,homePlotId);movementEpoch++;residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);scene.homePlotId=homePlotId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??districtId??'1');scene.neighborhoodPlots=snapshot.plots;scene.constructionSites=snapshot.housingSites??[];const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;unlockWorld();
- if(entered)music.cue('door');
+ if(entered)confirmedDoor();
 }
 const town=townMode?new TownClient({
  onConfirmedCommand:(command,reward)=>{
@@ -196,7 +203,7 @@ async function flushMovement(force=false):Promise<void>{
  const value={room:session.room,position:{...session.position},...(session.room.startsWith('home')&&homePlotId?{homePlotId}:{}),...(districtId?{districtId}:{})},hash=JSON.stringify(value);if(hash===lastSent){if(!movement&&!needResync&&contextKey(value.room,homePlotId)===confirmedContext)confirmedDistance=walkedDistance;return;}
  const sentDistance=walkedDistance,epoch=movementEpoch,sentPlayerId=town.snapshot.playerId;
  lastMove=Date.now();
- const action=town.movement(value).then(()=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;lastSent=hash;confirmedDistance=Math.max(confirmedDistance,sentDistance);const nextContext=contextKey(value.room,value.homePlotId,value.districtId);if(nextContext!==confirmedContext)music.cue('door');confirmedContext=nextContext;music.setLocation(value.room,value.position);moveBackoff=0;}).catch(async error=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;moveBackoff=Date.now()+2000;needResync=true;session.lock(true);feedback.textContent='Movement could not be confirmed. Reconnecting to the local town…';try{const snapshot=await town.load();if(snapshot.playerId!==sentPlayerId||town.snapshot?.playerId!==sentPlayerId)return;homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);lastSent=JSON.stringify(snapshot.position);}catch{/* SSE reconnect reloads the authoritative position. */}if(force)throw error;}).finally(()=>{if(movement===action)movement=null;});
+ const action=town.movement(value).then(()=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;lastSent=hash;confirmedDistance=Math.max(confirmedDistance,sentDistance);const nextContext=contextKey(value.room,value.homePlotId,value.districtId);if(nextContext!==confirmedContext)confirmedDoor();confirmedContext=nextContext;music.setLocation(value.room,value.position);moveBackoff=0;}).catch(async error=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;moveBackoff=Date.now()+2000;needResync=true;session.lock(true);feedback.textContent='Movement could not be confirmed. Reconnecting to the local town…';try{const snapshot=await town.load();if(snapshot.playerId!==sentPlayerId||town.snapshot?.playerId!==sentPlayerId)return;homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);lastSent=JSON.stringify(snapshot.position);}catch{/* SSE reconnect reloads the authoritative position. */}if(force)throw error;}).finally(()=>{if(movement===action)movement=null;});
  movement=action;await action;
 }
 const remoteWorkshop=town?.workshopAdapter();
@@ -446,7 +453,7 @@ function activate(stop: Stop) {
   }
   if (stop.transition) {
     if(town){void enterRemotePortal(stop);return;}
-    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); music.cue('door'); save(); focusWorld(); feedback.textContent = stop.id==='lodging-exit'?'The square is east of the front steps. Look for Marlow at the clerk’s desk.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
+    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='lodging-exit'?'The square is east of the front steps. Look for Marlow at the clerk’s desk.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
     const note = paragraph(townMode?'Shared practice keeps your town projects and home progress.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);

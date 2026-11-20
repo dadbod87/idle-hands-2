@@ -2988,7 +2988,7 @@
     {
       "id": "IH2-158",
       "title": "Choose an optional arrival story",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/browser-arrival-stories",
       "goal": "Let a resident personalize their first note without another setup screen or game cost.",
       "depends_on": [
@@ -3004,7 +3004,30 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-158/PLAN.md"
+        "docs/evidence/IH2-158/PLAN.md",
+        "docs/evidence/IH2-158/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A browser resident can choose an optional backstory and walk to the clerk from the boarding-house note."
+    },
+    {
+      "id": "IH2-159",
+      "title": "Fade in brief light after an accepted doorway",
+      "status": "in_progress",
+      "owner_branch": "feat/confirmed-door-light",
+      "goal": "Make an entered room feel tangible with a quick visual beat while preserving input.",
+      "depends_on": [
+        "IH2-158",
+        "IH2-130"
+      ],
+      "acceptance": [
+        "Run the fade once after a confirmed transition, with reduced motion and replay suppression.",
+        "Verify local entry and a held fictional shared reply. Keep sound behavior independent."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-159/PLAN.md"
       ]
     }
   ],

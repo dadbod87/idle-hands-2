@@ -2896,7 +2896,7 @@
     {
       "id": "IH2-154",
       "title": "Offer one contextual orchard direction from Jun",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/jun-orchard-guidance",
       "goal": "Make one clear useful next trip available without adding a permanent quest panel.",
       "depends_on": [
@@ -2911,7 +2911,419 @@
         "Keep saved services stopped. No original-game or hosted change."
       ],
       "evidence": [
-        "docs/evidence/IH2-154/PLAN.md"
+        "docs/evidence/IH2-154/PLAN.md",
+        "docs/evidence/IH2-154/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. One contextual suggestion points to confirmed orchard work. A narrow phone can follow its route without picking or spending."
+    },
+    {
+      "id": "IH2-155",
+      "title": "Play an optional original orchard score",
+      "status": "done",
+      "owner_branch": "feat/orchard-music",
+      "goal": "Give the orchard an audible identity when a player explicitly enables music.",
+      "depends_on": [
+        "IH2-154",
+        "IH2-146"
+      ],
+      "acceptance": [
+        "Use confirmed feet for shared practice and a small buffer across the boundary.",
+        "Native Web Audio samples match the original phrase. Verify quiet opt-out and independent volume."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-155/PLAN.md",
+        "docs/evidence/IH2-155/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Little brass labels plays in the orchard after confirmed arrival, reusing the original gather voice."
+    },
+    {
+      "id": "IH2-156",
+      "title": "Visit the boarding house in browser practice",
+      "status": "done",
+      "owner_branch": "feat/local-lodging-visit",
+      "goal": "Give the first-morning design a real room, a visible door and a safe step into town.",
+      "depends_on": [
+        "IH2-155",
+        "IH2-136"
+      ],
+      "acceptance": [
+        "Enter by direct tap or Places and leave from the same visible front steps.",
+        "Preserve safe existing positions and shared room authority; verify narrow, enlarged short and ordinary desktop."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-156/PLAN.md",
+        "docs/evidence/IH2-156/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Browser practice has a real door and room, a note to Marlow, and a safely restored position."
+    },
+    {
+      "id": "IH2-157",
+      "title": "Stop writing styles for invisible rain",
+      "status": "done",
+      "owner_branch": "perf/quiet-rain-layer",
+      "goal": "Keep rain anchored and visible while avoiding repeated hidden-layer work.",
+      "depends_on": [
+        "IH2-156",
+        "IH2-148"
+      ],
+      "acceptance": [
+        "Measure native visibility/transform writes before and after.",
+        "Preserve fixed world anchoring, resize, walking, reduced motion, and the production clock."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-157/PLAN.md",
+        "docs/evidence/IH2-157/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Steady weather and indoors skip redundant visibility changes while visible rain keeps moving with the world."
+    },
+    {
+      "id": "IH2-158",
+      "title": "Choose an optional arrival story",
+      "status": "done",
+      "owner_branch": "feat/browser-arrival-stories",
+      "goal": "Let a resident personalize their first note without another setup screen or game cost.",
+      "depends_on": [
+        "IH2-157",
+        "IH2-153",
+        "IH2-156"
+      ],
+      "acceptance": [
+        "Preserve the existing appearance records, headwear, work and exact feet.",
+        "Use one optional setting, verify cancellation and reload, and show the selected note at the boarding house."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-158/PLAN.md",
+        "docs/evidence/IH2-158/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A browser resident can choose an optional backstory and walk to the clerk from the boarding-house note."
+    },
+    {
+      "id": "IH2-159",
+      "title": "Fade in brief light after an accepted doorway",
+      "status": "done",
+      "owner_branch": "feat/confirmed-door-light",
+      "goal": "Make an entered room feel tangible with a quick visual beat while preserving input.",
+      "depends_on": [
+        "IH2-158",
+        "IH2-130"
+      ],
+      "acceptance": [
+        "Run the fade once after a confirmed transition, with reduced motion and replay suppression.",
+        "Verify local entry and a held fictional shared reply. Keep sound behavior independent."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-159/PLAN.md",
+        "docs/evidence/IH2-159/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A 220 ms paper-colored fade follows an accepted room transition."
+    },
+    {
+      "id": "IH2-160",
+      "title": "Wake up in a saved browser-practice room",
+      "status": "done",
+      "owner_branch": "feat/browser-first-morning",
+      "goal": "Offer an optional choice after character setup, with one deliberate Get up action and a real doorstep exit.",
+      "depends_on": [
+        "IH2-159",
+        "IH2-156",
+        "IH2-158"
+      ],
+      "acceptance": [
+        "Keep the old position and progress available, with exact accepted bed and outside checkpoints.",
+        "Verify retry, reload, local keyboard/touch and an unobstructed short enlarged view."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-160/PLAN.md",
+        "docs/evidence/IH2-160/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. An explicitly chosen browser-practice arrival now starts in the boarding-house bed, wakes on request and exits through the real front door."
+    },
+    {
+      "id": "IH2-161",
+      "title": "Load the allotment when a resident enters",
+      "status": "done",
+      "owner_branch": "perf/defer-garden-room-art",
+      "goal": "Remove indoor garden image requests from outdoor loading and keep the first garden dialog synchronized with its room.",
+      "depends_on": [
+        "IH2-160"
+      ],
+      "acceptance": [
+        "Keep outdoor garden art and all original assets. Measure boot and first-door times under a declared response delay.",
+        "Hold one original room image in a native browser and verify that the named walk opens the garden after the first ready room."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-161/PLAN.md",
+        "docs/evidence/IH2-161/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The outdoor first frame requests fewer images and the first named garden visit waits for the mounted room."
+    },
+    {
+      "id": "IH2-162",
+      "title": "Preview the rooms and yard before asking for a price",
+      "status": "done",
+      "owner_branch": "feat/housing-plan-preview",
+      "goal": "Make the differences among the existing paid plans readable on a phone without sending a housing command.",
+      "depends_on": [
+        "IH2-161",
+        "IH2-117"
+      ],
+      "acceptance": [
+        "Draw actual furnishing nooks, facade footprint and yard spots from accepted world/catalog data.",
+        "Verify opening, switching and closing on desktop, narrow and short enlarged screens, and keep full purchase checks."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-162/PLAN.md",
+        "docs/evidence/IH2-162/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The Housing Registry draws the accepted furnishing nooks, floor footprint and yard spots before a quote."
+    },
+    {
+      "id": "IH2-163",
+      "title": "Offer the next relevant action in the field guide",
+      "status": "done",
+      "owner_branch": "feat/task-first-field-guide",
+      "goal": "Help a new player find material depots or open Journal without rereading orientation.",
+      "depends_on": [
+        "IH2-162",
+        "IH2-133"
+      ],
+      "acceptance": [
+        "Preserve the real workshop route, live clock, shared objective and input lock.",
+        "Verify the first missing depot focus and Journal at desktop, narrow phone and short enlarged text."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-163/PLAN.md",
+        "docs/evidence/IH2-163/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The guide opens useful material depots for the first gathering task and gives a concise route to Journal or Workshop."
+    },
+    {
+      "id": "IH2-165",
+      "title": "Check for café parcels from Journal",
+      "status": "done",
+      "owner_branch": "feat/journal-cafe-parcels",
+      "goal": "Let a resident see how many snacks are waiting and find the café without adding background traffic.",
+      "depends_on": [
+        "IH2-163",
+        "IH2-150"
+      ],
+      "acceptance": [
+        "Read once on a deliberate check. Keep sender detail and transfer actions at the actual shelf.",
+        "Verify failed read, safe retry, keyboard focus, and real travel at short enlarged, touch, and desktop sizes."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-165/PLAN.md",
+        "docs/evidence/IH2-165/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A resident can check the count of waiting snacks deliberately and follow the walk to the café counter."
+    },
+    {
+      "id": "IH2-167",
+      "title": "Offer an unfinished tree sketch during long bench work",
+      "status": "done",
+      "owner_branch": "feat/workbench-outing",
+      "goal": "Put one immediately useful free outing next to long crafting work, with nothing to remember or spend.",
+      "depends_on": [
+        "IH2-165"
+      ],
+      "acceptance": [
+        "Choose the first unfinished study after a long confirmed job and hold the action steady through readiness.",
+        "Use actual named walking and preserve costs, stock, parts, deadlines and collection. Check keyboard, 320-pixel touch and 200% enlarged landscape."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-167/PLAN.md",
+        "docs/evidence/IH2-167/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A confirmed long job offers a free named walk to an unfinished sketch and holds the action in place through readiness."
+    },
+    {
+      "id": "IH2-168",
+      "title": "Balance three existing browser groups",
+      "status": "done",
+      "owner_branch": "perf/browser-shard-balance",
+      "goal": "Reduce time spent waiting for the final browser group with exact same cases and runner count.",
+      "depends_on": [
+        "IH2-167"
+      ],
+      "acceptance": [
+        "Verify exact equality of case identities, matching build bytes and unchanged ordered real-town fixtures.",
+        "Observe the critical path on the same standard public runner label. Record observed variance and no inferred billing reduction."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-168/PLAN.md",
+        "docs/evidence/IH2-168/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The same suite moves the local toolbar and woodland certificate files to the first group, preserving the ordered shared cases and exact built game."
+    },
+    {
+      "id": "IH2-170",
+      "title": "Play an original optional boarding-house score",
+      "status": "done",
+      "owner_branch": "feat/boarding-house-music",
+      "goal": "Give the room a quieter sound identity using the existing lightweight original music system.",
+      "depends_on": [
+        "IH2-168",
+        "IH2-156",
+        "IH2-160"
+      ],
+      "acceptance": [
+        "Use native audio to verify first entry stays silent without explicit opt-in. Verify audio buffer on opt-in and original square phrase after exit.",
+        "Keep existing audio source evidence and all original PCM fixtures exact."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-170/PLAN.md",
+        "docs/evidence/IH2-170/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The second blanket plays only after opt-in and hands back to the existing square score after exit."
+    },
+    {
+      "id": "IH2-171",
+      "title": "Display an earned Naturalist certificate for home visitors",
+      "status": "done",
+      "owner_branch": "feat/home-keepsake-display",
+      "goal": "Give a resident a private preview and a deliberate way to show one earned accomplishment at home.",
+      "depends_on": [
+        "IH2-170",
+        "IH2-156",
+        "IH2-162"
+      ],
+      "acceptance": [
+        "Verify ownership, earned status, current home, private projection, exact replay, lost reply and write rollback.",
+        "Only current guests receive an invalidation. Verify the actual room and readable visitor card at desktop, narrow and short enlarged sizes."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-171/PLAN.md",
+        "docs/evidence/IH2-171/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Three recorded tree studies unlock one private preview and owner-selected certificate display. Current visitors see the stand and story."
+    },
+    {
+      "id": "IH2-172",
+      "title": "Read the displayed certificate by walking up to it",
+      "status": "done",
+      "owner_branch": "feat/read-home-keepsake",
+      "goal": "Make the earned artwork readable directly from the room on a phone or keyboard.",
+      "depends_on": [
+        "IH2-171"
+      ],
+      "acceptance": [
+        "Use a temporary stop only when the display is confirmed in the current home; removal cancels the route.",
+        "Verify actual phone tap and keyboard approach at the frame, with no new game command or storage change."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-172/PLAN.md",
+        "docs/evidence/IH2-172/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A tap approaches the keepsake and opens the full artwork. The temporary stop goes away when the owner removes the stand."
+    },
+    {
+      "id": "IH2-173",
+      "title": "Suggest a ready allotment visit during long workshop work",
+      "status": "done",
+      "owner_branch": "feat/bench-ready-allotment",
+      "goal": "Give returning players one useful repeatable optional outing after their first tree studies.",
+      "depends_on": [
+        "IH2-172",
+        "IH2-167"
+      ],
+      "acceptance": [
+        "Use actual confirmed ripe garden data and keep the existing tree route. Avoid suggesting growing or full-produce beds.",
+        "Follow the live walk and show the real harvest control without collecting or changing the running bench job."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-173/PLAN.md",
+        "docs/evidence/IH2-173/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A long workshop job can suggest a ready garden bed after the tree studies, without collecting the crop."
+    },
+    {
+      "id": "IH2-174",
+      "title": "Keep the location and action HUD steady while walking",
+      "status": "done",
+      "owner_branch": "perf/stable-context-hud",
+      "goal": "Remove redundant browser work from the location and action controls during ordinary movement.",
+      "depends_on": [
+        "IH2-173"
+      ],
+      "acceptance": [
+        "Retain location hint and weather nodes while the nearby action changes.",
+        "Preserve action availability, touch and keyboard access and toolbar geometry across nine layouts."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-174/PLAN.md",
+        "docs/evidence/IH2-174/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The location hint and sky elements survive nearby-action changes. The action button updates its disabled state only when eligibility changes."
+    },
+    {
+      "id": "IH2-175",
+      "title": "Announce a ready garden bed only when its status changes",
+      "status": "in_progress",
+      "owner_branch": "fix/garden-ready-announcement",
+      "goal": "Keep the growing controls steady and avoid repeating the same readiness announcement every second.",
+      "depends_on": [
+        "IH2-174"
+      ],
+      "acceptance": [
+        "Use existing garden time and keep harvest explicit.",
+        "Retain selected focus and other bed art on real row updates. Verify using native narrow Chromium with a declared test-clock fixture."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-175/PLAN.md"
       ]
     }
   ],

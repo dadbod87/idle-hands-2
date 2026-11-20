@@ -36,9 +36,9 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   const position = {room:'home',homePlotId:'1',position:{x:9,y:isOwner?7:11}};
   const snapshot = () => {
    const plot = {id:'1',ownerId:'keepsake-owner',ownerName:'Rowan',level:1,placements:ownerState.placements,
-    workroomPlacements:emptyWorkroom(),keepsake};
+    workroomPlacements:emptyWorkroom(),...(keepsake?{keepsake}:{})};
    return {
-    playerId:identity.id,name:identity.name,workshop:isOwner?ownerState:guestState,position,
+    homeKeepsakes:true,playerId:identity.id,name:identity.name,workshop:isOwner?ownerState:guestState,position,
     plot:isOwner?plot:null,plots:[plot],quest:{contentVersion:1,awarded:[]},
     bridge:{contributed:0,target:3,restored:false},seasonKey:'2026-11-13',scores:[],serverTime:Date.now(),
    };
@@ -97,7 +97,11 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   await page.locator('#bag').click();
   await page.getByRole('button',{name:'Inspect or arrange a house'}).click();
  }
- const openFrame=()=>owner.locator('.home-keepsake summary').click();
+ const openFrame=async()=>{
+  const control=owner.locator('.home-keepsake summary');
+  await expect(control).toBeVisible();
+  await control.click();
+ };
 
  try {
   await fixture(owner,true);
@@ -110,6 +114,7 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   await expect(owner.getByRole('button',{name:'Display for visitors'})).toBeFocused();
   expect(commands).toEqual([]);
   await arrange(guest);
+  await expect(guest.locator('[data-home-display=naturalist]')).toHaveCount(1);
   await expect(guest.locator('[data-home-display=naturalist]')).toBeHidden();
   await expect(guest.getByRole('button',{name:'Display for visitors'})).toHaveCount(0);
   mkdirSync(output,{recursive:true});

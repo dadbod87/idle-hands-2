@@ -1,0 +1,123 @@
+{
+  "pullRequest": 87,
+  "pr": {
+    "sha": "263aa716e4e0de82716633758f0b867d00322a6c",
+    "run": 44685653274,
+    "domain": 586,
+    "browser": 239,
+    "browserGroups": [
+      81,
+      80,
+      78
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14606347043,
+        "createdAt": "2026-11-20T06:11:16Z",
+        "sha": "263aa716e4e0de82716633758f0b867d00322a6c",
+        "zipSha256": "516251692f631743feb0cdd6f036a57fd13a75c7d2380eb7cac4121f0d54610f",
+        "size": 132035,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14606870886,
+        "createdAt": "2026-11-20T06:11:17Z",
+        "sha": "263aa716e4e0de82716633758f0b867d00322a6c",
+        "zipSha256": "3c27d0d451715f21d3be198ace36bd6c51b578dbf50386de5f7715390040bc2c",
+        "size": 764854,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14606424265,
+        "createdAt": "2026-11-20T06:22:17Z",
+        "sha": "263aa716e4e0de82716633758f0b867d00322a6c",
+        "zipSha256": "03390cc009ee9a7781bb6dd724f868d24b2237b6fbab8261e80d1b2f1d99844d",
+        "size": 19924825,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14607271281,
+        "createdAt": "2026-11-20T06:21:52Z",
+        "sha": "263aa716e4e0de82716633758f0b867d00322a6c",
+        "zipSha256": "b80739160dff8e222a4d4f9f696ef5a27dffaf03c8df4603967b6610972119da",
+        "size": 19736369,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14607231202,
+        "createdAt": "2026-11-20T06:21:37Z",
+        "sha": "263aa716e4e0de82716633758f0b867d00322a6c",
+        "zipSha256": "8096ede23a113daa16e1fab2e3f2514ed3c516aba20c2931976feb4e75a18d85",
+        "size": 23952973,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "19709bab53349d65d4ac6a484ebf802557626d48",
+    "run": 44687421155,
+    "domain": 586,
+    "browser": 239,
+    "browserGroups": [
+      81,
+      80,
+      78
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14606853307,
+        "createdAt": "2026-11-20T06:26:18Z",
+        "sha": "19709bab53349d65d4ac6a484ebf802557626d48",
+        "zipSha256": "ceb4bf75142a54fd208ee239291f6ab0e2d2fae856af3cdab386258eddefde59",
+        "size": 132120,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14607126918,
+        "createdAt": "2026-11-20T06:26:19Z",
+        "sha": "19709bab53349d65d4ac6a484ebf802557626d48",
+        "zipSha256": "9f94b5a417fe04553fbbff296378278a0cc6c7d793aeae58ada07e77186ebe1e",
+        "size": 764854,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14607418388,
+        "createdAt": "2026-11-20T06:37:40Z",
+        "sha": "19709bab53349d65d4ac6a484ebf802557626d48",
+        "zipSha256": "7944d1b7af95fda3e6f0ea72d0f649842ab231de418045aac04f19767beab7db",
+        "size": 20011603,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14606914380,
+        "createdAt": "2026-11-20T06:36:36Z",
+        "sha": "19709bab53349d65d4ac6a484ebf802557626d48",
+        "zipSha256": "99bcba8a11034791a3f2527d53153fc68513b476f22655337a36209082ae4de4",
+        "size": 19783621,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14607433688,
+        "createdAt": "2026-11-20T06:39:05Z",
+        "sha": "19709bab53349d65d4ac6a484ebf802557626d48",
+        "zipSha256": "eaba6e500cc72d87125381db66307d57764aebfafc254a795c037967d059552b",
+        "size": 24013114,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Identical case IDs and client bytes. Job elapsed times vary by runner and queue, so comparisons are sample-specific."
+}

@@ -323,7 +323,6 @@ function routeAvailable(){
  if(town?.isSaving){feedback.textContent='Finish confirming the current change before walking.';return false;}
  if(town&&(town.retryAvailable||needResync||transitionBusy||!town.snapshot)){showPendingRequest('Confirm your current location or pending request before walking.');return false;}
  if(gardenUI?.isSaving||carpentryUI?.isSaving||commissionUI?.isSaving){feedback.textContent='Finish confirming the current change before walking.';return false;}
- if(!scene.roomReady){feedback.textContent='Preparing the room…';return false;}
  return true;
 }
 function goNamedDestination(room:Room,stopId:string){

@@ -3218,7 +3218,7 @@
     {
       "id": "IH2-171",
       "title": "Display an earned Naturalist certificate for home visitors",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/home-keepsake-display",
       "goal": "Give a resident a private preview and a deliberate way to show one earned accomplishment at home.",
       "depends_on": [
@@ -3234,7 +3234,29 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-171/PLAN.md"
+        "docs/evidence/IH2-171/PLAN.md",
+        "docs/evidence/IH2-171/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Three recorded tree studies unlock one private preview and owner-selected certificate display. Current visitors see the stand and story."
+    },
+    {
+      "id": "IH2-172",
+      "title": "Read the displayed certificate by walking up to it",
+      "status": "in_progress",
+      "owner_branch": "feat/read-home-keepsake",
+      "goal": "Make the earned artwork readable directly from the room on a phone or keyboard.",
+      "depends_on": [
+        "IH2-171"
+      ],
+      "acceptance": [
+        "Use a temporary stop only when the display is confirmed in the current home; removal cancels the route.",
+        "Verify actual phone tap and keyboard approach at the frame, with no new game command or storage change."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-172/PLAN.md"
       ]
     }
   ],

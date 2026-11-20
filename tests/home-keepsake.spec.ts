@@ -3,6 +3,8 @@ import { mkdirSync } from 'node:fs';
 import { emptyWorkroom } from '../src/game/live-home-layout.ts';
 import { applyWorkshop, createWorkshop } from '../src/game/live-workshop.ts';
 import { SURVEY_IDS, SURVEYS } from '../src/game/fieldwork.ts';
+import { NATURALIST_KEEPSAKE } from '../src/game/home-keepsake.ts';
+import { TILE } from '../src/game/world.ts';
 
 const output = 'test-results/browser/home-keepsake';
 
@@ -136,6 +138,18 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   await expect(guest.locator('[data-home-display=naturalist]')).toBeVisible();
   await close(guest);
   await guest.screenshot({path:output+'/phone-room.png'});
+  const frame=NATURALIST_KEEPSAKE.frame;
+  const tap=await guest.evaluate(p=>(window as any).__pilot.screenPoint(p.x,p.y),{x:frame.x/TILE-.5,y:frame.y/TILE-.5});
+  await guest.locator('canvas').tap({position:tap});
+  await expect(guest.getByRole('heading',{name:'Neighborhood Naturalist',exact:true})).toBeVisible();
+  await expect(guest.locator('[data-reading-keepsake] figcaption')).toContainText('Three tree studies');
+  await guest.screenshot({path:output+'/phone-reading.png'});
+  await close(guest);
+  await guest.getByRole('button',{name:'Inspect Neighborhood Naturalist',exact:true}).focus();
+  await guest.keyboard.press('Enter');
+  await expect(guest.locator('[data-reading-keepsake]')).toBeVisible();
+  expect(commands).toHaveLength(2);
+  await close(guest);
   await arrange(guest);
   await expect(guest.locator('[data-home-display=naturalist]')).toContainText('Neighborhood Naturalist');
   await expect(guest.getByRole('button',{name:'Take down frame'})).toHaveCount(0);

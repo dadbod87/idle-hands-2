@@ -3489,7 +3489,7 @@
     {
       "id": "IH2-183",
       "title": "Let Marlow point a fresh resident directly to starter materials",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/marlow-material-depots",
       "goal": "Use one obvious choice from the first morning to real depot routes and the first collected planter.",
       "depends_on": [
@@ -3505,7 +3505,30 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-183/PLAN.md"
+        "docs/evidence/IH2-183/PLAN.md",
+        "docs/evidence/IH2-183/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A first-morning visitor gets a direct choice among real collection locations and can craft one earned planter for Bag."
+    },
+    {
+      "id": "IH2-184",
+      "title": "Choose a workshop spot from a carried item",
+      "status": "in_progress",
+      "owner_branch": "feat/bag-item-place",
+      "goal": "Let a resident go from a crafted stack to a chosen visible nook with one clear action.",
+      "depends_on": [
+        "IH2-183",
+        "IH2-163"
+      ],
+      "acceptance": [
+        "Reveal the collected planter and its action. Preserve counts and keep choosing a spot separate from explicit placement.",
+        "Verify keyboard focus in desktop and enlarged landscape, the ordinary five-second first craft on touch, cancel and placement persistence."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-184/PLAN.md"
       ]
     }
   ],

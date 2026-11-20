@@ -3309,7 +3309,7 @@
     {
       "id": "IH2-175",
       "title": "Announce a ready garden bed only when its status changes",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "fix/garden-ready-announcement",
       "goal": "Keep the growing controls steady and avoid repeating the same readiness announcement every second.",
       "depends_on": [
@@ -3323,7 +3323,29 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-175/PLAN.md"
+        "docs/evidence/IH2-175/PLAN.md",
+        "docs/evidence/IH2-175/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The selected bed publishes new readiness once. Bed controls keep their identity and avoid repeated unchanged source assignments."
+    },
+    {
+      "id": "IH2-176",
+      "title": "Let players stop an assisted walk without starting another",
+      "status": "in_progress",
+      "owner_branch": "feat/stop-assisted-walk",
+      "goal": "Make phone and keyboard travel easy to undo while it is still on the way.",
+      "depends_on": [
+        "IH2-175"
+      ],
+      "acceptance": [
+        "Make Stop walking visible in the existing playfield during a route. Leave ordinary controls and playfield height stable.",
+        "Clear the route and arrival on native touch or Escape. Preserve completion and pending door confirmation behavior."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-176/PLAN.md"
       ]
     }
   ],

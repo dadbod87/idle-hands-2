@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-19
 
-Last inspected at 2026-11-19 20:06 PST. The separate sequel repository was at `0f09487c648e8f97428aaaf5938218f92131e3e7`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-19 22:07 PST. The separate sequel repository was at `5440e24c4c9098113c3662f7f29affe0f2c5d856`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -17,14 +17,14 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 | Optional saved first morning | [#81](https://github.com/dadbod87/idle-hands-2/pull/81) | `8b4921c1c20c` | 586 domain, 235 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44655822915) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44657923357) |
 | Room-specific loading for the allotment | [#82](https://github.com/dadbod87/idle-hands-2/pull/82) | `ded1071f4d5b` | 586 domain, 236 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44663888654) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44665888373) |
 | Free room and yard previews | [#83](https://github.com/dadbod87/idle-hands-2/pull/83) | `0f09487c648e` | 586 domain, 237 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44668074834) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44670004257) |
+| Shorter field guide and direct task links | [#84](https://github.com/dadbod87/idle-hands-2/pull/84) | `32c76200d352` | 586 domain, 237 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44674248417) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44676114775) |
+| A deliberate private parcel check in Journal | [#85](https://github.com/dadbod87/idle-hands-2/pull/85) | `7cf5f49698d4` | 586 domain, 238 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44678192237) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44679987072) |
+| An unfinished tree sketch during long bench work | [#86](https://github.com/dadbod87/idle-hands-2/pull/86) | `5440e24c4c90` | 586 domain, 239 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44681875414) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44683634905) |
 
 ## Saved work in dependency order
 
 | Work | Branch | Status |
 |---|---|---|
-| Shorter field guide and direct task links | `feat/task-first-field-guide` at `5e8f0b9fab47` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/5e8f0b9fab479e2361906c7c0f1a14ca7022df19/docs/evidence/IH2-163/PLAN.md) |
-| A deliberate private parcel check in Journal | `feat/journal-cafe-parcels` at `0a8f0dccd629` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0a8f0dccd629c20df9573a5fa1603ec846fcb9b5/docs/evidence/IH2-165/PLAN.md) |
-| An unfinished tree sketch during long bench work | `feat/workbench-outing` at `f1ff152b4e32` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/f1ff152b4e32f88c9d49dbafccb031cec16ab140/docs/evidence/IH2-167/PLAN.md) |
 | Balanced browser checks | `perf/browser-shard-balance` at `d9469234203c` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/d9469234203c0e1f69edc326625558c426f08cc1/docs/evidence/IH2-168/PLAN.md) |
 | The second blanket room score | `feat/boarding-house-music` at `862b544fb84c` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/862b544fb84c746535c3c9514a36ab7f937d8822/docs/evidence/IH2-170/PLAN.md) |
 | Earned Naturalist display for home visitors | `feat/home-keepsake-display` at `0d1c82d066bb` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0d1c82d066bbe3796febab10c2e4c40234df7968/docs/evidence/IH2-171/PLAN.md) |

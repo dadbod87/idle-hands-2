@@ -1,4 +1,4 @@
-import{test,expect,type Page}from'@playwright/test';import{mkdirSync,writeFileSync}from'node:fs';import{createWorkshop,applyWorkshop,isCurrentWorkshop}from'../src/game/live-workshop.ts';
+import{test,expect,type Page}from'@playwright/test';import{mkdirSync,writeFileSync}from'node:fs';import{createWorkshop,applyWorkshop,isCurrentWorkshop,type WorkshopCommand}from'../src/game/live-workshop.ts';
 const out='test-results/browser',stack=(p:Page,id:string)=>p.locator('[data-bag-item="'+id+'"]'),count=(p:Page,id:string)=>stack(p,id).locator('.bag-stack-count');
 async function ready(p:Page){await expect.poll(()=>p.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);}
 function queuedSecond(){const start=Date.now()-8*3600000-5000;let s=createWorkshop(start);for(const resource of ['scrap','timber','supplies'])s=applyWorkshop(s,{kind:'gather',resource,id:'bag-'+resource,expectedRevision:s.revision},start).state;for(const [kind,id,at]of [['craft','first',start],['claim','first-claim',start+5000],['craft','second',start+5000]] as const){const result=applyWorkshop(s,{kind,id,...(kind==='craft'?{recipe:'planter'}:{}),expectedRevision:s.revision},at);expect(result.ok).toBe(true);s=result.state;}expect(isCurrentWorkshop(s)).toBe(true);return s;}
@@ -23,6 +23,79 @@ test('bag: native claimed craft stacks, placed copies leave the bag, returned co
  await page.evaluate(()=>document.documentElement.style.removeProperty('font-size'));
  await page.getByRole('button',{name:'Arrange furniture',exact:true}).click();await page.getByRole('combobox',{name:'Furniture to place'}).selectOption('planter');await page.locator('[data-slot=north-east]').click();await page.getByRole('button',{name:'Place here',exact:true}).click();await expect(count(page,'planter')).toHaveText('1');await expect(count(page,'planter')).toHaveAttribute('aria-label','Optimistic planter: 1 available to place');await expect(stack(page,'planter')).toContainText('2 owned');await expect(stack(page,'planter')).toContainText('1 placed');await page.locator('[data-slot=north-east]').click();await page.getByRole('button',{name:'Return this furniture to bag',exact:true}).click();await expect(count(page,'planter')).toHaveText('2');await page.reload();await ready(page);await page.locator('#bag').click();await expect(count(page,'planter')).toHaveText('2');expect(await page.evaluate(()=>(window as any).__pilot.workshop().owned.planter)).toBe(2);writeFileSync(out+'/bag-stack-proof.json',JSON.stringify({fixture:'Valid second eight-hour craft built from original pure gather/craft/claim commands; elapsed deadline/workshop spawn declared. Native UI claim and placement/removal/reload; no new grants, interception or rule change.',owned:2,available:2,claimedExplicitly:true},null,2)+'\n');
 });
+test('bag: a full workshop offers a safe path to make room for an owned item', async ({browser})=>{
+ mkdirSync(out,{recursive:true});
+ let state=queuedSecond();
+ const act=(action:WorkshopCommand)=>{
+  const result=applyWorkshop(state,action,Date.now());
+  expect(result.ok,result.message).toBe(true);
+  state=result.state;
+ };
+ act({kind:'claim',id:'full-workshop-claim',expectedRevision:state.revision});
+ for(const [slot,prop] of [
+  ['north-west','stool'],['north-middle','rug'],['north-east','planter'],
+  ['south-west','lamp'],['south-middle','crate'],['south-east','shelf'],
+ ] as const){
+  act({kind:'place',id:'full-workshop-'+slot,expectedRevision:state.revision,slot,prop});
+ }
+ expect(isCurrentWorkshop(state)).toBe(true);
+ for(const shape of [
+  {name:'phone',width:320,height:640,text:'100%',touch:true},
+  {name:'short',width:844,height:390,text:'200%',touch:false},
+ ]){
+  const context=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch});
+  const page=await context.newPage();
+  const errors:string[]=[];
+  page.on('pageerror', error=>errors.push(error.message));
+  try{
+   await page.addInitScript(save=>{
+    if(sessionStorage.getItem('full-workshop-fixture'))return;
+    localStorage.setItem('ih2:workshop:v2',JSON.stringify(save));
+    localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'workshop',position:{x:5,y:5}}));
+    sessionStorage.setItem('full-workshop-fixture','1');
+   },state);
+   await page.goto('/');
+   await ready(page);
+   await page.evaluate(size=>document.documentElement.style.fontSize=size,shape.text);
+   await page.locator('#bag').click();
+   const choose=page.getByRole('button',{name:'Choose a spot for Optimistic planter',exact:true});
+   if(shape.touch)await choose.tap();
+   else{await choose.focus();await page.keyboard.press('Enter');}
+   const hint=page.locator('[data-placement-hint]');
+   const slot=page.locator('[data-slot=north-west]');
+   const place=page.getByRole('button',{name:'Place here',exact:true});
+   const remove=page.getByRole('button',{name:'Return this furniture to bag',exact:true});
+   await expect(hint).toHaveText('Workshop full. Pick a nook.');
+   await expect(hint).toBeFocused();
+   await expect(hint).toBeInViewport({ratio:1});
+   await expect(slot).toBeInViewport({ratio:.95});
+   await expect(place).toBeDisabled();
+   await expect(remove).toBeHidden();
+   await page.screenshot({path:out+'/bag-full-workshop-'+shape.name+'.png'});
+   if(shape.touch)await slot.tap();
+   else{await page.keyboard.press('Tab');await expect(slot).toBeFocused();await page.keyboard.press('Enter');}
+   await expect(slot).toHaveText('Near the bench: Committee stool · selected');
+   await expect(hint).toContainText('to free the nook');
+   await expect(place).toBeDisabled();
+   const layout=()=>page.evaluate(()=>(window as any).__pilot.workshop().placements);
+   expect(await layout()).toEqual(state.placements);
+   await remove.click();
+   await expect(slot).toHaveText('Near the bench: empty');
+   await expect(slot).toBeFocused();
+   await expect(count(page,'stool')).toHaveText('1');
+   await slot.click();
+   await expect(place).toBeEnabled();
+   await place.click();
+   await expect(slot).toHaveText('Near the bench: Optimistic planter');
+   await expect(count(page,'planter')).toHaveText('0');
+   await page.reload();
+   await ready(page);
+   expect(await layout()).toEqual({...state.placements,'north-west':'planter'});
+   expect(await page.evaluate(()=>(window as any).__pilot.workshop().owned)).toEqual(state.owned);
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});
 test('bag: shared snapshots keep slot nodes, free pockets issue no command and identity changes clear old counts',async({page})=>{
  const commands:string[]=[],errors:string[]=[];page.on('request',r=>{if(r.url().endsWith('/api/town/command'))commands.push(r.postData()??'');});page.on('pageerror',e=>errors.push(e.message));await page.goto('/?town=1');await page.getByRole('button',{name:'Mira',exact:true}).click();await ready(page);await page.locator('#bag').click();await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');await expect(count(page,'planter')).toHaveText('0');await page.evaluate(()=>(window as any).__bagSlot=document.querySelector('[data-bag-item=planter]'));await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');expect(await page.evaluate(()=>(window as any).__bagSlot===document.querySelector('[data-bag-item=planter]'))).toBe(true);
  for(const [person,kits]of [['Aster','48'],['Sol','0']] as const){await page.getByRole('button',{name:'Close panel'}).click();await page.locator('#resident').click();await page.getByRole('button',{name:person,exact:true}).click();await page.locator('#bag').click();await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');await page.locator('[data-bag-pocket=materials]').click();await expect(count(page,'bridge-kit')).toHaveText(kits);await expect(count(page,'bridge-kit')).toHaveAttribute('aria-label','Bridge repair kits: '+kits+' carried');await expect(page.locator('.bag-count-key')).toHaveText('Numbers show carried materials.');}
@@ -38,7 +111,7 @@ test('bag: declared shared home allocation snapshots subtract placed copies with
  await page.clock.install();
  let state=createWorkshop(Date.now());const commands:string[]=[];state.placements['north-east']='stool';expect(isCurrentWorkshop(state)).toBe(true);let logged=false,atHome=true;
  const plot=()=>({id:'42',ownerId:'bag-owner',ownerName:'Bag tester',level:1,placements:{'north-west':null,'north-middle':'rug','north-east':null,'south-west':null,'south-middle':null,'south-east':null},workroomPlacements:{'workroom-north':null,'workroom-south':null},pennantOwned:false,letterboxMotif:'sun'});
- const snapshot=()=>({playerId:'bag-owner',name:'Bag tester',workshop:state,position:{room:'square',position:{x:14,y:22}},quest:{contentVersion:1,awarded:[]},bridge:{contributed:3,target:3,restored:true,phase:'open'},plot:atHome?plot():null,plots:atHome?[plot()]:[],seasonKey:'2026-11-06',scores:[],serverTime:Date.now(),serverInstance:'bag-home-fixture'});
+ const snapshot=()=>({playerId:'bag-owner',name:'Bag tester',workshop:state,position:{room:'workshop',position:{x:5,y:5}},quest:{contentVersion:1,awarded:[]},bridge:{contributed:3,target:3,restored:true,phase:'open'},plot:atHome?plot():null,plots:atHome?[plot()]:[],seasonKey:'2026-11-06',scores:[],serverTime:Date.now(),serverInstance:'bag-home-fixture'});
  await page.addInitScript(()=>{class Events extends EventTarget{onopen:((e:Event)=>void)|null=null;constructor(){super();queueMicrotask(()=>this.onopen?.(new Event('open')));}close(){}};(window as any).EventSource=Events;});
  await page.route('**/api/town/**',route=>{const path=new URL(route.request().url()).pathname.split('/').at(-1);if(path==='fixtures')return route.fulfill({json:{fixtures:[{id:'bag-owner',name:'Bag tester'}]}});if(path==='login'){logged=true;return route.fulfill({json:{snapshot:snapshot()}});}if(path==='snapshot')return logged?route.fulfill({json:{snapshot:snapshot()}}):route.fulfill({status:401,json:{message:'Choose a fixture.'}});if(path==='movement')return route.fulfill({json:{ok:true,position:snapshot().position}});if(path==='command')commands.push(route.request().postData()??'');return route.fulfill({status:400,json:{message:'No fixture commands permitted.'}});});
  await page.goto('/?town=1');await page.getByRole('button',{name:'Bag tester',exact:true}).click();await ready(page);await page.locator('#bag').click();await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');await expect(count(page,'stool')).toHaveText('0');await expect(count(page,'rug')).toHaveText('0');await expect(stack(page,'rug')).toContainText('1 placed');await expect(stack(page,'rug')).toContainText('1 owned');await expect(count(page,'rug')).toHaveAttribute('aria-label','Welcome-ish rug: 0 available to place');await expect(count(page,'stool')).toHaveAttribute('aria-label','Committee stool: 0 available to place');await expect(page.locator('.bag-count-key')).toHaveText('Numbers show copies available to place.');await page.locator('.bag-count-key').scrollIntoViewIfNeeded();expect((await page.locator('.bag-count-key').boundingBox())!.y).toBeLessThan((await stack(page,'stool').boundingBox())!.y);
@@ -58,6 +131,10 @@ test('bag: declared shared home allocation snapshots subtract placed copies with
  expect(arranged.labels).toBe(7);
  expect(arranged.ticks).toBeGreaterThanOrEqual(3);
  expect(arranged.writes).toBe(0);
+ await arrangement.getByRole('combobox',{name:'Furniture to place'}).selectOption('stool');
+ await arrangement.locator('[data-slot=south-west]').click();
+ const place=arrangement.getByRole('button',{name:'Place here',exact:true});
+ await expect(place).toBeEnabled();
  const moved=applyWorkshop(state,{kind:'place',id:'bag-fixture-move',expectedRevision:state.revision,prop:'stool',fromSlot:'north-east',slot:'south-west'},Date.now());
  expect(moved.ok,moved.message).toBe(true);
  state=moved.state;
@@ -66,7 +143,9 @@ test('bag: declared shared home allocation snapshots subtract placed copies with
  await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));
  await expect(count(page,'rug')).toHaveText('1');
  await expect(arrangement.locator('[data-slot=north-east]')).toHaveText('Near the window: empty');
- await expect(arrangement.locator('[data-slot=south-west]')).toHaveText('Left nook: Committee stool');
+ await expect(arrangement.locator('[data-slot=south-west]')).toHaveText('Left nook: Committee stool · selected');
+ await expect(place).toBeDisabled();
+ await expect(arrangement.getByRole('button',{name:'Return this furniture to bag',exact:true})).toBeEnabled();
  expect(await page.evaluate(()=>(window as any).__bagHeld===document.querySelector('[data-bag-item=rug]'))).toBe(true);await expect(count(page,'stool')).toHaveText('0');expect(commands).toEqual([]);writeFileSync(out+'/bag-home-allocation-proof.json',JSON.stringify({fixture:'Explicitly intercepted shared snapshot/EventSource with donated stool in workshop and rug in fictional home. New snapshot returns the rug and moves the workshop stool through the pure placement rules. The browser sends no command.',stableSlot:true,arranged,commands},null,2)+'\n');
 });
 test('bag: failed local persistence is disclosed without calling held contents saved',async({page})=>{

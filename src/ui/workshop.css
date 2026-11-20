@@ -120,3 +120,6 @@
 }
 
 .bag-choose-spot{width:100%;min-height:44px;margin:8px 0 0;padding:6px;font-size:.78rem;overflow-wrap:anywhere}
+
+.placement-hint{padding:8px 10px;border-left:3px solid var(--sage);background:#e4e8d4}
+.placement-hint:focus-visible{outline:3px solid #b8653e;outline-offset:2px}

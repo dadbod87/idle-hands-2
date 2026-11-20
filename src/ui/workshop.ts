@@ -12,7 +12,7 @@ import type {CommissionAction} from '../game/commission.ts';
 import type {CarpentryAction} from '../game/carpentry.ts';
 import type {GardenAction} from '../game/garden.ts';
 import {SURVEY_IDS,SURVEYS,SURVEY_CHOICES,CHOICE_LABELS,type SurveyId} from '../game/fieldwork.ts';
-import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PROPS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, type PropId, skillLevel } from '../game/live-workshop.ts';
+import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PROPS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, type PropId, type SlotId, skillLevel } from '../game/live-workshop.ts';
 import './workshop.css';
 export const WORKSHOP_SAVE_KEY='ih2:workshop:v2';
 const SAVE_KEY=WORKSHOP_SAVE_KEY,LEGACY_SAVE_KEY='ih2:workshop:v1';
@@ -29,7 +29,7 @@ export class WorkshopUI {
  private serialized='';
  private active:(()=>void)|null=null;
  private selected:string='planter';
- private preview:string|null=null;
+ private preview:SlotId|null=null;
  private status:HTMLElement|null=null;
  private ownsSave=false;
  private localReadOnlyReason='';
@@ -92,11 +92,14 @@ export class WorkshopUI {
   const failed=(message:string):WorkshopCommandResult=>({ok:false,state:this.state,message,retry:!!this.remote?.canRetry()});
   if(!this.remote||this.remoteBusy)return failed('A change is still being confirmed.');
   if(command&&this.remote.canRetry()){this.remoteError='Retry the previous request before making another change.';this.remoteNotice();return failed(this.remoteError);}
+  const placementFocus=document.activeElement?.closest('#placement');
   const benchOrigin=this.host.body.querySelector<HTMLElement>('[data-bench-work]');const before=this.state.revision;this.remoteBusy=true;this.remoteError='';this.updateClocks();const focusAnchor=document.activeElement;let reveal:(()=>void)|undefined;
   try{
    const receipt:RemoteOutcome=command?await this.remote.command(command,this.collectionView?()=>false:present):this.remote.canRetry()?await this.remote.retry(this.collectionView?()=>false:present):{state:await this.remote.load(),message:'Town state refreshed.',ok:false};
    if(!present()){this.finishCollection(receipt);return failed('The submitting panel changed. Confirmed state is kept.');}
-   this.acceptRemote(receipt.state);const shown=this.finishCollection(receipt);if(this.collectionView&&!shown)this.collectionView.message(receipt.command?.kind==='gather'?'Original request resolved. '+receipt.message:receipt.message);this.host.feedback(receipt.message);this.remoteMessage=receipt.message;if(this.status&&!this.collectionView)this.status.textContent=receipt.message;this.preview=null;if(this.host.body.querySelector('#placement'))this.renderPlacement();
+   this.acceptRemote(receipt.state);const shown=this.finishCollection(receipt);if(this.collectionView&&!shown)this.collectionView.message(receipt.command?.kind==='gather'?'Original request resolved. '+receipt.message:receipt.message);this.host.feedback(receipt.message);this.remoteMessage=receipt.message;if(this.status&&!this.collectionView)this.status.textContent=receipt.message;this.preview=null;
+   const placement=this.host.body.querySelector('#placement');
+   if(placement)this.renderPlacement(placement===placementFocus);
    reveal=()=>{if(present())this.revealBenchWork(benchOrigin,receipt.ok??receipt.state.revision>before,receipt.command??command,focusAnchor);};return{ok:receipt.ok??receipt.state.revision>before,state:this.state,message:receipt.message,retry:false};
   }catch(error){if(!this.remote.canRetry())this.collectionIntent=null;if(!present())return failed('The submitting panel changed. Confirmed state is kept.');this.remoteError=(error as Error).message;this.host.feedback(this.remoteError+(this.collectionView&&this.remote.canRetry()?' The request may have saved. Retry the same request.':''));return failed(this.remoteError);}
   finally{this.remoteBusy=false;this.updateClocks();if(this.remoteError)this.remoteNotice();reveal?.();}
@@ -231,8 +234,8 @@ export class WorkshopUI {
    select.value=id;
    this.preview=null;
    this.renderPlacement();
-   const firstEmpty=PLACEMENT_SLOTS.find(slot=>!this.state.placements[slot.id]);
-   this.bag?.arrange(firstEmpty?'[data-slot="'+firstEmpty.id+'"]':'[data-slot]');
+   const firstEmpty=this.firstEmptyWorkshopSlot();
+   this.bag?.arrange(firstEmpty?'[data-slot="'+firstEmpty.id+'"]':'[data-placement-hint]');
   }:undefined;
   this.bag?.destroy();
   this.bag=new BagView(this.state,this.host.orchard?.()!==undefined?()=>this.host.orchard?.()??null:undefined,chooseFurniture);
@@ -265,28 +268,78 @@ export class WorkshopUI {
   if(this.host.commission)other.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));if(this.host.outings)other.append(this.button('Woodland work · borrowed tools & journal',()=>this.host.outings!(),'destination'));other.append(this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)other.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!(),'destination'));if(this.host.discoveries)other.append(this.button('Trail field notebook',()=>this.host.discoveries?.(),'destination'));b.append(other);
   const progress=document.createElement('details');progress.className='journal-progress';const title=document.createElement('summary');title.textContent='Skills & town progress';const skill=this.p('');skill.dataset.skills='';const kits=this.p('');kits.dataset.kits='';progress.append(title,skill,kits);if(this.host.orchard){const tasting=this.p('');tasting.dataset.orchardTasting='';progress.append(tasting);}if(this.host.returns)progress.append(this.button('Since your last visit',()=>this.host.returns?.(),'destination'));b.append(progress);this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Journal',render);}
+ private firstEmptyWorkshopSlot(){
+  return PLACEMENT_SLOTS.find(slot=>!this.state.placements[slot.id]);
+ }
+ private refreshPlacementControls(area:Element){
+  const hint=area.querySelector<HTMLElement>('[data-placement-hint]')!;
+  const place=area.querySelector<HTMLButtonElement>('[data-placement-confirm]')!;
+  const remove=area.querySelector<HTMLButtonElement>('[data-placement-return]')!;
+  const inside=this.host.inside();
+  const occupied=this.preview!==null&&!!this.state.placements[this.preview];
+  let message='';
+  if(inside&&occupied)message='Return this furniture to Bag to free the nook.';
+  else if(inside&&!this.firstEmptyWorkshopSlot())message='Workshop full. Pick a nook.';
+  if(hint.textContent!==message)hint.textContent=message;
+  if(hint.hidden===!!message)hint.hidden=!message;
+  if(remove.hidden===occupied)remove.hidden=!occupied;
+  for(const [button,disabled] of [[place,!inside||!this.preview||occupied],[remove,!inside||!occupied]] as const){
+   // A pending town read or write still owns the temporary disabled state.
+   if(button.dataset.remoteDisabled!==undefined){
+    if(button.dataset.remoteDisabled!==String(disabled))button.dataset.remoteDisabled=String(disabled);
+   }else if(button.disabled!==disabled)button.disabled=disabled;
+  }
+ }
  private placementCountText(){
   const count=this.state.owned[this.selected as PropId];
   return `${names[this.selected]} · ${count} owned. Preview and moving are free.`;
  }
  private placementSlotText(slot:(typeof PLACEMENT_SLOTS)[number]){
   const prop=this.state.placements[slot.id];
-  return `${slot.label}: ${prop?names[prop]:'empty'}${this.preview===slot.id?' · preview '+names[this.selected]:''}`;
+  return `${slot.label}: ${prop?names[prop]:'empty'}${this.preview===slot.id?(prop?' · selected':' · preview '+names[this.selected]):''}`;
  }
- private renderPlacement(){
-  const area=this.host.body.querySelector('#placement');if(!area)return;const restoreFocus=area.contains(document.activeElement);area.replaceChildren();
+ private renderPlacement(focusSlot=false){
+  const area=this.host.body.querySelector('#placement');if(!area)return;const restoreFocus=focusSlot||area.contains(document.activeElement);area.replaceChildren();
   const owned=this.p(this.placementCountText());owned.dataset.owned=this.selected;const picture=document.createElement('img');picture.src=this.selected==='teapot'?'/art/cafe/teapot-icon.svg':this.selected==='letterbox'?'/art/commission/letterbox-'+this.state.commission.motif+'-closed.svg':'/art/homes/home-'+this.selected+'-icon.svg';picture.alt=names[this.selected];picture.width=64;picture.height=64;picture.className='furniture-preview';area.append(picture,owned);
+  const hint=this.p('','placement-hint');
+  hint.dataset.placementHint='';
+  hint.tabIndex=-1;
+  hint.setAttribute('role','status');
+  area.append(hint);
   const grid=document.createElement('div');grid.className='placement-grid';grid.setAttribute('aria-label','Workshop furniture positions');
   for(const slot of PLACEMENT_SLOTS){const button=this.button(this.placementSlotText(slot),()=>{this.preview=slot.id;this.lastSlot=slot.id;this.renderPlacement();});button.disabled=!this.host.inside();button.dataset.slot=slot.id;if(this.preview===slot.id)button.classList.add('preview');grid.append(button);}area.append(grid);
-  const apply=this.button('Place here',()=>{if(!this.preview)return;const placed=Object.entries(this.state.placements).filter(([,prop])=>prop===this.selected);const available=this.state.owned[this.selected as typeof PROP_IDS[number]]-(this.remote?.allocatedElsewhere?.(this.selected)??0);if(this.remote&&available<=0){const message=this.state.owned[this.selected as typeof PROP_IDS[number]]===0?'Make or acquire this furniture before placing it.':'All copies are in your house plot. Return one to the bag there before placing it here.';this.host.feedback(message);this.remoteMessage=message;if(this.status)this.status.textContent=message;return;}const fromSlot=placed.length>=available?placed[0]?.[0]:undefined;this.dispatch({kind:'place',prop:this.selected,slot:this.preview,...(fromSlot?{fromSlot}:{})});if(!this.remote){this.preview=null;this.renderPlacement();}},'primary');apply.disabled=!this.preview||!this.host.inside();
-  area.append(apply,this.button('Cancel preview',()=>{this.preview=null;this.renderPlacement();}));
-  if(this.preview&&this.state.placements[this.preview as keyof WorkshopState['placements']])area.append(this.button('Return this furniture to bag',()=>{this.dispatch({kind:'remove',slot:this.preview});if(!this.remote){this.preview=null;this.renderPlacement();}}));
+  const apply=this.button('Place here',()=>{
+   if(!this.preview||!this.host.inside()||this.state.placements[this.preview])return;
+   const placed=Object.entries(this.state.placements).filter(([,prop])=>prop===this.selected);
+   const available=this.state.owned[this.selected as PropId]-(this.remote?.allocatedElsewhere?.(this.selected)??0);
+   if(this.remote&&available<=0){
+    const message=this.state.owned[this.selected as PropId]===0?'Make or acquire this furniture before placing it.':'All copies are in your house plot. Return one to the bag there before placing it here.';
+    this.host.feedback(message);
+    this.remoteMessage=message;
+    if(this.status)this.status.textContent=message;
+    return;
+   }
+   const fromSlot=placed.length>=available?placed[0]?.[0]:undefined;
+   this.dispatch({kind:'place',prop:this.selected,slot:this.preview,...(fromSlot?{fromSlot}:{})});
+   if(!this.remote){this.preview=null;this.renderPlacement(true);}
+  },'primary');
+  apply.dataset.placementConfirm='';
+  const remove=this.button('Return this furniture to bag',()=>{
+   if(!this.preview||!this.host.inside()||!this.state.placements[this.preview])return;
+   this.dispatch({kind:'remove',slot:this.preview});
+   if(!this.remote){this.preview=null;this.renderPlacement(true);}
+  });
+  remove.dataset.placementReturn='';
+  area.append(apply,this.button('Cancel preview',()=>{this.preview=null;this.renderPlacement();}),remove);
+  this.refreshPlacementControls(area);
   if(restoreFocus){const next=area.querySelector<HTMLButtonElement>(`[data-slot="${this.lastSlot??PLACEMENT_SLOTS[0].id}"]`);next?.focus({preventScroll:true});if(next){next.scrollIntoView({block:'nearest'});const dialog=next.closest('dialog'),head=dialog?.querySelector('header');if(dialog&&head){const hidden=head.getBoundingClientRect().bottom+8-next.getBoundingClientRect().top;if(hidden>0)dialog.scrollTop-=hidden;}}}
  }
  private updateClocks(){
   const allocations=Object.fromEntries(PROP_IDS.map(id=>[id,this.remote?.allocatedElsewhere?.(id)??0]));
   this.bag?.update(this.state,allocations,this.remote?(this.remoteBusy?'Checking town contents…':this.remoteError||this.remote.canRetry()?'Last confirmed contents · request unresolved.':'Confirmed town contents.'):this.localReadOnlyReason?'Kept save · read-only.':!this.saved?'Unsaved contents · keep this tab open.':!this.ownsSave?'Read-only contents · another tab may update them.':'Local contents · saved in this browser.');
   this.notebook?.update(this.state,this.gardenClock());if(!this.active)return;
+  const placement=this.host.body.querySelector('#placement');
+  if(placement)this.refreshPlacementControls(placement);
   if(this.remote){
    const pending=this.remoteBusy||!!this.remote.busy?.(),blocked=this.remoteBusy||!!this.remoteError||this.remote.canRetry();
    // Journal controls only open inspectors. Keep confirmed notes navigable while

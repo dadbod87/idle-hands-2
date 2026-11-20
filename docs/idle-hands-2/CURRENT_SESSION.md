@@ -1,3 +1,57 @@
+# November 19 — free room and yard previews accepted
+
+The Housing Registry draws the accepted furnishing nooks, floor footprint and yard spots before a quote. Main `0f09487c648e8f97428aaaf5938218f92131e3e7` passed 586 domain tests and 237 browser cases. [Exact verification](../evidence/IH2-162/EXACT_CI.json).
+
+The next candidate is [`IH2-163` and its plan](../evidence/IH2-163/PLAN.md), on `feat/task-first-field-guide`. Help a new player find material depots or open Journal without rereading orientation. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — room-specific garden loading accepted
+
+The outdoor first frame requests fewer images and the first named garden visit waits for the mounted room. Main `ded1071f4d5b334f438588f4305645a6ac64a7a2` passed 586 domain tests and 236 browser cases. [Exact verification](../evidence/IH2-161/EXACT_CI.json).
+
+The next candidate is [`IH2-162` and its plan](../evidence/IH2-162/PLAN.md), on `feat/housing-plan-preview`. Make the differences among the existing paid plans readable on a phone without sending a housing command. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — the optional first morning accepted
+
+An explicitly chosen browser-practice arrival now starts in the boarding-house bed, wakes on request and exits through the real front door. Main `8b4921c1c20c3c8dcf425f59d557c452380e9d75` passed 586 domain tests and 235 browser cases. [Exact verification](../evidence/IH2-160/EXACT_CI.json).
+
+The next candidate is [`IH2-161` and its plan](../evidence/IH2-161/PLAN.md), on `perf/defer-garden-room-art`. Remove indoor garden image requests from outdoor loading and keep the first garden dialog synchronized with its room. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — confirmed door light accepted
+
+A 220 ms paper-colored fade follows an accepted room transition. Main `efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6` passed 583 domain tests and 233 browser cases. [Exact verification](../evidence/IH2-159/EXACT_CI.json).
+
+The next candidate is [`IH2-160` and its plan](../evidence/IH2-160/PLAN.md), on `feat/browser-first-morning`. Offer an optional choice after character setup, with one deliberate Get up action and a real doorstep exit. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — arrival stories and a route to Marlow accepted
+
+A browser resident can choose an optional backstory and walk to the clerk from the boarding-house note. Main `6a2b3f1abaaf4f5db393c88d996a4e480eca3114` passed 583 domain tests and 231 browser cases. [Exact verification](../evidence/IH2-158/EXACT_CI.json).
+
+The next candidate is [`IH2-159` and its plan](../evidence/IH2-159/PLAN.md), on `feat/confirmed-door-light`. Make an entered room feel tangible with a quick visual beat while preserving input. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — quieter rain-layer updates accepted
+
+Steady weather and indoors skip redundant visibility changes while visible rain keeps moving with the world. Main `2166d2a3cdaf7e5a4381e0c5ebc10a504a479f4f` passed 581 domain tests and 230 browser cases. [Exact verification](../evidence/IH2-157/EXACT_CI.json).
+
+The next candidate is [`IH2-158` and its plan](../evidence/IH2-158/PLAN.md), on `feat/browser-arrival-stories`. Let a resident personalize their first note without another setup screen or game cost. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — walkable boarding house accepted
+
+Browser practice has a real door and room, a note to Marlow, and a safely restored position. Main `5d0e3b76b30435c3fc618b165dba426f3a85172e` passed 581 domain tests and 229 browser cases. [Exact verification](../evidence/IH2-156/EXACT_CI.json).
+
+The next candidate is [`IH2-157` and its plan](../evidence/IH2-157/PLAN.md), on `perf/quiet-rain-layer`. Keep rain anchored and visible while avoiding repeated hidden-layer work. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — optional orchard music accepted
+
+Little brass labels plays in the orchard after confirmed arrival, reusing the original gather voice. Main `d422168f896a6cc4ede31a1993479a9751350b34` passed 577 domain tests and 227 browser cases. [Exact verification](../evidence/IH2-155/EXACT_CI.json).
+
+The next candidate is [`IH2-156` and its plan](../evidence/IH2-156/PLAN.md), on `feat/local-lodging-visit`. Give the first-morning design a real room, a visible door and a safe step into town. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — Jun’s orchard directions accepted
+
+One contextual suggestion points to confirmed orchard work. A narrow phone can follow its route without picking or spending. Main `c9353926a5f6f57230eb601e206a72567d69ffeb` passed 575 domain tests and 225 browser cases. [Exact verification](../evidence/IH2-154/EXACT_CI.json).
+
+The next candidate is [`IH2-155` and its plan](../evidence/IH2-155/PLAN.md), on `feat/orchard-music`. Give the orchard an audible identity when a player explicitly enables music. Continue with the ordinary exact-head gates and keep saved services stopped.
+
 # November 19 — original headwear accepted, Jun's orchard directions next
 
 [PR #74](https://github.com/dadbod87/idle-hands-2/pull/74) is verified on exact main `bc61186865a1c781e8eaf5fde18d1176d61fdec4`. Both exact checks passed 572 domain tests and 224 browser cases. [Evidence](../evidence/IH2-153/BROWSER_HEADWEAR_CI.json).

@@ -231,3 +231,44 @@ test('the Sunroom notebook opens by touch and keeps the owner’s allotment priv
   }
  }
 });
+
+test('the confirmed Workshop Lodge presents a distinct drafting wing without moving furniture', async ({ browser }) => {
+ for (const shape of [
+  { name: 'desktop', width: 1440, height: 900, visitor: false },
+  { name: 'phone', width: 320, height: 640, visitor: true },
+ ]) {
+  const context = await browser.newContext({ viewport: shape, hasTouch: shape.visitor });
+  const page = await context.newPage();
+  const loaded: number[] = [];
+  const errors: string[] = [];
+  page.on('response', response => {
+   if (new URL(response.url()).pathname.endsWith('/workshop-lodge-interior.svg')) loaded.push(response.status());
+  });
+  page.on('pageerror', e => errors.push(e.message));
+  try {
+   const control = await homePanelFixture(page, { level: 2, visitor: shape.visitor, planId: 'workshop-lodge-2' });
+   const before = control.saved();
+   const theme = () => page.evaluate(() => (window as any).__pilot.metrics().visual.home.interiorTexture);
+   await expect.poll(theme).toBe('workshop-lodge-interior');
+   const feet = () => page.evaluate(() => (window as any).__pilot.snapshot().position as {x:number;y:number});
+   await page.locator('canvas').focus();
+   for (const [key, arrived] of [
+    ['ArrowRight', (point:{x:number;y:number})=>point.x>20],
+    ['ArrowUp', (point:{x:number;y:number})=>point.y<5.5],
+   ] as const) {
+    await page.keyboard.down(key);
+    try { await expect.poll(async () => arrived(await feet()), {intervals:[50]}).toBe(true); }
+    finally { await page.keyboard.up(key); }
+   }
+   mkdirSync('test-results/browser',{recursive:true});
+   await page.screenshot({path:'test-results/browser/workshop-lodge-'+shape.name+'.png'});
+   await control.setPlan('garden-studio-2');
+   await expect.poll(theme).toBe('garden-studio-interior');
+   expect(loaded).toEqual([200]);
+   expect((await feet()).x).toBeGreaterThan(20);
+   expect(control.commands).toEqual([]);
+   expect(control.saved()).toEqual(before);
+   expect(errors).toEqual([]);
+  } finally { await context.close(); }
+ }
+});

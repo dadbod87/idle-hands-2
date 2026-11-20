@@ -2033,6 +2033,16 @@
       "modifications": "Glazed sunroom extension of original project art. Exact existing bed, door and nooks. No imported media."
     },
     {
+      "id": "workshop-lodge-interior",
+      "path": "public/art/interiors/workshop-lodge-interior.svg",
+      "sha256": "c8fd82384382c2244dd4e3ccc8e81364dd39f9c95fba21406c3ec1cbdfc6db00",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-workshop-lodge-interior.py",
+      "date": "2026-11-19",
+      "modifications": "Drafting wing extension of original project art. Exact expanded bed, doorway and allocations. No imported media."
+    },
+    {
       "id": "outing-desk",
       "path": "public/art/outing/desk.svg",
       "sha256": "ee9521c4dcf407174b4eea14ca3178e9caadaffc693052ef6edd42368b56d8eb",

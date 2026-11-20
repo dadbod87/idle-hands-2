@@ -4,6 +4,7 @@ import {homeSlots, homeDisplay, type HomeLayout} from './live-home-layout.ts';
 
 export function homeInterior(level:number, planId?:string|null){
  if(level===2&&planId==='garden-studio-2')return 'garden-studio-interior';
+ if(level===2&&planId==='workshop-lodge-2')return 'workshop-lodge-interior';
  const tier=level===2?'expanded':'starter';
  return planId===`pocket-cottage-${level}`?`cottage-${tier}-interior`:`home-${tier}-interior`;
 }

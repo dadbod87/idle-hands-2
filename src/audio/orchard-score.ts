@@ -1,5 +1,6 @@
 import {renderAccent} from '../design/audio-sketch.ts';
 import {SCORE_FRAMES,SCORE_RATE} from './score.ts';
+import {addPluck} from './pluck.ts';
 
 const beat=60/70;
 const pitches=[
@@ -23,14 +24,7 @@ export function renderOrchardScore(){
  function pluck(pitch:number,at:number,level:number){
   if(!pitch)return;
   const start=Math.round(at*beat*SCORE_RATE);
-  const transpose=ratio[pitch];
-  const length=Math.floor((voice.length-1)/transpose);
-  const release=Math.ceil(SCORE_RATE*.02);
-  for(let i=0;i<length;i++){
-   const source=i*transpose,index=Math.floor(source),blend=source-index;
-   const sample=(voice[index]*(1-blend)+voice[index+1]*blend)*level*Math.min(1,(length-1-i)/release);
-   phrase[start+i]+=sample;
-  }
+  addPluck(phrase,voice,start,ratio[pitch],level,Math.ceil(SCORE_RATE*.02));
  }
  for(const [bar,notes] of pitches.entries()){
   const start=bar*3;

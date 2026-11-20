@@ -315,7 +315,7 @@ function goNamedDestination(room:Room,stopId:string){
  namedWalk={room,stopId,startedRoom:'',owner:town?.snapshot?.playerId??'local'};followNamedWalk();
 }
 function followNamedWalk(){
- if(!namedWalk||!ready||panel.open||session.locked||transitionBusy||townMode&&(!town?.snapshot||needResync||contextKey(session.room,homePlotId)!==confirmedContext))return;
+ if(!namedWalk||!ready||!scene.roomReady||panel.open||session.locked||transitionBusy||townMode&&(!town?.snapshot||needResync||contextKey(session.room,homePlotId)!==confirmedContext))return;
  if(namedWalk.owner!==(town?.snapshot?.playerId??'local')){namedWalk=null;return;}
  if(namedWalk.startedRoom===session.room)return;
  const target=namedWalk,portal=target.room==='garden'?'allotment':target.room==='workshop'?'workshop':null;
@@ -542,6 +542,7 @@ function activate(stop: Stop) {
   }
 }
 function interact() {
+  if (!scene.roomReady) return;
   if (resting()&&!panel.open){void changeMorning('wake');return;}
   if (session.locked) return;
   const stop = session.nearby();
@@ -591,7 +592,7 @@ scene.onFrame = () => {
   }
   // A named stop can be visible while its restored shared position is still syncing.
   // Keep Inspect unavailable until the same input guard would accept its click.
-  interactButton.disabled = !stop || session.locked;
+  interactButton.disabled = !stop || session.locked || !scene.roomReady;
   const climate=scene.climateState();if(climate){let sky=document.querySelector<HTMLElement>('#town-sky');if(!sky){sky=document.createElement('small');sky.id='town-sky';sky.setAttribute('aria-label','Town time and weather');location.append(sky);}const hour=String(Math.floor(climate.minute/60)).padStart(2,'0'),minute=String(climate.minute%60).padStart(2,'0');const label=(climate.fixture?'Lighting study · ':'')+climate.label+' · '+hour+':'+minute;if(sky.textContent!==label)sky.textContent=label;if(panel.open){const guide=document.querySelector<HTMLElement>('#guide-sky');const clockLabel='Town time · '+hour+':'+minute+' · '+climate.label+(climate.fixture?' · Lighting study':'');if(guide&&guide.textContent!==clockLabel)guide.textContent=clockLabel;}}
 };
 window.addEventListener('pagehide',()=>{rememberVisit();save();});

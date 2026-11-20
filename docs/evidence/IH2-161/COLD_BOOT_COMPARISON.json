@@ -1,0 +1,1308 @@
+{
+  "baselineSource": "817f79465edbfa0b62a1d6d51ae8e2f8314aefe7",
+  "browser": "157.0.8103.79",
+  "method": "Fresh native Chromium context per sample. Browser practice only, cosmetic clear daytime, disposable loopback static uncompressed files and no saved user data. SVG headers seen before the ready frame. Decoded response lengths, not a hosted-network or device benchmark.",
+  "candidateFiles": {
+    "src/main.ts": "8d2e249ed4f99963461c0986c51717e64c4782fd2ba717b00d5f438c46e3d0b5",
+    "src/phaser/WorldScene.ts": "257e873125d7850bddcb2cad985f9b2e8ac502432f002b82b64dd1faef899f8e",
+    "src/art/garden-world-assets.ts": "9341f368d0b6c6a3e2d18ba7801665cdcb498dc331bd07e36bd3738692b052fc"
+  },
+  "groups": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "room": "square",
+      "before": {
+        "svgFiles": 139,
+        "decodedBytes": 789124,
+        "readyMs": [
+          409,
+          358,
+          341
+        ],
+        "medianMs": 358,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "lodging": {
+            "files": 1,
+            "decodedBytes": 1411
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "allotment": {
+            "files": 4,
+            "decodedBytes": 13225
+          },
+          "garden": {
+            "files": 28,
+            "decodedBytes": 119563
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "after": {
+        "svgFiles": 115,
+        "decodedBytes": 676731,
+        "readyMs": [
+          392,
+          322,
+          330
+        ],
+        "medianMs": 330,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "lodging": {
+            "files": 1,
+            "decodedBytes": 1411
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "garden": {
+            "files": 8,
+            "decodedBytes": 20395
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "delta": {
+        "svgFiles": -24,
+        "decodedBytes": -112393
+      }
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "room": "workshop",
+      "before": {
+        "svgFiles": 138,
+        "decodedBytes": 787713,
+        "readyMs": [
+          276,
+          275,
+          272
+        ],
+        "medianMs": 275,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "allotment": {
+            "files": 4,
+            "decodedBytes": 13225
+          },
+          "garden": {
+            "files": 28,
+            "decodedBytes": 119563
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "after": {
+        "svgFiles": 106,
+        "decodedBytes": 654925,
+        "readyMs": [
+          259,
+          253,
+          260
+        ],
+        "medianMs": 259,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "delta": {
+        "svgFiles": -32,
+        "decodedBytes": -132788
+      }
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "room": "garden",
+      "before": {
+        "svgFiles": 138,
+        "decodedBytes": 787713,
+        "readyMs": [
+          277,
+          269,
+          270
+        ],
+        "medianMs": 270,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "allotment": {
+            "files": 4,
+            "decodedBytes": 13225
+          },
+          "garden": {
+            "files": 28,
+            "decodedBytes": 119563
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "after": {
+        "svgFiles": 122,
+        "decodedBytes": 757729,
+        "readyMs": [
+          275,
+          267,
+          261
+        ],
+        "medianMs": 267,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "allotment": {
+            "files": 4,
+            "decodedBytes": 13225
+          },
+          "garden": {
+            "files": 12,
+            "decodedBytes": 89579
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "delta": {
+        "svgFiles": -16,
+        "decodedBytes": -29984
+      }
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "room": "lodging",
+      "before": {
+        "svgFiles": 139,
+        "decodedBytes": 790026,
+        "readyMs": [
+          293,
+          275,
+          280
+        ],
+        "medianMs": 280,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "lodging": {
+            "files": 1,
+            "decodedBytes": 2313
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "allotment": {
+            "files": 4,
+            "decodedBytes": 13225
+          },
+          "garden": {
+            "files": 28,
+            "decodedBytes": 119563
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "after": {
+        "svgFiles": 107,
+        "decodedBytes": 657238,
+        "readyMs": [
+          245,
+          257,
+          255
+        ],
+        "medianMs": 255,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "lodging": {
+            "files": 1,
+            "decodedBytes": 2313
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "delta": {
+        "svgFiles": -32,
+        "decodedBytes": -132788
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "room": "square",
+      "before": {
+        "svgFiles": 139,
+        "decodedBytes": 789124,
+        "readyMs": [
+          326,
+          328,
+          340
+        ],
+        "medianMs": 328,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "lodging": {
+            "files": 1,
+            "decodedBytes": 1411
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "allotment": {
+            "files": 4,
+            "decodedBytes": 13225
+          },
+          "garden": {
+            "files": 28,
+            "decodedBytes": 119563
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "after": {
+        "svgFiles": 115,
+        "decodedBytes": 676731,
+        "readyMs": [
+          333,
+          323,
+          308
+        ],
+        "medianMs": 323,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "lodging": {
+            "files": 1,
+            "decodedBytes": 1411
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "garden": {
+            "files": 8,
+            "decodedBytes": 20395
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "delta": {
+        "svgFiles": -24,
+        "decodedBytes": -112393
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "room": "workshop",
+      "before": {
+        "svgFiles": 138,
+        "decodedBytes": 787713,
+        "readyMs": [
+          281,
+          269,
+          276
+        ],
+        "medianMs": 276,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "allotment": {
+            "files": 4,
+            "decodedBytes": 13225
+          },
+          "garden": {
+            "files": 28,
+            "decodedBytes": 119563
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "after": {
+        "svgFiles": 106,
+        "decodedBytes": 654925,
+        "readyMs": [
+          249,
+          250,
+          256
+        ],
+        "medianMs": 250,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "delta": {
+        "svgFiles": -32,
+        "decodedBytes": -132788
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "room": "garden",
+      "before": {
+        "svgFiles": 138,
+        "decodedBytes": 787713,
+        "readyMs": [
+          284,
+          273,
+          277
+        ],
+        "medianMs": 277,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "allotment": {
+            "files": 4,
+            "decodedBytes": 13225
+          },
+          "garden": {
+            "files": 28,
+            "decodedBytes": 119563
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "after": {
+        "svgFiles": 122,
+        "decodedBytes": 757729,
+        "readyMs": [
+          289,
+          282,
+          288
+        ],
+        "medianMs": 288,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "allotment": {
+            "files": 4,
+            "decodedBytes": 13225
+          },
+          "garden": {
+            "files": 12,
+            "decodedBytes": 89579
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "delta": {
+        "svgFiles": -16,
+        "decodedBytes": -29984
+      }
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "room": "lodging",
+      "before": {
+        "svgFiles": 139,
+        "decodedBytes": 790026,
+        "readyMs": [
+          281,
+          271,
+          272
+        ],
+        "medianMs": 272,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "lodging": {
+            "files": 1,
+            "decodedBytes": 2313
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "allotment": {
+            "files": 4,
+            "decodedBytes": 13225
+          },
+          "garden": {
+            "files": 28,
+            "decodedBytes": 119563
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "after": {
+        "svgFiles": 107,
+        "decodedBytes": 657238,
+        "readyMs": [
+          252,
+          251,
+          252
+        ],
+        "medianMs": 252,
+        "families": {
+          "outing": {
+            "files": 8,
+            "decodedBytes": 4920
+          },
+          "interiors": {
+            "files": 2,
+            "decodedBytes": 6840
+          },
+          "cafe": {
+            "files": 2,
+            "decodedBytes": 1616
+          },
+          "depots": {
+            "files": 3,
+            "decodedBytes": 4186
+          },
+          "commission": {
+            "files": 3,
+            "decodedBytes": 7321
+          },
+          "orchard": {
+            "files": 1,
+            "decodedBytes": 806
+          },
+          "lodging": {
+            "files": 1,
+            "decodedBytes": 2313
+          },
+          "carpentry": {
+            "files": 19,
+            "decodedBytes": 185998
+          },
+          "trail": {
+            "files": 10,
+            "decodedBytes": 23058
+          },
+          "homes": {
+            "files": 21,
+            "decodedBytes": 29123
+          },
+          "housing": {
+            "files": 6,
+            "decodedBytes": 8123
+          },
+          "residential": {
+            "files": 7,
+            "decodedBytes": 32740
+          },
+          "neighborhood": {
+            "files": 4,
+            "decodedBytes": 37342
+          },
+          "original": {
+            "files": 7,
+            "decodedBytes": 11440
+          },
+          "variety": {
+            "files": 13,
+            "decodedBytes": 301412
+          }
+        }
+      },
+      "delta": {
+        "svgFiles": -32,
+        "decodedBytes": -132788
+      }
+    }
+  ]
+}

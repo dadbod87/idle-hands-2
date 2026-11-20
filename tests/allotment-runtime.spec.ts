@@ -69,3 +69,45 @@ test('actual scaled garden rain: both native movement axes and resize preserve w
   writeFileSync(dir+'/allotment-rain-native.json',JSON.stringify({classification:'Actual local game native keyboard movement and resize, forced cosmetic drizzle; synthetic document.hidden and reduced-motion preference only. No progress/clock/API injection, no physical-device claim.',before,afterX,short,afterY,errors,progressUnchanged:true},null,2)+'\n');
  }finally{await c.close();}
 });
+
+test('the first town frame defers indoor garden files and the named walk waits for their first render',async({browser})=>{
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ let release!:()=>void,held=false;
+ const gate=new Promise<void>(resolve=>{release=resolve;});
+ try{
+  const page=await context.newPage(),requests=new Set<string>(),errors:string[]=[];
+  page.on('request',request=>requests.add(new URL(request.url()).pathname));
+  page.on('pageerror',error=>errors.push(error.message));
+  await page.addInitScript(()=>localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({
+   version:1,room:'square',position:{x:17,y:37},
+  })));
+  await page.goto('/?sky-study=1&phase=day&weather=clear');
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+  expect(requests.has('/art/garden/garden-gate.svg')).toBe(true);
+  expect(requests.has('/art/garden/garden-registry.svg')).toBe(true);
+  expect([...requests].some(path=>path.startsWith('/art/allotment/')||
+   /^\/art\/garden\/garden-(ground|bed|actions|radish|marigold)/.test(path))).toBe(false);
+  await page.route('**/art/garden/garden-ground.svg',async route=>{
+   held=true;
+   await gate;
+   await route.continue();
+  });
+  await page.locator('#journal').tap();
+  await page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true}).tap();
+  await page.getByRole('button',{name:'Walk to the beds',exact:true}).tap();
+  await expect.poll(()=>held,{timeout:8000}).toBe(true);
+  await expect.poll(async()=>(await snap(page)).room).toBe('garden');
+  await expect(page.getByRole('dialog')).toBeHidden();
+  release();
+  await expect(page.getByRole('heading',{name:'Your rented allotment',exact:true})).toBeVisible();
+  await expect.poll(async()=>(await visual(page)).garden.bedTextures).toEqual(Array(3).fill('garden-bed-empty'));
+  await page.unrouteAll({behavior:'wait'});
+  for(const asset of [
+   '/art/garden/garden-ground.svg','/art/garden/garden-actions-devon.svg','/art/garden/garden-radish-ready.svg',
+   '/art/garden/garden-marigold-ready.svg','/art/allotment/study-meadow-detail.svg',
+  ])expect(requests.has(asset)).toBe(true);
+  expect(requests.has('/art/garden/garden-actions-aster.svg')).toBe(false);
+  expect([...requests].some(path=>path.startsWith('/api/'))).toBe(false);
+  expect(errors).toEqual([]);
+ }finally{release();await context.close();}
+});

@@ -3035,7 +3035,7 @@
     {
       "id": "IH2-160",
       "title": "Wake up in a saved browser-practice room",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/browser-first-morning",
       "goal": "Offer an optional choice after character setup, with one deliberate Get up action and a real doorstep exit.",
       "depends_on": [
@@ -3051,7 +3051,29 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-160/PLAN.md"
+        "docs/evidence/IH2-160/PLAN.md",
+        "docs/evidence/IH2-160/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. An explicitly chosen browser-practice arrival now starts in the boarding-house bed, wakes on request and exits through the real front door."
+    },
+    {
+      "id": "IH2-161",
+      "title": "Load the allotment when a resident enters",
+      "status": "in_progress",
+      "owner_branch": "perf/defer-garden-room-art",
+      "goal": "Remove indoor garden image requests from outdoor loading and keep the first garden dialog synchronized with its room.",
+      "depends_on": [
+        "IH2-160"
+      ],
+      "acceptance": [
+        "Keep outdoor garden art and all original assets. Measure boot and first-door times under a declared response delay.",
+        "Hold one original room image in a native browser and verify that the named walk opens the garden after the first ready room."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-161/PLAN.md"
       ]
     }
   ],

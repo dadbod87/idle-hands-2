@@ -1,0 +1,123 @@
+{
+  "pullRequest": 84,
+  "pr": {
+    "sha": "a2e4baf6451dd55a7d9e15854030ba9da94d70cb",
+    "run": 44674248417,
+    "domain": 586,
+    "browser": 237,
+    "browserGroups": [
+      76,
+      79,
+      82
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14602130614,
+        "createdAt": "2026-11-20T04:28:02Z",
+        "sha": "a2e4baf6451dd55a7d9e15854030ba9da94d70cb",
+        "zipSha256": "da6973ecf87b90f1de5b3f696bcd3c97b5cd5a9dbe5d1a3459d4439711e44470",
+        "size": 131944,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14601536762,
+        "createdAt": "2026-11-20T04:28:03Z",
+        "sha": "a2e4baf6451dd55a7d9e15854030ba9da94d70cb",
+        "zipSha256": "d2b9ec53a2390d7334f26e5baf669e250dda21a5500902ebe5bf0fba72bf29fb",
+        "size": 764239,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14601233795,
+        "createdAt": "2026-11-20T04:38:43Z",
+        "sha": "a2e4baf6451dd55a7d9e15854030ba9da94d70cb",
+        "zipSha256": "ca55a1f06ef864171ab14e9796bc4b6eeca9c8f36bfd637decde100bb197d87c",
+        "size": 18441898,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14602347126,
+        "createdAt": "2026-11-20T04:38:41Z",
+        "sha": "a2e4baf6451dd55a7d9e15854030ba9da94d70cb",
+        "zipSha256": "aadae54080357c21536b2f4929485bb8f396aa2bc08135058fc9929992d6a08f",
+        "size": 19498286,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14601777769,
+        "createdAt": "2026-11-20T04:40:51Z",
+        "sha": "a2e4baf6451dd55a7d9e15854030ba9da94d70cb",
+        "zipSha256": "676c26ab75dffb50fc16af3a7c03e10b7f3e69a51c8104d63e2227ff925c4eac",
+        "size": 25297935,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "32c76200d352eb6db771ea22483184a0f1fedef2",
+    "run": 44676114775,
+    "domain": 586,
+    "browser": 237,
+    "browserGroups": [
+      76,
+      79,
+      82
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14602720141,
+        "createdAt": "2026-11-20T04:45:28Z",
+        "sha": "32c76200d352eb6db771ea22483184a0f1fedef2",
+        "zipSha256": "f9d09001168ec1955a9615ff932af2da4569d72fb5a39b380ea1253442c099c7",
+        "size": 132850,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14602003618,
+        "createdAt": "2026-11-20T04:45:30Z",
+        "sha": "32c76200d352eb6db771ea22483184a0f1fedef2",
+        "zipSha256": "b7bdfdf5ec167ac4deb3816bedc59362f7f02a385d1c2f647ba08725fc0c9295",
+        "size": 764239,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14603335378,
+        "createdAt": "2026-11-20T04:55:38Z",
+        "sha": "32c76200d352eb6db771ea22483184a0f1fedef2",
+        "zipSha256": "b57807c44154046fc68ffd311059ca08ca834d69b35e2f916a8f41bd0427ddd8",
+        "size": 18430016,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14602716756,
+        "createdAt": "2026-11-20T04:55:52Z",
+        "sha": "32c76200d352eb6db771ea22483184a0f1fedef2",
+        "zipSha256": "b5573ae4def98e4db771271bd26565a5e4ed642bc1917bb5f83ca63ae5d1152d",
+        "size": 19476427,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14602976627,
+        "createdAt": "2026-11-20T04:59:21Z",
+        "sha": "32c76200d352eb6db771ea22483184a0f1fedef2",
+        "zipSha256": "9f777c4c6a211040b7915755b1c71360c563046e3aed94f2f1bfce0de169a386",
+        "size": 25190865,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native controls with emulated desktop, narrow phone and short layouts. Ordinary disposable shared-town regression evidence retained."
+}

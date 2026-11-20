@@ -1,0 +1,123 @@
+{
+  "pullRequest": 86,
+  "pr": {
+    "sha": "a3809a48252716ba68a6102a8b9c9d5b8cddbdc7",
+    "run": 44681875414,
+    "domain": 586,
+    "browser": 239,
+    "browserGroups": [
+      77,
+      80,
+      82
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14604901981,
+        "createdAt": "2026-11-20T05:37:02Z",
+        "sha": "a3809a48252716ba68a6102a8b9c9d5b8cddbdc7",
+        "zipSha256": "589d553b4dd0cc0cc932e4313bef146283944257e50e990f468f34dca5a6e61f",
+        "size": 132237,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14604258407,
+        "createdAt": "2026-11-20T05:37:03Z",
+        "sha": "a3809a48252716ba68a6102a8b9c9d5b8cddbdc7",
+        "zipSha256": "04c8dc6279b971b771fac3afd5cafda72b2430653c442fcb952a2b0e89c4ee93",
+        "size": 764854,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14605775301,
+        "createdAt": "2026-11-20T05:48:07Z",
+        "sha": "a3809a48252716ba68a6102a8b9c9d5b8cddbdc7",
+        "zipSha256": "2bc07d848761ecd6319a45f0bfcfbfc391b806e50ca14bebed25c6a7f31831fe",
+        "size": 18798637,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14605850057,
+        "createdAt": "2026-11-20T05:48:17Z",
+        "sha": "a3809a48252716ba68a6102a8b9c9d5b8cddbdc7",
+        "zipSha256": "ebae2704bd6c1cc3b9af62e822db1c657b558ab40487d3f046d27980d8db0f3f",
+        "size": 19797542,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14605192824,
+        "createdAt": "2026-11-20T05:49:21Z",
+        "sha": "a3809a48252716ba68a6102a8b9c9d5b8cddbdc7",
+        "zipSha256": "22ba85f32c5f913e2bdb34bb9c96b17f9bcb5328c46c63af3b5c7524d5b50c28",
+        "size": 25402178,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "5440e24c4c9098113c3662f7f29affe0f2c5d856",
+    "run": 44683634905,
+    "domain": 586,
+    "browser": 239,
+    "browserGroups": [
+      77,
+      80,
+      82
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14605457909,
+        "createdAt": "2026-11-20T05:53:41Z",
+        "sha": "5440e24c4c9098113c3662f7f29affe0f2c5d856",
+        "zipSha256": "1716ad307c04850565e41ec3b902e56d4890fdd4aacba92a9d85eb78b0276a00",
+        "size": 133023,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14605238608,
+        "createdAt": "2026-11-20T05:53:43Z",
+        "sha": "5440e24c4c9098113c3662f7f29affe0f2c5d856",
+        "zipSha256": "5f3504127313fcaa9377df91fb85fe4037ce21bfb76045f282825f342658faf4",
+        "size": 764854,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14605842520,
+        "createdAt": "2026-11-20T06:02:20Z",
+        "sha": "5440e24c4c9098113c3662f7f29affe0f2c5d856",
+        "zipSha256": "de52ff877ed896459ece96586a6bf995e21a382931e814923a34e55472ae5242",
+        "size": 19445608,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14606550459,
+        "createdAt": "2026-11-20T06:03:02Z",
+        "sha": "5440e24c4c9098113c3662f7f29affe0f2c5d856",
+        "zipSha256": "027b4ea48b4f153a60354041a2c8830e6b1c4243227a2f9402035ee73ad90bff",
+        "size": 20108741,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14605384972,
+        "createdAt": "2026-11-20T06:05:32Z",
+        "sha": "5440e24c4c9098113c3662f7f29affe0f2c5d856",
+        "zipSha256": "6741e0e4dfc0d2db515964f92576c5770e8a0302af916705fa0927e3c9ffaccf",
+        "size": 25907377,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native Chromium keyboard, touch emulation and 200% root text using fictional local setup. Full disposable regression cases pass. The local timing sample intentionally advances the browser clock."
+}

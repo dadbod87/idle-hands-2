@@ -1,0 +1,143 @@
+{
+  "pullRequest": 97,
+  "pr": {
+    "sha": "a71c443961e9a7bfc3217f45bae9910f7a64c112",
+    "run": 44748047628,
+    "domain": 590,
+    "browser": 247,
+    "browserGroups": [
+      85,
+      81,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14634132375,
+        "createdAt": "2026-11-20T13:55:04Z",
+        "sha": "a71c443961e9a7bfc3217f45bae9910f7a64c112",
+        "zipSha256": "3e056baef1b8d8c4c8e0235ec3bfe9902bd571ef56aa4a8f272b595d4a3e8c14",
+        "size": 132589,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14634232142,
+        "createdAt": "2026-11-20T13:55:06Z",
+        "sha": "a71c443961e9a7bfc3217f45bae9910f7a64c112",
+        "zipSha256": "8ce9c3d3318e1e47d86951eb1f0748ae4607b7ab9bcb6b8e0ddd93db4ffc255d",
+        "size": 769558,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14633899930,
+        "createdAt": "2026-11-20T14:07:54Z",
+        "sha": "a71c443961e9a7bfc3217f45bae9910f7a64c112",
+        "zipSha256": "2a07c3d4fd34de7479c2d8d1714eaff8619d416a380573347e022df2ba8073e9",
+        "size": 21306043,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14633814596,
+        "createdAt": "2026-11-20T14:05:35Z",
+        "sha": "a71c443961e9a7bfc3217f45bae9910f7a64c112",
+        "zipSha256": "0bdb71162bbd908d92b9c8896762d25dd7075b67212dd64f8f259ed6a0851fdc",
+        "size": 19936316,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14635375467,
+        "createdAt": "2026-11-20T14:05:57Z",
+        "sha": "a71c443961e9a7bfc3217f45bae9910f7a64c112",
+        "zipSha256": "e4a4e5c8bada9914c5d3f388ae30bb6442a19b28e82c974abe2d301457aeaf34",
+        "size": 24877961,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "cd0501924bd3fc9479cceadcf4c7a87947711001",
+    "run": 44750626324,
+    "domain": 590,
+    "browser": 247,
+    "browserGroups": [
+      85,
+      81,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14634873255,
+        "createdAt": "2026-11-20T14:11:37Z",
+        "sha": "cd0501924bd3fc9479cceadcf4c7a87947711001",
+        "zipSha256": "5af624777ebbc915fb6157a66bc25da4fa484babd3e37b00c80b8f82706845c1",
+        "size": 132475,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14635546298,
+        "createdAt": "2026-11-20T14:11:38Z",
+        "sha": "cd0501924bd3fc9479cceadcf4c7a87947711001",
+        "zipSha256": "535b088c2ff01fcb86b3413dcb25d676eb7abdce31c9cd1106fc2fdf7c3b938b",
+        "size": 769558,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14638165712,
+        "createdAt": "2026-11-20T14:42:37Z",
+        "sha": "cd0501924bd3fc9479cceadcf4c7a87947711001",
+        "zipSha256": "c1c0e4fe252438399023dde5477777d6b2215be1c5902718802352fff6130573",
+        "size": 20794613,
+        "otherSameNameArtifacts": [
+          {
+            "id": 14635983013,
+            "created_at": "2026-11-20T14:28:57Z",
+            "size_in_bytes": 14282332
+          }
+        ]
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14636476574,
+        "createdAt": "2026-11-20T14:22:42Z",
+        "sha": "cd0501924bd3fc9479cceadcf4c7a87947711001",
+        "zipSha256": "9580cf6a240c98a7d675a9842e57b4030e442cb0ce1cf076b546d7e9fb165de0",
+        "size": 19880920,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14636517198,
+        "createdAt": "2026-11-20T14:25:20Z",
+        "sha": "cd0501924bd3fc9479cceadcf4c7a87947711001",
+        "zipSha256": "04fc36486c889866913d83ce2813b3999db3f2af1b70fad4d22de81b01336a45",
+        "size": 24543432,
+        "otherSameNameArtifacts": []
+      }
+    ],
+    "recovery": {
+      "attempt": 2,
+      "firstAttempt": "Ubuntu took 8 minutes 57 seconds for 32.1 MB. Pinned browser setup took 560 seconds overall. Shard 1 passed 68 cases before its unchanged job cap.",
+      "originalSuccessfulJobs": [
+        "domain-build-plan",
+        "browser-shard (2/3)",
+        "browser-shard (3/3)"
+      ],
+      "retried": [
+        "browser-shard (1/3)",
+        "browser-playtest"
+      ],
+      "setupSeconds": 19.0
+    }
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native resize, touch, focus and right-edge Garden Studio movement with enlarged text. Terra checked the changed visual. Physical device remains separate."
+}

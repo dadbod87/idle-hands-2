@@ -1,3 +1,21 @@
+# November 19 — the Journal café note accepted
+
+A resident can check the count of waiting snacks deliberately and follow the walk to the café counter. Main `7cf5f49698d49ee47856ee5f8a7909b7f8a19038` passed 586 domain tests and 238 browser cases. [Exact verification](../evidence/IH2-165/EXACT_CI.json).
+
+The next candidate is [`IH2-167` and its plan](../evidence/IH2-167/PLAN.md), on `feat/workbench-outing`. Put one immediately useful free outing next to long crafting work, with nothing to remember or spend. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — task-first field guide accepted
+
+The guide opens useful material depots for the first gathering task and gives a concise route to Journal or Workshop. Main `32c76200d352eb6db771ea22483184a0f1fedef2` passed 586 domain tests and 237 browser cases. [Exact verification](../evidence/IH2-163/EXACT_CI.json).
+
+The next candidate is [`IH2-165` and its plan](../evidence/IH2-165/PLAN.md), on `feat/journal-cafe-parcels`. Let a resident see how many snacks are waiting and find the café without adding background traffic. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 19 — free room and yard previews accepted
+
+The Housing Registry draws the accepted furnishing nooks, floor footprint and yard spots before a quote. Main `0f09487c648e8f97428aaaf5938218f92131e3e7` passed 586 domain tests and 237 browser cases. [Exact verification](../evidence/IH2-162/EXACT_CI.json).
+
+The next candidate is [`IH2-163` and its plan](../evidence/IH2-163/PLAN.md), on `feat/task-first-field-guide`. Help a new player find material depots or open Journal without rereading orientation. Continue with the ordinary exact-head gates and keep saved services stopped.
+
 # November 19 — room-specific garden loading accepted
 
 The outdoor first frame requests fewer images and the first named garden visit waits for the mounted room. Main `ded1071f4d5b334f438588f4305645a6ac64a7a2` passed 586 domain tests and 236 browser cases. [Exact verification](../evidence/IH2-161/EXACT_CI.json).

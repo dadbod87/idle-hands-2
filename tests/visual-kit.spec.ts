@@ -17,11 +17,22 @@ for(const shape of [{name:'desktop',width:1440,height:900},{name:'narrow',width:
   scans.push(await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze());
   const guideTarget=await page.getByRole('button',{name:'Open field guide'}).boundingBox();expect(guideTarget!.width).toBeGreaterThanOrEqual(44);expect(guideTarget!.height).toBeGreaterThanOrEqual(44);
   await page.getByRole('button',{name:'Open field guide'}).click();
-  await expect(page.getByRole('dialog')).toContainText('First things first');
+  await expect(page.locator('[data-guide-title]')).toHaveText('Something from almost nothing');
+  const guideHeader=page.locator('.dialog-head');
+  await expect.poll(async()=>(await page.locator('[data-guide-title]').boundingBox())!.y-(await guideHeader.boundingBox())!.height-(await guideHeader.boundingBox())!.y).toBeGreaterThanOrEqual(0);
+
+  await expect(page.locator('[data-guide-detail]')).toContainText('Gather scrap, timber and supplies');
+  await expect(page.locator('#guide-workshop')).toHaveText('Enter your workshop →');
+  await expect(page.getByText('Your first planter',{exact:true})).toBeVisible();
   const locked=await page.evaluate(()=>(window as any).__pilot.snapshot().position);
   await page.keyboard.press('ArrowDown');expect(await page.evaluate(()=>(window as any).__pilot.snapshot().position)).toEqual(locked);
   scans.push(await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze());
   await page.screenshot({path:`${evidence}/${shape.name}-field-guide.png`});
+  await page.getByRole('button',{name:'Find material depots →',exact:true}).press('Enter');
+  await expect(page.getByRole('dialog')).toHaveAccessibleName('Places to go');
+  const depots=page.getByRole('region',{name:'Useful now'});
+  await expect(depots.getByRole('button',{name:'Walk to Scrap depot →',exact:true})).toBeFocused();
+  expect(await page.evaluate(()=>(window as any).__pilot.snapshot().position)).toEqual(locked);
   await page.getByRole('button',{name:'Close panel'}).click();
   const initial=await page.locator('h1').evaluate(e=>parseFloat(getComputedStyle(e).fontSize));
   await page.addStyleTag({content:'html{font-size:200%!important}'});
@@ -32,6 +43,14 @@ for(const shape of [{name:'desktop',width:1440,height:900},{name:'narrow',width:
   await page.getByRole('button',{name:'Open field guide'}).click();
   await expect(page.getByRole('button',{name:'Close panel'})).toBeInViewport();
   await page.screenshot({path:`${evidence}/${shape.name}-text-200.png`});
+  const journal=page.getByRole('button',{name:'Open Journal →',exact:true});
+  const target=await journal.boundingBox();
+  expect(target!.height).toBeGreaterThanOrEqual(44);
+  await journal.press('Enter');
+  await expect(page.getByRole('dialog')).toHaveAccessibleName('Journal');
+  await expect(page.getByRole('button',{name:'Close panel'})).toBeFocused();
+  await expect(page.getByRole('heading',{name:'Your next step'})).toBeVisible();
+  expect(await page.evaluate(()=>(window as any).__pilot.snapshot().position)).toEqual(locked);
   await page.keyboard.press('Escape');
   await page.goto('/?art-study=1');await expect(page.getByRole('heading',{name:'A town worth coming back to.'})).toBeVisible();
   await expect(page.getByRole('img',{name:/Original illustrated workshop/})).toBeVisible();

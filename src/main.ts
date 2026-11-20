@@ -5,6 +5,7 @@ import type {BrowserResident} from './game/browser-resident.ts';
 import {orchardGuide} from './game/orchard-guide.ts';
 import './ui/jun-orchard.css';
 import {SnackShelfUI} from './ui/snack-shelf.ts';
+import {showCafeParcelNote} from './ui/cafe-parcel-note.ts';
 import { rewardCue } from './audio/world-sounds.ts';
 import { mountPlaceMusic } from './ui/place-music.ts';
 import{OutingUI}from'./ui/outing.ts';
@@ -39,7 +40,9 @@ import {dialogueFor,type DialogueContext} from './game/town-people.ts';
 import {visitBaseline,parseVisit,type VisitBaseline} from './game/return-summary.ts';
 import {TownClient,TownUI,type TownSnapshot} from './ui/town.ts';
 import {WorkshopUI} from './ui/workshop.ts';
-import { renderStudy, renderVarietyStudy, guideContents } from './art/study.ts';
+import { renderStudy, renderVarietyStudy } from './art/study.ts';
+import {fieldGuideContents} from './ui/field-guide.ts';
+import './ui/field-guide.css';
 if(new URLSearchParams(location.search).has('variety-study')) { renderVarietyStudy(); } else if(new URLSearchParams(location.search).has('art-study')) { renderStudy(); } else {
 
 const townMode=new URLSearchParams(window.location.search).has('town');
@@ -292,7 +295,7 @@ const orchardUI=new OrchardUI({
 },orchardTable,orchardPort);
 scene.orchardState=()=>orchardAvailable()?orchardUI.state:undefined;
 scene.orchardNow=orchardPort?.now??Date.now;
-const workshop=new WorkshopUI({orchard:()=>orchardAvailable()?orchardUI.state:undefined,orchardWalk:()=>goNamedDestination('square',orchardTable.id),cue:music.cue,outings:()=>outingUI.show(),owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
+const workshop=new WorkshopUI({orchard:()=>orchardAvailable()?orchardUI.state:undefined,orchardWalk:()=>goNamedDestination('square',orchardTable.id),cue:music.cue,outings:()=>outingUI.show(),owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{cafeParcels:()=>showCafeParcelNote({open:openPanel,body,walk:()=>goNamedDestination('square','cafe')},town),objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
 const atCafe=()=>session.room==='square'&&Math.hypot(session.position.x-30,session.position.y-22)<=1.4;
 if(town)snackShelfUI=new SnackShelfUI({open:openPanel,body,canUse:atCafe,counter:()=>cafeUI?.show()},town);
 cafeUI=new CafeUI({open:openPanel,body,owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,headwear:()=>scene.headwear,canUse:atCafe,parcelShelf:snackShelfUI?()=>snackShelfUI?.show():undefined,project:()=>town?.snapshot?.cafe,shared:townMode,bag:()=>workshop.showInventory(),garden:()=>goNamedDestination('square','allotment'),feedback:message=>feedback.textContent=message},workshop);
@@ -362,10 +365,43 @@ document.querySelector('#bag')!.addEventListener('click',()=>personalTool('bag')
 document.querySelector('#journal')!.addEventListener('click',()=>personalTool('journal'));
 window.addEventListener('keydown',event=>{if(event.defaultPrevented||event.repeat||event.ctrlKey||event.metaKey||event.altKey||panel.open||transitionBusy||!!town&&needResync)return;const target=event.target;if(target instanceof HTMLElement&&target.closest('input,textarea,select,button,summary,[contenteditable]'))return;const key=event.key.toLowerCase();if(key==='b'||key==='j'){event.preventDefault();personalTool(key==='b'?'bag':'journal');}});
 function currentObjective(){return town?.snapshot?sharedObjective(town.snapshot,town.serverNow()):questStep(workshop.state);}
-function paintGuideObjective(){const note=body.querySelector<HTMLElement>('[data-guide-objective]');if(!note)return;const objective=currentObjective(),text=objective.title+' — '+objective.detail;if(note.textContent!==text)note.textContent=text;}
+function paintGuideObjective(){
+  const title=body.querySelector<HTMLElement>('[data-guide-title]');
+  const detail=body.querySelector<HTMLElement>('[data-guide-detail]');
+  if(!title||!detail)return;
+  const objective=currentObjective();
+  if(title.textContent!==objective.title)title.textContent=objective.title;
+  if(detail.textContent!==objective.detail)detail.textContent=objective.detail;
+  const depots=body.querySelector<HTMLButtonElement>('#guide-places');
+  if(depots)depots.hidden=objective.id!=='gather'||session.room!=='square';
+}
 let guidanceSecond=-1;
 document.querySelector('#field-guide')!.addEventListener('click',()=>{
-  openPanel('Town field guide');body.innerHTML=guideContents(session.room==='workshop',townMode,session.room!=='square'&&session.room!=='workshop');if(scene.skyFixture){const live=document.createElement('a');live.className='destination live-clock';live.href=townMode?'/?town=1':'/';live.textContent='Return to the live town clock';body.prepend(live);}const objective=currentObjective();const note=paragraph(objective.title+' — '+objective.detail);note.className='quest-card';note.dataset.guideObjective='';body.prepend(note);const climate=scene.climateState();if(climate){const clock=paragraph('Town time · '+String(Math.floor(climate.minute/60)).padStart(2,'0')+':'+String(climate.minute%60).padStart(2,'0')+' · '+climate.label+(climate.fixture?' · Lighting study':''));clock.id='guide-sky';body.prepend(clock);}
+  openPanel('Town field guide');
+  body.innerHTML=fieldGuideContents(session.room==='workshop',townMode,session.room!=='square'&&session.room!=='workshop');
+  paintGuideObjective();
+  body.querySelector('#guide-places')!.addEventListener('click',()=>{
+    document.querySelector<HTMLButtonElement>('#places')!.click();
+    body.querySelector<HTMLButtonElement>('.places-primary button')?.focus();
+  });
+  const guideJournal=body.querySelector<HTMLButtonElement>('#guide-journal')!;
+  guideJournal.addEventListener('click',()=>{
+    personalTool('journal');
+    panel.querySelector<HTMLButtonElement>('[aria-label="Close panel"]')?.focus({preventScroll:true});
+  });
+  const climate=scene.climateState();
+  if(climate){
+   const clock=paragraph('Town time · '+String(Math.floor(climate.minute/60)).padStart(2,'0')+':'+String(climate.minute%60).padStart(2,'0')+' · '+climate.label+(climate.fixture?' · Lighting study':''));
+   clock.id='guide-sky';
+   body.append(clock);
+  }
+  if(scene.skyFixture){
+   const live=document.createElement('a');
+   live.className='destination live-clock';
+   live.href=townMode?'/?town=1':'/';
+   live.textContent='Return to the live town clock';
+   body.append(live);
+  }
   const skyNotes=document.createElement('details'),skySummary=document.createElement('summary');skyNotes.className='sky-notes';skySummary.textContent='Weather & daylight';skyNotes.append(skySummary,paragraph('A town day lasts 48 real minutes. Weather can change every 12 minutes. Daylight, warm windows and passing drizzle are cosmetic; your work uses real time.'));const motionNote=paragraph(window.matchMedia('(prefers-reduced-motion: reduce)').matches?'Your device requests reduced motion, so tree sway and animated rain are turned off.':'Trees sway outdoors, and drizzle moves when it is raining. Indoors stays sheltered.');skyNotes.append(motionNote);body.append(skyNotes);
   if(showBrowserResident){
    const appearance=document.createElement('button');

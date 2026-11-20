@@ -19,7 +19,7 @@ const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Suppl
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Record<string,unknown>;playerId?:string;collection?:CollectionGrant};
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
+type PanelHost={orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -205,6 +205,11 @@ export class WorkshopUI {
   const work=document.createElement('section');work.className='bench-work';work.dataset.benchWork='';work.dataset.seen=this.state.job?'1':'0';work.hidden=!this.state.job;
   const title=document.createElement('h3');title.dataset.benchTitle='';const job=this.p('','bench-clock');job.dataset.job='';job.tabIndex=0;const detail=this.p('','bench-output');detail.dataset.benchWorkDetail='';
   const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';claim.setAttribute('aria-describedby','bench-work-detail');detail.id='bench-work-detail';detail.tabIndex=0;const bag=this.button('Open bag',()=>this.showInventory(),'destination');const collected=document.createElement('span');collected.textContent='✓ Collected';collected.setAttribute('aria-hidden','true');collected.className='bench-bag-confirmation';bag.prepend(collected);bag.dataset.benchBag='';bag.setAttribute('aria-describedby','bench-work-detail');bag.hidden=true;work.append(title,job,detail,claim,bag);b.append(work);
+  const outing=document.createElement('section');
+  outing.className='bench-outing';
+  outing.dataset.benchOuting='';
+  outing.hidden=true;
+  b.append(outing);
   const recipeHeading=document.createElement('h3');recipeHeading.textContent='Choose a recipe';b.append(recipeHeading);
   for(const id of ['planter','bridge-kit']as const){const view=recipeView(this.state,id),section=document.createElement('section');section.className='recipe recipe-card';section.dataset.recipeCard=id;
    const header=document.createElement('div');header.className='recipe-heading';const icon=document.createElement('img');icon.src='/art/homes/home-'+(id==='planter'?'planter':'crate')+'-icon.svg';icon.alt='';icon.width=40;icon.height=40;const name=document.createElement('h4');name.textContent='1 '+view.name;header.append(icon,name);
@@ -243,7 +248,9 @@ export class WorkshopUI {
    b.append(parcel);
   }
   const completed=document.createElement('details');completed.dataset.completedOrientation='';completed.className='journal-completed';completed.hidden=true;const completedTitle=document.createElement('summary');completedTitle.textContent='Orientation complete · notes';completed.append(completedTitle);b.append(completed);
-  const other=document.createElement('section'),summary=document.createElement('h3');summary.textContent='Around town';other.className='journal-activities';other.append(summary);if(this.host.commission)other.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));if(this.host.outings)other.append(this.button('Woodland work · borrowed tools & journal',()=>this.host.outings!(),'destination'));other.append(this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)other.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!(),'destination'));if(this.host.discoveries)other.append(this.button('Trail field notebook',()=>this.host.discoveries?.(),'destination'));b.append(other);
+  const other=document.createElement('section'),summary=document.createElement('h3');summary.textContent='Around town';other.className='journal-activities';other.append(summary);
+  if(this.host.cafeParcels)other.append(this.button('Check for café parcels',()=>this.host.cafeParcels?.(),'destination'));
+  if(this.host.commission)other.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));if(this.host.outings)other.append(this.button('Woodland work · borrowed tools & journal',()=>this.host.outings!(),'destination'));other.append(this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)other.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!(),'destination'));if(this.host.discoveries)other.append(this.button('Trail field notebook',()=>this.host.discoveries?.(),'destination'));b.append(other);
   const progress=document.createElement('details');progress.className='journal-progress';const title=document.createElement('summary');title.textContent='Skills & town progress';const skill=this.p('');skill.dataset.skills='';const kits=this.p('');kits.dataset.kits='';progress.append(title,skill,kits);if(this.host.orchard){const tasting=this.p('');tasting.dataset.orchardTasting='';progress.append(tasting);}if(this.host.returns)progress.append(this.button('Since your last visit',()=>this.host.returns?.(),'destination'));b.append(progress);this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Journal',render);}
  private renderPlacement(){
@@ -299,6 +306,18 @@ export class WorkshopUI {
   const workCard=b.querySelector<HTMLElement>('[data-bench-work]'),work=benchWork(this.state,now),pending=!!this.remote&&(this.remoteBusy||!!this.remote.busy?.()||!!this.remoteError||this.remote.canRetry());
   const claim=b.querySelector<HTMLButtonElement>('[data-claim]'),claimFocused=document.activeElement===claim;
   if(workCard){if(this.state.job){workCard.dataset.seen='1';workCard.dataset.output=recipeView(this.state,this.state.job.recipe).name;workCard.dataset.beforeCrafted=String(this.state.stats.crafted);workCard.dataset.collected='0';}else if(this.state.stats.crafted>Number(workCard.dataset.beforeCrafted??Infinity))workCard.dataset.collected='1';workCard.hidden=workCard.dataset.seen!=='1';workCard.dataset.phase=work.phase;const collected=work.phase==='idle'&&workCard.dataset.collected==='1';workCard.querySelector('[data-bench-title]')!.textContent=collected?'1 '+workCard.dataset.output:work.title;workCard.querySelector('[data-bench-work-detail]')!.textContent=!this.remote&&!this.saved?'Local save failed. Keep this tab open; reloading will lose this work.':collected?'Collected. Open your bag to inspect or place it.':work.detail;const bag=workCard.querySelector<HTMLButtonElement>('[data-bench-bag]')!;bag.hidden=work.phase!=='idle';if(claim)claim.hidden=work.phase==='idle';}
+  const outing=b.querySelector<HTMLElement>('[data-bench-outing]');
+  if(outing?.hidden&&!pending&&this.confirmedBenchJob()&&this.saved&&work.phase==='running'&&work.readyAt-now>=3600_000){
+   const study=SURVEY_IDS.find(id=>!this.state.sketches.includes(id));
+   const walk=this.host.walkToStudy;
+   if(study&&walk){
+    const heading=document.createElement('h3');
+    heading.textContent='A short trip outside';
+    const action=this.button('Walk to the '+SURVEYS[study].name.toLowerCase(),()=>walk(study),'destination');
+    outing.append(heading,this.p('Sketch a tree while your piece takes shape.'),action);
+    outing.hidden=false;
+   }
+  }
   if(claim)claim.disabled=pending||!work.canClaim;
   if(claimFocused&&workCard&&work.phase==='idle')workCard.querySelector<HTMLButtonElement>('[data-bench-bag]')!.focus({preventScroll:true});
   for(const button of b.querySelectorAll<HTMLButtonElement>('[data-craft]')){const id=button.dataset.craft as 'planter'|'bridge-kit',view=recipeView(this.state,id);button.disabled=pending||!!view.reason;button.textContent='Make '+view.name;const reason=b.querySelector<HTMLElement>('[data-recipe-reason="'+id+'"]');if(reason)reason.textContent=this.remoteError?'Connection needs attention. Retry below.':this.remote?.canRetry()?'Confirm the previous request below.':pending?'Waiting for server confirmation.':view.reason??'Ready to make.';const time=b.querySelector<HTMLElement>('[data-recipe-time="'+id+'"]');if(time)time.textContent=craftDuration(view.durationMs)+(id==='planter'&&!this.state.stats.plantersCrafted?' · first planter':'');}

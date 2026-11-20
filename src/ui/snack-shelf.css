@@ -37,7 +37,12 @@
 .snack-shelf-status:empty { display: none; }
 .snack-shelf .snack-shelf-status { background: #f6e5b4; }
 @media (max-height: 460px) {
- #panel:has(.snack-shelf) { width: min(650px,calc(100vw - 20px)); }
- #panel:has(.snack-shelf) .dialog-head { padding: 8px 12px; }
- #panel:has(.snack-shelf) .dialog-head h2 { font-size: 1rem; }
+ #panel:has(.snack-shelf,.cafe-parcel-note) { width: min(650px,calc(100vw - 20px)); }
+ #panel:has(.snack-shelf,.cafe-parcel-note) .dialog-head { padding: 8px 12px; }
+ #panel:has(.snack-shelf,.cafe-parcel-note) .dialog-head h2 { font-size: 1rem; }
+}
+
+@media (max-height: 460px) and (min-width: 651px) {
+ .cafe-parcel-note-actions { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
+ .cafe-parcel-note-actions .destination { margin:0; }
 }

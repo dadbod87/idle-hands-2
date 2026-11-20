@@ -3081,7 +3081,7 @@
     {
       "id": "IH2-162",
       "title": "Preview the rooms and yard before asking for a price",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/housing-plan-preview",
       "goal": "Make the differences among the existing paid plans readable on a phone without sending a housing command.",
       "depends_on": [
@@ -3096,7 +3096,75 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-162/PLAN.md"
+        "docs/evidence/IH2-162/PLAN.md",
+        "docs/evidence/IH2-162/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The Housing Registry draws the accepted furnishing nooks, floor footprint and yard spots before a quote."
+    },
+    {
+      "id": "IH2-163",
+      "title": "Offer the next relevant action in the field guide",
+      "status": "done",
+      "owner_branch": "feat/task-first-field-guide",
+      "goal": "Help a new player find material depots or open Journal without rereading orientation.",
+      "depends_on": [
+        "IH2-162",
+        "IH2-133"
+      ],
+      "acceptance": [
+        "Preserve the real workshop route, live clock, shared objective and input lock.",
+        "Verify the first missing depot focus and Journal at desktop, narrow phone and short enlarged text."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-163/PLAN.md",
+        "docs/evidence/IH2-163/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The guide opens useful material depots for the first gathering task and gives a concise route to Journal or Workshop."
+    },
+    {
+      "id": "IH2-165",
+      "title": "Check for café parcels from Journal",
+      "status": "done",
+      "owner_branch": "feat/journal-cafe-parcels",
+      "goal": "Let a resident see how many snacks are waiting and find the café without adding background traffic.",
+      "depends_on": [
+        "IH2-163",
+        "IH2-150"
+      ],
+      "acceptance": [
+        "Read once on a deliberate check. Keep sender detail and transfer actions at the actual shelf.",
+        "Verify failed read, safe retry, keyboard focus, and real travel at short enlarged, touch, and desktop sizes."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-165/PLAN.md",
+        "docs/evidence/IH2-165/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A resident can check the count of waiting snacks deliberately and follow the walk to the café counter."
+    },
+    {
+      "id": "IH2-167",
+      "title": "Offer an unfinished tree sketch during long bench work",
+      "status": "in_progress",
+      "owner_branch": "feat/workbench-outing",
+      "goal": "Put one immediately useful free outing next to long crafting work, with nothing to remember or spend.",
+      "depends_on": [
+        "IH2-165"
+      ],
+      "acceptance": [
+        "Choose the first unfinished study after a long confirmed job and hold the action steady through readiness.",
+        "Use actual named walking and preserve costs, stock, parts, deadlines and collection. Check keyboard, 320-pixel touch and 200% enlarged landscape."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-167/PLAN.md"
       ]
     }
   ],

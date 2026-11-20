@@ -3376,7 +3376,7 @@
     {
       "id": "IH2-178",
       "title": "Keep the moving resident readable behind ordinary indoor furnishings",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "perf/steady-interior-furniture",
       "goal": "Ease foreground overlap while avoiding repeated furniture layout assembly on ordinary frames.",
       "depends_on": [
@@ -3390,7 +3390,29 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-178/PLAN.md"
+        "docs/evidence/IH2-178/PLAN.md",
+        "docs/evidence/IH2-178/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Ordinary indoor furniture remains cached. Overlapping foreground silhouettes soften and restore after crossing."
+    },
+    {
+      "id": "IH2-179",
+      "title": "Clear the Sound control from the world in short landscape",
+      "status": "in_progress",
+      "owner_branch": "fix/short-sound-placement",
+      "goal": "Keep the resident and doorway usable at the right edge without hiding audio settings.",
+      "depends_on": [
+        "IH2-178"
+      ],
+      "acceptance": [
+        "Move the same audio control into the existing header on short landscape and restore its usual home on portrait.",
+        "Retain focus, native touch, separate sliders and opt-in. Compare actual far-right Garden Studio framing at 200 percent text."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-179/PLAN.md"
       ]
     }
   ],

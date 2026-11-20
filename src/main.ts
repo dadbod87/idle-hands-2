@@ -74,6 +74,7 @@ const music = mountPlaceMusic({
   room: session.room,
   position: session.position,
   settings: document.querySelector<HTMLButtonElement>('#place-sound')!,
+  compactBefore: document.querySelector<HTMLButtonElement>('#field-guide')!,
   quick: document.querySelector<HTMLButtonElement>('#quick-music')!,
   body,
   open: () => openPanel('Sound settings'),

@@ -14,10 +14,11 @@ const statusText: Record<MusicStatus, string> = {
 
 const speaker = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 9h4l5-4v14l-5-4H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path class="sound-waves" d="M15 9q3 3 0 6m3-9q5 6 0 12" fill="none" stroke="currentColor" stroke-width="2"/><path class="sound-slash" d="m15 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
 
-export function mountPlaceMusic({ room, position, settings, quick, body, open }: {
+export function mountPlaceMusic({ room, position, settings, compactBefore, quick, body, open }: {
   room: Room;
   position?: Point;
   settings: HTMLButtonElement;
+  compactBefore: HTMLButtonElement;
   quick: HTMLButtonElement;
   body: HTMLElement;
   open: () => void;
@@ -25,6 +26,20 @@ export function mountPlaceMusic({ room, position, settings, quick, body, open }:
   let controls: { root: HTMLElement; status: HTMLElement; play: HTMLButtonElement; level: HTMLOutputElement } | undefined;
   let effectsControls: { button: HTMLButtonElement; level: HTMLOutputElement } | undefined;
   settings.innerHTML = speaker + '<span class="sound-label">Sound</span>';
+  const landscape = matchMedia('(min-width: 651px) and (max-height: 480px)');
+  const worldNext = settings.nextElementSibling!;
+  const moveSoundControl = () => {
+    const anchor = landscape.matches ? compactBefore : worldNext;
+    if (settings.parentElement === anchor.parentElement) return;
+    const hadFocus = document.activeElement === settings;
+    anchor.before(settings);
+    if (hadFocus) settings.focus({ preventScroll: true });
+  };
+  landscape.addEventListener('change', moveSoundControl);
+  window.addEventListener('pagehide', event => {
+    if (!event.persisted) landscape.removeEventListener('change', moveSoundControl);
+  });
+  moveSoundControl();
   quick.innerHTML = speaker;
   const music = new PlaceMusic(scoreForLocation(room,position), paint);
   const effects = new WorldSounds(paint);

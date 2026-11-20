@@ -1,3 +1,7 @@
+# November 20 — the Garden Studio’s private allotment link accepted
+
+The active expanded plan has a walkable notebook. Owners open their own allotment view and guests see a general house note. Main `c3f7d33d4f2f59a3f75e784a38ab62575672a46f` passed 591 domain tests and 248 browser cases. [Exact verification](evidence/IH2-180/EXACT_CI.json).
+
 # November 20 — Sound above the playfield in short landscape accepted
 
 The same Sound button moves beside the guide on wide short screens with focus and volumes retained. Main `cd0501924bd3fc9479cceadcf4c7a87947711001` passed 590 domain tests and 247 browser cases. [Exact verification](evidence/IH2-179/EXACT_CI.json).

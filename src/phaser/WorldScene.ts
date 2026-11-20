@@ -371,7 +371,7 @@ export class WorldScene extends Phaser.Scene {
   preload() {
     this.loadingRoom=this.session.room;
     this.loadingInteriorKey=this.loadingRoom.startsWith('home')?this.interiorKey():'';
-    if(this.loadingInteriorKey==='garden-studio-interior'&&!this.textures.exists(this.loadingInteriorKey)){
+    if((this.loadingInteriorKey==='garden-studio-interior'||this.loadingInteriorKey==='workshop-lodge-interior')&&!this.textures.exists(this.loadingInteriorKey)){
       this.load.svg(this.loadingInteriorKey,homeInteriorPath(this.loadingInteriorKey));
     }
     if(this.loadingRoom.startsWith('home'))this.load.svg('home-naturalist',NATURALIST_KEEPSAKE.art);
@@ -526,7 +526,7 @@ export class WorldScene extends Phaser.Scene {
       label(9.5,24.4,'Town square ↓');
     } else if(this.room.startsWith('home')) {
       const key=this.room==='home'?HOME_ART.starterInterior:HOME_ART.expandedInterior;const meta=HOME_CATALOG.assets.find(asset=>asset.id===key);for(const box of meta?.lightingWindows??[])litWindows.push(box);
-      label(9,1.4,this.homeOwnerName+'’s '+(this.loadedInteriorKey==='garden-studio-interior'?'garden studio':this.room==='home'?'home':'home · workroom added'));
+      label(9,1.4,this.homeOwnerName+'’s '+(this.loadedInteriorKey==='garden-studio-interior'?'garden studio':this.loadedInteriorKey==='workshop-lodge-interior'?'workshop lodge':this.room==='home'?'home':'home · workroom added'));
       label(9.5,14,this.districtId?'Street ↓':'Square ↓');
       if(this.loadedInteriorKey==='garden-studio-interior')label(20.7,3.6,'Open notebook').setFontSize(11).setPadding(5,2,5,2);
       const frame=NATURALIST_KEEPSAKE.frame;

@@ -1020,6 +1020,11 @@
       "kind": "original-svg"
     },
     {
+      "id": "workshop-lodge-interior",
+      "path": "art/interiors/workshop-lodge-interior.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "outing-desk",
       "path": "art/outing/desk.svg",
       "kind": "original-svg"

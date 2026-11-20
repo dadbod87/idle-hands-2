@@ -35,9 +35,19 @@ for name in ['teapot-icon','aster-serving','teapot-world','casey-serving','devon
  original.append({'id':'cafe-'+name,'path':str(p.relative_to(root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'creator':'Original code-authored for Idle Hands 2','license':'project-original','source':'docs/evidence/IH2-106/study/'+name+'.svg','date':'2026-11-13','modifications':'Byte-identical registered serving/teapot art from reviewed IH2-106; no paid or third-party assets.'})
 for p in sorted((root/'public/art/housing').glob('*.svg')):
  original.append({'id':'housing-'+p.stem,'path':str(p.relative_to(root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'creator':'Original code-authored for Idle Hands 2','license':'project-original','source':'tools/create-housing-art.py','date':'2026-11-16','modifications':'Original matched house body/roof/door vectors; no imported media.'})
+expanded_interiors = {
+ 'garden-studio-interior': (
+  'tools/create-garden-studio-interior.py',
+  'Glazed sunroom extension of original project art. Exact existing bed, door and nooks. No imported media.'),
+ 'workshop-lodge-interior': (
+  'tools/create-workshop-lodge-interior.py',
+  'Drafting wing extension of original project art. Exact expanded bed, doorway and allocations. No imported media.'),
+}
 for p in sorted((root/'public/art/interiors').glob('*.svg')):
- studio=p.stem=='garden-studio-interior'
- original.append({'id':p.stem,'path':str(p.relative_to(root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'creator':'Original code-authored for Idle Hands 2','license':'project-original','source':'tools/create-garden-studio-interior.py' if studio else 'tools/create-cottage-interiors.py','date':'2026-11-19' if studio else '2026-11-16','modifications':'Glazed sunroom extension of original project art. Exact existing bed, door and nooks. No imported media.' if studio else 'Cottage material layers and flat north-wall embroidery derived from original project home interior; exact bed, floor, door and nook geometry. No imported media.'})
+ source, modifications = expanded_interiors.get(p.stem, (
+  'tools/create-cottage-interiors.py',
+  'Cottage material layers and flat north-wall embroidery derived from original project home interior; exact bed, floor, door and nook geometry. No imported media.'))
+ original.append({'id':p.stem,'path':str(p.relative_to(root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'creator':'Original code-authored for Idle Hands 2','license':'project-original','source':source,'date':'2026-11-19' if p.stem in expanded_interiors else '2026-11-16','modifications':modifications})
 for p in sorted((root/'public/art/outing').glob('*.svg')):
  certificate=p.stem=='field-certificate'
  original.append({'id':'outing-'+p.stem,'path':str(p.relative_to(root)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'creator':'Original code-authored for Idle Hands 2','license':'project-original','source':'tools/create-outing-art.py','date':'2026-11-19' if certificate else '2026-11-17','modifications':'Original journal illustration derived from recorded repairs. No imported media.' if certificate else 'Original borrowed-tool desk, route conditions, detour and confirmed waymarker repair stages. No imported media or reward authority.'})

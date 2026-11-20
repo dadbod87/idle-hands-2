@@ -3420,7 +3420,7 @@
     {
       "id": "IH2-180",
       "title": "Open the owner’s existing allotment from the Garden Studio notebook",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/sunroom-notebook",
       "goal": "Give the chosen plan a useful interaction while keeping a visit and the owner’s private garden separate.",
       "depends_on": [
@@ -3435,7 +3435,30 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-180/PLAN.md"
+        "docs/evidence/IH2-180/PLAN.md",
+        "docs/evidence/IH2-180/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The active expanded plan has a walkable notebook. Owners open their own allotment view and guests see a general house note."
+    },
+    {
+      "id": "IH2-181",
+      "title": "Give the Workshop Lodge its own drafting wing",
+      "status": "in_progress",
+      "owner_branch": "feat/workshop-lodge-interior",
+      "goal": "Make a second expanded housing choice visibly distinct and walkable.",
+      "depends_on": [
+        "IH2-180",
+        "IH2-162"
+      ],
+      "acceptance": [
+        "Use original ash-board, slate and drafting motifs in the existing expanded footprint.",
+        "Verify native owner and visitor entry, one art fetch, plan change and unchanged current furnishings."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-181/PLAN.md"
       ]
     }
   ],

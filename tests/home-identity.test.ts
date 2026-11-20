@@ -5,7 +5,7 @@ import {homeInterior,homeInteriorPath,homeDisplays,furnishingCopies,furnishingIc
 import {createWorkshop,PROP_IDS} from '../src/game/live-workshop.ts';
 import {emptyWorkroom} from '../src/game/live-home-layout.ts';
 
-test('matched Cottage and Garden Studio plans choose their own theme while all other layouts keep their current art',()=>{
+test('confirmed housing plans choose their original matched interiors',()=>{
  assert.equal(homeInterior(1,'pocket-cottage-1'),'cottage-starter-interior');
  assert.equal(homeInterior(2,'pocket-cottage-2'),'cottage-expanded-interior');
  for(const id of [null,undefined,'porch-house-1','unknown']){
@@ -13,6 +13,8 @@ test('matched Cottage and Garden Studio plans choose their own theme while all o
  }
  assert.equal(homeInterior(2,'pocket-cottage-1'),'home-expanded-interior');
  assert.equal(homeInterior(2,'garden-studio-2'),'garden-studio-interior');
+ assert.equal(homeInterior(2,'workshop-lodge-2'),'workshop-lodge-interior');
+ assert.equal(homeInterior(1,'workshop-lodge-2'),'home-starter-interior');
  assert.equal(homeInterior(1,'garden-studio-2'),'home-starter-interior');
  assert.equal(homeInteriorPath(homeInterior(2,'garden-studio-2')),'/art/interiors/garden-studio-interior.svg');
  assert.equal(homeInteriorPath(homeInterior(1,null)),'/art/homes/home-starter-interior.svg');
@@ -56,5 +58,16 @@ test('the Garden Studio keeps expanded-home bed and door geometry with original 
  for(const geometry of ['x="64" y="64" width="128" height="96"','x="256" y="416" width="96" height="64"'])assert.ok(svg.includes(geometry));
  assert.match(svg,/THE SUNROOM/);
  assert.match(svg,/sunroom-tiles/);
+ assert.doesNotMatch(svg,/<script|<foreignObject|href="https?:/);
+});
+
+
+test('the Workshop Lodge has a distinct walkable drafting wing within the original expanded footprint',()=>{
+ const source=readFileSync('public/art/homes/home-expanded-interior.svg','utf8');
+ const svg=readFileSync('public'+homeInteriorPath(homeInterior(2,'workshop-lodge-2')),'utf8');
+ assert.equal(svg.match(/viewBox="[^"]+"/)?.[0],source.match(/viewBox="[^"]+"/)?.[0]);
+ for(const geometry of ['x="64" y="64" width="128" height="96"','x="256" y="416" width="96" height="64"'])assert.ok(svg.includes(geometry));
+ assert.match(svg,/DRAFTING WING/);
+ assert.match(svg,/drafting-boards/);
  assert.doesNotMatch(svg,/<script|<foreignObject|href="https?:/);
 });

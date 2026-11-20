@@ -1592,10 +1592,10 @@
     },
     {
       "run": 44712009571,
-      "phase": "current exact gate",
+      "phase": "bench-ready-allotment-pr",
       "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "success",
       "attempts": [
         {
           "number": 1,
@@ -1631,6 +1631,11 @@
           "number": 2,
           "jobs": [
             {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 967.0
+            },
+            {
               "name": "browser-shard (2/3)",
               "conclusion": "success",
               "seconds": 812.0
@@ -1644,14 +1649,59 @@
               "name": "browser-shard (1/3)",
               "conclusion": "success",
               "seconds": 846.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
             }
           ]
         }
       ],
-      "roundedRunnerMinutes": 88
+      "roundedRunnerMinutes": 106
+    },
+    {
+      "run": 44717464021,
+      "phase": "bench-ready-allotment-main",
+      "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 845.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 851.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 192.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 964.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 52
     }
   ],
-  "completedRoundedMinutes": 1938,
-  "failedRoundedMinutes": 350,
+  "completedRoundedMinutes": 2096,
+  "failedRoundedMinutes": 405,
   "limitations": "Time derived from named GitHub Ubuntu jobs, rounded to minutes per job. Partial running jobs have no final time. No billing conclusion."
 }

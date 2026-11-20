@@ -1,3 +1,4 @@
+import { SUNROOM_NOTEBOOK } from './home-sunroom.ts';
 import { NATURALIST_KEEPSAKE } from './home-keepsake.ts';
 import { TILE, worlds, canStand, clearSegment, routeTo, type Room, type Point, type Stop,type World } from './world.ts';
 import { LODGING_BEDSIDE, LODGING_FRONT, LODGING_ROOM, squareWithLodging } from './lodging.ts';
@@ -9,10 +10,6 @@ const keepsakeStop:Stop={
  id:'home-keepsake',name:NATURALIST_KEEPSAKE.name,text:NATURALIST_KEEPSAKE.story,
  point:{x:frame.x/TILE-.5,y:(frame.y+42)/TILE-.5},
  doorArea:[(frame.x-frame.width/2)/TILE,(frame.y-frame.height/2)/TILE,frame.width/TILE,(frame.height+13)/TILE],
-};
-const displayedHomeStops={
- home:[...worlds.home.stops,keepsakeStop],
- 'home-expanded':[...worlds['home-expanded'].stops,keepsakeStop],
 };
 export const WALK_SPEED = 5; // World tiles per second; the actor is never snapped to them.
 export class Session {
@@ -33,14 +30,23 @@ export class Session {
     if (room==='lodging'&&this.hasLodging) return LODGING_ROOM;
     if (room==='neighborhood') return this.geometry;
   }
-  private hasHomeKeepsake = false;
-  setHomeKeepsake(shown:boolean){
-    this.hasHomeKeepsake=shown;
-    if(!shown&&this.pendingStop===keepsakeStop.id)this.stop();
+  private homeStops={home:worlds.home.stops,'home-expanded':worlds['home-expanded'].stops};
+  private keepsakeShown=false;
+  private hasSunroom=false;
+  setHomeStops(keepsake:boolean,sunroom:boolean){
+    if(keepsake===this.keepsakeShown&&sunroom===this.hasSunroom)return;
+    this.keepsakeShown=keepsake;
+    this.hasSunroom=sunroom;
+    const common=keepsake?[keepsakeStop]:[];
+    this.homeStops={
+      home:[...worlds.home.stops,...common],
+      'home-expanded':sunroom?[...worlds['home-expanded'].stops,...common,SUNROOM_NOTEBOOK]:[...worlds['home-expanded'].stops,...common],
+    };
+    if(this.pendingStop&&!this.stops.some(stop=>stop.id===this.pendingStop))this.stop();
   }
   get stops(): readonly Stop[] {
     if(this.room==='square')return this.squareStops;
-    if(this.hasHomeKeepsake&&(this.room==='home'||this.room==='home-expanded'))return displayedHomeStops[this.room];
+    if(this.room==='home'||this.room==='home-expanded')return this.homeStops[this.room];
     return worlds[this.room].stops;
   }
   setSquareStops(extra?:readonly Stop[]){

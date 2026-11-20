@@ -73,6 +73,7 @@
     "home-builders.spec.ts",
     "home-neighborhood.spec.ts",
     "home-workroom.spec.ts",
+    "housing-plan-preview.spec.ts",
     "housing-study.spec.ts",
     "map-landmark-walk.spec.ts",
     "movement-backpressure.spec.ts",

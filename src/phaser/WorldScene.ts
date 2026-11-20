@@ -19,7 +19,8 @@ import {settleCarpentry,type CarpentryState,type NoticeboardState} from '../game
 import {CARPENTRY_ASSETS,carpentryArt,carpentryActionFrame,type CarpentryAnimation} from '../art/carpentry.ts';
 import {SURVEY_IDS,SURVEYS} from '../game/fieldwork.ts';
 import {gardenStage,type GardenState} from '../game/live-garden.ts';
-import {GARDEN_ASSETS,gardenArt,gardenActionFrame,type GardenAnimation} from '../art/garden.ts';
+import {gardenWorldAssets} from '../art/garden-world-assets.ts';
+import {gardenArt,gardenActionFrame,type GardenAnimation} from '../art/garden.ts';
 import Phaser from 'phaser';
 import {TRAIL_ASSETS,TRAIL_ART} from '../art/trail.ts';
 import {HOME_ASSETS,HOME_ART,HOME_CATALOG} from '../art/home.ts';
@@ -28,7 +29,7 @@ import {type TownClimate} from '../game/town-climate.ts';
 import {TOWN_PEOPLE} from '../game/town-people.ts';
 import { Session, WALK_SPEED } from '../game/session.ts';
 import {movementFrameSteps} from '../game/movement-frame.ts';
-import { TILE, worlds } from '../game/world.ts';
+import { TILE, worlds, type Room } from '../game/world.ts';
 import { PLACEMENT_SLOTS, type WorkshopState,type PropId } from '../game/live-workshop.ts';
 import { ORIGINAL_STATIC, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 import catalog from '../../public/art/variety/catalog.json';
@@ -240,6 +241,7 @@ export class WorldScene extends Phaser.Scene {
   private warmActivityArt(){
     const rig=residentArt(this.residentId);let queued=false;
     for(const prefix of this.activityPrefixes){
+      if(prefix==='garden-actions-'&&this.room!=='garden')continue;
       if(prefix==='orchard-picking-'&&!this.closeToOrchard())continue;
       const key=prefix+rig;
       if(this.textures.exists(key)||this.activityLoading.has(key))continue;
@@ -297,6 +299,10 @@ export class WorldScene extends Phaser.Scene {
   private occluders: {image:Phaser.GameObjects.Image|Phaser.GameObjects.Graphics;x:number;y:number;width:number;height:number}[] = [];
   private keys = new Set<string>();
   private room = '';
+  private loadingRoom:Room='square';
+  get roomReady(){
+    return this.room===this.session.room&&this.scene.isActive()&&this.actor?.active===true;
+  }
   private lastFrame = 0;
   private movementReset=true;
   frameSamples: number[] = [];
@@ -317,6 +323,7 @@ export class WorldScene extends Phaser.Scene {
   constructor(public session: Session) { super('world'); }
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
   preload() {
+    this.loadingRoom=this.session.room;
     for(const id of ['desk','wind','soft-bank','detour','post-broken','post-aligned','post-pinned','post-repaired'])this.load.svg('outing-'+id,'/art/outing/'+id+'.svg');
     for(const tier of ['starter','expanded'])this.load.svg('cottage-'+tier+'-interior','/art/interiors/cottage-'+tier+'-interior.svg');
     this.load.svg('home-teapot-world','/art/cafe/teapot-world.svg');
@@ -336,8 +343,11 @@ export class WorldScene extends Phaser.Scene {
       this.load.svg('orchard-picking-'+rig,'/art/orchard/'+rig+'-picking.svg');
     }
     for(const key of CARPENTRY_ASSETS)if(!/^(saw-equipped-|carpentry-actions-)/.test(key)||key.endsWith('-'+rig)){if(/^(saw-equipped-|carpentry-actions-)/.test(key))this.activityLoading.add(key);this.load.svg(key,'/art/carpentry/'+key+'.svg');}
-    for(const key of ALLOTMENT_LAYERS)this.load.svg(key,`/art/allotment/${key}.svg`);
-    for(const key of GARDEN_ASSETS)if(!key.startsWith('garden-actions-')||key.endsWith('-'+rig)){if(key.startsWith('garden-actions-'))this.activityLoading.add(key);this.load.svg(key,'/art/garden/'+key+'.svg');}
+    if(this.session.room==='garden')for(const key of ALLOTMENT_LAYERS)this.load.svg(key,`/art/allotment/${key}.svg`);
+    for(const key of gardenWorldAssets(this.session.room,rig)){
+      if(key.startsWith('garden-actions-'))this.activityLoading.add(key);
+      this.load.svg(key,'/art/garden/'+key+'.svg');
+    }
     for(const key of TRAIL_ASSETS)this.load.svg(key,'/art/trail/'+key+'.svg');
     for(const key of HOME_ASSETS)this.load.svg(key,'/art/homes/'+key+'.svg');
     for(const asset of HOUSING_ASSETS)this.load.svg(asset.id,'/art/housing/'+asset.file);
@@ -348,6 +358,11 @@ export class WorldScene extends Phaser.Scene {
     for(const key of keys)this.load.svg('variety-'+key,`/art/variety/${key}.svg`);
   }
   create() {
+    if(this.loadingRoom!==this.session.room){
+      this.room=this.loadingRoom;
+      this.scene.restart();
+      return;
+    }
     this.headwearLayer=undefined;
     this.bedPose=undefined;this.bedQuilt=undefined;this.lodgingLabels=[];
     this.orchardMotion=null;this.orchardLabels=[];this.orchardLabelTick=0;this.orchardTable=undefined;this.orchardTableLabel=undefined;

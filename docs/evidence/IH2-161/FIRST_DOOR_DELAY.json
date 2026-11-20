@@ -1,0 +1,150 @@
+{
+  "before": {
+    "browser": "157.0.8103.79",
+    "indexSha256": "5123393d215244ce0fcbf19d3c7392ac606ce0c1bcb63d54ad4d08eb3da48287",
+    "svgDelayMs": 75,
+    "method": "Each intercepted SVG waits the same extra 75 ms on loopback. Fresh Chromium contexts, only fictional feet at the actual door. Time from navigation to first ready scene and native door action to the first rendered garden. No bandwidth model, database, hosted requests or physical-phone test.",
+    "rooms": [
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "repeat": 1,
+        "bootMs": 711,
+        "doorMs": 124,
+        "bootArt": 139,
+        "doorArt": 0
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "repeat": 2,
+        "bootMs": 748,
+        "doorMs": 103,
+        "bootArt": 139,
+        "doorArt": 0
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "repeat": 3,
+        "bootMs": 681,
+        "doorMs": 113,
+        "bootArt": 139,
+        "doorArt": 0
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 640
+        },
+        "repeat": 1,
+        "bootMs": 655,
+        "doorMs": 144,
+        "bootArt": 139,
+        "doorArt": 0
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 640
+        },
+        "repeat": 2,
+        "bootMs": 684,
+        "doorMs": 182,
+        "bootArt": 139,
+        "doorArt": 0
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 640
+        },
+        "repeat": 3,
+        "bootMs": 731,
+        "doorMs": 182,
+        "bootArt": 139,
+        "doorArt": 0
+      }
+    ]
+  },
+  "after": {
+    "browser": "157.0.8103.79",
+    "indexSha256": "94ebc0ee083f6a92812d163cd60ad4a4bdb4f51aa06e4bd2a13fbaf2a1ebbf26",
+    "svgDelayMs": 75,
+    "method": "Each intercepted SVG waits the same extra 75 ms on loopback. Fresh Chromium contexts, only fictional feet at the actual door. Time from navigation to first ready scene and native door action to the first rendered garden. No bandwidth model, database, hosted requests or physical-phone test.",
+    "rooms": [
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "repeat": 1,
+        "bootMs": 614,
+        "doorMs": 229,
+        "bootArt": 115,
+        "doorArt": 16
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "repeat": 2,
+        "bootMs": 617,
+        "doorMs": 199,
+        "bootArt": 115,
+        "doorArt": 16
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "repeat": 3,
+        "bootMs": 636,
+        "doorMs": 206,
+        "bootArt": 115,
+        "doorArt": 16
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 640
+        },
+        "repeat": 1,
+        "bootMs": 619,
+        "doorMs": 237,
+        "bootArt": 115,
+        "doorArt": 16
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 640
+        },
+        "repeat": 2,
+        "bootMs": 635,
+        "doorMs": 235,
+        "bootArt": 115,
+        "doorArt": 16
+      },
+      {
+        "viewport": {
+          "width": 320,
+          "height": 640
+        },
+        "repeat": 3,
+        "bootMs": 628,
+        "doorMs": 234,
+        "bootArt": 115,
+        "doorArt": 16
+      }
+    ]
+  }
+}

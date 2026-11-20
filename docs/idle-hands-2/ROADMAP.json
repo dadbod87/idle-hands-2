@@ -3150,7 +3150,7 @@
     {
       "id": "IH2-167",
       "title": "Offer an unfinished tree sketch during long bench work",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/workbench-outing",
       "goal": "Put one immediately useful free outing next to long crafting work, with nothing to remember or spend.",
       "depends_on": [
@@ -3164,7 +3164,29 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-167/PLAN.md"
+        "docs/evidence/IH2-167/PLAN.md",
+        "docs/evidence/IH2-167/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A confirmed long job offers a free named walk to an unfinished sketch and holds the action in place through readiness."
+    },
+    {
+      "id": "IH2-168",
+      "title": "Balance three existing browser groups",
+      "status": "in_progress",
+      "owner_branch": "perf/browser-shard-balance",
+      "goal": "Reduce time spent waiting for the final browser group with exact same cases and runner count.",
+      "depends_on": [
+        "IH2-167"
+      ],
+      "acceptance": [
+        "Verify exact equality of case identities, matching build bytes and unchanged ordered real-town fixtures.",
+        "Observe the critical path on the same standard public runner label. Record observed variance and no inferred billing reduction."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-168/PLAN.md"
       ]
     }
   ],

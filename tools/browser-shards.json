@@ -15,10 +15,12 @@
     "playable-cafe.spec.ts",
     "remote-menu-status.spec.ts",
     "shared-client.spec.ts",
+    "stable-toolbar.spec.ts",
     "town-focus.spec.ts",
     "town-rhythm.spec.ts",
     "town-variety.spec.ts",
     "weather-readability.spec.ts",
+    "woodland-certificate.spec.ts",
     "woodland-shared.spec.ts",
     "workbench-outing.spec.ts",
     "workshop.spec.ts"
@@ -85,11 +87,9 @@
     "public-refresh.spec.ts",
     "return-trip.spec.ts",
     "serving-study.spec.ts",
-    "stable-toolbar.spec.ts",
     "stream-reconnect.spec.ts",
     "town-overview.spec.ts",
     "visual-kit.spec.ts",
-    "walk-cue.spec.ts",
-    "woodland-certificate.spec.ts"
+    "walk-cue.spec.ts"
   ]
 }

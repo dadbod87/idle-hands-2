@@ -1,0 +1,1738 @@
+{
+  "accepted": [
+    {
+      "phase": "sunroom-notebook",
+      "pull": 98,
+      "pr": {
+        "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+        "run": 44765675336,
+        "domain": 591,
+        "browser": 248,
+        "browserGroups": [
+          86,
+          81,
+          81
+        ],
+        "allPriorCasesPreserved": true,
+        "artifacts": [
+          {
+            "name": "sequel-server-evidence",
+            "id": 14644896540,
+            "createdAt": "2026-11-20T15:44:32Z",
+            "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+            "zipSha256": "50c12ae03f20128c373bf6cee46708117a053ca8d915e085a48c1014f83ff20b",
+            "size": 133028,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-client-build",
+            "id": 14644442143,
+            "createdAt": "2026-11-20T15:44:33Z",
+            "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+            "zipSha256": "c06496b5c3b7fe859eb3f777f95c79bee54fbfc76f379186f534ab5cdc152e94",
+            "size": 769978,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-1",
+            "id": 14646131914,
+            "createdAt": "2026-11-20T15:55:23Z",
+            "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+            "zipSha256": "5939a1a18667f0542c99950290c416d1282656224e3b545bec40092ac5f778ce",
+            "size": 20897230,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-2",
+            "id": 14645913221,
+            "createdAt": "2026-11-20T15:55:55Z",
+            "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+            "zipSha256": "d766b8dbd20e3ecf9434c0ee66c13602aed4f7884dd2a26b5b5e38e8bb294a87",
+            "size": 19810525,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-3",
+            "id": 14646337705,
+            "createdAt": "2026-11-20T15:54:51Z",
+            "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+            "zipSha256": "a6e786230e248d51edd36d72e99134adad14a6b5f20c6ef0abaeefa3b0a1854d",
+            "size": 24333834,
+            "otherSameNameArtifacts": []
+          }
+        ],
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765675336",
+        "attempts": 1,
+        "jobs": [
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 846,
+            "browserSetupSeconds": 35,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765675336/job/136389515902"
+          },
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 229,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765675336/job/136389516445"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 911,
+            "browserSetupSeconds": 59,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 16,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765675336/job/136389516532"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 879,
+            "browserSetupSeconds": 61,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765675336/job/136389517429"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 4,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765675336/job/136398483635"
+          }
+        ]
+      },
+      "main": {
+        "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+        "run": 44768345427,
+        "domain": 591,
+        "browser": 248,
+        "browserGroups": [
+          86,
+          81,
+          81
+        ],
+        "allPriorCasesPreserved": true,
+        "artifacts": [
+          {
+            "name": "sequel-server-evidence",
+            "id": 14646498477,
+            "createdAt": "2026-11-20T15:59:51Z",
+            "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+            "zipSha256": "509ea9ff62ac9ae745e85c1b083879410bb9b49024b83c900d0fff08091a164f",
+            "size": 132662,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-client-build",
+            "id": 14646113703,
+            "createdAt": "2026-11-20T15:59:53Z",
+            "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+            "zipSha256": "06dc191caa3be9bfe745a43c9ccc7e36ec0757bc82f89f9af8de6e29c112f913",
+            "size": 769978,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-1",
+            "id": 14646916945,
+            "createdAt": "2026-11-20T16:11:23Z",
+            "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+            "zipSha256": "8307b1b8146aba2bd10d278ce0fd89177a7a12fd21479db6bd4fca7474d2454c",
+            "size": 21010837,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-2",
+            "id": 14648105269,
+            "createdAt": "2026-11-20T16:10:31Z",
+            "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+            "zipSha256": "e4ef53dec84990c3b9aaa7bc0077c457f953a7630a45bb51d5fb1822d1690b41",
+            "size": 19849044,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-3",
+            "id": 14645748849,
+            "createdAt": "2026-11-20T16:10:38Z",
+            "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+            "zipSha256": "4dba52c85193189eac69e8f4091e28cef54d09834d5b550aa2626f1f1a03c6b8",
+            "size": 24418437,
+            "otherSameNameArtifacts": []
+          }
+        ],
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44768345427",
+        "attempts": 1,
+        "jobs": [
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 830,
+            "browserSetupSeconds": 31,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 14,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44768345427/job/136398955850"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 875,
+            "browserSetupSeconds": 37,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44768345427/job/136398955885"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 824,
+            "browserSetupSeconds": 32,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 14,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44768345427/job/136398955996"
+          },
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 185,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44768345427/job/136398956044"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 5,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44768345427/job/136407719533"
+          }
+        ]
+      },
+      "sameClientBuildBytes": true
+    },
+    {
+      "phase": "workshop-lodge-interior",
+      "pull": 99,
+      "pr": {
+        "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+        "run": 44771057392,
+        "domain": 592,
+        "browser": 249,
+        "browserGroups": [
+          87,
+          81,
+          81
+        ],
+        "allPriorCasesPreserved": true,
+        "artifacts": [
+          {
+            "name": "sequel-server-evidence",
+            "id": 14648161111,
+            "createdAt": "2026-11-20T16:15:56Z",
+            "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+            "zipSha256": "9da73cdcfc7d3c6a800f28d23b42bd15174e0b79a00711e58cc3a5a790eb8fac",
+            "size": 131907,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-client-build",
+            "id": 14647707197,
+            "createdAt": "2026-11-20T16:15:59Z",
+            "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+            "zipSha256": "e3713c59dc50d70e00c7286d0a43bd9c67566c9ac2aeaf6d4962de2533ceeb7d",
+            "size": 771495,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-1",
+            "id": 14648621172,
+            "createdAt": "2026-11-20T16:27:26Z",
+            "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+            "zipSha256": "7cb129fd563b2fbe8024b5727d39dc5370eba97dddfcc374f55ef6b505e514b5",
+            "size": 21231462,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-2",
+            "id": 14647104778,
+            "createdAt": "2026-11-20T16:27:01Z",
+            "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+            "zipSha256": "5499dcab26eefbba0d2ef802e250b30e111b9ad9ed2f4962fc07ecc10b73137f",
+            "size": 19838420,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-3",
+            "id": 14648796021,
+            "createdAt": "2026-11-20T16:27:21Z",
+            "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+            "zipSha256": "3337f78bebff84e3f221f374c04a105a4400d252f8896ced5877c6527d2fcc10",
+            "size": 24286963,
+            "otherSameNameArtifacts": []
+          }
+        ],
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44771057392",
+        "attempts": 1,
+        "jobs": [
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 193,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44771057392/job/136408519995"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 875,
+            "browserSetupSeconds": 44,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44771057392/job/136408520321"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 855,
+            "browserSetupSeconds": 46,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44771057392/job/136408520517"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 880,
+            "browserSetupSeconds": 39,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44771057392/job/136408520544"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 4,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44771057392/job/136417318101"
+          }
+        ]
+      },
+      "main": {
+        "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+        "run": 44773744434,
+        "domain": 592,
+        "browser": 249,
+        "browserGroups": [
+          87,
+          81,
+          81
+        ],
+        "allPriorCasesPreserved": true,
+        "artifacts": [
+          {
+            "name": "sequel-server-evidence",
+            "id": 14649575370,
+            "createdAt": "2026-11-20T16:31:31Z",
+            "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+            "zipSha256": "855cc5760c8a46375b91f0237cbb4b187c4ea97c4c38bcd0a1dc5c9753c7efe7",
+            "size": 132950,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-client-build",
+            "id": 14648941545,
+            "createdAt": "2026-11-20T16:31:32Z",
+            "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+            "zipSha256": "7bebb96120ad06a6cc67bf8bff9899f98e2ebcac123d91a57293f95dcb7b2812",
+            "size": 771495,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-1",
+            "id": 14649062973,
+            "createdAt": "2026-11-20T16:43:40Z",
+            "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+            "zipSha256": "02a4163d9becf1eb9a5652ccc7ecc25a302c87bb9d1f093723c90a3afefdf771",
+            "size": 21105758,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-2",
+            "id": 14649367241,
+            "createdAt": "2026-11-20T16:42:22Z",
+            "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+            "zipSha256": "487299192c8e7096248ea0ce3b6f280df7e02fd50dfa19cd82bbfc2e16e097bc",
+            "size": 19804769,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-3",
+            "id": 14649792596,
+            "createdAt": "2026-11-20T16:45:29Z",
+            "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+            "zipSha256": "1bbadb23519a3ebcbfe1eea6f9e5102eb7e36a3d678a40b4cb99b4fc00a46663",
+            "size": 24505757,
+            "otherSameNameArtifacts": []
+          }
+        ],
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44773744434",
+        "attempts": 1,
+        "jobs": [
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 832,
+            "browserSetupSeconds": 33,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 14,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44773744434/job/136417904309"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 911,
+            "browserSetupSeconds": 33,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 16,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44773744434/job/136417904800"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 1020,
+            "browserSetupSeconds": 52,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 17,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44773744434/job/136417904864"
+          },
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 182,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44773744434/job/136417904979"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 5,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44773744434/job/136427805316"
+          }
+        ]
+      },
+      "sameClientBuildBytes": true
+    },
+    {
+      "phase": "lodge-drafting-board",
+      "pull": 100,
+      "pr": {
+        "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+        "run": 44776815309,
+        "domain": 592,
+        "browser": 250,
+        "browserGroups": [
+          88,
+          81,
+          81
+        ],
+        "allPriorCasesPreserved": true,
+        "artifacts": [
+          {
+            "name": "sequel-server-evidence",
+            "id": 14649288676,
+            "createdAt": "2026-11-20T16:50:07Z",
+            "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+            "zipSha256": "c04e0f183a2686e9983c20a94e0a56e4ee5cb0c6aba045f60b56e001c08c3327",
+            "size": 132621,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-client-build",
+            "id": 14649053963,
+            "createdAt": "2026-11-20T16:50:09Z",
+            "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+            "zipSha256": "7243b040813ae409c70792915a50d85c05d72a8818da243304e84316454ce58f",
+            "size": 771561,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-1",
+            "id": 14650419016,
+            "createdAt": "2026-11-20T17:02:19Z",
+            "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+            "zipSha256": "9ca454e9b65b137967aeffe879702be5915cf5021056e9c91c60dc3e73de5619",
+            "size": 21371793,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-2",
+            "id": 14651320320,
+            "createdAt": "2026-11-20T17:01:08Z",
+            "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+            "zipSha256": "72f2f644b89644fd818e29e2039f295049eff8af8000f20da5a64f19ab4d3ab7",
+            "size": 19848959,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-3",
+            "id": 14652550398,
+            "createdAt": "2026-11-20T17:04:35Z",
+            "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+            "zipSha256": "d969222cf817e6a2c16644fa908c612c51bcd87001c911a1f8e09a837ad9fe05",
+            "size": 24451116,
+            "otherSameNameArtifacts": []
+          }
+        ],
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44776815309",
+        "attempts": 1,
+        "jobs": [
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 183,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44776815309/job/136428700752"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 1052,
+            "browserSetupSeconds": 51,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 18,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44776815309/job/136428701281"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 915,
+            "browserSetupSeconds": 39,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 16,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44776815309/job/136428701372"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 843,
+            "browserSetupSeconds": 47,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44776815309/job/136428701537"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 3,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44776815309/job/136438897667"
+          }
+        ]
+      },
+      "main": {
+        "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+        "run": 44779815864,
+        "domain": 592,
+        "browser": 250,
+        "browserGroups": [
+          88,
+          81,
+          81
+        ],
+        "allPriorCasesPreserved": true,
+        "artifacts": [
+          {
+            "name": "sequel-server-evidence",
+            "id": 14651761819,
+            "createdAt": "2026-11-20T17:08:26Z",
+            "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+            "zipSha256": "7154c8587aa4ac299a64482980a6704e921fd55a81bc9776acfcb319709943a0",
+            "size": 133081,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-client-build",
+            "id": 14651951613,
+            "createdAt": "2026-11-20T17:08:27Z",
+            "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+            "zipSha256": "3c10828377c34aa5d6cb6759dc214ba37cdf37d3fa3fec0e28d1c258f2be6902",
+            "size": 771561,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-1",
+            "id": 14651242844,
+            "createdAt": "2026-11-20T17:20:15Z",
+            "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+            "zipSha256": "3233d4587dd6e91f95fd11282e95823cafe194f91e50d12dc731794e70967fb3",
+            "size": 21269481,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-2",
+            "id": 14651689209,
+            "createdAt": "2026-11-20T17:19:04Z",
+            "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+            "zipSha256": "c7d7014580f83c4c8f150e1463f29ddb8976dbb59f7bea06adffd393b3c2d234",
+            "size": 19823849,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-3",
+            "id": 14654590520,
+            "createdAt": "2026-11-20T17:40:10Z",
+            "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+            "zipSha256": "774c093d48e646a8c3cad7a2c678f7e31eec17ea4807ff40d9241fc598dad964",
+            "size": 24346639,
+            "otherSameNameArtifacts": [
+              {
+                "id": 14653280504,
+                "created_at": "2026-11-20T17:25:28Z",
+                "size_in_bytes": 9776325
+              }
+            ]
+          }
+        ],
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44779815864",
+        "attempts": 2,
+        "jobs": [
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 199,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44779815864/job/136439189686"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "cancelled",
+            "attempt": 1,
+            "seconds": 1220,
+            "browserSetupSeconds": 592,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 21,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44779815864/job/136439190089"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 835,
+            "browserSetupSeconds": 36,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 14,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44779815864/job/136439190197"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 905,
+            "browserSetupSeconds": 45,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 16,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44779815864/job/136439190349"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "failure",
+            "attempt": 1,
+            "seconds": 4,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44779815864/job/136450923581"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 843,
+            "browserSetupSeconds": 27,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44779815864/job/136451258782"
+          },
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 199,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": true,
+            "approxRoundedMinutes": 0,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44779815864/job/136451261293"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 905,
+            "browserSetupSeconds": 45,
+            "carriedFromEarlierAttempt": true,
+            "approxRoundedMinutes": 0,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44779815864/job/136451261933"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 835,
+            "browserSetupSeconds": 36,
+            "carriedFromEarlierAttempt": true,
+            "approxRoundedMinutes": 0,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44779815864/job/136451333299"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 5,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44779815864/job/136459155033"
+          }
+        ]
+      },
+      "sameClientBuildBytes": true
+    },
+    {
+      "phase": "marlow-material-depots",
+      "pull": 101,
+      "pr": {
+        "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+        "run": 44788106789,
+        "domain": 592,
+        "browser": 251,
+        "browserGroups": [
+          88,
+          82,
+          81
+        ],
+        "allPriorCasesPreserved": true,
+        "artifacts": [
+          {
+            "name": "sequel-server-evidence",
+            "id": 14655606912,
+            "createdAt": "2026-11-20T18:00:35Z",
+            "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+            "zipSha256": "8db9021a25452979fad9e6941314aa6118858b7a4be77d9e0bacdd341960d614",
+            "size": 133495,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-client-build",
+            "id": 14654937714,
+            "createdAt": "2026-11-20T18:00:38Z",
+            "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+            "zipSha256": "8a92d41f3bc3a3f4e784e3e07b5e8f1f8e7a94ced74c0b88f7133291fc216bbc",
+            "size": 771612,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-1",
+            "id": 14655842424,
+            "createdAt": "2026-11-20T18:11:53Z",
+            "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+            "zipSha256": "4af5f1b2d4c78298aee6b1c94c7b90a3b7532fdbc83f5ce3f67331d25d5de67e",
+            "size": 21352050,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-2",
+            "id": 14658695003,
+            "createdAt": "2026-11-20T18:31:49Z",
+            "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+            "zipSha256": "a4be97496ed8ead4bc96cb2b3a150cfcc3d614931fbbe54571ba5b52e22f8304",
+            "size": 20150634,
+            "otherSameNameArtifacts": [
+              {
+                "id": 14656910842,
+                "created_at": "2026-11-20T18:17:13Z",
+                "size_in_bytes": 16958437
+              }
+            ]
+          },
+          {
+            "name": "sequel-browser-evidence-3",
+            "id": 14656446417,
+            "createdAt": "2026-11-20T18:10:16Z",
+            "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+            "zipSha256": "61dbd36a5d898b8575e4b41e81b53649b8aeedc820e195a9c794306d0292cbaf",
+            "size": 24610117,
+            "otherSameNameArtifacts": []
+          }
+        ],
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44788106789",
+        "attempts": 2,
+        "jobs": [
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 226,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44788106789/job/136468251544"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 803,
+            "browserSetupSeconds": 29,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 14,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44788106789/job/136468251941"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "cancelled",
+            "attempt": 1,
+            "seconds": 1221,
+            "browserSetupSeconds": 638,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 21,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44788106789/job/136468252020"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 900,
+            "browserSetupSeconds": 34,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44788106789/job/136468252021"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "failure",
+            "attempt": 1,
+            "seconds": 5,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44788106789/job/136479464447"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 843,
+            "browserSetupSeconds": 37,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44788106789/job/136479727319"
+          },
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 226,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": true,
+            "approxRoundedMinutes": 0,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44788106789/job/136479728855"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 900,
+            "browserSetupSeconds": 34,
+            "carriedFromEarlierAttempt": true,
+            "approxRoundedMinutes": 0,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44788106789/job/136479730164"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 803,
+            "browserSetupSeconds": 29,
+            "carriedFromEarlierAttempt": true,
+            "approxRoundedMinutes": 0,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44788106789/job/136479814066"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 5,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44788106789/job/136487393944"
+          }
+        ]
+      },
+      "main": {
+        "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+        "run": 44793739508,
+        "domain": 592,
+        "browser": 251,
+        "browserGroups": [
+          88,
+          82,
+          81
+        ],
+        "allPriorCasesPreserved": true,
+        "artifacts": [
+          {
+            "name": "sequel-server-evidence",
+            "id": 14658061709,
+            "createdAt": "2026-11-20T18:35:49Z",
+            "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+            "zipSha256": "ffcff72c3aa4288ebf88a9e8a4d56b8fc7c71c5fd9d5a001a1ebe61a8197c0e3",
+            "size": 132759,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-client-build",
+            "id": 14658356043,
+            "createdAt": "2026-11-20T18:35:51Z",
+            "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+            "zipSha256": "365186fcaf22830b9db8c20a8f79239e1720456cdeac07ac63701c4822b01f7d",
+            "size": 771612,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-1",
+            "id": 14660386184,
+            "createdAt": "2026-11-20T19:11:00Z",
+            "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+            "zipSha256": "3a7ba2ea1fa35ff476d3394e0659de6d1acc5e58020c55bd7da8e009c1caff84",
+            "size": 21303667,
+            "otherSameNameArtifacts": [
+              {
+                "id": 14658853016,
+                "created_at": "2026-11-20T18:52:51Z",
+                "size_in_bytes": 16654440
+              }
+            ]
+          },
+          {
+            "name": "sequel-browser-evidence-2",
+            "id": 14658857080,
+            "createdAt": "2026-11-20T18:46:43Z",
+            "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+            "zipSha256": "9bcb2bc738a14b32b13e47c414792ca4dbfb3e5a732aeffdc4821946b52cef63",
+            "size": 19977045,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-3",
+            "id": 14660496563,
+            "createdAt": "2026-11-20T19:08:28Z",
+            "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+            "zipSha256": "0c0651a751109cc9f8663947128651771f1acb38bf86b0d55643906066b0b8a2",
+            "size": 24292279,
+            "otherSameNameArtifacts": [
+              {
+                "id": 14658216538,
+                "created_at": "2026-11-20T18:37:16Z",
+                "size_in_bytes": 5329470
+              }
+            ]
+          }
+        ],
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44793739508",
+        "attempts": 2,
+        "jobs": [
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 198,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44793739508/job/136487772907"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 850,
+            "browserSetupSeconds": 41,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44793739508/job/136487773235"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "failure",
+            "attempt": 1,
+            "seconds": 284,
+            "browserSetupSeconds": 24,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 5,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44793739508/job/136487773391"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "cancelled",
+            "attempt": 1,
+            "seconds": 1219,
+            "browserSetupSeconds": 487,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 21,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44793739508/job/136487773467"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "failure",
+            "attempt": 1,
+            "seconds": 5,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44793739508/job/136498755281"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 1041,
+            "browserSetupSeconds": 28,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 18,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44793739508/job/136499142901"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 890,
+            "browserSetupSeconds": 27,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44793739508/job/136499143170"
+          },
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 198,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": true,
+            "approxRoundedMinutes": 0,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44793739508/job/136499145313"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 850,
+            "browserSetupSeconds": 41,
+            "carriedFromEarlierAttempt": true,
+            "approxRoundedMinutes": 0,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44793739508/job/136499145699"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 5,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44793739508/job/136508483361"
+          }
+        ]
+      },
+      "sameClientBuildBytes": true
+    },
+    {
+      "phase": "ci-azure-package-mirror",
+      "pull": 103,
+      "pr": {
+        "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+        "run": 44810690851,
+        "domain": 592,
+        "browser": 251,
+        "browserGroups": [
+          88,
+          82,
+          81
+        ],
+        "allPriorCasesPreserved": true,
+        "artifacts": [
+          {
+            "name": "sequel-server-evidence",
+            "id": 14666120449,
+            "createdAt": "2026-11-20T20:25:10Z",
+            "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+            "zipSha256": "79b55ba9cf7ed7b0567232bf9dd7162cd530054ec346f2de88f49c87f7f034d4",
+            "size": 132182,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-client-build",
+            "id": 14667725049,
+            "createdAt": "2026-11-20T20:25:12Z",
+            "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+            "zipSha256": "756b664868fc0cdbfd04797a7d318d84a217c3fc0d9a1fc53c0b67777a5112b3",
+            "size": 771876,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-1",
+            "id": 14668421346,
+            "createdAt": "2026-11-20T20:37:15Z",
+            "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+            "zipSha256": "a1e3ec4ea83fd8c6b9ba3451b6713248162dd508fe5f61fbea541b3670895a5f",
+            "size": 22157365,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-2",
+            "id": 14667706840,
+            "createdAt": "2026-11-20T20:36:13Z",
+            "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+            "zipSha256": "5e7a1c9e376e1435881057b6018f71b8d7437226c2f80b4d545b2ad35c59ba41",
+            "size": 20449876,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-3",
+            "id": 14666483954,
+            "createdAt": "2026-11-20T20:36:46Z",
+            "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+            "zipSha256": "9ec531112ff077b52fbb63a9c571ee6bd259614ef3bd8a0864ab180fe19089a7",
+            "size": 25134756,
+            "otherSameNameArtifacts": []
+          }
+        ],
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44810690851",
+        "attempts": 1,
+        "jobs": [
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 890,
+            "browserSetupSeconds": 26,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44810690851/job/136546160117"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 856,
+            "browserSetupSeconds": 39,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44810690851/job/136546160725"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 917,
+            "browserSetupSeconds": 45,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 16,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44810690851/job/136546160776"
+          },
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 194,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44810690851/job/136546161784"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 4,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44810690851/job/136554092524"
+          }
+        ]
+      },
+      "main": {
+        "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+        "run": 44813111575,
+        "domain": 592,
+        "browser": 251,
+        "browserGroups": [
+          88,
+          82,
+          81
+        ],
+        "allPriorCasesPreserved": true,
+        "artifacts": [
+          {
+            "name": "sequel-server-evidence",
+            "id": 14668072447,
+            "createdAt": "2026-11-20T20:41:18Z",
+            "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+            "zipSha256": "ee09d3bd6f277d50569e7d5461760ec1b16f9d1894154ddf4c22c3f724c5c5a6",
+            "size": 132967,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-client-build",
+            "id": 14667637597,
+            "createdAt": "2026-11-20T20:41:19Z",
+            "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+            "zipSha256": "7e11e954ae788d5fcbe29141328101ee7bc7c835a3bcb4a3fdba0d9d4b2757a6",
+            "size": 771876,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-1",
+            "id": 14669507283,
+            "createdAt": "2026-11-20T20:56:12Z",
+            "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+            "zipSha256": "486a3ec4f7dabbf3e555ec9bb68f4485af3e8ac2ee3a6da88aaf97eea1e835b9",
+            "size": 21716923,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-2",
+            "id": 14669645106,
+            "createdAt": "2026-11-20T20:52:19Z",
+            "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+            "zipSha256": "07a4fcd272eb91a778fdcde0df0d6befd260b38fceadce055cddf3895dac7028",
+            "size": 20392004,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-3",
+            "id": 14667964943,
+            "createdAt": "2026-11-20T20:52:15Z",
+            "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+            "zipSha256": "098572a192e44493554c666ed593004e70856b87ff42aa7d66e386d7ae3bf8d6",
+            "size": 24885515,
+            "otherSameNameArtifacts": []
+          }
+        ],
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44813111575",
+        "attempts": 1,
+        "jobs": [
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 1094,
+            "browserSetupSeconds": 23,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 19,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44813111575/job/136554445244"
+          },
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 200,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44813111575/job/136554445433"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 861,
+            "browserSetupSeconds": 44,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44813111575/job/136554445506"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 855,
+            "browserSetupSeconds": 37,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44813111575/job/136554445515"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 4,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44813111575/job/136563705745"
+          }
+        ]
+      },
+      "sameClientBuildBytes": true
+    }
+  ],
+  "unfinished": [
+    {
+      "phase": "bag-item-place",
+      "pull": 102,
+      "pr": {
+        "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+        "run": 44799972291,
+        "domain": 592,
+        "browser": 251,
+        "browserGroups": [
+          88,
+          82,
+          81
+        ],
+        "allPriorCasesPreserved": true,
+        "artifacts": [
+          {
+            "name": "sequel-server-evidence",
+            "id": 14660586554,
+            "createdAt": "2026-11-20T19:15:28Z",
+            "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+            "zipSha256": "300f437a581255ca4555d42caef0990fe469f9395d0ca1897b45ff8d62b76e45",
+            "size": 132614,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-client-build",
+            "id": 14661475502,
+            "createdAt": "2026-11-20T19:15:29Z",
+            "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+            "zipSha256": "7b89b7f43efc6cf0f8e445cf3b87a850c18d4b525c3442f4e6b67c51b524d803",
+            "size": 771876,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-1",
+            "id": 14660769833,
+            "createdAt": "2026-11-20T19:27:58Z",
+            "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+            "zipSha256": "3a828b1da2ce4b25ae8a239b730210fb7fc9984052b84a130021aaca053618ac",
+            "size": 21320548,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-2",
+            "id": 14660584260,
+            "createdAt": "2026-11-20T19:26:45Z",
+            "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+            "zipSha256": "b4b26302b3336031b6ccd25c5fbeb03e48be2927f07fa718b46dda48ef3b3ec6",
+            "size": 20097983,
+            "otherSameNameArtifacts": []
+          },
+          {
+            "name": "sequel-browser-evidence-3",
+            "id": 14661357733,
+            "createdAt": "2026-11-20T19:26:56Z",
+            "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+            "zipSha256": "0632809d684750a7cfcb67040fe5d1016d02ca08be648903ee1d3f7343981db4",
+            "size": 24322528,
+            "otherSameNameArtifacts": []
+          }
+        ],
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44799972291",
+        "attempts": 1,
+        "jobs": [
+          {
+            "name": "browser-shard (1/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 929,
+            "browserSetupSeconds": 22,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 16,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44799972291/job/136509267405"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 867,
+            "browserSetupSeconds": 45,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44799972291/job/136509267515"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 853,
+            "browserSetupSeconds": 46,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 15,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44799972291/job/136509267650"
+          },
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 179,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 3,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44799972291/job/136509268495"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 5,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44799972291/job/136517544108"
+          }
+        ]
+      },
+      "main": {
+        "run": 44802509960,
+        "sha": "0a9053a5b9b5081957fed00a7b37afa4df7a0fd5",
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44802509960",
+        "attempts": 2,
+        "conclusion": "cancelled",
+        "jobs": [
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 188,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44802509960/job/136518003119"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 927,
+            "browserSetupSeconds": 62,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 16,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44802509960/job/136518003736"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "cancelled",
+            "attempt": 1,
+            "seconds": 1221,
+            "browserSetupSeconds": 286,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 21,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44802509960/job/136518003821"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 1,
+            "seconds": 964,
+            "browserSetupSeconds": 26,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 17,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44802509960/job/136518003851"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "failure",
+            "attempt": 1,
+            "seconds": 2,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44802509960/job/136528947904"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "status": "cancelled",
+            "attempt": 2,
+            "seconds": 1220,
+            "browserSetupSeconds": 629,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 21,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44802509960/job/136529345821"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 964,
+            "browserSetupSeconds": 26,
+            "carriedFromEarlierAttempt": true,
+            "approxRoundedMinutes": 0,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44802509960/job/136529347407"
+          },
+          {
+            "name": "domain-build-plan",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 188,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": true,
+            "approxRoundedMinutes": 0,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44802509960/job/136529348532"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "status": "success",
+            "attempt": 2,
+            "seconds": 927,
+            "browserSetupSeconds": 62,
+            "carriedFromEarlierAttempt": true,
+            "approxRoundedMinutes": 0,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44802509960/job/136529430639"
+          },
+          {
+            "name": "browser-playtest",
+            "status": "failure",
+            "attempt": 2,
+            "seconds": 4,
+            "browserSetupSeconds": null,
+            "carriedFromEarlierAttempt": false,
+            "approxRoundedMinutes": 1,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44802509960/job/136540252064"
+          }
+        ]
+      }
+    }
+  ],
+  "resize": {
+    "run": 44765755710,
+    "sha": "b9fef9b62e65786571dbbba4cff115927122be65",
+    "attempts": 1,
+    "jobs": [
+      {
+        "name": "domain-build-plan",
+        "status": "success",
+        "attempt": 1,
+        "seconds": 192,
+        "browserSetupSeconds": null,
+        "carriedFromEarlierAttempt": false,
+        "approxRoundedMinutes": 4,
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710/job/136389811998"
+      },
+      {
+        "name": "browser-shard (2/3)",
+        "status": "success",
+        "attempt": 1,
+        "seconds": 891,
+        "browserSetupSeconds": 57,
+        "carriedFromEarlierAttempt": false,
+        "approxRoundedMinutes": 15,
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710/job/136389812364"
+      },
+      {
+        "name": "browser-shard (3/3)",
+        "status": "success",
+        "attempt": 1,
+        "seconds": 873,
+        "browserSetupSeconds": 41,
+        "carriedFromEarlierAttempt": false,
+        "approxRoundedMinutes": 15,
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710/job/136389812407"
+      },
+      {
+        "name": "browser-shard (1/3)",
+        "status": "success",
+        "attempt": 1,
+        "seconds": 874,
+        "browserSetupSeconds": 46,
+        "carriedFromEarlierAttempt": false,
+        "approxRoundedMinutes": 15,
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710/job/136389812552"
+      },
+      {
+        "name": "browser-playtest",
+        "status": "success",
+        "attempt": 1,
+        "seconds": 5,
+        "browserSetupSeconds": null,
+        "carriedFromEarlierAttempt": false,
+        "approxRoundedMinutes": 1,
+        "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710/job/136398577776"
+      }
+    ]
+  },
+  "superseded": [
+    {
+      "run": 44785731598,
+      "sha": "9f9ab987b17b1504771471399e4d1592baa054ed",
+      "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44785731598",
+      "reason": "Marlow\u2019s depot shortcut displaced the existing Journal action. Both affected paths passed locally after the fix.",
+      "jobs": [
+        {
+          "name": "browser-shard (3/3)",
+          "status": "success",
+          "attempt": 1,
+          "seconds": 856,
+          "browserSetupSeconds": 35,
+          "carriedFromEarlierAttempt": false,
+          "approxRoundedMinutes": 15,
+          "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44785731598/job/136459966127"
+        },
+        {
+          "name": "browser-shard (2/3)",
+          "status": "failure",
+          "attempt": 1,
+          "seconds": 158,
+          "browserSetupSeconds": 37,
+          "carriedFromEarlierAttempt": false,
+          "approxRoundedMinutes": 3,
+          "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44785731598/job/136459966603"
+        },
+        {
+          "name": "domain-build-plan",
+          "status": "success",
+          "attempt": 1,
+          "seconds": 192,
+          "browserSetupSeconds": null,
+          "carriedFromEarlierAttempt": false,
+          "approxRoundedMinutes": 4,
+          "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44785731598/job/136459966778"
+        },
+        {
+          "name": "browser-shard (1/3)",
+          "status": "failure",
+          "attempt": 1,
+          "seconds": 847,
+          "browserSetupSeconds": 29,
+          "carriedFromEarlierAttempt": false,
+          "approxRoundedMinutes": 15,
+          "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44785731598/job/136459966810"
+        },
+        {
+          "name": "browser-playtest",
+          "status": "failure",
+          "attempt": 1,
+          "seconds": 3,
+          "browserSetupSeconds": null,
+          "carriedFromEarlierAttempt": false,
+          "approxRoundedMinutes": 1,
+          "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44785731598/job/136467770488"
+        }
+      ]
+    }
+  ],
+  "approxRoundedRunnerMinutes": 802,
+  "summedRunnerSeconds": 44972,
+  "initialWorkflowRuns": 14,
+  "failedJobsOnlyRetries": 4,
+  "browserSetup": {
+    "measurements": 47,
+    "seconds": [
+      22,
+      23,
+      24,
+      26,
+      26,
+      27,
+      27,
+      28,
+      29,
+      29,
+      31,
+      32,
+      33,
+      33,
+      34,
+      35,
+      35,
+      36,
+      37,
+      37,
+      37,
+      37,
+      39,
+      39,
+      39,
+      41,
+      41,
+      44,
+      44,
+      45,
+      45,
+      45,
+      46,
+      46,
+      46,
+      47,
+      51,
+      52,
+      57,
+      59,
+      61,
+      62,
+      286,
+      487,
+      592,
+      629,
+      638
+    ],
+    "sumSeconds": 4259,
+    "maxSeconds": 638,
+    "slowOver120Seconds": 5
+  },
+  "method": "Round each distinct observed job duration up to a minute and sum attempts. Inherited successful jobs with the same start and end are counted once. All jobs used standard public Ubuntu runners. This is elapsed runner time, not a billing measurement."
+}

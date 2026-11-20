@@ -3398,7 +3398,7 @@
     {
       "id": "IH2-179",
       "title": "Clear the Sound control from the world in short landscape",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "fix/short-sound-placement",
       "goal": "Keep the resident and doorway usable at the right edge without hiding audio settings.",
       "depends_on": [
@@ -3412,7 +3412,30 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-179/PLAN.md"
+        "docs/evidence/IH2-179/PLAN.md",
+        "docs/evidence/IH2-179/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The same Sound button moves beside the guide on wide short screens with focus and volumes retained."
+    },
+    {
+      "id": "IH2-180",
+      "title": "Open the owner’s existing allotment from the Garden Studio notebook",
+      "status": "in_progress",
+      "owner_branch": "feat/sunroom-notebook",
+      "goal": "Give the chosen plan a useful interaction while keeping a visit and the owner’s private garden separate.",
+      "depends_on": [
+        "IH2-179",
+        "IH2-177"
+      ],
+      "acceptance": [
+        "Walk or tap to the actual notebook in the confirmed expanded plan. Keep the guest view public only.",
+        "Open the existing owner’s allotment view but gate actions by the existing beds. Remove the note and pending route on remodel."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-180/PLAN.md"
       ]
     }
   ],

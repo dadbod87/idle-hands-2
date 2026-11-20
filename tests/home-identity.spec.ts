@@ -165,3 +165,69 @@ test('unchanged interior furniture stays still while the foreground clears the w
   await context.close();
  }
 });
+
+test('the Sunroom notebook opens by touch and keeps the owner’s allotment private', async ({ browser }) => {
+ for (const visitor of [false, true]) {
+  const context = await browser.newContext({ viewport: { width: visitor ? 320 : 1440, height: visitor ? 640 : 900 }, hasTouch: visitor });
+  const page = await context.newPage();
+  const errors: string[] = [];
+  page.on('pageerror', e => errors.push(e.message));
+  try {
+   const control = await homePanelFixture(page, { level: 2, visitor, planId: 'garden-studio-2' });
+   const before = control.saved();
+   const feet = () => page.evaluate(() => (window as any).__pilot.snapshot().position as { x:number;y:number });
+   await expect.poll(() => page.evaluate(() => (window as any).__pilot.metrics().visual.home.interiorTexture)).toBe('garden-studio-interior');
+   await page.locator('canvas').focus();
+   for (const [key, reached] of [
+    ['ArrowRight', (point:{x:number;y:number})=>point.x>19],
+    ['ArrowUp', (point:{x:number;y:number})=>point.y<6],
+   ] as const) {
+    await page.keyboard.down(key);
+    try { await expect.poll(async () => reached(await feet()), { intervals: [50] }).toBe(true); }
+    finally { await page.keyboard.up(key); }
+   }
+
+   if (visitor) {
+    const sign = await page.evaluate(() => (window as any).__pilot.screenPoint(20.2, 3.1));
+    await page.locator('canvas').tap({position:sign});
+   } else {
+    // Places remains a keyboard-accessible route to the same location.
+    await page.locator('#places').click();
+    const walk = page.getByRole('button', {name: /Walk to Sunroom notebook/});
+    await walk.focus();
+    await page.keyboard.press('Enter');
+    const inspect = page.getByRole('button', {name:'Inspect Sunroom notebook',exact:true});
+    await expect(inspect).toBeEnabled();
+    await inspect.focus();
+    await page.keyboard.press('Enter');
+   }
+
+   const notebook = page.locator('[data-sunroom-notebook]');
+   await expect(notebook).toBeVisible();
+   await expect(notebook).toContainText('sunshine is on probation');
+   const open = notebook.getByRole('button', {name:'Open your allotment notes'});
+   mkdirSync('test-results/browser', {recursive:true});
+   await page.screenshot({path:'test-results/browser/sunroom-notebook-'+(visitor?'visitor':'owner')+'.png'});
+   if (visitor) {
+    await expect(open).toHaveCount(0);
+    await expect(notebook).toContainText('garden notes are private');
+    await control.setPlan('porch-house-2');
+    await expect(notebook).toBeHidden();
+    await expect(page.getByRole('dialog')).toBeHidden();
+    await page.locator('#places').tap();
+    await expect(page.getByRole('button', {name:/Walk to Sunroom notebook/})).toHaveCount(0);
+   } else {
+    await open.focus();
+    await page.keyboard.press('Enter');
+    await expect(page.getByRole('heading',{name:'Your rented allotment',exact:true})).toBeVisible();
+    await expect(page.getByRole('button',{name:'Walk to the beds',exact:true})).toBeVisible();
+    await expect(page.locator('[data-garden-action=harvest]')).toBeDisabled();
+   }
+   expect(control.commands).toEqual([]);
+   expect(control.saved()).toEqual(before);
+   expect(errors).toEqual([]);
+  } finally {
+   await context.close();
+  }
+ }
+});

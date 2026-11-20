@@ -99,3 +99,22 @@
 @media(max-height:480px) and (min-width:651px){
  .shell.large-text{height:auto;min-height:100dvh;grid-template-rows:auto minmax(220px,1fr) auto}
 }
+
+.bench-outing {
+ border: 1px solid var(--line);
+ border-radius: 5px;
+ background: #f3ead2;
+ padding: .7rem;
+ margin-bottom: 1rem;
+}
+#panel-body .bench-outing h3, #panel-body .bench-outing p { margin: 0 0 .4rem; }
+.bench-outing p { font-size: .9rem; }
+.bench-outing .destination { min-height: 44px; width: 100%; margin: 0; }
+
+@media(max-height:500px) {
+ #panel:has(.bench-outing) .dialog-head { padding: 8px 12px; }
+ #panel:has(.bench-outing) .dialog-head h2 { font-size: 1.05rem; }
+}
+@media(max-height:500px) and (min-width:651px) {
+ #panel:has(.bench-outing) { width: min(660px, calc(100vw - 24px)); }
+}

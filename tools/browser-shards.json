@@ -20,6 +20,7 @@
     "town-variety.spec.ts",
     "weather-readability.spec.ts",
     "woodland-shared.spec.ts",
+    "workbench-outing.spec.ts",
     "workshop.spec.ts"
   ],
   "2": [

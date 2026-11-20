@@ -1,0 +1,5 @@
+# IH2-186 · Catch home snapshot compatibility locally
+
+The local domain suite can exercise the real one-statement snapshot projection with a small fixture before a database-dependent run. The fixture presents both an empty room and a displayed certificate and changes the confirmed position independently of the stored position. It checks that the empty plot stays exactly the same inside and outside, transport metadata stays out of the store record and the actual decoration is omitted when the confirmed visitor has left. Each call still uses one read.
+
+The focused test passed against the transport-capability correction. Running that same test against the earlier empty-plot and store-metadata implementations reproduced both failures. A full app build passed. The fixture returns a declared synthetic SQL row from the query boundary and never connects to PostgreSQL or changes progress. The exact historical-reader and HTTP/browser integration tests remain required. This source backup adds coverage only and awaits exact acceptance.

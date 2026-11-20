@@ -1,0 +1,245 @@
+{
+  "pullRequest": 105,
+  "pr": {
+    "sha": "e83d74eeeda6610c72a66853f55435c9527f0abe",
+    "run": 44828495364,
+    "domain": 592,
+    "browser": 251,
+    "browserGroups": [
+      88,
+      82,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14675821560,
+        "createdAt": "2026-11-20T22:26:03Z",
+        "sha": "e83d74eeeda6610c72a66853f55435c9527f0abe",
+        "zipSha256": "499c8fe04c6c16715638f2ef5094183b35c8fc357385741c7e1ea56ab82028c2",
+        "size": 132339,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14673698633,
+        "createdAt": "2026-11-20T22:26:04Z",
+        "sha": "e83d74eeeda6610c72a66853f55435c9527f0abe",
+        "zipSha256": "e158096faad2058e53b133ed3001c691ca0470d20ae81aa107643f1cfbf727c7",
+        "size": 771967,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14676395517,
+        "createdAt": "2026-11-20T22:38:33Z",
+        "sha": "e83d74eeeda6610c72a66853f55435c9527f0abe",
+        "zipSha256": "0a4bacaff13b103477c7d386d39bbde7ad6ea6837f75df0ce9aaf75a8db517f9",
+        "size": 22058086,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14673954582,
+        "createdAt": "2026-11-20T22:37:55Z",
+        "sha": "e83d74eeeda6610c72a66853f55435c9527f0abe",
+        "zipSha256": "48a584681559f1395363fe8b4ebfd76be6048d641cf23b88b276940f42c179c3",
+        "size": 20505920,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14674029588,
+        "createdAt": "2026-11-20T22:36:18Z",
+        "sha": "e83d74eeeda6610c72a66853f55435c9527f0abe",
+        "zipSha256": "31d6ed3d74e62b81b3a0f405c1af060c66de4385ba9817d9a47d5451a9b9b512",
+        "size": 25332025,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "5ca6d6fbe00c894a3220866627295dce8d0cd02e",
+    "run": 44830692824,
+    "domain": 592,
+    "browser": 251,
+    "browserGroups": [
+      88,
+      82,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14675464458,
+        "createdAt": "2026-11-20T22:42:14Z",
+        "sha": "5ca6d6fbe00c894a3220866627295dce8d0cd02e",
+        "zipSha256": "109828a38993a35c9d46a05cf7ab21bfc712d35c02010ec314624b30096cc681",
+        "size": 132438,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14675729113,
+        "createdAt": "2026-11-20T22:42:16Z",
+        "sha": "5ca6d6fbe00c894a3220866627295dce8d0cd02e",
+        "zipSha256": "68bcd28b5cb756aff2fba8591bbcf39a397a2b4ec11a49ce3d25d7117c426367",
+        "size": 771967,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14677336676,
+        "createdAt": "2026-11-20T22:54:44Z",
+        "sha": "5ca6d6fbe00c894a3220866627295dce8d0cd02e",
+        "zipSha256": "ff1af13b922a31069c1e4f9f4889fa289ef8f6bd36d4f295a687f082f901ef1a",
+        "size": 21327630,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14677521306,
+        "createdAt": "2026-11-20T22:53:03Z",
+        "sha": "5ca6d6fbe00c894a3220866627295dce8d0cd02e",
+        "zipSha256": "e08f2777c3e16e86dc8bb9298afd8a4d16cea9bb840d12686df1952d2761febd",
+        "size": 20097916,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14677411502,
+        "createdAt": "2026-11-20T22:53:09Z",
+        "sha": "5ca6d6fbe00c894a3220866627295dce8d0cd02e",
+        "zipSha256": "14accd60df6fe058ced53bee41be18483f8ea386bdbfbd896df7340e683da689",
+        "size": 24537530,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Local and standard Ubuntu Chromium emulation with early and settled pixel evidence, software rendering and open-menu movement checks. Physical rotation remains unverified.",
+  "hostedUsage": {
+    "initialWorkflows": 2,
+    "failedJobRetries": 0,
+    "summedRunnerSeconds": 5607,
+    "runner": "standard public ubuntu-24.04",
+    "checks": [
+      {
+        "run": 44828495364,
+        "event": "pull_request",
+        "attempts": 1,
+        "sha": "e83d74eeeda6610c72a66853f55435c9527f0abe",
+        "jobs": [
+          {
+            "name": "domain-build-plan",
+            "attempt": 1,
+            "conclusion": "success",
+            "seconds": 180,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44828495364/job/136607100769"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "attempt": 1,
+            "conclusion": "success",
+            "seconds": 930,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44828495364/job/136607101098"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "attempt": 1,
+            "conclusion": "success",
+            "seconds": 892,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44828495364/job/136607101195"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "attempt": 1,
+            "conclusion": "success",
+            "seconds": 796,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44828495364/job/136607101236"
+          },
+          {
+            "name": "browser-playtest",
+            "attempt": 1,
+            "conclusion": "success",
+            "seconds": 4,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44828495364/job/136614357077"
+          }
+        ]
+      },
+      {
+        "run": 44830692824,
+        "event": "push",
+        "attempts": 1,
+        "sha": "5ca6d6fbe00c894a3220866627295dce8d0cd02e",
+        "jobs": [
+          {
+            "name": "domain-build-plan",
+            "attempt": 1,
+            "conclusion": "success",
+            "seconds": 188,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44830692824/job/136614590258"
+          },
+          {
+            "name": "browser-shard (2/3)",
+            "attempt": 1,
+            "conclusion": "success",
+            "seconds": 835,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44830692824/job/136614590597"
+          },
+          {
+            "name": "browser-shard (1/3)",
+            "attempt": 1,
+            "conclusion": "success",
+            "seconds": 936,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44830692824/job/136614590703"
+          },
+          {
+            "name": "browser-shard (3/3)",
+            "attempt": 1,
+            "conclusion": "success",
+            "seconds": 841,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44830692824/job/136614590916"
+          },
+          {
+            "name": "browser-playtest",
+            "attempt": 1,
+            "conclusion": "success",
+            "seconds": 5,
+            "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44830692824/job/136621559678"
+          }
+        ]
+      }
+    ]
+  },
+  "canvas": {
+    "pr": {
+      "early": {
+        "dark": 0,
+        "colors": 6
+      },
+      "settled": {
+        "dark": 0,
+        "colors": 6
+      },
+      "changedCanvasDimensions": 3,
+      "observerWrites": 0,
+      "wokeFromIdle": true
+    },
+    "main": {
+      "early": {
+        "dark": 0,
+        "colors": 6
+      },
+      "settled": {
+        "dark": 0,
+        "colors": 6
+      },
+      "changedCanvasDimensions": 4,
+      "observerWrites": 0,
+      "wokeFromIdle": true
+    }
+  }
+}

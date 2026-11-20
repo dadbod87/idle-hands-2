@@ -1,0 +1,143 @@
+{
+  "pullRequest": 96,
+  "pr": {
+    "sha": "b5151ab508d678852f68228937e8c32f1f598b7c",
+    "run": 44740015348,
+    "domain": 590,
+    "browser": 246,
+    "browserGroups": [
+      85,
+      81,
+      80
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14629694590,
+        "createdAt": "2026-11-20T13:00:12Z",
+        "sha": "b5151ab508d678852f68228937e8c32f1f598b7c",
+        "zipSha256": "f39bccc47ca81f23705f5c9e78ab1420e10fa0712dff03ac0d9dcef9873c3d61",
+        "size": 132650,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14629854413,
+        "createdAt": "2026-11-20T13:00:14Z",
+        "sha": "b5151ab508d678852f68228937e8c32f1f598b7c",
+        "zipSha256": "401096e8eb9cc72ff1b12f3cfebc8e3cf26e7e8ddf776050965e03dc991abab4",
+        "size": 769382,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14631007229,
+        "createdAt": "2026-11-20T13:11:36Z",
+        "sha": "b5151ab508d678852f68228937e8c32f1f598b7c",
+        "zipSha256": "f0a317755d4f21d020de18c9b3c3d084ed5d0e1c6f967a3f3ec9f34d3e49423c",
+        "size": 20725541,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14630374748,
+        "createdAt": "2026-11-20T13:10:29Z",
+        "sha": "b5151ab508d678852f68228937e8c32f1f598b7c",
+        "zipSha256": "36a50ce22e1dc5328067b2cea535fb7f615abce13fb135494050821da4069586",
+        "size": 19818122,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14631439793,
+        "createdAt": "2026-11-20T13:32:20Z",
+        "sha": "b5151ab508d678852f68228937e8c32f1f598b7c",
+        "zipSha256": "56fd6f0e6dc18a33bc27339475243ba07dead11c35516dc767b1ce8f3716fb79",
+        "size": 24255917,
+        "otherSameNameArtifacts": [
+          {
+            "id": 14631712172,
+            "created_at": "2026-11-20T13:17:01Z",
+            "size_in_bytes": 24305473
+          }
+        ]
+      }
+    ],
+    "recovery": {
+      "attempt": 2,
+      "firstAttempt": "Ubuntu took 3 minutes 47 seconds for 32.1 MB. Pinned browser setup took 248 seconds overall. Shard 3 logged 80 successful cases but its job was cancelled at the unchanged cap before report completion.",
+      "originalSuccessfulJobs": [
+        "domain-build-plan",
+        "browser-shard (1/3)",
+        "browser-shard (2/3)"
+      ],
+      "retried": [
+        "browser-shard (3/3)",
+        "browser-playtest"
+      ],
+      "setupSeconds": 37.0
+    }
+  },
+  "main": {
+    "sha": "20bcfbb1cd9475de40f413d512d255c3b0a4434c",
+    "run": 44745326498,
+    "domain": 590,
+    "browser": 246,
+    "browserGroups": [
+      85,
+      81,
+      80
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14631954868,
+        "createdAt": "2026-11-20T13:36:32Z",
+        "sha": "20bcfbb1cd9475de40f413d512d255c3b0a4434c",
+        "zipSha256": "8e2891e71b45a7206a5a1b66a16caa96828f3fc7d584dbee9db4490cb84caf7e",
+        "size": 131776,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14632548418,
+        "createdAt": "2026-11-20T13:36:34Z",
+        "sha": "20bcfbb1cd9475de40f413d512d255c3b0a4434c",
+        "zipSha256": "def539fe5861e902ec684c5374ade1195b05243a66a5ae1b75ca88dc1278904f",
+        "size": 769382,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14633737452,
+        "createdAt": "2026-11-20T13:50:00Z",
+        "sha": "20bcfbb1cd9475de40f413d512d255c3b0a4434c",
+        "zipSha256": "8e0841c50cf6a58f5df566138d832fe2eb5c7a35bae5e2a344840f28ae31988e",
+        "size": 20742618,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14632874385,
+        "createdAt": "2026-11-20T13:47:23Z",
+        "sha": "20bcfbb1cd9475de40f413d512d255c3b0a4434c",
+        "zipSha256": "8a24d6c131dc6681a1b4a8be49031a1e7d5bc00fe84461c90dba61b3a5e453bc",
+        "size": 19824786,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14633886511,
+        "createdAt": "2026-11-20T13:47:29Z",
+        "sha": "20bcfbb1cd9475de40f413d512d255c3b0a4434c",
+        "zipSha256": "60a8798dcb0abb03356e04653893a4fcb823a78eebf2c543a970ac0069d84776",
+        "size": 24337735,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native 320-pixel shared-fictional guest operation counts, plus desktop and short Terra captures. No physical-device speed claim."
+}

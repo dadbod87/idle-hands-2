@@ -1,0 +1,123 @@
+{
+  "pullRequest": 79,
+  "pr": {
+    "sha": "3f0e573cfdbc97bb84e574e392f3b640f211819f",
+    "run": 44646691801,
+    "domain": 583,
+    "browser": 231,
+    "browserGroups": [
+      75,
+      77,
+      79
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14589036837,
+        "createdAt": "2026-11-20T00:35:36Z",
+        "sha": "3f0e573cfdbc97bb84e574e392f3b640f211819f",
+        "zipSha256": "ac194bf6c2c43d277593464db9681ddf1a5cbf57b7bfd9c3018657e4f4a11d4d",
+        "size": 131750,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14589166581,
+        "createdAt": "2026-11-20T00:35:38Z",
+        "sha": "3f0e573cfdbc97bb84e574e392f3b640f211819f",
+        "zipSha256": "3cfed2b4b225d6b026840844e3959dc8da65314258bb8248d9081fc46c2ad57c",
+        "size": 760790,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14589738422,
+        "createdAt": "2026-11-20T00:46:37Z",
+        "sha": "3f0e573cfdbc97bb84e574e392f3b640f211819f",
+        "zipSha256": "25755ab8f827ba5588c7924f4eb36eaab945d66915adccd4968d9767744aa004",
+        "size": 18375485,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14588794367,
+        "createdAt": "2026-11-20T00:48:21Z",
+        "sha": "3f0e573cfdbc97bb84e574e392f3b640f211819f",
+        "zipSha256": "ffec36f4dfd178c22de716063a001555846d14d7c3660c8d8ada9143b04d95e8",
+        "size": 19094528,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14589893265,
+        "createdAt": "2026-11-20T00:47:50Z",
+        "sha": "3f0e573cfdbc97bb84e574e392f3b640f211819f",
+        "zipSha256": "a38a1ab2bd470064b745f722565d73a78577b6c04c10a69514a6e5622e8d3321",
+        "size": 24684576,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "6a2b3f1abaaf4f5db393c88d996a4e480eca3114",
+    "run": 44648832528,
+    "domain": 583,
+    "browser": 231,
+    "browserGroups": [
+      75,
+      77,
+      79
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14590530227,
+        "createdAt": "2026-11-20T00:52:39Z",
+        "sha": "6a2b3f1abaaf4f5db393c88d996a4e480eca3114",
+        "zipSha256": "7b91b2bd3921c2b596792c153a6528b8da939e0e508df24f0947d3a73a9e246a",
+        "size": 133189,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14589414944,
+        "createdAt": "2026-11-20T00:52:41Z",
+        "sha": "6a2b3f1abaaf4f5db393c88d996a4e480eca3114",
+        "zipSha256": "fe3801078749fe4405356c45aaeb7448176d09c9acca5236d48fe6ed781a3cd5",
+        "size": 760790,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14590003976,
+        "createdAt": "2026-11-20T01:01:26Z",
+        "sha": "6a2b3f1abaaf4f5db393c88d996a4e480eca3114",
+        "zipSha256": "d8ee9a04cb964a07b60f7ef3aeaf631dc3f7199133fbfdc228639f171953182c",
+        "size": 18496782,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14590132657,
+        "createdAt": "2026-11-20T01:03:48Z",
+        "sha": "6a2b3f1abaaf4f5db393c88d996a4e480eca3114",
+        "zipSha256": "ce9bbf9b6bfa886765d3e506a40c23b4462cc575ef7e61ac1e0d4de4950a3629",
+        "size": 19131401,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14591531525,
+        "createdAt": "2026-11-20T01:06:36Z",
+        "sha": "6a2b3f1abaaf4f5db393c88d996a4e480eca3114",
+        "zipSha256": "59313df1e6b25d9da9ed2cd6a68e790c08895a26643bfab2ea1e2cf628a74062",
+        "size": 24750281,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Actual native emulated layout, profile storage and travel. Fictional local profile. Shared identities and physical devices are outside the sampled scope."
+}

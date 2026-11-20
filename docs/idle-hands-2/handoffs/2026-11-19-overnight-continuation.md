@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-19
 
-Last inspected at 2026-11-19 23:35 PST. The separate sequel repository was at `34ec2e208434ac70548f5b1dd476e009fc6f40ad`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-19 23:48 PST. The separate sequel repository was at `34ec2e208434ac70548f5b1dd476e009fc6f40ad`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -27,7 +27,7 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 
 | Work | Branch | Status |
 |---|---|---|
-| Earned Naturalist display for home visitors | `feat/home-keepsake-display` at `bd9451d88538` | [PR #89](https://github.com/dadbod87/idle-hands-2/pull/89) · open · [failure](https://github.com/dadbod87/idle-hands-2/actions/runs/44693655992) · [Plan](https://github.com/dadbod87/idle-hands-2/blob/bd9451d88538f6a21c6e1863c4214af8f20ff152/docs/evidence/IH2-171/PLAN.md) |
+| Earned Naturalist display for home visitors | `feat/home-keepsake-display` at `e63054847444` | [PR #89](https://github.com/dadbod87/idle-hands-2/pull/89) · open · [in_progress](https://github.com/dadbod87/idle-hands-2/actions/runs/44696091072) · [Plan](https://github.com/dadbod87/idle-hands-2/blob/e630548474449af69604d292b0914f3af47a2d68/docs/evidence/IH2-171/PLAN.md) |
 | Read the framed certificate directly | `feat/read-home-keepsake` at `0efccbf9fb8d` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0efccbf9fb8d121379aaf53c827fe995e3ce820b/docs/evidence/IH2-172/PLAN.md) |
 | Ready allotment trip during workshop work | `feat/bench-ready-allotment` at `18f1afcf8bf9` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/18f1afcf8bf9859726caf3c657bd981598f65e9c/docs/evidence/IH2-173/PLAN.md) |
 | Steadier location and action HUD updates | `perf/stable-context-hud` at `886b534de30f` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/886b534de30fd284a8b741996e27c74f9026d908/docs/evidence/IH2-174/PLAN.md) |
@@ -40,6 +40,8 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 | A distinctive Workshop Lodge drafting wing | `feat/workshop-lodge-interior` at `848f753f8f3d` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/848f753f8f3db9db0455f228c65e2c35932c5657/docs/evidence/IH2-181/PLAN.md) |
 | A private Lodge work board and direct workshop route | `feat/lodge-drafting-board` at `1302837c7796` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/1302837c7796ef9b6876f731ef36fbceb2b9f6fd/docs/evidence/IH2-182/PLAN.md) |
 | A direct route from Marlow to the first planter | `feat/marlow-material-depots` at `d16832dece19` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/d16832dece190360db18135d465a380cf208244e/docs/evidence/IH2-183/PLAN.md) |
+| Place an available furniture item from its Bag card | `feat/bag-item-place` at `0fee4650c358` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0fee4650c358b7c3bf06fa402be9385208ac0971/docs/evidence/IH2-184/PLAN.md) |
+| Keep unchanged Bag slot attributes steady | `perf/stable-bag-counts` at `6656d11756cf` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/6656d11756cfa4958f654534b6ee14ab8280de8e/docs/evidence/IH2-185/PLAN.md) |
 
 Resume with the first pending exact gate. Verify current main and preserve concurrent changes. No cloud setup, live-game change or spending was part of this work.
 

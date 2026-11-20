@@ -1,0 +1,123 @@
+{
+  "pullRequest": 98,
+  "pr": {
+    "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+    "run": 44765675336,
+    "domain": 591,
+    "browser": 248,
+    "browserGroups": [
+      86,
+      81,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14644896540,
+        "createdAt": "2026-11-20T15:44:32Z",
+        "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+        "zipSha256": "50c12ae03f20128c373bf6cee46708117a053ca8d915e085a48c1014f83ff20b",
+        "size": 133028,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14644442143,
+        "createdAt": "2026-11-20T15:44:33Z",
+        "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+        "zipSha256": "c06496b5c3b7fe859eb3f777f95c79bee54fbfc76f379186f534ab5cdc152e94",
+        "size": 769978,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14646131914,
+        "createdAt": "2026-11-20T15:55:23Z",
+        "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+        "zipSha256": "5939a1a18667f0542c99950290c416d1282656224e3b545bec40092ac5f778ce",
+        "size": 20897230,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14645913221,
+        "createdAt": "2026-11-20T15:55:55Z",
+        "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+        "zipSha256": "d766b8dbd20e3ecf9434c0ee66c13602aed4f7884dd2a26b5b5e38e8bb294a87",
+        "size": 19810525,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14646337705,
+        "createdAt": "2026-11-20T15:54:51Z",
+        "sha": "e1651e48d6695ae83e84e16274ee8094461b1caa",
+        "zipSha256": "a6e786230e248d51edd36d72e99134adad14a6b5f20c6ef0abaeefa3b0a1854d",
+        "size": 24333834,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+    "run": 44768345427,
+    "domain": 591,
+    "browser": 248,
+    "browserGroups": [
+      86,
+      81,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14646498477,
+        "createdAt": "2026-11-20T15:59:51Z",
+        "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+        "zipSha256": "509ea9ff62ac9ae745e85c1b083879410bb9b49024b83c900d0fff08091a164f",
+        "size": 132662,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14646113703,
+        "createdAt": "2026-11-20T15:59:53Z",
+        "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+        "zipSha256": "06dc191caa3be9bfe745a43c9ccc7e36ec0757bc82f89f9af8de6e29c112f913",
+        "size": 769978,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14646916945,
+        "createdAt": "2026-11-20T16:11:23Z",
+        "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+        "zipSha256": "8307b1b8146aba2bd10d278ce0fd89177a7a12fd21479db6bd4fca7474d2454c",
+        "size": 21010837,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14648105269,
+        "createdAt": "2026-11-20T16:10:31Z",
+        "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+        "zipSha256": "e4ef53dec84990c3b9aaa7bc0077c457f953a7630a45bb51d5fb1822d1690b41",
+        "size": 19849044,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14645748849,
+        "createdAt": "2026-11-20T16:10:38Z",
+        "sha": "c3f7d33d4f2f59a3f75e784a38ab62575672a46f",
+        "zipSha256": "4dba52c85193189eac69e8f4091e28cef54d09834d5b550aa2626f1f1a03c6b8",
+        "size": 24418437,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native owner and narrow guest with intercepted fictional responses. Room transition, route removal, disabled remote harvest and unchanged progress verified."
+}

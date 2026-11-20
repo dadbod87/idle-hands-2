@@ -1,0 +1,123 @@
+{
+  "pullRequest": 99,
+  "pr": {
+    "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+    "run": 44771057392,
+    "domain": 592,
+    "browser": 249,
+    "browserGroups": [
+      87,
+      81,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14648161111,
+        "createdAt": "2026-11-20T16:15:56Z",
+        "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+        "zipSha256": "9da73cdcfc7d3c6a800f28d23b42bd15174e0b79a00711e58cc3a5a790eb8fac",
+        "size": 131907,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14647707197,
+        "createdAt": "2026-11-20T16:15:59Z",
+        "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+        "zipSha256": "e3713c59dc50d70e00c7286d0a43bd9c67566c9ac2aeaf6d4962de2533ceeb7d",
+        "size": 771495,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14648621172,
+        "createdAt": "2026-11-20T16:27:26Z",
+        "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+        "zipSha256": "7cb129fd563b2fbe8024b5727d39dc5370eba97dddfcc374f55ef6b505e514b5",
+        "size": 21231462,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14647104778,
+        "createdAt": "2026-11-20T16:27:01Z",
+        "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+        "zipSha256": "5499dcab26eefbba0d2ef802e250b30e111b9ad9ed2f4962fc07ecc10b73137f",
+        "size": 19838420,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14648796021,
+        "createdAt": "2026-11-20T16:27:21Z",
+        "sha": "4c7f8f2732dd6400a57995b0455c955f5e8232f0",
+        "zipSha256": "3337f78bebff84e3f221f374c04a105a4400d252f8896ced5877c6527d2fcc10",
+        "size": 24286963,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+    "run": 44773744434,
+    "domain": 592,
+    "browser": 249,
+    "browserGroups": [
+      87,
+      81,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14649575370,
+        "createdAt": "2026-11-20T16:31:31Z",
+        "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+        "zipSha256": "855cc5760c8a46375b91f0237cbb4b187c4ea97c4c38bcd0a1dc5c9753c7efe7",
+        "size": 132950,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14648941545,
+        "createdAt": "2026-11-20T16:31:32Z",
+        "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+        "zipSha256": "7bebb96120ad06a6cc67bf8bff9899f98e2ebcac123d91a57293f95dcb7b2812",
+        "size": 771495,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14649062973,
+        "createdAt": "2026-11-20T16:43:40Z",
+        "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+        "zipSha256": "02a4163d9becf1eb9a5652ccc7ecc25a302c87bb9d1f093723c90a3afefdf771",
+        "size": 21105758,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14649367241,
+        "createdAt": "2026-11-20T16:42:22Z",
+        "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+        "zipSha256": "487299192c8e7096248ea0ce3b6f280df7e02fd50dfa19cd82bbfc2e16e097bc",
+        "size": 19804769,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14649792596,
+        "createdAt": "2026-11-20T16:45:29Z",
+        "sha": "0a334866b1bcb08ec47f7db762857944f7c2b8a0",
+        "zipSha256": "1bbadb23519a3ebcbfe1eea6f9e5102eb7e36a3d678a40b4cb99b4fc00a46663",
+        "size": 24505757,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native desktop and 320-pixel visitor with intercepted fictional plan data, plus reviewed captures and authored asset provenance."
+}

@@ -2965,7 +2965,7 @@
     {
       "id": "IH2-157",
       "title": "Stop writing styles for invisible rain",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "perf/quiet-rain-layer",
       "goal": "Keep rain anchored and visible while avoiding repeated hidden-layer work.",
       "depends_on": [
@@ -2980,7 +2980,31 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-157/PLAN.md"
+        "docs/evidence/IH2-157/PLAN.md",
+        "docs/evidence/IH2-157/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Steady weather and indoors skip redundant visibility changes while visible rain keeps moving with the world."
+    },
+    {
+      "id": "IH2-158",
+      "title": "Choose an optional arrival story",
+      "status": "in_progress",
+      "owner_branch": "feat/browser-arrival-stories",
+      "goal": "Let a resident personalize their first note without another setup screen or game cost.",
+      "depends_on": [
+        "IH2-157",
+        "IH2-153",
+        "IH2-156"
+      ],
+      "acceptance": [
+        "Preserve the existing appearance records, headwear, work and exact feet.",
+        "Use one optional setting, verify cancellation and reload, and show the selected note at the boarding house."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-158/PLAN.md"
       ]
     }
   ],

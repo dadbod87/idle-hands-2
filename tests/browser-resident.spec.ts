@@ -131,6 +131,8 @@ test('browser headwear previews freely, saves once and follows the actor through
    await selection.selectOption(chooseHat);
    await save.focus();
    await page.keyboard.press('Shift+Tab');
+   await expect(page.getByLabel('Arrival story',{exact:true})).toBeFocused();
+   await page.keyboard.press('Shift+Tab');
    await expect(selection).toBeFocused();
    const choice=(await selection.locator('..').boundingBox())!;
    const title=(await page.locator('.dialog-head').boundingBox())!;
@@ -181,6 +183,82 @@ test('browser headwear previews freely, saves once and follows the actor through
    await expect.poll(async()=>(await metrics()).hat).toBeNull();
    expect(requests.filter(path=>path.startsWith('/api/'))).toEqual([]);
    expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});
+
+test('a chosen arrival story survives reload and only changes the boarding-house note',async({browser})=>{
+ mkdirSync(output,{recursive:true});
+ const legacy={version:2,name:'Avery',look:'bea',headwear:'clerk'};
+ for(const shape of [{name:'phone',width:320,height:640,text:100},{name:'short',width:844,height:390,text:200}]){
+  const context=await browser.newContext({viewport:shape,hasTouch:true,reducedMotion:'reduce'});
+  try{
+   const page=await context.newPage(),calls:string[]=[],errors:string[]=[];
+   page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))calls.push(request.url());});
+   page.on('pageerror',error=>errors.push(error.message));
+   await page.addInitScript(profile=>{
+    if(!localStorage.getItem('ih2:browser-resident:v1'))localStorage.setItem('ih2:browser-resident:v1',JSON.stringify(profile));
+    if(!localStorage.getItem('ih2:pilot-position:v1')){
+     localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'lodging',position:{x:6.4,y:6.3}}));
+    }
+   },legacy);
+   const enlarge=()=>page.evaluate(size=>document.documentElement.style.fontSize=size+'%',shape.text);
+   await page.goto('/?sky-study=1&phase=day');
+   await ready(page);await enlarge();
+   const before=await preferences(page);
+   const openNote=()=>page.getByRole('button',{name:'Inspect A note by the bed',exact:true}).tap();
+   const story=page.getByLabel('Arrival story',{exact:true});
+   const save=page.getByRole('button',{name:'Save changes',exact:true});
+   await edit(page);
+   await expect(story).toHaveValue('none');
+   await story.selectOption('transferred');
+   await close(page);
+   expect((await preferences(page)).profile).toBe(before.profile);
+   await openNote();
+   await expect(page.getByRole('dialog')).toContainText('Breakfast is under review');
+   await close(page);
+   await edit(page);
+   await story.selectOption('maker');
+   await story.focus();
+   await expect(story).toBeInViewport();
+   const fullChoice=await story.evaluate(control=>{
+    const select=control as HTMLSelectElement;
+    const painter=document.createElement('canvas').getContext('2d')!;
+    const style=getComputedStyle(select);
+    painter.font=style.font;
+    const textWidth=painter.measureText(select.selectedOptions[0].textContent??'').width;
+    return textWidth<=(select.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight)-32);
+   });
+   expect(fullChoice).toBe(true);
+   await page.screenshot({path:output+'/arrival-'+shape.name+'-editor.png'});
+   await save.tap();
+   await expect(page.getByRole('status').filter({hasText:'Resident saved in this browser.'})).toBeVisible();
+   expect(JSON.parse((await preferences(page)).profile!)).toEqual({...legacy,version:3,story:'maker'});
+   await page.reload();await ready(page);await enlarge();
+   await expect(page.locator('#location')).toContainText('Boarding house');
+   await openNote();
+   await expect(page.getByRole('dialog')).toContainText('Your tools were approved.');
+   await expect(page.getByRole('button',{name:'Step outside',exact:true})).toBeInViewport({ratio:1});
+   await expect(page.getByRole('button',{name:'Walk to Marlow',exact:true})).toBeInViewport({ratio:1});
+   await page.screenshot({path:output+'/arrival-'+shape.name+'-note.png'});
+   await close(page);
+   await edit(page);
+   await expect(story).toHaveValue('maker');
+   await expect(page.getByLabel('Headwear',{exact:true})).toHaveValue('clerk');
+   await story.selectOption('none');
+   await save.tap();
+   await expect.poll(async()=>JSON.parse((await preferences(page)).profile!)).toEqual(legacy);
+   expect((await preferences(page)).workshop).toBe(before.workshop);
+   expect((await preferences(page)).feet).toBe(before.feet);
+   if(shape.name==='phone'){
+    await close(page);
+    await openNote();
+    await page.getByRole('button',{name:'Walk to Marlow',exact:true}).tap();
+    await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().room)).toBe('square');
+    await expect(page.getByRole('heading',{name:'Marlow · Town clerk'})).toBeVisible({timeout:15000});
+    expect((await preferences(page)).workshop).toBe(before.workshop);
+   }
+   expect(calls).toEqual([]);expect(errors).toEqual([]);
   }finally{await context.close();}
  }
 });

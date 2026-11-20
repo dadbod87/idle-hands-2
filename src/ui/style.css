@@ -164,6 +164,7 @@
 }
 
 /* Keep the only route action visible next to the note in short, enlarged views. */
+.lodging-note-actions { display: grid; gap: 8px; }
 #panel:has(.lodging-note) .lodging-note .destination { margin-top: 0; }
 @media (min-width: 580px) and (max-height: 520px) {
   #panel:has(.lodging-note) { width: min(690px, calc(100vw - 28px)); }

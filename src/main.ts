@@ -1,3 +1,5 @@
+import {ARRIVAL_STORIES} from './game/arrival-stories.ts';
+import type {BrowserResident} from './game/browser-resident.ts';
 import {orchardGuide} from './game/orchard-guide.ts';
 import './ui/jun-orchard.css';
 import {SnackShelfUI} from './ui/snack-shelf.ts';
@@ -75,9 +77,11 @@ const interactLabel = document.querySelector<HTMLElement>('#interaction-label')!
 const location = document.querySelector<HTMLElement>('#location')!;
 const scene = new WorldScene(session);
 const residentBadge=document.querySelector('#local-resident-badge');
+let localResident:BrowserResident|null=null;
 const showBrowserResident=townMode?null:mountBrowserResident({open:openPanel,body,appearance:profile=>{
+ localResident=profile;
  scene.residentId=profile?.look??'devon';
- scene.headwear=profile?.version===2?profile.headwear:null;
+ scene.headwear=profile&&profile.version!==1?profile.headwear:null;
  if(residentBadge)residentBadge.textContent=profile?.name??'NEIGHBORHOOD STUDY';
  if(scene.actor?.active)refreshMenuFrame(2);
 }});
@@ -421,13 +425,22 @@ function activate(stop: Stop) {
     openPanel(stop.name);
     const note=document.createElement('div');
     note.className='lodging-note';
-    note.append(paragraph(stop.text));
+    const arrivalLine=localResident?.version===3?ARRIVAL_STORIES[localResident.story].note:null;
+    note.append(paragraph(arrivalLine?arrivalLine+' Marlow at the clerk’s desk has your first job.':stop.text));
+    const actions=document.createElement('div');
+    actions.className='lodging-note-actions';
+    const visit=document.createElement('button');
+    visit.type='button';
+    visit.className='destination primary';
+    visit.textContent='Walk to Marlow';
+    visit.onclick=()=>goNamedDestination('square','clerk');
     const leave=document.createElement('button');
     leave.type='button';
     leave.className='destination';
     leave.textContent='Step outside';
     leave.onclick=()=>goNamedDestination('lodging','lodging-exit');
-    note.append(leave);
+    actions.append(visit,leave);
+    note.append(actions);
     body.append(note);
     return;
   }

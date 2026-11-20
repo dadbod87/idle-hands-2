@@ -3242,7 +3242,7 @@
     {
       "id": "IH2-172",
       "title": "Read the displayed certificate by walking up to it",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/read-home-keepsake",
       "goal": "Make the earned artwork readable directly from the room on a phone or keyboard.",
       "depends_on": [
@@ -3256,7 +3256,30 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-172/PLAN.md"
+        "docs/evidence/IH2-172/PLAN.md",
+        "docs/evidence/IH2-172/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A tap approaches the keepsake and opens the full artwork. The temporary stop goes away when the owner removes the stand."
+    },
+    {
+      "id": "IH2-173",
+      "title": "Suggest a ready allotment visit during long workshop work",
+      "status": "in_progress",
+      "owner_branch": "feat/bench-ready-allotment",
+      "goal": "Give returning players one useful repeatable optional outing after their first tree studies.",
+      "depends_on": [
+        "IH2-172",
+        "IH2-167"
+      ],
+      "acceptance": [
+        "Use actual confirmed ripe garden data and keep the existing tree route. Avoid suggesting growing or full-produce beds.",
+        "Follow the live walk and show the real harvest control without collecting or changing the running bench job."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-173/PLAN.md"
       ]
     }
   ],

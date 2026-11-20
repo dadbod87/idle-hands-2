@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-19
 
-Last inspected at 2026-11-19 18:34 PST. The separate sequel repository was at `8b4921c1c20c3c8dcf425f59d557c452380e9d75`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-19 20:06 PST. The separate sequel repository was at `0f09487c648e8f97428aaaf5938218f92131e3e7`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -15,13 +15,13 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 | Optional arrival stories | [#79](https://github.com/dadbod87/idle-hands-2/pull/79) | `6a2b3f1abaaf` | 583 domain, 231 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44646691801) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44648832528) |
 | Brief light after a confirmed doorway | [#80](https://github.com/dadbod87/idle-hands-2/pull/80) | `efbb363bd3a8` | 583 domain, 233 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44651294688) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44653713483) |
 | Optional saved first morning | [#81](https://github.com/dadbod87/idle-hands-2/pull/81) | `8b4921c1c20c` | 586 domain, 235 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44655822915) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44657923357) |
+| Room-specific loading for the allotment | [#82](https://github.com/dadbod87/idle-hands-2/pull/82) | `ded1071f4d5b` | 586 domain, 236 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44663888654) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44665888373) |
+| Free room and yard previews | [#83](https://github.com/dadbod87/idle-hands-2/pull/83) | `0f09487c648e` | 586 domain, 237 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44668074834) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44670004257) |
 
 ## Saved work in dependency order
 
 | Work | Branch | Status |
 |---|---|---|
-| Room-specific loading for the allotment | `perf/defer-garden-room-art` at `93a385101f47` | [PR #82](https://github.com/dadbod87/idle-hands-2/pull/82) · open · [in_progress](https://github.com/dadbod87/idle-hands-2/actions/runs/44661726409) · [Plan](https://github.com/dadbod87/idle-hands-2/blob/93a385101f47c3d24891532589a4fa3c278e9999/docs/evidence/IH2-161/PLAN.md) |
-| Free room and yard previews | `feat/housing-plan-preview` at `0eb0da459c83` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0eb0da459c83a58898cc865e86eecdc44a8c301b/docs/evidence/IH2-162/PLAN.md) |
 | Shorter field guide and direct task links | `feat/task-first-field-guide` at `5e8f0b9fab47` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/5e8f0b9fab479e2361906c7c0f1a14ca7022df19/docs/evidence/IH2-163/PLAN.md) |
 | A deliberate private parcel check in Journal | `feat/journal-cafe-parcels` at `0a8f0dccd629` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0a8f0dccd629c20df9573a5fa1603ec846fcb9b5/docs/evidence/IH2-165/PLAN.md) |
 | An unfinished tree sketch during long bench work | `feat/workbench-outing` at `f1ff152b4e32` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/f1ff152b4e32f88c9d49dbafccb031cec16ab140/docs/evidence/IH2-167/PLAN.md) |

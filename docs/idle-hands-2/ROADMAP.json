@@ -3287,7 +3287,7 @@
     {
       "id": "IH2-174",
       "title": "Keep the location and action HUD steady while walking",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "perf/stable-context-hud",
       "goal": "Remove redundant browser work from the location and action controls during ordinary movement.",
       "depends_on": [
@@ -3301,7 +3301,29 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-174/PLAN.md"
+        "docs/evidence/IH2-174/PLAN.md",
+        "docs/evidence/IH2-174/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The location hint and sky elements survive nearby-action changes. The action button updates its disabled state only when eligibility changes."
+    },
+    {
+      "id": "IH2-175",
+      "title": "Announce a ready garden bed only when its status changes",
+      "status": "in_progress",
+      "owner_branch": "fix/garden-ready-announcement",
+      "goal": "Keep the growing controls steady and avoid repeating the same readiness announcement every second.",
+      "depends_on": [
+        "IH2-174"
+      ],
+      "acceptance": [
+        "Use existing garden time and keep harvest explicit.",
+        "Retain selected focus and other bed art on real row updates. Verify using native narrow Chromium with a declared test-clock fixture."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-175/PLAN.md"
       ]
     }
   ],

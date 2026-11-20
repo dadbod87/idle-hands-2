@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-20
 
-Last inspected at 2026-11-20 03:35 PST. The separate sequel repository was at `03637c000ff744aedca83c5cb503868a02422784`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-20 04:57 PST. The separate sequel repository was at `864886674bd6268733dd41a0728838ba1bd049eb`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -27,14 +27,14 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 | Ready allotment trip during workshop work | [#91](https://github.com/dadbod87/idle-hands-2/pull/91) | `78a886b54dff` | 589 domain, 242 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44712009571) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44717464021) |
 | Steadier location and action HUD updates | [#92](https://github.com/dadbod87/idle-hands-2/pull/92) | `d0aad8d331fd` | 589 domain, 242 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44719976867) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44722315422) |
 | One announcement when a crop is ready | [#93](https://github.com/dadbod87/idle-hands-2/pull/93) | `03637c000ff7` | 589 domain, 243 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44724459838) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44726590916) |
+| Tap or press Escape to stop a guided walk | [#94](https://github.com/dadbod87/idle-hands-2/pull/94) | `b3b350c5d70c` | 589 domain, 244 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44731395053) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44733397660) |
+| A distinct walkable Garden Studio sunroom | [#95](https://github.com/dadbod87/idle-hands-2/pull/95) | `864886674bd6` | 590 domain, 245 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44735673013) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44737809816) |
 
 ## Saved work in dependency order
 
 | Work | Branch | Status |
 |---|---|---|
-| Tap or press Escape to stop a guided walk | `feat/stop-assisted-walk` at `2dcee18995a1` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/2dcee18995a1615f8830d0b135c6e19c3074e612/docs/evidence/IH2-176/PLAN.md) |
-| A distinct walkable Garden Studio sunroom | `feat/garden-studio-interior` at `e6535514ae3e` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/e6535514ae3ea625b1bb7e6dd380f496f3ce5cc9/docs/evidence/IH2-177/PLAN.md) |
-| Softer foreground furniture and fewer redundant renders | `perf/steady-interior-furniture` at `f57648f054ac` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/f57648f054ac8f75a7391adb3d6d395b3f6387d8/docs/evidence/IH2-178/PLAN.md) |
+| Softer foreground furniture and fewer redundant renders | `perf/steady-interior-furniture` at `b5151ab508d6` | [PR #96](https://github.com/dadbod87/idle-hands-2/pull/96) · open · [in_progress](https://github.com/dadbod87/idle-hands-2/actions/runs/44740015348) · [Plan](https://github.com/dadbod87/idle-hands-2/blob/b5151ab508d678852f68228937e8c32f1f598b7c/docs/evidence/IH2-178/PLAN.md) |
 | Sound clear of the short-landscape playfield | `fix/short-sound-placement` at `c1c7dee8b894` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/c1c7dee8b89423c8cd91e94cfd702d489cb31407/docs/evidence/IH2-179/PLAN.md) |
 | A Sunroom notebook with private allotment access | `feat/sunroom-notebook` at `b681eda93c3f` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/b681eda93c3f6c47b221f5b7bfa7efa1ba0387bf/docs/evidence/IH2-180/PLAN.md) |
 | A distinctive Workshop Lodge drafting wing | `feat/workshop-lodge-interior` at `848f753f8f3d` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/848f753f8f3db9db0455f228c65e2c35932c5657/docs/evidence/IH2-181/PLAN.md) |
@@ -47,9 +47,9 @@ Resume with the first pending exact gate. Verify current main and preserve concu
 
 ## Measurement and owner review
 
-Measured completed jobs used about 2,289 summed standard Ubuntu runner-minutes, including 405 on attempts with a failed job. The audit sums recorded job seconds and rounds each job up. It gives no charge estimate. [Job timing record](../../evidence/overnight-ci-2026-11-20/JOB_TIMES.json).
+Measured completed jobs used about 2,536 summed standard Ubuntu runner-minutes, including 457 on attempts with a failed job. The audit sums recorded job seconds and rounds each job up. It gives no charge estimate. [Job timing record](../../evidence/overnight-ci-2026-11-20/JOB_TIMES.json).
 
-Earlier failure evidence: [housing route to unloaded garden](https://github.com/dadbod87/idle-hands-2/actions/runs/44659971451), [older action-sheet expectation](https://github.com/dadbod87/idle-hands-2/actions/runs/44661726409), [duplicate weather disclosure locator](https://github.com/dadbod87/idle-hands-2/actions/runs/44672258557), [empty keepsake field in the public home route](https://github.com/dadbod87/idle-hands-2/actions/runs/44693655992), [missing first-display control in the browser fixture](https://github.com/dadbod87/idle-hands-2/actions/runs/44696091072), [empty keepsake field in the movement client cache](https://github.com/dadbod87/idle-hands-2/actions/runs/44697911096), [capability flag added to the historical store reader](https://github.com/dadbod87/idle-hands-2/actions/runs/44699979598).
+Earlier failure evidence: [housing route to unloaded garden](https://github.com/dadbod87/idle-hands-2/actions/runs/44659971451), [older action-sheet expectation](https://github.com/dadbod87/idle-hands-2/actions/runs/44661726409), [duplicate weather disclosure locator](https://github.com/dadbod87/idle-hands-2/actions/runs/44672258557), [empty keepsake field in the public home route](https://github.com/dadbod87/idle-hands-2/actions/runs/44693655992), [missing first-display control in the browser fixture](https://github.com/dadbod87/idle-hands-2/actions/runs/44696091072), [empty keepsake field in the movement client cache](https://github.com/dadbod87/idle-hands-2/actions/runs/44697911096), [capability flag added to the historical store reader](https://github.com/dadbod87/idle-hands-2/actions/runs/44699979598), [guided-walk test reached its destination before the capture finished](https://github.com/dadbod87/idle-hands-2/actions/runs/44728948010).
 
 Across 50 completed browser groups, dependency setup had a median of 33.5 seconds and a maximum of 47. One different group took 525 seconds in setup and reached the 20-minute cap. Its Ubuntu package transfer alone took 8 minutes 23 seconds for 32.1 MB. Workflow, test coverage and caps stayed the same. [Measured setup and case times](../../evidence/overnight-ci-2026-11-20/BROWSER_SETUP.json).
 

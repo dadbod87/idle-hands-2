@@ -21,7 +21,7 @@ test('bag: native claimed craft stacks, placed copies leave the bag, returned co
  }
  await page.setViewportSize(originalViewport);
  await page.evaluate(()=>document.documentElement.style.removeProperty('font-size'));
- await page.getByRole('button',{name:'Arrange furniture',exact:true}).click();await page.getByRole('combobox',{name:'Furniture to place'}).selectOption('planter');await page.locator('[data-slot=north-east]').click();await page.getByRole('button',{name:'Place here',exact:true}).click();await expect(count(page,'planter')).toHaveText('1');await expect(stack(page,'planter')).toContainText('2 owned');await expect(stack(page,'planter')).toContainText('1 placed');await page.locator('[data-slot=north-east]').click();await page.getByRole('button',{name:'Return this furniture to bag',exact:true}).click();await expect(count(page,'planter')).toHaveText('2');await page.reload();await ready(page);await page.locator('#bag').click();await expect(count(page,'planter')).toHaveText('2');expect(await page.evaluate(()=>(window as any).__pilot.workshop().owned.planter)).toBe(2);writeFileSync(out+'/bag-stack-proof.json',JSON.stringify({fixture:'Valid second eight-hour craft built from original pure gather/craft/claim commands; elapsed deadline/workshop spawn declared. Native UI claim and placement/removal/reload; no new grants, interception or rule change.',owned:2,available:2,claimedExplicitly:true},null,2)+'\n');
+ await page.getByRole('button',{name:'Arrange furniture',exact:true}).click();await page.getByRole('combobox',{name:'Furniture to place'}).selectOption('planter');await page.locator('[data-slot=north-east]').click();await page.getByRole('button',{name:'Place here',exact:true}).click();await expect(count(page,'planter')).toHaveText('1');await expect(count(page,'planter')).toHaveAttribute('aria-label','Optimistic planter: 1 available to place');await expect(stack(page,'planter')).toContainText('2 owned');await expect(stack(page,'planter')).toContainText('1 placed');await page.locator('[data-slot=north-east]').click();await page.getByRole('button',{name:'Return this furniture to bag',exact:true}).click();await expect(count(page,'planter')).toHaveText('2');await page.reload();await ready(page);await page.locator('#bag').click();await expect(count(page,'planter')).toHaveText('2');expect(await page.evaluate(()=>(window as any).__pilot.workshop().owned.planter)).toBe(2);writeFileSync(out+'/bag-stack-proof.json',JSON.stringify({fixture:'Valid second eight-hour craft built from original pure gather/craft/claim commands; elapsed deadline/workshop spawn declared. Native UI claim and placement/removal/reload; no new grants, interception or rule change.',owned:2,available:2,claimedExplicitly:true},null,2)+'\n');
 });
 test('bag: shared snapshots keep slot nodes, free pockets issue no command and identity changes clear old counts',async({page})=>{
  const commands:string[]=[],errors:string[]=[];page.on('request',r=>{if(r.url().endsWith('/api/town/command'))commands.push(r.postData()??'');});page.on('pageerror',e=>errors.push(e.message));await page.goto('/?town=1');await page.getByRole('button',{name:'Mira',exact:true}).click();await ready(page);await page.locator('#bag').click();await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');await expect(count(page,'planter')).toHaveText('0');await page.evaluate(()=>(window as any).__bagSlot=document.querySelector('[data-bag-item=planter]'));await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');expect(await page.evaluate(()=>(window as any).__bagSlot===document.querySelector('[data-bag-item=planter]'))).toBe(true);
@@ -43,5 +43,33 @@ test('bag: declared shared home allocation snapshots subtract placed copies with
  await page.goto('/?town=1');await page.getByRole('button',{name:'Bag tester',exact:true}).click();await ready(page);await page.locator('#bag').click();await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');await expect(count(page,'stool')).toHaveText('0');await expect(count(page,'rug')).toHaveText('0');await expect(stack(page,'rug')).toContainText('1 placed');await expect(stack(page,'rug')).toContainText('1 owned');await expect(count(page,'rug')).toHaveAttribute('aria-label','Welcome-ish rug: 0 available to place');await expect(count(page,'stool')).toHaveAttribute('aria-label','Committee stool: 0 available to place');await expect(page.locator('.bag-count-key')).toHaveText('Numbers show copies available to place.');await page.locator('.bag-count-key').scrollIntoViewIfNeeded();expect((await page.locator('.bag-count-key').boundingBox())!.y).toBeLessThan((await stack(page,'stool').boundingBox())!.y);await page.evaluate(()=>(window as any).__bagHeld=document.querySelector('[data-bag-item=rug]'));atHome=false;await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));await expect(count(page,'rug')).toHaveText('1');expect(await page.evaluate(()=>(window as any).__bagHeld===document.querySelector('[data-bag-item=rug]'))).toBe(true);await expect(count(page,'stool')).toHaveText('0');expect(commands).toEqual([]);writeFileSync(out+'/bag-home-allocation-proof.json',JSON.stringify({fixture:'Explicitly intercepted shared snapshot/EventSource with donated stool in workshop and rug in fictional home. New snapshot returns rug; no game command or protected writes.',stableSlot:true,commands},null,2)+'\n');
 });
 test('bag: failed local persistence is disclosed without calling held contents saved',async({page})=>{
- await page.addInitScript(()=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='ih2:workshop:v2')throw new DOMException('Deliberate bag persistence fixture','QuotaExceededError');return original.call(this,key,value);};});await page.goto('/');await ready(page);await page.locator('#bag').click();await expect(page.locator('.bag-status')).toContainText('Unsaved contents');await expect(count(page,'stool')).toHaveText('1');expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toBe(null);
+ mkdirSync(out,{recursive:true});
+ await page.clock.install();
+ await page.addInitScript(()=>{
+  const original=Storage.prototype.setItem;
+  Storage.prototype.setItem=function(key,value){
+   if(key==='ih2:workshop:v2')throw new DOMException('Deliberate bag persistence fixture','QuotaExceededError');
+   return original.call(this,key,value);
+  };
+ });
+ await page.goto('/');
+ await ready(page);
+ await page.locator('#bag').click();
+ await expect(page.locator('.bag-status')).toContainText('Unsaved contents');
+ await expect(count(page,'stool')).toHaveText('1');
+ expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toBe(null);
+ await page.locator('.canvas-bag').evaluate(bag=>{
+  const counter={ticks:0,writes:0,slotCount:bag.querySelectorAll('.bag-slot').length};
+  const timer=window.setInterval(()=>counter.ticks++,1000);
+  const observer=new MutationObserver(entries=>{counter.writes+=entries.length;});
+  observer.observe(bag,{subtree:true,attributes:true,attributeFilter:['aria-label','data-empty']});
+  (window as any).__readBagIdleWrites=()=>{clearInterval(timer);observer.disconnect();return counter;};
+ });
+ await page.clock.runFor(3200);
+ const evidence=await page.evaluate(()=>(window as any).__readBagIdleWrites());
+ expect(evidence.ticks).toBeGreaterThanOrEqual(3);
+ expect(evidence.slotCount).toBeGreaterThan(10);
+ expect(evidence.writes).toBe(0);
+ await expect(count(page,'stool')).toHaveAttribute('aria-label','Committee stool: 1 available to place');
+ writeFileSync(out+'/bag-idle-mutations.json',JSON.stringify(evidence,null,2)+'\n');
 });

@@ -1,0 +1,7 @@
+# IH2-185 · Keep unchanged Bag counts steady
+
+The Bag refreshes its counts without reassigning the accessible names and empty-state attributes of cards whose contents have stayed the same. Real changes still update the numeric badge, its accessible name, its empty treatment and the placement action together. The bag pockets and selected furniture stay on their existing nodes.
+
+The same Chromium fixture opened a 25-slot Bag and advanced its browser clock 3.2 seconds across three one-second refresh ticks. The preceding build produced 150 attribute mutations in that window. The candidate produced zero. The fixture deliberately refuses local save writes and checks that the unsaved status and exact accessible count remain correct across the ticks. This measures these two DOM attributes only. It does not measure overall device speed, screen-reader announcements or frame time. An initial stand-alone trial reached the expected 0 writes, then failed while storing its evidence because the output directory was missing. The test now creates that directory before collecting the observation.
+
+Five focused native cases passed, including real touch placement, cancel and reload, desktop keyboard, artwork fallback, and repeated inventory reads over fictional intercepted shared responses. After one placement, the corresponding count and accessible name still change together. No storage rules, API behavior, clock cadence or test identities change. Full exact CI and saved-play acceptance are pending.

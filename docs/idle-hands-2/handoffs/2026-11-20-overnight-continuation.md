@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-20
 
-Last inspected at 2026-11-20 04:57 PST. The separate sequel repository was at `864886674bd6268733dd41a0728838ba1bd049eb`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-20 05:52 PST. The separate sequel repository was at `20bcfbb1cd9475de40f413d512d255c3b0a4434c`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -29,13 +29,13 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 | One announcement when a crop is ready | [#93](https://github.com/dadbod87/idle-hands-2/pull/93) | `03637c000ff7` | 589 domain, 243 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44724459838) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44726590916) |
 | Tap or press Escape to stop a guided walk | [#94](https://github.com/dadbod87/idle-hands-2/pull/94) | `b3b350c5d70c` | 589 domain, 244 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44731395053) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44733397660) |
 | A distinct walkable Garden Studio sunroom | [#95](https://github.com/dadbod87/idle-hands-2/pull/95) | `864886674bd6` | 590 domain, 245 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44735673013) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44737809816) |
+| Softer foreground furniture and fewer redundant renders | [#96](https://github.com/dadbod87/idle-hands-2/pull/96) | `20bcfbb1cd94` | 590 domain, 246 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44740015348) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44745326498) |
 
 ## Saved work in dependency order
 
 | Work | Branch | Status |
 |---|---|---|
-| Softer foreground furniture and fewer redundant renders | `perf/steady-interior-furniture` at `b5151ab508d6` | [PR #96](https://github.com/dadbod87/idle-hands-2/pull/96) · open · [in_progress](https://github.com/dadbod87/idle-hands-2/actions/runs/44740015348) · [Plan](https://github.com/dadbod87/idle-hands-2/blob/b5151ab508d678852f68228937e8c32f1f598b7c/docs/evidence/IH2-178/PLAN.md) |
-| Sound clear of the short-landscape playfield | `fix/short-sound-placement` at `c1c7dee8b894` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/c1c7dee8b89423c8cd91e94cfd702d489cb31407/docs/evidence/IH2-179/PLAN.md) |
+| Sound clear of the short-landscape playfield | `fix/short-sound-placement` at `a71c443961e9` | [PR #97](https://github.com/dadbod87/idle-hands-2/pull/97) · open · [in_progress](https://github.com/dadbod87/idle-hands-2/actions/runs/44748047628) · [Plan](https://github.com/dadbod87/idle-hands-2/blob/a71c443961e9a7bfc3217f45bae9910f7a64c112/docs/evidence/IH2-179/PLAN.md) |
 | A Sunroom notebook with private allotment access | `feat/sunroom-notebook` at `b681eda93c3f` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/b681eda93c3f6c47b221f5b7bfa7efa1ba0387bf/docs/evidence/IH2-180/PLAN.md) |
 | A distinctive Workshop Lodge drafting wing | `feat/workshop-lodge-interior` at `848f753f8f3d` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/848f753f8f3db9db0455f228c65e2c35932c5657/docs/evidence/IH2-181/PLAN.md) |
 | A private Lodge work board and direct workshop route | `feat/lodge-drafting-board` at `1302837c7796` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/1302837c7796ef9b6876f731ef36fbceb2b9f6fd/docs/evidence/IH2-182/PLAN.md) |
@@ -47,13 +47,17 @@ Resume with the first pending exact gate. Verify current main and preserve concu
 
 ## Measurement and owner review
 
-Measured completed jobs used about 2,536 summed standard Ubuntu runner-minutes, including 457 on attempts with a failed job. The audit sums recorded job seconds and rounds each job up. It gives no charge estimate. [Job timing record](../../evidence/overnight-ci-2026-11-20/JOB_TIMES.json).
+Measured completed jobs used about 2,692 summed standard Ubuntu runner-minutes, including 512 on attempts with a failed job. The audit sums recorded job seconds and rounds each job up. It gives no charge estimate. [Job timing record](../../evidence/overnight-ci-2026-11-20/JOB_TIMES.json).
 
 Earlier failure evidence: [housing route to unloaded garden](https://github.com/dadbod87/idle-hands-2/actions/runs/44659971451), [older action-sheet expectation](https://github.com/dadbod87/idle-hands-2/actions/runs/44661726409), [duplicate weather disclosure locator](https://github.com/dadbod87/idle-hands-2/actions/runs/44672258557), [empty keepsake field in the public home route](https://github.com/dadbod87/idle-hands-2/actions/runs/44693655992), [missing first-display control in the browser fixture](https://github.com/dadbod87/idle-hands-2/actions/runs/44696091072), [empty keepsake field in the movement client cache](https://github.com/dadbod87/idle-hands-2/actions/runs/44697911096), [capability flag added to the historical store reader](https://github.com/dadbod87/idle-hands-2/actions/runs/44699979598), [guided-walk test reached its destination before the capture finished](https://github.com/dadbod87/idle-hands-2/actions/runs/44728948010).
 
 Across 50 completed browser groups, dependency setup had a median of 33.5 seconds and a maximum of 47. One different group took 525 seconds in setup and reached the 20-minute cap. Its Ubuntu package transfer alone took 8 minutes 23 seconds for 32.1 MB. Workflow, test coverage and caps stayed the same. [Measured setup and case times](../../evidence/overnight-ci-2026-11-20/BROWSER_SETUP.json).
 
 Certificate reading's first main attempt recorded 659.2 ms command p95 against a 500 ms test budget. The unchanged source's failed-job retry recorded 92.1 ms, with the original three browser jobs preserved. This is a single runner observation. [Both attempts](https://github.com/dadbod87/idle-hands-2/actions/runs/44708916767).
+
+The allotment shortcut used a failed-job-only retry on the same candidate. The Ubuntu mirror took 8 minutes 23 seconds to transfer 32.1 MB. Browser setup took 525 seconds. Browser shard 3 passed 52 cases before its unchanged 20-minute cap. Setup took 26 seconds for the completed retry. [Both attempts](https://github.com/dadbod87/idle-hands-2/actions/runs/44712009571).
+
+The indoor furniture update used a failed-job-only retry on the same candidate. Ubuntu took 3 minutes 47 seconds for 32.1 MB. Pinned browser setup took 248 seconds overall. Shard 3 logged 80 successful cases but its job was cancelled at the unchanged cap before report completion. Setup took 37 seconds for the completed retry. [Both attempts](https://github.com/dadbod87/idle-hands-2/actions/runs/44740015348).
 
 The [2K, 4K and phone sample](../../evidence/overnight-render-2026-11-19/README.md) compared 18 fresh Chromium sessions. Both builds kept near-identical movement callback timings at these sizes, with fewer first-route resource entries in the prepared build. Terra inspected the 2K and 4K screenshots for the prior map cutoff.
 
@@ -62,6 +66,8 @@ The [separate street art study](https://github.com/dadbod87/idle-hands-2/blob/c1
 The [browser scheduling study](https://github.com/dadbod87/idle-hands-2/blob/263aa716e4e0de82716633758f0b867d00322a6c/docs/evidence/IH2-168/PLAN.md) preserved all 239 collected browser identities locally. The historical candidate predicts 51–77 seconds lower max-shard case time in three recorded suites, with the same summed case time. The planning estimate describes test scheduling, with no evidence of billing savings. The exact main jobs recorded 932 to 954 seconds on the slowest shard. The exact PR jobs recorded 918 to 849 seconds. These are individual GitHub runner samples with variable setup and case speeds.
 
 The [home keepsake design study](https://github.com/dadbod87/idle-hands-2/blob/ad255fd7f4c56a19d4750d048e26bbd03622bd95/docs/evidence/IH2-169/PLAN.md) demonstrates a private preview and a deliberate visitor-visible frame using the original tree certificate. Native Chromium verified both roles and removal in three layouts. The standalone study has no persistent game changes. The playable integration and its exact gates are listed above.
+
+The exact-main Garden Studio stills show its glazed sunroom and legible desktop exit. On the emulated narrow phone, the location card partly covers the painted sunroom sign. The sampled phone and enlarged short camera positions crop the exit. Browser travel is verified separately. Terra reviewed the later furniture capture as well. The resident’s head and torso are visible through the softened piece, and the furniture is still recognizable. Some lower-body lines overlap. In that view the location card covers part of the roof and the full sunroom label is visible.
 
 The [offline snapshot contract test](https://github.com/dadbod87/idle-hands-2/blob/9305125411702c0250ec534e4c81dfb0bd89ed67/docs/evidence/IH2-186/PLAN.md) caught both previously reproduced cases with a local mocked query, giving future changes a check they can run while PostgreSQL is stopped. It is a source backup awaiting its own exact gate.
 

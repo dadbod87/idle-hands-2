@@ -2059,9 +2059,119 @@
         }
       ],
       "roundedRunnerMinutes": 49
+    },
+    {
+      "run": 44740015348,
+      "phase": "steady-interior-furniture-pr",
+      "sha": "b5151ab508d678852f68228937e8c32f1f598b7c",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 206.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 889.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 819.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "cancelled",
+              "seconds": 1214.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "failure",
+              "seconds": 4.0
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "jobs": [
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 870.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 889.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 819.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 206.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 5.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 104
+    },
+    {
+      "run": 44745326498,
+      "phase": "steady-interior-furniture-main",
+      "sha": "20bcfbb1cd9475de40f413d512d255c3b0a4434c",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 843.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 193.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 849.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 998.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 52
     }
   ],
-  "completedRoundedMinutes": 2536,
-  "failedRoundedMinutes": 457,
+  "completedRoundedMinutes": 2692,
+  "failedRoundedMinutes": 512,
   "limitations": "Time derived from named GitHub Ubuntu jobs, rounded to minutes per job. Partial running jobs have no final time. No billing conclusion."
 }

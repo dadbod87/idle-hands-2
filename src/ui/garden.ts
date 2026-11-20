@@ -113,11 +113,19 @@ export class GardenUI{
    if(this.selected===null){const ready=s.beds.map((b,i)=>({b,i})).filter(v=>v.b&&v.b.readyAt<=now&&s.produce[v.b.crop]<12).sort((a,b)=>a.b!.readyAt-b.b!.readyAt);this.selected=ready[0]?.i??Math.max(0,s.beds.findIndex(b=>!b));}
    for(const[i,r]of rows.entries()){
     const bed=s.beds[i],stage=gardenStage(bed,now),name=bed?(bed.crop==='radish'?'Radish':'Marigold'):'Empty';
-    r.button.setAttribute('aria-pressed',String(i===this.selected));r.crop.textContent=' · '+name;
-    r.time.textContent=bed?(stage==='ready'?'Ready':duration(bed.readyAt-now)):'Ready to plant';
-    r.short.textContent=bed?(stage==='ready'?'Ready':duration(bed.readyAt-now)):'Empty';
-    r.button.setAttribute('aria-label','Bed '+(i+1)+'. '+name+'. '+r.time.textContent+(bed&&stage!=='ready'?' remaining.':'.'));
-    r.img.src='/art/garden/'+(bed?'garden-'+bed.crop+'-'+stage:'garden-bed-empty')+'.svg';r.button.disabled=this.busy;
+    const pressed=String(i===this.selected);
+    const crop=' · '+name;
+    const time=bed?(stage==='ready'?'Ready':duration(bed.readyAt-now)):'Ready to plant';
+    const short=bed?time:'Empty';
+    const label='Bed '+(i+1)+'. '+name+'. '+time+(bed&&stage!=='ready'?' remaining.':'.');
+    const art='/art/garden/'+(bed?'garden-'+bed.crop+'-'+stage:'garden-bed-empty')+'.svg';
+    if(r.button.getAttribute('aria-pressed')!==pressed)r.button.setAttribute('aria-pressed',pressed);
+    if(r.crop.textContent!==crop)r.crop.textContent=crop;
+    if(r.time.textContent!==time)r.time.textContent=time;
+    if(r.short.textContent!==short)r.short.textContent=short;
+    if(r.button.getAttribute('aria-label')!==label)r.button.setAttribute('aria-label',label);
+    if(r.img.getAttribute('src')!==art)r.img.src=art;
+    if(r.button.disabled!==this.busy)r.button.disabled=this.busy;
    }
    stock.textContent=`Radish ${s.produce.radish}/12 · Marigold ${s.produce.marigold}/12`;
    practice.textContent=`Gardening practice: ${s.practice}. Every harvest +1; rested bonus +1 when available (${s.rested.available}/6). An empty bonus bank never blocks base progress.`;
@@ -141,7 +149,7 @@ export class GardenUI{
    reviewHarvest.disabled=this.isSaving;
    const previousNeutral=this.neutralFeedback;
    this.neutralFeedback=bed&&s.produce[bed.crop]>=12?'The plant and seed stay safe. Review produce uses or choose another bed.':bed&&bed.readyAt>now?'Plants wait safely while you explore another activity.':bed?'A harvest is ready. Review its bed before collecting.':this.bedFeedback;
-   if(this.status?.textContent===previousNeutral)this.status.textContent=this.neutralFeedback;
+   if(previousNeutral!==this.neutralFeedback&&this.status?.textContent===previousNeutral)this.status.textContent=this.neutralFeedback;
    const factsView=gardenBedView(s,this.selected!,this.crop,now),grow=factsView.durationMs;factsTitle.textContent='Bed '+(this.selected!+1)+' · '+factsView.name;factValues[0].textContent=factsView.seedCost+' seed · '+factsView.seedsHeld+' held';factValues[1].textContent=gardenGrowthLabel(grow,factsView.firstRadish);factValues[2].textContent=factsView.produce+' '+factsView.crop+' + '+factsView.seedReturned+' seed back';confirm.textContent=plantingConfirmation(this.selected!,this.crop);
    preview.disabled=this.busy||!!bed||s.seeds[this.crop]===0;
    previewBox.hidden=!this.preview&&receiptBed===null;

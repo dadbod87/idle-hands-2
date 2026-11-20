@@ -103,6 +103,16 @@ function showRestingControl(){
 showRestingControl();
 const interactLabel = document.querySelector<HTMLElement>('#interaction-label')!;
 const location = document.querySelector<HTMLElement>('#location')!;
+const locationTitle = location.firstChild as Text;
+const locationHint = location.querySelector('span')!;
+const practiceLabel = townMode ? document.createElement('small') : null;
+if (practiceLabel) {
+  practiceLabel.className = 'fixture-label';
+  location.append(practiceLabel);
+}
+const sky = document.createElement('small');
+sky.id = 'town-sky';
+sky.setAttribute('aria-label', 'Town time and weather');
 const scene = new WorldScene(session);
 scene.resting=resting();
 const residentBadge=document.querySelector('#local-resident-badge');
@@ -638,8 +648,12 @@ scene.onFrame = () => {
     const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='garden'?'Your allotment':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
     const hint=session.room==='square'?district!.hint:session.room==='neighborhood'?'Homes, not cubicles.':session.room==='trail'?'A path worth the paperwork.':session.room==='garden'?'Ready plants wait safely.':session.room==='lodging'?'Your rented room. Nothing due today.':session.room.startsWith('home')?(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved'):'Great things take time.';
     if(district&&district.name!=='Town square'&&(feedback.textContent?.startsWith('Tap the three material depots')||feedback.textContent===lastDistrictHint)){feedback.textContent=district.hint;lastDistrictHint=district.hint;}
-    location.textContent=roomName;const sub=document.createElement('span');sub.textContent=hint;location.append(sub);
-    if(town){const label=document.createElement('small');label.className='fixture-label';label.textContent='Practice town · '+(town.snapshot?.name??'choose a resident');location.append(label);}
+    if (locationTitle.data !== roomName) locationTitle.data = roomName;
+    if (locationHint.textContent !== hint) locationHint.textContent = hint;
+    if (practiceLabel) {
+      const label = 'Practice town · ' + (town?.snapshot?.name ?? 'choose a resident');
+      if (practiceLabel.textContent !== label) practiceLabel.textContent = label;
+    }
     interactLabel.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby';
     if(stop?.id==='lodging-door')interactLabel.textContent='Enter lodging';
     if(stop?.id==='lodging-exit')interactLabel.textContent='Step outside';
@@ -650,8 +664,21 @@ scene.onFrame = () => {
   }
   // A named stop can be visible while its restored shared position is still syncing.
   // Keep Inspect unavailable until the same input guard would accept its click.
-  interactButton.disabled = !stop || session.locked || !scene.roomReady;
-  const climate=scene.climateState();if(climate){let sky=document.querySelector<HTMLElement>('#town-sky');if(!sky){sky=document.createElement('small');sky.id='town-sky';sky.setAttribute('aria-label','Town time and weather');location.append(sky);}const hour=String(Math.floor(climate.minute/60)).padStart(2,'0'),minute=String(climate.minute%60).padStart(2,'0');const label=(climate.fixture?'Lighting study · ':'')+climate.label+' · '+hour+':'+minute;if(sky.textContent!==label)sky.textContent=label;if(panel.open){const guide=document.querySelector<HTMLElement>('#guide-sky');const clockLabel='Town time · '+hour+':'+minute+' · '+climate.label+(climate.fixture?' · Lighting study':'');if(guide&&guide.textContent!==clockLabel)guide.textContent=clockLabel;}}
+  const disabled = !stop || session.locked || !scene.roomReady;
+  if (interactButton.disabled !== disabled) interactButton.disabled = disabled;
+  const climate = scene.climateState();
+  if (climate) {
+    const hour = String(Math.floor(climate.minute / 60)).padStart(2, '0');
+    const minute = String(climate.minute % 60).padStart(2, '0');
+    const label = (climate.fixture ? 'Lighting study · ' : '') + climate.label + ' · ' + hour + ':' + minute;
+    if (sky.textContent !== label) sky.textContent = label;
+    if (!sky.isConnected) location.append(sky);
+    if (panel.open) {
+      const guide = document.querySelector<HTMLElement>('#guide-sky');
+      const clockLabel = 'Town time · ' + hour + ':' + minute + ' · ' + climate.label + (climate.fixture ? ' · Lighting study' : '');
+      if (guide && guide.textContent !== clockLabel) guide.textContent = clockLabel;
+    }
+  }
 };
 window.addEventListener('pagehide',()=>{rememberVisit();save();});
 document.addEventListener('visibilitychange', () => { if(document.hidden){rememberVisit();save();}else if(town){needResync=true;session.lock(true);void town.load().catch(()=>{});} });

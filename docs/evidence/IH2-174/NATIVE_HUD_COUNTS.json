@@ -1,0 +1,196 @@
+{
+  "sourceBaseline": "18f1afcf8bf9859726caf3c657bd981598f65e9c",
+  "scenario": "Fresh native local Journal route to the allotment, followed by keyboard steering from the beds past the exit and away. Decorative fixed clear daylight and selected root text sizes only.",
+  "environment": "Isolated local static builds in desktop Chromium with disposable browser contexts. Control setter instrumented via native property descriptor.",
+  "samples": [
+    {
+      "shape": {
+        "name": "phone320",
+        "width": 320,
+        "height": 640,
+        "text": 100
+      },
+      "baseline": {
+        "frames": 55,
+        "disabledSetterCalls": 55,
+        "skyNodeRetained": false,
+        "hintNodeRetained": false
+      },
+      "browser": {
+        "frames": 54,
+        "disabledSetterCalls": 3,
+        "skyNodeRetained": true,
+        "hintNodeRetained": true,
+        "redundantDisabledSetterCalls": 0
+      }
+    },
+    {
+      "shape": {
+        "name": "phone360",
+        "width": 360,
+        "height": 640,
+        "text": 100
+      },
+      "baseline": {
+        "frames": 61,
+        "disabledSetterCalls": 61,
+        "skyNodeRetained": false,
+        "hintNodeRetained": false
+      },
+      "browser": {
+        "frames": 61,
+        "disabledSetterCalls": 3,
+        "skyNodeRetained": true,
+        "hintNodeRetained": true,
+        "redundantDisabledSetterCalls": 0
+      }
+    },
+    {
+      "shape": {
+        "name": "phone390",
+        "width": 390,
+        "height": 844,
+        "text": 100
+      },
+      "baseline": {
+        "frames": 60,
+        "disabledSetterCalls": 60,
+        "skyNodeRetained": false,
+        "hintNodeRetained": false
+      },
+      "browser": {
+        "frames": 62,
+        "disabledSetterCalls": 3,
+        "skyNodeRetained": true,
+        "hintNodeRetained": true,
+        "redundantDisabledSetterCalls": 0
+      }
+    },
+    {
+      "shape": {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "text": 100
+      },
+      "baseline": {
+        "frames": 60,
+        "disabledSetterCalls": 60,
+        "skyNodeRetained": false,
+        "hintNodeRetained": false
+      },
+      "browser": {
+        "frames": 60,
+        "disabledSetterCalls": 3,
+        "skyNodeRetained": true,
+        "hintNodeRetained": true,
+        "redundantDisabledSetterCalls": 0
+      }
+    },
+    {
+      "shape": {
+        "name": "phone320200",
+        "width": 320,
+        "height": 640,
+        "text": 200
+      },
+      "baseline": {
+        "frames": 62,
+        "disabledSetterCalls": 62,
+        "skyNodeRetained": false,
+        "hintNodeRetained": false
+      },
+      "browser": {
+        "frames": 61,
+        "disabledSetterCalls": 3,
+        "skyNodeRetained": true,
+        "hintNodeRetained": true,
+        "redundantDisabledSetterCalls": 0
+      }
+    },
+    {
+      "shape": {
+        "name": "phone360200",
+        "width": 360,
+        "height": 640,
+        "text": 200
+      },
+      "baseline": {
+        "frames": 62,
+        "disabledSetterCalls": 62,
+        "skyNodeRetained": false,
+        "hintNodeRetained": false
+      },
+      "browser": {
+        "frames": 54,
+        "disabledSetterCalls": 3,
+        "skyNodeRetained": true,
+        "hintNodeRetained": true,
+        "redundantDisabledSetterCalls": 0
+      }
+    },
+    {
+      "shape": {
+        "name": "short200",
+        "width": 844,
+        "height": 390,
+        "text": 200
+      },
+      "baseline": {
+        "frames": 61,
+        "disabledSetterCalls": 61,
+        "skyNodeRetained": false,
+        "hintNodeRetained": false
+      },
+      "browser": {
+        "frames": 60,
+        "disabledSetterCalls": 3,
+        "skyNodeRetained": true,
+        "hintNodeRetained": true,
+        "redundantDisabledSetterCalls": 0
+      }
+    },
+    {
+      "shape": {
+        "name": "short",
+        "width": 844,
+        "height": 390,
+        "text": 100
+      },
+      "baseline": {
+        "frames": 59,
+        "disabledSetterCalls": 59,
+        "skyNodeRetained": false,
+        "hintNodeRetained": false
+      },
+      "browser": {
+        "frames": 54,
+        "disabledSetterCalls": 3,
+        "skyNodeRetained": true,
+        "hintNodeRetained": true,
+        "redundantDisabledSetterCalls": 0
+      }
+    },
+    {
+      "shape": {
+        "name": "medium",
+        "width": 900,
+        "height": 700,
+        "text": 100
+      },
+      "baseline": {
+        "frames": 60,
+        "disabledSetterCalls": 60,
+        "skyNodeRetained": false,
+        "hintNodeRetained": false
+      },
+      "browser": {
+        "frames": 61,
+        "disabledSetterCalls": 3,
+        "skyNodeRetained": true,
+        "hintNodeRetained": true,
+        "redundantDisabledSetterCalls": 0
+      }
+    }
+  ]
+}

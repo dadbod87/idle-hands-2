@@ -1,0 +1,143 @@
+{
+  "pullRequest": 91,
+  "pr": {
+    "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
+    "run": 44712009571,
+    "domain": 589,
+    "browser": 242,
+    "browserGroups": [
+      83,
+      80,
+      79
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14617134668,
+        "createdAt": "2026-11-20T09:38:27Z",
+        "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
+        "zipSha256": "e46a432b0365ee86bcf4ea507c8f56206973bd29d20476fb7322c80b4d62c692",
+        "size": 132207,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14617023627,
+        "createdAt": "2026-11-20T09:38:28Z",
+        "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
+        "zipSha256": "f22e8e25f71abde6957d3e58cf958aabaea8355ce85faace459aa77735a85e63",
+        "size": 767210,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14619090603,
+        "createdAt": "2026-11-20T09:49:32Z",
+        "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
+        "zipSha256": "e69941422b98ac8368c2bb8f8e1c72d27795b4bef7afe0b4c993a4903d3d6c41",
+        "size": 20413008,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14617748854,
+        "createdAt": "2026-11-20T09:48:58Z",
+        "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
+        "zipSha256": "3cfd7e0fb77ddc3114d1a5d391f89ab20f7cfc9bb0da51811326cf070d749a6c",
+        "size": 19788485,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14619528176,
+        "createdAt": "2026-11-20T10:13:01Z",
+        "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
+        "zipSha256": "73050e13de68f900d5683195e12bed5c08f5482052549d88a17d56b620b8dad0",
+        "size": 24028457,
+        "otherSameNameArtifacts": [
+          {
+            "id": 14618907021,
+            "created_at": "2026-11-20T09:55:44Z",
+            "size_in_bytes": 14258250
+          }
+        ]
+      }
+    ],
+    "recovery": {
+      "attempt": 2,
+      "firstAttempt": "The Ubuntu mirror took 8 minutes 23 seconds to transfer 32.1 MB. Browser setup took 525 seconds. Browser shard 3 passed 52 cases before its unchanged 20-minute cap.",
+      "originalSuccessfulJobs": [
+        "domain-build-plan",
+        "browser-shard (1/3)",
+        "browser-shard (2/3)"
+      ],
+      "retried": [
+        "browser-shard (3/3)",
+        "browser-playtest"
+      ],
+      "setupSeconds": 26.0
+    }
+  },
+  "main": {
+    "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
+    "run": 44717464021,
+    "domain": 589,
+    "browser": 242,
+    "browserGroups": [
+      83,
+      80,
+      79
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14620496400,
+        "createdAt": "2026-11-20T10:17:10Z",
+        "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
+        "zipSha256": "1a881816d107dbd8c5d8610fec1fcfab7ddc63dbec637c5db0618fbe9b53e9b1",
+        "size": 132605,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14620157054,
+        "createdAt": "2026-11-20T10:17:12Z",
+        "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
+        "zipSha256": "96877342eda3e942d00d75932f5b5884eac09a52c64de36f5906af4cebec87ba",
+        "size": 767210,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14620393031,
+        "createdAt": "2026-11-20T10:28:12Z",
+        "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
+        "zipSha256": "0adecedac068b6a0aca326a131f5f419d7edd4262f39685baedd8e39b1e654e6",
+        "size": 20386933,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14620782566,
+        "createdAt": "2026-11-20T10:28:06Z",
+        "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
+        "zipSha256": "878f4fc9a934bda64e14f007bca316808c5909f833450e468732d6158047290e",
+        "size": 19730035,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14620383802,
+        "createdAt": "2026-11-20T10:30:05Z",
+        "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
+        "zipSha256": "bd6ece37609a37e30b1085480aa69cefce01aa078de0e7d38e4e881757780e6d",
+        "size": 23996248,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native narrow-phone browser with a fictional saved practice job and a confirmed ripe plant. Exact disposable CI on both heads."
+}

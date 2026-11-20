@@ -1,0 +1,123 @@
+{
+  "pullRequest": 85,
+  "pr": {
+    "sha": "e14cce0fc46e1624a7f626b7a97c66b1dd17e461",
+    "run": 44678192237,
+    "domain": 586,
+    "browser": 238,
+    "browserGroups": [
+      76,
+      80,
+      82
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14603231410,
+        "createdAt": "2026-11-20T05:04:06Z",
+        "sha": "e14cce0fc46e1624a7f626b7a97c66b1dd17e461",
+        "zipSha256": "8b38c0f95abbbeed52b76d174980b8a61033290c812712a6aa5d63688f88d74c",
+        "size": 132025,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14603965411,
+        "createdAt": "2026-11-20T05:04:07Z",
+        "sha": "e14cce0fc46e1624a7f626b7a97c66b1dd17e461",
+        "zipSha256": "979148b74bba4bac2fb39cb05d6786b6010f0c0ea011a6009559a2b046fb060c",
+        "size": 764600,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14604115100,
+        "createdAt": "2026-11-20T05:13:15Z",
+        "sha": "e14cce0fc46e1624a7f626b7a97c66b1dd17e461",
+        "zipSha256": "775d16fbe790085a1189507898e73f2f98f01ec462b056ebf0b55118975d3b3d",
+        "size": 18504700,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14602704958,
+        "createdAt": "2026-11-20T05:14:41Z",
+        "sha": "e14cce0fc46e1624a7f626b7a97c66b1dd17e461",
+        "zipSha256": "3def5747fa33c7608ad2866613236dde3ac135365be27bac2826ec8ae67ca655",
+        "size": 19790601,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14603593356,
+        "createdAt": "2026-11-20T05:16:09Z",
+        "sha": "e14cce0fc46e1624a7f626b7a97c66b1dd17e461",
+        "zipSha256": "037868548711146b1dec66388438581ede2b18fa52bd53d1d29b4ec2e981843e",
+        "size": 25302107,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "7cf5f49698d49ee47856ee5f8a7909b7f8a19038",
+    "run": 44679987072,
+    "domain": 586,
+    "browser": 238,
+    "browserGroups": [
+      76,
+      80,
+      82
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14604270591,
+        "createdAt": "2026-11-20T05:20:10Z",
+        "sha": "7cf5f49698d49ee47856ee5f8a7909b7f8a19038",
+        "zipSha256": "8438fa37eafa9061d8169f05c5421f28039ea85b03c8bfdd9dc4307b9ba974ba",
+        "size": 131818,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14603903654,
+        "createdAt": "2026-11-20T05:20:12Z",
+        "sha": "7cf5f49698d49ee47856ee5f8a7909b7f8a19038",
+        "zipSha256": "bd50a665b5ccd5ecb28a69ffeb84efc7ac5e81acb1d1f39c617632b6c7051359",
+        "size": 764600,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14603939224,
+        "createdAt": "2026-11-20T05:28:58Z",
+        "sha": "7cf5f49698d49ee47856ee5f8a7909b7f8a19038",
+        "zipSha256": "99daf65ad54b179ea25e413b223ff357a3f10bee732d934c213a41d2c492e45f",
+        "size": 18429440,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14604357449,
+        "createdAt": "2026-11-20T05:32:46Z",
+        "sha": "7cf5f49698d49ee47856ee5f8a7909b7f8a19038",
+        "zipSha256": "e7dfd62c4070f1e7f0d80b4ceccd82471a81e51c6bad29e48b38252b4bc9df77",
+        "size": 19762563,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14604616667,
+        "createdAt": "2026-11-20T05:32:30Z",
+        "sha": "7cf5f49698d49ee47856ee5f8a7909b7f8a19038",
+        "zipSha256": "8f7a770590ebda94b3474fd23f1823c00b16e9e0259d1674a7d3395d15c35e3b",
+        "size": 25377319,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native browser layouts with intercepted fictional shared practice replies, plus full existing disposable PostgreSQL and two-resident cases. No physical device."
+}

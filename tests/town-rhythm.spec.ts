@@ -101,3 +101,68 @@ test.describe('town rhythm phone conversations',()=>{test.use({viewport:{width:3
  for(const[id,title]of[['caretaker','Jun · Grounds caretaker'],['courier','Pip · Town courier'],['clerk','Marlow · Town clerk']]){await page.getByRole('button',{name:'Places',exact:false}).tap();await (await revealPlace(page,`[data-destination="${id}"]`)).tap();await expect.poll(async()=>(await snapshot(page)).nearby,{timeout:arrivalTimeout}).toBe(id);await page.locator('#interact').focus();await page.keyboard.press('Enter');await expect(page.getByRole('heading',{name:title})).toBeVisible();await expect(page.getByRole('button',{name:'Close panel'})).toBeInViewport();await page.screenshot({path:`${evidence}/rhythm-phone-${id}-dialogue.png`});await page.keyboard.press('Escape');}
  expect(await economy(page)).toEqual(before);expect(requests.some(path=>path.startsWith('/api/'))).toBe(false);expect(errors).toEqual([]);
 });});
+
+test('town rhythm skips redundant rain style work and resumes the visible pass',async({page})=>{
+  await page.setViewportSize({width:360,height:640});
+  await installFixture(page,false);
+  const arm=()=>page.evaluate(()=>{
+    const style=document.querySelector<HTMLElement>('[data-weather-rain]')!.style;
+    const counts={visibility:0,transform:0};
+    for(const name of ['visibility','transform'] as const){
+      Object.defineProperty(style,name,{
+        configurable:true,
+        get:()=>style.getPropertyValue(name),
+        set:(value:string)=>{counts[name]++;style.setProperty(name,value);},
+      });
+    }
+    Object.assign(window,{__rainStyleWrites:counts});
+  });
+  const read=()=>page.evaluate(()=>({
+    ...((window as any).__rainStyleWrites as {visibility:number;transform:number}),
+    frame:(window as any).__pilot.metrics().presentation.renderedFrames as number,
+  }));
+  async function sample(steer=false){
+    const before=await read();
+    if(steer){await page.locator('canvas').focus();await page.keyboard.down('ArrowRight');}
+    try{
+      await page.waitForFunction(frame=>(window as any).__pilot.metrics().presentation.renderedFrames>=frame+12,before.frame);
+      const after=await read();
+      return {frames:after.frame-before.frame,visibility:after.visibility-before.visibility,transform:after.transform-before.transform};
+    }finally{if(steer)await page.keyboard.up('ArrowRight');}
+  }
+  await openSky(page,'day','clear');
+  await arm();
+  const clear=await sample(true);
+  await openSky(page,'night','drizzle');
+  await expect.poll(async()=>(await climate(page)).precipitation.enabled).toBe(true);
+  await arm();
+  const drizzle=await sample();
+  expect(drizzle.transform).toBeGreaterThan(2);
+  expect(await page.locator('[data-weather-rain]').evaluate(el=>getComputedStyle(el).visibility)).toBe('visible');
+  const beforeToggle=await read();
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await expect.poll(async()=>(await climate(page)).precipitation).toEqual({enabled:false,offset:0});
+  const reduced=await sample();
+  const hiding=(await read()).visibility-beforeToggle.visibility;
+  expect(await page.locator('[data-weather-rain]').evaluate(el=>getComputedStyle(el).visibility)).toBe('hidden');
+  const beforeEnable=await read();
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await expect.poll(async()=>(await climate(page)).precipitation.enabled).toBe(true);
+  const resumed=await sample();
+  const showing=(await read()).visibility-beforeEnable.visibility;
+  expect(resumed.transform).toBeGreaterThan(2);
+  await point(page,19.5,21.5,false);
+  await expect.poll(async()=>(await climate(page)).interior,{timeout:arrivalTimeout}).toBe(true);
+  await arm();
+  const interior=await sample();
+  expect((await climate(page)).precipitation).toEqual({enabled:false,offset:0});
+  fs.writeFileSync(`${evidence}/rain-style-writes.json`,JSON.stringify({
+    scope:'Native Chromium phone emulation. Actual style assignments counted after each fixture settles for at least 12 compositor frames. This is not CPU time or an FPS claim.',
+    clear,drizzle,reduced,resumed,interior,hiding,showing,
+  },null,2)+'\n');
+  for(const sample of [clear,reduced,interior])expect(sample).toMatchObject({visibility:0,transform:0});
+  expect(drizzle.visibility).toBe(0);
+  expect(resumed.visibility).toBe(0);
+  expect(hiding).toBe(1);
+  expect(showing).toBe(1);
+});

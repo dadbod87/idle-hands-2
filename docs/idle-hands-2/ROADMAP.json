@@ -2942,7 +2942,7 @@
     {
       "id": "IH2-156",
       "title": "Visit the boarding house in browser practice",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/local-lodging-visit",
       "goal": "Give the first-morning design a real room, a visible door and a safe step into town.",
       "depends_on": [
@@ -2957,7 +2957,77 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-156/PLAN.md"
+        "docs/evidence/IH2-156/PLAN.md",
+        "docs/evidence/IH2-156/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Browser practice has a real door and room, a note to Marlow, and a safely restored position."
+    },
+    {
+      "id": "IH2-157",
+      "title": "Stop writing styles for invisible rain",
+      "status": "done",
+      "owner_branch": "perf/quiet-rain-layer",
+      "goal": "Keep rain anchored and visible while avoiding repeated hidden-layer work.",
+      "depends_on": [
+        "IH2-156",
+        "IH2-148"
+      ],
+      "acceptance": [
+        "Measure native visibility/transform writes before and after.",
+        "Preserve fixed world anchoring, resize, walking, reduced motion, and the production clock."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-157/PLAN.md",
+        "docs/evidence/IH2-157/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Steady weather and indoors skip redundant visibility changes while visible rain keeps moving with the world."
+    },
+    {
+      "id": "IH2-158",
+      "title": "Choose an optional arrival story",
+      "status": "done",
+      "owner_branch": "feat/browser-arrival-stories",
+      "goal": "Let a resident personalize their first note without another setup screen or game cost.",
+      "depends_on": [
+        "IH2-157",
+        "IH2-153",
+        "IH2-156"
+      ],
+      "acceptance": [
+        "Preserve the existing appearance records, headwear, work and exact feet.",
+        "Use one optional setting, verify cancellation and reload, and show the selected note at the boarding house."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-158/PLAN.md",
+        "docs/evidence/IH2-158/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A browser resident can choose an optional backstory and walk to the clerk from the boarding-house note."
+    },
+    {
+      "id": "IH2-159",
+      "title": "Fade in brief light after an accepted doorway",
+      "status": "in_progress",
+      "owner_branch": "feat/confirmed-door-light",
+      "goal": "Make an entered room feel tangible with a quick visual beat while preserving input.",
+      "depends_on": [
+        "IH2-158",
+        "IH2-130"
+      ],
+      "acceptance": [
+        "Run the fade once after a confirmed transition, with reduced motion and replay suppression.",
+        "Verify local entry and a held fictional shared reply. Keep sound behavior independent."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-159/PLAN.md"
       ]
     }
   ],

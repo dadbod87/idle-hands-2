@@ -164,10 +164,19 @@
 }
 
 /* Keep the only route action visible next to the note in short, enlarged views. */
+.lodging-note-actions { display: grid; gap: 8px; }
 #panel:has(.lodging-note) .lodging-note .destination { margin-top: 0; }
 @media (min-width: 580px) and (max-height: 520px) {
   #panel:has(.lodging-note) { width: min(690px, calc(100vw - 28px)); }
   .lodging-note { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 16px; }
   #panel-body .lodging-note p { margin: 0; }
   .lodging-note .destination { white-space: nowrap; }
+}
+
+#door-light {
+ position: absolute;
+ inset: 0;
+ background: #f0dfb6;
+ opacity: 0;
+ pointer-events: none;
 }

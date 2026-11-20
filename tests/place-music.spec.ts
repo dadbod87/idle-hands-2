@@ -350,3 +350,113 @@ test('shared orchard music follows confirmed feet while a fictional move reply i
   await page.unrouteAll({behavior:'wait'});
  }
 });
+
+async function instrumentDoor(page:Page,hold=false){
+  await page.addInitScript(pause=>{
+    const original=Element.prototype.animate;
+    const starts:Array<{duration:number;room:string}>=[];
+    Object.assign(window,{__doorTest:{starts}});
+    Element.prototype.animate=function(...args:Parameters<typeof original>){
+      const motion=original.apply(this,args);
+      if(this.id==='door-light'){
+        starts.push({duration:Number(motion.effect?.getTiming().duration),room:(window as any).__pilot.snapshot().room});
+        if(pause){
+          motion.pause();
+          motion.currentTime=65;
+        }
+      }
+      return motion;
+    };
+  },hold);
+}
+const doorStarts=(page:Page)=>page.evaluate(()=>(window as any).__doorTest.starts);
+
+test('a native doorway briefly lights the world once without changing sound or input',async({page})=>{
+  await page.setViewportSize({width:360,height:640});
+  await instrumentDoor(page,true);
+  await page.addInitScript(()=>{
+    if(!localStorage.getItem('ih2:pilot-position:v1')){
+      localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:20,y:23.5}}));
+    }
+  });
+  await ready(page);
+  const layer=page.locator('#door-light');
+  expect(await doorStarts(page)).toEqual([]);
+  await expect(layer).toHaveAttribute('aria-hidden','true');
+  expect(await layer.evaluate(el=>getComputedStyle(el).pointerEvents)).toBe('none');
+  const point=await page.evaluate(()=>(window as any).__pilot.screenPoint(19.5,21.5));
+  await page.locator('canvas').click({position:point});
+  await expect.poll(()=>doorStarts(page)).toEqual([{duration:220,room:'workshop'}]);
+  await expect(page.locator('#location')).toContainText('Your workshop');
+  await expect.poll(()=>layer.evaluate(el=>Number(getComputedStyle(el).opacity))).toBeGreaterThan(.1);
+  await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
+  await page.screenshot({path:output+'/door-light-phone.png'});
+  await layer.evaluate(async el=>{
+    const motion=el.getAnimations()[0];
+    motion.play();
+    await motion.finished;
+  });
+  await expect.poll(()=>layer.evaluate(el=>Number(getComputedStyle(el).opacity))).toBe(0);
+  await page.reload();
+  await expect.poll(()=>(page.evaluate(()=>(window as any).__pilot.metrics().ready))).toBe(true);
+  await expect(page.locator('#location')).toContainText('Your workshop');
+  expect(await doorStarts(page)).toEqual([]);
+  await page.emulateMedia({reducedMotion:'reduce'});
+  const out=await page.evaluate(()=>(window as any).__pilot.screenPoint(9,13.5));
+  await page.locator('canvas').click({position:out});
+  await expect(page.locator('#location')).toContainText('Town square');
+  expect(await doorStarts(page)).toEqual([]);
+  await page.getByRole('button',{name:'Sound settings',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Turn on effects',exact:true})).toBeVisible();
+});
+
+test('a shared doorway waits for its fictional accepted movement reply before lighting',async({page})=>{
+  await instrumentDoor(page);
+  const at=Date.now();
+  const initial={
+    playerId:'aster',name:'Aster',serverInstance:'door-test',serverTime:at,workshop:createWorkshop(at),
+    position:{room:'square',position:{x:20,y:22}},quest:{contentVersion:1,awarded:[]},
+    bridge:{restored:false,phase:'collecting',contributed:0,target:3},plot:null,plots:[],seasonKey:'fixture',scores:[],orchard:null,
+  };
+  let logged=false,held=false;
+  let release!:()=>void;
+  const gate=new Promise<void>(resolve=>{release=resolve;});
+  await page.addInitScript(()=>{
+    class Stream extends EventTarget{
+      onopen:((event:Event)=>void)|null=null;
+      constructor(){super();queueMicrotask(()=>this.onopen?.(new Event('open')));}
+      close(){}
+    }
+    window.EventSource=Stream as unknown as typeof EventSource;
+  });
+  await page.route('**/api/town/**',async route=>{
+    const kind=new URL(route.request().url()).pathname.split('/').at(-1);
+    if(kind==='fixtures')return route.fulfill({json:{fixtures:[{id:'aster',name:'Aster'}]}});
+    if(kind==='login'){logged=true;return route.fulfill({json:{snapshot:initial}});}
+    if(kind==='snapshot')return logged?route.fulfill({json:{snapshot:initial}}):
+      route.fulfill({status:401,json:{message:'Choose a resident.'}});
+    if(kind==='movement'){
+      const position=route.request().postDataJSON();
+      if(position.room==='workshop'&&!held){
+        held=true;
+        await gate;
+      }
+      return route.fulfill({json:{ok:true,position}});
+    }
+    return route.abort();
+  });
+  try{
+    await page.goto('/?town=1');
+    await page.getByRole('button',{name:'Aster',exact:true}).click();
+    await expect(page.getByRole('dialog')).toBeHidden();
+    await page.getByRole('button',{name:'Enter workshop',exact:true}).click();
+    await expect.poll(()=>held,{timeout:8000}).toBe(true);
+    await expect(page.locator('#location')).toContainText('Your workshop');
+    expect(await doorStarts(page)).toEqual([]);
+    release();
+    await expect.poll(()=>doorStarts(page)).toEqual([{duration:220,room:'workshop'}]);
+  }finally{
+    release();
+    await page.unrouteAll({behavior:'wait'});
+  }
+});

@@ -65,3 +65,33 @@ test('headwear is a separate cosmetic choice that preserves legacy records until
  assert.equal(original.status,'saved');
  assert.equal(f.item.get(BROWSER_RESIDENT_KEY),raw);
 });
+
+test('a saved arrival story is an independent preference and can be cleared back to the previous format',()=>{
+ const base=JSON.stringify({version:2,name:'Bea',look:'bea',headwear:'clerk'});
+ const f=roomFixture(base);
+ const chosen=saveBrowserResident(f.storage,base,'Bea','bea','clerk','maker');
+ assert.equal(chosen.status,'saved');
+ if(chosen.status!=='saved')return;
+ assert.deepEqual(chosen.resident,{version:3,name:'Bea',look:'bea',headwear:'clerk',story:'maker'});
+ assert.deepEqual(readBrowserResident(f.storage).resident,chosen.resident);
+ const edit=saveBrowserResident(f.storage,chosen.raw,'Bea Miller','bea',null);
+ assert.equal(edit.status,'saved');
+ if(edit.status!=='saved')return;
+ assert.deepEqual(edit.resident,{version:3,name:'Bea Miller',look:'bea',headwear:null,story:'maker'});
+ assert.equal(saveBrowserResident(f.storage,chosen.raw,'Bea','bea','clerk',null).status,'changed');
+ const clear=saveBrowserResident(f.storage,edit.raw,'Bea','bea','clerk',null);
+ assert.equal(clear.status,'saved');
+ assert.equal(f.item.get(BROWSER_RESIDENT_KEY),base);
+ assert.equal(f.item.get('ih2:workshop:v2'),'personal-progress');
+ assert.equal(f.item.get('ih2:pilot-position:v1'),'feet');
+});
+
+test('unknown arrival stories are refused without modifying a saved resident',()=>{
+ assert.equal(browserResident('Ada','aster',null,'toString'),null);
+ assert.equal(browserResident('Ada','aster',null,'invented'),null);
+ const bad=JSON.stringify({version:3,name:'Ada',look:'aster',headwear:null,story:'invented'});
+ const f=roomFixture(bad);
+ assert.equal(readBrowserResident(f.storage).status,'unreadable');
+ assert.equal(saveBrowserResident(f.storage,bad,'Ada','aster',null,'maker').status,'unreadable');
+ assert.equal(f.item.get(BROWSER_RESIDENT_KEY),bad);
+});

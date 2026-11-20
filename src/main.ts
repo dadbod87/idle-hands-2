@@ -153,14 +153,25 @@ scene.onWalkFailure=()=>{namedWalk=null;placeWalk=null;feedback.textContent='Tha
 const worldContainer=document.querySelector<HTMLElement>('#world')!;
 const updateTextMode=()=>app.querySelector('.shell')?.classList.toggle('large-text',parseFloat(getComputedStyle(document.documentElement).fontSize)>20);
 updateTextMode();
-const worldResize=new ResizeObserver(entries=>{
- updateTextMode();const {width,height}=entries[0].contentRect;
- if(game.isBooted&&width>0&&height>0){
-  if(Math.abs(game.scale.width-width)>.5||Math.abs(game.scale.height-height)>.5)game.scale.setParentSize(width,height);
-  // Phaser RESIZE may already have changed the canvas before this observer.
-  // Its cleared target still needs repainting while the modal owns the pause.
-  refreshMenuFrame(2);
+let worldResizePending=false;
+game.events.on(Phaser.Core.Events.STEP,()=>{
+ if(!worldResizePending)return;
+ worldResizePending=false;
+ // Measure after Phaser's own scale check. Apply any remaining change in the
+ // game step so the cleared canvas is redrawn in that same frame.
+ const {width,height}=worldContainer.getBoundingClientRect();
+ if(width>0&&height>0&&(Math.abs(game.scale.width-width)>.5||Math.abs(game.scale.height-height)>.5)){
+  game.scale.setParentSize(width,height);
  }
+});
+const worldResize=new ResizeObserver(entries=>{
+ updateTextMode();
+ const {width,height}=entries[0].contentRect;
+ if(!game.isBooted||width<=0||height<=0)return;
+ worldResizePending=true;
+ if(document.hidden)return;
+ if(menuRenderPaused)refreshMenuFrame(2);
+ else wakeRender();
 });
 worldResize.observe(worldContainer);
 let cafeUI:CafeUI|undefined;let snackShelfUI:SnackShelfUI|undefined;let gardenUI:GardenUI|undefined;let carpentryUI:CarpentryUI|undefined;let commissionUI:CommissionUI|undefined;

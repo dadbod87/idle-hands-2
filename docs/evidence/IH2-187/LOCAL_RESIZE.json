@@ -1,0 +1,50 @@
+{
+  "baseline": {
+    "sha": "ff11ea13f8c8aed4cc585819dabbbd8a5801f5df",
+    "observation": "A running game at the 10 fps idle cap stayed at the idle cap after the native viewport/text resize.",
+    "diagnosticUbuntuRun": 44765755710
+  },
+  "layout": {
+    "startCssPixels": [
+      1440,
+      900
+    ],
+    "shortCssPixels": [
+      844,
+      390
+    ],
+    "rootTextPercent": 200,
+    "samplesPerCapture": 35
+  },
+  "local": {
+    "default": {
+      "early": {
+        "dark": 0,
+        "colors": 4
+      },
+      "settled": {
+        "dark": 0,
+        "colors": 4
+      },
+      "changedCanvasDimensions": 4,
+      "observerWrites": 0,
+      "wokeFromIdle": true
+    },
+    "software": {
+      "early": {
+        "dark": 0,
+        "colors": 6
+      },
+      "settled": {
+        "dark": 0,
+        "colors": 6
+      },
+      "changedCanvasDimensions": 3,
+      "observerWrites": 0,
+      "wokeFromIdle": true
+    }
+  },
+  "focusedCasesPerMode": 2,
+  "savedServicesStarted": false,
+  "physicalDevice": false
+}

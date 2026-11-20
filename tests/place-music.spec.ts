@@ -1,7 +1,7 @@
 import {SCORE_FRAMES} from '../src/audio/score.ts';
 import {createWorkshop} from '../src/game/live-workshop.ts';
 import { test, expect, type Page } from '@playwright/test';
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { revealPlace } from './helpers/places.ts';
 
 const output = 'test-results/browser/place-music';
@@ -513,7 +513,54 @@ test('short landscape puts the same Sound control beside the field guide and cle
   page.on('pageerror', error => errors.push(error.message));
   try {
     await instrument(page);
+    await page.addInitScript(() => {
+      const changes = { playfield: 0, fromResizeObserver: 0, wokeFromIdle: false };
+      Object.assign(window, { __playfieldSizeWrites: changes });
+      let insideObserver = false;
+      const NativeObserver = window.ResizeObserver;
+      window.ResizeObserver = class extends NativeObserver {
+        constructor(callback: ResizeObserverCallback) {
+          super((entries, observer) => {
+            insideObserver = true;
+            try { callback(entries, observer); }
+            finally { insideObserver = false; }
+          });
+        }
+      };
+      for (const dimension of ['width', 'height'] as const) {
+        const prototype = HTMLCanvasElement.prototype;
+        const property = Object.getOwnPropertyDescriptor(prototype, dimension)!;
+        Object.defineProperty(prototype, dimension, {
+          ...property,
+          set(this: HTMLCanvasElement, value: number) {
+            if (this.parentElement?.id === 'world' && this[dimension] !== value) {
+              changes.playfield++;
+              if (insideObserver) changes.fromResizeObserver++;
+            }
+            property.set!.call(this, value);
+          },
+        });
+      }
+    });
     await ready(page);
+    const frameLimit = () => page.evaluate(() => (window as any).__pilot.metrics().presentation.idleFrameLimit as number);
+    await expect.poll(frameLimit).toBe(10);
+    const sizeWrites = () => page.evaluate(() => (window as any).__playfieldSizeWrites as {
+      playfield: number;
+      fromResizeObserver: number;
+      wokeFromIdle: boolean;
+    });
+    const beforeResize = await sizeWrites();
+    await page.evaluate(() => {
+      const observeWake = () => {
+        if ((window as any).__pilot.metrics().presentation.idleFrameLimit === 0) {
+          (window as any).__playfieldSizeWrites.wokeFromIdle = true;
+        } else {
+          requestAnimationFrame(observeWake);
+        }
+      };
+      requestAnimationFrame(observeWake);
+    });
     const sound = page.getByRole('button', { name: 'Sound settings', exact: true });
     const control = await sound.elementHandle();
     const world = page.getByRole('region', { name: 'Neighborhood playfield' });
@@ -531,7 +578,45 @@ test('short landscape puts the same Sound control beside the field guide and cle
     expect(rect.x + rect.width).toBeLessThan(guide.x);
     expect(rect.y + rect.height).toBeLessThanOrEqual(field.y);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.screenshot({ path: output + '/short-sound-header.png' });
+    const immediate=await page.screenshot({ path: output + '/short-sound-header-first.png', scale:'css' });
+    await expect.poll(async () => (await sizeWrites()).playfield).toBeGreaterThan(beforeResize.playfield);
+    await expect.poll(async () => (await sizeWrites()).wokeFromIdle).toBe(true);
+    const afterResize = await sizeWrites();
+    expect(afterResize.fromResizeObserver).toBe(beforeResize.fromResizeObserver);
+    const rendered=()=>page.evaluate(()=>(window as any).__pilot.metrics().presentation.renderedFrames as number);
+    const before=await rendered();
+    await expect.poll(rendered).toBeGreaterThanOrEqual(before+4);
+    const capture=await page.screenshot({path:output+'/short-sound-header.png',scale:'css'});
+    // A DOM rectangle is insufficient evidence after a canvas resize. Sample
+    // the actual captured pixels below the location card in the playfield.
+    const readPixels = (capture: Buffer) => page.evaluate(async({encoded,field})=>{
+      const image=new Image();
+      image.src='data:image/png;base64,'+encoded;
+      await image.decode();
+      const sample=document.createElement('canvas');
+      sample.width=image.width;sample.height=image.height;
+      const context=sample.getContext('2d',{willReadFrequently:true})!;
+      context.drawImage(image,0,0);
+      const colors=new Set<string>();
+      let dark=0;
+      for(const x of [.17,.25,.4,.55,.65,.75,.85]){
+        for(const y of [.42,.53,.64,.75,.86]){
+          const pixel=context.getImageData(Math.floor(field.x+field.width*x),Math.floor(field.y+field.height*y),1,1).data;
+          const rgb=[pixel[0],pixel[1],pixel[2]];
+          colors.add(rgb.join(','));
+          if(Math.max(...rgb)<12)dark++;
+        }
+      }
+      return {dark,colors:colors.size};
+    },{encoded:capture.toString('base64'),field});
+    const [early, sampled] = await Promise.all([readPixels(immediate), readPixels(capture)]);
+    writeFileSync(output+'/short-sound-resize.json',JSON.stringify({
+      early, settled:sampled, changedCanvasDimensions:afterResize.playfield-beforeResize.playfield,
+      observerWrites:afterResize.fromResizeObserver-beforeResize.fromResizeObserver,
+      wokeFromIdle:afterResize.wokeFromIdle,
+    },null,2)+'\n');
+    expect(sampled.dark,'Dark pixels sampled across the captured world').toBeLessThan(18);
+    expect(sampled.colors,'Distinct colors in the captured world').toBeGreaterThanOrEqual(3);
     await sound.tap();
     await expect(page.getByRole('dialog')).toBeVisible();
     await expect(page.getByLabel('Music volume')).toBeVisible();

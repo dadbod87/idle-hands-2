@@ -265,11 +265,19 @@ export class WorkshopUI {
   if(this.host.commission)other.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));if(this.host.outings)other.append(this.button('Woodland work · borrowed tools & journal',()=>this.host.outings!(),'destination'));other.append(this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)other.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!(),'destination'));if(this.host.discoveries)other.append(this.button('Trail field notebook',()=>this.host.discoveries?.(),'destination'));b.append(other);
   const progress=document.createElement('details');progress.className='journal-progress';const title=document.createElement('summary');title.textContent='Skills & town progress';const skill=this.p('');skill.dataset.skills='';const kits=this.p('');kits.dataset.kits='';progress.append(title,skill,kits);if(this.host.orchard){const tasting=this.p('');tasting.dataset.orchardTasting='';progress.append(tasting);}if(this.host.returns)progress.append(this.button('Since your last visit',()=>this.host.returns?.(),'destination'));b.append(progress);this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Journal',render);}
+ private placementCountText(){
+  const count=this.state.owned[this.selected as PropId];
+  return `${names[this.selected]} · ${count} owned. Preview and moving are free.`;
+ }
+ private placementSlotText(slot:(typeof PLACEMENT_SLOTS)[number]){
+  const prop=this.state.placements[slot.id];
+  return `${slot.label}: ${prop?names[prop]:'empty'}${this.preview===slot.id?' · preview '+names[this.selected]:''}`;
+ }
  private renderPlacement(){
   const area=this.host.body.querySelector('#placement');if(!area)return;const restoreFocus=area.contains(document.activeElement);area.replaceChildren();
-  const count=this.state.owned[this.selected as typeof PROP_IDS[number]];const owned=this.p(`${names[this.selected]} · ${count} owned. Preview and moving are free.`);owned.dataset.owned=this.selected;const picture=document.createElement('img');picture.src=this.selected==='teapot'?'/art/cafe/teapot-icon.svg':this.selected==='letterbox'?'/art/commission/letterbox-'+this.state.commission.motif+'-closed.svg':'/art/homes/home-'+this.selected+'-icon.svg';picture.alt=names[this.selected];picture.width=64;picture.height=64;picture.className='furniture-preview';area.append(picture,owned);
+  const owned=this.p(this.placementCountText());owned.dataset.owned=this.selected;const picture=document.createElement('img');picture.src=this.selected==='teapot'?'/art/cafe/teapot-icon.svg':this.selected==='letterbox'?'/art/commission/letterbox-'+this.state.commission.motif+'-closed.svg':'/art/homes/home-'+this.selected+'-icon.svg';picture.alt=names[this.selected];picture.width=64;picture.height=64;picture.className='furniture-preview';area.append(picture,owned);
   const grid=document.createElement('div');grid.className='placement-grid';grid.setAttribute('aria-label','Workshop furniture positions');
-  for(const slot of PLACEMENT_SLOTS){const prop=this.state.placements[slot.id];const button=this.button(`${slot.label}: ${prop?names[prop]:'empty'}${this.preview===slot.id?' · preview '+names[this.selected]:''}`,()=>{this.preview=slot.id;this.lastSlot=slot.id;this.renderPlacement();});button.disabled=!this.host.inside();button.dataset.slot=slot.id;if(this.preview===slot.id)button.classList.add('preview');grid.append(button);}area.append(grid);
+  for(const slot of PLACEMENT_SLOTS){const button=this.button(this.placementSlotText(slot),()=>{this.preview=slot.id;this.lastSlot=slot.id;this.renderPlacement();});button.disabled=!this.host.inside();button.dataset.slot=slot.id;if(this.preview===slot.id)button.classList.add('preview');grid.append(button);}area.append(grid);
   const apply=this.button('Place here',()=>{if(!this.preview)return;const placed=Object.entries(this.state.placements).filter(([,prop])=>prop===this.selected);const available=this.state.owned[this.selected as typeof PROP_IDS[number]]-(this.remote?.allocatedElsewhere?.(this.selected)??0);if(this.remote&&available<=0){const message=this.state.owned[this.selected as typeof PROP_IDS[number]]===0?'Make or acquire this furniture before placing it.':'All copies are in your house plot. Return one to the bag there before placing it here.';this.host.feedback(message);this.remoteMessage=message;if(this.status)this.status.textContent=message;return;}const fromSlot=placed.length>=available?placed[0]?.[0]:undefined;this.dispatch({kind:'place',prop:this.selected,slot:this.preview,...(fromSlot?{fromSlot}:{})});if(!this.remote){this.preview=null;this.renderPlacement();}},'primary');apply.disabled=!this.preview||!this.host.inside();
   area.append(apply,this.button('Cancel preview',()=>{this.preview=null;this.renderPlacement();}));
   if(this.preview&&this.state.placements[this.preview as keyof WorkshopState['placements']])area.append(this.button('Return this furniture to bag',()=>{this.dispatch({kind:'remove',slot:this.preview});if(!this.remote){this.preview=null;this.renderPlacement();}}));
@@ -311,7 +319,19 @@ export class WorkshopUI {
   for(const el of b.querySelectorAll<HTMLElement>('[data-sketch-image]'))el.hidden=!sketches.includes(el.dataset.sketchImage as SurveyId);
   const keepsake=b.querySelector<HTMLElement>('[data-sketch-keepsake]');if(keepsake)keepsake.hidden=sketches.length!==3;
   for(const button of b.querySelectorAll<HTMLButtonElement>('[data-survey-choice]'))button.disabled=sketches.includes(button.dataset.surveyChoice as SurveyId)||!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry());
-  if(this.remote||this.notebook){for(const el of b.querySelectorAll<HTMLElement>('[data-owned]'))el.textContent=`${names[this.selected]} · ${this.state.owned[this.selected as typeof PROP_IDS[number]]} owned. Preview and moving are free.`;for(const el of b.querySelectorAll<HTMLButtonElement>('[data-slot]')){const slot=PLACEMENT_SLOTS.find(slot=>slot.id===el.dataset.slot);if(slot)el.textContent=`${slot.label}: ${this.state.placements[slot.id]?names[this.state.placements[slot.id]!]:'empty'}${this.preview===slot.id?' · preview '+names[this.selected]:''}`;}}
+  if(this.remote||this.notebook){
+   const owned=b.querySelector<HTMLElement>('[data-owned]');
+   if(owned){
+    const label=this.placementCountText();
+    if(owned.textContent!==label)owned.textContent=label;
+   }
+   for(const control of b.querySelectorAll<HTMLButtonElement>('[data-slot]')){
+    const slot=PLACEMENT_SLOTS.find(slot=>slot.id===control.dataset.slot);
+    if(!slot)continue;
+    const label=this.placementSlotText(slot);
+    if(control.textContent!==label)control.textContent=label;
+   }
+  }
   for(const el of b.querySelectorAll<HTMLElement>('[data-node]')){const node=this.state.nodes[el.dataset.node as typeof RESOURCE_IDS[number]];el.textContent=`${node.stock} available · ${node.stock>=6?'depot full':`next unit in ${duration(node.lastAt+4*3600_000-now)}`}`;}
   for(const button of b.querySelectorAll<HTMLButtonElement>('[data-collect]:not(.collection-control)'))button.disabled=!!this.remote&&(this.remoteBusy||!!this.remoteError||this.remote.canRetry())||this.state.nodes[button.dataset.collect as typeof RESOURCE_IDS[number]].stock===0||Object.values(this.state.inventory).reduce((a,v)=>a+v,0)>=60;
   if(this.collectionView)this.collectionView.blocked(!!this.remote&&(this.remoteBusy||!!this.remote.busy?.()||!!this.remoteError||this.remote.canRetry())||!this.collectionView.usable||this.state.nodes[this.collectionView.resource].stock===0||Object.values(this.state.inventory).reduce((a,v)=>a+v,0)>=60,!this.remote||this.remoteBusy||!!this.remote?.busy?.()||(!this.remoteError&&!this.remote?.canRetry()));

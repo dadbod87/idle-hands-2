@@ -6,6 +6,12 @@ Owner direction, November 13, 2026: conserve Actions usage and put the rules in 
 
 Read this file together with AGENTS.md, CURRENT_SESSION.md and the latest handoff before opening/updating a PR, manually dispatching or rerunning Actions, or merging. Fetch current branches and inspect active PRs/runs first. Branch backup is separate from acceptance: a feature-branch push without an open PR does not currently trigger this repository's workflow; verify the workflow before relying on that behavior. A push to a branch with an open PR can trigger a full run.
 
+## November 20 — $0 paid GitHub usage
+
+Use standard free public Ubuntu runners for required checks. Iterate locally and batch closely related source, focused tests and documentation before opening or updating a PR. Inspect existing runs and let the automatic exact-head check finish. Reserve dispatches and retries for a documented need. If a step requires paid use, record the blocker and keep progressing locally. Preserve the full database suite, all three browser groups and exact final PR and main checks. Billing, budgets and visibility stay as they are.
+
+At closeout distinguish unique workflow runs, retries and duplicate runs. Sum observed job durations across attempts, count inherited successful jobs only once, and cite recent timings for any proposed workflow change. Runner time and actual billing are separate measurements.
+
 ## Current public-source status — supersedes the private billing hold
 
 On November13 the owner explicitly asked to make this existing repository public instead of buying Actions usage. The authenticated update succeeded and anonymous GitHub/API/raw-source requests returned200/public. Standard GitHub-hosted Ubuntu runners for public repositories are free, so the old private included-allowance refusal no longer by itself blocks those runs. This is an owner-approved visibility change, not an exemption from checks or source acceptance. Source, history and existing Actions history/logs are now public; the game itself remains local/unreleased.
@@ -25,7 +31,7 @@ Prior statements below about the private billing refusal and suggested budgets a
 
 ## Mandatory release gates remain
 
-Before merging, domain-build-plan, both disjoint browser shards and browser-playtest must succeed on the exact final candidate, with the repository's complete applicable coverage and artifact/recovery/preview requirements. Local success, a skipped job, an old green commit or a documentation label does not satisfy this gate. The current full main-push regression run remains enabled. Inspect it after merge and stop further release steps on failure.
+Before merging, domain-build-plan, all three disjoint browser shards and browser-playtest must succeed on the exact final candidate, with the repository's complete applicable coverage and artifact/recovery/preview requirements. Local success, a skipped job, an old green commit or a documentation label does not satisfy this gate. The current full main-push regression run remains enabled. Inspect it after merge and stop further release steps on failure.
 
 Do not remove assertions, silently skip PostgreSQL tests, shorten required waits, reduce browser/device coverage, substitute a runner to evade a blocked gate, or change visibility without explicit owner authorization. The owner explicitly authorized public visibility on November13; required checks were not weakened. No workflow edit, alternative runner, storage cleanup or billing change is implied by this policy. Budget changes and paid resources need explicit owner authorization.
 

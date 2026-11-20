@@ -35,12 +35,39 @@ test('bag: pocket, keyboard shortcuts and original icons stay readable on narrow
  expect(errors).toEqual([]);writeFileSync(out+'/bag-responsive-proof.json',JSON.stringify({fixture:'Fresh ungranted local defaults; deliberately intercepted stool artwork failure only. Native keyboard/viewport/text emulation, not a physical phone.',layouts,errors},null,2)+'\n');
 });
 test('bag: declared shared home allocation snapshots subtract placed copies without rebuilding held slots',async({page})=>{
- const state=createWorkshop(Date.now()),commands:string[]=[];state.placements['north-east']='stool';expect(isCurrentWorkshop(state)).toBe(true);let logged=false,atHome=true;
+ await page.clock.install();
+ let state=createWorkshop(Date.now());const commands:string[]=[];state.placements['north-east']='stool';expect(isCurrentWorkshop(state)).toBe(true);let logged=false,atHome=true;
  const plot=()=>({id:'42',ownerId:'bag-owner',ownerName:'Bag tester',level:1,placements:{'north-west':null,'north-middle':'rug','north-east':null,'south-west':null,'south-middle':null,'south-east':null},workroomPlacements:{'workroom-north':null,'workroom-south':null},pennantOwned:false,letterboxMotif:'sun'});
  const snapshot=()=>({playerId:'bag-owner',name:'Bag tester',workshop:state,position:{room:'square',position:{x:14,y:22}},quest:{contentVersion:1,awarded:[]},bridge:{contributed:3,target:3,restored:true,phase:'open'},plot:atHome?plot():null,plots:atHome?[plot()]:[],seasonKey:'2026-11-06',scores:[],serverTime:Date.now(),serverInstance:'bag-home-fixture'});
  await page.addInitScript(()=>{class Events extends EventTarget{onopen:((e:Event)=>void)|null=null;constructor(){super();queueMicrotask(()=>this.onopen?.(new Event('open')));}close(){}};(window as any).EventSource=Events;});
  await page.route('**/api/town/**',route=>{const path=new URL(route.request().url()).pathname.split('/').at(-1);if(path==='fixtures')return route.fulfill({json:{fixtures:[{id:'bag-owner',name:'Bag tester'}]}});if(path==='login'){logged=true;return route.fulfill({json:{snapshot:snapshot()}});}if(path==='snapshot')return logged?route.fulfill({json:{snapshot:snapshot()}}):route.fulfill({status:401,json:{message:'Choose a fixture.'}});if(path==='movement')return route.fulfill({json:{ok:true,position:snapshot().position}});if(path==='command')commands.push(route.request().postData()??'');return route.fulfill({status:400,json:{message:'No fixture commands permitted.'}});});
- await page.goto('/?town=1');await page.getByRole('button',{name:'Bag tester',exact:true}).click();await ready(page);await page.locator('#bag').click();await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');await expect(count(page,'stool')).toHaveText('0');await expect(count(page,'rug')).toHaveText('0');await expect(stack(page,'rug')).toContainText('1 placed');await expect(stack(page,'rug')).toContainText('1 owned');await expect(count(page,'rug')).toHaveAttribute('aria-label','Welcome-ish rug: 0 available to place');await expect(count(page,'stool')).toHaveAttribute('aria-label','Committee stool: 0 available to place');await expect(page.locator('.bag-count-key')).toHaveText('Numbers show copies available to place.');await page.locator('.bag-count-key').scrollIntoViewIfNeeded();expect((await page.locator('.bag-count-key').boundingBox())!.y).toBeLessThan((await stack(page,'stool').boundingBox())!.y);await page.evaluate(()=>(window as any).__bagHeld=document.querySelector('[data-bag-item=rug]'));atHome=false;await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));await expect(count(page,'rug')).toHaveText('1');expect(await page.evaluate(()=>(window as any).__bagHeld===document.querySelector('[data-bag-item=rug]'))).toBe(true);await expect(count(page,'stool')).toHaveText('0');expect(commands).toEqual([]);writeFileSync(out+'/bag-home-allocation-proof.json',JSON.stringify({fixture:'Explicitly intercepted shared snapshot/EventSource with donated stool in workshop and rug in fictional home. New snapshot returns rug; no game command or protected writes.',stableSlot:true,commands},null,2)+'\n');
+ await page.goto('/?town=1');await page.getByRole('button',{name:'Bag tester',exact:true}).click();await ready(page);await page.locator('#bag').click();await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');await expect(count(page,'stool')).toHaveText('0');await expect(count(page,'rug')).toHaveText('0');await expect(stack(page,'rug')).toContainText('1 placed');await expect(stack(page,'rug')).toContainText('1 owned');await expect(count(page,'rug')).toHaveAttribute('aria-label','Welcome-ish rug: 0 available to place');await expect(count(page,'stool')).toHaveAttribute('aria-label','Committee stool: 0 available to place');await expect(page.locator('.bag-count-key')).toHaveText('Numbers show copies available to place.');await page.locator('.bag-count-key').scrollIntoViewIfNeeded();expect((await page.locator('.bag-count-key').boundingBox())!.y).toBeLessThan((await stack(page,'stool').boundingBox())!.y);
+ const arrangement=page.locator('.bag-arrangement');
+ await arrangement.locator('summary').click();
+ await expect(arrangement.locator('[data-slot=north-east]')).toHaveText('Near the window: Committee stool');
+ await arrangement.locator('#placement').evaluate(placement=>{
+  const labels=[...placement.querySelectorAll('[data-owned], [data-slot]')];
+  const sample={labels:labels.length,writes:0,ticks:0};
+  const timer=window.setInterval(()=>sample.ticks++,1000);
+  const observer=new MutationObserver(records=>{sample.writes+=records.length;});
+  for(const label of labels)observer.observe(label,{childList:true,characterData:true,subtree:true});
+  (window as any).__readPlacementIdle=()=>{clearInterval(timer);observer.disconnect();return sample;};
+ });
+ await page.clock.runFor(3200);
+ const arranged=await page.evaluate(()=> (window as any).__readPlacementIdle());
+ expect(arranged.labels).toBe(7);
+ expect(arranged.ticks).toBeGreaterThanOrEqual(3);
+ expect(arranged.writes).toBe(0);
+ const moved=applyWorkshop(state,{kind:'place',id:'bag-fixture-move',expectedRevision:state.revision,prop:'stool',fromSlot:'north-east',slot:'south-west'},Date.now());
+ expect(moved.ok,moved.message).toBe(true);
+ state=moved.state;
+ await page.evaluate(()=>(window as any).__bagHeld=document.querySelector('[data-bag-item=rug]'));
+ atHome=false;
+ await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));
+ await expect(count(page,'rug')).toHaveText('1');
+ await expect(arrangement.locator('[data-slot=north-east]')).toHaveText('Near the window: empty');
+ await expect(arrangement.locator('[data-slot=south-west]')).toHaveText('Left nook: Committee stool');
+ expect(await page.evaluate(()=>(window as any).__bagHeld===document.querySelector('[data-bag-item=rug]'))).toBe(true);await expect(count(page,'stool')).toHaveText('0');expect(commands).toEqual([]);writeFileSync(out+'/bag-home-allocation-proof.json',JSON.stringify({fixture:'Explicitly intercepted shared snapshot/EventSource with donated stool in workshop and rug in fictional home. New snapshot returns the rug and moves the workshop stool through the pure placement rules. The browser sends no command.',stableSlot:true,arranged,commands},null,2)+'\n');
 });
 test('bag: failed local persistence is disclosed without calling held contents saved',async({page})=>{
  mkdirSync(out,{recursive:true});

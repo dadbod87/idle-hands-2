@@ -1,3 +1,7 @@
+# November 20 — one announcement when a crop is ready accepted
+
+The selected bed publishes new readiness once. Bed controls keep their identity and avoid repeated unchanged source assignments. Main `03637c000ff744aedca83c5cb503868a02422784` passed 589 domain tests and 243 browser cases. [Exact verification](evidence/IH2-175/EXACT_CI.json).
+
 # November 20 — the stable location and action HUD accepted
 
 The location hint and sky elements survive nearby-action changes. The action button updates its disabled state only when eligibility changes. Main `d0aad8d331fdd42f63c890447d4ea2a173b655e9` passed 589 domain tests and 242 browser cases. [Exact verification](evidence/IH2-174/EXACT_CI.json).

@@ -1,0 +1,257 @@
+{
+  "commit": "b9fef9b62e65786571dbbba4cff115927122be65",
+  "run": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710",
+  "event": "workflow_dispatch",
+  "result": "success",
+  "runner": "ubuntu-24.04",
+  "jobs": [
+    {
+      "name": "domain-build-plan",
+      "conclusion": "success",
+      "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710/job/136389811998",
+      "durationSeconds": 192
+    },
+    {
+      "name": "browser-shard (2/3)",
+      "conclusion": "success",
+      "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710/job/136389812364",
+      "durationSeconds": 891
+    },
+    {
+      "name": "browser-shard (3/3)",
+      "conclusion": "success",
+      "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710/job/136389812407",
+      "durationSeconds": 873
+    },
+    {
+      "name": "browser-shard (1/3)",
+      "conclusion": "success",
+      "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710/job/136389812552",
+      "durationSeconds": 874
+    },
+    {
+      "name": "browser-playtest",
+      "conclusion": "success",
+      "url": "https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710/job/136398577776",
+      "durationSeconds": 5
+    }
+  ],
+  "viewportCssPixels": [
+    844,
+    390
+  ],
+  "rootTextPercent": 200,
+  "capturePixels": {
+    "prior-main-immediate": {
+      "sha256": "61c4e98164558514f6cb269fe8cc686683b97b942a33030e6b0da94765ce4f82",
+      "dark": 33,
+      "count": 35,
+      "colors": 2
+    },
+    "diagnostic-immediate": {
+      "sha256": "61c4e98164558514f6cb269fe8cc686683b97b942a33030e6b0da94765ce4f82",
+      "dark": 33,
+      "count": 35,
+      "colors": 2
+    },
+    "diagnostic-after-frame-check": {
+      "sha256": "245039fcc107e7c9e9bec8b13403ed300df6a1ed890a4892fde5ce0c12ff551a",
+      "dark": 0,
+      "count": 35,
+      "colors": 6
+    }
+  },
+  "softwareChromiumMac": {
+    "fresh": {
+      "first": {
+        "dark": 33,
+        "count": 35,
+        "colors": 2
+      },
+      "settled": {
+        "dark": 0,
+        "count": 35,
+        "colors": 6
+      },
+      "preFrames": 10,
+      "beforeFirst": 10,
+      "afterFirst": 10,
+      "startToFirstMs": 59,
+      "field": {
+        "x": 2,
+        "y": 94,
+        "width": 840,
+        "height": 220
+      },
+      "settledField": {
+        "x": 2,
+        "y": 94,
+        "width": 840,
+        "height": 220
+      },
+      "renderer": 2,
+      "errors": [],
+      "walked": true,
+      "contextLost": 0
+    },
+    "resized": {
+      "first": {
+        "dark": 0,
+        "count": 35,
+        "colors": 6
+      },
+      "settled": {
+        "dark": 0,
+        "count": 35,
+        "colors": 6
+      },
+      "preFrames": 11,
+      "beforeFirst": 12,
+      "afterFirst": 13,
+      "startToFirstMs": 224,
+      "field": {
+        "x": 2,
+        "y": 94,
+        "width": 840,
+        "height": 220
+      },
+      "settledField": {
+        "x": 2,
+        "y": 94,
+        "width": 840,
+        "height": 220
+      },
+      "renderer": 2,
+      "errors": [],
+      "walked": true,
+      "contextLost": 0
+    },
+    "archived": {
+      "dark": 33,
+      "count": 35,
+      "colors": 2
+    },
+    "warm-resized": {
+      "first": {
+        "dark": 0,
+        "count": 35,
+        "colors": 6
+      },
+      "settled": {
+        "dark": 0,
+        "count": 35,
+        "colors": 6
+      },
+      "preFrames": 11,
+      "beforeFirst": 11,
+      "afterFirst": 12,
+      "startToFirstMs": 93,
+      "field": {
+        "x": 2,
+        "y": 94,
+        "width": 840,
+        "height": 220
+      },
+      "settledField": {
+        "x": 2,
+        "y": 94,
+        "width": 840,
+        "height": 220
+      },
+      "renderer": 2,
+      "errors": [],
+      "walked": true,
+      "contextLost": 0
+    },
+    "idle-resized": {
+      "first": {
+        "dark": 0,
+        "count": 35,
+        "colors": 6
+      },
+      "settled": {
+        "dark": 0,
+        "count": 35,
+        "colors": 6
+      },
+      "preFrames": 11,
+      "beforeFirst": 12,
+      "afterFirst": 12,
+      "startToFirstMs": 158,
+      "field": {
+        "x": 2,
+        "y": 94,
+        "width": 840,
+        "height": 220
+      },
+      "settledField": {
+        "x": 2,
+        "y": 94,
+        "width": 840,
+        "height": 220
+      },
+      "renderer": 2,
+      "errors": [],
+      "walked": true,
+      "contextLost": 0
+    }
+  },
+  "modalNativeChromiumMac": [
+    {
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "field": {
+        "x": 2,
+        "y": 108,
+        "width": 316,
+        "height": 321.609375
+      },
+      "record": {
+        "dark": 0,
+        "count": 35,
+        "colors": 10
+      },
+      "frames": 3
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "field": {
+        "x": 18,
+        "y": 139,
+        "width": 1404,
+        "height": 597
+      },
+      "record": {
+        "dark": 0,
+        "count": 35,
+        "colors": 12
+      },
+      "frames": 2
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "field": {
+        "x": 2,
+        "y": 94,
+        "width": 840,
+        "height": 220
+      },
+      "record": {
+        "dark": 0,
+        "count": 35,
+        "colors": 7
+      },
+      "frames": 2
+    }
+  ],
+  "savedServicesStarted": false,
+  "measuresPhysicalDevice": false
+}

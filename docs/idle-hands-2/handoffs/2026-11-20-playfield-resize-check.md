@@ -1,0 +1,9 @@
+# November 20 playfield resize check
+
+The test-only candidate at `b9fef9b62e65786571dbbba4cff115927122be65` passed all five jobs in the [standard Ubuntu check](https://github.com/dadbod87/idle-hands-2/actions/runs/44765755710). The browser resized from 1440 × 900 to 844 × 390 with 200% root text. Its early screenshot showed a black playfield under the location card. It sampled 33 dark pixels out of 35. After the wait for four new Phaser render events, the world was visible, with zero dark samples and six colors. Sound stayed focused, both volume controls opened, and the same control returned to the playfield in portrait. The pixel test remains on the diagnostic branch.
+
+Local Chrome on the same built game showed the world immediately in its default rendering configuration. Software Chromium also captured a black frame when enlarging text in a fresh short window. The render counter stayed at 10 across that first capture. It recovered after the wait for new frames, the player could walk, and no context was lost. Warm and idle desktop-to-short resizes drew the world in the sampled local captures. Local Chrome also redrew behind the open Sound panel when switching between narrow portrait, desktop and short landscape.
+
+These checks establish a transient blank frame under the tested conditions. The captured interval bounds apply to these browser runs, and screen recording during physical device rotation remains untested. A later presentation change can measure whether waking the active render loop on geometry changes reduces the visible gap. Keep the early and settled captures so a regression stays visible in the evidence.
+
+The saved previews and databases stayed stopped. The browser samples used the local practice town and the hosted workflow used disposable fictional test data. [Measurements and screenshot hashes](../../evidence/IH2-187/RESIZE_CHECK.json).

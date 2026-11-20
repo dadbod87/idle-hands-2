@@ -1,0 +1,1352 @@
+{
+  "runs": [
+    {
+      "run": 44620526400,
+      "phase": "jun-orchard-pr",
+      "sha": "bce84c1fb850e18d0a88544a0a557915bb221106",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 189.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 797.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 766.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 832.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 46
+    },
+    {
+      "run": 44629304006,
+      "phase": "jun-orchard-main",
+      "sha": "c9353926a5f6f57230eb601e206a72567d69ffeb",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 719.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 217.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 821.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 909.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 5.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 47
+    },
+    {
+      "run": 44631947483,
+      "phase": "orchard-music-pr",
+      "sha": "aaad9ce052f9784aed4db8505e2a0fd8ed7230dc",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 803.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 227.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 711.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 799.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 45
+    },
+    {
+      "run": 44634075817,
+      "phase": "orchard-music-main",
+      "sha": "d422168f896a6cc4ede31a1993479a9751350b34",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 185.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 791.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 1057.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 732.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 50
+    },
+    {
+      "run": 44636988009,
+      "phase": "local-lodging-pr",
+      "sha": "dd4daf8928e2e8577bf6f443c42ae148ae5a497e",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 192.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 827.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 1063.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 966.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 2.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 54
+    },
+    {
+      "run": 44639583360,
+      "phase": "local-lodging-main",
+      "sha": "5d0e3b76b30435c3fc618b165dba426f3a85172e",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 195.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 735.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 861.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 938.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 49
+    },
+    {
+      "run": 44641881230,
+      "phase": "quiet-rain-pr",
+      "sha": "828d32e2588b07921b4a806ac4a499d55eb96570",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 808.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 900.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 181.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 742.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 5.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 47
+    },
+    {
+      "run": 44644093361,
+      "phase": "quiet-rain-main",
+      "sha": "2166d2a3cdaf7e5a4381e0c5ebc10a504a479f4f",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 197.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 834.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 857.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 1059.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 6.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 52
+    },
+    {
+      "run": 44646691801,
+      "phase": "arrival-stories-pr",
+      "sha": "3f0e573cfdbc97bb84e574e392f3b640f211819f",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 184.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 843.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 946.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 914.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 52
+    },
+    {
+      "run": 44648832528,
+      "phase": "arrival-stories-main",
+      "sha": "6a2b3f1abaaf4f5db393c88d996a4e480eca3114",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 218.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 744.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 1054.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 886.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 51
+    },
+    {
+      "run": 44651294688,
+      "phase": "door-light-pr",
+      "sha": "13272a26dcdc8a73a5b2740c0d0daf2594ff2fe4",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 1076.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 826.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 823.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 214.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 6.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 51
+    },
+    {
+      "run": 44653713483,
+      "phase": "door-light-main",
+      "sha": "efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 769.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 192.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 863.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 920.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 49
+    },
+    {
+      "run": 44655822915,
+      "phase": "first-morning-pr",
+      "sha": "cbdb68d92aca45f8640c8f16de3b756795fc17de",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 183.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 972.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 1011.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 998.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 2.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 56
+    },
+    {
+      "run": 44657923357,
+      "phase": "first-morning-main",
+      "sha": "8b4921c1c20c3c8dcf425f59d557c452380e9d75",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 834.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 925.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 179.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 825.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 5.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 48
+    },
+    {
+      "run": 44659971451,
+      "phase": "housing route to unloaded garden",
+      "sha": "9556e242a087d7d7232e757c77effc76314f9f9e",
+      "status": "completed",
+      "conclusion": "failure",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 189.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "failure",
+              "seconds": 220.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "failure",
+              "seconds": 698.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 725.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "failure",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 34
+    },
+    {
+      "run": 44661726409,
+      "phase": "older action-sheet expectation",
+      "sha": "93a385101f47c3d24891532589a4fa3c278e9999",
+      "status": "completed",
+      "conclusion": "failure",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 173.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 739.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 972.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "failure",
+              "seconds": 252.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "failure",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 39
+    },
+    {
+      "run": 44663888654,
+      "phase": "defer-garden-room-art-pr",
+      "sha": "0bdfe886d76cf2d0e476c38eb4346cc832b0dd4f",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 854.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 915.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 969.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 181.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 53
+    },
+    {
+      "run": 44665888373,
+      "phase": "defer-garden-room-art-main",
+      "sha": "ded1071f4d5b334f438588f4305645a6ac64a7a2",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 199.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 727.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 949.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 999.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 5.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 51
+    },
+    {
+      "run": 44668074834,
+      "phase": "housing-plan-preview-pr",
+      "sha": "fbbde0193d3e9d3cbffb0beb7a636f2a25e2d04d",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 793.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 192.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 822.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 928.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 49
+    },
+    {
+      "run": 44670004257,
+      "phase": "housing-plan-preview-main",
+      "sha": "0f09487c648e8f97428aaaf5938218f92131e3e7",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 1092.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 176.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 827.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 734.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 50
+    },
+    {
+      "run": 44672258557,
+      "phase": "duplicate weather disclosure locator",
+      "sha": "30088b913e9a740cfed5f8aabeaf7b61cbc515a5",
+      "status": "completed",
+      "conclusion": "failure",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 930.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 190.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 825.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "failure",
+              "seconds": 693.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "failure",
+              "seconds": 5.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 47
+    },
+    {
+      "run": 44674248417,
+      "phase": "task-first-field-guide-pr",
+      "sha": "a2e4baf6451dd55a7d9e15854030ba9da94d70cb",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 820.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 822.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 181.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 948.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 49
+    },
+    {
+      "run": 44676114775,
+      "phase": "task-first-field-guide-main",
+      "sha": "32c76200d352eb6db771ea22483184a0f1fedef2",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 227.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 834.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 1057.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 847.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 52
+    },
+    {
+      "run": 44678192237,
+      "phase": "journal-cafe-parcels-pr",
+      "sha": "e14cce0fc46e1624a7f626b7a97c66b1dd17e461",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 184.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 732.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 906.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 818.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 5.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 48
+    },
+    {
+      "run": 44679987072,
+      "phase": "journal-cafe-parcels-main",
+      "sha": "7cf5f49698d49ee47856ee5f8a7909b7f8a19038",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 194.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 931.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 947.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 720.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 49
+    },
+    {
+      "run": 44681875414,
+      "phase": "workbench-outing-pr",
+      "sha": "a3809a48252716ba68a6102a8b9c9d5b8cddbdc7",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 180.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 845.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 855.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 918.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 50
+    },
+    {
+      "run": 44683634905,
+      "phase": "workbench-outing-main",
+      "sha": "5440e24c4c9098113c3662f7f29affe0f2c5d856",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 222.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 740.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 932.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 781.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 5.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 48
+    },
+    {
+      "run": 44685653274,
+      "phase": "browser-shard-balance-pr",
+      "sha": "263aa716e4e0de82716633758f0b867d00322a6c",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 188.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 849.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 807.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 824.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 6.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 48
+    },
+    {
+      "run": 44687421155,
+      "phase": "browser-shard-balance-main",
+      "sha": "19709bab53349d65d4ac6a484ebf802557626d48",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 187.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 869.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 804.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 954.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 50
+    },
+    {
+      "run": 44689518964,
+      "phase": "boarding-house-music-pr",
+      "sha": "4baab3ed2f35a9d3943c34e72b8920f9e2241555",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 820.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 814.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 928.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 173.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 48
+    },
+    {
+      "run": 44691499881,
+      "phase": "boarding-house-music-main",
+      "sha": "34ec2e208434ac70548f5b1dd476e009fc6f40ad",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 781.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 173.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 826.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 971.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 49
+    },
+    {
+      "run": 44693655992,
+      "phase": "empty keepsake field in the public home route",
+      "sha": "bd9451d88538f6a21c6e1863c4214af8f20ff152",
+      "status": "completed",
+      "conclusion": "failure",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 217.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "failure",
+              "seconds": 564.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 839.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 800.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "failure",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 43
+    },
+    {
+      "run": 44696091072,
+      "phase": "missing first-display control in the browser fixture",
+      "sha": "e630548474449af69604d292b0914f3af47a2d68",
+      "status": "completed",
+      "conclusion": "failure",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 188.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 853.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 830.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "failure",
+              "seconds": 534.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "failure",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 43
+    },
+    {
+      "run": 44697911096,
+      "phase": "current exact gate",
+      "sha": "5eb0491a514aae8185a9e1f1fb224852adc7e14c",
+      "status": "in_progress",
+      "conclusion": null,
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "failure",
+              "seconds": 609.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 193.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 15
+    }
+  ],
+  "completedRoundedMinutes": 1597,
+  "failedRoundedMinutes": 206,
+  "limitations": "Time derived from named GitHub Ubuntu jobs, rounded to minutes per job. Partial running jobs have no final time. No billing conclusion."
+}

@@ -1,0 +1,260 @@
+{
+  "baseline": "efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6",
+  "candidate": "1302837c7796ef9b6876f731ef36fbceb2b9f6fd",
+  "method": "Three alternating runs per compiled source. Isolated static loopback, fresh local Chromium resident in each viewport, actual four-second ArrowRight movement. Built-in profile-browser tool. Baseline is the verified main artifact. Candidate is pre-merge source through the Lodge board. Request numbers include all Resource Timing entries observed by the end of the route.",
+  "limits": "No API interception, fixture stock, clock or position. Browser callbacks are not presented frame timings. This single workstation and its emulated vision do not establish end-device or network speed.",
+  "rows": [
+    {
+      "side": "baseline",
+      "sample": 1,
+      "viewport": "desktop2k",
+      "bootMs": 400.78,
+      "reloadMs": 272.91,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 141,
+      "longTaskCount": 2,
+      "finalFeet": {
+        "x": 43.9995,
+        "y": 25
+      }
+    },
+    {
+      "side": "baseline",
+      "sample": 1,
+      "viewport": "desktop4k",
+      "bootMs": 348.29,
+      "reloadMs": 285.47,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 141,
+      "longTaskCount": 1,
+      "finalFeet": {
+        "x": 44.16599999999999,
+        "y": 25
+      }
+    },
+    {
+      "side": "baseline",
+      "sample": 1,
+      "viewport": "phone360",
+      "bootMs": 321.51,
+      "reloadMs": 319.99,
+      "p95BrowserCallbackMs": 16.7,
+      "totalObservedResourceEntries": 141,
+      "longTaskCount": 1,
+      "finalFeet": {
+        "x": 43.99950000000001,
+        "y": 25
+      }
+    },
+    {
+      "side": "baseline",
+      "sample": 2,
+      "viewport": "desktop2k",
+      "bootMs": 381.36,
+      "reloadMs": 272.9,
+      "p95BrowserCallbackMs": 16.7,
+      "totalObservedResourceEntries": 141,
+      "longTaskCount": 2,
+      "finalFeet": {
+        "x": 43.99950000000001,
+        "y": 25
+      }
+    },
+    {
+      "side": "baseline",
+      "sample": 2,
+      "viewport": "desktop4k",
+      "bootMs": 381.83,
+      "reloadMs": 280.72,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 141,
+      "longTaskCount": 2,
+      "finalFeet": {
+        "x": 43.998999999999974,
+        "y": 25
+      }
+    },
+    {
+      "side": "baseline",
+      "sample": 2,
+      "viewport": "phone360",
+      "bootMs": 329.98,
+      "reloadMs": 258.5,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 141,
+      "longTaskCount": 1,
+      "finalFeet": {
+        "x": 44.083000000000006,
+        "y": 25
+      }
+    },
+    {
+      "side": "baseline",
+      "sample": 3,
+      "viewport": "desktop2k",
+      "bootMs": 384.37,
+      "reloadMs": 274.94,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 141,
+      "longTaskCount": 2,
+      "finalFeet": {
+        "x": 43.99949999999997,
+        "y": 25
+      }
+    },
+    {
+      "side": "baseline",
+      "sample": 3,
+      "viewport": "desktop4k",
+      "bootMs": 359.29,
+      "reloadMs": 287.96,
+      "p95BrowserCallbackMs": 16.7,
+      "totalObservedResourceEntries": 141,
+      "longTaskCount": 2,
+      "finalFeet": {
+        "x": 43.99900000000005,
+        "y": 25
+      }
+    },
+    {
+      "side": "baseline",
+      "sample": 3,
+      "viewport": "phone360",
+      "bootMs": 331.96,
+      "reloadMs": 267.81,
+      "p95BrowserCallbackMs": 16.7,
+      "totalObservedResourceEntries": 141,
+      "longTaskCount": 1,
+      "finalFeet": {
+        "x": 44.08250000000001,
+        "y": 25
+      }
+    },
+    {
+      "side": "candidate",
+      "sample": 1,
+      "viewport": "desktop2k",
+      "bootMs": 385.31,
+      "reloadMs": 247.01,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 117,
+      "longTaskCount": 2,
+      "finalFeet": {
+        "x": 43.9995,
+        "y": 25
+      }
+    },
+    {
+      "side": "candidate",
+      "sample": 1,
+      "viewport": "desktop4k",
+      "bootMs": 314.65,
+      "reloadMs": 265.31,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 117,
+      "longTaskCount": 1,
+      "finalFeet": {
+        "x": 43.99900000000001,
+        "y": 25
+      }
+    },
+    {
+      "side": "candidate",
+      "sample": 1,
+      "viewport": "phone360",
+      "bootMs": 308.22,
+      "reloadMs": 255.87,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 117,
+      "longTaskCount": 1,
+      "finalFeet": {
+        "x": 44.082499999999996,
+        "y": 25
+      }
+    },
+    {
+      "side": "candidate",
+      "sample": 2,
+      "viewport": "desktop2k",
+      "bootMs": 343.04,
+      "reloadMs": 261.78,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 117,
+      "longTaskCount": 2,
+      "finalFeet": {
+        "x": 43.99900000000003,
+        "y": 25
+      }
+    },
+    {
+      "side": "candidate",
+      "sample": 2,
+      "viewport": "desktop4k",
+      "bootMs": 337.89,
+      "reloadMs": 252.14,
+      "p95BrowserCallbackMs": 16.7,
+      "totalObservedResourceEntries": 117,
+      "longTaskCount": 1,
+      "finalFeet": {
+        "x": 44.082499999999996,
+        "y": 25
+      }
+    },
+    {
+      "side": "candidate",
+      "sample": 2,
+      "viewport": "phone360",
+      "bootMs": 306.83,
+      "reloadMs": 247.2,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 117,
+      "longTaskCount": 1,
+      "finalFeet": {
+        "x": 43.99950000000001,
+        "y": 25
+      }
+    },
+    {
+      "side": "candidate",
+      "sample": 3,
+      "viewport": "desktop2k",
+      "bootMs": 379.33,
+      "reloadMs": 236.63,
+      "p95BrowserCallbackMs": 16.7,
+      "totalObservedResourceEntries": 117,
+      "longTaskCount": 1,
+      "finalFeet": {
+        "x": 44.08300000000003,
+        "y": 25
+      }
+    },
+    {
+      "side": "candidate",
+      "sample": 3,
+      "viewport": "desktop4k",
+      "bootMs": 328.71,
+      "reloadMs": 252.08,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 117,
+      "longTaskCount": 1,
+      "finalFeet": {
+        "x": 44.08199999999997,
+        "y": 25
+      }
+    },
+    {
+      "side": "candidate",
+      "sample": 3,
+      "viewport": "phone360",
+      "bootMs": 308.53,
+      "reloadMs": 243.78,
+      "p95BrowserCallbackMs": 16.8,
+      "totalObservedResourceEntries": 117,
+      "longTaskCount": 1,
+      "finalFeet": {
+        "x": 43.99899999999998,
+        "y": 25
+      }
+    }
+  ]
+}

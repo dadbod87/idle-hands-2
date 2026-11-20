@@ -10,6 +10,10 @@ Read this file together with AGENTS.md, CURRENT_SESSION.md and the latest handof
 
 Use standard free public Ubuntu runners for required checks. Iterate locally and batch closely related source, focused tests and documentation before opening or updating a PR. Inspect existing runs and let the automatic exact-head check finish. Reserve dispatches and retries for a documented need. If a step requires paid use, record the blocker and keep progressing locally. Preserve the full database suite, all three browser groups and exact final PR and main checks. Billing, budgets and visibility stay as they are.
 
+A confirmed transient failure can justify one failed-job-only retry on the same commit. If the same setup problem repeats, retain both logs and investigate the failing step before triggering another run. An isolated recovery PR can correct a diagnosed check or infrastructure defect against the affected main. Gameplay merges wait for the recovery candidate and its exact new main to pass every gate. Keep both the failed and recovered revisions in the handoff.
+
+For a browser setup timeout, inspect the runner image, package mirror, transferred bytes, setup duration and number of completed tests against recent successful jobs. Run `python3 tools/check-ci-chromium-mirrors.py` locally after any installer change. Keep signed Ubuntu packages, pinned Chromium, coverage and job caps in place.
+
 At closeout distinguish unique workflow runs, retries and duplicate runs. Sum observed job durations across attempts, count inherited successful jobs only once, and cite recent timings for any proposed workflow change. Runner time and actual billing are separate measurements.
 
 ## Current public-source status — supersedes the private billing hold

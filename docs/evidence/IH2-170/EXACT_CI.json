@@ -1,0 +1,123 @@
+{
+  "pullRequest": 88,
+  "pr": {
+    "sha": "4baab3ed2f35a9d3943c34e72b8920f9e2241555",
+    "run": 44689518964,
+    "domain": 587,
+    "browser": 240,
+    "browserGroups": [
+      81,
+      80,
+      79
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14608037012,
+        "createdAt": "2026-11-20T06:43:49Z",
+        "sha": "4baab3ed2f35a9d3943c34e72b8920f9e2241555",
+        "zipSha256": "04b2606723b7fa63ff1ebb15a41e10408e6b49769c98e2dda57911df09b7ae20",
+        "size": 131483,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14608315941,
+        "createdAt": "2026-11-20T06:43:50Z",
+        "sha": "4baab3ed2f35a9d3943c34e72b8920f9e2241555",
+        "zipSha256": "94e1780cbcab624519503c38211c5e00eddde566ae987892d9c8a5c9904c837d",
+        "size": 765150,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14608906545,
+        "createdAt": "2026-11-20T06:54:38Z",
+        "sha": "4baab3ed2f35a9d3943c34e72b8920f9e2241555",
+        "zipSha256": "be8077480452b348a8abb8ec8b8c639a9746ea9a1ecb0fa6f936b74d4af8f2d6",
+        "size": 20046794,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14609190051,
+        "createdAt": "2026-11-20T06:54:31Z",
+        "sha": "4baab3ed2f35a9d3943c34e72b8920f9e2241555",
+        "zipSha256": "66867c68dd76e75714ef27661b36d5f055b3573721d9c32317acdf4454bb6cbf",
+        "size": 19781880,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14608602743,
+        "createdAt": "2026-11-20T06:56:26Z",
+        "sha": "4baab3ed2f35a9d3943c34e72b8920f9e2241555",
+        "zipSha256": "760d3bac454389d213df7971a2472c998d6bbb8eff2e209a1437d2f657d5ac96",
+        "size": 24107613,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "34ec2e208434ac70548f5b1dd476e009fc6f40ad",
+    "run": 44691499881,
+    "domain": 587,
+    "browser": 240,
+    "browserGroups": [
+      81,
+      80,
+      79
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14608148965,
+        "createdAt": "2026-11-20T07:00:51Z",
+        "sha": "34ec2e208434ac70548f5b1dd476e009fc6f40ad",
+        "zipSha256": "0122472625e5521b116a3e63d25c9615af3f8b3f73cc1b96b74e9691a6f5e429",
+        "size": 131952,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14608877211,
+        "createdAt": "2026-11-20T07:00:52Z",
+        "sha": "34ec2e208434ac70548f5b1dd476e009fc6f40ad",
+        "zipSha256": "c27440a236a13ea7e8358a587c8e28fa3ae888eac5c4304b37f3b3d60987bd38",
+        "size": 765150,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14610065120,
+        "createdAt": "2026-11-20T07:10:58Z",
+        "sha": "34ec2e208434ac70548f5b1dd476e009fc6f40ad",
+        "zipSha256": "33d9fc03411c71f4a58d9cbeb92e676eb68d5ef60c5d3f11de68980d5eadbb0a",
+        "size": 19874827,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14610035371,
+        "createdAt": "2026-11-20T07:11:43Z",
+        "sha": "34ec2e208434ac70548f5b1dd476e009fc6f40ad",
+        "zipSha256": "225f9e792a7dfae47133a14acf915fdd14406fb4a6147672abf570d206948113",
+        "size": 19730378,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14610345148,
+        "createdAt": "2026-11-20T07:14:10Z",
+        "sha": "34ec2e208434ac70548f5b1dd476e009fc6f40ad",
+        "zipSha256": "d2e912b34c66be629abac2e1b1e9eea5011a1be344ee9ea095cfc13b397adbe7",
+        "size": 24016172,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native Web Audio buffer evidence and exact PCM preservation. Phone playback was emulated. Physical-speaker review remains pending."
+}

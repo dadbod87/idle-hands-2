@@ -22,11 +22,11 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  const now=options.now??Date.now;
  const store=new TownStore(options.pool,{now,roster:fixtures.map(f=>f.id),occupants:()=>[...residents.values()].filter(r=>r.value.room==='neighborhood'&&(now()-r.at<60000||[...connections].some(c=>residents.get(c.id)===r))).map(r=>({districtId:r.value.districtId!,point:{x:r.value.position.x+.5,y:r.value.position.y+.5}}))});
  const homes=new Map<string,TownPlot>();let bridgeOpen=false;let cafeOpened=false;
- function cacheHomes(snapshot:Pick<TownSnapshot,'plots'|'bridge'>&{cafe?:TownSnapshot['cafe']}){if(snapshot.cafe?.phase==='open'&&!cafeOpened){cafeOpened=true;invalidate('');}bridgeOpen=bridgeOpen||snapshot.bridge.phase==='open';for(const plot of snapshot.plots){const previous=homes.get(plot.id);if(!previous||plot.level>=previous.level&&(plot.housingRevision??0)>=(previous.housingRevision??0)){if(plot.keepsake){const publicPlot={...plot};delete publicPlot.keepsake;homes.set(plot.id,publicPlot);}else homes.set(plot.id,plot);}}for(const entry of residents.values()){const normalized=canonicalHomePosition(entry.value,[...homes.values()]);if(JSON.stringify(normalized)!==JSON.stringify(entry.value)){entry.value=normalized;entry.credit=1;entry.at=now();dirty=true;}}}
+ function cacheHomes(snapshot:Pick<TownSnapshot,'plots'|'bridge'>&{cafe?:TownSnapshot['cafe']}){if(snapshot.cafe?.phase==='open'&&!cafeOpened){cafeOpened=true;invalidate('');}bridgeOpen=bridgeOpen||snapshot.bridge.phase==='open';for(const plot of snapshot.plots){const previous=homes.get(plot.id);if(!previous||plot.level>=previous.level&&(plot.housingRevision??0)>=(previous.housingRevision??0)){if(plot.keepsake!==undefined){const publicPlot={...plot};delete publicPlot.keepsake;homes.set(plot.id,publicPlot);}else homes.set(plot.id,plot);}}for(const entry of residents.values()){const normalized=canonicalHomePosition(entry.value,[...homes.values()]);if(JSON.stringify(normalized)!==JSON.stringify(entry.value)){entry.value=normalized;entry.credit=1;entry.at=now();dirty=true;}}}
  function alignSnapshotPosition(snapshot:TownSnapshot,position:TownPosition){
   snapshot.position=position;
   const visiblePlotId=isHome(position.room)?position.homePlotId:undefined;
-  for(const plot of snapshot.plots)if(plot.id!==visiblePlotId&&plot.keepsake)delete plot.keepsake;
+  for(const plot of snapshot.plots)if(plot.id!==visiblePlotId&&plot.keepsake!==undefined)delete plot.keepsake;
  }
  const residents=new Map<string,{value:TownPosition;at:number;credit:number}>();
  const residentLoads=new Map<string,Promise<{value:TownPosition;at:number;credit:number}>>();

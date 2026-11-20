@@ -143,7 +143,7 @@ export class TownStore {
     const plots:TownPlot[] = data.plots.map(p => ({ id:p.id,ownerId:p.owner_id,ownerName:p.name,level:p.level as 1|2,placements:p.placements,workroomPlacements:p.workroom_placements,pennantOwned:p.pennant_owned,planId:p.plan_id,yard:p.yard,housingRevision:p.housing_revision,letterboxMotif:(MOTIFS as readonly unknown[]).includes(p.letterbox_motif)?p.letterbox_motif as LetterboxMotif:null }));
     const position=canonicalHomePosition(confirmedPosition?.()??player.position,plots);
     const visited=isHome(position.room)?plots.find(p=>p.id===position.homePlotId):undefined;
-    if(visited&&data.plots.find(p=>p.id===visited.id)?.keepsake==='naturalist')visited.keepsake='naturalist';
+    if(visited)visited.keepsake=data.plots.find(p=>p.id===visited.id)?.keepsake??null;
     if(plots.some(p=>!validPublicHouse(p)))throw new Error('Stored home layout failed validation. Progress was not replaced.');
     const bridgeRow = data.bridge;
     // Explicit projection only: never select other residents' private garden JSON.

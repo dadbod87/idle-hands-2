@@ -34,7 +34,7 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   const position = {room:'home',homePlotId:'1',position:{x:9,y:isOwner?7:11}};
   const snapshot = () => {
    const plot = {id:'1',ownerId:'keepsake-owner',ownerName:'Rowan',level:1,placements:ownerState.placements,
-    workroomPlacements:emptyWorkroom(),...(keepsake?{keepsake}:{})};
+    workroomPlacements:emptyWorkroom(),keepsake};
    return {
     playerId:identity.id,name:identity.name,workshop:isOwner?ownerState:guestState,position,
     plot:isOwner?plot:null,plots:[plot],quest:{contentVersion:1,awarded:[]},
@@ -95,7 +95,11 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   await page.locator('#bag').click();
   await page.getByRole('button',{name:'Inspect or arrange a house'}).click();
  }
- const openFrame=()=>owner.locator('.home-keepsake summary').click();
+ const openFrame=async()=>{
+  const control=owner.locator('.home-keepsake summary');
+  await expect(control).toBeVisible();
+  await control.click();
+ };
 
  try {
   await fixture(owner,true);

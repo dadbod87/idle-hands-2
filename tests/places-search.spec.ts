@@ -101,6 +101,11 @@ test('assisted walks can be stopped by touch or Escape without activating the de
  ]) {
   const context = await browser.newContext({ viewport: { width: shape.width, height: shape.height }, hasTouch: shape.touch });
   const p = await context.newPage();
+  // Use an existing reachable point at the east commons. A short route can
+  // finish during screenshot capture on a slow runner before Cancel is sent.
+  await p.addInitScript(() => {
+   localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:104,y:45}}));
+  });
   const errors: string[] = [], api: string[] = [];
   p.on('pageerror', error => errors.push(error.message));
   p.on('request', request => { if (new URL(request.url()).pathname.startsWith('/api/')) api.push(request.url()); });
@@ -114,6 +119,7 @@ test('assisted walks can be stopped by touch or Escape without activating the de
    await expect.poll(() => p.evaluate(() => (window as any).__pilot?.metrics().ready)).toBe(true);
    await p.evaluate(n => document.documentElement.style.fontSize = n + '%', shape.text);
    await expect(stop).toBeHidden();
+   expect((await feet()).position).toEqual({x:104,y:45});
    const playfield = await world.boundingBox();
    const controls = await interact.boundingBox();
    if (shape.name === 'desktop') {
@@ -137,6 +143,7 @@ test('assisted walks can be stopped by touch or Escape without activating the de
    expect(field.height).toBeCloseTo(playfield!.height, 3);
    expect((await interact.boundingBox())?.width).toBeCloseTo(controls!.width, 3);
    await p.screenshot({ path: output + '/stop-walk-' + shape.name + '.png' });
+   expect((await feet()).walking).toBe(true);
    if (shape.touch) await stop.tap();
    else await p.keyboard.press('Escape');
 

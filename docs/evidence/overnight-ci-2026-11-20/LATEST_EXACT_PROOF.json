@@ -1,144 +1,124 @@
 {
-  "pullRequest": 91,
+  "pullRequest": 93,
   "pr": {
-    "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
-    "run": 44712009571,
+    "sha": "d60afc77c41298620de15a4311bdfa3ced55834d",
+    "run": 44724459838,
     "domain": 589,
-    "browser": 242,
+    "browser": 243,
     "browserGroups": [
       83,
-      80,
+      81,
       79
     ],
     "allPriorCasesPreserved": true,
     "artifacts": [
       {
         "name": "sequel-server-evidence",
-        "id": 14617134668,
-        "createdAt": "2026-11-20T09:38:27Z",
-        "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
-        "zipSha256": "e46a432b0365ee86bcf4ea507c8f56206973bd29d20476fb7322c80b4d62c692",
-        "size": 132207,
+        "id": 14623666305,
+        "createdAt": "2026-11-20T11:06:52Z",
+        "sha": "d60afc77c41298620de15a4311bdfa3ced55834d",
+        "zipSha256": "5cad8e6078af43db14ab7a5f6bb46ba00f4bfd01d2bf036ad70d2d01d3a4beb8",
+        "size": 132394,
         "otherSameNameArtifacts": []
       },
       {
         "name": "sequel-client-build",
-        "id": 14617023627,
-        "createdAt": "2026-11-20T09:38:28Z",
-        "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
-        "zipSha256": "f22e8e25f71abde6957d3e58cf958aabaea8355ce85faace459aa77735a85e63",
-        "size": 767210,
+        "id": 14623317302,
+        "createdAt": "2026-11-20T11:06:53Z",
+        "sha": "d60afc77c41298620de15a4311bdfa3ced55834d",
+        "zipSha256": "6450b7119182cc03b9004315dc0b7cfff36b58989a14c2ca832be48236953624",
+        "size": 767360,
         "otherSameNameArtifacts": []
       },
       {
         "name": "sequel-browser-evidence-1",
-        "id": 14619090603,
-        "createdAt": "2026-11-20T09:49:32Z",
-        "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
-        "zipSha256": "e69941422b98ac8368c2bb8f8e1c72d27795b4bef7afe0b4c993a4903d3d6c41",
-        "size": 20413008,
+        "id": 14624775380,
+        "createdAt": "2026-11-20T11:18:04Z",
+        "sha": "d60afc77c41298620de15a4311bdfa3ced55834d",
+        "zipSha256": "8ec2cbabd44ca11ddc61101c6c41b26183392005b02e5b017d557d3ac197f82a",
+        "size": 20926677,
         "otherSameNameArtifacts": []
       },
       {
         "name": "sequel-browser-evidence-2",
-        "id": 14617748854,
-        "createdAt": "2026-11-20T09:48:58Z",
-        "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
-        "zipSha256": "3cfd7e0fb77ddc3114d1a5d391f89ab20f7cfc9bb0da51811326cf070d749a6c",
-        "size": 19788485,
+        "id": 14623578357,
+        "createdAt": "2026-11-20T11:17:30Z",
+        "sha": "d60afc77c41298620de15a4311bdfa3ced55834d",
+        "zipSha256": "525558ab0332053f25b67e4c266f344b7b9cc40c413b1d32a6541993a3ffe4d9",
+        "size": 19922816,
         "otherSameNameArtifacts": []
       },
       {
         "name": "sequel-browser-evidence-3",
-        "id": 14619528176,
-        "createdAt": "2026-11-20T10:13:01Z",
-        "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
-        "zipSha256": "73050e13de68f900d5683195e12bed5c08f5482052549d88a17d56b620b8dad0",
-        "size": 24028457,
-        "otherSameNameArtifacts": [
-          {
-            "id": 14618907021,
-            "created_at": "2026-11-20T09:55:44Z",
-            "size_in_bytes": 14258250
-          }
-        ]
+        "id": 14624865324,
+        "createdAt": "2026-11-20T11:17:49Z",
+        "sha": "d60afc77c41298620de15a4311bdfa3ced55834d",
+        "zipSha256": "8790cc630672ac28bb757298c26a12b0ba9faa2df527f90499af185cd8fdeb7e",
+        "size": 24416353,
+        "otherSameNameArtifacts": []
       }
-    ],
-    "recovery": {
-      "attempt": 2,
-      "firstAttempt": "The Ubuntu mirror took 8 minutes 23 seconds to transfer 32.1 MB. Browser setup took 525 seconds. Browser shard 3 passed 52 cases before its unchanged 20-minute cap.",
-      "originalSuccessfulJobs": [
-        "domain-build-plan",
-        "browser-shard (1/3)",
-        "browser-shard (2/3)"
-      ],
-      "retried": [
-        "browser-shard (3/3)",
-        "browser-playtest"
-      ],
-      "setupSeconds": 26.0
-    }
+    ]
   },
   "main": {
-    "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
-    "run": 44717464021,
+    "sha": "03637c000ff744aedca83c5cb503868a02422784",
+    "run": 44726590916,
     "domain": 589,
-    "browser": 242,
+    "browser": 243,
     "browserGroups": [
       83,
-      80,
+      81,
       79
     ],
     "allPriorCasesPreserved": true,
     "artifacts": [
       {
         "name": "sequel-server-evidence",
-        "id": 14620496400,
-        "createdAt": "2026-11-20T10:17:10Z",
-        "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
-        "zipSha256": "1a881816d107dbd8c5d8610fec1fcfab7ddc63dbec637c5db0618fbe9b53e9b1",
-        "size": 132605,
+        "id": 14624422444,
+        "createdAt": "2026-11-20T11:22:12Z",
+        "sha": "03637c000ff744aedca83c5cb503868a02422784",
+        "zipSha256": "3e7f6c5b0b06e09e6ba5bc499c69c33a3e17ff2309f5374638c1ed705580737f",
+        "size": 133078,
         "otherSameNameArtifacts": []
       },
       {
         "name": "sequel-client-build",
-        "id": 14620157054,
-        "createdAt": "2026-11-20T10:17:12Z",
-        "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
-        "zipSha256": "96877342eda3e942d00d75932f5b5884eac09a52c64de36f5906af4cebec87ba",
-        "size": 767210,
+        "id": 14624427188,
+        "createdAt": "2026-11-20T11:22:13Z",
+        "sha": "03637c000ff744aedca83c5cb503868a02422784",
+        "zipSha256": "67152a6d9963f93d7443d47322e1d28ba2dcde803f870dfc29e1eb6b32a9732e",
+        "size": 767360,
         "otherSameNameArtifacts": []
       },
       {
         "name": "sequel-browser-evidence-1",
-        "id": 14620393031,
-        "createdAt": "2026-11-20T10:28:12Z",
-        "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
-        "zipSha256": "0adecedac068b6a0aca326a131f5f419d7edd4262f39685baedd8e39b1e654e6",
-        "size": 20386933,
+        "id": 14625531180,
+        "createdAt": "2026-11-20T11:34:49Z",
+        "sha": "03637c000ff744aedca83c5cb503868a02422784",
+        "zipSha256": "07869e72143b1797d900ef2564e71d154816a16b79e0d7f60d4f04eb6add0d59",
+        "size": 20719742,
         "otherSameNameArtifacts": []
       },
       {
         "name": "sequel-browser-evidence-2",
-        "id": 14620782566,
-        "createdAt": "2026-11-20T10:28:06Z",
-        "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
-        "zipSha256": "878f4fc9a934bda64e14f007bca316808c5909f833450e468732d6158047290e",
-        "size": 19730035,
+        "id": 14625012596,
+        "createdAt": "2026-11-20T11:32:58Z",
+        "sha": "03637c000ff744aedca83c5cb503868a02422784",
+        "zipSha256": "0103457244fc74f529bc8ae9de52303faf6a2f3edfbe05980a08d1bded1a0400",
+        "size": 19990892,
         "otherSameNameArtifacts": []
       },
       {
         "name": "sequel-browser-evidence-3",
-        "id": 14620383802,
-        "createdAt": "2026-11-20T10:30:05Z",
-        "sha": "78a886b54dff396cc9ba5bc80c6b526f712e2185",
-        "zipSha256": "bd6ece37609a37e30b1085480aa69cefce01aa078de0e7d38e4e881757780e6d",
-        "size": 23996248,
+        "id": 14624274460,
+        "createdAt": "2026-11-20T11:33:13Z",
+        "sha": "03637c000ff744aedca83c5cb503868a02422784",
+        "zipSha256": "786862a0c72a9abfdc68eda6a950a2e8ab465938c25e40a850ab0f3f2d1e5d72",
+        "size": 24277009,
         "otherSameNameArtifacts": []
       }
     ]
   },
   "sameBuildBytes": true,
-  "task": "IH2-173",
+  "task": "IH2-175",
   "limitations": "Exact source builds and disposable fictional CI. Saved previews and databases stayed stopped. Desktop/phone Chromium and fixture use are described in the task plan."
 }

@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-20
 
-Last inspected at 2026-11-20 02:31 PST. The separate sequel repository was at `78a886b54dff396cc9ba5bc80c6b526f712e2185`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-20 03:35 PST. The separate sequel repository was at `03637c000ff744aedca83c5cb503868a02422784`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -25,13 +25,13 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 | Earned Naturalist display for home visitors | [#89](https://github.com/dadbod87/idle-hands-2/pull/89) | `1aed806e2797` | 588 domain, 241 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44702182321) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44704431444) |
 | Read the framed certificate directly | [#90](https://github.com/dadbod87/idle-hands-2/pull/90) | `2b88eca11c5c` | 589 domain, 241 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44706467043) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44708916767) |
 | Ready allotment trip during workshop work | [#91](https://github.com/dadbod87/idle-hands-2/pull/91) | `78a886b54dff` | 589 domain, 242 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44712009571) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44717464021) |
+| Steadier location and action HUD updates | [#92](https://github.com/dadbod87/idle-hands-2/pull/92) | `d0aad8d331fd` | 589 domain, 242 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44719976867) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44722315422) |
+| One announcement when a crop is ready | [#93](https://github.com/dadbod87/idle-hands-2/pull/93) | `03637c000ff7` | 589 domain, 243 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44724459838) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44726590916) |
 
 ## Saved work in dependency order
 
 | Work | Branch | Status |
 |---|---|---|
-| Steadier location and action HUD updates | `perf/stable-context-hud` at `886b534de30f` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/886b534de30fd284a8b741996e27c74f9026d908/docs/evidence/IH2-174/PLAN.md) |
-| One announcement when a crop is ready | `fix/garden-ready-announcement` at `7c8aae954254` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/7c8aae954254123d45dadd1dd0e34266fd1dd6a7/docs/evidence/IH2-175/PLAN.md) |
 | Tap or press Escape to stop a guided walk | `feat/stop-assisted-walk` at `2dcee18995a1` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/2dcee18995a1615f8830d0b135c6e19c3074e612/docs/evidence/IH2-176/PLAN.md) |
 | A distinct walkable Garden Studio sunroom | `feat/garden-studio-interior` at `e6535514ae3e` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/e6535514ae3ea625b1bb7e6dd380f496f3ce5cc9/docs/evidence/IH2-177/PLAN.md) |
 | Softer foreground furniture and fewer redundant renders | `perf/steady-interior-furniture` at `f57648f054ac` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/f57648f054ac8f75a7391adb3d6d395b3f6387d8/docs/evidence/IH2-178/PLAN.md) |
@@ -47,7 +47,7 @@ Resume with the first pending exact gate. Verify current main and preserve concu
 
 ## Measurement and owner review
 
-Measured completed jobs used about 2,096 summed standard Ubuntu runner-minutes, including 405 on attempts with a failed job. The audit sums recorded job seconds and rounds each job up. It gives no charge estimate. [Job timing record](../../evidence/overnight-ci-2026-11-20/JOB_TIMES.json).
+Measured completed jobs used about 2,289 summed standard Ubuntu runner-minutes, including 405 on attempts with a failed job. The audit sums recorded job seconds and rounds each job up. It gives no charge estimate. [Job timing record](../../evidence/overnight-ci-2026-11-20/JOB_TIMES.json).
 
 Earlier failure evidence: [housing route to unloaded garden](https://github.com/dadbod87/idle-hands-2/actions/runs/44659971451), [older action-sheet expectation](https://github.com/dadbod87/idle-hands-2/actions/runs/44661726409), [duplicate weather disclosure locator](https://github.com/dadbod87/idle-hands-2/actions/runs/44672258557), [empty keepsake field in the public home route](https://github.com/dadbod87/idle-hands-2/actions/runs/44693655992), [missing first-display control in the browser fixture](https://github.com/dadbod87/idle-hands-2/actions/runs/44696091072), [empty keepsake field in the movement client cache](https://github.com/dadbod87/idle-hands-2/actions/runs/44697911096), [capability flag added to the historical store reader](https://github.com/dadbod87/idle-hands-2/actions/runs/44699979598).
 

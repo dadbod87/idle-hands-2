@@ -1,3 +1,9 @@
+# November 20 — Marlow’s direct routes to starter materials accepted
+
+A first-morning visitor gets a direct choice among real collection locations and can craft one earned planter for Bag. Main `023e1ada7d6bdd66baa18eb5a4074f2c75078e46` passed 592 domain tests and 251 browser cases. [Exact verification](../evidence/IH2-183/EXACT_CI.json).
+
+The next candidate is [`IH2-184` and its plan](../evidence/IH2-184/PLAN.md), on `feat/bag-item-place`. Let a resident go from a crafted stack to a chosen visible nook with one clear action. Continue with the ordinary exact-head gates and keep saved services stopped.
+
 # November 20 — the Lodge work board and direct workshop route accepted
 
 The Lodge owner sees their existing job, then may walk to the ordinary bench. Guests read the public note. Main `1ddec93d215d8c570d590895738f27eb090cf5c4` passed 592 domain tests and 250 browser cases. [Exact verification](../evidence/IH2-182/EXACT_CI.json).

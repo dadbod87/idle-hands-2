@@ -4,6 +4,23 @@ async function ready(p:Page){await expect.poll(()=>p.evaluate(()=>(window as any
 function queuedSecond(){const start=Date.now()-8*3600000-5000;let s=createWorkshop(start);for(const resource of ['scrap','timber','supplies'])s=applyWorkshop(s,{kind:'gather',resource,id:'bag-'+resource,expectedRevision:s.revision},start).state;for(const [kind,id,at]of [['craft','first',start],['claim','first-claim',start+5000],['craft','second',start+5000]] as const){const result=applyWorkshop(s,{kind,id,...(kind==='craft'?{recipe:'planter'}:{}),expectedRevision:s.revision},at);expect(result.ok).toBe(true);s=result.state;}expect(isCurrentWorkshop(s)).toBe(true);return s;}
 test('bag: native claimed craft stacks, placed copies leave the bag, returned copies and reload conserve ownership',async({page})=>{
  mkdirSync(out,{recursive:true});const s=queuedSecond();await page.addInitScript(save=>{if(!sessionStorage.getItem('bag-fixture')){localStorage.setItem('ih2:workshop:v2',JSON.stringify(save));localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'workshop',position:{x:5,y:5}}));sessionStorage.setItem('bag-fixture','1');}},s);await page.goto('/');await ready(page);await page.locator('#bag').click();await expect(count(page,'planter')).toHaveText('1');await page.getByRole('button',{name:'Open journal',exact:true}).click();await page.locator('[data-activity-open=bench]').click();await page.getByRole('button',{name:'Collect finished work',exact:true}).click();await page.getByRole('button',{name:'Close panel'}).click();await page.locator('#bag').click();await expect(count(page,'planter')).toHaveText('2');await expect(count(page,'planter')).toHaveAttribute('aria-label','Optimistic planter: 2 available to place');await expect(page.locator('.bag-count-key')).toHaveText('Numbers show copies available to place.');await page.screenshot({path:out+'/bag-desktop-stacked.png'});
+ const choose=page.getByRole('button',{name:'Choose a spot for Optimistic planter',exact:true});
+ const originalViewport=page.viewportSize()!;
+ for(const [layout,viewport,text]of [['desktop',originalViewport,'100%'],['short',{width:844,height:390},'200%']] as const){
+  await page.setViewportSize(viewport);
+  await page.evaluate(size=>document.documentElement.style.fontSize=size,text);
+  await choose.focus();
+  await page.keyboard.press('Enter');
+  const firstSpot=page.locator('[data-slot=north-west]');
+  await expect(firstSpot).toBeFocused();
+  await expect(page.getByRole('button',{name:'Place here',exact:true})).toBeDisabled();
+  const spot=(await firstSpot.boundingBox())!,header=(await page.locator('.dialog-head').boundingBox())!;
+  expect(spot.y).toBeGreaterThanOrEqual(header.y+header.height);
+  expect(spot.y+spot.height).toBeLessThanOrEqual(viewport.height);
+  await page.screenshot({path:out+'/bag-choose-spot-'+layout+'.png'});
+ }
+ await page.setViewportSize(originalViewport);
+ await page.evaluate(()=>document.documentElement.style.removeProperty('font-size'));
  await page.getByRole('button',{name:'Arrange furniture',exact:true}).click();await page.getByRole('combobox',{name:'Furniture to place'}).selectOption('planter');await page.locator('[data-slot=north-east]').click();await page.getByRole('button',{name:'Place here',exact:true}).click();await expect(count(page,'planter')).toHaveText('1');await expect(stack(page,'planter')).toContainText('2 owned');await expect(stack(page,'planter')).toContainText('1 placed');await page.locator('[data-slot=north-east]').click();await page.getByRole('button',{name:'Return this furniture to bag',exact:true}).click();await expect(count(page,'planter')).toHaveText('2');await page.reload();await ready(page);await page.locator('#bag').click();await expect(count(page,'planter')).toHaveText('2');expect(await page.evaluate(()=>(window as any).__pilot.workshop().owned.planter)).toBe(2);writeFileSync(out+'/bag-stack-proof.json',JSON.stringify({fixture:'Valid second eight-hour craft built from original pure gather/craft/claim commands; elapsed deadline/workshop spawn declared. Native UI claim and placement/removal/reload; no new grants, interception or rule change.',owned:2,available:2,claimedExplicitly:true},null,2)+'\n');
 });
 test('bag: shared snapshots keep slot nodes, free pockets issue no command and identity changes clear old counts',async({page})=>{

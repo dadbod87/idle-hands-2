@@ -12,7 +12,7 @@ import type {CommissionAction} from '../game/commission.ts';
 import type {CarpentryAction} from '../game/carpentry.ts';
 import type {GardenAction} from '../game/garden.ts';
 import {SURVEY_IDS,SURVEYS,SURVEY_CHOICES,CHOICE_LABELS,type SurveyId} from '../game/fieldwork.ts';
-import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PROPS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, skillLevel } from '../game/live-workshop.ts';
+import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PROPS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, type PropId, skillLevel } from '../game/live-workshop.ts';
 import './workshop.css';
 export const WORKSHOP_SAVE_KEY='ih2:workshop:v2';
 const SAVE_KEY=WORKSHOP_SAVE_KEY,LEGACY_SAVE_KEY='ih2:workshop:v1';
@@ -205,7 +205,7 @@ export class WorkshopUI {
   for(const id of RESOURCE_IDS){const card=document.createElement('div'),label=document.createElement('span'),icon=document.createElement('img'),quantity=document.createElement('strong');icon.src='/art/homes/home-'+id+'-icon.svg';icon.alt='';icon.width=20;icon.height=20;label.append(icon,names[id]);quantity.dataset.quantity=id;quantity.textContent=String(this.state.inventory[id]);card.append(label,quantity);materials.append(card);}b.append(materials);
   const work=document.createElement('section');work.className='bench-work';work.dataset.benchWork='';work.dataset.seen=this.state.job?'1':'0';work.hidden=!this.state.job;
   const title=document.createElement('h3');title.dataset.benchTitle='';const job=this.p('','bench-clock');job.dataset.job='';job.tabIndex=0;const detail=this.p('','bench-output');detail.dataset.benchWorkDetail='';
-  const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';claim.setAttribute('aria-describedby','bench-work-detail');detail.id='bench-work-detail';detail.tabIndex=0;const bag=this.button('Open bag',()=>this.showInventory(),'destination');const collected=document.createElement('span');collected.textContent='✓ Collected';collected.setAttribute('aria-hidden','true');collected.className='bench-bag-confirmation';bag.prepend(collected);bag.dataset.benchBag='';bag.setAttribute('aria-describedby','bench-work-detail');bag.hidden=true;work.append(title,job,detail,claim,bag);b.append(work);
+  const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';claim.setAttribute('aria-describedby','bench-work-detail');detail.id='bench-work-detail';detail.tabIndex=0;const bag=this.button('Open bag',()=>this.showInventory(false,work.dataset.recipe==='planter'?'planter':undefined),'destination');const collected=document.createElement('span');collected.textContent='✓ Collected';collected.setAttribute('aria-hidden','true');collected.className='bench-bag-confirmation';bag.prepend(collected);bag.dataset.benchBag='';bag.setAttribute('aria-describedby','bench-work-detail');bag.hidden=true;work.append(title,job,detail,claim,bag);b.append(work);
   const outing=document.createElement('section');
   outing.className='bench-outing';
   outing.dataset.benchOuting='';
@@ -224,15 +224,26 @@ export class WorkshopUI {
   const rules=document.createElement('details'),rulesTitle=document.createElement('summary');rules.className='bench-rules';rulesTitle.textContent='How crafting works';rules.append(rulesTitle,this.p('Materials are spent when a job starts. Time is real, even while you are away. Finished work waits for you to collect it into your bag. Jobs never repeat automatically. Your first planter takes five seconds; later ones take eight hours.'));b.append(rules);this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Your work bench',render);}
  private toolSwitch(label:string,open:()=>void){const row=document.createElement('div');row.className='personal-tool-switch';const copy=this.p(label);row.append(copy,this.button(label==='Belongings'?'Open journal':'Open bag',()=>{open();this.host.body.closest('dialog')?.querySelector<HTMLButtonElement>('[aria-label="Close panel"]')?.focus({preventScroll:true});}));return row;}
- showInventory(arrange=false){const render=()=>{
-  const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Belongings',()=>this.showJournal()));this.bag?.destroy();this.bag=new BagView(this.state,this.host.orchard?.()!==undefined?()=>this.host.orchard?.()??null:undefined);b.append(this.bag.root);
+ showInventory(arrange=false,received?:PropId){const render=()=>{
+  const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Belongings',()=>this.showJournal()));
+  const chooseFurniture=this.host.inside()?(id:PropId)=>{
+   this.selected=id;
+   select.value=id;
+   this.preview=null;
+   this.renderPlacement();
+   const firstEmpty=PLACEMENT_SLOTS.find(slot=>!this.state.placements[slot.id]);
+   this.bag?.arrange(firstEmpty?'[data-slot="'+firstEmpty.id+'"]':'[data-slot]');
+  }:undefined;
+  this.bag?.destroy();
+  this.bag=new BagView(this.state,this.host.orchard?.()!==undefined?()=>this.host.orchard?.()??null:undefined,chooseFurniture);
+  b.append(this.bag.root);
   if(this.host.home&&this.host.homeAvailable?.())b.append(this.button('Inspect or arrange a house',()=>this.host.home?.(),'destination'));
   const arrangement=document.createElement('details');arrangement.className='bag-arrangement';const summary=document.createElement('summary');summary.textContent='Arrange workshop furniture';arrangement.append(summary);
   if(!this.host.inside())arrangement.append(this.p('Enter your workshop to arrange furniture.'));
   const select=document.createElement('select');select.setAttribute('aria-label','Furniture to place');
   for(const id of PROP_IDS){const opt=document.createElement('option');opt.value=id;opt.textContent=names[id];select.append(opt);}select.value=this.selected;select.onchange=()=>{this.selected=select.value;this.preview=null;this.renderPlacement();};arrangement.append(select);
   const placement=document.createElement('div');placement.id='placement';arrangement.append(placement);b.append(arrangement);this.renderPlacement();this.notice();b.append(this.disclosure());this.updateClocks();
- };this.begin('Bag',render);if(arrange)this.bag?.arrange();}
+ };this.begin('Bag',render);if(arrange)this.bag?.arrange();else if(received)this.bag?.focusFurniture(received);}
  showJournal(){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Notes & progress',()=>this.showInventory()));
   const guidance=document.createElement('section');guidance.dataset.journalGuidance='';const heading=document.createElement('h3');heading.textContent='Your next step';const quest=this.p('','quest-card');quest.dataset.quest='';guidance.append(heading,quest);b.append(guidance);
@@ -306,7 +317,7 @@ export class WorkshopUI {
   if(this.collectionView)this.collectionView.blocked(!!this.remote&&(this.remoteBusy||!!this.remote.busy?.()||!!this.remoteError||this.remote.canRetry())||!this.collectionView.usable||this.state.nodes[this.collectionView.resource].stock===0||Object.values(this.state.inventory).reduce((a,v)=>a+v,0)>=60,!this.remote||this.remoteBusy||!!this.remote?.busy?.()||(!this.remoteError&&!this.remote?.canRetry()));
   const workCard=b.querySelector<HTMLElement>('[data-bench-work]'),work=benchWork(this.state,now),pending=!!this.remote&&(this.remoteBusy||!!this.remote.busy?.()||!!this.remoteError||this.remote.canRetry());
   const claim=b.querySelector<HTMLButtonElement>('[data-claim]'),claimFocused=document.activeElement===claim;
-  if(workCard){if(this.state.job){workCard.dataset.seen='1';workCard.dataset.output=recipeView(this.state,this.state.job.recipe).name;workCard.dataset.beforeCrafted=String(this.state.stats.crafted);workCard.dataset.collected='0';}else if(this.state.stats.crafted>Number(workCard.dataset.beforeCrafted??Infinity))workCard.dataset.collected='1';workCard.hidden=workCard.dataset.seen!=='1';workCard.dataset.phase=work.phase;const collected=work.phase==='idle'&&workCard.dataset.collected==='1';workCard.querySelector('[data-bench-title]')!.textContent=collected?'1 '+workCard.dataset.output:work.title;workCard.querySelector('[data-bench-work-detail]')!.textContent=!this.remote&&!this.saved?'Local save failed. Keep this tab open; reloading will lose this work.':collected?'Collected. Open your bag to inspect or place it.':work.detail;const bag=workCard.querySelector<HTMLButtonElement>('[data-bench-bag]')!;bag.hidden=work.phase!=='idle';if(claim)claim.hidden=work.phase==='idle';}
+  if(workCard){if(this.state.job){workCard.dataset.seen='1';workCard.dataset.recipe=this.state.job.recipe;workCard.dataset.output=recipeView(this.state,this.state.job.recipe).name;workCard.dataset.beforeCrafted=String(this.state.stats.crafted);workCard.dataset.collected='0';}else if(this.state.stats.crafted>Number(workCard.dataset.beforeCrafted??Infinity))workCard.dataset.collected='1';workCard.hidden=workCard.dataset.seen!=='1';workCard.dataset.phase=work.phase;const collected=work.phase==='idle'&&workCard.dataset.collected==='1';workCard.querySelector('[data-bench-title]')!.textContent=collected?'1 '+workCard.dataset.output:work.title;workCard.querySelector('[data-bench-work-detail]')!.textContent=!this.remote&&!this.saved?'Local save failed. Keep this tab open; reloading will lose this work.':collected?'Collected. Open your bag to inspect or place it.':work.detail;const bag=workCard.querySelector<HTMLButtonElement>('[data-bench-bag]')!;bag.hidden=work.phase!=='idle';if(claim)claim.hidden=work.phase==='idle';}
   const outing=b.querySelector<HTMLElement>('[data-bench-outing]');
   if(outing?.hidden&&!pending&&this.confirmedBenchJob()&&this.saved&&work.phase==='running'&&work.readyAt-now>=3600_000){
    const study=SURVEY_IDS.find(id=>!this.state.sketches.includes(id));

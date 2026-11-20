@@ -118,3 +118,5 @@
 @media(max-height:500px) and (min-width:651px) {
  #panel:has(.bench-outing) { width: min(660px, calc(100vw - 24px)); }
 }
+
+.bag-choose-spot{width:100%;min-height:44px;margin:8px 0 0;padding:6px;font-size:.78rem;overflow-wrap:anywhere}

@@ -1,0 +1,130 @@
+{
+  "pullRequest": 90,
+  "pr": {
+    "sha": "a9736903ee3fb5c63382719a5c644faa3a78d199",
+    "run": 44706467043,
+    "domain": 589,
+    "browser": 241,
+    "browserGroups": [
+      82,
+      80,
+      79
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14614509662,
+        "createdAt": "2026-11-20T08:59:03Z",
+        "sha": "a9736903ee3fb5c63382719a5c644faa3a78d199",
+        "zipSha256": "5ba49c9a63f7df4bde6bf51e262c9ba3c71a15f3dc4af5682bf6587e19941ee2",
+        "size": 132049,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14615222751,
+        "createdAt": "2026-11-20T08:59:05Z",
+        "sha": "a9736903ee3fb5c63382719a5c644faa3a78d199",
+        "zipSha256": "404bfdfc81f76f1d579a61752b6cf9400ce84e56e44d3a7cf91493a82c067bb3",
+        "size": 767064,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14616360964,
+        "createdAt": "2026-11-20T09:10:00Z",
+        "sha": "a9736903ee3fb5c63382719a5c644faa3a78d199",
+        "zipSha256": "d554d0cd94c7388b29573ade46da414914d659fc1030d3adb20ceb0f4629321a",
+        "size": 21107354,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14617150148,
+        "createdAt": "2026-11-20T09:09:40Z",
+        "sha": "a9736903ee3fb5c63382719a5c644faa3a78d199",
+        "zipSha256": "df076b76834e1c7180be71a08973b927b8021512e91d3878cf6e175713d3e214",
+        "size": 20089098,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14615064949,
+        "createdAt": "2026-11-20T09:12:51Z",
+        "sha": "a9736903ee3fb5c63382719a5c644faa3a78d199",
+        "zipSha256": "9547dc23f8ec71da73c05e055dee4ed428ac26a3fe5c2cf49d09795d7681770e",
+        "size": 24742822,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "2b88eca11c5c508376e1767cc21a3513032bc6ea",
+    "run": 44708916767,
+    "domain": 589,
+    "browser": 241,
+    "browserGroups": [
+      82,
+      80,
+      79
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14616813459,
+        "createdAt": "2026-11-20T09:34:09Z",
+        "sha": "2b88eca11c5c508376e1767cc21a3513032bc6ea",
+        "zipSha256": "ddad76fbcb9a024e93e3dce89e8e163c1ae0348f3831c5b8bcd4dcc1689aae04",
+        "size": 133278,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14617307578,
+        "createdAt": "2026-11-20T09:34:10Z",
+        "sha": "2b88eca11c5c508376e1767cc21a3513032bc6ea",
+        "zipSha256": "4c7600ac361f313b49068509ba83d8013809c96af84d62e76f1bd7012cada537",
+        "size": 767064,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14617447145,
+        "createdAt": "2026-11-20T09:29:14Z",
+        "sha": "2b88eca11c5c508376e1767cc21a3513032bc6ea",
+        "zipSha256": "324897285de77ac8b3226363683cb4ffcf65b61cf26784deaf20ce6afab92cbf",
+        "size": 20896151,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14616583326,
+        "createdAt": "2026-11-20T09:27:28Z",
+        "sha": "2b88eca11c5c508376e1767cc21a3513032bc6ea",
+        "zipSha256": "a24da921c5a68a06a002b707aad4f02250d22c8bc56bc8ff6949f9e3e629b751",
+        "size": 20082503,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14617925371,
+        "createdAt": "2026-11-20T09:27:36Z",
+        "sha": "2b88eca11c5c508376e1767cc21a3513032bc6ea",
+        "zipSha256": "7e62dbb4778026769ce81c506b65da92beaa5bd9a526327fc86418f6f69c6ca7",
+        "size": 24480697,
+        "otherSameNameArtifacts": []
+      }
+    ],
+    "recovery": {
+      "attempt": 2,
+      "firstAttempt": "The unchanged 500 ms profiled command budget observed 659.163589 ms p95. All three original browser jobs passed. Only the failed job was retried on the same SHA.",
+      "profiledCommandP95Ms": 92.11235600000145,
+      "thresholdMs": 500
+    }
+  },
+  "sameBuildBytes": true,
+  "task": "IH2-172",
+  "limitations": "Exact source builds and disposable fictional CI. Saved previews and databases stayed stopped. Desktop/phone Chromium and fixture use are described in the task plan."
+}

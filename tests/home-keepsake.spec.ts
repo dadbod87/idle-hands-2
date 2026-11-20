@@ -34,7 +34,7 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   const position = {room:'home',homePlotId:'1',position:{x:9,y:isOwner?7:11}};
   const snapshot = () => {
    const plot = {id:'1',ownerId:'keepsake-owner',ownerName:'Rowan',level:1,placements:ownerState.placements,
-    workroomPlacements:emptyWorkroom(),keepsake};
+    workroomPlacements:emptyWorkroom(),...(keepsake?{keepsake}:{})};
    return {
     playerId:identity.id,name:identity.name,workshop:isOwner?ownerState:guestState,position,
     plot:isOwner?plot:null,plots:[plot],quest:{contentVersion:1,awarded:[]},

@@ -3012,7 +3012,7 @@
     {
       "id": "IH2-159",
       "title": "Fade in brief light after an accepted doorway",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/confirmed-door-light",
       "goal": "Make an entered room feel tangible with a quick visual beat while preserving input.",
       "depends_on": [
@@ -3027,7 +3027,31 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-159/PLAN.md"
+        "docs/evidence/IH2-159/PLAN.md",
+        "docs/evidence/IH2-159/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A 220 ms paper-colored fade follows an accepted room transition."
+    },
+    {
+      "id": "IH2-160",
+      "title": "Wake up in a saved browser-practice room",
+      "status": "in_progress",
+      "owner_branch": "feat/browser-first-morning",
+      "goal": "Offer an optional choice after character setup, with one deliberate Get up action and a real doorstep exit.",
+      "depends_on": [
+        "IH2-159",
+        "IH2-156",
+        "IH2-158"
+      ],
+      "acceptance": [
+        "Keep the old position and progress available, with exact accepted bed and outside checkpoints.",
+        "Verify retry, reload, local keyboard/touch and an unobstructed short enlarged view."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-160/PLAN.md"
       ]
     }
   ],

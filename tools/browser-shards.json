@@ -32,6 +32,7 @@
     "design-garden.spec.ts",
     "design-woodland.spec.ts",
     "fieldwork.spec.ts",
+    "first-morning.spec.ts",
     "garden-clarity.spec.ts",
     "gathering-family.spec.ts",
     "gathering-study.spec.ts",

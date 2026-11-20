@@ -91,3 +91,65 @@ test('the confirmed Garden Studio is walkable and gives visitors the same sunroo
   }
  }
 });
+
+test('unchanged interior furniture stays still while the foreground clears the walking resident', async ({ browser }) => {
+ const context = await browser.newContext({ viewport: { width: 320, height: 640 }, hasTouch: true });
+ const page = await context.newPage();
+ const errors: string[] = [];
+ page.on('pageerror', error => errors.push(error.message));
+ const view = () => page.evaluate(() => {
+  const home = (window as any).__pilot.metrics().visual.home;
+  return home.furniture.find((item: {texture: string}) => item.texture.startsWith('letterbox-'));
+ });
+ const feet = () => page.evaluate(() => (window as any).__pilot.snapshot().position as { x: number; y: number });
+ async function steer(key: string, target: (feet: {x:number;y:number})=>boolean) {
+  await page.keyboard.down(key);
+  try {
+   await expect.poll(async () => target(await feet()), { intervals: [50] }).toBe(true);
+  } finally {
+   await page.keyboard.up(key);
+  }
+ }
+ try {
+  const control = await homePanelFixture(page, { level: 2, visitor: true, planId: 'garden-studio-2' });
+  const layout = control.saved().layout;
+  await expect.poll(async () => (await view())?.alpha).toBe(1);
+  const observe = await page.evaluateHandle(() => {
+   const stringify = JSON.stringify;
+   let repeated = 0;
+   JSON.stringify = function (...args: Parameters<typeof JSON.stringify>) {
+    const [value] = args;
+    if (Array.isArray(value) && value.length === 2 && value[0] &&
+      typeof value[0] === 'object' && Object.hasOwn(value[0], 'workroom-north')) repeated++;
+    return Reflect.apply(stringify, JSON, args);
+   };
+   return () => ({ repeated, frames: (window as any).__pilot.metrics().presentation.renderedFrames as number });
+  });
+  const start = await observe.evaluate(read => read());
+  await page.locator('canvas').focus();
+  await steer('ArrowRight', feet => feet.x > 19);
+  await steer('ArrowUp', feet => feet.y < 5.7);
+  await expect.poll(async () => (await view())?.alpha).toBe(0.5);
+  await page.screenshot({ path: 'test-results/browser/furniture-fade-phone.png' });
+  const crossing = await observe.evaluate(read => read());
+  expect(crossing.frames).toBeGreaterThan(start.frames + 12);
+  expect(crossing.repeated).toBe(start.repeated);
+  const beforeTexture = (await view()).texture;
+  await control.invalidate();
+  await expect.poll(async () => (await view())?.texture).not.toBe(beforeTexture);
+  await expect.poll(async () => (await view())?.alpha).toBe(0.5);
+  await steer('ArrowLeft', feet => feet.x < 16);
+  await expect.poll(async () => (await view())?.alpha).toBe(1);
+  const after = await observe.evaluate(read => read());
+  expect(after.repeated).toBe(crossing.repeated + 1);
+  expect(control.commands).toEqual([]);
+  expect(control.saved().layout).toEqual(layout);
+  expect(errors).toEqual([]);
+  writeFileSync('test-results/browser/furniture-native-counts.json', JSON.stringify({
+   classification:'Native Chromium walking, with intercepted fictional snapshots and an ordinary motif invalidation',
+   start, crossing, after, restoredOpacity:true, noEditCommands:true, errors,
+  },null,2)+'\n');
+ } finally {
+  await context.close();
+ }
+});

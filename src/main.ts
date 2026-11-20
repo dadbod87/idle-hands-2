@@ -410,15 +410,16 @@ function paintGuideObjective(){
   const depots=body.querySelector<HTMLButtonElement>('#guide-places');
   if(depots)depots.hidden=objective.id!=='gather'||session.room!=='square';
 }
+function showMaterialDepots(){
+  document.querySelector<HTMLButtonElement>('#places')?.click();
+  body.querySelector<HTMLButtonElement>('.places-primary button')?.focus();
+}
 let guidanceSecond=-1;
 document.querySelector('#field-guide')!.addEventListener('click',()=>{
   openPanel('Town field guide');
   body.innerHTML=fieldGuideContents(session.room==='workshop',townMode,session.room!=='square'&&session.room!=='workshop');
   paintGuideObjective();
-  body.querySelector('#guide-places')!.addEventListener('click',()=>{
-    document.querySelector<HTMLButtonElement>('#places')!.click();
-    body.querySelector<HTMLButtonElement>('.places-primary button')?.focus();
-  });
+  body.querySelector('#guide-places')!.addEventListener('click',showMaterialDepots);
   const guideJournal=body.querySelector<HTMLButtonElement>('#guide-journal')!;
   guideJournal.addEventListener('click',()=>{
     personalTool('journal');
@@ -631,7 +632,14 @@ function activate(stop: Stop) {
   if(dialogue){
     openPanel(dialogue.title);for(const line of dialogue.lines)body.append(paragraph(line));
     if(['courier','clerk','caretaker'].includes(stop.id))commissionUI?.addNpcLink(stop.id as RecipientId|'courier');
-    if(dialogue.action){const action=dialogue.action,button=document.createElement('button');button.type='button';button.className='destination';button.dataset.npcAction=action.destination;button.textContent=action.label;button.addEventListener('click',()=>{if(action.destination==='journal'){workshop.showJournal();return;}const target=worlds[session.room].stops.find(s=>s.id===action.destination||(action.destination==='workshop'&&s.id==='bench'));if(target)walkToPlace(target);});body.append(button);}
+    if(stop.id==='clerk'&&!townMode&&objective.id==='gather'){
+      const depots=document.createElement('button');
+      depots.type='button';
+      depots.className='destination primary';
+      depots.textContent='Find material depots';
+      depots.onclick=showMaterialDepots;
+      body.append(depots);
+    }else if(dialogue.action){const action=dialogue.action,button=document.createElement('button');button.type='button';button.className='destination';button.dataset.npcAction=action.destination;button.textContent=action.label;button.addEventListener('click',()=>{if(action.destination==='journal'){workshop.showJournal();return;}const target=worlds[session.room].stops.find(s=>s.id===action.destination||(action.destination==='workshop'&&s.id==='bench'));if(target)walkToPlace(target);});body.append(button);}
     if(stop.id==='caretaker'&&orchardAvailable()){
       const pantry=orchardUI.state;
       if(pantry&&(pantry.picked>0||pantry.snacks>0||objective.id==='bridge'||objective.id==='complete')){

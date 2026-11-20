@@ -1322,10 +1322,10 @@
     },
     {
       "run": 44697911096,
-      "phase": "current exact gate",
+      "phase": "empty keepsake field in the movement client cache",
       "sha": "5eb0491a514aae8185a9e1f1fb224852adc7e14c",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "failure",
       "attempts": [
         {
           "number": 1,
@@ -1336,17 +1336,152 @@
               "seconds": 609.0
             },
             {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 851.0
+            },
+            {
               "name": "domain-build-plan",
               "conclusion": "success",
               "seconds": 193.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 809.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "failure",
+              "seconds": 3.0
             }
           ]
         }
       ],
-      "roundedRunnerMinutes": 15
+      "roundedRunnerMinutes": 45
+    },
+    {
+      "run": 44699979598,
+      "phase": "capability flag added to the historical store reader",
+      "sha": "a137a02aeb9315ac407aa147742db99c3ebd85e7",
+      "status": "completed",
+      "conclusion": "failure",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "failure",
+              "seconds": 211.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 826.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 968.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 809.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 4.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 50
+    },
+    {
+      "run": 44702182321,
+      "phase": "home-keepsake-display-pr",
+      "sha": "52ab78566bb54eef542eab0cec27009dd8676a50",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 844.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 842.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 958.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 189.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 5.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 51
+    },
+    {
+      "run": 44704431444,
+      "phase": "home-keepsake-display-main",
+      "sha": "1aed806e2797417e7c5dded720166c419e528474",
+      "status": "completed",
+      "conclusion": "success",
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 186.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 838.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 821.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "success",
+              "seconds": 833.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "success",
+              "seconds": 3.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 47
     }
   ],
-  "completedRoundedMinutes": 1597,
-  "failedRoundedMinutes": 206,
+  "completedRoundedMinutes": 1790,
+  "failedRoundedMinutes": 301,
   "limitations": "Time derived from named GitHub Ubuntu jobs, rounded to minutes per job. Partial running jobs have no final time. No billing conclusion."
 }

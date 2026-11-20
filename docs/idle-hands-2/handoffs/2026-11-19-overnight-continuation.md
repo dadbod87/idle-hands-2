@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-19
 
-Last inspected at 2026-11-19 17:35 PST. The separate sequel repository was at `efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-19 17:54 PST. The separate sequel repository was at `efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -13,13 +13,13 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 | Walkable boarding house | [#77](https://github.com/dadbod87/idle-hands-2/pull/77) | `5d0e3b76b304` | 581 domain, 229 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44636988009) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44639583360) |
 | Fewer invisible rain updates | [#78](https://github.com/dadbod87/idle-hands-2/pull/78) | `2166d2a3cdaf` | 581 domain, 230 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44641881230) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44644093361) |
 | Optional arrival stories | [#79](https://github.com/dadbod87/idle-hands-2/pull/79) | `6a2b3f1abaaf` | 583 domain, 231 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44646691801) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44648832528) |
+| Brief light after a confirmed doorway | [#80](https://github.com/dadbod87/idle-hands-2/pull/80) | `efbb363bd3a8` | 583 domain, 233 browser | [PR checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44651294688) · [Main checks](https://github.com/dadbod87/idle-hands-2/actions/runs/44653713483) |
 
 ## Saved work in dependency order
 
 | Work | Branch | Status |
 |---|---|---|
-| Brief light after a confirmed doorway | `feat/confirmed-door-light` at `13272a26dcdc` | [PR #80](https://github.com/dadbod87/idle-hands-2/pull/80) · merged · [in_progress](https://github.com/dadbod87/idle-hands-2/actions/runs/44653713483) · [Plan](https://github.com/dadbod87/idle-hands-2/blob/13272a26dcdc8a73a5b2740c0d0daf2594ff2fe4/docs/evidence/IH2-159/PLAN.md) |
-| Optional saved first morning | `feat/browser-first-morning` at `817f79465edb` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/817f79465edbfa0b62a1d6d51ae8e2f8314aefe7/docs/evidence/IH2-160/PLAN.md) |
+| Optional saved first morning | `feat/browser-first-morning` at `cbdb68d92aca` | [PR #81](https://github.com/dadbod87/idle-hands-2/pull/81) · open · [in_progress](https://github.com/dadbod87/idle-hands-2/actions/runs/44655822915) · [Plan](https://github.com/dadbod87/idle-hands-2/blob/cbdb68d92aca45f8640c8f16de3b756795fc17de/docs/evidence/IH2-160/PLAN.md) |
 | Room-specific loading for the allotment | `perf/defer-garden-room-art` at `18c342a47a2e` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/18c342a47a2efd66ed3bb7132ce3e07affe756d8/docs/evidence/IH2-161/PLAN.md) |
 | Free room and yard previews | `feat/housing-plan-preview` at `0eb0da459c83` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0eb0da459c83a58898cc865e86eecdc44a8c301b/docs/evidence/IH2-162/PLAN.md) |
 | Shorter field guide and direct task links | `feat/task-first-field-guide` at `5e8f0b9fab47` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/5e8f0b9fab479e2361906c7c0f1a14ca7022df19/docs/evidence/IH2-163/PLAN.md) |
@@ -31,6 +31,11 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 | Read the framed certificate directly | `feat/read-home-keepsake` at `0efccbf9fb8d` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0efccbf9fb8d121379aaf53c827fe995e3ce820b/docs/evidence/IH2-172/PLAN.md) |
 | Ready allotment trip during workshop work | `feat/bench-ready-allotment` at `18f1afcf8bf9` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/18f1afcf8bf9859726caf3c657bd981598f65e9c/docs/evidence/IH2-173/PLAN.md) |
 | Steadier location and action HUD updates | `perf/stable-context-hud` at `886b534de30f` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/886b534de30fd284a8b741996e27c74f9026d908/docs/evidence/IH2-174/PLAN.md) |
+| One announcement when a crop is ready | `fix/garden-ready-announcement` at `7c8aae954254` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/7c8aae954254123d45dadd1dd0e34266fd1dd6a7/docs/evidence/IH2-175/PLAN.md) |
+| Tap or press Escape to stop a guided walk | `feat/stop-assisted-walk` at `2dcee18995a1` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/2dcee18995a1615f8830d0b135c6e19c3074e612/docs/evidence/IH2-176/PLAN.md) |
+| A distinct walkable Garden Studio sunroom | `feat/garden-studio-interior` at `e6535514ae3e` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/e6535514ae3ea625b1bb7e6dd380f496f3ce5cc9/docs/evidence/IH2-177/PLAN.md) |
+| Softer foreground furniture and fewer redundant renders | `perf/steady-interior-furniture` at `f57648f054ac` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/f57648f054ac8f75a7391adb3d6d395b3f6387d8/docs/evidence/IH2-178/PLAN.md) |
+| Sound clear of the short-landscape playfield | `fix/short-sound-placement` at `c1c7dee8b894` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/c1c7dee8b89423c8cd91e94cfd702d489cb31407/docs/evidence/IH2-179/PLAN.md) |
 
 Resume with the first pending exact gate. Verify current main and preserve concurrent changes. No cloud setup, live-game change or spending was part of this work.
 

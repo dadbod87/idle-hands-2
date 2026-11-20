@@ -26,3 +26,67 @@ test('planting facts: delayed real shared reply cannot overwrite a newly opened 
   await boot(p,'/?town=1');await p.getByRole('button',{name:'Rowan',exact:true}).click();await expect.poll(()=>p.evaluate(()=>(window as any).__pilot.town()?.playerId)).toBe('clarity-gardener');await beds(p);await p.getByRole('button',{name:'Walk to the beds',exact:true}).click();await expect.poll(async()=>(await feet(p)).room,{timeout:arrival}).toBe('garden');await expect(p.locator('#panel-title')).toHaveText('Your rented allotment');const before=await state(p);expect(before.garden.planted).toBe(0);await p.locator('[data-garden-action=preview-plant]').click();let received!:()=>void;const seen=new Promise<void>(r=>received=r),gate=new Promise<void>(r=>release=r);await p.route('**/api/town/command',async route=>{const raw=route.request().postDataJSON();if(raw.kind!=='garden'||raw.gardenAction.action!=='plant')return route.continue();ids.push(raw.id);const response=await route.fetch();expect(response.ok()).toBe(true);received();await gate;await route.fulfill({response}).catch(()=>{});});await p.locator('[data-garden-action=plant]').click();await seen;await p.getByRole('button',{name:'Close panel'}).click();await beds(p);const notes=p.locator('.garden-options>summary').filter({hasText:'Garden notes & privacy'});await notes.click();await expect(notes).toBeFocused();release();await expect.poll(async()=>(await state(p)).garden.planted).toBe(1);await expect(notes).toBeFocused();await expect(p.locator('.garden-status')).not.toContainText('Planted ');expect(ids).toHaveLength(1);const after=await state(p);expect(after.garden.seeds.radish).toBe(1);expect(after.garden.beds[0]!.readyAt-after.garden.beds[0]!.plantedAt).toBe(300000);for(const k of['inventory','owned','job','skills','bridgeKits']as const)expect(after[k]).toEqual(before[k]);expect(errors).toEqual([]);writeFileSync(out+'/garden-clear-shared-pending.json',JSON.stringify({disclosure:'Fresh fictional Rowan in guarded disposable ih2_browser; native walking and one real5minute planting command. Actual committed server reply held unchanged while closing/reopening Garden and choosing notes focus; no stock/position/clock grants or accepted/real data. Fixture resident deleted after closing to preserve following Rowan cases.',commands:ids.length,newPanelStatusKept:true,chosenFocusKept:true,oneSeedDebit:true,errors},null,2)+'\n');
  }finally{release();await c.close();const pool=new Pool({connectionString:url});try{await pool.query("delete from ih2.players where id='clarity-gardener'");}finally{await pool.end();}}
 });
+
+test('selected bed announces harvest readiness once and keeps its growing controls steady', async ({ browser }) => {
+ const context = await browser.newContext({ viewport: { width: 320, height: 640 }, hasTouch: true });
+ const p = await context.newPage();
+ const plantedAt = Date.UTC(2026, 10, 18, 18);
+ const planted = applyWorkshop(createWorkshop(plantedAt), {
+  id: 'garden-ready-announcement-fixture',
+  expectedRevision: 0,
+  kind: 'garden',
+  gardenAction: { action: 'plant', bed: 0, crop: 'radish' },
+ }, plantedAt);
+ if (!planted.ok) throw new Error(planted.message);
+ const fixture = planted.state;
+ const deadline = fixture.garden.beds[0]!.readyAt;
+ const errors: string[] = [];
+ p.on('pageerror', e => errors.push(e.message));
+ try {
+  await p.clock.setFixedTime(deadline - 1000);
+  await p.addInitScript(s => {
+   localStorage.setItem('ih2:workshop:v2', JSON.stringify(s));
+   localStorage.setItem('ih2:pilot-position:v1', JSON.stringify({ version: 1, room: 'garden', position: { x: 9, y: 13 } }));
+  }, fixture);
+  await boot(p);
+  await expect.poll(async () => (await feet(p)).room).toBe('garden');
+  await beds(p);
+  const bed = p.locator('[data-garden-bed="0"]');
+  const harvest = p.locator('[data-garden-action=harvest]');
+  const status = p.locator('.garden-status');
+  await bed.tap();
+  await expect(status).toContainText('Plants wait safely');
+  await expect(harvest).toBeDisabled();
+  await bed.focus();
+  const observe = await p.evaluateHandle(() => {
+   const status = document.querySelector('.garden-status')!;
+   const beds = document.querySelector('.garden-bed-list')!;
+   let announcements = 0;
+   let artChanges = 0;
+   const statusObserver = new MutationObserver(records => { announcements += records.length; });
+   const artObserver = new MutationObserver(records => { artChanges += records.length; });
+   statusObserver.observe(status, { childList: true });
+   artObserver.observe(beds, { subtree: true, attributes: true, attributeFilter: ['src'] });
+   return () => ({ announcements, artChanges });
+  });
+  await p.clock.setFixedTime(deadline);
+  await expect(status).toContainText('A harvest is ready');
+  await expect(harvest).toBeEnabled();
+  await expect(bed).toHaveAccessibleName('Bed 1. Radish. Ready.');
+  await expect(bed).toBeFocused();
+  // Observe at least two ordinary one-second refreshes after readiness.
+  await p.waitForTimeout(2150);
+  const changes = await observe.evaluate(read => read());
+  expect(changes).toEqual({ announcements: 1, artChanges: 1 });
+  expect((await state(p)).garden.beds).toEqual(fixture.garden.beds);
+  expect((await state(p)).garden.produce).toEqual(fixture.garden.produce);
+  expect(errors).toEqual([]);
+  await p.screenshot({ path: out + '/garden-ready-announcement-phone.png' });
+  writeFileSync(out + '/garden-ready-announcement.json', JSON.stringify({
+   classification: 'Isolated local save generated by a legal plant action with fixed test clock advanced through its real deadline; native narrow Chromium.',
+   ...changes, noHarvest: true, selectedFocusRetained: true, errors,
+  }, null, 2) + '\n');
+ } finally {
+  await context.close();
+ }
+});

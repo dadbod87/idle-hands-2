@@ -1,8 +1,19 @@
-import { worlds, canStand, clearSegment, routeTo, type Room, type Point, type Stop,type World } from './world.ts';
+import { NATURALIST_KEEPSAKE } from './home-keepsake.ts';
+import { TILE, worlds, canStand, clearSegment, routeTo, type Room, type Point, type Stop,type World } from './world.ts';
 import { LODGING_BEDSIDE, LODGING_FRONT, LODGING_ROOM, squareWithLodging } from './lodging.ts';
 
 export type SavedPosition = { version: 1; room: Room; position: Point };
 const spawn: Record<Room, Point> = { lodging:LODGING_BEDSIDE, neighborhood:{x:31.5,y:2.5}, square: { x: 24, y: 25 }, workshop: { x: 9, y: 11 }, home: {x:9,y:11}, 'home-expanded': {x:9,y:11},trail:{x:9,y:22},garden:{x:9,y:14} };
+const frame=NATURALIST_KEEPSAKE.frame;
+const keepsakeStop:Stop={
+ id:'home-keepsake',name:NATURALIST_KEEPSAKE.name,text:NATURALIST_KEEPSAKE.story,
+ point:{x:frame.x/TILE-.5,y:(frame.y+42)/TILE-.5},
+ doorArea:[(frame.x-frame.width/2)/TILE,(frame.y-frame.height/2)/TILE,frame.width/TILE,(frame.height+13)/TILE],
+};
+const displayedHomeStops={
+ home:[...worlds.home.stops,keepsakeStop],
+ 'home-expanded':[...worlds['home-expanded'].stops,keepsakeStop],
+};
 export const WALK_SPEED = 5; // World tiles per second; the actor is never snapped to them.
 export class Session {
   geometry?:World;
@@ -22,7 +33,16 @@ export class Session {
     if (room==='lodging'&&this.hasLodging) return LODGING_ROOM;
     if (room==='neighborhood') return this.geometry;
   }
-  get stops(): readonly Stop[] { return this.room==='square'?this.squareStops:worlds[this.room].stops; }
+  private hasHomeKeepsake = false;
+  setHomeKeepsake(shown:boolean){
+    this.hasHomeKeepsake=shown;
+    if(!shown&&this.pendingStop===keepsakeStop.id)this.stop();
+  }
+  get stops(): readonly Stop[] {
+    if(this.room==='square')return this.squareStops;
+    if(this.hasHomeKeepsake&&(this.room==='home'||this.room==='home-expanded'))return displayedHomeStops[this.room];
+    return worlds[this.room].stops;
+  }
   setSquareStops(extra?:readonly Stop[]){
     if(this.extraSquareStops===extra)return;
     this.extraSquareStops=extra;

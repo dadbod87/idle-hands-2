@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 import { mkdirSync } from 'node:fs';
 import { applyWorkshop, createWorkshop, RESOURCE_IDS } from '../src/game/live-workshop.ts';
+import { SURVEY_IDS, SURVEYS } from '../src/game/fieldwork.ts';
+import { GARDEN_RULES } from '../src/game/garden.ts';
 
 const output = 'test-results/browser/workbench-outing';
 const hour = 3600_000;
@@ -80,6 +82,67 @@ test('a confirmed long bench job offers a free walk to the next unfinished sketc
    expect(api).toEqual([]);
    expect(errors).toEqual([]);
   } finally {
+   await context.close();
+  }
+ }
+});
+
+test('a completed sketchbook leaves room for a ready garden trip during long work', async ({ browser }) => {
+ const epoch=Date.now()-GARDEN_RULES.firstRadishMs-10_000;
+ let now=epoch,seq=0,state=createWorkshop(now);
+ function apply(command:Record<string,unknown>){
+  const result=applyWorkshop(state,{...command,id:'ready-allotment-'+ ++seq,expectedRevision:state.revision},now);
+  expect(result.ok,result.message).toBe(true);
+  state=result.state;
+ }
+ for(const resource of RESOURCE_IDS)apply({kind:'gather',resource});
+ apply({kind:'craft',recipe:'planter'});
+ now+=5000;
+ apply({kind:'claim'});
+ for(const station of SURVEY_IDS)apply({kind:'survey',station,choice:SURVEYS[station].answer});
+ apply({kind:'garden',gardenAction:{action:'plant',bed:1,crop:'radish'}});
+ const waiting=structuredClone(state);
+ for(const [label,ready] of [['harvest',true],['still-growing',false]] as const){
+  const context=await browser.newContext({viewport:{width:320,height:650},hasTouch:true});
+  try{
+   const page=await context.newPage();
+   const fixture=structuredClone(waiting);
+   if(!ready){
+    fixture.garden.beds[1]!.plantedAt=Date.now();
+    fixture.garden.beds[1]!.readyAt=fixture.garden.beds[1]!.plantedAt+GARDEN_RULES.firstRadishMs;
+    fixture.garden.observedAt=fixture.garden.beds[1]!.plantedAt;
+    fixture.observedAt=fixture.garden.observedAt;
+   }
+   await page.addInitScript(saved=>localStorage.setItem('ih2:workshop:v2',JSON.stringify(saved)),fixture);
+   const errors:string[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   await page.goto('/');
+   await expect(page.locator('.pilot-tag span')).toContainText('saved here');
+   await page.locator('#journal').tap();
+   await page.locator('[data-activity-open=bench]').tap();
+   await page.locator('[data-craft=planter]').tap();
+   const trip=page.locator('[data-bench-outing]');
+   if(!ready){
+    await expect(trip).toBeHidden();
+    continue;
+   }
+   const read=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('ih2:workshop:v2')!));
+   const before=await read();
+   const walk=trip.getByRole('button',{name:'Walk to your allotment'});
+   await expect(walk).toBeVisible();
+   await walk.tap();
+   await expect(page.getByRole('heading',{name:'Your rented allotment',exact:true})).toBeVisible({timeout:20_000});
+   await expect(page.locator('[data-garden-bed="1"]')).toHaveAttribute('aria-pressed','true');
+   await expect(page.getByRole('button',{name:'Harvest · 1 produce + 1 seed',exact:true})).toBeEnabled();
+   const after=await read();
+   expect(after.garden.beds).toEqual(before.garden.beds);
+   expect(after.garden.produce).toEqual(before.garden.produce);
+   expect(after.job).toEqual(before.job);
+   expect(after.inventory).toEqual(before.inventory);
+   expect(errors,label).toEqual([]);
+   mkdirSync(output,{recursive:true});
+   await page.screenshot({path:output+'/phone-harvest.png'});
+  } finally{
    await context.close();
   }
  }

@@ -1,0 +1,38 @@
+{
+  "baseline": {
+    "classification": "Native Chromium walking, with intercepted fictional snapshots and an ordinary motif invalidation",
+    "start": {
+      "repeated": 0,
+      "frames": 14
+    },
+    "crossing": {
+      "repeated": 177,
+      "frames": 191
+    },
+    "after": {
+      "repeated": 222,
+      "frames": 236
+    },
+    "noEditCommands": true,
+    "errors": [],
+    "source": "e6535514ae3ea625b1bb7e6dd380f496f3ce5cc9"
+  },
+  "candidate": {
+    "classification": "Native Chromium walking, with intercepted fictional snapshots and an ordinary motif invalidation",
+    "start": {
+      "repeated": 0,
+      "frames": 13
+    },
+    "crossing": {
+      "repeated": 0,
+      "frames": 190
+    },
+    "after": {
+      "repeated": 1,
+      "frames": 234
+    },
+    "restoredOpacity": true,
+    "noEditCommands": true,
+    "errors": []
+  }
+}

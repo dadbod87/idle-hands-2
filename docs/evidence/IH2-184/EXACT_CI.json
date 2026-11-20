@@ -1,0 +1,250 @@
+{
+  "pullRequest": 102,
+  "pr": {
+    "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+    "run": 44799972291,
+    "domain": 592,
+    "browser": 251,
+    "browserGroups": [
+      88,
+      82,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14660586554,
+        "createdAt": "2026-11-20T19:15:28Z",
+        "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+        "zipSha256": "300f437a581255ca4555d42caef0990fe469f9395d0ca1897b45ff8d62b76e45",
+        "size": 132614,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14661475502,
+        "createdAt": "2026-11-20T19:15:29Z",
+        "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+        "zipSha256": "7b89b7f43efc6cf0f8e445cf3b87a850c18d4b525c3442f4e6b67c51b524d803",
+        "size": 771876,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14660769833,
+        "createdAt": "2026-11-20T19:27:58Z",
+        "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+        "zipSha256": "3a828b1da2ce4b25ae8a239b730210fb7fc9984052b84a130021aaca053618ac",
+        "size": 21320548,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14660584260,
+        "createdAt": "2026-11-20T19:26:45Z",
+        "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+        "zipSha256": "b4b26302b3336031b6ccd25c5fbeb03e48be2927f07fa718b46dda48ef3b3ec6",
+        "size": 20097983,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14661357733,
+        "createdAt": "2026-11-20T19:26:56Z",
+        "sha": "7296f8d715705e77c6bcff3933ae71bcac19267f",
+        "zipSha256": "0632809d684750a7cfcb67040fe5d1016d02ca08be648903ee1d3f7343981db4",
+        "size": 24322528,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+    "run": 44813111575,
+    "domain": 592,
+    "browser": 251,
+    "browserGroups": [
+      88,
+      82,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14668072447,
+        "createdAt": "2026-11-20T20:41:18Z",
+        "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+        "zipSha256": "ee09d3bd6f277d50569e7d5461760ec1b16f9d1894154ddf4c22c3f724c5c5a6",
+        "size": 132967,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14667637597,
+        "createdAt": "2026-11-20T20:41:19Z",
+        "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+        "zipSha256": "7e11e954ae788d5fcbe29141328101ee7bc7c835a3bcb4a3fdba0d9d4b2757a6",
+        "size": 771876,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14669507283,
+        "createdAt": "2026-11-20T20:56:12Z",
+        "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+        "zipSha256": "486a3ec4f7dabbf3e555ec9bb68f4485af3e8ac2ee3a6da88aaf97eea1e835b9",
+        "size": 21716923,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14669645106,
+        "createdAt": "2026-11-20T20:52:19Z",
+        "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+        "zipSha256": "07a4fcd272eb91a778fdcde0df0d6befd260b38fceadce055cddf3895dac7028",
+        "size": 20392004,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14667964943,
+        "createdAt": "2026-11-20T20:52:15Z",
+        "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+        "zipSha256": "098572a192e44493554c666ed593004e70856b87ff42aa7d66e386d7ae3bf8d6",
+        "size": 24885515,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Unseeded native touch through first collection and placement. Desktop and short enlarged keyboard use the usual fictional second-planter fixture.",
+  "initialMain": {
+    "sha": "0a9053a5b9b5081957fed00a7b37afa4df7a0fd5",
+    "run": 44802509960,
+    "disposition": "Browser group 1 timed out twice during slow Azure package downloads."
+  },
+  "recovery": {
+    "pullRequest": 103,
+    "pr": {
+      "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+      "run": 44810690851,
+      "domain": 592,
+      "browser": 251,
+      "browserGroups": [
+        88,
+        82,
+        81
+      ],
+      "allPriorCasesPreserved": true,
+      "artifacts": [
+        {
+          "name": "sequel-server-evidence",
+          "id": 14666120449,
+          "createdAt": "2026-11-20T20:25:10Z",
+          "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+          "zipSha256": "79b55ba9cf7ed7b0567232bf9dd7162cd530054ec346f2de88f49c87f7f034d4",
+          "size": 132182,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-client-build",
+          "id": 14667725049,
+          "createdAt": "2026-11-20T20:25:12Z",
+          "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+          "zipSha256": "756b664868fc0cdbfd04797a7d318d84a217c3fc0d9a1fc53c0b67777a5112b3",
+          "size": 771876,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-1",
+          "id": 14668421346,
+          "createdAt": "2026-11-20T20:37:15Z",
+          "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+          "zipSha256": "a1e3ec4ea83fd8c6b9ba3451b6713248162dd508fe5f61fbea541b3670895a5f",
+          "size": 22157365,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-2",
+          "id": 14667706840,
+          "createdAt": "2026-11-20T20:36:13Z",
+          "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+          "zipSha256": "5e7a1c9e376e1435881057b6018f71b8d7437226c2f80b4d545b2ad35c59ba41",
+          "size": 20449876,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-3",
+          "id": 14666483954,
+          "createdAt": "2026-11-20T20:36:46Z",
+          "sha": "56b0425159ef62f5c46b6cd922550b5cff82a844",
+          "zipSha256": "9ec531112ff077b52fbb63a9c571ee6bd259614ef3bd8a0864ab180fe19089a7",
+          "size": 25134756,
+          "otherSameNameArtifacts": []
+        }
+      ]
+    },
+    "main": {
+      "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+      "run": 44813111575,
+      "domain": 592,
+      "browser": 251,
+      "browserGroups": [
+        88,
+        82,
+        81
+      ],
+      "allPriorCasesPreserved": true,
+      "artifacts": [
+        {
+          "name": "sequel-server-evidence",
+          "id": 14668072447,
+          "createdAt": "2026-11-20T20:41:18Z",
+          "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+          "zipSha256": "ee09d3bd6f277d50569e7d5461760ec1b16f9d1894154ddf4c22c3f724c5c5a6",
+          "size": 132967,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-client-build",
+          "id": 14667637597,
+          "createdAt": "2026-11-20T20:41:19Z",
+          "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+          "zipSha256": "7e11e954ae788d5fcbe29141328101ee7bc7c835a3bcb4a3fdba0d9d4b2757a6",
+          "size": 771876,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-1",
+          "id": 14669507283,
+          "createdAt": "2026-11-20T20:56:12Z",
+          "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+          "zipSha256": "486a3ec4f7dabbf3e555ec9bb68f4485af3e8ac2ee3a6da88aaf97eea1e835b9",
+          "size": 21716923,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-2",
+          "id": 14669645106,
+          "createdAt": "2026-11-20T20:52:19Z",
+          "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+          "zipSha256": "07a4fcd272eb91a778fdcde0df0d6befd260b38fceadce055cddf3895dac7028",
+          "size": 20392004,
+          "otherSameNameArtifacts": []
+        },
+        {
+          "name": "sequel-browser-evidence-3",
+          "id": 14667964943,
+          "createdAt": "2026-11-20T20:52:15Z",
+          "sha": "85b117ab241f2b0ce14f4897466326fd51db4bfc",
+          "zipSha256": "098572a192e44493554c666ed593004e70856b87ff42aa7d66e386d7ae3bf8d6",
+          "size": 24885515,
+          "otherSameNameArtifacts": []
+        }
+      ]
+    },
+    "scope": "Installer, local fixture and documentation only. Recovery bytes match the Bag PR."
+  }
+}

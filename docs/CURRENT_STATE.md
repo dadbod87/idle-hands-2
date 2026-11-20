@@ -1,3 +1,7 @@
+# November 20 — the direct furniture action in Bag accepted
+
+Opening Bag after collecting a planter keeps its item card visible. Available workshop furniture has a direct placement choice and still uses explicit confirmation. Main `85b117ab241f2b0ce14f4897466326fd51db4bfc` passed 592 domain tests and 251 browser cases. [Exact verification](evidence/IH2-184/EXACT_CI.json).
+
 # November 20 — Marlow’s direct routes to starter materials accepted
 
 A first-morning visitor gets a direct choice among real collection locations and can craft one earned planter for Bag. Main `023e1ada7d6bdd66baa18eb5a4074f2c75078e46` passed 592 domain tests and 251 browser cases. [Exact verification](evidence/IH2-183/EXACT_CI.json).

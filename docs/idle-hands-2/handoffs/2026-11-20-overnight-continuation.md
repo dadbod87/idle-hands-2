@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-20
 
-Last inspected at 2026-11-20 06:47 PST. The separate sequel repository was at `cd0501924bd3fc9479cceadcf4c7a87947711001`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-20 06:52 PST. The separate sequel repository was at `cd0501924bd3fc9479cceadcf4c7a87947711001`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -74,5 +74,7 @@ The [home keepsake design study](https://github.com/dadbod87/idle-hands-2/blob/a
 The exact-main Garden Studio stills show its glazed sunroom and legible desktop exit. On the emulated narrow phone, the location card partly covers the painted sunroom sign. The sampled phone and enlarged short camera positions crop the exit. Browser travel is verified separately. Terra reviewed the later furniture capture as well. The resident’s head and torso are visible through the softened piece, and the furniture is still recognizable. Some lower-body lines overlap. In that view the location card covers part of the roof and the full sunroom label is visible.
 
 The [offline snapshot contract test](https://github.com/dadbod87/idle-hands-2/blob/9305125411702c0250ec534e4c81dfb0bd89ed67/docs/evidence/IH2-186/PLAN.md) caught both previously reproduced cases with a local mocked query, giving future changes a check they can run while PostgreSQL is stopped. It is a source backup awaiting its own exact gate.
+
+Both archived Ubuntu square screenshots taken immediately after the short Sound resize show a black canvas. A different capture from the same main suite shows the Garden Studio fully rendered at the same viewport and text scale while walking. Local Chromium played the exact main artifact in fresh landscape and after resizing, with both volume controls and movement. The [rendered-scene test](https://github.com/dadbod87/idle-hands-2/blob/b9fef9b62e65786571dbbba4cff115927122be65/docs/evidence/IH2-187/PLAN.md) keeps the early capture and checks the actual pixels after four render events. It passed locally and awaits its Ubuntu gate. The cause and duration of the blank Ubuntu captures are open.
 
 Terra checked captured desktop, phone and enlarged short layouts where requested. The locally tested tree-sketch shortcut uses a fictional workshop save. The local café note used intercepted fictional shared replies. The supporting check records distinguish ordinary browser play and isolated database tests. Physical-phone play, speaker listening and owner acceptance remain to be checked directly.

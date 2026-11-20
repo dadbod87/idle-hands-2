@@ -1,3 +1,5 @@
+import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
+import { benchWork } from './game/crafting-view.ts';
 import { SUNROOM_NOTEBOOK } from './game/home-sunroom.ts';
 import { NATURALIST_KEEPSAKE } from './game/home-keepsake.ts';
 import {FIRST_MORNING_KEY,readFirstMorning,saveFirstMorning,type MorningRead} from './game/first-morning.ts';
@@ -264,7 +266,7 @@ function adoptTownPosition(snapshot:TownSnapshot, throughDoor=false){
  if (residentId !== snapshot.playerId) music.pause();
  music.setLocation(snapshot.position.room,snapshot.position.position);
  namedWalk=null;placeWalk=null;
- portalIntent++;scene.residents=[];homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);walkedDistance=0;confirmedDistance=0;confirmedContext=contextKey(snapshot.position.room,homePlotId);movementEpoch++;residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);scene.homePlotId=homePlotId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??districtId??'1');scene.neighborhoodPlots=snapshot.plots;scene.constructionSites=snapshot.housingSites??[];const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;syncHomeStops(visited,snapshot.playerId);unlockWorld();
+ portalIntent++;scene.residents=[];homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);walkedDistance=0;confirmedDistance=0;confirmedContext=contextKey(snapshot.position.room,homePlotId);movementEpoch++;residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);scene.homePlotId=homePlotId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??districtId??'1');scene.neighborhoodPlots=snapshot.plots;scene.constructionSites=snapshot.housingSites??[];const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;syncHomeStops(visited,snapshot);unlockWorld();
  if(entered)confirmedDoor();
 }
 const town=townMode?new TownClient({
@@ -278,7 +280,7 @@ const town=townMode?new TownClient({
  skyOffset=snapshot.serverTime-Date.now();const identityChanged=residentId!==snapshot.playerId;const expandedInPlace=session.room==='home'&&snapshot.position.room==='home-expanded'&&snapshot.position.homePlotId===homePlotId;
  // Ordinary snapshots can race acknowledged movement. Only explicit entry/resume or an in-place forward expansion adopts feet.
  if(identityChanged||needResync||expandedInPlace||(snapshot.serverInstance&&snapshot.serverInstance!==serverInstance))adoptTownPosition(snapshot);
- scene.homePlotId=homePlotId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??districtId??'1');scene.neighborhoodPlots=snapshot.plots;scene.constructionSites=snapshot.housingSites??[];const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;syncHomeStops(visited,snapshot.playerId);scene.houseLevel=Number(snapshot.plot?.level??snapshot.plots[0]?.level??0);scene.residentId=snapshot.playerId;scene.bridgeRestored=snapshot.bridge.restored;scene.bridgePhase=snapshot.bridge.phase;scene.bridgeReadyAt=snapshot.bridge.readyAt??null;if(celebrateBridge&&!panel.open&&scene.playBridgeCeremony())feedback.textContent='Inkwood is open. The bridge has filed its paperwork.';scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();scene.refreshOuting();outingUI?.refresh();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();paintGuideObjective();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
+ scene.homePlotId=homePlotId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??districtId??'1');scene.neighborhoodPlots=snapshot.plots;scene.constructionSites=snapshot.housingSites??[];const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;syncHomeStops(visited,snapshot);scene.houseLevel=Number(snapshot.plot?.level??snapshot.plots[0]?.level??0);scene.residentId=snapshot.playerId;scene.bridgeRestored=snapshot.bridge.restored;scene.bridgePhase=snapshot.bridge.phase;scene.bridgeReadyAt=snapshot.bridge.readyAt??null;if(celebrateBridge&&!panel.open&&scene.playBridgeCeremony())feedback.textContent='Inkwood is open. The bridge has filed its paperwork.';scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();scene.refreshOuting();outingUI?.refresh();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();paintGuideObjective();townUI?.refresh();const residentButton=document.querySelector('#resident');if(residentButton)residentButton.textContent=snapshot.name;const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=snapshot.name+' · practice town';},
  onPresence:presence=>{scene.residents=Array.isArray(presence)?presence:[];},
  onConnection:message=>{feedback.textContent=message;if(message.includes('interrupted')){needResync=true;session.lock(true);}},
  beforeCommand:()=>flushMovement(true)
@@ -513,45 +515,76 @@ async function enterRemotePortal(stop:Stop){
   unlockWorld();
  }
 }
-function syncHomeStops(plot:TownPlot|undefined,playerId:string){
- const keepsake=plot?.keepsake==='naturalist';
- const studio=plot?.level===2&&plot.planId==='garden-studio-2';
- session.setHomeStops(keepsake,studio);
- if(scene.setHomeKeepsake(keepsake))refreshMenuFrame(2);
- if(!panel.open)return;
- const notebook=body.querySelector<HTMLElement>('[data-sunroom-notebook]');
- const removedCertificate=!keepsake&&body.querySelector('[data-reading-keepsake]');
- const changedNotebook=notebook&&(!studio||notebook.dataset.plot!==plot?.id||notebook.dataset.owner!==String(plot?.ownerId===playerId));
- if(removedCertificate||changedNotebook)closePanel();
+function noteForHome(plot:TownPlot|undefined){
+ if(plot?.level!==2)return null;
+ if(plot.planId==='garden-studio-2')return SUNROOM_NOTEBOOK;
+ if(plot.planId==='workshop-lodge-2')return WORKSHOP_LODGE_BOARD;
+ return null;
 }
 
-function readSunroomNotebook(){
+function paintLodgeWork(target:HTMLElement,snapshot:TownSnapshot){
+ const work=benchWork(snapshot.workshop,town?.serverNow()??snapshot.serverTime);
+ let detail=work.phase==='idle'?'The work bench is free.':work.title+'. '+work.detail;
+ if(work.phase==='running'){
+  const due=new Date(work.readyAt).toLocaleString(undefined,{weekday:'short',hour:'numeric',minute:'2-digit'});
+  detail=work.title+' · Scheduled to finish '+due+'.';
+ }
+ if(target.textContent!==detail)target.textContent=detail;
+}
+
+function syncHomeStops(plot:TownPlot|undefined,snapshot:TownSnapshot){
+ const keepsake=plot?.keepsake==='naturalist';
+ const note=noteForHome(plot);
+ session.setHomeStops(keepsake,note);
+ if(scene.setHomeKeepsake(keepsake))refreshMenuFrame(2);
+ if(!panel.open)return;
+ const notebook=body.querySelector<HTMLElement>('[data-home-plan-note]');
+ const removedCertificate=!keepsake&&body.querySelector('[data-reading-keepsake]');
+ const changedNotebook=notebook&&(notebook.dataset.homePlanNote!==note?.id||notebook.dataset.plot!==plot?.id||notebook.dataset.owner!==String(plot?.ownerId===snapshot.playerId));
+ if(removedCertificate||changedNotebook){closePanel();return;}
+ const board=notebook?.querySelector<HTMLElement>('[data-lodge-work]');
+ if(board&&plot?.ownerId===snapshot.playerId)paintLodgeWork(board,snapshot);
+}
+
+function readHomePlanNote(note:Stop){
  const snapshot=town?.snapshot;
  const plot=snapshot?.plots.find(plot=>plot.id===homePlotId);
- if(!snapshot||!plot||!session.stops.some(stop=>stop.id===SUNROOM_NOTEBOOK.id))return;
- openPanel(SUNROOM_NOTEBOOK.name);
+ if(!snapshot||!plot||noteForHome(plot)?.id!==note.id||!session.stops.some(stop=>stop.id===note.id))return;
+ const garden=note.id===SUNROOM_NOTEBOOK.id;
+ openPanel(note.name);
  const view=document.createElement('section');
- view.dataset.sunroomNotebook='';
+ view.dataset.homePlanNote=note.id;
+ if(garden)view.dataset.sunroomNotebook='';
+ else view.dataset.lodgeBoard='';
  view.dataset.plot=plot.id;
  const owner=plot.ownerId===snapshot.playerId;
  view.dataset.owner=String(owner);
- view.append(paragraph(SUNROOM_NOTEBOOK.text));
+ view.append(paragraph(note.text));
  if(owner){
+  if(!garden){
+   const work=paragraph('');
+   work.dataset.lodgeWork='';
+   paintLodgeWork(work,snapshot);
+   view.append(work);
+  }
   const open=document.createElement('button');
   open.type='button';
-  open.textContent='Open your allotment notes';
+  open.textContent=garden?'Open your allotment notes':'Walk to the work bench';
   open.className='destination primary';
   open.onclick=()=>{
    const current=town?.snapshot;
    const home=current?.plots.find(item=>item.id===homePlotId);
-   if(current&&home?.id===plot.id&&home.ownerId===current.playerId&&session.stops.some(stop=>stop.id===SUNROOM_NOTEBOOK.id))gardenUI?.showBeds();
+   if(!current||home?.id!==plot.id||home.ownerId!==current.playerId||!session.stops.some(stop=>stop.id===note.id))return;
+   if(garden)gardenUI?.showBeds();
+   else goNamedDestination('workshop','bench');
   };
   view.append(open);
  }else{
-  view.append(paragraph('The household’s garden notes are private.'));
+  view.append(paragraph(garden?'The household’s garden notes are private.':'The household’s work schedule is private.'));
  }
  body.append(view);
 }
+
 function readHomeKeepsake(){
  if(!session.stops.some(stop=>stop.id==='home-keepsake'))return;
  openPanel(NATURALIST_KEEPSAKE.name);
@@ -568,7 +601,7 @@ function readHomeKeepsake(){
  body.append(card);
 }
 function activate(stop: Stop) {
-  if(stop.id===SUNROOM_NOTEBOOK.id){readSunroomNotebook();return;}
+  if(stop.id===SUNROOM_NOTEBOOK.id||stop.id===WORKSHOP_LODGE_BOARD.id){readHomePlanNote(stop);return;}
   if(stop.id==='home-keepsake'){readHomeKeepsake();return;}
   if(orchardAvailable()){
    if(stop.id===orchardTable.id){orchardUI.showTable();return;}

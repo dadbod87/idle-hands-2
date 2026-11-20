@@ -529,6 +529,7 @@ export class WorldScene extends Phaser.Scene {
       label(9,1.4,this.homeOwnerName+'’s '+(this.loadedInteriorKey==='garden-studio-interior'?'garden studio':this.loadedInteriorKey==='workshop-lodge-interior'?'workshop lodge':this.room==='home'?'home':'home · workroom added'));
       label(9.5,14,this.districtId?'Street ↓':'Square ↓');
       if(this.loadedInteriorKey==='garden-studio-interior')label(20.7,3.6,'Open notebook').setFontSize(11).setPadding(5,2,5,2);
+      if(this.loadedInteriorKey==='workshop-lodge-interior')label(20.7,3.6,'Read board').setFontSize(11).setPadding(5,2,5,2);
       const frame=NATURALIST_KEEPSAKE.frame;
       const shadow=this.add.ellipse(0,36,76,14,0x3b3228,.2);
       const feet=[-27,27].map(x=>this.add.rectangle(x,30,8,14,0x795840).setStrokeStyle(2,0x303930));

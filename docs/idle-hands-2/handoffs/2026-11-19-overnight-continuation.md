@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-19
 
-Last inspected at 2026-11-19 17:54 PST. The separate sequel repository was at `efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-19 18:08 PST. The separate sequel repository was at `8b4921c1c20c3c8dcf425f59d557c452380e9d75`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -19,7 +19,7 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 
 | Work | Branch | Status |
 |---|---|---|
-| Optional saved first morning | `feat/browser-first-morning` at `cbdb68d92aca` | [PR #81](https://github.com/dadbod87/idle-hands-2/pull/81) · open · [in_progress](https://github.com/dadbod87/idle-hands-2/actions/runs/44655822915) · [Plan](https://github.com/dadbod87/idle-hands-2/blob/cbdb68d92aca45f8640c8f16de3b756795fc17de/docs/evidence/IH2-160/PLAN.md) |
+| Optional saved first morning | `feat/browser-first-morning` at `cbdb68d92aca` | [PR #81](https://github.com/dadbod87/idle-hands-2/pull/81) · merged · [in_progress](https://github.com/dadbod87/idle-hands-2/actions/runs/44657923357) · [Plan](https://github.com/dadbod87/idle-hands-2/blob/cbdb68d92aca45f8640c8f16de3b756795fc17de/docs/evidence/IH2-160/PLAN.md) |
 | Room-specific loading for the allotment | `perf/defer-garden-room-art` at `18c342a47a2e` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/18c342a47a2efd66ed3bb7132ce3e07affe756d8/docs/evidence/IH2-161/PLAN.md) |
 | Free room and yard previews | `feat/housing-plan-preview` at `0eb0da459c83` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/0eb0da459c83a58898cc865e86eecdc44a8c301b/docs/evidence/IH2-162/PLAN.md) |
 | Shorter field guide and direct task links | `feat/task-first-field-guide` at `5e8f0b9fab47` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/5e8f0b9fab479e2361906c7c0f1a14ca7022df19/docs/evidence/IH2-163/PLAN.md) |
@@ -36,6 +36,9 @@ For each row, the exact PR and main runs passed the domain gate, all three brows
 | A distinct walkable Garden Studio sunroom | `feat/garden-studio-interior` at `e6535514ae3e` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/e6535514ae3ea625b1bb7e6dd380f496f3ce5cc9/docs/evidence/IH2-177/PLAN.md) |
 | Softer foreground furniture and fewer redundant renders | `perf/steady-interior-furniture` at `f57648f054ac` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/f57648f054ac8f75a7391adb3d6d395b3f6387d8/docs/evidence/IH2-178/PLAN.md) |
 | Sound clear of the short-landscape playfield | `fix/short-sound-placement` at `c1c7dee8b894` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/c1c7dee8b89423c8cd91e94cfd702d489cb31407/docs/evidence/IH2-179/PLAN.md) |
+| A Sunroom notebook with private allotment access | `feat/sunroom-notebook` at `b681eda93c3f` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/b681eda93c3f6c47b221f5b7bfa7efa1ba0387bf/docs/evidence/IH2-180/PLAN.md) |
+| A distinctive Workshop Lodge drafting wing | `feat/workshop-lodge-interior` at `848f753f8f3d` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/848f753f8f3db9db0455f228c65e2c35932c5657/docs/evidence/IH2-181/PLAN.md) |
+| A private Lodge work board and direct workshop route | `feat/lodge-drafting-board` at `1302837c7796` | Source backup, full checks pending · [Plan](https://github.com/dadbod87/idle-hands-2/blob/1302837c7796ef9b6876f731ef36fbceb2b9f6fd/docs/evidence/IH2-182/PLAN.md) |
 
 Resume with the first pending exact gate. Verify current main and preserve concurrent changes. No cloud setup, live-game change or spending was part of this work.
 

@@ -134,6 +134,7 @@ test('a fresh touch resident can follow the first morning through Marlow to thei
   await page.getByRole('button',{name:'Walk to Marlow',exact:true}).tap();
   await expect(page.getByRole('heading',{name:'Marlow · Town clerk',exact:true})).toBeVisible({timeout:20000});
   await expect.poll(()=>phase(page)).toMatchObject({phase:'finished'});
+  await expect(page.locator('[data-npc-action=journal]')).toBeVisible();
   await page.getByRole('button',{name:'Find material depots',exact:true}).tap();
   const choices=page.locator('.places-primary');
   await expect(choices.getByRole('button')).toHaveCount(3);

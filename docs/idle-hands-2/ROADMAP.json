@@ -3353,7 +3353,7 @@
     {
       "id": "IH2-177",
       "title": "Give the Garden Studio its own walkable sunroom",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/garden-studio-interior",
       "goal": "Let a chosen housing plan feel different inside while preserving ownership and existing rooms.",
       "depends_on": [
@@ -3368,7 +3368,29 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-177/PLAN.md"
+        "docs/evidence/IH2-177/PLAN.md",
+        "docs/evidence/IH2-177/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The confirmed plan selects original glazed and tiled art on the existing expanded footprint for residents and visitors."
+    },
+    {
+      "id": "IH2-178",
+      "title": "Keep the moving resident readable behind ordinary indoor furnishings",
+      "status": "in_progress",
+      "owner_branch": "perf/steady-interior-furniture",
+      "goal": "Ease foreground overlap while avoiding repeated furniture layout assembly on ordinary frames.",
+      "depends_on": [
+        "IH2-177"
+      ],
+      "acceptance": [
+        "Fade only an overlapping foreground piece, preserve the silhouette and return full opacity when clear.",
+        "Record stable rendering and a real fixture motif invalidation. Retain allocation, room and arrangement coverage."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-178/PLAN.md"
       ]
     }
   ],

@@ -1,0 +1,123 @@
+{
+  "pullRequest": 94,
+  "pr": {
+    "sha": "ed6b2bd8e6f17bf3bf61bccc0a4ce291876eebf1",
+    "run": 44731395053,
+    "domain": 589,
+    "browser": 244,
+    "browserGroups": [
+      83,
+      81,
+      80
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14627065751,
+        "createdAt": "2026-11-20T11:57:39Z",
+        "sha": "ed6b2bd8e6f17bf3bf61bccc0a4ce291876eebf1",
+        "zipSha256": "5b5c509361edaa7e304331802bb98ab8e3c6e45fe1782e933a25df78d51e12be",
+        "size": 132575,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14626004059,
+        "createdAt": "2026-11-20T11:57:41Z",
+        "sha": "ed6b2bd8e6f17bf3bf61bccc0a4ce291876eebf1",
+        "zipSha256": "103b78fd11ab9e1bb56b3858b025b2ddc2f1ed2506e6b558c5ccb4fa16c80b32",
+        "size": 767570,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14627870944,
+        "createdAt": "2026-11-20T12:08:42Z",
+        "sha": "ed6b2bd8e6f17bf3bf61bccc0a4ce291876eebf1",
+        "zipSha256": "bea26b89d6aeb405a3aeab9e4f0245198003f09684be5795671ba25674b421e6",
+        "size": 20752359,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14627601479,
+        "createdAt": "2026-11-20T12:08:35Z",
+        "sha": "ed6b2bd8e6f17bf3bf61bccc0a4ce291876eebf1",
+        "zipSha256": "1d77b2e6b5e6cef5d951b38368172aecffb5ca459030c4ee5afae9d6395954fb",
+        "size": 20012856,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14626727941,
+        "createdAt": "2026-11-20T12:08:24Z",
+        "sha": "ed6b2bd8e6f17bf3bf61bccc0a4ce291876eebf1",
+        "zipSha256": "99ba1c6616bd5388a7a2fc9d5963bc5c9c89baa3c6635a3959859c9fa70eee7d",
+        "size": 24564924,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "b3b350c5d70ce9a4c95074cf4209e6cc74c41ea7",
+    "run": 44733397660,
+    "domain": 589,
+    "browser": 244,
+    "browserGroups": [
+      83,
+      81,
+      80
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14627048078,
+        "createdAt": "2026-11-20T12:12:52Z",
+        "sha": "b3b350c5d70ce9a4c95074cf4209e6cc74c41ea7",
+        "zipSha256": "50fc98f4d2e40c41f1860b36deffd78c94ff407a0cb98d536bcadc056f374ca8",
+        "size": 133425,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14627476774,
+        "createdAt": "2026-11-20T12:12:54Z",
+        "sha": "b3b350c5d70ce9a4c95074cf4209e6cc74c41ea7",
+        "zipSha256": "2b3b1707f8550219ddf9b19b6c1a08926945ee331e7e08bb81be580ea5133003",
+        "size": 767570,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14628446510,
+        "createdAt": "2026-11-20T12:22:31Z",
+        "sha": "b3b350c5d70ce9a4c95074cf4209e6cc74c41ea7",
+        "zipSha256": "7eb9b1c7a1fcc4822e762062d2b9d4d92ac68bd0617927e5f96537a2c4b7c38f",
+        "size": 20346734,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14627054460,
+        "createdAt": "2026-11-20T12:23:03Z",
+        "sha": "b3b350c5d70ce9a4c95074cf4209e6cc74c41ea7",
+        "zipSha256": "50f6db4c0aa0089ca3aaeb8364e2b351332e9aca892b3f20c82d4ac60b928cc1",
+        "size": 19805265,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14627743693,
+        "createdAt": "2026-11-20T12:23:55Z",
+        "sha": "b3b350c5d70ce9a4c95074cf4209e6cc74c41ea7",
+        "zipSha256": "508dc3ffd8a56e0148e0bc7b4a02045abf1b0ae5ae081bd6d888b1a37aa8020f",
+        "size": 24391894,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native desktop, 320-pixel touch and 200-percent short layout. Captures inspected by Terra. No installed preview or real phone."
+}

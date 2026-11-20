@@ -1,0 +1,141 @@
+{
+  "pullRequest": 101,
+  "pr": {
+    "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+    "run": 44788106789,
+    "domain": 592,
+    "browser": 251,
+    "browserGroups": [
+      88,
+      82,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14655606912,
+        "createdAt": "2026-11-20T18:00:35Z",
+        "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+        "zipSha256": "8db9021a25452979fad9e6941314aa6118858b7a4be77d9e0bacdd341960d614",
+        "size": 133495,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14654937714,
+        "createdAt": "2026-11-20T18:00:38Z",
+        "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+        "zipSha256": "8a92d41f3bc3a3f4e784e3e07b5e8f1f8e7a94ced74c0b88f7133291fc216bbc",
+        "size": 771612,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14655842424,
+        "createdAt": "2026-11-20T18:11:53Z",
+        "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+        "zipSha256": "4af5f1b2d4c78298aee6b1c94c7b90a3b7532fdbc83f5ce3f67331d25d5de67e",
+        "size": 21352050,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14658695003,
+        "createdAt": "2026-11-20T18:31:49Z",
+        "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+        "zipSha256": "a4be97496ed8ead4bc96cb2b3a150cfcc3d614931fbbe54571ba5b52e22f8304",
+        "size": 20150634,
+        "otherSameNameArtifacts": [
+          {
+            "id": 14656910842,
+            "created_at": "2026-11-20T18:17:13Z",
+            "size_in_bytes": 16958437
+          }
+        ]
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14656446417,
+        "createdAt": "2026-11-20T18:10:16Z",
+        "sha": "14e382e5c30e5b8827838f72d60dac8fe837da36",
+        "zipSha256": "61dbd36a5d898b8575e4b41e81b53649b8aeedc820e195a9c794306d0292cbaf",
+        "size": 24610117,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+    "run": 44793739508,
+    "domain": 592,
+    "browser": 251,
+    "browserGroups": [
+      88,
+      82,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14658061709,
+        "createdAt": "2026-11-20T18:35:49Z",
+        "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+        "zipSha256": "ffcff72c3aa4288ebf88a9e8a4d56b8fc7c71c5fd9d5a001a1ebe61a8197c0e3",
+        "size": 132759,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14658356043,
+        "createdAt": "2026-11-20T18:35:51Z",
+        "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+        "zipSha256": "365186fcaf22830b9db8c20a8f79239e1720456cdeac07ac63701c4822b01f7d",
+        "size": 771612,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14660386184,
+        "createdAt": "2026-11-20T19:11:00Z",
+        "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+        "zipSha256": "3a7ba2ea1fa35ff476d3394e0659de6d1acc5e58020c55bd7da8e009c1caff84",
+        "size": 21303667,
+        "otherSameNameArtifacts": [
+          {
+            "id": 14658853016,
+            "created_at": "2026-11-20T18:52:51Z",
+            "size_in_bytes": 16654440
+          }
+        ]
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14658857080,
+        "createdAt": "2026-11-20T18:46:43Z",
+        "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+        "zipSha256": "9bcb2bc738a14b32b13e47c414792ca4dbfb3e5a732aeffdc4821946b52cef63",
+        "size": 19977045,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14660496563,
+        "createdAt": "2026-11-20T19:08:28Z",
+        "sha": "023e1ada7d6bdd66baa18eb5a4074f2c75078e46",
+        "zipSha256": "0c0651a751109cc9f8663947128651771f1acb38bf86b0d55643906066b0b8a2",
+        "size": 24292279,
+        "otherSameNameArtifacts": [
+          {
+            "id": 14658216538,
+            "created_at": "2026-11-20T18:37:16Z",
+            "size_in_bytes": 5329470
+          }
+        ]
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Unseeded 320-pixel native touch. No stored-state, API, clock or balance modifications. Ordinary exact CI guards retained."
+}

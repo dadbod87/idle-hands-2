@@ -3420,7 +3420,7 @@
     {
       "id": "IH2-180",
       "title": "Open the owner’s existing allotment from the Garden Studio notebook",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/sunroom-notebook",
       "goal": "Give the chosen plan a useful interaction while keeping a visit and the owner’s private garden separate.",
       "depends_on": [
@@ -3435,7 +3435,100 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-180/PLAN.md"
+        "docs/evidence/IH2-180/PLAN.md",
+        "docs/evidence/IH2-180/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The active expanded plan has a walkable notebook. Owners open their own allotment view and guests see a general house note."
+    },
+    {
+      "id": "IH2-181",
+      "title": "Give the Workshop Lodge its own drafting wing",
+      "status": "done",
+      "owner_branch": "feat/workshop-lodge-interior",
+      "goal": "Make a second expanded housing choice visibly distinct and walkable.",
+      "depends_on": [
+        "IH2-180",
+        "IH2-162"
+      ],
+      "acceptance": [
+        "Use original ash-board, slate and drafting motifs in the existing expanded footprint.",
+        "Verify native owner and visitor entry, one art fetch, plan change and unchanged current furnishings."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-181/PLAN.md",
+        "docs/evidence/IH2-181/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. An owner and guest can walk into its plan-selected ash-board drafting wing, retaining the same exits and allocations."
+    },
+    {
+      "id": "IH2-182",
+      "title": "Show private work status on the Lodge drafting board",
+      "status": "done",
+      "owner_branch": "feat/lodge-drafting-board",
+      "goal": "Make its drafting wing useful during long work, with a deliberate route to the existing bench and public-only visits.",
+      "depends_on": [
+        "IH2-181",
+        "IH2-167"
+      ],
+      "acceptance": [
+        "Show the owner’s already confirmed result or local-time schedule. Preserve the current job and all workshop authority.",
+        "Walk through the real scene path to the bench. Keep the guest’s panel private and verify no game command or allocation edits."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-182/PLAN.md",
+        "docs/evidence/IH2-182/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The Lodge owner sees their existing job, then may walk to the ordinary bench. Guests read the public note."
+    },
+    {
+      "id": "IH2-183",
+      "title": "Let Marlow point a fresh resident directly to starter materials",
+      "status": "done",
+      "owner_branch": "feat/marlow-material-depots",
+      "goal": "Use one obvious choice from the first morning to real depot routes and the first collected planter.",
+      "depends_on": [
+        "IH2-182",
+        "IH2-160",
+        "IH2-163"
+      ],
+      "acceptance": [
+        "Open the same familiar collection locations from Marlow while the starter objective is active.",
+        "Play through a fresh narrow touch session: profile, first morning, Marlow, three collections, five-second recipe and one item in the Bag."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-183/PLAN.md",
+        "docs/evidence/IH2-183/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A first-morning visitor gets a direct choice among real collection locations and can craft one earned planter for Bag."
+    },
+    {
+      "id": "IH2-184",
+      "title": "Choose a workshop spot from a carried item",
+      "status": "in_progress",
+      "owner_branch": "feat/bag-item-place",
+      "goal": "Let a resident go from a crafted stack to a chosen visible nook with one clear action.",
+      "depends_on": [
+        "IH2-183",
+        "IH2-163"
+      ],
+      "acceptance": [
+        "Reveal the collected planter and its action. Preserve counts and keep choosing a spot separate from explicit placement.",
+        "Verify keyboard focus in desktop and enlarged landscape, the ordinary five-second first craft on touch, cancel and placement persistence."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-184/PLAN.md"
       ]
     }
   ],

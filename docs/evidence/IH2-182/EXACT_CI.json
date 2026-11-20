@@ -1,0 +1,129 @@
+{
+  "pullRequest": 100,
+  "pr": {
+    "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+    "run": 44776815309,
+    "domain": 592,
+    "browser": 250,
+    "browserGroups": [
+      88,
+      81,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14649288676,
+        "createdAt": "2026-11-20T16:50:07Z",
+        "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+        "zipSha256": "c04e0f183a2686e9983c20a94e0a56e4ee5cb0c6aba045f60b56e001c08c3327",
+        "size": 132621,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14649053963,
+        "createdAt": "2026-11-20T16:50:09Z",
+        "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+        "zipSha256": "7243b040813ae409c70792915a50d85c05d72a8818da243304e84316454ce58f",
+        "size": 771561,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14650419016,
+        "createdAt": "2026-11-20T17:02:19Z",
+        "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+        "zipSha256": "9ca454e9b65b137967aeffe879702be5915cf5021056e9c91c60dc3e73de5619",
+        "size": 21371793,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14651320320,
+        "createdAt": "2026-11-20T17:01:08Z",
+        "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+        "zipSha256": "72f2f644b89644fd818e29e2039f295049eff8af8000f20da5a64f19ab4d3ab7",
+        "size": 19848959,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14652550398,
+        "createdAt": "2026-11-20T17:04:35Z",
+        "sha": "027b65248a240410b68b28597253e5560d6b5cab",
+        "zipSha256": "d969222cf817e6a2c16644fa908c612c51bcd87001c911a1f8e09a837ad9fe05",
+        "size": 24451116,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+    "run": 44779815864,
+    "domain": 592,
+    "browser": 250,
+    "browserGroups": [
+      88,
+      81,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14651761819,
+        "createdAt": "2026-11-20T17:08:26Z",
+        "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+        "zipSha256": "7154c8587aa4ac299a64482980a6704e921fd55a81bc9776acfcb319709943a0",
+        "size": 133081,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14651951613,
+        "createdAt": "2026-11-20T17:08:27Z",
+        "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+        "zipSha256": "3c10828377c34aa5d6cb6759dc214ba37cdf37d3fa3fec0e28d1c258f2be6902",
+        "size": 771561,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14651242844,
+        "createdAt": "2026-11-20T17:20:15Z",
+        "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+        "zipSha256": "3233d4587dd6e91f95fd11282e95823cafe194f91e50d12dc731794e70967fb3",
+        "size": 21269481,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14651689209,
+        "createdAt": "2026-11-20T17:19:04Z",
+        "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+        "zipSha256": "c7d7014580f83c4c8f150e1463f29ddb8976dbb59f7bea06adffd393b3c2d234",
+        "size": 19823849,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14654590520,
+        "createdAt": "2026-11-20T17:40:10Z",
+        "sha": "1ddec93d215d8c570d590895738f27eb090cf5c4",
+        "zipSha256": "774c093d48e646a8c3cad7a2c678f7e31eec17ea4807ff40d9241fc598dad964",
+        "size": 24346639,
+        "otherSameNameArtifacts": [
+          {
+            "id": 14653280504,
+            "created_at": "2026-11-20T17:25:28Z",
+            "size_in_bytes": 9776325
+          }
+        ]
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native desktop and narrow touch visitors through fictional confirmed shared replies and movement ACKs. Ordinary work, stock and commands checked."
+}

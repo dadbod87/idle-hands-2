@@ -638,7 +638,8 @@ function activate(stop: Stop) {
       depots.textContent='Find material depots';
       depots.onclick=showMaterialDepots;
       body.append(depots);
-    }else if(dialogue.action){const action=dialogue.action,button=document.createElement('button');button.type='button';button.className='destination';button.dataset.npcAction=action.destination;button.textContent=action.label;button.addEventListener('click',()=>{if(action.destination==='journal'){workshop.showJournal();return;}const target=worlds[session.room].stops.find(s=>s.id===action.destination||(action.destination==='workshop'&&s.id==='bench'));if(target)walkToPlace(target);});body.append(button);}
+    }
+    if(dialogue.action){const action=dialogue.action,button=document.createElement('button');button.type='button';button.className='destination';button.dataset.npcAction=action.destination;button.textContent=action.label;button.addEventListener('click',()=>{if(action.destination==='journal'){workshop.showJournal();return;}const target=worlds[session.room].stops.find(s=>s.id===action.destination||(action.destination==='workshop'&&s.id==='bench'));if(target)walkToPlace(target);});body.append(button);}
     if(stop.id==='caretaker'&&orchardAvailable()){
       const pantry=orchardUI.state;
       if(pantry&&(pantry.picked>0||pantry.snacks>0||objective.id==='bridge'||objective.id==='complete')){

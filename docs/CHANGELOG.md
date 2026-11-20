@@ -1,3 +1,19 @@
+# November 20 — Marlow’s direct routes to starter materials accepted
+
+A first-morning visitor gets a direct choice among real collection locations and can craft one earned planter for Bag. Main `023e1ada7d6bdd66baa18eb5a4074f2c75078e46` passed 592 domain tests and 251 browser cases. [Exact verification](evidence/IH2-183/EXACT_CI.json).
+
+# November 20 — the Lodge work board and direct workshop route accepted
+
+The Lodge owner sees their existing job, then may walk to the ordinary bench. Guests read the public note. Main `1ddec93d215d8c570d590895738f27eb090cf5c4` passed 592 domain tests and 250 browser cases. [Exact verification](evidence/IH2-182/EXACT_CI.json).
+
+# November 20 — the Workshop Lodge interior accepted
+
+An owner and guest can walk into its plan-selected ash-board drafting wing, retaining the same exits and allocations. Main `0a334866b1bcb08ec47f7db762857944f7c2b8a0` passed 592 domain tests and 249 browser cases. [Exact verification](evidence/IH2-181/EXACT_CI.json).
+
+# November 20 — the Garden Studio’s private allotment link accepted
+
+The active expanded plan has a walkable notebook. Owners open their own allotment view and guests see a general house note. Main `c3f7d33d4f2f59a3f75e784a38ab62575672a46f` passed 591 domain tests and 248 browser cases. [Exact verification](evidence/IH2-180/EXACT_CI.json).
+
 # November 20 — Sound above the playfield in short landscape accepted
 
 The same Sound button moves beside the guide on wide short screens with focus and volumes retained. Main `cd0501924bd3fc9479cceadcf4c7a87947711001` passed 590 domain tests and 247 browser cases. [Exact verification](evidence/IH2-179/EXACT_CI.json).

@@ -107,3 +107,72 @@ test('a denied wake leaves the resident in bed and the same deliberate action ca
  await expect.poll(()=>phase(page)).toMatchObject({phase:'awake'});
  await expect.poll(()=>isResting(page)).toBe(false);
 });
+
+test('a fresh touch resident can follow the first morning through Marlow to their first planter', async ({ browser }) => {
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true,reducedMotion:'reduce'});
+ const page=await context.newPage();
+ const errors:string[]=[],api:string[]=[];
+ page.on('pageerror',e=>errors.push(e.message));
+ page.on('request',r=>{if(new URL(r.url()).pathname.startsWith('/api/'))api.push(r.url());});
+ const pressGuide=()=>page.getByRole('button',{name:'Open field guide'}).tap();
+ const close=()=>page.getByRole('button',{name:'Close panel',exact:true}).tap();
+ const workshop=()=>page.evaluate(()=>(window as any).__pilot.workshop());
+ try {
+  await page.goto('/');
+  await ready(page);
+  await pressGuide();
+  await page.getByRole('button',{name:'Edit your resident',exact:true}).tap();
+  await page.getByLabel('Name on your badge').fill('Avery');
+  await page.getByLabel('Arrival story',{exact:true}).selectOption('maker');
+  await page.getByRole('button',{name:'Save changes',exact:true}).tap();
+  await expect(page.locator('.resident-profile-status')).toHaveText('Resident saved in this browser.');
+  await close();
+  await start(page);
+  await page.getByRole('button',{name:'Get up',exact:true}).tap();
+  await expect.poll(()=>phase(page)).toMatchObject({phase:'awake'});
+  await page.getByRole('button',{name:'Inspect A note by the bed',exact:true}).tap();
+  await page.getByRole('button',{name:'Walk to Marlow',exact:true}).tap();
+  await expect(page.getByRole('heading',{name:'Marlow · Town clerk',exact:true})).toBeVisible({timeout:20000});
+  await expect.poll(()=>phase(page)).toMatchObject({phase:'finished'});
+  await expect(page.locator('[data-npc-action=journal]')).toBeVisible();
+  await page.getByRole('button',{name:'Find material depots',exact:true}).tap();
+  const choices=page.locator('.places-primary');
+  await expect(choices.getByRole('button')).toHaveCount(3);
+  await expect(choices.locator('[data-destination=scrap]')).toBeFocused();
+  await page.screenshot({path:out+'/first-depots-phone.png'});
+  for(const resource of ['scrap','timber','supplies']){
+   const depot=choices.locator('[data-destination="'+resource+'"]');
+   await depot.tap();
+   await expect.poll(async()=>({nearby:(await snapshot(page)).nearby,walking:(await snapshot(page)).walking}),{timeout:16000}).toEqual({nearby:resource,walking:false});
+   await page.locator('#interact').tap();
+   await page.locator('[data-collect]').tap();
+   await expect.poll(async()=>(await workshop()).inventory[resource]).toBe(6);
+   await close();
+   if(resource!=='supplies'){
+    await page.locator('#places').tap();
+    const id=resource==='scrap'?'timber':'supplies';
+    await expect(choices.locator('[data-destination="'+id+'"]')).toBeVisible();
+   }
+  }
+  await pressGuide();
+  await page.getByRole('button',{name:/Enter your workshop/}).tap();
+  await expect.poll(async()=>(await snapshot(page)).room,{timeout:16000}).toBe('workshop');
+  await pressGuide();
+  await page.getByRole('button',{name:/Inspect your bench/}).tap();
+  await expect(page.getByRole('heading',{name:'Your work bench',exact:true})).toBeVisible({timeout:16000});
+  await page.getByRole('button',{name:'Make Optimistic planter',exact:true}).tap();
+  const job=(await workshop()).job;
+  expect(job.readyAt-job.startedAt).toBe(5000);
+  expect((await workshop()).owned.planter).toBe(0);
+  const collect=page.getByRole('button',{name:'Collect finished work',exact:true});
+  await expect(collect).toBeEnabled({timeout:12000});
+  await collect.tap();
+  await page.locator('[data-bench-bag]').tap();
+  await expect(page.locator('[data-bag-item=planter] .bag-stack-count')).toHaveText('1');
+  expect((await workshop()).inventory).toEqual({scrap:4,timber:4,supplies:5});
+  expect((await workshop()).owned.planter).toBe(1);
+  expect(api).toEqual([]);
+  expect(errors).toEqual([]);
+  await page.screenshot({path:out+'/first-planter-bag-phone.png'});
+ } finally {await context.close();}
+});

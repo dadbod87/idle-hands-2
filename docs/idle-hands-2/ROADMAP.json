@@ -3466,7 +3466,7 @@
     {
       "id": "IH2-182",
       "title": "Show private work status on the Lodge drafting board",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/lodge-drafting-board",
       "goal": "Make its drafting wing useful during long work, with a deliberate route to the existing bench and public-only visits.",
       "depends_on": [
@@ -3481,7 +3481,31 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-182/PLAN.md"
+        "docs/evidence/IH2-182/PLAN.md",
+        "docs/evidence/IH2-182/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The Lodge owner sees their existing job, then may walk to the ordinary bench. Guests read the public note."
+    },
+    {
+      "id": "IH2-183",
+      "title": "Let Marlow point a fresh resident directly to starter materials",
+      "status": "in_progress",
+      "owner_branch": "feat/marlow-material-depots",
+      "goal": "Use one obvious choice from the first morning to real depot routes and the first collected planter.",
+      "depends_on": [
+        "IH2-182",
+        "IH2-160",
+        "IH2-163"
+      ],
+      "acceptance": [
+        "Open the same familiar collection locations from Marlow while the starter objective is active.",
+        "Play through a fresh narrow touch session: profile, first morning, Marlow, three collections, five-second recipe and one item in the Bag."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-183/PLAN.md"
       ]
     }
   ],

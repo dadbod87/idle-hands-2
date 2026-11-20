@@ -1,3 +1,7 @@
+# November 20 — the Lodge work board and direct workshop route accepted
+
+The Lodge owner sees their existing job, then may walk to the ordinary bench. Guests read the public note. Main `1ddec93d215d8c570d590895738f27eb090cf5c4` passed 592 domain tests and 250 browser cases. [Exact verification](evidence/IH2-182/EXACT_CI.json).
+
 # November 20 — the Workshop Lodge interior accepted
 
 An owner and guest can walk into its plan-selected ash-board drafting wing, retaining the same exits and allocations. Main `0a334866b1bcb08ec47f7db762857944f7c2b8a0` passed 592 domain tests and 249 browser cases. [Exact verification](evidence/IH2-181/EXACT_CI.json).

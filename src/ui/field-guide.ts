@@ -10,7 +10,7 @@ export function fieldGuideContents(inside: boolean, shared: boolean, returnToSqu
       </div>
       <p data-guide-detail></p>
     </section>
-    <details class="sky-notes">
+    <details class="guide-reference">
       <summary>${shared ? 'Bridge and trail' : 'Your first planter'}</summary>
       ${shared ? `<div class="guide-restoration">
         <img src="/art/original/bridge-neglected.svg" alt="Bridge awaiting repair" loading="lazy">

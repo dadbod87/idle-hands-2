@@ -23,6 +23,9 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  const store=new TownStore(options.pool,{now,roster:fixtures.map(f=>f.id),occupants:()=>[...residents.values()].filter(r=>r.value.room==='neighborhood'&&(now()-r.at<60000||[...connections].some(c=>residents.get(c.id)===r))).map(r=>({districtId:r.value.districtId!,point:{x:r.value.position.x+.5,y:r.value.position.y+.5}}))});
  const homes=new Map<string,TownPlot>();let bridgeOpen=false;let cafeOpened=false;
  function cacheHomes(snapshot:Pick<TownSnapshot,'plots'|'bridge'>&{cafe?:TownSnapshot['cafe']}){if(snapshot.cafe?.phase==='open'&&!cafeOpened){cafeOpened=true;invalidate('');}bridgeOpen=bridgeOpen||snapshot.bridge.phase==='open';for(const plot of snapshot.plots){const previous=homes.get(plot.id);if(!previous||plot.level>=previous.level&&(plot.housingRevision??0)>=(previous.housingRevision??0)){if(plot.keepsake!==undefined){const publicPlot={...plot};delete publicPlot.keepsake;homes.set(plot.id,publicPlot);}else homes.set(plot.id,plot);}}for(const entry of residents.values()){const normalized=canonicalHomePosition(entry.value,[...homes.values()]);if(JSON.stringify(normalized)!==JSON.stringify(entry.value)){entry.value=normalized;entry.credit=1;entry.at=now();dirty=true;}}}
+ function clientSnapshot(snapshot:TownSnapshot){
+  return {...snapshot,serverInstance,homeKeepsakes:true};
+ }
  function alignSnapshotPosition(snapshot:TownSnapshot,position:TownPosition){
   snapshot.position=position;
   const visiblePlotId=isHome(position.room)?position.homePlotId:undefined;
@@ -74,12 +77,12 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
    const payload=req.method==='POST'?body(req):null;void payload?.catch(()=>{}); // Attach the bounded body reader before any other async work.
    if(path==='/api/town/login'&&req.method==='POST'){
     if(!admission.rate('login'))return throttled(res);const release=admission.acquire('login');if(!release)return throttled(res);try{
-    const data=z.object({fixtureId:z.string().refine(id=>fixtures.some(f=>f.id===id))}).strict().parse(await payload);const fixture=fixtures.find(f=>f.id===data.fixtureId)!;if(!admission.memberRate('login',fixture.id))return throttled(res);const snapshot=await store.ensurePlayer(fixture.id,fixture.name,()=>residents.get(fixture.id)?.value);cacheHomes(snapshot);const current=await resident(fixture.id);alignSnapshotPosition(snapshot,current.value);res.setHeader('Set-Cookie',`${COOKIE}=${cookie(fixture.id)}; HttpOnly; SameSite=Strict; Path=/api/town; Max-Age=86400`);return json(res,200,{snapshot:{...snapshot,serverInstance}});
+    const data=z.object({fixtureId:z.string().refine(id=>fixtures.some(f=>f.id===id))}).strict().parse(await payload);const fixture=fixtures.find(f=>f.id===data.fixtureId)!;if(!admission.memberRate('login',fixture.id))return throttled(res);const snapshot=await store.ensurePlayer(fixture.id,fixture.name,()=>residents.get(fixture.id)?.value);cacheHomes(snapshot);const current=await resident(fixture.id);alignSnapshotPosition(snapshot,current.value);res.setHeader('Set-Cookie',`${COOKIE}=${cookie(fixture.id)}; HttpOnly; SameSite=Strict; Path=/api/town; Max-Age=86400`);return json(res,200,{snapshot:clientSnapshot(snapshot)});
     }finally{release();}
    }
    const session=identity(req);if(!session)return json(res,401,{message:'Choose a synthetic practice resident to continue.'});
    const {id}=session;
-   if(path==='/api/town/snapshot'&&req.method==='GET'){if(!admission.rate('snapshot',id))return throttled(res);const release=admission.acquire('snapshot',id);if(!release)return throttled(res);try{const current=await resident(id);if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});metrics.snapshots++;const snapshot=await store.snapshot(id,()=>current.value);cacheHomes(snapshot);alignSnapshotPosition(snapshot,current.value);return json(res,200,{snapshot:{...snapshot,serverInstance}});}finally{release();}}
+   if(path==='/api/town/snapshot'&&req.method==='GET'){if(!admission.rate('snapshot',id))return throttled(res);const release=admission.acquire('snapshot',id);if(!release)return throttled(res);try{const current=await resident(id);if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});metrics.snapshots++;const snapshot=await store.snapshot(id,()=>current.value);cacheHomes(snapshot);alignSnapshotPosition(snapshot,current.value);return json(res,200,{snapshot:clientSnapshot(snapshot)});}finally{release();}}
    if(path==='/api/town/snack-shelf'&&req.method==='GET'){
     if(!admission.rate('shelf',id))return throttled(res);
     const release=admission.acquire('shelf',id);
@@ -131,7 +134,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
        &&command&&typeof command==='object'&&(command as {kind?:unknown}).kind==='display-home-keepsake')
       invalidate(id,current.value.homePlotId);
     if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(['contribute','claim-plot','upgrade-plot','edit-plot','housing-confirm','housing-finish','housing-arrange','redeem-lesson'].includes(String((command as {kind?:unknown}).kind))||((command as {kind?:unknown}).kind==='stamp-trail'&&result.snapshot.trail.pennantOwned)||(['garden','carpentry','commission','cafe-serve'].includes(String((command as {kind?:unknown}).kind))&&result.publicChanged)))invalidate(id);
-    return json(res,200,{...result,snapshot:{...result.snapshot,serverInstance}});
+    return json(res,200,{...result,snapshot:clientSnapshot(result.snapshot)});
     },protectPresence);
     }finally{const remaining=(pendingBodies.get(id)??1)-1;if(remaining)pendingBodies.set(id,remaining);else pendingBodies.delete(id);}
    }

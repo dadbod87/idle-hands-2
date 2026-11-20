@@ -38,7 +38,6 @@ test('shared home keepsake requires earned ownership and projects only to its cu
   const denied = await store.execute(owner.playerId, {...display,id:'unearned',expectedRevision:0},inside);
   assert.equal(denied.ok,false);
   assert.match(denied.message,/earn the certificate/);
-  assert.equal(denied.snapshot.homeKeepsakes,true);
   assert.equal(Object.hasOwn(denied.snapshot.plot!,'keepsake'),false);
   for (const station of SURVEY_IDS) {
    const state = await store.snapshot(owner.playerId);
@@ -71,7 +70,7 @@ test('shared home keepsake requires earned ownership and projects only to its cu
     const response=await request('login',undefined,{fixtureId});
     assert.equal(response.status,200);
     const cookie=response.headers.get('set-cookie')!.split(';',1)[0];
-    await response.json();
+    assert.equal((await response.json()).snapshot.homeKeepsakes,true);
     return cookie;
    };
    const [ownerCookie,guestCookie,otherCookie]=await Promise.all([
@@ -94,13 +93,16 @@ test('shared home keepsake requires earned ownership and projects only to its cu
    }
    const response=await request('command',ownerCookie,command);
    assert.equal(response.status,200);
-   hung=await response.json() as TownResult;
+   const receipt=await response.json();
+   assert.equal(receipt.snapshot.homeKeepsakes,true);
+   hung=receipt as TownResult;
    for(let attempt=0;attempt<20&&!events[0].includes('event: invalidate');attempt++)await pause(10);
    assert.equal(events[0].match(/event: invalidate/g)?.length,1);
    assert.doesNotMatch(events[1],/event: invalidate/);
    // Simulate a snapshot reading the old checkpoint as the visitor leaves.
    const previous=await request('snapshot',guestCookie);
    const visiting=(await previous.json()).snapshot;
+   assert.equal(visiting.homeKeepsakes,true);
    assert.equal(visiting.plots[0].keepsake,'naturalist');
    const doorway={...inside,position:{x:9,y:12}};
    assert.equal((await request('movement',guestCookie,doorway)).status,200);

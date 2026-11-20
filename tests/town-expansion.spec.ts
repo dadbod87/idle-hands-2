@@ -14,10 +14,16 @@ test('2K and 4K: authored ground covers the native viewport; direct eastbound tr
 });
 for(const shape of [{name:'phone320',width:320,height:640},{name:'phone360',width:360,height:780},{name:'short200',width:844,height:390}])test('expanded town '+shape.name+': native touch, keyboard, resize and controls',async({browser})=>{
  const c=await browser.newContext({viewport:shape,hasTouch:true}),p=await c.newPage(),errors:string[]=[];p.on('pageerror',e=>errors.push(e.message));
- // Isolated position-only fixture at a new lane; no economy stock granted.
- await p.addInitScript(()=>{if(!sessionStorage.getItem('town-position-fixture')){localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:104,y:45}}));sessionStorage.setItem('town-position-fixture','1');}});
+ // Start on clear ground south of the packing table so a ground tap cannot open its control.
+ await p.addInitScript(()=>{if(!sessionStorage.getItem('town-position-fixture')){localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:105,y:49}}));sessionStorage.setItem('town-position-fixture','1');}});
  try{await p.goto('/?sky-study=1&phase=day&weather=clear');await ready(p);if(shape.name==='short200')await p.evaluate(()=>document.documentElement.style.fontSize='200%');await coverage(p);const before=await state(p);await p.keyboard.down('ArrowRight');await p.waitForTimeout(300);await p.keyboard.up('ArrowRight');expect((await state(p)).position.x).toBeGreaterThan(before.position.x);
-  const pos=(await state(p)).position,at=await p.evaluate(v=>(window as any).__pilot.screenPoint(v.x+1.2,v.y+.2),pos),box=(await p.locator('canvas').boundingBox())!;await p.touchscreen.tap(box.x+at.x,box.y+at.y);await expect.poll(async()=>(await state(p)).walking).toBe(false);expect((await state(p)).position.x).toBeCloseTo(pos.x+1.2,1);
+  const pos=(await state(p)).position,target={x:pos.x+1.2,y:pos.y+.2};
+  const at=await p.evaluate(v=>(window as any).__pilot.screenPoint(v.x,v.y),target),box=(await p.locator('canvas').boundingBox())!;
+  await p.touchscreen.tap(box.x+at.x,box.y+at.y);
+  await expect.poll(async()=>(await state(p)).position.x).toBeCloseTo(target.x,1);
+  await expect.poll(async()=>(await state(p)).walking).toBe(false);
+  expect((await state(p)).position.y).toBeCloseTo(target.y,1);
+  await expect(p.getByRole('dialog')).toBeHidden();
   await p.locator('#places').scrollIntoViewIfNeeded();await p.locator('#places').click();expect(await(await revealPlace(p,'[data-destination="commons-riverwalk"]')).isVisible()).toBe(true);await p.getByRole('button',{name:'Close panel'}).click();expect(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await p.screenshot({path:dir+'/town-'+shape.name+'.png'});expect(errors).toEqual([]);
  }finally{await c.close();}
 });

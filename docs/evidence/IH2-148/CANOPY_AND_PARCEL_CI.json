@@ -1,0 +1,217 @@
+{
+  "pullRequest": 72,
+  "pr": {
+    "sha": "de211db445bf1ea0a14732e4ed2cf8a3416bd1b7",
+    "run": 44600926256,
+    "domain": 566,
+    "browser": 220,
+    "browserGroups": [
+      74,
+      71,
+      75
+    ],
+    "allPriorCasesPreserved": true,
+    "canopyAssignments": [
+      {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "trees": 55,
+        "previousWritesPerUpdate": 110,
+        "currentWrites": [
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "reducedMotionSteadyWrites": 0
+      },
+      {
+        "name": "phone",
+        "width": 320,
+        "height": 650,
+        "trees": 55,
+        "previousWritesPerUpdate": 110,
+        "currentWrites": [
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "reducedMotionSteadyWrites": 0
+      },
+      {
+        "name": "wide2k",
+        "width": 2560,
+        "height": 1440,
+        "trees": 55,
+        "previousWritesPerUpdate": 110,
+        "currentWrites": [
+          11,
+          11,
+          11,
+          11,
+          11
+        ],
+        "reducedMotionSteadyWrites": 0
+      }
+    ],
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14568585647,
+        "createdAt": "2026-11-19T19:44:34Z",
+        "sha": "de211db445bf1ea0a14732e4ed2cf8a3416bd1b7",
+        "zipSha256": "043cdc3f219050bcdc1b7c5df122b06caf11538d1b59590a4b8bf720ecfd1778",
+        "size": 130278,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14568710961,
+        "createdAt": "2026-11-19T19:44:35Z",
+        "sha": "de211db445bf1ea0a14732e4ed2cf8a3416bd1b7",
+        "zipSha256": "b1eeeca6499688fb750fb024de95a6b4f7efad9798801046cb7a255208f0f292",
+        "size": 750330,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14568147893,
+        "createdAt": "2026-11-19T19:53:58Z",
+        "sha": "de211db445bf1ea0a14732e4ed2cf8a3416bd1b7",
+        "zipSha256": "3cde3095fb70b9a7f6f6a7e980f25ee3351d4c02194e91a5ec0180e8c7f7e089",
+        "size": 18350743,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14568357725,
+        "createdAt": "2026-11-19T19:54:21Z",
+        "sha": "de211db445bf1ea0a14732e4ed2cf8a3416bd1b7",
+        "zipSha256": "61ccf3250a93b13e4e7510735b4da73e9a64f4c5c2da1a8a55814c232218ef16",
+        "size": 17184182,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14569171187,
+        "createdAt": "2026-11-19T19:56:18Z",
+        "sha": "de211db445bf1ea0a14732e4ed2cf8a3416bd1b7",
+        "zipSha256": "c8d77c39dfd3e1b46e83df3375edae86c3101f462bcb0f839a6b063135e92f9f",
+        "size": 23629827,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "68619d549a01c10f80a2780e61e0cba2d6cfd219",
+    "run": 44603672111,
+    "domain": 566,
+    "browser": 220,
+    "browserGroups": [
+      74,
+      71,
+      75
+    ],
+    "allPriorCasesPreserved": true,
+    "canopyAssignments": [
+      {
+        "name": "desktop",
+        "width": 1440,
+        "height": 900,
+        "trees": 55,
+        "previousWritesPerUpdate": 110,
+        "currentWrites": [
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "reducedMotionSteadyWrites": 0
+      },
+      {
+        "name": "phone",
+        "width": 320,
+        "height": 650,
+        "trees": 55,
+        "previousWritesPerUpdate": 110,
+        "currentWrites": [
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "reducedMotionSteadyWrites": 0
+      },
+      {
+        "name": "wide2k",
+        "width": 2560,
+        "height": 1440,
+        "trees": 55,
+        "previousWritesPerUpdate": 110,
+        "currentWrites": [
+          11,
+          11,
+          11,
+          11,
+          11
+        ],
+        "reducedMotionSteadyWrites": 0
+      }
+    ],
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14569792052,
+        "createdAt": "2026-11-19T20:00:31Z",
+        "sha": "68619d549a01c10f80a2780e61e0cba2d6cfd219",
+        "zipSha256": "f13d145eb8acef651ef88d8d409cbcdbd8c67ba95722b365fb758272598cb1dc",
+        "size": 130082,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14570001801,
+        "createdAt": "2026-11-19T20:00:32Z",
+        "sha": "68619d549a01c10f80a2780e61e0cba2d6cfd219",
+        "zipSha256": "b95aa17afaea05580715af045444c1a791cb171f4bf50320b72404cceb76fa6e",
+        "size": 750330,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14570487565,
+        "createdAt": "2026-11-19T20:09:50Z",
+        "sha": "68619d549a01c10f80a2780e61e0cba2d6cfd219",
+        "zipSha256": "c8b3c3d3b882932a07c1524d04d0a21d5bacedb4638186dbe09d11fcc372b45b",
+        "size": 18392048,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14571070212,
+        "createdAt": "2026-11-19T20:10:55Z",
+        "sha": "68619d549a01c10f80a2780e61e0cba2d6cfd219",
+        "zipSha256": "a894eae496f98d7a2cf86b3f117cc0de34ace4acabd4593da832e13b618ca6b0",
+        "size": 17200659,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14569793989,
+        "createdAt": "2026-11-19T20:12:24Z",
+        "sha": "68619d549a01c10f80a2780e61e0cba2d6cfd219",
+        "zipSha256": "f6c4633b8d0722e002c13a5af07ab7e0e89898d03bcc117ec711ee1572792f37",
+        "size": 23764752,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Counted actual transform assignments per sampled frame. This is not a device FPS, power, or hosted scale benchmark. Caf\u00e9 shelf remains an independent fictional rehearsal in this release."
+}

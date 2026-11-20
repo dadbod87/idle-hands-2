@@ -5,6 +5,7 @@ import{PROPS}from'../game/live-workshop.ts';
 import{addressForPlot}from'../game/neighborhood.ts';
 import type{TownClient,TownCommand}from'./town-client.ts';
 import{duration}from'./workshop.ts';
+import{housingPlanPreview}from'./housing-plan-preview.ts';
 export type HousingViewState={target:string;review:boolean;yard:boolean;browse:boolean};
 export function housingPanel(body:HTMLElement,client:TownClient,view:HousingViewState,act:(c:TownCommand)=>void,repaint:()=>void,enter:(id:string)=>void){
  const ticks:Array<()=>void>=[];const s=client.snapshot!,h=s.housing!,own=s.plot,build=h.build as HousingBuild|null,q=h.quote as HousingQuote|null;
@@ -17,9 +18,27 @@ export function housingPanel(body:HTMLElement,client:TownClient,view:HousingView
  }else if(!view.browse&&own){body.append(button('Arrange your yard',()=>{view.yard=true;repaint();}),button('Browse other home plans',()=>{view.browse=true;view.yard=false;repaint();}));}
  if(!build&&(view.browse||!own)){
   body.append(p('Expanded homes currently share an eight-nook interior. Choose the exterior and yard you like.'));const choose=document.createElement('div');choose.className='housing-plan-grid';
-  for(const plan of HOUSING_V1_PLANS.filter(p=>p.tier>=(own?.level??1))){const b=button('',()=>{view.target=plan.id;view.review=false;repaint();});b.dataset.housingPlan=plan.id;b.setAttribute('aria-pressed',String(view.target===plan.id));const img=document.createElement('img');img.src='/art/housing/'+plan.id+'.svg';img.alt='';img.width=96;img.height=112;const name=document.createElement('strong');name.textContent=plan.name;b.append(img,name,p(plan.indoorNooks+' nooks · '+plan.yard.length+' yard spots'),p((own?(plan.tier>own.level?HOUSING_V1.expansionKits:HOUSING_V1.remodelKits):HOUSING_V1.starterKits+(plan.tier===2?HOUSING_V1.expansionKits:0))+' kits · 6h builders'));choose.append(b);}body.append(choose);
-  const target=HOUSING_V1_PLANS.find(p=>p.id===view.target);if(target){body.append(p(target.feature));if(target.convenience)body.append(p('Garden-desk and home-bench connections are planned. For now, use your existing allotment or workshop; this extra room holds your furnishings.'));
-   const review=button('Review plan & complete price',()=>{view.review=true;act({kind:'housing-quote',target:target.id,plotId:own?.id??h.nextPlotId});});review.dataset.housingReview='';review.disabled=own?.planId===target.id;body.append(review);
+  for(const plan of HOUSING_V1_PLANS.filter(p=>p.tier>=(own?.level??1))){const b=button('',()=>{
+   const detail=body.querySelector<HTMLDetailsElement>('[data-housing-preview]');
+   const previewOpen=detail?.open??false;
+   const dialog=body.closest('dialog');
+   const scroll=dialog?.scrollTop??0;
+   view.target=plan.id;view.review=false;repaint();
+   const updated=body.querySelector<HTMLDetailsElement>('[data-housing-preview]');
+   if(updated)updated.open=previewOpen;
+   if(dialog)dialog.scrollTop=scroll;
+   body.querySelector<HTMLButtonElement>('[data-housing-plan="'+plan.id+'"]')?.focus({preventScroll:true});
+  });b.dataset.housingPlan=plan.id;b.setAttribute('aria-pressed',String(view.target===plan.id));const img=document.createElement('img');img.src='/art/housing/'+plan.id+'.svg';img.alt='';img.width=96;img.height=112;const name=document.createElement('strong');name.textContent=plan.name;b.append(img,name,p(plan.indoorNooks+' nooks · '+plan.yard.length+' yard spots'),p((own?(plan.tier>own.level?HOUSING_V1.expansionKits:HOUSING_V1.remodelKits):HOUSING_V1.starterKits+(plan.tier===2?HOUSING_V1.expansionKits:0))+' kits · 6h builders'));choose.append(b);}body.append(choose);
+  const target=HOUSING_V1_PLANS.find(p=>p.id===view.target);if(target){body.append(p(target.convenience?'Extra room for your furnishings.':target.feature));
+   const review=button('Review plan & complete price',()=>{view.review=true;act({kind:'housing-quote',target:target.id,plotId:own?.id??h.nextPlotId});});review.dataset.housingReview='';review.disabled=own?.planId===target.id;
+   review.addEventListener('focus',()=>{
+    const dialog=review.closest('dialog');
+    const header=dialog?.querySelector('.dialog-head');
+    if(!dialog||!header)return;
+    const control=review.getBoundingClientRect(),head=header.getBoundingClientRect(),frame=dialog.getBoundingClientRect();
+    if(control.top<head.bottom||control.bottom>frame.bottom)review.scrollIntoView({block:'center'});
+   });
+   body.append(review,housingPlanPreview(target));
   }
  }
  if(view.review&&q&&!build&&q.target===view.target){const section=document.createElement('section');section.className='housing-quote';section.setAttribute('aria-label','Review construction purchase');

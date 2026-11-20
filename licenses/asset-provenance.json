@@ -2023,6 +2023,16 @@
       "modifications": "Cottage material layers and flat north-wall embroidery derived from original project home interior; exact bed, floor, door and nook geometry. No imported media."
     },
     {
+      "id": "garden-studio-interior",
+      "path": "public/art/interiors/garden-studio-interior.svg",
+      "sha256": "e966376b53ae9a4f1f98dcb0d9706ae7f8d07fcfa44179bb633238edabc8029f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "tools/create-garden-studio-interior.py",
+      "date": "2026-11-19",
+      "modifications": "Glazed sunroom extension of original project art. Exact existing bed, door and nooks. No imported media."
+    },
+    {
       "id": "outing-desk",
       "path": "public/art/outing/desk.svg",
       "sha256": "ee9521c4dcf407174b4eea14ca3178e9caadaffc693052ef6edd42368b56d8eb",

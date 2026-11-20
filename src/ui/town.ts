@@ -1,7 +1,7 @@
 import { NATURALIST_KEEPSAKE, earnedNaturalist } from '../game/home-keepsake.ts';
 import {returnStops,returnSummary,type VisitBaseline} from '../game/return-summary.ts';
 import{housingPanel,type HousingViewState}from'./housing.ts';
-import {furnishingCopies,homeDisplays,furnishingIcon,homeInterior} from '../game/home-identity.ts';
+import {furnishingCopies,homeDisplays,furnishingIcon,homeInterior,homeInteriorPath} from '../game/home-identity.ts';
 import{housingPurchase}from'../game/housing-view.ts';
 import{addressForPlot}from'../game/neighborhood.ts';
 import {homeSlots,homeDisplay} from '../game/live-home-layout.ts';
@@ -140,7 +140,7 @@ export class TownUI {
   }
   const room=document.createElement('img'),interior=homeInterior(plot.level,plot.planId);
   room.alt='';
-  room.src='/art/'+(interior.startsWith('cottage-')?'interiors/':'homes/')+interior+'.svg';
+  room.src=homeInteriorPath(interior);
   const layout=document.createElement('div'),frame=document.createElement('div');
   frame.append(this.keepsakeImage('Neighborhood Naturalist preview'));
   layout.className='keepsake-room-preview';

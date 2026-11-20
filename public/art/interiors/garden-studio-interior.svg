@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="512" viewBox="0 0 768 512"><title>Garden Studio with glazed sunroom</title><defs><pattern id="boards" width="128" height="64" patternUnits="userSpaceOnUse"><rect width="128" height="64" fill="#dfc69c"/><path d="M0 0h128M0 32h128M43 0v32M99 32v32" stroke="#bea176" stroke-width="1.2" fill="none"/><path d="M9 14h24M60 49h21" stroke="#d0b487" stroke-width="1.1"/></pattern></defs><rect x="0" y="0" width="768" height="512" rx="0" fill="#c5b28d" stroke="none" stroke-width="2"/><rect x="24" y="24" width="720" height="464" rx="8" fill="url(#boards)" stroke="#343c36" stroke-width="2"/><rect x="24" y="24" width="720" height="38" rx="7" fill="#a7b291" stroke="#343c36" stroke-width="2"/><path d="M24 62h720" fill="none" stroke="#687b64" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="386" y="23" width="94" height="34" rx="2" fill="#927e5f" stroke="#343c36" stroke-width="2"/><rect x="389" y="26" width="88" height="28" rx="1" fill="#91b2b5" stroke="#343c36" stroke-width="2"/><path d="M433.0 26v28M389 41.400000000000006h88" fill="none" stroke="#f8f1df" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M393 48l79 -16" fill="none" stroke="#d9e1cf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="265" y="25" width="68" height="33" rx="3" fill="#947760" stroke="#343c36" stroke-width="2"/><rect x="277" y="31" width="44" height="27" rx="3" fill="#53524a" stroke="#343c36" stroke-width="2"/><path d="M291 53q-8-8 2-16 0 7 7 10 8-10 9 5Z" fill="#d6ad65" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="305" y="83" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#343c36">THE GARDEN STUDIO</text><rect x="64" y="64" width="128" height="96" rx="5" fill="#8f7657" stroke="#343c36" stroke-width="2"/><rect x="70" y="70" width="116" height="84" rx="4" fill="#a9b18b" stroke="#343c36" stroke-width="2"/><rect x="78" y="78" width="39" height="65" rx="7" fill="#f8f1df" stroke="#343c36" stroke-width="2"/><path d="M124 73v78M132 77v71" fill="none" stroke="#718469" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 156h120" fill="none" stroke="#574f3c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="256" y="416" width="96" height="64" rx="2" fill="#8c7757" stroke="#343c36" stroke-width="2"/><rect x="263" y="422" width="82" height="53" rx="1" fill="#b59e78" stroke="#343c36" stroke-width="2"/><path d="M272 444h64M272 451h64" fill="none" stroke="#d4bf98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<defs>
+  <pattern id="sunroom-tiles" width="48" height="48" patternUnits="userSpaceOnUse">
+    <rect width="48" height="48" fill="#d4ddc5"/>
+    <path d="M0 0h24v24H0zm24 24h24v24H24z" fill="#b7c6b1"/>
+    <path d="M0 .5h48M0 24.5h48M.5 0v48M24.5 0v48" stroke="#a2ae98" fill="none"/>
+    <path d="m24 20 4 4-4 4-4-4Z" fill="#d9bc83" stroke="#967c5a" stroke-width=".7"/>
+  </pattern>
+</defs>
+<rect x="584" y="65" width="155" height="415" rx="4" fill="url(#sunroom-tiles)" stroke="#8a997e" stroke-width="2"/>
+<path d="M584 65v415m5-415v415" fill="none" stroke="#d2b68b" stroke-width="2"/>
+<rect x="594" y="24" width="140" height="39" rx="8" fill="#728d83" stroke="#343c36" stroke-width="2"/>
+<path d="M599 58V38q0-9 10-9h109q11 0 11 9v20Z" fill="#a6d0c6" stroke="#3e625b" stroke-width="2"/>
+<path d="M625 29v29m26-29v29m26-29v29m26-29v29M599 44h130" fill="none" stroke="#f3e7bd" stroke-width="2"/>
+<path d="M605 38l10-7m17 14 18-12m9 12 18-12m9 12 18-12m9 12 13-9" fill="none" stroke="#e3f2d8" stroke-width="1.6"/>
+<path d="M606 66h27l30 57h-22zm46 0h26l30 57h-22zm49 0h24l12 26v25z" fill="#fff4bb" fill-opacity=".37"/>
+<rect x="613" y="75" width="100" height="23" rx="3" fill="#f8f1df" stroke="#667f69" stroke-width="1.8"/>
+<text x="663" y="90" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="bold" fill="#34443a">THE SUNROOM</text>
+<g stroke="#455c46" stroke-width="1.6" stroke-linejoin="round">
+  <path d="M600 61v-9m0 5q-8-7-7-8 7-2 7 8m0-3q7-8 8-4-1 5-8 4" fill="#799e65"/>
+  <path d="M594 58h12l-2 9h-8z" fill="#c18360"/>
+  <path d="M725 62v-10m0 4q-7-8-8-4 1 5 8 4m0 3q6-9 8-5-1 6-8 5" fill="#799e65"/>
+  <path d="M719 59h12l-2 8h-8z" fill="#c18360"/>
+</g>
+</svg>

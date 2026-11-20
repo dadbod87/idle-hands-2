@@ -3331,7 +3331,7 @@
     {
       "id": "IH2-176",
       "title": "Let players stop an assisted walk without starting another",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/stop-assisted-walk",
       "goal": "Make phone and keyboard travel easy to undo while it is still on the way.",
       "depends_on": [
@@ -3345,7 +3345,30 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-176/PLAN.md"
+        "docs/evidence/IH2-176/PLAN.md",
+        "docs/evidence/IH2-176/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A temporary playfield action or Escape clears a guided target while still travelling and restores focus to the world."
+    },
+    {
+      "id": "IH2-177",
+      "title": "Give the Garden Studio its own walkable sunroom",
+      "status": "in_progress",
+      "owner_branch": "feat/garden-studio-interior",
+      "goal": "Let a chosen housing plan feel different inside while preserving ownership and existing rooms.",
+      "depends_on": [
+        "IH2-176",
+        "IH2-162"
+      ],
+      "acceptance": [
+        "Load original glazing and tile art for the exact confirmed expanded Garden Studio. Keep the original floor footprint and allocations.",
+        "Walk into the room as an owner and visitor. Change the current plan through a fictional confirmed snapshot and preserve current feet and furniture."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-177/PLAN.md"
       ]
     }
   ],

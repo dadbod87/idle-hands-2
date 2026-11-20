@@ -3,8 +3,14 @@ import {PROPS, type PropId, type WorkshopState} from './live-workshop.ts';
 import {homeSlots, homeDisplay, type HomeLayout} from './live-home-layout.ts';
 
 export function homeInterior(level:number, planId?:string|null){
+ if(level===2&&planId==='garden-studio-2')return 'garden-studio-interior';
  const tier=level===2?'expanded':'starter';
  return planId===`pocket-cottage-${level}`?`cottage-${tier}-interior`:`home-${tier}-interior`;
+}
+
+export function homeInteriorPath(interior:string){
+ const directory=interior.startsWith('home-')?'homes':'interiors';
+ return '/art/'+directory+'/'+interior+'.svg';
 }
 
 export function furnishingIcon(prop:PropId,motif='leaf'){

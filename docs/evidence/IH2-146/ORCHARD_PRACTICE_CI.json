@@ -1,0 +1,123 @@
+{
+  "pullRequest": 70,
+  "pr": {
+    "sha": "d5307aa5c1483584395a11ee7a0005fcd74562b3",
+    "run": 44586825190,
+    "domain": 562,
+    "browser": 217,
+    "browserGroups": [
+      73,
+      69,
+      75
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14559819481,
+        "createdAt": "2026-11-19T18:24:21Z",
+        "sha": "d5307aa5c1483584395a11ee7a0005fcd74562b3",
+        "zipSha256": "e579ee55c46418025cdab6e2247ebaa7bdb426c7a350226f4b41d02866d56403",
+        "size": 129786,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14559679551,
+        "createdAt": "2026-11-19T18:24:22Z",
+        "sha": "d5307aa5c1483584395a11ee7a0005fcd74562b3",
+        "zipSha256": "e93bb6628cca32fe8abbf1c93395d98815f2eab95508ab674938cf4a384fa74e",
+        "size": 749258,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14563171062,
+        "createdAt": "2026-11-19T18:34:14Z",
+        "sha": "d5307aa5c1483584395a11ee7a0005fcd74562b3",
+        "zipSha256": "935119f8a3abcf0a62fade8c2224dbe5a93476788482520052274808d8c7e961",
+        "size": 17733271,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14562027240,
+        "createdAt": "2026-11-19T18:33:17Z",
+        "sha": "d5307aa5c1483584395a11ee7a0005fcd74562b3",
+        "zipSha256": "a223c797ca21031ab274d43fbfffa74cef8140e0d83b79f5253a4bf970bce251",
+        "size": 16581745,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14563650971,
+        "createdAt": "2026-11-19T18:36:01Z",
+        "sha": "d5307aa5c1483584395a11ee7a0005fcd74562b3",
+        "zipSha256": "dd4d67bce23478a763087d675b5a537bb12d5c2e04d136d7bfe3b14f4864a5fe",
+        "size": 23685298,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "1266efcbff502bcd8e0683ea342cf5fdc19aed4f",
+    "run": 44589731473,
+    "domain": 562,
+    "browser": 217,
+    "browserGroups": [
+      73,
+      69,
+      75
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14562413571,
+        "createdAt": "2026-11-19T18:40:14Z",
+        "sha": "1266efcbff502bcd8e0683ea342cf5fdc19aed4f",
+        "zipSha256": "db02ff434291b7febf9e4dc4810a5216205f555db8ee8831c36ad8cefd61bef4",
+        "size": 129786,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14563941661,
+        "createdAt": "2026-11-19T18:40:16Z",
+        "sha": "1266efcbff502bcd8e0683ea342cf5fdc19aed4f",
+        "zipSha256": "0680812d770730f3da72636a6f7efa8ffc2733b507e833fe9f69fba6073d8234",
+        "size": 749258,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14564605064,
+        "createdAt": "2026-11-19T18:49:03Z",
+        "sha": "1266efcbff502bcd8e0683ea342cf5fdc19aed4f",
+        "zipSha256": "f4d21a786adae4e25c7dc3272b4517b6247fe0736cc6d4bfec0f872b0d8c9de4",
+        "size": 17716822,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14562759884,
+        "createdAt": "2026-11-19T18:49:44Z",
+        "sha": "1266efcbff502bcd8e0683ea342cf5fdc19aed4f",
+        "zipSha256": "5321e04b40c27b59138966a83f4529d8f1c31e7bf0a7b2c907adc1de9e83d193",
+        "size": 16465377,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14562273887,
+        "createdAt": "2026-11-19T18:52:15Z",
+        "sha": "1266efcbff502bcd8e0683ea342cf5fdc19aed4f",
+        "zipSha256": "479ebd23f8d494c9e230f75a4cbe6fb0ea29a83efacf0661f9a704e1c76431fb",
+        "size": 23708989,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native path, UI and local saves. Fictional feet, clock, original workshop and storage-failure fixtures. Emulated layouts and Terra stills. Shared orchard was not yet included."
+}

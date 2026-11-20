@@ -1,0 +1,123 @@
+{
+  "pullRequest": 80,
+  "pr": {
+    "sha": "13272a26dcdc8a73a5b2740c0d0daf2594ff2fe4",
+    "run": 44651294688,
+    "domain": 583,
+    "browser": 233,
+    "browserGroups": [
+      75,
+      77,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14591850519,
+        "createdAt": "2026-11-20T01:11:30Z",
+        "sha": "13272a26dcdc8a73a5b2740c0d0daf2594ff2fe4",
+        "zipSha256": "416b6722368f59f0a43148a19e2e9c0300d8a7423522483075cfbb32d90b1937",
+        "size": 132830,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14591800651,
+        "createdAt": "2026-11-20T01:11:31Z",
+        "sha": "13272a26dcdc8a73a5b2740c0d0daf2594ff2fe4",
+        "zipSha256": "49e4bacac24b9b59b344503dcf41cdfe3411f87aed7166652ac6a663d7686a7c",
+        "size": 761014,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14590544473,
+        "createdAt": "2026-11-20T01:21:44Z",
+        "sha": "13272a26dcdc8a73a5b2740c0d0daf2594ff2fe4",
+        "zipSha256": "0b6d0b904640006aa5ec85fdb49887c555209eb9f87a164bbf0bb01d3afd1212",
+        "size": 18499444,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14591328699,
+        "createdAt": "2026-11-20T01:21:40Z",
+        "sha": "13272a26dcdc8a73a5b2740c0d0daf2594ff2fe4",
+        "zipSha256": "37f17169d1168ea7fa32753f92dcadd487cf2ce2c50287a877372a6d2b75fd5a",
+        "size": 19103326,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14592915399,
+        "createdAt": "2026-11-20T01:25:54Z",
+        "sha": "13272a26dcdc8a73a5b2740c0d0daf2594ff2fe4",
+        "zipSha256": "7ea9fdd83724e1c749607a08d460fdc2c12b061981b6aee5c08e766fc749d391",
+        "size": 24769392,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6",
+    "run": 44653713483,
+    "domain": 583,
+    "browser": 233,
+    "browserGroups": [
+      75,
+      77,
+      81
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14591573759,
+        "createdAt": "2026-11-20T01:30:16Z",
+        "sha": "efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6",
+        "zipSha256": "3670b94b927b4cf714144a6f78afd74601f69dcdaee948321538e1fe7ec93006",
+        "size": 131811,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14591623470,
+        "createdAt": "2026-11-20T01:30:18Z",
+        "sha": "efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6",
+        "zipSha256": "e27cc9b5aa4f88c4eda7260f764b0e4ab6d6271bb3cb9b22ab3d0b4a66d47a33",
+        "size": 761014,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14593445581,
+        "createdAt": "2026-11-20T01:39:56Z",
+        "sha": "efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6",
+        "zipSha256": "f221817f8d257f200870ac0f2c12309d33be7a7181cba82f1eb56ba5d46cba67",
+        "size": 18462388,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14592903067,
+        "createdAt": "2026-11-20T01:42:27Z",
+        "sha": "efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6",
+        "zipSha256": "80ded8315b64fdeb66eebf709e04165a43316d115794c39a172d41794aca1482",
+        "size": 19106548,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14591744810,
+        "createdAt": "2026-11-20T01:41:30Z",
+        "sha": "efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6",
+        "zipSha256": "2a5e0caac29d618659f4a5d2323e1d3bbc6b2633322b72c770eb4ae7041fd683",
+        "size": 24660151,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native browser motion and intercepted fictional shared movement. The sample pauses animation only for capture and keeps server data out."
+}

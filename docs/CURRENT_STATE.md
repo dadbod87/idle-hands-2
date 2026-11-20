@@ -1,3 +1,55 @@
+# November 19 — room-specific garden loading accepted
+
+The outdoor first frame requests fewer images and the first named garden visit waits for the mounted room. Main `ded1071f4d5b334f438588f4305645a6ac64a7a2` passed 586 domain tests and 236 browser cases. [Exact verification](evidence/IH2-161/EXACT_CI.json).
+
+# November 19 — the optional first morning accepted
+
+An explicitly chosen browser-practice arrival now starts in the boarding-house bed, wakes on request and exits through the real front door. Main `8b4921c1c20c3c8dcf425f59d557c452380e9d75` passed 586 domain tests and 235 browser cases. [Exact verification](evidence/IH2-160/EXACT_CI.json).
+
+# November 19 — confirmed door light accepted
+
+A 220 ms paper-colored fade follows an accepted room transition. Main `efbb363bd3a8d23ef4e30a5a9cbdc69718fc48c6` passed 583 domain tests and 233 browser cases. [Exact verification](evidence/IH2-159/EXACT_CI.json).
+
+# November 19 — arrival stories and a route to Marlow accepted
+
+A browser resident can choose an optional backstory and walk to the clerk from the boarding-house note. Main `6a2b3f1abaaf4f5db393c88d996a4e480eca3114` passed 583 domain tests and 231 browser cases. [Exact verification](evidence/IH2-158/EXACT_CI.json).
+
+# November 19 — quieter rain-layer updates accepted
+
+Steady weather and indoors skip redundant visibility changes while visible rain keeps moving with the world. Main `2166d2a3cdaf7e5a4381e0c5ebc10a504a479f4f` passed 581 domain tests and 230 browser cases. [Exact verification](evidence/IH2-157/EXACT_CI.json).
+
+# November 19 — walkable boarding house accepted
+
+Browser practice has a real door and room, a note to Marlow, and a safely restored position. Main `5d0e3b76b30435c3fc618b165dba426f3a85172e` passed 581 domain tests and 229 browser cases. [Exact verification](evidence/IH2-156/EXACT_CI.json).
+
+# November 19 — optional orchard music accepted
+
+Little brass labels plays in the orchard after confirmed arrival, reusing the original gather voice. Main `d422168f896a6cc4ede31a1993479a9751350b34` passed 577 domain tests and 227 browser cases. [Exact verification](evidence/IH2-155/EXACT_CI.json).
+
+# November 19 — Jun’s orchard directions accepted
+
+One contextual suggestion points to confirmed orchard work. A narrow phone can follow its route without picking or spending. Main `c9353926a5f6f57230eb601e206a72567d69ffeb` passed 575 domain tests and 225 browser cases. [Exact verification](evidence/IH2-154/EXACT_CI.json).
+
+# November 19 — original headwear accepted in browser practice
+
+The resident editor now offers the Clerk cap and Inkwood hood. Free previews use the same feet and acting poses as the selected resident, and only explicit Save changes the appearance. Main `bc61186865a1c781e8eaf5fde18d1176d61fdec4` passed 572 domain tests and 224 browser cases. [Exact checks](evidence/IH2-153/BROWSER_HEADWEAR_CI.json).
+
+# November 19 — a private café parcel shelf
+
+Shared practice residents can leave one real orchard snack for a neighbor, who can accept it or decline. Both sides see the pickup deadline in local time. The sender can reclaim an unaccepted parcel after expiry. Main `26fea9631260c80f08f9de114cdcddeeca5f533e` passed 571 domain tests and 223 browser cases. [PR #73 evidence](evidence/IH2-150/SNACK_SHELF_CI.json).
+
+# November 19 — less tree work and a rehearsal for small favors
+
+Visible tree sway now skips unchanged transform assignments. Native desktop, narrow phone and 2K checks verify that a canopy begins and ends visible motion when the camera passes. A separate café parcel rehearsal demonstrates a small neighbor gift. Main `68619d549a01c10f80a2780e61e0cba2d6cfd219` passed 566 domain tests and 220 browser cases. [PR #72 evidence](evidence/IH2-148/CANOPY_AND_PARCEL_CI.json).
+
+# November 19 — a shared orchard with personal stock
+
+The shared practice town supports independent apples and timed snack packing. Verified feet and server time control each action. Main `55d75c58e9922377f262af9fc284f26470aab3d0` passed 566 domain tests and 219 browser cases. [PR #71 evidence](evidence/IH2-147/SHARED_ORCHARD_CI.json).
+
+# November 19 — map walks and browser orchard
+
+Residents can select known walks from the town map. The browser-practice orchard has three personal branches, a timed snack, deliberate collection, Bag quantities and a Journal note. Main `1266efcbff502bcd8e0683ea342cf5fdc19aed4f` passed 562 domain tests and 217 browser cases. [PR #70 evidence](evidence/IH2-146/ORCHARD_PRACTICE_CI.json).
+
 # November 19 — visible work and a town opening
 
 The ordinary workbench shows its confirmed materials or finished piece. Nearby residents can see a brief Inkwood opening celebration. The orchard pacing model and original picking poses are available as standalone studies. Main `6f9245a8772a858c1e26104b249e50e6c5162f09` passed 558 domain tests and 213 browser cases. [PR #69 gate and evidence](evidence/IH2-142/TOWN_MOMENTS_CI.json).

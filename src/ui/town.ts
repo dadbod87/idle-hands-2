@@ -1,6 +1,7 @@
+import { NATURALIST_KEEPSAKE, earnedNaturalist } from '../game/home-keepsake.ts';
 import {returnStops,returnSummary,type VisitBaseline} from '../game/return-summary.ts';
 import{housingPanel,type HousingViewState}from'./housing.ts';
-import {furnishingCopies,homeDisplays,furnishingIcon} from '../game/home-identity.ts';
+import {furnishingCopies,homeDisplays,furnishingIcon,homeInterior} from '../game/home-identity.ts';
 import{housingPurchase}from'../game/housing-view.ts';
 import{addressForPlot}from'../game/neighborhood.ts';
 import {homeSlots,homeDisplay} from '../game/live-home-layout.ts';
@@ -22,7 +23,7 @@ export class TownUI {
  private landmark:string|undefined;
  private plotVersion='';
  private choiceOwner='';private registryOpen=false;
- private homeChoices=new Map<string,{prop:string;slot:string;details:boolean}>();
+ private homeChoices=new Map<string,{prop:string;slot:string;details:boolean;keepsakeOpen:boolean}>();
  private homeKeyboard=false;
  private purchaseUpdates:Array<()=>void>=[];
  constructor(private host:TownHost,private client:TownClient){const dialog=this.host.body.closest('dialog');dialog?.addEventListener('keydown',event=>{if(event.key==='Tab')this.homeKeyboard=true;});dialog?.addEventListener('pointerdown',()=>this.homeKeyboard=false);window.setInterval(()=>{if(!document.hidden&&this.status?.isConnected)this.refresh();},1000);}
@@ -112,6 +113,63 @@ export class TownUI {
   this.start('Housing registry');this.panel='plots';const root=this.host.body;root.dataset.liveHousing='';
   this.housingTick=housingPanel(root,this.client,this.housingView,c=>void this.action(c,()=>this.showHousing()),()=>this.showHousing(),id=>void this.host.enterHome?.(id));this.notice();
  }
+ private keepsakeImage(alt=''){
+  const art=document.createElement('img');
+  art.src=NATURALIST_KEEPSAKE.art;
+  art.alt=alt;
+  return art;
+ }
+ private keepsakeControl(snapshot:TownSnapshot,plot:TownPlot,saved:{keepsakeOpen:boolean},refresh:()=>void){
+  const fold=document.createElement('details');
+  fold.className='home-keepsake';
+  fold.open=saved.keepsakeOpen;
+  fold.ontoggle=()=>{if(fold.isConnected)saved.keepsakeOpen=fold.open;};
+  const label=document.createElement('summary');
+  label.dataset.townFocus='wall-keepsake';
+  label.textContent='Keepsake display';
+  fold.append(label);
+  if(plot.keepsake){
+   const take=this.button('Take down frame',()=>void this.action({kind:'display-home-keepsake',plotId:plot.id,keepsake:null},refresh));
+   take.dataset.townFocus='take-down-keepsake';
+   fold.append(this.p('Your certificate is on display.'),take);
+   return fold;
+  }
+  if(!earnedNaturalist(snapshot.workshop.sketches)){
+   fold.append(this.p('Record three tree studies to earn the Neighborhood Naturalist certificate.'));
+   return fold;
+  }
+  const room=document.createElement('img'),interior=homeInterior(plot.level,plot.planId);
+  room.alt='';
+  room.src='/art/'+(interior.startsWith('cottage-')?'interiors/':'homes/')+interior+'.svg';
+  const layout=document.createElement('div'),frame=document.createElement('div');
+  frame.append(this.keepsakeImage('Neighborhood Naturalist preview'));
+  layout.className='keepsake-room-preview';
+  const {x,y,width}=NATURALIST_KEEPSAKE.frame,roomWidth=plot.level===2?768:576;
+  frame.style.left=(100*x/roomWidth)+'%';
+  frame.style.top=(100*y/512)+'%';
+  frame.style.width=(100*width/roomWidth)+'%';
+  frame.className='keepsake-frame-preview';
+  layout.append(room,frame);
+  const options=document.createElement('div');
+  options.className='keepsake-preview-options';
+  options.hidden=true;
+  const preview=this.button('Preview your certificate',()=>{
+   preview.hidden=true;
+   options.hidden=false;
+   hang.focus();
+  });
+  preview.dataset.townFocus='preview-keepsake';
+  const hang=this.button('Display for visitors',()=>void this.action({kind:'display-home-keepsake',plotId:plot.id,keepsake:NATURALIST_KEEPSAKE.id},refresh));
+  hang.dataset.townFocus='hang-keepsake';
+  const cancel=this.button('Cancel preview',()=>{
+   options.hidden=true;
+   preview.hidden=false;
+   preview.focus();
+  });
+  options.append(layout,this.p('Private until you display it.'),hang,cancel);
+  fold.append(preview,options);
+  return fold;
+ }
  showPlots(plotId?:string){
   const s=this.client.snapshot;if(!s){void this.showLogin();return;}
   if(s.housing&&!plotId){this.showHousing();return;}
@@ -129,7 +187,7 @@ export class TownUI {
    if(plotId&&plot.id!==plotId)continue;
    const owner=plot.ownerId===s.playerId,inThisHome=inside&&selected?.id===plot.id;
    const section=document.createElement('section');section.className='town-plot';section.dataset.homePlot=plot.id;
-   const saved=this.homeChoices.get(plot.id)??{prop:'',slot:'',details:false};this.homeChoices.set(plot.id,saved);
+   const saved=this.homeChoices.get(plot.id)??{prop:'',slot:'',details:false,keepsakeOpen:false};this.homeChoices.set(plot.id,saved);
    const rerender=()=>{const dialog=this.host.body.closest('dialog'),scroll=dialog?.scrollTop??0;this.showPlots(plotId);if(dialog)dialog.scrollTop=scroll;};
    const info=document.createElement('div');
    if(plot.ownerId){const enter=this.button(owner?'Enter your house':'Visit '+(plot.ownerName??'this house'),()=>{if(this.busy)return;this.busy=true;void this.host.enterHome?.(plot.id).catch(error=>this.host.feedback(error.message)).finally(()=>this.busy=false);});enter.dataset.homeEnter=plot.id;if(!inThisHome)info.append(enter);}
@@ -162,6 +220,7 @@ export class TownUI {
     section.addEventListener('focusin',event=>{if(this.homeKeyboard&&event.target instanceof HTMLElement)requestAnimationFrame(()=>this.revealHomeFocus(event.target as HTMLElement));});
     if(inThisHome){
      section.append(controls);
+     if(s.homeKeepsakes===true)section.append(this.keepsakeControl(s,plot,saved,rerender));
      const details=document.createElement('details');details.className='home-secondary';details.dataset.homeSecondary='';details.open=saved.details;
      const summary=document.createElement('summary');summary.dataset.townFocus='home-expansion';summary.textContent='House & expansion';details.append(summary,info);details.ontoggle=()=>{if(details.isConnected)saved.details=details.open;};
      section.append(details);
@@ -179,7 +238,26 @@ export class TownUI {
       const description=document.createElement('div'),name=document.createElement('strong');name.textContent=item.name;description.append(name,this.p(item.story));card.append(art,description);display.append(card);
      }
      if(plot.pennantOwned)display.append(this.p('Inkwood discovery pennant · all three trail landmarks explored.'));
-     if(!homeDisplays(plot).length&&!plot.pennantOwned)display.append(this.p('A fresh start. The owner’s own finds and furnishings will appear here when displayed.'));
+     if(s.homeKeepsakes===true){
+      const card=document.createElement('article');
+      card.className='home-display';
+      card.dataset.homeDisplay='naturalist';
+      card.hidden=!plot.keepsake;
+      const art=this.keepsakeImage('');
+      art.width=48;art.height=32;
+      const description=document.createElement('div'),name=document.createElement('strong');
+      name.textContent=NATURALIST_KEEPSAKE.name;
+      description.append(name,this.p(NATURALIST_KEEPSAKE.story));
+      card.append(art,description);
+      display.append(card);
+     }
+
+     if(!homeDisplays(plot).length&&!plot.pennantOwned){
+      const blank=this.p('A fresh start. The owner’s finds and furnishings will appear here when displayed.');
+      blank.dataset.homeDisplayEmpty='';
+      blank.hidden=!!plot.keepsake;
+      display.append(blank);
+     }
      const details=document.createElement('details');details.className='home-secondary';
      const summary=document.createElement('summary');summary.textContent='Address & house details';details.append(summary,info);
      section.append(display,details);
@@ -191,6 +269,16 @@ export class TownUI {
   const reload=this.button('Refresh plot information',()=>{if(this.busy)return;const dialog=this.host.body.closest('dialog'),scroll=dialog?.scrollTop??0;this.showPlots(plotId);if(dialog)dialog.scrollTop=scroll;});reload.dataset.townPlotRefresh='';
   if(inside){reload.style.visibility='hidden';reload.dataset.homeRefreshReserved='';}else reload.hidden=true;
   this.host.body.append(reload);this.notice();if(inside)this.status?.classList.add('home-status');
+ }
+ private refreshGuestKeepsake(snapshot:TownSnapshot){
+  const card=this.host.body.querySelector<HTMLElement>('[data-home-display=naturalist]');
+  const plotId=card?.closest<HTMLElement>('[data-home-plot]')?.dataset.homePlot;
+  if(!card||!plotId)return;
+  const visible=plotId===snapshot.position.homePlotId&&snapshot.plots.some(plot=>plot.id===plotId&&!!plot.keepsake);
+  if(card.hidden===!visible)return;
+  card.hidden=!visible;
+  const blank=this.host.body.querySelector<HTMLElement>('[data-home-display-empty]');
+  if(blank)blank.hidden=visible;
  }
  private revealHomeFocus(target:HTMLElement){
   if(!target.isConnected||!this.host.body.contains(target))return;
@@ -219,7 +307,7 @@ export class TownUI {
  }
  showLesson(){this.start('Orientation maintenance');this.panel='lesson';const s=this.client.snapshot;if(!s){void this.showLogin();return;}this.host.body.append(this.p('A useful first job. The committee insists it is not a shortcut to a house.'),this.p('Once only: 1 scrap + 1 timber + 1 supplies. 60 real seconds. Your ordinary bench job can run separately. This earns one nontradeable participation credit, never an inventory kit or currency.'));const quote=this.p('Current quote: '+((s.lessonQuote?.route??(s.bridge.contributed>=s.bridge.target?'upkeep':'construction'))==='construction'?'contribute to the collecting bridge repair.':'record a separate upkeep/inspection; the bridge is already funded or finished.')+' Cost: 1 scrap + 1 timber + 1 supplies, once. If this route changes before payment, nothing is spent and a refreshed quote is shown.');quote.className='quest-card';this.host.body.append(quote);const timer=this.p('');timer.dataset.lessonClock='';const start=this.button('Prepare orientation maintenance',()=>void this.action({kind:'start-lesson',route:s.lessonQuote?.route??(s.bridge.contributed>=s.bridge.target?'upkeep':'construction'),expectedBridgeContributed:s.lessonQuote?.expectedBridgeContributed??s.bridge.contributed},()=>this.showLesson()));start.dataset.lessonStart='';const complete=this.button('Collect maintenance credit',()=>void this.action({kind:'complete-lesson'},()=>this.showLesson()));complete.dataset.lessonComplete='';this.host.body.append(timer,start,complete,this.p('Bring the credit to the bridge committee. If repairs are already finished, record an upkeep inspection instead. Previously accepted bridge participation stays satisfied.'));this.notice();this.refresh();}
  private placePlot(plotId:string,prop:string,slot:string,refresh:()=>void){const snapshot=this.client.snapshot;if(!snapshot)return;const plot=snapshot.plots.find(plot=>plot.id===plotId);if(!plot)return;if(snapshot.housing){const used=Object.entries(homeDisplay(plot)).filter(([,v])=>v===prop);const yard=Object.entries(plot.yard??{}).find(([,v])=>v===prop),rental=Object.entries(snapshot.workshop.placements).find(([,v])=>v===prop);const allocated=used.length+Object.values(plot.yard??{}).filter(v=>v===prop).length+Object.values(snapshot.workshop.placements).filter(v=>v===prop).length;const from=allocated>=(snapshot.workshop.owned[prop as keyof WorkshopState['owned']]??0)?used.length?{area:'indoor',slot:used[0][0]}:yard?{area:'yard',slot:yard[0]}:rental?{area:'rental',slot:rental[0]}:undefined:undefined;void this.action({kind:'housing-arrange',arrangement:{version:1,catalogVersion:'housing-v1',expectedRevision:snapshot.workshop.revision,action:'place',to:{area:'indoor',slot},prop,...(from?{from}:{})}},refresh);return;}const elsewhere=Object.values(snapshot.workshop.placements).filter(value=>value===prop).length;const available=(snapshot.workshop.owned[prop as keyof WorkshopState['owned']]??0)-elsewhere;if(available<=0){const message='All copies are in your rental workshop. Return one to the bag there before placing it in your house plot.';if(this.status)this.status.textContent=message;this.host.feedback(message);return;}const placed=Object.entries(homeDisplay(plot)).filter(([,value])=>value===prop);void this.action({kind:'edit-plot',plotId,action:'place',slot,prop,...(placed.length>=available?{fromSlot:placed[0]?.[0]}:{})},refresh);}
- refresh(){this.housingTick?.();if(!this.status?.isConnected||!this.client.snapshot)return;const s=this.client.snapshot;if(this.panel==='plots')for(const update of this.purchaseUpdates)update();if(this.panel==='lesson'){const lesson=s.lesson;const timer=this.host.body.querySelector<HTMLElement>('[data-lesson-clock]');const remaining=lesson?.readyAt?Math.max(0,Math.ceil((lesson.readyAt-this.client.serverNow())/1000)):0;if(timer)timer.textContent=lesson?.legacySatisfied?'Earlier bridge participation already satisfies this step.':lesson?.redeemed?'Participation recorded. Ordinary production and housing continue.':lesson?.completed?'Credit ready. Bring it to the bridge committee.':lesson?.startedAt!==null&&lesson?.startedAt!==undefined?(remaining?'Preparation ready in '+Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0')+'.':'Preparation finished. Collect your credit.'):'Make and place your first planter, then prepare this small task at your bench.';const start=this.host.body.querySelector<HTMLButtonElement>('[data-lesson-start]');if(start)start.disabled=this.busy||lesson?.startedAt!=null||!!lesson?.legacySatisfied||!!lesson?.redeemed||!s.workshop.stats.planterPlacedAfterCraft||Object.values(s.workshop.inventory).some(n=>n<1);const complete=this.host.body.querySelector<HTMLButtonElement>('[data-lesson-complete]');if(complete)complete.disabled=this.busy||lesson?.startedAt==null||remaining>0||!!lesson.completed||!!lesson.legacySatisfied;}else if(this.panel==='bridge'){const counter=this.host.body.querySelector<HTMLElement>('[data-town-bridge]');if(counter)counter.textContent=this.bridgeText(s);const clock=this.host.body.querySelector<HTMLElement>('[data-bridge-clock]');if(clock)clock.textContent=s.bridge.phase==='building'&&s.bridge.readyAt?(s.bridge.readyAt>this.client.serverNow()?'Inspection ready in '+duration(s.bridge.readyAt-this.client.serverNow())+'.':'Inspection deadline reached. Confirm opening with the committee.'):(s.bridge.restored?'Access saved. The trail stays open.':'The construction clock starts only when all materials are funded.');const kits=this.host.body.querySelector<HTMLElement>('[data-town-kits]');if(kits)kits.textContent=`Your bridge kits: ${s.workshop.bridgeKits}. Keep ordinary stock for housing once repairs are funded.`;const donate=this.host.body.querySelector<HTMLButtonElement>('[data-town-donate]');if(donate)donate.disabled=this.busy||s.bridge.contributed>=s.bridge.target||s.bridge.restored||s.workshop.bridgeKits<1;const enter=this.host.body.querySelector<HTMLButtonElement>('[data-enter-trail]');if(enter)enter.disabled=this.busy||!s.bridge.restored;const check=this.host.body.querySelector<HTMLButtonElement>('[data-bridge-check]');if(check)check.disabled=this.busy;this.paintJournal(s);}else if(this.panel==='trail'){const stamps=s.trail?.stamps??[];const progress=this.host.body.querySelector<HTMLElement>('[data-trail-progress]');if(progress)progress.textContent=`${stamps.length} / 3 discoveries recorded. `+(s.trail?.pennantOwned?'Your home pennant is earned.':'Find each landmark along the restored path.');for(const row of this.host.body.querySelectorAll<HTMLElement>('[data-trail-mark]'))row.textContent=(stamps.includes(row.dataset.trailMark!)?'✓ Recorded · ':'○ To find · ')+worldLandmarkName(row.dataset.trailMark!);const stamp=this.host.body.querySelector<HTMLButtonElement>('[data-trail-stamp]');if(stamp)stamp.disabled=this.busy||!s.bridge.restored||stamps.includes(this.landmark??'');const earned=this.host.body.querySelector<HTMLImageElement>('[data-trail-pennant]');if(earned)earned.hidden=!s.trail?.pennantOwned;}else if(this.panel==='plots'&&this.plotVersion!==JSON.stringify([s.plots,s.workshop.owned,s.workshop.bridgeKits])){const reload=this.host.body.querySelector<HTMLButtonElement>('[data-town-plot-refresh]');if(reload){reload.hidden=false;reload.style.visibility='visible';}}}
+ refresh(){this.housingTick?.();if(!this.status?.isConnected||!this.client.snapshot)return;const s=this.client.snapshot;if(this.panel==='plots'){for(const update of this.purchaseUpdates)update();this.refreshGuestKeepsake(s);}if(this.panel==='lesson'){const lesson=s.lesson;const timer=this.host.body.querySelector<HTMLElement>('[data-lesson-clock]');const remaining=lesson?.readyAt?Math.max(0,Math.ceil((lesson.readyAt-this.client.serverNow())/1000)):0;if(timer)timer.textContent=lesson?.legacySatisfied?'Earlier bridge participation already satisfies this step.':lesson?.redeemed?'Participation recorded. Ordinary production and housing continue.':lesson?.completed?'Credit ready. Bring it to the bridge committee.':lesson?.startedAt!==null&&lesson?.startedAt!==undefined?(remaining?'Preparation ready in '+Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0')+'.':'Preparation finished. Collect your credit.'):'Make and place your first planter, then prepare this small task at your bench.';const start=this.host.body.querySelector<HTMLButtonElement>('[data-lesson-start]');if(start)start.disabled=this.busy||lesson?.startedAt!=null||!!lesson?.legacySatisfied||!!lesson?.redeemed||!s.workshop.stats.planterPlacedAfterCraft||Object.values(s.workshop.inventory).some(n=>n<1);const complete=this.host.body.querySelector<HTMLButtonElement>('[data-lesson-complete]');if(complete)complete.disabled=this.busy||lesson?.startedAt==null||remaining>0||!!lesson.completed||!!lesson.legacySatisfied;}else if(this.panel==='bridge'){const counter=this.host.body.querySelector<HTMLElement>('[data-town-bridge]');if(counter)counter.textContent=this.bridgeText(s);const clock=this.host.body.querySelector<HTMLElement>('[data-bridge-clock]');if(clock)clock.textContent=s.bridge.phase==='building'&&s.bridge.readyAt?(s.bridge.readyAt>this.client.serverNow()?'Inspection ready in '+duration(s.bridge.readyAt-this.client.serverNow())+'.':'Inspection deadline reached. Confirm opening with the committee.'):(s.bridge.restored?'Access saved. The trail stays open.':'The construction clock starts only when all materials are funded.');const kits=this.host.body.querySelector<HTMLElement>('[data-town-kits]');if(kits)kits.textContent=`Your bridge kits: ${s.workshop.bridgeKits}. Keep ordinary stock for housing once repairs are funded.`;const donate=this.host.body.querySelector<HTMLButtonElement>('[data-town-donate]');if(donate)donate.disabled=this.busy||s.bridge.contributed>=s.bridge.target||s.bridge.restored||s.workshop.bridgeKits<1;const enter=this.host.body.querySelector<HTMLButtonElement>('[data-enter-trail]');if(enter)enter.disabled=this.busy||!s.bridge.restored;const check=this.host.body.querySelector<HTMLButtonElement>('[data-bridge-check]');if(check)check.disabled=this.busy;this.paintJournal(s);}else if(this.panel==='trail'){const stamps=s.trail?.stamps??[];const progress=this.host.body.querySelector<HTMLElement>('[data-trail-progress]');if(progress)progress.textContent=`${stamps.length} / 3 discoveries recorded. `+(s.trail?.pennantOwned?'Your home pennant is earned.':'Find each landmark along the restored path.');for(const row of this.host.body.querySelectorAll<HTMLElement>('[data-trail-mark]'))row.textContent=(stamps.includes(row.dataset.trailMark!)?'✓ Recorded · ':'○ To find · ')+worldLandmarkName(row.dataset.trailMark!);const stamp=this.host.body.querySelector<HTMLButtonElement>('[data-trail-stamp]');if(stamp)stamp.disabled=this.busy||!s.bridge.restored||stamps.includes(this.landmark??'');const earned=this.host.body.querySelector<HTMLImageElement>('[data-trail-pennant]');if(earned)earned.hidden=!s.trail?.pennantOwned;}else if(this.panel==='plots'&&this.plotVersion!==JSON.stringify([s.plots,s.workshop.owned,s.workshop.bridgeKits])){const reload=this.host.body.querySelector<HTMLButtonElement>('[data-town-plot-refresh]');if(reload){reload.hidden=false;reload.style.visibility='visible';}}}
 }
 
 function worldLandmarkName(id:string){return id==='trailhead'?'Inspection stump':id==='old-sign'?'Retired wayfinding post':'Municipal birdwatching sign';}

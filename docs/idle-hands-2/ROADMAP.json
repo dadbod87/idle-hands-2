@@ -3127,7 +3127,7 @@
     {
       "id": "IH2-165",
       "title": "Check for café parcels from Journal",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/journal-cafe-parcels",
       "goal": "Let a resident see how many snacks are waiting and find the café without adding background traffic.",
       "depends_on": [
@@ -3142,7 +3142,29 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-165/PLAN.md"
+        "docs/evidence/IH2-165/PLAN.md",
+        "docs/evidence/IH2-165/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. A resident can check the count of waiting snacks deliberately and follow the walk to the café counter."
+    },
+    {
+      "id": "IH2-167",
+      "title": "Offer an unfinished tree sketch during long bench work",
+      "status": "in_progress",
+      "owner_branch": "feat/workbench-outing",
+      "goal": "Put one immediately useful free outing next to long crafting work, with nothing to remember or spend.",
+      "depends_on": [
+        "IH2-165"
+      ],
+      "acceptance": [
+        "Choose the first unfinished study after a long confirmed job and hold the action steady through readiness.",
+        "Use actual named walking and preserve costs, stock, parts, deadlines and collection. Check keyboard, 320-pixel touch and 200% enlarged landscape."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-167/PLAN.md"
       ]
     }
   ],

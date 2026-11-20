@@ -79,6 +79,18 @@ test('the confirmed Garden Studio is walkable and gives visitors the same sunroo
     await page.keyboard.up('ArrowUp');
    }
    await page.screenshot({ path: 'test-results/browser/garden-studio-' + shape.name + '.png' });
+   if (shape.name === 'short') {
+    await page.keyboard.down('ArrowRight');
+    try {
+     await expect.poll(async () => (await feet()).x, { intervals: [50] }).toBeGreaterThan(22);
+    } finally {
+     await page.keyboard.up('ArrowRight');
+    }
+    const sound = (await page.getByRole('button', {name:'Sound settings',exact:true}).boundingBox())!;
+    const world = (await page.locator('canvas').boundingBox())!;
+    expect(sound.y + sound.height).toBeLessThanOrEqual(world.y);
+    await page.screenshot({ path: 'test-results/browser/garden-studio-short-right-edge.png' });
+   }
    await control.setPlan('porch-house-2');
    await expect.poll(theme).toBe('home-expanded-interior');
    expect((await feet()).x).toBeGreaterThan(19);

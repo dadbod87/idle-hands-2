@@ -1,3 +1,7 @@
+# November 20 — readable residents behind furniture accepted
+
+Ordinary indoor furniture remains cached. Overlapping foreground silhouettes soften and restore after crossing. Main `20bcfbb1cd9475de40f413d512d255c3b0a4434c` passed 590 domain tests and 246 browser cases. [Exact verification](evidence/IH2-178/EXACT_CI.json).
+
 # November 20 — the Garden Studio sunroom accepted
 
 The confirmed plan selects original glazed and tiled art on the existing expanded footprint for residents and visitors. Main `864886674bd6268733dd41a0728838ba1bd049eb` passed 590 domain tests and 245 browser cases. [Exact verification](evidence/IH2-177/EXACT_CI.json).

@@ -505,3 +505,47 @@ test('the quiet boarding-house score waits for audio opt-in and follows the real
   await context.close();
  }
 });
+
+test('short landscape puts the same Sound control beside the field guide and clears the playfield', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, hasTouch: true });
+  const page = await context.newPage();
+  const errors: string[] = [];
+  page.on('pageerror', error => errors.push(error.message));
+  try {
+    await instrument(page);
+    await ready(page);
+    const sound = page.getByRole('button', { name: 'Sound settings', exact: true });
+    const control = await sound.elementHandle();
+    const world = page.getByRole('region', { name: 'Neighborhood playfield' });
+    await expect(world.getByRole('button', {name:'Sound settings'})).toBeVisible();
+    await sound.focus();
+    await page.setViewportSize({ width: 844, height: 390 });
+    await page.evaluate(() => document.documentElement.style.fontSize = '200%');
+    await expect(page.locator('.shell > header').getByRole('button', {name:'Sound settings'})).toBeVisible();
+    await expect(sound).toBeFocused();
+    const rect = (await sound.boundingBox())!;
+    const field = (await world.boundingBox())!;
+    const guide = (await page.getByRole('button', { name: 'Open field guide' }).boundingBox())!;
+    expect(rect.width).toBeGreaterThanOrEqual(44);
+    expect(rect.height).toBeGreaterThanOrEqual(44);
+    expect(rect.x + rect.width).toBeLessThan(guide.x);
+    expect(rect.y + rect.height).toBeLessThanOrEqual(field.y);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.screenshot({ path: output + '/short-sound-header.png' });
+    await sound.tap();
+    await expect(page.getByRole('dialog')).toBeVisible();
+    await expect(page.getByLabel('Music volume')).toBeVisible();
+    await expect(page.getByLabel('Effects volume')).toBeVisible();
+    expect(await evidence(page)).toMatchObject({ contexts: 0, workers: 0, starts: 0 });
+    await page.keyboard.press('Escape');
+    await expect(sound).toBeFocused();
+    await page.setViewportSize({ width: 320, height: 640 });
+    await page.evaluate(() => document.documentElement.style.fontSize = '100%');
+    await expect(world.getByRole('button', {name:'Sound settings'})).toBeVisible();
+    await expect(sound).toBeFocused();
+    expect(await control!.evaluate(node => node === document.querySelector('#place-sound'))).toBe(true);
+    expect(errors).toEqual([]);
+  } finally {
+    await context.close();
+  }
+});

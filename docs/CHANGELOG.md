@@ -1,3 +1,7 @@
+# November 20 — steady Bag counts and arrangement labels accepted
+
+Stable counts, empty-state attributes and nook labels stay in place between real inventory changes. Main `56077b13425ae1be6709f19db90098fc43d74f37` passed 592 domain tests and 251 browser cases. [Exact verification](evidence/IH2-185/EXACT_CI.json).
+
 # November 20 — the direct furniture action in Bag accepted
 
 Opening Bag after collecting a planter keeps its item card visible. Available workshop furniture has a direct placement choice and still uses explicit confirmation. Main `85b117ab241f2b0ce14f4897466326fd51db4bfc` passed 592 domain tests and 251 browser cases. [Exact verification](evidence/IH2-184/EXACT_CI.json).

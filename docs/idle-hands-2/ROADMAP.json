@@ -3536,7 +3536,7 @@
     {
       "id": "IH2-185",
       "title": "Skip unchanged accessibility and empty-state writes in Bag",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "perf/stable-bag-counts",
       "goal": "Keep inventory labels accurate while avoiding repeated changes to stable slot metadata.",
       "depends_on": [
@@ -3550,7 +3550,30 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-185/PLAN.md"
+        "docs/evidence/IH2-185/PLAN.md",
+        "docs/evidence/IH2-185/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Stable counts, empty-state attributes and nook labels stay in place between real inventory changes."
+    },
+    {
+      "id": "IH2-187",
+      "title": "Redraw the playfield in the frame that resizes it",
+      "status": "in_progress",
+      "owner_branch": "fix/frame-aligned-resize",
+      "goal": "Keep the town visible through idle and menu-open resizing without losing input or focus.",
+      "depends_on": [
+        "IH2-185",
+        "IH2-179"
+      ],
+      "acceptance": [
+        "Observe real canvas size changes, a prompt wake from idle and no backing-size writes from the layout observer.",
+        "Keep early and settled screenshots, short doubled-text, the open-menu movement lock and resumed input. Preserve full coverage."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-187/PLAN.md"
       ]
     }
   ],

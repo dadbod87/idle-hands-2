@@ -1,0 +1,123 @@
+{
+  "pullRequest": 83,
+  "pr": {
+    "sha": "fbbde0193d3e9d3cbffb0beb7a636f2a25e2d04d",
+    "run": 44668074834,
+    "domain": 586,
+    "browser": 237,
+    "browserGroups": [
+      76,
+      79,
+      82
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14598867023,
+        "createdAt": "2026-11-20T03:32:44Z",
+        "sha": "fbbde0193d3e9d3cbffb0beb7a636f2a25e2d04d",
+        "zipSha256": "1cb8bb370412dd83523054d7f3af34de6eb3cadb1afa59c62ff1f2bd9c7282f2",
+        "size": 132447,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14598916964,
+        "createdAt": "2026-11-20T03:32:45Z",
+        "sha": "fbbde0193d3e9d3cbffb0beb7a636f2a25e2d04d",
+        "zipSha256": "68cec1141679ee4bfa8e47876d9632bd99a0e9ca7efdee974edf66eb66b243f1",
+        "size": 764160,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14599228098,
+        "createdAt": "2026-11-20T03:43:14Z",
+        "sha": "fbbde0193d3e9d3cbffb0beb7a636f2a25e2d04d",
+        "zipSha256": "3c11b5521acfe12dfaaae9219bbd2dc1d434b185a4d73691656f63c73a1094e6",
+        "size": 18478818,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14598319799,
+        "createdAt": "2026-11-20T03:42:46Z",
+        "sha": "fbbde0193d3e9d3cbffb0beb7a636f2a25e2d04d",
+        "zipSha256": "0673e1d0644e40f7c65aa4d2b350a4a9aa9810aa13f3727bdefa617dbf230f59",
+        "size": 19509760,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14598794086,
+        "createdAt": "2026-11-20T03:45:01Z",
+        "sha": "fbbde0193d3e9d3cbffb0beb7a636f2a25e2d04d",
+        "zipSha256": "514998d10d95d4c6196e6a43a042d13dc780819e5aee4e3214693c079bc85260",
+        "size": 25412723,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "main": {
+    "sha": "0f09487c648e8f97428aaaf5938218f92131e3e7",
+    "run": 44670004257,
+    "domain": 586,
+    "browser": 237,
+    "browserGroups": [
+      76,
+      79,
+      82
+    ],
+    "allPriorCasesPreserved": true,
+    "artifacts": [
+      {
+        "name": "sequel-server-evidence",
+        "id": 14598849854,
+        "createdAt": "2026-11-20T03:49:41Z",
+        "sha": "0f09487c648e8f97428aaaf5938218f92131e3e7",
+        "zipSha256": "ab24bcb4526ba3f9552892e9ae7c00027f22c532e16380f84a1cf9fdd5f1047b",
+        "size": 132087,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-client-build",
+        "id": 14599234311,
+        "createdAt": "2026-11-20T03:49:42Z",
+        "sha": "0f09487c648e8f97428aaaf5938218f92131e3e7",
+        "zipSha256": "864f093f9e17722b8135a365f8e0cfb3eed993ed2247f758a235ac7daa447738",
+        "size": 764160,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-1",
+        "id": 14600141480,
+        "createdAt": "2026-11-20T03:58:59Z",
+        "sha": "0f09487c648e8f97428aaaf5938218f92131e3e7",
+        "zipSha256": "07a19c901817be173c97d2300554d1ffa7d1f8691dc3c8930245ba4deb81cb34",
+        "size": 18425359,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-2",
+        "id": 14600091774,
+        "createdAt": "2026-11-20T04:00:33Z",
+        "sha": "0f09487c648e8f97428aaaf5938218f92131e3e7",
+        "zipSha256": "234725cccaf494f921413f5a28407fea8a43e13ae636317fb381bcc3b4df5533",
+        "size": 19464763,
+        "otherSameNameArtifacts": []
+      },
+      {
+        "name": "sequel-browser-evidence-3",
+        "id": 14600921320,
+        "createdAt": "2026-11-20T04:04:57Z",
+        "sha": "0f09487c648e8f97428aaaf5938218f92131e3e7",
+        "zipSha256": "dda9a6a9e588fa9099424a5b0e1057df9bd87ef60a17087ed9e973036159fbf2",
+        "size": 25377487,
+        "otherSameNameArtifacts": []
+      }
+    ]
+  },
+  "sameBuildBytes": true,
+  "limitations": "Native Chromium layout and selection on intercepted fictional snapshots, plus ordinary hosted disposable CI purchase and visitor regression checks."
+}

@@ -220,7 +220,7 @@ export class TownUI {
     section.addEventListener('focusin',event=>{if(this.homeKeyboard&&event.target instanceof HTMLElement)requestAnimationFrame(()=>this.revealHomeFocus(event.target as HTMLElement));});
     if(inThisHome){
      section.append(controls);
-     if(plot.keepsake!==undefined)section.append(this.keepsakeControl(s,plot,saved,rerender));
+     if(s.homeKeepsakes===true)section.append(this.keepsakeControl(s,plot,saved,rerender));
      const details=document.createElement('details');details.className='home-secondary';details.dataset.homeSecondary='';details.open=saved.details;
      const summary=document.createElement('summary');summary.dataset.townFocus='home-expansion';summary.textContent='House & expansion';details.append(summary,info);details.ontoggle=()=>{if(details.isConnected)saved.details=details.open;};
      section.append(details);
@@ -238,7 +238,7 @@ export class TownUI {
       const description=document.createElement('div'),name=document.createElement('strong');name.textContent=item.name;description.append(name,this.p(item.story));card.append(art,description);display.append(card);
      }
      if(plot.pennantOwned)display.append(this.p('Inkwood discovery pennant · all three trail landmarks explored.'));
-     if(plot.keepsake!==undefined){
+     if(s.homeKeepsakes===true){
       const card=document.createElement('article');
       card.className='home-display';
       card.dataset.homeDisplay='naturalist';

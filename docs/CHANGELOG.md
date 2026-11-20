@@ -1,3 +1,7 @@
+# November 20 — the ready allotment suggestion accepted
+
+A long workshop job can suggest a ready garden bed after the tree studies, without collecting the crop. Main `78a886b54dff396cc9ba5bc80c6b526f712e2185` passed 589 domain tests and 242 browser cases. [Exact verification](evidence/IH2-173/EXACT_CI.json).
+
 # November 20 — direct certificate reading accepted
 
 A tap approaches the keepsake and opens the full artwork. The temporary stop goes away when the owner removes the stand. Main `2b88eca11c5c508376e1767cc21a3513032bc6ea` passed 589 domain tests and 241 browser cases. [Exact verification](evidence/IH2-172/EXACT_CI.json).

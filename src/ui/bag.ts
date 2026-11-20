@@ -54,7 +54,24 @@ export class BagView {
  private focused=(event:FocusEvent)=>{const t=event.target;if(!(t instanceof HTMLElement)||!t.matches(':focus-visible'))return;const dialog=this.root.closest('dialog'),header=dialog?.querySelector('header');if(!dialog||!header)return;const b=t.getBoundingClientRect(),h=header.getBoundingClientRect(),d=dialog.getBoundingClientRect();if(b.top<h.bottom+8||b.bottom>d.bottom-8)dialog.scrollTop+=b.top-h.bottom-8;};
  update(state:WorkshopState,elsewhere:Partial<Record<PropId,number>>,confirmation:string){
   if(this.status.textContent!==confirmation)this.status.textContent=confirmation;
-  for(const item of bagStacks(state,elsewhere,this.orchard?.())){const slot=this.slots.get(item.id)!;const count=item.quantity===null?'?':String(item.quantity);if(slot.count.textContent!==count)slot.count.textContent=count;const meaning=item.group==='furniture'?'available to place':item.group==='materials'?'carried':'kept';slot.count.setAttribute('aria-label',item.name+': '+(item.quantity===null?(item.group==='furniture'?'Available copies unconfirmed':'Saved count unconfirmed'):item.quantity+' '+meaning));slot.card.dataset.empty=String(item.quantity===0);if(slot.choose){const hidden=!item.quantity;if(slot.choose.hidden!==hidden)slot.choose.hidden=hidden;}if(slot.detail.textContent!==item.detail)slot.detail.textContent=item.detail;if(slot.image.getAttribute('src')!==item.icon)slot.image.src=item.icon;}
+  for(const item of bagStacks(state,elsewhere,this.orchard?.())){
+   const slot=this.slots.get(item.id)!;
+   const count=item.quantity===null?'?':String(item.quantity);
+   const meaning=item.group==='furniture'?'available to place':item.group==='materials'?'carried':'kept';
+   const accessibleCount=item.quantity===null
+    ?(item.group==='furniture'?'Available copies unconfirmed':'Saved count unconfirmed')
+    :count+' '+meaning;
+   const label=item.name+': '+accessibleCount,empty=String(item.quantity===0);
+   if(slot.count.textContent!==count)slot.count.textContent=count;
+   if(slot.count.getAttribute('aria-label')!==label)slot.count.setAttribute('aria-label',label);
+   if(slot.card.dataset.empty!==empty)slot.card.dataset.empty=empty;
+   if(slot.choose){
+    const hidden=!item.quantity;
+    if(slot.choose.hidden!==hidden)slot.choose.hidden=hidden;
+   }
+   if(slot.detail.textContent!==item.detail)slot.detail.textContent=item.detail;
+   if(slot.image.getAttribute('src')!==item.icon)slot.image.src=item.icon;
+  }
  }
  destroy(){this.root.removeEventListener('focusin',this.focused);}
 }

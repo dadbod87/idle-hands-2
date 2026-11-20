@@ -3513,7 +3513,7 @@
     {
       "id": "IH2-184",
       "title": "Choose a workshop spot from a carried item",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/bag-item-place",
       "goal": "Let a resident go from a crafted stack to a chosen visible nook with one clear action.",
       "depends_on": [
@@ -3528,7 +3528,29 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-184/PLAN.md"
+        "docs/evidence/IH2-184/PLAN.md",
+        "docs/evidence/IH2-184/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Opening Bag after collecting a planter keeps its item card visible. Available workshop furniture has a direct placement choice and still uses explicit confirmation."
+    },
+    {
+      "id": "IH2-185",
+      "title": "Skip unchanged accessibility and empty-state writes in Bag",
+      "status": "in_progress",
+      "owner_branch": "perf/stable-bag-counts",
+      "goal": "Keep inventory labels accurate while avoiding repeated changes to stable slot metadata.",
+      "depends_on": [
+        "IH2-184"
+      ],
+      "acceptance": [
+        "Observe three one-second refreshes under the native browser clock with unchanged count, quantity meaning and unsaved status.",
+        "Check real placement and a confirmed incoming snapshot still update counts and nook labels. Preserve the full same-name suite."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-185/PLAN.md"
       ]
     }
   ],

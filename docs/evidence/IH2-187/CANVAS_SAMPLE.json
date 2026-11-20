@@ -1,0 +1,51 @@
+{
+  "fresh": {
+    "first": {
+      "dark": 0,
+      "count": 35,
+      "colors": 6
+    },
+    "settled": {
+      "dark": 0,
+      "count": 35,
+      "colors": 6
+    },
+    "field": {
+      "x": 2,
+      "y": 94,
+      "width": 840,
+      "height": 220
+    },
+    "renderer": 2,
+    "errors": [],
+    "walked": true,
+    "contextLost": 0
+  },
+  "resized": {
+    "first": {
+      "dark": 0,
+      "count": 35,
+      "colors": 6
+    },
+    "settled": {
+      "dark": 0,
+      "count": 35,
+      "colors": 6
+    },
+    "field": {
+      "x": 2,
+      "y": 94,
+      "width": 840,
+      "height": 220
+    },
+    "renderer": 2,
+    "errors": [],
+    "walked": true,
+    "contextLost": 0
+  },
+  "archived": {
+    "dark": 33,
+    "count": 35,
+    "colors": 2
+  }
+}

@@ -531,7 +531,35 @@ test('short landscape puts the same Sound control beside the field guide and cle
     expect(rect.x + rect.width).toBeLessThan(guide.x);
     expect(rect.y + rect.height).toBeLessThanOrEqual(field.y);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.screenshot({ path: output + '/short-sound-header.png' });
+    await page.screenshot({ path: output + '/short-sound-header-first.png' });
+    const rendered=()=>page.evaluate(()=>(window as any).__pilot.metrics().presentation.renderedFrames as number);
+    const before=await rendered();
+    await expect.poll(rendered).toBeGreaterThanOrEqual(before+4);
+    const capture=await page.screenshot({path:output+'/short-sound-header.png',scale:'css'});
+    // A DOM rectangle is insufficient evidence after a canvas resize. Sample
+    // the actual captured pixels below the location card in the playfield.
+    const sampled=await page.evaluate(async({encoded,field})=>{
+      const image=new Image();
+      image.src='data:image/png;base64,'+encoded;
+      await image.decode();
+      const sample=document.createElement('canvas');
+      sample.width=image.width;sample.height=image.height;
+      const context=sample.getContext('2d',{willReadFrequently:true})!;
+      context.drawImage(image,0,0);
+      const colors=new Set<string>();
+      let dark=0;
+      for(const x of [.17,.25,.4,.55,.65,.75,.85]){
+        for(const y of [.42,.53,.64,.75,.86]){
+          const pixel=context.getImageData(Math.floor(field.x+field.width*x),Math.floor(field.y+field.height*y),1,1).data;
+          const rgb=[pixel[0],pixel[1],pixel[2]];
+          colors.add(rgb.join(','));
+          if(Math.max(...rgb)<12)dark++;
+        }
+      }
+      return {dark,colors:colors.size};
+    },{encoded:capture.toString('base64'),field});
+    expect(sampled.dark,'Dark pixels sampled across the captured world').toBeLessThan(18);
+    expect(sampled.colors,'Distinct colors in the captured world').toBeGreaterThanOrEqual(3);
     await sound.tap();
     await expect(page.getByRole('dialog')).toBeVisible();
     await expect(page.getByLabel('Music volume')).toBeVisible();

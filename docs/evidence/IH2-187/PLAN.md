@@ -1,0 +1,7 @@
+# IH2-187 · Verify the rendered world after short-landscape resize
+
+The original Sound placement test verified control geometry, focus and volume settings. The retained Ubuntu PR and main screenshots show a black world view immediately after resize. The sampled main screenshot had 33 dark pixels across 35 playfield sample points. A desktop-to-landscape and fresh-landscape recheck on local Chromium played the byte-identical main client, sampled normal colors with no dark points, and confirmed movement and separate volume controls. The cause and duration of the Ubuntu blank captures remain unknown.
+
+The test keeps the early screenshot for comparison, then waits for four Phaser post-render events and samples the actual captured world. The existing control, focus and audio assertions stay in place. A dark settled capture fails the gate and leaves an image for investigation. This change adds no game code or test identities. The next step is to run the exact standard Ubuntu browser gate and see whether the captured canvas recovers there. No hardware-phone or installed-preview claim.
+
+The same pinned Ubuntu main run also captured a rendered Garden Studio at the same 844 × 390 and 200% text after walking right, with Sound above the canvas. This confirms usable rendered evidence for that path while leaving the immediate square resize observation open. The stronger isolated test passed on the exact main client build in local Chromium.

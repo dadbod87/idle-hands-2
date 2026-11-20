@@ -181,5 +181,12 @@
  pointer-events: none;
 }
 
+#stop-assisted-walk {
+ position: absolute;
+ right: 14px;
+ bottom: 14px;
+ max-width: calc(100% - 28px);
+ padding: 7px 12px;
+}
 #wake-resident { position: absolute; bottom: 14px; right: 14px; min-width: 118px; }
 .first-morning-resting .location-tag #town-sky { display: none; }

@@ -1,3 +1,15 @@
+# November 20 — a way to stop a guided walk accepted
+
+A temporary playfield action or Escape clears a guided target while still travelling and restores focus to the world. Main `b3b350c5d70ce9a4c95074cf4209e6cc74c41ea7` passed 589 domain tests and 244 browser cases. [Exact verification](../evidence/IH2-176/EXACT_CI.json).
+
+The next candidate is [`IH2-177` and its plan](../evidence/IH2-177/PLAN.md), on `feat/garden-studio-interior`. Let a chosen housing plan feel different inside while preserving ownership and existing rooms. Continue with the ordinary exact-head gates and keep saved services stopped.
+
+# November 20 — one announcement when a crop is ready accepted
+
+The selected bed publishes new readiness once. Bed controls keep their identity and avoid repeated unchanged source assignments. Main `03637c000ff744aedca83c5cb503868a02422784` passed 589 domain tests and 243 browser cases. [Exact verification](../evidence/IH2-175/EXACT_CI.json).
+
+The next candidate is [`IH2-176` and its plan](../evidence/IH2-176/PLAN.md), on `feat/stop-assisted-walk`. Make phone and keyboard travel easy to undo while it is still on the way. Continue with the ordinary exact-head gates and keep saved services stopped.
+
 # November 20 — the stable location and action HUD accepted
 
 The location hint and sky elements survive nearby-action changes. The action button updates its disabled state only when eligibility changes. Main `d0aad8d331fdd42f63c890447d4ea2a173b655e9` passed 589 domain tests and 242 browser cases. [Exact verification](../evidence/IH2-174/EXACT_CI.json).

@@ -1,17 +1,21 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {homeInterior,homeDisplays,furnishingCopies,furnishingIcon} from '../src/game/home-identity.ts';
+import {homeInterior,homeInteriorPath,homeDisplays,furnishingCopies,furnishingIcon} from '../src/game/home-identity.ts';
 import {createWorkshop,PROP_IDS} from '../src/game/live-workshop.ts';
 import {emptyWorkroom} from '../src/game/live-home-layout.ts';
 
-test('only the proved cottage family selects a theme; legacy and other plans keep their existing interior',()=>{
+test('matched Cottage and Garden Studio plans choose their own theme while all other layouts keep their current art',()=>{
  assert.equal(homeInterior(1,'pocket-cottage-1'),'cottage-starter-interior');
  assert.equal(homeInterior(2,'pocket-cottage-2'),'cottage-expanded-interior');
- for(const id of [null,undefined,'porch-house-1','garden-studio-2','unknown']){
+ for(const id of [null,undefined,'porch-house-1','unknown']){
   assert.equal(homeInterior(1,id),'home-starter-interior');assert.equal(homeInterior(2,id),'home-expanded-interior');
  }
  assert.equal(homeInterior(2,'pocket-cottage-1'),'home-expanded-interior');
+ assert.equal(homeInterior(2,'garden-studio-2'),'garden-studio-interior');
+ assert.equal(homeInterior(1,'garden-studio-2'),'home-starter-interior');
+ assert.equal(homeInteriorPath(homeInterior(2,'garden-studio-2')),'/art/interiors/garden-studio-interior.svg');
+ assert.equal(homeInteriorPath(homeInterior(1,null)),'/art/homes/home-starter-interior.svg');
 });
 
 test('public displays expose placed items only, with stable positions and no private stock input',()=>{
@@ -43,4 +47,14 @@ test('cottage art preserves bed and doorway geometry and contains no fake floor 
   for(const geometry of ['x="64" y="64" width="128" height="96"','x="256" y="416" width="96" height="64"'])assert.ok(svg.includes(geometry));
   assert.match(svg,/Painted cottage leaf motif/);assert.doesNotMatch(svg,/<script|<foreignObject|href="https?:/);
  }
+});
+
+test('the Garden Studio keeps expanded-home bed and door geometry with original flat sunroom art',()=>{
+ const source=readFileSync('public/art/homes/home-expanded-interior.svg','utf8');
+ const svg=readFileSync('public/art/interiors/garden-studio-interior.svg','utf8');
+ assert.equal(svg.match(/viewBox="[^"]+"/)?.[0],source.match(/viewBox="[^"]+"/)?.[0]);
+ for(const geometry of ['x="64" y="64" width="128" height="96"','x="256" y="416" width="96" height="64"'])assert.ok(svg.includes(geometry));
+ assert.match(svg,/THE SUNROOM/);
+ assert.match(svg,/sunroom-tiles/);
+ assert.doesNotMatch(svg,/<script|<foreignObject|href="https?:/);
 });

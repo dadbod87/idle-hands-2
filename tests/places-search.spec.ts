@@ -90,3 +90,76 @@ test('Places title search uses current room stops and preserves native travel', 
   }
  }
 });
+
+test('assisted walks can be stopped by touch or Escape without activating the destination', async ({ browser }) => {
+ const output = 'test-results/browser/places-search';
+ mkdirSync(output, { recursive: true });
+ for (const shape of [
+  { name: 'desktop', width: 1440, height: 900, touch: false, text: 100 },
+  { name: 'phone', width: 320, height: 640, touch: true, text: 100 },
+  { name: 'short', width: 844, height: 390, touch: true, text: 200 },
+ ]) {
+  const context = await browser.newContext({ viewport: { width: shape.width, height: shape.height }, hasTouch: shape.touch });
+  const p = await context.newPage();
+  // Use an existing reachable point at the east commons. A short route can
+  // finish during screenshot capture on a slow runner before Cancel is sent.
+  await p.addInitScript(() => {
+   localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:104,y:45}}));
+  });
+  const errors: string[] = [], api: string[] = [];
+  p.on('pageerror', error => errors.push(error.message));
+  p.on('request', request => { if (new URL(request.url()).pathname.startsWith('/api/')) api.push(request.url()); });
+  const feet = () => p.evaluate(() => (window as any).__pilot.snapshot());
+  const stop = p.getByRole('button', { name: 'Stop walking', exact: true });
+  const world = p.locator('.world-wrap');
+  const interact = p.locator('#interact');
+  const notes = p.locator('#feedback');
+  try {
+   await p.goto('/?sky-study=1&phase=day&weather=clear');
+   await expect.poll(() => p.evaluate(() => (window as any).__pilot?.metrics().ready)).toBe(true);
+   await p.evaluate(n => document.documentElement.style.fontSize = n + '%', shape.text);
+   await expect(stop).toBeHidden();
+   expect((await feet()).position).toEqual({x:104,y:45});
+   const playfield = await world.boundingBox();
+   const controls = await interact.boundingBox();
+   if (shape.name === 'desktop') {
+    await p.locator('#places').click();
+    await p.getByRole('searchbox', { name: 'Find a place' }).fill('boarding');
+    await p.getByRole('region', { name: 'Matching places' }).locator('[data-destination=lodging-door]').click();
+   } else {
+    await p.locator('#journal').tap();
+    await p.getByRole('button', {name: 'Your allotment · crops, markers & quests', exact: true}).tap();
+    await p.getByRole('button', {name: 'Walk to the beds', exact: true}).tap();
+   }
+   await expect(notes).toContainText('Walking to ');
+   await expect(stop).toBeVisible();
+   const target = (await stop.boundingBox())!;
+   const field = (await world.boundingBox())!;
+   expect(target.width).toBeGreaterThanOrEqual(44);
+   expect(target.height).toBeGreaterThanOrEqual(44);
+   expect(target.x + target.width).toBeLessThan(field.x + field.width);
+   expect(target.y + target.height).toBeLessThan(field.y + field.height);
+   expect(target.y).toBeGreaterThan(field.y);
+   expect(field.height).toBeCloseTo(playfield!.height, 3);
+   expect((await interact.boundingBox())?.width).toBeCloseTo(controls!.width, 3);
+   await p.screenshot({ path: output + '/stop-walk-' + shape.name + '.png' });
+   expect((await feet()).walking).toBe(true);
+   if (shape.touch) await stop.tap();
+   else await p.keyboard.press('Escape');
+
+   await expect(stop).toBeHidden();
+   await expect(notes).toContainText('Walk stopped.');
+   await expect(p.locator('canvas')).toBeFocused();
+   await expect(p.getByRole('dialog')).toBeHidden();
+   const stopped = await feet();
+   expect(stopped.room).toBe('square');
+   expect(stopped.walking).toBe(false);
+   await p.waitForTimeout(300);
+   expect(await feet()).toEqual(stopped);
+   expect(errors).toEqual([]);
+   expect(api).toEqual([]);
+  } finally {
+   await context.close();
+  }
+ }
+});

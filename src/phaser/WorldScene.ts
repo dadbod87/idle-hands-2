@@ -2,7 +2,7 @@ import { NATURALIST_KEEPSAKE } from '../game/home-keepsake.ts';
 import {LODGING_FOOTPRINT} from '../game/lodging.ts';
 import type {Headwear} from '../art/headwear.ts';
 import{OUTING_STOPS,type OutingState}from'../game/outing.ts';
-import {homeInterior} from '../game/home-identity.ts';
+import {homeInterior,homeInteriorPath} from '../game/home-identity.ts';
 import{yardAnchors,contractPlan,residentialFrame}from'../design/housing-contract.ts';
 import {TownCommonsLife} from './TownCommonsLife.ts';
 import {commonsFrame,type CommonsSign} from '../art/commons-life.ts';
@@ -64,6 +64,7 @@ export class WorldScene extends Phaser.Scene {
   onSteer?:()=>void;
   private loadedHomePlotId?:string;private houseView?:Phaser.GameObjects.Image;
   private loadedInteriorKey='';
+  private loadingInteriorKey='';
   private interiorKey(){return homeInterior(this.session.room==='home-expanded'?2:1,this.streetPlots.find(p=>p.id===this.homePlotId)?.planId);}
   residentId='devon';
   showTownfolk=true;
@@ -334,6 +335,10 @@ export class WorldScene extends Phaser.Scene {
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
   preload() {
     this.loadingRoom=this.session.room;
+    this.loadingInteriorKey=this.loadingRoom.startsWith('home')?this.interiorKey():'';
+    if(this.loadingInteriorKey==='garden-studio-interior'&&!this.textures.exists(this.loadingInteriorKey)){
+      this.load.svg(this.loadingInteriorKey,homeInteriorPath(this.loadingInteriorKey));
+    }
     if(this.loadingRoom.startsWith('home'))this.load.svg('home-naturalist',NATURALIST_KEEPSAKE.art);
     for(const id of ['desk','wind','soft-bank','detour','post-broken','post-aligned','post-pinned','post-repaired'])this.load.svg('outing-'+id,'/art/outing/'+id+'.svg');
     for(const tier of ['starter','expanded'])this.load.svg('cottage-'+tier+'-interior','/art/interiors/cottage-'+tier+'-interior.svg');
@@ -369,7 +374,7 @@ export class WorldScene extends Phaser.Scene {
     for(const key of keys)this.load.svg('variety-'+key,`/art/variety/${key}.svg`);
   }
   create() {
-    if(this.loadingRoom!==this.session.room){
+    if(this.loadingRoom!==this.session.room||(this.loadingRoom.startsWith('home')&&this.loadingInteriorKey!==this.interiorKey())){
       this.room=this.loadingRoom;
       this.scene.restart();
       return;
@@ -401,7 +406,8 @@ export class WorldScene extends Phaser.Scene {
     const litWindows:Array<{x:number;y:number;width:number;height:number}>=[];
     const image=(key:string,x:number,y:number,depth:number)=>this.add.image(x,y,key).setOrigin(0).setDepth(depth);
     this.loadedInteriorKey=this.room.startsWith('home')?this.interiorKey():'';
-    image(this.room==='neighborhood'?'neighborhood-ground':this.room==='square'?'variety-ground-square':this.room==='garden'?'garden-ground':this.room==='lodging'?'lodging-rented-room':this.room==='trail'?TRAIL_ART.ground:this.room.startsWith('home')?this.loadedInteriorKey:'ground-workshop',0,0,-1000);
+    const homeGround=this.textures.exists(this.loadedInteriorKey)?this.loadedInteriorKey:homeInterior(this.session.room==='home-expanded'?2:1);
+    image(this.room==='neighborhood'?'neighborhood-ground':this.room==='square'?'variety-ground-square':this.room==='garden'?'garden-ground':this.room==='lodging'?'lodging-rented-room':this.room==='trail'?TRAIL_ART.ground:this.room.startsWith('home')?homeGround:'ground-workshop',0,0,-1000);
     const label=(x:number,y:number,value:string)=>this.add.text(x*TILE,y*TILE,value,{fontFamily:'Georgia,serif',fontSize:13,color:'#343c36',backgroundColor:'#f3e6c5',padding:{x:9,y:5}}).setOrigin(.5).setDepth(y*TILE);
     if(this.room==='square') {
       this.occluders.push(...drawTownCommons(this,this.commonsSigns));this.commonsLife=new TownCommonsLife(this);
@@ -480,7 +486,7 @@ export class WorldScene extends Phaser.Scene {
       label(9.5,24.4,'Town square ↓');
     } else if(this.room.startsWith('home')) {
       const key=this.room==='home'?HOME_ART.starterInterior:HOME_ART.expandedInterior;const meta=HOME_CATALOG.assets.find(asset=>asset.id===key);for(const box of meta?.lightingWindows??[])litWindows.push(box);
-      label(9,1.4,this.homeOwnerName+'’s '+(this.room==='home'?'home':'home · workroom added'));
+      label(9,1.4,this.homeOwnerName+'’s '+(this.loadedInteriorKey==='garden-studio-interior'?'garden studio':this.room==='home'?'home':'home · workroom added'));
       label(9.5,14,this.districtId?'Street ↓':'Square ↓');
       const frame=NATURALIST_KEEPSAKE.frame;
       const shadow=this.add.ellipse(0,36,76,14,0x3b3228,.2);

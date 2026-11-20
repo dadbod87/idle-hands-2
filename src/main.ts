@@ -63,7 +63,7 @@ const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
  <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">${townMode?'NEIGHBORHOOD STUDY':'<strong id="local-resident-badge" dir="auto">NEIGHBORHOOD STUDY</strong>'}<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
- <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div id="door-light" aria-hidden="true"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><button id="wake-resident" class="primary" type="button" hidden>Get up</button><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
+ <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div id="door-light" aria-hidden="true"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><button id="stop-assisted-walk" type="button" aria-keyshortcuts="Escape" hidden>Stop walking</button><button id="wake-resident" class="primary" type="button" hidden>Get up</button><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
  <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal</button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav></footer>
 </main>
 <dialog id="panel" aria-labelledby="panel-title"><form method="dialog"><header class="dialog-head"><div><p class="eyebrow">TOWN INFORMATION SERVICES</p><h2 id="panel-title">Places to go</h2></div><div class="dialog-actions"><button id="quick-music" class="sound-icon" type="button" hidden></button><button aria-label="Close panel" value="close">×</button></div></header><div id="panel-body"></div></form></dialog>`;
@@ -86,6 +86,7 @@ function confirmedDoor() {
 }
 
 const feedback = document.querySelector<HTMLElement>('#feedback')!;
+const stopWalkButton = document.querySelector<HTMLButtonElement>('#stop-assisted-walk')!;
 new MutationObserver(()=>{feedback.scrollTop=0;}).observe(feedback,{childList:true,characterData:true,subtree:true});
 if(session.room==='lodging')feedback.textContent=resting()?'Your first morning in Ledgerwick. Get up when you’re ready.':'Read the note by the bed, or step outside to find Marlow.';
 if(session.recoveredLodgingFootprint){
@@ -360,6 +361,23 @@ function walkToPlace(stop:Stop){
  if(!session.walk(stop.point)){feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
  placeWalk={room,stopId:stop.id,owner};feedback.textContent='Walking to '+stop.name+'.';
 }
+function canStopAssistedWalk() {
+ return !!(namedWalk || placeWalk) && !session.locked && !panel.open && !transitionBusy && scene.roomReady;
+}
+function stopAssistedWalk() {
+ if (!canStopAssistedWalk()) return false;
+ namedWalk = null;
+ placeWalk = null;
+ session.stop();
+ stopWalkButton.hidden = true;
+ feedback.textContent = 'Walk stopped. Tap the ground or choose another place.';
+ focusWorld();
+ return true;
+}
+stopWalkButton.addEventListener('click', stopAssistedWalk);
+document.addEventListener('keydown', event => {
+ if (event.key === 'Escape' && !event.repeat && !event.defaultPrevented && stopAssistedWalk()) event.preventDefault();
+});
 function paintPlaceArrival(){
  if(!placeWalk)return;
  if(placeWalk.room!==session.room||placeWalk.owner!==(town?.snapshot?.playerId??'local')){placeWalk=null;return;}
@@ -640,6 +658,12 @@ scene.onFrame = () => {
   const arrival = session.takeArrival();
   if(arrival){if(namedWalk?.room===session.room&&namedWalk.stopId===arrival.id)namedWalk=null;activate(arrival);}
   followNamedWalk();paintPlaceArrival();
+  const hideStopWalk = !canStopAssistedWalk();
+  if (stopWalkButton.hidden !== hideStopWalk) {
+    const shouldRestoreFocus = hideStopWalk && document.activeElement === stopWalkButton && !panel.open;
+    stopWalkButton.hidden = hideStopWalk;
+    if (shouldRestoreFocus) focusWorld();
+  }
   const nearby=session.nearby(),stop=nearby?resolvedStop(nearby):undefined;
   const district=session.room==='square'?townDistrict(session.position):null;
   const state = (district?.name??'')+contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored))+':'+String(resting());

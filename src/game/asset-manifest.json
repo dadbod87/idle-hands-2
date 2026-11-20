@@ -1015,6 +1015,11 @@
       "kind": "original-svg"
     },
     {
+      "id": "garden-studio-interior",
+      "path": "art/interiors/garden-studio-interior.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "outing-desk",
       "path": "art/outing/desk.svg",
       "kind": "original-svg"

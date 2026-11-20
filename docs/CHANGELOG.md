@@ -1,3 +1,7 @@
+# November 19 — free room and yard previews accepted
+
+The Housing Registry draws the accepted furnishing nooks, floor footprint and yard spots before a quote. Main `0f09487c648e8f97428aaaf5938218f92131e3e7` passed 586 domain tests and 237 browser cases. [Exact verification](evidence/IH2-162/EXACT_CI.json).
+
 # November 19 — room-specific garden loading accepted
 
 The outdoor first frame requests fewer images and the first named garden visit waits for the mounted room. Main `ded1071f4d5b334f438588f4305645a6ac64a7a2` passed 586 domain tests and 236 browser cases. [Exact verification](evidence/IH2-161/EXACT_CI.json).

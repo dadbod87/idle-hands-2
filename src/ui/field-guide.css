@@ -1,0 +1,21 @@
+.guide-current{border-left:3px solid #738465;padding:6px 10px 0;margin-bottom:.75rem}
+.guide-current h3{margin:0 0 .3rem;font-size:1.1rem;line-height:1.2;overflow-wrap:anywhere}
+#panel-body .guide-current p{margin:0 0 .55rem;line-height:1.35}
+.guide-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.5rem;margin-bottom:.8rem}
+.guide-actions button{margin:0;overflow-wrap:anywhere}
+.guide-actions [hidden]{display:none}
+#guide-places{grid-column:1/-1}
+@media(max-width:650px){
+ #panel:has(.guide-actions) .dialog-head{padding:8px 12px}
+ #panel:has(.guide-actions) .dialog-head h2{font-size:1rem}
+}
+#panel-body #guide-sky{margin-top:.5rem;font-size:.88em}
+@media(max-width:370px){.guide-actions{grid-template-columns:1fr}}
+@media(max-height:500px){
+ #panel:has(.guide-actions) .dialog-head{padding:8px 12px}
+ #panel:has(.guide-actions) .dialog-head h2{font-size:1.05rem}
+}
+#panel:has(.guide-actions){overflow-anchor:none}
+@media(max-height:500px) and (min-width:651px){
+ #panel:has(.guide-actions){width:min(660px,calc(100vw - 24px))}
+}

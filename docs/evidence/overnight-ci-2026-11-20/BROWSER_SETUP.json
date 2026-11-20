@@ -1,0 +1,496 @@
+{
+  "runs": [
+    {
+      "phase": "housing-plan-preview",
+      "run": 44668074834,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136062183909,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 33.0,
+          "caseStepSeconds": 727.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136062184271,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 21.0,
+          "caseStepSeconds": 770.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136062184328,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 42.0,
+          "caseStepSeconds": 849.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "housing-plan-preview",
+      "run": 44670004257,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136068428704,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 31.0,
+          "caseStepSeconds": 1021.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136068429210,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 42.0,
+          "caseStepSeconds": 744.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136068429230,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 44.0,
+          "caseStepSeconds": 646.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "task-first-field-guide",
+      "run": 44674248417,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136082172206,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 42.0,
+          "caseStepSeconds": 732.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136082172476,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 24.0,
+          "caseStepSeconds": 763.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136082172768,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 28.0,
+          "caseStepSeconds": 886.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "task-first-field-guide",
+      "run": 44676114775,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136088239034,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 23.0,
+          "caseStepSeconds": 771.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136088239102,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 20.0,
+          "caseStepSeconds": 1000.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136088239192,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 29.0,
+          "caseStepSeconds": 782.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "journal-cafe-parcels",
+      "run": 44678192237,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136094969349,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 47.0,
+          "caseStepSeconds": 646.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136094969497,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 30.0,
+          "caseStepSeconds": 842.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136094969585,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 40.0,
+          "caseStepSeconds": 737.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "journal-cafe-parcels",
+      "run": 44679987072,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136100790413,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 38.0,
+          "caseStepSeconds": 853.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136100790429,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 21.0,
+          "caseStepSeconds": 889.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136100790576,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 38.0,
+          "caseStepSeconds": 645.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "workbench-outing",
+      "run": 44681875414,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136106944191,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 27.0,
+          "caseStepSeconds": 783.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136106944244,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 25.0,
+          "caseStepSeconds": 793.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136106944373,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 38.0,
+          "caseStepSeconds": 843.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "workbench-outing",
+      "run": 44683634905,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136112677894,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 40.0,
+          "caseStepSeconds": 656.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136112677955,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 37.0,
+          "caseStepSeconds": 854.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136112678012,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 19.0,
+          "caseStepSeconds": 728.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "browser-shard-balance",
+      "run": 44685653274,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136119230112,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 21.0,
+          "caseStepSeconds": 796.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136119230114,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 32.0,
+          "caseStepSeconds": 739.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136119230189,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 39.0,
+          "caseStepSeconds": 740.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "browser-shard-balance",
+      "run": 44687421155,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136124949512,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 24.0,
+          "caseStepSeconds": 809.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136124949549,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 29.0,
+          "caseStepSeconds": 741.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136124949578,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 24.0,
+          "caseStepSeconds": 895.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "boarding-house-music",
+      "run": 44689518964,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136131713972,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 32.0,
+          "caseStepSeconds": 756.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136131714235,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 41.0,
+          "caseStepSeconds": 732.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136131714289,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 25.0,
+          "caseStepSeconds": 873.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "boarding-house-music",
+      "run": 44691499881,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136138132548,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 19.0,
+          "caseStepSeconds": 731.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136138133034,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 37.0,
+          "caseStepSeconds": 741.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136138133035,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 21.0,
+          "caseStepSeconds": 916.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "home-keepsake-display",
+      "run": 44702182321,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136172957961,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 25.0,
+          "caseStepSeconds": 782.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136172958455,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 41.0,
+          "caseStepSeconds": 764.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136172958539,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 21.0,
+          "caseStepSeconds": 897.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "home-keepsake-display",
+      "run": 44704431444,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136180370468,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 39.0,
+          "caseStepSeconds": 760.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136180370631,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 34.0,
+          "caseStepSeconds": 744.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136180370808,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 36.0,
+          "caseStepSeconds": 750.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "read-home-keepsake",
+      "run": 44706467043,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136187189802,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 36.0,
+          "caseStepSeconds": 933.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136187189898,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 40.0,
+          "caseStepSeconds": 757.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136187189954,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 38.0,
+          "caseStepSeconds": 747.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "read-home-keepsake",
+      "run": 44708916767,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136195331669,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 38.0,
+          "caseStepSeconds": 759.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136195331796,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 38.0,
+          "caseStepSeconds": 754.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136195331924,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 23.0,
+          "caseStepSeconds": 881.0,
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "phase": "bench-ready-allotment original timed-out runner",
+      "run": 44712009571,
+      "attempt": 1,
+      "groups": [
+        {
+          "job": 136205759446,
+          "shard": "browser-shard (1/3)",
+          "setupSeconds": 40.0,
+          "caseStepSeconds": 770.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136205759543,
+          "shard": "browser-shard (2/3)",
+          "setupSeconds": 37.0,
+          "caseStepSeconds": 741.0,
+          "conclusion": "success"
+        },
+        {
+          "job": 136205759559,
+          "shard": "browser-shard (3/3)",
+          "setupSeconds": 525.0,
+          "caseStepSeconds": 657.0,
+          "conclusion": "cancelled"
+        }
+      ]
+    }
+  ],
+  "completedGroups": 50,
+  "completedSetupMedianSeconds": 33.5,
+  "completedSetupMaxSeconds": 47.0,
+  "slowGroup": {
+    "job": 136205759559,
+    "shard": "browser-shard (3/3)",
+    "setupSeconds": 525.0,
+    "caseStepSeconds": 657.0,
+    "conclusion": "cancelled"
+  },
+  "ubuntuTransfer": {
+    "sizeMb": 32.1,
+    "seconds": 503,
+    "kilobytesPerSecond": 63.8
+  },
+  "limits": "Public standard hosted Ubuntu job step timestamps. One confirmed mirror delay, not a prediction of subsequent runs or a billing measurement."
+}

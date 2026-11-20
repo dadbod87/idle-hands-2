@@ -1,6 +1,6 @@
 # Idle Hands 2 overnight continuation · 2026-11-20
 
-Last inspected at 2026-11-20 01:35 PST. The separate sequel repository was at `2b88eca11c5c508376e1767cc21a3513032bc6ea`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
+Last inspected at 2026-11-20 02:03 PST. The separate sequel repository was at `2b88eca11c5c508376e1767cc21a3513032bc6ea`. Saved previews and databases stayed stopped. Standard public Ubuntu CI used disposable PostgreSQL with fictional residents. Local native Chromium tests used disposable static servers. Mobile layouts were emulated.
 
 ## Verified on exact main
 
@@ -50,6 +50,8 @@ Resume with the first pending exact gate. Verify current main and preserve concu
 Measured completed jobs used about 1,938 summed standard Ubuntu runner-minutes, including 350 on attempts with a failed job. The audit sums recorded job seconds and rounds each job up. It gives no charge estimate. [Job timing record](../../evidence/overnight-ci-2026-11-20/JOB_TIMES.json).
 
 Earlier failure evidence: [housing route to unloaded garden](https://github.com/dadbod87/idle-hands-2/actions/runs/44659971451), [older action-sheet expectation](https://github.com/dadbod87/idle-hands-2/actions/runs/44661726409), [duplicate weather disclosure locator](https://github.com/dadbod87/idle-hands-2/actions/runs/44672258557), [empty keepsake field in the public home route](https://github.com/dadbod87/idle-hands-2/actions/runs/44693655992), [missing first-display control in the browser fixture](https://github.com/dadbod87/idle-hands-2/actions/runs/44696091072), [empty keepsake field in the movement client cache](https://github.com/dadbod87/idle-hands-2/actions/runs/44697911096), [capability flag added to the historical store reader](https://github.com/dadbod87/idle-hands-2/actions/runs/44699979598).
+
+Across 50 completed browser groups, dependency setup had a median of 33.5 seconds and a maximum of 47. One different group took 525 seconds in setup and reached the 20-minute cap. Its Ubuntu package transfer alone took 8 minutes 23 seconds for 32.1 MB. Workflow, test coverage and caps stayed the same. [Measured setup and case times](../../evidence/overnight-ci-2026-11-20/BROWSER_SETUP.json).
 
 Certificate reading's first main attempt recorded 659.2 ms command p95 against a 500 ms test budget. The unchanged source's failed-job retry recorded 92.1 ms, with the original three browser jobs preserved. This is a single runner observation. [Both attempts](https://github.com/dadbod87/idle-hands-2/actions/runs/44708916767).
 

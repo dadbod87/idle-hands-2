@@ -1589,6 +1589,66 @@
         }
       ],
       "roundedRunnerMinutes": 98
+    },
+    {
+      "run": 44712009571,
+      "phase": "current exact gate",
+      "sha": "f681dd5a8e416e0b39f56f45437dfb5b028da24b",
+      "status": "in_progress",
+      "conclusion": null,
+      "attempts": [
+        {
+          "number": 1,
+          "jobs": [
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 182.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 846.0
+            },
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 812.0
+            },
+            {
+              "name": "browser-shard (3/3)",
+              "conclusion": "cancelled",
+              "seconds": 1220.0
+            },
+            {
+              "name": "browser-playtest",
+              "conclusion": "failure",
+              "seconds": 5.0
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "jobs": [
+            {
+              "name": "browser-shard (2/3)",
+              "conclusion": "success",
+              "seconds": 812.0
+            },
+            {
+              "name": "domain-build-plan",
+              "conclusion": "success",
+              "seconds": 182.0
+            },
+            {
+              "name": "browser-shard (1/3)",
+              "conclusion": "success",
+              "seconds": 846.0
+            }
+          ]
+        }
+      ],
+      "roundedRunnerMinutes": 88
     }
   ],
   "completedRoundedMinutes": 1938,

@@ -3059,7 +3059,7 @@
     {
       "id": "IH2-161",
       "title": "Load the allotment when a resident enters",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "perf/defer-garden-room-art",
       "goal": "Remove indoor garden image requests from outdoor loading and keep the first garden dialog synchronized with its room.",
       "depends_on": [
@@ -3073,7 +3073,30 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-161/PLAN.md"
+        "docs/evidence/IH2-161/PLAN.md",
+        "docs/evidence/IH2-161/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. The outdoor first frame requests fewer images and the first named garden visit waits for the mounted room."
+    },
+    {
+      "id": "IH2-162",
+      "title": "Preview the rooms and yard before asking for a price",
+      "status": "in_progress",
+      "owner_branch": "feat/housing-plan-preview",
+      "goal": "Make the differences among the existing paid plans readable on a phone without sending a housing command.",
+      "depends_on": [
+        "IH2-161",
+        "IH2-117"
+      ],
+      "acceptance": [
+        "Draw actual furnishing nooks, facade footprint and yard spots from accepted world/catalog data.",
+        "Verify opening, switching and closing on desktop, narrow and short enlarged screens, and keep full purchase checks."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-162/PLAN.md"
       ]
     }
   ],

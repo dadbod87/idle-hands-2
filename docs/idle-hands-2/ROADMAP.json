@@ -3664,6 +3664,27 @@
       "evidence": [
         "docs/evidence/IH2-191/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-212",
+      "title": "Rehearse Town speech and timestamped chat history",
+      "status": "queued",
+      "owner_branch": "design/town-chat-study",
+      "goal": "Compare a bounded overhead bubble and separate chat history on desktop and touch before shared delivery.",
+      "depends_on": [
+        "IH2-054"
+      ],
+      "acceptance": [
+        "Verify explicit audience, timestamps, expiry, room-scoped speech and quiet mode at desktop, 320px and short 200% text."
+      ],
+      "exclusions": [
+        "Design rehearsal only. No accounts, game service, private-message delivery, long-term storage or new hosted checks."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-212/PLAN.md",
+        "docs/evidence/IH2-212/study/index.html"
+      ],
+      "progress_note": "Standalone fictional Town conversation. Shared delivery and policy remain design work."
     }
   ],
   "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."

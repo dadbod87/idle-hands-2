@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idle Hands 2 · Town chat rehearsal</title>
+<link rel="stylesheet" href="./chat-study.css">
+<script type="module" src="./chat-study.mjs"></script>
+</head>
+<body>
+<main class="rehearsal">
+ <header>
+  <h1>Town chat</h1>
+  <p>Idle Hands 2 design rehearsal. Messages stay on this page.</p>
+ </header>
+ <section class="world" aria-label="Illustrated town scene" data-room="square">
+  <p class="location">Town square</p>
+  <div class="buildings" aria-hidden="true"></div>
+  <div class="path" aria-hidden="true"></div>
+  <div class="cast" aria-hidden="true">
+   <span class="actor" data-actor="marlow"><span>Marlow</span></span>
+   <span class="actor" data-actor="ellis"><span>Ellis</span></span>
+   <span class="actor" data-actor="pip"><span>Pip</span></span>
+  </div>
+  <div class="speech" aria-hidden="true" hidden>
+   <strong class="speaker"></strong><span class="words"></span>
+  </div>
+ </section>
+ <footer>
+  <button type="button" class="primary" id="open-chat">Open Town chat</button>
+  <button type="button" id="example">Play a neighbor’s reply</button>
+  <button type="button" id="change-room">Enter workshop</button>
+ </footer>
+ <dialog aria-labelledby="chat-title">
+  <div class="dialog-heading">
+   <h2 id="chat-title">Town chat</h2>
+   <button type="button" id="close-chat" aria-label="Close Town chat">Close</button>
+  </div>
+  <div class="chat-content">
+  <section>
+   <p class="audience">Town · Ledgerwick</p>
+   <ol class="history" aria-label="Timestamped Town history" tabindex="0"></ol>
+  </section>
+  <form id="composer">
+   <label for="message">Message as Ellis</label>
+   <textarea id="message" rows="2" aria-describedby="chat-status"></textarea>
+   <div class="compose-actions">
+    <button type="submit" class="primary">Send to Town</button>
+    <label class="quiet"><input type="checkbox" id="quiet"> Quiet bubbles</label>
+   </div>
+   <p id="chat-status" role="status"></p>
+  </form>
+  </div>
+ </dialog>
+ <p class="announcement" aria-live="polite" aria-atomic="true"></p>
+</main>
+</body>
+</html>

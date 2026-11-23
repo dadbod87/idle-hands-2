@@ -96,6 +96,8 @@ The [Actions policy](../ACTIONS_USAGE_POLICY.md) now records the read-only exact
 
 [Compact location follow-up](https://github.com/dadbod87/idle-hands-2/tree/fix/compact-location-on-small-screens/docs/evidence/IH2-223) keeps the room name visible and moves sheltered or short-screen weather details off the game board. The field guide still reads the same town clock, and ordinary desktop retains the fuller card. Four Chromium and five WebKit focused cases passed. Terra confirmed the room name, controls and additional exposed artwork. This follow-up is backed up on its own branch.
 
+The [local check receipt](../../evidence/IH2-214/LOCAL_CHECKS.json) records 132 broad Chromium passes, 25 focused Chromium cases, 10 audio cases, 17 focused WebKit cases, and the build and documentation checks on the same runtime checkpoint. The domain suite passed 452 and skipped 28 database-only cases. Shared practice in these client tests uses intercepted fictional responses. The broad suite logged six incidental requests refused by the intentionally inactive API target. This branch has no hosted run.
+
 ## Visual follow-up batch
 
 [Visible orchard boughs](../../evidence/IH2-224/PLAN.md) gives the three gathering stops distinct original shapes and tangible ripe fruit. Tapping the art uses the same walk and inspect rules. Fresh 2K Chromium and 320-pixel touch WebKit residents walked from the authored square to the orchard, deliberately picked one apple, and reloaded with it saved. The workshop bytes stayed the same. The real route also yielded a 4K capture. Terra verified the new silhouettes and prompted the leaf-only background around the gathering spots. The branch adds one small original square asset.

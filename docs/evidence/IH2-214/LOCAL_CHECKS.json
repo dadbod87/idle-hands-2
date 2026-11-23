@@ -1,0 +1,13 @@
+{
+  "testedSource": "2e0e429636a760b4f09bec4c226d968c9e2956a4",
+  "build": "passed",
+  "designTrackerAndPinnedTools": "passed",
+  "domainPassed": 452,
+  "databaseOnlySkipped": 28,
+  "chromiumBroad": { "passed": 132, "reportedWallTime": "18.3m" },
+  "chromiumFocused": { "passed": 25 },
+  "chromiumAudio": { "passed": 10 },
+  "webkitFocused": { "passed": 17 },
+  "resize": { "chromiumFirstSamplesRendered": 30, "webkitFirstSamplesRendered": 30 },
+  "scope": "Browser-local releases and explicitly selected intercepted shared practice. The broad suite logged six refused incidental requests to the deliberately disabled local API. No running saved preview or database was used. Counts are reported per suite; tests can overlap."
+}

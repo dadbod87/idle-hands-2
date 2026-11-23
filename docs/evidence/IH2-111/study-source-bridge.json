@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "72d2175cee5b234f319d87e1d3c2ee36a3a1640fb8d763277fe121bebb1f243a",
-    "src/phaser/WorldScene.ts": "c80994845554448ff4979e4724ff5bdb5921cfea7fa1936f2ca85858ab17d67b",
+    "src/main.ts": "28890873e7cac8d6131983ccf7f65996c0fd66729135cd70f21b206990d4b4e2",
+    "src/phaser/WorldScene.ts": "b269c076c5c116320e5b7c9b6d872e8523ddb92ae357c5851da80fba6e4e8226",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed public town map presence without changing frozen historical study inputs or generated output."
+  "currentTask": "Reviewed authenticated square waves and the transient canvas labels; archived garden study and generated output remain frozen."
 }

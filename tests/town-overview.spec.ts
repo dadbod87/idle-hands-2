@@ -97,7 +97,8 @@ test('the shared town map groups current residents by district and clears stale 
     }
     window.EventSource=Presence as unknown as typeof EventSource;
    });
-   let signedIn=false;
+   let signedIn=false,allowWave=touch;
+   const waves:unknown[]=[];
    const snapshot={playerId:'aster',name:'Aster',workshop:createWorkshop(Date.now()),
     position:{room:'square',position:{x:24,y:25}},quest:{contentVersion:1,awarded:[]},
     bridge:{contributed:0,target:3,restored:false,phase:'collecting'},
@@ -107,7 +108,11 @@ test('the shared town map groups current residents by district and clears stale 
     requests.push(path);
     if(path==='fixtures')return route.fulfill({json:{fixtures:[{id:'aster',name:'Aster'}]}});
     if(path==='login')signedIn=true;
-    if(path==='login'||path==='snapshot')return signedIn?route.fulfill({json:{snapshot}}):route.fulfill({status:401,json:{message:'Choose a resident.'}});
+    if(path==='wave'){
+     waves.push(route.request().postDataJSON());
+     return allowWave?route.fulfill({json:{waveUntil:Date.now()+3000}}):route.fulfill({status:429,json:{message:'Give your waving arm a moment.'}});
+    }
+    if(path==='login'||path==='snapshot')return signedIn?route.fulfill({json:{snapshot:{...snapshot,serverTime:Date.now()}}}):route.fulfill({status:401,json:{message:'Choose a resident.'}});
     return route.fulfill({status:400,json:{message:'Unexpected map request.'}});
    });
    const emit=(peers:unknown[])=>page.evaluate(data=>{
@@ -123,6 +128,7 @@ test('the shared town map groups current residents by district and clears stale 
    if(touch)await mapSummary.tap();else{await mapSummary.focus();await page.keyboard.press('Enter');}
    const list=page.getByRole('region',{name:'Around town'}),select=page.getByLabel('Map destination');
    await expect(list).toContainText('No other residents');
+   await expect(page.getByRole('button',{name:'Wave to the square'})).toBeHidden();
    await expect(select).toBeVisible();
    await select.selectOption('commons-orchard');
    await select.focus();
@@ -165,6 +171,41 @@ test('the shared town map groups current residents by district and clears stale 
    await expect(orchard).not.toHaveAttribute('data-residents');
    await expect(list).toContainText('Resident locations are temporarily unavailable.');
    expect(requests.slice(before)).toEqual([]);
+
+   if(touch)await page.getByRole('button',{name:'Close panel'}).tap();
+   else await page.keyboard.press('Escape');
+   const snapshotsBefore=requests.filter(path=>path==='snapshot').length;
+   const refreshed=page.waitForResponse(response=>response.url().endsWith('/api/town/snapshot'));
+   await page.evaluate(()=>{
+    const stream=(window as unknown as {mapPresence:{onopen:()=>void}}).mapPresence;
+    stream.onopen();
+   });
+   await refreshed;
+   await expect.poll(()=>requests.filter(path=>path==='snapshot').length).toBeGreaterThan(snapshotsBefore);
+   await emit([{...resident('bea','Bea',22,25.5),waveUntil:Date.now()+3000}]);
+   const waveView=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual);
+   await expect.poll(async()=>(await waveView()).peerWaves).toEqual(['bea']);
+   await expect(page.locator('.town-wave-announcement')).toHaveText('Bea waves hello.');
+   await page.screenshot({path:out+'/wave-received-'+name+'.png'});
+   await expect(page.locator('#places')).toBeEnabled();
+   await page.locator('#places').click();await mapSummary.click();
+   await emit([resident('bea','Bea',22,25.5)]);
+   const wave=page.getByRole('button',{name:'Wave to the square'});
+   if(touch)await wave.tap();
+   else{
+    await wave.focus();await page.keyboard.press('Enter');
+    await expect(list.getByRole('status')).toHaveText('Give your waving arm a moment.');
+    expect((await waveView()).waving).toBe(false);
+    allowWave=true;
+    await wave.press('Enter');
+   }
+   await expect(page.getByRole('dialog')).toBeHidden();
+   await expect(page.locator('#feedback')).toContainText('You waved hello');
+   await expect.poll(async()=>(await waveView()).waving).toBe(true);
+   expect(waves).toEqual(touch?[{}]:[{},{}]);
+   await page.screenshot({path:out+'/wave-confirmed-'+name+'.png'});
+   if(!touch)await expect.poll(async()=>(await waveView()).waving,{timeout:4500}).toBe(false);
+
    expect(errors).toEqual([]);
   }finally{await context.close();}
  }

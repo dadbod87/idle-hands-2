@@ -1,3 +1,4 @@
+import {activeWave} from '../game/town-wave.ts';
 import type {TownHeadwear} from '../game/earned-headwear.ts';
 import type { HomeKeepsake } from '../game/home-keepsake.ts';
 import {snackShelfSchema,type SnackAction,type SnackShelf} from '../game/snack-shelf.ts';
@@ -212,6 +213,7 @@ export class TownClient {
  }
 
  async movement(position:TownPosition){const generation=this.generation;const {data,context}=await this.request('movement',position,generation);if(data.snapshot)this.accept(data.snapshot,context);return data;}
+ async wave(){const {data}=await this.request('wave',{});if(!activeWave(data.waveUntil,this.serverNow()))throw new Error('The wave has already passed.');return data.waveUntil;}
  async logout(){this.changeIdentity();await this.request('logout',{});this.close();this.snapshot=null;this.pending=null;}
  close(){this.closed=true;this.changeIdentity();}
  connect(){this.cancelPublicRefresh();this.cancelStreamRetry();this.events?.close();this.events=null;if(this.closed||document.hidden)return;const generation=this.generation,epoch=this.bootEpoch;const source=new EventSource('/api/town/events?schema='+TOWN_SCHEMA,{withCredentials:true});this.events=source;const current=()=>generation===this.generation&&epoch===this.bootEpoch&&this.events===source;const reload=()=>{if(current())this.refreshFromEvent();};source.onopen=()=>{if(!current())return;this.cancelStreamRetry(true);if(!this.pending)this.notify('Connected · practice town');this.refreshFromEvent(true);};source.onerror=()=>{if(!current())return;if(!this.pending)this.notify('Connection interrupted. Reconnecting; changes require server confirmation.');if(source.readyState===2){this.cancelPublicRefresh();source.close();this.events=null;this.retryClosedStream(generation,epoch);}};source.addEventListener('invalidate',reload);source.addEventListener('snapshot',event=>{if(!current())return;try{const data=JSON.parse((event as MessageEvent).data);this.accept(data.snapshot??data,{generation,epoch,playerId:this.snapshot?.playerId});}catch{reload();}});source.addEventListener('presence',event=>{if(!current())return;try{this.hooks.onPresence?.(JSON.parse((event as MessageEvent).data));}catch{/* Next presence update replaces this one. */}});}

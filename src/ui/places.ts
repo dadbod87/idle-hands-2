@@ -5,7 +5,7 @@ import {townMap,type MapResident} from './town-map.ts';
 
 export function renderPlaces(body: HTMLElement, options: {
  room: Room; position: Point; stops: Stop[]; state: WorkshopState; goal: {id: string; destination?: string};
- now: number; peers?:readonly MapResident[]|null; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void;
+ now: number; wave?:()=>Promise<void>; peers?:readonly MapResident[]|null; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void;
 }) {
  const view = placesView(options.room, options.stops, options.state, options.goal, options.now, options.neighborhood);
  const intro = document.createElement('p');
@@ -45,7 +45,7 @@ export function renderPlaces(body: HTMLElement, options: {
   appendStops(detail, group.stops);
   browse.append(detail);
  }
- const map = options.room==='square'?townMap(options.position,options.stops,options.walk,options.peers):undefined;
+ const map = options.room==='square'?townMap(options.position,options.stops,options.walk,options.peers,options.wave):undefined;
  if (map) browse.append(map.element);
  body.append(browse);
 

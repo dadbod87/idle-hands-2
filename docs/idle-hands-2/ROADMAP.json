@@ -3749,6 +3749,27 @@
         "docs/evidence/IH2-195/PLAN.md"
       ],
       "progress_note": "Staged locally behind the headwear and nearby resident motion batch."
+    },
+    {
+      "id": "IH2-196",
+      "title": "Let residents wave hello in the square",
+      "status": "queued",
+      "owner_branch": "feat/town-wave",
+      "goal": "Give shared residents a small friendly greeting with a clear action and receipt.",
+      "depends_on": [
+        "IH2-195"
+      ],
+      "acceptance": [
+        "Verify the authenticated room-scoped wave, bounded admission, expiry and unchanged progress.",
+        "Verify keyboard and touch, failure feedback, readable labels and the accessible greeting."
+      ],
+      "exclusions": [
+        "No chat, free-form text, economy effect, public release or saved-preview restart."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-196/PLAN.md"
+      ],
+      "progress_note": "Staged locally behind the shared town map. Exact hosted acceptance waits for the headwear base and the next batched gate."
     }
   ],
   "source_status_note": "PR #107 is accepted on main. Inkwood headwear and trail guidance form the next candidate."

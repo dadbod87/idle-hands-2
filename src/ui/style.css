@@ -163,6 +163,10 @@
 #panel-body .town-map-residents h3 { margin: 0 0 .35rem; }
 #panel-body .town-map-residents p { margin: 0; }
 #panel-body .town-map-residents .map-residents-key { margin-bottom: .35rem; font-size: .85rem; }
+.town-wave-action { margin-top: .5rem; min-height: 44px; }
+.town-wave-action[hidden] { display: none; }
+#panel-body .town-wave-status:not(:empty) { margin-top: .35rem; }
+.town-wave-announcement { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .town-map-route {
  display: grid;
  grid-template-columns: minmax(0, 1fr) auto;

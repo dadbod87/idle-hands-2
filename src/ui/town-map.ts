@@ -22,7 +22,7 @@ function rectangle(className: string, left: number, top: number, width: number, 
 }
 
 /** Use the same current room stops and walk callback as every other Places control. */
-export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => void, peers?: readonly MapResident[]|null) {
+export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => void, peers?: readonly MapResident[]|null, wave?:()=>Promise<void>) {
  const details = document.createElement('details');
  details.className = 'places-group places-map';
  const summary = document.createElement('summary');
@@ -88,6 +88,24 @@ export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => vo
    const empty = document.createElement('p');
    const roster = document.createElement('dl');
    list.append(title,key,empty,roster);
+   const waveButton=wave?document.createElement('button'):undefined;
+   if(wave&&waveButton){
+    const status=document.createElement('p');
+    status.className='town-wave-status';
+    status.setAttribute('role','status');
+    waveButton.className='destination town-wave-action';
+    waveButton.type='button';
+    waveButton.textContent='Wave to the square';
+    waveButton.onclick=async()=>{
+     waveButton.disabled=true;
+     status.textContent='Sending your wave…';
+     try{await wave();}
+     catch(error){if(list.isConnected)status.textContent=error instanceof Error?error.message:'The wave could not be confirmed.';}
+     finally{waveButton.disabled=false;}
+    };
+    list.append(waveButton,status);
+   }
+
    details.append(list);
 
    let previous = '';
@@ -107,6 +125,10 @@ export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => vo
     previous=signature;
     empty.hidden=groups.length>0;
     key.hidden=groups.length===0;
+    if(waveButton){
+     if(!groups.length&&document.activeElement===waveButton)summary.focus();
+     waveButton.hidden=groups.length===0;
+    }
     empty.textContent=peers===null?'Resident locations are temporarily unavailable.':'No other residents in this part of town.';
     roster.replaceChildren();
     for (const pin of pins.values()) delete pin.dataset.residents;

@@ -1,0 +1,7 @@
+# IH2-188 · Make room in a full workshop
+
+When someone chooses where to put a carried item and every nook is occupied, Bag focuses a short message and keeps the first choices in view. Selecting a nook shows its current furniture and the existing Return action. The player confirms that return, then chooses and confirms a placement. Focus returns to the selected nook. Empty workshops still lead straight to the first available spot.
+
+The preceding build failed the new focused case because it had no full-workshop message. Five focused Chromium cases passed locally on this batch. The new case fills the six nooks with valid workshop commands and moves one earned planter through the native touch and keyboard flows. It checks the message, the first visible choice, disabled placement on an occupied nook, explicit return, ownership, completed placement and reload. A separate fictional shared snapshot fills a previously selected empty nook. The control disables placement, offers the return action, and sends no command during refresh.
+
+Terra reviewed the 320-pixel portrait and 844 × 390 doubled-text captures. Shortening the opening message kept both first-row choices visible in the short view, and all six choices remain visible in the portrait sample. The return instructions follow the choice of a particular nook so the first screen stays brief. These are emulated views. Physical-device and full exact hosted checks remain open. The saved previews and databases stayed stopped.

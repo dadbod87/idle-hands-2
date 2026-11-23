@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "2654dde64ea46c04fd2975eeb1f743f942aa8f81755f0a28b1f91b95877d606e",
-    "src/phaser/WorldScene.ts": "1a70123ca248ca9e870fc95729ad67dc6efb11d075a02167f5c323b46013b0fa",
+    "src/main.ts": "57089670a7fb6c583e2a8264bdff2aaf9e17fd7a088083c8a1362c98a6ac74a1",
+    "src/phaser/WorldScene.ts": "7eb9d3852bae9e480b41a47b142253d2b3c5e728d9ad2756e7f79fe48fc3d8e9",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "IH2-119 candidate: reviewed additive outing stops, DOM integration and confirmed-state scene props. Historical snapshots and generator outputs remain frozen; no acceptance implied. See119IMPLEMENTATION/validation history."
+  "currentTask": "Reviewed the first-arrival path, label visibility and field note changes. Original study snapshots and generator output remain frozen."
 }

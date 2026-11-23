@@ -1,3 +1,13 @@
+# November 23 — first-arrival and Bag candidate
+
+The next batch is `feat/first-arrival-and-bag`. Its three parts are [full workshop](../evidence/IH2-188/PLAN.md), [first arrival](../evidence/IH2-189/PLAN.md) and [movable Bag stacks](../evidence/IH2-190/PLAN.md). See the [handoff](handoffs/2026-11-23-arrival-and-bag.md) for boundaries, validation and next work. Keep the saved previews and databases stopped.
+
+# November 20 — frame-aligned playfield resize accepted
+
+Visible resizing wakes the idle loop, applies pending canvas dimensions during the game step and preserves bounded redraws behind an open menu. Main `5ca6d6fbe00c894a3220866627295dce8d0cd02e` passed 592 domain tests and 251 browser cases. [Exact verification](../evidence/IH2-187/EXACT_CI.json).
+
+The next candidate is [`IH2-188` and its plan](../evidence/IH2-188/PLAN.md), on `fix/full-workshop-placement`. Explain how to free an occupied nook from Bag and keep placement explicit. Continue with the ordinary exact-head gates and keep saved services stopped.
+
 # November 20 — steady Bag counts and arrangement labels accepted
 
 Stable counts, empty-state attributes and nook labels stay in place between real inventory changes. Main `56077b13425ae1be6709f19db90098fc43d74f37` passed 592 domain tests and 251 browser cases. [Exact verification](../evidence/IH2-185/EXACT_CI.json).

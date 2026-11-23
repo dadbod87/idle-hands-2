@@ -1,5 +1,5 @@
 import { NATURALIST_KEEPSAKE } from '../game/home-keepsake.ts';
-import {LODGING_FOOTPRINT} from '../game/lodging.ts';
+import {LODGING_FOOTPRINT,LODGING_FRONT} from '../game/lodging.ts';
 import type {Headwear} from '../art/headwear.ts';
 import{OUTING_STOPS,type OutingState}from'../game/outing.ts';
 import {homeInterior,homeInteriorPath} from '../game/home-identity.ts';
@@ -299,6 +299,7 @@ export class WorldScene extends Phaser.Scene {
       this.benchPiece.setTexture(art.world).setOrigin(art.foot.x/art.width,art.foot.y/art.height).setScale(.54);
     }
   }
+  private surveyLabels:Array<{label:Phaser.GameObjects.Text;x:number;y:number}>=[];
   private depotViews:Array<{resource:string;image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text}>=[];
   private decorationViews:Phaser.GameObjects.Image[]=[];
   private furnitureOccluders: { image: Phaser.GameObjects.Image; bounds: Phaser.Geom.Rectangle }[]=[];
@@ -418,7 +419,7 @@ export class WorldScene extends Phaser.Scene {
     this.keepsakeView=undefined;
     this.bedPose=undefined;this.bedQuilt=undefined;this.lodgingLabels=[];
     this.orchardMotion=null;this.orchardLabels=[];this.orchardLabelTick=0;this.orchardTable=undefined;this.orchardTableLabel=undefined;
-    this.outingPost=undefined;this.outingCrossing=undefined;this.outingKey='';this.depotViews=[];
+    this.outingPost=undefined;this.outingCrossing=undefined;this.outingKey='';this.depotViews=[];this.surveyLabels=[];
     this.bridgeRibbon=undefined;this.bridgeRibbonLabel=undefined;this.bridgeRevealAt=null;
     this.pineViews=[];this.rackView=undefined;this.noticeboardView=undefined;this.carpentryMotion=null;this.lastCarpentryAction=null;this.carpentryKey='';this.carpentryNextDraw=0;this.noticeReveal=0;
     this.gardenViews=[];this.gardenLabels=[];this.gardenKey='';this.gardenNextDraw=0;this.gardenMotion=null;this.lastGardenAction=null;this.gardenWelcomeView=undefined;
@@ -457,12 +458,23 @@ export class WorldScene extends Phaser.Scene {
       const notice=carpentryArt('noticeboard-collecting');this.noticeboardView=this.add.image(dx+96,dy,notice.id).setOrigin(notice.foot!.x/notice.width,notice.foot!.y/notice.height).setDepth(dy);label(desk.point.x+3.5,desk.point.y+1.1,'Noticeboard');
       const welcome=gardenArt('garden-welcome-collecting');this.gardenWelcomeView=this.add.image(24.5*TILE,36.5*TILE,welcome.id).setOrigin(welcome.foot!.x/welcome.width,welcome.foot!.y/welcome.height).setDepth(36.5*TILE);label(24.5,37.1,'Welcome bed');
       for(const stop of OUTING_STOPS){const texture=stop.id==='outing-desk'?'desk':stop.id==='outing-crossing'?'wind':stop.id==='outing-detour'?'detour':'post-broken';const image=this.add.image((stop.point.x+.5)*TILE,(stop.point.y+.5)*TILE,'outing-'+texture).setOrigin(.5,.92).setScale(.8).setDepth((stop.point.y+.5)*TILE);if(stop.id==='outing-post')this.outingPost=image;if(stop.id==='outing-crossing')this.outingCrossing=image;label(stop.point.x+.5,stop.point.y+1.1,stop.name);}
+      {
+        // A quiet, continuous walking line from the front step to Marlow and the plaza.
+        const clerk=TOWN_PEOPLE[0].point;
+        const path=[LODGING_FRONT,{x:11.3,y:23.15},{x:14.2,y:24},clerk,{x:19.3,y:24}]
+          .map(({x,y})=>new Phaser.Math.Vector2((x+.5)*TILE,(y+.5)*TILE));
+        const lane=this.add.graphics().setDepth(-950);
+        for(const [width,color] of [[61,0xb3a982],[53,0xdac59b]]){
+          lane.lineStyle(width,color).strokePoints(path);
+          lane.fillStyle(color);
+          for(const point of path)lane.fillCircle(point.x,point.y,width/2);
+        }
+      }
       if(this.session.hasLodging){
         const [x,y,width,height]=LODGING_FOOTPRINT;
         const left=x*TILE-4,footY=(y+height)*TILE,top=footY-188;
         const boardingHouse=image('lodging-boarding-front',left,top,footY);
         this.occluders.push({image:boardingHouse,x:x*TILE,y:footY,width:width*TILE,height:height*TILE});
-        label(11,21.85,'Boarding house').setFontSize(12).setPadding(5,3,5,3);
         litWindows.push({x:left+22,y:top+105,width:42,height:29},{x:left+124,y:top+105,width:37,height:29});
       }
       for(const [key,x] of [['workshop',17],['cafe',28]] as const){
@@ -493,7 +505,10 @@ export class WorldScene extends Phaser.Scene {
         for(const layer of ['trunk','canopy']){const tree=this.add.image(footX,footY,'variety-tree-'+kind+'-'+layer).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(footY+(layer==='canopy'?.1:0));
          if(layer==='canopy'){this.canopies.push({key:kind,image:tree,phase:index*1.7,baseX:footX});const bounds=meta.occlusion??{x:4,y:0,width:meta.width-8,height:foot.y};this.occluders.push({image:tree,x:footX-foot.x+bounds.x,y:footY-foot.y+bounds.y+bounds.height,width:bounds.width,height:bounds.height});}}
       }
-      for(const id of SURVEY_IDS){const point=SURVEYS[id].point;label(point.x+.5,point.y+.8,'Sketch study');}
+      for(const id of SURVEY_IDS){
+        const {x,y}=SURVEYS[id].point;
+        this.surveyLabels.push({label:label(x+.5,y+.8,'Sketch study').setVisible(false),x:(x+.5)*TILE,y:(y+.5)*TILE});
+      }
       if(this.showTownfolk)for(const person of TOWN_PEOPLE){const py=(person.point.y+.5)*TILE,px=(person.point.x+.5)*TILE;const view=this.add.image(px,py,'variety-resident-'+person.rig,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale).setDepth(py);const tag=this.add.text(px,py-62,person.name+' · '+person.role.split(' · ')[0],{fontFamily:'Georgia',fontSize:11,color:'#343c36',backgroundColor:'#f8f1df',padding:{x:3,y:2}}).setOrigin(.5,1).setDepth(py+1);this.townfolk.push({id:person.id,image:view,label:tag});}
     } else if(this.room==='neighborhood') {
       this.add.graphics().fillStyle(0xa6b48e).fillRect(-8192,-8192,18432,18432).setDepth(-2000);
@@ -651,7 +666,11 @@ export class WorldScene extends Phaser.Scene {
     this.canopyTransformWrites=transformWrites;
     const pose=ambientPose(this.ambientMs,this.ambientEnabled);this.gestureOffset=pose.gesture;
     if(this.steam){const active=this.ambientEnabled&&visible(this.steam.x,this.steamBaseY);this.steam.setAlpha(active?pose.steamAlpha:0).setY(this.steamBaseY+(active?pose.steamY:0));}
-    for(const [index,person] of this.townfolk.entries()){const p=ambientPose(this.ambientMs,this.ambientEnabled&&visible(person.image.x,person.image.y),index*1.7);person.image.setScale(ART.actorScale,ART.actorScale+p.gesture*.004);const d=Math.hypot(person.image.x-this.actor.x,person.image.y-this.actor.y);person.label.setVisible(d<125);}
+    for(const {label,x,y} of this.surveyLabels){
+      const show=Phaser.Math.Distance.Squared(x,y,this.actor.x,this.actor.y)<100**2;
+      if(label.visible!==show)label.setVisible(show);
+    }
+    for(const [index,person] of this.townfolk.entries()){const p=ambientPose(this.ambientMs,this.ambientEnabled&&visible(person.image.x,person.image.y),index*1.7);person.image.setScale(ART.actorScale,ART.actorScale+p.gesture*.004);const d=Math.hypot(person.image.x-this.actor.x,person.image.y-this.actor.y);person.label.setVisible(d<(person.id==='clerk'?255:100));}
   }
   update(time: number, delta: number) {
     if (this.room !== this.session.room||(this.room==='neighborhood'&&this.loadedDistrictId!==this.districtId)||(this.room.startsWith('home')&&(this.loadedHomePlotId!==this.homePlotId||this.loadedInteriorKey!==this.interiorKey()))) { this.scene.restart(); return; }

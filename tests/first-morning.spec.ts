@@ -72,6 +72,8 @@ test('the optional opening wakes the actual resident and saves the same front st
    await expect.poll(()=>phase(page)).toMatchObject({phase:'finished',saved:{room:'square',position:LODGING_FRONT}});
    await expect.poll(async()=>(await snapshot(page)).room).toBe('square');
    expect((await snapshot(page)).position).toEqual(LODGING_FRONT);
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.variety.buildingKinds.length)).toBeGreaterThan(0);
+   await page.screenshot({path:out+'/'+layout.name+'-front-step.png'});
    await page.reload();await ready(page);
    expect((await snapshot(page)).position).toEqual(LODGING_FRONT);
    await page.getByRole('button',{name:'Open field guide'}).click();

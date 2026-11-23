@@ -239,7 +239,7 @@ async function changeMorning(kind:'start'|'wake'|'leave'){
     }else{
       music.setLocation(session.room,session.position);
       confirmedDoor();
-      feedback.textContent='The square is east of the front steps. Look for Marlow at the clerk’s desk.';
+      feedback.textContent='Follow the path east to Marlow.';
     }
     if(resting()){wakeButton.disabled=false;wakeButton.focus();}else focusWorld();
   }catch{showError('The room could not be saved. Try again.');}
@@ -712,7 +712,7 @@ function activate(stop: Stop) {
   if (stop.transition) {
     if(stop.id==='lodging-exit'&&morning.record?.phase==='awake'){void changeMorning('leave');return;}
     if(town){void enterRemotePortal(stop);return;}
-    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='lodging-exit'?'The square is east of the front steps. Look for Marlow at the clerk’s desk.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
+    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='lodging-exit'?'Follow the path east to Marlow.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
     const note = paragraph(townMode?'Shared practice keeps your town projects and home progress.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);

@@ -1,3 +1,11 @@
+# November 23 — first arrival and Bag candidate
+
+A path leads from the boarding house toward Marlow. Bag guides the player through returning furniture when the workshop is full and adds a browser-saved order for stacks within each pocket. Read the [candidate handoff](idle-hands-2/handoffs/2026-11-23-arrival-and-bag.md) for verification and next work.
+
+# November 20 — frame-aligned playfield resize accepted
+
+Visible resizing wakes the idle loop, applies pending canvas dimensions during the game step and preserves bounded redraws behind an open menu. Main `5ca6d6fbe00c894a3220866627295dce8d0cd02e` passed 592 domain tests and 251 browser cases. [Exact verification](evidence/IH2-187/EXACT_CI.json).
+
 # November 20 — steady Bag counts and arrangement labels accepted
 
 Stable counts, empty-state attributes and nook labels stay in place between real inventory changes. Main `56077b13425ae1be6709f19db90098fc43d74f37` passed 592 domain tests and 251 browser cases. [Exact verification](evidence/IH2-185/EXACT_CI.json).

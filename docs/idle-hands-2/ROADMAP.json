@@ -3558,7 +3558,7 @@
     {
       "id": "IH2-187",
       "title": "Redraw the playfield in the frame that resizes it",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "fix/frame-aligned-resize",
       "goal": "Keep the town visible through idle and menu-open resizing without losing input or focus.",
       "depends_on": [
@@ -3573,9 +3573,75 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-187/PLAN.md"
-      ]
+        "docs/evidence/IH2-187/PLAN.md",
+        "docs/evidence/IH2-187/EXACT_CI.json"
+      ],
+      "progress_note": "Accepted on exact main. Visible resizing wakes the idle loop, applies pending canvas dimensions during the game step and preserves bounded redraws behind an open menu."
+    },
+    {
+      "id": "IH2-188",
+      "title": "Help residents make room in a full workshop",
+      "status": "in_progress",
+      "owner_branch": "feat/first-arrival-and-bag",
+      "goal": "Explain how to free an occupied nook from Bag and keep placement explicit.",
+      "depends_on": [
+        "IH2-187",
+        "IH2-185"
+      ],
+      "acceptance": [
+        "Keep the full-workshop message and first action visible in narrow portrait and enlarged landscape. Verify keyboard and touch.",
+        "Update placement availability on confirmed shared changes, preserve counts, and verify explicit return, placement and reload."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No hosted or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-188/PLAN.md"
+      ],
+      "progress_note": "Prepared alongside the town arrival and movable stacks under one review and exact-head validation batch."
+    },
+    {
+      "id": "IH2-189",
+      "title": "Give first arrivals a clear route to town",
+      "status": "queued",
+      "owner_branch": "feat/first-arrival-and-bag",
+      "goal": "Lead from the boarding-house door to Marlow and the plaza with a path and fewer competing labels.",
+      "depends_on": [
+        "IH2-187"
+      ],
+      "acceptance": [
+        "Verify real exit, saved location, Marlow, first depots and first craft at desktop and touch widths.",
+        "Review first view in narrow portrait and short landscape with Terra."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No shared authority, capacity, economy or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-189/PLAN.md"
+      ],
+      "progress_note": "Implemented in the combined candidate. Exact-head acceptance pending."
+    },
+    {
+      "id": "IH2-190",
+      "title": "Move stacks within a Bag pocket",
+      "status": "queued",
+      "owner_branch": "feat/first-arrival-and-bag",
+      "goal": "Let residents arrange carried stacks in-browser without moving inventory or committing placement.",
+      "depends_on": [
+        "IH2-188"
+      ],
+      "acceptance": [
+        "Verify drag, tap and keyboard swaps; save order and retain exact quantities after reload.",
+        "Verify the full-workshop placement path and all existing inventory/browser checks."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No shared authority, capacity, economy or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-190/PLAN.md"
+      ],
+      "progress_note": "Implemented in the combined candidate. Exact-head acceptance pending."
     }
   ],
-  "source_status_note": "Refresh optimization and player paths are accepted. The next candidate holds the map, walking cue, bridge guidance, local resident editor and independent opening rehearsal."
+  "source_status_note": "Main includes the frame-aligned resize. Full-workshop placement, the first-arrival route and movable Bag stacks are in the combined candidate."
 }

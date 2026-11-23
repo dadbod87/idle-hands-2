@@ -1,3 +1,7 @@
+# November 23 — earned headwear ready for review
+
+PR #107 is accepted on main `168e857`. PR #108 is green on `df1c22b` and remains open. The Clerk cap and nearby-resident animation are staged in the separate follow-up branches. [Exact checks, branch order and Actions closeout](handoffs/2026-11-23-headwear-closeout.md). Keep saved previews and databases stopped.
+
 # November 23 — Bag equipment accepted
 
 PR #107 merged as `168e85720d680dd125d6204e84a12e455bf14878`. Its exact main checks passed 593 domain/database tests and 254 browser cases. [Verification](../evidence/IH2-191/EXACT_CI.json).

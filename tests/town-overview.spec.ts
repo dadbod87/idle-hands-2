@@ -1,6 +1,8 @@
 import {test, expect} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {TOWN_SIZE} from '../src/game/town-expansion.ts';
+import {createWorkshop} from '../src/game/live-workshop.ts';
+import {INKWOOD_GLASSHOUSE} from '../src/game/world.ts';
 
 test('the optional paper map shows the current town position and preserves normal Places travel', async ({browser}) => {
  const out = 'test-results/browser/town-overview';
@@ -71,5 +73,82 @@ test('the optional paper map shows the current town position and preserves norma
    expect(failures).toEqual([]);
    expect(api).toEqual([]);
   } finally {await c.close();}
+ }
+});
+
+test('a resident can walk to the closed Inkwood Glasshouse without changing trail rewards',async({browser})=>{
+ const out='test-results/browser/glasshouse';
+ mkdirSync(out,{recursive:true});
+ for(const size of [
+  {name:'desktop',width:1440,height:900,touch:false,text:'100%'},
+  {name:'phone',width:320,height:640,touch:true,text:'100%'},
+  {name:'short',width:844,height:390,touch:true,text:'200%'},
+ ]){
+  const context=await browser.newContext({viewport:{width:size.width,height:size.height},hasTouch:size.touch});
+  try{
+   const page=await context.newPage(),initial=createWorkshop(Date.now());
+   const errors:string[]=[],requests:string[]=[],commands:string[]=[];
+   let signedIn=false,where={room:'square',position:{x:25.5,y:12.6}},assetLoads=0;
+   const snapshot=()=>({playerId:'aster',name:'Aster',workshop:initial,position:where,quest:{contentVersion:1,awarded:[]},
+    bridge:{contributed:3,target:3,restored:true,phase:'open'},trail:{stamps:[],pennantOwned:false},
+    plot:null,plots:[],seasonKey:'2026-11-20',scores:[],serverTime:Date.now(),serverInstance:'glasshouse-fixture'});
+   await page.addInitScript(()=>{
+    class Events extends EventTarget{onopen?:()=>void;constructor(){super();queueMicrotask(()=>this.onopen?.());}close(){}}
+    Object.defineProperty(window,'EventSource',{value:Events,configurable:true});
+   });
+   page.on('pageerror',problem=>errors.push(problem.message));
+   page.on('request',request=>{
+    const path=new URL(request.url()).pathname;
+    if(path==='/art/glasshouse/overgrown.svg')assetLoads++;
+    if(path.startsWith('/api/town/'))requests.push(path);
+   });
+   await page.route('**/api/town/**',route=>{
+    const endpoint=new URL(route.request().url()).pathname.split('/').at(-1);
+    if(endpoint==='fixtures')return route.fulfill({json:{fixtures:[{id:'aster',name:'Aster'}]}});
+    if(endpoint==='login'){signedIn=true;return route.fulfill({json:{snapshot:snapshot()}});}
+    if(endpoint==='snapshot')return signedIn?route.fulfill({json:{snapshot:snapshot()}}):route.fulfill({status:401,json:{message:'Pick a resident.'}});
+    if(endpoint==='movement'){where=route.request().postDataJSON();return route.fulfill({json:{ok:true,position:where}});}
+    commands.push(endpoint??'unknown');
+    return route.fulfill({status:409,json:{message:'Unexpected project transaction.'}});
+   });
+   await page.goto('/?town=1&sky-study=1&phase=day');
+   await page.getByRole('button',{name:'Aster',exact:true}).click();
+   const play=()=>page.evaluate(()=>(window as any).__pilot.snapshot());
+   await expect.poll(async()=>(await play()).nearby).toBe('trail-gate');
+   expect(assetLoads).toBe(0);
+   if(size.touch)await page.locator('#interact').tap();
+   else await page.locator('#interact').click();
+   await expect.poll(async()=>(await play()).room).toBe('trail');
+   await expect.poll(()=>assetLoads).toBe(1);
+   await page.evaluate(text=>document.documentElement.style.fontSize=text,size.text);
+   await page.locator('#places').click();
+   const place=page.getByRole('button',{name:/Inkwood Glasshouse/});
+   if(size.touch)await place.tap();
+   else{await place.focus();await page.keyboard.press('Enter');}
+   await expect.poll(async()=>(await play()).walking,{timeout:20000}).toBe(false);
+   await expect.poll(async()=>(await play()).nearby).toBe(INKWOOD_GLASSHOUSE.id);
+   await page.screenshot({path:out+'/'+size.name+'-approach.png'});
+   if(size.name==='phone'){
+    const art=await page.evaluate(x=>(window as any).__pilot.screenPoint(x,4.7),INKWOOD_GLASSHOUSE.point.x);
+    await page.locator('canvas').tap({position:art});
+   }else{
+    await page.locator('#interact').focus();
+    await page.keyboard.press('Enter');
+   }
+   await expect(page.getByRole('heading',{name:'Inkwood Glasshouse',exact:true})).toBeVisible();
+   await expect(page.locator('#panel-body')).toContainText('The glasshouse is closed for now.');
+   await expect(page.locator('#panel-body > p')).toBeInViewport({ratio:1});
+   await expect(page.locator('#panel-body button')).toHaveCount(0);
+   expect(await page.getByRole('dialog').evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
+   await page.screenshot({path:out+'/'+size.name+'-notice.png'});
+   await page.getByRole('button',{name:'Close panel'}).click();
+   await expect(page.locator('#interact')).toBeEnabled();
+   const saved=await page.evaluate(()=>(window as any).__pilot.town());
+   expect(saved.trail).toMatchObject({stamps:[],pennantOwned:false});
+   expect(saved.workshop.inventory).toEqual(initial.inventory);
+   expect(requests).toContain('/api/town/movement');
+   expect(commands).toEqual([]);
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
  }
 });

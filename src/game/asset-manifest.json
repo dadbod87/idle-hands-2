@@ -1123,6 +1123,11 @@
       "id": "lodging-rented-room",
       "path": "art/lodging/rented-room.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "glasshouse-overgrown",
+      "path": "art/glasshouse/overgrown.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

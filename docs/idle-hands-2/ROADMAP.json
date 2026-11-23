@@ -3686,6 +3686,26 @@
         "docs/evidence/IH2-204/study/index.html"
       ],
       "progress_note": "Interactive art and contribution design. Gameplay rules are proposed and still need pacing and authority proofs."
+    },
+    {
+      "id": "IH2-205",
+      "title": "Discover the closed Inkwood Glasshouse on the actual trail",
+      "status": "queued",
+      "owner_branch": "feat/inkwood-glasshouse-discovery",
+      "goal": "Make the next restoration site recognizable and reachable before adding a project or material cost.",
+      "depends_on": [
+        "IH2-204"
+      ],
+      "acceptance": [
+        "Verify zero square entry requests for the facade, trail-only load, focus and normal approach, unchanged stock and three stamps, and readable 320px and 200% captures."
+      ],
+      "exclusions": [
+        "No exterior collision, entry, restocking, rewards, migrations, cloud or restoration transaction."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-205/PLAN.md"
+      ],
+      "progress_note": "Isolated first playable landmark slice. Keep consent, full hosted checks and project authority separate."
     }
   ],
   "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."

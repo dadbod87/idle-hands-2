@@ -94,3 +94,7 @@
 .reading-keepsake { margin: 0; }
 .reading-keepsake img { display: block; max-width: 100%; height: auto; margin: 0 auto .75rem; }
 .reading-keepsake figcaption { padding: .45rem 0; }
+
+.saved-home-list { margin-block: .65rem; padding: .6rem; border: 1px solid var(--line); border-radius: 4px; background: #eee6cf; }
+#panel-body .saved-home-list h3 { margin: 0 0 .35rem; }
+.saved-home-list button { min-height: 44px; overflow-wrap: anywhere; }

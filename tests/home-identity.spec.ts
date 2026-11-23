@@ -1,6 +1,8 @@
 import {test,expect} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {homePanelFixture} from './helpers/home-panel.ts';
+import {addressForPlot} from "../src/game/neighborhood.ts";
+
 
 for(const shape of [
  {name:'desktop-owner',width:1440,height:900,level:1 as const,visitor:false},
@@ -314,5 +316,69 @@ test('the Lodge drafting board previews the owner’s confirmed work and guides 
    expect(control.saved()).toEqual(before);
    expect(errors).toEqual([]);
   } finally { await context.close(); }
+ }
+});
+
+test('a guest can save an address privately and use the existing street directory to return',async({browser})=>{
+ const evidence='test-results/browser/saved-home-addresses';mkdirSync(evidence,{recursive:true});
+ for(const {name,width,height,touch} of [
+  {name:'desktop',width:1440,height:900,touch:false},
+  {name:'phone',width:320,height:640,touch:true},
+  {name:'short',width:844,height:390,touch:true},
+ ]){
+  const context=await browser.newContext({viewport:{width,height},hasTouch:touch});
+  try{
+   const page=await context.newPage();
+   const guest=await homePanelFixture(page,{visitor:true});
+   const close=()=>page.getByRole('button',{name:'Close panel'}).click();
+   const openDetails=async()=>{
+    await page.locator('#bag').click();
+    await page.getByRole('button',{name:'Inspect or arrange a house'}).click();
+    const details=page.locator('summary').filter({hasText:'Address & house details'});
+    if(touch)await details.tap();else await details.press('Enter');
+   };
+   const save=page.getByRole('button',{name:'Save this address'}),remove=page.getByRole('button',{name:'Remove saved address'});
+   const read=(key:string)=>page.evaluate(key=>localStorage.getItem(key),key);
+   await openDetails();
+   if(touch)await save.tap();else await save.press('Enter');
+   await expect(remove).toHaveAttribute('aria-pressed','true');
+   expect(await read('ih2:saved-homes:v1:bea')).toBe('["42"]');
+   expect(await read('ih2:saved-homes:v1:aster')).toBeNull();
+   expect(guest.commands).toEqual([]);
+   await remove.scrollIntoViewIfNeeded();
+   await expect(remove).toBeInViewport({ratio:1});
+   await page.screenshot({path:evidence+'/saved-'+name+'.png'});
+   await page.reload();
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   await openDetails();
+   await expect(remove).toHaveAttribute('aria-pressed','true');
+   await remove.click();await expect(save).toHaveAttribute('aria-pressed','false');
+   expect(await read('ih2:saved-homes:v1:bea')).toBe('[]');
+   await save.click();await expect(remove).toBeEnabled();
+   expect(guest.commands).toEqual([]);
+   await close();
+
+   const address=addressForPlot('42');
+   guest.setPosition({room:'neighborhood',districtId:address.block,position:{x:29.5,y:4.5}});
+   await page.reload();
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.snapshot().nearby)).toBe('neighborhood-directory');
+   await page.locator('#interact').click();
+   const saved=page.getByRole('region',{name:'Saved addresses'});
+   await expect(saved).toBeVisible();
+   await close();
+   await page.locator('#places').click();
+   await page.getByRole('button',{name:'Saved home addresses'}).click();
+   const visit=saved.getByRole('button',{name:/Visit Aster/});
+   await expect(visit).toContainText(address.label);
+   await visit.scrollIntoViewIfNeeded();
+   await expect(visit).toBeInViewport({ratio:1});
+   expect(await page.getByRole('dialog').evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
+   await page.screenshot({path:evidence+'/directory-'+name+'.png'});
+   expect(guest.commands).toEqual([]);
+   if(touch)await visit.tap();else await visit.press('Enter');
+   await expect(page.getByRole('dialog')).toBeHidden();
+   await expect(page.locator('#feedback')).toContainText('Walking to the house door.');
+  }finally{await context.close();}
  }
 });

@@ -1,4 +1,5 @@
 import{expect,type Page}from'@playwright/test';
+import type {TownPosition} from '../../server/live-store.ts';
 import{combinedAuditFixture}from'../../tools/combined-audit-fixtures.ts';
 import{applyWorkshop,loadWorkshop,PLACEMENT_SLOTS}from'../../src/game/live-workshop.ts';
 import{applyHomeArrangement,emptyWorkroom,type HomeLayout}from'../../src/game/live-home-layout.ts';
@@ -9,7 +10,7 @@ export async function homePanelFixture(page:Page,options:{level?:1|2;visitor?:bo
  let layout:HomeLayout={level,placements:Object.fromEntries(PLACEMENT_SLOTS.map((s,i)=>[s.id,['planter','stool','rug','lamp','crate','shelf'][i]]))as HomeLayout['placements'],workroomPlacements:level===2?{'workroom-north':'letterbox','workroom-south':'easel'}:emptyWorkroom()};
  let planId=options.planId;
  const id=options.visitor?'bea':'aster',name=options.visitor?'Bea':'Aster',plot=()=>({id:'42',ownerId:'aster',ownerName:'Aster',...layout,...(planId?{planId}:{}),pennantOwned:true,letterboxMotif:state.commission.motif});
- const position=options.outside?{room:'square',position:{x:30,y:29}}:{room:level===2?'home-expanded':'home',homePlotId:'42',position:{x:9,y:10}};
+ let position:TownPosition=options.outside?{room:'square',position:{x:30,y:29}}:{room:level===2?'home-expanded':'home',homePlotId:'42',position:{x:9,y:10}};
  const snapshot=()=>({playerId:id,name,workshop:state,position,quest:{contentVersion:1,awarded:[]},bridge:{contributed:3,target:3,restored:true,phase:'open'},plot:options.visitor?null:plot(),plots:[plot(),...Array.from({length:options.otherPlots??0},(_,i)=>({...plot(),id:String(43+i),ownerId:'bea',ownerName:'Bea'}))],seasonKey:'2026-11-06',scores:[],serverTime:Date.now(),serverInstance:'home-panel-fixture'});
  let logged=false,release:(()=>void)|null=null;const control={commands:[]as any[],rejectNext:false,loseNext:false,holdNext:false,commits:0,replays:0,payloads:[]as string[],receipts:new Map<string,any>(),release:()=>{release?.();release=null;},saved:()=>structuredClone({state,layout}),invalidate:()=>{act({kind:'commission',commissionAction:{action:'style',motif:state.commission.motif==='moth'?'sun':'moth'}});return page.evaluate(()=>(window as any).__homePanelEvents.dispatchEvent(new MessageEvent('invalidate',{data:'{}'})));}};
  await page.addInitScript(()=>{class E extends EventTarget{onopen:((e:Event)=>void)|null=null;constructor(){super();(window as any).__homePanelEvents=this;queueMicrotask(()=>this.onopen?.(new Event('open')));}close(){}};(window as any).EventSource=E;});
@@ -33,5 +34,5 @@ export async function homePanelFixture(page:Page,options:{level?:1|2;visitor?:bo
   return route.fulfill({status:400,json:{message:'Unexpected fixture endpoint.'}});
  });
  await page.goto('/?town=1');await page.getByRole('button',{name,exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.snapshot().room)).toBe(position.room);
- return Object.assign(control,{setPlan:async(value:string)=>{planId=value;await page.evaluate(()=>(window as any).__homePanelEvents.dispatchEvent(new MessageEvent('invalidate',{data:'{}'})));}});
+ return Object.assign(control,{setPosition:(value:TownPosition)=>{position=value;},setPlan:async(value:string)=>{planId=value;await page.evaluate(()=>(window as any).__homePanelEvents.dispatchEvent(new MessageEvent('invalidate',{data:'{}'})));}});
 }

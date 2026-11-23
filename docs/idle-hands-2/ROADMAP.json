@@ -3664,6 +3664,28 @@
       "evidence": [
         "docs/evidence/IH2-191/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-201",
+      "title": "Save a visited home’s address for a later visit",
+      "status": "queued",
+      "owner_branch": "feat/saved-home-addresses",
+      "goal": "Help residents find interesting homes again through an explicit neighborhood route.",
+      "depends_on": [
+        "IH2-088",
+        "IH2-117"
+      ],
+      "acceptance": [
+        "Verify viewer-specific browser persistence, removal, absence of stale addresses and no owner mutation.",
+        "Verify the actual existing walk from the saved directory and Places on desktop and touch."
+      ],
+      "exclusions": [
+        "No public bookmarking data, paid resources, shared economy or saved-preview change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-201/PLAN.md"
+      ],
+      "progress_note": "Independent browser-scoped candidate from accepted main. Hosted acceptance pending."
     }
   ],
   "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."

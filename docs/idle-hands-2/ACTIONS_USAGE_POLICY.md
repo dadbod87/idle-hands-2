@@ -24,6 +24,17 @@ Continue local-first batching and reuse existing exact-head results. Standard fr
 
 Prior statements below about the private billing refusal and suggested budgets are dated history, not a current free-run prohibition. See handoffs/2026-11-13-public-source.md for verification and limitations.
 
+## Browser checks while saved services are stopped
+
+For an isolated browser-local check or an explicitly intercepted case, build the client and select the exact cases to run. For example:
+
+```sh
+npm run build
+npm run test:browser -- --config=playwright.client-only.config.ts tests/first-morning.spec.ts --grep 'fresh touch resident'
+```
+
+The opt-in profile starts one temporary loopback client on 4341 and deliberately points the API proxy to an inactive port. It refuses an already running server. Use `IH2_CLIENT_TEST_PORT` between 4341 and 4359 for another simultaneous run, or `IH2_CLIENT_TEST_BROWSER=webkit` when the matching Playwright browser is installed. The ordinary browser config and hosted checks remain the full acceptance path. Never treat the profile as shared database or end-to-end authority evidence. Record which responses were intercepted and report previously skipped coverage in the handoff.
+
 ## Default development loop
 
 1. Complete a coherent, reviewable section locally. Use focused checks during iteration, then the full applicable repository checks at the candidate boundary. Do not repeatedly rerun a passing full local suite without a new change, failure or unresolved concern. Local checks do not use GitHub-hosted runner minutes.

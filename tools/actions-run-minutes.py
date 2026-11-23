@@ -8,6 +8,7 @@ import re
 import subprocess
 import sys
 from datetime import datetime
+from urllib.parse import urlencode
 
 
 SEQUEL_WORKFLOW = '.github/workflows/sequel-ci.yml'
@@ -43,6 +44,16 @@ def read_github(endpoint, pages=False):
     if response.returncode:
         raise RuntimeError('GitHub could not read ' + endpoint)
     return json.loads(response.stdout)
+
+
+def find_existing(repo, head, event, fetch=read_github):
+    workflow = SEQUEL_WORKFLOW.rsplit('/', 1)[-1]
+    query = urlencode({'head_sha': head, 'event': event, 'per_page': 100})
+    pages = fetch(f'repos/{repo}/actions/workflows/{workflow}/runs?{query}', pages=True)
+    return list(dict.fromkeys(
+        run['id'] for page in pages for run in page['workflow_runs']
+        if run['head_sha'] == head and run['event'] == event
+    ))
 
 
 def report(repo, run_ids, fetch=read_github):
@@ -124,7 +135,9 @@ def sequel_gate(runs, expected_head, expected_event=None):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('run_ids', nargs='+', type=int)
+    parser.add_argument('run_ids', nargs='*', type=int)
+    parser.add_argument('--find-existing', action='store_true',
+                        help='Read already registered sequel runs for the requested exact commit and event.')
     parser.add_argument('--repo', default='dadbod87/idle-hands-2')
     parser.add_argument('--require-sequel-head', metavar='SHA',
                         help='Check each selected run against the full sequel commit and all five jobs.')
@@ -135,10 +148,18 @@ def main():
         parser.error('Use the full 40-character commit SHA.')
     if args.require_event and not args.require_sequel_head:
         parser.error('--require-event needs --require-sequel-head.')
+    if args.find_existing:
+        if args.run_ids or not args.require_sequel_head or not args.require_event:
+            parser.error('--find-existing needs --require-sequel-head and --require-event instead of run IDs.')
+    elif not args.run_ids:
+        parser.error('Provide workflow run IDs or use --find-existing.')
     if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', args.repo) or any(n < 1 for n in args.run_ids):
         parser.error('Use owner/repository and positive workflow run IDs.')
     try:
-        summary = report(args.repo, args.run_ids)
+        ids = args.run_ids
+        if args.find_existing:
+            ids = find_existing(args.repo, args.require_sequel_head.lower(), args.require_event)
+        summary = report(args.repo, ids)
         gate = None
         if args.require_sequel_head:
             gate = sequel_gate(summary['runs'], args.require_sequel_head.lower(), args.require_event)

@@ -6,7 +6,7 @@ from pathlib import Path
 script = runpy.run_path(str(Path(__file__).resolve().parents[1] / 'tools/actions-run-minutes.py'))
 report = script['report']
 sequel_gate = script['sequel_gate']
-
+find_existing = script['find_existing']
 
 
 class RunMinutes(unittest.TestCase):
@@ -37,6 +37,23 @@ class RunMinutes(unittest.TestCase):
         self.assertEqual(run['incompleteJobs'], 1)
         self.assertEqual([job['runnerSeconds'] for job in run['jobs']], [62, None, 35, None])
         self.assertEqual(run['jobs'][0]['firstListedAttempt'], 1)
+
+    def test_finds_queued_and_completed_runs_on_only_the_exact_head_and_event(self):
+        head = 'a' * 40
+        queued = {'id': 21, 'head_sha': head, 'event': 'pull_request', 'status': 'queued'}
+        completed = {**queued, 'id': 20, 'status': 'completed'}
+        stale = {**completed, 'id': 19, 'head_sha': 'b' * 40}
+        wrong_event = {**completed, 'id': 18, 'event': 'push'}
+
+        def fetch(endpoint, pages=False):
+            self.assertTrue(pages)
+            self.assertEqual(endpoint,
+                             f'repos/someone/game/actions/workflows/sequel-ci.yml/runs?head_sha={head}&event=pull_request&per_page=100')
+            return [{'workflow_runs': [queued, stale, wrong_event]},
+                    {'workflow_runs': [completed, queued]}]
+
+        self.assertEqual(find_existing('someone/game', head, 'pull_request', fetch), [21, 20])
+        self.assertFalse(sequel_gate([], head, 'pull_request')['ready'])
 
     def test_exact_sequel_gate_rejects_stale_masked_or_incomplete_checks(self):
         approved_head = 'a' * 40

@@ -84,16 +84,18 @@ test('Journal keeps the full recent field note after it has left the playfield',
    if(touch)await workshop.tap();else await workshop.press('Enter');
    await expect(feedback).toContainText(/Walking to.*workshop/i);
    const note=await feedback.innerText();
+   await expect(feedback).toContainText('At Workshop. Choose Enter.');
    await page.locator('#journal').click();
    const history=page.locator('.journal-recent-notes'),summary=history.locator('summary');
    await expect(history).not.toHaveAttribute('open');
    if(touch)await summary.tap();else await summary.press('Enter');
    const log=page.getByRole('list',{name:'Recent field notes'});
-   await expect(log.getByRole('listitem').first()).toContainText(note);
+   await expect(log.getByRole('listitem').first()).toContainText('At Workshop. Choose Enter.');
+   await expect(log.getByRole('listitem').filter({hasText:note})).toHaveCount(1);
    await expect(log).toContainText(first);
    const stamp=await log.locator('time').first().getAttribute('datetime');
    expect(Date.parse(stamp??'')).toBeGreaterThan(0);
-   expect(await page.getByRole('dialog').evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
+   expect(await page.getByRole('dialog').evaluate(node=>node.scrollWidth<=node.clientWidth),name).toBe(true);
    await log.getByRole('listitem').first().scrollIntoViewIfNeeded();
    await page.screenshot({path:evidence+'/'+name+'.png'});
    if(name==='short'){

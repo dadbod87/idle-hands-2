@@ -180,7 +180,7 @@ export class BagView {
    look.textContent=wardrobe.label;
    edit.type='button';
    edit.textContent='Edit headwear';
-   edit.onclick=wardrobe.open;
+   edit.onclick=()=>wardrobe.open();
    appearance.append(title,look,edit);
    this.root.append(appearance);
    this.appearance=appearance;

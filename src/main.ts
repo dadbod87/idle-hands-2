@@ -39,7 +39,7 @@ import {gardenActionLocations,STAKE_IDS,type StakeId} from './game/garden.ts';
 import {surveyId,SURVEYS,type SurveyId} from './game/fieldwork.ts';
 import Phaser from 'phaser';
 import { Session } from './game/session.ts';
-import { worlds,INKWOOD_GLASSHOUSE,TRAIL_LANDMARK_IDS,type Stop,type Room } from './game/world.ts';
+import { worlds,INKWOOD_GLASSHOUSE,INKWOOD_STEWARD,TRAIL_LANDMARK_IDS,type Stop,type Room } from './game/world.ts';
 import { WorldScene } from './phaser/WorldScene.ts';
 import './ui/style.css';
 import {questStep} from './game/live-workshop.ts';
@@ -744,6 +744,20 @@ function activate(stop: Stop) {
   if (stop.id === 'bridge' || stop.id === 'trail-gate' && !scene.bridgeRestored) {
     if (town) townUI!.showBridge();
     else openSharedTownChoice('Bridge committee', 'Help repair the bridge and explore Inkwood in shared practice. Your workshop in this browser has its own save.');
+    return;
+  }
+  if(stop.id===INKWOOD_STEWARD.id){
+    const entries=town?.snapshot?.trail?.stamps;
+    const missing=entries&&TRAIL_LANDMARK_IDS.find(id=>!entries.includes(id));
+    const next=missing?worlds.trail.stops.find(site=>site.id===missing):INKWOOD_GLASSHOUSE;
+    openPanel(stop.name);
+    body.append(paragraph(!entries?'I keep the trail signs in order.':missing?'Three trail observations belong in your field notebook.':'Three observations filed.'));
+    if(entries&&next){
+      const walk=document.createElement('button');walk.type='button';walk.className='destination';
+      walk.textContent='Walk to '+next.name;walk.onclick=()=>goNamedDestination('trail',next.id);body.append(walk);
+    }
+    const aside=paragraph(missing?'The trees won’t ask for a signature.':'The plants refuse to comment.');
+    aside.className='disclosure';body.append(aside);
     return;
   }
   if(stop.id===INKWOOD_GLASSHOUSE.id){openPanel(stop.name);body.append(paragraph(stop.text));return;}

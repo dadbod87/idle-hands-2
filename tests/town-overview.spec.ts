@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {TOWN_SIZE} from '../src/game/town-expansion.ts';
 import {createWorkshop} from '../src/game/live-workshop.ts';
-import {INKWOOD_GLASSHOUSE} from '../src/game/world.ts';
+import {INKWOOD_GLASSHOUSE,INKWOOD_STEWARD,TRAIL_LANDMARK_IDS} from '../src/game/world.ts';
 
 test('the optional paper map shows the current town position and preserves normal Places travel', async ({browser}) => {
  const out = 'test-results/browser/town-overview';
@@ -220,7 +220,7 @@ test('the shared town map groups current residents by district and clears stale 
  }
 });
 
-test('a resident can walk to the closed Inkwood Glasshouse without changing trail rewards',async({browser})=>{
+test('trail steward and closed Inkwood Glasshouse give directions without changing trail rewards',async({browser})=>{
  const out='test-results/browser/glasshouse';
  mkdirSync(out,{recursive:true});
  for(const size of [
@@ -232,9 +232,10 @@ test('a resident can walk to the closed Inkwood Glasshouse without changing trai
   try{
    const page=await context.newPage(),initial=createWorkshop(Date.now());
    const errors:string[]=[],requests:string[]=[],commands:string[]=[],trailArt:string[]=[];
-   let signedIn=false,where={room:'square',position:{x:25.5,y:12.6}},assetLoads=0;
+   let signedIn=false,where={room:'square',position:{x:25.5,y:12.6}},assetLoads=0,stewardLoads=0;
+   const stamps=size.name==='short'?[...TRAIL_LANDMARK_IDS]:[];
    const snapshot=()=>({playerId:'aster',name:'Aster',workshop:initial,position:where,quest:{contentVersion:1,awarded:[]},
-    bridge:{contributed:3,target:3,restored:true,phase:'open'},trail:{stamps:[],pennantOwned:false},
+    bridge:{contributed:3,target:3,restored:true,phase:'open'},trail:{stamps,pennantOwned:stamps.length===3},
     plot:null,plots:[],seasonKey:'2026-11-20',scores:[],serverTime:Date.now(),serverInstance:'glasshouse-fixture'});
    await page.addInitScript(()=>{
     class Events extends EventTarget{onopen?:()=>void;constructor(){super();queueMicrotask(()=>this.onopen?.());}close(){}}
@@ -244,6 +245,7 @@ test('a resident can walk to the closed Inkwood Glasshouse without changing trai
    page.on('request',request=>{
     const path=new URL(request.url()).pathname;
     if(path==='/art/glasshouse/overgrown.svg')assetLoads++;
+    if(path==='/art/inkwood/wren.svg')stewardLoads++;
     if(path.startsWith('/art/trail/'))trailArt.push(path.split('/').at(-1)!);
     if(path.startsWith('/api/town/'))requests.push(path);
    });
@@ -261,17 +263,41 @@ test('a resident can walk to the closed Inkwood Glasshouse without changing trai
    const play=()=>page.evaluate(()=>(window as any).__pilot.snapshot());
    await expect.poll(async()=>(await play()).nearby).toBe('trail-gate');
    expect(assetLoads).toBe(0);
+   expect(stewardLoads).toBe(0);
    expect([...trailArt].sort()).toEqual(['building','collecting','open','ready'].map(state=>'trail-bridge-'+state+'.svg').sort());
    if(size.touch)await page.locator('#interact').tap();
    else await page.locator('#interact').click();
    await expect.poll(async()=>(await play()).room).toBe('trail');
    await expect.poll(()=>assetLoads).toBe(1);
+   await expect.poll(()=>stewardLoads).toBe(1);
    await expect.poll(()=>trailArt.filter(path=>path.startsWith('trail-landmark-')).sort()).toEqual(
     ['lookout','old-sign','trailhead'].map(id=>'trail-landmark-'+id+'.svg'));
    expect(trailArt.filter(path=>path==='trail-ground.svg')).toHaveLength(1);
    expect(trailArt.filter(path=>path.startsWith('trail-bridge-'))).toHaveLength(4);
    expect(trailArt.filter(path=>path.startsWith('trail-pennant-'))).toEqual([]);
    await page.evaluate(text=>document.documentElement.style.fontSize=text,size.text);
+   if(size.name==='phone'){
+    const point=INKWOOD_STEWARD.point;
+    const body=await page.evaluate(({x,y})=>(window as any).__pilot.screenPoint(x,y-.8),point);
+    await page.screenshot({path:out+'/steward-on-path-phone.png'});
+    await page.locator('canvas').tap({position:body});
+   }else{
+    await page.locator('#places').click();
+    await page.getByRole('button',{name:/Walk to Wren/}).press('Enter');
+    await expect.poll(async()=>(await play()).nearby).toBe(INKWOOD_STEWARD.id);
+    await expect.poll(async()=>(await play()).walking).toBe(false);
+    await page.locator('#interact').press('Enter');
+   }
+   await expect(page.getByRole('heading',{name:INKWOOD_STEWARD.name,exact:true})).toBeVisible();
+   const next=page.getByRole('button',{name:stamps.length?'Walk to Inkwood Glasshouse':'Walk to Inspection stump',exact:true});
+   await expect(next).toBeInViewport({ratio:1});
+   await page.screenshot({path:out+'/steward-'+size.name+'.png'});
+   if(size.name==='phone'){
+    await next.tap();
+    await expect.poll(async()=>(await play()).nearby).toBe('trailhead');
+    await expect(page.getByRole('button',{name:'Record this discovery',exact:true})).toBeVisible();
+   }
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
    await page.locator('#places').click();
    const place=page.getByRole('button',{name:/Inkwood Glasshouse/});
    if(size.touch)await place.tap();
@@ -295,7 +321,7 @@ test('a resident can walk to the closed Inkwood Glasshouse without changing trai
    await page.getByRole('button',{name:'Close panel'}).click();
    await expect(page.locator('#interact')).toBeEnabled();
    const saved=await page.evaluate(()=>(window as any).__pilot.town());
-   expect(saved.trail).toMatchObject({stamps:[],pennantOwned:false});
+   expect(saved.trail).toMatchObject({stamps,pennantOwned:stamps.length===3});
    expect(saved.workshop.inventory).toEqual(initial.inventory);
    expect(requests).toContain('/api/town/movement');
    expect(commands).toEqual([]);

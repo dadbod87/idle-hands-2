@@ -3664,6 +3664,27 @@
       "evidence": [
         "docs/evidence/IH2-191/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-202",
+      "title": "Hide empty Bag slots while browsing",
+      "status": "queued",
+      "owner_branch": "feat/bag-hide-empty",
+      "goal": "Let phone players scan the stacks they can use and keep the full layout for arrangement and Equipment.",
+      "depends_on": [
+        "IH2-190",
+        "IH2-191"
+      ],
+      "acceptance": [
+        "Toggle with touch and keyboard. Verify Workshop placement and return, moving stacks, Equipment and scrolled 200% item readability."
+      ],
+      "exclusions": [
+        "No changes to player data, equipment authority, slot ordering or shed capacity."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-202/PLAN.md"
+      ],
+      "progress_note": "Local presentation candidate. Batch hosted validation with the next related Bag work."
     }
   ],
   "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."

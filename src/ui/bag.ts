@@ -26,6 +26,9 @@ export class BagView {
  private readonly equipAction=document.createElement('button');
  private readonly sawLesson=document.createElement('button');
  private readonly equipmentNotice=document.createElement('p');
+ private readonly hideEmpty=document.createElement('input');
+ private readonly filterRow=document.createElement('div');
+ private readonly emptyPocket=document.createElement('p');
  private readonly orderButton=document.createElement('button');
  private readonly orderStatus=document.createElement('p');
  private readonly orderBar=document.createElement('div');
@@ -40,10 +43,22 @@ export class BagView {
   const stacks=bagStacks(state,{},this.orchard?.());
   this.items=new Map(stacks.map(stack=>[stack.id,stack]));
   this.root.className='canvas-bag';this.root.setAttribute('aria-label','Your bag');
+  const headingRow=document.createElement('div');
+  headingRow.className='bag-heading';
   const heading=document.createElement('h3');heading.textContent='Your bag';
   this.countKey.className='bag-intro bag-count-key';this.countKey.id='bag-count-key';this.countKey.textContent=COUNT_KEYS.furniture;
   const filters=document.createElement('div');filters.className='bag-pockets';filters.setAttribute('role','group');filters.setAttribute('aria-label','Bag pockets');
   for(const group of BAG_GROUPS){const button=document.createElement('button');button.type='button';button.textContent=POCKET_LABELS[group];button.dataset.bagPocket=group;button.setAttribute('aria-pressed',String(group==='furniture'));button.onclick=()=>this.openPocket(group);this.pockets.set(group,button);filters.append(button);}
+  this.filterRow.className='bag-filter';
+  const filterLabel=document.createElement('label');
+  this.hideEmpty.type='checkbox';
+  this.hideEmpty.onchange=()=>this.updateFilter();
+  filterLabel.append(this.hideEmpty,'Hide empty slots');
+  this.filterRow.append(filterLabel);
+  headingRow.append(heading,this.filterRow);
+  this.emptyPocket.className='bag-empty-pocket';
+  this.emptyPocket.textContent='Nothing in this pocket yet.';
+  this.emptyPocket.hidden=true;
   this.status.className='bag-status';
   const shortcuts=document.createElement('div');shortcuts.className='bag-shortcuts';for(const [label,selector]of [['Arrange furniture','select[aria-label="Furniture to place"]']]){const button=document.createElement('button');button.type='button';button.textContent=label;button.dataset.bagArrange='';button.onclick=()=>this.arrange();shortcuts.append(button);}
   this.orderButton.type='button';
@@ -60,7 +75,7 @@ export class BagView {
   done.textContent='Done moving';
   done.onclick=()=>{this.setEditing(false);this.orderButton.focus();};
   this.orderBar.append(this.orderStatus,done);
-  this.root.append(heading,shortcuts,filters,this.countKey,this.status);
+  this.root.append(headingRow,shortcuts,filters,this.countKey,this.status,this.emptyPocket);
   for(const group of BAG_GROUPS){const list=document.createElement('ul');list.className='bag-slots';list.setAttribute('aria-describedby',this.countKey.id);list.setAttribute('aria-label',POCKET_LABELS[group]);list.hidden=group!=='furniture';this.groups.set(group,list);this.root.append(list);}
   for(const stack of stacks){const card=document.createElement('li');card.className='bag-slot';card.dataset.bagItem=stack.id;
    const art=document.createElement('div');art.className='bag-slot-art';const image=document.createElement('img');image.alt='';image.width=64;image.height=64;image.loading='lazy';const fallback=document.createElement('span');fallback.className='bag-art-fallback';fallback.textContent='Item';fallback.hidden=true;image.onerror=()=>{image.hidden=true;fallback.hidden=false;};image.onload=()=>{image.hidden=false;fallback.hidden=true;};art.append(image,fallback);
@@ -157,6 +172,7 @@ export class BagView {
   for(const [id,list] of this.groups)list.hidden=id!==group;
   if(this.appearance)this.appearance.hidden=group!=='equipment';
   for(const [id,button] of this.pockets)button.setAttribute('aria-pressed',String(id===group));
+  this.updateFilter();
   if(focus)this.pockets.get(group)?.focus();
  }
 
@@ -192,6 +208,25 @@ export class BagView {
   this.root.classList.toggle('bag-order-editing',editing);
   this.orderBar.hidden=!editing;
   this.select(null);
+  this.updateFilter();
+ }
+
+ private updateFilter(){
+  const available=this.groups.get('equipment')!.hidden;
+  this.filterRow.hidden=!available||this.editing;
+  const filtered=!this.filterRow.hidden&&this.hideEmpty.checked;
+  let hasVisibleStack=false;
+  for(const [id,{card}] of this.slots){
+   const inPocket=!this.groups.get(this.items.get(id)!.group)!.hidden;
+   const hidden=inPocket&&filtered&&card.dataset.empty==='true';
+   if(card.hidden!==hidden){
+    if(hidden&&card.contains(document.activeElement))this.hideEmpty.focus({preventScroll:true});
+    card.hidden=hidden;
+   }
+   if(inPocket&&!hidden)hasVisibleStack=true;
+  }
+  const showEmpty=filtered&&!hasVisibleStack;
+  if(this.emptyPocket.hidden===showEmpty)this.emptyPocket.hidden=!showEmpty;
  }
 
  private select(id:string|null,message?:string){
@@ -245,6 +280,7 @@ export class BagView {
  private focused=(event:FocusEvent)=>{const t=event.target;if(!(t instanceof HTMLElement)||!t.matches(':focus-visible'))return;const dialog=this.root.closest('dialog'),header=dialog?.querySelector('header');if(!dialog||!header)return;const b=t.getBoundingClientRect(),h=header.getBoundingClientRect(),d=dialog.getBoundingClientRect();if(b.top<h.bottom+8||b.bottom>d.bottom-8)dialog.scrollTop+=b.top-h.bottom-8;};
  update(state:WorkshopState,elsewhere:Partial<Record<PropId,number>>,confirmation:string){
   if(this.status.textContent!==confirmation)this.status.textContent=confirmation;
+  let availabilityChanged=false;
   for(const item of bagStacks(state,elsewhere,this.orchard?.())){
    const slot=this.slots.get(item.id)!;
    const count=item.quantity===null?'?':String(item.quantity);
@@ -255,7 +291,10 @@ export class BagView {
    const label=item.name+': '+accessibleCount,empty=String(item.quantity===0);
    if(slot.count.textContent!==count)slot.count.textContent=count;
    if(slot.count.getAttribute('aria-label')!==label)slot.count.setAttribute('aria-label',label);
-   if(slot.card.dataset.empty!==empty)slot.card.dataset.empty=empty;
+   if(slot.card.dataset.empty!==empty){
+    slot.card.dataset.empty=empty;
+    availabilityChanged=true;
+   }
    if(slot.choose){
     const hidden=!item.quantity;
     if(slot.choose.hidden!==hidden)slot.choose.hidden=hidden;
@@ -263,6 +302,7 @@ export class BagView {
    if(slot.detail.textContent!==item.detail)slot.detail.textContent=item.detail;
    if(slot.image.getAttribute('src')!==item.icon)slot.image.src=item.icon;
   }
+  if(availabilityChanged&&this.hideEmpty.checked)this.updateFilter();
  }
  destroy(){this.root.removeEventListener('focusin',this.focused);}
 }

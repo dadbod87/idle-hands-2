@@ -145,3 +145,10 @@
 .bag-appearance{margin-top:8px;padding:12px;background:#f4ecd7;border:1px solid #947b55;border-radius:6px}
 #panel-body .bag-appearance h4,#panel-body .bag-appearance p{margin:0 0 4px}
 .bag-appearance button{min-height:44px;margin:0}
+
+.bag-heading{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0 6px;min-height:44px}
+#panel-body .bag-heading h3{margin:0}
+.bag-filter label{display:flex;align-items:center;gap:6px;min-height:44px;padding-inline:4px;font-size:.85rem;cursor:pointer}
+.bag-filter input{width:1.25em;height:1.25em;margin:0;flex:none;accent-color:#405a49}
+.bag-filter[hidden],.bag-slot[hidden],#panel-body .bag-empty-pocket[hidden]{display:none}
+#panel-body .bag-empty-pocket{padding:12px;margin:0;border:1px dashed var(--bag-seam);border-radius:6px;font-size:.9rem}

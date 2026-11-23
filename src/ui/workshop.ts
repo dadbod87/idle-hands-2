@@ -69,7 +69,13 @@ export class WorkshopUI {
   window.addEventListener('pagehide',()=>{this.localWriter?.suspend();this.ownsSave=false;});
   window.addEventListener('pageshow',e=>{if(e.persisted)acquire();});
   window.addEventListener('storage',e=>{if(e.key===SAVE_KEY||e.key===LEGACY_SAVE_KEY){const r=this.localWriter?.reload();if(r)this.acceptLocal(r);}});
-  this.ticker=window.setInterval(()=>{const state=this.localWriter?.snapshot();if(state)this.state=settleWorkshop(state,Date.now());this.updateClocks();},1000);
+  this.ticker=window.setInterval(()=>{
+   // Every writer outcome already carries a detached working copy. Keep the
+   // displayed refill calculation rooted there until the next writer outcome.
+   const state=this.localOutcome?.working;
+   if(state)this.state=settleWorkshop(state,Date.now());
+   this.updateClocks();
+  },1000);
  }
  private acceptLocal(r:WriterOutcome){if(r.status==='saved'&&r.teapotAwarded)this.host.cue?.('craft');this.localOutcome=r;this.ownsSave=r.ownsLease&&r.working!==null;this.saved=!r.dirty&&!['save-failed','unreadable','unavailable','conflict'].includes(r.status);if(r.working)this.state=r.working;this.localReadOnlyReason=['ready','saved','unsaved'].includes(r.status)?'':r.message+(r.status==='unreadable'?' Saved data kept unchanged; actions are read-only.':'');if(this.localReadOnlyReason)this.host.feedback(this.localReadOnlyReason);const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=r.dirty?'Unsaved practice · keep tab open':r.status==='ready'||r.status==='saved'?'Local workshop · saved here':'Kept save · read-only';this.host.changed();this.updateClocks();}
  public localSaveRecovery(action:'retry'|'flush'|'reload'|'cancel'){if(!this.localWriter)return;const r=action==='retry'?this.localWriter.retry():action==='flush'?this.localWriter.flush():action==='reload'?this.localWriter.discardAndReload():null;if(action==='cancel'&&this.localWriter.cancelPending())this.acceptLocal(this.localWriter.reload());if(r)this.acceptLocal(r);}
@@ -430,8 +436,10 @@ export class WorkshopUI {
   view.list.replaceChildren(...rows);
  }
  private updateClocks(){
-  const allocations=Object.fromEntries(PROP_IDS.map(id=>[id,this.remote?.allocatedElsewhere?.(id)??0]));
-  this.bag?.update(this.state,allocations,this.remote?(this.remoteBusy?'Checking town contents…':this.remoteError||this.remote.canRetry()?'Last confirmed contents · request unresolved.':'Confirmed town contents.'):this.localReadOnlyReason?'Kept save · read-only.':!this.saved?'Unsaved contents · keep this tab open.':!this.ownsSave?'Read-only contents · another tab may update them.':'Local contents · saved in this browser.');
+  if(this.bag){
+   const allocations=Object.fromEntries(PROP_IDS.map(id=>[id,this.remote?.allocatedElsewhere?.(id)??0]));
+   this.bag.update(this.state,allocations,this.remote?(this.remoteBusy?'Checking town contents…':this.remoteError||this.remote.canRetry()?'Last confirmed contents · request unresolved.':'Confirmed town contents.'):this.localReadOnlyReason?'Kept save · read-only.':!this.saved?'Unsaved contents · keep this tab open.':!this.ownsSave?'Read-only contents · another tab may update them.':'Local contents · saved in this browser.');
+  }
   this.notebook?.update(this.state,this.gardenClock());this.updateRecentNotes();if(!this.active)return;
   const placement=this.host.body.querySelector('#placement');
   if(placement)this.refreshPlacementControls(placement);

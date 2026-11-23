@@ -69,6 +69,40 @@ test('second tab cannot overwrite local workshop progress',async({page,context})
  await page.close();await second.reload();await expect.poll(()=>second.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await tapWorld(second,23,28);await second.getByRole('button',{name:'Collect available timber'}).click();expect((await state(second)).inventory).toEqual({scrap:6,timber:6,supplies:0});await second.close();
 });
 
+test('an open depot refills on its deadline and only saves on collection', async ({page}) => {
+ const {createWorkshop,applyWorkshop}=await import('../src/game/live-workshop.ts');
+ const collectedAt=Date.now()-4*3600_000;
+ const deadline=collectedAt+4*3600_000;
+ const gathered=applyWorkshop(createWorkshop(collectedAt),{
+  kind:'gather', resource:'scrap', id:'empty-scrap-fixture', expectedRevision:0,
+ },collectedAt);
+ expect(gathered.ok).toBe(true);
+ // The earlier collection and the clock are isolated fixtures. Refilling the
+ // visible depot and all actions after opening it use the ordinary client.
+ await page.clock.setFixedTime(deadline-1000);
+ await page.addInitScript(save=>{
+  localStorage.setItem('ih2:workshop:v2',JSON.stringify(save));
+  localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:21,y:30}}));
+ },gathered.state);
+ await page.goto('/');
+ await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+ await page.getByRole('button',{name:'Inspect Scrap depot',exact:true}).click();
+ const collect=page.getByRole('button',{name:'Collect available scrap',exact:true});
+ const saved=()=>page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'));
+ const before=await saved();
+ await expect(page.locator('[data-node=scrap]')).toContainText('0 available');
+ await expect(collect).toBeDisabled();
+ await page.clock.setFixedTime(deadline);
+ await expect(page.locator('[data-node=scrap]')).toContainText('1 available');
+ await expect(collect).toBeEnabled();
+ expect(await saved()).toBe(before);
+ await collect.click();
+ await expect(page.locator('.collection-receipt')).toHaveAttribute('data-collection-quantity','1');
+ expect((await state(page)).inventory.scrap).toBe(7);
+ expect(JSON.parse((await saved())!).revision).toBe(gathered.state.revision+1);
+ await expect(collect).toBeDisabled();
+});
+
 test('save failures remain visible after a successful practice action',async({page})=>{
  await page.addInitScript(()=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='ih2:workshop:v2')throw new DOMException('Fixture quota failure','QuotaExceededError');return original.call(this,key,value);};});
  await page.goto('/');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await tapWorld(page,21,28);await page.getByRole('button',{name:'Collect available scrap'}).click();await expect(page.locator('.workshop-status')).toContainText('Local save failed');await expect(page.locator('.pilot-tag span')).toContainText('Unsaved practice');expect((await state(page)).inventory.scrap).toBe(6);await expect(page.locator('.collection-receipt')).toHaveAttribute('data-collection-saved','false');await expect(page.locator('.collection-status')).not.toContainText('Saved.');await page.setViewportSize({width:320,height:640});await page.evaluate(()=>document.documentElement.style.fontSize='200%');await page.getByRole('button',{name:'Close panel'}).focus();await page.keyboard.press('Tab');await page.keyboard.press('Tab');await expect(page.locator('.collection-status-wrap')).toBeFocused();await page.keyboard.press('End');if(await page.locator('.collection-status-wrap').evaluate(e=>e.scrollHeight>e.clientHeight))await expect.poll(()=>page.locator('.collection-status-wrap').evaluate(e=>e.scrollTop)).toBeGreaterThan(0);await page.screenshot({path:dir+'/collection-local-unsaved-phone200.png'});

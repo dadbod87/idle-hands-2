@@ -1,0 +1,1042 @@
+{
+  "source": "2e0e429636a760b4f09bec4c226d968c9e2956a4",
+  "scope": "Fresh browser-local square and workshop; emulated viewports and cosmetic night/drizzle only.",
+  "collection": "First screenshot successfully returned for each resize and optional panel closing. Each center sample was 160 \u00d7 96 and required more than 85% nonblack pixels.",
+  "firstChromiumAttempt": "The browser did not supply the fourth screenshot within the 4.5-second collection window while other tests were active. Its failure screenshot showed rendered 4K town art. The recorded retry used a 15-second capture timeout and required every first returned sample to pass.",
+  "engines": {
+    "chromium": {
+      "browserName": "chromium",
+      "samples": [
+        {
+          "cycle": 0,
+          "location": "square",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 380,
+              "lit": 1,
+              "frames": 26
+            }
+          ]
+        },
+        {
+          "cycle": 0,
+          "location": "square",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 187,
+              "lit": 1,
+              "frames": 56
+            }
+          ]
+        },
+        {
+          "cycle": 0,
+          "location": "square",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 1142,
+              "lit": 1,
+              "frames": 72
+            }
+          ]
+        },
+        {
+          "cycle": 0,
+          "location": "square",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 1906,
+              "lit": 1,
+              "frames": 98
+            }
+          ]
+        },
+        {
+          "cycle": 0,
+          "location": "square",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 670,
+              "lit": 1,
+              "frames": 122
+            }
+          ]
+        },
+        {
+          "cycle": 1,
+          "location": "square",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 164,
+              "lit": 1,
+              "frames": 140
+            }
+          ]
+        },
+        {
+          "cycle": 1,
+          "location": "square",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 320,
+              "lit": 1,
+              "frames": 163
+            }
+          ]
+        },
+        {
+          "cycle": 1,
+          "location": "square",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 1036,
+              "lit": 1,
+              "frames": 189
+            }
+          ]
+        },
+        {
+          "cycle": 1,
+          "location": "square",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 1235,
+              "lit": 1,
+              "frames": 220
+            }
+          ]
+        },
+        {
+          "cycle": 1,
+          "location": "square",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 280,
+              "lit": 1,
+              "frames": 234
+            }
+          ]
+        },
+        {
+          "cycle": 2,
+          "location": "square",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 92,
+              "lit": 1,
+              "frames": 259
+            }
+          ]
+        },
+        {
+          "cycle": 2,
+          "location": "square",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 131,
+              "lit": 1,
+              "frames": 275
+            }
+          ]
+        },
+        {
+          "cycle": 2,
+          "location": "square",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 898,
+              "lit": 1,
+              "frames": 304
+            }
+          ]
+        },
+        {
+          "cycle": 2,
+          "location": "square",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 1274,
+              "lit": 1,
+              "frames": 337
+            }
+          ]
+        },
+        {
+          "cycle": 2,
+          "location": "square",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 203,
+              "lit": 1,
+              "frames": 348
+            }
+          ]
+        },
+        {
+          "cycle": 3,
+          "location": "workshop",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 66,
+              "lit": 1,
+              "frames": 423
+            }
+          ]
+        },
+        {
+          "cycle": 3,
+          "location": "workshop",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 130,
+              "lit": 1,
+              "frames": 436
+            }
+          ]
+        },
+        {
+          "cycle": 3,
+          "location": "workshop",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 149,
+              "lit": 1,
+              "frames": 444
+            }
+          ]
+        },
+        {
+          "cycle": 3,
+          "location": "workshop",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 422,
+              "lit": 1,
+              "frames": 465
+            }
+          ]
+        },
+        {
+          "cycle": 3,
+          "location": "workshop",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 98,
+              "lit": 1,
+              "frames": 474
+            }
+          ]
+        },
+        {
+          "cycle": 4,
+          "location": "workshop",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 67,
+              "lit": 1,
+              "frames": 481
+            }
+          ]
+        },
+        {
+          "cycle": 4,
+          "location": "workshop",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 114,
+              "lit": 1,
+              "frames": 493
+            }
+          ]
+        },
+        {
+          "cycle": 4,
+          "location": "workshop",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 118,
+              "lit": 1,
+              "frames": 500
+            }
+          ]
+        },
+        {
+          "cycle": 4,
+          "location": "workshop",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 327,
+              "lit": 1,
+              "frames": 518
+            }
+          ]
+        },
+        {
+          "cycle": 4,
+          "location": "workshop",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 128,
+              "lit": 1,
+              "frames": 529
+            }
+          ]
+        },
+        {
+          "cycle": 5,
+          "location": "workshop",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 68,
+              "lit": 1,
+              "frames": 536
+            }
+          ]
+        },
+        {
+          "cycle": 5,
+          "location": "workshop",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 113,
+              "lit": 1,
+              "frames": 550
+            }
+          ]
+        },
+        {
+          "cycle": 5,
+          "location": "workshop",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 131,
+              "lit": 1,
+              "frames": 560
+            }
+          ]
+        },
+        {
+          "cycle": 5,
+          "location": "workshop",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 461,
+              "lit": 1,
+              "frames": 590
+            }
+          ]
+        },
+        {
+          "cycle": 5,
+          "location": "workshop",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 85,
+              "lit": 1,
+              "frames": 605
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "api": []
+    },
+    "webkit": {
+      "browserName": "webkit",
+      "samples": [
+        {
+          "cycle": 0,
+          "location": "square",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 520,
+              "lit": 1,
+              "frames": 30
+            }
+          ]
+        },
+        {
+          "cycle": 0,
+          "location": "square",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 607,
+              "lit": 1,
+              "frames": 87
+            }
+          ]
+        },
+        {
+          "cycle": 0,
+          "location": "square",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 671,
+              "lit": 1,
+              "frames": 118
+            }
+          ]
+        },
+        {
+          "cycle": 0,
+          "location": "square",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 757,
+              "lit": 1,
+              "frames": 161
+            }
+          ]
+        },
+        {
+          "cycle": 0,
+          "location": "square",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 319,
+              "lit": 1,
+              "frames": 185
+            }
+          ]
+        },
+        {
+          "cycle": 1,
+          "location": "square",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 371,
+              "lit": 1,
+              "frames": 228
+            }
+          ]
+        },
+        {
+          "cycle": 1,
+          "location": "square",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 592,
+              "lit": 1,
+              "frames": 278
+            }
+          ]
+        },
+        {
+          "cycle": 1,
+          "location": "square",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 482,
+              "lit": 1,
+              "frames": 305
+            }
+          ]
+        },
+        {
+          "cycle": 1,
+          "location": "square",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 578,
+              "lit": 1,
+              "frames": 351
+            }
+          ]
+        },
+        {
+          "cycle": 1,
+          "location": "square",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 473,
+              "lit": 1,
+              "frames": 387
+            }
+          ]
+        },
+        {
+          "cycle": 2,
+          "location": "square",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 378,
+              "lit": 1,
+              "frames": 423
+            }
+          ]
+        },
+        {
+          "cycle": 2,
+          "location": "square",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 372,
+              "lit": 1,
+              "frames": 474
+            }
+          ]
+        },
+        {
+          "cycle": 2,
+          "location": "square",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 559,
+              "lit": 1,
+              "frames": 516
+            }
+          ]
+        },
+        {
+          "cycle": 2,
+          "location": "square",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 448,
+              "lit": 1,
+              "frames": 559
+            }
+          ]
+        },
+        {
+          "cycle": 2,
+          "location": "square",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 194,
+              "lit": 1,
+              "frames": 580
+            }
+          ]
+        },
+        {
+          "cycle": 3,
+          "location": "workshop",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 43,
+              "lit": 1,
+              "frames": 659
+            }
+          ]
+        },
+        {
+          "cycle": 3,
+          "location": "workshop",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 87,
+              "lit": 1,
+              "frames": 676
+            }
+          ]
+        },
+        {
+          "cycle": 3,
+          "location": "workshop",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 62,
+              "lit": 1,
+              "frames": 682
+            }
+          ]
+        },
+        {
+          "cycle": 3,
+          "location": "workshop",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 107,
+              "lit": 1,
+              "frames": 701
+            }
+          ]
+        },
+        {
+          "cycle": 3,
+          "location": "workshop",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 48,
+              "lit": 1,
+              "frames": 706
+            }
+          ]
+        },
+        {
+          "cycle": 4,
+          "location": "workshop",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 40,
+              "lit": 1,
+              "frames": 715
+            }
+          ]
+        },
+        {
+          "cycle": 4,
+          "location": "workshop",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 88,
+              "lit": 1,
+              "frames": 730
+            }
+          ]
+        },
+        {
+          "cycle": 4,
+          "location": "workshop",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 58,
+              "lit": 1,
+              "frames": 737
+            }
+          ]
+        },
+        {
+          "cycle": 4,
+          "location": "workshop",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 91,
+              "lit": 1,
+              "frames": 752
+            }
+          ]
+        },
+        {
+          "cycle": 4,
+          "location": "workshop",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 36,
+              "lit": 1,
+              "frames": 757
+            }
+          ]
+        },
+        {
+          "cycle": 5,
+          "location": "workshop",
+          "size": {
+            "width": 320,
+            "height": 640,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 43,
+              "lit": 1,
+              "frames": 767
+            }
+          ]
+        },
+        {
+          "cycle": 5,
+          "location": "workshop",
+          "size": {
+            "width": 844,
+            "height": 390,
+            "font": "200%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 79,
+              "lit": 1,
+              "frames": 783
+            }
+          ]
+        },
+        {
+          "cycle": 5,
+          "location": "workshop",
+          "size": {
+            "width": 2560,
+            "height": 1440,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 54,
+              "lit": 1,
+              "frames": 789
+            }
+          ]
+        },
+        {
+          "cycle": 5,
+          "location": "workshop",
+          "size": {
+            "width": 3840,
+            "height": 2160,
+            "font": "100%"
+          },
+          "openBefore": true,
+          "attempt": [
+            {
+              "elapsedMs": 77,
+              "lit": 1,
+              "frames": 808
+            }
+          ]
+        },
+        {
+          "cycle": 5,
+          "location": "workshop",
+          "size": {
+            "width": 1440,
+            "height": 900,
+            "font": "100%"
+          },
+          "openBefore": false,
+          "attempt": [
+            {
+              "elapsedMs": 43,
+              "lit": 1,
+              "frames": 815
+            }
+          ]
+        }
+      ],
+      "errors": [],
+      "api": []
+    }
+  }
+}

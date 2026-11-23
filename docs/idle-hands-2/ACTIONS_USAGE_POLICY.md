@@ -16,6 +16,8 @@ For a browser setup timeout, inspect the runner image, package mirror, transferr
 
 At closeout distinguish unique workflow runs, retries and duplicate runs. Sum observed job durations across attempts, count inherited successful jobs only once, and cite recent timings for any proposed workflow change. Runner time and actual billing are separate measurements.
 
+Use `python3 tools/actions-run-minutes.py RUN_ID...` for an explicit set of runs. It fetches each attempt’s job pages with read-only GitHub CLI requests, counts inherited job IDs once, and records measured seconds and approximate per-job rounded minutes. Omit the report from release acceptance until required jobs finish. During a run the tool lists incomplete jobs and gives a partial total. It cannot determine billed charges. [GitHub job endpoint](https://docs.github.com/en/rest/actions/workflow-jobs#list-jobs-for-a-workflow-run-attempt).
+
 ## Current public-source status — supersedes the private billing hold
 
 On November13 the owner explicitly asked to make this existing repository public instead of buying Actions usage. The authenticated update succeeded and anonymous GitHub/API/raw-source requests returned200/public. Standard GitHub-hosted Ubuntu runners for public repositories are free, so the old private included-allowance refusal no longer by itself blocks those runs. This is an owner-approved visibility change, not an exemption from checks or source acceptance. Source, history and existing Actions history/logs are now public; the game itself remains local/unreleased.
@@ -57,6 +59,12 @@ As inspected November 13, sequel-ci.yml triggers on PRs targeting main, main pus
 Prioritize local-first batching and avoiding duplicate/transient reruns now. Browser-download caching, selective documentation checks and a narrower post-merge job are future optimizations to measure and review. They are NOT implemented or exemptions from today's required gates. Documentation path filters must not strand required checks or bypass code validation; any future change needs an explicit always-reported gate design and validation before adoption. Do not cache mutable test databases, credentials, sessions or signing keys.
 
 The historical audit estimated 1,969 job-minutes across117 latest-attempt runs from November9–13. It is not an invoice or a current balance, and excludes reconciliation of other repositories, prior attempts and billing dates. See [usage audit](handoffs/2026-11-13-actions-usage.md). Emails, local tests and Codex usage are separate from hosted Actions minutes.
+
+## Reuse an exact successful run
+
+Find the workflow for the actual PR head or main commit first, then run `python3 tools/actions-run-minutes.py RUN_ID --require-sequel-head FULL_SHA --require-event pull_request` (or `--require-event push` for main). The optional exact check reads the existing workflow and all five job results. It reports a mismatch, missing shard or unfinished attempt and exits with status 2 if none of the selected runs passes. It follows inherited successful jobs and the latest listed result for retried jobs. Separate runs cannot supply pieces of one check result.
+
+This command only reads GitHub metadata. It does not start jobs, approve a merge, inspect package hashes, or replace the browser evidence and saved-preview gates.
 
 ## Owner billing reference
 

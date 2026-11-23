@@ -317,15 +317,6 @@ export class WorkshopUI {
  showJournal(){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Notes & progress',()=>this.showInventory()));
   const guidance=document.createElement('section');guidance.dataset.journalGuidance='';const heading=document.createElement('h3');heading.textContent='Your next step';const quest=this.p('','quest-card');quest.dataset.quest='';guidance.append(heading,quest);b.append(guidance);
-  if(this.host.recentFieldNotes){
-   const notes=document.createElement('details');notes.className='journal-recent-notes';
-   const caption=document.createElement('summary');caption.textContent='Recent field notes';
-   const list=document.createElement('ol');list.setAttribute('role','list');list.setAttribute('aria-label','Recent field notes');
-   notes.append(caption,list);
-   notes.addEventListener('toggle',()=>this.updateRecentNotes());
-   this.recentNotes={panel:notes,list};
-   b.append(notes);
-  }
   this.notebook?.destroy();this.notebook=new ActivityNotebook({bench:{label:'Open work bench · jobs & recipes',open:()=>this.showBench()},rack:{label:'Open pine rack · finishing jobs & collection',open:()=>this.host.finishing?.()},garden:{label:'Your allotment · crops, markers & quests',open:()=>this.host.garden?.()}});b.append(this.notebook.root);
   if(this.host.river){
    const river=document.createElement('section');
@@ -346,6 +337,15 @@ export class WorkshopUI {
    ready.dataset.orchardParcelStatus='';
    parcel.append(title,ready,this.button('Walk to the packing table',()=>this.host.orchardWalk?.(),'destination'));
    b.append(parcel);
+  }
+  if(this.host.recentFieldNotes){
+   const notes=document.createElement('details');notes.className='journal-recent-notes';
+   const caption=document.createElement('summary');caption.textContent='Recent field notes';
+   const list=document.createElement('ol');list.setAttribute('role','list');list.setAttribute('aria-label','Recent field notes');
+   notes.append(caption,list);
+   notes.addEventListener('toggle',()=>this.updateRecentNotes());
+   this.recentNotes={panel:notes,list};
+   b.append(notes);
   }
   const completed=document.createElement('details');completed.dataset.completedOrientation='';completed.className='journal-completed';completed.hidden=true;const completedTitle=document.createElement('summary');completedTitle.textContent='Orientation complete · notes';completed.append(completedTitle);b.append(completed);
   const other=document.createElement('section'),summary=document.createElement('h3');summary.textContent='Around town';other.className='journal-activities';other.append(summary);

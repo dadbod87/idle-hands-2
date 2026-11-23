@@ -157,7 +157,7 @@ test('Riverwalk practice lets a resident leave a line out and return to record t
    await log.scrollIntoViewIfNeeded();
    await page.screenshot({path:out+'/recorded-'+name+'.png'});
    const leave=page.getByRole('button',{name:'Walk to the old square'});
-   await leave.scrollIntoViewIfNeeded();
+   await leave.evaluate(button=>button.scrollIntoView({block:'center'}));
    await expect(leave).toBeInViewport({ratio:1});
    if(touch)await page.screenshot({path:out+'/leave-'+name+'.png'});
    await page.getByRole('button',{name:'Close panel'}).click();
@@ -183,5 +183,96 @@ test('Riverwalk practice lets a resident leave a line out and return to record t
    expect(requests).toEqual([]);
    expect(errors).toEqual([]);
   }finally{await context.close();}
+ }
+});
+
+test('illustrated Riverwalk records stay readable and do not enter the Bag', async ({browser}) => {
+ const output='test-results/browser/river-survey';
+ mkdirSync(output,{recursive:true});
+ for (const size of [
+  {name:'desktop',width:1440,height:900,text:100,touch:false},
+  {name:'phone',width:320,height:640,text:100,touch:true},
+  {name:'short',width:844,height:390,text:200,touch:true},
+ ]) {
+  const context=await browser.newContext({viewport:{width:size.width,height:size.height},hasTouch:size.touch});
+  try {
+   const page=await context.newPage(), art=new Set<string>(), errors:string[]=[],api:string[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   page.on('request',request=>{
+    const path=new URL(request.url()).pathname;
+    if(path.startsWith('/art/river/'))art.add(path.split('/').pop()!);
+    if(path.startsWith('/api/'))api.push(path);
+   });
+   // Disclosed reachable spawn and fixed deadline clock only. Every find is
+   // produced by deliberate real UI cast and reel actions in the new context.
+   await page.addInitScript(()=>{
+    if(!localStorage.getItem('ih2:pilot-position:v1')){
+     localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:70,y:17}}));
+    }
+   });
+   let now=Date.now();
+   await page.clock.setFixedTime(now);
+   await page.goto('/');
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   await page.evaluate(scale=>document.documentElement.style.fontSize=scale+'%',size.text);
+   const state=()=>page.evaluate(()=>(window as any).__pilot.workshop());
+   const before=await state();
+   const hit=(locator:ReturnType<typeof page.locator>)=>size.touch?locator.tap():locator.click();
+   const log=page.getByRole('list',{name:'Recorded river finds'});
+   await hit(page.locator('#interact'));
+   const reel=page.getByRole('button',{name:'Reel in and record'});
+   const findings=[
+    ['Reed bank','A ribbon of pondweed','pondweed.svg'],
+    ['Bridge shadow','An exceptionally wet boot','wet-boot.svg'],
+    ['Shallow riffle','A young perch','perch.svg'],
+   ];
+   for(const [index,[spot,label,filename]] of findings.entries()){
+    await hit(page.getByRole('button',{name:'Cast at '+spot,exact:true}));
+    await expect(reel).toBeDisabled();
+    expect(art.has(filename)).toBe(false);
+    await page.clock.setFixedTime(now+=12000);
+    await expect(reel).toBeEnabled();
+    await hit(reel);
+    const result=log.getByRole('listitem').nth(index);
+    await expect(result).toContainText(label);
+    await expect(result.locator('img')).toHaveAttribute('alt','');
+    await expect.poll(()=>result.locator('img').evaluate((el:HTMLImageElement)=>el.naturalWidth)).toBeGreaterThan(0);
+   }
+   await expect(log.getByRole('listitem')).toHaveCount(3);
+   expect([...art].sort()).toEqual(['perch.svg','pondweed.svg','wet-boot.svg']);
+   expect(await log.evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
+   await log.scrollIntoViewIfNeeded();
+   await page.screenshot({path:output+'/all-findings-'+size.name+'.png'});
+   if(size.name==='short'){
+    const visibleBelowHeader=async (item:ReturnType<typeof page.locator>)=>{
+     await item.evaluate(el=>{
+      const dialog=el.closest('dialog')!, header=dialog.querySelector('.dialog-head')!;
+      dialog.scrollTop+=el.getBoundingClientRect().top-header.getBoundingClientRect().bottom-8;
+     });
+     const bounds=(await item.boundingBox())!, header=(await page.locator('.dialog-head').boundingBox())!;
+     expect(bounds.y).toBeGreaterThanOrEqual(header.y+header.height);
+     expect(bounds.y+bounds.height).toBeLessThanOrEqual(size.height);
+    };
+    for(const item of await log.getByRole('listitem').all())await visibleBelowHeader(item);
+    const exit=page.getByRole('button',{name:'Walk to the old square'});
+    await visibleBelowHeader(exit);
+    await page.screenshot({path:output+'/completed-exit-short.png'});
+   }
+   await page.reload();
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   if(size.name==='phone')await page.route('**/art/river/wet-boot.svg',route=>route.abort());
+   await hit(page.locator('#interact'));
+   await expect(log.getByRole('listitem')).toHaveCount(3);
+   if(size.name==='phone'){
+    const boot=log.getByRole('listitem').filter({hasText:'An exceptionally wet boot'});
+    await expect(boot.locator('img')).toBeHidden();
+    await expect(boot).toContainText('right is still under investigation');
+   }
+   expect(await state()).toEqual(before);
+   expect(errors).toEqual([]);
+   expect(api).toEqual([]);
+  }finally{
+   await context.close();
+  }
  }
 });

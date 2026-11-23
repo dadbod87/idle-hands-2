@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 80">
+<title>Pondweed ribbon from the reed bank</title>
+<path d="M11 66q27-9 72-1m-63 5q25-2 38 0m6 4 16-3" stroke="#719995" stroke-width="2" fill="none" stroke-linecap="round"/>
+<g stroke="#355344" stroke-width="2" stroke-linejoin="round">
+ <path d="M42 64C24 49 34 29 54 25c13-3 16-11 16-17 15 20-2 33-18 35-11 2-10 13-3 19z" fill="#789559"/>
+ <path d="M43 66c15-1 31-16 26-33-5 6-15 7-19 14-3 4-4 12-7 17z" fill="#687e4f"/>
+ <path d="M45 63C32 54 29 43 34 30 29 32 20 38 20 48c0 10 14 15 25 15z" fill="#9fa667"/>
+</g>
+<path d="M47 62q-11-12 2-23 15-14 21-23m-24 48q12-10 14-17m-24 10-6-10" fill="none" stroke="#c1c581" stroke-width="2" stroke-linecap="round"/>
+<path d="M25 24q0-4 3-8 4 5 4 8a3.5 3.5 0 0 1-7 0zM78 43q0-3 3-7 3 3 3 7a3 3 0 1 1-6 0z" fill="#a0cac2" stroke="#547b74" stroke-width="1.5"/>
+</svg>

@@ -708,7 +708,16 @@ function activate(stop: Stop) {
   if(town&&stop.id==='home-front'){const target=pendingHomePlotId??town.snapshot?.plot?.id;pendingHomePlotId=undefined;if(target)void enterHome(target);else townUI!.showPlots();return;}
   if(['scrap','timber','supplies'].includes(stop.id)){workshop.showResource(stop.id as 'scrap'|'timber'|'supplies');return;}
   if(stop.id==='bench'){workshop.showBench();return;}
-  if(stop.id.startsWith('commons-')){openPanel(stop.name);if(stop.id==='commons-riverwalk'&&!town)cleanupRiverSurvey=showRiverSurvey(body,refreshRiverCast);else body.append(paragraph(stop.text));const back=document.createElement('button');back.type='button';if(stop.id==='commons-riverwalk')back.className='destination';back.textContent='Walk to the old square';back.onclick=()=>goNamedDestination('square','workshop');body.append(back);return;}
+  if(stop.id.startsWith('commons-')){
+    openPanel(stop.name);
+    const walkBack=()=>goNamedDestination('square','workshop');
+    if(stop.id==='commons-riverwalk'&&!town){cleanupRiverSurvey=showRiverSurvey(body,refreshRiverCast,walkBack);return;}
+    body.append(paragraph(stop.text));
+    const back=document.createElement('button');back.type='button';
+    if(stop.id==='commons-riverwalk')back.className='destination';
+    back.textContent='Walk to the old square';back.onclick=walkBack;body.append(back);
+    return;
+  }
   if (stop.id==='lodging-note') {
     openPanel(stop.name);
     const note=document.createElement('div');

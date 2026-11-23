@@ -7,3 +7,5 @@ The river record is reused after load and refreshed by the existing save callbac
 The native regression uses a declared isolated local save with a completed sketchbook. It checks the ripe allotment first, a growing allotment with an unfinished river survey second, then the direct Low branch route with a completed survey. Arrival leaves the workshop and orchard saves unchanged. The earlier sketch trip and real twelve-second Riverwalk cast also run in each browser engine. This candidate builds on the visual review and accessibility follow-up.
 
 The build and three selected cases passed in each of Chromium and WebKit. These include the earlier sketch priority, all three later outing choices, and a Riverwalk line restored across reload. This branch awaits the ordinary hosted release gate if promoted.
+
+Closeout on the same runtime passed 452 local domain cases and the ten tracker tests. The 28 database-only cases stayed out of this local profile.

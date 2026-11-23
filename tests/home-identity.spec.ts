@@ -393,12 +393,17 @@ test('street directory finds public homes by name or address and rechecks owners
  ]){
   const context=await browser.newContext({viewport:{width:size.width,height:size.height},hasTouch:size.touch});
   try{
-   const page=await context.newPage(),errors:string[]=[];
+   const page=await context.newPage(),errors:string[]=[],interiors:string[]=[];
+   page.on('request',request=>{
+    const path=new URL(request.url()).pathname;
+    if(/^\/art\/(?:homes|interiors)\/[^/]+-interior\.svg$/.test(path))interiors.push(path.split('/').at(-1)!);
+   });
    page.on('pageerror',error=>errors.push(error.message));
    const address=addressForPlot('42');
    const guest=await homePanelFixture(page,{visitor:true,otherPlots:1,allowVisit:true,ownerName:'Éster Longsurname',
     position:{room:'neighborhood',districtId:address.block,position:{x:29.5,y:4.5}}});
    const stock=guest.saved();
+   expect(interiors,'cold public streets should not request house interiors').toEqual([]);
    await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.snapshot().nearby)).toBe('neighborhood-directory');
    await page.evaluate(text=>document.documentElement.style.fontSize=text,size.text);
    await page.locator('#interact').click();
@@ -438,6 +443,8 @@ test('street directory finds public homes by name or address and rechecks owners
    if(size.touch)await result.tap();else await result.press('Enter');
    await expect(page.locator('#feedback')).toContainText('Walking to the house door.');
    await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.town().position.homePlotId),{timeout:20000}).toBe('42');
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.home.interiorTexture)).toBe('home-expanded-interior');
+   expect(interiors).toEqual(['home-expanded-interior.svg']);
    expect(guest.commands.map(operation=>operation.kind)).toEqual(['enter-home']);
    expect(guest.saved()).toEqual(stock);
    expect(await page.evaluate(()=>localStorage.getItem('ih2:saved-homes:v1:bea'))).toBeNull();

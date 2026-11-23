@@ -1,6 +1,6 @@
 /** IH2-052 original art keys. Geometry here describes drawings, not authority. */
 import catalog from '../../public/art/homes/catalog.json' with {type:'json'};
-export const HOME_ASSETS=catalog.assets.map(asset=>asset.id);
+export const HOME_SUPPORT_ASSETS=catalog.assets.filter(asset=>asset.kind!=='interior').map(asset=>asset.id);
 export const HOME_CATALOG=catalog;
 export const HOME_ART={
  starterExterior:'home-starter-exterior',expandedExterior:'home-expanded-exterior',

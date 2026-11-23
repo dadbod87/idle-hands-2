@@ -1145,6 +1145,11 @@
       "kind": "original-svg"
     },
     {
+      "id": "inkwood-wren-reading",
+      "path": "art/inkwood/wren-reading.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "inkwood-wren",
       "path": "art/inkwood/wren.svg",
       "kind": "original-svg"

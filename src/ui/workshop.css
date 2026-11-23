@@ -189,3 +189,20 @@
 .recipe-material-routes summary{min-height:44px;padding:12px 0;cursor:pointer;font-weight:bold}
 .recipe-material-routes button{min-height:44px;margin:0 0 6px}
 .recipe-material-routes[hidden],.recipe-material-routes button[hidden]{display:none}
+
+.placement-plan{margin-top:.8rem;border-top:1px solid var(--line)}
+.placement-plan summary{padding:.55rem .18rem;min-height:44px;font-weight:bold;cursor:pointer}
+.placement-plan summary:focus-visible{outline:3px solid #b8653e;outline-offset:2px}
+.placement-plan-map{position:relative;aspect-ratio:18/16;width:min(100%,260px);margin:0 auto;border:2px solid #786c55;border-radius:.3rem;background:#d4b98e url('/art/original/ground-workshop.svg') center/cover}
+.placement-plan-feature,.placement-plan-nook{position:absolute;transform:translate(-50%,-50%)}
+.placement-plan-feature{padding:.17em .38em;border:1px solid #564c3e;border-radius:.22rem;background:#ede1c4;color:#3c362b;font-size:.85rem;line-height:1}
+.placement-plan-nook{display:grid;place-items:center;width:14%;aspect-ratio:1;border:1px dashed #876d4b;border-radius:50%;background:#f5e6bd9c}
+.placement-plan-nook[data-state=placed],.placement-plan-nook[data-state=selected]{border:1px solid #596750;background:#d9ddbd}
+.placement-plan-nook[data-state=selected],.placement-plan-nook[data-state=preview]{outline:2px solid #9c472d;outline-offset:2px}
+.placement-plan-nook[data-state=preview] img{opacity:.7}
+.placement-plan-nook img{width:88%;height:auto}
+#panel-body .placement-plan-caption{margin:.45rem 0;line-height:1.25}
+@media(max-height:480px){
+ .placement-plan-map{width:min(100%,186px)}
+ .placement-plan-feature{font-size:min(.85rem,21px)}
+}

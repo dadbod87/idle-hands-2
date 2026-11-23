@@ -73,19 +73,47 @@ test('bag: a full workshop offers a safe path to make room for an owned item', a
    await expect(remove).toBeHidden();
    await page.screenshot({path:out+'/bag-full-workshop-'+shape.name+'.png'});
    if(shape.touch)await slot.tap();
-   else{await page.keyboard.press('Tab');await expect(slot).toBeFocused();await page.keyboard.press('Enter');}
+   else{await page.keyboard.press(browser.browserType().name()==='webkit'?'Alt+Tab':'Tab');await expect(slot).toBeFocused();await page.keyboard.press('Enter');}
    await expect(slot).toHaveText('Near the bench: Committee stool · selected');
    await expect(hint).toContainText('to free the nook');
    await expect(place).toBeDisabled();
    const layout=()=>page.evaluate(()=>(window as any).__pilot.workshop().placements);
    expect(await layout()).toEqual(state.placements);
+   const map=page.locator('.placement-plan');
+   const benchNook=map.locator('[data-plan-nook=north-west]');
+   await expect(map).not.toHaveAttribute('open','');
+   const mapToggle=map.getByText('Show workshop floor plan',{exact:true});
+   if(shape.touch)await mapToggle.tap();else await mapToggle.press('Enter');
+   await expect(benchNook).toHaveAttribute('data-state','selected');
+   await expect(benchNook.locator('img')).toHaveAttribute('src',/stool-icon/);
+   await expect(map).toContainText('Near the bench: Committee stool is here.');
+   expect(await layout()).toEqual(state.placements);
    await remove.click();
+   await expect(map).toHaveAttribute('open','');
+   await expect(benchNook).toHaveAttribute('data-state','empty');
    await expect(slot).toHaveText('Near the bench: empty');
    await expect(slot).toBeFocused();
    await expect(count(page,'stool')).toHaveText('1');
    await slot.click();
+   await expect(benchNook).toHaveAttribute('data-state','preview');
+   await expect(map).toContainText('Near the bench: preview Optimistic planter.');
+   expect((await layout())['north-west']).toBeNull();
+   const sketch=map.locator('.placement-plan-map');
+   const caption=map.locator('.placement-plan-caption');
+   await caption.evaluate(el=>{
+    const dialog=el.closest('dialog')!, header=dialog.querySelector('.dialog-head')!;
+    dialog.scrollTop+=el.getBoundingClientRect().top-header.getBoundingClientRect().bottom-8;
+   });
+   const bounds=await sketch.boundingBox(), sticky=await page.locator('.dialog-head').boundingBox();
+   expect((await caption.boundingBox())!.y).toBeGreaterThanOrEqual(sticky!.y+sticky!.height);
+   expect(bounds!.y+bounds!.height).toBeLessThanOrEqual(shape.height);
+   const bench=(await sketch.getByText('Bench',{exact:true}).boundingBox())!;
+   const rack=(await sketch.getByText('Rack',{exact:true}).boundingBox())!;
+   expect(bench.x+bench.width).toBeLessThan(rack.x);
+   await page.screenshot({path:out+'/workshop-plan-'+shape.name+'.png'});
    await expect(place).toBeEnabled();
    await place.click();
+   await expect(benchNook).toHaveAttribute('data-state','placed');
    await expect(slot).toHaveText('Near the bench: Optimistic planter');
    await expect(count(page,'planter')).toHaveText('0');
    await page.reload();
@@ -116,7 +144,7 @@ test('bag: declared shared home allocation snapshots subtract placed copies with
  await page.route('**/api/town/**',route=>{const path=new URL(route.request().url()).pathname.split('/').at(-1);if(path==='fixtures')return route.fulfill({json:{fixtures:[{id:'bag-owner',name:'Bag tester'}]}});if(path==='login'){logged=true;return route.fulfill({json:{snapshot:snapshot()}});}if(path==='snapshot')return logged?route.fulfill({json:{snapshot:snapshot()}}):route.fulfill({status:401,json:{message:'Choose a fixture.'}});if(path==='movement')return route.fulfill({json:{ok:true,position:snapshot().position}});if(path==='command')commands.push(route.request().postData()??'');return route.fulfill({status:400,json:{message:'No fixture commands permitted.'}});});
  await page.goto('/?town=1');await page.getByRole('button',{name:'Bag tester',exact:true}).click();await ready(page);await page.locator('#bag').click();await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');await expect(count(page,'stool')).toHaveText('0');await expect(count(page,'rug')).toHaveText('0');await expect(stack(page,'rug')).toContainText('1 placed');await expect(stack(page,'rug')).toContainText('1 owned');await expect(count(page,'rug')).toHaveAttribute('aria-label','Welcome-ish rug: 0 available to place');await expect(count(page,'stool')).toHaveAttribute('aria-label','Committee stool: 0 available to place');await expect(page.locator('.bag-count-key')).toHaveText('Numbers show copies available to place.');await page.locator('.bag-count-key').scrollIntoViewIfNeeded();expect((await page.locator('.bag-count-key').boundingBox())!.y).toBeLessThan((await stack(page,'stool').boundingBox())!.y);
  const arrangement=page.locator('.bag-arrangement');
- await arrangement.locator('summary').click();
+ await arrangement.locator(':scope > summary').click();
  await expect(arrangement.locator('[data-slot=north-east]')).toHaveText('Near the window: Committee stool');
  await arrangement.locator('#placement').evaluate(placement=>{
   const labels=[...placement.querySelectorAll('[data-owned], [data-slot]')];

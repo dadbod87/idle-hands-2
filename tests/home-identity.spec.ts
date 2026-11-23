@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {homePanelFixture} from './helpers/home-panel.ts';
-import {addressForPlot} from "../src/game/neighborhood.ts";
+import {addressForPlot,RESIDENTIAL_GATE} from "../src/game/neighborhood.ts";
 
 
 for(const shape of [
@@ -450,5 +450,52 @@ test('street directory finds public homes by name or address and rechecks owners
    expect(await page.evaluate(()=>localStorage.getItem('ih2:saved-homes:v1:bea'))).toBeNull();
    expect(errors).toEqual([]);
   }finally{await context.close();}
+ }
+});
+
+test('street artwork waits for the neighborhood while the public registry is painted at arrival',async({browser})=>{
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ const page=await context.newPage();
+ const errors:string[]=[],streetArt:string[]=[],registryArt:string[]=[];
+ let entering=false,releaseGround:()=>void=()=>{};
+ const holdGround=new Promise<void>(resolve=>releaseGround=resolve);
+ page.on('pageerror',error=>errors.push(error.message));
+ page.on('request',request=>{
+  const path=new URL(request.url()).pathname;
+  if(path==='/art/neighborhood/housing-registry.svg')registryArt.push(path);
+  else if(/^\/art\/(neighborhood|residential|housing)\/.+\.svg$/.test(path)
+   ||/^\/art\/homes\/home-\w+-exterior\.svg$/.test(path))streetArt.push(path);
+ });
+ await page.route('**/art/neighborhood/neighborhood-ground.svg',async route=>{
+  if(entering)await holdGround;
+  await route.continue();
+ });
+ try{
+  const planId='garden-studio-2';
+  const owner=await homePanelFixture(page,{
+   planId,allowVisit:true,position:{room:'square',position:{...RESIDENTIAL_GATE}},
+  });
+  const before=owner.saved();
+  expect(registryArt).toHaveLength(1);
+  expect(streetArt,'the square should not load street drawings').toEqual([]);
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().nearby)).toBe('residential-gate');
+  entering=true;
+  await page.locator('#interact').tap();
+  await expect.poll(()=>streetArt.includes('/art/neighborhood/neighborhood-ground.svg')).toBe(true);
+  await expect(page.locator('#interact')).toBeDisabled();
+  releaseGround();
+  const street=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.neighborhood);
+  await expect.poll(async()=>(await street()).sites.length).toBe(24);
+  expect((await street()).sites.find((site:any)=>site.plotId==='42')?.texture).toBe('housing-'+planId);
+  expect(new Set(streetArt).size).toBe(18);
+  expect(streetArt).toHaveLength(18);
+  expect(owner.saved()).toEqual(before);
+  expect(owner.commands.map(command=>command.kind)).toEqual(['enter-neighborhood']);
+  expect(errors).toEqual([]);
+  mkdirSync('test-results/browser',{recursive:true});
+  await page.screenshot({path:'test-results/browser/street-art-first-neighborhood.png'});
+ }finally{
+  releaseGround();
+  await context.close();
  }
 });

@@ -2,6 +2,7 @@ import{expect,type Page}from'@playwright/test';
 import type {TownPosition} from '../../server/live-store.ts';
 import{combinedAuditFixture}from'../../tools/combined-audit-fixtures.ts';
 import{applyWorkshop,loadWorkshop,PLACEMENT_SLOTS}from'../../src/game/live-workshop.ts';
+import{addressForPlot,TOWN_GATE}from'../../src/game/neighborhood.ts';
 import{applyHomeArrangement,emptyWorkroom,type HomeLayout}from'../../src/game/live-home-layout.ts';
 export async function homePanelFixture(page:Page,options:{level?:1|2;visitor?:boolean;outside?:boolean;otherPlots?:number;planId?:string;allowVisit?:boolean;ownerName?:string;position?:TownPosition}={}){
  const now=Date.now(),level=options.level??2;let state=loadWorkshop(combinedAuditFixture('returning',now).state!,now).state,seq=0;
@@ -25,6 +26,12 @@ export async function homePanelFixture(page:Page,options:{level?:1|2;visitor?:bo
   }
   if(path==='command'){
    const c=route.request().postDataJSON();control.commands.push(c);control.payloads.push(route.request().postData()!);
+   if(options.allowVisit&&c.kind==='enter-neighborhood'){
+    expect(position.room).toBe('square');
+    expect(c.districtId).toBe(addressForPlot('42').block);
+    position={room:'neighborhood',districtId:c.districtId,position:{...TOWN_GATE}};
+    return route.fulfill({json:{ok:true,message:'Entered the street.',snapshot:snapshot()}});
+   }
    if(options.allowVisit&&c.kind==='enter-home'){
     expect(position.room).toBe('neighborhood');
     expect(c.plotId).toBe('42');

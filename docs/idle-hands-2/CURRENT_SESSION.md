@@ -1,3 +1,7 @@
+# November 23 — combined town review
+
+The [continued playthrough checkpoint](handoffs/2026-11-23-continued-playthrough.md) records the latest combined local study, exact release boundaries and resize evidence. Keep saved previews and databases stopped. Main is `168e857`. PR #108 remains open and the separate draft #109 has an exact green hosted run.
+
 # November 23 — shared-town and practice batches
 
 The [current handoff](handoffs/2026-11-23-shared-town-and-practice.md) records the two batches and their check boundaries. Main is `168e857`. Exact green PR #108 is open. `perf/mount-nearby-residents` contains the shared-town batch on top of it. `feat/browser-practice-journal` combines the separate Riverwalk and Journal experiences. Keep saved previews and databases stopped.

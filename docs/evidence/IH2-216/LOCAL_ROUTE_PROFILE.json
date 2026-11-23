@@ -1,0 +1,181 @@
+{
+  "baseline": "e2653e7ec6e211869f72b9c3c3d9dd2d970aa157",
+  "candidate": "9262e93512500dc2935e6d452527693329bc382e",
+  "domainSource": "pinned Node v24.22.2 signatures over all ordered route endpoints, no server or real player.",
+  "routes": [
+    {
+      "room": "square",
+      "variant": "ordinary",
+      "routes": 1296,
+      "pathDigest": "9b8c9811529298e663a9e8ebb875e874c31baf62090ce00b6a103d060d859806",
+      "baselineP95Ms": 113.366,
+      "candidateP95Ms": 13.227
+    },
+    {
+      "room": "square",
+      "variant": "lodging-enabled",
+      "routes": 1369,
+      "pathDigest": "7d69f5ca7acbd252fd00b8043e8dc99728beb877b32a08f4f1b23ddfbda10caf",
+      "baselineP95Ms": 59.257,
+      "candidateP95Ms": 13.115
+    },
+    {
+      "room": "neighborhood",
+      "variant": "ordinary",
+      "routes": 676,
+      "pathDigest": "a2fede7755ef04d11f5b2c55e9e9bce9a8db88892274023279c256059407e15c",
+      "baselineP95Ms": 10.134,
+      "candidateP95Ms": 2.225
+    },
+    {
+      "room": "workshop",
+      "variant": "ordinary",
+      "routes": 9,
+      "pathDigest": "ef53810132ec8c8a16373c9eb5fad8574aa2ad112d3b881edf26d8272f559caa",
+      "baselineP95Ms": 0.038,
+      "candidateP95Ms": 0.018
+    },
+    {
+      "room": "trail",
+      "variant": "ordinary",
+      "routes": 25,
+      "pathDigest": "0fb50e0bef1364294a1611f91a20e3da8b195f2baab47af92466747656a0f1ec",
+      "baselineP95Ms": 0.422,
+      "candidateP95Ms": 0.181
+    },
+    {
+      "room": "garden",
+      "variant": "ordinary",
+      "routes": 9,
+      "pathDigest": "2a5239c9a1cb45140d2a30f23a671c16227a135cb6d157eef81ef443b00df64a",
+      "baselineP95Ms": 0.004,
+      "candidateP95Ms": 0.001
+    },
+    {
+      "room": "lodging",
+      "variant": "ordinary",
+      "routes": 4,
+      "pathDigest": "c730d8eb6b01e266c44aca4b22aae9bcc89d4f1fe46e88259d76da696b86f8ba",
+      "baselineP95Ms": 0.006,
+      "candidateP95Ms": 0.002
+    }
+  ],
+  "touch": {
+    "baseline": {
+      "source": "e2653e7ec6e211869f72b9c3c3d9dd2d970aa157",
+      "cpuThrottling": 4,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "classification": "Fictional source position seed, real native touch with relative instrumentation, no simulated game progress or physical-device claim.",
+      "results": [
+        {
+          "name": "nearby workshop",
+          "buttonHandlerMs": [
+            3.400000035762787,
+            4.299999952316284,
+            3.5,
+            3.899999976158142,
+            3.099999964237213,
+            4.5,
+            4,
+            2.699999988079071
+          ],
+          "median": 3.699999988079071,
+          "longest": 4.5
+        },
+        {
+          "name": "pine to south meadow",
+          "buttonHandlerMs": [
+            402.89999997615814,
+            401.80000001192093,
+            411,
+            406.10000002384186,
+            402.5,
+            408.5,
+            415.4000000357628,
+            412.4000000357628
+          ],
+          "median": 407.30000001192093,
+          "longest": 415.4000000357628
+        },
+        {
+          "name": "east commons to fallen pine",
+          "buttonHandlerMs": [
+            426.10000002384186,
+            425.30000001192093,
+            421.7999999523163,
+            426.7999999523163,
+            429.4000000357628,
+            425.69999998807907,
+            422.89999997615814,
+            424.69999998807907
+          ],
+          "median": 425.5,
+          "longest": 429.4000000357628
+        }
+      ],
+      "api": [],
+      "errors": []
+    },
+    "candidate": {
+      "source": "9262e93512500dc2935e6d452527693329bc382e",
+      "cpuThrottling": 4,
+      "viewport": {
+        "width": 320,
+        "height": 640
+      },
+      "classification": "Fictional source position seed, real native touch with relative instrumentation, no simulated game progress or physical-device claim.",
+      "results": [
+        {
+          "name": "nearby workshop",
+          "buttonHandlerMs": [
+            2.899999976158142,
+            3.5,
+            3.300000011920929,
+            3.5,
+            3,
+            2.899999976158142,
+            2.5,
+            2.599999964237213
+          ],
+          "median": 2.949999988079071,
+          "longest": 3.5
+        },
+        {
+          "name": "pine to south meadow",
+          "buttonHandlerMs": [
+            99.80000001192093,
+            109.5,
+            97.80000001192093,
+            97.30000001192093,
+            96.69999998807907,
+            97.59999996423721,
+            98.80000001192093,
+            97.30000001192093
+          ],
+          "median": 97.69999998807907,
+          "longest": 109.5
+        },
+        {
+          "name": "east commons to fallen pine",
+          "buttonHandlerMs": [
+            90.5,
+            86.69999998807907,
+            86,
+            87,
+            85.39999997615814,
+            86.09999996423721,
+            87.59999996423721,
+            87.10000002384186
+          ],
+          "median": 86.84999999403954,
+          "longest": 90.5
+        }
+      ],
+      "api": [],
+      "errors": []
+    }
+  }
+}

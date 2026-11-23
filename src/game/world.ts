@@ -78,21 +78,36 @@ export function walkable(room: Room, p: Point, geometry?:World): boolean {
   // Grid nodes are actual foot centres too, including fractional building edges.
   return Number.isInteger(p.x) && Number.isInteger(p.y) && canStand(room,p,geometry);
 }
+const gridSteps=[{x:0,y:-1},{x:1,y:0},{x:0,y:1},{x:-1,y:0}];
+
 export function pathTo(room: Room, from: Point, to: Point, geometry?:World): Point[] {
   if (!walkable(room, to,geometry) || !walkable(room, from,geometry)) return [];
-  const key = (p: Point) => `${p.x},${p.y}`;
-  const queue = [from], parents = new Map<string, Point | null>([[key(from), null]]);
-  for (let i = 0; i < queue.length; i++) {
-    const p = queue[i];
-    if (key(p) === key(to)) {
+  const layout=geometry??worlds[room];
+  const columns=Math.ceil(layout.width), rows=Math.ceil(layout.height);
+  const start=from.y*columns+from.x, finish=to.y*columns+to.x;
+  const parents=new Int32Array(columns*rows);
+  // Zero means unseen, minus one means blocked, and open cells store a
+  // parent index plus one. Keep this lookup private to one layout search.
+  parents[start]=start+1;
+  const queue=[start];
+  for (let i=0;i<queue.length;i++) {
+    const cell=queue[i];
+    if (cell===finish) {
       const result: Point[] = [];
-      let current: Point | null = p;
-      while (current && key(current) !== key(from)) { result.unshift(current); current = parents.get(key(current)) ?? null; }
-      return result;
+      for(let current=cell;current!==start;current=parents[current]-1){
+        result.push({x:current%columns,y:Math.floor(current/columns)});
+      }
+      return result.reverse();
     }
-    for (const delta of [{ x: 0, y: -1 }, { x: 1, y: 0 }, { x: 0, y: 1 }, { x: -1, y: 0 }]) {
-      const n = { x: p.x + delta.x, y: p.y + delta.y };
-      if (walkable(room, n,geometry) && !parents.has(key(n))) { parents.set(key(n), p); queue.push(n); }
+    const x=cell%columns, y=Math.floor(cell/columns);
+    for (const {x:dx,y:dy} of gridSteps) {
+      const point={x:x+dx,y:y+dy};
+      if(point.x<0||point.x>=columns||point.y<0||point.y>=rows)continue;
+      const neighbor=point.y*columns+point.x;
+      if(parents[neighbor]!==0)continue;
+      if(!canStand(room,point,geometry)){parents[neighbor]=-1;continue;}
+      parents[neighbor]=cell+1;
+      queue.push(neighbor);
     }
   }
   return [];
@@ -100,16 +115,28 @@ export function pathTo(room: Room, from: Point, to: Point, geometry?:World): Poi
 
 // Positions are continuous foot centres expressed relative to tile centres.
 export const FOOT_RADIUS = .24;
+function canStandIn(w:World,p:Point,blocked=w.blocked):boolean{
+  const cx=p.x+.5,cy=p.y+.5,r=FOOT_RADIUS;
+  return Number.isFinite(cx) && Number.isFinite(cy) && cx - r >= 1 && cy - r >= 1 && cx + r <= w.width - 1 && cy + r <= w.height - 1 &&
+    !blocked.some(([x, y, width, height]) => cx + r > x && cx - r < x + width && cy + r > y && cy - r < y + height);
+}
 export function canStand(room: Room, p: Point, geometry?:World): boolean {
   // The practice-only room needs an explicitly scoped geometry from Session.
   if (room === 'lodging' && !geometry) return false;
-  const w = geometry??worlds[room], cx = p.x + .5, cy = p.y + .5, r = FOOT_RADIUS;
-  return Number.isFinite(cx) && Number.isFinite(cy) && cx - r >= 1 && cy - r >= 1 && cx + r <= w.width - 1 && cy + r <= w.height - 1 &&
-    !w.blocked.some(([x, y, width, height]) => cx + r > x && cx - r < x + width && cy + r > y && cy - r < y + height);
+  return canStandIn(geometry??worlds[room],p);
 }
 export function clearSegment(room: Room, from: Point, to: Point, geometry?:World): boolean {
+  if(room==='lodging'&&!geometry)return false;
+  const layout=geometry??worlds[room];
   const steps = Math.max(1, Math.ceil(Math.hypot(to.x - from.x, to.y - from.y) / .1));
-  for (let i = 0; i <= steps; i++) if (!canStand(room, { x: from.x + (to.x - from.x) * i / steps, y: from.y + (to.y - from.y) * i / steps },geometry)) return false;
+  if(!Number.isFinite(steps))return false;
+  // All existing collision samples remain. Only obstacles outside the swept
+  // bounds of the actor's feet can be excluded from those checks.
+  const r=FOOT_RADIUS+1e-9;
+  const left=Math.min(from.x,to.x)+.5-r,right=Math.max(from.x,to.x)+.5+r;
+  const top=Math.min(from.y,to.y)+.5-r,bottom=Math.max(from.y,to.y)+.5+r;
+  const nearby=layout.blocked.filter(([x,y,width,height])=>right>=x&&left<=x+width&&bottom>=y&&top<=y+height);
+  for (let i = 0; i <= steps; i++) if (!canStandIn(layout, { x: from.x + (to.x - from.x) * i / steps, y: from.y + (to.y - from.y) * i / steps },nearby)) return false;
   return true;
 }
 export function routeTo(room: Room, from: Point, to: Point, geometry?:World): Point[] {

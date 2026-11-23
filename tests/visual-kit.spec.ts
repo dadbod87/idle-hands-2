@@ -3,10 +3,11 @@ import AxeBuilder from '@axe-core/playwright';
 import fs from 'node:fs';
 const evidence=process.env.QA_EVIDENCE_DIR??'test-results/browser';fs.mkdirSync(evidence,{recursive:true});
 for(const shape of [{name:'desktop',width:1440,height:900},{name:'narrow',width:360,height:640},{name:'short',width:844,height:390}]){
- test(`visual kit ${shape.name}: direction, guide, text scaling, contrast and study`,async({page})=>{
+ test(`visual kit ${shape.name}: direction, guide, text scaling, contrast and study`,async({page,baseURL})=>{
+  const gameOrigin=new URL(baseURL!).origin;
   await page.setViewportSize(shape);const errors:string[]=[],external:string[]=[],requests:string[]=[];
   page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
-  await page.route('**/*',r=>{const url=new URL(r.request().url());requests.push(url.pathname);if(url.hostname==='127.0.0.1'||url.protocol==='data:')return r.continue();external.push(url.origin);return r.abort();});
+  await page.route('**/*',r=>{const url=new URL(r.request().url());requests.push(url.pathname);if(url.origin===gameOrigin||url.protocol==='data:')return r.continue();external.push(url.origin);return r.abort();});
   await page.goto('/');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
   await page.keyboard.down('ArrowRight');await page.waitForTimeout(160);
   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.facing)).toBe('east');

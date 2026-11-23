@@ -127,7 +127,6 @@ if (practiceLabel) {
 }
 const sky = document.createElement('small');
 sky.id = 'town-sky';
-sky.setAttribute('aria-label', 'Town time and weather');
 const scene = new WorldScene(session);
 scene.resting=resting();
 const residentBadge=document.querySelector('#local-resident-badge');

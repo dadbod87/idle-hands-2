@@ -151,8 +151,9 @@ test('activity artwork loads only the current rig and identity switches cannot a
   await page.getByRole('button',{name:'Walk to the beds',exact:true}).click();
   await expect(page.locator('#panel-title')).toHaveText('Your rented allotment',{timeout:process.env.CI?40000:15000});
   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().room)).toBe('garden');
-  const allotmentSheets=requests.filter(path=>path.startsWith('/art/garden/'));
-  expect(allotmentSheets).toEqual(['/art/garden/garden-actions-bea.svg']);
+  const gardenRequests=()=>requests.filter(path=>path.startsWith('/art/garden/'));
+  await expect.poll(gardenRequests).toEqual(['/art/garden/garden-actions-bea.svg']);
+  const allotmentSheets=gardenRequests();
   expect(commands).toBe(0);
   expect(errors).toEqual([]);
   writeFileSync(evidence+'/activity-art-loading.json',JSON.stringify({

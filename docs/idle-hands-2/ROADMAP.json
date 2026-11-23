@@ -3939,6 +3939,26 @@
         "docs/evidence/IH2-206/PLAN.md"
       ],
       "progress_note": "Local Bag follow-up. Keep hosted validation batched."
+    },
+    {
+      "id": "IH2-208",
+      "title": "Show the set Riverwalk float in the world",
+      "status": "queued",
+      "owner_branch": "feat/riverwalk-float",
+      "goal": "Give the browser practice cast a visible shore-level trace and truthful readiness while keeping the Journal route.",
+      "depends_on": [
+        "IH2-198"
+      ],
+      "acceptance": [
+        "Verify actual cast, reload, camera/movement, reduced motion, short crop, reel and unchanged inventory."
+      ],
+      "exclusions": [
+        "No shared fishing, currency, item rewards, server or saved-service change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-208/PLAN.md"
+      ],
+      "progress_note": "Local presentation follow-up. Batch with Riverwalk practice."
     }
   ],
   "source_status_note": "Local integration checks combine shared-town draft #109 with the independent browser-practice Journal branch. Main remains at accepted PR #107."

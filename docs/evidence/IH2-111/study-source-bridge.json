@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "2a5147fa78a959c8ae33cb3886d33655004032fbea75e58e3b57ef69ae9ce54d",
-    "src/phaser/WorldScene.ts": "1cd56e0e9ef8692da0793db1a201c18f01f2a1f89a07be0e9d835640a35ac052",
+    "src/main.ts": "cebd25a7a7146f28686fd176d4b8d7f506a31fcd338778785dab27735c2a9c1d",
+    "src/phaser/WorldScene.ts": "928461158d5ca981ad916184949b30c0fc83d168f7852d0f61234ac5aef321e4",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed combined Bag placement travel and enlarged text resizing. Original study snapshots and generated output remain frozen."
+  "currentTask": "Reviewed combined Bag travel, enlarged text and Riverwalk float. Original study snapshots and generated output remain frozen."
 }

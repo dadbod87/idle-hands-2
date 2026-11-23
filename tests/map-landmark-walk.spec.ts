@@ -89,6 +89,8 @@ test('Riverwalk practice lets a resident leave a line out and return to record t
    await page.goto('/');
    const nearby=()=>page.evaluate(()=>(window as any).__pilot?.snapshot().nearby);
    const state=()=>page.evaluate(()=>(window as any).__pilot.workshop());
+   const float=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.commons.life?.riverFloat);
+   const anchor={spot:'reeds',x:2310,y:371};
    const boot=async()=>{
     await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
     await expect.poll(nearby).toBe('commons-riverwalk');
@@ -109,6 +111,18 @@ test('Riverwalk practice lets a resident leave a line out and return to record t
    await expect(page.getByRole('status').filter({hasText:'Line out at Reed bank'})).toBeVisible();
    await page.screenshot({path:out+'/waiting-'+name+'.png'});
    await page.getByRole('button',{name:'Close panel'}).click();
+   if(name!=='short'){
+    await expect.poll(float).toMatchObject({...anchor,ready:false,motion:true});
+    await page.screenshot({path:out+'/float-'+name+'.png'});
+   }
+   if(name==='desktop'){
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await expect.poll(float).toMatchObject({...anchor,motion:false,offset:0});
+    await page.setViewportSize({width:844,height:390});
+    await expect.poll(float).toBe(null);
+    await page.setViewportSize({width,height});
+    await expect.poll(float).toMatchObject({...anchor,motion:false,offset:0});
+   }
    await page.locator('#bag').click();
    await expect(page.getByRole('heading',{name:'Your bag'})).toBeVisible();
    await page.getByRole('button',{name:'Close panel'}).click();
@@ -119,10 +133,15 @@ test('Riverwalk practice lets a resident leave a line out and return to record t
 
    await page.clock.setFixedTime(now+12000);
    await page.reload();await boot();
+   if(name!=='short'){
+    await expect.poll(float).toMatchObject({...anchor,ready:true});
+    await page.screenshot({path:out+'/float-ready-'+name+'.png'});
+   }
    await page.locator('canvas').focus();
    await page.keyboard.down('ArrowRight');
    try{await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().position.x)).toBeGreaterThan(71.65);}
    finally{await page.keyboard.up('ArrowRight');}
+   if(name==='desktop')await expect.poll(float).toMatchObject({...anchor,ready:true,motion:false,offset:0});
    await page.locator('#journal').click();
    await expect(riverEntry).toContainText('Ready to reel in.');
    const returnToRiver=riverEntry.getByRole('button',{name:'Walk to the Riverwalk'});
@@ -142,7 +161,9 @@ test('Riverwalk practice lets a resident leave a line out and return to record t
    await leave.scrollIntoViewIfNeeded();
    await expect(leave).toBeInViewport({ratio:1});
    if(touch)await page.screenshot({path:out+'/leave-'+name+'.png'});
-   await page.getByRole('button',{name:'Close panel'}).click();await open();
+   await page.getByRole('button',{name:'Close panel'}).click();
+   await expect.poll(float).toBe(null);
+   await open();
    await expect(log.getByRole('listitem')).toHaveCount(1);
    expect(await state()).toEqual(before);
    if(name==='desktop'){

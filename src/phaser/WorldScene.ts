@@ -1,5 +1,6 @@
 import {activeWave} from '../game/town-wave.ts';
 import {INKWOOD_HOOD,CLERK_CAP,type EarnedHeadwear} from '../game/earned-headwear.ts';
+import type {RiverSurvey} from '../game/river-survey.ts';
 import { NATURALIST_KEEPSAKE } from '../game/home-keepsake.ts';
 import {LODGING_FOOTPRINT,LODGING_FRONT} from '../game/lodging.ts';
 import type {Headwear} from '../art/headwear.ts';
@@ -348,6 +349,7 @@ export class WorldScene extends Phaser.Scene {
   private facing: Facing = 'south';
   private travelled = 0;
   private frame = 0;
+  riverCast:RiverSurvey['cast']=null;
   private commonsLife?:TownCommonsLife;private commonsSigns:CommonsSign[]=[];
   private occluders: {image:Phaser.GameObjects.Image|Phaser.GameObjects.Graphics;x:number;y:number;width:number;height:number}[] = [];
   private keys = new Set<string>();
@@ -705,6 +707,7 @@ export class WorldScene extends Phaser.Scene {
     if(this.ambientEnabled)this.ambientMs+=cosmeticStep(delta);
     this.residentialLife?.update(this.ambientMs,this.ambientEnabled&&this.room==='neighborhood');
     this.commonsLife?.update(this.ambientMs,this.ambientEnabled);
+    this.commonsLife?.showRiverFloat(this.riverCast,this.cameras.main.worldView,this.ambientMs,this.ambientEnabled);
     if(this.room==='square'){const c=this.cameras.main,frame=commonsFrame(this.session.position,c.width,c.height);c.setFollowOffset(frame.x,frame.y);}
     const camera=this.cameras.main,visible=(x:number,y:number)=>x>camera.worldView.left-120&&x<camera.worldView.right+120&&y>camera.worldView.top-160&&y<camera.worldView.bottom+120;
     // Keep canopy quads axis-aligned: software rendering clipped rotated SVG quads in CI.

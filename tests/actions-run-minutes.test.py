@@ -3,7 +3,10 @@ import unittest
 from pathlib import Path
 
 
-report = runpy.run_path(str(Path(__file__).resolve().parents[1] / 'tools/actions-run-minutes.py'))['report']
+script = runpy.run_path(str(Path(__file__).resolve().parents[1] / 'tools/actions-run-minutes.py'))
+report = script['report']
+sequel_gate = script['sequel_gate']
+
 
 
 class RunMinutes(unittest.TestCase):
@@ -34,6 +37,31 @@ class RunMinutes(unittest.TestCase):
         self.assertEqual(run['incompleteJobs'], 1)
         self.assertEqual([job['runnerSeconds'] for job in run['jobs']], [62, None, 35, None])
         self.assertEqual(run['jobs'][0]['firstListedAttempt'], 1)
+
+    def test_exact_sequel_gate_rejects_stale_masked_or_incomplete_checks(self):
+        approved_head = 'a' * 40
+        jobs = [
+            {'name': name, 'status': 'completed', 'conclusion': 'success', 'firstListedAttempt': 1}
+            for name in script['REQUIRED_JOBS']
+        ]
+        nominal = {'runId': 42, 'commit': approved_head, 'workflowPath': script['SEQUEL_WORKFLOW'],
+                   'event': 'pull_request', 'status': 'completed', 'conclusion': 'success', 'jobs': jobs}
+        self.assertTrue(sequel_gate([nominal], approved_head, 'pull_request')['ready'])
+        replacement = [{**jobs[1], 'conclusion': 'failure'}, {**jobs[1], 'firstListedAttempt': 2}]
+        retried = {**nominal, 'jobs': [jobs[0], *replacement, *jobs[2:]]}
+        self.assertTrue(sequel_gate([retried], approved_head, 'pull_request')['ready'])
+        for update, expected in [
+            ({'commit': 'b' * 40}, 'different commit'),
+            ({'event': 'push'}, 'different trigger'),
+            ({'workflowPath': '.github/workflows/another.yml'}, 'different workflow'),
+            ({'jobs': jobs[:-2] + jobs[-1:]}, 'browser-shard (3/3) is missing'),
+            ({'jobs': jobs + [{**jobs[1], 'status': 'in_progress', 'firstListedAttempt': 2}]},
+             'browser-shard (1/3) has no successful conclusion'),
+            ({'jobs': jobs + [jobs[1]]}, 'browser-shard (1/3) is ambiguous'),
+        ]:
+            outcome = sequel_gate([{**nominal, **update}], approved_head, 'pull_request')
+            self.assertFalse(outcome['ready'])
+            self.assertIn(expected, outcome['runs'][0]['blockers'])
 
 
 if __name__ == '__main__':

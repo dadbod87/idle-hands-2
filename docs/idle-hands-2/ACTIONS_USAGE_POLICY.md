@@ -49,6 +49,12 @@ Prioritize local-first batching and avoiding duplicate/transient reruns now. Bro
 
 The historical audit estimated 1,969 job-minutes across117 latest-attempt runs from November9–13. It is not an invoice or a current balance, and excludes reconciliation of other repositories, prior attempts and billing dates. See [usage audit](handoffs/2026-11-13-actions-usage.md). Emails, local tests and Codex usage are separate from hosted Actions minutes.
 
+## Reuse an exact successful run
+
+Find the workflow for the actual PR head or main commit first, then run `python3 tools/actions-run-minutes.py RUN_ID --require-sequel-head FULL_SHA --require-event pull_request` (or `--require-event push` for main). The optional exact check reads the existing workflow and all five job results. It reports a mismatch, missing shard or unfinished attempt and exits with status 2 if none of the selected runs passes. It follows inherited successful jobs and the latest listed result for retried jobs. Separate runs cannot supply pieces of one check result.
+
+This command only reads GitHub metadata. It does not start jobs, approve a merge, inspect package hashes, or replace the browser evidence and saved-preview gates.
+
 ## Owner billing reference
 
 Only the owner changes payment and budget settings. [Billing settings](https://github.com/settings/billing), [budget controls](https://docs.github.com/en/billing/how-tos/set-up-budgets), and [current runner pricing](https://docs.github.com/en/billing/reference/actions-runner-pricing). Verify live rates when estimating costs. The discussed $10 ceiling was a suggestion, not an authorized or configured budget. When a budget is authorized, use an appropriate hard stop and alerts; record scope and confirmation without payment details or credentials.

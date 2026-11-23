@@ -10,6 +10,15 @@ import sys
 from datetime import datetime
 
 
+SEQUEL_WORKFLOW = '.github/workflows/sequel-ci.yml'
+REQUIRED_JOBS = (
+    'domain-build-plan',
+    'browser-shard (1/3)',
+    'browser-shard (2/3)',
+    'browser-shard (3/3)',
+    'browser-playtest',
+)
+
 BROWSER_STEPS = {
     'Install pinned Chromium and Ubuntu dependencies',
     'Run assigned browser cases',
@@ -65,7 +74,7 @@ def report(repo, run_ids, fetch=read_github):
         measured = [job['runnerSeconds'] for job in jobs if job['runnerSeconds'] is not None]
         runs.append({
             'runId': run_id, 'url': run['html_url'], 'commit': run['head_sha'],
-            'attempts': attempts, 'event': run['event'], 'status': run['status'],
+            'attempts': attempts, 'event': run['event'], 'workflowPath': run.get('path'), 'status': run['status'],
             'conclusion': run.get('conclusion'), 'jobs': jobs,
             'observedRunnerSeconds': sum(measured),
             'observedRunnerMinutes': round(sum(measured) / 60, 2),
@@ -83,16 +92,61 @@ def report(repo, run_ids, fetch=read_github):
     }
 
 
+def sequel_gate(runs, expected_head, expected_event=None):
+    evaluated = []
+    for run in runs:
+        blockers = []
+        if run['commit'] != expected_head:
+            blockers.append('different commit')
+        if run['workflowPath'] != SEQUEL_WORKFLOW:
+            blockers.append('different workflow')
+        if expected_event and run['event'] != expected_event:
+            blockers.append('different trigger')
+        if run['status'] != 'completed' or run['conclusion'] != 'success':
+            blockers.append('workflow has no successful conclusion')
+        for name in REQUIRED_JOBS:
+            jobs = [job for job in run['jobs'] if job['name'] == name]
+            if not jobs:
+                blockers.append(f'{name} is missing')
+                continue
+            last_attempt = max(job['firstListedAttempt'] for job in jobs)
+            latest = [job for job in jobs if job['firstListedAttempt'] == last_attempt]
+            if len(latest) != 1:
+                blockers.append(f'{name} is ambiguous')
+            elif latest[0]['status'] != 'completed' or latest[0]['conclusion'] != 'success':
+                blockers.append(f'{name} has no successful conclusion')
+        evaluated.append({'runId': run['runId'], 'ready': not blockers, 'blockers': blockers})
+    return {
+        'expectedHead': expected_head, 'expectedEvent': expected_event,
+        'ready': any(run['ready'] for run in evaluated), 'runs': evaluated,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('run_ids', nargs='+', type=int)
     parser.add_argument('--repo', default='dadbod87/idle-hands-2')
+    parser.add_argument('--require-sequel-head', metavar='SHA',
+                        help='Check each selected run against the full sequel commit and all five jobs.')
+    parser.add_argument('--require-event', choices=('pull_request', 'push', 'workflow_dispatch'),
+                        help='Require this trigger when checking an exact sequel commit.')
     args = parser.parse_args()
+    if args.require_sequel_head and not re.fullmatch(r'[0-9a-fA-F]{40}', args.require_sequel_head):
+        parser.error('Use the full 40-character commit SHA.')
+    if args.require_event and not args.require_sequel_head:
+        parser.error('--require-event needs --require-sequel-head.')
     if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', args.repo) or any(n < 1 for n in args.run_ids):
         parser.error('Use owner/repository and positive workflow run IDs.')
     try:
-        json.dump(report(args.repo, args.run_ids), sys.stdout, indent=2)
+        summary = report(args.repo, args.run_ids)
+        gate = None
+        if args.require_sequel_head:
+            gate = sequel_gate(summary['runs'], args.require_sequel_head.lower(), args.require_event)
+            summary['exactSequelGate'] = gate
+        json.dump(summary, sys.stdout, indent=2)
         print()
+        if gate and not gate['ready']:
+            parser.exit(2)
     except (OSError, RuntimeError, ValueError, KeyError, subprocess.TimeoutExpired) as error:
         parser.exit(1, f'{error}\n')
 

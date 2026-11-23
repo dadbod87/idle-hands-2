@@ -3959,6 +3959,26 @@
         "docs/evidence/IH2-208/PLAN.md"
       ],
       "progress_note": "Local presentation follow-up. Batch with Riverwalk practice."
+    },
+    {
+      "id": "IH2-207",
+      "title": "Find public addresses by resident name",
+      "status": "queued",
+      "owner_branch": "feat/saved-home-addresses",
+      "goal": "Let a guest choose a known person in the current directory and use the normal door route.",
+      "depends_on": [
+        "IH2-201"
+      ],
+      "acceptance": [
+        "Verify name and address lookup, sticky header focus, stale owner refusal and actual door entry in the fictional shared browser."
+      ],
+      "exclusions": [
+        "No new directory reads, disclosure fields, ownership or permission changes, paid resources or saved-service startup."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-207/PLAN.md"
+      ],
+      "progress_note": "Independent home navigation follow-up. Local Chromium and WebKit passed."
     }
   ],
   "source_status_note": "Local integration checks combine shared-town draft #109 with the independent browser-practice Journal branch. Main remains at accepted PR #107."

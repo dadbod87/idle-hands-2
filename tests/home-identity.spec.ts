@@ -382,3 +382,66 @@ test('a guest can save an address privately and use the existing street director
   }finally{await context.close();}
  }
 });
+
+test('street directory finds public homes by name or address and rechecks ownership before walking',async({browser,browserName})=>{
+ const folder='test-results/browser/home-directory-lookup';
+ mkdirSync(folder,{recursive:true});
+ for(const size of [
+  {name:'desktop',width:1440,height:900,touch:false,text:'100%'},
+  {name:'phone',width:320,height:640,touch:true,text:'100%'},
+  {name:'short',width:844,height:390,touch:false,text:'200%'},
+ ]){
+  const context=await browser.newContext({viewport:{width:size.width,height:size.height},hasTouch:size.touch});
+  try{
+   const page=await context.newPage(),errors:string[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   const address=addressForPlot('42');
+   const guest=await homePanelFixture(page,{visitor:true,otherPlots:1,allowVisit:true,ownerName:'Éster Longsurname',
+    position:{room:'neighborhood',districtId:address.block,position:{x:29.5,y:4.5}}});
+   const stock=guest.saved();
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.snapshot().nearby)).toBe('neighborhood-directory');
+   await page.evaluate(text=>document.documentElement.style.fontSize=text,size.text);
+   await page.locator('#interact').click();
+   const lookup=page.locator('.home-directory-search'),summary=lookup.locator('summary');
+   if(size.touch)await summary.tap();
+   else{await summary.focus();await page.keyboard.press('Enter');}
+   const search=lookup.getByRole('searchbox',{name:'Name or address'});
+   const result=lookup.getByRole('button',{name:/Visit Éster Longsurname/});
+   await search.fill('ester long');
+   await expect(result).toContainText(address.label);
+   await expect(lookup.getByRole('button')).toHaveCount(1);
+   await search.fill('no such neighbor');
+   await expect(lookup.getByRole('status')).toHaveText('No matching homes.');
+   await search.fill(address.label);
+   await expect(result).toBeVisible();
+   await search.fill('ester long');
+   await result.scrollIntoViewIfNeeded();
+   if(!size.touch){
+    await search.focus();
+    await page.keyboard.press(browserName==='webkit'?'Alt+Tab':'Tab');
+    await expect(result).toBeFocused();
+   }
+   expect((await result.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+   await expect(result).toBeInViewport({ratio:1});
+   expect(await page.getByRole('dialog').evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
+   await page.screenshot({path:folder+'/'+size.name+'.png'});
+   if(size.name==='desktop'){
+    await guest.setOccupant(null);
+    await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.town().plots.find((plot:any)=>plot.id==='42')?.ownerId)).toBe(null);
+    await result.click();
+    await expect(search).toBeFocused();
+    await expect(lookup.getByRole('status')).toContainText('That address has changed.');
+    expect(guest.commands).toEqual([]);
+    await guest.setOccupant('aster');
+    await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.town().plots.find((plot:any)=>plot.id==='42')?.ownerId)).toBe('aster');
+   }
+   if(size.touch)await result.tap();else await result.press('Enter');
+   await expect(page.locator('#feedback')).toContainText('Walking to the house door.');
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.town().position.homePlotId),{timeout:20000}).toBe('42');
+   expect(guest.commands.map(operation=>operation.kind)).toEqual(['enter-home']);
+   expect(guest.saved()).toEqual(stock);
+   expect(await page.evaluate(()=>localStorage.getItem('ih2:saved-homes:v1:bea'))).toBeNull();
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});

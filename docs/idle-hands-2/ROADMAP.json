@@ -3664,6 +3664,27 @@
       "evidence": [
         "docs/evidence/IH2-191/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-199",
+      "title": "Read recent field notes in the Journal",
+      "status": "queued",
+      "owner_branch": "feat/recent-field-notes",
+      "goal": "Let short-screen players recover the full notice and timestamp without covering more of the game.",
+      "depends_on": [
+        "IH2-084"
+      ],
+      "acceptance": [
+        "Verify actual note text with timestamps, ordered capped history, duplicate suppression and resident switching.",
+        "Review stable desktop, narrow touch and 200% short landscape layouts without adding network work."
+      ],
+      "exclusions": [
+        "No stored transcripts, free-form messaging, saved-preview or database restart."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-199/PLAN.md"
+      ],
+      "progress_note": "Independent Journal candidate based on accepted main. Local tests prepared for the later hosted batch."
     }
   ],
   "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."

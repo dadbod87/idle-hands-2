@@ -8,6 +8,7 @@ import {CafeWriterCandidate,type WriterOutcome} from '../persistence/cafe-writer
 import {collectionGrant,type CollectionGrant} from '../game/collection-receipt.ts';
 import {recipeView,benchWork,craftDuration} from '../game/crafting-view.ts';
 import {BagView} from './bag.ts';
+import {paintWorkshopPlan,workshopPlan} from './workshop-plan.ts';
 import {ActivityNotebook} from './activity-notebook.ts';
 import {CollectionReceiptView} from './collection-receipt.ts';
 import {residentArt} from '../art/variety.ts';
@@ -384,7 +385,9 @@ export class WorkshopUI {
   return `${slot.label}: ${prop?names[prop]:'empty'}${this.preview===slot.id?(prop?' · selected':' · preview '+names[this.selected]):''}`;
  }
  private renderPlacement(focusSlot=false){
-  const area=this.host.body.querySelector('#placement');if(!area)return;const restoreFocus=focusSlot||area.contains(document.activeElement);area.replaceChildren();
+  const area=this.host.body.querySelector('#placement');if(!area)return;const restoreFocus=focusSlot||area.contains(document.activeElement);
+  const showPlan=area.querySelector<HTMLDetailsElement>('.placement-plan')?.open??false;
+  area.replaceChildren();
   const owned=this.p(this.placementCountText());owned.dataset.owned=this.selected;const picture=document.createElement('img');picture.src=this.selected==='teapot'?'/art/cafe/teapot-icon.svg':this.selected==='letterbox'?'/art/commission/letterbox-'+this.state.commission.motif+'-closed.svg':'/art/homes/home-'+this.selected+'-icon.svg';picture.alt=names[this.selected];picture.width=64;picture.height=64;picture.className='furniture-preview';area.append(picture,owned);
   const hint=this.p('','placement-hint');
   hint.dataset.placementHint='';
@@ -416,6 +419,10 @@ export class WorkshopUI {
   });
   remove.dataset.placementReturn='';
   area.append(apply,this.button('Cancel preview',()=>{this.preview=null;this.renderPlacement();}),remove);
+  const plan=workshopPlan(showPlan);
+  plan.addEventListener('toggle',()=>paintWorkshopPlan(plan,this.state,this.preview,this.selected as PropId));
+  area.append(plan);
+  paintWorkshopPlan(plan,this.state,this.preview,this.selected as PropId);
   this.refreshPlacementControls(area);
   if(restoreFocus){const next=area.querySelector<HTMLButtonElement>(`[data-slot="${this.lastSlot??PLACEMENT_SLOTS[0].id}"]`);next?.focus({preventScroll:true});if(next){next.scrollIntoView({block:'nearest'});const dialog=next.closest('dialog'),head=dialog?.querySelector('header');if(dialog&&head){const hidden=head.getBoundingClientRect().bottom+8-next.getBoundingClientRect().top;if(hidden>0)dialog.scrollTop-=hidden;}}}
  }
@@ -442,7 +449,11 @@ export class WorkshopUI {
   }
   this.notebook?.update(this.state,this.gardenClock());this.updateRecentNotes();if(!this.active)return;
   const placement=this.host.body.querySelector('#placement');
-  if(placement)this.refreshPlacementControls(placement);
+  if(placement){
+   this.refreshPlacementControls(placement);
+   const plan=placement.querySelector<HTMLDetailsElement>('.placement-plan[open]');
+   if(plan)paintWorkshopPlan(plan,this.state,this.preview,this.selected as PropId);
+  }
   if(this.remote){
    const pending=this.remoteBusy||!!this.remote.busy?.(),blocked=this.remoteBusy||!!this.remoteError||this.remote.canRetry();
    // Journal controls only open inspectors. Keep confirmed notes navigable while

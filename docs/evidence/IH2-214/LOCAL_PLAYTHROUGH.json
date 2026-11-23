@@ -1,0 +1,260 @@
+{
+  "source": "87cf671341b029e377581711d16e0ea75444301a",
+  "compilation": {
+    "build": "pass",
+    "design": "pass",
+    "tracker": "pass",
+    "pinnedSkills": "pass"
+  },
+  "domain": {
+    "passed": 450,
+    "databaseOnlySkipped": 28
+  },
+  "chromiumLocal": {
+    "cases": 122,
+    "runnerReportedDuration": "15.1m",
+    "scope": "Explicit single-client and intercepted fixtures; saved preview/database ports stayed stopped."
+  },
+  "firstEvening": {
+    "source": "87cf671341b029e377581711d16e0ea75444301a",
+    "results": [
+      {
+        "shape": {
+          "name": "desktop",
+          "width": 1440,
+          "height": 900,
+          "touch": false
+        },
+        "milestones": {
+          "gathered": 4730,
+          "furnished": 14847,
+          "secondJob": 14980,
+          "cast": 27679,
+          "recorded": 41019
+        },
+        "secondJob": {
+          "recipe": "planter",
+          "startedAt": 1795464491886,
+          "readyAt": 1795493291886
+        },
+        "firstPlanter": "planter",
+        "errors": [],
+        "api": []
+      },
+      {
+        "shape": {
+          "name": "phone",
+          "width": 320,
+          "height": 640,
+          "touch": true
+        },
+        "milestones": {
+          "gathered": 4543,
+          "furnished": 14846,
+          "secondJob": 15045,
+          "cast": 27981,
+          "recorded": 40467
+        },
+        "secondJob": {
+          "recipe": "planter",
+          "startedAt": 1795464533865,
+          "readyAt": 1795493333865
+        },
+        "firstPlanter": "planter",
+        "errors": [],
+        "api": []
+      }
+    ]
+  },
+  "roomCycleProbe": {
+    "method": "96 native visits and door exits with alternating Bag and Journal and four viewport sizes. Forced-GC Chromium metrics immediately before taking each visible center 128\u00d780 CSS-pixel sample. Fixed cosmetic dusk and drizzle. No injected economy clock or stock.",
+    "roundTrips": 96,
+    "samples": [
+      {
+        "round": 0,
+        "litFraction": 1,
+        "heapBytes": 10231860,
+        "domNodes": 6183,
+        "observedListeners": 361
+      },
+      {
+        "round": 1,
+        "litFraction": 1,
+        "heapBytes": 9834836,
+        "domNodes": 6198,
+        "observedListeners": 390
+      },
+      {
+        "round": 4,
+        "litFraction": 1,
+        "heapBytes": 10325952,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 8,
+        "litFraction": 1,
+        "heapBytes": 10167352,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 12,
+        "litFraction": 1,
+        "heapBytes": 10397196,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 16,
+        "litFraction": 1,
+        "heapBytes": 13241972,
+        "domNodes": 6223,
+        "observedListeners": 390
+      },
+      {
+        "round": 20,
+        "litFraction": 1,
+        "heapBytes": 10534388,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 24,
+        "litFraction": 1,
+        "heapBytes": 10560508,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 28,
+        "litFraction": 1,
+        "heapBytes": 10612144,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 32,
+        "litFraction": 1,
+        "heapBytes": 10633992,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 36,
+        "litFraction": 1,
+        "heapBytes": 10645360,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 40,
+        "litFraction": 1,
+        "heapBytes": 10678384,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 44,
+        "litFraction": 1,
+        "heapBytes": 10711348,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 48,
+        "litFraction": 1,
+        "heapBytes": 10717180,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 52,
+        "litFraction": 1,
+        "heapBytes": 10757312,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 56,
+        "litFraction": 1,
+        "heapBytes": 10783436,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 60,
+        "litFraction": 1,
+        "heapBytes": 10837824,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 64,
+        "litFraction": 1,
+        "heapBytes": 10873088,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 68,
+        "litFraction": 1,
+        "heapBytes": 10888288,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 72,
+        "litFraction": 1,
+        "heapBytes": 10893996,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 76,
+        "litFraction": 1,
+        "heapBytes": 13807812,
+        "domNodes": 6223,
+        "observedListeners": 390
+      },
+      {
+        "round": 80,
+        "litFraction": 1,
+        "heapBytes": 10940284,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 84,
+        "litFraction": 1,
+        "heapBytes": 13753088,
+        "domNodes": 6223,
+        "observedListeners": 390
+      },
+      {
+        "round": 88,
+        "litFraction": 1,
+        "heapBytes": 11156380,
+        "domNodes": 6201,
+        "observedListeners": 400
+      },
+      {
+        "round": 92,
+        "litFraction": 1,
+        "heapBytes": 10985448,
+        "domNodes": 6201,
+        "observedListeners": 390
+      },
+      {
+        "round": 96,
+        "litFraction": 1,
+        "heapBytes": 13452264,
+        "domNodes": 6201,
+        "observedListeners": 400
+      }
+    ],
+    "errors": [],
+    "apiRequests": [],
+    "limitation": "Local Vite plus instrumented Chromium only. These samples establish rendering and stable progress at sampled times. Heap and image request observations require separate attribution; they are not physical-device or sustained leak results."
+  }
+}

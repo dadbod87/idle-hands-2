@@ -1,10 +1,11 @@
 import {test, expect} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 
-test('Places title search uses current room stops and preserves native travel', async ({browser}) => {
+test('Places title search finds local stops and outdoor routes through the workshop door', async ({browser}) => {
  test.setTimeout(90000);
  const output = 'test-results/browser/places-search';
  mkdirSync(output, {recursive: true});
+ const nextTab = browser.browserType().name() === 'webkit' ? 'Alt+Tab' : 'Tab';
  for (const size of [
   {name: 'desktop', width: 1440, height: 900, touch: false, text: 100},
   {name: 'phone', width: 320, height: 640, touch: true, text: 100},
@@ -54,21 +55,21 @@ test('Places title search uses current room stops and preserves native travel', 
    expect(button.y + button.height).toBeLessThanOrEqual(size.height);
    if (!size.touch) {
     await search.focus();
-    await page.keyboard.press('Tab');
+    await page.keyboard.press(nextTab);
     await expect(workshop).toBeFocused();
    }
    if (size.name === 'short') {
     await search.focus();
     const second = results.getByRole('button').nth(1);
-    await page.keyboard.press('Tab');
-    await page.keyboard.press('Tab');
+    await page.keyboard.press(nextTab);
+    await page.keyboard.press(nextTab);
     await expect(second).toBeFocused();
     const secondBounds = (await second.boundingBox())!;
     const headerBounds = (await page.locator('.dialog-head').boundingBox())!;
     expect(secondBounds.y).toBeGreaterThanOrEqual(headerBounds.y + headerBounds.height);
     expect(secondBounds.y + secondBounds.height).toBeLessThanOrEqual(size.height);
     await page.screenshot({path: output + '/short-second.png'});
-    await page.keyboard.press('Shift+Tab');
+    await page.keyboard.press('Shift+' + nextTab);
     await expect(workshop).toBeFocused();
    }
    await page.screenshot({path: output + '/' + size.name + '.png'});
@@ -82,7 +83,37 @@ test('Places title search uses current room stops and preserves native travel', 
    await expect.poll(() => page.evaluate(() => (window as any).__pilot.snapshot().room), {timeout: 20000}).toBe('workshop');
    await page.locator('#places').click();
    await expect(page.locator('[data-destination="bench"]')).toBeVisible();
-   await expect(search).toHaveCount(0);
+   const outside = page.locator('details').filter({has: page.getByText('Outside the workshop', {exact: true})});
+   await expect(outside).toBeVisible();
+   await outside.locator('summary').click();
+   await expect(outside.getByRole('button')).toHaveCount(3);
+   await expect(outside.getByRole('button', {name: /Walk outside to Riverwalk/})).toBeVisible();
+   if (size.name === 'phone') {
+    await outside.getByRole('button').last().scrollIntoViewIfNeeded();
+    await page.screenshot({path: output + '/workshop-outdoor-browse-phone.png'});
+   }
+   await search.fill('riverwalk');
+   const river = results.getByRole('button', {name: /Walk outside to Riverwalk/});
+   await expect(results.getByRole('button')).toHaveCount(1);
+   await river.scrollIntoViewIfNeeded();
+   const riverTarget = (await river.boundingBox())!;
+   const riverHeader = (await page.locator('.dialog-head').boundingBox())!;
+   expect(riverTarget.y).toBeGreaterThanOrEqual(riverHeader.y + riverHeader.height);
+   expect(riverTarget.y + riverTarget.height).toBeLessThanOrEqual(size.height);
+   await page.screenshot({path: output + '/workshop-outdoor-' + size.name + '.png'});
+   const progress = () => page.evaluate(() => (window as any).__pilot.workshop());
+   const before = await progress();
+   if (size.touch) await river.tap();
+   else {
+    await search.focus();
+    await page.keyboard.press(nextTab);
+    await expect(river).toBeFocused();
+    await page.keyboard.press('Enter');
+   }
+   await expect.poll(() => page.evaluate(() => (window as any).__pilot.snapshot().room), {timeout: 20000}).toBe('square');
+   await expect(page.getByRole('heading', {name: 'Borrow a rod', exact: true})).toBeVisible({timeout: 30000});
+   await expect.poll(() => page.evaluate(() => (window as any).__pilot.snapshot().nearby)).toBe('commons-riverwalk');
+   expect(await progress()).toEqual(before);
    expect(pageErrors).toEqual([]);
    expect(api).toEqual([]);
   } finally {

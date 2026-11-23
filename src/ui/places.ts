@@ -6,6 +6,7 @@ import {townMap,type MapResident} from './town-map.ts';
 export function renderPlaces(body: HTMLElement, options: {
  room: Room; position: Point; stops: Stop[]; state: WorkshopState; goal: {id: string; destination?: string};
  now: number; savedHomes?:()=>void; wave?:()=>Promise<void>; peers?:readonly MapResident[]|null; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void;
+ outside?: {stops: readonly Stop[]; walk: (stop: Stop) => void};
 }) {
  const view = placesView(options.room, options.stops, options.state, options.goal, options.now, options.neighborhood);
  const intro = document.createElement('p');
@@ -13,14 +14,14 @@ export function renderPlaces(body: HTMLElement, options: {
  intro.textContent = 'Choose a place to walk. Inspect or enter when you arrive.';
  body.append(intro);
 
- const appendStops = (host: HTMLElement, stops: Stop[]) => {
+ const appendStops = (host: HTMLElement, stops: readonly Stop[], route?: (stop: Stop) => void) => {
   for (const stop of stops) {
    const button = document.createElement('button');
    button.type = 'button';
    button.className = 'destination';
-   button.textContent = 'Walk to ' + stop.name + ' →';
+   button.textContent = route ? 'Walk outside to ' + stop.name + '\u00a0→' : 'Walk to ' + stop.name + ' →';
    button.dataset.destination = stop.id;
-   button.onclick = () => options.walk(stop);
+   button.onclick = () => (route ?? options.walk)(stop);
    host.append(button);
   }
  };
@@ -51,11 +52,22 @@ export function renderPlaces(body: HTMLElement, options: {
   appendStops(detail, group.stops);
   browse.append(detail);
  }
+ if (options.outside?.stops.length) {
+  const detail = document.createElement('details');
+  const summary = document.createElement('summary');
+  detail.className = 'places-group';
+  summary.textContent = 'Outside the workshop';
+  const hint = document.createElement('p');
+  hint.textContent = 'Take the door and continue to your stop.';
+  detail.append(summary, hint);
+  appendStops(detail, options.outside.stops, options.outside.walk);
+  browse.append(detail);
+ }
  const map = options.room==='square'?townMap(options.position,options.stops,options.walk,options.peers,options.wave):undefined;
  if (map) browse.append(map.element);
  body.append(browse);
 
- if (!view.groups.length) return map?.updateResidents;
+ if (!view.groups.length && !options.outside?.stops.length) return map?.updateResidents;
  const label = document.createElement('label');
  label.className = 'places-search';
  label.textContent = 'Find a place';
@@ -89,6 +101,7 @@ export function renderPlaces(body: HTMLElement, options: {
  browse.addEventListener('focusin', keepFocusInView);
 
  const searchable = options.stops.map(stop => ({stop, name: placeSearchKey(stop.name)}));
+ const searchableOutside = (options.outside?.stops ?? []).map(stop => ({stop, name: placeSearchKey(stop.name)}));
  input.addEventListener('input', () => {
   const query = placeSearchKey(input.value).trim();
   browse.hidden = query.length > 0;
@@ -100,8 +113,11 @@ export function renderPlaces(body: HTMLElement, options: {
   }
   const terms = query.split(/\s+/);
   const matches = searchable.filter(({name}) => terms.every(term => name.includes(term)));
-  status.textContent = matches.length === 0 ? 'No matching places here.' : matches.length === 1 ? '1 place found' : matches.length + ' places found';
+  const outsideMatches = searchableOutside.filter(({name}) => terms.every(term => name.includes(term)));
+  const count = matches.length + outsideMatches.length;
+  status.textContent = count === 0 ? 'No matching places here.' : count === 1 ? '1 place found' : count + ' places found';
   appendStops(results, matches.map(({stop}) => stop));
+  if (options.outside) appendStops(results, outsideMatches.map(({stop}) => stop), options.outside.walk);
  });
  body.insertBefore(label, browse);
  body.insertBefore(status, browse);

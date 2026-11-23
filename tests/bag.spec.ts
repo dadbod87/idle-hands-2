@@ -179,3 +179,59 @@ test('bag: failed local persistence is disclosed without calling held contents s
  await expect(count(page,'stool')).toHaveAttribute('aria-label','Committee stool: 1 available to place');
  writeFileSync(out+'/bag-idle-mutations.json',JSON.stringify(evidence,null,2)+'\n');
 });
+
+test('bag: move stacks by drag, tap and keyboard, with counts and workshop state unchanged',async({browser})=>{
+ for(const [name,width,height] of [['desktop',1440,900],['phone',320,640]] as const){
+  const touch=name==='phone';
+  const context=await browser.newContext({viewport:{width,height},hasTouch:touch});
+  try{
+   const page=await context.newPage();
+   const original=queuedSecond();
+   await page.addInitScript(state=>{
+    if(!localStorage.getItem('ih2:workshop:v2'))localStorage.setItem('ih2:workshop:v2',JSON.stringify(state));
+   },original);
+   await page.goto('/');
+   await ready(page);
+   await page.locator('#bag').click();
+   const playerState=()=>page.evaluate(()=>{
+    const {inventory,owned,placements,job,revision}=(window as any).__pilot.workshop();
+    return {inventory,owned,placements,job,revision,saved:localStorage.getItem('ih2:workshop:v2')};
+   });
+   const unchanged=await playerState();
+   const edit=page.getByRole('button',{name:'Move stacks',exact:true});
+   await edit.click();
+   const order=()=>page.locator('[aria-label="Furniture"] > [data-bag-item]').evaluateAll(cards=>cards.map(card=>card.getAttribute('data-bag-item')));
+   const before=await order();
+   const source=page.getByRole('button',{name:'Move Optimistic planter',exact:true});
+   const target=stack(page,'stool');
+   if(touch){
+    await source.tap();
+    await target.getByRole('button',{name:/Swap with/}).tap();
+   }else await source.dragTo(target);
+   const after=await order();
+   expect(after[before.indexOf('stool')]).toBe('planter');
+   expect(after[before.indexOf('planter')]).toBe('stool');
+   await expect(count(page,'planter')).toHaveText('1');
+   await expect(source).toBeFocused();
+   expect(await playerState()).toEqual(unchanged);
+   const done=page.getByRole('button',{name:'Done moving',exact:true});
+   await expect(done).toBeInViewport({ratio:1});
+   await page.screenshot({path:out+'/bag-moving-'+name+'.png'});
+   if(touch)await done.tap();else await done.click();
+   await expect(edit).toBeFocused();
+   await expect(source).toBeHidden();
+   await page.reload();
+   await ready(page);
+   await page.locator('#bag').click();
+   expect(await order()).toEqual(after);
+   await edit.click();
+   await source.press('Enter');
+   await target.getByRole('button',{name:/Swap with/}).press('Enter');
+   expect(await order()).toEqual(before);
+   await source.press('Enter');
+   await page.getByRole('button',{name:'Materials',exact:true}).click();
+   await expect(page.getByRole('button',{name:'Move Scrap',exact:true})).toBeVisible();
+   expect(await playerState()).toEqual(unchanged);
+  }finally{await context.close();}
+ }
+});

@@ -238,7 +238,7 @@ export class WorkshopUI {
    this.bag?.arrange(firstEmpty?'[data-slot="'+firstEmpty.id+'"]':'[data-placement-hint]');
   }:undefined;
   this.bag?.destroy();
-  this.bag=new BagView(this.state,this.host.orchard?.()!==undefined?()=>this.host.orchard?.()??null:undefined,chooseFurniture);
+  this.bag=new BagView(this.state,this.host.orchard?.()!==undefined?()=>this.host.orchard?.()??null:undefined,chooseFurniture,this.host.owner?.());
   b.append(this.bag.root);
   if(this.host.home&&this.host.homeAvailable?.())b.append(this.button('Inspect or arrange a house',()=>this.host.home?.(),'destination'));
   const arrangement=document.createElement('details');arrangement.className='bag-arrangement';const summary=document.createElement('summary');summary.textContent='Arrange workshop furniture';arrangement.append(summary);

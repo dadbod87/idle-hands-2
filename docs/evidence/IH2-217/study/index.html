@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doorstep notices · Idle Hands 2 design study</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <p>Idle Hands 2 · Interactive design study</p>
+      <h1>Doorstep notices</h1>
+      <p>Fictional residents and a simulated clock.</p>
+    </header>
+    <div class="role-switch" role="group" aria-label="Play the part of">
+      <button id="owner" type="button" aria-pressed="true">Harper · homeowner</button>
+      <button id="visitor" type="button" aria-pressed="false">Ellis · visitor</button>
+    </div>
+    <div class="scene">
+      <figure>
+        <img src="../../../../public/art/housing/pocket-cottage-1.svg" alt="Illustrated Pocket Cottage with green shutters">
+        <div id="yard-sign" hidden></div>
+        <figcaption>12 Thistle Row</figcaption>
+      </figure>
+      <section id="controls" aria-label="Doorstep controls"></section>
+    </div>
+    <div class="receipt">
+      <p id="status" role="status"></p>
+      <button id="advance" type="button" hidden>Simulate 15 minutes passing</button>
+    </div>
+  </main>
+  <script type="module" src="./preview.mjs"></script>
+</body>
+</html>

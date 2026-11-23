@@ -1,0 +1,34 @@
+{
+  "results": [
+    {
+      "engine": "chromium",
+      "layout": "desktop",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "layout": "phone",
+      "passed": true
+    },
+    {
+      "engine": "chromium",
+      "layout": "short",
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "layout": "desktop",
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "layout": "phone",
+      "passed": true
+    },
+    {
+      "engine": "webkit",
+      "layout": "short",
+      "passed": true
+    }
+  ]
+}

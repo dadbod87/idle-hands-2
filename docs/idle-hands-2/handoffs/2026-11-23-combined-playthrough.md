@@ -11,3 +11,9 @@ No saved preview or database was started. No hosted run was triggered by this st
 This follow-up includes `feat/saved-home-addresses` at `d84ba1c`. In the combined build, received waves also enter Recent field notes, so a resident can look up a greeting after the bubble clears. The same bounded, resident-scoped tab history applies. Returning to an address still uses the existing street route and home entry check.
 
 The compiled build passed with 449 local domain tests and 28 database-only skips. Three focused Chromium cases passed for saving and revisiting a home, sharing the map and recording a received wave, and changing resident identity without carrying field notes over. Shared responses in these cases came from isolated fixtures.
+
+## Exact hosted draft and independent Bag work
+
+[Draft #109](https://github.com/dadbod87/idle-hands-2/pull/109) passed all five jobs at `4d1812ed`. The exact package matched the local compiled version across 248 SHA-256 files. See the [hosted record](../../evidence/IH2-200/HOSTED_DRAFT.json) for 596 domain/database cases, 257 browser cases and all three groups. One automatic public Ubuntu workflow used 51.0 summed runner minutes, with zero reruns. Browser setup took 20–36 seconds per group and the test step took 13.7–16.3 minutes. The slowest group merits measurement over another naturally scheduled candidate if it continues to approach the cap. No workflow change was made.
+
+The [Bag filter candidate](https://github.com/dadbod87/idle-hands-2/tree/feat/bag-hide-empty) is saved independently at `0ef1edf`. It has local compiled, domain and focused browser evidence, and still needs hosted checks with a related batch. [The Actions timing tool](https://github.com/dadbod87/idle-hands-2/tree/chore/actions-run-report) is also backed up independently. PR #108 stays open at its passing head. The saved previews and databases stay stopped.

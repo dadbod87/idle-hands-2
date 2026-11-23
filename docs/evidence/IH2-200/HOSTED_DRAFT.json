@@ -1,0 +1,15 @@
+{
+  "pullRequest": 109,
+  "status": "draft, exact head passed",
+  "commit": "4d1812ed5f765d2e654d61aa9237088a51efc928",
+  "base": "168e85720d680dd125d6204e84a12e455bf14878",
+  "runId": 45232892583,
+  "domainAndDatabase": { "passed": 596, "failed": 0, "skipped": 0 },
+  "browser": { "passed": 257, "shards": [88, 86, 83], "requiredGate": "success" },
+  "compiledClient": { "matchingFiles": 248, "comparison": "SHA-256 for every relative path in hosted artifact and local exact-head dist" },
+  "usage": {
+    "automaticRuns": 1, "extraAttempts": 0, "runner": "ubuntu-24.04",
+    "observedRunnerMinutes": 51.0, "perJobRoundedMinutes": 54,
+    "browserInstallSeconds": [36, 20, 36], "browserExecutionSeconds": [839, 980, 819]
+  }
+}

@@ -37,3 +37,9 @@ All three stages passed desktop keyboard, 320px touch and 844×390 at 200% text,
 Run `node --test docs/evidence/IH2-204/study/project-model.test.mjs` for five deterministic cases. The model accepts a solo completion and multiple orders of three distinct jobs, charges just one draft two-pine debit when two residents attempt the same task, and retains one deadline while everyone is away. Proximity, current stock and quote version still matter when a reviewed action is submitted. A late arrival is eligible for the first free tour without having contributed.
 
 The twelve-hour construction placeholder makes deadline boundaries measurable in the rehearsal. It is not a settled product duration. The ordered replay represents what a future transaction must produce under contention. It does not exercise concurrent SQL or allocate stock, paths, visits or furniture in the game. A future runtime patch needs a locked three-task ledger, atomic debit and receipt, content migration, and the real two-client and reconnect proof.
+
+## Decorative plant concepts
+
+[Preview the three keepsakes](study/keepsakes.html) at living-room and Bag scale. Fern on Probation has spreading fronds and a low bowl. Succulent, Unsupervised has a compact upright rosette. Priority Marigold has three separated blooms in a trough. These are appearance choices for the same one-time cosmetic reward. They do not carry buff, price or storage differences.
+
+The nine keyboard/touch layout samples passed at desktop, 320px and 200% short landscape. Each Bag illustration fits its 64px frame and the standalone file makes no outbound requests. Terra 6.1 found the marigold the most distinct at small scale. Further world-scale review should sharpen the fern and succulent silhouettes if these designs are selected for runtime.

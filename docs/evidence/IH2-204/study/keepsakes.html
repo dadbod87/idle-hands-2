@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Glasshouse keepsakes · Idle Hands 2 concept</title>
+<style>
+  :root{font-family:Georgia,serif;background:#ddd3bd;color:#29382e;--paper:#fbf1dd;--green:#415e49}
+  *{box-sizing:border-box}body{margin:0}h1,h2,h3,p,figure{margin:0}
+  main{max-width:55rem;margin:1rem auto;padding:1rem;border:2px solid #435347;border-radius:6px;background:var(--paper);box-shadow:3px 3px #a99a7b}
+  .intro{margin:.45rem 0 1rem;line-height:1.45}
+  h1{font-size:clamp(1.55rem,5vw,2.35rem)}
+  .choices{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1rem}
+  button{flex:1 1 9rem;min-height:44px;font:700 .95rem Georgia,serif;background:#f3e8cb;color:inherit;border:1px solid #7b765c;border-radius:4px;cursor:pointer;padding:.5rem}
+  button[aria-pressed=true]{background:var(--green);color:#fff3dc;border-color:var(--green)}
+  button:focus-visible{outline:3px solid #a14c37;outline-offset:2px}
+  .preview{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.75rem}
+  .surface{padding:.7rem;background:#e8dcbe;border:1px solid #978363;border-radius:5px;text-align:center}
+  .surface svg{display:block;margin:.5rem auto}
+  .scene{width:100%;max-width:240px;border:1px solid #827359;border-radius:4px}
+  .icon{background:#fbf0d4;border:1px solid #8d7c58;border-radius:4px}
+  figcaption{margin-top:.35rem}
+  #plant-name{margin-bottom:.35rem}
+  #plant-note{margin-bottom:.8rem;line-height:1.45}
+  .art-source{position:absolute;width:0;height:0;overflow:hidden}
+  @media(max-width:38rem){main{margin:.6rem;padding:.75rem}}
+  @media(max-width:22rem){.preview{grid-template-columns:minmax(0,1fr)}}
+  @media(max-height:30rem) and (orientation:landscape){main{margin:.3rem;padding:.45rem}.intro{margin:.2rem 0 .5rem}.choices{margin-bottom:.45rem}}
+</style>
+</head>
+<body>
+<svg class="art-source" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="fern" stroke="#35473a" stroke-width="2.2" stroke-linejoin="round">
+      <ellipse cx="32" cy="56" rx="24" ry="4" fill="#4c5941" stroke="none" opacity=".3"/>
+      <path d="M11 40h41l-6 15H17Z" fill="#78928b"/>
+      <path d="M14 44q16 6 35 0m-7 5q-9 2-16 1" stroke="#506a65" fill="none"/>
+      <path d="M8 39q21-6 47 0v5H8Z" fill="#9eb3a2"/>
+      <path d="M31 37Q21 16 4 24q2-9 11-11t12 8l4 16M31 38q1-20 18-28-1 9-6 15t-11 13M30 37q-5-19 1-32 6 9 3 18l-4 14M32 39q16-19 27-8-13 0-21 8Z" fill="#7e9d64"/>
+      <path d="M11 19q14 2 17 15m4-2 10-17M35 37l15-8" fill="none" stroke="#547557" stroke-width="1.2"/>
+      <path d="m20 45 12 .6-2 7-11-.5Z" fill="#e9d199" stroke="#786748" stroke-width="1.3"/>
+      <path d="M22 48h5" stroke="#958356" stroke-width="1.1"/>
+    </g>
+    <g id="jade" stroke="#35473a" stroke-width="2.2" stroke-linejoin="round">
+      <ellipse cx="33" cy="56" rx="22" ry="4" fill="#4c5941" stroke="none" opacity=".3"/>
+      <path d="M15 43h36l-6 12H20Z" fill="#b8795c"/>
+      <path d="M13 40h40v6H13Z" fill="#cb9570"/>
+      <path d="M20 52h24" fill="none" stroke="#855944" stroke-width="1.2"/>
+      <path d="M32 41Q16 41 14 29q8-5 17 8-12-15-7-24 11 4 9 22-2-20 5-25 9 11-2 25 8-13 19-7-3 11-19 14Z" fill="#8eaf79"/>
+      <path d="M32 39Q22 37 20 30m14 8 5-18m-3 20 12-8" fill="none" stroke="#5e8966" stroke-width="1.5"/>
+      <path d="M26 49h15" fill="none" stroke="#edd1a4" stroke-width="1.2"/>
+    </g>
+    <g id="marigold" stroke="#404c38" stroke-width="2" stroke-linejoin="round">
+      <ellipse cx="32" cy="56" rx="25" ry="4" fill="#4c5941" stroke="none" opacity=".3"/>
+      <path d="M11 42h41l-4 13H15Z" fill="#a68456"/>
+      <path d="M9 40h45v5H9Z" fill="#c4a675"/>
+      <path d="M19 42 17 24m15 19V15m10 27 7-15" fill="none" stroke="#596f46" stroke-width="2.6"/>
+      <path d="M20 35q-10 1-11-6 7-5 11 6m11-1q-1-9-8-11-4 7 8 11m8 4q6-9 12-7-2 8-12 7" fill="#83a36c" stroke-width="1.5"/>
+      <path d="M14 28q-6-1-5-6 0-5 6-5 2-6 8-1 5 4 1 8-1 6-10 4m14-13q-6 0-6-6 0-6 7-6 5-5 9 0 7 2 5 8-2 5-7 4-3 4-8 0m16 14q-7-1-6-7 0-6 7-6 4-3 8 0 7 3 4 8-1 5-7 5Z" fill="#d8a84f" stroke="#805d3b"/>
+      <path d="M14 23h6M27 9h10m7 13h9M17 49h30" fill="none" stroke="#eac272" stroke-width="2"/>
+    </g>
+  </defs>
+</svg>
+<main>
+  <h1>Glasshouse keepsakes</h1>
+  <p class="intro">Idle Hands 2 concept. After a first tour, each resident would pick one permanent plant for their home.</p>
+  <div role="group" class="choices" aria-label="Keepsake to preview">
+    <button type="button" data-plant="fern" aria-pressed="true">Fern on Probation</button>
+    <button type="button" data-plant="jade" aria-pressed="false">Succulent, Unsupervised</button>
+    <button type="button" data-plant="marigold" aria-pressed="false">Priority Marigold</button>
+  </div>
+  <section aria-labelledby="plant-name">
+    <h2 id="plant-name">Fern on Probation</h2>
+    <p id="plant-note">The groundskeeper will review its progress in ninety days.</p>
+    <div class="preview">
+      <figure class="surface">
+        <svg class="scene" viewBox="0 0 240 140" role="img" aria-label="Furniture-sized plant in a home">
+          <path d="M0 0h240v70H0Z" fill="#a2ad91"/>
+          <path d="M0 70h240v70H0Z" fill="#cfb994"/>
+          <path d="M0 70h240m-240 24h240M0 112h240M0 128h240" stroke="#a68e6e" stroke-width="2"/>
+          <path d="M35 74v21m62-21v21m-68-31h74v12H29Z" fill="#aa7e50" stroke="#605443" stroke-width="3"/>
+          <path d="M45 19h43v35H45Z" fill="#e0cfac" stroke="#7e694f" stroke-width="3"/>
+          <path d="m48 51 14-13 7 6 7-10 10 17Z" fill="#95aa86"/>
+          <use data-plant-world href="#fern" x="133" y="42"/>
+        </svg>
+        <figcaption>World placement</figcaption>
+      </figure>
+      <figure class="surface">
+        <svg class="icon" id="bag-icon" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Fern on Probation Bag icon">
+          <use data-plant-icon href="#fern"/>
+        </svg>
+        <figcaption>Bag icon · 64px</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+<script>
+  const names={fern:'Fern on Probation',jade:'Succulent, Unsupervised',marigold:'Priority Marigold'};
+  const notes={
+    fern:'The groundskeeper will review its progress in ninety days.',
+    jade:'Thrives when nobody schedules a check-in.',
+    marigold:'It has been marked urgent and will be ignored immediately.',
+  };
+  const buttons=document.querySelectorAll('[data-plant]');
+  for(const button of buttons)button.addEventListener('click',()=>{
+    const plant=button.dataset.plant;
+    for(const choice of buttons)choice.setAttribute('aria-pressed',String(choice===button));
+    document.querySelector('#plant-name').textContent=names[plant];
+    document.querySelector('#plant-note').textContent=notes[plant];
+    for(const art of document.querySelectorAll('[data-plant-world],[data-plant-icon]'))art.setAttribute('href','#'+plant);
+    document.querySelector('#bag-icon').setAttribute('aria-label',names[plant]+' Bag icon');
+  });
+</script>
+</body>
+</html>

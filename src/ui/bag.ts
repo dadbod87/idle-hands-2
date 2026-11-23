@@ -1,3 +1,4 @@
+import {INKWOOD_HOOD,type TownHeadwear} from '../game/earned-headwear.ts';
 import type {OrchardPantry} from '../game/orchard.ts';
 import type {WorkshopState as LegacyWorkshopState} from '../game/workshop.ts';
 type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
@@ -9,6 +10,7 @@ type BagEquipmentActions={
  openSawLesson?:()=>void;
  backToWork?:()=>void;
  wardrobe?:{label:string;open:()=>void};
+ townHeadwear?:{wear:(item:TownHeadwear['worn'])=>void;trail?:()=>void};
 };
 
 const POCKET_LABELS:Record<BagGroup,string>={furniture:'Furniture',materials:'Materials',garden:'Garden',equipment:'Equipment'};
@@ -22,6 +24,9 @@ export class BagView {
  private status=document.createElement('p');
  private countKey=document.createElement('p');
  private appearance:HTMLElement|null=null;
+ private pocket:BagGroup='furniture';
+ private hoodAvailable=false;
+ private hood:{card:HTMLElement;state:HTMLElement;wear:HTMLButtonElement;trail:HTMLButtonElement;notice:HTMLElement}|null=null;
  private readonly pockets=new Map<BagGroup,HTMLButtonElement>();
  private readonly equipAction=document.createElement('button');
  private readonly sawLesson=document.createElement('button');
@@ -146,10 +151,33 @@ export class BagView {
    this.root.append(appearance);
    this.appearance=appearance;
   }
+  if(equipment?.townHeadwear){
+   const {wear,trail}=equipment.townHeadwear;
+   const card=document.createElement('section'),title=document.createElement('h4'),state=document.createElement('p'),icon=document.createElement('span');
+   const action=document.createElement('button'),find=document.createElement('button'),notice=document.createElement('p');
+   card.className='bag-appearance bag-earned-headwear';
+   card.dataset.earnedHeadwear='';
+   icon.className='bag-hood-icon';
+   icon.setAttribute('aria-hidden','true');
+   card.hidden=true;
+   title.textContent='Inkwood hood';
+   state.setAttribute('role','status');
+   action.type=find.type='button';
+   action.className=find.className='bag-headwear-action';
+   action.onclick=()=>wear(action.dataset.worn==='true'?null:INKWOOD_HOOD);
+   find.textContent='Open trail journal';
+   find.onclick=()=>trail?.();
+   notice.setAttribute('role','status');
+   card.append(icon,title,state,action,find,notice);
+   this.groups.get('equipment')?.after(card);
+   this.hood={card,state,wear:action,trail:find,notice};
+  }
   this.restoreOrder();
   const note=document.createElement('p');note.className='bag-note';note.textContent='Collect finished crafts to put them here. Inspecting never uses an item.';this.root.append(note,this.orderBar);this.root.addEventListener('focusin',this.focused);
  }
  openPocket(group:BagGroup,focus=false){
+  this.pocket=group;
+  if(this.hood)this.hood.card.hidden=group!=='equipment'||!this.hoodAvailable;
   if(group==='equipment'&&this.editing)this.setEditing(false);
   else this.select(null);
   this.orderButton.disabled=group==='equipment';
@@ -171,6 +199,29 @@ export class BagView {
   if(this.equipAction.disabled!==blocked)this.equipAction.disabled=blocked;
   if(this.sawLesson.hidden!==saw.owned)this.sawLesson.hidden=saw.owned;
   if(this.sawLesson.disabled!==blocked)this.sawLesson.disabled=blocked;
+ }
+
+ updateHeadwear(headwear:TownHeadwear|undefined,blocked:boolean){
+  if(!this.hood)return;
+  this.hoodAvailable=headwear!==undefined;
+  const {card,state,wear,trail}=this.hood;
+  const hidden=this.pocket!=='equipment'||!this.hoodAvailable;
+  if(card.hidden!==hidden)card.hidden=hidden;
+  const worn=headwear?.owned&&headwear.worn===INKWOOD_HOOD;
+  const text=worn?'Wearing · visible to nearby residents':headwear?.owned?'Earned · put away':'Record all three Inkwood discoveries to earn it.';
+  if(state.textContent!==text)state.textContent=text;
+  const label=worn?'Put hood away':'Wear Inkwood hood';
+  if(wear.textContent!==label)wear.textContent=label;
+  if(wear.dataset.worn!==String(!!worn))wear.dataset.worn=String(!!worn);
+  const owned=!!headwear?.owned;
+  if(wear.hidden===owned)wear.hidden=!owned;
+  if(trail.hidden!==owned)trail.hidden=owned;
+  if(wear.disabled!==blocked)wear.disabled=blocked;
+  if(trail.disabled!==blocked)trail.disabled=blocked;
+ }
+
+ headwearNotice(message:string){
+  if(this.hood&&this.hood.notice.textContent!==message)this.hood.notice.textContent=message;
  }
 
  private restoreOrder(){

@@ -329,3 +329,86 @@ test('Bag Equipment keeps an earned saw through equip, pine work, put away and r
   }finally{await context.close();}
  }
 });
+
+test('shared Inkwood hood uses confirmed equipment and renders on a visible neighbor',async({browser})=>{
+ mkdirSync(out,{recursive:true});
+ for(const [shape,width,height] of [['desktop',1440,900],['phone',320,640],['short',844,390]] as const){
+  const context=await browser.newContext({viewport:{width,height},hasTouch:shape!=='desktop'});
+  try{
+   const page=await context.newPage(),errors:string[]=[];
+   const position={room:'square',position:{x:24,y:25}};
+   let workshop=createWorkshop(Date.now()),logged=false,owned=false,worn:null|'inkwood'=null;
+   const snapshot=()=>({playerId:'aster',name:'Aster',workshop,position,headwear:{owned,worn},quest:{contentVersion:1,awarded:[]},bridge:{contributed:3,target:3,restored:true,phase:'open'},trail:{stamps:owned?['trailhead','old-sign','lookout']:[],pennantOwned:owned},plot:null,plots:[],seasonKey:'2026-11-20',scores:[],serverTime:Date.now(),serverInstance:'headwear-visual-fixture'});
+   const commands:{kind:string;item:string|null}[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   await page.addInitScript(()=>{
+    class Events extends EventTarget{
+     onopen:(()=>void)|null=null;
+     constructor(){super();(window as any).__headwearStream=this;queueMicrotask(()=>this.onopen?.());}
+     close(){}
+    }
+    (window as any).EventSource=Events;
+   });
+   await page.route('**/api/town/**',async route=>{
+    const path=new URL(route.request().url()).pathname.split('/').at(-1);
+    if(path==='fixtures')return route.fulfill({json:{fixtures:[{id:'aster',name:'Aster'}]}});
+    if(path==='login'){logged=true;return route.fulfill({json:{snapshot:snapshot()}});}
+    if(path==='snapshot')return logged?route.fulfill({json:{snapshot:snapshot()}}):route.fulfill({status:401,json:{message:'Choose a fixture.'}});
+    if(path==='movement')return route.fulfill({json:{ok:true,position}});
+    if(path==='command'){
+     const command=route.request().postDataJSON();
+     commands.push(command);
+     if(command.kind==='wear-headwear'&&owned){
+      worn=command.item;
+      workshop={...workshop,revision:workshop.revision+1};
+      return route.fulfill({json:{ok:true,message:'Headwear saved.',snapshot:snapshot()}});
+     }
+    }
+    return route.fulfill({status:400,json:{message:'Unknown fixture command.'}});
+   });
+   await page.goto('/?town=1&sky-study=1&phase=day');
+   await page.getByRole('button',{name:'Aster',exact:true}).click();
+   await ready(page);
+   const bag=page.locator('#bag'),equipment=page.getByRole('button',{name:'Equipment',exact:true});
+   const card=page.locator('[data-earned-headwear]');
+   const wear=page.getByRole('button',{name:'Wear Inkwood hood',exact:true});
+   const putAway=page.getByRole('button',{name:'Put hood away',exact:true});
+   await bag.click();await equipment.click();
+   await expect(card).toContainText('Record all three Inkwood discoveries');
+   await expect(wear).toBeHidden();
+   expect(commands).toEqual([]);
+   await page.getByRole('button',{name:'Open trail journal',exact:true}).click();
+   const rewardLink=page.getByRole('button',{name:'Open Bag · Inkwood hood',exact:true});
+   await expect(rewardLink).toBeHidden();
+   owned=true;
+   await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));
+   await rewardLink.click();
+   await expect(equipment).toHaveAttribute('aria-pressed','true');
+   await expect(wear).toBeEnabled();
+   if(shape==='desktop')await wear.press('Enter');else await wear.tap();
+   await expect(card).toContainText('Wearing · visible to nearby residents');
+   expect(commands).toHaveLength(1);
+   expect(commands[0]).toMatchObject({kind:'wear-headwear',item:'inkwood'});
+   await putAway.scrollIntoViewIfNeeded();
+   await page.screenshot({path:out+'/inkwood-equipment-'+shape+'.png'});
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   const visual=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual);
+   await expect.poll(async()=>(await visual()).headwear?.texture).toBe('headwear-inkwood');
+   const presence=(item?:'inkwood')=>page.evaluate(headwear=>{
+    const data=[{id:'bea',name:'Bea',room:'square',position:{x:22,y:25.5},...(headwear?{headwear}:{})}];
+    (window as any).__headwearStream.dispatchEvent(new MessageEvent('presence',{data:JSON.stringify(data)}));
+   },item);
+   await presence('inkwood');
+   await expect.poll(async()=>(await visual()).peerHeadwear).toEqual([{id:'bea',texture:'headwear-inkwood'}]);
+   await page.screenshot({path:out+'/inkwood-neighbor-'+shape+'.png'});
+   await presence();
+   await expect.poll(async()=>(await visual()).peerHeadwear).toEqual([]);
+   await bag.click();await equipment.click();await putAway.click();
+   await expect(card).toContainText('Earned · put away');
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   await expect.poll(async()=>(await visual()).headwear).toBeNull();
+   expect(commands).toHaveLength(2);
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});

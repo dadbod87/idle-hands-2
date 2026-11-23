@@ -153,6 +153,45 @@ test('local authoritative HTTP lifecycle and isolation',{skip:!enabled},async t=
   const controllers=[new AbortController(),new AbortController(),new AbortController()];const streams=await Promise.all([a,b,c].map((actor,index)=>fetch(base+'/api/town/events',{headers:{'X-IH2-Schema':TOWN_SCHEMA,Cookie:actor.cookie},signal:controllers[index].signal})));const reader=streams[0].body!.getReader();let text='';for(let n=0;n<8&&!text.includes('Bea');n++)text+=new TextDecoder().decode((await reader.read()).value);assert.match(text,/Bea/);assert.doesNotMatch(text,/Casey/);for(const controller of controllers)controller.abort();await reader.cancel().catch(()=>{});for(const stream of streams.slice(1))await stream.body?.cancel().catch(()=>{});
   const before=await snapshot(a.cookie);for(const[landmarkId,x,y]of[['trailhead',6,18],['old-sign',12,12],['lookout',4,8]] as const){await move(a.cookie,{room:'trail',position:{x,y}});s=await snapshot(a.cookie);r=await post('command',{kind:'stamp-trail',landmarkId,id:'stamp-'+landmarkId,expectedRevision:s.workshop.revision},a.cookie);assert.equal((await r.json()).ok,true);}
   s=await snapshot(a.cookie);assert.ok(s.trail.pennantOwned);assert.equal(s.trail.stamps.length,3);assert.deepEqual(s.workshop.inventory,before.workshop.inventory);assert.equal(s.workshop.bridgeKits,before.workshop.bridgeKits);assert.equal((await snapshot(b.cookie)).trail.stamps.length,0);
+  assert.deepEqual(s.headwear,{owned:true,worn:null});
+  const peerBefore=await snapshot(b.cookie);
+  const forbidden=await(await post('command',{kind:'wear-headwear',item:'inkwood',id:'unearned-hood',expectedRevision:peerBefore.workshop.revision},b.cookie)).json();
+  assert.equal(forbidden.ok,false);
+  assert.deepEqual(forbidden.snapshot.headwear,{owned:false,worn:null});
+  const dress={kind:'wear-headwear',item:'inkwood',id:'wear-earned-hood',expectedRevision:s.workshop.revision};
+  const publicContexts=[b,c,a],observers=publicContexts.map(()=>new AbortController());
+  const observerStreams=await Promise.all(publicContexts.map((actor,i)=>fetch(base+'/api/town/events',{headers:{'X-IH2-Schema':TOWN_SCHEMA,Cookie:actor.cookie},signal:observers[i].signal})));
+  const readers=observerStreams.map(stream=>stream.body!.getReader()),captured=publicContexts.map(()=>'');
+  const pumps=readers.map(async(reader,i)=>{
+   const decoder=new TextDecoder();
+   try{while(true){const {done,value}=await reader.read();if(done)break;captured[i]+=decoder.decode(value,{stream:true});}}catch(error){if(!observers[i].signal.aborted)throw error;}
+  });
+  const frames=(i:number)=>[...captured[i].matchAll(/event: presence\ndata: (.*)\n/g)].map(match=>JSON.parse(match[1]));
+  async function waitForFrame(predicate:()=>boolean){for(let n=0;n<60&&!predicate();n++)await new Promise(resolve=>setTimeout(resolve,25));assert.ok(predicate(),'Expected scoped presence frame');}
+  try{
+   await waitForFrame(()=>frames(0).some(frame=>frame.some((peer:{id:string})=>peer.id==='aster'))&&frames(1).length>0);
+   const worn=await(await post('command',dress,a.cookie)).json();
+   assert.ok(worn.ok,worn.message);
+   assert.deepEqual(worn.snapshot.headwear,{owned:true,worn:'inkwood'});
+   assert.deepEqual(worn.snapshot.workshop.inventory,s.workshop.inventory);
+   assert.equal((await(await post('command',dress,a.cookie)).json()).replayed,true);
+   await waitForFrame(()=>frames(0).some(frame=>frame.some((peer:{headwear?:string})=>peer.headwear==='inkwood')));
+   const shown=frames(0).flat().find(peer=>peer.headwear==='inkwood');
+   assert.deepEqual(Object.keys(shown).sort(),['headwear','id','name','position','room']);
+   assert.ok(frames(1).every(frame=>frame.every((peer:{id:string})=>peer.id!=='aster')));
+   const putAway=await(await post('command',{...dress,item:null,id:'put-away-hood',expectedRevision:worn.snapshot.workshop.revision},a.cookie)).json();
+   assert.ok(putAway.ok,putAway.message);
+   assert.deepEqual(putAway.snapshot.headwear,{owned:true,worn:null});
+   await waitForFrame(()=>frames(0).at(-1)?.some((peer:{id:string;headwear?:string})=>peer.id==='aster'&&!peer.headwear));
+   const reworn=await(await post('command',{...dress,id:'restart-hood',expectedRevision:putAway.snapshot.workshop.revision},a.cookie)).json();
+   assert.ok(reworn.ok,reworn.message);
+  }finally{
+   for(const controller of observers)controller.abort();
+   await Promise.all(readers.map(reader=>reader.cancel().catch(()=>{})));
+   await Promise.all(pumps);
+  }
+  await app.close();await start();
+  assert.deepEqual((await snapshot(a.cookie)).headwear,{owned:true,worn:'inkwood'});
   await move(a.cookie,{room:'trail',position:{x:9,y:24}});await move(a.cookie,{room:'square',position:{x:25.5,y:12.6}});assert.deepEqual((await snapshot(a.cookie)).position,{room:'square',position:{x:25.5,y:12.6}});
  });
  await t.test('only a new final pennant stamp invalidates a home visitor, not private stamps or receipt replay',async()=>{

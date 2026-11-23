@@ -1,3 +1,9 @@
+# November 23 — Bag equipment accepted
+
+PR #107 merged as `168e85720d680dd125d6204e84a12e455bf14878`. Its exact main checks passed 593 domain/database tests and 254 browser cases. [Verification](evidence/IH2-191/EXACT_CI.json).
+
+The next batch is the [Inkwood hood and trail guidance](evidence/IH2-192/PLAN.md) on `feat/inkwood-hood`. Saved previews and databases remain stopped.
+
 # November 23 — first arrival and Bag movement accepted
 
 PR #106 merged as `a2421996266fa96115db72034395c9a6b1282430`. Main passed 592 domain and database tests and 253 browser cases on its exact commit. [Verification](evidence/IH2-188/EXACT_CI.json).

@@ -1,3 +1,4 @@
+import {INKWOOD_HOOD,type EarnedHeadwear} from '../game/earned-headwear.ts';
 import { NATURALIST_KEEPSAKE } from '../game/home-keepsake.ts';
 import {LODGING_FOOTPRINT,LODGING_FRONT} from '../game/lodging.ts';
 import type {Headwear} from '../art/headwear.ts';
@@ -96,8 +97,8 @@ export class WorldScene extends Phaser.Scene {
   private ambientEnabled=false;
   private gestureOffset=0;
   private reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  residents:Array<{id:string;name:string;room:string;homePlotId?:string;districtId?:string;position:{x:number;y:number}}>=[];
-  private residentViews=new Map<string,{image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text}>();
+  residents:Array<{id:string;name:string;room:string;homePlotId?:string;districtId?:string;headwear?:EarnedHeadwear;position:{x:number;y:number}}>=[];
+  private residentViews=new Map<string,{image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text;headwear?:Phaser.GameObjects.Image}>();
   private bridgeView?:Phaser.GameObjects.Image;
   private bridgeRibbon?:Phaser.GameObjects.Graphics;
   private bridgeRibbonLabel?:Phaser.GameObjects.Text;
@@ -220,12 +221,10 @@ export class WorldScene extends Phaser.Scene {
   private lodgingLabels:Phaser.GameObjects.Text[]=[];
   private lodgingFollow(height:number){return this.resting&&height<300?54:0;}
 
-  private paintHeadwear(x:number,y:number,facing:Facing,pose:number){
-    const current=this.headwear;
-    const layer=this.headwearLayer;
-    if(!current||this.resting){
+  private paintHeadwear(current:Headwear|null,layer:Phaser.GameObjects.Image|undefined,x:number,y:number,frame:number){
+    if(!current){
       if(layer?.visible)layer.setVisible(false);
-      return;
+      return layer;
     }
     const key='headwear-'+current;
     if(!this.textures.exists(key)){
@@ -235,16 +234,16 @@ export class WorldScene extends Phaser.Scene {
         this.load.svg(key,'/art/headwear/'+current+'.svg');
         if(!this.load.isLoading())this.load.start();
       }
-      return;
+      return layer;
     }
     this.parseActivityTexture(key);
-    const frame=residentFrame(facing,pose);
-    const image=layer??(this.headwearLayer=this.add.image(x,y,key,frame)
-      .setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale));
+    const image=layer??this.add.image(x,y,key,frame)
+      .setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale);
     if(image.texture.key!==key||String(image.frame.name)!==String(frame))image.setTexture(key,frame);
     if(image.x!==x||image.y!==y)image.setPosition(x,y);
     if(image.depth!==y+.01)image.setDepth(y+.01);
     if(!image.visible)image.setVisible(true);
+    return image;
   }
   private activityLoading=new Set<string>();
   private activityPrefixes=['garden-actions-','saw-equipped-','carpentry-actions-','orchard-picking-'] as const;
@@ -646,7 +645,7 @@ export class WorldScene extends Phaser.Scene {
     }
     this.residentialLife?.replace(chimneys);this.sky?.setWindows(this.streetWindows);
   }
-  visualState(){const camera=this.cameras.main;return {resting:!!this.bedPose?.visible,headwear:this.headwearLayer?.visible?{texture:this.headwearLayer.texture.key,frame:this.headwearLayer.frame.name,x:this.headwearLayer.x,y:this.headwearLayer.y}:null,canopyTransformWrites:this.canopyTransformWrites,ordinaryBench:{phase:this.benchPhase,recipe:this.benchRecipe,piece:this.benchPiece?.visible?this.benchPiece.texture.key:null},walkTarget:this.walkMark?.visible?{x:this.walkMark.x/TILE-.5,y:this.walkMark.y/TILE-.5}:null,commons:{signs:this.commonsSigns,life:this.commonsLife?.snapshot()??null,framing:this.room==='square'?commonsFrame(this.session.position,camera.width,camera.height):null,shelters:this.occluders.filter(o=>o.image instanceof Phaser.GameObjects.Graphics).map(o=>({alpha:o.image.alpha,x:o.x,y:o.y,width:o.width,height:o.height}))},camera:{zoom:camera.zoom,scrollX:camera.scrollX,scrollY:camera.scrollY,worldView:{x:camera.worldView.x,y:camera.worldView.y,width:camera.worldView.width,height:camera.worldView.height},matrix:Array.from(camera.matrixCombined.matrix).slice(0,6)},neighborhood:{yardItems:this.yardViews.map(v=>({texture:v.texture.key,depth:v.depth,bounds:v.getBounds()})),districtId:this.districtId??null,life:this.residentialLife?.snapshot()??null,windows:this.streetWindows.map(w=>({...w})),sites:this.streetViews.map(v=>({slot:v.slot,plotId:v.plotId,texture:v.image.texture.key,label:v.label.text,bounds:v.image.getBounds(),labelBounds:v.label.getBounds()}))},depots:this.depotViews.map(d=>({resource:d.resource,key:d.image.texture.key,depth:d.image.depth,bounds:d.image.getBounds(),labelBounds:d.label.getBounds(),label:d.label.text})),letterboxes:this.decorationViews.filter((v):v is Phaser.GameObjects.Image=>v instanceof Phaser.GameObjects.Image&&v.texture.key.startsWith('letterbox-')).map(v=>v.texture.key),carpentry:{pineTextures:this.pineViews.map(v=>v.image.texture.key),rackTexture:this.rackView?.texture.key??null,noticeboardTexture:this.noticeboardView?.texture.key??null,equipped:this.carpentryState?.()?.saw.equipped??false,lastAction:this.lastCarpentryAction,action:this.carpentryMotion?.action??null},garden:{room:this.room,lastAction:this.lastGardenAction,bedTextures:this.gardenViews.map(v=>v.texture.key),bedFeet:this.gardenViews.map(v=>({x:v.x,y:v.y})),labels:this.gardenLabels.map((v,i)=>({text:v.text,target:this.gardenLabelTargets[i],bounds:v.getBounds(),hitBounds:this.gardenLabelHit(v)})),action:this.gardenMotion?.action??null,actorTexture:this.actor?.texture.key??null,welcomeTexture:this.gardenWelcomeView?.texture.key??null},bridge:{ceremony:!!this.bridgeRibbon?.visible,phase:this.bridgePhase??(this.bridgeRestored?'open':'collecting'),texture:this.bridgeView?.texture.key??null,readyAt:this.bridgeReadyAt},home:{keepsakeVisible:!!this.keepsakeView?.visible,pennantVisible:this.pennantView?.visible??false,pennantTexture:this.pennantView?.texture.key??null,pennantPosition:this.pennantView?{x:this.pennantView.x,y:this.pennantView.y}:null,room:this.room,plotId:this.loadedHomePlotId??null,ownerName:this.homeOwnerName,level:this.homeLevel,decorations:this.room.startsWith('home')&&this.decorations?this.decorations():null,interiorTexture:this.room.startsWith('home')?this.loadedInteriorKey:null,furniture:this.decorationViews.map(view=>({texture:view.texture.key,x:view.x,y:view.y,alpha:view.alpha}))},facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:(this.room==='square'||this.room==='neighborhood')?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
+  visualState(){const camera=this.cameras.main;return {peerHeadwear:[...this.residentViews].filter(([,view])=>view.headwear?.visible).map(([id,view])=>({id,texture:view.headwear!.texture.key})),resting:!!this.bedPose?.visible,headwear:this.headwearLayer?.visible?{texture:this.headwearLayer.texture.key,frame:this.headwearLayer.frame.name,x:this.headwearLayer.x,y:this.headwearLayer.y}:null,canopyTransformWrites:this.canopyTransformWrites,ordinaryBench:{phase:this.benchPhase,recipe:this.benchRecipe,piece:this.benchPiece?.visible?this.benchPiece.texture.key:null},walkTarget:this.walkMark?.visible?{x:this.walkMark.x/TILE-.5,y:this.walkMark.y/TILE-.5}:null,commons:{signs:this.commonsSigns,life:this.commonsLife?.snapshot()??null,framing:this.room==='square'?commonsFrame(this.session.position,camera.width,camera.height):null,shelters:this.occluders.filter(o=>o.image instanceof Phaser.GameObjects.Graphics).map(o=>({alpha:o.image.alpha,x:o.x,y:o.y,width:o.width,height:o.height}))},camera:{zoom:camera.zoom,scrollX:camera.scrollX,scrollY:camera.scrollY,worldView:{x:camera.worldView.x,y:camera.worldView.y,width:camera.worldView.width,height:camera.worldView.height},matrix:Array.from(camera.matrixCombined.matrix).slice(0,6)},neighborhood:{yardItems:this.yardViews.map(v=>({texture:v.texture.key,depth:v.depth,bounds:v.getBounds()})),districtId:this.districtId??null,life:this.residentialLife?.snapshot()??null,windows:this.streetWindows.map(w=>({...w})),sites:this.streetViews.map(v=>({slot:v.slot,plotId:v.plotId,texture:v.image.texture.key,label:v.label.text,bounds:v.image.getBounds(),labelBounds:v.label.getBounds()}))},depots:this.depotViews.map(d=>({resource:d.resource,key:d.image.texture.key,depth:d.image.depth,bounds:d.image.getBounds(),labelBounds:d.label.getBounds(),label:d.label.text})),letterboxes:this.decorationViews.filter((v):v is Phaser.GameObjects.Image=>v instanceof Phaser.GameObjects.Image&&v.texture.key.startsWith('letterbox-')).map(v=>v.texture.key),carpentry:{pineTextures:this.pineViews.map(v=>v.image.texture.key),rackTexture:this.rackView?.texture.key??null,noticeboardTexture:this.noticeboardView?.texture.key??null,equipped:this.carpentryState?.()?.saw.equipped??false,lastAction:this.lastCarpentryAction,action:this.carpentryMotion?.action??null},garden:{room:this.room,lastAction:this.lastGardenAction,bedTextures:this.gardenViews.map(v=>v.texture.key),bedFeet:this.gardenViews.map(v=>({x:v.x,y:v.y})),labels:this.gardenLabels.map((v,i)=>({text:v.text,target:this.gardenLabelTargets[i],bounds:v.getBounds(),hitBounds:this.gardenLabelHit(v)})),action:this.gardenMotion?.action??null,actorTexture:this.actor?.texture.key??null,welcomeTexture:this.gardenWelcomeView?.texture.key??null},bridge:{ceremony:!!this.bridgeRibbon?.visible,phase:this.bridgePhase??(this.bridgeRestored?'open':'collecting'),texture:this.bridgeView?.texture.key??null,readyAt:this.bridgeReadyAt},home:{keepsakeVisible:!!this.keepsakeView?.visible,pennantVisible:this.pennantView?.visible??false,pennantTexture:this.pennantView?.texture.key??null,pennantPosition:this.pennantView?{x:this.pennantView.x,y:this.pennantView.y}:null,room:this.room,plotId:this.loadedHomePlotId??null,ownerName:this.homeOwnerName,level:this.homeLevel,decorations:this.room.startsWith('home')&&this.decorations?this.decorations():null,interiorTexture:this.room.startsWith('home')?this.loadedInteriorKey:null,furniture:this.decorationViews.map(view=>({texture:view.texture.key,x:view.x,y:view.y,alpha:view.alpha}))},facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:(this.room==='square'||this.room==='neighborhood')?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
   private updateAmbient(delta:number){
     this.ambientEnabled=!document.hidden&&!this.reducedMotion.matches;
     this.sky?.motion(0,this.ambientEnabled);
@@ -728,7 +727,7 @@ export class WorldScene extends Phaser.Scene {
       if(this.actor.visible===this.resting)this.actor.setVisible(!this.resting);
     }
     const actionFacing=available?(orchard?.facing??motion?.facing??gardenMotion?.facing):undefined;
-    this.paintHeadwear(x,y,actionFacing??this.facing,actionFacing?0:this.frame);
+    this.headwearLayer=this.paintHeadwear(this.resting?null:this.headwear,this.headwearLayer,x,y,residentFrame(actionFacing??this.facing,actionFacing?0:this.frame));
     this.drawGarden();this.drawCarpentry();this.drawOuting();
     this.updateAmbient(delta);
     this.sky?.update(this.skyNow(),delta,this.room==='workshop'||this.room==='lodging'||this.room.startsWith('home'),this.ambientEnabled,this.skyFixture);
@@ -740,8 +739,8 @@ export class WorldScene extends Phaser.Scene {
     this.paintBridgeCeremony();
     if(this.bridgeView)this.bridgeView.setTexture(this.bridgeTexture());if(this.pennantView)this.pennantView.setVisible(this.homePennantOwned);
     const peers=this.residents.filter(r=>r.room===this.room&&(!this.room.startsWith('home')||r.homePlotId===this.homePlotId)&&(this.room!=='neighborhood'||r.districtId===this.districtId)&&Number.isFinite(r.position.x)&&Number.isFinite(r.position.y));
-    for(const[id,view]of this.residentViews)if(!peers.some(p=>p.id===id)){view.image.destroy();view.label.destroy();this.residentViews.delete(id);}
-    for(const peer of peers){let view=this.residentViews.get(peer.id);if(!view){view={image:this.add.image(0,0,'variety-resident-'+residentArt(peer.id),0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale),label:this.add.text(0,0,peer.name,{fontFamily:'Georgia',fontSize:12,color:'#253c34',backgroundColor:'#f8f1df',padding:{x:4,y:3}}).setOrigin(.5,1)};this.residentViews.set(peer.id,view);}const px=(peer.position.x+.5)*TILE,py=(peer.position.y+.5)*TILE;view.image.setPosition(px,py).setDepth(py);view.label.setPosition(px,py-63).setDepth(py+1);}
+    for(const[id,view]of this.residentViews)if(!peers.some(p=>p.id===id)){view.image.destroy();view.label.destroy();view.headwear?.destroy();this.residentViews.delete(id);}
+    for(const peer of peers){let view=this.residentViews.get(peer.id);if(!view){view={image:this.add.image(0,0,'variety-resident-'+residentArt(peer.id),0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale),label:this.add.text(0,0,peer.name,{fontFamily:'Georgia',fontSize:12,color:'#253c34',backgroundColor:'#f8f1df',padding:{x:4,y:3}}).setOrigin(.5,1)};this.residentViews.set(peer.id,view);}const px=(peer.position.x+.5)*TILE,py=(peer.position.y+.5)*TILE;view.image.setPosition(px,py).setDepth(py);view.headwear=this.paintHeadwear(peer.headwear===INKWOOD_HOOD?INKWOOD_HOOD:null,view.headwear,px,py,0);view.label.setPosition(px,py-63).setDepth(py+1);}
     this.onFrame?.();
   }
 }

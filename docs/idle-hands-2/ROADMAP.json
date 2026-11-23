@@ -3648,7 +3648,7 @@
     {
       "id": "IH2-191",
       "title": "Equip an earned hand saw directly in Bag",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/bag-equipment",
       "goal": "See which hand tool is equipped and change it without interrupting pine work.",
       "depends_on": [
@@ -3662,9 +3662,31 @@
         "Keep saved previews and databases stopped. No new gear rewards, fees, storage or original-game changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-191/PLAN.md"
+        "docs/evidence/IH2-191/PLAN.md",
+        "docs/evidence/IH2-191/EXACT_CI.json"
+      ],
+      "progress_note": "PR #107 and exact main 168e857 passed 593 domain/database tests and 254 browser cases."
+    },
+    {
+      "id": "IH2-192",
+      "title": "Earn and wear a visible Inkwood hood",
+      "status": "in_progress",
+      "owner_branch": "feat/inkwood-hood",
+      "goal": "Reward personal trail completion with a wearable, visible cosmetic and a short route from the last stamp to Equipment.",
+      "depends_on": [
+        "IH2-191"
+      ],
+      "acceptance": [
+        "Verify the native trail award, no unearned equip, durable wearing and same-room appearance.",
+        "Verify desktop/phone/short keyboard and touch, explicit removal, and trail guidance with no cost or movement changes."
+      ],
+      "exclusions": [
+        "No saved-preview restart, production deployment, paid services, real accounts or additional gear."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-192/PLAN.md"
       ]
     }
   ],
-  "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."
+  "source_status_note": "PR #107 is accepted on main. Inkwood headwear and trail guidance form the next candidate."
 }

@@ -351,6 +351,15 @@ export class BagView {
   const slot=this.slots.get(id);
   if(slot?.choose&&!slot.choose.hidden)this.focusCardAction(slot.card,slot.choose);
  }
+ focusRepairKit(){
+  this.openPocket('materials');
+  const slot=this.slots.get('bridge-kit');
+  const title=slot?.card.querySelector('h4');
+  if(slot&&title){
+   title.tabIndex=-1;
+   this.focusCardAction(slot.card,title);
+  }
+ }
  focusHeadwear(item:EarnedHeadwear){
   const entry=this.headwearCards.get(item);
   if(entry&&!entry.card.hidden)this.focusCardAction(entry.card,entry.title);

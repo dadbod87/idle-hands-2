@@ -220,7 +220,7 @@ export class WorkshopUI {
   for(const id of RESOURCE_IDS){const card=document.createElement('div'),label=document.createElement('span'),icon=document.createElement('img'),quantity=document.createElement('strong');icon.src='/art/homes/home-'+id+'-icon.svg';icon.alt='';icon.width=20;icon.height=20;label.append(icon,names[id]);quantity.dataset.quantity=id;quantity.textContent=String(this.state.inventory[id]);card.append(label,quantity);materials.append(card);}b.append(materials);
   const work=document.createElement('section');work.className='bench-work';work.dataset.benchWork='';work.dataset.seen=this.state.job?'1':'0';work.hidden=!this.state.job;
   const title=document.createElement('h3');title.dataset.benchTitle='';const job=this.p('','bench-clock');job.dataset.job='';job.tabIndex=0;const detail=this.p('','bench-output');detail.dataset.benchWorkDetail='';
-  const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';claim.setAttribute('aria-describedby','bench-work-detail');detail.id='bench-work-detail';detail.tabIndex=0;const bag=this.button('Open bag',()=>this.showInventory(false,work.dataset.recipe==='planter'?'planter':undefined),'destination');const collected=document.createElement('span');collected.textContent='✓ Collected';collected.setAttribute('aria-hidden','true');collected.className='bench-bag-confirmation';bag.prepend(collected);bag.dataset.benchBag='';bag.setAttribute('aria-describedby','bench-work-detail');bag.hidden=true;work.append(title,job,detail,claim,bag);b.append(work);
+  const claim=this.button('Collect finished work',()=>this.dispatch({kind:'claim'}),'destination');claim.dataset.claim='';claim.setAttribute('aria-describedby','bench-work-detail');detail.id='bench-work-detail';detail.tabIndex=0;const bag=this.button('Open bag',()=>this.showInventory(false,work.dataset.recipe==='bridge-kit'?'bridge-kit':'planter'),'destination');const collected=document.createElement('span');collected.textContent='✓ Collected';collected.setAttribute('aria-hidden','true');collected.className='bench-bag-confirmation';bag.prepend(collected);bag.dataset.benchBag='';bag.setAttribute('aria-describedby','bench-work-detail');bag.hidden=true;work.append(title,job,detail,claim,bag);b.append(work);
   const outing=document.createElement('section');
   outing.className='bench-outing';
   outing.dataset.benchOuting='';
@@ -259,7 +259,7 @@ export class WorkshopUI {
  get clerkCapOwned(){return this.host.townHeadwear?.()?.clerkOwned===true;}
  showEquipment(backToWork?:()=>void){this.showInventory(false,undefined,{backToWork});}
  showHeadwear(item:EarnedHeadwear){this.showInventory(false,undefined,{item});}
- showInventory(arrange=false,received?:PropId,equipment?:{backToWork?:()=>void;item?:EarnedHeadwear}){const render=()=>{
+ showInventory(arrange=false,received?:PropId|'bridge-kit',equipment?:{backToWork?:()=>void;item?:EarnedHeadwear}){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Belongings',()=>this.showJournal()));
   const select=this.host.inside()?document.createElement('select'):null;
   const chooseFurniture=select?(id:PropId)=>{
@@ -313,7 +313,7 @@ export class WorkshopUI {
    this.renderPlacement();
   }
   this.notice();b.append(this.disclosure());this.updateClocks();
- };this.begin('Bag',render);if(arrange)this.bag?.arrange();else if(received)this.bag?.focusFurniture(received);else if(equipment){this.bag?.openPocket('equipment',true);if(equipment.item)this.bag?.focusHeadwear(equipment.item);}}
+ };this.begin('Bag',render);if(arrange)this.bag?.arrange();else if(received==='bridge-kit')this.bag?.focusRepairKit();else if(received)this.bag?.focusFurniture(received);else if(equipment){this.bag?.openPocket('equipment',true);if(equipment.item)this.bag?.focusHeadwear(equipment.item);}}
  showJournal(){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Notes & progress',()=>this.showInventory()));
   const guidance=document.createElement('section');guidance.dataset.journalGuidance='';const heading=document.createElement('h3');heading.textContent='Your next step';const quest=this.p('','quest-card');quest.dataset.quest='';guidance.append(heading,quest);b.append(guidance);

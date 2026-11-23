@@ -283,10 +283,14 @@ test('local authoritative HTTP lifecycle and isolation',{skip:!enabled},async t=
   await outGarden();await nella();await pineProof({action:'learn-saw'});await pineProof({action:'equip-saw',equipped:true});await pine();await pineProof({action:'gather-pine',station:'crooked'});await inRack();await pineProof({action:'start-easel'});clock+=12*3600000;a.cookie=(await login('aster')).cookie;await pineProof({action:'claim-easel'});await outRack();await nella();await pineProof({action:'record-easel'});
   const clerk=await snapshot(a.cookie);
   assert.deepEqual(clerk.headwear,{owned:true,clerkOwned:true,worn:null});
-  const chooseCap=await(await post('command',{kind:'wear-headwear',item:'clerk',id:'restore-wear-cap',expectedRevision:clerk.workshop.revision},a.cookie)).json();
-  assert.ok(chooseCap.ok,chooseCap.message);
-  assert.deepEqual(chooseCap.snapshot.headwear,{owned:true,clerkOwned:true,worn:'clerk'});
-  assert.deepEqual(chooseCap.snapshot.workshop.owned,clerk.workshop.owned);
+  let wearing=clerk;
+  for(const [item,id] of [['clerk','restore-wear-cap'],['inkwood','restore-switch-hood'],['clerk','restore-switch-cap']] as const){
+   const result=await(await post('command',{kind:'wear-headwear',item,id,expectedRevision:wearing.workshop.revision},a.cookie)).json();
+   assert.ok(result.ok,result.message);
+   assert.deepEqual(result.snapshot.headwear,{owned:true,clerkOwned:true,worn:item});
+   assert.deepEqual(result.snapshot.workshop.owned,clerk.workshop.owned);
+   wearing=result.snapshot;
+  }
 
   await inGarden();await gardenProof({action:'harvest',bed:2});await gardenProof({action:'plant',bed:2,crop:'marigold'});await outGarden();await nella();await pineProof({action:'deliver-hamper'});clock+=4*3600000;await inGarden();await gardenProof({action:'harvest',bed:2});await outGarden();await pine();await pineProof({action:'gather-pine',station:'crooked'});await inRack();await pineProof({action:'start-easel'});await outRack();await move(a.cookie,{room:'square',position:{x:30,y:29}});const keep=await app.store.snapshot('aster');assert.equal((await(await post('command',{kind:'edit-plot',plotId:keep.plot!.id,action:'place',prop:'easel',slot:'north-middle',id:'restore-placed-easel',expectedRevision:keep.workshop.revision},a.cookie)).json()).ok,true);
   // Commission extension uses real HTTP movement/commands and the existing

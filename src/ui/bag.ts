@@ -26,7 +26,7 @@ export class BagView {
  private countKey=document.createElement('p');
  private appearance:HTMLElement|null=null;
  private pocket:BagGroup='furniture';
- private headwearCards=new Map<EarnedHeadwear,{card:HTMLElement;state:HTMLElement;wear:HTMLButtonElement;find:HTMLButtonElement;notice:HTMLElement}>();
+ private headwearCards=new Map<EarnedHeadwear,{card:HTMLElement;title:HTMLElement;state:HTMLElement;wear:HTMLButtonElement;find:HTMLButtonElement;notice:HTMLElement}>();
  private townHeadwear?:TownHeadwear;
  private readonly pockets=new Map<BagGroup,HTMLButtonElement>();
  private readonly equipAction=document.createElement('button');
@@ -162,6 +162,7 @@ export class BagView {
    icon.setAttribute('aria-hidden','true');
    card.hidden=true;
    title.textContent=headwearName[item];
+   title.tabIndex=-1;
    state.setAttribute('role','status');
    action.type=find.type='button';
    action.className=find.className='bag-headwear-action';
@@ -171,7 +172,7 @@ export class BagView {
    notice.setAttribute('role','status');
    card.append(icon,title,state,action,find,notice);
    this.root.append(card);
-   this.headwearCards.set(item,{card,state,wear:action,find,notice});
+   this.headwearCards.set(item,{card,title,state,wear:action,find,notice});
   }
   this.restoreOrder();
   const note=document.createElement('p');note.className='bag-note';note.textContent='Collect finished crafts to put them here. Inspecting never uses an item.';this.root.append(note,this.orderBar);this.root.addEventListener('focusin',this.focused);
@@ -292,12 +293,19 @@ export class BagView {
 
  arrange(selector='select[aria-label="Furniture to place"]'){const dialog=this.root.closest('dialog'),target=dialog?.querySelector<HTMLElement>(selector),header=dialog?.querySelector('header');if(dialog&&target&&header){const details=target.closest('details');if(details)details.open=true;target.focus({preventScroll:true});dialog.scrollTop+=target.getBoundingClientRect().top-header.getBoundingClientRect().bottom-12;}}
  focusFurniture(id:PropId){
-  const slot=this.slots.get(id),button=slot?.choose;
+  const slot=this.slots.get(id);
+  if(slot?.choose&&!slot.choose.hidden)this.focusCardAction(slot.card,slot.choose);
+ }
+ focusHeadwear(item:EarnedHeadwear){
+  const entry=this.headwearCards.get(item);
+  if(entry&&!entry.card.hidden)this.focusCardAction(entry.card,entry.title);
+ }
+ private focusCardAction(card:HTMLElement,action:HTMLElement){
   const dialog=this.root.closest('dialog'),header=dialog?.querySelector('header');
-  if(!slot||!button||button.hidden||!dialog||!header)return;
+  if(!dialog||!header)return;
   const available=dialog.getBoundingClientRect().bottom-header.getBoundingClientRect().bottom-24;
-  const target=slot.card.getBoundingClientRect().height<=available?slot.card:button;
-  button.focus({preventScroll:true});
+  const target=card.getBoundingClientRect().height<=available?card:action;
+  action.focus({preventScroll:true});
   dialog.scrollTop+=target.getBoundingClientRect().top-header.getBoundingClientRect().bottom-12;
  }
  private focused=(event:FocusEvent)=>{const t=event.target;if(!(t instanceof HTMLElement)||!t.matches(':focus-visible'))return;const dialog=this.root.closest('dialog'),header=dialog?.querySelector('header');if(!dialog||!header)return;const b=t.getBoundingClientRect(),h=header.getBoundingClientRect(),d=dialog.getBoundingClientRect();if(b.top<h.bottom+8||b.bottom>d.bottom-8)dialog.scrollTop+=b.top-h.bottom-8;};

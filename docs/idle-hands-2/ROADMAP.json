@@ -3706,7 +3706,7 @@
       "evidence": [
         "docs/evidence/IH2-193/PLAN.md"
       ],
-      "progress_note": "A dependent candidate is prepared locally. Exact hosted acceptance waits for the Inkwood base and the next batched gate."
+      "progress_note": "A dependent candidate is saved on feat/clerk-cap. Local desktop and touch checks are complete. Hosted acceptance waits for the Inkwood base and the next batched gate."
     }
   ],
   "source_status_note": "PR #107 is accepted on main. Inkwood headwear and trail guidance form the next candidate."

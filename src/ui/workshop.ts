@@ -1,4 +1,4 @@
-import {ownsHeadwear,type TownHeadwear} from '../game/earned-headwear.ts';
+import {ownsHeadwear,type EarnedHeadwear,type TownHeadwear} from '../game/earned-headwear.ts';
 import { gardenBedView } from '../game/garden-view.ts';
 import type {OrchardPantry} from '../game/orchard.ts';
 import { rewardCue, type WorldCue } from '../audio/world-sounds.ts';
@@ -230,7 +230,8 @@ export class WorkshopUI {
  private toolSwitch(label:string,open:()=>void){const row=document.createElement('div');row.className='personal-tool-switch';const copy=this.p(label);row.append(copy,this.button(label==='Belongings'?'Open journal':'Open bag',()=>{open();this.host.body.closest('dialog')?.querySelector<HTMLButtonElement>('[aria-label="Close panel"]')?.focus({preventScroll:true});}));return row;}
  get clerkCapOwned(){return this.host.townHeadwear?.()?.clerkOwned===true;}
  showEquipment(backToWork?:()=>void){this.showInventory(false,undefined,{backToWork});}
- showInventory(arrange=false,received?:PropId,equipment?:{backToWork?:()=>void}){const render=()=>{
+ showHeadwear(item:EarnedHeadwear){this.showInventory(false,undefined,{item});}
+ showInventory(arrange=false,received?:PropId,equipment?:{backToWork?:()=>void;item?:EarnedHeadwear}){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Belongings',()=>this.showJournal()));
   const chooseFurniture=this.host.inside()?(id:PropId)=>{
    this.selected=id;
@@ -272,7 +273,7 @@ export class WorkshopUI {
   const select=document.createElement('select');select.setAttribute('aria-label','Furniture to place');
   for(const id of PROP_IDS){const opt=document.createElement('option');opt.value=id;opt.textContent=names[id];select.append(opt);}select.value=this.selected;select.onchange=()=>{this.selected=select.value;this.preview=null;this.renderPlacement();};arrangement.append(select);
   const placement=document.createElement('div');placement.id='placement';arrangement.append(placement);b.append(arrangement);this.renderPlacement();this.notice();b.append(this.disclosure());this.updateClocks();
- };this.begin('Bag',render);if(arrange)this.bag?.arrange();else if(received)this.bag?.focusFurniture(received);else if(equipment)this.bag?.openPocket('equipment',true);}
+ };this.begin('Bag',render);if(arrange)this.bag?.arrange();else if(received)this.bag?.focusFurniture(received);else if(equipment){this.bag?.openPocket('equipment',true);if(equipment.item)this.bag?.focusHeadwear(equipment.item);}}
  showJournal(){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Notes & progress',()=>this.showInventory()));
   const guidance=document.createElement('section');guidance.dataset.journalGuidance='';const heading=document.createElement('h3');heading.textContent='Your next step';const quest=this.p('','quest-card');quest.dataset.quest='';guidance.append(heading,quest);b.append(guidance);

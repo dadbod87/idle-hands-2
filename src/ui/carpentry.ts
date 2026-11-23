@@ -1,3 +1,4 @@
+import {CLERK_CAP} from '../game/earned-headwear.ts';
 import type {GardenState} from '../game/live-garden.ts';
 import type {GardenState as LegacyGardenState} from '../game/garden.ts';
 const easelGoal=(s:CarpentryState,g:GardenState)=>legacyEaselGoal(s,g as unknown as LegacyGardenState);
@@ -78,7 +79,7 @@ export class CarpentryUI{
   const choose=(a:CarpentryAction)=>this.selectAction(a),actions=this.el('div','','carpentry-actions'),more=this.details('Other work, equipment & easel goal');more.dataset.pineOther='';
   const lesson=this.button('Preview free saw lesson',()=>choose({action:'learn-saw'}),'learn-saw'),equip=this.button('Preview equipment change',()=>choose({action:'equip-saw',equipped:!this.view().state.saw.equipped}),'equip-saw'),recover=this.button('Preview missing saw recovery',()=>choose({action:'recover-saw'}),'recover-saw'),hamper=this.button('Preview hamper · 1 pine + 2 radishes + 1 marigold',()=>choose({action:'deliver-hamper'}),'deliver-hamper'),record=this.button('Preview craft record · keep the easel',()=>choose({action:'record-easel'}),'record-easel'),goal=this.button('Change easel planning aid',()=>choose({action:'set-easel-goal',enabled:!this.view().state.keepEaselGoal}),'set-easel-goal');
   const nodes=[lesson,equip,recover,hamper,record,goal],homes=nodes.map(node=>{const home=this.el('div');home.append(node);actions.append(home);return home;});more.append(actions);const confirm=this.confirmation();b.append(more);
-  const cloth=this.button('Open Bag · Clerk cap',()=>this.workshop.showEquipment());cloth.hidden=true;cloth.dataset.clerkCap='';b.append(cloth);
+  const cloth=this.button('Open Bag · Clerk cap',()=>this.workshop.showHeadwear(CLERK_CAP));cloth.hidden=true;cloth.dataset.clerkCap='';b.append(cloth);
   const stock=this.el('p','','carpentry-stock'),reaction=this.el('p','','carpentry-note'),board=this.el('p','','carpentry-stock');board.dataset.noticeboard='true';const notes=this.details('Supplies, noticeboard & Nella’s notes');notes.append(stock,board,reaction);b.append(notes);
   const nav=this.el('div','','carpentry-nav');nav.append(this.nav('square','carpentry-desk','Walk to Nella'),this.nav('square','pine-crooked','Find fallen pine'),this.nav('workshop','finishing-rack','Use the finishing rack'),this.nav('garden','garden-beds','Visit your crops'));b.append(nav);const retry=this.footer();let primary:HTMLElement|null=null;
   this.active=()=>{const{state:s,now}=this.view(),g=this.workshop.state.garden,step=nextPineStep(s,g,now);this.text(title,step.title);this.text(detail,step.detail);

@@ -122,3 +122,38 @@ test('cold arrivals defer workshop-only artwork until the first door entry',asyn
  expect(await state(page)).toEqual(workshopBefore);
  expect(errors).toEqual([]);
 });
+
+test('a slow first door names the room through resize and clears after its first render',async({browser})=>{
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ try{
+  const p=await context.newPage();
+  let release!:()=>void;
+  const gate=new Promise<void>(done=>{release=done;});
+  await p.route('**/art/original/ground-workshop.svg',async route=>{
+   await gate;
+   await route.continue();
+  });
+  await p.goto('/?sky-study=1&phase=day&weather=clear');
+  await expect.poll(()=>p.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+  const before=await state(p);
+  const loading=p.locator('#room-loading');
+  await expect(loading).toBeHidden();
+  await p.getByRole('button',{name:'Open field guide'}).tap();
+  await p.locator('#guide-workshop').tap();
+  try{
+   await expect(loading).toBeVisible({timeout:15000});
+   await expect(loading).toHaveText('Opening your workshop…');
+   await expect(p.locator('#world')).toHaveAttribute('aria-busy','true');
+   await expect(p.locator('#interact')).toBeDisabled();
+   await p.setViewportSize({width:844,height:390});
+   await p.evaluate(()=>document.documentElement.style.fontSize='200%');
+   await expect(loading.locator('span')).toBeInViewport({ratio:1});
+   await p.screenshot({path:destination+'/slow-workshop-short.png'});
+  }finally{release();}
+  await expect(loading).toBeHidden();
+  await expect(p.locator('#world')).not.toHaveAttribute('aria-busy');
+  await expect.poll(()=>p.evaluate(()=>(window as any).__pilot.metrics().visual.carpentry.rackTexture)).toBe('finishing-rack-empty');
+  expect(await state(p)).toEqual(before);
+  await p.screenshot({path:destination+'/slow-workshop-open.png'});
+ }finally{await context.close();}
+});

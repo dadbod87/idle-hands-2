@@ -108,3 +108,52 @@ test('Journal keeps the full recent field note after it has left the playfield',
   }finally{await context.close();}
  }
 });
+
+test('recent field notes do not move between shared practice residents',async({page})=>{
+ const started=Date.now(),workshop=createWorkshop(started);
+ const residents=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'}];
+ let resident:typeof residents[number]|undefined;
+ const position={room:'square',position:{x:24,y:25}};
+ await page.addInitScript(()=>{
+  class Events extends EventTarget{
+   onopen:(()=>void)|null=null;
+   constructor(){super();queueMicrotask(()=>this.onopen?.());}
+   close(){}
+  }
+  window.EventSource=Events as unknown as typeof EventSource;
+ });
+ await page.route('**/api/town/**',route=>{
+  const path=new URL(route.request().url()).pathname.split('/').at(-1);
+  if(path==='fixtures')return route.fulfill({json:{fixtures:residents}});
+  if(path==='login')resident=residents.find(entry=>entry.id===route.request().postDataJSON().fixtureId);
+  if(path==='login'||path==='snapshot')return resident?route.fulfill({json:{snapshot:{
+   playerId:resident.id,name:resident.name,workshop,position,bridge:{contributed:0,target:3,restored:false,phase:'collecting'},
+   quest:{contentVersion:1,awarded:[]},trail:{stamps:[],pennantOwned:false},plot:null,plots:[],seasonKey:'2026-11-20',scores:[],
+   serverTime:Date.now(),serverInstance:'field-notes-fictional-scope',
+  }}}):route.fulfill({status:401,json:{message:'Choose a practice resident.'}});
+  if(path==='movement')return route.fulfill({json:{ok:true,position:route.request().postDataJSON()}});
+  return route.fulfill({status:400,json:{message:'Unexpected local request.'}});
+ });
+ await page.goto('/?town=1');
+ await page.getByRole('button',{name:'Aster',exact:true}).click();
+ await expect(page.getByRole('button',{name:'Choose practice resident'})).toHaveText('Aster');
+ await expect(page.getByRole('dialog')).toBeHidden();
+ await page.locator('#places').click();
+ await (await revealPlace(page,'[data-destination=workshop]')).click();
+ const feedback=page.locator('#feedback');
+ await expect(feedback).toContainText(/Walking to.*workshop/i);
+ const old=await feedback.innerText();
+ await page.locator('#journal').click();
+ const summary=page.locator('.journal-recent-notes summary'),log=page.getByRole('list',{name:'Recent field notes'});
+ await summary.click();
+ await expect(log).toContainText(old);
+ await page.getByRole('button',{name:'Close panel'}).click();
+ await page.getByRole('button',{name:'Choose practice resident'}).click();
+ await page.getByRole('button',{name:'Bea',exact:true}).click();
+ await expect(page.getByRole('button',{name:'Choose practice resident'})).toHaveText('Bea');
+ await expect(page.getByRole('dialog')).toBeHidden();
+ await expect(feedback).toContainText('Connected');
+ await page.locator('#journal').click();await summary.click();
+ await expect(log).not.toContainText(old);
+ await expect(log).toContainText('Connected');
+});

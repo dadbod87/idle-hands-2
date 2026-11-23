@@ -544,7 +544,12 @@ async function waveToSquare(){
 document.querySelector('#places')!.addEventListener('click', () => {
   openPanel('Places to go');
   const savedHomes=(session.room==='square'||session.room==='neighborhood')&&townUI?.hasSavedHomes()?()=>townUI?.showNeighborhoods():undefined;
-  refreshPlaces=renderPlaces(body,{room:session.room,position:session.position,savedHomes,wave:town?.snapshot?waveToSquare:undefined,peers:town?.snapshot?(needResync?null:scene.residents):undefined,stops:currentStops(),state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),neighborhood:districtId?{districtId,ownerPlotId:town?.snapshot?.plot?.id}:undefined,walk:walkToPlace});
+  const outsideIds=['commons-riverwalk','cafe','allotment'];
+  const outside=session.room==='workshop'?{
+    stops:worlds.square.stops.filter(stop=>outsideIds.includes(stop.id)),
+    walk:(stop:Stop)=>goNamedDestination('square',stop.id),
+  }:undefined;
+  refreshPlaces=renderPlaces(body,{room:session.room,position:session.position,savedHomes,outside,wave:town?.snapshot?waveToSquare:undefined,peers:town?.snapshot?(needResync?null:scene.residents):undefined,stops:currentStops(),state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),neighborhood:districtId?{districtId,ownerPlotId:town?.snapshot?.plot?.id}:undefined,walk:walkToPlace});
 });
 function openSharedTownChoice(heading:string,intro='Homes live in shared practice. Your browser-only workshop stays saved here; shared town progress is separate.'){openPanel(heading);body.append(paragraph(intro));const enter=document.createElement('button');enter.type='button';enter.className='destination';enter.dataset.openTown='';enter.textContent='Open shared practice town';enter.onclick=()=>{const url=new URL(window.location.href);url.searchParams.set('town','1');window.location.assign(url);};body.append(enter);}
 function resolvedStop(stop:Stop):Stop{if(stop.id==='home-door'&&districtId){const exit=exitForHome({homePlotId,districtId});return{...stop,name:'Front door',transition:exit.room,arrival:exit.position};}return stop;}

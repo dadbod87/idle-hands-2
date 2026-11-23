@@ -44,8 +44,9 @@ test('coherent snapshot projection preserves the accepted reader and authoritati
     const before=await counted(client,()=>acceptedSnapshot120(client,id,now));
     const after=await counted(client,()=>reader.readSnapshot(client,id,now));
     assert.equal(before.queries,15);assert.equal(after.queries,1);
-    const {orchard,...unchanged}=after.value;
+    const {orchard,headwear,...unchanged}=after.value;
     assert.equal(orchard,null);
+    assert.deepEqual(headwear,{owned:before.value.trail.pennantOwned,worn:null});
     assert.deepEqual(unchanged,before.value);return after.value;
    }finally{await client.query('rollback');client.release();}
   }

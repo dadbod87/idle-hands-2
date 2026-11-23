@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "8a976589c589e16c5bd27b14f5d4bf72bce864ffb3478d37074a3fd266912d85",
-    "src/phaser/WorldScene.ts": "7eb9d3852bae9e480b41a47b142253d2b3c5e728d9ad2756e7f79fe48fc3d8e9",
+    "src/main.ts": "b24bac82381a720f8de4a2f3d962239488ae87ae5ee35bfb41f34b41e1920fa6",
+    "src/phaser/WorldScene.ts": "1ee61557e3479da0de5c6cbf73354948e115502b7bb8c9fc20d2eeb4c904788a",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the first-arrival route and the browser-only resident editor link from Bag. Original study snapshots and generated output remain frozen."
+  "currentTask": "Reviewed town headwear and peer rendering while preserving the historical garden study source and output."
 }

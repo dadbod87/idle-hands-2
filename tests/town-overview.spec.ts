@@ -215,6 +215,10 @@ test('the shared town map groups current residents by district and clears stale 
    await page.screenshot({path:out+'/wave-confirmed-'+name+'.png'});
    if(!touch)await expect.poll(async()=>(await waveView()).waving,{timeout:4500}).toBe(false);
 
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});
 
 test('a resident can walk to the closed Inkwood Glasshouse without changing trail rewards',async({browser})=>{
  const out='test-results/browser/glasshouse';

@@ -1,0 +1,7 @@
+# IH2-222 · Keep steady residents on the same drawing layer
+
+Phaser queues a display-list sort every time a resident writes its depth, including a write with the old value. The player and nearby residents now update position and depth independently. A vertical move still updates and sorts by feet. Horizontal travel and an idle pose can keep their existing ordering.
+
+The [recorded profile](LOCAL_RENDER_DEPTH.json) counts the queue and actual sort on Phaser's display-list prototype in a local Vite client. It follows a fresh square arrival in 2560 × 1440 and 320 × 640 across Chromium and WebKit, then sends real vertical keyboard movement through the same client. Each idle interval is 4.2 seconds after the initial mount. The baseline ran 38/42/41/42 sorts. The candidate ran zero during all four idle intervals and still sorted during all four walks. The exact position moved in the expected direction. Neither version changed the saved workshop or contacted the API. Screens, frame cost and device power have yet to be profiled separately.
+
+To reproduce, start the browser-only development server on a disposable port from 4341–4359 with the API target disabled. Run `IH2_DEPTH_PROFILE_PORT=4356 IH2_DEPTH_OUTPUT=/tmp/ih2-depth.json node docs/evidence/IH2-222/study/render-depth-profile.mjs` using available Playwright Chromium and WebKit. The optional `IH2_WEBKIT_EXECUTABLE` selects the local WebKit bundle. This script needs the development server's Phaser import. It adds no probes to game code.

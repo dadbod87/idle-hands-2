@@ -96,8 +96,25 @@
 
 /* A long status must scroll inside its slot, not claim the action bar's width. */
 .shell>footer>.context{flex:1 1 12rem}
-@media(max-height:480px) and (min-width:651px){
- .shell.large-text{height:auto;min-height:100dvh;grid-template-rows:auto minmax(220px,1fr) auto}
+@media(max-height:480px) and (min-width:580px){
+ .shell.large-text{height:auto;min-height:100dvh;grid-template-rows:auto minmax(195px,1fr) auto}
+ .shell.large-text>header{padding:4px 12px}
+ .shell.large-text>header .brand-mark{display:none}
+ .shell.large-text>header .brand h1{font-size:1.25rem}
+ .shell.large-text>header>#place-sound{display:inline-flex;align-items:center;gap:4px}
+ .shell.large-text>footer{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding:4px 12px}
+ .shell.large-text>footer>.context{max-width:none}
+ .shell.large-text #feedback{height:2.3em;min-height:2.3em;line-height:1.15}
+ .shell.large-text .game-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.5fr);width:100%}
+ .shell.large-text .game-controls button{min-height:44px;padding:4px 6px;font-size:.8rem;line-height:1;flex-direction:row}
+ .shell.large-text .game-controls #places span{font-size:1rem;line-height:1}
+}
+
+@media(max-height:480px) and (min-width:580px) and (max-width:720px){
+ .shell.large-text>header,.shell.large-text>footer{padding-block:2px}
+ .shell.large-text>footer{gap:3px}
+ .shell.large-text .game-controls{grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.9fr)}
+ .shell.large-text .game-controls button>svg,.shell.large-text .game-controls #places>span{display:none}
 }
 
 .bench-outing {

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Willow yard · Idle Hands 2 study</title>
+<link rel="stylesheet" href="study.css">
+<main>
+  <header><p>Mossbank Mill · Design study</p><h1>Willow yard</h1></header>
+  <section class="stop" aria-labelledby="place">
+    <div><h2 id="place"></h2><p id="description"></p></div>
+    <figure><img src="basket.svg" width="108" height="78" alt=""><figcaption id="basket-caption">Sample basket</figcaption></figure>
+  </section>
+  <section class="status" aria-label="Supplies and job">
+    <div><span>Study Bag</span><strong id="contents"></strong></div>
+    <div><span>Mill rack</span><strong id="rack"></strong></div>
+  </section>
+  <section class="work" aria-labelledby="action-heading">
+    <h2 id="action-heading" tabindex="-1"></h2><p id="hint"></p>
+    <img id="placed-basket" src="basket.svg" width="72" height="52" alt="Woven basket displayed at the sample yard" hidden>
+    <div id="actions" class="buttons"></div>
+    <p id="receipt" role="status"></p>
+  </section>
+  <section aria-labelledby="travel" class="travel">
+    <h2 id="travel">Take a walk</h2>
+    <form><label for="destination">Destination</label><div class="buttons"><select id="destination"></select><button>Walk there</button></div></form>
+  </section>
+  <details><summary>Study controls</summary>
+    <p>Walks resolve immediately in this rehearsal. The basket uses a six-hour job. This study does not connect to the game or change a save.</p>
+    <button type="button" id="advance">Simulate one hour passing</button>
+  </details>
+</main>
+<script type="module" src="study.mjs"></script>
+</html>

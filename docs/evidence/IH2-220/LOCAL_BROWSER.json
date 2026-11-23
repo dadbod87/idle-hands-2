@@ -1,0 +1,74 @@
+[
+  {
+    "engine": "chromium",
+    "name": "desktop",
+    "width": 1440,
+    "height": 900,
+    "touch": false,
+    "text": 100,
+    "noOverflow": true,
+    "localDataLength": 0,
+    "errors": [],
+    "external": []
+  },
+  {
+    "engine": "chromium",
+    "name": "phone",
+    "width": 320,
+    "height": 640,
+    "touch": true,
+    "text": 100,
+    "noOverflow": true,
+    "localDataLength": 0,
+    "errors": [],
+    "external": []
+  },
+  {
+    "engine": "chromium",
+    "name": "short200",
+    "width": 844,
+    "height": 390,
+    "touch": true,
+    "text": 200,
+    "noOverflow": true,
+    "localDataLength": 0,
+    "errors": [],
+    "external": []
+  },
+  {
+    "engine": "webkit",
+    "name": "desktop",
+    "width": 1440,
+    "height": 900,
+    "touch": false,
+    "text": 100,
+    "noOverflow": true,
+    "localDataLength": 0,
+    "errors": [],
+    "external": []
+  },
+  {
+    "engine": "webkit",
+    "name": "phone",
+    "width": 320,
+    "height": 640,
+    "touch": true,
+    "text": 100,
+    "noOverflow": true,
+    "localDataLength": 0,
+    "errors": [],
+    "external": []
+  },
+  {
+    "engine": "webkit",
+    "name": "short200",
+    "width": 844,
+    "height": 390,
+    "touch": true,
+    "text": 200,
+    "noOverflow": true,
+    "localDataLength": 0,
+    "errors": [],
+    "external": []
+  }
+]

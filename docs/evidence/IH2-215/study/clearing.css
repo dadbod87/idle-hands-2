@@ -1,0 +1,85 @@
+:root{color:#242e29;background:#d4c8b3;font:100% Georgia,serif;color-scheme:light;--paper:#f7edd5;--ink:#273a34;--rust:#9b462e;--stroke:#75674e;--line:#baaa8c}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;padding:clamp(.45rem,2vw,1.6rem)}
+.game{max-width:68rem;margin:0 auto;border:2px solid var(--ink);background:var(--paper);box-shadow:4px 5px 0 #313a3050;border-radius:.4rem;overflow:hidden}
+.masthead{display:flex;justify-content:space-between;align-items:center;gap:.65rem;padding:.85rem 1.25rem;background:#e7d8b8;border-bottom:2px solid var(--ink)}
+.series{font:bold .73rem 'Courier New',monospace;letter-spacing:.055em;text-transform:uppercase;margin:0 0 .25rem}
+h1{margin:0;font-size:clamp(1.45rem,4vw,2.15rem);line-height:1.05}
+button{min-height:44px;min-width:44px;border:2px solid var(--ink);border-radius:.28rem;background:#416352;color:#fff7e3;font:bold .98rem Georgia,serif;padding:.45rem .75rem;cursor:pointer;box-shadow:2px 2px 0 #3e452545}
+button:hover:not(:disabled,[aria-disabled=true]){background:#2d4e3e}
+button:focus-visible,summary:focus-visible,#result:focus-visible{outline:3px solid #a1442e;outline-offset:3px}
+button:disabled,button[aria-disabled=true]{cursor:default;background:#e3d8bf;color:#605a47;border-color:#827856;box-shadow:none}
+.reset,.subtle,.retreat,#expire{background:#fff1d1;color:var(--ink)}
+.reset:hover:not(:disabled),.subtle:hover:not(:disabled),.retreat:hover:not(:disabled),#expire:hover:not(:disabled){background:#e9d7a9}
+.playfield{display:grid;grid-template-columns:minmax(0,2fr) minmax(16rem,1fr)}
+.scene{min-width:0;isolation:isolate;position:relative;min-height:clamp(15rem,40vw,29rem);overflow:hidden;background:#435c4c;border-right:2px solid var(--ink)}
+.scene img{position:absolute;display:block}
+.setting,.bed{inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
+.bed{display:none!important}
+.player{left:28%;width:16%;bottom:17%;max-height:48%;object-fit:contain;object-position:bottom center}
+.inspector{left:62%;bottom:20%;width:21%;max-height:55%;object-fit:contain;object-position:bottom center;transform-origin:50% 85%}
+.pouch{display:none;position:absolute;left:55%;bottom:19%;width:11%;aspect-ratio:1}
+.pouch img{width:100%;height:100%}
+.scene-sign{position:absolute;top:5%;left:5%;margin:0;padding:.5rem .65rem;max-width:90%;font:bold 1rem Georgia,serif;color:#2a3124;background:#e6d3a7;border:1px solid #442d20;box-shadow:2px 3px #26362d88;transform:rotate(-2deg)}
+.scene-sign span{font:normal .76rem Georgia,serif}
+.cue{position:absolute;right:5%;top:8%;margin:0;padding:.36rem .55rem;color:#3d2516;background:#ffd999;border:2px solid #844125;border-radius:.2rem;font:bold .9rem Georgia,serif}
+.cue b{display:inline-grid;place-items:center;margin-right:.26rem;background:#753923;color:#fff2cb;border-radius:50%;width:1.15em;height:1.15em}
+.scene[data-phase=trail] .inspector{opacity:.62;bottom:23%;left:68%;width:16%}
+.scene[data-warning=true] .inspector{transform:rotate(-8deg) translateY(-3%);filter:drop-shadow(0 0 .36rem #ffda8c88)}
+.scene[data-phase=clearing] .scene-sign,.scene[data-phase=cleared] .scene-sign{display:none}
+.scene[data-phase=cleared] .inspector{transform:rotate(75deg) translateX(9%) scale(.75);opacity:.8}
+.scene[data-phase=bed] .setting,.scene[data-phase=bed] .inspector,.scene[data-phase=bed] .player,.scene[data-phase=bed] .scene-sign{display:none}
+.scene[data-phase=bed] .bed{display:block!important}
+.scene[data-phase=recovery] .pouch,.scene[data-phase=expired] .pouch{display:block}
+.scene[data-phase=recovery] .inspector,.scene[data-phase=recovered] .inspector,.scene[data-phase=expired] .inspector{display:none}
+.play{min-width:0;padding:1rem;display:flex;flex-direction:column;gap:.8rem;background:linear-gradient(150deg,#f9efda,#efe2c4)}
+.meters{display:flex;flex-wrap:wrap;gap:.72rem}
+.meter{flex:1 1 7.3rem;min-width:0}
+.meter label{font-size:.87rem;display:flex;gap:.4rem;justify-content:space-between;align-items:center}
+.meter strong{white-space:nowrap}
+progress{display:block;width:100%;height:.82rem;margin-top:.3rem;appearance:none;border:1px solid #554633;border-radius:.18rem;background:#ddd0b2;overflow:hidden}
+progress::-webkit-progress-bar{background:#ddd0b2}
+progress::-webkit-progress-value{background:#527354}
+progress::-moz-progress-bar{background:#527354}
+.enemy-meter progress::-webkit-progress-value{background:#a3543b}
+.enemy-meter progress::-moz-progress-bar{background:#a3543b}
+.message{margin:0;min-height:4em;line-height:1.37}
+#deadline{margin:0;color:#753a23;font-weight:bold}
+.actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem}
+[data-action=enter],[data-action=back],[data-action=recover]{grid-column:1/-1}
+#result{margin:0;font-weight:bold}
+.study-note{border-top:1px solid var(--line);padding:.7rem 1.25rem;background:#e7d8b8;line-height:1.35}
+.study-note p{margin:0;font-size:.87rem}
+.study-note details{margin-top:.4rem}
+.study-note summary{min-height:44px;padding:.55rem .1rem;cursor:pointer}
+.study-note details p{margin:.1rem 0 .45rem}
+@media(max-width:700px){
+ .playfield{grid-template-columns:1fr}
+ .scene{min-height:clamp(11rem,57vw,17rem);border-right:0;border-bottom:2px solid var(--ink)}
+ .scene .player{left:24%;width:21%;bottom:16%}
+ .scene .inspector{width:24%;bottom:16%}
+ .play{padding:.75rem;gap:.55rem}
+ .message{min-height:3em}
+ .masthead,.study-note{padding:.65rem .75rem}
+}
+@media (max-height:470px) and (orientation:landscape) and (min-width:560px){
+ body{padding:.28rem}
+ .masthead{padding:.3rem .55rem}
+ .masthead h1{font-size:1.4rem}
+ .reset{padding:.24rem .42rem;font-size:.82rem}
+ .series{display:none}
+ .playfield{grid-template-columns:minmax(10rem,1.15fr) minmax(0,1fr)}
+ .scene{min-height:11rem;border-right:2px solid var(--ink);border-bottom:0}
+ .scene .player,.scene .inspector{bottom:28%}
+ .play{padding:.42rem;gap:.35rem}
+ .meters{flex-wrap:nowrap;gap:.4rem}
+ .meter{flex:1 1 0}
+ .meter label{display:grid;grid-template-columns:1fr;gap:.14rem;line-height:1;font-size:.75rem}
+ progress{height:.58rem;margin-top:.22rem}
+ .message{min-height:2.1em;font-size:.86rem;line-height:1.16}
+ .actions{gap:.3rem}
+ .actions button{padding:.26rem .38rem;font-size:.86rem;line-height:1.1}
+ .study-note{padding:.45rem .55rem}
+}
+@media (prefers-reduced-motion:no-preference){.inspector{transition:transform 180ms ease-out,filter 180ms ease-out}}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66 60">
+<title>Field sample pouch tied with a bright string</title>
+<ellipse cx="33" cy="48" rx="23" ry="6" fill="#33271d" opacity=".28"/>
+<path d="M25 18l-4-8 5-3 7 7 8-6 3 4-3 8 11 12q6 16-9 17H24Q10 47 14 36z" fill="#daac68" stroke="#513a24" stroke-width="3" stroke-linejoin="round"/>
+<path d="M24 20q10 3 18-1m-7 2 3 8 7-4" fill="none" stroke="#9e4834" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M24 35q8-4 14 0l-1 8q-10 1-15-1z" fill="#f4e1b1" stroke="#74563a" stroke-width="1.4"/>
+<path d="M26 38l7 1m-6 2h5" stroke="#776948" stroke-width="1" stroke-linecap="round"/>
+</svg>

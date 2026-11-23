@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="color-scheme" content="light">
+ <title>Inkwood inspection clearing · Idle Hands 2 study</title>
+ <link rel="stylesheet" href="clearing.css">
+ <script type="module" src="clearing.mjs"></script>
+</head>
+<body>
+ <main class="game">
+  <header class="masthead">
+   <div>
+    <p class="series">Idle Hands 2 · Inkwood</p>
+    <h1>Inspection clearing</h1>
+   </div>
+   <button id="reset" class="reset" type="button">Restart demo</button>
+  </header>
+  <div class="playfield">
+   <section class="scene" data-phase="trail" aria-label="Inkwood clearing illustration">
+    <img class="setting" src="clearing.svg" alt="">
+    <img class="bed" src="inn.svg" alt="">
+    <img class="player" src="resident.svg" alt="">
+    <img class="inspector" src="inspector.svg" alt="">
+    <span class="pouch" aria-hidden="true"><img src="pouch.svg" alt=""></span>
+    <p class="scene-sign">Branch office<br><span>Walk-ins at their own risk</span></p>
+    <p class="cue" hidden><b>!</b> Incoming strike</p>
+   </section>
+   <section class="play">
+    <div class="meters">
+     <div class="meter">
+      <label for="health">Your health <strong id="health-label">10 / 10</strong></label>
+      <progress id="health" value="10" max="10"></progress>
+     </div>
+     <div class="meter enemy-meter" hidden>
+      <label for="enemy">Inspector <strong id="enemy-label">15 / 15</strong></label>
+      <progress id="enemy" value="15" max="15"></progress>
+     </div>
+    </div>
+    <p class="message" role="status" id="status"></p>
+    <p id="deadline" hidden></p>
+    <div class="actions" aria-label="Available actions" role="group">
+     <button type="button" data-action="enter">Enter clearing</button>
+     <button type="button" data-action="rest" class="subtle" hidden>Rest at the gate</button>
+     <button type="button" data-action="swing" aria-label="Swing club" hidden>Swing</button>
+     <button type="button" data-action="guard" hidden>Guard</button>
+     <button type="button" data-action="snack" aria-label="Eat snack to restore 4 health" hidden>Snack +4</button>
+     <button type="button" data-action="retreat" class="retreat" aria-label="Retreat to trail" hidden>Retreat</button>
+     <button type="button" data-action="back" hidden>Go back for your pouch</button>
+     <button type="button" data-action="recover" hidden>Recover your pouch</button>
+    </div>
+    <p id="result" tabindex="-1" hidden></p>
+   </section>
+  </div>
+  <footer class="study-note">
+   <p>Interactive design demo · Sample items and choices in this page. Nothing is saved.</p>
+   <details id="time-controls">
+    <summary>Rehearse a late return</summary>
+    <p>Move the demo clock past the proposed 30-minute limit to see the unresolved recovery state.</p>
+    <button type="button" id="expire" disabled>Advance demo clock 31 min</button>
+   </details>
+  </footer>
+ </main>
+</body>
+</html>

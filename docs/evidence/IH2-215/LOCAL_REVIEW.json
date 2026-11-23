@@ -1,0 +1,79 @@
+{
+  "classification": "Standalone interactive design rehearsal. Browser emulation, in-memory demo only.",
+  "modelTests": 4,
+  "layouts": [
+    {
+      "browser": "chromium",
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scale": 1,
+      "artHeight": 464,
+      "retreatBottom": 346.40625,
+      "errors": [],
+      "nonLocal": []
+    },
+    {
+      "browser": "chromium",
+      "name": "phone",
+      "width": 320,
+      "height": 640,
+      "scale": 1,
+      "artHeight": 182.390625,
+      "retreatBottom": 502.578125,
+      "errors": [],
+      "nonLocal": []
+    },
+    {
+      "browser": "chromium",
+      "name": "short",
+      "width": 844,
+      "height": 390,
+      "scale": 2,
+      "artHeight": 352,
+      "retreatBottom": 370.53125,
+      "errors": [],
+      "nonLocal": []
+    },
+    {
+      "browser": "webkit",
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "scale": 1,
+      "artHeight": 464,
+      "retreatBottom": 346.28125,
+      "errors": [],
+      "nonLocal": []
+    },
+    {
+      "browser": "webkit",
+      "name": "phone",
+      "width": 320,
+      "height": 640,
+      "scale": 1,
+      "artHeight": 182.390625,
+      "retreatBottom": 501.859375,
+      "errors": [],
+      "nonLocal": []
+    },
+    {
+      "browser": "webkit",
+      "name": "short",
+      "width": 844,
+      "height": 390,
+      "scale": 2,
+      "artHeight": 352,
+      "retreatBottom": 368.1875,
+      "errors": [],
+      "nonLocal": []
+    }
+  ],
+  "art": {
+    "clearing.svg": "4fd6c73d6143808fc9b66d1c4c6f34592844910fdb192dfbdfa93c8bd3090c3c",
+    "inn.svg": "2f48506d90f87587f50ead4f70a5c4f7d8112221c651ce5b5e9c785745f766b3",
+    "inspector.svg": "ec2738f63dad894b00595ca351505c0d34620517420b5df9d02489585b3d4942",
+    "pouch.svg": "50ae37ac7cdc9a15992d7b523969383155b8190ebcf0a7d92f6feae7fd542a84",
+    "resident.svg": "8c141e7ebc34df58b5149523e53098e2f1e52846437b81fb7e483f2118f65693"
+  }
+}

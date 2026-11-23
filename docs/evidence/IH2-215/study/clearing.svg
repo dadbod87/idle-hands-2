@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 478">
+<title>Inkwood clearing with a narrow trail, timber fence and beech grove</title>
+<defs>
+ <pattern id="grass" width="65" height="58" patternUnits="userSpaceOnUse">
+  <path d="M9 45l4-6 4 6m20-24 3-4 4 5m11 28 3-5 3 6" stroke="#536b4e" stroke-width="1.4" opacity=".43" fill="none"/>
+  <circle cx="26" cy="47" r="1.5" fill="#aba66b"/>
+ </pattern>
+ <pattern id="stipple" width="41" height="33" patternUnits="userSpaceOnUse">
+  <path d="M9 9l5 2m17 11l3-2M3 25h2" stroke="#756143" stroke-width="1.5" opacity=".55" stroke-linecap="round"/>
+ </pattern>
+ <radialGradient id="sand"><stop stop-color="#d8bd86"/><stop offset="1" stop-color="#b6996b"/></radialGradient>
+ <linearGradient id="ground" x2="0" y2="1"><stop stop-color="#70825c"/><stop offset="1" stop-color="#94a174"/></linearGradient>
+ <g id="beech">
+  <ellipse cx="0" cy="-5" rx="56" ry="12" fill="#243d2e" opacity=".24"/>
+  <path d="M-4 0l-4-66 12-8 12 19-2 57z" fill="#ccbc91" stroke="#342f24" stroke-width="2"/>
+  <path d="M-2-19l6-1m-10-19l7-1m3-13l5 3" fill="none" stroke="#463d2e" stroke-width="2"/>
+  <path d="M-48-56q-27-7-18-35 5-18 24-18 2-39 33-39 20-3 31 19 27-6 42 17 15 29-10 46-17 13-35 4-16 16-36 6-18 9-31 0z" fill="#667f4f" stroke="#293d2e" stroke-width="3"/>
+  <path d="M-54-94q7-13 24-10 7-32 27-33 20-1 25 21 17-4 29 6 7 6 8 16-18-9-36-5-13 12-24 4-19-8-32 2-10 4-21-1z" fill="#9ca365"/>
+  <path d="M-43-74q12 10 26 4m31-3q13 7 24-4" stroke="#486143" stroke-width="2" fill="none" stroke-linecap="round"/>
+ </g>
+ <g id="pine">
+  <ellipse cx="1" cy="-5" rx="48" ry="10" fill="#243d2e" opacity=".25"/>
+  <path d="M-7-1l5-86 8 9L6 0z" fill="#806044" stroke="#3b372b" stroke-width="2"/>
+  <path d="M1-173l35 59-15-4 30 54-23-7 31 48-58-10-57 13 28-53-23 10 31-53-15 4z" fill="#486953" stroke="#283d2f" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M1-155l19 34-20-9-17 9zM-9-108l-13 26 22-8 9 7zM25-63l13 23-32-5z" fill="#6e895d"/>
+  <path d="M-26-49l25-6 16 4m-42 15 18-6m23-71 9 5" fill="none" stroke="#354a39" stroke-width="2" stroke-linecap="round"/>
+ </g>
+ <g id="flower">
+  <path d="M0 4q2-16 7-22M1-4q-16-2-12-8 9-2 13 6m3-7q8-8 15-5 0 6-15 8" fill="#577547" stroke="#37543a" stroke-width="1"/>
+  <circle cx="8" cy="-19" r="4.2" fill="#dfa34e" stroke="#755135" stroke-width="1.2"/>
+  <circle cx="8" cy="-19" r="1.5" fill="#f3ce79"/>
+ </g>
+</defs>
+<path d="M0 0h900v478H0z" fill="url(#ground)"/>
+<path d="M0 0h900v478H0z" fill="url(#grass)"/>
+<path d="M0 44q81-26 147-6t127-11q47-30 121 0t143-1q67-24 130 3t124-2q57-26 108-15V0H0z" fill="#486148"/>
+<path d="M0 380q71-34 147-32 18 45 118 56T418 478H0zm900 11q-117-52-190-23-47 16-83 47-26 21-89 63h362z" fill="#718962" opacity=".57"/>
+<path id="track" d="M-46 355q139-20 206-65 45-30 77-70 65-83 192-96 61-6 129 11 60 16 116-10L794 63l37 37-141 72q-55 27-89 58-31 30-49 67-47 81-178 97-101 12-181-18-42-16-96 3L-15 415z" fill="url(#sand)" stroke="#a88358" stroke-width="5"/>
+<use href="#track" fill="url(#stipple)" opacity=".3" style="fill:url(#stipple)"/>
+<path d="M54 340q64-21 115-54m73 70q34 16 73 12m309-211q39-7 70-23m-190 240q47-16 64-45" fill="none" stroke="#e2c590" stroke-width="4" stroke-linecap="round" opacity=".74"/>
+<path d="M194 279q-4 3-16 8m65 13q-3-4-12-4m186-89q5-4 16-4m41 93q8-2 15-7m74-130 9-3m176-45 17-8m-376 216 13-2" fill="none" stroke="#ae8557" stroke-width="2.4" stroke-linecap="round"/>
+<use href="#pine" transform="translate(31 215) scale(1.45)"/>
+<use href="#pine" transform="translate(109 143) scale(.9)"/>
+<use href="#beech" transform="translate(207 125) scale(.85)"/>
+<use href="#pine" transform="translate(325 107) scale(.75)"/>
+<use href="#beech" transform="translate(487 99) scale(.8)"/>
+<use href="#pine" transform="translate(573 123) scale(.87)"/>
+<use href="#beech" transform="translate(879 171) scale(1.2)"/>
+<use href="#pine" transform="translate(797 271) scale(1.38)"/>
+<use href="#beech" transform="translate(863 405) scale(1.53)"/>
+<use href="#pine" transform="translate(47 485) scale(1.52)"/>
+<use href="#beech" transform="translate(176 506) scale(1.37)"/>
+<g fill="#8e7652" stroke="#473c29" stroke-width="2.6" stroke-linejoin="round">
+ <path d="M67 269l128-59v11L67 282zm-1 18 126-58 1 8-127 60z"/>
+ <path d="M63 262l7-6 4 4v41l-11 5zm53-22 7-6 6 1v44l-12 6zm62-27 6-9 7 1v44l-12 6z"/>
+ <path d="M774 312l-101 45v12l101-45zm0 20-101 44v9l101-44z"/>
+ <path d="M761 308l8-9 7 3v43l-15 5zm-50 20 7-7 7 1v43l-14 7zm-47 23 7-8 7 2v42l-14 6z"/>
+</g>
+<g fill="#a18265" stroke="#5a5244" stroke-width="2"><path d="M66 313l11-13 14 2 8 13-10 6-18 1z"/><path d="M678 225l13-7 15 3 4 11-28 3z"/><path d="M763 50l7-11 17-1 9 11-7 8-21 1z"/></g>
+<use href="#flower" transform="translate(129 310) scale(1.12)"/>
+<use href="#flower" transform="translate(149 317) scale(.75)"/>
+<use href="#flower" transform="translate(712 409) scale(1.4)"/>
+<use href="#flower" transform="translate(742 414) scale(.95)"/>
+<use href="#flower" transform="translate(335 412) scale(1.05)"/>
+<use href="#flower" transform="translate(346 415) scale(.72)"/>
+<use href="#flower" transform="translate(580 126) scale(.82)"/>
+</svg>

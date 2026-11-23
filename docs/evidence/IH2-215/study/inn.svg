@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 478">
+<title>Quiet inn room with a striped quilt, woodland window and recovery notice</title>
+<defs>
+ <pattern id="plaster" width="68" height="48" patternUnits="userSpaceOnUse"><path d="M5 8l6-2m17 26 4 2m22-12 7-1" stroke="#b5a07b" opacity=".35" stroke-width="2"/></pattern>
+ <pattern id="planks" width="200" height="39" patternUnits="userSpaceOnUse"><path d="M0 1h200M25 1v17m100 0v20M0 19h200" stroke="#735645" opacity=".42" stroke-width="2"/></pattern>
+</defs>
+<path fill="#d7c398" d="M0 0h900v333H0z"/>
+<path fill="url(#plaster)" d="M0 0h900v333H0z"/>
+<path fill="#a78665" d="M0 333h900v145H0z"/>
+<path fill="url(#planks)" d="M0 333h900v145H0z"/>
+<path d="M0 325h900v16H0z" fill="#725945" stroke="#4a3f31" stroke-width="3"/>
+<g stroke="#453a2d" stroke-width="4" stroke-linejoin="round">
+ <path d="M162 58h213v142H162z" fill="#75563d"/>
+ <path d="M176 72h185v111H176z" fill="#9fbdaf"/>
+ <path d="M179 159l36-37 28 27 39-45 31 27 18-13 28 25v38H179z" fill="#718e66" stroke="none"/>
+ <path d="M264 74v106m-85-52h180" stroke="#d9ceb1" stroke-width="6"/>
+ <path d="M160 178h218v17H160" fill="#a6835e"/>
+ <path d="M489 82l143-4 2 113-147 4z" fill="#efddad"/>
+ <path d="M512 110h99m-89 27h77m-58 22h54" stroke="#8b7355" stroke-width="3"/>
+ <path d="M208 253l92-46 314 18 41 101-50 73-370-23z" fill="#6e8b79" stroke="#455d4a"/>
+ <path d="M243 319l59-43 298 15 21 36-31 44-330-17z" fill="#92a58a" stroke="#d2caa6" stroke-width="5"/>
+ <path d="M316 224l-29 61 6 60h24l10-61 192-5 27 66h22l-9-114z" fill="#80563b"/>
+ <path d="M320 214l203 3 40 67-256-3z" fill="#e1c597"/>
+ <path d="M346 225l64 1 11 30-84-2z" fill="#ded7bd"/>
+ <path d="M412 238l117-3 24 45-153-1z" fill="#ae674a"/>
+ <path d="M412 246l121-3m-128 16 136-2m-139 12 143-2" stroke="#d4a36a" stroke-width="3"/>
+ <path d="M305 279l255 1v21l-256-2z" fill="#a27551"/>
+ <path d="M606 234l48-15 58 12-45 17z" fill="#a87848"/>
+ <path d="M607 235l59 14 45-17-1 51-45 17-58-13z" fill="#8e633f"/>
+ <path d="M626 232l7-30 23 1 11 25-9 6z" fill="#d78e4f"/>
+ <path d="M632 202l6-10 17 2 1 9z" fill="#496455"/>
+</g>
+<path d="M654 187q5-13 26-28m-45 22q-3-12-15-21" fill="none" stroke="#a97b51" stroke-width="3" stroke-linecap="round"/>
+</svg>

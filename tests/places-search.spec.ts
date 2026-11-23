@@ -118,6 +118,7 @@ test('assisted walks can be stopped by touch or Escape without activating the de
    await p.goto('/?sky-study=1&phase=day&weather=clear');
    await expect.poll(() => p.evaluate(() => (window as any).__pilot?.metrics().ready)).toBe(true);
    await p.evaluate(n => document.documentElement.style.fontSize = n + '%', shape.text);
+   if (shape.text === 200) await expect(p.locator('.shell')).toHaveClass(/large-text/);
    await expect(stop).toBeHidden();
    expect((await feet()).position).toEqual({x:104,y:45});
    const playfield = await world.boundingBox();

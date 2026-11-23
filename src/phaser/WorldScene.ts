@@ -413,10 +413,18 @@ export class WorldScene extends Phaser.Scene {
     }
     if(this.loadingRoom==='trail'&&!this.textures.exists('glasshouse-overgrown'))this.load.svg('glasshouse-overgrown','/art/glasshouse/overgrown.svg');
     for(const key of trailWorldAssets(this.loadingRoom))if(!this.textures.exists(key))this.load.svg(key,'/art/trail/'+key+'.svg');
-    for(const key of HOME_SUPPORT_ASSETS)this.load.svg(key,'/art/homes/'+key+'.svg');
-    for(const asset of HOUSING_ASSETS)this.load.svg(asset.id,'/art/housing/'+asset.file);
-    for(const asset of RESIDENTIAL_ASSETS)this.load.svg(asset.id,(asset.id.startsWith('housing-')?'/art/housing/':'/art/residential/')+asset.file);
-    for(const asset of NEIGHBORHOOD_ASSETS)this.load.svg(asset.id,'/art/neighborhood/'+asset.file);
+    const street=this.loadingRoom==='neighborhood';
+    for(const key of HOME_SUPPORT_ASSETS){
+      if(!this.textures.exists(key)&&(street||!key.endsWith('-exterior')))this.load.svg(key,'/art/homes/'+key+'.svg');
+    }
+    if(street){
+      for(const asset of HOUSING_ASSETS)if(!this.textures.exists(asset.id))this.load.svg(asset.id,'/art/housing/'+asset.file);
+      for(const asset of RESIDENTIAL_ASSETS)if(!this.textures.exists(asset.id))this.load.svg(asset.id,'/art/residential/'+asset.file);
+    }
+    for(const asset of NEIGHBORHOOD_ASSETS){
+      const usedHere=asset.id==='housing-registry'?this.loadingRoom==='square':street;
+      if(usedHere&&!this.textures.exists(asset.id))this.load.svg(asset.id,'/art/neighborhood/'+asset.file);
+    }
     for (const key of ORIGINAL_STATIC) if(!['ground-square','workshop','cafe','tree'].includes(key))this.load.svg(key, `/art/original/${key}.svg`);
     const keys=['ground-square',...BUILDING_KINDS.map(k=>'building-'+k),...TREE_KINDS.flatMap(k=>['tree-'+k+'-trunk','tree-'+k+'-canopy']),...RESIDENT_IDS.map(k=>'resident-'+k)];
     for(const key of keys)this.load.svg('variety-'+key,`/art/variety/${key}.svg`);

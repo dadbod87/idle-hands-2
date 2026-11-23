@@ -1,0 +1,5 @@
+# November 23 · Paint street artwork when visiting the street
+
+The Town Square still loads the public Housing Registry drawing. The neighborhood terrain, vacant plots, house exteriors and decorative street assets now load only in the neighborhood. The previous compiled build made all 18 requests in the square. The candidate makes zero of those requests until entry and loads each image once there. The deferred source drawings total 81,321 uncompressed bytes. These are observed network requests and file sizes. Frame rate and startup time were outside the measurement.
+
+Chromium passed eight housing cases and WebKit passed the two street cases. A 320px touch test enters through the ordinary Homes & neighbors action, pauses one SVG response, and verifies the action stays unavailable during the transition. After release, all 24 parcel views mount, the correct Garden Studio exterior renders and workshop inventory and furniture stay unchanged. Identity, arrival and movement used a fictional shared fixture. The actual browser loaded and rendered the artwork. The saved services and standard hosted workflow were outside this check.

@@ -1,0 +1,9 @@
+# IH2-225 · Town visual review batch
+
+This branch layers the compact location card and visible orchard boughs over the combined town playthrough. It keeps the ordinary source gate and shared progression rules. The fresh orchard visit and the extended first harvest demonstrate outdoor travel and active play while work is underway. The latest visual inspection found only minor overlap between the resident's head and the low branch foliage. The action and ripening label stay clear. No camera or position changes were made to address a cosmetic overlap.
+
+The [local check receipt](LOCAL_VALIDATION.json) identifies the built runtime. Collection-only browser listing found 279 configured cases across the three disjoint shards, including all 88 spec files at this checkpoint. That listing never starts the web servers. Running the full hosted suite remains the release gate. Browser-only acceptance used fresh profiles and some declared intercepted shared replies. It excluded PostgreSQL and kept every saved preview and database stopped.
+
+An independent cold-browser visit to the square, first workshop entry and return issued 53, 18 and zero distinct SVG requests in both local Chromium and WebKit. The square gained exactly the one 3,519-byte original orchard sheet since the earlier art-scope comparison. These are distinct raw asset requests and file bytes, with no production transfer estimate. All 60 first returned center samples in the final version's resized square and workshop rendered. Sample intervals cannot prove every intermediate frame.
+
+Good next playtest questions are whether players see the field guide for weather and whether completed sketches and river finds leave enough meaningful errands during repeat crafts. The Mossbank study gives a concrete progression idea for a separate nearby region. Review release order before choosing the next hosted batch.

@@ -1,0 +1,53 @@
+{
+  "testedRuntime": "49e94d59700e6e7664a90748326dd692bdcf92cb",
+  "build": "passed",
+  "domainPassed": 452,
+  "databaseOnlySkipped": 28,
+  "designTrackerAndPinnedTools": "passed",
+  "configuredBrowserShards": [
+    92,
+    98,
+    89
+  ],
+  "visualBatchWebKitFocused": 7,
+  "resize": {
+    "chromium": {
+      "firstReturnedSamplesRendered": 30,
+      "maxSampleObtainingMs": 1747
+    },
+    "webkit": {
+      "firstReturnedSamplesRendered": 30,
+      "maxSampleObtainingMs": 453
+    }
+  },
+  "coldDistinctSvgRequests": {
+    "desktop": {
+      "square": {
+        "files": 53,
+        "rawBytes": 531732
+      },
+      "workshop": {
+        "files": 18,
+        "rawBytes": 23723
+      },
+      "return": {
+        "files": 0,
+        "rawBytes": 0
+      }
+    },
+    "phone": {
+      "square": {
+        "files": 53,
+        "rawBytes": 531732
+      },
+      "workshop": {
+        "files": 18,
+        "rawBytes": 23723
+      },
+      "return": {
+        "files": 0,
+        "rawBytes": 0
+      }
+    }
+  }
+}

@@ -381,7 +381,8 @@ export class TownStore {
           allowed=action.success&&near(position,commissionLocation(action.data).room,commissionLocation(action.data).stopId);
         }else if(cmd.kind==='carpentry'){
           const action=carpentryActionSchema.safeParse(cmd.carpentryAction);
-          allowed=action.success&&carpentryActionLocations(action.data).some(location=>near(position,location.room,location.stopId));
+          // Equipping an owned tool is portable; earning and using it still require their stations.
+          allowed=action.success&&(action.data.action==='equip-saw'||carpentryActionLocations(action.data).some(location=>near(position,location.room,location.stopId)));
         }else if(cmd.kind==='garden'){
           const action=gardenActionSchema.safeParse(cmd.gardenAction);
           allowed=action.success&&gardenActionLocations(action.data).some(location=>near(position,location.room,location.stopId));

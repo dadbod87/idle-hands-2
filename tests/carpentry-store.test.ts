@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {Pool} from 'pg';
 import {migrate,localDatabaseUrl} from '../server/db.ts';
 import {TownStore,type TownPosition} from '../server/store.ts';
+import {TownStore as LiveTownStore} from '../server/live-store.ts';
 import {worlds,canStand,routeTo} from '../src/game/world.ts';
 import {loadWorkshop,createWorkshop,applyWorkshop,type WorkshopState} from '../src/game/workshop.ts';
 import {carpentryActionLocations,type CarpentryAction} from '../src/game/carpentry.ts';
@@ -49,6 +50,28 @@ test('isolated PostgreSQL carpentry authority, separate rack and anonymous kept-
    assert.equal((await command('aster',{kind:'carpentry',carpentryAction:{action:'start-easel'}},at('workshop','bench'))).ok,false);
    assert.deepEqual(Object.keys((await store.snapshot('bea')).noticeboard).sort(),['credits','openedAt','phase','readyAt','startedAt']);
    const privilege=(await pool.query("select relrowsecurity,not exists(select 1 from aclexplode(coalesce(relacl,acldefault('r',relowner))) a where a.grantee=0) as private from pg_class where oid='ih2.noticeboard'::regclass")).rows[0];assert.equal(privilege.relrowsecurity,true);assert.equal(privilege.private,true);
+  });
+  await t.test('portable equipment uses an owned saw and never bypasses a work station',async()=>{
+   const live=new LiveTownStore(pool,{now:()=>now});
+   const act=async(id:string,action:Record<string,unknown>,position:TownPosition)=>{
+    const s=await live.snapshot(id);
+    return live.execute(id,{id:'bag-carpentry-'+(++serial),expectedRevision:s.workshop.revision,...action},position);
+   };
+   const away=at('square','scrap'), equip={kind:'carpentry',carpentryAction:{action:'equip-saw',equipped:true}};
+   assert.equal((await act('aster',equip,away)).ok,false);
+   assert.equal((await act('aster',{kind:'carpentry',carpentryAction:{action:'learn-saw'}},at('square','carpentry-desk'))).ok,true);
+   const before=(await live.snapshot('aster')).workshop;
+   const payload={...equip,id:'bag-equip-receipt',expectedRevision:before.revision};
+   const saved=await live.execute('aster',payload,away);
+   assert.ok(saved.ok,saved.message);
+   assert.deepEqual(saved.snapshot.workshop.carpentry.saw,{owned:true,equipped:true});
+   assert.deepEqual(saved.snapshot.workshop.inventory,before.inventory);
+   assert.deepEqual(saved.snapshot.workshop.owned,before.owned);
+   assert.equal((await live.execute('aster',payload,away)).replayed,true);
+   assert.equal((await act('aster',{kind:'carpentry',carpentryAction:{action:'gather-pine',station:'crooked'}},away)).ok,false);
+   assert.equal((await act('bea',equip,away)).ok,false);
+   assert.equal((await act('aster',{kind:'carpentry',carpentryAction:{action:'equip-saw',equipped:false}},away)).ok,true);
+   assert.deepEqual((await live.snapshot('aster')).workshop.carpentry.saw,{owned:true,equipped:false});
   });
   await t.test('concurrent start/claim/replay debit once, independent old job persists and a restored process keeps outputs',async()=>{
    await setup('aster');now=4*H;await harvest('aster');const s=await store.snapshot('aster'),payload={id:'same-easel-start',expectedRevision:s.workshop.revision,kind:'carpentry',carpentryAction:{action:'start-easel'}};

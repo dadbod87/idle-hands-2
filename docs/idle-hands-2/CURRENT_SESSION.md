@@ -1,3 +1,9 @@
+# November 23 — first arrival and Bag movement accepted
+
+PR #106 merged as `a2421996266fa96115db72034395c9a6b1282430`. Main passed 592 domain and database tests and 253 browser cases on its exact commit. [Verification](../evidence/IH2-188/EXACT_CI.json).
+
+The next candidate is the [Bag equipment and headwear batch](handoffs/2026-11-23-bag-equipment.md) on `feat/bag-equipment`. Keep saved previews and databases stopped.
+
 # November 23 — first-arrival and Bag candidate
 
 The next batch is `feat/first-arrival-and-bag`. Its three parts are [full workshop](../evidence/IH2-188/PLAN.md), [first arrival](../evidence/IH2-189/PLAN.md) and [movable Bag stacks](../evidence/IH2-190/PLAN.md). See the [handoff](handoffs/2026-11-23-arrival-and-bag.md) for boundaries, validation and next work. Keep the saved previews and databases stopped.

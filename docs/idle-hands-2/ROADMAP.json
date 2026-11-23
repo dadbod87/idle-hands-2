@@ -3581,7 +3581,7 @@
     {
       "id": "IH2-188",
       "title": "Help residents make room in a full workshop",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/first-arrival-and-bag",
       "goal": "Explain how to free an occupied nook from Bag and keep placement explicit.",
       "depends_on": [
@@ -3596,14 +3596,15 @@
         "Keep saved previews and databases stopped. No hosted or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-188/PLAN.md"
+        "docs/evidence/IH2-188/PLAN.md",
+        "docs/evidence/IH2-188/EXACT_CI.json"
       ],
-      "progress_note": "Prepared alongside the town arrival and movable stacks under one review and exact-head validation batch."
+      "progress_note": "Accepted on main a242199. PR #106 and the main push passed 592 domain and database tests plus 253 browser cases."
     },
     {
       "id": "IH2-189",
       "title": "Give first arrivals a clear route to town",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/first-arrival-and-bag",
       "goal": "Lead from the boarding-house door to Marlow and the plaza with a path and fewer competing labels.",
       "depends_on": [
@@ -3617,14 +3618,15 @@
         "Keep saved previews and databases stopped. No shared authority, capacity, economy or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-189/PLAN.md"
+        "docs/evidence/IH2-189/PLAN.md",
+        "docs/evidence/IH2-188/EXACT_CI.json"
       ],
-      "progress_note": "Implemented in the combined candidate. Exact-head acceptance pending."
+      "progress_note": "Accepted on main a242199. PR #106 and the main push passed 592 domain and database tests plus 253 browser cases."
     },
     {
       "id": "IH2-190",
       "title": "Move stacks within a Bag pocket",
-      "status": "queued",
+      "status": "done",
       "owner_branch": "feat/first-arrival-and-bag",
       "goal": "Let residents arrange carried stacks in-browser without moving inventory or committing placement.",
       "depends_on": [
@@ -3638,10 +3640,31 @@
         "Keep saved previews and databases stopped. No shared authority, capacity, economy or original-game change."
       ],
       "evidence": [
-        "docs/evidence/IH2-190/PLAN.md"
+        "docs/evidence/IH2-190/PLAN.md",
+        "docs/evidence/IH2-188/EXACT_CI.json"
       ],
-      "progress_note": "Implemented in the combined candidate. Exact-head acceptance pending."
+      "progress_note": "Accepted on main a242199. PR #106 and the main push passed 592 domain and database tests plus 253 browser cases."
+    },
+    {
+      "id": "IH2-191",
+      "title": "Equip an earned hand saw directly in Bag",
+      "status": "in_progress",
+      "owner_branch": "feat/bag-equipment",
+      "goal": "See which hand tool is equipped and change it without interrupting pine work.",
+      "depends_on": [
+        "IH2-190"
+      ],
+      "acceptance": [
+        "Preserve one owned saw across keyboard, touch, explicit equipment changes and reload.",
+        "Keep learning and using tools at their established stations; verify authenticated ownership and replay."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No new gear rewards, fees, storage or original-game changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-191/PLAN.md"
+      ]
     }
   ],
-  "source_status_note": "Main includes the frame-aligned resize. Full-workshop placement, the first-arrival route and movable Bag stacks are in the combined candidate."
+  "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."
 }

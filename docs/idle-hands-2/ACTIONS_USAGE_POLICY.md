@@ -16,6 +16,8 @@ For a browser setup timeout, inspect the runner image, package mirror, transferr
 
 At closeout distinguish unique workflow runs, retries and duplicate runs. Sum observed job durations across attempts, count inherited successful jobs only once, and cite recent timings for any proposed workflow change. Runner time and actual billing are separate measurements.
 
+Use `python3 tools/actions-run-minutes.py RUN_ID...` for an explicit set of runs. It fetches each attempt’s job pages with read-only GitHub CLI requests, counts inherited job IDs once, and records measured seconds and approximate per-job rounded minutes. Omit the report from release acceptance until required jobs finish. During a run the tool lists incomplete jobs and gives a partial total. It cannot determine billed charges. [GitHub job endpoint](https://docs.github.com/en/rest/actions/workflow-jobs#list-jobs-for-a-workflow-run-attempt).
+
 ## Current public-source status — supersedes the private billing hold
 
 On November13 the owner explicitly asked to make this existing repository public instead of buying Actions usage. The authenticated update succeeded and anonymous GitHub/API/raw-source requests returned200/public. Standard GitHub-hosted Ubuntu runners for public repositories are free, so the old private included-allowance refusal no longer by itself blocks those runs. This is an owner-approved visibility change, not an exemption from checks or source acceptance. Source, history and existing Actions history/logs are now public; the game itself remains local/unreleased.

@@ -27,7 +27,7 @@ import {gardenWorldAssets} from '../art/garden-world-assets.ts';
 import {gardenArt,gardenActionFrame,type GardenAnimation} from '../art/garden.ts';
 import Phaser from 'phaser';
 import {trailWorldAssets,TRAIL_ART} from '../art/trail.ts';
-import {HOME_ASSETS,HOME_ART,HOME_CATALOG} from '../art/home.ts';
+import {HOME_SUPPORT_ASSETS,HOME_ART,HOME_CATALOG} from '../art/home.ts';
 import {TownSky} from './TownSky.ts';
 import {type TownClimate} from '../game/town-climate.ts';
 import {TOWN_PEOPLE} from '../game/town-people.ts';
@@ -380,12 +380,15 @@ export class WorldScene extends Phaser.Scene {
   preload() {
     this.loadingRoom=this.session.room;
     this.loadingInteriorKey=this.loadingRoom.startsWith('home')?this.interiorKey():'';
-    if((this.loadingInteriorKey==='garden-studio-interior'||this.loadingInteriorKey==='workshop-lodge-interior')&&!this.textures.exists(this.loadingInteriorKey)){
-      this.load.svg(this.loadingInteriorKey,homeInteriorPath(this.loadingInteriorKey));
+    if(this.loadingInteriorKey){
+      // Load the selected plan and its same-size legacy fallback before painting the room.
+      const fallback=homeInterior(this.loadingRoom==='home-expanded'?2:1);
+      for(const key of new Set([this.loadingInteriorKey,fallback])){
+        if(!this.textures.exists(key))this.load.svg(key,homeInteriorPath(key));
+      }
     }
     if(this.loadingRoom.startsWith('home'))this.load.svg('home-naturalist',NATURALIST_KEEPSAKE.art);
     for(const id of ['desk','wind','soft-bank','detour','post-broken','post-aligned','post-pinned','post-repaired'])this.load.svg('outing-'+id,'/art/outing/'+id+'.svg');
-    for(const tier of ['starter','expanded'])this.load.svg('cottage-'+tier+'-interior','/art/interiors/cottage-'+tier+'-interior.svg');
     this.load.svg('home-teapot-world','/art/cafe/teapot-world.svg');
     this.load.svg('home-teapot-icon','/art/cafe/teapot-icon.svg');
     for(const key of DEPOT_ASSETS)this.load.svg(key,`/art/depots/${key}.svg`);
@@ -410,7 +413,7 @@ export class WorldScene extends Phaser.Scene {
     }
     if(this.loadingRoom==='trail'&&!this.textures.exists('glasshouse-overgrown'))this.load.svg('glasshouse-overgrown','/art/glasshouse/overgrown.svg');
     for(const key of trailWorldAssets(this.loadingRoom))if(!this.textures.exists(key))this.load.svg(key,'/art/trail/'+key+'.svg');
-    for(const key of HOME_ASSETS)this.load.svg(key,'/art/homes/'+key+'.svg');
+    for(const key of HOME_SUPPORT_ASSETS)this.load.svg(key,'/art/homes/'+key+'.svg');
     for(const asset of HOUSING_ASSETS)this.load.svg(asset.id,'/art/housing/'+asset.file);
     for(const asset of RESIDENTIAL_ASSETS)this.load.svg(asset.id,(asset.id.startsWith('housing-')?'/art/housing/':'/art/residential/')+asset.file);
     for(const asset of NEIGHBORHOOD_ASSETS)this.load.svg(asset.id,'/art/neighborhood/'+asset.file);

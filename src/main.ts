@@ -885,6 +885,7 @@ scene.onFrame = () => {
     const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='garden'?'Your allotment':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
     const hint=session.room==='square'?district!.hint:session.room==='neighborhood'?'Homes, not cubicles.':session.room==='trail'?'A path worth the paperwork.':session.room==='garden'?'Ready plants wait safely.':session.room==='lodging'?'Your rented room. Nothing due today.':session.room.startsWith('home')?(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved'):'Great things take time.';
     if(district&&district.name!=='Town square'&&(feedback.textContent?.startsWith('Tap the three material depots')||feedback.textContent===lastDistrictHint)){feedback.textContent=district.hint;lastDistrictHint=district.hint;}
+    location.toggleAttribute('data-sheltered',session.room==='workshop'||session.room==='lodging'||session.room.startsWith('home'));
     if (locationTitle.data !== roomName) locationTitle.data = roomName;
     if (locationHint.textContent !== hint) locationHint.textContent = hint;
     if (practiceLabel) {

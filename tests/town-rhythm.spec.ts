@@ -229,3 +229,44 @@ test('Wren checks the survey on the visible trail and stays still with reduced m
   }finally{await context.close();}
  }
 });
+
+test('compact location keeps the room name and moves weather to the guide on small scenes',async({browser})=>{
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ try{
+  const page=await context.newPage();
+  const errors:string[]=[],api:string[]=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))api.push(request.url());});
+  await openSky(page,'night','drizzle');
+  const raw=()=>page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'));
+  const original=await raw(),area=page.locator('#location'),sky=page.locator('#town-sky');
+  const guide=page.getByRole('button',{name:'Open field guide'});
+  await expect(area).toContainText('Town square');
+  await expect(sky).toBeVisible();
+  await guide.tap();
+  await page.getByRole('button',{name:/Enter your workshop/}).tap();
+  await expect.poll(async()=>(await snapshot(page)).room).toBe('workshop');
+  await expect(area).toHaveAttribute('data-sheltered','');
+  await expect(area).toContainText('Your workshop');
+  await expect(sky).toBeHidden();
+  await page.screenshot({path:evidence+'/compact-location-phone-workshop.png'});
+  await page.setViewportSize({width:844,height:390});
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  await expect(area).toBeVisible();
+  await expect(sky).toBeHidden();
+  await expect(page.getByRole('button',{name:'Sound settings'})).toBeInViewport();
+  await page.screenshot({path:evidence+'/compact-location-short-workshop.png'});
+  await guide.tap();
+  await expect(page.locator('#guide-sky')).toContainText('Night · Light drizzle');
+  await expect(page.locator('#guide-sky')).toBeVisible();
+  await page.getByRole('button',{name:'Close panel'}).tap();
+  await page.setViewportSize({width:2560,height:1440});
+  await page.evaluate(()=>document.documentElement.style.fontSize='100%');
+  await expect(sky).toBeVisible();
+  expect(await raw()).toBe(original);
+  expect(errors).toEqual([]);
+  expect(api).toEqual([]);
+ }finally{
+  await context.close();
+ }
+});

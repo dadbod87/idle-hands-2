@@ -3664,6 +3664,26 @@
       "evidence": [
         "docs/evidence/IH2-191/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-203",
+      "title": "Walk to missing ingredients from the workbench",
+      "status": "queued",
+      "owner_branch": "feat/workbench-material-routes",
+      "goal": "Give a blocked crafter a direct route to the actual depot while keeping collecting explicit.",
+      "depends_on": [
+        "IH2-183"
+      ],
+      "acceptance": [
+        "Check typed shortfalls, locked recipes, keyboard and touch routes, unchanged stock on arrival and actual collection."
+      ],
+      "exclusions": [
+        "No inventory, timer, economy, server or saved-preview change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-203/PLAN.md"
+      ],
+      "progress_note": "Separate local player-flow candidate. Hosted acceptance pending."
     }
   ],
   "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."

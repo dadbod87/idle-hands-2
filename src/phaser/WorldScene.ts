@@ -364,6 +364,7 @@ export class WorldScene extends Phaser.Scene {
   frameSamples: number[] = [];
   needsFullRate(){return this.visiblePeerWalking||(this.bridgeRevealAt!==null&&!this.reducedMotion.matches&&performance.now()-this.bridgeRevealAt<950)||this.keys.size>0||this.session.snapshot().walking||!!this.gardenMotion||!!this.carpentryMotion||!!this.orchardMotion||this.noticeReveal>0&&performance.now()-this.noticeReveal<800;}
   onFrame?: () => void;
+  onRoomLoading?: (room:Room) => void;
   onWalkFailure?:()=>void;
   movementBudget?:()=>number;
   onMovement?:(distance:number)=>void;
@@ -380,6 +381,7 @@ export class WorldScene extends Phaser.Scene {
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
   preload() {
     this.loadingRoom=this.session.room;
+    this.onRoomLoading?.(this.loadingRoom);
     this.loadingInteriorKey=this.loadingRoom.startsWith('home')?this.interiorKey():'';
     if(this.loadingInteriorKey){
       // Load the selected plan and its same-size legacy fallback before painting the room.

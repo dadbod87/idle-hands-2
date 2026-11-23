@@ -31,3 +31,9 @@ Nella’s existing lesson, equip and gather actions produced six pine in the fir
 The current pine ledger reconciles every spent bundle against easels, hampers and commission costs. A future contribution needs its own reconciled debit source, old-save default and the same transaction as the project result. Reusing the commission counter would lose that distinction.
 
 All three stages passed desktop keyboard, 320px touch and 844×390 at 200% text, for nine layout cases. Targets are at least 44px, the narrow page has no horizontal overflow, and the file preview made no outbound requests. Terra 6.1 confirmed that ivy and a blocked path, repair boards and an open doorway distinguish the states visually. The short header was compacted and the initial rows now say “Proposed volunteer jobs” so a concept does not look like a working job board. Verify the study in the final protocol on an actual phone before it informs runtime acceptance.
+
+## Contribution rehearsal
+
+Run `node --test docs/evidence/IH2-204/study/project-model.test.mjs` for five deterministic cases. The model accepts a solo completion and multiple orders of three distinct jobs, charges just one draft two-pine debit when two residents attempt the same task, and retains one deadline while everyone is away. Proximity, current stock and quote version still matter when a reviewed action is submitted. A late arrival is eligible for the first free tour without having contributed.
+
+The twelve-hour construction placeholder makes deadline boundaries measurable in the rehearsal. It is not a settled product duration. The ordered replay represents what a future transaction must produce under contention. It does not exercise concurrent SQL or allocate stock, paths, visits or furniture in the game. A future runtime patch needs a locked three-task ledger, atomic debit and receipt, content migration, and the real two-client and reconnect proof.

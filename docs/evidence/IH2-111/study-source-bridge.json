@@ -22,8 +22,8 @@
   "reviewedCurrent": {
     "src/game/world.ts": "3ec09016a3879e6a841c7dc9a58c9411f99522896840227edd45c6f16aca655d",
     "src/main.ts": "0d5041395f3ca03554f924a50330b4f1dc2b0e5ef72454b63cfdddc8013e9d7c",
-    "src/phaser/WorldScene.ts": "a0c2f3a331794fe343673f18c4931a9d75802ab820303ac30a3cc439619f3739",
+    "src/phaser/WorldScene.ts": "40320114b0c4b92cadf7b14bd7deb1a8b280e7b997300769e48d395902a34501",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the closed Glasshouse facade and reachable Inkwood stop. Original study snapshots and generated output remain frozen."
+  "currentTask": "Reviewed the Glasshouse facade, Inkwood stop and room-owned trail artwork. Original study snapshots and generated output remain frozen."
 }

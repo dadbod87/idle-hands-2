@@ -87,7 +87,7 @@ test('a resident can walk to the closed Inkwood Glasshouse without changing trai
   const context=await browser.newContext({viewport:{width:size.width,height:size.height},hasTouch:size.touch});
   try{
    const page=await context.newPage(),initial=createWorkshop(Date.now());
-   const errors:string[]=[],requests:string[]=[],commands:string[]=[];
+   const errors:string[]=[],requests:string[]=[],commands:string[]=[],trailArt:string[]=[];
    let signedIn=false,where={room:'square',position:{x:25.5,y:12.6}},assetLoads=0;
    const snapshot=()=>({playerId:'aster',name:'Aster',workshop:initial,position:where,quest:{contentVersion:1,awarded:[]},
     bridge:{contributed:3,target:3,restored:true,phase:'open'},trail:{stamps:[],pennantOwned:false},
@@ -100,6 +100,7 @@ test('a resident can walk to the closed Inkwood Glasshouse without changing trai
    page.on('request',request=>{
     const path=new URL(request.url()).pathname;
     if(path==='/art/glasshouse/overgrown.svg')assetLoads++;
+    if(path.startsWith('/art/trail/'))trailArt.push(path.split('/').at(-1)!);
     if(path.startsWith('/api/town/'))requests.push(path);
    });
    await page.route('**/api/town/**',route=>{
@@ -116,10 +117,16 @@ test('a resident can walk to the closed Inkwood Glasshouse without changing trai
    const play=()=>page.evaluate(()=>(window as any).__pilot.snapshot());
    await expect.poll(async()=>(await play()).nearby).toBe('trail-gate');
    expect(assetLoads).toBe(0);
+   expect([...trailArt].sort()).toEqual(['building','collecting','open','ready'].map(state=>'trail-bridge-'+state+'.svg').sort());
    if(size.touch)await page.locator('#interact').tap();
    else await page.locator('#interact').click();
    await expect.poll(async()=>(await play()).room).toBe('trail');
    await expect.poll(()=>assetLoads).toBe(1);
+   await expect.poll(()=>trailArt.filter(path=>path.startsWith('trail-landmark-')).sort()).toEqual(
+    ['lookout','old-sign','trailhead'].map(id=>'trail-landmark-'+id+'.svg'));
+   expect(trailArt.filter(path=>path==='trail-ground.svg')).toHaveLength(1);
+   expect(trailArt.filter(path=>path.startsWith('trail-bridge-'))).toHaveLength(4);
+   expect(trailArt.filter(path=>path.startsWith('trail-pennant-'))).toEqual([]);
    await page.evaluate(text=>document.documentElement.style.fontSize=text,size.text);
    await page.locator('#places').click();
    const place=page.getByRole('button',{name:/Inkwood Glasshouse/});

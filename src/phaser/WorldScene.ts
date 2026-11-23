@@ -23,7 +23,7 @@ import {gardenStage,type GardenState} from '../game/live-garden.ts';
 import {gardenWorldAssets} from '../art/garden-world-assets.ts';
 import {gardenArt,gardenActionFrame,type GardenAnimation} from '../art/garden.ts';
 import Phaser from 'phaser';
-import {TRAIL_ASSETS,TRAIL_ART} from '../art/trail.ts';
+import {trailWorldAssets,TRAIL_ART} from '../art/trail.ts';
 import {HOME_ASSETS,HOME_ART,HOME_CATALOG} from '../art/home.ts';
 import {TownSky} from './TownSky.ts';
 import {type TownClimate} from '../game/town-climate.ts';
@@ -401,7 +401,7 @@ export class WorldScene extends Phaser.Scene {
       this.load.svg(key,'/art/garden/'+key+'.svg');
     }
     if(this.loadingRoom==='trail'&&!this.textures.exists('glasshouse-overgrown'))this.load.svg('glasshouse-overgrown','/art/glasshouse/overgrown.svg');
-    for(const key of TRAIL_ASSETS)this.load.svg(key,'/art/trail/'+key+'.svg');
+    for(const key of trailWorldAssets(this.loadingRoom))if(!this.textures.exists(key))this.load.svg(key,'/art/trail/'+key+'.svg');
     for(const key of HOME_ASSETS)this.load.svg(key,'/art/homes/'+key+'.svg');
     for(const asset of HOUSING_ASSETS)this.load.svg(asset.id,'/art/housing/'+asset.file);
     for(const asset of RESIDENTIAL_ASSETS)this.load.svg(asset.id,(asset.id.startsWith('housing-')?'/art/housing/':'/art/residential/')+asset.file);

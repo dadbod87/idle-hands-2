@@ -1,0 +1,334 @@
+{
+  "baseline": {
+    "source": "c6c1302f8324ea646f8b2667375d6967d3b861ea",
+    "method": "Hold one workshop SVG response while navigating through the actual door and changing visible viewport. Browser screenshots sample 160x90 pixels, with cosmetic daylight only. No save, API or clock fixtures.",
+    "results": [
+      {
+        "browser": "chromium",
+        "captures": [
+          {
+            "stage": "arrival",
+            "shape": "phone",
+            "colorCount": 856,
+            "blackRatio": 0,
+            "room": "square",
+            "text": ""
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "phone",
+            "colorCount": 1,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "short200",
+            "colorCount": 1,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "2K",
+            "colorCount": 1,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "desktop",
+            "colorCount": 1,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "phone",
+            "colorCount": 645,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "short200",
+            "colorCount": 485,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "2K",
+            "colorCount": 559,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "desktop",
+            "colorCount": 559,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          }
+        ],
+        "api": [],
+        "errors": [],
+        "storagePreserved": true
+      },
+      {
+        "browser": "webkit",
+        "captures": [
+          {
+            "stage": "arrival",
+            "shape": "phone",
+            "colorCount": 711,
+            "blackRatio": 0,
+            "room": "square",
+            "text": ""
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "phone",
+            "colorCount": 1,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "short200",
+            "colorCount": 1,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "2K",
+            "colorCount": 1,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "desktop",
+            "colorCount": 1,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "phone",
+            "colorCount": 584,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "short200",
+            "colorCount": 295,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "2K",
+            "colorCount": 509,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "desktop",
+            "colorCount": 509,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          }
+        ],
+        "api": [],
+        "errors": [],
+        "storagePreserved": true
+      }
+    ]
+  },
+  "candidate": {
+    "source": "e072c00074a2ad60aaffca702d2d55e77912e12c",
+    "method": "Hold one workshop SVG response while navigating through the actual door and changing visible viewport. Browser screenshots sample 160x90 pixels, with cosmetic daylight only. No save, API or clock fixtures.",
+    "results": [
+      {
+        "browser": "chromium",
+        "captures": [
+          {
+            "stage": "arrival",
+            "shape": "phone",
+            "colorCount": 856,
+            "blackRatio": 0,
+            "room": "square",
+            "text": ""
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "phone",
+            "colorCount": 159,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": "Opening your workshop\u2026"
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "short200",
+            "colorCount": 163,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": "Opening your workshop\u2026"
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "2K",
+            "colorCount": 159,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": "Opening your workshop\u2026"
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "desktop",
+            "colorCount": 159,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": "Opening your workshop\u2026"
+          },
+          {
+            "stage": "workshop",
+            "shape": "phone",
+            "colorCount": 645,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "short200",
+            "colorCount": 485,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "2K",
+            "colorCount": 559,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "desktop",
+            "colorCount": 559,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          }
+        ],
+        "api": [],
+        "errors": [],
+        "storagePreserved": true
+      },
+      {
+        "browser": "webkit",
+        "captures": [
+          {
+            "stage": "arrival",
+            "shape": "phone",
+            "colorCount": 711,
+            "blackRatio": 0,
+            "room": "square",
+            "text": ""
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "phone",
+            "colorCount": 230,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": "Opening your workshop\u2026"
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "short200",
+            "colorCount": 228,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": "Opening your workshop\u2026"
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "2K",
+            "colorCount": 230,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": "Opening your workshop\u2026"
+          },
+          {
+            "stage": "loading-workshop",
+            "shape": "desktop",
+            "colorCount": 230,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": "Opening your workshop\u2026"
+          },
+          {
+            "stage": "workshop",
+            "shape": "phone",
+            "colorCount": 584,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "short200",
+            "colorCount": 299,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "2K",
+            "colorCount": 509,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          },
+          {
+            "stage": "workshop",
+            "shape": "desktop",
+            "colorCount": 509,
+            "blackRatio": 0,
+            "room": "workshop",
+            "text": ""
+          }
+        ],
+        "api": [],
+        "errors": [],
+        "storagePreserved": true
+      }
+    ]
+  }
+}

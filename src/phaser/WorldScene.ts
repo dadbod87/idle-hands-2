@@ -1,3 +1,5 @@
+import {activeWave} from '../game/town-wave.ts';
+import {INKWOOD_HOOD,CLERK_CAP,type EarnedHeadwear} from '../game/earned-headwear.ts';
 import { NATURALIST_KEEPSAKE } from '../game/home-keepsake.ts';
 import {LODGING_FOOTPRINT,LODGING_FRONT} from '../game/lodging.ts';
 import type {Headwear} from '../art/headwear.ts';
@@ -30,7 +32,8 @@ import {type TownClimate} from '../game/town-climate.ts';
 import {TOWN_PEOPLE} from '../game/town-people.ts';
 import { Session, WALK_SPEED } from '../game/session.ts';
 import {movementFrameSteps} from '../game/movement-frame.ts';
-import { TILE, worlds, type Room } from '../game/world.ts';
+import {ResidentMotion} from '../game/resident-motion.ts';
+import { TILE, worlds, clearSegment, type Room } from '../game/world.ts';
 import { PLACEMENT_SLOTS, type WorkshopState,type PropId } from '../game/live-workshop.ts';
 import { ORIGINAL_STATIC, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 import catalog from '../../public/art/variety/catalog.json';
@@ -96,8 +99,13 @@ export class WorldScene extends Phaser.Scene {
   private ambientEnabled=false;
   private gestureOffset=0;
   private reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  residents:Array<{id:string;name:string;room:string;homePlotId?:string;districtId?:string;position:{x:number;y:number}}>=[];
-  private residentViews=new Map<string,{image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text}>();
+  residents:Array<{id:string;name:string;room:string;homePlotId?:string;districtId?:string;headwear?:EarnedHeadwear;waveUntil?:number;position:{x:number;y:number}}>=[];
+  private residentViews=new Map<string,{image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text;motion:ResidentMotion;headwear?:Phaser.GameObjects.Image}>();
+  private visiblePeerWalking=false;
+  localWaveUntil=0;
+  waveTime=Date.now;
+  private localWaveLabel?:Phaser.GameObjects.Text;
+  private clearPeerStep=(from:{x:number;y:number},to:{x:number;y:number})=>clearSegment(this.session.room,from,to,this.session.room==='neighborhood'?this.session.geometry:undefined);
   private bridgeView?:Phaser.GameObjects.Image;
   private bridgeRibbon?:Phaser.GameObjects.Graphics;
   private bridgeRibbonLabel?:Phaser.GameObjects.Text;
@@ -220,12 +228,10 @@ export class WorldScene extends Phaser.Scene {
   private lodgingLabels:Phaser.GameObjects.Text[]=[];
   private lodgingFollow(height:number){return this.resting&&height<300?54:0;}
 
-  private paintHeadwear(x:number,y:number,facing:Facing,pose:number){
-    const current=this.headwear;
-    const layer=this.headwearLayer;
-    if(!current||this.resting){
+  private paintHeadwear(current:Headwear|null,layer:Phaser.GameObjects.Image|undefined,x:number,y:number,frame:number){
+    if(!current){
       if(layer?.visible)layer.setVisible(false);
-      return;
+      return layer;
     }
     const key='headwear-'+current;
     if(!this.textures.exists(key)){
@@ -235,16 +241,16 @@ export class WorldScene extends Phaser.Scene {
         this.load.svg(key,'/art/headwear/'+current+'.svg');
         if(!this.load.isLoading())this.load.start();
       }
-      return;
+      return layer;
     }
     this.parseActivityTexture(key);
-    const frame=residentFrame(facing,pose);
-    const image=layer??(this.headwearLayer=this.add.image(x,y,key,frame)
-      .setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale));
+    const image=layer??this.add.image(x,y,key,frame)
+      .setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale);
     if(image.texture.key!==key||String(image.frame.name)!==String(frame))image.setTexture(key,frame);
     if(image.x!==x||image.y!==y)image.setPosition(x,y);
     if(image.depth!==y+.01)image.setDepth(y+.01);
     if(!image.visible)image.setVisible(true);
+    return image;
   }
   private activityLoading=new Set<string>();
   private activityPrefixes=['garden-actions-','saw-equipped-','carpentry-actions-','orchard-picking-'] as const;
@@ -353,7 +359,7 @@ export class WorldScene extends Phaser.Scene {
   private lastFrame = 0;
   private movementReset=true;
   frameSamples: number[] = [];
-  needsFullRate(){return (this.bridgeRevealAt!==null&&!this.reducedMotion.matches&&performance.now()-this.bridgeRevealAt<950)||this.keys.size>0||this.session.snapshot().walking||!!this.gardenMotion||!!this.carpentryMotion||!!this.orchardMotion||this.noticeReveal>0&&performance.now()-this.noticeReveal<800;}
+  needsFullRate(){return this.visiblePeerWalking||(this.bridgeRevealAt!==null&&!this.reducedMotion.matches&&performance.now()-this.bridgeRevealAt<950)||this.keys.size>0||this.session.snapshot().walking||!!this.gardenMotion||!!this.carpentryMotion||!!this.orchardMotion||this.noticeReveal>0&&performance.now()-this.noticeReveal<800;}
   onFrame?: () => void;
   onWalkFailure?:()=>void;
   movementBudget?:()=>number;
@@ -439,7 +445,7 @@ export class WorldScene extends Phaser.Scene {
     this.decorationViews=[];
     this.furnitureOccluders=[];
     this.decorationsDirty=true;
-    this.residentViews=new Map();
+    this.residentViews=new Map();this.visiblePeerWalking=false;this.localWaveLabel=undefined;
     this.bridgeView=undefined;
     this.occluders = [];this.commonsLife=undefined;this.commonsSigns=[];
     this.frame = 0; this.facing = 'south'; this.travelled = 0;
@@ -595,16 +601,20 @@ export class WorldScene extends Phaser.Scene {
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd'].includes(key)) {if(!this.session.locked)this.onSteer?.(); this.keys.add(key); e.preventDefault(); }
     };
     const onUp = (e: KeyboardEvent) => this.keys.delete(e.key.length === 1 ? e.key.toLowerCase() : e.key);
-    const clear = () => { this.orchardMotion=null;this.gardenMotion=null;this.carpentryMotion=null;this.noticeReveal=0;this.noticeboardView?.setAlpha(1);this.movementReset=true;this.keys.clear(); this.session.stop();this.walkMark?.setVisible(false);this.clearBridgeCeremony();this.updateAmbient(0); };
-    const readingFocus=(event:FocusEvent)=>{if(event.target instanceof HTMLElement&&event.target.closest('[data-ui-scroll]')){this.keys.clear();this.movementReset=true;}};
+    let touch: {id:number;x:number;y:number;at:number}|null=null;
+    const cancelTouch = () => { touch=null; };
+    const clear = () => { cancelTouch();this.orchardMotion=null;this.gardenMotion=null;this.carpentryMotion=null;this.noticeReveal=0;this.noticeboardView?.setAlpha(1);this.movementReset=true;this.keys.clear(); this.session.stop();this.walkMark?.setVisible(false);this.clearBridgeCeremony();this.updateAmbient(0); };
+    const readingFocus=(event:FocusEvent)=>{
+      if(!(event.target instanceof HTMLElement))return;
+      if(event.target.closest('dialog'))cancelTouch();
+      if(event.target.closest('[data-ui-scroll]')){this.keys.clear();this.movementReset=true;}
+    };
     document.addEventListener('focusin',readingFocus);
     const motionChanged=()=>this.updateAmbient(0);this.reducedMotion.addEventListener('change',motionChanged);
     document.addEventListener('keydown', onDown); document.addEventListener('keyup', onUp);
     window.addEventListener('blur', clear); document.addEventListener('visibilitychange', clear);
-    this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
-      // Phaser also receives window-level mouse events from HTML controls.
-      if(p.downElement!==this.game.canvas)return;
-      const pos = this.cameras.main.getWorldPoint(p.x, p.y);
+    const pointAt = (screenX: number, screenY: number) => {
+      const pos = this.cameras.main.getWorldPoint(screenX, screenY);
       const to = { x: pos.x / TILE - .5, y: pos.y / TILE - .5 };
       if(!this.session.locked){
         this.onSteer?.();
@@ -619,6 +629,48 @@ export class WorldScene extends Phaser.Scene {
         const accepted=target?this.session.approach(target):this.session.point(to);
         if(!accepted)this.onWalkFailure?.();
       }
+    };
+    const canvas = this.game.canvas;
+    this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
+      // HTML controls and secondary mouse buttons must never start a walk.
+      if (!pointer.wasTouch && pointer.downElement===canvas && pointer.button===0 && pointer.leftButtonDown()) pointAt(pointer.x,pointer.y);
+    });
+
+    // A finger first touching the glass may be about to swipe, hold or pinch.
+    // Keep that gesture separate from a deliberate tap on the playfield.
+    const touchSlop = (event:PointerEvent) => touch &&
+      Math.hypot(event.clientX-touch.x,event.clientY-touch.y)>12;
+    const startTouch = (event:PointerEvent) => {
+      if(event.pointerType!=='touch')return;
+      if(!event.isPrimary){cancelTouch();return;}
+      if(event.target!==canvas||this.session.locked)return;
+      // Suppress the compatibility mouse press for this same touch.
+      event.preventDefault();
+      touch={id:event.pointerId,x:event.clientX,y:event.clientY,at:event.timeStamp};
+    };
+    const moveTouch = (event:PointerEvent) => {
+      if(event.pointerId===touch?.id&&touchSlop(event))cancelTouch();
+    };
+    const finishTouch = (event:PointerEvent) => {
+      if(!touch||event.pointerId!==touch.id)return;
+      const isTap=!touchSlop(event)&&event.timeStamp-touch.at<=450;
+      cancelTouch();
+      if(isTap&&!this.session.locked&&this.session.room===this.room&&
+        document.elementFromPoint(event.clientX,event.clientY)===canvas){
+        pointAt(this.scale.transformX(event.pageX),this.scale.transformY(event.pageY));
+      }
+    };
+    window.addEventListener('pointerdown',startTouch,true);
+    window.addEventListener('pointermove',moveTouch,true);
+    window.addEventListener('pointerup',finishTouch,true);
+    window.addEventListener('pointercancel',cancelTouch,true);
+    this.scale.on(Phaser.Scale.Events.RESIZE,cancelTouch);
+    this.events.once('shutdown',()=>{
+      window.removeEventListener('pointerdown',startTouch,true);
+      window.removeEventListener('pointermove',moveTouch,true);
+      window.removeEventListener('pointerup',finishTouch,true);
+      window.removeEventListener('pointercancel',cancelTouch,true);
+      this.scale.off(Phaser.Scale.Events.RESIZE,cancelTouch);
     });
     this.events.once('shutdown', () => { this.reducedMotion.removeEventListener('change',motionChanged);document.removeEventListener('focusin',readingFocus);document.removeEventListener('keydown', onDown); document.removeEventListener('keyup', onUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear); });
   }
@@ -646,7 +698,7 @@ export class WorldScene extends Phaser.Scene {
     }
     this.residentialLife?.replace(chimneys);this.sky?.setWindows(this.streetWindows);
   }
-  visualState(){const camera=this.cameras.main;return {resting:!!this.bedPose?.visible,headwear:this.headwearLayer?.visible?{texture:this.headwearLayer.texture.key,frame:this.headwearLayer.frame.name,x:this.headwearLayer.x,y:this.headwearLayer.y}:null,canopyTransformWrites:this.canopyTransformWrites,ordinaryBench:{phase:this.benchPhase,recipe:this.benchRecipe,piece:this.benchPiece?.visible?this.benchPiece.texture.key:null},walkTarget:this.walkMark?.visible?{x:this.walkMark.x/TILE-.5,y:this.walkMark.y/TILE-.5}:null,commons:{signs:this.commonsSigns,life:this.commonsLife?.snapshot()??null,framing:this.room==='square'?commonsFrame(this.session.position,camera.width,camera.height):null,shelters:this.occluders.filter(o=>o.image instanceof Phaser.GameObjects.Graphics).map(o=>({alpha:o.image.alpha,x:o.x,y:o.y,width:o.width,height:o.height}))},camera:{zoom:camera.zoom,scrollX:camera.scrollX,scrollY:camera.scrollY,worldView:{x:camera.worldView.x,y:camera.worldView.y,width:camera.worldView.width,height:camera.worldView.height},matrix:Array.from(camera.matrixCombined.matrix).slice(0,6)},neighborhood:{yardItems:this.yardViews.map(v=>({texture:v.texture.key,depth:v.depth,bounds:v.getBounds()})),districtId:this.districtId??null,life:this.residentialLife?.snapshot()??null,windows:this.streetWindows.map(w=>({...w})),sites:this.streetViews.map(v=>({slot:v.slot,plotId:v.plotId,texture:v.image.texture.key,label:v.label.text,bounds:v.image.getBounds(),labelBounds:v.label.getBounds()}))},depots:this.depotViews.map(d=>({resource:d.resource,key:d.image.texture.key,depth:d.image.depth,bounds:d.image.getBounds(),labelBounds:d.label.getBounds(),label:d.label.text})),letterboxes:this.decorationViews.filter((v):v is Phaser.GameObjects.Image=>v instanceof Phaser.GameObjects.Image&&v.texture.key.startsWith('letterbox-')).map(v=>v.texture.key),carpentry:{pineTextures:this.pineViews.map(v=>v.image.texture.key),rackTexture:this.rackView?.texture.key??null,noticeboardTexture:this.noticeboardView?.texture.key??null,equipped:this.carpentryState?.()?.saw.equipped??false,lastAction:this.lastCarpentryAction,action:this.carpentryMotion?.action??null},garden:{room:this.room,lastAction:this.lastGardenAction,bedTextures:this.gardenViews.map(v=>v.texture.key),bedFeet:this.gardenViews.map(v=>({x:v.x,y:v.y})),labels:this.gardenLabels.map((v,i)=>({text:v.text,target:this.gardenLabelTargets[i],bounds:v.getBounds(),hitBounds:this.gardenLabelHit(v)})),action:this.gardenMotion?.action??null,actorTexture:this.actor?.texture.key??null,welcomeTexture:this.gardenWelcomeView?.texture.key??null},bridge:{ceremony:!!this.bridgeRibbon?.visible,phase:this.bridgePhase??(this.bridgeRestored?'open':'collecting'),texture:this.bridgeView?.texture.key??null,readyAt:this.bridgeReadyAt},home:{keepsakeVisible:!!this.keepsakeView?.visible,pennantVisible:this.pennantView?.visible??false,pennantTexture:this.pennantView?.texture.key??null,pennantPosition:this.pennantView?{x:this.pennantView.x,y:this.pennantView.y}:null,room:this.room,plotId:this.loadedHomePlotId??null,ownerName:this.homeOwnerName,level:this.homeLevel,decorations:this.room.startsWith('home')&&this.decorations?this.decorations():null,interiorTexture:this.room.startsWith('home')?this.loadedInteriorKey:null,furniture:this.decorationViews.map(view=>({texture:view.texture.key,x:view.x,y:view.y,alpha:view.alpha}))},facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:(this.room==='square'||this.room==='neighborhood')?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
+  visualState(){const camera=this.cameras.main;return {waving:this.localWaveLabel?.visible===true,peerWaves:[...this.residentViews].filter(([,view])=>view.label.text.startsWith('Waves hello!\n')).map(([id])=>id),peerMotion:[...this.residentViews].map(([id,{motion,headwear}])=>({id,position:{...motion.position},facing:motion.facing,frame:motion.frame,hat:headwear?.visible?Number(headwear.frame.name):null,walking:motion.walking})),peerHeadwear:[...this.residentViews].filter(([,view])=>view.headwear?.visible).map(([id,view])=>({id,texture:view.headwear!.texture.key})),resting:!!this.bedPose?.visible,headwear:this.headwearLayer?.visible?{texture:this.headwearLayer.texture.key,frame:this.headwearLayer.frame.name,x:this.headwearLayer.x,y:this.headwearLayer.y}:null,canopyTransformWrites:this.canopyTransformWrites,ordinaryBench:{phase:this.benchPhase,recipe:this.benchRecipe,piece:this.benchPiece?.visible?this.benchPiece.texture.key:null},walkTarget:this.walkMark?.visible?{x:this.walkMark.x/TILE-.5,y:this.walkMark.y/TILE-.5}:null,commons:{signs:this.commonsSigns,life:this.commonsLife?.snapshot()??null,framing:this.room==='square'?commonsFrame(this.session.position,camera.width,camera.height):null,shelters:this.occluders.filter(o=>o.image instanceof Phaser.GameObjects.Graphics).map(o=>({alpha:o.image.alpha,x:o.x,y:o.y,width:o.width,height:o.height}))},camera:{zoom:camera.zoom,scrollX:camera.scrollX,scrollY:camera.scrollY,worldView:{x:camera.worldView.x,y:camera.worldView.y,width:camera.worldView.width,height:camera.worldView.height},matrix:Array.from(camera.matrixCombined.matrix).slice(0,6)},neighborhood:{yardItems:this.yardViews.map(v=>({texture:v.texture.key,depth:v.depth,bounds:v.getBounds()})),districtId:this.districtId??null,life:this.residentialLife?.snapshot()??null,windows:this.streetWindows.map(w=>({...w})),sites:this.streetViews.map(v=>({slot:v.slot,plotId:v.plotId,texture:v.image.texture.key,label:v.label.text,bounds:v.image.getBounds(),labelBounds:v.label.getBounds()}))},depots:this.depotViews.map(d=>({resource:d.resource,key:d.image.texture.key,depth:d.image.depth,bounds:d.image.getBounds(),labelBounds:d.label.getBounds(),label:d.label.text})),letterboxes:this.decorationViews.filter((v):v is Phaser.GameObjects.Image=>v instanceof Phaser.GameObjects.Image&&v.texture.key.startsWith('letterbox-')).map(v=>v.texture.key),carpentry:{pineTextures:this.pineViews.map(v=>v.image.texture.key),rackTexture:this.rackView?.texture.key??null,noticeboardTexture:this.noticeboardView?.texture.key??null,equipped:this.carpentryState?.()?.saw.equipped??false,lastAction:this.lastCarpentryAction,action:this.carpentryMotion?.action??null},garden:{room:this.room,lastAction:this.lastGardenAction,bedTextures:this.gardenViews.map(v=>v.texture.key),bedFeet:this.gardenViews.map(v=>({x:v.x,y:v.y})),labels:this.gardenLabels.map((v,i)=>({text:v.text,target:this.gardenLabelTargets[i],bounds:v.getBounds(),hitBounds:this.gardenLabelHit(v)})),action:this.gardenMotion?.action??null,actorTexture:this.actor?.texture.key??null,welcomeTexture:this.gardenWelcomeView?.texture.key??null},bridge:{ceremony:!!this.bridgeRibbon?.visible,phase:this.bridgePhase??(this.bridgeRestored?'open':'collecting'),texture:this.bridgeView?.texture.key??null,readyAt:this.bridgeReadyAt},home:{keepsakeVisible:!!this.keepsakeView?.visible,pennantVisible:this.pennantView?.visible??false,pennantTexture:this.pennantView?.texture.key??null,pennantPosition:this.pennantView?{x:this.pennantView.x,y:this.pennantView.y}:null,room:this.room,plotId:this.loadedHomePlotId??null,ownerName:this.homeOwnerName,level:this.homeLevel,decorations:this.room.startsWith('home')&&this.decorations?this.decorations():null,interiorTexture:this.room.startsWith('home')?this.loadedInteriorKey:null,furniture:this.decorationViews.map(view=>({texture:view.texture.key,x:view.x,y:view.y,alpha:view.alpha}))},facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:(this.room==='square'||this.room==='neighborhood')?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
   private updateAmbient(delta:number){
     this.ambientEnabled=!document.hidden&&!this.reducedMotion.matches;
     this.sky?.motion(0,this.ambientEnabled);
@@ -728,7 +780,7 @@ export class WorldScene extends Phaser.Scene {
       if(this.actor.visible===this.resting)this.actor.setVisible(!this.resting);
     }
     const actionFacing=available?(orchard?.facing??motion?.facing??gardenMotion?.facing):undefined;
-    this.paintHeadwear(x,y,actionFacing??this.facing,actionFacing?0:this.frame);
+    this.headwearLayer=this.paintHeadwear(this.resting?null:this.headwear,this.headwearLayer,x,y,residentFrame(actionFacing??this.facing,actionFacing?0:this.frame));
     this.drawGarden();this.drawCarpentry();this.drawOuting();
     this.updateAmbient(delta);
     this.sky?.update(this.skyNow(),delta,this.room==='workshop'||this.room==='lodging'||this.room.startsWith('home'),this.ambientEnabled,this.skyFixture);
@@ -739,9 +791,53 @@ export class WorldScene extends Phaser.Scene {
     if(this.houseView)this.houseView.setVisible(true);this.drawNeighborhood();
     this.paintBridgeCeremony();
     if(this.bridgeView)this.bridgeView.setTexture(this.bridgeTexture());if(this.pennantView)this.pennantView.setVisible(this.homePennantOwned);
-    const peers=this.residents.filter(r=>r.room===this.room&&(!this.room.startsWith('home')||r.homePlotId===this.homePlotId)&&(this.room!=='neighborhood'||r.districtId===this.districtId)&&Number.isFinite(r.position.x)&&Number.isFinite(r.position.y));
-    for(const[id,view]of this.residentViews)if(!peers.some(p=>p.id===id)){view.image.destroy();view.label.destroy();this.residentViews.delete(id);}
-    for(const peer of peers){let view=this.residentViews.get(peer.id);if(!view){view={image:this.add.image(0,0,'variety-resident-'+residentArt(peer.id),0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale),label:this.add.text(0,0,peer.name,{fontFamily:'Georgia',fontSize:12,color:'#253c34',backgroundColor:'#f8f1df',padding:{x:4,y:3}}).setOrigin(.5,1)};this.residentViews.set(peer.id,view);}const px=(peer.position.x+.5)*TILE,py=(peer.position.y+.5)*TILE;view.image.setPosition(px,py).setDepth(py);view.label.setPosition(px,py-63).setDepth(py+1);}
+    const cameraView=this.cameras.main.worldView;
+    const peers=this.residents.filter(peer=>{
+      if(peer.room!==this.room||this.room.startsWith('home')&&peer.homePlotId!==this.homePlotId||
+        this.room==='neighborhood'&&peer.districtId!==this.districtId)return false;
+      const x=(peer.position.x+.5)*TILE,y=(peer.position.y+.5)*TILE;
+      // Leave room for sprites and signs just outside the viewport, then mount
+      // them only when the camera approaches. Presence and the town map keep all peers.
+      const margin=this.residentViews.has(peer.id)?192:144;
+      return x>=cameraView.left-margin&&x<=cameraView.right+margin&&y>=cameraView.top-margin&&y<=cameraView.bottom+margin;
+    });
+    const nearPeers=new Set(peers.map(peer=>peer.id));
+    for(const [id,view] of this.residentViews)if(!nearPeers.has(id)){
+      view.image.destroy();view.label.destroy();view.headwear?.destroy();this.residentViews.delete(id);
+    }
+    const waveNow=this.waveTime();
+    if(this.room==='square'&&activeWave(this.localWaveUntil,waveNow)){
+      this.localWaveLabel??=this.add.text(0,0,'Wave hello!',{fontFamily:'Georgia',fontSize:12,color:'#253c34',backgroundColor:'#ffe6a3',padding:{x:4,y:3}}).setOrigin(.5,1);
+      const waveY=Math.max(this.cameras.main.worldView.top+22,y-94);
+      if(this.localWaveLabel.x!==x||this.localWaveLabel.y!==waveY)this.localWaveLabel.setPosition(x,waveY);
+      if(this.localWaveLabel.depth!==y+1)this.localWaveLabel.setDepth(y+1);
+      if(!this.localWaveLabel.visible)this.localWaveLabel.setVisible(true);
+    }else if(this.localWaveLabel?.visible)this.localWaveLabel.setVisible(false);
+    if(this.room!=='square')this.localWaveUntil=0;
+    this.visiblePeerWalking=false;
+    for(const peer of peers){
+      let view=this.residentViews.get(peer.id);
+      if(!view){
+        view={image:this.add.image(0,0,'variety-resident-'+residentArt(peer.id),0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale),
+          label:this.add.text(0,0,peer.name,{fontFamily:'Georgia',fontSize:12,color:'#253c34',backgroundColor:'#f8f1df',padding:{x:4,y:3}}).setOrigin(.5,1),
+          motion:new ResidentMotion(peer.position)};
+        this.residentViews.set(peer.id,view);
+      }
+      const visible=cameraView.contains((peer.position.x+.5)*TILE,(peer.position.y+.5)*TILE);
+      view.motion.sample(peer.position,time,visible&&!reduced&&!document.hidden,this.clearPeerStep);
+      if(view.motion.walking)this.visiblePeerWalking=true;
+      const {position,frame}=view.motion;
+      const px=(position.x+.5)*TILE,py=(position.y+.5)*TILE;
+      if(String(view.image.frame.name)!==String(frame))view.image.setFrame(frame);
+      if(view.image.x!==px||view.image.y!==py){
+        view.image.setPosition(px,py).setDepth(py);
+        view.label.setPosition(px,py-63).setDepth(py+1);
+      }
+      const waving=this.room==='square'&&activeWave(peer.waveUntil,waveNow);
+      const label=waving?'Waves hello!\n'+peer.name:peer.name;
+      if(view.label.text!==label)view.label.setText(label).setBackgroundColor(waving?'#ffe6a3':'#f8f1df');
+      view.headwear=this.paintHeadwear(peer.headwear===INKWOOD_HOOD||peer.headwear===CLERK_CAP?peer.headwear:null,view.headwear,px,py,frame);
+    }
     this.onFrame?.();
   }
 }

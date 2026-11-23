@@ -1,3 +1,5 @@
+import {headwearName} from '../src/art/headwear.ts';
+import {INKWOOD_HOOD,EARNED_HEADWEAR,ownsHeadwear,townHeadwear,type TownHeadwear} from '../src/game/earned-headwear.ts';
 import { earnedNaturalist, type HomeKeepsake } from '../src/game/home-keepsake.ts';
 import {atParcelShelf,lockSnackParcel,readSnackShelf,snackCommandSchema,snackSlotHeld,writeSnackParcel} from './snack-shelf.ts';
 import {confirmOrchardAction,orchardSnapshot} from './orchard-command.ts';
@@ -38,6 +40,7 @@ export type TownSnapshot = {
   bridge: { contributed: number; target: number; restored: boolean;phase:'collecting'|'building'|'open';startedAt:number|null;readyAt:number|null;openedAt:number|null;grandfathered:boolean };
   projectJournal:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;
   trail:{stamps:string[];pennantOwned:boolean};
+  headwear?:TownHeadwear;
   plot: TownPlot | null; plots: TownPlot[];
   noticeboard:NoticeboardState;
   commissionTown:{styles:Array<{ownerId:string;ownerName:string;motif:LetterboxMotif}>};
@@ -47,13 +50,14 @@ export type TownSnapshot = {
 };
 export type TownResult = { ok: boolean; message: string; replayed: boolean; revision: number; snapshot: TownSnapshot; publicChanged?:boolean;collection?:CollectionGrant;teapotAwarded?:boolean };
 type Receipt = Omit<TownResult, 'snapshot' | 'replayed'>;
-type PlayerRow = { id: string; name: string; workshop: WorkshopState; position: TownPosition; quest_content_version: number; orchard:unknown };
+type PlayerRow = { id: string; name: string; workshop: WorkshopState; position: TownPosition; quest_content_version: number; orchard:unknown; worn_headwear:unknown };
 const idSchema = z.string().regex(/^[a-zA-Z0-9:_-]{1,80}$/);
 const base = { id: idSchema, expectedRevision: z.number().int().min(0).max(1_000_000) };
 const slotSchema = z.enum(HOME_SLOTS.map(s => s.id) as [string, ...string[]]);
 const specialSchema = z.discriminatedUnion('kind', [
   z.object({ ...base, kind: z.literal('contribute') }).strict(),
   z.object({...base,kind:z.literal('stamp-trail'),landmarkId:z.enum(TRAIL_LANDMARK_IDS)}).strict(),
+  z.object({...base,kind:z.literal('wear-headwear'),item:z.enum(EARNED_HEADWEAR).nullable()}).strict(),
   z.object({...base,kind:z.literal('enter-neighborhood'),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/)}).strict(),
   z.object({ ...base, kind: z.literal('enter-home'), plotId:z.string().regex(/^[1-9][0-9]{0,17}$/) }).strict(),
   z.object({ ...base, kind:z.literal('start-lesson'), route:z.enum(['construction','upkeep']),expectedBridgeContributed:z.number().int().min(0).max(3) }).strict(),
@@ -159,7 +163,7 @@ export class TownStore {
     const noticeboard:NoticeboardState={credits:bridgeRow.notice_credits,phase:bridgeRow.notice_phase,startedAt:bridgeRow.notice_started===null?null:Number(bridgeRow.notice_started),readyAt:bridgeRow.notice_ready===null?null:Number(bridgeRow.notice_ready),openedAt:bridgeRow.notice_opened===null?null:Number(bridgeRow.notice_opened)};
     const workshop=this.readState(player,now),own=plots.find(p=>p.ownerId===id);if(own&&!homeAllocationValid(workshop,own))throw new Error('Stored furniture allocation failed validation. Nothing was replaced.');
     const cafeRow=data.cafe;const cafe=cafePublic(this.readCafe(cafeRow));
-    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {orchard:orchardSnapshot(player.orchard),outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position, lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {orchard:orchardSnapshot(player.orchard),outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position, lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},headwear:townHeadwear(awarded.includes(TRAIL_PENNANT_AWARD),player.worn_headwear,workshop.carpentry.recorded>0),bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string, confirmedPosition?: () => TownPosition | undefined): Promise<TownSnapshot> {
     const client = await this.pool.connect();
@@ -215,7 +219,7 @@ export class TownStore {
       const ownLayout:(HomeLayout&{yard?:ReturnType<typeof emptyYard>})|null=ownPlot?{level:ownPlot.level,placements:ownPlot.placements,workroomPlacements:ownPlot.workroom_placements,yard:ownPlot.yard}:null;
       if(ownLayout&&(!isCurrentHomeLayout(ownLayout)||!homeAllocationValid(state,ownLayout)))throw new Error('Stored home layout failed validation. Nothing was replaced.');
       const special = specialSchema.safeParse(raw);
-      const specialKinds = ['contribute', 'claim-plot', 'upgrade-plot', 'edit-plot','display-home-keepsake','enter-home','enter-neighborhood','start-lesson','complete-lesson','redeem-lesson','stamp-trail'];
+      const specialKinds = ['contribute', 'claim-plot', 'upgrade-plot', 'edit-plot','display-home-keepsake','enter-home','enter-neighborhood','start-lesson','complete-lesson','redeem-lesson','stamp-trail','wear-headwear'];
       const contextPlot=isHome(position.room)?(await client.query('select id::text,owner_id,level from ih2.plots where id=$1',[position.homePlotId])).rows[0]:null;
       const validContext=(!isHome(position.room)||!!contextPlot&&position.room===(contextPlot.level===2?'home-expanded':'home'))&&(position.room!=='neighborhood'||districtExists(position.districtId!, (await client.query('select id::text from ih2.plots')).rows))&&(position.room!=='trail'||(await client.query('select phase from ih2.bridge where id=1')).rows[0].phase==='open');
       const reject = (message: string) => { result = { ok: false, message, revision: state.revision }; };
@@ -289,6 +293,19 @@ export class TownStore {
               const stamp=await client.query('insert into ih2.trail_stamps(player_id,landmark_id,command_id,stamped_at) values($1,$2,$3,$4) on conflict do nothing returning landmark_id',[id,action.landmarkId,action.id,now]);
               if(!stamp.rows.length)reject('This landmark is already in your permanent trail journal.');
               else{const count=(await client.query('select count(*)::int as n from ih2.trail_stamps where player_id=$1',[id])).rows[0].n;if(count===TRAIL_LANDMARK_IDS.length)await client.query('insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing',[id,TRAIL_PENNANT_AWARD]);state.revision++;state.observedAt=now;state.lastMessage=count===TRAIL_LANDMARK_IDS.length?'All three landmarks recorded. Your permanent clipboard pennant is earned.':'Landmark recorded in your permanent trail journal.';result={ok:true,message:state.lastMessage,revision:state.revision};}
+            }
+          }else if(action.kind==='wear-headwear'){
+            const earned=await client.query('select 1 from ih2.quest_awards where player_id=$1 and quest_id=$2',[id,TRAIL_PENNANT_AWARD]);
+            const current=townHeadwear(earned.rows.length>0,player.worn_headwear,state.carpentry.recorded>0);
+            if(action.item!==null&&!ownsHeadwear(current,action.item)){
+              reject(action.item===INKWOOD_HOOD?'Record all three Inkwood discoveries to earn the hood.':'Record your first completed easel with Nella to earn the cap.');
+            }
+            else if(current.worn===action.item)reject('That headwear choice is already saved.');
+            else{
+              await client.query('update ih2.players set worn_headwear=$2 where id=$1',[id,action.item]);
+              const message=action.item?headwearName[action.item]+' equipped. Nearby residents can see it.':'Headwear put away.';
+              state={...state,revision:state.revision+1,observedAt:now,lastMessage:message};
+              result={ok:true,message,revision:state.revision};
             }
           }else if(action.kind==='enter-neighborhood'){
             const plots=(await client.query('select id::text from ih2.plots')).rows;

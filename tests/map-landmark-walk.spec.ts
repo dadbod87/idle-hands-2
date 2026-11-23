@@ -28,12 +28,13 @@ test('map destination highlights the landmark and waits for deliberate travel', 
    if(spec.touch)await disclosure.tap();
    else await disclosure.press('Enter');
    const select=page.getByLabel('Map destination');
-   const button=page.getByRole('button',{name:'Walk there'});
+   const button=page.locator('.town-map-route button');
    await expect(select.locator('option')).toHaveCount(7);
    await expect(button).toBeDisabled();
    await select.selectOption(spec.target);
    await expect(page.locator('.map-destination')).toHaveAttribute('data-landmark',spec.target);
    await expect(button).toBeEnabled();
+   await expect(button).toHaveText('Walk to '+spec.label);
    expect((await feet()).position).toEqual(start.position);
    expect((await feet()).walking).toBe(false);
    await select.selectOption('');

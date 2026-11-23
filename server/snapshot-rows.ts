@@ -21,7 +21,7 @@ type BridgeRow={
  notice_started:StoredTime;notice_ready:StoredTime;notice_opened:StoredTime;
 };
 export type SnapshotRows={
- player:{id:string;name:string;workshop:WorkshopState;position:TownPosition;quest_content_version:number;orchard:unknown};
+ player:{id:string;name:string;workshop:WorkshopState;position:TownPosition;quest_content_version:number;orchard:unknown;worn_headwear:unknown};
  plots:PlotRow[];bridge:BridgeRow;
  display_rows:Array<{id:string;name:string;marker:unknown;motif:unknown}>;
  awards:Array<{quest_id:string}>;
@@ -39,7 +39,7 @@ export type SnapshotRows={
 // pass through the original Number conversions and domain validation in TownStore.
 const query = `select /* coherent-town-snapshot */
  jsonb_build_object('id',resident.id,'name',resident.name,'workshop',resident.workshop,
-   'position',resident.position,'quest_content_version',resident.quest_content_version,'orchard',resident.orchard) as player,
+   'position',resident.position,'quest_content_version',resident.quest_content_version,'orchard',resident.orchard,'worn_headwear',resident.worn_headwear) as player,
  coalesce((select jsonb_agg(to_jsonb(v)-'plot_order' order by v.plot_order) from (
    select p.id as plot_order,p.id::text as id,p.owner_id,p.level,p.placements,p.workroom_placements,
      p.plan_id,p.yard,p.housing_revision,u.name,

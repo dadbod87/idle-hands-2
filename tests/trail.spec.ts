@@ -104,13 +104,23 @@ test('real isolated town: timed opening, personal trail journal and permanent ho
   await confirmScore(owner, 'The trees have seniority');
   await owner.screenshot({path:evidence+'/trail-desktop-entry.png'});
   for(const landmarkId of TRAIL_LANDMARK_IDS){
-   await walkTo(owner,landmarkId);
-   if(landmarkId==='trailhead'){await point(owner,6,17.4);await expect(owner.getByRole('dialog')).toBeVisible();}else await inspect(owner);
+   if(landmarkId!=='old-sign'){
+    await walkTo(owner,landmarkId);
+    if(landmarkId==='trailhead'){await point(owner,6,17.4);await expect(owner.getByRole('dialog')).toBeVisible();}else await inspect(owner);
+   }
    await owner.locator(`[data-trail-stamp="${landmarkId}"]`).click();
    await expect.poll(async()=>(await town(owner)).trail.stamps.includes(landmarkId)).toBe(true);
    await expect(owner.locator(`[data-trail-stamp="${landmarkId}"]`)).toBeDisabled();
-   if(landmarkId==='lookout')await owner.screenshot({path:evidence+'/trail-desktop-lookout-pennant-earned.png'});
-   await close(owner);
+   const next=owner.locator('[data-trail-next]');
+   if(landmarkId==='lookout'){
+    await expect(next).toBeHidden();
+    await expect(owner.getByRole('button',{name:'Open Bag · Inkwood hood',exact:true})).toBeVisible();
+    await owner.screenshot({path:evidence+'/trail-desktop-lookout-pennant-earned.png'});
+   }else await expect(next).toBeVisible();
+   if(landmarkId==='trailhead'){
+    await next.click();
+    await expect(owner.locator('[data-trail-stamp="old-sign"]')).toBeEnabled({timeout:arrivalTimeout});
+   }else await close(owner);
   }
   const completed=await town(owner);expect([...completed.trail.stamps].sort()).toEqual([...TRAIL_LANDMARK_IDS].sort());expect(completed.trail.pennantOwned).toBe(true);
   expect(completed.quest.awarded.filter((id:string)=>id==='trail-pennant-v1')).toHaveLength(1);expect(completed.plot.pennantOwned).toBe(true);expect(economy(completed)).toEqual(beforeEconomy);

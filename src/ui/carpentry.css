@@ -35,3 +35,5 @@
 .carpentry-panel .carpentry-work-action>button{grid-area:1/1;height:auto;min-height:4.2em;overflow:visible;align-self:stretch}
 .carpentry-panel .carpentry-work-action>[hidden]{display:block!important;visibility:hidden;pointer-events:none}
 .carpentry-confirm button{height:auto;min-height:4.2em}
+
+[data-clerk-cap][hidden]{display:none}

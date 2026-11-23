@@ -3648,7 +3648,7 @@
     {
       "id": "IH2-191",
       "title": "Equip an earned hand saw directly in Bag",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/bag-equipment",
       "goal": "See which hand tool is equipped and change it without interrupting pine work.",
       "depends_on": [
@@ -3662,9 +3662,158 @@
         "Keep saved previews and databases stopped. No new gear rewards, fees, storage or original-game changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-191/PLAN.md"
+        "docs/evidence/IH2-191/PLAN.md",
+        "docs/evidence/IH2-191/EXACT_CI.json"
+      ],
+      "progress_note": "PR #107 and exact main 168e857 passed 593 domain/database tests and 254 browser cases."
+    },
+    {
+      "id": "IH2-192",
+      "title": "Earn and wear a visible Inkwood hood",
+      "status": "in_progress",
+      "owner_branch": "feat/inkwood-hood",
+      "goal": "Reward personal trail completion with a wearable, visible cosmetic and a short route from the last stamp to Equipment.",
+      "depends_on": [
+        "IH2-191"
+      ],
+      "acceptance": [
+        "Verify the native trail award, no unearned equip, durable wearing and same-room appearance.",
+        "Verify desktop/phone/short keyboard and touch, explicit removal, and trail guidance with no cost or movement changes."
+      ],
+      "exclusions": [
+        "No saved-preview restart, production deployment, paid services, real accounts or additional gear."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-192/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-193",
+      "title": "Earn and switch to the Clerk cap",
+      "status": "queued",
+      "owner_branch": "feat/clerk-cap",
+      "goal": "Give carpenters a visible earned style and prove a single interchangeable headwear slot.",
+      "depends_on": [
+        "IH2-192"
+      ],
+      "acceptance": [
+        "Record a first easel to unlock the cap while keeping the furniture.",
+        "Verify rejection before the first record, switch both ways, and render only the worn style for nearby residents."
+      ],
+      "exclusions": [
+        "No regional access, economy rewards, paid services or saved-preview restart."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-193/PLAN.md"
+      ],
+      "progress_note": "A dependent candidate is saved on feat/clerk-cap. Local desktop and touch checks are complete. Hosted acceptance waits for the Inkwood base and the next batched gate."
+    },
+    {
+      "id": "IH2-194",
+      "title": "Animate nearby residents and headwear through confirmed steps",
+      "status": "queued",
+      "owner_branch": "feat/neighbor-walk-cycles",
+      "goal": "Show walking neighbors and aligned headwear without more server calls or waking the idle loop for off-screen movement.",
+      "depends_on": [
+        "IH2-193"
+      ],
+      "acceptance": [
+        "Verify limb and hat frame alignment, direction, and a stable settled pose at the confirmed position.",
+        "Verify reduced motion, obstructed and large steps, scope boundaries and quiet render cadence."
+      ],
+      "exclusions": [
+        "No server, economy, real-player or saved-preview change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-194/PLAN.md"
+      ],
+      "progress_note": "Presentation candidate on feat/neighbor-walk-cycles. Exact hosted acceptance waits for the equipment candidates."
+    },
+    {
+      "id": "IH2-195",
+      "title": "Find other residents on the shared town map",
+      "status": "queued",
+      "owner_branch": "feat/map-neighbors",
+      "goal": "Help players meet in an existing district without chasing a moving pin or adding a server request.",
+      "depends_on": [
+        "IH2-194"
+      ],
+      "acceptance": [
+        "Verify scoped grouping, district changes, departures and connection loss while preserving map selection and focus.",
+        "Review the paper map and roster on desktop, narrow phones and short landscape."
+      ],
+      "exclusions": [
+        "No new networking, public user data, paid services, saved-preview or database restart."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-195/PLAN.md"
+      ],
+      "progress_note": "Staged locally behind the headwear and nearby resident motion batch."
+    },
+    {
+      "id": "IH2-196",
+      "title": "Let residents wave hello in the square",
+      "status": "queued",
+      "owner_branch": "feat/town-wave",
+      "goal": "Give shared residents a small friendly greeting with a clear action and receipt.",
+      "depends_on": [
+        "IH2-195"
+      ],
+      "acceptance": [
+        "Verify the authenticated room-scoped wave, bounded admission, expiry and unchanged progress.",
+        "Verify keyboard and touch, failure feedback, readable labels and the accessible greeting."
+      ],
+      "exclusions": [
+        "No chat, free-form text, economy effect, public release or saved-preview restart."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-196/PLAN.md"
+      ],
+      "progress_note": "Staged locally behind the shared town map. Exact hosted acceptance waits for the headwear base and the next batched gate."
+    },
+    {
+      "id": "IH2-197",
+      "title": "Confirm a deliberate tap before walking on touch screens",
+      "status": "queued",
+      "owner_branch": "fix/confirm-touch-walk",
+      "goal": "Avoid accidental travel while a phone player swipes, pinches, holds or resizes the world.",
+      "depends_on": [
+        "IH2-187"
+      ],
+      "acceptance": [
+        "Reproduce immediate travel on the parent and verify touch, secondary mouse, canceled gestures and resize on the candidate.",
+        "Preserve intentional ground movement, direct door and garden interactions and keyboard input."
+      ],
+      "exclusions": [
+        "No route, server, economy or saved-preview changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-197/PLAN.md"
+      ],
+      "progress_note": "Focused browser acceptance passed locally on fix/confirm-touch-walk. Exact hosted acceptance waits for the combined batch."
+    },
+    {
+      "id": "IH2-200",
+      "title": "Mount nearby residents instead of distant canvas objects",
+      "status": "queued",
+      "owner_branch": "perf/mount-nearby-residents",
+      "goal": "Keep renderer work proportional to nearby company while preserving visibility and full map presence.",
+      "depends_on": [
+        "IH2-194",
+        "IH2-195"
+      ],
+      "acceptance": [
+        "Compare the same crowded scene with parent and candidate, including entry and departure from the camera.",
+        "Verify headwear and same-room presentation plus the unaffected map on desktop and touch."
+      ],
+      "exclusions": [
+        "No server presence, gameplay authority, economy, paid resources or saved-preview changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-200/PLAN.md"
+      ],
+      "progress_note": "Local renderer candidate staged behind touch and social visibility. Full hosted acceptance awaits the batched PR."
     }
   ],
-  "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."
+  "source_status_note": "PR #107 is accepted on main. Inkwood headwear and trail guidance form the next candidate."
 }

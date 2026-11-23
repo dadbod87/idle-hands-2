@@ -108,9 +108,18 @@ export class GardenUI{
   const reviewHarvest=this.button('Review ready harvest',()=>{harvest.focus({preventScroll:true});this.ensureVisible(harvest);},'review-harvest');
   nav.append(attendantNav,fieldNav,registryNav);body.append(nav);
   const retry=this.retryRow(result=>{if(!result.ok&&!result.retry)receiptBed=null;});
+  let chooseOnOpen=true;
   this.active=()=>{
    const {state:s,now}=this.view();if(!s)return;
-   if(this.selected===null){const ready=s.beds.map((b,i)=>({b,i})).filter(v=>v.b&&v.b.readyAt<=now&&s.produce[v.b.crop]<12).sort((a,b)=>a.b!.readyAt-b.b!.readyAt);this.selected=ready[0]?.i??Math.max(0,s.beds.findIndex(b=>!b));}
+   if(chooseOnOpen){
+    // Suggest a harvest when the resident returns. A running timer must
+    // leave the bed they are already using selected.
+    const ready=s.beds.map((bed,index)=>({bed,index}))
+     .filter(({bed})=>bed&&bed.readyAt<=now&&s.produce[bed.crop]<12)
+     .sort((a,b)=>a.bed!.readyAt-b.bed!.readyAt);
+    this.selected=ready[0]?.index??this.selected??Math.max(0,s.beds.findIndex(bed=>!bed));
+    chooseOnOpen=false;
+   }
    for(const[i,r]of rows.entries()){
     const bed=s.beds[i],stage=gardenStage(bed,now),name=bed?(bed.crop==='radish'?'Radish':'Marigold'):'Empty';
     const pressed=String(i===this.selected);

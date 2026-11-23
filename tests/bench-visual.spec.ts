@@ -148,9 +148,11 @@ test('a slow first door names the room through resize and clears after its first
    await p.setViewportSize({width:844,height:390});
    await p.evaluate(()=>document.documentElement.style.fontSize='200%');
    await expect(loading.locator('span')).toBeInViewport({ratio:1});
+   await expect(p.locator('#location')).toBeHidden();
    await p.screenshot({path:destination+'/slow-workshop-short.png'});
   }finally{release();}
   await expect(loading).toBeHidden();
+  await expect(p.locator('#location')).toBeVisible();
   await expect(p.locator('#world')).not.toHaveAttribute('aria-busy');
   await expect.poll(()=>p.evaluate(()=>(window as any).__pilot.metrics().visual.carpentry.rackTexture)).toBe('finishing-rack-empty');
   expect(await state(p)).toEqual(before);

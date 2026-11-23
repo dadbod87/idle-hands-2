@@ -1,4 +1,6 @@
 import{test,expect}from'@playwright/test';import{mkdirSync,writeFileSync}from'node:fs';
+import {revealPlace} from "./helpers/places.ts";
+
 import{createWorkshop,applyWorkshop,isCurrentWorkshop}from'../src/game/live-workshop.ts';
 const out='test-results/browser',note=(page:any,id:string)=>page.locator('[data-activity="'+id+'"]');
 test('notebook: actual five-second job boundary keeps held target, focus, scroll and free inspector actions',async({page})=>{
@@ -58,4 +60,100 @@ test('notebook: full produce, independent work and doubled-text keyboard reading
  const now=Date.now(),s=createWorkshop(now),g=s.garden;g.firstRadishUsed=true;g.seeds.radish=1;g.beds=[{crop:'radish',plantedAt:now-300_000,readyAt:now,cared:false},null,null];g.produce.radish=12;g.harvested.radish=12;g.planted=13;g.practice=12;expect(isCurrentWorkshop(s)).toBe(true);await page.addInitScript(save=>localStorage.setItem('ih2:workshop:v2',JSON.stringify(save)),s);await page.goto('/');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await page.locator('#journal').click();await expect(note(page,'garden')).toHaveAttribute('data-phase','blocked');await expect(note(page,'garden').locator('.activity-status')).toContainText('1 need room');const layouts=[];
  for(const shape of[{name:'phone320',w:320,h:568,text:100},{name:'phone360',w:360,h:640,text:100},{name:'short200',w:844,h:390,text:200},{name:'phone200',w:320,h:640,text:200}]){const frame=await page.evaluate(()=>(window as any).__pilot.metrics().presentation.renderedFrames);await page.setViewportSize({width:shape.w,height:shape.h});await page.evaluate(size=>document.documentElement.style.fontSize=size+'%',shape.text);await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.metrics().presentation.renderedFrames)).toBeGreaterThanOrEqual(frame+2);await page.getByRole('button',{name:'Close panel'}).focus();await page.keyboard.press('Tab');await expect(page.getByRole('button',{name:'Open bag',exact:true})).toBeFocused();await page.keyboard.press('Tab');await expect(note(page,'bench').locator('.activity-status')).toBeFocused();await page.keyboard.press('Tab');const button=page.locator('[data-activity-open=bench]');await expect(button).toBeFocused();const b=(await button.boundingBox())!,h=(await page.locator('.dialog-head').boundingBox())!;expect(b.y).toBeGreaterThanOrEqual(h.y+h.height);expect(b.y+b.height).toBeLessThanOrEqual(shape.h);expect(b.height).toBeGreaterThanOrEqual(44);for(const action of await page.locator('[data-activity-open]').all()){expect(await action.getAttribute('aria-label')).toContain((await action.textContent())!.trim());expect(await action.evaluate(e=>e.scrollHeight<=e.clientHeight),shape.name+' '+await action.getAttribute('data-activity-open')).toBe(true);}expect(await page.locator('dialog').evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);await page.screenshot({path:out+'/notebook-'+shape.name+'.png'});layouts.push({shape,button:b,header:h});}
  await page.locator('.activity-notebook summary').focus();await page.keyboard.press('Enter');await expect(page.locator('.activity-notebook details')).toHaveAttribute('open','');await expect(page.locator('.activity-notebook details')).toContainText('0 can fit');expect(await page.evaluate(()=>(window as any).__pilot.workshop().garden.produce.radish)).toBe(12);writeFileSync(out+'/notebook-responsive.json',JSON.stringify({disclosure:'Valid elapsed local garden save with full held radishes/one mature teaching crop. No real-player change or UI state mutation after load. Viewport/text/keyboard emulation, not a physical phone.',layouts},null,2)+'\n');
+});
+
+test('Journal keeps the full recent field note after it has left the playfield',async({browser})=>{
+ const evidence=out+'/recent-field-notes';mkdirSync(evidence,{recursive:true});
+ for(const {name,width,height,touch,text} of [
+  {name:'desktop',width:1440,height:900,touch:false,text:100},
+  {name:'phone',width:320,height:640,touch:true,text:100},
+  {name:'short',width:844,height:390,touch:true,text:200},
+ ]){
+  const context=await browser.newContext({viewport:{width,height},hasTouch:touch});
+  try{
+   const page=await context.newPage(),errors:string[]=[],api:string[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))api.push(request.url());});
+   await page.goto('/');
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   await page.evaluate(size=>document.documentElement.style.fontSize=size+'%',text);
+   const feedback=page.locator('#feedback'),first=await feedback.innerText();
+   const state=await page.evaluate(()=>(window as any).__pilot.workshop());
+   await page.locator('#places').click();
+   const workshop=await revealPlace(page,'[data-destination=workshop]');
+   if(touch)await workshop.tap();else await workshop.press('Enter');
+   await expect(feedback).toContainText(/Walking to.*workshop/i);
+   const note=await feedback.innerText();
+   await page.locator('#journal').click();
+   const history=page.locator('.journal-recent-notes'),summary=history.locator('summary');
+   await expect(history).not.toHaveAttribute('open');
+   if(touch)await summary.tap();else await summary.press('Enter');
+   const log=page.getByRole('list',{name:'Recent field notes'});
+   await expect(log.getByRole('listitem').first()).toContainText(note);
+   await expect(log).toContainText(first);
+   const stamp=await log.locator('time').first().getAttribute('datetime');
+   expect(Date.parse(stamp??'')).toBeGreaterThan(0);
+   expect(await page.getByRole('dialog').evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
+   await log.getByRole('listitem').first().scrollIntoViewIfNeeded();
+   await page.screenshot({path:evidence+'/'+name+'.png'});
+   if(name==='short'){
+    const last=log.getByRole('listitem').last();
+    await last.scrollIntoViewIfNeeded();
+    await expect(last).toBeInViewport({ratio:1});
+    await page.screenshot({path:evidence+'/short-scrolled.png'});
+   }
+
+   expect(await page.evaluate(()=>(window as any).__pilot.workshop().inventory)).toEqual(state.inventory);
+   expect(errors).toEqual([]);expect(api).toEqual([]);
+  }finally{await context.close();}
+ }
+});
+
+test('recent field notes do not move between shared practice residents',async({page})=>{
+ const started=Date.now(),workshop=createWorkshop(started);
+ const residents=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'}];
+ let resident:typeof residents[number]|undefined;
+ const position={room:'square',position:{x:24,y:25}};
+ await page.addInitScript(()=>{
+  class Events extends EventTarget{
+   onopen:(()=>void)|null=null;
+   constructor(){super();queueMicrotask(()=>this.onopen?.());}
+   close(){}
+  }
+  window.EventSource=Events as unknown as typeof EventSource;
+ });
+ await page.route('**/api/town/**',route=>{
+  const path=new URL(route.request().url()).pathname.split('/').at(-1);
+  if(path==='fixtures')return route.fulfill({json:{fixtures:residents}});
+  if(path==='login')resident=residents.find(entry=>entry.id===route.request().postDataJSON().fixtureId);
+  if(path==='login'||path==='snapshot')return resident?route.fulfill({json:{snapshot:{
+   playerId:resident.id,name:resident.name,workshop,position,bridge:{contributed:0,target:3,restored:false,phase:'collecting'},
+   quest:{contentVersion:1,awarded:[]},trail:{stamps:[],pennantOwned:false},plot:null,plots:[],seasonKey:'2026-11-20',scores:[],
+   serverTime:Date.now(),serverInstance:'field-notes-fictional-scope',
+  }}}):route.fulfill({status:401,json:{message:'Choose a practice resident.'}});
+  if(path==='movement')return route.fulfill({json:{ok:true,position:route.request().postDataJSON()}});
+  return route.fulfill({status:400,json:{message:'Unexpected local request.'}});
+ });
+ await page.goto('/?town=1');
+ await page.getByRole('button',{name:'Aster',exact:true}).click();
+ await expect(page.getByRole('button',{name:'Choose practice resident'})).toHaveText('Aster');
+ await expect(page.getByRole('dialog')).toBeHidden();
+ await page.locator('#places').click();
+ await (await revealPlace(page,'[data-destination=workshop]')).click();
+ const feedback=page.locator('#feedback');
+ await expect(feedback).toContainText(/Walking to.*workshop/i);
+ const old=await feedback.innerText();
+ await page.locator('#journal').click();
+ const summary=page.locator('.journal-recent-notes summary'),log=page.getByRole('list',{name:'Recent field notes'});
+ await summary.click();
+ await expect(log).toContainText(old);
+ await page.getByRole('button',{name:'Close panel'}).click();
+ await page.getByRole('button',{name:'Choose practice resident'}).click();
+ await page.getByRole('button',{name:'Bea',exact:true}).click();
+ await expect(page.getByRole('button',{name:'Choose practice resident'})).toHaveText('Bea');
+ await expect(page.getByRole('dialog')).toBeHidden();
+ await expect(feedback).toContainText('Connected');
+ await page.locator('#journal').click();await summary.click();
+ await expect(log).not.toContainText(old);
+ await expect(log).toContainText('Connected');
 });

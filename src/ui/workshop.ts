@@ -1,4 +1,5 @@
 import type {RiverSurvey} from '../game/river-survey.ts';
+import type {FieldNote} from '../game/recent-field-notes.ts';
 import { gardenBedView } from '../game/garden-view.ts';
 import type {OrchardPantry} from '../game/orchard.ts';
 import { rewardCue, type WorldCue } from '../audio/world-sounds.ts';
@@ -21,7 +22,7 @@ const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Suppl
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Record<string,unknown>;playerId?:string;collection?:CollectionGrant};
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={river?:{cast:()=>RiverSurvey['cast'];walk:()=>void};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
+type PanelHost={recentFieldNotes?:()=>readonly FieldNote[];river?:{cast:()=>RiverSurvey['cast'];walk:()=>void};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -39,6 +40,7 @@ export class WorkshopUI {
  private lastSlot:string|null=null;
  private ticker:number;
  private notebook:ActivityNotebook|null=null;
+ private recentNotes?:{panel:HTMLDetailsElement;list:HTMLOListElement;entries?:readonly FieldNote[]};
  private bag:BagView|null=null;
  private collectionView:CollectionReceiptView|null=null;
  private collectionIntent:{id:string;owner:string;rig:string;view:CollectionReceiptView}|null=null;
@@ -76,7 +78,7 @@ export class WorkshopUI {
   return this.localOutcome?.state?.job??null;
  }
  snapshot(){return JSON.parse(JSON.stringify(this.state));}
- closed(){this.bag?.destroy();this.bag=null;this.notebook?.destroy();this.notebook=null;this.host.body.closest('dialog')?.classList.remove('notebook-dialog');this.collectionView?.destroy();this.collectionView=null;this.host.body.classList.remove('collection-panel');this.host.body.closest('dialog')?.classList.remove('collection-dialog');this.active=null;this.status=null;this.preview=null;}
+ closed(){this.recentNotes=undefined;this.bag?.destroy();this.bag=null;this.notebook?.destroy();this.notebook=null;this.host.body.closest('dialog')?.classList.remove('notebook-dialog');this.collectionView?.destroy();this.collectionView=null;this.host.body.classList.remove('collection-panel');this.host.body.closest('dialog')?.classList.remove('collection-dialog');this.active=null;this.status=null;this.preview=null;}
  private acceptRemote(state:WorkshopState){this.state=state;if(!this.remote?.canRetry())this.remoteError='';this.host.changed();this.updateClocks();this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>el.textContent=String(state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]));}
  private remoteNotice(){
   if(!this.remote||!this.status)return;
@@ -264,6 +266,15 @@ export class WorkshopUI {
  showJournal(){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Notes & progress',()=>this.showInventory()));
   const guidance=document.createElement('section');guidance.dataset.journalGuidance='';const heading=document.createElement('h3');heading.textContent='Your next step';const quest=this.p('','quest-card');quest.dataset.quest='';guidance.append(heading,quest);b.append(guidance);
+  if(this.host.recentFieldNotes){
+   const notes=document.createElement('details');notes.className='journal-recent-notes';
+   const caption=document.createElement('summary');caption.textContent='Recent field notes';
+   const list=document.createElement('ol');list.setAttribute('role','list');list.setAttribute('aria-label','Recent field notes');
+   notes.append(caption,list);
+   notes.addEventListener('toggle',()=>this.updateRecentNotes());
+   this.recentNotes={panel:notes,list};
+   b.append(notes);
+  }
   this.notebook?.destroy();this.notebook=new ActivityNotebook({bench:{label:'Open work bench · jobs & recipes',open:()=>this.showBench()},rack:{label:'Open pine rack · finishing jobs & collection',open:()=>this.host.finishing?.()},garden:{label:'Your allotment · crops, markers & quests',open:()=>this.host.garden?.()}});b.append(this.notebook.root);
   if(this.host.river){
    const river=document.createElement('section');
@@ -357,10 +368,26 @@ export class WorkshopUI {
   this.refreshPlacementControls(area);
   if(restoreFocus){const next=area.querySelector<HTMLButtonElement>(`[data-slot="${this.lastSlot??PLACEMENT_SLOTS[0].id}"]`);next?.focus({preventScroll:true});if(next){next.scrollIntoView({block:'nearest'});const dialog=next.closest('dialog'),head=dialog?.querySelector('header');if(dialog&&head){const hidden=head.getBoundingClientRect().bottom+8-next.getBoundingClientRect().top;if(hidden>0)dialog.scrollTop-=hidden;}}}
  }
+ private updateRecentNotes(){
+  if(!this.recentNotes||!this.host.recentFieldNotes)return;
+  const view=this.recentNotes,entries=this.host.recentFieldNotes();
+  if(view.panel.hidden===!!entries.length)view.panel.hidden=entries.length===0;
+  if(!view.panel.open||view.entries===entries)return;
+  view.entries=entries;
+  const time=new Intl.DateTimeFormat(undefined,{hour:'numeric',minute:'2-digit'});
+  const rows=entries.map(note=>{
+   const row=document.createElement('li'),when=document.createElement('time'),message=document.createElement('span');
+   when.dateTime=new Date(note.at).toISOString();when.textContent=time.format(note.at);
+   message.textContent=note.text;
+   row.append(when,message);
+   return row;
+  });
+  view.list.replaceChildren(...rows);
+ }
  private updateClocks(){
   const allocations=Object.fromEntries(PROP_IDS.map(id=>[id,this.remote?.allocatedElsewhere?.(id)??0]));
   this.bag?.update(this.state,allocations,this.remote?(this.remoteBusy?'Checking town contents…':this.remoteError||this.remote.canRetry()?'Last confirmed contents · request unresolved.':'Confirmed town contents.'):this.localReadOnlyReason?'Kept save · read-only.':!this.saved?'Unsaved contents · keep this tab open.':!this.ownsSave?'Read-only contents · another tab may update them.':'Local contents · saved in this browser.');
-  this.notebook?.update(this.state,this.gardenClock());if(!this.active)return;
+  this.notebook?.update(this.state,this.gardenClock());this.updateRecentNotes();if(!this.active)return;
   const placement=this.host.body.querySelector('#placement');
   if(placement)this.refreshPlacementControls(placement);
   if(this.remote){

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { Session } from '../src/game/session.ts';
-import { worlds, walkable, pathTo, canStand, clearSegment, routeTo, type Room } from '../src/game/world.ts';
+import { worlds, walkable, pathTo, canStand, clearSegment, routeTo, type Room, type World } from '../src/game/world.ts';
 
 test('every named destination has a walkable route and never crosses blocked cells', () => {
  for (const room of Object.keys(worlds) as Room[]) {
@@ -17,6 +17,33 @@ test('every named destination has a walkable route and never crosses blocked cel
   }
  }
 });
+
+test('grid search keeps the same tie order and respects the supplied layout on every walk', () => {
+ const geometry:World={width:12,height:12,blocked:[[5,4,2,3]],stops:[]};
+ const from={x:4,y:5},to={x:8,y:5};
+ const expected=[{x:4,y:4},{x:4,y:3},{x:5,y:3},{x:6,y:3},{x:7,y:3},{x:8,y:3},{x:8,y:4},{x:8,y:5}];
+ assert.deepEqual(pathTo('square',from,to,geometry),expected);
+ assert.equal(clearSegment('square',from,to,geometry),false);
+ geometry.blocked.length=0;
+ assert.deepEqual(pathTo('square',from,to,geometry),[{x:5,y:5},{x:6,y:5},{x:7,y:5},to]);
+ assert.equal(clearSegment('square',from,to,geometry),true);
+ geometry.blocked.push([5,4,2,3]);
+ assert.deepEqual(pathTo('square',from,to,geometry),expected);
+});
+
+test('swept obstacle filtering keeps every original continuous foot sample', () => {
+ const layout:World={width:12,height:12,blocked:[[5,4,2,3],[1,8.8,5,.25],[8.2,2.1,.3,5]],stops:[]};
+ const points=[{x:4,y:5},{x:4.259999,y:4.2},{x:4.26,y:4.2},{x:8.999,y:3.9},{x:2.1,y:7.98},{x:10,y:10},{x:.74,y:.74}];
+ for(const from of points)for(const to of points){
+  const steps=Math.max(1,Math.ceil(Math.hypot(to.x-from.x,to.y-from.y)/.1));
+  const original=Array.from({length:steps+1},(_,i)=>canStand('square',{
+   x:from.x+(to.x-from.x)*i/steps,y:from.y+(to.y-from.y)*i/steps,
+  },layout)).every(Boolean);
+  assert.equal(clearSegment('square',from,to,layout),original);
+ }
+ assert.equal(clearSegment('square',points[0],{x:NaN,y:5},layout),false);
+});
+
 test('blocked and out-of-world taps cannot create a movement route', () => {
  assert.deepEqual(pathTo('square',{x:24,y:25},{x:20,y:18}),[]);
  const s=new Session(); assert.equal(s.walk({x:-1,y:25}),false); assert.equal(s.walk({x:1e6,y:1e6}),false);

@@ -167,6 +167,7 @@ export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => vo
     selected = landmarks.find(stop => stop.id === select.value);
     if (selected) pins.get(selected.id)?.classList.add('map-destination');
     button.disabled = !selected;
+    button.textContent = selected?'Walk to '+selected.name:'Walk there';
    };
    button.onclick = () => { if (selected) walk(selected); };
    controls.append(label, button);

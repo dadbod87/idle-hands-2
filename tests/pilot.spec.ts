@@ -19,7 +19,9 @@ for(const shape of shapes) { test.describe(shape.name,()=>{ test.use({hasTouch:s
  page.on('console',m=>{if(m.type()==='error') errors.push(m.text());});
  await page.route('**/*',route=>{
   const u=new URL(route.request().url());
-  if(u.hostname==='127.0.0.1'||u.protocol==='data:')return route.continue();
+  // WebKit exposes SVG blob reads to the route handler as requests from this same local client.
+  const loopbackBlob=u.protocol==='blob:'&&u.origin===new URL(page.url()).origin&&u.origin!=='null';
+  if(u.hostname==='127.0.0.1'||u.protocol==='data:'||loopbackBlob)return route.continue();
   external.push(u.origin);return route.abort();
  });
  await page.goto('/');

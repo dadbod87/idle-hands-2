@@ -191,6 +191,11 @@
  color: var(--ink);
 }
 .town-map-route select:focus-visible { outline: 3px solid #b8653e; outline-offset: 2px; }
+.town-map-route button { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 365px) {
+ .town-map-residents dl { grid-template-columns: minmax(0,1fr); }
+ .town-map-residents dd:not(:last-child) { margin-bottom: .25rem; }
+}
 @media (max-width: 365px), (max-height: 480px) {
  .town-map-route { grid-template-columns: minmax(0, 1fr); }
 }

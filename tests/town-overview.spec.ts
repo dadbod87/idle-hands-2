@@ -78,10 +78,11 @@ test('the optional paper map shows the current town position and preserves norma
 test('the shared town map groups current residents by district and clears stale markers', async ({browser}) => {
  const out='test-results/browser/town-overview';
  mkdirSync(out,{recursive:true});
- for (const {name,width,height,touch} of [
-  {name:'desktop',width:1440,height:900,touch:false},
-  {name:'phone',width:320,height:640,touch:true},
-  {name:'short',width:844,height:390,touch:true},
+ for (const {name,width,height,touch,text} of [
+  {name:'desktop',width:1440,height:900,touch:false,text:100},
+  {name:'phone',width:320,height:640,touch:true,text:100},
+  {name:'short',width:844,height:390,touch:true,text:100},
+  {name:'phone-large-accessible',width:320,height:680,touch:true,text:200},
  ]) {
   const context=await browser.newContext({viewport:{width,height},hasTouch:touch});
   try {
@@ -123,6 +124,7 @@ test('the shared town map groups current residents by district and clears stale 
    await page.goto('/?town=1');
    await page.getByRole('button',{name:'Aster',exact:true}).click();
    await expect.poll(()=>page.evaluate(()=>Boolean((window as unknown as {mapPresence?:EventTarget}).mapPresence))).toBe(true);
+   await page.evaluate(value=>document.documentElement.style.fontSize=value+'%',text);
    await page.locator('#places').click();
    const mapSummary=page.locator('.places-map > summary');
    if(touch)await mapSummary.tap();else{await mapSummary.focus();await page.keyboard.press('Enter');}
@@ -138,6 +140,7 @@ test('the shared town map groups current residents by district and clears stale 
    await expect(square).toHaveAttribute('data-residents','2');
    await expect(orchard).toHaveAttribute('data-residents','1');
    await expect(list).toContainText('Bea, Finch');
+   if(text===200)expect((await list.locator('dd').first().boundingBox())!.width).toBeGreaterThan(120);
    await expect(list).toContainText('Casey');
    await expect(list).not.toContainText('Private resident');
    await expect(select).toHaveValue('commons-orchard');
@@ -145,7 +148,7 @@ test('the shared town map groups current residents by district and clears stale 
    expect(await page.getByRole('dialog').evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
    await list.getByRole('heading').scrollIntoViewIfNeeded();
    await page.screenshot({path:out+'/neighbors-'+name+'.png'});
-   const travel=page.getByRole('button',{name:'Walk there',exact:true});
+   const travel=page.locator('.town-map-route').getByRole('button',{name:'Walk to Orchard walk',exact:true});
    await travel.scrollIntoViewIfNeeded();
    await expect(travel).toBeInViewport({ratio:1});
    expect((await travel.boundingBox())!.height).toBeGreaterThanOrEqual(44);

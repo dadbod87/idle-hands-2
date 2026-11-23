@@ -3728,6 +3728,27 @@
         "docs/evidence/IH2-194/PLAN.md"
       ],
       "progress_note": "Presentation candidate on feat/neighbor-walk-cycles. Exact hosted acceptance waits for the equipment candidates."
+    },
+    {
+      "id": "IH2-195",
+      "title": "Find other residents on the shared town map",
+      "status": "queued",
+      "owner_branch": "feat/map-neighbors",
+      "goal": "Help players meet in an existing district without chasing a moving pin or adding a server request.",
+      "depends_on": [
+        "IH2-194"
+      ],
+      "acceptance": [
+        "Verify scoped grouping, district changes, departures and connection loss while preserving map selection and focus.",
+        "Review the paper map and roster on desktop, narrow phones and short landscape."
+      ],
+      "exclusions": [
+        "No new networking, public user data, paid services, saved-preview or database restart."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-195/PLAN.md"
+      ],
+      "progress_note": "Staged locally behind the headwear and nearby resident motion batch."
     }
   ],
   "source_status_note": "PR #107 is accepted on main. Inkwood headwear and trail guidance form the next candidate."

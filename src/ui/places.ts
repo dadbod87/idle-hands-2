@@ -1,11 +1,11 @@
 import {placesView} from '../game/places-view.ts';
 import type {WorkshopState} from '../game/live-workshop.ts';
 import type {Point, Room, Stop} from '../game/world.ts';
-import {townMap} from './town-map.ts';
+import {townMap,type MapResident} from './town-map.ts';
 
 export function renderPlaces(body: HTMLElement, options: {
  room: Room; position: Point; stops: Stop[]; state: WorkshopState; goal: {id: string; destination?: string};
- now: number; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void;
+ now: number; peers?:readonly MapResident[]|null; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void;
 }) {
  const view = placesView(options.room, options.stops, options.state, options.goal, options.now, options.neighborhood);
  const intro = document.createElement('p');
@@ -45,10 +45,11 @@ export function renderPlaces(body: HTMLElement, options: {
   appendStops(detail, group.stops);
   browse.append(detail);
  }
- if (options.room === 'square') browse.append(townMap({...options.position}, options.stops, options.walk));
+ const map = options.room==='square'?townMap(options.position,options.stops,options.walk,options.peers):undefined;
+ if (map) browse.append(map.element);
  body.append(browse);
 
- if (!view.groups.length) return;
+ if (!view.groups.length) return map?.updateResidents;
  const label = document.createElement('label');
  label.className = 'places-search';
  label.textContent = 'Find a place';
@@ -100,4 +101,5 @@ export function renderPlaces(body: HTMLElement, options: {
  body.insertBefore(label, browse);
  body.insertBefore(status, browse);
  body.insertBefore(results, browse);
+ return map?.updateResidents;
 }

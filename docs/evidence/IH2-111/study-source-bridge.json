@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "44cc4d49ffc4262f7ae7b85d72c9bac1b35bdb351b4098e9e67d6a7958956be5",
+    "src/main.ts": "72d2175cee5b234f319d87e1d3c2ee36a3a1640fb8d763277fe121bebb1f243a",
     "src/phaser/WorldScene.ts": "c80994845554448ff4979e4724ff5bdb5921cfea7fa1936f2ca85858ab17d67b",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the nearby resident motion and headwear playback; archived garden study and generated output remain frozen."
+  "currentTask": "Reviewed public town map presence without changing frozen historical study inputs or generated output."
 }

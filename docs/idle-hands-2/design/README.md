@@ -6,6 +6,8 @@ IH2-054 design package, 2026-11-10. **Design candidates, not implemented feature
 
 ## Read the design
 
+- [Inkwood Glasshouse](../../evidence/IH2-204/PLAN.md) — three project stages and different ways to volunteer
+
 - [Owner direction and decision boundaries](OWNER_DIRECTIONS.md)
 - [World and systems design](WORLD_AND_SYSTEMS_DESIGN.md): opening, homes, construction, exploration, combat/recovery and social contracts
 - [World concept map](WORLD_CONCEPT.svg) and [region data](REGION_PLAN.json): candidate connections and distinct services; not a playable map or travel-time measurement

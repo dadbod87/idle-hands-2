@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inkwood Glasshouse · Idle Hands 2 design study</title>
+<style>
+  :root{color-scheme:light;--ink:#27372e;--paper:#f5ead3;--line:#a79a79;--accent:#425c48;font-family:Georgia,serif;background:#d8d0bb;color:var(--ink)}
+  *{box-sizing:border-box}
+  body{margin:0}
+  main{max-width:64rem;margin:1.25rem auto;padding:1.25rem;background:var(--paper);border:2px solid var(--ink);border-radius:8px;box-shadow:4px 4px #a29678}
+  h1,h2,h3,p{margin:0}
+  h1{font-size:clamp(1.8rem,5vw,2.6rem)}
+  h2{font-size:1.45rem;margin:0 0 .45rem}
+  h3{font-size:1rem;margin:0 0 .3rem}
+  .intro{margin:.5rem 0 1rem;line-height:1.5}
+  .stages{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 .85rem}
+  button{font:inherit;font-weight:bold;min-height:44px;padding:.45rem .8rem;border:1px solid var(--ink);border-radius:4px;background:#fff6e3;color:inherit;cursor:pointer}
+  button[aria-pressed="true"]{background:var(--accent);color:#fff6e3}
+  button:focus-visible{outline:3px solid #a14a32;outline-offset:2px}
+  .project{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;align-items:start}
+  figure{margin:0;min-width:0}
+  svg{display:block;width:100%;height:auto;border:1px solid var(--ink);border-radius:4px;background:#a2aa8c}
+  figcaption{padding:.5rem 0;font-size:.9rem;line-height:1.4}
+  .notice{border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:5px;background:#faf2df;padding:1rem;line-height:1.45}
+  .tasks{list-style:none;margin:.7rem 0 0;padding:0}
+  .tasks li{padding:.65rem 0;border-top:1px solid var(--line)}
+  .tasks li p{font-size:.95rem}
+  .overgrown,.repair,.opened{display:none}
+  [data-stage="overgrown"] .overgrown,[data-stage="repair"] .repair,[data-stage="opened"] .opened{display:inline}
+  @media(max-width:48rem){main{margin:.65rem;padding:.8rem}.project{grid-template-columns:minmax(0,1fr)}}
+  @media(max-width:24rem){.stages button{flex:1}.notice{padding:.75rem}}
+  @media(max-height:30rem) and (orientation:landscape){
+    main{margin:.3rem;padding:.45rem}
+    h1{font-size:1.35rem;line-height:1.1}
+    .intro{margin:.25rem 0;line-height:1.2}
+    .stages{margin-bottom:.4rem}
+    .stages button{padding:.25rem .45rem}
+    .notice{padding:.55rem}
+  }
+</style>
+</head>
+<body>
+<main id="study" data-stage="overgrown">
+  <h1>Inkwood Glasshouse</h1>
+  <p class="intro">Design study for Idle Hands 2</p>
+  <div class="stages" role="group" aria-label="Project stage">
+    <button type="button" data-show="overgrown" aria-pressed="true" aria-controls="project-notice">Overgrown</button>
+    <button type="button" data-show="repair" aria-pressed="false" aria-controls="project-notice">Under repair</button>
+    <button type="button" data-show="opened" aria-pressed="false" aria-controls="project-notice">Open</button>
+  </div>
+  <div class="project">
+    <figure>
+      <svg id="glasshouse" viewBox="0 0 400 318" role="img" aria-labelledby="glasshouse-title">
+        <title id="glasshouse-title">An overgrown greenhouse with missing panes and a bramble across the door</title>
+        <defs>
+          <g id="shrub" stroke-linejoin="round" stroke-width="2">
+            <path d="M-27 0q-9-12 3-18-3-14 13-14 7-15 20-6 12-6 17 8 15 1 12 14 8 8 0 16Z" fill="currentColor" stroke="#405b43"/>
+            <path d="M-15-7q16-11 39-12m-28 8-2-13m15 8 6-12" fill="none" stroke="#687956"/>
+          </g>
+          <g id="warm-lamp" stroke="#344439" stroke-width="2">
+            <path d="M-7-10h14l-2 10H-5z" fill="#f9d988"/>
+            <path d="M0-15v5m-6-1H6" fill="none"/>
+          </g>
+          <g id="plant" stroke="#435a44" stroke-width="1.5">
+            <path d="M0 0q-15-6-11-15 7-3 12 13 1-13 9-14 4 10-9 16" fill="#759461"/>
+            <path d="m-7 0 2 8H5l2-8Z" fill="#ac6c4e"/>
+          </g>
+          <pattern id="ground" width="54" height="40" patternUnits="userSpaceOnUse">
+            <path d="m15 12 2-5 2 4m22 20 2-3 3 3" fill="none" stroke="#899474" stroke-width="1.4"/>
+            <ellipse cx="36" cy="12" rx="8" ry="3" fill="#96a080"/>
+          </pattern>
+          <linearGradient id="glass" x1="0" x2="1" y1="1" y2="0" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#80a098"/>
+            <stop offset="1" stop-color="#d1dfbc"/>
+          </linearGradient>
+        </defs>
+        <path d="M0 0h400v318H0Z" fill="url(#ground)"/>
+        <path d="M180 211c-1 38 5 48-21 67-16 12-34 22-44 40h112c18-16 31-32 34-47 4-19 2-37-1-58Z" fill="#cdb897" stroke="#b29c7d" stroke-width="3"/>
+        <path d="m196 254 8-1m20 13 9 1m-49 20 7-4m-18 18 7-1m61-64 7 2" stroke="#a48e71" stroke-width="2" fill="none"/>
+        <use href="#shrub" x="61" y="108" style="color:#788f64"/>
+        <use href="#shrub" x="77" y="130" style="color:#a4a87b"/>
+        <use href="#shrub" x="333" y="98" style="color:#718961"/>
+        <use href="#shrub" x="348" y="122" style="color:#939d6f"/>
+
+        <ellipse cx="204" cy="226" rx="142" ry="21" fill="#43553d" opacity=".22"/>
+        <g stroke="#33473e" stroke-width="3" stroke-linejoin="round">
+          <path d="M66 132h74v75H66Z" fill="#9eaa8d"/>
+          <path d="m59 132 23-46h69l-13 46Z" fill="#a0ad95"/>
+          <path d="M70 139h59v52H70Z" fill="url(#glass)"/>
+          <path d="M74 205h65v15H74Z" fill="#9a7154"/>
+          <path d="M131 106h192v105H131Z" fill="#b0bc9a"/>
+          <path d="M122 106l58-53h94l58 53Z" fill="url(#glass)"/>
+          <path d="M130 106h196m-151 0 11-53m47 53V53m43 53-10-53m-116 24h155M100 86l-14 46m-23 0h74m-26 7v51m-40-25h61" fill="none"/>
+          <path d="M141 116h54v72h-54Zm114 0h59v72h-59Z" fill="url(#glass)"/>
+          <path d="M169 117v71m115-71v71m-142-35h52m62 0h57" stroke="#52796b"/>
+          <path d="M136 190h64v31h-64Zm114 0h68v31h-68Z" fill="#a98162"/>
+          <path d="M141 198h53m63 0h56m-171 13h53m62 0h56" stroke="#715d4a" stroke-width="2"/>
+          <path d="M201 120h47v101h-47Z" fill="#567867"/>
+          <path d="M209 129h31v52h-31Z" fill="#aac2a6"/>
+          <path d="M224 130v50m-15 25h16" stroke="#52796b"/>
+          <path d="M235 190h4" stroke="#e6bf71" stroke-linecap="round"/>
+          <path d="M197 224h55l-2 8h-51Z" fill="#88765e"/>
+        </g>
+
+        <g class="overgrown">
+          <path d="m151 116 17 3 8 10 18-13v35h-43Zm136 40 27-4v35h-26Z" fill="#536956" stroke="#3c5243" stroke-width="2"/>
+          <path d="m186 55 40-1-5 18-10 6-12-3-17 5Z" fill="#657b5e"/>
+          <path d="m153 128 9 11 12 6m119 25 8 8 10-2m-125-111 7 5-1 9" fill="none" stroke="#c6d6b7" stroke-width="1.4"/>
+          <path d="M68 195q36-40 66-9 25 15 31-10 15-31 3-56m92 91q27-20 24-43t20-32" fill="none" stroke="#536f4f" stroke-width="5"/>
+          <use href="#shrub" x="132" y="226" style="color:#748c5d"/>
+          <use href="#shrub" x="186" y="235" style="color:#849564"/>
+          <use href="#shrub" x="248" y="231" style="color:#617d54"/>
+          <use href="#shrub" x="300" y="223" style="color:#849564"/>
+          <path d="m179 165 72 17-3 12-74-17Z" fill="#ad7651" stroke="#5c4a33" stroke-width="2"/>
+          <path d="m201 175 26 6" stroke="#ecce87" stroke-width="3"/>
+        </g>
+
+        <g class="repair" stroke-linejoin="round">
+          <path d="m149 118 42 4 1 57-44 2Z" fill="#a77b52" stroke="#6d533e" stroke-width="3"/>
+          <path d="m157 124 25 52m5-48-34 47" fill="none" stroke="#71523e" stroke-width="5"/>
+          <path d="M198 211h58v-15h-58Z" fill="#d7a454" stroke="#503f2d" stroke-width="2"/>
+          <path d="m203 198 9 10m6-10 9 10m6-10 9 10" fill="none" stroke="#6b563d" stroke-width="3"/>
+          <path d="m40 233 63-20 5 10-63 20Zm6 9 60-16 5 10-59 17Z" fill="#aa8056" stroke="#6d533e" stroke-width="2"/>
+          <path d="M281 221h31l9 23h-45Z" fill="#b58e5f" stroke="#6b5037" stroke-width="2"/>
+          <path d="m281 220 10-12h14l7 12m-21 6 12 10" fill="none" stroke="#6b5037" stroke-width="2"/>
+        </g>
+
+        <g class="opened">
+          <path d="M207 123h34v98h-34Z" fill="#466354"/>
+          <path d="m209 125 28 6v82l-28 6Z" fill="#739b80" stroke="#33473e" stroke-width="2"/>
+          <polygon points="213,132 232,136 232,180 213,181" fill="#bad0ae"/>
+          <path d="M136 104q24 9 48 0 24 9 48 0 24 9 48 0 24 9 47 0" stroke="#775c40" stroke-width="1" fill="none"/>
+          <path d="m146 107 12 1-6 10Zm39-1 13 3-8 8Zm44 0 13 2-7 9Zm45 1 13 2-7 9Zm38 0 12-1-4 10Z" fill="#d3a555" stroke="#775c40" stroke-width="1"/>
+          <use href="#warm-lamp" x="194" y="147"/><use href="#warm-lamp" x="252" y="147"/>
+          <use href="#plant" x="148" y="181"/><use href="#plant" x="177" y="178"/>
+          <use href="#plant" x="270" y="177"/><use href="#plant" x="300" y="182"/>
+          <path d="M286 222h49v20h-49Z" fill="#967457" stroke="#5a503c" stroke-width="2"/>
+          <use href="#plant" x="296" y="226"/><use href="#plant" x="319" y="226"/>
+          <path d="M248 240h30l5 15h-40Z" fill="#d7ba80" stroke="#6b5037" stroke-width="2"/>
+          <path d="M251 247h22" stroke="#8d6841" stroke-width="2"/>
+        </g>
+      </svg>
+      <figcaption id="stage-art">Missing panes, ivy and a closed path mark the site before repair.</figcaption>
+    </figure>
+    <section class="notice" id="project-notice" aria-labelledby="stage-title">
+      <h2 id="stage-title">Proposed volunteer jobs</h2>
+      <p id="stage-note">The committee has approved looking into doing something about the glasshouse.</p>
+      <ul class="tasks" id="stage-tasks">
+        <li><h3>Clear the entrance</h3><p>Borrow gloves at the site. Free for any visitor.</p></li>
+        <li><h3>Brace the frame</h3><p>Offer pine from the workshop. Review the cost before giving anything.</p></li>
+        <li><h3>Make a planting chart</h3><p>Bring your Inkwood field notes. Your Journal keeps the originals.</p></li>
+      </ul>
+    </section>
+  </div>
+</main>
+<script>
+  const artwork=document.querySelector('#glasshouse-title');
+  const title=document.querySelector('#stage-title');
+  const note=document.querySelector('#stage-note');
+  const caption=document.querySelector('#stage-art');
+  const tasks=document.querySelector('#stage-tasks');
+  const stages={
+    overgrown:{
+      artwork:'An overgrown greenhouse with missing panes and a bramble across the door',
+      title:'Proposed volunteer jobs',
+      note:'The committee has approved looking into doing something about the glasshouse.',
+      caption:'Missing panes, ivy and a closed path mark the site before repair.',
+      tasks:[
+        ['Clear the entrance','Borrow gloves at the site. Free for any visitor.'],
+        ['Brace the frame','Offer pine from the workshop. Review the cost before giving anything.'],
+        ['Make a planting chart','Bring your Inkwood field notes. Your Journal keeps the originals.'],
+      ],
+    },
+    repair:{
+      artwork:'The greenhouse with repaired paths, a boarded window and a work barrier',
+      title:'Repairs underway',
+      note:'The frame is braced and the entrance is clear. The glazier will finish while you’re away.',
+      caption:'Work boards and a clear approach show a project under construction.',
+      tasks:[
+        ['Return whenever you like','No attendance needed. The opening stays available after the work finishes.'],
+        ['Go do something else','The workshop, allotment and Riverwalk are available while the crew works.'],
+      ],
+    },
+    opened:{
+      artwork:'The restored greenhouse with lit windows, bunting, plants and an open door',
+      title:'The doors are open',
+      note:'The committee has installed a plaque commemorating the removal of its original plaque.',
+      caption:'An open door, seedlings and warm lamps show the restored glasshouse.',
+      tasks:[
+        ['Meet the groundskeeper','Learn what grows here. Visits are free, including for people who arrived later.'],
+        ['Choose a starter plant','Take one keepsake plant for your home. Your garden keeps its own seed stock.'],
+      ],
+    },
+  };
+  const controls=document.querySelectorAll('[data-show]');
+  for(const button of controls)button.addEventListener('click',()=>{
+    const stage=button.dataset.show,content=stages[stage];
+    document.querySelector('#study').dataset.stage=stage;
+    for(const control of controls)control.setAttribute('aria-pressed',String(control===button));
+    artwork.textContent=content.artwork;
+    title.textContent=content.title;
+    note.textContent=content.note;
+    caption.textContent=content.caption;
+    tasks.replaceChildren(...content.tasks.map(([name,description])=>{
+      const item=document.createElement('li'),label=document.createElement('h3'),copy=document.createElement('p');
+      label.textContent=name;copy.textContent=description;
+      item.append(label,copy);
+      return item;
+    }));
+  });
+</script>
+</body>
+</html>

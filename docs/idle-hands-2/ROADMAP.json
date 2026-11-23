@@ -3664,6 +3664,28 @@
       "evidence": [
         "docs/evidence/IH2-191/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-204",
+      "title": "Rehearse the Inkwood Glasshouse shared restoration",
+      "status": "queued",
+      "owner_branch": "design/inkwood-glasshouse",
+      "goal": "Validate a follow-on town project with approachable solo and shared work, clear visible restoration and a useful late visit.",
+      "depends_on": [
+        "IH2-053"
+      ],
+      "acceptance": [
+        "Show distinguishable stages and a clear project payoff on desktop, phone and short landscape.",
+        "Define conservation, concurrent completion, deadline and late-arrival gates before any runtime work."
+      ],
+      "exclusions": [
+        "Design study only; no stock, server, schema, saves or paid services."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-204/PLAN.md",
+        "docs/evidence/IH2-204/study/index.html"
+      ],
+      "progress_note": "Interactive art and contribution design. Gameplay rules are proposed and still need pacing and authority proofs."
     }
   ],
   "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."

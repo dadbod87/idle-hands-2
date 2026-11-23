@@ -5,8 +5,8 @@ import{PROPS}from'../game/live-workshop.ts';
 import{addressForPlot}from'../game/neighborhood.ts';
 import type{TownClient,TownCommand}from'./town-client.ts';
 import{duration}from'./workshop.ts';
-import{housingPlanPreview}from'./housing-plan-preview.ts';
-export type HousingViewState={target:string;review:boolean;yard:boolean;browse:boolean};
+import{housingPlanPreview,housingYardPreview}from'./housing-plan-preview.ts';
+export type HousingViewState={target:string;review:boolean;yard:boolean;browse:boolean;yardPreview?:boolean};
 export function housingPanel(body:HTMLElement,client:TownClient,view:HousingViewState,act:(c:TownCommand)=>void,repaint:()=>void,enter:(id:string)=>void){
  const ticks:Array<()=>void>=[];const s=client.snapshot!,h=s.housing!,own=s.plot,build=h.build as HousingBuild|null,q=h.quote as HousingQuote|null;
  const p=(text:string)=>{const e=document.createElement('p');e.textContent=text;return e;},button=(text:string,action:()=>void)=>{const b=document.createElement('button');b.className='destination';b.type='button';b.textContent=text;b.onclick=()=>{if(!client.isSaving)action();};return b;};
@@ -47,6 +47,7 @@ export function housingPanel(body:HTMLElement,client:TownClient,view:HousingView
   const confirm=button('Use '+q.totalKits+' kits · book builders',()=>{view.review=false;act({kind:'housing-confirm',quoteId:q.id});});confirm.dataset.housingConfirm='';confirm.disabled=expired||stale||short;ticks.push(()=>{quoteClock.textContent=client.serverNow()>=q.expiresAt?'Quote expired. Review a fresh price.':client.snapshot?.workshop.revision!==q.revision?'Your belongings changed. Review a fresh price.':'Quote held for '+Math.max(0,Math.ceil((q.expiresAt-client.serverNow())/1000))+' seconds.';confirm.disabled=client.serverNow()>=q.expiresAt||client.snapshot?.workshop.revision!==q.revision||(client.snapshot?.workshop.bridgeKits??0)<q.totalKits;});section.append(confirm,button('Review a fresh price',()=>act({kind:'housing-quote',target:q.target,plotId:q.plotId})));body.append(section);queueMicrotask(()=>{if(close.isConnected){close.focus();close.scrollIntoView({block:'nearest'});}});
  }
  if(own&&view.yard){const heading=document.createElement('h3');heading.textContent='Make your yard yours';body.append(heading,p('Use owned items. Arranging is free; items share your Bag with your rental and indoor nooks.'));
+  body.append(housingYardPreview(own,view.yardPreview??false,open=>{view.yardPreview=open;}));
   const anchors=yardAnchors(own.planId??'legacy-'+(own.level===2?'home-expanded-exterior':'home-starter-exterior'));
   for(const anchor of anchors){const placed=own.yard?.[anchor.slot],row=document.createElement('section');row.className='housing-yard-row';row.append(p(anchor.slot.replaceAll('-',' ')+' · '+(placed?PROPS[placed].name:'empty')));
    if(placed)row.append(button('Return '+PROPS[placed].name+' to Bag',()=>act({kind:'housing-arrange',arrangement:{version:1,catalogVersion:HOUSING_CATALOG_VERSION,expectedRevision:s.workshop.revision,action:'remove',to:{area:'yard',slot:anchor.slot}}})));

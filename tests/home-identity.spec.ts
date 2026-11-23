@@ -499,3 +499,49 @@ test('street artwork waits for the neighborhood while the public registry is pai
   await context.close();
  }
 });
+
+test('your yard preview places the confirmed ornaments on their real cottage spots',async({browser})=>{
+ for(const {name,width,height,touch} of [
+  {name:'desktop',width:1440,height:900,touch:false},
+  {name:'phone',width:320,height:640,touch:true},
+ ]){
+  const context=await browser.newContext({viewport:{width,height},hasTouch:touch});
+  try{
+   const page=await context.newPage(),errors:string[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   const owner=await homePanelFixture(page,{
+    level:1,planId:'pocket-cottage-1',
+    yard:{'front-left':'planter','front-right':'letterbox','side-left':null,'side-right':null,rear:null},
+    housing:{build:null,quote:null,nextPlotId:'43'},
+   });
+   const before=owner.saved();
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.home.plotId)).toBe('42');
+   const press=(control:ReturnType<typeof page.locator>)=>touch?control.tap():control.click();
+   await press(page.locator('#bag'));
+   await press(page.getByRole('button',{name:'Inspect or arrange a house',exact:true}));
+   await expect(page.getByRole('dialog')).toHaveAccessibleName('Your home');
+   await press(page.locator('[data-home-secondary] summary'));
+   await press(page.getByRole('button',{name:'Home plans & yard',exact:true}));
+   await expect(page.getByRole('dialog')).toHaveAccessibleName('Housing registry');
+   await press(page.getByRole('button',{name:'Arrange your yard'}));
+   const preview=page.locator('.housing-yard-preview');
+   await expect(preview).not.toHaveAttribute('open','');
+   const toggle=preview.getByText('See your yard',{exact:true});
+   expect((await toggle.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+   if(touch)await toggle.tap();else await toggle.press('Enter');
+   await expect(preview).toHaveAttribute('open','');
+   await expect(preview.locator('figcaption')).toHaveText('2 of 4 yard spots used');
+   await expect(preview.locator('[data-yard-spot]')).toHaveCount(4);
+   await expect(preview.locator('[data-yard-spot=front-left] img')).toHaveAttribute('src','/art/homes/home-planter-icon.svg');
+   await expect(preview.locator('[data-yard-spot=front-right] img')).toHaveAttribute('src',new RegExp('letterbox-'+before.state.commission.motif+'-closed'));
+   await expect(preview.locator('[data-yard-spot=side-left] img')).toHaveCount(0);
+   await expect(page.getByRole('button',{name:/Return Optimistic planter to Bag/})).toBeEnabled();
+   expect(await page.getByRole('dialog').evaluate(dialog=>dialog.scrollWidth<=dialog.clientWidth)).toBe(true);
+   expect(owner.commands).toEqual([]);
+   expect(owner.saved()).toEqual(before);
+   expect(errors).toEqual([]);
+   await preview.scrollIntoViewIfNeeded();
+   await page.screenshot({path:'test-results/browser/yard-preview-'+name+'.png'});
+  }finally{await context.close();}
+ }
+});

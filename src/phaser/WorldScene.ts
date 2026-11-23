@@ -26,7 +26,7 @@ import {gardenStage,type GardenState} from '../game/live-garden.ts';
 import {gardenWorldAssets} from '../art/garden-world-assets.ts';
 import {gardenArt,gardenActionFrame,type GardenAnimation} from '../art/garden.ts';
 import Phaser from 'phaser';
-import {TRAIL_ASSETS,TRAIL_ART} from '../art/trail.ts';
+import {trailWorldAssets,TRAIL_ART} from '../art/trail.ts';
 import {HOME_ASSETS,HOME_ART,HOME_CATALOG} from '../art/home.ts';
 import {TownSky} from './TownSky.ts';
 import {type TownClimate} from '../game/town-climate.ts';
@@ -34,7 +34,7 @@ import {TOWN_PEOPLE} from '../game/town-people.ts';
 import { Session, WALK_SPEED } from '../game/session.ts';
 import {movementFrameSteps} from '../game/movement-frame.ts';
 import {ResidentMotion} from '../game/resident-motion.ts';
-import { TILE, worlds, clearSegment, type Room } from '../game/world.ts';
+import { INKWOOD_GLASSHOUSE, TILE, worlds, clearSegment, type Room } from '../game/world.ts';
 import { PLACEMENT_SLOTS, type WorkshopState,type PropId } from '../game/live-workshop.ts';
 import { ORIGINAL_STATIC, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 import catalog from '../../public/art/variety/catalog.json';
@@ -408,7 +408,8 @@ export class WorldScene extends Phaser.Scene {
       if(key.startsWith('garden-actions-'))this.activityLoading.add(key);
       this.load.svg(key,'/art/garden/'+key+'.svg');
     }
-    for(const key of TRAIL_ASSETS)this.load.svg(key,'/art/trail/'+key+'.svg');
+    if(this.loadingRoom==='trail'&&!this.textures.exists('glasshouse-overgrown'))this.load.svg('glasshouse-overgrown','/art/glasshouse/overgrown.svg');
+    for(const key of trailWorldAssets(this.loadingRoom))if(!this.textures.exists(key))this.load.svg(key,'/art/trail/'+key+'.svg');
     for(const key of HOME_ASSETS)this.load.svg(key,'/art/homes/'+key+'.svg');
     for(const asset of HOUSING_ASSETS)this.load.svg(asset.id,'/art/housing/'+asset.file);
     for(const asset of RESIDENTIAL_ASSETS)this.load.svg(asset.id,(asset.id.startsWith('housing-')?'/art/housing/':'/art/residential/')+asset.file);
@@ -546,6 +547,10 @@ export class WorldScene extends Phaser.Scene {
     } else if(this.room==='trail') {
       for(const [index,planting] of TRAIL_ART.treePlacements.entries()){const kind=planting.kind,meta=art('tree-'+kind+'-canopy'),foot=meta.foot!,footX=(planting.tileX+1)*TILE,footY=(planting.tileY+2)*TILE;for(const layer of ['trunk','canopy']){const tree=this.add.image(footX,footY,'variety-tree-'+kind+'-'+layer).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(footY+(layer==='canopy'?.1:0));if(layer==='canopy'){this.canopies.push({key:kind,image:tree,phase:index*1.7,baseX:footX});const bounds=meta.occlusion??{x:4,y:0,width:meta.width-8,height:foot.y};this.occluders.push({image:tree,x:footX-foot.x+bounds.x,y:footY-foot.y+bounds.y+bounds.height,width:bounds.width,height:bounds.height});}}}
       for(const meta of Object.values(TRAIL_ART.landmarks)){const x=(meta.point.x+.5)*TILE,y=meta.point.y*TILE;this.add.image(x,y,meta.key).setOrigin(meta.foot.x/meta.width,meta.foot.y/meta.height).setDepth(y);label(meta.point.x+.5,meta.point.y+1.1,'Field note');}
+      const glasshouse=INKWOOD_GLASSHOUSE.point;
+      const threshold=(glasshouse.y-.75)*TILE;
+      if(this.textures.exists('glasshouse-overgrown'))this.add.image((glasshouse.x+.5)*TILE,threshold,'glasshouse-overgrown').setOrigin(.5,1).setDepth(threshold);
+      label(glasshouse.x+.5,glasshouse.y+1.2,'Glasshouse');
       label(9.5,24.4,'Town square ↓');
     } else if(this.room.startsWith('home')) {
       const key=this.room==='home'?HOME_ART.starterInterior:HOME_ART.expandedInterior;const meta=HOME_CATALOG.assets.find(asset=>asset.id===key);for(const box of meta?.lightingWindows??[])litWindows.push(box);

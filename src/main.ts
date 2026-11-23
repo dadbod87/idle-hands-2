@@ -39,7 +39,7 @@ import {gardenActionLocations,STAKE_IDS,type StakeId} from './game/garden.ts';
 import {surveyId,SURVEYS,type SurveyId} from './game/fieldwork.ts';
 import Phaser from 'phaser';
 import { Session } from './game/session.ts';
-import { worlds,TRAIL_LANDMARK_IDS,type Stop,type Room } from './game/world.ts';
+import { worlds,INKWOOD_GLASSHOUSE,TRAIL_LANDMARK_IDS,type Stop,type Room } from './game/world.ts';
 import { WorldScene } from './phaser/WorldScene.ts';
 import './ui/style.css';
 import {questStep} from './game/live-workshop.ts';
@@ -738,6 +738,7 @@ function activate(stop: Stop) {
     else openSharedTownChoice('Bridge committee', 'Help repair the bridge and explore Inkwood in shared practice. Your workshop in this browser has its own save.');
     return;
   }
+  if(stop.id===INKWOOD_GLASSHOUSE.id){openPanel(stop.name);body.append(paragraph(stop.text));return;}
   if(town&&session.room==='trail'&&(TRAIL_LANDMARK_IDS as readonly string[]).includes(stop.id)){townUI!.showTrail(stop.id);return;}
   if(!town&&(stop.id==='plot'||stop.id==='home-front')){openSharedTownChoice(stop.id==='plot'?'Housing Registry':'Home visits',stop.id==='plot'?stop.text:'Earned homes and their front doors are in shared practice. Your browser-only workshop stays saved separately.');return;}
   if(town&&stop.id==='plot'){townUI!.showPlots();return;}

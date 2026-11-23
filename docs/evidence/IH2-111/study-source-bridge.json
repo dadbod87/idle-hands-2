@@ -20,10 +20,10 @@
     }
   },
   "reviewedCurrent": {
-    "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "cebd25a7a7146f28686fd176d4b8d7f506a31fcd338778785dab27735c2a9c1d",
-    "src/phaser/WorldScene.ts": "928461158d5ca981ad916184949b30c0fc83d168f7852d0f61234ac5aef321e4",
+    "src/game/world.ts": "3ec09016a3879e6a841c7dc9a58c9411f99522896840227edd45c6f16aca655d",
+    "src/main.ts": "633dff59ca2e6ebacdcf4c2b1fd1b6bdc6ac02b0e150f3b5190a04dab7103d9f",
+    "src/phaser/WorldScene.ts": "c00319b7e8c9d345d10f2b5249f3305d5fad439e1741472a8c84ff78fb665281",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed combined Bag travel, enlarged text and Riverwalk float. Original study snapshots and generated output remain frozen."
+  "currentTask": "Reviewed combined town, Bag, lookup, Riverwalk and closed Glasshouse gameplay. Original study snapshots and generated output remain frozen."
 }

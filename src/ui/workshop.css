@@ -131,3 +131,17 @@
 .bag-moving-stack{outline:2px solid #4d684e;outline-offset:-4px}
 .bag-move-stack{width:100%;min-height:44px;margin:6px 0 0;padding:5px;overflow-wrap:anywhere}
 .bag-move-stack[hidden],.bag-order-bar[hidden]{display:none}
+
+.bag-pockets{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:500px){.bag-pockets{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bag-slots[aria-label=Equipment]{grid-template-columns:minmax(0,1fr)}
+.bag-slots[aria-label=Equipment] .bag-slot{display:grid;grid-template-columns:80px minmax(0,1fr);gap:4px 8px;padding:12px}
+.bag-slots[aria-label=Equipment] .bag-slot-art{grid-row:span 2;height:72px}
+.bag-slots[aria-label=Equipment] .bag-slot h4{align-self:end;margin:0;min-height:0}
+#panel-body .bag-slots[aria-label=Equipment] .bag-slot-detail{height:auto;min-height:0}
+.bag-equip-action,.bag-equip-back{grid-column:1/-1;min-height:44px;margin:4px 0 0}
+#panel-body .bag-equip-notice{grid-column:1/-1;margin:4px 0 0;font-size:.85rem}
+.bag-equip-notice:empty{display:none}
+.bag-appearance{margin-top:8px;padding:12px;background:#f4ecd7;border:1px solid #947b55;border-radius:6px}
+#panel-body .bag-appearance h4,#panel-body .bag-appearance p{margin:0 0 4px}
+.bag-appearance button{min-height:44px;margin:0}

@@ -4,7 +4,7 @@ type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
 import {PROP_IDS,PROPS,type PropId,type WorkshopState as LegacyWorkshopState} from './workshop.ts';
 import {MARKER_IDS,MARKER_DEFS} from './garden.ts';
 
-export const BAG_GROUPS=['furniture','materials','garden'] as const;
+export const BAG_GROUPS=['furniture','materials','garden','equipment'] as const;
 export type BagGroup=typeof BAG_GROUPS[number];
 export type BagStack={id:string;group:BagGroup;name:string;icon:string;quantity:number|null;detail:string};
 const furnitureNames=Object.fromEntries(PROP_IDS.map(id=>[id,PROPS[id].name]))as Record<PropId,string>;
@@ -21,7 +21,7 @@ export function bagStacks(state:WorkshopState,elsewhere:Partial<Record<PropId,nu
  {id:'bridge-kit',group:'materials',name:'Bridge repair kits',icon:'/art/homes/home-crate-icon.svg',quantity:state.bridgeKits,detail:'Kept kits · projects & homes'});
  for(const crop of ['radish','marigold'] as const){const name=crop==='radish'?'Radish':'Marigold';stacks.push({id:crop+'-seed',group:'garden',name:name+' seeds',icon:'/art/garden/garden-'+crop+'-seed.svg',quantity:state.garden.seeds[crop],detail:'Seeds ready to plant'},
  {id:crop+'-produce',group:'garden',name:crop==='radish'?'Harvested radishes':'Cut marigolds',icon:'/art/garden/garden-'+crop+'-produce.svg',quantity:state.garden.produce[crop],detail:'Harvested & kept'});}
- stacks.push({id:'saw',group:'garden',name:'Bound hand saw',icon:'/art/carpentry/bound-saw-icon.svg',quantity:state.carpentry.saw.owned?1:0,detail:state.carpentry.saw.equipped?'Equipped · kept tool':'Protected tool'});
+ stacks.push({id:'saw',group:'equipment',name:'Bound hand saw',icon:'/art/carpentry/bound-saw-icon.svg',quantity:state.carpentry.saw.owned?1:0,detail:state.carpentry.saw.equipped?'Equipped':state.carpentry.saw.owned?'Put away':'Earn it from Nella’s free lesson.'});
  for(const id of MARKER_IDS)stacks.push({id:'marker-'+id,group:'garden',name:MARKER_DEFS[id].name,icon:'/art/garden/garden-marker-'+id+'.svg',quantity:state.garden.markers.includes(id)?1:0,detail:state.garden.selectedMarker===id?'On display · kept marker':'Garden marker'});
  if(orchard!==undefined)stacks.push(
   {id:'orchard-apple',group:'garden',name:'Orchard apples',icon:'/art/orchard/apple.svg',quantity:orchard?.apples??null,detail:'Pack two into a snack'},

@@ -4,7 +4,15 @@ type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
 import {bagStacks,BAG_GROUPS,type BagGroup,type BagStack} from '../game/bag.ts';
 import type {PropId,WorkshopState as CurrentWorkshopState} from '../game/live-workshop.ts';
 
-const COUNT_KEYS:Record<BagGroup,string>={furniture:'Numbers show copies available to place.',materials:'Numbers show carried materials.',garden:'Numbers show kept items.'};
+type BagEquipmentActions={
+ equipSaw:()=>void;
+ openSawLesson?:()=>void;
+ backToWork?:()=>void;
+ wardrobe?:{label:string;open:()=>void};
+};
+
+const POCKET_LABELS:Record<BagGroup,string>={furniture:'Furniture',materials:'Materials',garden:'Garden',equipment:'Equipment'};
+const COUNT_KEYS:Record<BagGroup,string>={furniture:'Numbers show copies available to place.',materials:'Numbers show carried materials.',garden:'Numbers show kept items.',equipment:'Hand tool'};
 
 /** Stable inventory slots. Arrangement is a browser preference, independent of carried items. */
 export class BagView {
@@ -13,6 +21,11 @@ export class BagView {
  private groups=new Map<BagGroup,HTMLElement>();
  private status=document.createElement('p');
  private countKey=document.createElement('p');
+ private appearance:HTMLElement|null=null;
+ private readonly pockets=new Map<BagGroup,HTMLButtonElement>();
+ private readonly equipAction=document.createElement('button');
+ private readonly sawLesson=document.createElement('button');
+ private readonly equipmentNotice=document.createElement('p');
  private readonly orderButton=document.createElement('button');
  private readonly orderStatus=document.createElement('p');
  private readonly orderBar=document.createElement('div');
@@ -22,7 +35,7 @@ export class BagView {
  private selected:string|null=null;
  private dragged:string|null=null;
 
- constructor(state:WorkshopState,private orchard?:()=>OrchardPantry|null,chooseFurniture?:(id:PropId)=>void,owner='local'){
+ constructor(state:WorkshopState,private orchard?:()=>OrchardPantry|null,chooseFurniture?:(id:PropId)=>void,owner='local',equipment?:BagEquipmentActions){
   this.layoutKey='ih2:bag-layout:v1:'+owner;
   const stacks=bagStacks(state,{},this.orchard?.());
   this.items=new Map(stacks.map(stack=>[stack.id,stack]));
@@ -30,7 +43,7 @@ export class BagView {
   const heading=document.createElement('h3');heading.textContent='Your bag';
   this.countKey.className='bag-intro bag-count-key';this.countKey.id='bag-count-key';this.countKey.textContent=COUNT_KEYS.furniture;
   const filters=document.createElement('div');filters.className='bag-pockets';filters.setAttribute('role','group');filters.setAttribute('aria-label','Bag pockets');
-  for(const group of BAG_GROUPS){const button=document.createElement('button');button.type='button';button.textContent=group==='furniture'?'Furniture':group==='materials'?'Materials':'Garden & tools';button.dataset.bagPocket=group;button.setAttribute('aria-pressed',String(group==='furniture'));button.onclick=()=>{this.select(null);this.countKey.textContent=COUNT_KEYS[group];for(const [id,list]of this.groups)list.hidden=id!==group;for(const el of filters.querySelectorAll('button'))el.setAttribute('aria-pressed',String(el===button));};filters.append(button);}
+  for(const group of BAG_GROUPS){const button=document.createElement('button');button.type='button';button.textContent=POCKET_LABELS[group];button.dataset.bagPocket=group;button.setAttribute('aria-pressed',String(group==='furniture'));button.onclick=()=>this.openPocket(group);this.pockets.set(group,button);filters.append(button);}
   this.status.className='bag-status';
   const shortcuts=document.createElement('div');shortcuts.className='bag-shortcuts';for(const [label,selector]of [['Arrange furniture','select[aria-label="Furniture to place"]']]){const button=document.createElement('button');button.type='button';button.textContent=label;button.dataset.bagArrange='';button.onclick=()=>this.arrange();shortcuts.append(button);}
   this.orderButton.type='button';
@@ -48,7 +61,7 @@ export class BagView {
   done.onclick=()=>{this.setEditing(false);this.orderButton.focus();};
   this.orderBar.append(this.orderStatus,done);
   this.root.append(heading,shortcuts,filters,this.countKey,this.status);
-  for(const group of BAG_GROUPS){const list=document.createElement('ul');list.className='bag-slots';list.setAttribute('aria-describedby',this.countKey.id);list.setAttribute('aria-label',group==='garden'?'Garden and tools':group==='furniture'?'Furniture':'Materials');list.hidden=group!=='furniture';this.groups.set(group,list);this.root.append(list);}
+  for(const group of BAG_GROUPS){const list=document.createElement('ul');list.className='bag-slots';list.setAttribute('aria-describedby',this.countKey.id);list.setAttribute('aria-label',POCKET_LABELS[group]);list.hidden=group!=='furniture';this.groups.set(group,list);this.root.append(list);}
   for(const stack of stacks){const card=document.createElement('li');card.className='bag-slot';card.dataset.bagItem=stack.id;
    const art=document.createElement('div');art.className='bag-slot-art';const image=document.createElement('img');image.alt='';image.width=64;image.height=64;image.loading='lazy';const fallback=document.createElement('span');fallback.className='bag-art-fallback';fallback.textContent='Item';fallback.hidden=true;image.onerror=()=>{image.hidden=true;fallback.hidden=false;};image.onload=()=>{image.hidden=false;fallback.hidden=true;};art.append(image,fallback);
    const name=document.createElement('h4');name.textContent=stack.name;const count=document.createElement('span');count.className='bag-stack-count';count.setAttribute('role','img');art.append(count);const detail=document.createElement('p');detail.className='bag-slot-detail';card.append(art,name,detail);
@@ -92,13 +105,74 @@ export class BagView {
     this.dragged=null;
     this.swap(from!,stack.id);
    };
-   card.append(move);
+   if(stack.group!=='equipment')card.append(move);
+   if(stack.id==='saw'){
+    detail.setAttribute('role','status');
+    this.equipAction.type='button';
+    this.equipAction.className='bag-equip-action';
+    this.equipAction.hidden=true;
+    this.equipAction.onclick=()=>equipment?.equipSaw();
+    this.equipmentNotice.className='bag-equip-notice';
+    this.equipmentNotice.setAttribute('role','status');
+    this.sawLesson.type='button';
+    this.sawLesson.className='bag-equip-action';
+    this.sawLesson.textContent='Visit Nella’s workshop';
+    this.sawLesson.onclick=()=>equipment?.openSawLesson?.();
+    this.sawLesson.hidden=true;
+    card.append(this.equipAction,this.sawLesson,this.equipmentNotice);
+    if(equipment?.backToWork){
+     const back=document.createElement('button');
+     back.type='button';
+     back.className='bag-equip-back';
+     back.textContent='Back to pine work';
+     back.onclick=equipment.backToWork;
+     card.append(back);
+    }
+   }
    this.slots.set(stack.id,{card,count,detail,image,fallback,choose,move});
    this.groups.get(stack.group)!.append(card);
+  }
+  if(equipment?.wardrobe){
+   const wardrobe=equipment.wardrobe,appearance=document.createElement('section');
+   appearance.className='bag-appearance';
+   appearance.hidden=true;
+   const title=document.createElement('h4'),look=document.createElement('p'),edit=document.createElement('button');
+   title.textContent='Headwear';
+   look.textContent=wardrobe.label;
+   edit.type='button';
+   edit.textContent='Edit headwear';
+   edit.onclick=wardrobe.open;
+   appearance.append(title,look,edit);
+   this.root.append(appearance);
+   this.appearance=appearance;
   }
   this.restoreOrder();
   const note=document.createElement('p');note.className='bag-note';note.textContent='Collect finished crafts to put them here. Inspecting never uses an item.';this.root.append(note,this.orderBar);this.root.addEventListener('focusin',this.focused);
  }
+ openPocket(group:BagGroup,focus=false){
+  if(group==='equipment'&&this.editing)this.setEditing(false);
+  else this.select(null);
+  this.orderButton.disabled=group==='equipment';
+  this.countKey.textContent=COUNT_KEYS[group];
+  for(const [id,list] of this.groups)list.hidden=id!==group;
+  if(this.appearance)this.appearance.hidden=group!=='equipment';
+  for(const [id,button] of this.pockets)button.setAttribute('aria-pressed',String(id===group));
+  if(focus)this.pockets.get(group)?.focus();
+ }
+
+ equipmentStatus(message:string){
+  if(this.equipmentNotice.textContent!==message)this.equipmentNotice.textContent=message;
+ }
+
+ updateEquipment(saw:WorkshopState['carpentry']['saw'],blocked:boolean){
+  const label=saw.equipped?'Put away':'Equip saw';
+  if(this.equipAction.textContent!==label)this.equipAction.textContent=label;
+  if(this.equipAction.hidden===saw.owned)this.equipAction.hidden=!saw.owned;
+  if(this.equipAction.disabled!==blocked)this.equipAction.disabled=blocked;
+  if(this.sawLesson.hidden!==saw.owned)this.sawLesson.hidden=saw.owned;
+  if(this.sawLesson.disabled!==blocked)this.sawLesson.disabled=blocked;
+ }
+
  private restoreOrder(){
   try{
    const saved:unknown=JSON.parse(localStorage.getItem(this.layoutKey)??'null');

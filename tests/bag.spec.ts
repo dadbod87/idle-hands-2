@@ -103,7 +103,7 @@ test('bag: shared snapshots keep slot nodes, free pockets issue no command and i
 });
 test('bag: pocket, keyboard shortcuts and original icons stay readable on narrow/short doubled-text views with art fallback',async({page})=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.route('**/art/homes/home-stool-icon.svg',r=>r.abort());await page.goto('/');await ready(page);await page.locator('#bag').click();const layouts=[];
- for(const shape of [{name:'phone320',w:320,h:568,text:100},{name:'phone360',w:360,h:640,text:100},{name:'short200',w:844,h:390,text:200},{name:'phone200',w:320,h:640,text:200}]){await page.setViewportSize({width:shape.w,height:shape.h});await page.evaluate(n=>document.documentElement.style.fontSize=n+'%',shape.text);const gap=await page.locator('.canvas-bag').evaluate(root=>{const heading=root.querySelector('h3')!,button=root.querySelector('.bag-shortcuts button')!,h=heading.getBoundingClientRect(),b=button.getBoundingClientRect(),icon=getComputedStyle(heading,'::before');const extra=icon.boxSizing==='border-box'?0:parseFloat(icon.borderTopWidth)+parseFloat(icon.borderBottomWidth);return b.top-Math.max(h.bottom,h.top+parseFloat(icon.top)+parseFloat(icon.height)+extra);});expect(gap).toBeGreaterThanOrEqual(4);for(const group of ['furniture','materials','garden']){const b=page.locator('[data-bag-pocket='+group+']');await b.focus();await page.keyboard.press('Enter');await expect(b).toHaveAttribute('aria-pressed','true');await expect(page.locator('.bag-count-key')).toHaveText(group==='furniture'?'Numbers show copies available to place.':group==='materials'?'Numbers show carried materials.':'Numbers show kept items.');if(group==='garden')await expect(count(page,'saw')).toHaveAttribute('aria-label','Bound hand saw: 0 kept');expect((await b.boundingBox())!.height).toBeGreaterThanOrEqual(44);expect(await b.evaluate(el=>{const node=el.firstChild!;let offset=0;for(const part of el.textContent!.split(/(\s+)/)){if(part.trim()){const range=document.createRange();range.setStart(node,offset);range.setEnd(node,offset+part.length);if(range.getClientRects().length>1)return false;}offset+=part.length;}return true;})).toBe(true);expect(await page.locator('dialog').evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);for(const card of await page.locator('.bag-slots:not([hidden]) .bag-slot').all())expect(await card.evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);}
+ for(const shape of [{name:'phone320',w:320,h:568,text:100},{name:'phone360',w:360,h:640,text:100},{name:'short200',w:844,h:390,text:200},{name:'phone200',w:320,h:640,text:200}]){await page.setViewportSize({width:shape.w,height:shape.h});await page.evaluate(n=>document.documentElement.style.fontSize=n+'%',shape.text);const gap=await page.locator('.canvas-bag').evaluate(root=>{const heading=root.querySelector('h3')!,button=root.querySelector('.bag-shortcuts button')!,h=heading.getBoundingClientRect(),b=button.getBoundingClientRect(),icon=getComputedStyle(heading,'::before');const extra=icon.boxSizing==='border-box'?0:parseFloat(icon.borderTopWidth)+parseFloat(icon.borderBottomWidth);return b.top-Math.max(h.bottom,h.top+parseFloat(icon.top)+parseFloat(icon.height)+extra);});expect(gap).toBeGreaterThanOrEqual(4);for(const group of ['furniture','materials','garden','equipment']){const b=page.locator('[data-bag-pocket='+group+']');await b.focus();await page.keyboard.press('Enter');await expect(b).toHaveAttribute('aria-pressed','true');await expect(page.locator('.bag-count-key')).toHaveText(group==='furniture'?'Numbers show copies available to place.':group==='materials'?'Numbers show carried materials.':group==='garden'?'Numbers show kept items.':'Hand tool');if(group==='equipment'){await expect(count(page,'saw')).toHaveAttribute('aria-label','Bound hand saw: 0 kept');await expect(page.getByRole('button',{name:'Visit Nella’s workshop',exact:true})).toBeVisible();}expect((await b.boundingBox())!.height).toBeGreaterThanOrEqual(44);expect(await b.evaluate(el=>{const node=el.firstChild!;let offset=0;for(const part of el.textContent!.split(/(\s+)/)){if(part.trim()){const range=document.createRange();range.setStart(node,offset);range.setEnd(node,offset+part.length);if(range.getClientRects().length>1)return false;}offset+=part.length;}return true;})).toBe(true);expect(await page.locator('dialog').evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);for(const card of await page.locator('.bag-slots:not([hidden]) .bag-slot').all())expect(await card.evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);}
  await page.locator('[data-bag-pocket=furniture]').focus();await page.keyboard.press('Enter');await expect(stack(page,'stool').locator('.bag-art-fallback')).toBeVisible();await page.screenshot({path:out+'/bag-'+shape.name+'.png'});await page.getByRole('button',{name:'Open journal',exact:true}).focus();await page.keyboard.press('Enter');await page.getByRole('button',{name:'Close panel'}).focus();await page.keyboard.press('Tab');await page.keyboard.press('Tab');await expect(page.locator('[data-activity=bench] .activity-status')).toBeFocused();const h=(await page.locator('.dialog-head').boundingBox())!,b=(await page.locator('[data-activity=bench] .activity-status').boundingBox())!;expect(b.y).toBeGreaterThanOrEqual(h.y+h.height);await page.getByRole('button',{name:'Open bag',exact:true}).click();layouts.push(shape);}
  expect(errors).toEqual([]);writeFileSync(out+'/bag-responsive-proof.json',JSON.stringify({fixture:'Fresh ungranted local defaults; deliberately intercepted stool artwork failure only. Native keyboard/viewport/text emulation, not a physical phone.',layouts,errors},null,2)+'\n');
 });
@@ -232,6 +232,100 @@ test('bag: move stacks by drag, tap and keyboard, with counts and workshop state
    await page.getByRole('button',{name:'Materials',exact:true}).click();
    await expect(page.getByRole('button',{name:'Move Scrap',exact:true})).toBeVisible();
    expect(await playerState()).toEqual(unchanged);
+  }finally{await context.close();}
+ }
+});
+
+test('Bag Equipment keeps an earned saw through equip, pine work, put away and reload',async({browser})=>{
+ mkdirSync(out,{recursive:true});
+ for(const [name,width,height] of [['desktop',1440,900],['phone',320,640]] as const){
+  const touch=name==='phone';
+  const context=await browser.newContext({viewport:{width,height},hasTouch:touch});
+  try{
+   const page=await context.newPage();
+   const start=createWorkshop(Date.now()),learned=applyWorkshop(start,{id:'equipment-lesson',kind:'carpentry',expectedRevision:0,carpentryAction:{action:'learn-saw'}},start.observedAt);
+   expect(learned.ok).toBe(true);
+   await page.addInitScript(({workshop,room,position})=>{
+    if(sessionStorage.getItem('equipment-fixture'))return;
+    localStorage.setItem('ih2:workshop:v2',JSON.stringify(workshop));
+    localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room,position}));
+    sessionStorage.setItem('equipment-fixture','1');
+   },{workshop:learned.state,room:touch?'square':'workshop',position:touch?{x:6,y:26}:{x:12,y:6.5}});
+   await page.goto('/?sky-study=1&phase=day');
+   await ready(page);
+   const state=()=>page.evaluate(()=>(window as any).__pilot.workshop());
+   const feet=()=>page.evaluate(()=>(window as any).__pilot.snapshot().position);
+   const startFeet=await feet();
+   const pocket=page.getByRole('button',{name:'Equipment',exact:true});
+   if(touch){
+    await page.locator('#interact').tap();
+    await page.getByRole('button',{name:'Open Bag · Equipment',exact:true}).tap();
+    await expect(pocket).toBeFocused();
+   }else{
+    await page.locator('#bag').click();
+    await pocket.press('Enter');
+   }
+   await expect(pocket).toHaveAttribute('aria-pressed','true');
+   await expect(count(page,'saw')).toHaveText('1');
+   await expect(stack(page,'saw')).toContainText('Put away');
+   const equip=page.getByRole('button',{name:'Equip saw',exact:true});
+   if(touch)await equip.tap();else await equip.press('Enter');
+   await expect(stack(page,'saw').locator('.bag-slot-detail')).toHaveText('Equipped');
+   await expect(page.locator('.bag-equip-notice')).toBeEmpty();
+   expect(await feet()).toEqual(startFeet);
+   const equipped=await state();
+   expect(equipped.inventory).toEqual(start.inventory);
+   expect(equipped.owned).toEqual(start.owned);
+   expect(equipped.carpentry.pine).toMatchObject({available:6,carried:0,gathered:0,spent:0});
+   expect(equipped.revision).toBe(learned.state.revision+1);
+   await page.screenshot({path:out+'/bag-equipment-'+name+'.png'});
+   if(touch){
+    await page.getByRole('button',{name:'Back to pine work',exact:true}).tap();
+    await expect(page.locator('#panel-title')).toHaveText('Crooked pine deadfall');
+    await page.getByRole('button',{name:'Preview preparing fallen pine',exact:true}).tap();
+    const gather=page.locator('[data-carpentry-action=confirm]');
+    await expect(gather).toBeEnabled();
+    await gather.tap();
+    await expect.poll(async()=>(await state()).carpentry.pine.carried).toBe(6);
+   }
+   await page.reload();
+   await ready(page);
+   await page.locator('#bag').click();
+   await pocket.click();
+   await expect(stack(page,'saw').locator('.bag-slot-detail')).toHaveText('Equipped');
+   await page.getByRole('button',{name:'Put away',exact:true}).click();
+   await expect(count(page,'saw')).toHaveText('1');
+   await expect(stack(page,'saw').locator('.bag-slot-detail')).toHaveText('Put away');
+   await page.reload();
+   await ready(page);
+   expect((await state()).carpentry.saw).toEqual({owned:true,equipped:false});
+   if(!touch){
+    await page.locator('#interact').click();
+    await expect(page.locator('#panel-title')).toHaveText('Pine finishing rack');
+    await page.getByRole('button',{name:'Open Bag · Equipment',exact:true}).click();
+    await expect(pocket).toHaveAttribute('aria-pressed','true');
+    await page.getByRole('button',{name:'Back to pine work',exact:true}).click();
+    await expect(page.locator('#panel-title')).toHaveText('Pine finishing rack');
+    await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   }
+   await page.locator('#bag').click();
+   await pocket.click();
+   await expect(page.locator('.bag-appearance')).toContainText('Original look');
+   const inventoryBefore=(await state()).inventory;
+   await page.getByRole('button',{name:'Edit headwear',exact:true}).click();
+   await page.getByLabel('Name on your badge').fill('Avery');
+   await page.getByLabel('Headwear',{exact:true}).selectOption('clerk');
+   await page.getByRole('button',{name:'Save changes',exact:true}).click();
+   await expect(page.locator('.resident-profile-status')).toHaveText('Resident saved in this browser.');
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   await page.locator('#bag').click();
+   await pocket.click();
+   await expect(page.locator('.bag-appearance')).toContainText('Clerk cap');
+   expect((await state()).inventory).toEqual(inventoryBefore);
+   if(touch){
+    await page.getByRole('button',{name:'Edit headwear',exact:true}).scrollIntoViewIfNeeded();
+    await page.screenshot({path:out+'/bag-headwear-phone.png'});
+   }
   }finally{await context.close();}
  }
 });

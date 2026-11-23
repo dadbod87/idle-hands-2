@@ -50,6 +50,23 @@ test('isolated PostgreSQL carpentry authority, separate rack and anonymous kept-
    assert.deepEqual(Object.keys((await store.snapshot('bea')).noticeboard).sort(),['credits','openedAt','phase','readyAt','startedAt']);
    const privilege=(await pool.query("select relrowsecurity,not exists(select 1 from aclexplode(coalesce(relacl,acldefault('r',relowner))) a where a.grantee=0) as private from pg_class where oid='ih2.noticeboard'::regclass")).rows[0];assert.equal(privilege.relrowsecurity,true);assert.equal(privilege.private,true);
   });
+  await t.test('portable equipment uses an owned saw and never bypasses a work station',async()=>{
+   const away=at('square','scrap'), equip={kind:'carpentry',carpentryAction:{action:'equip-saw',equipped:true}};
+   assert.equal((await command('aster',equip,away)).ok,false);
+   assert.equal((await c('aster',{action:'learn-saw'})).ok,true);
+   const before=(await store.snapshot('aster')).workshop;
+   const payload={...equip,id:'bag-equip-receipt',expectedRevision:before.revision};
+   const saved=await store.execute('aster',payload,away);
+   assert.ok(saved.ok,saved.message);
+   assert.deepEqual(saved.snapshot.workshop.carpentry.saw,{owned:true,equipped:true});
+   assert.deepEqual(saved.snapshot.workshop.inventory,before.inventory);
+   assert.deepEqual(saved.snapshot.workshop.owned,before.owned);
+   assert.equal((await store.execute('aster',payload,away)).replayed,true);
+   assert.equal((await command('aster',{kind:'carpentry',carpentryAction:{action:'gather-pine',station:'crooked'}},away)).ok,false);
+   assert.equal((await command('bea',equip,away)).ok,false);
+   assert.equal((await command('aster',{kind:'carpentry',carpentryAction:{action:'equip-saw',equipped:false}},away)).ok,true);
+   assert.deepEqual((await store.snapshot('aster')).workshop.carpentry.saw,{owned:true,equipped:false});
+  });
   await t.test('concurrent start/claim/replay debit once, independent old job persists and a restored process keeps outputs',async()=>{
    await setup('aster');now=4*H;await harvest('aster');const s=await store.snapshot('aster'),payload={id:'same-easel-start',expectedRevision:s.workshop.revision,kind:'carpentry',carpentryAction:{action:'start-easel'}};
    const starts=await Promise.all([store.execute('aster',payload,at('workshop','finishing-rack')),store.execute('aster',payload,at('workshop','finishing-rack'))]);assert.ok(starts.every(r=>r.ok));assert.equal(starts.filter(r=>r.replayed).length,1);assert.equal(starts[0].snapshot.workshop.garden.consumed.easels.marigold,1);assert.equal(starts[0].snapshot.workshop.carpentry.pine.spent,4);

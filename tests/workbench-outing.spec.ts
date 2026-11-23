@@ -3,6 +3,8 @@ import { mkdirSync } from 'node:fs';
 import { applyWorkshop, createWorkshop, RESOURCE_IDS } from '../src/game/live-workshop.ts';
 import { SURVEY_IDS, SURVEYS } from '../src/game/fieldwork.ts';
 import { GARDEN_RULES } from '../src/game/garden.ts';
+import { BROWSER_ORCHARD_KEY } from '../src/game/orchard.ts';
+import { RIVER_SPOT_IDS, RIVER_SURVEY_KEY } from '../src/game/river-survey.ts';
 
 const output = 'test-results/browser/workbench-outing';
 const hour = 3600_000;
@@ -87,7 +89,7 @@ test('a confirmed long bench job offers a free walk to the next unfinished sketc
  }
 });
 
-test('a completed sketchbook offers a ripe crop first or the Riverwalk during long work', async ({ browser }) => {
+test('a completed sketchbook offers a ripe crop, an unfinished river survey or an orchard outing', async ({ browser }) => {
  const epoch=Date.now()-GARDEN_RULES.firstRadishMs-10_000;
  let now=epoch,seq=0,state=createWorkshop(now);
  function apply(command:Record<string,unknown>){
@@ -102,7 +104,8 @@ test('a completed sketchbook offers a ripe crop first or the Riverwalk during lo
  for(const station of SURVEY_IDS)apply({kind:'survey',station,choice:SURVEYS[station].answer});
  apply({kind:'garden',gardenAction:{action:'plant',bed:1,crop:'radish'}});
  const waiting=structuredClone(state);
- for(const [label,ready] of [['harvest',true],['still-growing',false]] as const){
+ for(const label of ['harvest','still-growing','surveyed'] as const){
+  const ready=label==='harvest';
   const context=await browser.newContext({viewport:{width:320,height:650},hasTouch:true});
   try{
    const page=await context.newPage();
@@ -114,6 +117,9 @@ test('a completed sketchbook offers a ripe crop first or the Riverwalk during lo
     fixture.observedAt=fixture.garden.observedAt;
    }
    await page.addInitScript(saved=>localStorage.setItem('ih2:workshop:v2',JSON.stringify(saved)),fixture);
+   if(label==='surveyed')await page.addInitScript(({key,recorded})=>{
+    localStorage.setItem(key,JSON.stringify({version:1,recorded,cast:null}));
+   },{key:RIVER_SURVEY_KEY,recorded:[...RIVER_SPOT_IDS]});
    const errors:string[]=[];
    page.on('pageerror',error=>errors.push(error.message));
    await page.goto('/');
@@ -122,6 +128,21 @@ test('a completed sketchbook offers a ripe crop first or the Riverwalk during lo
    await page.locator('[data-activity-open=bench]').tap();
    await page.locator('[data-craft=planter]').tap();
    const trip=page.locator('[data-bench-outing]');
+   if(label==='surveyed'){
+    const orchard=trip.getByRole('button',{name:'Walk to the low branch',exact:true});
+    await expect(orchard).toBeVisible();
+    await expect(trip.getByRole('button',{name:'Walk to the Riverwalk'})).toHaveCount(0);
+    const prior=await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'));
+    const currentOrchard=()=>page.evaluate(key=>localStorage.getItem(key),BROWSER_ORCHARD_KEY);
+    expect(await currentOrchard()).toBeNull();
+    await orchard.tap();
+    await expect(page.getByRole('heading',{name:'Low branch',exact:true})).toBeVisible({timeout:25000});
+    await expect(page.getByRole('button',{name:'Pick an apple',exact:true})).toBeEnabled();
+    expect(await currentOrchard()).toBeNull();
+    expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toBe(prior);
+    expect(errors,label).toEqual([]);
+    continue;
+   }
    if(!ready){
     const river=trip.getByRole('button',{name:'Walk to the Riverwalk',exact:true});
     await expect(river).toBeVisible();

@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {TOWN_SIZE} from '../src/game/town-expansion.ts';
 import {createWorkshop} from '../src/game/live-workshop.ts';
-import {INKWOOD_GLASSHOUSE,INKWOOD_STEWARD,TRAIL_LANDMARK_IDS} from '../src/game/world.ts';
+import {INKWOOD_GLASSHOUSE,INKWOOD_STEWARD,TRAIL_LANDMARK_IDS,worlds} from '../src/game/world.ts';
 
 test('the optional paper map shows the current town position and preserves normal Places travel', async ({browser}) => {
  const out = 'test-results/browser/town-overview';
@@ -146,7 +146,7 @@ test('the shared town map groups current residents by district and clears stale 
    await expect(list).not.toContainText('Private resident');
    await expect(select).toHaveValue('commons-orchard');
    await expect(select).toBeFocused();
-   expect(await page.getByRole('dialog').evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
+   expect(await page.getByRole('dialog').evaluate(node=>node.scrollWidth<=node.clientWidth),name).toBe(true);
    await list.getByRole('heading').scrollIntoViewIfNeeded();
    await page.screenshot({path:out+'/neighbors-'+name+'.png'});
    const travel=page.locator('.town-map-route').getByRole('button',{name:'Walk to Orchard walk',exact:true});
@@ -220,7 +220,7 @@ test('the shared town map groups current residents by district and clears stale 
  }
 });
 
-test('trail steward and closed Inkwood Glasshouse give directions without changing trail rewards',async({browser})=>{
+test('trail steward and map guide visitors to the closed Inkwood Glasshouse without changing rewards',async({browser})=>{
  const out='test-results/browser/glasshouse';
  mkdirSync(out,{recursive:true});
  for(const size of [
@@ -278,7 +278,13 @@ test('trail steward and closed Inkwood Glasshouse give directions without changi
    await page.evaluate(text=>document.documentElement.style.fontSize=text,size.text);
    if(size.name==='phone'){
     const point=INKWOOD_STEWARD.point;
-    const body=await page.evaluate(({x,y})=>(window as any).__pilot.screenPoint(x,y-.8),point);
+    const stewardPoint=()=>page.evaluate(({x,y})=>{
+     const pilot=(window as any).__pilot,canvas=document.querySelector('canvas')!;
+     const spot=pilot.screenPoint(x,y-.8);
+     return pilot.metrics().visual.home.room==='trail'&&spot.x>0&&spot.y>0&&spot.x<canvas.clientWidth&&spot.y<canvas.clientHeight?spot:null;
+    },point);
+    await expect.poll(stewardPoint).not.toBeNull();
+    const body=(await stewardPoint())!;
     await page.screenshot({path:out+'/steward-on-path-phone.png'});
     await page.locator('canvas').tap({position:body});
    }else{
@@ -299,7 +305,41 @@ test('trail steward and closed Inkwood Glasshouse give directions without changi
    }
    await page.getByRole('button',{name:'Close panel',exact:true}).click();
    await page.locator('#places').click();
-   const place=page.getByRole('button',{name:/Inkwood Glasshouse/});
+   const beforeMap=await play();
+   const mapSummary=page.locator('.inkwood-map > summary');
+   if(size.touch)await mapSummary.tap();else await mapSummary.press('Enter');
+   const map=page.getByRole('img',{name:/Inkwood trail map, north at the top/});
+   await expect(map).toBeVisible();
+   await expect(map.locator('.town-map-landmark')).toHaveCount(6);
+   if(size.name==='short')await expect(page.locator('.inkwood-map-here')).toBeInViewport({ratio:1});
+   const here=await map.locator('.town-map-player').evaluate(el=>({
+    x:parseFloat((el as HTMLElement).style.left),y:parseFloat((el as HTMLElement).style.top),
+   }));
+   expect(here.x).toBeCloseTo(100*(beforeMap.position.x+.5)/worlds.trail.width,3);
+   expect(here.y).toBeCloseTo(100*(beforeMap.position.y+.5)/worlds.trail.height,3);
+   const mapBox=(await map.boundingBox())!,head=(await page.locator('.dialog-head').boundingBox())!;
+   expect(mapBox.y).toBeGreaterThanOrEqual(head.y+head.height-1);
+   expect(mapBox.y+mapBox.height).toBeLessThanOrEqual(size.height-2);
+   const labelIssues=await map.locator('.town-map-landmark').evaluateAll(labels=>{
+    const bounds=labels[0].parentElement!.getBoundingClientRect();
+    const boxes=labels.map(label=>({name:label.textContent,box:label.getBoundingClientRect()}));
+    const issues:string[]=[];
+    for(const [index,{name,box}] of boxes.entries()){
+     if(box.left<bounds.left||box.right>bounds.right||box.top<bounds.top||box.bottom>bounds.bottom)issues.push(name+' is cropped');
+     for(const {name:otherName,box:other} of boxes.slice(index+1)){
+      if(box.right>other.left&&box.left<other.right&&box.bottom>other.top&&box.top<other.bottom)issues.push(name+' overlaps '+otherName);
+     }
+    }
+    return issues;
+   });
+   expect(labelIssues).toEqual([]);
+   await page.screenshot({path:out+'/trail-map-'+size.name+'.png'});
+   const select=page.getByRole('combobox',{name:'Map destination',exact:true});
+   await select.selectOption(INKWOOD_GLASSHOUSE.id);
+   await expect(map.locator('[data-landmark=inkwood-glasshouse]')).toHaveClass(/map-destination/);
+   expect((await play()).position).toEqual(beforeMap.position);
+   const place=page.locator('.inkwood-map').getByRole('button',{name:'Walk there',exact:true});
+   if(size.name==='short')await expect(place).toBeInViewport({ratio:1});
    if(size.touch)await place.tap();
    else{await place.focus();await page.keyboard.press('Enter');}
    await expect.poll(async()=>(await play()).walking,{timeout:20000}).toBe(false);

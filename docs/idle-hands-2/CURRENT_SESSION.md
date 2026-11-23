@@ -1,6 +1,6 @@
 # November 23 — combined town review
 
-The [continued playthrough checkpoint](handoffs/2026-11-23-continued-playthrough.md) records the latest combined local study, exact release boundaries and resize evidence. Keep saved previews and databases stopped. Main is `168e857`. PR #108 remains open and the separate draft #109 has an exact green hosted run.
+The [continued playthrough checkpoint](handoffs/2026-11-23-continued-playthrough.md) records the latest combined local study, the first real harvest and café tasting, the Inkwood map and steward, resize and renderer evidence, and separate Mossbank and doorstep designs. Keep saved previews and databases stopped. Main is `168e857`. PR #108 remains open and the separate draft #109 has an exact green hosted run.
 
 # November 23 — shared-town and practice batches
 

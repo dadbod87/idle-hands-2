@@ -36,6 +36,52 @@ A separate run at the same source completed 96 actual workshop round trips with 
 
 Keep local client-only runs focused on inspected test bodies. A broad Bag title filter accidentally included a case requiring the stopped shared fixture service. That case did not run successfully under the client-only profile, and was left for normal hosted validation. The corrected local selection preserves that test in its ordinary shard.
 
+## New local playthrough work
+
+The workbench collection receipt opens the Materials pocket with the earned kit in focus. A resident’s Hide empty slots preference stays set after closing or reloading. The optional workshop floor plan puts the same existing placement preview at its real nook. It leaves the room and the carried furniture alone until confirmation. Desktop and touch checks included a 320-pixel phone and a 200% text landscape view. The floor plan’s short caption and layout were adjusted after inspection.
+
+The Riverwalk record now illustrates all three finds with original art. The notes are readable if one drawing fails to load. A completed survey puts its walk back above the album so the route stays reachable on a short screen. The test used fictional legal catches and a fixed clock. Actual twelve-second casts were exercised separately in the fresh playthrough.
+
+[Exact route profile](../../evidence/IH2-216/LOCAL_ROUTE_PROFILE.json) compares 3,388 ordered route pairs on the pre-steward map. The candidate returned the same ordered waypoints for every pair. Two long journeys on one 4×-slowed Chromium phone emulation had median button-handler times 407.3 → 97.7 ms and 425.5 → 86.9 ms across eight trips each. The nearest example changed from 3.7 to 3.0 ms. The measurements use a declared starting-position fixture, native touches and a browser trace. No walking speed, collision rule or device FPS claim follows from these handler measurements.
+
+The connected Journal reuses its most recent confirmed snapshot while its stream is current. Five isolated reopenings previously requested five snapshots and now request zero. Confirmed active work still updates the panel. Workbench inspection still refreshes confirmation before enabling collection, and a reconnect retains the established refresh. Fixture coverage represents the browser/API contract, with no actual shared database or server traffic measurement.
+
+A fresh resident can choose the optional first morning from the field guide and create a badge in the same flow. A failed room save leaves the valid badge in place and permits a retry from town. On mobile the previous Get up control could be enabled while the lodging artwork was pending, so a legitimate first tap could be discarded. The held-art regression reproduces the former state. The control now becomes available when the room can handle it, and one native touch wakes the resident without a reload. Four Chromium and four WebKit selected onboarding cases cover the room transition, phone, enlarged landscape and denied-save retry.
+
+Opening the allotment again suggests the earliest ripe bed with produce space. The bed the player is already using stays selected when a timer completes while the panel is open. Three Chromium and three WebKit garden cases checked the change and the earlier focus, announcement and produce-cap behavior. The fixture was constructed using the existing plant command and an explicitly fixed browser clock.
+
+Wren is a new original trail steward beside the path. Their visit points to the next missing observation or to the still-closed Glasshouse. No visit records a stamp or charges the resident. One cross-layout case passed in Chromium and one in WebKit using isolated shared snapshot responses. Terra inspected the new art and verified the next action remained readable in the short layout.
+
+## First harvest and café tasting
+
+[Recorded browser playthrough](../../evidence/IH2-214/LOCAL_FIRST_CROP.json) at `3316dd677a6e11293869fe87e709a242901b985c` followed completely fresh resident saves in 1440 × 900 Chromium and 320 × 640 touch WebKit. Both created their badge, woke on the first tap, left by the front steps, gathered from all three depots, earned and placed their first planter, queued another eight-hour planter, then planted their first radish. During the real five-minute growth interval they recorded all three Riverwalk finds, made a field marker, and opened Bag and reloaded twelve times. Each resident deliberately harvested one radish and served one café tasting. Each gained the seed back, spent the one produce, retained the placed planter and untouched queued job, and reloaded to the same save. Total session times were about 5m32s and 5m29s. Cosmetic daylight and clear skies were held for screenshots. No progress fixtures, time jumps, API traffic or browser errors occurred. These are emulated browser sessions.
+
+The first attempt found the early Get up bug and also failed to select the intended bed after a reload. The verified pair explicitly navigated to the beds and selected Bed 1 before harvesting. The separate allotment return change assists this selection and was verified with a focused fixed-clock native test.
+
 ## Separate designs
 
 [Ledgerwick Town speech and timestamp journal](https://github.com/dadbod87/idle-hands-2/tree/design/town-chat-study/docs/evidence/IH2-212) proposes readable room-aware bubbles and an independent Chat journal. Authenticated channels, delivery, moderation and DMs remain future work. [Mossbank first route](https://github.com/dadbod87/idle-hands-2/tree/design/mossbank-first-route/docs/evidence/IH2-213) demonstrates a safe south crossing before the optional North Walk opens. The willow-yard estimate changes from 26 to 19 seconds in the route model. [Inkwood inspection clearing](https://github.com/dadbod87/idle-hands-2/tree/design/inkwood-clearance-rehearsal/docs/evidence/IH2-215) demonstrates a visible attack cue, guard, retreat and safe bed recovery using fictional items. These stand-alone designs do not introduce chat, regions, combat or item loss to the game.
+
+## Latest playable additions
+
+- Wren’s pocket map uses the actual Inkwood terrain drawing and your trail position. Select a stop to review it, then choose Walk there. The same existing route handles the trip. The map and its destination labels fit a 320-pixel phone and the short 200% text layout. Wren also pauses to read their notes in view and stays still with reduced motion.
+- A long local bench job first suggests the next sketch or a ripe crop. With those handled, it offers a free Riverwalk outing. Walking there leaves the confirmed job, its deadline and Bag intact. Each engine passed both outing cases with legal local-save fixtures. The new fallback belongs to browser practice, where the current float survey is available.
+- The Bag’s existing badge editor now opens without passing the click event as a confirmation callback. Native first-morning and Bag checks preserve the selected equipment and save.
+
+## Scene and request measurements
+
+[Cold arrival and slow doors](../../evidence/IH2-218/PLAN.md) retained the verified doorstep and reduced distinct initial SVG requests from 87 to 52 in the local Chromium and WebKit route. Raw file sizes went from 570,397 to 528,213 bytes. The first workshop added 18 requests and the return added none. With one door SVG deliberately held, a room-specific status belongs above the frame, clears when the scene is ready, and stays readable in the tested short phone view. Browser samples used no game progress or clock fixtures.
+
+[Carpentry cues](../../evidence/IH2-219/PLAN.md) only calculate pine where deadfalls can be seen. In a local 320-pixel Chromium profile, matching state copies across 6.2 seconds each in town, workshop and allotment changed from 11/11/12 to 11/0/0. Both engines checked the ordinary pine and rack boundary with a local clock fixture. The saved workshop record stayed unchanged.
+
+A separate sprite experiment reused repeated internal SVG paths for 4 residents. Sixteen RGBA checks matched exactly at 1× and 2× with Chromium and WebKit. Raw bytes went from 242,974 to 89,847, but the four gzip files together saved one byte. The runtime sprites remain as authored. These local measurements do not establish device frame rates or network traffic in hosting.
+
+## External design studies
+
+[Doorstep notices](https://github.com/dadbod87/idle-hands-2/tree/design/doorstep-office-mischief/docs/evidence/IH2-217) proposes household opt-in, limited preset jokes, visible review and timed removal. Six deterministic cases and six native journeys exercised the separate rehearsal. No notices, game commands, household changes or persistent data were created.
+
+[Willow yard](https://github.com/dadbod87/idle-hands-2/tree/design/mossbank-willow-craft/docs/evidence/IH2-220) rehearses a three-switch basket on the safe south route, alternate visits during a six-hour job, explicit collection and an illustrated porch display. Eight deterministic tests and six native trips passed. Time and walking are intentionally simulated inside this separate study. Progress and inventory in the game are independent.
+
+## Check reuse
+
+The [Actions policy](../ACTIONS_USAGE_POLICY.md) now records the read-only exact commit lookup. It found the existing checks on main and on both headwear PRs. There was one hosted workflow in this continuation, draft #109 at 51.0 summed runner minutes on five public Ubuntu jobs. No manual runs or reruns were requested. Leave all three browser shards and the full database checks in the release gate.

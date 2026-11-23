@@ -1,0 +1,68 @@
+{
+  "source": "3316dd677a6e11293869fe87e709a242901b985c",
+  "method": "Fresh browser-local UI, actual real-time deadlines, cosmetic day/clear only, no fixture data, emulated viewports.",
+  "results": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "browser": "chromium",
+      "milestones": {
+        "outside": 4053,
+        "second-job": 18683,
+        "crop-planted": 23878,
+        "river-survey": 73862,
+        "marker-made": 87544,
+        "real-crop-harvested": 325148,
+        "reloaded-tasting": 331706
+      },
+      "crop": {
+        "crop": "radish",
+        "plantedAt": 1795468146795,
+        "readyAt": 1795468446795,
+        "cared": false
+      },
+      "job": {
+        "recipe": "planter",
+        "startedAt": 1795468141644,
+        "readyAt": 1795496941644
+      },
+      "revisits": 12,
+      "tastings": 1,
+      "errors": [],
+      "api": [],
+      "pass": true
+    },
+    {
+      "name": "phone",
+      "width": 320,
+      "height": 640,
+      "browser": "webkit",
+      "milestones": {
+        "outside": 3145,
+        "second-job": 17788,
+        "crop-planted": 22910,
+        "river-survey": 73781,
+        "marker-made": 87199,
+        "real-crop-harvested": 323380,
+        "reloaded-tasting": 329021
+      },
+      "crop": {
+        "crop": "radish",
+        "plantedAt": 1795468146083,
+        "readyAt": 1795468446083,
+        "cared": false
+      },
+      "job": {
+        "recipe": "planter",
+        "startedAt": 1795468140977,
+        "readyAt": 1795496940977
+      },
+      "revisits": 12,
+      "tastings": 1,
+      "errors": [],
+      "api": [],
+      "pass": true
+    }
+  ]
+}

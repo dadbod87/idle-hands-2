@@ -54,5 +54,35 @@
     "files": 255,
     "rebuildFiles": 255,
     "mismatches": []
-  }
+  },
+  "verifiedExistingHostedHeads": {
+    "main": {
+      "commit": "168e85720d680dd125d6204e84a12e455bf14878",
+      "runId": 45213779084,
+      "conclusion": "success"
+    },
+    "pr108": {
+      "commit": "df1c22bf970f22ed58e228e5436974e86cb134d5",
+      "runId": 45222113854,
+      "conclusion": "success"
+    },
+    "draftPr109": {
+      "commit": "4d1812ed5f765d2e654d61aa9237088a51efc928",
+      "runId": 45232892583,
+      "conclusion": "success"
+    }
+  },
+  "thisContinuationHostedUsage": {
+    "newWorkflows": 1,
+    "runId": 45232892583,
+    "observedRunnerMinutes": 51.0,
+    "attempts": 1,
+    "standardRunner": "ubuntu-24.04"
+  },
+  "chromiumBroad": {
+    "passed": 134,
+    "reportedWallTime": "18.1m",
+    "refusedIncidentalProxyRequests": 7
+  },
+  "localScope": "Browser-local gameplay and declared intercepted shared responses. Physical devices and the database suite were outside this client run. Saved services stayed stopped."
 }

@@ -171,3 +171,38 @@ test('town variety: decorative motion runs locally and resets for reduced motion
  expect(requests.some(path=>path.startsWith('/api/'))).toBe(false);
  fs.writeFileSync(`${evidence}/variety-motion.json`,JSON.stringify({method:'Headless browser, default local mode; actual prefers-reduced-motion emulation plus synthetic document visibility getter/event. No real accounts or backend commands.',first,observed,reduced,hidden,requests},null,2));
 });
+
+test('nearby town residents show their own props without changing routes or progress', async ({browser}) => {
+ test.setTimeout(80000);
+ for (const layout of [
+  {name:'desktop',width:1440,height:900,touch:false,people:['clerk','courier','caretaker']},
+  {name:'phone',width:320,height:640,touch:true,people:['courier']},
+ ]) {
+  const context=await browser.newContext({viewport:{width:layout.width,height:layout.height},hasTouch:layout.touch});
+  try {
+   const page=await context.newPage(),errors:string[]=[],api:string[]=[];
+   page.on('pageerror',problem=>errors.push(problem.message));
+   page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))api.push(request.url());});
+   await page.goto('/?sky-study=1&phase=day&weather=clear');
+   await ready(page);
+   const progress=()=>page.evaluate(()=>(window as any).__pilot.workshop());
+   const before=await progress();
+   for(const id of layout.people){
+    await expect.poll(async()=>(await visual(page)).variety.ambient.routines,{timeout:15000}).toContain(id);
+    await page.screenshot({path:evidence+'/resident-routine-'+layout.name+'-'+id+'.png'});
+   }
+   await page.emulateMedia({reducedMotion:'reduce'});
+   await expect.poll(async()=>(await visual(page)).variety.ambient.routines).toEqual([]);
+   await page.emulateMedia({reducedMotion:'no-preference'});
+   await expect.poll(async()=>(await visual(page)).variety.ambient.routines,{timeout:15000}).toContain('courier');
+   const pip=await page.evaluate(()=>(window as any).__pilot.screenPoint(26,24.5));
+   const canvas=page.locator('canvas');
+   if(layout.touch)await canvas.tap({position:pip});
+   else await canvas.click({position:pip});
+   await expect(page.getByRole('heading',{name:'Pip · Town courier',exact:true})).toBeVisible();
+   expect(await progress()).toEqual(before);
+   expect(errors).toEqual([]);
+   expect(api).toEqual([]);
+  } finally { await context.close(); }
+ }
+});

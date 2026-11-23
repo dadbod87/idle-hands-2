@@ -60,6 +60,12 @@ test('isolated elapsed-time fixture: queued kit survives absence and settles onc
  await page.addInitScript(save=>{if(!localStorage.getItem('ih2:workshop:v2'))localStorage.setItem('ih2:workshop:v2',JSON.stringify(save));localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'workshop',position:{x:5,y:5}}));},s);
  await page.goto('/');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await page.getByRole('button',{name:'Inspect Work bench'}).click();await expect(page.getByRole('button',{name:'Collect finished work'})).toBeEnabled();await page.getByRole('button',{name:'Collect finished work'}).click();expect((await state(page)).bridgeKits).toBe(1);await expect(page.locator('[data-claim]')).toBeDisabled();await expect(page.locator('[data-claim]')).toBeHidden();await expect(page.locator('[data-bench-bag]')).toBeVisible();
  await page.screenshot({path:`${dir}/fixture-kit-collected.png`});
+ await page.locator('[data-bench-bag]').press('Enter');
+ const kit=page.locator('[data-bag-item=bridge-kit]');
+ await expect(page.locator('[data-bag-pocket=materials]')).toHaveAttribute('aria-pressed','true');
+ await expect(kit.getByRole('heading',{name:'Bridge repair kits'})).toBeFocused();
+ await expect(kit.locator('.bag-stack-count')).toHaveText('1');
+ expect((await state(page)).bridgeKits).toBe(1);
  await page.reload();await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);expect((await state(page)).bridgeKits).toBe(1);expect((await state(page)).job).toBe(null);
 });
 

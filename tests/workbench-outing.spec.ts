@@ -87,7 +87,7 @@ test('a confirmed long bench job offers a free walk to the next unfinished sketc
  }
 });
 
-test('a completed sketchbook leaves room for a ready garden trip during long work', async ({ browser }) => {
+test('a completed sketchbook offers a ripe crop first or the Riverwalk during long work', async ({ browser }) => {
  const epoch=Date.now()-GARDEN_RULES.firstRadishMs-10_000;
  let now=epoch,seq=0,state=createWorkshop(now);
  function apply(command:Record<string,unknown>){
@@ -123,7 +123,16 @@ test('a completed sketchbook leaves room for a ready garden trip during long wor
    await page.locator('[data-craft=planter]').tap();
    const trip=page.locator('[data-bench-outing]');
    if(!ready){
-    await expect(trip).toBeHidden();
+    const river=trip.getByRole('button',{name:'Walk to the Riverwalk',exact:true});
+    await expect(river).toBeVisible();
+    const before=await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'));
+    await river.tap();
+    await expect(page.getByRole('heading',{name:'Riverwalk',exact:true})).toBeVisible({timeout:20_000});
+    await expect(page.getByRole('button',{name:'Cast at Reed bank',exact:true})).toBeEnabled();
+    expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toBe(before);
+    expect(errors,label).toEqual([]);
+    mkdirSync(output,{recursive:true});
+    await page.screenshot({path:output+'/phone-riverwalk-return.png'});
     continue;
    }
    const read=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('ih2:workshop:v2')!));

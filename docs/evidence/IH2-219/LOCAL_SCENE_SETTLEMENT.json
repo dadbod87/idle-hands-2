@@ -1,0 +1,57 @@
+{
+  "baseline": "082551c58f8aaae14ca9141fecc960917be752f4",
+  "method": "Native fresh Chromium touch, no injected progress, location or mechanics time; classifies actual carpentry-only structuredClone calls. Cosmetic daylight. This counts calls, not whole frame-time or server traffic.",
+  "results": [
+    {
+      "version": "baseline",
+      "cases": [
+        {
+          "room": "square",
+          "clones": 11,
+          "sampleMs": 6200,
+          "storagePreserved": true
+        },
+        {
+          "room": "workshop",
+          "clones": 11,
+          "sampleMs": 6200,
+          "storagePreserved": true
+        },
+        {
+          "room": "allotment",
+          "clones": 12,
+          "sampleMs": 6200,
+          "storagePreserved": true
+        }
+      ],
+      "errors": [],
+      "api": []
+    },
+    {
+      "version": "candidate",
+      "cases": [
+        {
+          "room": "square",
+          "clones": 11,
+          "sampleMs": 6200,
+          "storagePreserved": true
+        },
+        {
+          "room": "workshop",
+          "clones": 0,
+          "sampleMs": 6200,
+          "storagePreserved": true
+        },
+        {
+          "room": "allotment",
+          "clones": 0,
+          "sampleMs": 6200,
+          "storagePreserved": true
+        }
+      ],
+      "errors": [],
+      "api": []
+    }
+  ],
+  "candidate": "4a33ddae5ee00766b61e7b3c1eee4d908f027d94"
+}

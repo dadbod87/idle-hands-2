@@ -1,4 +1,4 @@
-import type {TownHeadwear} from '../game/earned-headwear.ts';
+import {ownsHeadwear,type TownHeadwear} from '../game/earned-headwear.ts';
 import { gardenBedView } from '../game/garden-view.ts';
 import type {OrchardPantry} from '../game/orchard.ts';
 import { rewardCue, type WorldCue } from '../audio/world-sounds.ts';
@@ -228,6 +228,7 @@ export class WorkshopUI {
   const rules=document.createElement('details'),rulesTitle=document.createElement('summary');rules.className='bench-rules';rulesTitle.textContent='How crafting works';rules.append(rulesTitle,this.p('Materials are spent when a job starts. Time is real, even while you are away. Finished work waits for you to collect it into your bag. Jobs never repeat automatically. Your first planter takes five seconds; later ones take eight hours.'));b.append(rules);this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Your work bench',render);}
  private toolSwitch(label:string,open:()=>void){const row=document.createElement('div');row.className='personal-tool-switch';const copy=this.p(label);row.append(copy,this.button(label==='Belongings'?'Open journal':'Open bag',()=>{open();this.host.body.closest('dialog')?.querySelector<HTMLButtonElement>('[aria-label="Close panel"]')?.focus({preventScroll:true});}));return row;}
+ get clerkCapOwned(){return this.host.townHeadwear?.()?.clerkOwned===true;}
  showEquipment(backToWork?:()=>void){this.showInventory(false,undefined,{backToWork});}
  showInventory(arrange=false,received?:PropId,equipment?:{backToWork?:()=>void}){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Belongings',()=>this.showJournal()));
@@ -244,12 +245,13 @@ export class WorkshopUI {
   const present=()=>this.bag===bag&&owner===this.host.owner?.();
   const bag=new BagView(this.state,this.host.orchard?.()!==undefined?()=>this.host.orchard?.()??null:undefined,chooseFurniture,owner,{
    wardrobe:this.host.wardrobe?.(),openSawLesson:this.host.carpentry,backToWork:equipment?.backToWork,
-   townHeadwear:this.remote?{trail:this.host.discoveries,wear:item=>{
+   townHeadwear:this.remote?{trail:this.host.discoveries,carpentry:this.host.carpentry,wear:item=>{
     const owned=this.host.townHeadwear?.();
-    if(!present()||!owned?.owned||item===owned.worn||this.remoteBusy||this.remote?.busy?.()||this.remoteError||this.remote?.canRetry())return;
-    bag.headwearNotice('Saving headwear…');
+    const target=item??owned?.worn;
+    if(!present()||!owned||!target||!ownsHeadwear(owned,target)||item===owned.worn||this.remoteBusy||this.remote?.busy?.()||this.remoteError||this.remote?.canRetry())return;
+    bag.headwearNotice(target,'Saving headwear…');
     void this.remoteDispatch({kind:'wear-headwear',item},present).then(result=>{
-     if(present())bag.headwearNotice(result.ok?'':result.message);
+     if(present())bag.headwearNotice(target,result.ok?'':result.message);
     });
    }}:undefined,
    equipSaw:()=>{

@@ -3686,6 +3686,27 @@
       "evidence": [
         "docs/evidence/IH2-192/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-193",
+      "title": "Earn and switch to the Clerk cap",
+      "status": "queued",
+      "owner_branch": "feat/clerk-cap",
+      "goal": "Give carpenters a visible earned style and prove a single interchangeable headwear slot.",
+      "depends_on": [
+        "IH2-192"
+      ],
+      "acceptance": [
+        "Record a first easel to unlock the cap while keeping the furniture.",
+        "Verify rejection before the first record, switch both ways, and render only the worn style for nearby residents."
+      ],
+      "exclusions": [
+        "No regional access, economy rewards, paid services or saved-preview restart."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-193/PLAN.md"
+      ],
+      "progress_note": "A dependent candidate is prepared locally. Exact hosted acceptance waits for the Inkwood base and the next batched gate."
     }
   ],
   "source_status_note": "PR #107 is accepted on main. Inkwood headwear and trail guidance form the next candidate."

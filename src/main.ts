@@ -1,4 +1,4 @@
-import {INKWOOD_HOOD} from './game/earned-headwear.ts';
+import {INKWOOD_HOOD,CLERK_CAP,ownsHeadwear} from './game/earned-headwear.ts';
 import {headwearName} from './art/headwear.ts';
 import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
 import { benchWork } from './game/crafting-view.ts';
@@ -288,7 +288,8 @@ const town=townMode?new TownClient({
   if(cue)music.cue(cue);
  },
  onSnapshot:(snapshot,previous)=>{
- scene.headwear=snapshot.headwear?.owned&&snapshot.headwear.worn===INKWOOD_HOOD?INKWOOD_HOOD:null;
+ const headwear=snapshot.headwear,worn=headwear?.worn;
+ scene.headwear=headwear&&(worn===INKWOOD_HOOD||worn===CLERK_CAP)&&ownsHeadwear(headwear,worn)?worn:null;
  session.setSquareStops(snapshot.orchard!==undefined?ORCHARD_STOPS:undefined);
  const celebrateBridge=!needResync&&freshBridgeOpening(previous??null,snapshot);
  skyOffset=snapshot.serverTime-Date.now();const identityChanged=residentId!==snapshot.playerId;const expandedInPlace=session.room==='home'&&snapshot.position.room==='home-expanded'&&snapshot.position.homePlotId===homePlotId;

@@ -330,15 +330,15 @@ test('Bag Equipment keeps an earned saw through equip, pine work, put away and r
  }
 });
 
-test('shared Inkwood hood uses confirmed equipment and renders on a visible neighbor',async({browser})=>{
+test('shared earned headwear switches a single slot and renders on a visible neighbor',async({browser})=>{
  mkdirSync(out,{recursive:true});
  for(const [shape,width,height] of [['desktop',1440,900],['phone',320,640],['short',844,390]] as const){
   const context=await browser.newContext({viewport:{width,height},hasTouch:shape!=='desktop'});
   try{
    const page=await context.newPage(),errors:string[]=[];
    const position={room:'square',position:{x:24,y:25}};
-   let workshop=createWorkshop(Date.now()),logged=false,owned=false,worn:null|'inkwood'=null;
-   const snapshot=()=>({playerId:'aster',name:'Aster',workshop,position,headwear:{owned,worn},quest:{contentVersion:1,awarded:[]},bridge:{contributed:3,target:3,restored:true,phase:'open'},trail:{stamps:owned?['trailhead','old-sign','lookout']:[],pennantOwned:owned},plot:null,plots:[],seasonKey:'2026-11-20',scores:[],serverTime:Date.now(),serverInstance:'headwear-visual-fixture'});
+   let workshop=createWorkshop(Date.now()),logged=false,owned=false,clerkOwned=false,worn:null|'inkwood'|'clerk'=null;
+   const snapshot=()=>({playerId:'aster',name:'Aster',workshop,position,headwear:{owned,clerkOwned,worn},quest:{contentVersion:1,awarded:[]},bridge:{contributed:3,target:3,restored:true,phase:'open'},trail:{stamps:owned?['trailhead','old-sign','lookout']:[],pennantOwned:owned},plot:null,plots:[],seasonKey:'2026-11-20',scores:[],serverTime:Date.now(),serverInstance:'headwear-visual-fixture'});
    const commands:{kind:string;item:string|null}[]=[];
    page.on('pageerror',error=>errors.push(error.message));
    await page.addInitScript(()=>{
@@ -358,7 +358,7 @@ test('shared Inkwood hood uses confirmed equipment and renders on a visible neig
     if(path==='command'){
      const command=route.request().postDataJSON();
      commands.push(command);
-     if(command.kind==='wear-headwear'&&owned){
+     if(command.kind==='wear-headwear'&&(command.item===null||(command.item==='inkwood'?owned:clerkOwned))){
       worn=command.item;
       workshop={...workshop,revision:workshop.revision+1};
       return route.fulfill({json:{ok:true,message:'Headwear saved.',snapshot:snapshot()}});
@@ -370,12 +370,15 @@ test('shared Inkwood hood uses confirmed equipment and renders on a visible neig
    await page.getByRole('button',{name:'Aster',exact:true}).click();
    await ready(page);
    const bag=page.locator('#bag'),equipment=page.getByRole('button',{name:'Equipment',exact:true});
-   const card=page.locator('[data-earned-headwear]');
+   const card=page.locator('[data-earned-headwear=inkwood]');
+   const cap=page.locator('[data-earned-headwear=clerk]');
    const wear=page.getByRole('button',{name:'Wear Inkwood hood',exact:true});
    const putAway=page.getByRole('button',{name:'Put hood away',exact:true});
    await bag.click();await equipment.click();
    await expect(card).toContainText('Record all three Inkwood discoveries');
    await expect(wear).toBeHidden();
+   await expect(cap).toContainText('Record your first completed easel');
+   await expect(cap.getByRole('button',{name:'Wear Clerk cap',exact:true})).toBeHidden();
    expect(commands).toEqual([]);
    await page.getByRole('button',{name:'Open trail journal',exact:true}).click();
    const rewardLink=page.getByRole('button',{name:'Open Bag · Inkwood hood',exact:true});
@@ -394,7 +397,7 @@ test('shared Inkwood hood uses confirmed equipment and renders on a visible neig
    await page.getByRole('button',{name:'Close panel',exact:true}).click();
    const visual=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual);
    await expect.poll(async()=>(await visual()).headwear?.texture).toBe('headwear-inkwood');
-   const presence=(item?:'inkwood')=>page.evaluate(headwear=>{
+   const presence=(item?:'inkwood'|'clerk')=>page.evaluate(headwear=>{
     const data=[{id:'bea',name:'Bea',room:'square',position:{x:22,y:25.5},...(headwear?{headwear}:{})}];
     (window as any).__headwearStream.dispatchEvent(new MessageEvent('presence',{data:JSON.stringify(data)}));
    },item);
@@ -408,6 +411,24 @@ test('shared Inkwood hood uses confirmed equipment and renders on a visible neig
    await page.getByRole('button',{name:'Close panel',exact:true}).click();
    await expect.poll(async()=>(await visual()).headwear).toBeNull();
    expect(commands).toHaveLength(2);
+   clerkOwned=true;
+   await bag.click();await equipment.click();
+   await cap.getByRole('button',{name:'Wear Clerk cap',exact:true}).click();
+   await expect(cap).toContainText('Wearing · visible to nearby residents');
+   await expect(card).toContainText('Earned · put away');
+   await cap.getByRole('button',{name:'Put cap away',exact:true}).scrollIntoViewIfNeeded();
+   await page.screenshot({path:out+'/clerk-cap-'+shape+'.png'});
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   await expect.poll(async()=>(await visual()).headwear?.texture).toBe('headwear-clerk');
+   await presence('clerk');
+   await expect.poll(async()=>(await visual()).peerHeadwear).toEqual([{id:'bea',texture:'headwear-clerk'}]);
+   await bag.click();await equipment.click();
+   await wear.click();
+   await expect(cap).toContainText('Earned · put away');
+   await expect(card).toContainText('Wearing · visible to nearby residents');
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   await expect.poll(async()=>(await visual()).headwear?.texture).toBe('headwear-inkwood');
+   expect(commands.slice(2).map(command=>command.item)).toEqual(['clerk','inkwood']);
    expect(errors).toEqual([]);
   }finally{await context.close();}
  }

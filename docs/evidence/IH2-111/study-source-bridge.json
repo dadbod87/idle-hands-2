@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "b24bac82381a720f8de4a2f3d962239488ae87ae5ee35bfb41f34b41e1920fa6",
-    "src/phaser/WorldScene.ts": "1ee61557e3479da0de5c6cbf73354948e115502b7bb8c9fc20d2eeb4c904788a",
+    "src/main.ts": "af46cc6cadd14f7c20cbd068c0aaf3452663ebeb0a7d1dfc00530170ee4a9ad8",
+    "src/phaser/WorldScene.ts": "de3a2d3af6ac59bbc761897216f261aaaedb04fc0bb9e299411cb1e4d59925fe",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed town headwear and peer rendering while preserving the historical garden study source and output."
+  "currentTask": "Reviewed visible shared headwear choices and the Bag handoffs; archived garden study and generated output remain frozen."
 }

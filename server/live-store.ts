@@ -1,4 +1,5 @@
-import {INKWOOD_HOOD,townHeadwear,type TownHeadwear} from '../src/game/earned-headwear.ts';
+import {headwearName} from '../src/art/headwear.ts';
+import {INKWOOD_HOOD,EARNED_HEADWEAR,ownsHeadwear,townHeadwear,type TownHeadwear} from '../src/game/earned-headwear.ts';
 import { earnedNaturalist, type HomeKeepsake } from '../src/game/home-keepsake.ts';
 import {atParcelShelf,lockSnackParcel,readSnackShelf,snackCommandSchema,snackSlotHeld,writeSnackParcel} from './snack-shelf.ts';
 import {confirmOrchardAction,orchardSnapshot} from './orchard-command.ts';
@@ -56,7 +57,7 @@ const slotSchema = z.enum(HOME_SLOTS.map(s => s.id) as [string, ...string[]]);
 const specialSchema = z.discriminatedUnion('kind', [
   z.object({ ...base, kind: z.literal('contribute') }).strict(),
   z.object({...base,kind:z.literal('stamp-trail'),landmarkId:z.enum(TRAIL_LANDMARK_IDS)}).strict(),
-  z.object({...base,kind:z.literal('wear-headwear'),item:z.literal(INKWOOD_HOOD).nullable()}).strict(),
+  z.object({...base,kind:z.literal('wear-headwear'),item:z.enum(EARNED_HEADWEAR).nullable()}).strict(),
   z.object({...base,kind:z.literal('enter-neighborhood'),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/)}).strict(),
   z.object({ ...base, kind: z.literal('enter-home'), plotId:z.string().regex(/^[1-9][0-9]{0,17}$/) }).strict(),
   z.object({ ...base, kind:z.literal('start-lesson'), route:z.enum(['construction','upkeep']),expectedBridgeContributed:z.number().int().min(0).max(3) }).strict(),
@@ -162,7 +163,7 @@ export class TownStore {
     const noticeboard:NoticeboardState={credits:bridgeRow.notice_credits,phase:bridgeRow.notice_phase,startedAt:bridgeRow.notice_started===null?null:Number(bridgeRow.notice_started),readyAt:bridgeRow.notice_ready===null?null:Number(bridgeRow.notice_ready),openedAt:bridgeRow.notice_opened===null?null:Number(bridgeRow.notice_opened)};
     const workshop=this.readState(player,now),own=plots.find(p=>p.ownerId===id);if(own&&!homeAllocationValid(workshop,own))throw new Error('Stored furniture allocation failed validation. Nothing was replaced.');
     const cafeRow=data.cafe;const cafe=cafePublic(this.readCafe(cafeRow));
-    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {orchard:orchardSnapshot(player.orchard),outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position, lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},headwear:townHeadwear(awarded.includes(TRAIL_PENNANT_AWARD),player.worn_headwear),bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {orchard:orchardSnapshot(player.orchard),outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position, lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},headwear:townHeadwear(awarded.includes(TRAIL_PENNANT_AWARD),player.worn_headwear,workshop.carpentry.recorded>0),bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string, confirmedPosition?: () => TownPosition | undefined): Promise<TownSnapshot> {
     const client = await this.pool.connect();
@@ -295,12 +296,14 @@ export class TownStore {
             }
           }else if(action.kind==='wear-headwear'){
             const earned=await client.query('select 1 from ih2.quest_awards where player_id=$1 and quest_id=$2',[id,TRAIL_PENNANT_AWARD]);
-            const current=townHeadwear(earned.rows.length>0,player.worn_headwear);
-            if(!current.owned)reject('Record all three Inkwood discoveries to earn the hood.');
+            const current=townHeadwear(earned.rows.length>0,player.worn_headwear,state.carpentry.recorded>0);
+            if(action.item!==null&&!ownsHeadwear(current,action.item)){
+              reject(action.item===INKWOOD_HOOD?'Record all three Inkwood discoveries to earn the hood.':'Record your first completed easel with Nella to earn the cap.');
+            }
             else if(current.worn===action.item)reject('That headwear choice is already saved.');
             else{
               await client.query('update ih2.players set worn_headwear=$2 where id=$1',[id,action.item]);
-              const message=action.item?'Inkwood hood equipped. Nearby residents can see it.':'Inkwood hood put away.';
+              const message=action.item?headwearName[action.item]+' equipped. Nearby residents can see it.':'Headwear put away.';
               state={...state,revision:state.revision+1,observedAt:now,lastMessage:message};
               result={ok:true,message,revision:state.revision};
             }

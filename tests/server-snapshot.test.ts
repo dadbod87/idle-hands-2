@@ -46,7 +46,7 @@ test('coherent snapshot projection preserves the accepted reader and authoritati
     assert.equal(before.queries,15);assert.equal(after.queries,1);
     const {orchard,headwear,...unchanged}=after.value;
     assert.equal(orchard,null);
-    assert.deepEqual(headwear,{owned:before.value.trail.pennantOwned,worn:null});
+    assert.deepEqual(headwear,{owned:before.value.trail.pennantOwned,clerkOwned:before.value.workshop.carpentry.recorded>0,worn:null});
     assert.deepEqual(unchanged,before.value);return after.value;
    }finally{await client.query('rollback');client.release();}
   }

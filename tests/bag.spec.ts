@@ -386,3 +386,48 @@ test('bag: hide empty slots without losing placement, equipment or stack arrange
   }finally{await context.close();}
  }
 });
+
+test('bag: the outside workshop shortcut reaches real indoor placement controls',async({browser})=>{
+ mkdirSync(out,{recursive:true});
+ for(const shape of [
+  {name:'desktop',width:1440,height:900,touch:false,text:'100%'},
+  {name:'phone',width:320,height:640,touch:true,text:'100%'},
+  {name:'short',width:844,height:390,touch:false,text:'200%'},
+ ]){
+  const context=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch});
+  try{
+   const page=await context.newPage(),operations:string[]=[],errors:string[]=[];
+   page.on('request',request=>{if(request.url().includes('/api/'))operations.push(request.url());});
+   page.on('pageerror',error=>errors.push(error.message));
+   await page.goto('/');
+   await ready(page);
+   await page.evaluate(text=>document.documentElement.style.fontSize=text,shape.text);
+   const workshop=()=>page.evaluate(()=>(window as any).__pilot.workshop());
+   const room=()=>page.evaluate(()=>(window as any).__pilot.snapshot().room);
+   const before=await workshop();
+   expect(await room()).toBe('square');
+   const bag=page.locator('#bag'),visit=page.getByRole('button',{name:'Walk to workshop',exact:true});
+   const arrange=page.getByRole('button',{name:'Arrange furniture',exact:true});
+   const select=page.getByRole('combobox',{name:'Furniture to place'});
+   await bag.click();
+   await expect(visit).toBeVisible();
+   expect((await visit.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+   await expect(arrange).toBeHidden();
+   await expect(select).toHaveCount(0);
+   await page.screenshot({path:out+'/bag-workshop-route-'+shape.name+'.png'});
+   if(shape.touch)await visit.tap();
+   else{await visit.focus();await page.keyboard.press('Enter');}
+   await expect.poll(room,{timeout:20000}).toBe('workshop');
+   await expect(page.getByRole('dialog')).toBeHidden();
+   await bag.click();
+   await expect(visit).toBeHidden();
+   await arrange.click();
+   await expect(select).toBeFocused();
+   await expect(select).toBeInViewport({ratio:1});
+   const after=await workshop();
+   expect(after).toMatchObject({inventory:before.inventory,placements:before.placements,owned:before.owned,job:before.job,revision:before.revision});
+   expect(operations).toEqual([]);
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});

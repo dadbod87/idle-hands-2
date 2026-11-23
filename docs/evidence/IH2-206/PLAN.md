@@ -1,0 +1,7 @@
+# IH2-206 · Make the Bag’s furniture shortcut location-aware
+
+Outside the workshop, offer a walk to its doorway. Hide workshop-only placement controls until arrival. Inside, keep the direct Arrange furniture action, item-specific choices and the same explicit placement and removal. The finishing rack’s Open Bag shortcut still opens the furniture view and focuses indoor placement when appropriate. These choices do not change home controls, stock, the workshop slot rules or command authority.
+
+The compiled client passed four focused Chromium cases. The new case includes desktop keyboard, 320px touch and short landscape at 200%. It leaves from an ordinary local square, reaches the existing workshop and reopens Bag with placement available. Ownership, position-independent workshop state and operations stay unchanged. Other cases confirm native collection, full-workshop removal and the existing easel placement and reload. Terra 6.1 reviewed the actual game screenshots. Short text enlargement still requires scrolling further into Bag.
+
+The initial test caught the missing UI callback and also exposed that the existing art gallery was fixed to port 4198. The callback was wired through the regular route helper. The gallery now uses its Playwright base URL so the same art coverage passes from the disposable local client and the normal hosted test configuration. An independently rerun gallery kept all frame and raster assertions. No saved service or hosted job was started.

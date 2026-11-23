@@ -3685,6 +3685,27 @@
         "docs/evidence/IH2-202/PLAN.md"
       ],
       "progress_note": "Local presentation candidate. Batch hosted validation with the next related Bag work."
+    },
+    {
+      "id": "IH2-206",
+      "title": "Walk to the workshop from Bag before arranging furniture",
+      "status": "queued",
+      "owner_branch": "feat/bag-workshop-route",
+      "goal": "Offer a useful outside shortcut and keep indoor placement available where it can be used.",
+      "depends_on": [
+        "IH2-188",
+        "IH2-202"
+      ],
+      "acceptance": [
+        "Verify native outside-to-indoor navigation, untouched stock, full workshop and the existing kept easel workflow."
+      ],
+      "exclusions": [
+        "No economy, placement authority, house rules, game services or Actions workflow change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-206/PLAN.md"
+      ],
+      "progress_note": "Local Bag follow-up. Keep hosted validation batched."
     }
   ],
   "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."

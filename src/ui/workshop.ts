@@ -20,7 +20,7 @@ const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Suppl
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Record<string,unknown>;playerId?:string;collection?:CollectionGrant};
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
+type PanelHost={wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToWorkshop?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -230,7 +230,8 @@ export class WorkshopUI {
  showEquipment(backToWork?:()=>void){this.showInventory(false,undefined,{backToWork});}
  showInventory(arrange=false,received?:PropId,equipment?:{backToWork?:()=>void}){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Belongings',()=>this.showJournal()));
-  const chooseFurniture=this.host.inside()?(id:PropId)=>{
+  const select=this.host.inside()?document.createElement('select'):null;
+  const chooseFurniture=select?(id:PropId)=>{
    this.selected=id;
    select.value=id;
    this.preview=null;
@@ -240,7 +241,8 @@ export class WorkshopUI {
   }:undefined;
   this.bag?.destroy();
   const owner=this.host.owner?.();
-  const bag=new BagView(this.state,this.host.orchard?.()!==undefined?()=>this.host.orchard?.()??null:undefined,chooseFurniture,owner,{wardrobe:this.host.wardrobe?.(),openSawLesson:this.host.carpentry,backToWork:equipment?.backToWork,equipSaw:()=>{
+  const bag=new BagView(this.state,this.host.orchard?.()!==undefined?()=>this.host.orchard?.()??null:undefined,chooseFurniture,owner,{
+   visitWorkshop:this.host.walkToWorkshop,wardrobe:this.host.wardrobe?.(),openSawLesson:this.host.carpentry,backToWork:equipment?.backToWork,equipSaw:()=>{
    const present=()=>this.bag===bag&&owner===this.host.owner?.();
    const save=this.gardenSaveStatus(),saw=this.state.carpentry.saw;
    if(!present()||!saw.owned||save.busy||save.canRetry||save.readOnly||(this.remote&&(this.remote.busy?.()||this.remoteError)))return;
@@ -254,11 +256,22 @@ export class WorkshopUI {
   this.bag=bag;
   b.append(bag.root);
   if(this.host.home&&this.host.homeAvailable?.())b.append(this.button('Inspect or arrange a house',()=>this.host.home?.(),'destination'));
-  const arrangement=document.createElement('details');arrangement.className='bag-arrangement';const summary=document.createElement('summary');summary.textContent='Arrange workshop furniture';arrangement.append(summary);
-  if(!this.host.inside())arrangement.append(this.p('Enter your workshop to arrange furniture.'));
-  const select=document.createElement('select');select.setAttribute('aria-label','Furniture to place');
-  for(const id of PROP_IDS){const opt=document.createElement('option');opt.value=id;opt.textContent=names[id];select.append(opt);}select.value=this.selected;select.onchange=()=>{this.selected=select.value;this.preview=null;this.renderPlacement();};arrangement.append(select);
-  const placement=document.createElement('div');placement.id='placement';arrangement.append(placement);b.append(arrangement);this.renderPlacement();this.notice();b.append(this.disclosure());this.updateClocks();
+  if(select){
+   const arrangement=document.createElement('details');
+   arrangement.className='bag-arrangement';
+   const summary=document.createElement('summary');
+   summary.textContent='Arrange workshop furniture';
+   select.setAttribute('aria-label','Furniture to place');
+   for(const id of PROP_IDS){const option=document.createElement('option');option.value=id;option.textContent=names[id];select.append(option);}
+   select.value=this.selected;
+   select.onchange=()=>{this.selected=select.value;this.preview=null;this.renderPlacement();};
+   const placement=document.createElement('div');
+   placement.id='placement';
+   arrangement.append(summary,select,placement);
+   b.append(arrangement);
+   this.renderPlacement();
+  }
+  this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Bag',render);if(arrange)this.bag?.arrange();else if(received)this.bag?.focusFurniture(received);else if(equipment)this.bag?.openPocket('equipment',true);}
  showJournal(){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Notes & progress',()=>this.showInventory()));

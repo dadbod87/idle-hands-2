@@ -42,3 +42,66 @@ test('shared crafting: pending server response preserves start and collection fo
  let release!:()=>void,received!:()=>void;const held=new Promise<void>(r=>release=r),seen=new Promise<void>(r=>received=r);await p.route('**/api/town/command',async route=>{if(route.request().postDataJSON().kind!=='craft')return route.continue();const response=await route.fetch();expect(response.ok()).toBe(true);received();await held;await route.fulfill({response}).catch(()=>{});});
  try{await p.locator('[data-craft=planter]').click();await seen;await close();release();await expect.poll(async()=>(await state(p)).job?.recipe).toBe('planter');await expect(p.getByRole('dialog')).toBeHidden();await expect(p.locator('[data-bench-title]')).toBeHidden();expect(await p.evaluate(()=>document.activeElement?.matches('[data-bench-title],[data-bench-bag]'))).toBe(false);const after=await state(p);expect(after.job.readyAt-after.job.startedAt).toBe(8*60*60*1000);expect(after.inventory).toEqual({scrap:2,timber:2,supplies:4});expect(after.owned.planter).toBe(1);expect(errors).toEqual([]);mkdirSync(out,{recursive:true});writeFileSync(out+'/craft-shared-proof.json',JSON.stringify({disclosure:'Fresh fictional Ivy on real disposable ih2_browser HTTP/SQL; native gathering and real5secondcraft, explicit claim. Second real server craft reply held unchanged until panel closed. No stock, clock or position injection. Aster/Bea/Casey48kit/2planter existing seeds unused.',firstJob:job,secondJob:after.job,inventory:after.inventory,ownedPlanter:after.owned.planter,closedPanelNotReopened:true,errors},null,2)+'\n');}finally{release();}
 });
+
+test('missing bench ingredients lead to a depot without automatically collecting',async({browser})=>{
+ mkdirSync(out,{recursive:true});
+ for(const shape of [
+  {name:'desktop',width:1440,height:900,text:'100%',touch:false},
+  {name:'phone',width:320,height:640,text:'100%',touch:true},
+  {name:'short',width:844,height:390,text:'200%',touch:false},
+ ]){
+  const context=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch});
+  try{
+   const page=await context.newPage();
+   const operations:string[]=[],errors:string[]=[];
+   page.on('request',request=>{if(request.url().includes('/api/'))operations.push(request.url());});
+   page.on('pageerror',error=>errors.push(error.message));
+   await page.addInitScript(()=>{
+    localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'workshop',position:{x:5,y:5}}));
+   });
+   await page.goto('/');
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   await page.evaluate(text=>document.documentElement.style.fontSize=text,shape.text);
+   await expect.poll(async()=>(await scene(page)).room).toBe('workshop');
+   await page.locator('#journal').click();
+   await page.locator('[data-activity-open=bench]').click();
+   const planter=page.locator('[data-recipe-card=planter]');
+   const paths=planter.locator('.recipe-material-routes');
+   await expect(planter.locator('[data-craft]')).toBeDisabled();
+   await expect(page.locator('[data-recipe-card=bridge-kit] .recipe-material-routes')).toBeHidden();
+   const toggle=paths.locator('summary');
+   if(shape.touch)await toggle.tap();
+   else{await toggle.focus();await page.keyboard.press('Enter');}
+   await expect(paths).toHaveAttribute('open','');
+   await expect(paths.getByRole('button')).toHaveCount(3);
+   const scrap=paths.getByRole('button',{name:'Walk to the scrap depot'});
+   if(shape.touch)await scrap.scrollIntoViewIfNeeded();
+   else{await page.keyboard.press('Tab');await expect(scrap).toBeFocused();}
+   expect((await scrap.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+   await expect(scrap).toBeInViewport();
+   expect(await paths.evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
+   await page.screenshot({path:out+'/craft-shortfall-'+shape.name+'.png'});
+   const before=await state(page);
+   if(shape.touch)await scrap.tap();
+   else await page.keyboard.press('Enter');
+   await expect(page.getByRole('heading',{name:'Scrap depot',exact:true})).toBeVisible({timeout:20_000});
+   expect(await scene(page)).toMatchObject({room:'square'});
+   const arrived=await state(page);
+   expect(arrived.inventory).toEqual(before.inventory);
+   expect(arrived.job).toBeNull();
+   expect(arrived.owned).toEqual(before.owned);
+   expect(arrived.nodes.scrap.stock).toBe(before.nodes.scrap.stock);
+   const collect=page.locator('[data-collect=scrap]');
+   await collect.click();
+   await expect.poll(async()=>(await state(page)).inventory.scrap).toBe(6);
+   await page.getByRole('button',{name:'Close panel'}).click();
+   await page.locator('#journal').click();
+   await page.locator('[data-activity-open=bench]').click();
+   await paths.locator('summary').click();
+   await expect(paths.getByRole('button',{name:'Walk to the timber depot'})).toBeVisible();
+   await expect(paths.getByRole('button',{name:'Walk to the scrap depot'})).toBeHidden();
+   expect(errors).toEqual([]);
+   expect(operations).toEqual([]);
+  }finally{await context.close();}
+ }
+});

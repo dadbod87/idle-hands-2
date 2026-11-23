@@ -4,6 +4,9 @@ test('crafting cards use authoritative names, exact costs/tutorial duration and 
  for(const s of fixtures()){const before=structuredClone(s);for(const id of['planter','bridge-kit']as const){const view=recipeView(s,id),result=applyWorkshop(s,{kind:'craft',recipe:id,id:'compare-view',expectedRevision:s.revision},s.observedAt);assert.equal(view.reason===null,result.ok,JSON.stringify({view,message:result.message}));assert.equal(view.name,RECIPES[id].name);assert.deepEqual(view.cost,RECIPES[id].cost);assert.equal(view.quantity,1);assert.equal(view.durationMs,id==='planter'&&!s.stats.plantersCrafted?5000:RECIPES[id].durationMs);}assert.deepEqual(s,before);}
  assert.equal(craftDuration(5000),'5 seconds');assert.equal(craftDuration(8*3600_000),'8 real hours');assert.equal(craftDuration(12*3600_000),'12 real hours');assert.equal(craftDuration(90*60_000),'1h 30m real time');assert.throws(()=>craftDuration(-1));
  const empty=recipeView(createWorkshop(1),'planter');assert.deepEqual(empty.missing,['2 scrap','2 timber','1 supplies']);
+ assert.deepEqual(empty.materialStops,['scrap','timber','supplies']);
+ assert.deepEqual(recipeView(createWorkshop(1),'bridge-kit').materialStops,[]);
+ assert.deepEqual(recipeView(fixtures().find(state=>state.job?.recipe==='planter')!,'planter').materialStops,[]);
 });
 test('ready presentation keeps output unclaimed, respects exact deadline and does not invent ownership',()=>{
  const states=fixtures(),working=states.find(s=>s.job?.recipe==='planter')!,before=structuredClone(working),deadline=working.job!.readyAt;

@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "c7e694fb6e27aec447ec3415c865af8f208c1626389b4db0296e99ce82e5d676",
+    "src/main.ts": "786ce99c053ea7cf9d102930bf8d1cfa0fa4f1d15dd229d6c4f950937505f31c",
     "src/phaser/WorldScene.ts": "1cd56e0e9ef8692da0793db1a201c18f01f2a1f89a07be0e9d835640a35ac052",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the saved address and wave-note integration in the combined study; dated garden artifacts remain frozen."
+  "currentTask": "Reviewed combined town, saved addresses and workbench routes against the current source. Original study snapshots and generated output remain frozen."
 }

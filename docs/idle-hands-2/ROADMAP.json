@@ -3898,6 +3898,26 @@
         "docs/evidence/IH2-202/PLAN.md"
       ],
       "progress_note": "Local presentation candidate. Batch hosted validation with the next related Bag work."
+    },
+    {
+      "id": "IH2-203",
+      "title": "Walk to missing ingredients from the workbench",
+      "status": "queued",
+      "owner_branch": "feat/workbench-material-routes",
+      "goal": "Give a blocked crafter a direct route to the actual depot while keeping collecting explicit.",
+      "depends_on": [
+        "IH2-183"
+      ],
+      "acceptance": [
+        "Check typed shortfalls, locked recipes, keyboard and touch routes, unchanged stock on arrival and actual collection."
+      ],
+      "exclusions": [
+        "No inventory, timer, economy, server or saved-preview change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-203/PLAN.md"
+      ],
+      "progress_note": "Separate local player-flow candidate. Hosted acceptance pending."
     }
   ],
   "source_status_note": "Local integration checks combine shared-town draft #109 with the independent browser-practice Journal branch. Main remains at accepted PR #107."

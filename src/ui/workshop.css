@@ -167,3 +167,9 @@
 .bag-filter input{width:1.25em;height:1.25em;margin:0;flex:none;accent-color:#405a49}
 .bag-filter[hidden],.bag-slot[hidden],#panel-body .bag-empty-pocket[hidden]{display:none}
 #panel-body .bag-empty-pocket{padding:12px;margin:0;border:1px dashed var(--bag-seam);border-radius:6px;font-size:.9rem}
+
+
+.recipe-material-routes{margin-top:7px;border-top:1px solid var(--line)}
+.recipe-material-routes summary{min-height:44px;padding:12px 0;cursor:pointer;font-weight:bold}
+.recipe-material-routes button{min-height:44px;margin:0 0 6px}
+.recipe-material-routes[hidden],.recipe-material-routes button[hidden]{display:none}

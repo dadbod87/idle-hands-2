@@ -2251,6 +2251,36 @@
       "source": "docs/evidence/IH2-204/study/index.html",
       "date": "2026-11-23",
       "modifications": "Original glasshouse study adapted to a trail-world facade. No imported media."
+    },
+    {
+      "id": "river-perch",
+      "path": "public/art/river/perch.svg",
+      "sha256": "1b7a5351c2bb92c01b102011e1f830ab9b22fb9668e8b37c2a9f51a4cc9d42cf",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/river/perch.svg",
+      "date": "2026-11-23",
+      "modifications": "Original illustrated browser-practice field record. No imported media or game items."
+    },
+    {
+      "id": "river-pondweed",
+      "path": "public/art/river/pondweed.svg",
+      "sha256": "a12493159f02daea4fd6b1b77f1854a0d9cb1129882b846e2bd3814567ecf06d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/river/pondweed.svg",
+      "date": "2026-11-23",
+      "modifications": "Original illustrated browser-practice field record. No imported media or game items."
+    },
+    {
+      "id": "river-wet-boot",
+      "path": "public/art/river/wet-boot.svg",
+      "sha256": "9aef4f7881abadefe848b5dd463febccbcfb676c8af8f1c0a6add75aa67d4e06",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/river/wet-boot.svg",
+      "date": "2026-11-23",
+      "modifications": "Original illustrated browser-practice field record. No imported media or game items."
     }
   ],
   "comparison": {

@@ -1128,6 +1128,21 @@
       "id": "glasshouse-overgrown",
       "path": "art/glasshouse/overgrown.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "river-perch",
+      "path": "art/river/perch.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "river-pondweed",
+      "path": "art/river/pondweed.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "river-wet-boot",
+      "path": "art/river/wet-boot.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

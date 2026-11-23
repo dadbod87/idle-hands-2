@@ -1,0 +1,105 @@
+{
+  "baselineCommit": "d6e673c",
+  "candidateCommit": "8b0961f2846f3fe57ec689b8261141cbc381fadf",
+  "observationMs": 4200,
+  "baseline": [
+    {
+      "engine": "chromium",
+      "shape": "2k",
+      "idle": {
+        "frames": 38,
+        "queues": 38,
+        "sorts": 38
+      },
+      "verticalSorts": 6,
+      "api": [],
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "shape": "phone",
+      "idle": {
+        "frames": 42,
+        "queues": 42,
+        "sorts": 42
+      },
+      "verticalSorts": 21,
+      "api": [],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "shape": "2k",
+      "idle": {
+        "frames": 41,
+        "queues": 41,
+        "sorts": 41
+      },
+      "verticalSorts": 20,
+      "api": [],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "shape": "phone",
+      "idle": {
+        "frames": 42,
+        "queues": 42,
+        "sorts": 42
+      },
+      "verticalSorts": 18,
+      "api": [],
+      "errors": []
+    }
+  ],
+  "candidate": [
+    {
+      "engine": "chromium",
+      "shape": "2k",
+      "idle": {
+        "frames": 36,
+        "queues": 0,
+        "sorts": 0
+      },
+      "verticalSorts": 8,
+      "api": [],
+      "errors": []
+    },
+    {
+      "engine": "chromium",
+      "shape": "phone",
+      "idle": {
+        "frames": 42,
+        "queues": 0,
+        "sorts": 0
+      },
+      "verticalSorts": 21,
+      "api": [],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "shape": "2k",
+      "idle": {
+        "frames": 42,
+        "queues": 0,
+        "sorts": 0
+      },
+      "verticalSorts": 17,
+      "api": [],
+      "errors": []
+    },
+    {
+      "engine": "webkit",
+      "shape": "phone",
+      "idle": {
+        "frames": 42,
+        "queues": 0,
+        "sorts": 0
+      },
+      "verticalSorts": 20,
+      "api": [],
+      "errors": []
+    }
+  ]
+}

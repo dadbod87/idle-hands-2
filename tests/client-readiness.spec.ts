@@ -164,3 +164,76 @@ test('activity artwork loads only the current rig and identity switches cannot a
   },null,2));
  }finally{releaseBea();}
 });
+
+test('the floor accepts a deliberate touch or primary click without starting travel on other gestures',async({browser})=>{
+ const evidence='test-results/browser/touch-intent';mkdirSync(evidence,{recursive:true});
+ const screen=async(page:import('@playwright/test').Page,x:number,y:number)=>{
+  const canvas=(await page.locator('canvas').boundingBox())!;
+  const p=await page.evaluate(({x,y})=>(window as any).__pilot.screenPoint(x,y),{x,y});
+  return {x:Math.round(canvas.x+p.x),y:Math.round(canvas.y+p.y)};
+ };
+ const feet=(page:import('@playwright/test').Page)=>page.evaluate(()=>(window as any).__pilot.snapshot());
+ for(const viewport of [{width:320,height:640},{width:844,height:390}]){
+  const context=await browser.newContext({viewport,hasTouch:true});
+  try{
+   const page=await context.newPage();
+   const cdp=await context.newCDPSession(page);
+   await page.goto('/');
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   const start=await feet(page),target=await screen(page,start.position.x+2,start.position.y+1.6);
+   const startTouch=(point=target)=>cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...point,id:1}]});
+   const release=()=>cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+   const keepStill=async()=>{
+    const current=await feet(page);
+    expect(current.position).toEqual(start.position);
+    expect(current.room).toBe(start.room);
+    expect(current.walking).toBe(false);
+   };
+   await startTouch();
+   await keepStill();
+   await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:target.x-46,y:target.y,id:1}]});
+   await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...target,id:1}]});
+   await release();
+   await keepStill();
+   await startTouch();
+   await page.waitForTimeout(500);
+   await release();
+   await keepStill();
+   await startTouch();
+   await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...target,id:1},{x:target.x-36,y:target.y,id:2}]});
+   await release();
+   await keepStill();
+   await startTouch();
+   await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+   await keepStill();
+   await startTouch();
+   await page.setViewportSize({width:viewport.width+32,height:viewport.height});
+   await expect.poll(async()=>(await page.locator('canvas').boundingBox())!.width).toBeGreaterThan(viewport.width);
+   await release();
+   await keepStill();
+   await page.setViewportSize(viewport);
+   await expect.poll(async()=>(await page.locator('canvas').boundingBox())!.width).toBeLessThanOrEqual(viewport.width);
+   await page.screenshot({path:`${evidence}/${viewport.width}-swipe-ignored.png`});
+
+   const settledTarget=await screen(page,start.position.x+2,start.position.y+1.6);
+   await page.touchscreen.tap(settledTarget.x,settledTarget.y);
+   await expect.poll(async()=>(await feet(page)).position.x).toBeGreaterThan(start.position.x+1.8);
+   await expect.poll(async()=>(await feet(page)).walking).toBe(false);
+   await page.screenshot({path:`${evidence}/${viewport.width}-tap-arrived.png`});
+  }finally{await context.close();}
+ }
+ const desktop=await browser.newContext({viewport:{width:1440,height:900}});
+ try{
+  const page=await desktop.newPage();
+  await page.goto('/');
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+  const start=await feet(page),target=await screen(page,start.position.x+2,start.position.y+1.6);
+  await page.mouse.click(target.x,target.y,{button:'right'});
+  expect((await feet(page)).walking).toBe(false);
+  expect((await feet(page)).position).toEqual(start.position);
+  await page.mouse.move(target.x,target.y);
+  await page.mouse.down();
+  try{await expect.poll(async()=>(await feet(page)).position.x).toBeGreaterThan(start.position.x+.2);}
+  finally{await page.mouse.up();}
+ }finally{await desktop.close();}
+});

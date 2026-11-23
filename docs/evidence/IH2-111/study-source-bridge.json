@@ -22,8 +22,8 @@
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
     "src/main.ts": "28890873e7cac8d6131983ccf7f65996c0fd66729135cd70f21b206990d4b4e2",
-    "src/phaser/WorldScene.ts": "b269c076c5c116320e5b7c9b6d872e8523ddb92ae357c5851da80fba6e4e8226",
+    "src/phaser/WorldScene.ts": "43bfc0a515cbb12ede221ab086ffa84f35cd001c26a679d487568247d3427a67",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed authenticated square waves and the transient canvas labels; archived garden study and generated output remain frozen."
+  "currentTask": "Reviewed deliberate touch walking and the menu and resize cancellation paths; archived garden study and generated output remain frozen."
 }

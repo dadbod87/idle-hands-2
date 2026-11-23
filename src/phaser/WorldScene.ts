@@ -601,16 +601,20 @@ export class WorldScene extends Phaser.Scene {
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd'].includes(key)) {if(!this.session.locked)this.onSteer?.(); this.keys.add(key); e.preventDefault(); }
     };
     const onUp = (e: KeyboardEvent) => this.keys.delete(e.key.length === 1 ? e.key.toLowerCase() : e.key);
-    const clear = () => { this.orchardMotion=null;this.gardenMotion=null;this.carpentryMotion=null;this.noticeReveal=0;this.noticeboardView?.setAlpha(1);this.movementReset=true;this.keys.clear(); this.session.stop();this.walkMark?.setVisible(false);this.clearBridgeCeremony();this.updateAmbient(0); };
-    const readingFocus=(event:FocusEvent)=>{if(event.target instanceof HTMLElement&&event.target.closest('[data-ui-scroll]')){this.keys.clear();this.movementReset=true;}};
+    let touch: {id:number;x:number;y:number;at:number}|null=null;
+    const cancelTouch = () => { touch=null; };
+    const clear = () => { cancelTouch();this.orchardMotion=null;this.gardenMotion=null;this.carpentryMotion=null;this.noticeReveal=0;this.noticeboardView?.setAlpha(1);this.movementReset=true;this.keys.clear(); this.session.stop();this.walkMark?.setVisible(false);this.clearBridgeCeremony();this.updateAmbient(0); };
+    const readingFocus=(event:FocusEvent)=>{
+      if(!(event.target instanceof HTMLElement))return;
+      if(event.target.closest('dialog'))cancelTouch();
+      if(event.target.closest('[data-ui-scroll]')){this.keys.clear();this.movementReset=true;}
+    };
     document.addEventListener('focusin',readingFocus);
     const motionChanged=()=>this.updateAmbient(0);this.reducedMotion.addEventListener('change',motionChanged);
     document.addEventListener('keydown', onDown); document.addEventListener('keyup', onUp);
     window.addEventListener('blur', clear); document.addEventListener('visibilitychange', clear);
-    this.input.on('pointerdown', (p: Phaser.Input.Pointer) => {
-      // Phaser also receives window-level mouse events from HTML controls.
-      if(p.downElement!==this.game.canvas)return;
-      const pos = this.cameras.main.getWorldPoint(p.x, p.y);
+    const pointAt = (screenX: number, screenY: number) => {
+      const pos = this.cameras.main.getWorldPoint(screenX, screenY);
       const to = { x: pos.x / TILE - .5, y: pos.y / TILE - .5 };
       if(!this.session.locked){
         this.onSteer?.();
@@ -625,6 +629,48 @@ export class WorldScene extends Phaser.Scene {
         const accepted=target?this.session.approach(target):this.session.point(to);
         if(!accepted)this.onWalkFailure?.();
       }
+    };
+    const canvas = this.game.canvas;
+    this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
+      // HTML controls and secondary mouse buttons must never start a walk.
+      if (!pointer.wasTouch && pointer.downElement===canvas && pointer.button===0 && pointer.leftButtonDown()) pointAt(pointer.x,pointer.y);
+    });
+
+    // A finger first touching the glass may be about to swipe, hold or pinch.
+    // Keep that gesture separate from a deliberate tap on the playfield.
+    const touchSlop = (event:PointerEvent) => touch &&
+      Math.hypot(event.clientX-touch.x,event.clientY-touch.y)>12;
+    const startTouch = (event:PointerEvent) => {
+      if(event.pointerType!=='touch')return;
+      if(!event.isPrimary){cancelTouch();return;}
+      if(event.target!==canvas||this.session.locked)return;
+      // Suppress the compatibility mouse press for this same touch.
+      event.preventDefault();
+      touch={id:event.pointerId,x:event.clientX,y:event.clientY,at:event.timeStamp};
+    };
+    const moveTouch = (event:PointerEvent) => {
+      if(event.pointerId===touch?.id&&touchSlop(event))cancelTouch();
+    };
+    const finishTouch = (event:PointerEvent) => {
+      if(!touch||event.pointerId!==touch.id)return;
+      const isTap=!touchSlop(event)&&event.timeStamp-touch.at<=450;
+      cancelTouch();
+      if(isTap&&!this.session.locked&&this.session.room===this.room&&
+        document.elementFromPoint(event.clientX,event.clientY)===canvas){
+        pointAt(this.scale.transformX(event.pageX),this.scale.transformY(event.pageY));
+      }
+    };
+    window.addEventListener('pointerdown',startTouch,true);
+    window.addEventListener('pointermove',moveTouch,true);
+    window.addEventListener('pointerup',finishTouch,true);
+    window.addEventListener('pointercancel',cancelTouch,true);
+    this.scale.on(Phaser.Scale.Events.RESIZE,cancelTouch);
+    this.events.once('shutdown',()=>{
+      window.removeEventListener('pointerdown',startTouch,true);
+      window.removeEventListener('pointermove',moveTouch,true);
+      window.removeEventListener('pointerup',finishTouch,true);
+      window.removeEventListener('pointercancel',cancelTouch,true);
+      this.scale.off(Phaser.Scale.Events.RESIZE,cancelTouch);
     });
     this.events.once('shutdown', () => { this.reducedMotion.removeEventListener('change',motionChanged);document.removeEventListener('focusin',readingFocus);document.removeEventListener('keydown', onDown); document.removeEventListener('keyup', onUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear); });
   }

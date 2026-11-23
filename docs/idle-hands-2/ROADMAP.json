@@ -3770,6 +3770,27 @@
         "docs/evidence/IH2-196/PLAN.md"
       ],
       "progress_note": "Staged locally behind the shared town map. Exact hosted acceptance waits for the headwear base and the next batched gate."
+    },
+    {
+      "id": "IH2-197",
+      "title": "Confirm a deliberate tap before walking on touch screens",
+      "status": "queued",
+      "owner_branch": "fix/confirm-touch-walk",
+      "goal": "Avoid accidental travel while a phone player swipes, pinches, holds or resizes the world.",
+      "depends_on": [
+        "IH2-187"
+      ],
+      "acceptance": [
+        "Reproduce immediate travel on the parent and verify touch, secondary mouse, canceled gestures and resize on the candidate.",
+        "Preserve intentional ground movement, direct door and garden interactions and keyboard input."
+      ],
+      "exclusions": [
+        "No route, server, economy or saved-preview changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-197/PLAN.md"
+      ],
+      "progress_note": "Focused browser acceptance passed locally on fix/confirm-touch-walk. Exact hosted acceptance waits for the combined batch."
     }
   ],
   "source_status_note": "PR #107 is accepted on main. Inkwood headwear and trail guidance form the next candidate."

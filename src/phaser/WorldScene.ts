@@ -274,9 +274,15 @@ export class WorldScene extends Phaser.Scene {
   refreshCarpentry(){this.carpentryKey='';this.carpentryNextDraw=0;}
   playCarpentryAction(action:CarpentryAnimation){if(this.actor?.active){this.gardenMotion=null;this.carpentryMotion={action,started:performance.now(),facing:this.facing};this.lastCarpentryAction={action,renderedFrames:0,frames:[]};}}
   private drawCarpentry(){
+    if(!this.pineViews.length&&!this.rackView&&!this.noticeboardView)return;
     const tick=performance.now();if(tick<this.carpentryNextDraw)return;this.carpentryNextDraw=tick+500;
-    const raw=this.carpentryState?.(),now=Math.floor(this.gardenNow()),s=raw?settleCarpentry(raw,Math.max(raw.observedAt,now)):undefined,n=this.noticeboardState?.();
-    const stage=s?.job?(s.job.readyAt<=now?'ready':'working'):'empty',phase=n?.phase??'collecting',available=(s?.pine.available??6)>0,key=JSON.stringify([available,stage,phase]);
+    const raw=this.carpentryState?.(),now=Math.floor(this.gardenNow());
+    // The rack reads an immutable deadline. Only the deadfalls need pine settlement.
+    const available=!this.pineViews.length||!raw||settleCarpentry(raw,Math.max(raw.observedAt,now)).pine.available>0;
+    const job=this.rackView?raw?.job:undefined;
+    const stage=job?(job.readyAt<=now?'ready':'working'):'empty';
+    const phase=(this.noticeboardView?this.noticeboardState?.()?.phase:undefined)??'collecting';
+    const key=JSON.stringify([available,stage,phase]);
     if(key!==this.carpentryKey){this.carpentryKey=key;for(const v of this.pineViews)v.image.setTexture('pine-'+v.station+'-'+(available?'available':'exhausted'));this.rackView?.setTexture('finishing-rack-'+stage);if(this.noticeboardView?.texture.key!=='noticeboard-'+phase&&phase==='open')this.noticeReveal=tick;this.noticeboardView?.setTexture('noticeboard-'+phase);}
     if(this.noticeboardView)this.noticeboardView.setAlpha(this.reducedMotion.matches||document.hidden||!this.noticeReveal?1:Math.min(1,.55+(tick-this.noticeReveal)/700));
   }

@@ -1,7 +1,7 @@
 import{test,expect,type Page}from'@playwright/test';
 import{mkdirSync,writeFileSync}from'node:fs';
 import{prepared}from'./helpers/carpentry.ts';
-import{applyWorkshop}from'../src/game/workshop.ts';
+import{applyWorkshop,createWorkshop}from'../src/game/workshop.ts';
 const out=process.env.QA_EVIDENCE_DIR??'test-results/browser';mkdirSync(out,{recursive:true});const state=(p:Page)=>p.evaluate(()=>(window as any).__pilot.workshop());
 for(const shape of[{name:'desktop',width:1440,height:900,touch:false},{name:'phone',width:360,height:640,touch:true}])test('pine menu clarity '+shape.name+': named preview, held ready control and Bag handoff preserve the kept easel',async({browser})=>{
  mkdirSync(out,{recursive:true});const c=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch}),p=await c.newPage(),errors:string[]=[],api:string[]=[];p.on('pageerror',e=>errors.push(e.message));p.on('request',r=>{if(r.url().includes('/api/'))api.push(r.url());});const now=Date.now(),fixture=prepared(now+4*3600000+10000);
@@ -29,4 +29,50 @@ test('fresh pine menu: remote Journal leads to Nella before a named free lesson 
 test('pine rack: an explicitly reviewed second easel replaces the collected cue with its own held job',async({page:p})=>{
  const now=Date.now(),at=now-3*3600000;let fixture=prepared(now);for(const[serial,command]of[{kind:'carpentry',carpentryAction:{action:'gather-pine',station:'crooked'}},{kind:'garden',gardenAction:{action:'harvest',bed:2}}].entries()){const r=applyWorkshop(fixture,{...command,id:'pine-repeat-fixture-'+serial,expectedRevision:fixture.revision},at);expect(r.ok,r.message).toBe(true);fixture=r.state;}
  await p.addInitScript(s=>{localStorage.setItem('ih2:workshop:v2',JSON.stringify(s));localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'workshop',position:{x:12,y:6.5}}));},fixture);await p.goto('/');await expect.poll(()=>p.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await p.locator('#journal').click();await p.getByRole('button',{name:'Pine workshop · tools, easels & hampers',exact:true}).click();await p.getByRole('button',{name:'Use the finishing rack',exact:true}).click();await expect(p.locator('#panel-title')).toHaveText('Pine finishing rack',{timeout:process.env.CI?40000:15000});await p.locator('[data-carpentry-action=claim-easel]').click();await expect(p.locator('[data-pine-bag]')).toBeFocused();const before=await state(p);expect(before.owned.easel).toBe(1);expect(before.carpentry.pine.carried).toBeGreaterThanOrEqual(4);expect(before.garden.produce.marigold).toBe(1);await p.locator('[data-carpentry-action=start-easel]').click();await p.locator('[data-carpentry-action=confirm]').click();await expect(p.locator('[data-pine-title]')).toBeFocused();await expect(p.locator('[data-pine-work]')).toHaveAttribute('data-phase','running');await expect(p.locator('[data-pine-bag]')).toBeHidden();await expect(p.locator('[data-carpentry-action=claim-easel]')).toBeVisible();await expect(p.locator('[data-carpentry-action=claim-easel]')).toBeDisabled();await expect(p.locator('[data-pine-work] .bench-clock')).toContainText('left');const after=await state(p);expect(after.owned.easel).toBe(1);expect(after.carpentry.job.readyAt-after.carpentry.job.startedAt).toBe(12*3600000);expect(after.carpentry.pine.carried).toBe(before.carpentry.pine.carried-4);expect(after.garden.produce.marigold).toBe(0);for(const k of['inventory','job','skills','bridgeKits']as const)expect(after[k]).toEqual(fixture[k]);await p.screenshot({path:out+'/pine-clear-second-job.png'});writeFileSync(out+'/pine-clear-second-job-proof.json',JSON.stringify({disclosure:'Local fixture built with ordinary pure historical carpentry/garden commands including independent extra pine preparation and second marigold harvest; declared workshop position, no clock injection, not real12hwait. Native explicit claim→preview→confirm second12hjob within same open rack. No accepted/real data changed.',oneKeptEasel:true,newIndependent12hJob:true,oldOrdinaryStateKept:true},null,2)+'\n');
+});
+
+test('carpentry scenery follows the real pine and rack deadlines without claiming output',async({browser})=>{
+ const now=Date.UTC(2026,10,23,18);
+ for(const room of ['square','workshop'] as const){
+  const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+  try{
+   const p=await context.newPage();
+   let fixture=room==='square'?createWorkshop(now):prepared(now+1000);
+   if(room==='square'){
+    for(const [index,action] of [
+     {action:'learn-saw'},{action:'equip-saw',equipped:true},{action:'gather-pine',station:'crooked'},
+    ].entries()){
+     const next=applyWorkshop(fixture,{kind:'carpentry',id:'scenery-fixture-'+index,expectedRevision:fixture.revision,carpentryAction:action},now);
+     expect(next.ok,next.message).toBe(true);
+     fixture=next.state;
+    }
+   }
+   const deadline=room==='square'?fixture.carpentry.pine.lastAt+4*3600_000:fixture.carpentry.job!.readyAt;
+   await p.clock.setFixedTime(deadline-1);
+   await p.addInitScript(({room,fixture})=>{
+    localStorage.setItem('ih2:workshop:v2',JSON.stringify(fixture));
+    localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({
+     version:1,room,position:room==='square'?{x:6,y:26}:{x:12,y:6.5},
+    }));
+   },{room,fixture});
+   await p.goto('/');
+   await expect.poll(()=>p.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   const visual=()=>p.evaluate(()=>(window as any).__pilot.metrics().visual.carpentry);
+   const work=await state(p);
+   if(room==='square'){
+    await expect.poll(async()=>(await visual()).pineTextures).toEqual([
+     'pine-crooked-exhausted','pine-forked-exhausted','pine-sheltered-exhausted',
+    ]);
+    await p.clock.setFixedTime(deadline);
+    await expect.poll(async()=>(await visual()).pineTextures).toEqual([
+     'pine-crooked-available','pine-forked-available','pine-sheltered-available',
+    ]);
+   }else{
+    await expect.poll(async()=>(await visual()).rackTexture).toBe('finishing-rack-working');
+    await p.clock.setFixedTime(deadline);
+    await expect.poll(async()=>(await visual()).rackTexture).toBe('finishing-rack-ready');
+   }
+   expect(await state(p)).toEqual(work);
+  }finally{await context.close();}
+ }
 });

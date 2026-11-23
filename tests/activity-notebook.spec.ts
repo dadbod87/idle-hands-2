@@ -157,3 +157,98 @@ test('recent field notes do not move between shared practice residents',async({p
  await expect(log).not.toContainText(old);
  await expect(log).toContainText('Connected');
 });
+
+test('a connected Journal reuses confirmed notes and inspectors still confirm before spending', async ({page}) => {
+ mkdirSync(out,{recursive:true});
+ const started=Date.now()-10_000, position={room:'workshop',position:{x:5,y:5}};
+ const identity={id:'journal-rhea',name:'Rhea'};
+ let workshop=createWorkshop(started),logged=false;
+ const requests:{kind:string;logged:boolean}[]=[];
+ const snapshot=()=>({
+  playerId:identity.id,name:identity.name,workshop,position,
+  quest:{contentVersion:1,awarded:[]},bridge:{contributed:0,target:3,restored:false,phase:'collecting'},
+  trail:{stamps:[],pennantOwned:false},plot:null,plots:[],seasonKey:'2026-11-20',scores:[],
+  serverTime:Date.now(),serverInstance:'journal-reader-fixture',
+ });
+ await page.addInitScript(()=>{
+  class ConnectedFixture extends EventTarget {
+   static readonly OPEN=1;
+   readyState=ConnectedFixture.OPEN;
+   onopen:((e:Event)=>void)|null=null;
+   constructor(){super();(window as any).__journalStream=this;queueMicrotask(()=>this.onopen?.(new Event('open')));}
+   close(){this.readyState=2;}
+  }
+  window.EventSource=ConnectedFixture as unknown as typeof EventSource;
+ });
+ let hold=false,arrive=()=>{},release=()=>{};
+ const held=new Promise<void>(resolve=>arrive=resolve);
+ const gate=new Promise<void>(resolve=>release=resolve);
+ await page.route('**/api/town/**',async route=>{
+  const kind=new URL(route.request().url()).pathname.split('/').at(-1)!;
+  requests.push({kind,logged});
+  if(kind==='fixtures')return route.fulfill({json:{fixtures:[identity]}});
+  if(kind==='login'){logged=true;return route.fulfill({json:{snapshot:snapshot()}});}
+  if(kind==='snapshot'){
+   if(!logged)return route.fulfill({status:401,json:{message:'Badge in first.'}});
+   if(hold){hold=false;arrive();await gate;}
+   return route.fulfill({json:{snapshot:snapshot()}}).catch(()=>{});
+  }
+  if(kind==='movement')return route.fulfill({json:{ok:true,position}});
+  return route.fulfill({status:409,json:{message:'No test command should be sent.'}});
+ });
+ const reads=()=>requests.filter(request=>request.kind==='snapshot'&&request.logged).length;
+ const status=page.locator('.workshop-status');
+ const open=()=>page.locator('#journal').click();
+ const close=()=>page.getByRole('button',{name:'Close panel',exact:true}).click();
+ await page.goto('/?town=1');
+ await page.getByRole('button',{name:identity.name,exact:true}).click();
+ await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.town()?.playerId)).toBe(identity.id);
+ await expect.poll(reads).toBeGreaterThanOrEqual(1);
+ await expect(page.getByRole('dialog')).toBeHidden();
+ const initial=reads();
+ for(let i=0;i<5;i++){
+  await open();
+  await expect(status).toHaveText('Confirmed work notes.');
+  await close();
+ }
+ const repeatedReads=reads()-initial;
+ writeFileSync(out+'/journal-reader-traffic.json',JSON.stringify({confirmedReopens:5,repeatedReads},null,2)+'\n');
+ expect(repeatedReads).toBe(0);
+
+ // A fictional server pushes a valid crafting start to the open Journal.
+ // These explicit fixture commands change only the intercepted snapshot.
+ for(const resource of ['scrap','timber','supplies'] as const){
+  const issued=applyWorkshop(workshop,{kind:'gather',resource,id:'journal-gather-'+resource,expectedRevision:workshop.revision},started);
+  expect(issued.ok).toBe(true);
+  workshop=issued.state;
+ }
+ const craft=applyWorkshop(workshop,{kind:'craft',recipe:'planter',id:'journal-job',expectedRevision:workshop.revision},started);
+ expect(craft.ok).toBe(true);
+ workshop=craft.state;
+ await open();
+ await page.evaluate(data=>{
+  (window as any).__journalStream.dispatchEvent(new MessageEvent('snapshot',{data:JSON.stringify(data)}));
+ },snapshot());
+ await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.town().workshop.revision)).toBe(workshop.revision);
+ await expect(note(page,'bench').locator('.activity-status')).toContainText('ready to collect');
+ expect(reads()).toBe(initial);
+
+ hold=true;
+ await page.locator('[data-activity-open=bench]').click();
+ await held;
+ try {
+  await expect(page.locator('[data-claim]')).toBeDisabled();
+  await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','true');
+  expect(reads()).toBe(initial+1);
+ }finally{release();}
+ await expect(page.locator('#panel-body')).toHaveAttribute('aria-busy','false');
+ await expect(page.locator('[data-claim]')).toBeEnabled();
+ await close();
+
+ // A non-open event stream keeps the usual confirmation path for the Journal.
+ await page.evaluate(()=>(window as any).__journalStream.readyState=0);
+ await open();
+ await expect.poll(reads).toBe(initial+2);
+ await expect(status).toHaveText('Confirmed work notes.');
+ expect(requests.filter(request=>request.kind==='command')).toEqual([]);
+});

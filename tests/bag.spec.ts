@@ -399,13 +399,32 @@ test('shared earned headwear switches a single slot and renders on a visible nei
    await page.getByRole('button',{name:'Close panel',exact:true}).click();
    const visual=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual);
    await expect.poll(async()=>(await visual()).headwear?.texture).toBe('headwear-inkwood');
-   const presence=(item?:'inkwood'|'clerk')=>page.evaluate(headwear=>{
-    const data=[{id:'bea',name:'Bea',room:'square',position:{x:22,y:25.5},...(headwear?{headwear}:{})}];
+   const presence=(headwear?:'inkwood'|'clerk',x=22)=>page.evaluate(({headwear,x})=>{
+    const data=[{id:'bea',name:'Bea',room:'square',position:{x,y:25.5},...(headwear?{headwear}:{})}];
     (window as any).__headwearStream.dispatchEvent(new MessageEvent('presence',{data:JSON.stringify(data)}));
-   },item);
+   },{headwear,x});
    await presence('inkwood');
    await expect.poll(async()=>(await visual()).peerHeadwear).toEqual([{id:'bea',texture:'headwear-inkwood'}]);
    await page.screenshot({path:out+'/inkwood-neighbor-'+shape+'.png'});
+   if(shape==='desktop'){
+    const cadence=()=>page.evaluate(()=>(window as any).__pilot.metrics().presentation.idleFrameLimit);
+    await expect.poll(cadence).toBe(10);
+    await presence('inkwood',22.9);
+    await page.waitForFunction(()=>{
+     const {visual,presentation}=(window as any).__pilot.metrics();
+     const peer=visual.peerMotion[0];
+     return presentation.idleFrameLimit===0&&peer?.walking&&peer.position.x>=22&&peer.position.x<22.9&&peer.frame===peer.hat&&peer.facing==='east';
+    });
+    await expect.poll(async()=>(await visual()).peerMotion[0]).toMatchObject({position:{x:22.9,y:25.5},facing:'east',frame:14,hat:14,walking:false});
+    await expect.poll(cadence).toBe(10);
+    await page.screenshot({path:out+'/inkwood-neighbor-side.png'});
+   }else if(shape==='phone'){
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await presence('inkwood',22.9);
+    await expect.poll(async()=>(await visual()).peerMotion[0]).toMatchObject({position:{x:22.9,y:25.5},facing:'east',frame:14,hat:14,walking:false});
+    await page.screenshot({path:out+'/inkwood-neighbor-phone-side.png'});
+   }
+
    await presence();
    await expect.poll(async()=>(await visual()).peerHeadwear).toEqual([]);
    await bag.click();await equipment.click();await putAway.click();

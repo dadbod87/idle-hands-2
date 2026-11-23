@@ -3707,6 +3707,27 @@
         "docs/evidence/IH2-193/PLAN.md"
       ],
       "progress_note": "A dependent candidate is saved on feat/clerk-cap. Local desktop and touch checks are complete. Hosted acceptance waits for the Inkwood base and the next batched gate."
+    },
+    {
+      "id": "IH2-194",
+      "title": "Animate nearby residents and headwear through confirmed steps",
+      "status": "queued",
+      "owner_branch": "feat/neighbor-walk-cycles",
+      "goal": "Show walking neighbors and aligned headwear without more server calls or waking the idle loop for off-screen movement.",
+      "depends_on": [
+        "IH2-193"
+      ],
+      "acceptance": [
+        "Verify limb and hat frame alignment, direction, and a stable settled pose at the confirmed position.",
+        "Verify reduced motion, obstructed and large steps, scope boundaries and quiet render cadence."
+      ],
+      "exclusions": [
+        "No server, economy, real-player or saved-preview change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-194/PLAN.md"
+      ],
+      "progress_note": "Presentation candidate on feat/neighbor-walk-cycles. Exact hosted acceptance waits for the equipment candidates."
     }
   ],
   "source_status_note": "PR #107 is accepted on main. Inkwood headwear and trail guidance form the next candidate."

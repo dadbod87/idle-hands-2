@@ -49,3 +49,16 @@ The nine keyboard/touch layout samples passed at desktop, 320px and 200% short l
 [Open the rehearsal](study/rehearsal.html) from a disposable static web server rooted at the study directory. It imports the same deterministic project model. Three visitors can share the work, or Ellis can do every job. A two-pine contribution requires an explicit review and cancellation keeps both bundles. Twelve simulated construction hours take twelve seconds in this rehearsal. Changing the active fictional resident leaves the same project and deadline in place.
 
 Desktop keyboard, 320px touch and 200% short landscape passed the complete route with scripted clock advancement, including review and cancellation, one accepted debit, all three jobs, a late opening visit and one keepsake per resident. The first preview exposed a CSS rule that kept a claimed visitor’s choice buttons visible. The hidden state now applies and is verified when switching away and back. The rehearsal holds everything in page memory and uses no game service or browser save.
+
+## Pacing sensitivity with the existing garden and finishing rules
+
+Run `node --experimental-strip-types docs/evidence/IH2-204/study/pacing-check.mjs` to reproduce the comparison. It uses the actual planting, harvest, pine collection, easel and claim rules. The proposed contribution is only an assumed reserve. Starting inventory is the ordinary empty Bag and six-bundle personal pine pool, with the bridge already open. Other pine spending and travel are outside the sample.
+
+| Visit pattern | No contribution and draft two pine | Three pine | Four pine |
+| --- | --- | --- | --- |
+| Visits every four hours, marigold just planted | Start at hour 4, claim at 16 | Same timing with another pine stop | Start at 8, claim at 20 |
+| Visits every four hours, marigold already ready | Start at hour 0, claim at 12 | Start at 4, claim at 16 | Start at 8, claim at 20 |
+| Daily visits, marigold just planted | Start at hour 24, claim at 48 | Same timing with another pine stop | Same timing with another pine stop |
+| Daily visits, marigold already ready | Start at hour 0, claim at 24 | Start at 24, claim at 48 | Start at 24, claim at 48 |
+
+Two pine leaves the four bundles needed for a first easel in these examples and still requires a deliberate choice to spend. Keep the free entrance and chart jobs available without pine. Six-, twelve- and twenty-four-hour construction candidates all work with an ordinary next-day visit, and all should permit a visit a week later. Six and twelve hours differ for someone who returns the same day. Keep twelve hours as the provisional rehearsal value and compare how it feels with real travel and other activities before fixing it. Never reserve a houseplant or a tour to a login window.

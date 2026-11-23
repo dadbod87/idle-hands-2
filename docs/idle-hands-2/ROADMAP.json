@@ -3664,6 +3664,27 @@
       "evidence": [
         "docs/evidence/IH2-191/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-213",
+      "title": "Rehearse the Mossbank arrival and crossings",
+      "status": "queued",
+      "owner_branch": "design/mossbank-first-route",
+      "goal": "Give the second town its own safe first route and a useful optional repair.",
+      "depends_on": [
+        "IH2-054"
+      ],
+      "acceptance": [
+        "Verify each trail segment, picture the eight example lots, and check before/after routes with desktop and touch controls."
+      ],
+      "exclusions": [
+        "Design study only. No runtime towns, new resources or hosted services."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-213/PLAN.md",
+        "docs/evidence/IH2-213/study/index.html"
+      ],
+      "progress_note": "Civic shortcut and first visit outlined. Playable willow, doors and plot authority remain later work."
     }
   ],
   "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."

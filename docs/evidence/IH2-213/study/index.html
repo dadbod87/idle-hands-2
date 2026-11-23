@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Idle Hands 2 · Mossbank route study</title>
+<link rel="stylesheet" href="./map.css">
+<script type="module" src="./map.mjs"></script>
+</head>
+<body>
+<main>
+ <header>
+  <h1>Mossbank</h1>
+  <p>Forestry town concept. Walk in from Inkwood.</p>
+ </header>
+ <div class="layout">
+  <figure>
+   <canvas aria-label="Mossbank route map with the Inkwood gate, river crossings, yard and homes"></canvas>
+   <figcaption>Gold route. South stays open.</figcaption>
+  </figure>
+  <section class="controls" aria-label="Choose a Mossbank walking route">
+   <label for="destination">Destination</label>
+   <select id="destination"></select>
+   <label class="phase"><input id="repaired" type="checkbox"> North Walk open</label>
+   <div id="route" role="status">
+    <strong id="travel-time"></strong>
+   </div>
+   <button type="button" id="walk">Preview walk</button>
+   <p id="destination-note"></p>
+  </section>
+ </div>
+</main>
+</body>
+</html>

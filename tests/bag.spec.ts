@@ -390,7 +390,7 @@ test('shared earned headwear switches a single slot and renders on a visible nei
    await expect(wear).toBeEnabled();
    await expect(card.getByRole('heading',{name:'Inkwood hood'})).toBeFocused();
    await expect(wear).toBeInViewport();
-   if(shape==='desktop'){await page.keyboard.press('Tab');await expect(wear).toBeFocused();await page.keyboard.press('Enter');}else await wear.tap();
+   if(shape==='desktop'){await page.keyboard.press(browser.browserType().name()==='webkit'?'Alt+Tab':'Tab');await expect(wear).toBeFocused();await page.keyboard.press('Enter');}else await wear.tap();
    await expect(card).toContainText('Wearing · visible to nearby residents');
    expect(commands).toHaveLength(1);
    expect(commands[0]).toMatchObject({kind:'wear-headwear',item:'inkwood'});

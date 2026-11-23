@@ -343,8 +343,10 @@ test('Bag Equipment keeps an earned saw through equip, pine work, put away and r
    await page.getByRole('button',{name:'Edit headwear',exact:true}).click();
    await page.getByLabel('Name on your badge').fill('Avery');
    await page.getByLabel('Headwear',{exact:true}).selectOption('clerk');
+   await expect(page.getByRole('button',{name:'Save badge and begin',exact:true})).toHaveCount(0);
    await page.getByRole('button',{name:'Save changes',exact:true}).click();
    await expect(page.locator('.resident-profile-status')).toHaveText('Resident saved in this browser.');
+   expect(await page.evaluate(()=>localStorage.getItem('ih2:first-morning:v1'))).toBeNull();
    await page.getByRole('button',{name:'Close panel',exact:true}).click();
    await page.locator('#bag').click();
    await pocket.click();

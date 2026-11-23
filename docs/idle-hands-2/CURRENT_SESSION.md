@@ -1,3 +1,7 @@
+# November 23 — first-arrival and Bag candidate
+
+The next batch is `feat/first-arrival-and-bag`. Its three parts are [full workshop](../evidence/IH2-188/PLAN.md), [first arrival](../evidence/IH2-189/PLAN.md) and [movable Bag stacks](../evidence/IH2-190/PLAN.md). See the [handoff](handoffs/2026-11-23-arrival-and-bag.md) for boundaries, validation and next work. Keep the saved previews and databases stopped.
+
 # November 20 — frame-aligned playfield resize accepted
 
 Visible resizing wakes the idle loop, applies pending canvas dimensions during the game step and preserves bounded redraws behind an open menu. Main `5ca6d6fbe00c894a3220866627295dce8d0cd02e` passed 592 domain tests and 251 browser cases. [Exact verification](../evidence/IH2-187/EXACT_CI.json).

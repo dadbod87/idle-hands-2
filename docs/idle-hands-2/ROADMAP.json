@@ -3582,7 +3582,7 @@
       "id": "IH2-188",
       "title": "Help residents make room in a full workshop",
       "status": "in_progress",
-      "owner_branch": "fix/full-workshop-placement",
+      "owner_branch": "feat/first-arrival-and-bag",
       "goal": "Explain how to free an occupied nook from Bag and keep placement explicit.",
       "depends_on": [
         "IH2-187",
@@ -3597,8 +3597,51 @@
       ],
       "evidence": [
         "docs/evidence/IH2-188/PLAN.md"
-      ]
+      ],
+      "progress_note": "Prepared alongside the town arrival and movable stacks under one review and exact-head validation batch."
+    },
+    {
+      "id": "IH2-189",
+      "title": "Give first arrivals a clear route to town",
+      "status": "queued",
+      "owner_branch": "feat/first-arrival-and-bag",
+      "goal": "Lead from the boarding-house door to Marlow and the plaza with a path and fewer competing labels.",
+      "depends_on": [
+        "IH2-187"
+      ],
+      "acceptance": [
+        "Verify real exit, saved location, Marlow, first depots and first craft at desktop and touch widths.",
+        "Review first view in narrow portrait and short landscape with Terra."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No shared authority, capacity, economy or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-189/PLAN.md"
+      ],
+      "progress_note": "Implemented in the combined candidate. Exact-head acceptance pending."
+    },
+    {
+      "id": "IH2-190",
+      "title": "Move stacks within a Bag pocket",
+      "status": "queued",
+      "owner_branch": "feat/first-arrival-and-bag",
+      "goal": "Let residents arrange carried stacks in-browser without moving inventory or committing placement.",
+      "depends_on": [
+        "IH2-188"
+      ],
+      "acceptance": [
+        "Verify drag, tap and keyboard swaps; save order and retain exact quantities after reload.",
+        "Verify the full-workshop placement path and all existing inventory/browser checks."
+      ],
+      "exclusions": [
+        "Keep saved previews and databases stopped. No shared authority, capacity, economy or original-game change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-190/PLAN.md"
+      ],
+      "progress_note": "Implemented in the combined candidate. Exact-head acceptance pending."
     }
   ],
-  "source_status_note": "Refresh optimization and player paths are accepted. The next candidate holds the map, walking cue, bridge guidance, local resident editor and independent opening rehearsal."
+  "source_status_note": "Main includes the frame-aligned resize. Full-workshop placement, the first-arrival route and movable Bag stacks are in the combined candidate."
 }

@@ -2183,6 +2183,16 @@
       "modifications": "Byte-identical promotion of the original orchard study illustration."
     },
     {
+      "id": "orchard-boughs",
+      "path": "public/art/orchard/boughs.svg",
+      "sha256": "8b4452261406fcfc3970b9394e7920e393bf5021303c0357126fdb5d598059a2",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/orchard/boughs.svg",
+      "date": "2026-11-23",
+      "modifications": "Original trellised apple boughs in three shapes, with separate fruit states."
+    },
+    {
       "id": "orchard-packing-table",
       "path": "public/art/orchard/packing-table.svg",
       "sha256": "5acf7de533871d6ce6e6ba17d71f8f764736ec1d2e7b218529e57be9f08b6b5a",

@@ -215,3 +215,46 @@ test('Jun gives a narrow-phone resident one useful orchard walk without changing
   expect(api).toEqual([]);
  }finally{await context.close();}
 });
+
+test('orchard bough art maps to existing gathering stops and shows fruit on the saved deadline',async({browser})=>{
+ mkdirSync(output,{recursive:true});
+ for(const size of [{name:'wide',width:2560,height:1440,touch:false},{name:'phone',width:320,height:640,touch:true}]){
+  const context=await browser.newContext({viewport:{width:size.width,height:size.height},hasTouch:size.touch});
+  try{
+   const page=await context.newPage();
+   const errors:string[]=[],api:string[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))api.push(request.url());});
+   await boot(page);
+   const branches=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.orchardBranches);
+   await expect.poll(async()=>(await branches()).map((branch:{key:string,frame:number})=>[branch.key,Number(branch.frame)]))
+    .toEqual([['orchard-boughs',3],['orchard-boughs',4],['orchard-boughs',5]]);
+   await page.screenshot({path:output+'/boughs-'+size.name+'-ripe.png'});
+   const canvas=page.locator('canvas');
+   const point=await page.evaluate(()=>(window as any).__pilot.screenPoint(95.4,49.3));
+   const rect=(await canvas.boundingBox())!;
+   expect(point.x).toBeGreaterThan(0);expect(point.x).toBeLessThan(rect.width);
+   expect(point.y).toBeGreaterThan(0);expect(point.y).toBeLessThan(rect.height);
+   if(size.touch)await page.touchscreen.tap(rect.x+point.x,rect.y+point.y);
+   else await canvas.click({position:point});
+   const low=page.getByRole('dialog',{name:'Low branch'});
+   await expect(low).toBeVisible();
+   expect(await pantry(page)).toBeNull();
+   await low.getByRole('button',{name:'Pick an apple'}).click();
+   await expect(low).toBeHidden();
+   await expect.poll(async()=>Number((await branches())[0].frame)).toBe(0);
+   expect((await pantry(page)).apples).toBe(1);
+   expect((await branches())[0].label).toContain('ripening');
+   await page.screenshot({path:output+'/boughs-'+size.name+'-picked.png'});
+   const deadline=(await pantry(page)).ripeAt['low-branch'];
+   await page.clock.setFixedTime(new Date(deadline-1));
+   await expect.poll(async()=>Number((await branches())[0].frame)).toBe(0);
+   await page.clock.setFixedTime(new Date(deadline));
+   await expect.poll(async()=>Number((await branches())[0].frame)).toBe(3);
+   expect((await pantry(page)).apples).toBe(1);
+   expect(await page.evaluate(key=>localStorage.getItem(key),workshopKey)).toBe(original);
+   expect(api).toEqual([]);
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});

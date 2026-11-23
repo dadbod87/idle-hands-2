@@ -1095,6 +1095,11 @@
       "kind": "original-svg"
     },
     {
+      "id": "orchard-boughs",
+      "path": "art/orchard/boughs.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "orchard-packing-table",
       "path": "art/orchard/packing-table.svg",
       "kind": "original-svg"

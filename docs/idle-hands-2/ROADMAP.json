@@ -3877,6 +3877,27 @@
         "docs/evidence/IH2-201/PLAN.md"
       ],
       "progress_note": "Independent browser-scoped candidate from accepted main. Hosted acceptance pending."
+    },
+    {
+      "id": "IH2-202",
+      "title": "Hide empty Bag slots while browsing",
+      "status": "queued",
+      "owner_branch": "feat/bag-hide-empty",
+      "goal": "Let phone players scan the stacks they can use and keep the full layout for arrangement and Equipment.",
+      "depends_on": [
+        "IH2-190",
+        "IH2-191"
+      ],
+      "acceptance": [
+        "Toggle with touch and keyboard. Verify Workshop placement and return, moving stacks, Equipment and scrolled 200% item readability."
+      ],
+      "exclusions": [
+        "No changes to player data, equipment authority, slot ordering or shed capacity."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-202/PLAN.md"
+      ],
+      "progress_note": "Local presentation candidate. Batch hosted validation with the next related Bag work."
     }
   ],
   "source_status_note": "Local integration checks combine shared-town draft #109 with the independent browser-practice Journal branch. Main remains at accepted PR #107."

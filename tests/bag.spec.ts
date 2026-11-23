@@ -470,3 +470,60 @@ test('shared earned headwear switches a single slot and renders on a visible nei
   }finally{await context.close();}
  }
 });
+
+test('bag: hide empty slots without losing placement, equipment or stack arrangement',async({browser})=>{
+ mkdirSync(out,{recursive:true});
+ for(const shape of [
+  {name:'desktop',width:1440,height:900,text:'100%',touch:false},
+  {name:'phone',width:320,height:640,text:'100%',touch:true},
+  {name:'short',width:844,height:390,text:'200%',touch:false},
+ ]){
+  const context=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch});
+  try{
+   const page=await context.newPage();
+   await page.addInitScript(save=>{
+    localStorage.setItem('ih2:workshop:v2',JSON.stringify(save));
+    localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'workshop',position:{x:5,y:5}}));
+   },queuedSecond());
+   await page.goto('/');
+   await ready(page);
+   await page.evaluate(text=>document.documentElement.style.fontSize=text,shape.text);
+   await page.locator('#bag').click();
+   const filter=page.getByRole('checkbox',{name:'Hide empty slots'});
+   const edit=page.getByRole('button',{name:'Move stacks',exact:true});
+   const furniture=page.getByRole('list',{name:'Furniture'});
+   const empty=furniture.locator('[data-empty=true]').first();
+   await expect(empty).toBeVisible();
+   await expect(count(page,'planter')).toHaveText('1');
+   const filterLabel=page.locator('.bag-filter label');
+   expect((await filterLabel.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+   if(shape.touch)await filterLabel.tap();
+   else{await filter.focus();await page.keyboard.press('Space');}
+   await expect(filter).toBeChecked();
+   await expect(empty).toBeHidden();
+   await expect(stack(page,'planter')).toBeVisible();
+   await page.screenshot({path:out+'/bag-filter-'+shape.name+'.png'});
+   await stack(page,'planter').scrollIntoViewIfNeeded();
+   await page.screenshot({path:out+'/bag-filter-items-'+shape.name+'.png'});
+   await edit.click();
+   await expect(filter).toBeHidden();
+   await expect(empty).toBeVisible();
+   await page.getByRole('button',{name:'Done moving'}).click();
+   await expect(filter).toBeChecked();
+   await expect(empty).toBeHidden();
+   await page.getByRole('button',{name:'Equipment',exact:true}).click();
+   await expect(filter).toBeHidden();
+   await expect(page.getByRole('button',{name:'Visit Nella’s workshop'})).toBeVisible();
+   await page.getByRole('button',{name:'Furniture',exact:true}).click();
+   await expect(filter).toBeChecked();
+   await page.getByRole('button',{name:'Choose a spot for Optimistic planter',exact:true}).click();
+   await page.locator('[data-slot=north-east]').click();
+   await page.getByRole('button',{name:'Place here',exact:true}).click();
+   await expect(stack(page,'planter')).toBeHidden();
+   await page.locator('[data-slot=north-east]').click();
+   await page.getByRole('button',{name:'Return this furniture to bag',exact:true}).click();
+   await expect(stack(page,'planter')).toBeVisible();
+   await expect(count(page,'planter')).toHaveText('1');
+  }finally{await context.close();}
+ }
+});

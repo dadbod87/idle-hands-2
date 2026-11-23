@@ -1,7 +1,17 @@
 /** IH2-052 original art keys. Geometry here describes drawings, not authority. */
 import catalog from '../../public/art/homes/catalog.json' with {type:'json'};
 export const HOME_ASSETS=catalog.assets.map(asset=>asset.id);
-export const HOME_SUPPORT_ASSETS=catalog.assets.filter(asset=>asset.kind!=='interior').map(asset=>asset.id);
+import type {Room} from '../game/world.ts';
+export function homeWorldAssets(room:Room){
+ if(room==='neighborhood')return [
+  HOME_ART.starterExterior,HOME_ART.expandedExterior,HOME_ART.furniture.planter.world,
+ ];
+ if(room==='workshop'||room.startsWith('home')){
+  const furniture=catalog.assets.filter(asset=>asset.kind==='owned-furniture-world').map(asset=>asset.id);
+  return room==='workshop'?[...furniture,HOME_ART.materials.timber]:furniture;
+ }
+ return [];
+}
 export const HOME_CATALOG=catalog;
 export const HOME_ART={
  starterExterior:'home-starter-exterior',expandedExterior:'home-expanded-exterior',

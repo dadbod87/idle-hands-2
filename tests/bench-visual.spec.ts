@@ -83,3 +83,42 @@ test('an unconfirmed local craft never puts a piece on the bench',async({page})=
  await expect.poll(()=>scan(page)).toEqual({phase:'idle',recipe:null,piece:null});
  expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toBe(raw);
 });
+
+test('cold arrivals defer workshop-only artwork until the first door entry',async({page})=>{
+ const artwork:string[]=[];
+ const errors:string[]=[];
+ page.on('request',request=>{
+  const path=new URL(request.url()).pathname;
+  if(path.startsWith('/art/'))artwork.push(path);
+ });
+ page.on('pageerror',error=>errors.push(error.message));
+ await page.goto('/?sky-study=1&phase=day&weather=clear');
+ await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+ const workshopBefore=await state(page);
+ const doorArt=[
+  '/art/original/ground-workshop.svg',
+  '/art/original/bench.svg',
+  '/art/carpentry/finishing-rack-empty.svg',
+  '/art/homes/home-timber-icon.svg',
+  '/art/cafe/teapot-world.svg',
+ ];
+ expect(artwork).toContain('/art/depots/depot-timber.svg');
+ for(const path of doorArt)expect(artwork).not.toContain(path);
+
+ await page.getByRole('button',{name:'Open field guide'}).click();
+ await page.locator('#guide-workshop').click();
+ const rack=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.carpentry.rackTexture);
+ await expect.poll(rack,{timeout:20000}).toBe('finishing-rack-empty');
+ for(const path of doorArt)expect(artwork.filter(request=>request===path)).toHaveLength(1);
+
+ await page.locator('#places').click();
+ await page.locator('[data-destination=door]').click();
+ const feet=()=>page.evaluate(()=>(window as any).__pilot.snapshot());
+ await expect.poll(async()=>(await feet()).nearby).toBe('door');
+ await expect.poll(async()=>(await feet()).walking).toBe(false);
+ await page.locator('#interact').click();
+ await expect.poll(async()=>(await feet()).room).toBe('square');
+ expect((await feet()).position).toEqual({x:19.5,y:22.3});
+ expect(await state(page)).toEqual(workshopBefore);
+ expect(errors).toEqual([]);
+});

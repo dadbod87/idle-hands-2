@@ -17,13 +17,14 @@ export function mountBrowserResident(host:Host) {
  window.addEventListener('storage',event=>{
   if(event.key===null||event.key===BROWSER_RESIDENT_KEY) host.appearance(readBrowserResident(storage).resident);
  });
- return () => {
+ return (startMorning?:()=>Promise<void>) => {
   host.open('Your resident');
   const current=readBrowserResident(storage);
   const status=document.createElement('p');
   status.className='resident-profile-status';
   status.id='resident-profile-status';
   status.setAttribute('role','status');
+  if(startMorning)status.dataset.morningFeedback='';
   if(current.status!=='ready'){
    status.textContent=current.status==='unreadable'
     ?'This saved appearance could not be read. Its original record is kept.'
@@ -119,7 +120,7 @@ export function mountBrowserResident(host:Host) {
   const submit=document.createElement('button');
   submit.type='button';
   submit.className='destination';
-  submit.textContent='Save changes';
+  submit.textContent=startMorning?'Save badge and begin':'Save changes';
   editor.append(label,options,choices,submit,status);
   host.body.append(editor);
 
@@ -142,7 +143,10 @@ export function mountBrowserResident(host:Host) {
     if(result.status==='saved'){
      baseline=result.raw;
      host.appearance(result.resident);
-     if(editor.isConnected)status.textContent='Resident saved in this browser.';
+     if(editor.isConnected){
+      status.textContent='Resident saved in this browser.';
+      if(startMorning)await startMorning();
+     }
     }else if(editor.isConnected){
      if(result.status==='invalid'){
       status.textContent='Enter a name up to 24 characters using letters or numbers.';

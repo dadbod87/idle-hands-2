@@ -502,9 +502,9 @@ document.querySelector('#field-guide')!.addEventListener('click',()=>{
    appearance.type='button';
    appearance.className='destination';
    appearance.textContent='Edit your resident';
-   appearance.onclick=showBrowserResident;
+   appearance.onclick=()=>showBrowserResident();
    body.append(appearance);
-   if(localResident&&morning.status==='ready'&&!morning.record){
+   if(morning.status==='ready'&&!morning.record){
     const first=document.createElement('button');
     first.type='button';
     first.className='destination';
@@ -512,7 +512,10 @@ document.querySelector('#field-guide')!.addEventListener('click',()=>{
     const firstStatus=paragraph('');
     firstStatus.setAttribute('role','status');
     firstStatus.dataset.morningFeedback='';
-    first.onclick=()=>void changeMorning('start');
+    first.onclick=()=>{
+     if(localResident)void changeMorning('start');
+     else showBrowserResident(()=>changeMorning('start'));
+    };
     body.append(first,firstStatus);
    }
    if(session.room==='square'){

@@ -264,3 +264,88 @@ for (const viewport of [{width:844,height:390},{width:640,height:360}]) test(
   expect(api).toEqual([]);
  } finally { await context.close(); }
 });
+
+test('fresh local residents can create a badge and start the optional morning from the guide', async ({browser}) => {
+ for(const layout of [
+  {name:'desktop',width:1440,height:900,touch:false,text:'100%'},
+  {name:'phone',width:320,height:640,touch:true,text:'100%'},
+  {name:'short',width:844,height:390,touch:true,text:'200%'},
+ ]){
+  const context=await browser.newContext({viewport:layout,hasTouch:layout.touch});
+  try{
+   const page=await context.newPage(),api:string[]=[],errors:string[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))api.push(request.url());});
+   await page.goto('/?sky-study=1&phase=day');
+   await ready(page);
+   await expect.poll(async()=>(await storedInputs(page))[1]).toBeTruthy();
+   await page.evaluate(scale=>document.documentElement.style.fontSize=scale,layout.text);
+   const starting=await storedInputs(page);
+   const hit=(target:ReturnType<typeof page.locator>)=>layout.touch?target.tap():target.click();
+   const tryMorning=async()=>{
+    await hit(page.getByRole('button',{name:'Open field guide'}));
+    await hit(page.getByRole('button',{name:'Try a first morning',exact:true}));
+    await expect(page.getByRole('heading',{name:'Your resident',exact:true})).toBeVisible();
+   };
+   expect(starting[2]).toBeNull();
+   await tryMorning();
+   await hit(page.getByRole('button',{name:'Close panel',exact:true}));
+   expect(await phase(page)).toBeNull();
+   expect((await storedInputs(page))[2]).toBeNull();
+   await tryMorning();
+
+   const begin=page.getByRole('button',{name:'Save badge and begin',exact:true});
+   const name=page.getByRole('textbox',{name:'Name on your badge'});
+   await hit(begin);
+   await expect(name).toHaveAttribute('aria-invalid','true');
+   expect(await phase(page)).toBeNull();
+   await name.fill('Avery Example');
+   const look=page.getByRole('radio',{name:'Curly hair and an apron'});
+   await hit(look.locator('xpath=parent::label'));
+   await expect(look).toBeChecked();
+   await page.getByLabel('Arrival story').selectOption('maker');
+   await begin.evaluate(el=>{
+    const dialog=el.closest('dialog')!,header=dialog.querySelector('.dialog-head')!;
+    dialog.scrollTop+=el.getBoundingClientRect().top-header.getBoundingClientRect().bottom-8;
+   });
+   const bounds=(await begin.boundingBox())!,head=(await page.locator('.dialog-head').boundingBox())!;
+   expect(bounds.y).toBeGreaterThanOrEqual(head.y+head.height);
+   expect(bounds.y+bounds.height).toBeLessThanOrEqual(layout.height);
+   await page.screenshot({path:out+'/fresh-guide-editor-'+layout.name+'.png'});
+
+   const status=page.locator('[data-morning-feedback]');
+   if(layout.name==='phone'){
+    // Only the first-morning write fails. The earlier badge write should stay.
+    await page.evaluate(key=>{
+     const write=Storage.prototype.setItem;
+     Storage.prototype.setItem=function(name,value){
+      if(name===key)throw new DOMException('Isolated quota failure','QuotaExceededError');
+      return write.call(this,name,value);
+     };
+     (window as any).__restoreMorningWrite=()=>Storage.prototype.setItem=write;
+    },FIRST_MORNING_KEY);
+    await begin.tap();
+    await expect(status).toContainText('The room could not be saved');
+    expect(await phase(page)).toBeNull();
+    expect((await snapshot(page)).room).toBe('square');
+    expect(JSON.parse((await storedInputs(page))[2]!)).toMatchObject({name:'Avery Example',look:'bea'});
+    await page.evaluate(()=>(window as any).__restoreMorningWrite());
+   }
+   if(layout.touch)await begin.tap();
+   else await begin.press('Enter');
+   await expect(page.getByRole('button',{name:'Get up',exact:true})).toBeEnabled();
+   await expect.poll(isResting.bind(null,page)).toBe(true);
+   await expect.poll(()=>phase(page)).toMatchObject({phase:'bed',saved:{room:'lodging',position:LODGING_BEDSIDE}});
+   const after=await storedInputs(page);
+   expect(after[1]).toEqual(starting[1]);
+   expect(JSON.parse(after[2]!)).toMatchObject({name:'Avery Example',look:'bea',story:'maker'});
+   await page.screenshot({path:out+'/fresh-guide-bed-'+layout.name+'.png'});
+   await page.reload();
+   await ready(page);
+   await expect.poll(isResting.bind(null,page)).toBe(true);
+   await expect(page.locator('#local-resident-badge')).toHaveText('Avery Example');
+   expect(errors).toEqual([]);
+   expect(api).toEqual([]);
+  }finally{await context.close();}
+ }
+});

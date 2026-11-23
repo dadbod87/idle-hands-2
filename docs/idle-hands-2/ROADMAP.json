@@ -3855,6 +3855,28 @@
         "docs/evidence/IH2-200/PLAN.md"
       ],
       "progress_note": "Local renderer candidate staged behind touch and social visibility. Full hosted acceptance awaits the batched PR."
+    },
+    {
+      "id": "IH2-201",
+      "title": "Save a visited home’s address for a later visit",
+      "status": "queued",
+      "owner_branch": "feat/saved-home-addresses",
+      "goal": "Help residents find interesting homes again through an explicit neighborhood route.",
+      "depends_on": [
+        "IH2-088",
+        "IH2-117"
+      ],
+      "acceptance": [
+        "Verify viewer-specific browser persistence, removal, absence of stale addresses and no owner mutation.",
+        "Verify the actual existing walk from the saved directory and Places on desktop and touch."
+      ],
+      "exclusions": [
+        "No public bookmarking data, paid resources, shared economy or saved-preview change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-201/PLAN.md"
+      ],
+      "progress_note": "Independent browser-scoped candidate from accepted main. Hosted acceptance pending."
     }
   ],
   "source_status_note": "Local integration checks combine shared-town draft #109 with the independent browser-practice Journal branch. Main remains at accepted PR #107."

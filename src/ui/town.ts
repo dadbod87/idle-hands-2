@@ -1,3 +1,4 @@
+import {changeSavedHome,readSavedHomes,savedHomeKey} from '../game/saved-home-addresses.ts';
 import { NATURALIST_KEEPSAKE, earnedNaturalist } from '../game/home-keepsake.ts';
 import {returnStops,returnSummary,type VisitBaseline} from '../game/return-summary.ts';
 import{housingPanel,type HousingViewState}from'./housing.ts';
@@ -108,9 +109,60 @@ export class TownUI {
   }
   this.notice();this.refresh();
  }
+ private savedHomeControl(plot:TownPlot,viewer:string){
+  const section=document.createElement('div'),status=this.p('');
+  status.setAttribute('role','status');
+  let saved=false,locked:LockManager|undefined;
+  try{saved=readSavedHomes(localStorage.getItem(savedHomeKey(viewer))).includes(plot.id);locked=navigator.locks;}
+  catch{status.textContent='Saved addresses are unavailable in this browser.';}
+  const address=this.button('',()=>void change());
+  const paint=()=>{address.textContent=saved?'Remove saved address':'Save this address';address.setAttribute('aria-pressed',String(saved));};
+  paint();
+  address.disabled=!locked;
+  if(!locked&&!status.textContent)status.textContent='This browser cannot save addresses.';
+  section.append(address,status);
+  async function change(){
+   if(!locked||address.disabled)return;
+   address.disabled=true;
+   const key=savedHomeKey(viewer),next=!saved;
+   try{
+    await locked.request(key,()=>{
+     if(!address.isConnected)return;
+     const addresses=readSavedHomes(localStorage.getItem(key));
+     localStorage.setItem(key,JSON.stringify(changeSavedHome(addresses,plot.id,next)));
+     saved=next;
+    });
+    if(address.isConnected){paint();status.textContent=saved?'Saved here in Homes & neighbors.':'Removed from saved addresses.';}
+   }catch{if(address.isConnected)status.textContent='The address could not be saved. Your list is kept.';}
+   finally{address.disabled=false;}
+  }
+  return section;
+ }
+ private confirmedSavedHomes(snapshot:TownSnapshot){
+  let ids:string[];
+  try{ids=readSavedHomes(localStorage.getItem(savedHomeKey(snapshot.playerId)));}catch{return [];}
+  return ids.map(id=>snapshot.plots.find(plot=>plot.id===id)).filter((plot):plot is TownPlot=>!!plot?.ownerId);
+ }
+ hasSavedHomes(){const snapshot=this.client.snapshot;return !!snapshot&&this.confirmedSavedHomes(snapshot).length>0;}
+ private savedHomes(snapshot:TownSnapshot){
+  const plots=this.confirmedSavedHomes(snapshot);
+  if(!plots.length)return;
+  const section=document.createElement('section'),title=document.createElement('h3');
+  section.className='saved-home-list';
+  title.textContent='Saved addresses';title.id='saved-home-list-title';
+  section.setAttribute('aria-labelledby',title.id);section.append(title);
+  for(const plot of plots){
+   const label='Visit '+(plot.ownerName??'home')+' · '+addressForPlot(plot.id).label;
+   const visit=this.button(label,()=>{if(this.client.snapshot?.playerId===snapshot.playerId)void this.host.enterHome?.(plot.id);});
+   visit.dataset.savedHome=plot.id;
+   section.append(visit);
+  }
+  this.host.body.append(section);
+ }
  showNeighborhoods(){
   const s=this.client.snapshot;if(!s){void this.showLogin();return;}this.start('Homes & neighbors');
   this.host.body.append(this.p('Choose a neighborhood, then walk to a door. Visitors may look around; only owners can arrange their homes.'));
+  this.savedHomes(s);
   const districts=[...new Set(['1',...s.plots.map(p=>addressForPlot(p.id).block)])].sort((a,b)=>BigInt(a)<BigInt(b)?-1:1);
   for(const id of districts){const homes=s.plots.filter(p=>addressForPlot(p.id).block===id),own=homes.some(p=>p.ownerId===s.playerId),button=this.button((own?'Your street · ':'')+'Neighborhood '+id+' · '+homes.length+' homes',()=>void this.host.enterNeighborhood?.(id));button.dataset.neighborhoodEnter=id;this.host.body.append(button);}
   this.notice();
@@ -273,7 +325,8 @@ export class TownUI {
       display.append(blank);
      }
      const details=document.createElement('details');details.className='home-secondary';
-     const summary=document.createElement('summary');summary.textContent='Address & house details';details.append(summary,info);
+     const summary=document.createElement('summary');summary.textContent='Address & house details';
+     details.append(summary,info,this.savedHomeControl(plot,s.playerId));
      section.append(display,details);
     }else section.append(visiting,info);
    }

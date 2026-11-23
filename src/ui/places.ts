@@ -5,7 +5,7 @@ import {townMap,type MapResident} from './town-map.ts';
 
 export function renderPlaces(body: HTMLElement, options: {
  room: Room; position: Point; stops: Stop[]; state: WorkshopState; goal: {id: string; destination?: string};
- now: number; wave?:()=>Promise<void>; peers?:readonly MapResident[]|null; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void;
+ now: number; savedHomes?:()=>void; wave?:()=>Promise<void>; peers?:readonly MapResident[]|null; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void;
 }) {
  const view = placesView(options.room, options.stops, options.state, options.goal, options.now, options.neighborhood);
  const intro = document.createElement('p');
@@ -26,6 +26,12 @@ export function renderPlaces(body: HTMLElement, options: {
  };
 
  const browse = document.createElement('div');
+ if(options.savedHomes){
+  const saved=document.createElement('button');
+  saved.type='button';saved.className='destination';saved.textContent='Saved home addresses';
+  saved.onclick=options.savedHomes;
+  browse.append(saved);
+ }
  if (view.primary.length) {
   const heading = document.createElement('h3');
   heading.textContent = view.heading;

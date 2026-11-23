@@ -190,6 +190,11 @@ test('the shared town map groups current residents by district and clears stale 
    await expect.poll(async()=>(await waveView()).peerWaves).toEqual(['bea']);
    await expect(page.locator('.town-wave-announcement')).toHaveText('Bea waves hello.');
    await page.screenshot({path:out+'/wave-received-'+name+'.png'});
+   await page.locator('#journal').click();
+   await page.locator('.journal-recent-notes summary').click();
+   await expect(page.getByRole('list',{name:'Recent field notes'})).toContainText('Bea waves hello.');
+   await page.getByRole('button',{name:'Close panel'}).click();
+
    await expect(page.locator('#places')).toBeEnabled();
    await page.locator('#places').click();await mapSummary.click();
    await emit([resident('bea','Bea',22,25.5)]);

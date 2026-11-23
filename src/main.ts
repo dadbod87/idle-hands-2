@@ -158,6 +158,9 @@ let worldResizePending=false;
 game.events.on(Phaser.Core.Events.STEP,()=>{
  if(!worldResizePending)return;
  worldResizePending=false;
+ // A text-mode change can resize the observed world. Apply it during the
+ // render step so a ResizeObserver callback never changes its own layout.
+ updateTextMode();
  // Measure after Phaser's own scale check. Apply any remaining change in the
  // game step so the cleared canvas is redrawn in that same frame.
  const {width,height}=worldContainer.getBoundingClientRect();
@@ -166,7 +169,6 @@ game.events.on(Phaser.Core.Events.STEP,()=>{
  }
 });
 const worldResize=new ResizeObserver(entries=>{
- updateTextMode();
  const {width,height}=entries[0].contentRect;
  if(!game.isBooted||width<=0||height<=0)return;
  worldResizePending=true;

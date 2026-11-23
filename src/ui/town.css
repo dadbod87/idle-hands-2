@@ -98,3 +98,11 @@
 .saved-home-list { margin-block: .65rem; padding: .6rem; border: 1px solid var(--line); border-radius: 4px; background: #eee6cf; }
 #panel-body .saved-home-list h3 { margin: 0 0 .35rem; }
 .saved-home-list button { min-height: 44px; overflow-wrap: anywhere; }
+
+
+.home-directory-search { margin-block: .65rem; padding: 0 .6rem .25rem; border: 1px solid var(--line); border-radius: 4px; background: #f3ead3; }
+.home-directory-search summary { min-height: 44px; padding-block: .65rem; font-weight: bold; cursor: pointer; }
+.home-directory-search label { display: grid; gap: .25rem; }
+.home-directory-search input { width: 100%; min-height: 44px; min-width: 0; padding: .35rem; font: inherit; }
+.home-directory-search [role=status]:empty { display: none; }
+.home-directory-results button { min-height: 44px; overflow-wrap: anywhere; }

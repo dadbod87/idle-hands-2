@@ -3686,6 +3686,26 @@
         "docs/evidence/IH2-201/PLAN.md"
       ],
       "progress_note": "Independent browser-scoped candidate from accepted main. Hosted acceptance pending."
+    },
+    {
+      "id": "IH2-207",
+      "title": "Find public addresses by resident name",
+      "status": "queued",
+      "owner_branch": "feat/saved-home-addresses",
+      "goal": "Let a guest choose a known person in the current directory and use the normal door route.",
+      "depends_on": [
+        "IH2-201"
+      ],
+      "acceptance": [
+        "Verify name and address lookup, sticky header focus, stale owner refusal and actual door entry in the fictional shared browser."
+      ],
+      "exclusions": [
+        "No new directory reads, disclosure fields, ownership or permission changes, paid resources or saved-service startup."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-207/PLAN.md"
+      ],
+      "progress_note": "Independent home navigation follow-up. Local Chromium and WebKit passed."
     }
   ],
   "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."

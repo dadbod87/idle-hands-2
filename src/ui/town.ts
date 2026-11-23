@@ -1,3 +1,4 @@
+import {placeSearchKey} from '../game/places-view.ts';
 import {changeSavedHome,readSavedHomes,savedHomeKey} from '../game/saved-home-addresses.ts';
 import { NATURALIST_KEEPSAKE, earnedNaturalist } from '../game/home-keepsake.ts';
 import {returnStops,returnSummary,type VisitBaseline} from '../game/return-summary.ts';
@@ -145,10 +146,57 @@ export class TownUI {
   }
   this.host.body.append(section);
  }
+ private homeLookup(snapshot:TownSnapshot){
+  if(!this.host.enterHome)return;
+  const homes=snapshot.plots.filter(plot=>plot.ownerId).map(plot=>{
+   const name=plot.ownerName??'Resident',address=addressForPlot(plot.id);
+   return {id:plot.id,ownerId:plot.ownerId,name,address,key:placeSearchKey(name+' '+address.label)};
+  }).sort((a,b)=>a.name.localeCompare(b.name)||a.address.label.localeCompare(b.address.label));
+  if(!homes.length)return;
+  const section=document.createElement('details'),summary=document.createElement('summary');
+  section.className='home-directory-search';
+  summary.textContent='Find a resident’s home';
+  const label=document.createElement('label'),input=document.createElement('input');
+  input.type='search';
+  input.autocomplete='off';
+  input.enterKeyHint='search';
+  label.append('Name or address',input);
+  const status=this.p(''),results=document.createElement('div');
+  status.setAttribute('role','status');
+  results.className='home-directory-results';
+  const limit=8;
+  input.addEventListener('input',()=>{
+   const query=placeSearchKey(input.value).trim();
+   const terms=query.split(/\s+/);
+   const matches=query?homes.filter(home=>terms.every(term=>home.key.includes(term))):[];
+   results.replaceChildren();
+   status.textContent=!query?'':!matches.length?'No matching homes.':matches.length===1?'1 home found.':matches.length+' homes found.'+(matches.length>limit?' Keep typing to narrow your search.':'');
+   for(const home of matches.slice(0,limit)){
+    const visit=this.button('Visit '+home.name+' · '+home.address.label,()=>{
+     const latest=this.client.snapshot;
+     if(!section.isConnected||latest?.playerId!==snapshot.playerId)return;
+     if(!latest.plots.some(plot=>plot.id===home.id&&plot.ownerId===home.ownerId)){
+      status.textContent='That address has changed. Reopen Homes & neighbors to refresh the directory.';
+      input.focus();
+      return;
+     }
+     void this.host.enterHome?.(home.id);
+    });
+    results.append(visit);
+   }
+  });
+  section.append(summary,label,status,results);
+  section.addEventListener('focusin',event=>{
+   const target=event.target;
+   if(target instanceof HTMLElement&&target.matches(':focus-visible'))this.revealHomeFocus(target);
+  });
+  this.host.body.append(section);
+ }
  showNeighborhoods(){
   const s=this.client.snapshot;if(!s){void this.showLogin();return;}this.start('Homes & neighbors');
   this.host.body.append(this.p('Choose a neighborhood, then walk to a door. Visitors may look around; only owners can arrange their homes.'));
   this.savedHomes(s);
+  this.homeLookup(s);
   const districts=[...new Set(['1',...s.plots.map(p=>addressForPlot(p.id).block)])].sort((a,b)=>BigInt(a)<BigInt(b)?-1:1);
   for(const id of districts){const homes=s.plots.filter(p=>addressForPlot(p.id).block===id),own=homes.some(p=>p.ownerId===s.playerId),button=this.button((own?'Your street · ':'')+'Neighborhood '+id+' · '+homes.length+' homes',()=>void this.host.enterNeighborhood?.(id));button.dataset.neighborhoodEnter=id;this.host.body.append(button);}
   this.notice();

@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "a480c46dac60a3d5791e3eca7e3037a5422f9550dc72b0b2efb2621657823000",
+    "src/main.ts": "00a19ef7a6bf8b6b44abedf9bcfcdaa872ff0ef02a3a7063b9e7d7e8a61763a2",
     "src/phaser/WorldScene.ts": "7eb9d3852bae9e480b41a47b142253d2b3c5e728d9ad2756e7f79fe48fc3d8e9",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed saved home addresses and the Places shortcut; dated garden study artifacts remain frozen."
+  "currentTask": "Reviewed the saved-address route and frame-aligned text-mode resizing. Original study snapshots and generated output remain frozen."
 }

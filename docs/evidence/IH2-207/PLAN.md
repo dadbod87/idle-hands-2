@@ -1,0 +1,7 @@
+# IH2-207 · Find a resident’s home in the street directory
+
+The Homes & neighbors directory can search the public home records it already has by resident name or address. It handles ordinary accented names, keeps distinct addresses on similarly named residents, and shows up to eight matches for a typed search. Activating a result uses the usual street and door route. A stale or removed owner refuses the old result before any walk or command. Saved addresses still use the existing private browser preference.
+
+The compiled build and three Chromium cases passed for street lookup, saved addresses and the original Places search. A fictional guest searched by an accented name and street address, encountered a deliberately stale owner, then walked to the correct house and used the existing entry command. The fixture intercepted identity, public snapshot, movement and the accepted entry. No purchase, owner write or saved-address change occurred. Terra 6.1 reviewed the desktop, 320px and short 200% captures.
+
+WebKit uses its native Option-Tab for control focus in this test profile. Changing fixture setup to begin at the directory removed a deliberate reload that had canceled outgoing art requests. The remaining resize-observer warning at 200% text was corrected by applying the text mode in the existing render step. The final WebKit run passed desktop, phone and short. Physical-phone and hosted acceptance remain separate.

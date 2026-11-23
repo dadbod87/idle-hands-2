@@ -1,4 +1,4 @@
-import {placesView} from '../game/places-view.ts';
+import {placesView,placeSearchKey} from '../game/places-view.ts';
 import type {WorkshopState} from '../game/live-workshop.ts';
 import type {Point, Room, Stop} from '../game/world.ts';
 import {townMap} from './town-map.ts';
@@ -87,10 +87,9 @@ export function renderPlaces(body: HTMLElement, options: {
  results.addEventListener('focusin', keepFocusInView);
  browse.addEventListener('focusin', keepFocusInView);
 
- const searchKey = (value: string) => value.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
- const searchable = options.stops.map(stop => ({stop, name: searchKey(stop.name)}));
+ const searchable = options.stops.map(stop => ({stop, name: placeSearchKey(stop.name)}));
  input.addEventListener('input', () => {
-  const query = searchKey(input.value).trim();
+  const query = placeSearchKey(input.value).trim();
   browse.hidden = query.length > 0;
   results.hidden = !query;
   results.replaceChildren();

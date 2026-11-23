@@ -10,6 +10,10 @@ export type Stop = { id: string; name: string; point: Point; text: string; trans
 export type World = { width: number; height: number; blocked: [number, number, number, number][]; stops: Stop[] };
 export const TILE = 32;
 export const TRAIL_LANDMARK_IDS=['trailhead','old-sign','lookout'] as const;
+export const INKWOOD_STEWARD:Stop={
+ id:'inkwood-steward',name:'Wren · trail steward',point:{x:11.5,y:21},doorArea:[11,19.25,2,2.25],
+ text:'Ask Wren where to start exploring Inkwood.',
+};
 export const INKWOOD_GLASSHOUSE:Stop={
  id:'inkwood-glasshouse',name:'Inkwood Glasshouse',point:{x:14.5,y:6.7},doorArea:[12.75,2.3,4.5,3.7],
  text:'Vines hold the door shut. A committee is looking for the key. The glasshouse is closed for now.',
@@ -49,7 +53,7 @@ export const worlds: Record<Room, World> = {
   },
   trail: {
     width:18,height:26,blocked:[[1,1,3,5],[13,1,4,5],[1,7,2,10],[15,8,2,10],[1,20,4,4],[13,20,4,4],[7,1,4,3],[8,7,2,2]],
-    stops:[{id:'trail-exit',name:'Town square',point:{x:9,y:24},transition:'square',arrival:{x:25.5,y:12.6},doorArea:[8,23,3,2],text:'Back over the restored bridge.'},{id:'trailhead',name:'Inspection stump',point:{x:6,y:18},doorArea:[5.25,16.5,1.5,2],text:'A fully qualified stump. It has seniority.'},{id:'old-sign',name:'Retired wayfinding post',point:{x:12,y:12},doorArea:[11.25,10.5,1.5,2],text:'The arrows disagree. The post has been promoted.'},{id:'lookout',name:'Municipal birdwatching sign',point:{x:4,y:8},doorArea:[3.25,6.5,1.5,2],text:'Population unverified. Committee expanding.'},INKWOOD_GLASSHOUSE]
+    stops:[{id:'trail-exit',name:'Town square',point:{x:9,y:24},transition:'square',arrival:{x:25.5,y:12.6},doorArea:[8,23,3,2],text:'Back over the restored bridge.'},{id:'trailhead',name:'Inspection stump',point:{x:6,y:18},doorArea:[5.25,16.5,1.5,2],text:'A fully qualified stump. It has seniority.'},{id:'old-sign',name:'Retired wayfinding post',point:{x:12,y:12},doorArea:[11.25,10.5,1.5,2],text:'The arrows disagree. The post has been promoted.'},{id:'lookout',name:'Municipal birdwatching sign',point:{x:4,y:8},doorArea:[3.25,6.5,1.5,2],text:'Population unverified. Committee expanding.'},INKWOOD_GLASSHOUSE,INKWOOD_STEWARD]
   },
   garden:{width:18,height:18,blocked:[[4,8,3,3],[8,8,3,3],[12,8,3,3]],stops:[
    {id:'garden-beds',name:'Your garden beds',point:{x:9,y:13},doorArea:[4,7.5,11,4.75],text:'Plant, inspect or harvest your three beds. Ready plants wait safely.'},

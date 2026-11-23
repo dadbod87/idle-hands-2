@@ -35,7 +35,7 @@ import {drawTownResidentProp,townResidentRoutine} from './TownResidentRoutine.ts
 import { Session, WALK_SPEED } from '../game/session.ts';
 import {movementFrameSteps} from '../game/movement-frame.ts';
 import {ResidentMotion} from '../game/resident-motion.ts';
-import { INKWOOD_GLASSHOUSE, TILE, worlds, clearSegment, type Room } from '../game/world.ts';
+import { INKWOOD_GLASSHOUSE, INKWOOD_STEWARD, TILE, worlds, clearSegment, type Room } from '../game/world.ts';
 import { PLACEMENT_SLOTS, type WorkshopState,type PropId } from '../game/live-workshop.ts';
 import { ORIGINAL_STATIC, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 import catalog from '../../public/art/variety/catalog.json';
@@ -413,6 +413,7 @@ export class WorldScene extends Phaser.Scene {
       this.load.svg(key,'/art/garden/'+key+'.svg');
     }
     if(this.loadingRoom==='trail'&&!this.textures.exists('glasshouse-overgrown'))this.load.svg('glasshouse-overgrown','/art/glasshouse/overgrown.svg');
+    if(this.loadingRoom==='trail'&&!this.textures.exists('inkwood-steward'))this.load.svg('inkwood-steward','/art/inkwood/wren.svg');
     for(const key of trailWorldAssets(this.loadingRoom))if(!this.textures.exists(key))this.load.svg(key,'/art/trail/'+key+'.svg');
     const street=this.loadingRoom==='neighborhood';
     for(const key of HOME_SUPPORT_ASSETS){
@@ -569,6 +570,10 @@ export class WorldScene extends Phaser.Scene {
       const threshold=(glasshouse.y-.75)*TILE;
       if(this.textures.exists('glasshouse-overgrown'))this.add.image((glasshouse.x+.5)*TILE,threshold,'glasshouse-overgrown').setOrigin(.5,1).setDepth(threshold);
       label(glasshouse.x+.5,glasshouse.y+1.2,'Glasshouse');
+      const steward=INKWOOD_STEWARD.point;
+      const feet=(steward.y+.5)*TILE;
+      this.add.image((steward.x+.5)*TILE,feet,'inkwood-steward').setOrigin(.5,.9).setScale(.66).setDepth(feet);
+      label(steward.x+.5,steward.y+.85,'Wren');
       label(9.5,24.4,'Town square ↓');
     } else if(this.room.startsWith('home')) {
       const key=this.room==='home'?HOME_ART.starterInterior:HOME_ART.expandedInterior;const meta=HOME_CATALOG.assets.find(asset=>asset.id===key);for(const box of meta?.lightingWindows??[])litWindows.push(box);

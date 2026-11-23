@@ -1143,6 +1143,11 @@
       "id": "river-wet-boot",
       "path": "art/river/wet-boot.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "inkwood-wren",
+      "path": "art/inkwood/wren.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

@@ -2281,6 +2281,16 @@
       "source": "public/art/river/wet-boot.svg",
       "date": "2026-11-23",
       "modifications": "Original illustrated browser-practice field record. No imported media or game items."
+    },
+    {
+      "id": "inkwood-wren",
+      "path": "public/art/inkwood/wren.svg",
+      "sha256": "98ed23131081df2847367d0b0eb13bc0304f63fe0a76f29dccd37d59ebab6751",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/inkwood/wren.svg",
+      "date": "2026-11-23",
+      "modifications": "Original Inkwood trail-steward silhouette and workwear. No imported media."
     }
   ],
   "comparison": {

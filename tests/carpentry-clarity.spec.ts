@@ -58,7 +58,8 @@ test('carpentry scenery follows the real pine and rack deadlines without claimin
    await p.goto('/');
    await expect.poll(()=>p.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
    const visual=()=>p.evaluate(()=>(window as any).__pilot.metrics().visual.carpentry);
-   const work=await state(p);
+   const stored=()=>p.evaluate(()=>localStorage.getItem('ih2:workshop:v2'));
+   const before=await stored();
    if(room==='square'){
     await expect.poll(async()=>(await visual()).pineTextures).toEqual([
      'pine-crooked-exhausted','pine-forked-exhausted','pine-sheltered-exhausted',
@@ -72,7 +73,9 @@ test('carpentry scenery follows the real pine and rack deadlines without claimin
     await p.clock.setFixedTime(deadline);
     await expect.poll(async()=>(await visual()).rackTexture).toBe('finishing-rack-ready');
    }
-   expect(await state(p)).toEqual(work);
+   expect(await stored()).toBe(before);
+   expect((await state(p)).carpentry.job).toEqual(fixture.carpentry.job);
+   expect((await state(p)).owned.easel).toBe(0);
   }finally{await context.close();}
  }
 });

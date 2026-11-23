@@ -1,7 +1,7 @@
 import {placesView,placeSearchKey} from '../game/places-view.ts';
 import type {WorkshopState} from '../game/live-workshop.ts';
 import type {Point, Room, Stop} from '../game/world.ts';
-import {townMap,type MapResident} from './town-map.ts';
+import {inkwoodMap,townMap,type MapResident} from './town-map.ts';
 
 export function renderPlaces(body: HTMLElement, options: {
  room: Room; position: Point; stops: Stop[]; state: WorkshopState; goal: {id: string; destination?: string};
@@ -27,6 +27,7 @@ export function renderPlaces(body: HTMLElement, options: {
  };
 
  const browse = document.createElement('div');
+ if(options.room==='trail')browse.append(inkwoodMap(options.position,options.stops,options.walk));
  if(options.savedHomes){
   const saved=document.createElement('button');
   saved.type='button';saved.className='destination';saved.textContent='Saved home addresses';
@@ -67,6 +68,20 @@ export function renderPlaces(body: HTMLElement, options: {
  if (map) browse.append(map.element);
  body.append(browse);
 
+ // Chromium does not account for the sticky title when tabbing to a result.
+ const keepFocusInView = (event: FocusEvent) => {
+  const target = event.target;
+  const dialog = body.closest('dialog');
+  const header = dialog?.querySelector('.dialog-head');
+  if (!(target instanceof HTMLElement) || !target.matches(':focus-visible') || !dialog || !header) return;
+  const bounds = target.getBoundingClientRect();
+  const top = header.getBoundingClientRect().bottom + 8;
+  const bottom = dialog.getBoundingClientRect().bottom - 8;
+  if (bounds.top < top) dialog.scrollTop += bounds.top - top;
+  else if (bounds.bottom > bottom) dialog.scrollTop += bounds.bottom - bottom;
+ };
+ browse.addEventListener('focusin', keepFocusInView);
+
  if (!view.groups.length && !options.outside?.stops.length) return map?.updateResidents;
  const label = document.createElement('label');
  label.className = 'places-search';
@@ -84,21 +99,8 @@ export function renderPlaces(body: HTMLElement, options: {
  results.setAttribute('aria-label', 'Matching places');
  results.hidden = true;
 
- // Chromium does not account for the sticky title when tabbing to a result.
- const keepFocusInView = (event: FocusEvent) => {
-  const target = event.target;
-  const dialog = body.closest('dialog');
-  const header = dialog?.querySelector('.dialog-head');
-  if (!(target instanceof HTMLElement) || !target.matches(':focus-visible') || !dialog || !header) return;
-  const bounds = target.getBoundingClientRect();
-  const top = header.getBoundingClientRect().bottom + 8;
-  const bottom = dialog.getBoundingClientRect().bottom - 8;
-  if (bounds.top < top) dialog.scrollTop += bounds.top - top;
-  else if (bounds.bottom > bottom) dialog.scrollTop += bounds.bottom - bottom;
- };
  label.addEventListener('focusin', keepFocusInView);
  results.addEventListener('focusin', keepFocusInView);
- browse.addEventListener('focusin', keepFocusInView);
 
  const searchable = options.stops.map(stop => ({stop, name: placeSearchKey(stop.name)}));
  const searchableOutside = (options.outside?.stops ?? []).map(stop => ({stop, name: placeSearchKey(stop.name)}));

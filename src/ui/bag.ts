@@ -58,8 +58,15 @@ export class BagView {
   for(const group of BAG_GROUPS){const button=document.createElement('button');button.type='button';button.textContent=POCKET_LABELS[group];button.dataset.bagPocket=group;button.setAttribute('aria-pressed',String(group==='furniture'));button.onclick=()=>this.openPocket(group);this.pockets.set(group,button);filters.append(button);}
   this.filterRow.className='bag-filter';
   const filterLabel=document.createElement('label');
+  const filterKey='ih2:bag-hide-empty:v1:'+owner;
   this.hideEmpty.type='checkbox';
-  this.hideEmpty.onchange=()=>this.updateFilter();
+  try{this.hideEmpty.checked=localStorage.getItem(filterKey)==='1';}
+  catch{/* Keep the default when browser preferences are unavailable. */}
+  this.hideEmpty.onchange=()=>{
+   this.updateFilter();
+   try{localStorage.setItem(filterKey,this.hideEmpty.checked?'1':'0');}
+   catch{/* The change still works in the open Bag. */}
+  };
   filterLabel.append(this.hideEmpty,'Hide empty slots');
   this.filterRow.append(filterLabel);
   headingRow.append(heading,this.filterRow);

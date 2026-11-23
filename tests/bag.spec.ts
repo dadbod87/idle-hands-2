@@ -524,6 +524,18 @@ test('bag: hide empty slots without losing placement, equipment or stack arrange
    await page.getByRole('button',{name:'Return this furniture to bag',exact:true}).click();
    await expect(stack(page,'planter')).toBeVisible();
    await expect(count(page,'planter')).toHaveText('1');
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   await page.locator('#bag').click();
+   await expect(filter).toBeChecked();
+   await expect(furniture.locator('[data-empty=true]').first()).toBeHidden();
+   await page.reload();
+   await ready(page);
+   await page.locator('#bag').click();
+   await expect(filter).toBeChecked();
+   await filter.uncheck();
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   await page.locator('#bag').click();
+   await expect(filter).not.toBeChecked();
   }finally{await context.close();}
  }
 });

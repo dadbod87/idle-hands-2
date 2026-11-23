@@ -20,14 +20,14 @@ import{NEIGHBORHOOD_ASSETS,neighborhoodArt}from'../art/neighborhood.ts';
 import {homeSlots,type HomeSlotId} from '../game/live-home-layout.ts';
 import {DEPOT_ASSETS,depotArt} from '../art/depots.ts';
 import {settleCarpentry,type CarpentryState,type NoticeboardState} from '../game/carpentry.ts';
-import {CARPENTRY_ASSETS,carpentryArt,carpentryActionFrame,type CarpentryAnimation} from '../art/carpentry.ts';
+import {carpentryWorldAssets,carpentryArt,carpentryActionFrame,type CarpentryAnimation} from '../art/carpentry.ts';
 import {SURVEY_IDS,SURVEYS} from '../game/fieldwork.ts';
 import {gardenStage,type GardenState} from '../game/live-garden.ts';
 import {gardenWorldAssets} from '../art/garden-world-assets.ts';
 import {gardenArt,gardenActionFrame,type GardenAnimation} from '../art/garden.ts';
 import Phaser from 'phaser';
 import {trailWorldAssets,TRAIL_ART} from '../art/trail.ts';
-import {HOME_SUPPORT_ASSETS,HOME_ART,HOME_CATALOG} from '../art/home.ts';
+import {homeWorldAssets,HOME_ART,HOME_CATALOG} from '../art/home.ts';
 import {TownSky} from './TownSky.ts';
 import {type TownClimate} from '../game/town-climate.ts';
 import {TOWN_PEOPLE,type TownPersonId} from '../game/town-people.ts';
@@ -37,7 +37,7 @@ import {movementFrameSteps} from '../game/movement-frame.ts';
 import {ResidentMotion} from '../game/resident-motion.ts';
 import { INKWOOD_GLASSHOUSE, INKWOOD_STEWARD, TILE, worlds, clearSegment, type Room } from '../game/world.ts';
 import { PLACEMENT_SLOTS, type WorkshopState,type PropId } from '../game/live-workshop.ts';
-import { ORIGINAL_STATIC, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
+import { ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 import catalog from '../../public/art/variety/catalog.json';
 import {RESIDENT_IDS,TREE_KINDS,BUILDING_KINDS,residentArt,residentFrame,ambientPose,cosmeticStep} from '../art/variety.ts';
 type ArtAsset={id:string;width:number;height:number;foot?:{x:number;y:number};occlusion?:{x:number;y:number;width:number;height:number};lightingWindows?:Array<{x:number;y:number;width:number;height:number}>};
@@ -388,12 +388,17 @@ export class WorldScene extends Phaser.Scene {
         if(!this.textures.exists(key))this.load.svg(key,homeInteriorPath(key));
       }
     }
-    if(this.loadingRoom.startsWith('home'))this.load.svg('home-naturalist',NATURALIST_KEEPSAKE.art);
-    for(const id of ['desk','wind','soft-bank','detour','post-broken','post-aligned','post-pinned','post-repaired'])this.load.svg('outing-'+id,'/art/outing/'+id+'.svg');
-    this.load.svg('home-teapot-world','/art/cafe/teapot-world.svg');
-    this.load.svg('home-teapot-icon','/art/cafe/teapot-icon.svg');
-    for(const key of DEPOT_ASSETS)this.load.svg(key,`/art/depots/${key}.svg`);
-    for(const motif of ['leaf','sun','moth'])this.load.svg('letterbox-'+motif+'-closed','/art/commission/letterbox-'+motif+'-closed.svg');
+    const room=this.loadingRoom,street=room==='neighborhood';
+    const home=room.startsWith('home'),furnished=home||room==='workshop';
+    if(home)this.load.svg('home-naturalist',NATURALIST_KEEPSAKE.art);
+    if(room==='square'){
+      for(const id of ['desk','wind','soft-bank','detour','post-broken','post-aligned','post-pinned','post-repaired'])this.load.svg('outing-'+id,'/art/outing/'+id+'.svg');
+      for(const key of DEPOT_ASSETS)this.load.svg(key,`/art/depots/${key}.svg`);
+      this.load.svg('home-plot','/art/original/home-plot.svg');
+    }
+    if(room==='workshop')for(const key of ['ground-workshop','bench','crates'])this.load.svg(key,`/art/original/${key}.svg`);
+    if(furnished)this.load.svg('home-teapot-world','/art/cafe/teapot-world.svg');
+    if(furnished||street)for(const motif of ['leaf','sun','moth'])this.load.svg('letterbox-'+motif+'-closed','/art/commission/letterbox-'+motif+'-closed.svg');
     // Peer sprites use the four ordinary rigs. Activity/equipment sheets belong
     // only to self; avoid rasterizing nine unused sheets on every fresh visit.
     const rig=residentArt(this.residentId);
@@ -406,7 +411,11 @@ export class WorldScene extends Phaser.Scene {
       this.activityLoading.add('orchard-picking-'+rig);
       this.load.svg('orchard-picking-'+rig,'/art/orchard/'+rig+'-picking.svg');
     }
-    for(const key of CARPENTRY_ASSETS)if(!/^(saw-equipped-|carpentry-actions-)/.test(key)||key.endsWith('-'+rig)){if(/^(saw-equipped-|carpentry-actions-)/.test(key))this.activityLoading.add(key);this.load.svg(key,'/art/carpentry/'+key+'.svg');}
+    for(const key of carpentryWorldAssets(room,rig)){
+      if(this.textures.exists(key))continue;
+      if(key.startsWith('saw-equipped-')||key.startsWith('carpentry-actions-'))this.activityLoading.add(key);
+      this.load.svg(key,'/art/carpentry/'+key+'.svg');
+    }
     if(this.session.room==='garden')for(const key of ALLOTMENT_LAYERS)this.load.svg(key,`/art/allotment/${key}.svg`);
     for(const key of gardenWorldAssets(this.session.room,rig)){
       if(key.startsWith('garden-actions-'))this.activityLoading.add(key);
@@ -415,9 +424,8 @@ export class WorldScene extends Phaser.Scene {
     if(this.loadingRoom==='trail'&&!this.textures.exists('glasshouse-overgrown'))this.load.svg('glasshouse-overgrown','/art/glasshouse/overgrown.svg');
     if(this.loadingRoom==='trail'&&!this.textures.exists('inkwood-steward'))this.load.svg('inkwood-steward','/art/inkwood/wren.svg');
     for(const key of trailWorldAssets(this.loadingRoom))if(!this.textures.exists(key))this.load.svg(key,'/art/trail/'+key+'.svg');
-    const street=this.loadingRoom==='neighborhood';
-    for(const key of HOME_SUPPORT_ASSETS){
-      if(!this.textures.exists(key)&&(street||!key.endsWith('-exterior')))this.load.svg(key,'/art/homes/'+key+'.svg');
+    for(const key of homeWorldAssets(room)){
+      if(!this.textures.exists(key))this.load.svg(key,'/art/homes/'+key+'.svg');
     }
     if(street){
       for(const asset of HOUSING_ASSETS)if(!this.textures.exists(asset.id))this.load.svg(asset.id,'/art/housing/'+asset.file);
@@ -427,9 +435,13 @@ export class WorldScene extends Phaser.Scene {
       const usedHere=asset.id==='housing-registry'?this.loadingRoom==='square':street;
       if(usedHere&&!this.textures.exists(asset.id))this.load.svg(asset.id,'/art/neighborhood/'+asset.file);
     }
-    for (const key of ORIGINAL_STATIC) if(!['ground-square','workshop','cafe','tree'].includes(key))this.load.svg(key, `/art/original/${key}.svg`);
-    const keys=['ground-square',...BUILDING_KINDS.map(k=>'building-'+k),...TREE_KINDS.flatMap(k=>['tree-'+k+'-trunk','tree-'+k+'-canopy']),...RESIDENT_IDS.map(k=>'resident-'+k)];
-    for(const key of keys)this.load.svg('variety-'+key,`/art/variety/${key}.svg`);
+    const keys=RESIDENT_IDS.map(k=>'resident-'+k);
+    if(room==='square')keys.push('ground-square',...BUILDING_KINDS.map(k=>'building-'+k));
+    if(room==='square'||room==='trail'||street)keys.push(...TREE_KINDS.flatMap(k=>['tree-'+k+'-trunk','tree-'+k+'-canopy']));
+    for(const key of keys){
+      const texture='variety-'+key;
+      if(!this.textures.exists(texture))this.load.svg(texture,`/art/variety/${key}.svg`);
+    }
   }
   create() {
     if(this.loadingRoom!==this.session.room||(this.loadingRoom.startsWith('home')&&this.loadingInteriorKey!==this.interiorKey())){

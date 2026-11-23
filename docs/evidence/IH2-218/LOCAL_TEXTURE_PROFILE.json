@@ -1,0 +1,164 @@
+{
+  "baseline": "c96da3a95c414f9d7dc057c15231bab1528e30af",
+  "method": "Fresh native browser contexts, gameplay inputs, static raw sizes summed for distinct requested SVG paths each phase. Cosmetic daylight held. No DB, game save or clock fixtures. No speed or bandwidth claim.",
+  "results": [
+    {
+      "name": "baseline",
+      "layout": "desktop",
+      "engine": "chromium",
+      "samples": {
+        "square": {
+          "requests": 87,
+          "distinct": 87,
+          "rawSvgBytes": 570397
+        },
+        "workshop": {
+          "requests": 0,
+          "distinct": 0,
+          "rawSvgBytes": 0
+        },
+        "return": {
+          "requests": 0,
+          "distinct": 0,
+          "rawSvgBytes": 0
+        }
+      },
+      "api": [],
+      "errors": [],
+      "savePreserved": true
+    },
+    {
+      "name": "candidate",
+      "layout": "desktop",
+      "engine": "chromium",
+      "samples": {
+        "square": {
+          "requests": 52,
+          "distinct": 52,
+          "rawSvgBytes": 528213
+        },
+        "workshop": {
+          "requests": 18,
+          "distinct": 18,
+          "rawSvgBytes": 23723
+        },
+        "return": {
+          "requests": 0,
+          "distinct": 0,
+          "rawSvgBytes": 0
+        }
+      },
+      "api": [],
+      "errors": [],
+      "savePreserved": true
+    },
+    {
+      "name": "baseline",
+      "layout": "phone",
+      "engine": "webkit",
+      "samples": {
+        "square": {
+          "requests": 87,
+          "distinct": 87,
+          "rawSvgBytes": 570397
+        },
+        "workshop": {
+          "requests": 0,
+          "distinct": 0,
+          "rawSvgBytes": 0
+        },
+        "return": {
+          "requests": 0,
+          "distinct": 0,
+          "rawSvgBytes": 0
+        }
+      },
+      "api": [],
+      "errors": [],
+      "savePreserved": true
+    },
+    {
+      "name": "candidate",
+      "layout": "phone",
+      "engine": "webkit",
+      "samples": {
+        "square": {
+          "requests": 52,
+          "distinct": 52,
+          "rawSvgBytes": 528213
+        },
+        "workshop": {
+          "requests": 18,
+          "distinct": 18,
+          "rawSvgBytes": 23723
+        },
+        "return": {
+          "requests": 0,
+          "distinct": 0,
+          "rawSvgBytes": 0
+        }
+      },
+      "api": [],
+      "errors": [],
+      "savePreserved": true
+    }
+  ],
+  "candidate": "8c7db55483554cf4e89a853fb4625ae6c71419e3",
+  "deferredOrUnusedAtArrival": [
+    "/art/cafe/teapot-icon.svg",
+    "/art/cafe/teapot-world.svg",
+    "/art/carpentry/bound-saw-icon.svg",
+    "/art/carpentry/easel-preview.svg",
+    "/art/carpentry/finishing-rack-empty.svg",
+    "/art/carpentry/finishing-rack-ready.svg",
+    "/art/carpentry/finishing-rack-working.svg",
+    "/art/carpentry/hamper-icon.svg",
+    "/art/carpentry/pine-bundle-icon.svg",
+    "/art/commission/letterbox-leaf-closed.svg",
+    "/art/commission/letterbox-moth-closed.svg",
+    "/art/commission/letterbox-sun-closed.svg",
+    "/art/homes/home-crate-icon.svg",
+    "/art/homes/home-crate-world.svg",
+    "/art/homes/home-easel-icon.svg",
+    "/art/homes/home-easel-world.svg",
+    "/art/homes/home-lamp-icon.svg",
+    "/art/homes/home-lamp-world.svg",
+    "/art/homes/home-planter-icon.svg",
+    "/art/homes/home-planter-world.svg",
+    "/art/homes/home-rug-icon.svg",
+    "/art/homes/home-rug-world.svg",
+    "/art/homes/home-scrap-icon.svg",
+    "/art/homes/home-shelf-icon.svg",
+    "/art/homes/home-shelf-world.svg",
+    "/art/homes/home-stool-icon.svg",
+    "/art/homes/home-stool-world.svg",
+    "/art/homes/home-supplies-icon.svg",
+    "/art/homes/home-timber-icon.svg",
+    "/art/original/bench.svg",
+    "/art/original/bridge-neglected.svg",
+    "/art/original/bridge-restored.svg",
+    "/art/original/crates.svg",
+    "/art/original/ground-workshop.svg",
+    "/art/original/shelf.svg"
+  ],
+  "firstWorkshopRequests": [
+    "/art/cafe/teapot-world.svg",
+    "/art/carpentry/finishing-rack-empty.svg",
+    "/art/carpentry/finishing-rack-ready.svg",
+    "/art/carpentry/finishing-rack-working.svg",
+    "/art/commission/letterbox-leaf-closed.svg",
+    "/art/commission/letterbox-moth-closed.svg",
+    "/art/commission/letterbox-sun-closed.svg",
+    "/art/homes/home-crate-world.svg",
+    "/art/homes/home-easel-world.svg",
+    "/art/homes/home-lamp-world.svg",
+    "/art/homes/home-planter-world.svg",
+    "/art/homes/home-rug-world.svg",
+    "/art/homes/home-shelf-world.svg",
+    "/art/homes/home-stool-world.svg",
+    "/art/homes/home-timber-icon.svg",
+    "/art/original/bench.svg",
+    "/art/original/crates.svg",
+    "/art/original/ground-workshop.svg"
+  ]
+}

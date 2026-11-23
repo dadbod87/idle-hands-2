@@ -1,3 +1,9 @@
+# November 23 — first arrival and Bag movement accepted
+
+PR #106 merged as `a2421996266fa96115db72034395c9a6b1282430`. Main passed 592 domain and database tests and 253 browser cases on its exact commit. [Verification](evidence/IH2-188/EXACT_CI.json).
+
+The next candidate is the [Bag hand-tool pocket](evidence/IH2-191/PLAN.md) on `feat/bag-equipment`. Keep saved previews and databases stopped.
+
 # November 20 — frame-aligned playfield resize accepted
 
 Visible resizing wakes the idle loop, applies pending canvas dimensions during the game step and preserves bounded redraws behind an open menu. Main `5ca6d6fbe00c894a3220866627295dce8d0cd02e` passed 592 domain tests and 251 browser cases. [Exact verification](evidence/IH2-187/EXACT_CI.json).

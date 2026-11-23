@@ -1,3 +1,9 @@
+# November 23 — first arrival and Bag movement accepted
+
+PR #106 merged as `a2421996266fa96115db72034395c9a6b1282430`. Main passed 592 domain and database tests and 253 browser cases on its exact commit. [Verification](evidence/IH2-188/EXACT_CI.json).
+
+The next candidate is the [Bag hand-tool pocket](evidence/IH2-191/PLAN.md) on `feat/bag-equipment`. Keep saved previews and databases stopped.
+
 # November 23 — first arrival and Bag candidate
 
 A path leads from the boarding house toward Marlow. Bag guides the player through returning furniture when the workshop is full and adds a browser-saved order for stacks within each pocket. Read the [candidate handoff](idle-hands-2/handoffs/2026-11-23-arrival-and-bag.md) for verification and next work.

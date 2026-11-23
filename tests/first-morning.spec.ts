@@ -349,3 +349,36 @@ test('fresh local residents can create a badge and start the optional morning fr
   }finally{await context.close();}
  }
 });
+
+
+test('Get up accepts the first touch after the rented room finishes loading',async({browser})=>{
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ try{
+  const page=await context.newPage();
+  let finishRoom!:()=>void;
+  const roomGate=new Promise<void>(resolve=>{finishRoom=resolve;});
+  let requestRoom!:()=>void;
+  const roomRequested=new Promise<void>(resolve=>{requestRoom=resolve;});
+  await page.route('**/art/lodging/rented-room.svg',async route=>{
+   requestRoom();
+   await roomGate;
+   await route.continue();
+  });
+  await install(page);
+  await page.goto('/?sky-study=1&phase=day');await ready(page);
+  await page.getByRole('button',{name:'Open field guide'}).tap();
+  await page.getByRole('button',{name:'Try a first morning',exact:true}).tap();
+  await roomRequested;
+  const wake=page.getByRole('button',{name:'Get up',exact:true});
+  try{
+   await expect(wake).toBeVisible();
+   await expect(wake).toBeDisabled({timeout:1000});
+   expect(await phase(page)).toMatchObject({phase:'bed'});
+  }finally{finishRoom();}
+  await expect(wake).toBeEnabled();
+  await wake.tap();
+  await expect.poll(()=>phase(page)).toMatchObject({phase:'awake'});
+  await expect.poll(async()=>(await snapshot(page)).locked).toBe(false);
+  await expect(page.getByRole('button',{name:'Inspect A note by the bed',exact:true})).toBeEnabled();
+ }finally{await context.close();}
+});

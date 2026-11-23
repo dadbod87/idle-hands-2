@@ -43,3 +43,9 @@ The twelve-hour construction placeholder makes deadline boundaries measurable in
 [Preview the three keepsakes](study/keepsakes.html) at living-room and Bag scale. Fern on Probation has spreading fronds and a low bowl. Succulent, Unsupervised has a compact upright rosette. Priority Marigold has three separated blooms in a trough. These are appearance choices for the same one-time cosmetic reward. They do not carry buff, price or storage differences.
 
 The nine keyboard/touch layout samples passed at desktop, 320px and 200% short landscape. Each Bag illustration fits its 64px frame and the standalone file makes no outbound requests. Terra 6.1 found the marigold the most distinct at small scale. Further world-scale review should sharpen the fern and succulent silhouettes if these designs are selected for runtime.
+
+## Interactive job rehearsal
+
+[Open the rehearsal](study/rehearsal.html) from a disposable static web server rooted at the study directory. It imports the same deterministic project model. Three visitors can share the work, or Ellis can do every job. A two-pine contribution requires an explicit review and cancellation keeps both bundles. Twelve simulated construction hours take twelve seconds in this rehearsal. Changing the active fictional resident leaves the same project and deadline in place.
+
+Desktop keyboard, 320px touch and 200% short landscape passed the complete route with scripted clock advancement, including review and cancellation, one accepted debit, all three jobs, a late opening visit and one keepsake per resident. The first preview exposed a CSS rule that kept a claimed visitor’s choice buttons visible. The hidden state now applies and is verified when switching away and back. The rehearsal holds everything in page memory and uses no game service or browser save.

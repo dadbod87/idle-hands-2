@@ -3664,6 +3664,27 @@
       "evidence": [
         "docs/evidence/IH2-191/PLAN.md"
       ]
+    },
+    {
+      "id": "IH2-198",
+      "title": "Try a short Riverwalk survey between workshop jobs",
+      "status": "queued",
+      "owner_branch": "feat/riverwalk-practice",
+      "goal": "Give a browser-practice resident a quiet side activity and an obvious return route without adding an economy.",
+      "depends_on": [
+        "IH2-145"
+      ],
+      "acceptance": [
+        "Verify the existing Riverwalk route, one durable cast, three unique local entries, stale or failed saves and unchanged workshop progress.",
+        "Review the optional activity and Journal return route on desktop and narrow touch layouts."
+      ],
+      "exclusions": [
+        "No shared-town fishing, inventory grant, real-player changes or saved-preview restart."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-198/PLAN.md"
+      ],
+      "progress_note": "Independent browser-practice candidate on feat/riverwalk-practice. Hosted acceptance pending."
     }
   ],
   "source_status_note": "PR #106 is accepted on main. The Bag equipment and pine-work links are the next candidate."

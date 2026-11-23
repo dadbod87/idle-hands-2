@@ -1,3 +1,4 @@
+import type {RiverSurvey} from '../game/river-survey.ts';
 import { gardenBedView } from '../game/garden-view.ts';
 import type {OrchardPantry} from '../game/orchard.ts';
 import { rewardCue, type WorldCue } from '../audio/world-sounds.ts';
@@ -20,7 +21,7 @@ const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Suppl
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Record<string,unknown>;playerId?:string;collection?:CollectionGrant};
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
+type PanelHost={river?:{cast:()=>RiverSurvey['cast'];walk:()=>void};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -264,6 +265,15 @@ export class WorkshopUI {
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Notes & progress',()=>this.showInventory()));
   const guidance=document.createElement('section');guidance.dataset.journalGuidance='';const heading=document.createElement('h3');heading.textContent='Your next step';const quest=this.p('','quest-card');quest.dataset.quest='';guidance.append(heading,quest);b.append(guidance);
   this.notebook?.destroy();this.notebook=new ActivityNotebook({bench:{label:'Open work bench · jobs & recipes',open:()=>this.showBench()},rack:{label:'Open pine rack · finishing jobs & collection',open:()=>this.host.finishing?.()},garden:{label:'Your allotment · crops, markers & quests',open:()=>this.host.garden?.()}});b.append(this.notebook.root);
+  if(this.host.river){
+   const river=document.createElement('section');
+   river.dataset.riverEntry='';
+   river.hidden=true;
+   const title=document.createElement('h3');title.textContent='Riverwalk line';
+   const detail=this.p('');detail.dataset.riverEntryStatus='';
+   river.append(title,detail,this.button('Walk to the Riverwalk',this.host.river.walk,'destination'));
+   b.append(river);
+  }
   if(this.host.orchardWalk){
    const parcel=document.createElement('section');
    parcel.dataset.orchardParcel='';
@@ -367,6 +377,16 @@ export class WorkshopUI {
    this.bag.updateEquipment(this.state.carpentry.saw,save.busy||save.readOnly||save.canRetry||!!this.remote&&(!!this.remote.busy?.()||!!this.remoteError));
   }
   const now=this.remote?.now()??Date.now(),b=this.host.body;
+  const river=b.querySelector<HTMLElement>('[data-river-entry]');
+  if(river){
+   const cast=this.host.river?.cast();
+   if(river.hidden===!!cast)river.hidden=!cast;
+   if(cast){
+    const status=river.querySelector<HTMLElement>('[data-river-entry-status]')!;
+    const text=cast.readyAt<=now?'Ready to reel in.':'Line out · '+Math.ceil((cast.readyAt-now)/1000)+' s left.';
+    if(status.textContent!==text)status.textContent=text;
+   }
+  }
   const orchardParcel=b.querySelector<HTMLElement>('[data-orchard-parcel]');
   if(orchardParcel){
    const job=this.host.orchard?.()?.parcel;

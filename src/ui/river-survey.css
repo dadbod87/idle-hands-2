@@ -1,0 +1,42 @@
+.river-survey {
+ display: grid;
+ gap: .55rem;
+ margin-block: .55rem .8rem;
+}
+#panel-body .river-survey :is(h3,p,ul) { margin: 0; }
+.river-survey-sketch {
+ position: relative;
+ height: 72px;
+ overflow: hidden;
+ border: 2px solid #546e66;
+ border-radius: 4px;
+ background: repeating-linear-gradient(176deg,#aac5b2 0 10px,#bbd0bc 11px 12px,#aac5b2 13px 22px);
+}
+.river-survey-sketch::before {
+ content: '';
+ position: absolute;
+ inset-block-start: 29px;
+ inset-inline-start: calc(50% - 46px);
+ width: 92px;
+ height: 28px;
+ border: 1px solid #6c9990;
+ border-radius: 50%;
+ box-shadow: 0 0 0 5px #719f9133, inset 0 0 0 5px #719f9133;
+}
+.river-survey-sketch[data-river='casting']::after {
+ content: '';
+ position: absolute;
+ left: 50%;
+ bottom: 24px;
+ width: 10px;
+ height: 24px;
+ border: 2px solid #554b39;
+ border-radius: 7px;
+ background: linear-gradient(to bottom,#bd714d 50%,#ebdab3 50%);
+}
+.river-survey-actions { display: grid; gap: .4rem; }
+.river-survey-actions button { min-height: 44px; }
+.river-survey-notebook { padding-inline-start: 1.25rem; }
+.river-survey-notebook:empty { display: none; }
+.river-survey-status { font-weight: bold; }
+@media(max-height:480px) { .river-survey-sketch { display: none; } }

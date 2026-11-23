@@ -1,7 +1,9 @@
-import {applyRiverSurvey,readRiverSurvey,RIVER_SPOT_IDS,RIVER_SPOTS,RIVER_SURVEY_KEY,type RiverAction,type RiverSurvey} from '../game/river-survey.ts';
+import {applyRiverSurvey,readRiverSurvey,RIVER_SPOT_IDS,RIVER_SPOTS,RIVER_SURVEY_KEY,type RiverAction,type RiverSpot,type RiverSurvey} from '../game/river-survey.ts';
 import './river-survey.css';
 
-export function showRiverSurvey(body:HTMLElement,onSave:()=>void):()=>void {
+const FIND_ART:Record<RiverSpot,string>={reeds:'pondweed',bridge:'wet-boot',riffle:'perch'};
+
+export function showRiverSurvey(body:HTMLElement,onSave:()=>void,walkBack:()=>void):()=>void {
  const surface=document.createElement('section');
  surface.className='river-survey';
  const title=document.createElement('h3');title.textContent='Borrow a rod';
@@ -9,8 +11,10 @@ export function showRiverSurvey(body:HTMLElement,onSave:()=>void):()=>void {
  const sketch=document.createElement('div');sketch.className='river-survey-sketch';sketch.setAttribute('aria-hidden','true');
  const status=document.createElement('p');status.className='river-survey-status';status.setAttribute('role','status');
  const actions=document.createElement('div');actions.className='river-survey-actions';
- const notebook=document.createElement('ul');notebook.className='river-survey-notebook';notebook.setAttribute('aria-label','Recorded river finds');
- surface.append(title,intro,sketch,status,actions,notebook);
+ const back=document.createElement('button');back.type='button';back.className='destination';
+ back.textContent='Walk to the old square';back.onclick=walkBack;
+ const notebook=document.createElement('ul');notebook.className='river-survey-notebook';notebook.setAttribute('role','list');notebook.setAttribute('aria-label','Recorded river finds');
+ surface.append(title,intro,sketch,status,actions,back,notebook);
  body.append(surface);
  let busy=false,closed=false,timer:number|undefined;
  let locks:LockManager|undefined;
@@ -56,10 +60,17 @@ export function showRiverSurvey(body:HTMLElement,onSave:()=>void):()=>void {
   catch{status.textContent='Your river notebook could not be read. The saved entry was kept.';return;}
   for(const spot of state.recorded){
    const {find,note}=RIVER_SPOTS[spot],item=document.createElement('li');
-   const name=document.createElement('strong');name.textContent=find;item.append(name,document.createTextNode(' · '+note));notebook.append(item);
+   const art=document.createElement('img');art.alt='';art.width=96;art.height=80;
+   art.src='/art/river/'+FIND_ART[spot]+'.svg';
+   art.addEventListener('error',()=>{art.hidden=true;},{once:true});
+   const copy=document.createElement('div'),name=document.createElement('strong'),caption=document.createElement('span');
+   name.textContent=find;caption.textContent=note;copy.append(name,caption);
+   item.append(art,copy);notebook.append(item);
   }
   const remaining=RIVER_SPOT_IDS.filter(spot=>!state.recorded.includes(spot));
   const {cast}=state;
+  intro.hidden=remaining.length===0;
+  sketch.hidden=remaining.length===0;
   sketch.dataset.river=cast?'casting':remaining.length?'idle':'complete';
   if(!locks){status.textContent='Browser save coordination is unavailable. You can still read your notebook.';return;}
   if(cast){

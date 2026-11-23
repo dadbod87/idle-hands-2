@@ -36,7 +36,31 @@
 }
 .river-survey-actions { display: grid; gap: .4rem; }
 .river-survey-actions button { min-height: 44px; }
-.river-survey-notebook { padding-inline-start: 1.25rem; }
+.river-survey-notebook {
+ display: grid;
+ gap: .4rem;
+ list-style: none;
+ padding: 0;
+}
+.river-survey-notebook li {
+ display: flex;
+ align-items: center;
+ gap: .65rem;
+ padding: .45rem .55rem;
+ background: #f4e7c9;
+ border: 1px solid #baaa89;
+ border-radius: 4px;
+ overflow-wrap: anywhere;
+}
+.river-survey-notebook img {
+ flex: none;
+ width: clamp(42px, 15vw, 70px);
+ height: auto;
+}
+.river-survey-notebook span {
+ display: block;
+ font-size: .9rem;
+}
 .river-survey-notebook:empty { display: none; }
 .river-survey-status { font-weight: bold; }
 @media(max-height:480px) { .river-survey-sketch { display: none; } }

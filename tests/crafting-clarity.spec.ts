@@ -43,7 +43,7 @@ test('shared crafting: pending server response preserves start and collection fo
  try{await p.locator('[data-craft=planter]').click();await seen;await close();release();await expect.poll(async()=>(await state(p)).job?.recipe).toBe('planter');await expect(p.getByRole('dialog')).toBeHidden();await expect(p.locator('[data-bench-title]')).toBeHidden();expect(await p.evaluate(()=>document.activeElement?.matches('[data-bench-title],[data-bench-bag]'))).toBe(false);const after=await state(p);expect(after.job.readyAt-after.job.startedAt).toBe(8*60*60*1000);expect(after.inventory).toEqual({scrap:2,timber:2,supplies:4});expect(after.owned.planter).toBe(1);expect(errors).toEqual([]);mkdirSync(out,{recursive:true});writeFileSync(out+'/craft-shared-proof.json',JSON.stringify({disclosure:'Fresh fictional Ivy on real disposable ih2_browser HTTP/SQL; native gathering and real5secondcraft, explicit claim. Second real server craft reply held unchanged until panel closed. No stock, clock or position injection. Aster/Bea/Casey48kit/2planter existing seeds unused.',firstJob:job,secondJob:after.job,inventory:after.inventory,ownedPlanter:after.owned.planter,closedPanelNotReopened:true,errors},null,2)+'\n');}finally{release();}
 });
 
-test('missing bench ingredients lead to a depot without automatically collecting',async({browser})=>{
+test('missing bench ingredients lead to a depot without automatically collecting',async({browser,browserName})=>{
  mkdirSync(out,{recursive:true});
  for(const shape of [
   {name:'desktop',width:1440,height:900,text:'100%',touch:false},
@@ -76,7 +76,7 @@ test('missing bench ingredients lead to a depot without automatically collecting
    await expect(paths.getByRole('button')).toHaveCount(3);
    const scrap=paths.getByRole('button',{name:'Walk to the scrap depot'});
    if(shape.touch)await scrap.scrollIntoViewIfNeeded();
-   else{await page.keyboard.press('Tab');await expect(scrap).toBeFocused();}
+   else{await page.keyboard.press(browserName==='webkit'?'Alt+Tab':'Tab');await expect(scrap).toBeFocused();}
    expect((await scrap.boundingBox())!.height).toBeGreaterThanOrEqual(44);
    await expect(scrap).toBeInViewport();
    expect(await paths.evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
@@ -94,9 +94,18 @@ test('missing bench ingredients lead to a depot without automatically collecting
    const collect=page.locator('[data-collect=scrap]');
    await collect.click();
    await expect.poll(async()=>(await state(page)).inventory.scrap).toBe(6);
-   await page.getByRole('button',{name:'Close panel'}).click();
-   await page.locator('#journal').click();
-   await page.locator('[data-activity-open=bench]').click();
+   const gathered=await state(page);
+   const returnToBench=page.getByRole('button',{name:'Walk to workbench',exact:true});
+   await returnToBench.scrollIntoViewIfNeeded();
+   await expect(returnToBench).toBeInViewport({ratio:1});
+   expect((await returnToBench.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+   await page.screenshot({path:out+'/craft-depot-return-'+shape.name+'.png'});
+   if(shape.touch)await returnToBench.tap();
+   else{await returnToBench.focus();await page.keyboard.press('Enter');}
+   await expect(page.getByRole('heading',{name:'Your work bench',exact:true})).toBeVisible({timeout:20_000});
+   expect(await scene(page)).toMatchObject({room:'workshop'});
+   expect((await state(page)).inventory).toEqual(gathered.inventory);
+   expect((await state(page)).job).toBeNull();
    await paths.locator('summary').click();
    await expect(paths.getByRole('button',{name:'Walk to the timber depot'})).toBeVisible();
    await expect(paths.getByRole('button',{name:'Walk to the scrap depot'})).toBeHidden();

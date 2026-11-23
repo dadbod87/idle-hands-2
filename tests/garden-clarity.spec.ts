@@ -90,3 +90,41 @@ test('selected bed announces harvest readiness once and keeps its growing contro
   await context.close();
  }
 });
+
+
+test('returning to the allotment highlights the ripe bed without stealing an active selection', async ({browser}) => {
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ const p=await context.newPage();
+ const started=Date.UTC(2026,10,23,18), initial=createWorkshop(started);
+ const planted=applyWorkshop(initial,{
+  id:'returning-crop-fixture',expectedRevision:0,kind:'garden',
+  gardenAction:{action:'plant',bed:0,crop:'radish'},
+ },started);
+ if(!planted.ok)throw new Error(planted.message);
+ const deadline=planted.state.garden.beds[0]!.readyAt;
+ try{
+  await p.clock.setFixedTime(deadline-1000);
+  await p.addInitScript(save=>{
+   localStorage.setItem('ih2:workshop:v2',JSON.stringify(save));
+   localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'garden',position:{x:9,y:13}}));
+  },planted.state);
+  await boot(p);await beds(p);
+  const crop=p.locator('[data-garden-bed="0"]'),empty=p.locator('[data-garden-bed="1"]');
+  const harvest=p.locator('[data-garden-action=harvest]');
+  await empty.tap();await empty.focus();
+  await p.clock.setFixedTime(deadline);
+  await expect(crop).toHaveAccessibleName('Bed 1. Radish. Ready.');
+  await expect(empty).toHaveAttribute('aria-pressed','true');
+  await expect(empty).toBeFocused();
+  await expect(harvest).toBeDisabled();
+  await p.getByRole('button',{name:'Close panel',exact:true}).tap();
+  await beds(p);
+  await expect(crop).toHaveAttribute('aria-pressed','true');
+  await expect(harvest).toBeEnabled();
+  expect((await state(p)).garden).toEqual(planted.state.garden);
+  await p.screenshot({path:out+'/garden-return-ripe-phone.png'});
+  await harvest.tap();
+  await expect.poll(async()=>(await state(p)).garden.produce.radish).toBe(1);
+  expect((await state(p)).garden.seeds.radish).toBe(2);
+ }finally{await context.close();}
+});

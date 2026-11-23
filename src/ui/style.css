@@ -13,6 +13,13 @@
 @media(max-height:480px) and (min-width:651px){#field-guide{height:44px;min-height:44px}.dialog-head .eyebrow{display:none}}
 
 #town-sky{display:block;font:0.6875rem/1.35 'Courier New',monospace;max-width:30ch;margin-top:3px;color:#43533f} @media(max-width:650px){#town-sky{font-size:.625rem;max-width:28ch;line-height:1.25}} @media(max-height:480px){#town-sky{font-size:.5625rem;max-width:28ch}}
+@media (max-width: 650px) {
+  .location-tag[data-sheltered] #town-sky { display: none; }
+}
+@media (max-height: 480px) {
+  .location-tag #town-sky { display: none; }
+}
+
 
 /* Enlarge text without covering the door: optional location/sky details remain in the guide. */
 @media(max-width:650px){.shell.large-text .location-tag{display:none}}

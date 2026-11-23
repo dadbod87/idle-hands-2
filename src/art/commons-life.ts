@@ -1,5 +1,5 @@
 /** View-only world coordinates. No collision, progression or game-clock state. */
-import {COMMONS_PATHS,COMMONS_PONDS,COMMONS_TREES} from '../game/town-expansion.ts';
+import {COMMONS_PATHS,COMMONS_PONDS,COMMONS_TREES,TOWN_ARRIVAL} from '../game/town-expansion.ts';
 export type ViewPoint={x:number;y:number};
 const TAU=Math.PI*2;
 export const COMMONS_MEADOWS=[
@@ -42,7 +42,12 @@ export function commonsWingPose(ms:number,enabled:boolean){
  * playfield. Smooth proximity falloff avoids a fixed camera jump or new zoom. */
 export function commonsFrame(p:ViewPoint,width:number,height:number){
  const weight=Math.max(0,Math.min(1,(6-Math.hypot(p.x-69,p.y-68))/4));
- return{x:width<600?Math.min(128,Math.max(0,width/2-48))*weight:0,y:width<1000&&height<520?Math.min(64,Math.max(0,height/2-24))*weight:0,weight};
+ const pondY=width<1000&&height<520?Math.min(64,Math.max(0,height/2-24))*weight:0;
+ // On short landscape, frame the arrival and the depots together. This
+ // eases out as the resident leaves the square's starting area.
+ const arrivalWeight=Math.max(0,Math.min(1,(5-Math.hypot(p.x-TOWN_ARRIVAL.x,p.y-TOWN_ARRIVAL.y))/3));
+ const arrivalY=width>=580?Math.min(33,Math.max(0,(260-height)/2))*arrivalWeight:0;
+ return{x:width<600?Math.min(128,Math.max(0,width/2-48))*weight:0,y:pondY-arrivalY,weight};
 }
 
 /** Hand-cut shoreline, strictly inside its existing physical water rectangle. */

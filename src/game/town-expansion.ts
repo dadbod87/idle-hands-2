@@ -1,4 +1,5 @@
 /** Additive first-town geography. Existing saved coordinates/doors never move. */
+export const TOWN_ARRIVAL={x:24,y:25} as const;
 export const TOWN_SIZE={width:128,height:96} as const;
 export const COMMONS_STOPS=[
  {id:'commons-riverwalk',name:'Riverwalk',point:{x:70,y:17},doorArea:[69,15.5,2,2],text:'The riverwalk is open. Fishing is not implemented yet; the fish have requested a longer consultation period.'},

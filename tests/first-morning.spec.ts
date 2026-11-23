@@ -211,3 +211,56 @@ test('a fresh touch resident can follow the first morning through Marlow to thei
 
  } finally {await context.close();}
 });
+
+for (const viewport of [{width:844,height:390},{width:640,height:360}]) test(
+ `short square at enlarged text shows the first task, depots and every toolbar control at ${viewport.width}px`, async ({browser}) => {
+ const context = await browser.newContext({viewport,hasTouch:true});
+ try {
+  const page = await context.newPage();
+  const errors: string[] = [], api: string[] = [];
+  page.on('pageerror', problem => errors.push(problem.message));
+  page.on('request', request => {
+   if (new URL(request.url()).pathname.startsWith('/api/')) api.push(request.url());
+  });
+  await page.goto('/?sky-study=1&phase=day&weather=clear');
+  await ready(page);
+  await page.evaluate(() => document.documentElement.style.fontSize = '200%');
+  await expect(page.locator('.shell')).toHaveClass(/large-text/);
+  const layout = () => page.evaluate(() => {
+   const feedback = document.querySelector('#feedback')!;
+   const pilot = (window as any).__pilot;
+   const canvas = document.querySelector('canvas')!.getBoundingClientRect();
+   const visual = pilot.metrics().visual;
+   const depots = visual.depots;
+   const resident = pilot.snapshot().position;
+   const feet = pilot.screenPoint(resident.x,resident.y);
+   const pixel = (x:number,y:number) => pilot.screenPoint(x/32-.5,y/32-.5);
+   return {
+    canvasHeight: canvas.height,
+    residentFits: feet.y>=visual.variety.actorSize.height*visual.scale*visual.anchor.y
+      && feet.y<=canvas.height,
+    noteFits: feedback.scrollHeight <= feedback.clientHeight + 1 && feedback.getBoundingClientRect().bottom <= innerHeight,
+    fittingControls: [...document.querySelectorAll('.game-controls button')].filter(button => {
+     const rect = button.getBoundingClientRect();
+     return rect.top>=0&&rect.bottom<=innerHeight&&rect.left>=0&&rect.right<=innerWidth&&rect.height>=44;
+    }).length,
+    depotsFit: depots.length===3&&depots.every(({bounds,labelBounds}:any) => [bounds,labelBounds].every(({x,y,width,height}) => {
+     const top = pixel(x,y), bottom = pixel(x+width,y+height);
+     return top.x>=0&&top.y>=0&&bottom.x<=canvas.width&&bottom.y<=canvas.height;
+    })),
+   };
+  });
+  await expect.poll(layout).toMatchObject({noteFits:true,fittingControls:4,depotsFit:true,residentFits:true});
+  expect((await layout()).canvasHeight).toBeGreaterThanOrEqual(195);
+  expect((await snapshot(page)).position).toEqual({x:24,y:25});
+  await page.screenshot({path:out+'/short200-first-task-'+viewport.width+'.png'});
+  const target = await page.evaluate(() => (window as any).__pilot.screenPoint(21,28));
+  await page.locator('canvas').tap({position:target});
+  await expect(page.getByRole('heading',{name:'Scrap depot',exact:true})).toBeVisible();
+  expect(await page.evaluate(() => (window as any).__pilot.workshop().inventory.scrap)).toBe(0);
+  await page.getByRole('button',{name:'Collect available scrap'}).tap();
+  expect(await page.evaluate(() => (window as any).__pilot.workshop().inventory.scrap)).toBe(6);
+  expect(errors).toEqual([]);
+  expect(api).toEqual([]);
+ } finally { await context.close(); }
+});

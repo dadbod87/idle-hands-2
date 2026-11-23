@@ -16,6 +16,8 @@ For a browser setup timeout, inspect the runner image, package mirror, transferr
 
 At closeout distinguish unique workflow runs, retries and duplicate runs. Sum observed job durations across attempts, count inherited successful jobs only once, and cite recent timings for any proposed workflow change. Runner time and actual billing are separate measurements.
 
+Before considering another run, check whether the exact candidate already has one. Use `python3 tools/actions-run-minutes.py --find-existing --require-sequel-head FULL_SHA --require-event pull_request` for a PR head. Use `--require-event push` for the verified main head. The lookup is read-only and includes queued or running checks. An empty result may mean the automatic check has yet to register. A pending result needs time to finish. Neither result alone calls for a manual run.
+
 Use `python3 tools/actions-run-minutes.py RUN_ID...` for an explicit set of runs. It fetches each attempt’s job pages with read-only GitHub CLI requests, counts inherited job IDs once, and records measured seconds and approximate per-job rounded minutes. Omit the report from release acceptance until required jobs finish. During a run the tool lists incomplete jobs and gives a partial total. It cannot determine billed charges. [GitHub job endpoint](https://docs.github.com/en/rest/actions/workflow-jobs#list-jobs-for-a-workflow-run-attempt).
 
 ## Current public-source status — supersedes the private billing hold

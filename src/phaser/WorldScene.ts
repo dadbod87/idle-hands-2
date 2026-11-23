@@ -791,8 +791,20 @@ export class WorldScene extends Phaser.Scene {
     if(this.houseView)this.houseView.setVisible(true);this.drawNeighborhood();
     this.paintBridgeCeremony();
     if(this.bridgeView)this.bridgeView.setTexture(this.bridgeTexture());if(this.pennantView)this.pennantView.setVisible(this.homePennantOwned);
-    const peers=this.residents.filter(r=>r.room===this.room&&(!this.room.startsWith('home')||r.homePlotId===this.homePlotId)&&(this.room!=='neighborhood'||r.districtId===this.districtId)&&Number.isFinite(r.position.x)&&Number.isFinite(r.position.y));
-    for(const[id,view]of this.residentViews)if(!peers.some(p=>p.id===id)){view.image.destroy();view.label.destroy();view.headwear?.destroy();this.residentViews.delete(id);}
+    const cameraView=this.cameras.main.worldView;
+    const peers=this.residents.filter(peer=>{
+      if(peer.room!==this.room||this.room.startsWith('home')&&peer.homePlotId!==this.homePlotId||
+        this.room==='neighborhood'&&peer.districtId!==this.districtId)return false;
+      const x=(peer.position.x+.5)*TILE,y=(peer.position.y+.5)*TILE;
+      // Leave room for sprites and signs just outside the viewport, then mount
+      // them only when the camera approaches. Presence and the town map keep all peers.
+      const margin=this.residentViews.has(peer.id)?192:144;
+      return x>=cameraView.left-margin&&x<=cameraView.right+margin&&y>=cameraView.top-margin&&y<=cameraView.bottom+margin;
+    });
+    const nearPeers=new Set(peers.map(peer=>peer.id));
+    for(const [id,view] of this.residentViews)if(!nearPeers.has(id)){
+      view.image.destroy();view.label.destroy();view.headwear?.destroy();this.residentViews.delete(id);
+    }
     const waveNow=this.waveTime();
     if(this.room==='square'&&activeWave(this.localWaveUntil,waveNow)){
       this.localWaveLabel??=this.add.text(0,0,'Wave hello!',{fontFamily:'Georgia',fontSize:12,color:'#253c34',backgroundColor:'#ffe6a3',padding:{x:4,y:3}}).setOrigin(.5,1);
@@ -811,7 +823,7 @@ export class WorldScene extends Phaser.Scene {
           motion:new ResidentMotion(peer.position)};
         this.residentViews.set(peer.id,view);
       }
-      const visible=this.cameras.main.worldView.contains((peer.position.x+.5)*TILE,(peer.position.y+.5)*TILE);
+      const visible=cameraView.contains((peer.position.x+.5)*TILE,(peer.position.y+.5)*TILE);
       view.motion.sample(peer.position,time,visible&&!reduced&&!document.hidden,this.clearPeerStep);
       if(view.motion.walking)this.visiblePeerWalking=true;
       const {position,frame}=view.motion;

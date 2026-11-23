@@ -3791,6 +3791,28 @@
         "docs/evidence/IH2-197/PLAN.md"
       ],
       "progress_note": "Focused browser acceptance passed locally on fix/confirm-touch-walk. Exact hosted acceptance waits for the combined batch."
+    },
+    {
+      "id": "IH2-200",
+      "title": "Mount nearby residents instead of distant canvas objects",
+      "status": "queued",
+      "owner_branch": "perf/mount-nearby-residents",
+      "goal": "Keep renderer work proportional to nearby company while preserving visibility and full map presence.",
+      "depends_on": [
+        "IH2-194",
+        "IH2-195"
+      ],
+      "acceptance": [
+        "Compare the same crowded scene with parent and candidate, including entry and departure from the camera.",
+        "Verify headwear and same-room presentation plus the unaffected map on desktop and touch."
+      ],
+      "exclusions": [
+        "No server presence, gameplay authority, economy, paid resources or saved-preview changes."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-200/PLAN.md"
+      ],
+      "progress_note": "Local renderer candidate staged behind touch and social visibility. Full hosted acceptance awaits the batched PR."
     }
   ],
   "source_status_note": "PR #107 is accepted on main. Inkwood headwear and trail guidance form the next candidate."

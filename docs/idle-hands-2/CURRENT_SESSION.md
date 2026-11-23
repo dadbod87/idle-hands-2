@@ -1,3 +1,7 @@
+# November 23 — shared-town and practice batches
+
+The [current handoff](handoffs/2026-11-23-shared-town-and-practice.md) records the two batches and their check boundaries. Main is `168e857`. Exact green PR #108 is open. `perf/mount-nearby-residents` contains the shared-town batch on top of it. `feat/browser-practice-journal` combines the separate Riverwalk and Journal experiences. Keep saved previews and databases stopped.
+
 # November 23 — earned headwear ready for review
 
 PR #107 is accepted on main `168e857`. PR #108 is green on `df1c22b` and remains open. The Clerk cap and nearby-resident animation are staged in the separate follow-up branches. [Exact checks, branch order and Actions closeout](handoffs/2026-11-23-headwear-closeout.md). Keep saved previews and databases stopped.

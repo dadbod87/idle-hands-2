@@ -1,0 +1,7 @@
+# IH2-200 · Keep distant residents off the canvas
+
+When several people use different parts of the town square, only residents near the camera need sprites, nameplates and headwear. The game mounts those objects just before they can enter view and releases them farther past the edge. The extra space keeps the renderer from repeatedly creating sprites as someone walks the edge. The existing town map still includes the scoped district roster. It reads the presence data, independent of which artwork the camera needs.
+
+The browser comparison sends the same fictional 26-resident batch to the parent and candidate. One resident starts near the camera, a second comes into view, and later moves away. It verifies both layers of headwear and checks that the new render objects appear and disappear without changing presence messages. The existing wide, narrow and short fixtures verify the usual cosmetics and reduced-motion behavior. This measures mounted objects in a controlled client scene, with no claim about physical-device FPS or server capacity.
+
+The parent mounted all 26 resident views after the second resident moved off camera. The candidate mounts one in that same state, then mounts two when the second enters and returns to one when they leave. This avoids 25 sets of off-screen presentation objects in the measured fixture. Preview artifacts use intercepted fictional presence. Pinned Chromium passed the nearby-headwear and full town-map cases, and the local build and 444 domain tests passed with 28 database-only cases skipped.

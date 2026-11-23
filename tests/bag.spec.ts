@@ -450,6 +450,22 @@ test('shared earned headwear switches a single slot and renders on a visible nei
    await page.getByRole('button',{name:'Close panel',exact:true}).click();
    await expect.poll(async()=>(await visual()).headwear?.texture).toBe('headwear-inkwood');
    expect(commands.slice(2).map(command=>command.item)).toEqual(['clerk','inkwood']);
+   if(shape==='desktop'){
+    const emitResidents=(farX:number)=>page.evaluate(x=>{
+     const peers=[{id:'bea',name:'Bea',room:'square',position:{x:22,y:25.5},headwear:'clerk'},
+      {id:'casey',name:'Casey',room:'square',position:{x,y:25.5},headwear:'inkwood'},
+      ...Array.from({length:24},(_,index)=>({id:'far-'+index,name:'Neighbor '+index,room:'square',position:{x:93+index%5,y:35+Math.floor(index/5)}}))];
+     (window as any).__headwearStream.dispatchEvent(new MessageEvent('presence',{data:JSON.stringify(peers)}));
+    },farX);
+    await emitResidents(110);
+    await expect.poll(async()=>(await visual()).peerMotion.map((peer:{id:string})=>peer.id)).toEqual(['bea']);
+    await emitResidents(27);
+    await expect.poll(async()=>(await visual()).peerHeadwear).toEqual([{id:'bea',texture:'headwear-clerk'},{id:'casey',texture:'headwear-inkwood'}]);
+    await page.screenshot({path:out+'/nearby-residents-desktop.png'});
+    await emitResidents(110);
+    await expect.poll(async()=>(await visual()).peerMotion.map((peer:{id:string})=>peer.id)).toEqual(['bea']);
+   }
+
    expect(errors).toEqual([]);
   }finally{await context.close();}
  }

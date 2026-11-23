@@ -166,3 +166,66 @@ test('town rhythm skips redundant rain style work and resumes the visible pass',
   expect(hiding).toBe(1);
   expect(showing).toBe(1);
 });
+
+test('Wren checks the survey on the visible trail and stays still with reduced motion',async({browser})=>{
+ for(const view of [
+  {name:'desktop',width:1440,height:900,touch:false},
+  {name:'phone',width:320,height:640,touch:true},
+ ]){
+  const context=await browser.newContext({viewport:view,hasTouch:view.touch,reducedMotion:'no-preference'});
+  try{
+   const p=await context.newPage(),requests:string[]=[],errors:string[]=[];
+   const press=(target:ReturnType<typeof p.locator>)=>view.touch?target.tap():target.click();
+   p.on('request',req=>requests.push(new URL(req.url()).pathname));
+   p.on('pageerror',error=>errors.push(error.message));
+   let where={room:'trail',position:{x:9,y:22}},loggedIn=false;
+   const commands:string[]=[];
+   const workshop=createWorkshop(Date.now());
+   const town=()=>({playerId:'aster',name:'Aster',position:where,workshop,
+    trail:{stamps:[],pennantOwned:false},bridge:{phase:'open',restored:true,contributed:3,target:3},
+    quest:{contentVersion:1,awarded:[]},plot:null,plots:[],scores:[],seasonKey:'2026-11-23',serverTime:Date.now(),
+   });
+   await p.addInitScript(()=>{
+    class QuietStream extends EventTarget {readyState=1;close(){}}
+    window.EventSource=QuietStream as unknown as typeof EventSource;
+   });
+   await p.route('**/api/town/**',route=>{
+    const kind=new URL(route.request().url()).pathname.split('/').at(-1)!;
+    if(kind==='fixtures')return route.fulfill({json:{fixtures:[{id:'aster',name:'Aster'}]}});
+    if(kind==='login'){loggedIn=true;return route.fulfill({json:{snapshot:town()}});}
+    if(kind==='snapshot')return loggedIn?route.fulfill({json:{snapshot:town()}}):route.fulfill({status:401,json:{message:'Choose a resident.'}});
+    if(kind==='movement'){where=route.request().postDataJSON();return route.fulfill({json:{ok:true,position:where}});}
+    commands.push(kind);
+    return route.fulfill({status:409,json:{message:'Unexpected command.'}});
+   });
+   await p.goto('/?town=1&sky-study=1&phase=day&weather=clear');await ready(p);
+   await press(p.getByRole('button',{name:'Aster',exact:true}));
+   const pose=()=>p.evaluate(()=>(window as any).__pilot.metrics().visual.variety.ambient.trailSteward);
+   await expect.poll(pose).toBe('inkwood-steward');
+   const before=await economy(p),feet=await snapshot(p);
+   await p.screenshot({path:evidence+'/wren-'+view.name+'-standing.png'});
+   await expect.poll(pose,{timeout:13000}).toBe('inkwood-steward-reading');
+   await p.screenshot({path:evidence+'/wren-'+view.name+'-survey.png'});
+   expect((await snapshot(p)).position).toEqual(feet.position);
+   await p.emulateMedia({reducedMotion:'reduce'});
+   await expect.poll(pose).toBe('inkwood-steward');
+   await press(p.locator('#places'));
+   await press(p.locator('[data-destination=inkwood-steward]'));
+   await expect.poll(async()=>(await snapshot(p)).nearby).toBe('inkwood-steward');
+   await expect.poll(async()=>(await snapshot(p)).walking).toBe(false);
+   await press(p.locator('#interact'));
+   await expect(p.getByRole('heading',{name:'Wren · trail steward',exact:true})).toBeVisible();
+   await press(p.getByRole('button',{name:'Close panel',exact:true}));
+   await press(p.locator('#places'));
+   await press(p.locator('[data-destination=trail-exit]'));
+   await expect.poll(async()=>(await snapshot(p)).nearby).toBe('trail-exit');
+   await expect.poll(async()=>(await snapshot(p)).walking).toBe(false);
+   await press(p.locator('#interact'));
+   await expect.poll(pose).toBeNull();
+   expect(await economy(p)).toEqual(before);
+   expect(requests.filter(url=>url==='/art/inkwood/wren-reading.svg')).toHaveLength(1);
+   expect(commands).toEqual([]);
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});

@@ -839,7 +839,9 @@ export class WorldScene extends Phaser.Scene {
     const actorFrame=available&&orchard?orchardFrame:available&&motion?carpentryActionFrame(motion.facing,motion.action,performance.now()-motion.started,reduced):available&&gardenMotion?gardenActionFrame(gardenMotion.facing,gardenMotion.action,performance.now()-gardenMotion.started,reduced):residentFrame(this.facing,this.frame);
     if(this.actor.texture.key!==actorKey||String(this.actor.frame.name)!==String(actorFrame))this.actor.setTexture(actorKey,actorFrame);
     const x=(this.session.position.x+.5)*TILE,y=(this.session.position.y+.5)*TILE;
-    this.actor.setPosition(x,y).setDepth(y);
+    if(this.actor.x!==x||this.actor.y!==y)this.actor.setPosition(x,y);
+    // Phaser requests a display-list sort even when a depth write repeats its value.
+    if(this.actor.depth!==y)this.actor.setDepth(y);
     if(this.bedPose&&this.bedQuilt){
       if(this.bedPose.visible!==this.resting){
         this.bedPose.setVisible(this.resting);
@@ -901,9 +903,11 @@ export class WorldScene extends Phaser.Scene {
       const px=(position.x+.5)*TILE,py=(position.y+.5)*TILE;
       if(String(view.image.frame.name)!==String(frame))view.image.setFrame(frame);
       if(view.image.x!==px||view.image.y!==py){
-        view.image.setPosition(px,py).setDepth(py);
-        view.label.setPosition(px,py-63).setDepth(py+1);
+        view.image.setPosition(px,py);
+        view.label.setPosition(px,py-63);
       }
+      if(view.image.depth!==py)view.image.setDepth(py);
+      if(view.label.depth!==py+1)view.label.setDepth(py+1);
       const waving=this.room==='square'&&activeWave(peer.waveUntil,waveNow);
       const label=waving?'Waves hello!\n'+peer.name:peer.name;
       if(view.label.text!==label)view.label.setText(label).setBackgroundColor(waving?'#ffe6a3':'#f8f1df');

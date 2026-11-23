@@ -546,6 +546,8 @@ export class WorkshopUI {
     trip={text:'Sketch a tree while your piece takes shape.',label:'Walk to the '+SURVEYS[study].name.toLowerCase(),walk:()=>walkToStudy(study)};
    }else if(walkToAllotment&&garden.observedAt<=now&&garden.beds.some((bed,index)=>bed&&gardenBedView(garden,index,bed.crop,now).phase==='ready')){
     trip={text:'A crop is ready in your allotment.',label:'Walk to your allotment',walk:walkToAllotment};
+   }else if(this.host.river){
+    trip={text:'Try the float survey or check your line. Your bench keeps its deadline.',label:'Walk to the Riverwalk',walk:this.host.river.walk};
    }
    if(trip){
     const heading=document.createElement('h3');

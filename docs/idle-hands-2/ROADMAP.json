@@ -3918,6 +3918,27 @@
         "docs/evidence/IH2-203/PLAN.md"
       ],
       "progress_note": "Separate local player-flow candidate. Hosted acceptance pending."
+    },
+    {
+      "id": "IH2-206",
+      "title": "Walk to the workshop from Bag before arranging furniture",
+      "status": "queued",
+      "owner_branch": "feat/bag-workshop-route",
+      "goal": "Offer a useful outside shortcut and keep indoor placement available where it can be used.",
+      "depends_on": [
+        "IH2-188",
+        "IH2-202"
+      ],
+      "acceptance": [
+        "Verify native outside-to-indoor navigation, untouched stock, full workshop and the existing kept easel workflow."
+      ],
+      "exclusions": [
+        "No economy, placement authority, house rules, game services or Actions workflow change."
+      ],
+      "evidence": [
+        "docs/evidence/IH2-206/PLAN.md"
+      ],
+      "progress_note": "Local Bag follow-up. Keep hosted validation batched."
     }
   ],
   "source_status_note": "Local integration checks combine shared-town draft #109 with the independent browser-practice Journal branch. Main remains at accepted PR #107."

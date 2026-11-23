@@ -6,7 +6,8 @@ type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
 import {bagStacks,BAG_GROUPS,type BagGroup,type BagStack} from '../game/bag.ts';
 import type {PropId,WorkshopState as CurrentWorkshopState} from '../game/live-workshop.ts';
 
-type BagEquipmentActions={
+type BagActions={
+ visitWorkshop?:()=>void;
  equipSaw:()=>void;
  openSawLesson?:()=>void;
  backToWork?:()=>void;
@@ -44,7 +45,7 @@ export class BagView {
  private selected:string|null=null;
  private dragged:string|null=null;
 
- constructor(state:WorkshopState,private orchard?:()=>OrchardPantry|null,chooseFurniture?:(id:PropId)=>void,owner='local',equipment?:BagEquipmentActions){
+ constructor(state:WorkshopState,private orchard?:()=>OrchardPantry|null,chooseFurniture?:(id:PropId)=>void,owner='local',actions?:BagActions){
   this.layoutKey='ih2:bag-layout:v1:'+owner;
   const stacks=bagStacks(state,{},this.orchard?.());
   this.items=new Map(stacks.map(stack=>[stack.id,stack]));
@@ -66,7 +67,17 @@ export class BagView {
   this.emptyPocket.textContent='Nothing in this pocket yet.';
   this.emptyPocket.hidden=true;
   this.status.className='bag-status';
-  const shortcuts=document.createElement('div');shortcuts.className='bag-shortcuts';for(const [label,selector]of [['Arrange furniture','select[aria-label="Furniture to place"]']]){const button=document.createElement('button');button.type='button';button.textContent=label;button.dataset.bagArrange='';button.onclick=()=>this.arrange();shortcuts.append(button);}
+  const shortcuts=document.createElement('div');
+  shortcuts.className='bag-shortcuts';
+  const openWorkshop=chooseFurniture?()=>this.arrange():actions?.visitWorkshop;
+  if(openWorkshop){
+   const button=document.createElement('button');
+   button.type='button';
+   button.textContent=chooseFurniture?'Arrange furniture':'Walk to workshop';
+   button.dataset.bagArrange='';
+   button.onclick=openWorkshop;
+   shortcuts.append(button);
+  }
   this.orderButton.type='button';
   this.orderButton.textContent='Move stacks';
   this.orderButton.setAttribute('aria-pressed','false');
@@ -132,29 +143,29 @@ export class BagView {
     this.equipAction.type='button';
     this.equipAction.className='bag-equip-action';
     this.equipAction.hidden=true;
-    this.equipAction.onclick=()=>equipment?.equipSaw();
+    this.equipAction.onclick=()=>actions?.equipSaw();
     this.equipmentNotice.className='bag-equip-notice';
     this.equipmentNotice.setAttribute('role','status');
     this.sawLesson.type='button';
     this.sawLesson.className='bag-equip-action';
     this.sawLesson.textContent='Visit Nella’s workshop';
-    this.sawLesson.onclick=()=>equipment?.openSawLesson?.();
+    this.sawLesson.onclick=()=>actions?.openSawLesson?.();
     this.sawLesson.hidden=true;
     card.append(this.equipAction,this.sawLesson,this.equipmentNotice);
-    if(equipment?.backToWork){
+    if(actions?.backToWork){
      const back=document.createElement('button');
      back.type='button';
      back.className='bag-equip-back';
      back.textContent='Back to pine work';
-     back.onclick=equipment.backToWork;
+     back.onclick=actions.backToWork;
      card.append(back);
     }
    }
    this.slots.set(stack.id,{card,count,detail,image,fallback,choose,move});
    this.groups.get(stack.group)!.append(card);
   }
-  if(equipment?.wardrobe){
-   const wardrobe=equipment.wardrobe,appearance=document.createElement('section');
+  if(actions?.wardrobe){
+   const wardrobe=actions.wardrobe,appearance=document.createElement('section');
    appearance.className='bag-appearance';
    appearance.hidden=true;
    const title=document.createElement('h4'),look=document.createElement('p'),edit=document.createElement('button');
@@ -167,8 +178,8 @@ export class BagView {
    this.root.append(appearance);
    this.appearance=appearance;
   }
-  if(equipment?.townHeadwear)for(const item of EARNED_HEADWEAR){
-   const {wear,trail,carpentry}=equipment.townHeadwear;
+  if(actions?.townHeadwear)for(const item of EARNED_HEADWEAR){
+   const {wear,trail,carpentry}=actions.townHeadwear;
    const card=document.createElement('section'),title=document.createElement('h4'),state=document.createElement('p'),icon=document.createElement('span');
    const action=document.createElement('button'),find=document.createElement('button'),notice=document.createElement('p');
    card.className='bag-appearance bag-earned-headwear';
@@ -326,7 +337,16 @@ export class BagView {
   source.move.focus();
  }
 
- arrange(selector='select[aria-label="Furniture to place"]'){const dialog=this.root.closest('dialog'),target=dialog?.querySelector<HTMLElement>(selector),header=dialog?.querySelector('header');if(dialog&&target&&header){const details=target.closest('details');if(details)details.open=true;target.focus({preventScroll:true});dialog.scrollTop+=target.getBoundingClientRect().top-header.getBoundingClientRect().bottom-12;}}
+ arrange(selector='select[aria-label="Furniture to place"]'){
+  const dialog=this.root.closest('dialog'),target=dialog?.querySelector<HTMLElement>(selector),header=dialog?.querySelector('header');
+  if(!target){this.root.querySelector<HTMLButtonElement>('[data-bag-arrange]')?.focus();return;}
+  if(dialog&&header){
+   const details=target.closest('details');
+   if(details)details.open=true;
+   target.focus({preventScroll:true});
+   dialog.scrollTop+=target.getBoundingClientRect().top-header.getBoundingClientRect().bottom-12;
+  }
+ }
  focusFurniture(id:PropId){
   const slot=this.slots.get(id);
   if(slot?.choose&&!slot.choose.hidden)this.focusCardAction(slot.card,slot.choose);

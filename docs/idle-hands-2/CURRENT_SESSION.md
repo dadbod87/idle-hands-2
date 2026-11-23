@@ -1,3 +1,7 @@
+# November 23 — town visual follow-up
+
+`study/town-visual-review` layers the [compact location card](../evidence/IH2-223/PLAN.md) and [orchard branch art](../evidence/IH2-224/PLAN.md) over the combined playthrough. See the [dated record](handoffs/2026-11-23-continued-playthrough.md) for local checks and the next hosted batch. The saved previews and databases are stopped.
+
 # November 23 — combined town review
 
 The [continued playthrough checkpoint](handoffs/2026-11-23-continued-playthrough.md) records the latest combined local study, the first real harvest and café tasting, the Inkwood map and steward, resize and renderer evidence, and separate Mossbank and doorstep designs. Keep saved previews and databases stopped. Main is `168e857`. PR #108 remains open and the separate draft #109 has an exact green hosted run.

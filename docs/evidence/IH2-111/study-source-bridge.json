@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "92cd9111c2683891613f09c48608e00181bffff903001599996375ecc8762683",
+    "src/main.ts": "abed6b39a3df52baed376621f4eb746589dde272e0b6184be804c2eff2372ae5",
     "src/phaser/WorldScene.ts": "7eb9d3852bae9e480b41a47b142253d2b3c5e728d9ad2756e7f79fe48fc3d8e9",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the Bag route to the workshop and retained local placement controls. Original study snapshots and generated output remain frozen."
+  "currentTask": "Reviewed the Bag workshop route and frame-aligned text-mode resizing. Original study snapshots and generated output remain frozen."
 }

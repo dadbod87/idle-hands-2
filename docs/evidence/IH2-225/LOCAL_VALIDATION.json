@@ -49,5 +49,10 @@
         "rawBytes": 0
       }
     }
+  },
+  "artifactRebuild": {
+    "files": 255,
+    "rebuildFiles": 255,
+    "mismatches": []
   }
 }

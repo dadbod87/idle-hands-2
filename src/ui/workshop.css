@@ -42,6 +42,9 @@
 
 .activity-note h4::before{display:inline-block;width:1em;content:' ';}
 .activity-note[data-phase=ready] h4::before{content:'✓ '}.activity-note[data-phase=blocked] h4::before{content:'! '}
+#panel-body .journal-ready-return{background:#e4ead6;border:1px solid #809072;padding:10px 12px;margin:0 0 12px}
+#panel-body .journal-ready-return h3{margin:0 0 4px}
+#panel-body .journal-ready-return .destination{width:100%;min-height:44px;margin:4px 0 0}
 .activity-status{min-height:44px}
 .notebook-dialog{max-width:calc(100vw - 16px)}
 .activity-note button{line-height:1.25;padding:8px}

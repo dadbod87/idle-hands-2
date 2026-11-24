@@ -95,7 +95,9 @@ function paint() {
  }
  advance.hidden=current.phase!=='under-repair';
  review.hidden=!pending;
- terms.textContent=pending?names[pending.task]+' · '+(pending.pine?'Give '+pending.pine+' pine.':'Free.'):'';
+ terms.textContent=pending?names[pending.task]+' · '+(pending.pine
+  ?'Give '+pending.pine+' pine. Keep '+(person.account.pine.carried-pending.pine)+' of '+person.account.pine.carried+'.'
+  :'Free.'):'';
  const previousPlant=plants.get(person.name);
  tour.hidden=current.phase!=='open'||!!previousPlant;
  if(previousPlant&&current.phase==='open')note.textContent='This resident already kept '+previousPlant.toLowerCase()+'.';

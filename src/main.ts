@@ -1,6 +1,7 @@
 import {readRiverSurvey,RIVER_SURVEY_KEY,type RiverSurvey,type RiverSpot} from './game/river-survey.ts';
+import {earnedFieldCertificate} from './game/outing.ts';
 import {showRiverSurvey} from './ui/river-survey.ts';
-import {WORKSHOP_PRINT_KEY,WORKSHOP_PRINT_STOP,WORKSHOP_PRINTS,selectedWorkshopPrint,setWorkshopPrint,type WorkshopPrint} from './game/workshop-print.ts';
+import {WORKSHOP_PRINT_KEY,WORKSHOP_PRINT_STOP,WORKSHOP_PRINTS,earnedWorkshopPrints,selectedWorkshopPrint,setWorkshopPrint,type WorkshopPrint} from './game/workshop-print.ts';
 import {RecentFieldNotes} from './game/recent-field-notes.ts';
 import {headwearName} from './art/headwear.ts';
 import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
@@ -199,9 +200,9 @@ let placeWalk:{room:Room;stopId:string;owner:string}|null=null;
 let ready = false;
 let riverSurvey:RiverSurvey|null=null;
 let workshopPrint:WorkshopPrint|null=null;
-let firstMarigold=false;
+const printRights={marigold:false,woodland:false};
 function refreshWorkshopPrint(){
- try{workshopPrint=selectedWorkshopPrint(localStorage.getItem(WORKSHOP_PRINT_KEY),riverSurvey,firstMarigold);}
+ try{workshopPrint=selectedWorkshopPrint(localStorage.getItem(WORKSHOP_PRINT_KEY),riverSurvey,printRights);}
  catch{workshopPrint=null;}
  session.setWorkshopPrint(workshopPrint!==null);
  if(scene.setWorkshopPrint(workshopPrint)&&ready){refreshMenuFrame(2);wakeRender();}
@@ -350,8 +351,16 @@ async function flushMovement(force=false):Promise<void>{
  movement=action;await action;
 }
 const remoteWorkshop=town?.workshopAdapter();
-const outingUI=new OutingUI({open:openPanel,body,position:()=>({room:session.room,position:session.position}),go:id=>goNamedDestination('square',id),changed:()=>{scene.refreshOuting();refreshMenuFrame(2);},feedback:message=>feedback.textContent=message},town);
+function refreshWoodlandCertificate(){
+ if(townMode)return;
+ const earned=earnedFieldCertificate(outingUI.snapshot().journal);
+ if(earned===printRights.woodland)return;
+ printRights.woodland=earned;
+ refreshWorkshopPrint();
+}
+const outingUI=new OutingUI({open:openPanel,body,position:()=>({room:session.room,position:session.position}),go:id=>goNamedDestination('square',id),changed:()=>{scene.refreshOuting();refreshWoodlandCertificate();refreshMenuFrame(2);},feedback:message=>feedback.textContent=message,previewCertificate:townMode?undefined:()=>workshop.showJournal('woodland-certificate')},town);
 scene.outingState=()=>outingUI.snapshot();
+refreshWoodlandCertificate();
 const orchardTable=worlds.square.stops.find(stop=>stop.id==='commons-orchard')!;
 const orchardAvailable=()=>!town||town.snapshot?.orchard!==undefined;
 const orchardPort=town?sharedOrchard(town,()=>!needResync&&!transitionBusy&&contextKey(session.room,homePlotId)===confirmedContext):undefined;
@@ -369,13 +378,13 @@ scene.orchardState=()=>orchardAvailable()?orchardUI.state:undefined;
 scene.orchardNow=orchardPort?.now??Date.now;
 const workshop=new WorkshopUI({recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
  savedMarigold:!town?(earned)=>{
-  if(earned===firstMarigold)return;
-  firstMarigold=earned;
+  if(earned===printRights.marigold)return;
+  printRights.marigold=earned;
   refreshWorkshopPrint();
  }:undefined,
- prints:!town?{selected:()=>workshopPrint,choose:print=>{
+ prints:!town?{earned:()=>earnedWorkshopPrints(riverSurvey,printRights),selected:()=>workshopPrint,choose:print=>{
   try{
-   const saved=setWorkshopPrint(localStorage,print,firstMarigold);
+   const saved=setWorkshopPrint(localStorage,print,printRights);
    refreshWorkshopPrint();
    return saved;
   }catch{return false;}

@@ -19,6 +19,9 @@ export const outingSchema=z.object({version:z.literal(1),revision:z.number().int
  journal:z.array(z.object({id,variant:z.enum(['wind','soft-bank']),route:z.enum(['main','detour']),finishedAt:time}).strict()).max(1000)
 }).strict().refine(s=>new Set(s.journal.map(j=>j.id)).size===s.journal.length&&s.runs>=s.journal.length&&s.journal.every((j,i)=>j.finishedAt<=s.observedAt&&(i===0||j.finishedAt>=s.journal[i-1].finishedAt))&&(!s.active||s.active.startedAt<=s.observedAt&&!s.journal.some(j=>j.id===s.active!.id)&&(s.active.stage===0?s.active.route===null:s.active.route!==null)),'Invalid outing history');
 export type OutingState=z.infer<typeof outingSchema>;
+export function earnedFieldCertificate(entries:OutingState['journal']){
+ return entries.some(entry=>entry.variant==='wind')&&entries.some(entry=>entry.variant==='soft-bank');
+}
 export const createOuting=(now=0):OutingState=>({version:1,revision:0,runs:0,observedAt:now,active:null,journal:[]});
 export const condition=(variant:'wind'|'soft-bank')=>variant==='wind'?{title:'Wind at the bend',tool:'brace' as const,detail:'A leaning branch needs a wooden brace. Or take the marked path around it.'}:{title:'Soft bank',tool:'rope' as const,detail:'The bank needs a guide rope. Or keep your boots dry on the marked detour.'};
 export function outingNext(s:OutingState):OutingStation{return!s.active||s.active.stage===4?'outing-desk':s.active.stage===0?'outing-crossing':'outing-post';}

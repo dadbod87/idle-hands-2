@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "69e0c1b6b697b76960910732378132e218d17c788eb579e668b436dd8bbf6737",
+    "src/main.ts": "fa3fd1384dd354c9b68619e5e7c7d1155ceb17cb20ec1f21960ba09a7afb8ccf",
     "src/phaser/WorldScene.ts": "680500c1879420910d5c05e8d79ed01aabb082c9654143bb9e6f6db73ec0a3f8",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the river and marigold display and inspectable workshop stand. Original study snapshots and generated output remain frozen."
+  "currentTask": "Reviewed the inspectable workshop stand, with earned river, garden and woodland art. Original study snapshots and generated output remain frozen."
 }

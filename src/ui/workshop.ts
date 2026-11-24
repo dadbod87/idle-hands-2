@@ -28,7 +28,7 @@ type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Reco
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
 type StarterDestination=typeof RESOURCE_IDS[number]|'bench';
 type WorkshopTrip={text:string;label:string;walk:()=>void};
-type PanelHost={readyWork?:(ready:boolean)=>void;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};savedMarigold?:(earned:boolean)=>void;prints?:{selected:()=>WorkshopPrint|null;choose:(print:WorkshopPrint|null)=>boolean};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToWorkshop?:()=>void;walkToStarter?:(destination:StarterDestination)=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
+type PanelHost={readyWork?:(ready:boolean)=>void;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};savedMarigold?:(earned:boolean)=>void;prints?:{earned:()=>WorkshopPrint[];selected:()=>WorkshopPrint|null;choose:(print:WorkshopPrint|null)=>boolean};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToWorkshop?:()=>void;walkToStarter?:(destination:StarterDestination)=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -286,11 +286,6 @@ export class WorkshopUI {
   const placement=document.createElement('div');placement.id='placement';arrangement.append(placement);b.append(arrangement);this.renderPlacement();this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Bag',render);if(arrange)this.bag?.arrange();else if(received)this.bag?.focusFurniture(received);else if(equipment)this.bag?.openPocket('equipment',true);}
  private prints?:WorkshopPrintControls;
- private earnedPrints(): WorkshopPrint[]{
-  const found:WorkshopPrint[]=[...(this.host.river?.read()?.recorded??[])];
-  if(this.localOutcome?.state?.garden.harvested.marigold)found.push('marigold');
-  return found;
- }
  private firstRiverwalk(river:RiverSurvey|null|undefined){
   return this.saved&&this.ownsSave&&!this.state.job&&this.state.stats.planterPlacedAfterCraft
    &&this.state.stats.bridgeJobsStarted===0&&!!river&&!river.cast&&!river.recorded.length;
@@ -354,7 +349,7 @@ export class WorkshopUI {
    this.prints=new WorkshopPrintControls({
     choose:print=>{
      const saved=prints.choose(print);
-     this.prints?.update(this.earnedPrints(),prints.selected());
+     this.prints?.update(prints.earned(),prints.selected());
      return saved;
     },
     visit:this.host.walkToWorkshop,inWorkshop:this.host.inside,
@@ -377,7 +372,7 @@ export class WorkshopUI {
   if(this.host.commission)other.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));if(this.host.outings)other.append(this.button('Woodland work · borrowed tools & journal',()=>this.host.outings!(),'destination'));other.append(this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)other.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!(),'destination'));if(this.host.discoveries)other.append(this.button('Trail field notebook',()=>this.host.discoveries?.(),'destination'));b.append(other);
   const progress=document.createElement('details');progress.className='journal-progress';const title=document.createElement('summary');title.textContent='Skills & town progress';const skill=this.p('');skill.dataset.skills='';const kits=this.p('');kits.dataset.kits='';progress.append(title,skill,kits);if(this.host.orchard){const tasting=this.p('');tasting.dataset.orchardTasting='';progress.append(tasting);}if(this.host.returns)progress.append(this.button('Since your last visit',()=>this.host.returns?.(),'destination'));b.append(progress);this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Journal',render);
-  if(print&&this.earnedPrints().includes(print)){
+  if(print&&this.host.prints?.earned().includes(print)){
    const folio=this.host.body.querySelector<HTMLDetailsElement>('[data-workshop-prints]');
    if(folio){folio.open=true;this.prints?.focusPreview(print);}
   }
@@ -522,7 +517,7 @@ export class WorkshopUI {
   }
   const printFolio=b.querySelector<HTMLDetailsElement>('[data-workshop-prints]');
   if(printFolio){
-   const earned=this.earnedPrints();
+   const earned=this.host.prints?.earned()??[];
    printFolio.hidden=!earned.length;
    this.prints?.update(earned,this.host.prints?.selected()??null);
   }

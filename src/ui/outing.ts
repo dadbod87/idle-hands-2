@@ -1,6 +1,6 @@
-import{OUTING_STOPS,condition,createOuting,outingNext,type OutingState,type OutingIntent,type OutingStation}from'../game/outing.ts';
+import{OUTING_STOPS,condition,createOuting,earnedFieldCertificate,outingNext,type OutingState,type OutingIntent,type OutingStation}from'../game/outing.ts';
 import{OutingSaveWriter}from'../persistence/outing-save.ts';import type{TownClient}from'./town-client.ts';import './outing.css';
-type Host={open:(title:string)=>void;body:HTMLElement;position:()=>{room:string;position:{x:number;y:number}};go:(id:string)=>void;changed:()=>void;feedback:(message:string)=>void};
+type Host={open:(title:string)=>void;body:HTMLElement;position:()=>{room:string;position:{x:number;y:number}};go:(id:string)=>void;changed:()=>void;feedback:(message:string)=>void;previewCertificate?:()=>void};
 export class OutingUI{
  private local:OutingSaveWriter;private opened=false;private busy=false;private epoch=0;private owner='';private key='';private message='';
  constructor(private host:Host,private town:TownClient|null){
@@ -51,10 +51,11 @@ export class OutingUI{
  }
  private fieldCertificate(entries:OutingState['journal']){
   const completed=new Set(entries.map(entry=>entry.variant));
+  const earned=earnedFieldCertificate(entries);
   const signoff=document.createElement('section');
   signoff.className='outing-signoff';
-  signoff.dataset.outingCertificate=completed.size===2?'earned':'in-progress';
-  if(completed.size===2){
+  signoff.dataset.outingCertificate=earned?'earned':'in-progress';
+  if(earned){
    const art=document.createElement('img');
    art.src='/art/outing/field-certificate.svg';art.alt='';art.width=144;art.height=110;art.loading='lazy';
    signoff.append(art);
@@ -62,7 +63,7 @@ export class OutingUI{
   const copy=document.createElement('div');
   const title=document.createElement('h4');
   title.textContent='Field certificate';
-  const progress=this.p(completed.size===2
+  const progress=this.p(earned
    ?'Earned · Qualified to point left.'
    :'One more condition to sign off.');
   const checks=document.createElement('ul');
@@ -72,6 +73,7 @@ export class OutingUI{
    checks.append(check);
   }
   copy.append(title,progress,checks);
+  if(earned&&this.host.previewCertificate)copy.append(this.button('Preview certificate for your workshop',this.host.previewCertificate));
   signoff.append(copy);
   return signoff;
  }

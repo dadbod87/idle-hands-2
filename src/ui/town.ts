@@ -96,9 +96,70 @@ export class TownUI {
  }
  showNeighborhoods(){
   const s=this.client.snapshot;if(!s){void this.showLogin();return;}this.start('Homes & neighbors');
-  this.host.body.append(this.p('Choose a neighborhood, then walk to a door. Visitors may look around; only owners can arrange their homes.'));
+  this.host.body.append(this.p('Choose a street or visit a neighbor. Only owners can arrange their homes.'));
+  const visit=this.host.enterHome;
+  const neighbors=s.plots.flatMap(({id,ownerId,ownerName})=>{
+   if(!ownerId||!ownerName||ownerId===s.playerId)return [];
+   const {block,label:address}=addressForPlot(id);
+   return [{id,ownerId,name:ownerName,block,address,search:(ownerName+' '+address).toLocaleLowerCase()}];
+  });
+  if(visit&&neighbors.length){
+   const directory=document.createElement('details');directory.className='neighbor-directory';
+   const heading=document.createElement('summary');heading.textContent='Find a neighbor';
+   const label=document.createElement('label');label.textContent='Name or street address';
+   const query=document.createElement('input');query.type='search';query.autocomplete='off';
+   label.append(query);
+   const count=this.p('');count.setAttribute('role','status');
+   const matches=document.createElement('div');matches.className='neighbor-matches';
+   const paint=()=>{
+    const text=query.value.toLocaleLowerCase();
+    const district=/\bneighborhood\s+(\d+)\b/.exec(text);
+    const words=(district?text.replace(district[0],''):text).match(/\S+/g)??[];
+    const found=neighbors.filter(home=>(!district||home.block===district[1])&&words.every(word=>home.search.includes(word)));
+    const shown=found.slice(0,6);
+    count.textContent=!found.length?'No matching homes.':found.length>shown.length?
+     'Showing '+shown.length+' of '+found.length+' homes. Add a name or address to narrow the list.':
+     found.length+(found.length===1?' matching home.':' matching homes.');
+    matches.replaceChildren(...shown.map(home=>{
+     const button=this.button('Visit '+home.name,()=>{
+      if(this.busy||!directory.isConnected)return;
+      const current=this.client.snapshot;
+      if(current?.playerId!==s.playerId||!current.plots.some(plot=>plot.id===home.id&&plot.ownerId===home.ownerId)){
+       count.textContent='This listing changed. Reopen the directory for current homes.';
+       return;
+      }
+      this.busy=true;
+      void visit(home.id).catch(error=>{if(directory.isConnected)count.textContent=(error as Error).message;})
+       .finally(()=>{this.busy=false;});
+     });
+     button.dataset.neighborVisit=home.id;
+     const address=document.createElement('span');address.className='neighbor-address';address.textContent=home.address;
+     button.append(address);
+     return button;
+    }));
+   };
+   query.addEventListener('input',paint);
+   query.addEventListener('keydown',event=>{
+    if(event.key!=='Enter')return;
+    event.preventDefault();
+    const result=matches.querySelector('button');
+    if(result){
+     result.focus({preventScroll:true});
+     this.revealHomeFocus(result);
+    }
+   });
+   directory.append(heading,label,count,matches);
+   directory.addEventListener('focusin',event=>{
+    const target=event.target;
+    if(this.homeKeyboard&&target instanceof HTMLElement){
+     requestAnimationFrame(()=>{if(document.activeElement===target)this.revealHomeFocus(target);});
+    }
+   });
+   this.host.body.append(directory);
+   paint();
+  }
   const districts=[...new Set(['1',...s.plots.map(p=>addressForPlot(p.id).block)])].sort((a,b)=>BigInt(a)<BigInt(b)?-1:1);
-  for(const id of districts){const homes=s.plots.filter(p=>addressForPlot(p.id).block===id),own=homes.some(p=>p.ownerId===s.playerId),button=this.button((own?'Your street · ':'')+'Neighborhood '+id+' · '+homes.length+' homes',()=>void this.host.enterNeighborhood?.(id));button.dataset.neighborhoodEnter=id;this.host.body.append(button);}
+  for(const id of districts){const homes=s.plots.filter(p=>addressForPlot(p.id).block===id),own=homes.some(p=>p.ownerId===s.playerId),button=this.button((own?'Your street · ':'')+'Neighborhood '+id+' · '+homes.length+(homes.length===1?' home':' homes'),()=>void this.host.enterNeighborhood?.(id));button.dataset.neighborhoodEnter=id;this.host.body.append(button);}
   this.notice();
  }
  private purchaseFacts(kind:'claim'|'expand',button:HTMLButtonElement,plotId?:string){

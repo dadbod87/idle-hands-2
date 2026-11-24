@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Glasshouse first tour · Idle Hands 2 design</title>
+ <style>
+  :root { color-scheme:light; background:#d6cdb7; color:#344639; font-family:Georgia,serif; --ink:#344639; --paper:#f7edda; --green:#dfe6ce; --line:#89947a; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100dvh; display:grid; place-items:center; padding:clamp(10px,3vw,30px); }
+  main { width:min(100%,750px); border:2px solid var(--ink); background:var(--paper); border-radius:7px; box-shadow:4px 5px #34463936; overflow:hidden; }
+  header { padding:1rem clamp(.75rem,3vw,1.55rem); border-bottom:1px solid var(--line); background:var(--green); }
+  header p { margin:0 0 .3rem; font:.78rem/1.4 ui-monospace,monospace; }
+  h1 { margin:0; font-size:1.66rem; line-height:1.1; }
+  .choices { padding:clamp(.75rem,3vw,1.55rem); }
+  fieldset { min-width:0; margin:0; padding:0; border:0; }
+  legend { padding:0; font-weight:bold; }
+  .options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(.35rem,2vw,.85rem); margin:.6rem 0; }
+  label { position:relative; display:grid; align-content:start; justify-items:center; text-align:center; min-width:0; padding:.5rem; border:1px solid var(--line); border-radius:5px; background:#fbf2df; cursor:pointer; overflow-wrap:anywhere; }
+  label:has(input:checked) { background:#e9edda; outline:2px solid #557154; outline-offset:-2px; }
+  label:has(input:focus-visible),button:focus-visible { outline:3px solid #a04b2b; outline-offset:2px; }
+  label img { height:clamp(60px,14vmin,115px); width:auto; max-width:100%; margin:.25rem 0; }
+  label input { position:absolute; inset:.5rem auto auto .5rem; width:1.15rem; height:1.15rem; accent-color:#557154; }
+  label strong { line-height:1.18; }
+  label span { font-size:.86rem; margin-top:.35rem; line-height:1.3; }
+  .confirmation { display:flex; flex-wrap:wrap; gap:.55rem; align-items:center; }
+  button { font:bold .98rem Georgia,serif; color:#fff7e3; background:#45644f; border:2px solid #324938; padding:.45rem .8rem; min-height:44px; border-radius:4px; cursor:pointer; }
+  button:disabled { opacity:.64; cursor:default; }
+  #result:empty { margin:0; }
+  #result { margin:.5rem 0 0; line-height:1.35; font-weight:bold; }
+  @media(max-height:480px) and (min-width:600px) {
+   body { padding:8px; place-items:start center; }
+   header { padding:.5rem .7rem; }
+   h1 { font-size:1.26rem; }
+   .choices { padding:.5rem .65rem; }
+   label img { height:60px; }
+  }
+ </style>
+</head>
+<body>
+<main>
+ <header><p>Design preview · No connection to the game</p><h1>First tour of the Glasshouse</h1></header>
+ <div class="choices">
+  <form>
+   <fieldset>
+    <legend>Choose one plant to take home</legend>
+    <div class="options">
+     <label>
+      <input type="radio" name="plant" value="fern" aria-label="Committee fern" required>
+      <img src="committee-fern.svg" alt="" width="96" height="112">
+      <strong>Committee fern</strong><span>Forms a subcommittee at the first sign of shade.</span>
+     </label>
+     <label>
+      <input type="radio" name="plant" value="sundew" aria-label="Very patient sundew" required>
+      <img src="very-patient-sundew.svg" alt="" width="96" height="112">
+      <strong>Very patient sundew</strong><span>Waits quietly. Has an excellent record with flies.</span>
+     </label>
+    </div>
+   </fieldset>
+   <div class="confirmation"><button type="submit" disabled>Keep this plant · free</button></div>
+  </form>
+  <p id="result" role="status" tabindex="-1"></p>
+ </div>
+</main>
+<script>
+ const form=document.querySelector('form'),button=form.querySelector('button'),result=document.querySelector('#result');
+ const names={fern:'Committee fern',sundew:'Very patient sundew'};
+ form.addEventListener('change',()=>{button.disabled=!form.querySelector(':checked');});
+ form.addEventListener('submit',event=>{
+  event.preventDefault();
+  if(button.disabled)return;
+  const choice=form.querySelector(':checked');
+  if(!choice)return;
+  result.textContent=names[choice.value]+' chosen in this preview.';
+  form.querySelector('fieldset').disabled=true;
+  button.disabled=true;
+  result.focus();
+ });
+</script>
+</body>
+</html>

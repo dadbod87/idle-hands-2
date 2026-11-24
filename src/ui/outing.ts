@@ -73,7 +73,6 @@ export class OutingUI{
    checks.append(check);
   }
   copy.append(title,progress,checks);
-  if(earned&&this.host.previewCertificate)copy.append(this.button('Preview certificate for your workshop',this.host.previewCertificate));
   signoff.append(copy);
   return signoff;
  }
@@ -110,7 +109,11 @@ export class OutingUI{
    note.dataset.outingNote='';note.tabIndex=-1;
    return note;
   });
-  if(notes.length)journal.append(...notes,this.fieldCertificate(s.journal));
+  if(notes.length){
+   journal.append(...notes,this.fieldCertificate(s.journal));
+   if(earnedFieldCertificate(s.journal)&&this.host.previewCertificate)
+    journal.append(this.button('Preview certificate for your workshop',this.host.previewCertificate));
+  }
   else journal.append(this.p('Your first recorded repair will appear here.'));
   journal.addEventListener('toggle',()=>{
    if(this.opened&&journal.open&&journal.isConnected&&document.activeElement===summary&&notes.length){

@@ -32,6 +32,9 @@ test('Journal puts confirmed finished work before waiting jobs on reopen',async(
    await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
    if(text!==100)await page.evaluate(percent=>document.documentElement.style.fontSize=percent+'%',text);
    const journal=page.locator('#journal');
+   await expect(journal.locator('#journal-ready-mark')).toBeVisible();
+   await expect(journal).toBeInViewport({ratio:1});
+   await page.screenshot({path:output+'/'+name+'-toolbar.png'});
    if(hasTouch)await journal.tap();else await journal.click();
    const parcel=page.locator('[data-orchard-parcel]');
    await expect(parcel).toContainText('Packed snack ready to collect.');

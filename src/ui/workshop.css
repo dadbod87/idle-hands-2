@@ -48,11 +48,15 @@
 #panel-body .journal-ready-return h3{margin:0 0 4px}
 #panel-body .journal-ready-return p{margin:0 0 5px}
 #panel-body .journal-ready-return .destination{width:100%;min-height:44px;margin:4px 0 0}
+#panel-body .journal-first-outing{border-top:1px solid var(--line);margin-block:.55rem .85rem;padding-block-start:.5rem}
+#panel-body .journal-first-outing h3{margin:0 0 .3rem}
+#panel-body .journal-first-outing p{margin:0 0 .3rem}
+#panel-body .journal-first-outing button{width:100%;min-height:44px;margin:0}
 #journal{position:relative}
 .journal-ready-mark{position:absolute;inset:3px 4px auto auto;display:grid;place-items:center;width:14px;height:14px;border:1px solid #365c46;border-radius:4px;color:#365c46;background:#e0ead0;font:700 11px/1 Georgia,serif;pointer-events:none}
 .journal-ready-mark[hidden]{display:none}
 @media(min-width:651px) and (max-height:480px){
- .notebook-dialog:has(.journal-ready-return){width:min(620px,calc(100vw - 24px))}
+ .notebook-dialog:has(:is(.journal-ready-return,.journal-first-outing)){width:min(620px,calc(100vw - 24px))}
 }
 .activity-status{min-height:44px}
 .notebook-dialog{max-width:calc(100vw - 16px)}

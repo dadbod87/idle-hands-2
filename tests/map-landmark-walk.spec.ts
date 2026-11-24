@@ -1,5 +1,77 @@
 import {mkdirSync} from 'node:fs';
 import {test,expect} from '@playwright/test';
+import {applyWorkshop,createWorkshop,type WorkshopState} from '../src/game/live-workshop.ts';
+
+test('after placing a first planter, Journal offers a short Riverwalk outing without another job',async({browser})=>{
+ test.setTimeout(60_000);
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ try{
+  const page=await context.newPage(),errors:string[]=[],requests:string[]=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))requests.push(request.url());});
+  const hit=async(name:string)=>page.getByRole('button',{name,exact:true}).tap();
+  const boots=()=>expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+  await page.goto('/');
+  await boots();
+  await hit('Journal');
+  await expect(page.locator('[data-river-entry]')).toBeHidden();
+  const start=Date.now()-60_000;
+  let workshop=createWorkshop(start);
+  for(const [index,command] of [
+   {kind:'gather',resource:'scrap'},
+   {kind:'gather',resource:'timber'},
+   {kind:'gather',resource:'supplies'},
+   {kind:'craft',recipe:'planter'},
+   {kind:'claim'},
+   {kind:'place',prop:'planter',slot:'north-west'},
+  ].entries()){
+   const result=applyWorkshop(workshop,{...command,id:'first-outing-'+index,expectedRevision:workshop.revision},start+index*6000);
+   expect(result.ok,result.message).toBe(true);
+   workshop=result.state;
+  }
+  // Explicit fixture for the previous morning only. The travel and cast below
+  // use ordinary input and real time, with no starting position or river data.
+  await page.addInitScript(save=>localStorage.setItem('ih2:workshop:v2',JSON.stringify(save)),workshop);
+  await page.reload();
+  await boots();
+  await hit('Journal');
+  const river=page.locator('[data-river-entry]');
+  await expect(river).toContainText('Borrow a rod and try a 12-second cast.');
+  await expect(river).toHaveClass('journal-first-outing');
+  const route=river.getByRole('button',{name:'Walk to the Riverwalk',exact:true});
+  const out=process.env.QA_EVIDENCE_DIR??'test-results/browser/first-riverwalk';
+  mkdirSync(out,{recursive:true});
+  await route.evaluate(node=>node.scrollIntoView({block:'center'}));
+  await expect(route).toBeInViewport({ratio:1});
+  await page.screenshot({path:out+'/phone-outing.png'});
+  await page.setViewportSize({width:844,height:390});
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  await river.evaluate(node=>node.scrollIntoView({block:'center'}));
+  await expect(route).toBeInViewport({ratio:1});
+  await expect.poll(async()=>{
+   const heading=await river.getByRole('heading').boundingBox(),title=await page.locator('.dialog-head').boundingBox();
+   return !!heading&&!!title&&heading.y>=title.y+title.height-1;
+  }).toBe(true);
+  await page.screenshot({path:out+'/short-outing.png'});
+  await page.setViewportSize({width:320,height:640});
+  await page.evaluate(()=>document.documentElement.style.fontSize='100%');
+  await route.tap();
+  await expect(page.getByRole('heading',{name:'Borrow a rod'})).toBeVisible({timeout:35_000});
+  await hit('Cast at Reed bank');
+  const reel=page.getByRole('button',{name:'Reel in and record',exact:true});
+  await expect(reel).toBeDisabled();
+  await expect(reel).toBeEnabled({timeout:15_000});
+  await reel.tap();
+  await expect(page.getByRole('list',{name:'Recorded river finds'})).toContainText('A ribbon of pondweed');
+  await hit('Close panel');
+  await hit('Journal');
+  await expect(page.locator('.journal-first-outing')).toHaveCount(0);
+  await expect(page.locator('[data-river-journal]')).toBeVisible();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('ih2:workshop:v2')!) as WorkshopState)).toEqual(workshop);
+  expect(requests).toEqual([]);
+  expect(errors).toEqual([]);
+ }finally{await context.close();}
+});
 
 test('map destination highlights the landmark and waits for deliberate travel', async ({browser}) => {
  const out='test-results/browser/map-landmark-walk';

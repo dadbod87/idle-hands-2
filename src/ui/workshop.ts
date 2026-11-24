@@ -1,4 +1,4 @@
-import {RIVER_SPOT_IDS,type RiverSurvey,type RiverSpot} from '../game/river-survey.ts';
+import {CAST_MS,RIVER_SPOT_IDS,type RiverSurvey,type RiverSpot} from '../game/river-survey.ts';
 import {createRiverFindList,updateRiverFinds} from './river-survey.ts';
 import {RiverPrintControls} from './river-print.ts';
 import type {FieldNote} from '../game/recent-field-notes.ts';
@@ -285,6 +285,10 @@ export class WorkshopUI {
   const placement=document.createElement('div');placement.id='placement';arrangement.append(placement);b.append(arrangement);this.renderPlacement();this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Bag',render);if(arrange)this.bag?.arrange();else if(received)this.bag?.focusFurniture(received);else if(equipment)this.bag?.openPocket('equipment',true);}
  private riverPrint?:RiverPrintControls;
+ private firstRiverwalk(river:RiverSurvey|null|undefined){
+  return this.saved&&this.ownsSave&&!this.state.job&&this.state.stats.planterPlacedAfterCraft
+   &&this.state.stats.bridgeJobsStarted===0&&!!river&&!river.cast&&!river.recorded.length;
+ }
  showJournal(){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Notes & progress',()=>this.showInventory()));
   const guidance=document.createElement('section');guidance.dataset.journalGuidance='';const heading=document.createElement('h3');heading.textContent='Your next step';const quest=this.p('','quest-card');quest.dataset.quest='';guidance.append(heading,quest);b.append(guidance);
@@ -298,13 +302,16 @@ export class WorkshopUI {
    const river=document.createElement('section');
    river.dataset.riverEntry='';
    river.hidden=true;
-   const title=document.createElement('h3');title.textContent='Riverwalk line';
+   const title=document.createElement('h3');title.dataset.riverEntryTitle='';title.textContent='Riverwalk line';
    const detail=this.p('');detail.dataset.riverEntryStatus='';
    river.append(title,detail,this.button('Walk to the Riverwalk',this.host.river.walk,'destination'));
-   const cast=this.host.river.read()?.cast;
+   const riverState=this.host.river.read(),cast=riverState?.cast;
    if(cast&&cast.readyAt<=now){
     river.classList.add('journal-ready-return');
     b.insertBefore(river,guidance);
+   }else if(this.firstRiverwalk(riverState)){
+    river.classList.add('journal-first-outing');
+    b.insertBefore(river,this.notebook.root);
    }else b.append(river);
    const folio=document.createElement('details');
    folio.className='river-journal';
@@ -475,10 +482,15 @@ export class WorkshopUI {
   const riverState=this.host.river?.read();
   if(river){
    const cast=riverState?.cast;
-   if(river.hidden===!!cast)river.hidden=!cast;
-   if(cast){
+   const visible=!!cast||this.firstRiverwalk(riverState);
+   if(river.hidden===visible)river.hidden=!visible;
+   if(visible){
+    const title=river.querySelector<HTMLElement>('[data-river-entry-title]')!;
+    const label=cast?'Riverwalk line':'Optional outing · Riverwalk';
+    if(title.textContent!==label)title.textContent=label;
     const status=river.querySelector<HTMLElement>('[data-river-entry-status]')!;
-    const text=cast.readyAt<=now?'Ready to reel in.':'Line out · '+Math.ceil((cast.readyAt-now)/1000)+' s left.';
+    const text=!cast?'Borrow a rod and try a '+CAST_MS/1000+'-second cast.'
+     :cast.readyAt<=now?'Ready to reel in.':'Line out · '+Math.ceil((cast.readyAt-now)/1000)+' s left.';
     if(status.textContent!==text)status.textContent=text;
    }
   }

@@ -44,7 +44,15 @@ export class GardenUI{
  private async retry(afterRetry?:(result:WorkshopCommandResult)=>void){if(this.busy||this.owner!==this.host.owner())return;const status=this.status,owner=this.owner;this.busy=true;this.refresh();try{const r=await this.workshop.retryGarden();if(status===this.status&&owner===this.host.owner()&&this.active){afterRetry?.(r);if(r.ok)this.preview=false;if(status)status.textContent=r.message;}}finally{this.busy=false;this.host.changed();this.refresh();}}
  private async perform(action:GardenAction){
   if(this.blocked(action))return false;const status=this.status,owner=this.owner;this.busy=true;if(this.status)this.status.textContent='Saving this change…';this.refresh();this.host.changed();
-  try{const result=await this.workshop.runGarden(action);if(status===this.status&&owner===this.host.owner()&&this.active){if(status)status.textContent=result.message;if(result.ok)this.preview=false;}if(owner===this.host.owner()){this.host.feedback(result.message);if(result.ok)this.host.accepted(action);}return result.ok;}
+  const firstFlower=action.action==='harvest'&&!this.host.shared&&!this.workshop.cafeLocalStatus()?.state?.garden.harvested.marigold;
+  try{
+   const result=await this.workshop.runGarden(action);
+   const print=firstFlower&&result.ok&&!!this.workshop.cafeLocalStatus()?.state?.garden.harvested.marigold;
+   const message=result.message+(print?' A new flower print is in Journal → Workshop prints.':'');
+   if(status===this.status&&owner===this.host.owner()&&this.active){if(status)status.textContent=message;if(result.ok)this.preview=false;}
+   if(owner===this.host.owner()){this.host.feedback(message);if(result.ok)this.host.accepted(action);}
+   return result.ok;
+  }
   finally{this.busy=false;this.host.changed();this.refresh();}
  }
  private updateRetry(button:HTMLButtonElement){const s=this.workshop.gardenSaveStatus();button.hidden=!s.canRetry;button.disabled=this.busy||s.busy;this.host.body.querySelectorAll<HTMLButtonElement>('[data-garden-nav]').forEach(b=>b.disabled=this.isSaving);if(!this.view().clockOk&&this.status)this.status.textContent='The clock has not caught up with this saved garden. Your plants are kept; actions will be available when the time can be confirmed.';else if(s.error&&this.status&&!this.status.textContent)this.status.textContent=s.error;else if(!s.error&&this.status?.textContent===this.saveError)this.status.textContent=this.neutralFeedback;this.saveError=s.error;}

@@ -85,3 +85,8 @@
 }
 .river-print-actions button { min-height: 44px; }
 .river-print-controls [role=status]:empty { display: none; }
+.workshop-print-preview:not([hidden]) {
+ display: block;
+ object-fit: contain;
+ margin-block-start: .55rem;
+}

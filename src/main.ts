@@ -1,8 +1,8 @@
 import {activeWave} from './game/town-wave.ts';
 import {INKWOOD_HOOD,CLERK_CAP,ownsHeadwear} from './game/earned-headwear.ts';
-import {readRiverSurvey,RIVER_SURVEY_KEY,type RiverSurvey,type RiverSpot} from './game/river-survey.ts';
+import {readRiverSurvey,RIVER_SURVEY_KEY,type RiverSurvey} from './game/river-survey.ts';
 import {showRiverSurvey} from './ui/river-survey.ts';
-import {RIVER_PRINT_KEY,selectedRiverPrint,setRiverPrint} from './game/river-print.ts';
+import {WORKSHOP_PRINT_KEY,selectedWorkshopPrint,setWorkshopPrint,type WorkshopPrint} from './game/workshop-print.ts';
 import {RecentFieldNotes} from './game/recent-field-notes.ts';
 import {headwearName} from './art/headwear.ts';
 import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
@@ -129,7 +129,7 @@ if (practiceLabel) {
 const sky = document.createElement('small');
 sky.id = 'town-sky';
 const scene = new WorldScene(session);
-scene.riverPrintEnabled=!townMode;
+scene.workshopPrintEnabled=!townMode;
 scene.resting=resting();
 const residentBadge=document.querySelector('#local-resident-badge');
 let localResident:BrowserResident|null=null;
@@ -215,19 +215,23 @@ game.events.on(Phaser.Core.Events.POST_RENDER,()=>{
  roomLoading.hidden=true;
 });
 let riverSurvey:RiverSurvey|null=null;
-let riverPrint:RiverSpot|null=null;
+let workshopPrint:WorkshopPrint|null=null;
+let firstMarigold=false;
+function refreshWorkshopPrint(){
+ try{workshopPrint=selectedWorkshopPrint(localStorage.getItem(WORKSHOP_PRINT_KEY),riverSurvey,firstMarigold);}
+ catch{workshopPrint=null;}
+ if(scene.setWorkshopPrint(workshopPrint)&&ready){refreshMenuFrame(2);wakeRender();}
+}
 function refreshRiverCast(){
  try{riverSurvey=readRiverSurvey(localStorage.getItem(RIVER_SURVEY_KEY));}
  catch{riverSurvey=null;}
  scene.riverCast=riverSurvey?.cast??null;
- try{riverPrint=selectedRiverPrint(localStorage.getItem(RIVER_PRINT_KEY),riverSurvey);}
- catch{riverPrint=null;}
- const changed=scene.setRiverPrint(riverPrint);
- if(ready){if(changed)refreshMenuFrame(2);else wakeRender();}
+ refreshWorkshopPrint();
+ if(ready)wakeRender();
 }
 if(!townMode){
  refreshRiverCast();
- window.addEventListener('storage',event=>{if(event.key===RIVER_SURVEY_KEY||event.key===RIVER_PRINT_KEY||event.key===null)refreshRiverCast();});
+ window.addEventListener('storage',event=>{if(event.key===RIVER_SURVEY_KEY||event.key===null)refreshRiverCast();else if(event.key===WORKSHOP_PRINT_KEY)refreshWorkshopPrint();});
  window.addEventListener('pageshow',event=>{if(event.persisted)refreshRiverCast();});
 }
 let lastContext = '';
@@ -405,9 +409,19 @@ const orchardUI=new OrchardUI({
 },orchardTable,orchardPort);
 scene.orchardState=()=>orchardAvailable()?orchardUI.state:undefined;
 scene.orchardNow=orchardPort?.now??Date.now;
-const workshop=new WorkshopUI({townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk'),print:{selected:()=>riverPrint,choose:spot=>{
- try{const saved=setRiverPrint(localStorage,spot);refreshRiverCast();return saved;}catch{return false;}
-}}}:undefined,wardrobe:showBrowserResident?()=>({label:scene.headwear?headwearName[scene.headwear]:'Original look',open:showBrowserResident}):undefined,orchard:()=>orchardAvailable()?orchardUI.state:undefined,orchardWalk:()=>goNamedDestination('square',orchardTable.id),walkToOrchardBranch:(id:BranchId)=>{const stop=ORCHARD_STOPS.find(site=>orchardBranchFromStop(site.id)===id);if(stop)goNamedDestination('square',stop.id);},cue:music.cue,outings:()=>outingUI.show(),woodlandTrip:()=>outingUI.benchTrip(),owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToMaterial:id=>goNamedDestination('square',id),walkToWorkshop:()=>goNamedDestination('square','workshop'),walkToWorkbench:()=>goNamedDestination('workshop','bench'),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),walkToAllotment:()=>goNamedDestination('garden','garden-beds'),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{cafeParcels:()=>showCafeParcelNote({open:openPanel,body,walk:()=>goNamedDestination('square','cafe')},town),objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
+const workshop=new WorkshopUI({townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
+ savedMarigold:!town?(earned)=>{
+  if(earned===firstMarigold)return;
+  firstMarigold=earned;
+  refreshWorkshopPrint();
+ }:undefined,
+ prints:!town?{selected:()=>workshopPrint,choose:print=>{
+  try{
+   const saved=setWorkshopPrint(localStorage,print,firstMarigold);
+   refreshWorkshopPrint();
+   return saved;
+  }catch{return false;}
+ }}:undefined,wardrobe:showBrowserResident?()=>({label:scene.headwear?headwearName[scene.headwear]:'Original look',open:showBrowserResident}):undefined,orchard:()=>orchardAvailable()?orchardUI.state:undefined,orchardWalk:()=>goNamedDestination('square',orchardTable.id),walkToOrchardBranch:(id:BranchId)=>{const stop=ORCHARD_STOPS.find(site=>orchardBranchFromStop(site.id)===id);if(stop)goNamedDestination('square',stop.id);},cue:music.cue,outings:()=>outingUI.show(),woodlandTrip:()=>outingUI.benchTrip(),owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToMaterial:id=>goNamedDestination('square',id),walkToWorkshop:()=>goNamedDestination('square','workshop'),walkToWorkbench:()=>goNamedDestination('workshop','bench'),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),walkToAllotment:()=>goNamedDestination('garden','garden-beds'),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{cafeParcels:()=>showCafeParcelNote({open:openPanel,body,walk:()=>goNamedDestination('square','cafe')},town),objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
 const atCafe=()=>session.room==='square'&&Math.hypot(session.position.x-30,session.position.y-22)<=1.4;
 if(town)snackShelfUI=new SnackShelfUI({open:openPanel,body,canUse:atCafe,counter:()=>cafeUI?.show()},town);
 cafeUI=new CafeUI({open:openPanel,body,owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,headwear:()=>scene.headwear,canUse:atCafe,parcelShelf:snackShelfUI?()=>snackShelfUI?.show():undefined,project:()=>town?.snapshot?.cafe,shared:townMode,bag:()=>workshop.showInventory(),garden:()=>goNamedDestination('square','allotment'),feedback:message=>feedback.textContent=message},workshop);

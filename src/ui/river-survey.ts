@@ -1,7 +1,7 @@
 import {applyRiverSurvey,readRiverSurvey,RIVER_SPOT_IDS,RIVER_SPOTS,RIVER_SURVEY_KEY,type RiverAction,type RiverSpot,type RiverSurvey} from '../game/river-survey.ts';
 import './river-survey.css';
 
-import {RIVER_FIND_ART} from '../game/river-print.ts';
+import {WORKSHOP_PRINTS} from '../game/workshop-print.ts';
 
 export function createRiverFindList(label: string): HTMLUListElement {
  const list=document.createElement('ul');
@@ -19,7 +19,7 @@ export function updateRiverFinds(list:HTMLUListElement,recorded:readonly RiverSp
   for(const spot of recorded){
    const {find,note}=RIVER_SPOTS[spot],item=document.createElement('li');
    const art=document.createElement('img');art.alt='';art.width=96;art.height=80;
-   art.src='/art/river/'+RIVER_FIND_ART[spot]+'.svg';
+   art.src=WORKSHOP_PRINTS[spot].art;
    art.addEventListener('error',()=>{art.hidden=true;},{once:true});
    const copy=document.createElement('div'),name=document.createElement('strong'),caption=document.createElement('span');
    name.textContent=find;caption.textContent=note;copy.append(name,caption);

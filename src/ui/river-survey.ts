@@ -1,7 +1,7 @@
 import {applyRiverSurvey,readRiverSurvey,RIVER_SPOT_IDS,RIVER_SPOTS,RIVER_SURVEY_KEY,type RiverAction,type RiverSurvey} from '../game/river-survey.ts';
 import './river-survey.css';
 
-export function showRiverSurvey(body:HTMLElement):()=>void {
+export function showRiverSurvey(body:HTMLElement,onSave:()=>void):()=>void {
  const surface=document.createElement('section');
  surface.className='river-survey';
  const title=document.createElement('h3');title.textContent='Borrow a rod';
@@ -34,6 +34,7 @@ export function showRiverSurvey(body:HTMLElement):()=>void {
     const encoded=JSON.stringify(result);
     try{localStorage.setItem(RIVER_SURVEY_KEY,encoded);}
     catch(error){if(localStorage.getItem(RIVER_SURVEY_KEY)!==encoded)throw error;}
+    onSave();
     note=action.kind==='cast'?'Line out at '+RIVER_SPOTS[action.spot].name+'.':'Recorded '+RIVER_SPOTS[action.cast.spot].find.toLowerCase()+'.';
    });
   }catch(error){note=error instanceof Error&&error.name==='Error'?error.message:'The notebook could not be saved. Try again when browser storage is available.';}

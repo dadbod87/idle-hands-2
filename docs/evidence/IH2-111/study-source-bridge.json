@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "ea8e3357305748dcdd1c24c5a4b7a5563ba0a3232e7e361f9911b62affb9e1f5",
-    "src/phaser/WorldScene.ts": "7eb9d3852bae9e480b41a47b142253d2b3c5e728d9ad2756e7f79fe48fc3d8e9",
+    "src/main.ts": "8e32266d0a6341f10bb5aee4ae7c1d9c06303fa112d29b5bcf970db26dd8e2b4",
+    "src/phaser/WorldScene.ts": "13ff44987ca62f78c80c008513ac0969bf107f668bd5d46331eb1e4590c881a3",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed integration of the Riverwalk survey and recent Journal field notes; historical garden art and generated output remain frozen."
+  "currentTask": "Reviewed the private Riverwalk float and Journal notes together against current source."
 }

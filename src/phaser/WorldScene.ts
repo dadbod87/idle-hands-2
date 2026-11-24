@@ -57,6 +57,7 @@ export class WorldScene extends Phaser.Scene {
   }
 
   workshopPrintEnabled = false;
+  pondWatchEnabled = false;
   private workshopPrint: WorkshopPrint | null = null;
   private workshopPrintFrame?: Phaser.GameObjects.Container;
   private workshopPrintArt?: Phaser.GameObjects.Image;
@@ -481,7 +482,7 @@ export class WorldScene extends Phaser.Scene {
     image(this.room==='neighborhood'?'neighborhood-ground':this.room==='square'?'variety-ground-square':this.room==='garden'?'garden-ground':this.room==='lodging'?'lodging-rented-room':this.room==='trail'?TRAIL_ART.ground:this.room.startsWith('home')?homeGround:'ground-workshop',0,0,-1000);
     const label=(x:number,y:number,value:string)=>this.add.text(x*TILE,y*TILE,value,{fontFamily:'Georgia,serif',fontSize:13,color:'#343c36',backgroundColor:'#f3e6c5',padding:{x:9,y:5}}).setOrigin(.5).setDepth(y*TILE);
     if(this.room==='square') {
-      this.occluders.push(...drawTownCommons(this,this.commonsSigns));this.commonsLife=new TownCommonsLife(this);
+      this.occluders.push(...drawTownCommons(this,this.commonsSigns,this.pondWatchEnabled));this.commonsLife=new TownCommonsLife(this);
       for(const [key,x,y,labelText]of [['garden-gate',17.5,36.5,'Allotment'],['garden-registry',20.5,36.5,'Displays'],['garden-field',12.5,37.5,'Field clippings'],['garden-stake-forked',11.5,26.5,'Forked stake'],['garden-stake-striped',18.5,39.5,'Marked stake'],['garden-stake-notched',35.5,39.5,'Notched stake']] as const){const meta=gardenArt(key),foot=meta.foot!;this.add.image(x*TILE,y*TILE,key).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(y*TILE);label(x,y+.55,labelText);}
       for(const stop of worlds.square.stops.filter(s=>s.id.startsWith('pine-'))){const station=stop.id.slice(5),meta=carpentryArt('pine-'+station+'-available'),foot=meta.foot!,px=(stop.point.x+.5)*TILE,py=(stop.point.y+.5)*TILE;const view=this.add.image(px,py,meta.id).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(py);this.pineViews.push({station,image:view});this.occluders.push({image:view,x:px-meta.width/2,y:py,width:meta.width,height:meta.height-12});label(stop.point.x+.5,stop.point.y+1.1,'Pine deadfall');}
       const desk=worlds.square.stops.find(s=>s.id==='carpentry-desk')!,dx=(desk.point.x+.5)*TILE,dy=(desk.point.y+.5)*TILE;this.add.image(dx,dy,'carpentry-attendant').setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(.9).setDepth(dy);label(desk.point.x+.5,desk.point.y+1.1,'Nella · carpentry');

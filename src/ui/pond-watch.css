@@ -1,0 +1,16 @@
+.pond-watch { display:grid; gap:.6rem; }
+#panel-body .pond-watch p { margin:0; }
+#panel-body .pond-watch h3 { margin:0 0 .35rem; }
+.pond-watch-progress { font-weight:bold; color:#36594a; }
+.pond-watch-study { display:grid; grid-template-columns:minmax(60px,1fr) minmax(0,1.45fr); gap:.6rem; align-items:center; }
+.pond-watch-study img { display:block; width:100%; height:auto; background:#e9e6c9; border:1px solid #8c9478; border-radius:4px; }
+.pond-watch fieldset { border:0; padding:0; margin:.6rem 0 0; }
+.pond-watch legend { margin-bottom:.35rem; font-weight:bold; }
+.pond-watch :is(fieldset,.pond-watch-routes) { display:flex; gap:.4rem; flex-wrap:wrap; }
+.pond-watch .destination { min-height:44px; min-width:min(8rem,100%); margin:0; flex:1 1 auto; }
+.pond-watch-status { padding:.35rem .5rem; border-inline-start:3px solid #79927c; background:#e1e8d5; }
+.pond-watch-status:empty { display:none; }
+@media (max-height:450px) {
+  .pond-watch-study { grid-template-columns:minmax(48px,90px) minmax(0,1fr); }
+  .pond-watch .destination { padding:.3rem .55rem; }
+}

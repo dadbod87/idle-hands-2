@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "fa3fd1384dd354c9b68619e5e7c7d1155ceb17cb20ec1f21960ba09a7afb8ccf",
-    "src/phaser/WorldScene.ts": "680500c1879420910d5c05e8d79ed01aabb082c9654143bb9e6f6db73ec0a3f8",
+    "src/main.ts": "0499454fa45614789a60442577af63b71b1f6a66190c1329384286df16734288",
+    "src/phaser/WorldScene.ts": "d5317828e0f31b404495f04b520619b62a658659968163a5490d33e9af0b448c",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the inspectable workshop stand, with earned river, garden and woodland art. Original study snapshots and generated output remain frozen."
+  "currentTask": "Reviewed the optional Founders\u2019 Pond field walk and inspectable workshop display. Original study snapshots and generated output remain frozen."
 }

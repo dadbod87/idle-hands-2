@@ -534,3 +534,91 @@ test('the first harvested marigold earns a print without spending the flower',as
   }finally{await context.close();}
  }
 });
+
+test('Founders’ Pond field walk preserves each observation and awards a chosen print',async({browser})=>{
+ test.setTimeout(90_000);
+ const output=process.env.QA_EVIDENCE_DIR??'test-results/browser/pond-watch';
+ mkdirSync(output,{recursive:true});
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ try{
+  const page=await context.newPage(),errors:string[]=[],requests:string[]=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))requests.push(request.url());});
+  // Only starting feet and a one-shot simulated storage refusal are fixtures.
+  await page.addInitScript(()=>{
+   if(!localStorage.getItem('ih2:pilot-position:v1'))localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:69,y:68}}));
+   const original=Storage.prototype.setItem;
+   Storage.prototype.setItem=function(key,value){
+    if(key==='ih2:pond-watch:v1'&&(window as any).failPondSave)throw new DOMException('Isolated test refusal','QuotaExceededError');
+    return original.call(this,key,value);
+   };
+  });
+  const ready=()=>expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+  const button=(name:string)=>page.getByRole('button',{name,exact:true});
+  const read=(key:string)=>page.evaluate(key=>localStorage.getItem(key),key);
+  const open=()=>page.locator('#interact').tap();
+  const close=()=>button('Close panel').tap();
+  await page.goto('/?sky-study=1&phase=day&weather=clear');
+  await ready();
+  await expect.poll(()=>read('ih2:workshop:v2')).not.toBeNull();
+  const workshop=await read('ih2:workshop:v2');
+  await open();
+  await expect(page.getByRole('dialog',{name:'Founders’ pond'})).toBeVisible();
+  await button('Walk to Reed hide').tap();
+  await expect(button('Moorhen')).toBeVisible({timeout:10000});
+  await expect(page.locator('.pond-watch-study img')).toBeInViewport({ratio:1});
+  await page.screenshot({path:output+'/pond-reed-phone.png'});
+  await button('Dragonfly').tap();
+  await expect(page.locator('.pond-watch-status')).toContainText('Look at the clue again');
+  expect(await read('ih2:pond-watch:v1')).toBeNull();
+  await page.evaluate(()=>(window as any).failPondSave=true);
+  await button('Moorhen').tap();
+  await expect(page.locator('.pond-watch-status')).toContainText('could not be saved');
+  expect(await read('ih2:pond-watch:v1')).toBeNull();
+  await page.evaluate(()=>(window as any).failPondSave=false);
+  await button('Moorhen').tap();
+  await expect(page.locator('.pond-watch-progress')).toHaveText('1 of 3 observations saved');
+  await expect(button('Preview your pond print')).toHaveCount(0);
+  await close();
+  await page.reload();
+  await ready();
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().nearby)).toBe('pond-reeds');
+  await open();
+  await expect(page.locator('.pond-watch-progress')).toHaveText('1 of 3 observations saved');
+  await button('Walk to Water lookout').tap();
+  await expect(button('Water strider')).toBeVisible({timeout:10000});
+  await page.setViewportSize({width:844,height:390});
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  await button('Water strider').press('Enter');
+  await expect(page.locator('.pond-watch-status')).toBeFocused();
+  await expect(page.locator('.pond-watch-status')).toBeInViewport({ratio:1});
+  await expect(button('Walk to Sunny bank')).toBeInViewport({ratio:1});
+  await page.screenshot({path:output+'/pond-water-short.png'});
+  await button('Walk to Sunny bank').press('Enter');
+  await expect(button('Dragonfly')).toBeVisible({timeout:10000});
+  await page.setViewportSize({width:1440,height:900});
+  await page.evaluate(()=>document.documentElement.style.fontSize='100%');
+  await button('Dragonfly').press('Enter');
+  await expect(page.locator('.pond-watch-progress')).toHaveText('3 of 3 observations saved');
+  const pond=await read('ih2:pond-watch:v1');
+  expect(JSON.parse(pond!).recorded).toEqual(['pond-reeds','pond-water','pond-bank']);
+  await expect(button('Preview your pond print')).toBeVisible();
+  await expect(page.locator('#feedback')).toHaveText('At Sunny bank.');
+  await expect(page.locator('#stop-assisted-walk')).toBeHidden();
+  await page.screenshot({path:output+'/pond-bank-desktop.png'});
+  await button('Preview your pond print').press('Enter');
+  await expect(page.getByRole('combobox',{name:'Choose a workshop print'})).toHaveValue('pond');
+  expect(await read('ih2:river-print:v1')).toBeNull();
+  await button('Display print').press('Enter');
+  await button('See it in the workshop').press('Enter');
+  const display=()=>page.evaluate(()=>(window as any).__pilot?.metrics().visual.workshopPrint);
+  await expect.poll(display,{timeout:35000}).toBe('pond');
+  await page.reload();
+  await ready();
+  await expect.poll(display).toBe('pond');
+  expect(await read('ih2:pond-watch:v1')).toBe(pond);
+  expect(await read('ih2:workshop:v2')).toBe(workshop);
+  expect(requests).toEqual([]);
+  expect(errors).toEqual([]);
+ }finally{await context.close();}
+});

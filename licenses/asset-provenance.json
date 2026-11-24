@@ -2281,6 +2281,46 @@
       "source": "public/art/river/wet-boot.svg",
       "date": "2026-11-23",
       "modifications": "Original illustrated browser-practice field record. No imported media or game items."
+    },
+    {
+      "id": "pond-bank-clue",
+      "path": "public/art/pond/bank-clue.svg",
+      "sha256": "263044575a4ee60f9f486326a349b519e274b83da3db6127c3fa03449bc42312",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pond/bank-clue.svg",
+      "date": "2026-11-24",
+      "modifications": "Original colored illustration for the Founders’ Pond field walk. No imported media."
+    },
+    {
+      "id": "pond-print",
+      "path": "public/art/pond/pond-print.svg",
+      "sha256": "92f50f77323a83118c280696e3923afe1c27db5cbac6326a5c5576835da6b96e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pond/pond-print.svg",
+      "date": "2026-11-24",
+      "modifications": "Original colored illustration for the Founders’ Pond field walk. No imported media."
+    },
+    {
+      "id": "pond-reed-clue",
+      "path": "public/art/pond/reed-clue.svg",
+      "sha256": "6be04b17acc3ec52093509bf61dbeeab7aca67f0e039f37b37e2a29becbb4e15",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pond/reed-clue.svg",
+      "date": "2026-11-24",
+      "modifications": "Original colored illustration for the Founders’ Pond field walk. No imported media."
+    },
+    {
+      "id": "pond-water-clue",
+      "path": "public/art/pond/water-clue.svg",
+      "sha256": "3829a0780461488dde33c5e03e1faf8618e5815be819a7c6dbf55ca2cbca5b35",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pond/water-clue.svg",
+      "date": "2026-11-24",
+      "modifications": "Original colored illustration for the Founders’ Pond field walk. No imported media."
     }
   ],
   "comparison": {

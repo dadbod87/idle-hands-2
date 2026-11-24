@@ -1143,6 +1143,26 @@
       "id": "river-wet-boot",
       "path": "art/river/wet-boot.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "pond-bank-clue",
+      "path": "art/pond/bank-clue.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pond-print",
+      "path": "art/pond/pond-print.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pond-reed-clue",
+      "path": "art/pond/reed-clue.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pond-water-clue",
+      "path": "art/pond/water-clue.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

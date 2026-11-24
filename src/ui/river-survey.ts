@@ -18,6 +18,7 @@ export function updateRiverFinds(list:HTMLUListElement,recorded:readonly RiverSp
  list.replaceChildren();
   for(const spot of recorded){
    const {find,note}=RIVER_SPOTS[spot],item=document.createElement('li');
+   item.dataset.riverFind=spot;
    const art=document.createElement('img');art.alt='';art.width=96;art.height=80;
    art.src='/art/river/'+RIVER_FIND_ART[spot]+'.svg';
    art.addEventListener('error',()=>{art.hidden=true;},{once:true});
@@ -44,6 +45,7 @@ export function showRiverSurvey(body:HTMLElement,onSave:()=>void,walkBack:()=>vo
  let locks:LockManager|undefined;
  try{locks=navigator.locks;}catch{/* The notebook can still be read. */}
  let note='';
+ let showReceipt=false;
 
  function read():RiverSurvey {return readRiverSurvey(localStorage.getItem(RIVER_SURVEY_KEY));}
  function button(label:string,action:RiverAction){
@@ -55,6 +57,7 @@ export function showRiverSurvey(body:HTMLElement,onSave:()=>void,walkBack:()=>vo
  async function act(action:RiverAction,control:HTMLButtonElement){
   if(busy||closed||!locks)return;
   busy=true;control.disabled=true;
+  let recorded:RiverSpot|null=null;
   try{
    await locks.request(RIVER_SURVEY_KEY,()=>{
     if(closed)return;
@@ -63,15 +66,31 @@ export function showRiverSurvey(body:HTMLElement,onSave:()=>void,walkBack:()=>vo
     try{localStorage.setItem(RIVER_SURVEY_KEY,encoded);}
     catch(error){if(localStorage.getItem(RIVER_SURVEY_KEY)!==encoded)throw error;}
     onSave();
-    note=action.kind==='cast'?'Line out at '+RIVER_SPOTS[action.spot].name+'.':'Recorded '+RIVER_SPOTS[action.cast.spot].find.toLowerCase()+'.';
+    recorded=action.kind==='reel'?action.cast.spot:null;
+    showReceipt=recorded!==null;
+    note=action.kind==='cast'?'Line out at '+RIVER_SPOTS[action.spot].name+'.':'Recorded in your Journal.';
    });
   }catch(error){note=error instanceof Error&&error.name==='Error'?error.message:'The notebook could not be saved. Try again when browser storage is available.';}
   finally{
    busy=false;
    if(!closed){
     render();
-    const focus=actions.querySelector<HTMLButtonElement>('button:not(:disabled)');
-    if(focus)focus.focus();else status.focus();
+    const receipt=recorded?notebook.querySelector<HTMLLIElement>(`[data-river-find="${recorded}"]`):null;
+    if(receipt){
+     receipt.tabIndex=-1;
+     receipt.focus({preventScroll:true});
+     const dialog=body.closest('dialog');
+     const header=dialog?.querySelector('.dialog-head');
+     if(dialog&&header){
+      const bounds=receipt.getBoundingClientRect();
+      const visibleTop=header.getBoundingClientRect().bottom+8;
+      const visibleBottom=dialog.getBoundingClientRect().bottom-8;
+      if(bounds.top<visibleTop||bounds.bottom>visibleBottom)dialog.scrollTop+=bounds.top-visibleTop;
+     }
+    }else{
+     const next=actions.querySelector<HTMLButtonElement>('button:not(:disabled)')??status;
+     next.focus();
+    }
    }
   }
  }
@@ -85,8 +104,11 @@ export function showRiverSurvey(body:HTMLElement,onSave:()=>void,walkBack:()=>vo
   updateRiverFinds(notebook,state.recorded);
   const remaining=RIVER_SPOT_IDS.filter(spot=>!state.recorded.includes(spot));
   const {cast}=state;
-  intro.hidden=remaining.length===0;
-  sketch.hidden=remaining.length===0;
+  const browseFinds=showReceipt&&!cast;
+  const before=browseFinds?actions:null;
+  if(notebook.nextElementSibling!==before)surface.insertBefore(notebook,before);
+  intro.hidden=browseFinds||remaining.length===0;
+  sketch.hidden=browseFinds||remaining.length===0;
   sketch.dataset.river=cast?'casting':remaining.length?'idle':'complete';
   if(!locks){status.textContent='Browser save coordination is unavailable. You can still read your notebook.';return;}
   if(cast){

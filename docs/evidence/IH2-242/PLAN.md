@@ -1,0 +1,7 @@
+# IH2-242 · Put the Riverwalk find where the player can see it
+
+A fresh 320px journey previously showed the saved-find text while its illustration was below the fold. After a confirmed reel, the real illustrated record now sits just above the next casting controls. The duplicate idle sketch and instructions clear for the receipt. A keyboard or touch action brings the new record into view without hiding it behind the sticky dialog title. The next casting choices remain available, and the journal still holds the original three entries in the order recorded.
+
+The workshop note asks a first-time resident to make a first planter. On a return, it instead points to available bench work or an existing job. This copy uses the same confirmed workshop state as the bench. No scene geometry, authority, storage formats, deadlines or stock rules change.
+
+Both focused cases passed in Chromium and WebKit, with actual desktop, 320px and short enlarged dialogs. The first version could place the receipt partly behind the enlarged sticky title. The final version measures the usable dialog bounds and passed the exact geometry assertions. Two fresh native resident journeys reached the artwork, used the original frame, started a real eight-hour second planter and reloaded the same print and work. No saved-data or real-clock fixtures were used in those journeys. The browser regression uses the declared nearby position and deadline fixtures to exercise all three records.

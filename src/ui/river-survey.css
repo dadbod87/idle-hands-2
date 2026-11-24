@@ -57,6 +57,10 @@
  width: clamp(42px, 15vw, 70px);
  height: auto;
 }
+.river-survey-notebook li:focus-visible {
+ outline: 2px solid #b8653e;
+ outline-offset: 2px;
+}
 .river-survey-notebook span {
  display: block;
  font-size: .9rem;

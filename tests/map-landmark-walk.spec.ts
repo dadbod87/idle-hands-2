@@ -307,6 +307,10 @@ test('illustrated Riverwalk records stay readable and do not enter the Bag', asy
     await hit(reel);
     const result=log.getByRole('listitem').nth(index);
     await expect(result).toContainText(label);
+    await expect(result).toBeFocused();
+    await expect(result).toBeInViewport({ratio:1});
+    const bounds=(await result.boundingBox())!,header=(await page.locator('.dialog-head').boundingBox())!;
+    expect(bounds.y).toBeGreaterThanOrEqual(header.y+header.height-1);
     await expect(result.locator('img')).toHaveAttribute('alt','');
     await expect.poll(()=>result.locator('img').evaluate((el:HTMLImageElement)=>el.naturalWidth)).toBeGreaterThan(0);
    }

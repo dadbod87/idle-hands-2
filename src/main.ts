@@ -451,6 +451,12 @@ document.querySelector('#bag')!.addEventListener('click',()=>personalTool('bag')
 journalButton.addEventListener('click',()=>personalTool('journal'));
 window.addEventListener('keydown',event=>{if(event.defaultPrevented||event.repeat||event.ctrlKey||event.metaKey||event.altKey||panel.open||transitionBusy||!!town&&needResync)return;const target=event.target;if(target instanceof HTMLElement&&target.closest('input,textarea,select,button,summary,[contenteditable]'))return;const key=event.key.toLowerCase();if(key==='b'||key==='j'){event.preventDefault();personalTool(key==='b'?'bag':'journal');}});
 function currentObjective(){return town?.snapshot?sharedObjective(town.snapshot,town.serverNow()):questStep(workshop.state);}
+function workshopArrivalNote():string {
+  const {job,stats}=workshop.state;
+  if(job)return 'Your workshop. Open the bench to check your work.';
+  if(stats.plantersCrafted>0)return 'Your workshop. Open the bench to see what you can make.';
+  return 'Your workshop. Tap the bench to make your first planter.';
+}
 function paintGuideObjective(){
   const title=body.querySelector<HTMLElement>('[data-guide-title]');
   const detail=body.querySelector<HTMLElement>('[data-guide-detail]');
@@ -559,7 +565,7 @@ async function enterRemotePortal(stop:Stop){
   await flushMovement(true);
   if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||session.room!==sourceRoom||panel.open||needResync)return;
   session.enter(targetRoom,stop.arrival);districtId=targetRoom==='neighborhood'?districtId:undefined;scene.districtId=districtId;if(!targetRoom.startsWith('home')){homePlotId=undefined;scene.homePlotId=undefined;}save();focusWorld();
-  feedback.textContent=targetRoom==='neighborhood'?'Back in neighborhood '+districtId+'. Each door leads to its own home.':targetRoom==='trail'?'Inkwood trail. Three landmarks, one extremely official field notebook.':targetRoom==='garden'?'Your allotment. Inspect the three beds or visit the attendant.':targetRoom==='workshop'?'Your workshop. Tap the bench to make your first planter.':(scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
+  feedback.textContent=targetRoom==='neighborhood'?'Back in neighborhood '+districtId+'. Each door leads to its own home.':targetRoom==='trail'?'Inkwood trail. Three landmarks, one extremely official field notebook.':targetRoom==='garden'?'Your allotment. Inspect the three beds or visit the attendant.':targetRoom==='workshop'?workshopArrivalNote():(scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
  }catch{
   if(intent===portalIntent&&epoch===movementEpoch&&town.snapshot?.playerId===playerId&&!needResync)feedback.textContent='Entry could not be confirmed. Try the door again.';
  }finally{
@@ -762,7 +768,7 @@ function activate(stop: Stop) {
   if (stop.transition) {
     if(stop.id==='lodging-exit'&&morning.record?.phase==='awake'){void changeMorning('leave');return;}
     if(town){void enterRemotePortal(stop);return;}
-    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='lodging-exit'?'Follow the path east to Marlow.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
+    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='lodging-exit'?'Follow the path east to Marlow.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? workshopArrivalNote() : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
     const note = paragraph(townMode?'Shared practice keeps your town projects and home progress.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);

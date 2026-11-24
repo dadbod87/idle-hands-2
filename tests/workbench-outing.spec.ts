@@ -50,6 +50,23 @@ test('a confirmed long bench job offers a free walk to the next unfinished sketc
    const read = () => page.evaluate(() => JSON.parse(localStorage.getItem('ih2:workshop:v2')!));
    const queued = await read();
    expect(queued.job.readyAt - queued.job.startedAt).toBe(8 * hour);
+   const more=outing.getByText('Another outing',{exact:true});
+   const alternative=outing.getByRole('button',{name:'Walk to the Riverwalk',exact:true});
+   await expect(alternative).toBeHidden();
+   if(size.touch)await more.tap();
+   else await more.press('Enter');
+   await expect(alternative).toBeVisible();
+   expect((await alternative.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+   expect((await read()).job).toEqual(queued.job);
+   if(size.tag==='desktop'){
+    await alternative.press('Enter');
+    await expect(page.getByRole('heading',{name:'Riverwalk',exact:true})).toBeVisible({timeout:30000});
+    expect(await read()).toEqual(queued);
+    expect(api).toEqual([]);
+    expect(errors).toEqual([]);
+    continue;
+   }
+   await more.tap();
    await action.focus();
    await expect(action).toBeInViewport();
    expect(await outing.evaluate(node => node.scrollWidth <= node.clientWidth)).toBe(true);

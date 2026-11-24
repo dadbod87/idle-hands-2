@@ -3,6 +3,30 @@ import './river-survey.css';
 
 const FIND_ART:Record<RiverSpot,string>={reeds:'pondweed',bridge:'wet-boot',riffle:'perch'};
 
+export function createRiverFindList(label: string): HTMLUListElement {
+ const list=document.createElement('ul');
+ list.className='river-survey-notebook';
+ list.setAttribute('role','list');
+ list.setAttribute('aria-label',label);
+ return list;
+}
+
+export function updateRiverFinds(list:HTMLUListElement,recorded:readonly RiverSpot[]){
+ const key=recorded.join(',');
+ if(list.dataset.finds===key)return;
+ list.dataset.finds=key;
+ list.replaceChildren();
+  for(const spot of recorded){
+   const {find,note}=RIVER_SPOTS[spot],item=document.createElement('li');
+   const art=document.createElement('img');art.alt='';art.width=96;art.height=80;
+   art.src='/art/river/'+FIND_ART[spot]+'.svg';
+   art.addEventListener('error',()=>{art.hidden=true;},{once:true});
+   const copy=document.createElement('div'),name=document.createElement('strong'),caption=document.createElement('span');
+   name.textContent=find;caption.textContent=note;copy.append(name,caption);
+   item.append(art,copy);list.append(item);
+  }
+}
+
 export function showRiverSurvey(body:HTMLElement,onSave:()=>void,walkBack:()=>void):()=>void {
  const surface=document.createElement('section');
  surface.className='river-survey';
@@ -13,7 +37,7 @@ export function showRiverSurvey(body:HTMLElement,onSave:()=>void,walkBack:()=>vo
  const actions=document.createElement('div');actions.className='river-survey-actions';
  const back=document.createElement('button');back.type='button';back.className='destination';
  back.textContent='Walk to the old square';back.onclick=walkBack;
- const notebook=document.createElement('ul');notebook.className='river-survey-notebook';notebook.setAttribute('role','list');notebook.setAttribute('aria-label','Recorded river finds');
+ const notebook=createRiverFindList('Recorded river finds');
  surface.append(title,intro,sketch,status,actions,back,notebook);
  body.append(surface);
  let busy=false,closed=false,timer:number|undefined;
@@ -53,20 +77,12 @@ export function showRiverSurvey(body:HTMLElement,onSave:()=>void,walkBack:()=>vo
  }
  function render(){
   window.clearTimeout(timer);
-  actions.replaceChildren();notebook.replaceChildren();
+  actions.replaceChildren();
   status.tabIndex=-1;
   let state:RiverSurvey;
   try{state=read();}
-  catch{status.textContent='Your river notebook could not be read. The saved entry was kept.';return;}
-  for(const spot of state.recorded){
-   const {find,note}=RIVER_SPOTS[spot],item=document.createElement('li');
-   const art=document.createElement('img');art.alt='';art.width=96;art.height=80;
-   art.src='/art/river/'+FIND_ART[spot]+'.svg';
-   art.addEventListener('error',()=>{art.hidden=true;},{once:true});
-   const copy=document.createElement('div'),name=document.createElement('strong'),caption=document.createElement('span');
-   name.textContent=find;caption.textContent=note;copy.append(name,caption);
-   item.append(art,copy);notebook.append(item);
-  }
+  catch{updateRiverFinds(notebook,[]);status.textContent='Your river notebook could not be read. The saved entry was kept.';return;}
+  updateRiverFinds(notebook,state.recorded);
   const remaining=RIVER_SPOT_IDS.filter(spot=>!state.recorded.includes(spot));
   const {cast}=state;
   intro.hidden=remaining.length===0;

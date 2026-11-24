@@ -1,5 +1,6 @@
 import {ownsHeadwear,type EarnedHeadwear,type TownHeadwear} from '../game/earned-headwear.ts';
-import type {RiverSurvey} from '../game/river-survey.ts';
+import {RIVER_SPOT_IDS,type RiverSurvey} from '../game/river-survey.ts';
+import {createRiverFindList,updateRiverFinds} from './river-survey.ts';
 import type {FieldNote} from '../game/recent-field-notes.ts';
 import { gardenBedView } from '../game/garden-view.ts';
 import {APPLE_CAP,ORCHARD_BRANCHES,type BranchId,type OrchardPantry} from '../game/orchard.ts';
@@ -24,7 +25,7 @@ const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Suppl
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Record<string,unknown>;playerId?:string;collection?:CollectionGrant};
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;canReuseNotes?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={townHeadwear?:()=>TownHeadwear|undefined;recentFieldNotes?:()=>readonly FieldNote[];river?:{cast:()=>RiverSurvey['cast'];hasWork:()=>boolean;walk:()=>void};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToMaterial?:(id:typeof RESOURCE_IDS[number])=>void;walkToWorkshop?:()=>void;walkToWorkbench?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
+type PanelHost={townHeadwear?:()=>TownHeadwear|undefined;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToMaterial?:(id:typeof RESOURCE_IDS[number])=>void;walkToWorkshop?:()=>void;walkToWorkbench?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -342,6 +343,14 @@ export class WorkshopUI {
    const detail=this.p('');detail.dataset.riverEntryStatus='';
    river.append(title,detail,this.button('Walk to the Riverwalk',this.host.river.walk,'destination'));
    b.append(river);
+   const folio=document.createElement('details');
+   folio.className='river-journal';
+   folio.dataset.riverJournal='';
+   folio.hidden=true;
+   const summary=document.createElement('summary');
+   const finds=createRiverFindList('Riverwalk journal finds');
+   folio.append(summary,finds);
+   b.append(folio);
   }
   if(this.host.orchardWalk){
    const parcel=document.createElement('section');
@@ -486,14 +495,24 @@ export class WorkshopUI {
   }
   const now=this.remote?.now()??Date.now(),b=this.host.body;
   const river=b.querySelector<HTMLElement>('[data-river-entry]');
+  const riverState=this.host.river?.read();
   if(river){
-   const cast=this.host.river?.cast();
+   const cast=riverState?.cast;
    if(river.hidden===!!cast)river.hidden=!cast;
    if(cast){
     const status=river.querySelector<HTMLElement>('[data-river-entry-status]')!;
     const text=cast.readyAt<=now?'Ready to reel in.':'Line out · '+Math.ceil((cast.readyAt-now)/1000)+' s left.';
     if(status.textContent!==text)status.textContent=text;
    }
+  }
+  const folio=b.querySelector<HTMLDetailsElement>('[data-river-journal]');
+  if(folio){
+   const recorded=riverState?.recorded??[];
+   folio.hidden=!recorded.length;
+   const summary=folio.querySelector('summary')!;
+   const label='Riverwalk finds · '+recorded.length+' of '+RIVER_SPOT_IDS.length;
+   if(summary.textContent!==label)summary.textContent=label;
+   updateRiverFinds(folio.querySelector('ul')!,recorded);
   }
   const orchardParcel=b.querySelector<HTMLElement>('[data-orchard-parcel]');
   if(orchardParcel){
@@ -541,24 +560,35 @@ export class WorkshopUI {
    const study=SURVEY_IDS.find(id=>!this.state.sketches.includes(id));
    const garden=this.state.garden;
    const walkToStudy=this.host.walkToStudy,walkToAllotment=this.host.walkToAllotment;
-   let trip:{text:string;label:string;walk:()=>void}|undefined;
+   const trips: {text:string;label:string;walk:()=>void}[] = [];
    if(study&&walkToStudy){
-    trip={text:'Sketch a tree while your piece takes shape.',label:'Walk to the '+SURVEYS[study].name.toLowerCase(),walk:()=>walkToStudy(study)};
-   }else if(walkToAllotment&&garden.observedAt<=now&&garden.beds.some((bed,index)=>bed&&gardenBedView(garden,index,bed.crop,now).phase==='ready')){
-    trip={text:'A crop is ready in your allotment.',label:'Walk to your allotment',walk:walkToAllotment};
-   }else if(this.host.river?.hasWork()){
-    trip={text:'Try the float survey or check your line. Your bench keeps its deadline.',label:'Walk to the Riverwalk',walk:this.host.river.walk};
-   }else if(this.host.river){
+    trips.push({text:'Sketch a tree while your piece takes shape.',label:'Walk to the '+SURVEYS[study].name.toLowerCase(),walk:()=>walkToStudy(study)});
+   }
+   if(walkToAllotment&&garden.observedAt<=now&&garden.beds.some((bed,index)=>bed&&gardenBedView(garden,index,bed.crop,now).phase==='ready')){
+    trips.push({text:'A crop is ready in your allotment.',label:'Walk to your allotment',walk:walkToAllotment});
+   }
+   if(this.host.river&&riverState&&riverState.recorded.length<RIVER_SPOT_IDS.length){
+    trips.push({text:'Try the float survey or check your line. Your bench keeps its deadline.',label:'Walk to the Riverwalk',walk:this.host.river.walk});
+   }
+   if(this.host.river){
     const orchard=this.host.orchard?.(),walkToBranch=this.host.walkToOrchardBranch;
     const ripe=orchard&&orchard.apples<APPLE_CAP?ORCHARD_BRANCHES.find(branch=>orchard.ripeAt[branch.id]<=now):undefined;
     if(ripe&&walkToBranch){
-     trip={text:'An apple is ready to pick in the orchard.',label:'Walk to the '+ripe.name.toLowerCase(),walk:()=>walkToBranch(ripe.id)};
+     trips.push({text:'An apple is ready to pick in the orchard.',label:'Walk to the '+ripe.name.toLowerCase(),walk:()=>walkToBranch(ripe.id)});
     }
    }
+   const [trip,alternate]=trips;
    if(trip){
     const heading=document.createElement('h3');
     heading.textContent='A short trip outside';
     outing.append(heading,this.p(trip.text),this.button(trip.label,trip.walk,'destination'));
+    if(alternate){
+     const other=document.createElement('details');
+     const summary=document.createElement('summary');
+     summary.textContent='Another outing';
+     other.append(summary,this.p(alternate.text),this.button(alternate.label,alternate.walk,'destination'));
+     outing.append(other);
+    }
     outing.hidden=false;
    }
   }

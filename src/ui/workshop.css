@@ -206,3 +206,20 @@
  .placement-plan-map{width:min(100%,186px)}
  .placement-plan-feature{font-size:min(.85rem,21px)}
 }
+
+#panel-body .bench-outing details {
+ margin-block-start: .45rem;
+ border-block-start: 1px solid #b6a788;
+}
+#panel-body :is(.bench-outing, .river-journal) summary {
+ display: list-item;
+ min-height: 44px;
+ padding-block: .5rem;
+ cursor: pointer;
+}
+#panel-body .river-journal {
+ margin-block: .6rem;
+}
+#panel-body .river-journal .river-survey-notebook {
+ margin-block: .25rem .55rem;
+}

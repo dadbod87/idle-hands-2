@@ -20,7 +20,7 @@ import type {CommissionAction} from '../game/commission.ts';
 import type {CarpentryAction} from '../game/carpentry.ts';
 import type {GardenAction} from '../game/garden.ts';
 import {SURVEY_IDS,SURVEYS,SURVEY_CHOICES,CHOICE_LABELS,type SurveyId} from '../game/fieldwork.ts';
-import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RESOURCE_IDS, PROP_IDS, PROPS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, type PropId, type SlotId, skillLevel } from '../game/live-workshop.ts';
+import { createWorkshop, loadWorkshop, settleWorkshop, applyWorkshop, questStep, RECIPES, RESOURCE_IDS, PROP_IDS, PROPS, PLACEMENT_SLOTS, type WorkshopState, type WorkshopCommand, type PropId, type SlotId, skillLevel } from '../game/live-workshop.ts';
 import './workshop.css';
 export const WORKSHOP_SAVE_KEY='ih2:workshop:v2';
 const SAVE_KEY=WORKSHOP_SAVE_KEY,LEGACY_SAVE_KEY='ih2:workshop:v1';
@@ -28,8 +28,9 @@ const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Suppl
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Record<string,unknown>;playerId?:string;collection?:CollectionGrant};
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;canReuseNotes?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
+type StarterDestination=typeof RESOURCE_IDS[number]|'bench';
 type WorkshopTrip={text:string;label:string;walk:()=>void};
-type PanelHost={townHeadwear?:()=>TownHeadwear|undefined;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};savedMarigold?:(earned:boolean)=>void;prints?:{selected:()=>WorkshopPrint|null;choose:(print:WorkshopPrint|null)=>boolean};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToMaterial?:(id:typeof RESOURCE_IDS[number])=>void;walkToWorkshop?:()=>void;walkToWorkbench?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
+type PanelHost={townHeadwear?:()=>TownHeadwear|undefined;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};savedMarigold?:(earned:boolean)=>void;prints?:{selected:()=>WorkshopPrint|null;choose:(print:WorkshopPrint|null)=>boolean};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToMaterial?:(id:typeof RESOURCE_IDS[number])=>void;walkToWorkshop?:()=>void;walkToStarter?:(destination:StarterDestination)=>void;walkToWorkbench?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -223,12 +224,28 @@ export class WorkshopUI {
   this.collectionIntent=null;
   if(!this.collectionCurrent(intent.view,intent.owner,intent.rig))return false;
   const g=receipt.collection;
-  if(receipt.ok&&g&&g.commandId===intent.id&&g.playerId===intent.owner&&g.resource===intent.view.resource)intent.view.confirm(g,saved,receipt.message);else intent.view.message(receipt.message);return true;
+  if(receipt.ok&&g&&g.commandId===intent.id&&g.playerId===intent.owner&&g.resource===intent.view.resource){
+   const confirmed=intent.view.confirm(g,saved,receipt.message);
+   if(confirmed&&saved&&!this.remote)this.offerStarterRoute(intent.view);
+  }else intent.view.message(receipt.message);
+  return true;
+ }
+ private offerStarterRoute(view:CollectionReceiptView){
+  const walk=this.host.walkToStarter;
+  if(!walk||this.state.stats.plantersCrafted||this.state.job)return;
+  const needed=RESOURCE_IDS.filter(resource=>this.state.inventory[resource]<RECIPES.planter.cost[resource]);
+  const next:StarterDestination|undefined=needed.length
+   ?needed.find(resource=>resource!==view.resource&&this.state.nodes[resource].stock>0)
+   :'bench';
+  if(next) view.offerNext(next==='bench'?'Walk to the work bench':'Walk to '+names[next]+' depot',()=>{
+   if(this.ownsSave&&this.saved&&!this.state.stats.plantersCrafted&&!this.state.job)walk(next);
+  });
  }
  showResource(resource:typeof RESOURCE_IDS[number]){const render=()=>{
   this.collectionView?.destroy();const b=this.host.body;b.replaceChildren();b.classList.add('collection-panel');b.closest('dialog')?.classList.add('collection-dialog');b.append(this.p('Rescued from the company’s extremely ambitious disposal policy.'),this.resources());
   const stock=this.p('');stock.dataset.node=resource;b.append(stock);const owner=this.host.owner?.()??'local',rig=residentArt(this.host.rig?.()??'devon');
-  const view=new CollectionReceiptView(resource,rig,()=>this.collectionCurrent(view,owner,rig),()=>this.gather(resource,view),()=>void this.remoteDispatch(null,()=>this.collectionCurrent(view,owner,rig)));
+  const reserveNext=!this.remote&&!!this.host.walkToStarter&&!this.state.stats.plantersCrafted&&!this.state.job;
+  const view=new CollectionReceiptView(resource,rig,()=>this.collectionCurrent(view,owner,rig),()=>this.gather(resource,view),()=>void this.remoteDispatch(null,()=>this.collectionCurrent(view,owner,rig)),reserveNext);
   this.collectionView=view;view.retry.hidden=!this.remote;b.append(view.root);this.status=view.status;
   const walkToBench=this.host.walkToWorkbench;
   if(walkToBench)b.append(this.button('Walk to workbench',walkToBench,'destination'));

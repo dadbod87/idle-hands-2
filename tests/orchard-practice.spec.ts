@@ -71,6 +71,10 @@ test('browser orchard: pick along real paths, pack, explicitly collect and taste
  await expect(page.getByRole('dialog')).toHaveAccessibleName('Orchard packing table');
  await page.getByRole('button',{name:'Pack snack'}).click();
  await expect(page.getByText('Ready in 30:00')).toBeVisible();
+ const atTable=await roomState(page);
+ expect(atTable.nearby).toBe('commons-orchard');
+ const savedPosition=await page.evaluate(()=>JSON.parse(localStorage.getItem('ih2:pilot-position:v1')??'null'));
+ expect(savedPosition).toEqual({version:1,room:'square',position:atTable.position});
  const cooking=await pantry(page);
  expect(cooking.apples).toBe(0);
  await expect(page.getByRole('button',{name:'Collect snack'})).toBeDisabled();

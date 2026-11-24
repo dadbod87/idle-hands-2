@@ -230,3 +230,10 @@
 #panel-body .river-journal .river-survey-notebook {
  margin-block: .25rem .55rem;
 }
+.workshop-print-inspection { display:grid; gap:.55rem; }
+.workshop-print-inspection img { object-fit:contain; }
+#panel-body .workshop-print-inspection p { margin:0; }
+@media(min-width:651px) and (max-height:480px){
+ dialog:has(.workshop-print-inspection){width:min(620px,calc(100vw - 24px))}
+ .workshop-print-inspection{grid-template-columns:108px minmax(0,1fr);align-items:start}
+}

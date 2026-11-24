@@ -344,6 +344,21 @@ test('only an earned river print can decorate a private workshop, with durable r
    expect(print.y-36).toBeGreaterThan(0);
    expect(print.y+48).toBeLessThan(bounds!.height);
    await page.screenshot({path:output+'/river-print-wall-'+size.name+'.png'});
+   if(size.touch){
+    await page.touchscreen.tap(bounds!.x+print.x,bounds!.y+print.y);
+   }else{
+    await hit(page.locator('#places'));
+    await hit(page.locator('[data-destination=workshop-print]'));
+    await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().nearby)).toBe('workshop-print');
+    await hit(page.locator('#interact'));
+   }
+   const inspected=page.getByRole('dialog',{name:'An exceptionally wet boot',exact:true});
+   await expect(inspected).toBeVisible();
+   await expect(inspected).toContainText('The right is still under investigation.');
+   await expect(inspected.locator('.workshop-print-inspection p')).toBeInViewport({ratio:1});
+   await expect(inspected.getByRole('button',{name:'Close panel'})).toBeInViewport();
+   await page.screenshot({path:output+'/river-print-inspect-'+size.name+'.png'});
+   await hit(button('Close panel'));
    await page.reload();
    await ready();
    await expect.poll(art).toBe('bridge');
@@ -365,6 +380,9 @@ test('only an earned river print can decorate a private workshop, with durable r
    await hit(button('Take print down'));
    await expect(page.getByText('Print taken down.')).toBeVisible();
    await expect.poll(art).toBeNull();
+   await hit(button('Close panel'));
+   await hit(page.locator('#places'));
+   await expect(page.locator('[data-destination=workshop-print]')).toHaveCount(0);
    expect(await read('ih2:river-print:v1')).toBeNull();
    expect(await read('ih2:river-survey:v1')).toBe(record);
    expect(await read('ih2:workshop:v2')).toBe(before);

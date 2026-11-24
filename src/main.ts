@@ -2,7 +2,7 @@ import {activeWave} from './game/town-wave.ts';
 import {INKWOOD_HOOD,CLERK_CAP,ownsHeadwear} from './game/earned-headwear.ts';
 import {readRiverSurvey,RIVER_SURVEY_KEY,type RiverSurvey} from './game/river-survey.ts';
 import {showRiverSurvey} from './ui/river-survey.ts';
-import {WORKSHOP_PRINT_KEY,selectedWorkshopPrint,setWorkshopPrint,type WorkshopPrint} from './game/workshop-print.ts';
+import {WORKSHOP_PRINT_KEY,WORKSHOP_PRINT_STOP,WORKSHOP_PRINTS,selectedWorkshopPrint,setWorkshopPrint,type WorkshopPrint} from './game/workshop-print.ts';
 import {RecentFieldNotes} from './game/recent-field-notes.ts';
 import {headwearName} from './art/headwear.ts';
 import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
@@ -220,6 +220,7 @@ let firstMarigold=false;
 function refreshWorkshopPrint(){
  try{workshopPrint=selectedWorkshopPrint(localStorage.getItem(WORKSHOP_PRINT_KEY),riverSurvey,firstMarigold);}
  catch{workshopPrint=null;}
+ session.setWorkshopPrint(workshopPrint!==null);
  if(scene.setWorkshopPrint(workshopPrint)&&ready){refreshMenuFrame(2);wakeRender();}
 }
 function refreshRiverCast(){
@@ -729,6 +730,21 @@ function readHomeKeepsake(){
  body.append(card);
 }
 function activate(stop: Stop) {
+  if(stop.id===WORKSHOP_PRINT_STOP.id){
+    if(townMode||!workshopPrint||session.room!=='workshop')return;
+    const print=WORKSHOP_PRINTS[workshopPrint];
+    openPanel(print.name);
+    const inspection=document.createElement('div');
+    inspection.className='workshop-print-inspection';
+    const artwork=document.createElement('img');
+    artwork.src=print.art;
+    artwork.alt='';
+    artwork.width=108;
+    artwork.height=90;
+    inspection.append(artwork,paragraph(print.story));
+    body.append(inspection);
+    return;
+  }
   if(stop.id===SUNROOM_NOTEBOOK.id||stop.id===WORKSHOP_LODGE_BOARD.id){readHomePlanNote(stop);return;}
   if(stop.id==='home-keepsake'){readHomeKeepsake();return;}
   if(orchardAvailable()){

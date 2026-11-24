@@ -1,13 +1,20 @@
 import { readRiverSurvey, RIVER_SPOT_IDS, RIVER_SPOTS, RIVER_SURVEY_KEY, type RiverSpot, type RiverSurvey } from './river-survey.ts';
+import type { Stop } from './world.ts';
 
 // Preserve preferences created before the stand could display other fieldwork.
 export const WORKSHOP_PRINT_KEY = 'ih2:river-print:v1';
 export type WorkshopPrint = RiverSpot | 'marigold';
-export const WORKSHOP_PRINTS: Record<WorkshopPrint, {name:string; art:string}> = {
-  reeds: {name:RIVER_SPOTS.reeds.find,art:'/art/river/pondweed.svg'},
-  bridge: {name:RIVER_SPOTS.bridge.find,art:'/art/river/wet-boot.svg'},
-  riffle: {name:RIVER_SPOTS.riffle.find,art:'/art/river/perch.svg'},
-  marigold: {name:'A marigold on leave',art:'/art/garden/pressed-marigold.svg'},
+export const WORKSHOP_PRINTS: Record<WorkshopPrint, {name:string; art:string; story:string}> = {
+  reeds: {name:RIVER_SPOTS.reeds.find,art:'/art/river/pondweed.svg',story:RIVER_SPOTS.reeds.note},
+  bridge: {name:RIVER_SPOTS.bridge.find,art:'/art/river/wet-boot.svg',story:RIVER_SPOTS.bridge.note},
+  riffle: {name:RIVER_SPOTS.riffle.find,art:'/art/river/perch.svg',story:RIVER_SPOTS.riffle.note},
+  marigold: {name:'A marigold on leave',art:'/art/garden/pressed-marigold.svg',story:'Recorded after your first harvest. It is still out of office.'},
+};
+export const WORKSHOP_PRINT_STAND = {x:12.35,y:10.1} as const;
+export const WORKSHOP_PRINT_STOP: Stop = {
+  id:'workshop-print',name:'Workshop print',text:'Look more closely at your chosen print.',
+  point:{x:11.85,y:11.55},
+  doorArea:[WORKSHOP_PRINT_STAND.x-1.4,WORKSHOP_PRINT_STAND.y-1.1,2.8,2.6],
 };
 
 export function selectedWorkshopPrint(raw: string | null, survey: RiverSurvey | null, firstMarigold: boolean): WorkshopPrint | null {

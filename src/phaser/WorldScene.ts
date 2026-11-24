@@ -40,7 +40,7 @@ import { PLACEMENT_SLOTS, type WorkshopState,type PropId } from '../game/live-wo
 import { ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 import catalog from '../../public/art/variety/catalog.json';
 import {RESIDENT_IDS,TREE_KINDS,BUILDING_KINDS,residentArt,residentFrame,ambientPose,cosmeticStep} from '../art/variety.ts';
-import { WORKSHOP_PRINTS, type WorkshopPrint } from '../game/workshop-print.ts';
+import { WORKSHOP_PRINTS, WORKSHOP_PRINT_STAND, type WorkshopPrint } from '../game/workshop-print.ts';
 type ArtAsset={id:string;width:number;height:number;foot?:{x:number;y:number};occlusion?:{x:number;y:number;width:number;height:number};lightingWindows?:Array<{x:number;y:number;width:number;height:number}>};
 const assets=catalog.assets as ArtAsset[];
 const art=(id:string)=>{const asset=assets.find(a=>a.id===id);if(!asset)throw new Error('Missing authored art: '+id);return asset;};
@@ -668,7 +668,8 @@ export class WorldScene extends Phaser.Scene {
         const legs=this.add.graphics();
         legs.lineStyle(5,0x4a3b31).lineBetween(-29,28,-37,48).lineBetween(26,28,34,48);
         legs.lineStyle(3,0xa98962).lineBetween(-13,36,14,36);
-        this.workshopPrintFrame=this.add.container(12.35*TILE,10.1*TILE,[legs,backing,canvas,this.workshopPrintArt]).setDepth(11.6*TILE);
+        const stand=WORKSHOP_PRINT_STAND;
+        this.workshopPrintFrame=this.add.container(stand.x*TILE,stand.y*TILE,[legs,backing,canvas,this.workshopPrintArt]).setDepth((stand.y+1.5)*TILE);
         this.paintWorkshopPrint();
       }
       label(9,7.6,'Great things take time.');

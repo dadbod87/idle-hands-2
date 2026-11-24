@@ -147,3 +147,52 @@ test('Glasshouse door validates its own exact threshold and writes only confirme
   await pool.end();
  }
 });
+
+test('a late visitor keeps one private plant with the ordinary atomic command receipt', {skip:!target,timeout:25000},async()=>{
+ const pool=database(target);
+ const time=Date.UTC(2026,10,24,23),openAt=time-GLASSHOUSE_RULES.buildMs;
+ const store=new TownStore(pool,{now:()=>time});
+ const keeper:TownPosition={room:'glasshouse',position:GLASSHOUSE_ROOM.stops.find(stop=>stop.id==='glasshouse-keeper')!.point};
+ const front:TownPosition={room:'trail',position:GLASSHOUSE_FRONT};
+ try{
+  await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');
+  await migrate(pool);
+  const original=await store.ensurePlayer('aster','Aster');
+  await store.ensurePlayer('bea','Bea');
+  await pool.query("update ih2.bridge set contributed=3,phase='open',grandfathered=true where id=1");
+  const work={resident:'aster',at:openAt};
+  await pool.query('update ih2.glasshouse_project set state=$1 where id=1',[
+   {revision:1,work:{entrance:work,frame:work,chart:work},opensAt:time},
+  ]);
+  const pick={kind:'glasshouse-keep-plant',id:'fern',expectedRevision:original.workshop.revision,plant:'committee-fern'};
+  assert.equal((await store.execute('aster',{...pick,id:'outside'},front)).ok,false);
+  await pool.query(`create function ih2.test_greenery_receipt_failure() returns trigger language plpgsql as
+   $$begin raise exception 'isolated greenery receipt failure';end$$;
+   create trigger test_greenery_receipt_failure before insert on ih2.command_receipts
+   for each row when (new.command_id='fern') execute function ih2.test_greenery_receipt_failure()`);
+  try{
+   await assert.rejects(store.execute('aster',pick,keeper),/isolated greenery receipt failure/);
+   assert.equal((await store.snapshot('aster')).glasshousePlant,undefined);
+  }finally{
+   await pool.query('drop function ih2.test_greenery_receipt_failure() cascade');
+  }
+  const results=await Promise.all([
+   store.execute('aster',pick,keeper),
+   store.execute('aster',{...pick,id:'alternate',plant:'very-patient-sundew'},keeper),
+  ]);
+  assert.equal(results.filter(r=>r.ok).length,1);
+  const winner=results.find(r=>r.ok)!;
+  const plant=winner.snapshot.glasshousePlant!;
+  assert.ok(plant&&winner.publicChanged===false);
+  assert.deepEqual(winner.snapshot.workshop.inventory,original.workshop.inventory);
+  assert.deepEqual(winner.snapshot.workshop.carpentry,original.workshop.carpentry);
+  assert.equal((await store.snapshot('bea')).glasshousePlant,undefined);
+  const repeated=await store.execute('aster',plant==='committee-fern'?pick:{...pick,id:'alternate',plant},front);
+  assert.ok(repeated.ok&&repeated.replayed);
+  assert.equal(repeated.snapshot.glasshousePlant,plant);
+  assert.equal((await store.execute('aster',{...pick,id:'second',expectedRevision:winner.revision,plant:'very-patient-sundew'},keeper)).ok,false);
+  assert.equal((await new TownStore(pool,{now:()=>time}).snapshot('aster')).glasshousePlant,plant);
+ }finally{
+  await pool.end();
+ }
+});

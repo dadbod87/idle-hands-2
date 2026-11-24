@@ -1,3 +1,4 @@
+import {showNurseryKeeper} from './ui/glasshouse-plants.ts';
 import {GlasshouseBoard} from './ui/glasshouse.ts';
 import {headwearName} from './art/headwear.ts';
 import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
@@ -701,6 +702,11 @@ function activate(stop: Stop) {
   if(stop.id===INKWOOD_GLASSHOUSE.id&&!stop.transition){
     if(town?.snapshot?.glasshouse&&glasshouseUI)glasshouseUI.show();
     else{openPanel(stop.name);body.append(paragraph(stop.text));}
+    return;
+  }
+  if(stop.id==='glasshouse-keeper'&&town){
+    openPanel(stop.name);
+    showNurseryKeeper(body,town,()=>session.room==='glasshouse'&&session.nearby()?.id===stop.id);
     return;
   }
   if(session.room==='glasshouse'&&!stop.transition){

@@ -2281,6 +2281,26 @@
       "source": "public/art/glasshouse/interior.svg",
       "date": "2026-11-24",
       "modifications": "Restored room adapted from the original IH2-233 interior study, with the validated doors and usable aisles."
+    },
+    {
+      "id": "committee-fern",
+      "path": "public/art/glasshouse/committee-fern.svg",
+      "sha256": "84205242640167807857cee8537ef8d6d578e2cfb9f527a090507766aea8afec",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/glasshouse/committee-fern.svg",
+      "date": "2026-11-24",
+      "modifications": "Original illustrated potted plant from the IH2-233 tour design."
+    },
+    {
+      "id": "very-patient-sundew",
+      "path": "public/art/glasshouse/very-patient-sundew.svg",
+      "sha256": "c5a2e3e8f063385e23cd7cffd906e25d1da6ec458cd57ecd6312324f7177269d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/glasshouse/very-patient-sundew.svg",
+      "date": "2026-11-24",
+      "modifications": "Original illustrated potted plant from the IH2-233 tour design."
     }
   ],
   "comparison": {

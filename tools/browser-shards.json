@@ -74,6 +74,7 @@
     "design-cafe.spec.ts",
     "design-documents.spec.ts",
     "garden-recovery.spec.ts",
+    "glasshouse-plant.spec.ts",
     "home-builders.spec.ts",
     "home-neighborhood.spec.ts",
     "home-workroom.spec.ts",

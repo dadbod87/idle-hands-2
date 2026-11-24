@@ -1143,6 +1143,16 @@
       "id": "glasshouse-interior",
       "path": "art/glasshouse/interior.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "committee-fern",
+      "path": "art/glasshouse/committee-fern.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "very-patient-sundew",
+      "path": "art/glasshouse/very-patient-sundew.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

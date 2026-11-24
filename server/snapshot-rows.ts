@@ -34,6 +34,7 @@ export type SnapshotRows={
  outing:{state:unknown}|null;
  glasshouse:unknown;
  glasshouse_review:unknown;
+ glasshouse_plant:unknown;
 };
 
 // Explicit public projections keep other residents' private JSON out of the result.
@@ -94,7 +95,8 @@ const query = `select /* coherent-town-snapshot */
  ) as housing,
  (select jsonb_build_object('state',v.state) from ih2.outings v where v.player_id=$1) as outing,
  (select v.state from ih2.glasshouse_project v where v.id=1) as glasshouse,
- (select v.review from ih2.glasshouse_reviews v where v.player_id=$1) as glasshouse_review
+ (select v.review from ih2.glasshouse_reviews v where v.player_id=$1) as glasshouse_review,
+ (select v.plant from ih2.glasshouse_plants v where v.player_id=$1 and v.project_revision=1) as glasshouse_plant
  from ih2.players resident where resident.id=$1`;
 
 export async function readSnapshotRows(client:PoolClient,id:string,now:number,key:string):Promise<SnapshotRows|undefined>{

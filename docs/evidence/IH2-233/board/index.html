@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Inkwood Glasshouse volunteer board · Idle Hands 2 design</title>
+ <link rel="stylesheet" href="./study.css">
+</head>
+<body>
+ <main>
+  <header><p>Design preview · Fictional residents and supplies</p><h1>Inkwood Glasshouse</h1></header>
+  <div class="body">
+   <aside aria-label="Fictional resident">
+    <label for="resident">Try as a resident</label>
+    <select id="resident"></select>
+    <p id="supplies"></p>
+   </aside>
+   <section aria-labelledby="phase">
+    <h2 id="phase"></h2>
+    <p id="phase-note"></p>
+    <div id="jobs"></div>
+    <button id="advance" type="button" hidden>Simulate a visit tomorrow</button>
+   </section>
+   <section id="review" hidden aria-labelledby="review-title">
+    <h2 id="review-title">Review this job</h2>
+    <p id="review-terms"></p>
+    <div class="actions">
+     <button id="confirm" type="button">Confirm contribution</button>
+     <button id="cancel" type="button">Cancel review</button>
+    </div>
+   </section>
+   <form id="tour" hidden>
+    <fieldset>
+     <legend>Choose a plant from the first tour</legend>
+     <div class="plants">
+      <label><input type="radio" name="plant" value="committee-fern" required><img src="../tour/committee-fern.svg" width="72" height="84" alt=""><strong>Committee fern</strong></label>
+      <label><input type="radio" name="plant" value="very-patient-sundew" required><img src="../tour/very-patient-sundew.svg" width="72" height="84" alt=""><strong>Very patient sundew</strong></label>
+     </div>
+    </fieldset>
+    <button type="submit" disabled>Keep plant · free</button>
+   </form>
+   <p id="receipt" role="status" tabindex="-1"></p>
+  </div>
+ </main>
+ <script type="module" src="./study.ts"></script>
+</body>
+</html>

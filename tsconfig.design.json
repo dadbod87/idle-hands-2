@@ -9,6 +9,7 @@
     "tools/check-design-plan.ts",
     "tools/simulate-design-pacing.ts",
     "tests/design-*.test.ts",
+    "docs/evidence/IH2-233/board/study.ts",
     "tests/design-documents.spec.ts",
     "tools/simulate-garden-plan.ts",
     "tests/design-garden.spec.ts",

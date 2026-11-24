@@ -1,0 +1,42 @@
+:root {
+ color-scheme: light;
+ font-family: Georgia, serif;
+ background: #d4cdb9;
+ color: #324839;
+ --line: #9d9b81;
+ --paper: #f7efdc;
+ --accent: #45634c;
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: clamp(8px, 3vw, 26px); }
+main { max-width: 760px; margin: auto; border: 2px solid #31483a; border-radius: 7px; overflow: hidden; background: var(--paper); box-shadow: 4px 5px #52634c33; }
+header { background: #dfe5cf; padding: .75rem clamp(.7rem, 3vw, 1.3rem); border-bottom: 1px solid var(--line); }
+header p { margin: 0 0 .2rem; font-size: .84rem; }
+h1 { margin: 0; font-size: 1.65rem; }
+h2 { margin: 0 0 .3rem; font-size: 1.2rem; }
+h3 { margin: 0; font-size: 1rem; }
+p { margin: .35rem 0; line-height: 1.4; }
+.body { display: grid; gap: .75rem; padding: clamp(.65rem, 3vw, 1.3rem); }
+aside { display: flex; gap: .4rem .7rem; flex-wrap: wrap; align-items: center; padding: .45rem .55rem; border: 1px solid var(--line); border-radius: 4px; }
+aside label { font-weight: bold; }
+button, select { font: inherit; color: inherit; min-height: 44px; border: 1px solid #394e3e; border-radius: 4px; padding: .35rem .7rem; background: #fff7e3; }
+button { cursor: pointer; font-weight: bold; }
+button:disabled { cursor: default; color: #626c5b; background: #eee8da; }
+button:focus-visible, select:focus-visible, input:focus-visible, #receipt:focus-visible { outline: 3px solid #955238; outline-offset: 3px; }
+#jobs { display: grid; gap: .38rem; margin-top: .5rem; }
+.job { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .3rem .5rem; padding: .55rem; border-top: 1px solid var(--line); }
+.job[data-done="true"] h3::before { content: "✓ "; }
+.job p { font-size: .86rem; }
+#review { padding: .65rem; border: 1px solid var(--line); border-inline-start: 4px solid var(--accent); background: #e5ecd9; }
+.actions { display:flex; flex-wrap: wrap; gap: .4rem; margin-top: .55rem; }
+#confirm, #advance, #tour button:enabled { background: var(--accent); color: #fff8e6; }
+fieldset { min-width: 0; margin: 0 0 .5rem; padding: .45rem; border: 1px solid var(--line); }
+legend { font-weight: bold; }
+.plants { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap:.45rem; }
+.plants label { display:grid; justify-items:center; align-content:start; text-align:center; padding:.45rem; background:#faf4e3; border:1px solid var(--line); overflow-wrap:anywhere; }
+.plants label:has(input:checked) { outline:2px solid var(--accent); outline-offset:-2px; }
+#receipt { margin: 0; font-weight: bold; }
+@media (max-width: 420px) {
+ aside p { width:100%; }
+ .job button { width:100%; text-align:left; }
+}

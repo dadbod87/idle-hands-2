@@ -2,14 +2,14 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import {applyWorkshop,createWorkshop} from '../src/game/live-workshop.ts';
-import {newGlasshouse,type GlasshouseReview} from '../src/design/glasshouse-restoration.ts';
+import {GLASSHOUSE_RULES,newGlasshouse,type GlasshouseReview} from '../src/design/glasshouse-restoration.ts';
 import {migrateGlasshousePine} from '../src/design/glasshouse-pine.ts';
-import {glasshouseActions,type GlasshouseReceipt,type GlasshouseStore,type GlasshouseTransaction} from '../src/design/glasshouse-actions.ts';
+import {glasshouseActions,type GlasshouseAward,type GlasshouseReceipt,type GlasshouseStore,type GlasshouseTransaction} from '../src/design/glasshouse-actions.ts';
 
 type Member = NonNullable<Awaited<ReturnType<GlasshouseTransaction['lockMember']>>>;
 
 function memoryTown(){
- const time=1_000_000;
+ let time=1_000_000;
  let workshop=createWorkshop(time);
  for(const carpentryAction of [
   {action:'learn-saw'},{action:'equip-saw',equipped:true},{action:'gather-pine',station:'crooked'},
@@ -25,6 +25,7 @@ function memoryTown(){
   project:newGlasshouse(),
   reviews:new Map<string,GlasshouseReview>(),
   receipts:new Map<string,GlasshouseReceipt>(),
+  awards:new Map<string,GlasshouseAward>(),
  };
  let chain:Promise<unknown>=Promise.resolve(), refuseReceipt=false;
  const key=(resident:string,id:string)=>resident+':'+id;
@@ -37,9 +38,11 @@ function memoryTown(){
      lockProject:async()=>draft.project,
      findReview:async (resident,id)=>draft.reviews.get(key(resident,id)),
      findReceipt:async(resident,id)=>draft.receipts.get(key(resident,id)),
+     findAward:async(resident,revision)=>draft.awards.get(key(resident,String(revision))),
      saveReview:async review=>{draft.reviews.set(key(review.resident,review.id),review);},
      saveMember:async (resident,account)=>{draft.members.get(resident)!.account=account;},
      saveProject:async project=>{draft.project=project;},
+     saveAward:async award=>{draft.awards.set(key(award.resident,String(award.revision)),award);},
      saveReceipt:async(resident,id,receipt)=>{
       if(refuseReceipt)throw new Error('Test receipt write failure');
       draft.receipts.set(key(resident,id),receipt);
@@ -58,7 +61,14 @@ function memoryTown(){
   assert.ok(quote.ok);
   return {commandId:randomUUID(),reviewId:quote.review.id};
  }
- return {actions,offer,state:()=>structuredClone(state),failReceipt:(value:boolean)=>{refuseReceipt=value;}};
+ async function restore(){
+  for(const task of ['entrance','frame','chart']){
+   assert.ok((await actions.confirm('Bea',await offer('Bea',task))).ok);
+  }
+  time+=GLASSHOUSE_RULES.buildMs;
+ }
+ return {actions,offer,restore,state:()=>structuredClone(state),failReceipt:(value:boolean)=>{refuseReceipt=value;},
+  atGlasshouse:(resident:string,nearby:boolean)=>{state.members.get(resident)!.atGlasshouse=nearby;}};
 }
 
 test('parallel frame requests debit exactly one locked resident and reveal no counterpart data',async()=>{
@@ -102,4 +112,43 @@ test('a review is scoped to its resident even if another resident knows its ID',
  assert.ok(honest.ok);
  assert.equal(town.state().members.get('Devon')?.account.pine.carried,6);
  assert.deepEqual(await town.actions.confirm('None',offer),{ok:false,reason:'resident'});
+});
+
+test('two plant choices from the same resident create one private award, while late arrivals get the same choice',async()=>{
+ const town=memoryTown();
+ const fern={commandId:randomUUID(),plant:'committee-fern'};
+ const sundew={commandId:randomUUID(),plant:'very-patient-sundew'};
+ assert.deepEqual(await town.actions.keepPlant('Bea',fern),{ok:false,reason:'tour-unavailable'});
+ await town.restore();
+ const before=town.state();
+ assert.deepEqual(await town.actions.keepPlant('Bea',fern),{ok:false,reason:'tour-unavailable',replayed:true});
+ const choices=await Promise.all([
+  town.actions.keepPlant('Bea',{...fern,commandId:randomUUID()}),
+  town.actions.keepPlant('Bea',sundew),
+ ]);
+ assert.deepEqual(choices,[{ok:true,plant:fern.plant},{ok:false,reason:'already-kept'}]);
+ town.atGlasshouse('Devon',false);
+ assert.deepEqual(await town.actions.keepPlant('Devon',fern),{ok:false,reason:'tour-unavailable'});
+ town.atGlasshouse('Devon',true);
+ assert.deepEqual(await town.actions.keepPlant('Devon',sundew),{ok:true,plant:sundew.plant});
+ const after=town.state();
+ assert.equal(after.awards.size,2);
+ assert.deepEqual(after.members,before.members);
+ assert.deepEqual(after.project,before.project);
+});
+
+test('a failed plant-receipt write rolls the plant back and an exact replay cannot change plants',async()=>{
+ const town=memoryTown();
+ await town.restore();
+ const request={commandId:randomUUID(),plant:'committee-fern'},before=town.state();
+ town.failReceipt(true);
+ await assert.rejects(town.actions.keepPlant('Devon',request),/receipt write failure/);
+ assert.deepEqual(town.state(),before);
+ town.failReceipt(false);
+ assert.deepEqual(await town.actions.keepPlant('Devon',request),{ok:true,plant:request.plant});
+ town.atGlasshouse('Devon',false);
+ assert.deepEqual(await town.actions.keepPlant('Devon',request),{ok:true,plant:request.plant,replayed:true});
+ assert.deepEqual(await town.actions.keepPlant('Devon',{...request,plant:'very-patient-sundew'}),{ok:false,reason:'used-command-id'});
+ assert.deepEqual(await town.actions.confirm('Devon',{commandId:request.commandId,reviewId:randomUUID()}),{ok:false,reason:'used-command-id'});
+ assert.equal(town.state().awards.size,1);
 });

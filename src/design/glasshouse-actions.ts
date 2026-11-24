@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { glasshouseView, reviewGlasshouse, GLASSHOUSE_TASKS, type Glasshouse, type GlasshouseActor, type GlasshouseReview } from './glasshouse-restoration.ts';
+import { glasshouseTour, glasshouseView, reviewGlasshouse, GLASSHOUSE_PLANTS, GLASSHOUSE_RULES, GLASSHOUSE_TASKS, type Glasshouse, type GlasshouseActor, type GlasshouseReview } from './glasshouse-restoration.ts';
 import { postGlasshouseWork, type GlasshousePineAccount } from './glasshouse-pine.ts';
 
 // Unregistered candidate port. The future SQL implementation owns locking,
@@ -8,21 +8,28 @@ type Member = Omit<GlasshouseActor,'pine'> & {account: GlasshousePineAccount};
 export type GlasshouseDecision =
  | {ok:true; publicProject: NonNullable<ReturnType<typeof glasshouseView>>; pineHeld: number}
  | {ok:false; reason:string};
-export type GlasshouseReceipt = {reviewId:string; decision:GlasshouseDecision};
+export type GlasshouseAward = NonNullable<ReturnType<typeof glasshouseTour>>;
+type TourDecision = {ok:true; plant:GlasshouseAward['plant']} | {ok:false; reason:string};
+export type GlasshouseReceipt =
+ | {kind:'work'; reviewId:string; decision:GlasshouseDecision}
+ | {kind:'tour'; plant:GlasshouseAward['plant']; decision:TourDecision};
 
 export type GlasshouseTransaction = {
  lockMember: (resident:string)=>Promise<Member|undefined>;
  lockProject: ()=>Promise<Glasshouse>;
  findReview: (resident:string,id:string)=>Promise<GlasshouseReview|undefined>;
  findReceipt: (resident:string,id:string)=>Promise<GlasshouseReceipt|undefined>;
+ findAward: (resident:string,revision:number)=>Promise<GlasshouseAward|undefined>;
  saveReview: (review:GlasshouseReview)=>Promise<void>;
  saveMember: (resident:string,account:GlasshousePineAccount)=>Promise<void>;
  saveProject: (project:Glasshouse)=>Promise<void>;
  saveReceipt: (resident:string,id:string,receipt:GlasshouseReceipt)=>Promise<void>;
+ saveAward: (award:GlasshouseAward)=>Promise<void>;
 };
 export type GlasshouseStore = {transact:<T>(fn:(tx:GlasshouseTransaction)=>Promise<T>)=>Promise<T>};
 
 const workRequest = z.object({commandId:z.uuid(),reviewId:z.uuid()}).strict();
+const tourRequest = z.object({commandId:z.uuid(),plant:z.enum(GLASSHOUSE_PLANTS)}).strict();
 const taskSchema = z.enum(GLASSHOUSE_TASKS);
 const reject = (reason:string)=>({ok:false,reason} as const);
 
@@ -50,7 +57,7 @@ export function glasshouseActions(store: GlasshouseStore, currentTime:()=>number
     const member=await tx.lockMember(resident);
     if(member?.resident!==resident)return reject('resident');
     const previous=await tx.findReceipt(resident,commandId);
-    if(previous)return previous.reviewId===reviewId?{...previous.decision,replayed:true}:reject('used-command-id');
+    if(previous)return previous.kind==='work'&&previous.reviewId===reviewId?{...previous.decision,replayed:true}:reject('used-command-id');
     const project=await tx.lockProject();
     const review=await tx.findReview(resident,reviewId);
     const now=currentTime();
@@ -63,7 +70,26 @@ export function glasshouseActions(store: GlasshouseStore, currentTime:()=>number
      await tx.saveProject(result.project);
      decision={ok:true,publicProject,pineHeld:result.account.pine.carried};
     }else decision=result;
-    await tx.saveReceipt(resident,commandId,{reviewId,decision});
+    await tx.saveReceipt(resident,commandId,{kind:'work',reviewId,decision});
+    return decision;
+   });
+  },
+
+  async keepPlant(resident:string, body:unknown):Promise<TourDecision & {replayed?:boolean}>{
+   const parsed=tourRequest.safeParse(body);
+   if(!parsed.success)return reject('request');
+   const {commandId,plant}=parsed.data;
+   return store.transact(async tx=>{
+    const member=await tx.lockMember(resident);
+    if(member?.resident!==resident)return reject('resident');
+    const previous=await tx.findReceipt(resident,commandId);
+    if(previous)return previous.kind==='tour'&&previous.plant===plant?{...previous.decision,replayed:true}:reject('used-command-id');
+    const project=await tx.lockProject();
+    const alreadyKept=await tx.findAward(resident,GLASSHOUSE_RULES.revision);
+    const award=glasshouseTour(project,{...member,pine:member.account.pine.carried},!!alreadyKept,plant,currentTime());
+    if(award)await tx.saveAward(award);
+    const decision:TourDecision=award?{ok:true,plant:award.plant}:reject(alreadyKept?'already-kept':'tour-unavailable');
+    await tx.saveReceipt(resident,commandId,{kind:'tour',plant,decision});
     return decision;
    });
   },

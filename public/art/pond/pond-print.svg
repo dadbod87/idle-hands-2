@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 90">
+ <rect x="2" y="2" width="104" height="86" rx="5" fill="#f3e4bd" stroke="#78634b" stroke-width="2"/>
+ <path d="M8 60q19-20 47-14 27 6 45-6v31H8Z" fill="#91b5ad"/>
+ <path d="M8 45q12-15 31-8t36 6q11 3 25-3v14q-14 4-26 1-23-12-36-10-14 0-30 14Z" fill="#aab77d"/>
+ <path d="M14 66l-1-20m4 18 6-26m-3 27 8-15m58 14 6-21m-3 21 8-14" fill="none" stroke="#576e52" stroke-width="2"/>
+ <path d="M35 58q4-9 17-7l4-7q2-6 8-3l3 7-5 4q-3 13-14 11z" fill="#36423f"/>
+ <path d="m66 46 8 3-8 2z" fill="#b96047"/>
+ <path d="M76 29q-14-12-14-7 1 5 12 8-12-1-12 2 7 3 14 0 13-10 15-6 0 5-13 6 13-2 11 1-4 3-12 1zm0 0-3 11" fill="#788e78" stroke="#55766b" stroke-width="1.2"/>
+ <path d="M56 67q12-2 26 1" fill="none" stroke="#e3e9ce" stroke-width="1.4"/>
+ <text x="54" y="82" text-anchor="middle" font-family="Georgia,serif" font-size="7" fill="#4a5a48">FOUNDERS’ POND</text>
+</svg>

@@ -1,0 +1,9 @@
+# IH2-198 · Borrow a rod at the Riverwalk
+
+Browser practice now has an optional short survey at the existing Riverwalk. Choose a bank spot, leave the line out for 12 seconds, and come back to record the find. You can use the workshop or walk around while the float waits. The Journal gives a countdown and a route back while a line is out. Each of the three spots offers a different one-time entry. The loaner rod and finds stay part of the survey. No catch enters the Bag or pays anything.
+
+The isolated versioned notebook reuses the browser’s exclusive save coordination. It checks the current cast under that lock before collecting, guards stale replay, and keeps an unsupported record untouched. The timer reads an absolute local deadline, so backgrounding or a reload does not restart it. Shared-town rules and persistence do not change. Shared fishing, original collection animations and usable items remain future design work.
+
+The native browser test uses a declared saved arrival at the real Riverwalk and advances only the disposable browser clock to avoid spending test time on the countdown. It verifies the previous map route, real cast and reel controls, Journal status, reload, unchanged workshop data, quota failure, and reachability at desktop, 320px touch and short landscape. Independent branch `feat/riverwalk-practice` is based on accepted main.
+
+Local build, roadmap and pinned-skill checks passed. Node reported 443 passes and 28 skipped database-only cases. The Riverwalk and map playback passed in Chromium, and the Riverwalk exercise also passed in Playwright WebKit 26.0. Terra 6.1 checked desktop, emulated phone and short landscape and verified the clearer return copy and scrolled destination in the final captures. The fixture uses only the browser clock and a declared Riverwalk position. No shared service or saved preview was started.

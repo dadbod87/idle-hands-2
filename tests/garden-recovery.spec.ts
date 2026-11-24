@@ -69,7 +69,7 @@ test('a definite failed planting retry cannot become a paid receipt after a late
   await page.getByLabel('Other bed to swap with').selectOption('1');await page.locator('[data-garden-action=swap-beds]').click();
   await expect.poll(async()=>(await saved(page)).garden.beds[0]?.crop).toBe('radish');
   await expect(page.locator('[data-garden-quote]')).toBeHidden();
-  await expect(page.locator('#panel-body')).not.toContainText('One bound seed was spent');
+  await expect(page.locator('[data-planting-receipt]')).toHaveCount(0);
   const final=await saved(page);expect(final.garden.planted).toBe(1);expect(final.garden.seeds.radish).toBe(1);
   for(const key of ['inventory','owned','placements','job','stats','skills','bridgeKits'])expect(final[key]).toEqual(before[key]);
   expect(errors).toEqual([]);

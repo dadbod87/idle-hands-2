@@ -1,0 +1,106 @@
+.river-survey {
+ display: grid;
+ gap: .55rem;
+ margin-block: .55rem .8rem;
+}
+#panel-body .river-survey :is(h3,p,ul) { margin: 0; }
+.river-survey-sketch {
+ position: relative;
+ height: 72px;
+ overflow: hidden;
+ border: 2px solid #546e66;
+ border-radius: 4px;
+ background: repeating-linear-gradient(176deg,#aac5b2 0 10px,#bbd0bc 11px 12px,#aac5b2 13px 22px);
+}
+.river-survey-sketch::before {
+ content: '';
+ position: absolute;
+ inset-block-start: 29px;
+ inset-inline-start: calc(50% - 46px);
+ width: 92px;
+ height: 28px;
+ border: 1px solid #6c9990;
+ border-radius: 50%;
+ box-shadow: 0 0 0 5px #719f9133, inset 0 0 0 5px #719f9133;
+}
+.river-survey-sketch[data-river='casting']::after {
+ content: '';
+ position: absolute;
+ left: 50%;
+ bottom: 24px;
+ width: 10px;
+ height: 24px;
+ border: 2px solid #554b39;
+ border-radius: 7px;
+ background: linear-gradient(to bottom,#bd714d 50%,#ebdab3 50%);
+}
+.river-survey-actions { display: grid; gap: .4rem; }
+.river-survey-actions button { min-height: 44px; }
+.river-survey-notebook {
+ display: grid;
+ gap: .4rem;
+ list-style: none;
+ padding: 0;
+}
+.river-survey-notebook li {
+ display: flex;
+ align-items: center;
+ gap: .65rem;
+ padding: .45rem .55rem;
+ background: #f4e7c9;
+ border: 1px solid #baaa89;
+ border-radius: 4px;
+ overflow-wrap: anywhere;
+}
+.river-survey-notebook img {
+ flex: none;
+ width: clamp(42px, 15vw, 70px);
+ height: auto;
+}
+.river-survey-notebook li:focus-visible {
+ outline: 2px solid #b8653e;
+ outline-offset: 2px;
+}
+.river-survey-notebook span {
+ display: block;
+ font-size: .9rem;
+}
+.river-survey-notebook:empty { display: none; }
+.river-survey-status { font-weight: bold; }
+@media(max-height:480px) { .river-survey-sketch { display: none; } }
+
+.river-print-controls {
+ border-block-start: 1px solid #b6a788;
+ margin-block: .65rem;
+ padding-block-start: .45rem;
+}
+#panel-body .river-print-controls :is(h4,p) { margin: 0 0 .4rem; }
+.river-print-controls label { display: block; }
+.river-print-controls select {
+ appearance: none;
+ box-sizing: border-box;
+ font: inherit;
+ min-height: 44px;
+ width: 100%;
+ color: var(--ink);
+ padding: .35rem 1.5rem .35rem .55rem;
+ border: 1px solid #807255;
+ border-radius: 4px;
+ background:
+  linear-gradient(45deg,transparent 50%,#514a34 50%) right 14px center / 6px 6px no-repeat,
+  linear-gradient(135deg,#514a34 50%,transparent 50%) right 8px center / 6px 6px no-repeat,
+  #fff8e8;
+}
+.river-print-actions {
+ display: flex;
+ flex-wrap: wrap;
+ gap: .45rem;
+ margin-block-start: .55rem;
+}
+.river-print-actions button { min-height: 44px; }
+.river-print-controls [role=status]:empty { display: none; }
+.workshop-print-preview:not([hidden]) {
+ display: block;
+ object-fit: contain;
+ margin-block-start: .55rem;
+}

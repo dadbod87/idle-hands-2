@@ -3,6 +3,13 @@ import {WINDOWSILL_STOP} from './game/home-windowsill.ts';
 import {showHomeWindowsill} from './ui/home-windowsill.ts';
 import {showNurseryKeeper} from './ui/glasshouse-plants.ts';
 import {GlasshouseBoard} from './ui/glasshouse.ts';
+import {POND_WATCH_KEY,POND_WATCH_STOPS,completePondWatch,pondWatchId,readPondWatch,recordPondWatch,type PondWatchId} from './game/pond-watch.ts';
+import {mountPondWatch} from './ui/pond-watch.ts';
+import {readRiverSurvey,RIVER_SURVEY_KEY,type RiverSurvey,type RiverSpot} from './game/river-survey.ts';
+import {earnedFieldCertificate} from './game/outing.ts';
+import {showRiverSurvey} from './ui/river-survey.ts';
+import {WORKSHOP_PRINT_KEY,WORKSHOP_PRINT_STOP,WORKSHOP_PRINTS,earnedWorkshopPrints,selectedWorkshopPrint,setWorkshopPrint,type WorkshopPrint} from './game/workshop-print.ts';
+import {RecentFieldNotes} from './game/recent-field-notes.ts';
 import {headwearName} from './art/headwear.ts';
 import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
 import { benchWork } from './game/crafting-view.ts';
@@ -28,7 +35,7 @@ import {freshBridgeOpening} from './game/bridge-ceremony.ts';
 import {mountBrowserResident} from './ui/browser-resident.ts';
 import {OrchardUI} from './ui/orchard.ts';
 import {sharedOrchard} from './ui/town-orchard.ts';
-import {ORCHARD_BRANCHES,ORCHARD_STOPS,orchardBranchFromStop} from './game/orchard.ts';
+import {ORCHARD_BRANCHES,ORCHARD_STOPS,orchardBranchFromStop,type BranchId} from './game/orchard.ts';
 import {homeDisplay} from './game/live-home-layout.ts';
 import {CommissionUI} from './ui/commission.ts';
 import {commissionLocation,type RecipientId} from './game/commission.ts';
@@ -67,19 +74,28 @@ const morningStorage={
 let morning:MorningRead=townMode?{status:'unavailable',record:null}:readFirstMorning(morningStorage);
 let morningWriting=false;
 const resting=()=>morning.record?.phase==='bed';
-const session = new Session(townMode?null:morning.record?.saved??stored,townMode?undefined:ORCHARD_STOPS,!townMode);
+const session = new Session(townMode?null:morning.record?.saved??stored,townMode?undefined:[...ORCHARD_STOPS,...POND_WATCH_STOPS],!townMode);
 if(resting())session.lock(true);
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
  <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">${townMode?'NEIGHBORHOOD STUDY':'<strong id="local-resident-badge" dir="auto">NEIGHBORHOOD STUDY</strong>'}<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
  <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div id="door-light" aria-hidden="true"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><button id="stop-assisted-walk" type="button" aria-keyshortcuts="Escape" hidden>Stop walking</button><button id="wake-resident" class="primary" type="button" hidden>Get up</button><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
- <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal</button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav></footer>
+ <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal<span class="journal-ready-mark" id="journal-ready-mark" aria-hidden="true" hidden></span></button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav><span id="journal-ready-description" hidden>Work is ready to check in the Journal.</span></footer>
 </main>
 <dialog id="panel" aria-labelledby="panel-title"><form method="dialog"><header class="dialog-head"><div><p class="eyebrow">TOWN INFORMATION SERVICES</p><h2 id="panel-title">Places to go</h2></div><div class="dialog-actions"><button id="quick-music" class="sound-icon" type="button" hidden></button><button aria-label="Close panel" value="close">×</button></div></header><div id="panel-body"></div></form></dialog>`;
 const panel = document.querySelector<HTMLDialogElement>('#panel')!;
 const title = document.querySelector<HTMLElement>('#panel-title')!;
 const body = document.querySelector<HTMLDivElement>('#panel-body')!;
+const journalButton=document.querySelector<HTMLButtonElement>('#journal')!;
+const journalReadyMark=document.querySelector<HTMLElement>('#journal-ready-mark')!;
+function paintJournalReady(ready:boolean){
+ if(journalReadyMark.hidden===!ready)return;
+ journalReadyMark.hidden=!ready;
+ if(ready)journalButton.setAttribute('aria-describedby','journal-ready-description');
+ else journalButton.removeAttribute('aria-describedby');
+}
+
 const music = mountPlaceMusic({
   room: session.room,
   position: session.position,
@@ -97,8 +113,11 @@ function confirmedDoor() {
 }
 
 const feedback = document.querySelector<HTMLElement>('#feedback')!;
+const fieldNotes=new RecentFieldNotes();
+let fieldNoteOwner:string|null=townMode?null:'local';
+fieldNotes.record(fieldNoteOwner,feedback.textContent,Date.now());
 const stopWalkButton = document.querySelector<HTMLButtonElement>('#stop-assisted-walk')!;
-new MutationObserver(()=>{feedback.scrollTop=0;}).observe(feedback,{childList:true,characterData:true,subtree:true});
+new MutationObserver(()=>{feedback.scrollTop=0;fieldNotes.record(fieldNoteOwner,feedback.textContent,Date.now());}).observe(feedback,{childList:true,characterData:true,subtree:true});
 if(session.room==='lodging')feedback.textContent=resting()?'Your first morning in Ledgerwick. Get up when you’re ready.':'Read the note by the bed, or step outside to find Marlow.';
 if(session.recoveredLodgingFootprint){
  feedback.textContent='You’re by the boarding house. The new front steps are just behind you.';
@@ -126,6 +145,8 @@ const sky = document.createElement('small');
 sky.id = 'town-sky';
 sky.setAttribute('aria-label', 'Town time and weather');
 const scene = new WorldScene(session);
+scene.workshopPrintEnabled=!townMode;
+scene.pondWatchEnabled=!townMode;
 scene.resting=resting();
 const residentBadge=document.querySelector('#local-resident-badge');
 let localResident:BrowserResident|null=null;
@@ -163,6 +184,8 @@ let worldResizePending=false;
 game.events.on(Phaser.Core.Events.STEP,()=>{
  if(!worldResizePending)return;
  worldResizePending=false;
+ // Apply text-mode changes outside ResizeObserver because they can resize the world.
+ updateTextMode();
  // Measure after Phaser's own scale check. Apply any remaining change in the
  // game step so the cleared canvas is redrawn in that same frame.
  const {width,height}=worldContainer.getBoundingClientRect();
@@ -170,14 +193,7 @@ game.events.on(Phaser.Core.Events.STEP,()=>{
   game.scale.setParentSize(width,height);
  }
 });
-let textModeFrame:number|undefined;
 const worldResize=new ResizeObserver(entries=>{
- // The text-mode class can resize the observed world. Let the observer
- // finish delivering its current layout before changing that layout again.
- if(textModeFrame===undefined)textModeFrame=requestAnimationFrame(()=>{
-  textModeFrame=undefined;
-  updateTextMode();
- });
  const {width,height}=entries[0].contentRect;
  if(!game.isBooted||width<=0||height<=0)return;
  worldResizePending=true;
@@ -191,6 +207,36 @@ let cafeUI:CafeUI|undefined;let snackShelfUI:SnackShelfUI|undefined;let gardenUI
 let namedWalk:{room:Room;stopId:string;startedRoom:string;owner:string}|null=null;
 let placeWalk:{room:Room;stopId:string;owner:string}|null=null;
 let ready = false;
+let riverSurvey:RiverSurvey|null=null;
+let workshopPrint:WorkshopPrint|null=null;
+function readLocalPondWatch(){
+ if(townMode)return null;
+ try{return readPondWatch(localStorage.getItem(POND_WATCH_KEY));}
+ catch{return null;}
+}
+const printRights={marigold:false,woodland:false,pond:completePondWatch(readLocalPondWatch())};
+function refreshPondPrint(){
+ printRights.pond=completePondWatch(readLocalPondWatch());
+ refreshWorkshopPrint();
+}
+function refreshWorkshopPrint(){
+ try{workshopPrint=selectedWorkshopPrint(localStorage.getItem(WORKSHOP_PRINT_KEY),riverSurvey,printRights);}
+ catch{workshopPrint=null;}
+ session.setWorkshopPrint(workshopPrint!==null);
+ if(scene.setWorkshopPrint(workshopPrint)&&ready){refreshMenuFrame(2);wakeRender();}
+}
+function refreshRiverCast(){
+ try{riverSurvey=readRiverSurvey(localStorage.getItem(RIVER_SURVEY_KEY));}
+ catch{riverSurvey=null;}
+ scene.riverCast=riverSurvey?.cast??null;
+ refreshWorkshopPrint();
+ if(ready)wakeRender();
+}
+if(!townMode){
+ refreshRiverCast();
+ window.addEventListener('storage',event=>{if(event.key===POND_WATCH_KEY||event.key===null)refreshPondPrint();if(event.key===RIVER_SURVEY_KEY||event.key===null)refreshRiverCast();else if(event.key===WORKSHOP_PRINT_KEY)refreshWorkshopPrint();});
+ window.addEventListener('pageshow',event=>{if(event.persisted){refreshPondPrint();refreshRiverCast();}});
+}
 let lastContext = '';
 let lastDistrictHint='';
 let portalIntent=0;
@@ -261,15 +307,17 @@ async function changeMorning(kind:'start'|'wake'|'leave'){
 function focusWorld() { document.querySelector('canvas')?.focus(); }
 function unlockWorld(){if(!resting()&&!morningWriting&&session.locked&&!panel.open&&!transitionBusy&&!gardenUI?.isSaving&&!carpentryUI?.isSaving&&!commissionUI?.isSaving&&(!townMode||!!town?.snapshot&&!needResync&&!town.retryAvailable))session.lock(false);}
 let pendingExplicitPanelCloses=0;
+let cleanupRiverSurvey:(()=>void)|undefined;
+function closeRiverSurvey(){cleanupRiverSurvey?.();cleanupRiverSurvey=undefined;}
 function restorePanelFocus() {
   if (title.textContent === 'Sound settings') document.querySelector<HTMLButtonElement>('#place-sound')?.focus();
   else focusWorld();
 }
-function closePanel() { orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close(); gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed(); if(panel.open)pendingExplicitPanelCloses++;panel.close();resumeMenuRender();unlockWorld(); restorePanelFocus(); }
+function closePanel() { closeRiverSurvey(); orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close(); gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed(); if(panel.open)pendingExplicitPanelCloses++;panel.close();resumeMenuRender();unlockWorld(); restorePanelFocus(); }
 panel.addEventListener('submit', event => { event.preventDefault(); closePanel(); });
-panel.addEventListener('close', () => {const explicit=pendingExplicitPanelCloses>0;if(explicit)pendingExplicitPanelCloses--;if(panel.open)return; orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close();gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();resumeMenuRender();unlockWorld(); if(!explicit)restorePanelFocus(); });
+panel.addEventListener('close', () => {const explicit=pendingExplicitPanelCloses>0;if(explicit)pendingExplicitPanelCloses--;if(panel.open)return; closeRiverSurvey(); orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close();gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();resumeMenuRender();unlockWorld(); if(!explicit)restorePanelFocus(); });
 panel.addEventListener('cancel', event => {event.preventDefault();closePanel();});
-function openPanel(heading: string) { orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close(); namedWalk=null;placeWalk=null;gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();body.classList.remove('outing-panel','garden-panel','carpentry-panel','commission-panel','home-arrangement-panel');body.removeAttribute('aria-busy');pendingHomePlotId=undefined;pendingDistrictId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal();panel.scrollTop=0;pauseMenuRender(); }
+function openPanel(heading: string) { closeRiverSurvey(); orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close(); namedWalk=null;placeWalk=null;gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();body.classList.remove('outing-panel','garden-panel','carpentry-panel','commission-panel','home-arrangement-panel');body.removeAttribute('aria-busy');pendingHomePlotId=undefined;pendingDistrictId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal();panel.scrollTop=0;pauseMenuRender(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }
 let townUI:TownUI|undefined;
 let pendingHomePlotId:string|undefined,pendingDistrictId:string|undefined;
@@ -299,6 +347,7 @@ const town=townMode?new TownClient({
   if(cue)music.cue(cue);
  },
  onSnapshot:(snapshot,previous)=>{
+ fieldNoteOwner=snapshot.playerId;fieldNotes.read(fieldNoteOwner);
   if(scene.setGlasshousePhase(snapshot.glasshouse?.project.phase??'overgrown'))refreshMenuFrame(2);
   if(!needResync&&!panel.open&&freshGlasshouseOpening(previous,snapshot)&&scene.playGlasshouseOpening())
    feedback.textContent='The Glasshouse is open. The vines have filed a complaint.';
@@ -329,14 +378,23 @@ if(town)glasshouseUI=new GlasshouseBoard({
  enter:()=>{closePanel();activate(INKWOOD_GLASSHOUSE);},
 },town);
 const remoteWorkshop=town?.workshopAdapter();
-const outingUI=new OutingUI({open:openPanel,body,position:()=>({room:session.room,position:session.position}),go:id=>goNamedDestination('square',id),changed:()=>{scene.refreshOuting();refreshMenuFrame(2);},feedback:message=>feedback.textContent=message},town);
+function refreshWoodlandCertificate(){
+ if(townMode)return;
+ const earned=earnedFieldCertificate(outingUI.snapshot().journal);
+ if(earned===printRights.woodland)return;
+ printRights.woodland=earned;
+ refreshWorkshopPrint();
+}
+const outingUI=new OutingUI({open:openPanel,body,position:()=>({room:session.room,position:session.position}),go:id=>goNamedDestination('square',id),changed:()=>{scene.refreshOuting();refreshWoodlandCertificate();refreshMenuFrame(2);},feedback:message=>feedback.textContent=message,previewCertificate:townMode?undefined:()=>workshop.showJournal('woodland-certificate')},town);
 scene.outingState=()=>outingUI.snapshot();
+refreshWoodlandCertificate();
 const orchardTable=worlds.square.stops.find(stop=>stop.id==='commons-orchard')!;
 const orchardAvailable=()=>!town||town.snapshot?.orchard!==undefined;
 const orchardPort=town?sharedOrchard(town,()=>!needResync&&!transitionBusy&&contextKey(session.room,homePlotId)===confirmedContext):undefined;
 const orchardUI=new OrchardUI({
  open:openPanel,close:closePanel,body,feedback:message=>feedback.textContent=message,walk:walkToPlace,
  at:stop=>session.room==='square'&&session.nearby()?.id===stop.id,
+ packed:save,
  pick:id=>{
   const branch=ORCHARD_BRANCHES.find(branch=>branch.id===id)!;
   scene.playOrchardPick(branch);
@@ -345,11 +403,23 @@ const orchardUI=new OrchardUI({
 },orchardTable,orchardPort);
 scene.orchardState=()=>orchardAvailable()?orchardUI.state:undefined;
 scene.orchardNow=orchardPort?.now??Date.now;
-const workshop=new WorkshopUI({wardrobe:showBrowserResident?()=>({label:scene.headwear?headwearName[scene.headwear]:'Original look',open:showBrowserResident}):undefined,orchard:()=>orchardAvailable()?orchardUI.state:undefined,orchardWalk:()=>goNamedDestination('square',orchardTable.id),cue:music.cue,outings:()=>outingUI.show(),owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),walkToAllotment:()=>goNamedDestination('garden','garden-beds'),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{cafeParcels:()=>showCafeParcelNote({open:openPanel,body,walk:()=>goNamedDestination('square','cafe')},town),objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
+const workshop=new WorkshopUI({recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
+ savedMarigold:!town?(earned)=>{
+  if(earned===printRights.marigold)return;
+  printRights.marigold=earned;
+  refreshWorkshopPrint();
+ }:undefined,
+ prints:!town?{earned:()=>earnedWorkshopPrints(riverSurvey,printRights),selected:()=>workshopPrint,choose:print=>{
+  try{
+   const saved=setWorkshopPrint(localStorage,print,printRights);
+   refreshWorkshopPrint();
+   return saved;
+  }catch{return false;}
+ }}:undefined,wardrobe:showBrowserResident?()=>({label:scene.headwear?headwearName[scene.headwear]:'Original look',open:showBrowserResident}):undefined,orchard:()=>orchardAvailable()?orchardUI.state:undefined,orchardWalk:()=>goNamedDestination('square',orchardTable.id),walkToOrchardBranch:(id:BranchId)=>{const stop=ORCHARD_STOPS.find(site=>orchardBranchFromStop(site.id)===id);if(stop)goNamedDestination('square',stop.id);},cue:music.cue,outings:()=>outingUI.show(),pondWatch:townMode?undefined:()=>goNamedDestination('square','commons-pond'),woodlandTrip:()=>outingUI.benchTrip(),walkToWorkshop:()=>goNamedDestination('square','workshop'),readyWork:!townMode?paintJournalReady:undefined,walkToStarter:!townMode?target=>target==='bench'?goNamedDestination('workshop','bench'):goNamedDestination('square',target):undefined,owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),walkToAllotment:()=>goNamedDestination('garden','garden-beds'),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{cafeParcels:()=>showCafeParcelNote({open:openPanel,body,walk:()=>goNamedDestination('square','cafe')},town),objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
 const atCafe=()=>session.room==='square'&&Math.hypot(session.position.x-30,session.position.y-22)<=1.4;
 if(town)snackShelfUI=new SnackShelfUI({open:openPanel,body,canUse:atCafe,counter:()=>cafeUI?.show()},town);
 cafeUI=new CafeUI({open:openPanel,body,owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,headwear:()=>scene.headwear,canUse:atCafe,parcelShelf:snackShelfUI?()=>snackShelfUI?.show():undefined,project:()=>town?.snapshot?.cafe,shared:townMode,bag:()=>workshop.showInventory(),garden:()=>goNamedDestination('square','allotment'),feedback:message=>feedback.textContent=message},workshop);
-gardenUI=new GardenUI({open:openPanel,body,feedback:message=>feedback.textContent=message,shared:townMode,owner:()=>town?.snapshot?.playerId??'local',publicState:()=>town?.snapshot?.gardenTown,changed:()=>{scene.refreshGarden();refreshMenuFrame(2);unlockWorld();},canUse:action=>gardenActionLocations(action).some(location=>{const stop=worlds[location.room].stops.find(s=>s.id===location.stopId);return session.room===location.room&&!!stop&&Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.4;}),go:goNamedDestination,accepted:action=>{if(action.action==='plant')scene.playGardenAction('sow');else if(action.action==='harvest')scene.playGardenAction('harvest');else if(action.action==='observe')scene.playGardenAction('inspect');}},workshop);
+gardenUI=new GardenUI({open:openPanel,body,showFlowerPrint:townMode?undefined:()=>workshop.showJournal('marigold'),feedback:message=>feedback.textContent=message,shared:townMode,owner:()=>town?.snapshot?.playerId??'local',publicState:()=>town?.snapshot?.gardenTown,changed:()=>{scene.refreshGarden();refreshMenuFrame(2);unlockWorld();},canUse:action=>gardenActionLocations(action).some(location=>{const stop=worlds[location.room].stops.find(s=>s.id===location.stopId);return session.room===location.room&&!!stop&&Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.4;}),go:goNamedDestination,accepted:action=>{if(action.action==='plant')scene.playGardenAction('sow');else if(action.action==='harvest')scene.playGardenAction('harvest');else if(action.action==='observe')scene.playGardenAction('inspect');}},workshop);
 scene.ordinaryJob=()=>workshop.confirmedBenchJob();
 scene.gardenState=()=>workshop.state.garden;scene.gardenNow=()=>workshop.gardenClock();scene.welcomeCredits=()=>town?.snapshot?.gardenTown?.credits??Math.min(6,workshop.state.garden?.requests??0);
 function currentNoticeboard():NoticeboardState|undefined{if(town)return town.snapshot?.noticeboard;const s=workshop.state.carpentry;return s.recorded<6?{...createNoticeboard(),credits:s.recorded}:settleNoticeboard({credits:6,phase:'installing',startedAt:s.sixthRecordAt,readyAt:s.sixthRecordAt!+24*3600_000,openedAt:null},Math.max(workshop.gardenClock(),s.sixthRecordAt!));}
@@ -434,9 +504,15 @@ scene.letterboxMotif=()=>session.room.startsWith('home')?town?.snapshot?.plots.f
 scene.decorations=()=>{if(!session.room.startsWith('home'))return workshop.state.placements;const plot=town?.snapshot?.plots.find(plot=>plot.id===homePlotId);return plot?homeDisplay(plot):{};};
 function personalTool(tool:'bag'|'journal'){if(town?.retryAvailable){showPendingRequest();return;}if(tool==='bag')workshop.showInventory();else workshop.showJournal();}
 document.querySelector('#bag')!.addEventListener('click',()=>personalTool('bag'));
-document.querySelector('#journal')!.addEventListener('click',()=>personalTool('journal'));
+journalButton.addEventListener('click',()=>personalTool('journal'));
 window.addEventListener('keydown',event=>{if(event.defaultPrevented||event.repeat||event.ctrlKey||event.metaKey||event.altKey||panel.open||transitionBusy||!!town&&needResync)return;const target=event.target;if(target instanceof HTMLElement&&target.closest('input,textarea,select,button,summary,[contenteditable]'))return;const key=event.key.toLowerCase();if(key==='b'||key==='j'){event.preventDefault();personalTool(key==='b'?'bag':'journal');}});
 function currentObjective(){return town?.snapshot?sharedObjective(town.snapshot,town.serverNow()):questStep(workshop.state);}
+function workshopArrivalNote():string {
+  const {job,stats}=workshop.state;
+  if(job)return 'Your workshop. Open the bench to check your work.';
+  if(stats.plantersCrafted>0)return 'Your workshop. Open the bench to see what you can make.';
+  return 'Your workshop. Tap the bench to make your first planter.';
+}
 function paintGuideObjective(){
   const title=body.querySelector<HTMLElement>('[data-guide-title]');
   const detail=body.querySelector<HTMLElement>('[data-guide-detail]');
@@ -548,7 +624,7 @@ async function enterRemotePortal(stop:Stop){
   await flushMovement(true);
   if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||session.room!==sourceRoom||panel.open||needResync)return;
   session.enter(targetRoom,stop.arrival);districtId=targetRoom==='neighborhood'?districtId:undefined;scene.districtId=districtId;if(!targetRoom.startsWith('home')){homePlotId=undefined;scene.homePlotId=undefined;}save();focusWorld();
-  feedback.textContent=targetRoom==='neighborhood'?'Back in neighborhood '+districtId+'. Each door leads to its own home.':targetRoom==='glasshouse'?'The nursery is open. Walk up to a bench or meet the keeper.':sourceRoom==='glasshouse'?'Back on the Glasshouse front step.':targetRoom==='trail'?'Inkwood trail. Three landmarks, one extremely official field notebook.':targetRoom==='garden'?'Your allotment. Inspect the three beds or visit the attendant.':targetRoom==='workshop'?'Your workshop. Tap the bench to make your first planter.':(scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
+  feedback.textContent=targetRoom==='neighborhood'?'Back in neighborhood '+districtId+'. Each door leads to its own home.':targetRoom==='glasshouse'?'The nursery is open. Walk up to a bench or meet the keeper.':sourceRoom==='glasshouse'?'Back on the Glasshouse front step.':targetRoom==='trail'?'Inkwood trail. Three landmarks, one extremely official field notebook.':targetRoom==='garden'?'Your allotment. Inspect the three beds or visit the attendant.':targetRoom==='workshop'?workshopArrivalNote():(scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
  }catch{
   if(intent===portalIntent&&epoch===movementEpoch&&town.snapshot?.playerId===playerId&&!needResync)feedback.textContent='Entry could not be confirmed. Try the door again.';
  }finally{
@@ -645,7 +721,48 @@ function readHomeKeepsake(){
  card.append(art,caption);
  body.append(card);
 }
+async function savePondObservation(id:PondWatchId,choice:string,active:()=>boolean){
+ try{
+  if(!navigator.locks)return 'This browser cannot coordinate field note saves.';
+  return await navigator.locks.request(POND_WATCH_KEY,()=>{
+   if(townMode||!active()||session.room!=='square'||session.nearby()?.id!==id)return 'Return to this shore to record the observation.';
+   const current=readLocalPondWatch();
+   if(!current)return 'The saved field notes could not be read. They were kept.';
+   const result=recordPondWatch(current,id,choice);
+   if(!result.changed)return result.message;
+   const recorded=JSON.stringify(result.state);
+   try{localStorage.setItem(POND_WATCH_KEY,recorded);}
+   catch(error){if(localStorage.getItem(POND_WATCH_KEY)!==recorded)throw error;}
+   refreshPondPrint();
+   save();
+   return result.message;
+  });
+ }catch{return 'The observation could not be saved. Your earlier notes are safe.';}
+}
 function activate(stop: Stop) {
+  const pond=pondWatchId(stop.id);
+  if(!townMode&&(pond||stop.id==='commons-pond')){
+    feedback.textContent='At '+stop.name+'.';
+    stopWalkButton.hidden=true;
+    openPanel(stop.name);
+    mountPondWatch(body,{read:readLocalPondWatch,save:savePondObservation,walk:id=>goNamedDestination('square',id),previewPrint:()=>workshop.showJournal('pond')},pond);
+    return;
+  }
+  if(stop.id===WORKSHOP_PRINT_STOP.id){
+    if(townMode||!workshopPrint||session.room!=='workshop')return;
+    const print=WORKSHOP_PRINTS[workshopPrint];
+    openPanel(print.name);
+    const inspection=document.createElement('div');
+    inspection.className='workshop-print-inspection';
+    const artwork=document.createElement('img');
+    artwork.src=print.art;
+    artwork.alt='';
+    artwork.width=108;
+    artwork.height=90;
+    inspection.append(artwork,paragraph(print.story));
+    body.append(inspection);
+    return;
+  }
   if(stop.id===SUNROOM_NOTEBOOK.id||stop.id===WORKSHOP_LODGE_BOARD.id){readHomePlanNote(stop);return;}
   if(stop.id===WINDOWSILL_STOP.id&&town&&homePlotId){
     const plotId=homePlotId;
@@ -738,7 +855,19 @@ function activate(stop: Stop) {
   if(town&&stop.id==='home-front'){const target=pendingHomePlotId??town.snapshot?.plot?.id;pendingHomePlotId=undefined;if(target)void enterHome(target);else townUI!.showPlots();return;}
   if(['scrap','timber','supplies'].includes(stop.id)){workshop.showResource(stop.id as 'scrap'|'timber'|'supplies');return;}
   if(stop.id==='bench'){workshop.showBench();return;}
-  if(stop.id.startsWith('commons-')){openPanel(stop.name);body.append(paragraph(stop.text));const back=document.createElement('button');back.type='button';back.textContent='Walk to the old square';back.onclick=()=>goNamedDestination('square','workshop');body.append(back);return;}
+  if(stop.id.startsWith('commons-')){
+    openPanel(stop.name);
+    const walkBack=()=>goNamedDestination('square','workshop');
+    if(stop.id==='commons-riverwalk'&&!town){
+     cleanupRiverSurvey=showRiverSurvey(body,action=>{if(action.kind==='cast')save();refreshRiverCast();},walkBack);
+     return;
+    }
+    body.append(paragraph(stop.text));
+    const back=document.createElement('button');back.type='button';
+    if(stop.id==='commons-riverwalk')back.className='destination';
+    back.textContent='Walk to the old square';back.onclick=walkBack;body.append(back);
+    return;
+  }
   if (stop.id==='lodging-note') {
     openPanel(stop.name);
     const note=document.createElement('div');
@@ -765,7 +894,7 @@ function activate(stop: Stop) {
   if (stop.transition) {
     if(stop.id==='lodging-exit'&&morning.record?.phase==='awake'){void changeMorning('leave');return;}
     if(town){void enterRemotePortal(stop);return;}
-    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='lodging-exit'?'Follow the path east to Marlow.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? 'Your workshop. Tap the bench to make your first planter.' : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
+    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='lodging-exit'?'Follow the path east to Marlow.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? workshopArrivalNote() : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
     const note = paragraph(townMode?'Shared practice keeps your town projects and home progress.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);

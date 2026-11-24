@@ -6,13 +6,17 @@ function sheet(key:string){if(failedSheets.delete(key))sheets.delete(key);let re
 /** Disposable presentation only: no state, transport, persistence or world actions. */
 export class CollectionReceiptView {
  readonly root=document.createElement('section');readonly collect=document.createElement('button');readonly retry=document.createElement('button');readonly status=document.createElement('p');
+ private next=document.createElement('button');
  private actor=document.createElement('div');private empty=document.createElement('span');private note=document.createElement('p');private region=document.createElement('div');
  private media=matchMedia('(prefers-reduced-motion: reduce)');private timers:number[]=[];private generation=0;private destroyed=false;private asset:Asset= null;private loaded=false;private confirmed=false;private pendingId='';private seen=new Set<string>();
- constructor(readonly resource:CollectionGrant['resource'],rig:string,private current:()=>boolean,onCollect:()=>void,onRetry:()=>void){
+ constructor(readonly resource:CollectionGrant['resource'],rig:string,private current:()=>boolean,onCollect:()=>void,onRetry:()=>void,reserveNext=false){
   this.root.className='collection-receipt';this.root.dataset.collectionArt='loading';this.root.dataset.collectionAnimating='false';this.root.dataset.collectionResource=resource;const row=document.createElement('div');row.className='collection-action';this.collect.type='button';this.collect.className='primary collection-control';this.collect.dataset.collect=resource;this.collect.textContent='Collect available '+resource;this.collect.onclick=()=>{if(this.collect.getAttribute('aria-disabled')!=='true')onCollect();};
   const art=document.createElement('div');art.className='collection-art';art.setAttribute('aria-hidden','true');this.empty.textContent='—';this.actor.className='collection-actor';this.actor.hidden=true;art.append(this.empty,this.actor);row.append(this.collect,art);
   this.region.className='collection-status-wrap';this.region.tabIndex=0;this.region.setAttribute('role','region');this.region.setAttribute('aria-label','Collection receipt');this.status.className='workshop-status collection-status';this.status.setAttribute('aria-live','off');this.status.textContent='Choose Collect to gather the available material.';this.region.append(this.status);
   this.retry.type='button';this.retry.className='remote-retry collection-control';this.retry.textContent='Retry the same request';this.retry.setAttribute('aria-disabled','true');this.retry.onclick=()=>{if(this.retry.getAttribute('aria-disabled')!=='true')onRetry();};this.note.className='collection-art-note';this.note.textContent='The clerk has reserved a form.';this.root.append(row,this.region,this.retry,this.note);
+  this.next.type='button';this.next.className='destination collection-next';this.next.hidden=true;
+  this.next.toggleAttribute('data-reserved',reserveNext);
+  this.region.after(this.next);
   document.addEventListener('keydown',this.key,true);document.addEventListener('pointerdown',this.pointer,true);this.root.addEventListener('focusin',this.focused);this.media.addEventListener('change',this.staticResult);document.addEventListener('visibilitychange',this.staticResult);
   const key=residentArt(rig)+'-'+resource;this.root.dataset.collectionRig=residentArt(rig);void sheet(key).then(asset=>{if(this.destroyed||!this.current())return;this.loaded=true;this.asset=asset;this.root.dataset.collectionArt=asset?'ready':'failed';if(asset)this.actor.style.backgroundImage='url("'+asset.url+'")';if(this.confirmed)this.still();});
  }
@@ -25,7 +29,12 @@ export class CollectionReceiptView {
  private staticResult=()=>{this.cancel();if(this.confirmed&&this.valid())this.still();};
  private frame(col:number){this.actor.style.backgroundPosition=(-col*57.6)+'px 0px';this.root.dataset.collectionPhase=String(col);}
  private still(){const ready=!!this.asset;this.actor.hidden=!ready;this.empty.hidden=ready;this.frame(2);this.note.textContent=ready?'Filed under: useful.':this.loaded?'Artwork unavailable. Receipt kept.':'Artwork loading. Receipt kept.';}
- begin(id:string){this.cancel();this.pendingId=id;this.confirmed=false;this.actor.hidden=true;this.empty.hidden=false;delete this.root.dataset.collectionQuantity;delete this.root.dataset.collectionSaved;this.note.textContent='Waiting for the receipt.';this.message('Waiting for confirmation…');}
+ begin(id:string){this.cancel();this.pendingId=id;this.confirmed=false;this.actor.hidden=true;this.empty.hidden=false;this.next.hidden=true;this.next.onclick=null;delete this.root.dataset.collectionQuantity;delete this.root.dataset.collectionSaved;this.note.textContent='Waiting for the receipt.';this.message('Waiting for confirmation…');}
+ offerNext(label:string,walk:()=>void){
+  this.next.textContent=label;
+  this.next.onclick=()=>{if(this.valid()&&this.confirmed)walk();};
+  this.next.hidden=false;
+ }
  message(text:string){if(this.status.textContent!==text){this.status.textContent=text;this.region.scrollTop=0;}}
  confirm(grant:CollectionGrant,saved:boolean,message:string){
   if(!this.valid()||grant.commandId!==this.pendingId||grant.resource!==this.resource||this.seen.has(grant.commandId))return false;

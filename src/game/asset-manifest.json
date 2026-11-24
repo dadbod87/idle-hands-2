@@ -1153,6 +1153,46 @@
       "id": "very-patient-sundew",
       "path": "art/glasshouse/very-patient-sundew.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "garden-pressed-marigold",
+      "path": "art/garden/pressed-marigold.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "river-perch",
+      "path": "art/river/perch.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "river-pondweed",
+      "path": "art/river/pondweed.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "river-wet-boot",
+      "path": "art/river/wet-boot.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pond-bank-clue",
+      "path": "art/pond/bank-clue.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pond-print",
+      "path": "art/pond/pond-print.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pond-reed-clue",
+      "path": "art/pond/reed-clue.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pond-water-clue",
+      "path": "art/pond/water-clue.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

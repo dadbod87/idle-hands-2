@@ -19,7 +19,9 @@
 .garden-panel .garden-primary-actions button{margin:0;min-height:64px;padding:.6rem}
 .garden-panel .garden-preview{border:2px solid #8d9a7c;background:#fff8e8;padding:.6rem;margin:.6rem 0}
 #panel-body.garden-panel .garden-preview>p{height:7em;overflow:auto;line-height:1.4;margin:0 0 .5rem}
-.garden-panel .garden-preview[hidden],.garden-panel .garden-retry[hidden]{display:none}
+#panel-body.garden-panel .garden-preview[data-planting-receipt]>p{height:auto;overflow:visible}
+.garden-panel .garden-preview button[hidden]{display:none}
+.garden-panel .garden-preview[hidden],.garden-panel .garden-retry[hidden],.garden-panel [data-garden-action=flower-print][hidden]{display:none}
 .garden-panel img{object-fit:contain;flex-shrink:0}
 #panel-body.garden-panel .garden-stock{font:.85rem/1.4 'Courier New',monospace;min-height:2.8em;margin:0 0 .3rem;overflow-wrap:anywhere}
 #panel-body.garden-panel .garden-bed-notice{height:4.5em;overflow:auto;font-size:.88rem;line-height:1.3;margin:0 0 .4rem;overflow-wrap:anywhere}

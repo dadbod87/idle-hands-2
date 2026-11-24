@@ -32,3 +32,74 @@ test('woodland local: native two tabs share one borrowed run and storage failure
  writeFileSync(out+'/outing-browser-recovery.json',JSON.stringify({syntheticLocalStorageFailureInjection:true,realWebLocksAndStorageEvents:true,fixtureHeldLockQueuesBothNativeActionsBeforeRelease:true,twoNativeTabs:true,quotaAndWriteThenThrowSameCandidateRetry:true,oneRunThreeSuccessfulMutations:true,ordinarySaveExact:true},null,2));
  }finally{await context.close();}
 });
+
+test('two distinct woodland repairs unlock an inspectable workshop certificate',async({browser})=>{
+ test.setTimeout(90_000);
+ const output=process.env.QA_EVIDENCE_DIR??out;
+ mkdirSync(output,{recursive:true});
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ try{
+  const page=await context.newPage(),errors:string[]=[],requests:string[]=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))requests.push(request.url());});
+  // Only the starting feet are a fixture. Complete both repairs normally.
+  await page.addInitScript(()=>{
+   if(!localStorage.getItem('ih2:pilot-position:v1'))localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:{x:48,y:42}}));
+  });
+  const ready=()=>expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+  const action=(id:string)=>page.locator('[data-outing-action="'+id+'"]');
+  const button=(name:string)=>page.getByRole('button',{name,exact:true});
+  const read=(key:string)=>page.evaluate(key=>localStorage.getItem(key),key);
+  const certificate=button('Preview certificate for your workshop');
+  await page.goto('/?sky-study=1&phase=day&weather=clear');
+  await ready();
+  const ordinary=await read('ih2:workshop:v2');
+  await page.locator('#interact').tap();
+  for(const [index,tool] of ['brace','rope'].entries()){
+   await action('start-'+tool).tap();
+   await button('Woodland bend · direct route').tap();
+   await expect(action('cross')).toBeVisible({timeout:20000});
+   await action('cross').tap();
+   await button('Walk to the leaning waymarker').tap();
+   await expect(action('align-west')).toBeVisible({timeout:20000});
+   for(const step of ['align-west','pin','secure'])await action(step).tap();
+   await button('Report back at the desk').tap();
+   await expect(action('finish')).toBeVisible({timeout:20000});
+   await action('finish').tap();
+   await page.getByText('Woodland journal · '+(index+1)+(index?' repairs':' repair'),{exact:true}).tap();
+   if(!index)await expect(certificate).toHaveCount(0);
+  }
+  await expect(certificate).toBeVisible();
+  const outing=await read('ih2:woodland-outing:v1');
+  expect(JSON.parse(outing!).state.journal.map((entry:{variant:string})=>entry.variant)).toEqual(['wind','soft-bank']);
+  await certificate.tap();
+  const picker=page.getByRole('combobox',{name:'Choose a workshop print'});
+  await expect(picker).toBeFocused();
+  await expect(picker).toHaveValue('woodland-certificate');
+  const preview=page.locator('.workshop-print-preview');
+  await expect(preview).toHaveAttribute('src','/art/outing/field-certificate.svg');
+  expect(await read('ih2:river-print:v1')).toBeNull();
+  await button('Display print').tap();
+  await expect(page.getByText('Print displayed.',{exact:true})).toBeInViewport({ratio:1});
+  await page.screenshot({path:output+'/woodland-certificate-phone.png'});
+  await button('See it in the workshop').tap();
+  const display=()=>page.evaluate(()=>(window as any).__pilot?.metrics().visual.workshopPrint);
+  await expect.poll(display,{timeout:35000}).toBe('woodland-certificate');
+  await page.reload();
+  await ready();
+  await expect.poll(display).toBe('woodland-certificate');
+  await page.setViewportSize({width:1440,height:900});
+  await page.locator('#places').tap();
+  await page.locator('[data-destination=workshop-print]').tap();
+  await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().nearby)).toBe('workshop-print');
+  await page.locator('#interact').press('Enter');
+  const inspected=page.getByRole('dialog',{name:'Qualified to point left',exact:true});
+  await expect(inspected.getByText('The arrow now reports to you.',{exact:false})).toBeInViewport({ratio:1});
+  await page.screenshot({path:output+'/woodland-certificate-desktop.png'});
+  expect(await read('ih2:workshop:v2')).toBe(ordinary);
+  expect(await read('ih2:woodland-outing:v1')).toBe(outing);
+  expect(await read('ih2:river-survey:v1')).toBeNull();
+  expect(requests).toEqual([]);
+  expect(errors).toEqual([]);
+ }finally{await context.close();}
+});

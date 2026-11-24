@@ -11,6 +11,7 @@ const unavailable = 'The browser cannot safely save orchard progress here.';
 type Host = {
  open:(title:string)=>void; close:()=>void; body:HTMLElement; feedback:(text:string)=>void;
  walk:(stop:Stop)=>void; at:(stop:Stop)=>boolean; pick:(branch:BranchId)=>void;
+ packed?:()=>void;
 };
 
 type OrchardResult=ReturnType<typeof writeOrchard>&{fresh?:boolean};
@@ -173,6 +174,7 @@ export class OrchardUI {
      ready=owner.current={status:'ready',raw:result.raw,state:result.state};
      if (!present()) return;
      owner.host.feedback(result.message);
+     if (!shared && action?.kind==='pack') owner.host.packed?.();
      if (action?.kind==='pick' && result.fresh!==false) {
       owner.host.close();
       owner.host.pick(action.branch);

@@ -1,9 +1,10 @@
+import {POND_WATCH_STOPS} from '../game/pond-watch.ts';
 import {COMMONS_MEADOWS,COMMONS_UNDERSTORY,brushContour,commonsEdgeMarks,commonsShoreContour,commonsSignLayout,type CommonsSign} from '../art/commons-life.ts';
 import type Phaser from 'phaser';
 import {COMMONS_PATHS,COMMONS_PONDS,COMMONS_STOPS,COMMONS_SHELTERS,TOWN_SIZE} from '../game/town-expansion.ts';
 import {TILE} from '../game/world.ts';
 /** Original world-space scenery; no scaled-up town bitmap or viewport wash. */
-export function drawTownCommons(scene:Phaser.Scene,signs:CommonsSign[]=[]){
+export function drawTownCommons(scene:Phaser.Scene,signs:CommonsSign[]=[],pondWatch=false){
  const polygon=(g:Phaser.GameObjects.Graphics,points:Array<{x:number;y:number}>)=>{g.beginPath().moveTo(points[0].x,points[0].y);for(const p of points.slice(1))g.lineTo(p.x,p.y);g.closePath().fillPath();};
  const brush=(g:Phaser.GameObjects.Graphics,x:number,y:number,rx:number,ry:number,seed:number)=>polygon(g,brushContour(x,y,rx,ry,seed));
  const occluders:Array<{image:Phaser.GameObjects.Graphics;x:number;y:number;width:number;height:number}>=[];
@@ -58,7 +59,7 @@ export function drawTownCommons(scene:Phaser.Scene,signs:CommonsSign[]=[]){
   const bench=scene.add.graphics().setPosition((x===73?x-1.2:x)*TILE,y*TILE).setDepth(y*TILE);
   bench.lineStyle(3,0x343c36).fillStyle(0xa78b62).fillRoundedRect(-45,-22,90,17,3).strokeRoundedRect(-45,-22,90,17,3).fillRoundedRect(-45,-42,90,12,3).strokeRoundedRect(-45,-42,90,12,3).lineBetween(-34,-5,-34,9).lineBetween(34,-5,34,9);
  }
- for(const stop of COMMONS_STOPS){
+ for(const stop of pondWatch?[...COMMONS_STOPS,...POND_WATCH_STOPS]:COMMONS_STOPS){
   const layout=commonsSignLayout(stop.id,stop.name,stop.point),b=layout.board;signs.push(layout);
   const sign=scene.add.graphics().setDepth(layout.baseY-36);sign.fillStyle(0x967b56).fillRect(layout.x-3,b.y+b.height-2,6,layout.baseY-b.y-b.height+2);sign.fillStyle(0xf3e6c5).fillRoundedRect(b.x,b.y,b.width,b.height,4).lineStyle(2,0x343c36).strokeRoundedRect(b.x,b.y,b.width,b.height,4);
   scene.add.text(layout.x,b.y+b.height/2,layout.title,{fontFamily:'Georgia',fontSize:12,color:'#343c36',align:'center'}).setOrigin(.5).setDepth(layout.baseY-35);

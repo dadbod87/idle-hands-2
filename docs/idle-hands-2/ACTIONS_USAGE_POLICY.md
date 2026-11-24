@@ -68,3 +68,9 @@ After main6cc2f96 group1cancelled twice at the unchanged20minute cap (second att
 ## November18 delayed PR event registration
 
 PR62was created19:49:37UTC, but its automatic workflow registered only19:51:01UTC. An inspected-empty-run manual dispatch raced that delayed event; cancel the duplicate promptly and retain its consumed26public job-minutes/partial evidence. For a newly created PR with no run visible, allow up to three minutes for registration with bounded spaced inspections before considering a manual exact-head full gate. Inspect again immediately before dispatch, record the reason, and check for a late duplicate. Never use an empty commit, repeated dispatch or premature rerun to probe registration. Existing exact-source/full-coverage/cap and paid-resource gates remain unchanged.
+
+## November 24 — time the existing runs before rebalancing
+
+The exact successful main and two open candidates used 51.0, 49.9 and 51.0 summed runner minutes, respectively. The longest assigned-browser step moved from shard 1 (987 seconds) to shard 3 (927 seconds) to shard 2 (980 seconds). Browser installation took 19–36 seconds across these jobs. Preserve the current groups and collect per-case durations from the next naturally required run before proposing a rebalance. [Main](https://github.com/dadbod87/idle-hands-2/actions/runs/45213779084), [headwear](https://github.com/dadbod87/idle-hands-2/actions/runs/45222113854), [nearby residents](https://github.com/dadbod87/idle-hands-2/actions/runs/45232892583).
+
+The exact-run checker can be validated locally with `python3 tests/actions-run-minutes.test.py`. It reads GitHub metadata with GET requests. Use its completed attempt totals for closeout and keep reporter failures separate from workflow results.

@@ -1,3 +1,7 @@
+# November 24 — optional outings, ready work and earned prints
+
+The [return-loop checkpoint](handoffs/2026-11-24-return-loop.md) collects the new browser-practice batch and the separate, unregistered Glasshouse command contract. Keep the saved previews and databases stopped. Main is `168e857`. PR #108 remains open and #109 remains a draft. Use the exact combined validation and timed return evidence before considering another hosted batch.
+
 # November 23 — town visual follow-up
 
 `study/town-visual-review` layers the [compact location card](../evidence/IH2-223/PLAN.md) and [orchard branch art](../evidence/IH2-224/PLAN.md) over the combined playthrough. See the [dated record](handoffs/2026-11-23-continued-playthrough.md) for local checks and the next hosted batch. The saved previews and databases are stopped.

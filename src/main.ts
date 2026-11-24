@@ -1,3 +1,5 @@
+import {WINDOWSILL_STOP} from './game/home-windowsill.ts';
+import {showHomeWindowsill} from './ui/home-windowsill.ts';
 import {showNurseryKeeper} from './ui/glasshouse-plants.ts';
 import {GlasshouseBoard} from './ui/glasshouse.ts';
 import {headwearName} from './art/headwear.ts';
@@ -566,13 +568,17 @@ function paintLodgeWork(target:HTMLElement,snapshot:TownSnapshot){
 function syncHomeStops(plot:TownPlot|undefined,snapshot:TownSnapshot){
  const keepsake=plot?.keepsake==='naturalist';
  const note=noteForHome(plot);
- session.setHomeStops(keepsake,note);
+ const windowsill=snapshot.plantWindowsill===true&&!!plot&&(!!plot.windowsillPlant||plot.ownerId===snapshot.playerId&&!!snapshot.glasshousePlant);
+ session.setHomeStops(keepsake,note,windowsill);
+ if(scene.setWindowsillPlant(windowsill?plot?.windowsillPlant:undefined))refreshMenuFrame(2);
  if(scene.setHomeKeepsake(keepsake))refreshMenuFrame(2);
  if(!panel.open)return;
  const notebook=body.querySelector<HTMLElement>('[data-home-plan-note]');
  const removedCertificate=!keepsake&&body.querySelector('[data-reading-keepsake]');
  const changedNotebook=notebook&&(notebook.dataset.homePlanNote!==note?.id||notebook.dataset.plot!==plot?.id||notebook.dataset.owner!==String(plot?.ownerId===snapshot.playerId));
- if(removedCertificate||changedNotebook){closePanel();return;}
+ const sillPanel=body.querySelector<HTMLElement>('[data-home-windowsill]');
+ const changedSill=sillPanel&&(!windowsill||sillPanel.dataset.homeWindowsill!==plot?.id);
+ if(removedCertificate||changedNotebook||changedSill){closePanel();return;}
  const board=notebook?.querySelector<HTMLElement>('[data-lodge-work]');
  if(board&&plot?.ownerId===snapshot.playerId)paintLodgeWork(board,snapshot);
 }
@@ -633,6 +639,12 @@ function readHomeKeepsake(){
 }
 function activate(stop: Stop) {
   if(stop.id===SUNROOM_NOTEBOOK.id||stop.id===WORKSHOP_LODGE_BOARD.id){readHomePlanNote(stop);return;}
+  if(stop.id===WINDOWSILL_STOP.id&&town&&homePlotId){
+    const plotId=homePlotId;
+    openPanel(WINDOWSILL_STOP.name);
+    showHomeWindowsill(body,town,plotId,()=>plotId===homePlotId&&session.nearby()?.id===stop.id);
+    return;
+  }
   if(stop.id==='home-keepsake'){readHomeKeepsake();return;}
   if(orchardAvailable()){
    if(stop.id===orchardTable.id){orchardUI.showTable();return;}

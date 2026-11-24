@@ -12,7 +12,7 @@ type PlotRow={
  id:string;owner_id:string;name:string;level:1|2;
  placements:WorkshopState['placements'];workroom_placements:HomeLayout['workroomPlacements'];
  plan_id:string|null;yard:ReturnType<typeof emptyYard>;housing_revision:number;
- pennant_owned:boolean;letterbox_motif:unknown;keepsake:HomeKeepsake|null;
+ pennant_owned:boolean;letterbox_motif:unknown;keepsake:HomeKeepsake|null;windowsill_plant:unknown;
 };
 type BridgeRow={
  contributed:number;target:number;phase:TownSnapshot['bridge']['phase'];grandfathered:boolean;
@@ -50,6 +50,10 @@ const query = `select /* coherent-town-snapshot */
        and resident.position->>'room' in ('home','home-expanded')
        and (u.workshop->'sketches') ?& array['oak','birch','fruit']
        then p.keepsake else null end as keepsake,
+     case when p.glasshouse_plant_visible and resident.position->>'homePlotId'=p.id::text
+       and resident.position->>'room' in ('home','home-expanded')
+       then (select plant from ih2.glasshouse_plants where player_id=p.owner_id and project_revision=1)
+       else null end as windowsill_plant,
      exists(select 1 from ih2.quest_awards q where q.player_id=p.owner_id and q.quest_id='trail-pennant-v1') as pennant_owned,
      case when u.workshop->'owned'->'letterbox'='1'::jsonb and u.workshop->'commission'->'madeCount'='1'::jsonb and
        (exists(select 1 from jsonb_each_text(p.placements) s where s.value='letterbox') or

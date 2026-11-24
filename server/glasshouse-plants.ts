@@ -28,3 +28,30 @@ export async function keepGlasshousePlant(
  if(!saved.rows.length)return{ok:false,message:'You already chose a Glasshouse plant.'};
  return{ok:true,message:GLASSHOUSE_PLANTS[plant].name+' kept in your private collection.'};
 }
+
+export async function displayGlasshousePlant(
+ client:PoolClient,resident:string,raw:unknown,localPlotId:string|undefined,atSill:boolean,
+):Promise<{ok:boolean;message:string}>{
+ const parsed=displaySchema.safeParse(raw);
+ if(!parsed.success)return{ok:false,message:'That windowsill request is invalid.'};
+ const action=parsed.data;
+ if(action.plotId!==localPlotId||!atSill)return{ok:false,message:'Only the owner at this windowsill can change what is displayed.'};
+ // TownStore locks the resident and their plot before reaching this command.
+ const status=(await client.query(
+  `select p.glasshouse_plant_visible as shown,v.plant from ih2.plots p left join ih2.glasshouse_plants v
+     on v.player_id=p.owner_id and v.project_revision=$3 where p.id=$1 and p.owner_id=$2`,
+  [action.plotId,resident,GLASSHOUSE_RULES.revision],
+ )).rows[0];
+ if(!status||action.display&&!glasshousePlantSchema.safeParse(status.plant).success)return{ok:false,message:'Visit the keeper to choose your plant first.'};
+ if(status.shown===action.display)return{ok:false,message:action.display?'Your plant is already on the windowsill.':'Your plant is already private.'};
+ await client.query('update ih2.plots set glasshouse_plant_visible=$2 where id=$1',[action.plotId,action.display]);
+ return{ok:true,message:action.display?'Plant on display for visitors.':'Plant back in your private collection.'};
+}
+
+const displaySchema=z.object({
+ kind:z.literal('glasshouse-display-plant'),
+ id:z.string().regex(/^[a-zA-Z0-9:_-]{1,80}$/),
+ expectedRevision:z.number().int().min(0).max(1_000_000),
+ plotId:z.string().regex(/^[1-9][0-9]{0,17}$/),
+ display:z.boolean(),
+}).strict();

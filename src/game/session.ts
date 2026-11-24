@@ -1,3 +1,4 @@
+import {WINDOWSILL_STOP} from './home-windowsill.ts';
 import {GLASSHOUSE_ENTRY} from './glasshouse-room.ts';
 import { NATURALIST_KEEPSAKE } from './home-keepsake.ts';
 import { TILE, worlds, canStand, clearSegment, routeTo, type Room, type Point, type Stop,type World } from './world.ts';
@@ -33,11 +34,13 @@ export class Session {
   private homeStops={home:worlds.home.stops,'home-expanded':worlds['home-expanded'].stops};
   private keepsakeShown=false;
   private roomNote:Stop|null=null;
-  setHomeStops(keepsake:boolean,note:Stop|null){
-    if(keepsake===this.keepsakeShown&&note===this.roomNote)return;
+  private windowsillShown=false;
+  setHomeStops(keepsake:boolean,note:Stop|null,windowsill=false){
+    if(keepsake===this.keepsakeShown&&note===this.roomNote&&windowsill===this.windowsillShown)return;
     this.keepsakeShown=keepsake;
     this.roomNote=note;
-    const common=keepsake?[keepsakeStop]:[];
+    this.windowsillShown=windowsill;
+    const common=[...(keepsake?[keepsakeStop]:[]),...(windowsill?[WINDOWSILL_STOP]:[])];
     this.homeStops={
       home:[...worlds.home.stops,...common],
       'home-expanded':[...worlds['home-expanded'].stops,...common,...(note?[note]:[])],

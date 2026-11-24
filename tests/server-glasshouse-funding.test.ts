@@ -1,3 +1,4 @@
+import {WINDOWSILL_STOP} from '../src/game/home-windowsill.ts';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {createTownServer} from '../server/http.ts';
@@ -192,6 +193,46 @@ test('a late visitor keeps one private plant with the ordinary atomic command re
   assert.equal(repeated.snapshot.glasshousePlant,plant);
   assert.equal((await store.execute('aster',{...pick,id:'second',expectedRevision:winner.revision,plant:'very-patient-sundew'},keeper)).ok,false);
   assert.equal((await new TownStore(pool,{now:()=>time}).snapshot('aster')).glasshousePlant,plant);
+ }finally{
+  await pool.end();
+ }
+});
+
+test('a private plant is visible only in the consenting owner’s exact home', {skip:!target,timeout:25000},async()=>{
+ const pool=database(target);
+ const time=Date.UTC(2026,10,24,23);
+ const store=new TownStore(pool,{now:()=>time});
+ try{
+  await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');
+  await migrate(pool);
+  const owner=await store.ensurePlayer('aster','Aster');
+  const guest=await store.ensurePlayer('bea','Bea');
+  const outside={room:'square',position:{x:24,y:25}} as const;
+  const {id:plotId}=(await pool.query(
+   'insert into ih2.plots(owner_id,level,placements) values($1,1,$2) returning id::text',
+   [owner.playerId,owner.workshop.placements],
+  )).rows[0];
+  const inside:TownPosition={room:'home',homePlotId:plotId,position:WINDOWSILL_STOP.point};
+  const action={kind:'glasshouse-display-plant',id:'show',expectedRevision:0,plotId,display:true};
+  await store.savePosition(owner.playerId,inside);
+  await store.savePosition(guest.playerId,inside);
+  assert.equal((await store.execute(owner.playerId,{...action,id:'unearned'},inside)).ok,false);
+  await pool.query("insert into ih2.glasshouse_plants values($1,1,'committee-fern',$2)",[owner.playerId,time]);
+  assert.equal((await store.snapshot(guest.playerId)).plots[0].windowsillPlant,undefined);
+  assert.equal((await store.execute(owner.playerId,{...action,id:'outside'},outside)).ok,false);
+  assert.equal((await store.execute(guest.playerId,{...action,id:'guest'},inside)).ok,false);
+  const response=await store.execute(owner.playerId,action,inside);
+  assert.ok(response.ok&&response.publicChanged);
+  assert.equal(response.snapshot.plot?.windowsillPlant,'committee-fern');
+  assert.deepEqual(response.snapshot.workshop.owned,owner.workshop.owned);
+  assert.equal((await store.snapshot(guest.playerId)).glasshousePlant,undefined);
+  assert.equal((await store.snapshot(guest.playerId)).plots[0].windowsillPlant,'committee-fern');
+  assert.equal((await store.snapshot(guest.playerId,()=>outside)).plots[0].windowsillPlant,undefined);
+  assert.equal((await store.execute(owner.playerId,action,outside)).replayed,true);
+  const removal=await store.execute(owner.playerId,{...action,id:'hide',display:false,expectedRevision:response.revision},inside);
+  assert.ok(removal.ok&&removal.publicChanged);
+  assert.equal(removal.snapshot.glasshousePlant,'committee-fern');
+  assert.equal((await store.snapshot(guest.playerId)).plots[0].windowsillPlant,undefined);
  }finally{
   await pool.end();
  }

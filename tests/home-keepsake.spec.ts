@@ -1,3 +1,4 @@
+import {WINDOWSILL_STOP} from '../src/game/home-windowsill.ts';
 import { expect, test, type Page } from '@playwright/test';
 import { mkdirSync } from 'node:fs';
 import { emptyWorkroom } from '../src/game/live-home-layout.ts';
@@ -177,5 +178,106 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   release();
   await desktop.close();
   await phone.close();
+ }
+});
+
+test('the owner can show one earned plant to a current visitor and make it private again',async({browser})=>{
+ const out=process.env.QA_EVIDENCE_DIR??'test-results/browser/windowsill';
+ mkdirSync(out,{recursive:true});
+ const ownerContext=await browser.newContext({viewport:{width:1440,height:900}});
+ const guestContext=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ const errors:string[]=[];
+ const calls:unknown[]=[];
+ const base=createWorkshop(Date.now());
+ let revision=0,display=false;
+ async function fixture(isOwner:boolean){
+  const page=await (isOwner?ownerContext:guestContext).newPage();
+  page.on('pageerror',error=>errors.push(error.message));
+  const identity=isOwner?{id:'aster',name:'Aster'}:{id:'bea',name:'Bea'};
+  let signedIn=false;
+  let position={room:'home',homePlotId:'1',position:WINDOWSILL_STOP.point};
+  const snapshot=()=>{
+   const plot={id:'1',ownerId:'aster',ownerName:'Aster',level:1,placements:base.placements,
+    workroomPlacements:emptyWorkroom(),...(display&&position.room==='home'?{windowsillPlant:'very-patient-sundew'}:{})};
+   return {plantWindowsill:true,glasshousePlant:isOwner?'very-patient-sundew':undefined,
+    playerId:identity.id,name:identity.name,
+    workshop:{...base,revision:isOwner?revision:0},position,
+    plot:isOwner?plot:null,plots:[plot],quest:{contentVersion:1,awarded:[]},
+    bridge:{contributed:3,target:3,phase:'open',restored:true},seasonKey:'2026-11-24',scores:[],serverTime:Date.now(),
+    serverInstance:'windowsill-fixture'};
+  };
+  await page.addInitScript(()=>{
+   Object.defineProperty(window,'EventSource',{value:class extends EventTarget{
+    onopen?:()=>void;
+    constructor(){
+     super();
+     Object.assign(window,{__refreshSill:()=>this.dispatchEvent(new Event('invalidate'))});
+     queueMicrotask(()=>this.onopen?.());
+    }
+    close(){}
+   }});
+  });
+  await page.route('**/api/town/**',route=>{
+   const endpoint=new URL(route.request().url()).pathname.split('/').at(-1);
+   if(endpoint==='fixtures')return route.fulfill({json:{fixtures:[identity]}});
+   if(endpoint==='login'){signedIn=true;return route.fulfill({json:{snapshot:snapshot()}});}
+   if(endpoint==='snapshot')return signedIn?route.fulfill({json:{snapshot:snapshot()}}):route.fulfill({status:401});
+   if(endpoint==='movement'){position=route.request().postDataJSON();return route.fulfill({json:{ok:true,position}});}
+   if(endpoint==='command'){
+    const command=route.request().postDataJSON();
+    calls.push(command);
+    expect(isOwner).toBe(true);
+    expect(command).toMatchObject({kind:'glasshouse-display-plant',plotId:'1',expectedRevision:revision});
+    display=command.display;
+    revision++;
+    return route.fulfill({json:{ok:true,message:display?'Plant on display for visitors.':'Plant back in your private collection.',snapshot:snapshot()}});
+   }
+   return route.fulfill({status:404});
+  });
+  await page.goto('/?town=1&sky-study=1&phase=day');
+  await page.getByRole('button',{name:identity.name,exact:true}).click();
+  return page;
+ }
+ const visual=(page:Page)=>page.evaluate(()=>(window as any).__pilot?.metrics().visual.home.windowsillPlant);
+ const refresh=(page:Page)=>page.evaluate(()=>(window as any).__refreshSill());
+ const inspect=(page:Page)=>page.getByRole('button',{name:'Inspect Windowsill',exact:true});
+ try{
+  const [owner,guest]=await Promise.all([fixture(true),fixture(false)]);
+  await expect(inspect(owner)).toBeEnabled();
+  await expect(inspect(guest)).toHaveCount(0);
+  await inspect(owner).press('Enter');
+  await expect(owner.getByRole('dialog')).toContainText('Private in your collection');
+  await expect.poll(()=>visual(owner)).toBe(null);
+  expect(calls).toHaveLength(0);
+  await owner.screenshot({path:out+'/desktop-private.png'});
+  await owner.getByRole('button',{name:'Display plant for visitors',exact:true}).press('Enter');
+  await expect(owner.getByRole('dialog')).toContainText('On display for visitors');
+  await expect.poll(()=>visual(owner)).toBe('very-patient-sundew');
+  await owner.getByRole('button',{name:'Close panel'}).click();
+  await owner.screenshot({path:out+'/desktop-shown.png'});
+  await refresh(guest);
+  await expect.poll(()=>visual(guest)).toBe('very-patient-sundew');
+  await inspect(guest).tap();
+  await expect(guest.getByRole('heading',{name:'Very patient sundew',exact:true})).toBeVisible();
+  await expect(guest.getByRole('button',{name:'Return plant to my collection',exact:true})).toHaveCount(0);
+  await guest.screenshot({path:out+'/phone-visitor.png'});
+  await owner.setViewportSize({width:844,height:390});
+  await owner.evaluate(()=>document.documentElement.style.fontSize='200%');
+  await inspect(owner).click();
+  const remove=owner.getByRole('button',{name:'Return plant to my collection',exact:true});
+  await remove.scrollIntoViewIfNeeded();
+  await expect(remove).toBeInViewport({ratio:1});
+  await owner.screenshot({path:out+'/short-remove.png'});
+  await remove.press('Enter');
+  await expect(owner.getByRole('dialog')).toContainText('Private in your collection');
+  await refresh(guest);
+  await expect.poll(()=>visual(guest)).toBe(null);
+  await expect(guest.getByRole('dialog')).toHaveCount(0);
+  await expect(inspect(guest)).toHaveCount(0);
+  expect(calls).toHaveLength(2);
+  expect(errors).toEqual([]);
+ }finally{
+  await ownerContext.close();
+  await guestContext.close();
  }
 });

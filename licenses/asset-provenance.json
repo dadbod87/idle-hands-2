@@ -2241,6 +2241,16 @@
       "source": "public/art/lodging/rented-room.svg",
       "date": "2026-11-19",
       "modifications": "Original boarding-house study adapted to the browser practice map and its walkable footprints."
+    },
+    {
+      "id": "glasshouse-overgrown",
+      "path": "public/art/glasshouse/overgrown.svg",
+      "sha256": "17221f4b0c2c4d437200352adf589d007fa8ac54789d72de9d8938b1f250c07d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/glasshouse/overgrown.svg",
+      "date": "2026-11-23",
+      "modifications": "Original code-authored ruined facade with the established trail footprint."
     }
   ],
   "comparison": {

@@ -199,12 +199,15 @@ export class GardenUI{
    writeText(factValues[2],factsView.produce+' '+factsView.crop+' + '+factsView.seedReturned+' seed back');
    writeText(confirm,plantingConfirmation(this.selected!,this.crop));
    setDisabled(preview,this.busy||!!bed||s.seeds[this.crop]===0);
-   const hideQuote=!this.preview&&receiptBed===null;
+   const showingReceipt=!this.preview&&receiptBed!==null;
+   const hideQuote=!this.preview&&!showingReceipt;
    if(previewBox.hidden!==hideQuote)previewBox.hidden=hideQuote;
-   writeText(previewText,this.preview?`Bed ${this.selected!+1} · ${CROP_DEFS[this.crop].name}. Cost: 1 seed. ${duration(grow)} real time.${this.host.canUse(action)?'':' Confirm at your beds.'}`:receiptBed!==null?`Bed ${receiptBed+1} planted. One bound seed was spent. This receipt stays until you close it or choose another bed; your plant waits safely.`:'Preview a seed and bed before planting. Nothing is spent until you confirm.');
+   if(previewBox.hasAttribute('data-planting-receipt')!==showingReceipt)previewBox.toggleAttribute('data-planting-receipt',showingReceipt);
+   if(confirm.hidden!==showingReceipt)confirm.hidden=showingReceipt;
+   writeText(previewText,this.preview?`Bed ${this.selected!+1} · ${CROP_DEFS[this.crop].name}. Cost: 1 seed. ${duration(grow)} real time.${this.host.canUse(action)?'':' Confirm at your beds.'}`:receiptBed!==null?`Bed ${receiptBed+1} planted · 1 bound seed used.`:'Preview a seed and bed before planting. Nothing is spent until you confirm.');
    setDisabled(confirm,!this.preview||this.blocked(action)||!!bed||s.seeds[this.crop]===0);
    setDisabled(cancel,this.busy||hideQuote);
-   writeText(cancel,!this.preview&&receiptBed!==null?'Close planting receipt · free':'Cancel preview · free');
+   writeText(cancel,showingReceipt?'Close planting receipt':'Cancel preview · free');
    writeText(bedNotice,!bed?(s.seeds[this.crop]>0?'Empty · choose a seed and preview planting.':'No selected seed in hand. Growing plants return theirs at harvest; the attendant replaces missing starter supply.'):
     s.produce[bed.crop]>=12?'This produce space is full. The plant and seed wait safely; use produce or tend another bed.':bed.readyAt>now?'Growing · '+duration(bed.readyAt-now)+' left. Ready plants wait safely.':'Ready · harvest one produce, one seed and at least one practice point.');
    setDisabled(harvest,this.blocked({action:'harvest',bed:this.selected!})||!bed||bed.readyAt>now||s.produce[bed.crop]>=12);

@@ -1,5 +1,6 @@
-import {readRiverSurvey,RIVER_SURVEY_KEY,type RiverSurvey} from './game/river-survey.ts';
+import {readRiverSurvey,RIVER_SURVEY_KEY,type RiverSurvey,type RiverSpot} from './game/river-survey.ts';
 import {showRiverSurvey} from './ui/river-survey.ts';
+import {RIVER_PRINT_KEY,selectedRiverPrint,setRiverPrint} from './game/river-print.ts';
 import {RecentFieldNotes} from './game/recent-field-notes.ts';
 import {headwearName} from './art/headwear.ts';
 import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
@@ -127,6 +128,7 @@ const sky = document.createElement('small');
 sky.id = 'town-sky';
 sky.setAttribute('aria-label', 'Town time and weather');
 const scene = new WorldScene(session);
+scene.riverPrintEnabled=!townMode;
 scene.resting=resting();
 const residentBadge=document.querySelector('#local-resident-badge');
 let localResident:BrowserResident|null=null;
@@ -186,15 +188,19 @@ let namedWalk:{room:Room;stopId:string;startedRoom:string;owner:string}|null=nul
 let placeWalk:{room:Room;stopId:string;owner:string}|null=null;
 let ready = false;
 let riverSurvey:RiverSurvey|null=null;
+let riverPrint:RiverSpot|null=null;
 function refreshRiverCast(){
  try{riverSurvey=readRiverSurvey(localStorage.getItem(RIVER_SURVEY_KEY));}
  catch{riverSurvey=null;}
  scene.riverCast=riverSurvey?.cast??null;
- if(ready)wakeRender();
+ try{riverPrint=selectedRiverPrint(localStorage.getItem(RIVER_PRINT_KEY),riverSurvey);}
+ catch{riverPrint=null;}
+ const changed=scene.setRiverPrint(riverPrint);
+ if(ready){if(changed)refreshMenuFrame(2);else wakeRender();}
 }
 if(!townMode){
  refreshRiverCast();
- window.addEventListener('storage',event=>{if(event.key===RIVER_SURVEY_KEY||event.key===null)refreshRiverCast();});
+ window.addEventListener('storage',event=>{if(event.key===RIVER_SURVEY_KEY||event.key===RIVER_PRINT_KEY||event.key===null)refreshRiverCast();});
  window.addEventListener('pageshow',event=>{if(event.persisted)refreshRiverCast();});
 }
 let lastContext = '';
@@ -345,7 +351,9 @@ const orchardUI=new OrchardUI({
 },orchardTable,orchardPort);
 scene.orchardState=()=>orchardAvailable()?orchardUI.state:undefined;
 scene.orchardNow=orchardPort?.now??Date.now;
-const workshop=new WorkshopUI({recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,wardrobe:showBrowserResident?()=>({label:scene.headwear?headwearName[scene.headwear]:'Original look',open:showBrowserResident}):undefined,orchard:()=>orchardAvailable()?orchardUI.state:undefined,orchardWalk:()=>goNamedDestination('square',orchardTable.id),walkToOrchardBranch:(id:BranchId)=>{const stop=ORCHARD_STOPS.find(site=>orchardBranchFromStop(site.id)===id);if(stop)goNamedDestination('square',stop.id);},cue:music.cue,outings:()=>outingUI.show(),owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),walkToAllotment:()=>goNamedDestination('garden','garden-beds'),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{cafeParcels:()=>showCafeParcelNote({open:openPanel,body,walk:()=>goNamedDestination('square','cafe')},town),objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
+const workshop=new WorkshopUI({recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk'),print:{selected:()=>riverPrint,choose:spot=>{
+ try{const saved=setRiverPrint(localStorage,spot);refreshRiverCast();return saved;}catch{return false;}
+}}}:undefined,wardrobe:showBrowserResident?()=>({label:scene.headwear?headwearName[scene.headwear]:'Original look',open:showBrowserResident}):undefined,orchard:()=>orchardAvailable()?orchardUI.state:undefined,orchardWalk:()=>goNamedDestination('square',orchardTable.id),walkToOrchardBranch:(id:BranchId)=>{const stop=ORCHARD_STOPS.find(site=>orchardBranchFromStop(site.id)===id);if(stop)goNamedDestination('square',stop.id);},cue:music.cue,outings:()=>outingUI.show(),owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),walkToAllotment:()=>goNamedDestination('garden','garden-beds'),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{cafeParcels:()=>showCafeParcelNote({open:openPanel,body,walk:()=>goNamedDestination('square','cafe')},town),objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
 const atCafe=()=>session.room==='square'&&Math.hypot(session.position.x-30,session.position.y-22)<=1.4;
 if(town)snackShelfUI=new SnackShelfUI({open:openPanel,body,canUse:atCafe,counter:()=>cafeUI?.show()},town);
 cafeUI=new CafeUI({open:openPanel,body,owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,headwear:()=>scene.headwear,canUse:atCafe,parcelShelf:snackShelfUI?()=>snackShelfUI?.show():undefined,project:()=>town?.snapshot?.cafe,shared:townMode,bag:()=>workshop.showInventory(),garden:()=>goNamedDestination('square','allotment'),feedback:message=>feedback.textContent=message},workshop);

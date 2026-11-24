@@ -353,6 +353,7 @@ const orchardPort=town?sharedOrchard(town,()=>!needResync&&!transitionBusy&&cont
 const orchardUI=new OrchardUI({
  open:openPanel,close:closePanel,body,feedback:message=>feedback.textContent=message,walk:walkToPlace,
  at:stop=>session.room==='square'&&session.nearby()?.id===stop.id,
+ packed:save,
  pick:id=>{
   const branch=ORCHARD_BRANCHES.find(branch=>branch.id===id)!;
   scene.playOrchardPick(branch);

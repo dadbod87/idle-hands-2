@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "d67ec50775e53bed66d699a46f1e2ce632b2672ffaa0015d74fa72199d3553d0",
-    "src/phaser/WorldScene.ts": "dbfe34b7ec0133e2f1734b0740c6f10657a54d7285e6a3f07c063d820cf14644",
+    "src/main.ts": "2ba0fdb721a3b3138aca0c01e4f2611bd5a1480db5412c1518e8c421a9b832fe",
+    "src/phaser/WorldScene.ts": "5ecae295fc2a0ebda0b5c5cda6f3a90169c7355d44e5b22178aa21108bdad5cd",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the private Riverwalk float and Journal notes together against current source."
+  "currentTask": "Reviewed the first-visit, orchard position, garden receipt and workshop wayfinding candidate. Original study snapshots and generated output remain frozen."
 }

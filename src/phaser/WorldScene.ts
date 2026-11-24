@@ -585,11 +585,11 @@ export class WorldScene extends Phaser.Scene {
       this.pennantView=this.add.image(15*TILE,5.5*TILE,TRAIL_ART.pennant.world).setOrigin(TRAIL_ART.pennant.foot.x/TRAIL_ART.pennant.width,TRAIL_ART.pennant.foot.y/TRAIL_ART.pennant.height).setDepth(2*TILE).setVisible(this.homePennantOwned);
     } else {
       image('bench',3*TILE,3*TILE,5*TILE).setDisplaySize(5*TILE,3*TILE);
+      label(5.5,5.85,'Work bench').setFontSize(12).setPadding(5,3,5,3);
       this.benchPiece=this.add.image(4.75*TILE,3.48*TILE,HOME_ART.materials.timber).setDepth(5*TILE+1).setVisible(false);
       this.benchCard=label(6.65,3.3,'').setDepth(5*TILE+1).setFontSize(12).setPadding(5,3,5,3).setVisible(false);
-      const rack=carpentryArt('finishing-rack-empty');this.rackView=this.add.image(12.5*TILE,6*TILE,rack.id).setOrigin(rack.foot!.x/rack.width,rack.foot!.y/rack.height).setDepth(6*TILE);label(12.5,6.9,'Pine finishing rack');
+      const rack=carpentryArt('finishing-rack-empty');this.rackView=this.add.image(12.5*TILE,6*TILE,rack.id).setOrigin(rack.foot!.x/rack.width,rack.foot!.y/rack.height).setDepth(6*TILE);label(12.5,6.6,'Pine finishing rack').setFontSize(12).setPadding(5,3,5,3);
       image('crates',3*TILE,8*TILE,10*TILE);
-      label(9,1.8,'Your workshop');
       if(this.riverPrintEnabled){
         const backing=this.add.rectangle(0,0,87,71,0x7b543e).setStrokeStyle(2,0x303930);
         const canvas=this.add.rectangle(0,0,78,62,0xf5e5bd).setStrokeStyle(1,0x957850);
@@ -600,8 +600,6 @@ export class WorldScene extends Phaser.Scene {
         this.riverPrintFrame=this.add.container(12.35*TILE,10.1*TILE,[legs,backing,canvas,this.riverPrintArt]).setDepth(11.6*TILE);
         this.paintRiverPrint();
       }
-      label(9,7.6,'Great things take time.');
-      label(9,8.5,'This bench is extremely optimistic.');
       this.add.rectangle(9.5*TILE,14*TILE,3*TILE,2*TILE,0x8c7757).setStrokeStyle(2,0x343c36).setDepth(0);
       label(9.5,14,'Square ↓');
     }

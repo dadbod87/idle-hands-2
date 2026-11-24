@@ -2,7 +2,57 @@ import{test,expect}from'@playwright/test';import{mkdirSync,writeFileSync}from'no
 import {revealPlace} from "./helpers/places.ts";
 
 import{createWorkshop,applyWorkshop,isCurrentWorkshop}from'../src/game/live-workshop.ts';
+import{BROWSER_ORCHARD_KEY,PACK_SNACK_MS,newOrchard,orchardAction}from'../src/game/orchard.ts';
 const out='test-results/browser',note=(page:any,id:string)=>page.locator('[data-activity="'+id+'"]');
+test('Journal puts confirmed finished work before waiting jobs on reopen',async({browser})=>{
+ const now=Date.now(),started=now-PACK_SNACK_MS-2000;
+ const empty=createWorkshop(started);
+ const crop=applyWorkshop(empty,{kind:'garden',gardenAction:{action:'plant',bed:0,crop:'radish'},id:'ready-crop',expectedRevision:empty.revision},started);
+ expect(crop.ok).toBe(true);
+ let orchard=newOrchard();
+ for(const action of [{kind:'pick',branch:'low-branch'},{kind:'pick',branch:'two-forks'},{kind:'pack'}] as const){
+  const result=orchardAction(orchard,action,started);
+  if(!result.ok)throw new Error(result.message);
+  orchard=result.state;
+ }
+ const saves={'ih2:workshop:v2':JSON.stringify(crop.state),[BROWSER_ORCHARD_KEY]:JSON.stringify(orchard)};
+ const output=process.env.QA_EVIDENCE_DIR??out+'/journal-ready';
+ mkdirSync(output,{recursive:true});
+ for(const {name,width,height,hasTouch,text} of [
+  {name:'phone',width:320,height:640,hasTouch:true,text:100},
+  {name:'desktop',width:1440,height:900,hasTouch:false,text:100},
+  {name:'short',width:844,height:390,hasTouch:true,text:200},
+ ]){
+  const context=await browser.newContext({viewport:{width,height},hasTouch});
+  const page=await context.newPage(),errors:string[]=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  try{
+   await page.addInitScript(values=>{for(const [key,value] of Object.entries(values))localStorage.setItem(key,value);},saves);
+   await page.goto('/');
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   if(text!==100)await page.evaluate(percent=>document.documentElement.style.fontSize=percent+'%',text);
+   const journal=page.locator('#journal');
+   if(hasTouch)await journal.tap();else await journal.click();
+   const parcel=page.locator('[data-orchard-parcel]');
+   await expect(parcel).toContainText('Packed snack ready to collect.');
+   expect(await parcel.evaluate(node=>Boolean(node.compareDocumentPosition(document.querySelector('.activity-notebook')!)&Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+   const ordered=page.locator('.activity-notebook .activity-note');
+   await expect(ordered.first()).toHaveAttribute('data-activity','garden');
+   await expect(ordered.first()).toHaveAttribute('data-phase','ready');
+   expect(await ordered.first().evaluate(node=>Boolean(node.compareDocumentPosition(document.querySelector('[data-journal-guidance]')!)&Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+   await expect(page.locator('[data-orchard-parcel]')).toHaveCount(1);
+   await expect(page.locator('[data-activity=garden]')).toHaveCount(1);
+   await expect(page.getByRole('dialog').getByRole('button',{name:'Close panel'})).toBeInViewport();
+   expect(await page.getByRole('dialog').evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
+   await page.screenshot({path:output+'/'+name+'.png'});
+   const action=page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true});
+   if(hasTouch)await action.tap();else{await action.focus();await page.keyboard.press('Enter');}
+   await expect(page.locator('#panel-title')).toHaveText('Your rented allotment');
+   expect(await page.evaluate(keys=>Object.fromEntries(keys.map(key=>[key,localStorage.getItem(key)])),Object.keys(saves))).toEqual(saves);
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});
 test('notebook: actual five-second job boundary keeps held target, focus, scroll and free inspector actions',async({page})=>{
  mkdirSync(out,{recursive:true});const started=Date.now();let s=createWorkshop(started);for(const resource of['scrap','timber','supplies']as const)s=applyWorkshop(s,{kind:'gather',resource,id:'notebook-'+resource,expectedRevision:s.revision},started).state;expect(isCurrentWorkshop(s)).toBe(true);
  await page.addInitScript(save=>{localStorage.setItem('ih2:workshop:v2',JSON.stringify(save));localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'workshop',position:{x:5,y:5}}));},s);await page.goto('/');await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);await page.locator('#journal').click();await page.locator('[data-activity-open=bench]').click();await page.getByRole('button',{name:'Make Optimistic planter',exact:true}).click();await page.getByRole('button',{name:'Close panel'}).click();await page.locator('#journal').click();await expect(page.locator('.activity-note')).toHaveCount(3);const button=page.locator('[data-activity-open=bench]');await button.focus();await expect(note(page,'bench')).toHaveAttribute('data-phase','running');const bounds=(await button.boundingBox())!,scroll=await page.locator('dialog').evaluate(e=>e.scrollTop);await page.mouse.move(bounds.x+bounds.width/2,bounds.y+bounds.height/2);await page.mouse.down();await expect(note(page,'bench')).toHaveAttribute('data-phase','ready',{timeout:9000});expect(await button.boundingBox()).toEqual(bounds);expect(await page.locator('dialog').evaluate(e=>e.scrollTop)).toBe(scroll);await expect(button).toBeFocused();expect(await page.evaluate(()=>(window as any).__pilot.workshop().owned.planter)).toBe(0);await page.mouse.up();await expect(page.locator('#panel-title')).toHaveText('Your work bench');await expect(page.getByRole('button',{name:'Collect finished work'})).toBeEnabled();expect(await page.evaluate(()=>(window as any).__pilot.workshop().revision)).toBe(s.revision+1);await page.getByRole('button',{name:'Close panel'}).click();await page.locator('#journal').click();await expect(note(page,'bench')).toHaveAttribute('data-phase','ready');await page.screenshot({path:out+'/notebook-desktop-ready.png'});

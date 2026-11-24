@@ -1,15 +1,20 @@
 import type {WorkshopState as CurrentWorkshopState} from '../game/live-workshop.ts';
 type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
-import {activityNotes,type ActivityId} from '../game/activity-notebook.ts';
+import {activityNotes,type ActivityId,type ActivityNote} from '../game/activity-notebook.ts';
 import type {WorkshopState as LegacyWorkshopState} from '../game/workshop.ts';
 type Actions=Record<ActivityId,{label:string;open:()=>void}>;
 const time=(ms:number)=>{const s=Math.max(0,Math.ceil(ms/1000));return s>=3600?`${Math.floor(s/3600)}h ${Math.floor(s%3600/60)}m`:`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;};
 /** Stable DOM; existing WorkshopUI ticker supplies updates. No network, save, or timer. */
 export class ActivityNotebook {
  readonly root=document.createElement('section');private cards=new Map<ActivityId,{status:HTMLElement;detail:HTMLElement;clock:HTMLElement;card:HTMLElement}>();
- constructor(actions:Actions){
+ constructor(actions:Actions,initialNotes:readonly ActivityNote[]){
   this.root.className='activity-notebook';this.root.setAttribute('aria-label','Activity notebook');const title=document.createElement('h3');title.textContent='Your work, at a glance';const notes=document.createElement('details'),notesSummary=document.createElement('summary');notesSummary.textContent='Read the work notes';notes.append(notesSummary);const intro=document.createElement('p');intro.className='notebook-intro';intro.textContent='Three departments. Remarkably, none require watching.';this.root.append(title,intro);
-  for(const id of ['bench','rack','garden'] as const){const card=document.createElement('section');card.className='activity-note';card.dataset.activity=id;const heading=document.createElement('h4');heading.textContent=id==='bench'?'Work bench':id==='rack'?'Pine finishing rack':'Your allotment';const status=document.createElement('p');status.className='activity-status';const clock=document.createElement('p');clock.className='activity-clock';const button=document.createElement('button');button.type='button';button.className='destination';button.textContent=id==='bench'?'Open work bench':id==='rack'?'Open pine rack':'Your allotment';button.setAttribute('aria-label',actions[id].label);button.dataset.activityOpen=id;button.onclick=actions[id].open;status.tabIndex=0;status.setAttribute('role','region');status.setAttribute('aria-label',heading.textContent+' status');const detail=document.createElement('p');notes.append(detail);card.append(heading,status,clock,button);this.cards.set(id,{status,clock,detail,card});this.root.append(card);}
+  // Sort once on open. A job finishing while a resident scrolls or holds an
+  // action must not move its button or change the keyboard order.
+  const ready=new Set(initialNotes.filter(note=>note.phase==='ready').map(note=>note.id));
+  const ids: ActivityId[]=['bench','rack','garden'];
+  ids.sort((a,b)=>Number(ready.has(b))-Number(ready.has(a)));
+  for(const id of ids){const card=document.createElement('section');card.className='activity-note';card.dataset.activity=id;const heading=document.createElement('h4');heading.textContent=id==='bench'?'Work bench':id==='rack'?'Pine finishing rack':'Your allotment';const status=document.createElement('p');status.className='activity-status';const clock=document.createElement('p');clock.className='activity-clock';const button=document.createElement('button');button.type='button';button.className='destination';button.textContent=id==='bench'?'Open work bench':id==='rack'?'Open pine rack':'Your allotment';button.setAttribute('aria-label',actions[id].label);button.dataset.activityOpen=id;button.onclick=actions[id].open;status.tabIndex=0;status.setAttribute('role','region');status.setAttribute('aria-label',heading.textContent+' status');const detail=document.createElement('p');notes.append(detail);card.append(heading,status,clock,button);this.cards.set(id,{status,clock,detail,card});this.root.append(card);}
   const note=document.createElement('p');note.className='notebook-footnote';note.textContent='Planning only · real-time deadlines. Open an activity to confirm current state and act. Nothing is collected or spent here.';this.root.append(notes,note);this.root.addEventListener('focusin',this.focused);
  }
  private focused=(event:FocusEvent)=>{const target=event.target;if(!(target instanceof HTMLElement)||!target.matches(':focus-visible'))return;const dialog=this.root.closest('dialog'),header=dialog?.querySelector('header');if(!dialog||!header)return;const b=target.getBoundingClientRect(),h=header.getBoundingClientRect(),d=dialog.getBoundingClientRect();if(b.top<h.bottom+8||b.bottom>d.bottom-8)dialog.scrollTop+=b.top-h.bottom-8;};

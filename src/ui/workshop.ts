@@ -3,13 +3,14 @@ import {createRiverFindList,updateRiverFinds} from './river-survey.ts';
 import {RiverPrintControls} from './river-print.ts';
 import type {FieldNote} from '../game/recent-field-notes.ts';
 import { gardenBedView } from '../game/garden-view.ts';
-import {APPLE_CAP,ORCHARD_BRANCHES,type BranchId,type OrchardPantry} from '../game/orchard.ts';
+import {APPLE_CAP,ORCHARD_BRANCHES,SNACK_CAP,type BranchId,type OrchardPantry} from '../game/orchard.ts';
 import { rewardCue, type WorldCue } from '../audio/world-sounds.ts';
 import {CafeWriterCandidate,type WriterOutcome} from '../persistence/cafe-writer-candidate.ts';
 import {collectionGrant,type CollectionGrant} from '../game/collection-receipt.ts';
 import {recipeView,benchWork,craftDuration} from '../game/crafting-view.ts';
 import {BagView} from './bag.ts';
 import {ActivityNotebook} from './activity-notebook.ts';
+import {activityNotes} from '../game/activity-notebook.ts';
 import {CollectionReceiptView} from './collection-receipt.ts';
 import {residentArt} from '../art/variety.ts';
 import type {CommissionAction} from '../game/commission.ts';
@@ -270,16 +271,12 @@ export class WorkshopUI {
  showJournal(){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Notes & progress',()=>this.showInventory()));
   const guidance=document.createElement('section');guidance.dataset.journalGuidance='';const heading=document.createElement('h3');heading.textContent='Your next step';const quest=this.p('','quest-card');quest.dataset.quest='';guidance.append(heading,quest);b.append(guidance);
-  if(this.host.recentFieldNotes){
-   const notes=document.createElement('details');notes.className='journal-recent-notes';
-   const caption=document.createElement('summary');caption.textContent='Recent field notes';
-   const list=document.createElement('ol');list.setAttribute('role','list');list.setAttribute('aria-label','Recent field notes');
-   notes.append(caption,list);
-   notes.addEventListener('toggle',()=>this.updateRecentNotes());
-   this.recentNotes={panel:notes,list};
-   b.append(notes);
-  }
-  this.notebook?.destroy();this.notebook=new ActivityNotebook({bench:{label:'Open work bench · jobs & recipes',open:()=>this.showBench()},rack:{label:'Open pine rack · finishing jobs & collection',open:()=>this.host.finishing?.()},garden:{label:'Your allotment · crops, markers & quests',open:()=>this.host.garden?.()}});b.append(this.notebook.root);
+  const now=this.gardenClock();
+  const confirmed=this.remote
+   ?this.remote.hasSnapshot?.()===true&&!this.remoteError&&!this.remote.canRetry()
+   :this.saved&&!this.localReadOnlyReason;
+  const notes=confirmed?activityNotes(this.state,now):[];
+  this.notebook?.destroy();this.notebook=new ActivityNotebook({bench:{label:'Open work bench · jobs & recipes',open:()=>this.showBench()},rack:{label:'Open pine rack · finishing jobs & collection',open:()=>this.host.finishing?.()},garden:{label:'Your allotment · crops, markers & quests',open:()=>this.host.garden?.()}},notes);b.append(this.notebook.root);
   if(this.host.river){
    const river=document.createElement('section');
    river.dataset.riverEntry='';
@@ -287,7 +284,11 @@ export class WorkshopUI {
    const title=document.createElement('h3');title.textContent='Riverwalk line';
    const detail=this.p('');detail.dataset.riverEntryStatus='';
    river.append(title,detail,this.button('Walk to the Riverwalk',this.host.river.walk,'destination'));
-   b.append(river);
+   const cast=this.host.river.read()?.cast;
+   if(cast&&cast.readyAt<=now){
+    river.classList.add('journal-ready-return');
+    b.insertBefore(river,guidance);
+   }else b.append(river);
    const folio=document.createElement('details');
    folio.className='river-journal';
    folio.dataset.riverJournal='';
@@ -318,7 +319,21 @@ export class WorkshopUI {
    const ready=this.p('');
    ready.dataset.orchardParcelStatus='';
    parcel.append(title,ready,this.button('Walk to the packing table',()=>this.host.orchardWalk?.(),'destination'));
-   b.append(parcel);
+   const pantry=this.host.orchard?.();
+   if(pantry?.parcel&&pantry.parcel.readyAt<=now&&pantry.snacks<SNACK_CAP){
+    parcel.classList.add('journal-ready-return');
+    b.insertBefore(parcel,guidance);
+   }else b.append(parcel);
+  }
+  if(notes.some(note=>note.phase==='ready'))b.insertBefore(this.notebook.root,guidance);
+  if(this.host.recentFieldNotes){
+   const notes=document.createElement('details');notes.className='journal-recent-notes';
+   const caption=document.createElement('summary');caption.textContent='Recent field notes';
+   const list=document.createElement('ol');list.setAttribute('role','list');list.setAttribute('aria-label','Recent field notes');
+   notes.append(caption,list);
+   notes.addEventListener('toggle',()=>this.updateRecentNotes());
+   this.recentNotes={panel:notes,list};
+   b.append(notes);
   }
   const completed=document.createElement('details');completed.dataset.completedOrientation='';completed.className='journal-completed';completed.hidden=true;const completedTitle=document.createElement('summary');completedTitle.textContent='Orientation complete · notes';completed.append(completedTitle);b.append(completed);
   const other=document.createElement('section'),summary=document.createElement('h3');summary.textContent='Around town';other.className='journal-activities';other.append(summary);
@@ -451,11 +466,12 @@ export class WorkshopUI {
   }
   const orchardParcel=b.querySelector<HTMLElement>('[data-orchard-parcel]');
   if(orchardParcel){
-   const job=this.host.orchard?.()?.parcel;
+   const pantry=this.host.orchard?.(),job=pantry?.parcel;
    orchardParcel.hidden=!job;
    const message=orchardParcel.querySelector<HTMLElement>('[data-orchard-parcel-status]')!;
    if(job){
-    const label=job.readyAt<=now?'Packed snack ready to collect.':'Packing · '+duration(job.readyAt-now)+' left';
+    const label=job.readyAt>now?'Packing · '+duration(job.readyAt-now)+' left'
+     :pantry.snacks>=SNACK_CAP?'Packed snack ready · pouch full.':'Packed snack ready to collect.';
     if(message.textContent!==label)message.textContent=label;
    }
   }

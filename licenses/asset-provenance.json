@@ -2251,6 +2251,26 @@
       "source": "public/art/glasshouse/overgrown.svg",
       "date": "2026-11-23",
       "modifications": "Original code-authored ruined facade with the established trail footprint."
+    },
+    {
+      "id": "glasshouse-under-repair",
+      "path": "public/art/glasshouse/under-repair.svg",
+      "sha256": "7cfc776ebb2fb234cc6fafd04c9c305b5d81b0cf065d2c4d16083015d28ff56c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/glasshouse/under-repair.svg",
+      "date": "2026-11-24",
+      "modifications": "Original repair and restored facade from the Inkwood expansion study, sized for the existing doorway and colliders."
+    },
+    {
+      "id": "glasshouse-restored",
+      "path": "public/art/glasshouse/restored.svg",
+      "sha256": "65e03c5cdf2104c9438ff67f62fba1d8191da91d2dcf8dc9ec15eacef039f0ad",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/glasshouse/restored.svg",
+      "date": "2026-11-24",
+      "modifications": "Original repair and restored facade from the Inkwood expansion study, sized for the existing doorway and colliders."
     }
   ],
   "comparison": {

@@ -30,7 +30,7 @@
   "currentRefactors": {
     "src/game/workshop.ts": "ae2fbf2dff8b8ed779e2959a8313476669d83dd06e51beade7f02aa1f50f3436",
     "src/game/garden.ts": "7ba870682d15f40ef83f21302a25fc736e2a19a5f6b73b2e8cca20cbfe6ca5da",
-    "src/game/carpentry.ts": "eb8da9660bbf7877e1c65a57ae70f802af35a0a609cd40586559c75fe9fc19a1",
+    "src/game/carpentry.ts": "81b7c035f7159828d6c554345593ccb3f43055c9a00d578b5f97507a4ae8d68e",
     "src/game/commission.ts": "6dcbd71b803cdb04715ca8a238fbe46993692165835d17ebb56526baccac5044"
   },
   "method": "Same original099six snapshots; current107four factories independently fingerprinted. Executable rule bodies compared against actual pre-refactor source; strict live default schemas unchanged.",

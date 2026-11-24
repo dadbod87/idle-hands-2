@@ -1,0 +1,10 @@
+.glasshouse-board { display:grid; gap:.55rem; }
+.glasshouse-lead { display:grid; grid-template-columns:minmax(72px,110px) minmax(0,1fr); gap:.65rem; align-items:center; }
+.glasshouse-art { width:100%; height:auto; }
+#panel-body .glasshouse-board :is(h3,h4,p) { margin:0; }
+.glasshouse-board :is(.glasshouse-job,.glasshouse-quote) { display:grid; gap:.35rem; padding:.5rem; background:#ece4ca; border:1px solid #b2a481; border-radius:4px; }
+.glasshouse-board .glasshouse-quote { border-color:#657d65; background:#e2e9d3; }
+.glasshouse-board .destination { min-height:44px; margin:0; }
+.glasshouse-status { padding:.45rem; background:#eee5cc; border-inline-start:3px solid #758b65; }
+.glasshouse-status:empty { display:none; }
+@media(max-height:450px) { .glasshouse-lead { grid-template-columns:minmax(50px,81px) minmax(0,1fr); } }

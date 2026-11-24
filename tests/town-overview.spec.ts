@@ -1,7 +1,7 @@
 import {test, expect} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {TOWN_SIZE} from '../src/game/town-expansion.ts';
-import {createWorkshop} from '../src/game/live-workshop.ts';
+import {applyWorkshop,createWorkshop} from '../src/game/live-workshop.ts';
 import {INKWOOD_GLASSHOUSE} from '../src/game/world.ts';
 
 test('the optional paper map shows the current town position and preserves normal Places travel', async ({browser}) => {
@@ -151,4 +151,123 @@ test('a resident can walk to the closed Inkwood Glasshouse without changing trai
    expect(errors).toEqual([]);
   }finally{await context.close();}
  }
+});
+
+test('Glasshouse board confirms the quoted pine once and shows the restored facade on return',async({browser})=>{
+ const output=process.env.QA_EVIDENCE_DIR??'test-results/browser/glasshouse-funding';
+ mkdirSync(output,{recursive:true});
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ try{
+  const page=await context.newPage(),errors:string[]=[],commands:Array<Record<string,unknown>>=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  let workshop=createWorkshop(Date.now()),entered=false,held=false,advanced=0;
+  let where={room:'trail',position:INKWOOD_GLASSHOUSE.point};
+  let project:{phase:'overgrown'|'under-repair'|'open';opensAt:number|null;entrance:boolean;frame:boolean;chart:boolean}={
+   entrance:true,frame:false,chart:true,phase:'overgrown',opensAt:null,
+  };
+  const now=()=>Date.now()+advanced;
+  let review:{id:string;task:'frame';pine:2;expiresAt:number}|null=null;
+  for(const [index,carpentryAction] of [
+   {action:'learn-saw'}, {action:'equip-saw',equipped:true}, {action:'gather-pine',station:'crooked'},
+  ].entries()){
+   const prior=applyWorkshop(workshop,{kind:'carpentry',carpentryAction,id:'fixture-wood-'+index,expectedRevision:workshop.revision},now());
+   expect(prior.ok,prior.message).toBe(true);
+   workshop=prior.state;
+  }
+  // Only network replies and the late server clock are intercepted. The UI,
+  // client retries, focus, scene art and browser reload all run normally.
+  await page.addInitScript(()=>{
+   class Events extends EventTarget{
+    onopen?:()=>void;
+    constructor(){super();queueMicrotask(()=>this.onopen?.());}
+    close(){}
+   }
+   Object.defineProperty(window,'EventSource',{value:Events,configurable:true});
+  });
+  const snapshot=()=>({playerId:'aster',name:'Aster',workshop,position:where,quest:{contentVersion:1,awarded:[]},
+   bridge:{contributed:3,target:3,restored:true,phase:'open'},trail:{stamps:[],pennantOwned:false},glasshouse:{project,review},
+   plot:null,plots:[],seasonKey:'2026-11-24',scores:[],serverTime:now(),serverInstance:'funding-fixture'});
+  await page.route('**/api/town/**',route=>{
+   const endpoint=new URL(route.request().url()).pathname.split('/').at(-1);
+   if(endpoint==='fixtures')return route.fulfill({json:{fixtures:[{id:'aster',name:'Aster'}]}});
+   if(endpoint==='login'){entered=true;return route.fulfill({json:{snapshot:snapshot()}});}
+   if(endpoint==='snapshot')return entered?route.fulfill({json:{snapshot:snapshot()}}):route.fulfill({status:401});
+   if(endpoint==='movement'){where=route.request().postDataJSON();return route.fulfill({json:{ok:true,position:where}});}
+   if(endpoint==='command'){
+    const command=route.request().postDataJSON();
+    const replay=commands.find(previous=>previous.id===command.id);
+    commands.push(command);
+    if(replay){
+     expect(command).toEqual(replay);
+     return route.fulfill({json:{ok:true,replayed:true,message:'Repairs are funded.',snapshot:snapshot()}});
+    }
+    if(command.kind==='glasshouse-review'){
+     expect(command.task).toBe('frame');
+     review={id:crypto.randomUUID(),task:'frame',pine:2,expiresAt:now()+120000};
+     workshop={...workshop,revision:workshop.revision+1};
+     return route.fulfill({json:{ok:true,message:'Work reviewed. Nothing has been spent.',snapshot:snapshot()}});
+    }
+    expect(command).toMatchObject({kind:'glasshouse-confirm',reviewId:review?.id});
+    expect(project.frame).toBe(false);
+    project={...project,frame:true,phase:'under-repair',opensAt:now()+12*3600000};
+    workshop={
+     ...workshop,revision:workshop.revision+1,
+     carpentry:{...workshop.carpentry,glasshousePine:2,pine:{...workshop.carpentry.pine,carried:4,spent:2}},
+    };
+    review=null;
+    held=true;
+    return route.abort('failed');
+   }
+   return route.fulfill({status:404});
+  });
+  const button=(name:string)=>page.getByRole('button',{name,exact:true});
+  const facade=()=>page.evaluate(()=>(window as any).__pilot?.metrics().visual.glasshouse);
+  const open=()=>page.locator('#interact').tap();
+  await page.goto('/?town=1&sky-study=1&phase=day');
+  await button('Aster').tap();
+  await expect.poll(facade).toBe('glasshouse-overgrown');
+  await open();
+  await expect(page.getByRole('heading',{name:'Three jobs to restore the Glasshouse'})).toBeVisible();
+  await page.screenshot({path:output+'/funding-phone.png'});
+  await button('Review window frame').tap();
+  const quote=page.locator('.glasshouse-quote');
+  await expect(quote).toContainText('2 pine · 6 carried · 4 after confirming.');
+  expect(workshop.carpentry.pine.carried).toBe(6);
+  await button('Cancel review').tap();
+  await expect(quote).toHaveCount(0);
+  expect(commands).toHaveLength(1);
+  await button('Review window frame').tap();
+  await expect(quote).toBeVisible();
+  await page.setViewportSize({width:844,height:390});
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  const confirm=button('Confirm · give 2 pine');
+  await confirm.scrollIntoViewIfNeeded();
+  await expect(confirm).toBeInViewport({ratio:1});
+  await page.screenshot({path:output+'/quote-short.png'});
+  await confirm.press('Enter');
+  await expect(button('Retry the same request')).toBeVisible();
+  expect(held).toBe(true);
+  await expect.poll(facade).toBe('glasshouse-overgrown');
+  await button('Retry the same request').press('Enter');
+  await expect(page.getByRole('heading',{name:'Repairs funded'})).toBeVisible();
+  await expect.poll(facade).toBe('glasshouse-under-repair');
+  expect(workshop.carpentry.pine.carried).toBe(4);
+  expect(commands).toHaveLength(4);
+  await page.setViewportSize({width:1440,height:900});
+  await page.evaluate(()=>document.documentElement.style.fontSize='100%');
+  await page.screenshot({path:output+'/repair-desktop.png'});
+
+  // This advances the fictional service clock. No real twelve-hour elapsed
+  // duration or shared peer/server verification is claimed by this browser case.
+  advanced=12*3600000+1000;
+  project={...project,phase:'open'};
+  await page.reload();
+  await expect.poll(facade).toBe('glasshouse-restored');
+  await open();
+  await expect(page.getByRole('heading',{name:'Glasshouse restored'})).toBeVisible();
+  await expect(button('Review window frame')).toHaveCount(0);
+  await page.screenshot({path:output+'/restored-desktop.png'});
+  expect(commands).toHaveLength(4);
+  expect(errors).toEqual([]);
+ }finally{await context.close();}
 });

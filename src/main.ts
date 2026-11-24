@@ -1,3 +1,4 @@
+import {GlasshouseBoard} from './ui/glasshouse.ts';
 import {headwearName} from './art/headwear.ts';
 import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
 import { benchWork } from './game/crafting-view.ts';
@@ -165,8 +166,14 @@ game.events.on(Phaser.Core.Events.STEP,()=>{
   game.scale.setParentSize(width,height);
  }
 });
+let textModeFrame:number|undefined;
 const worldResize=new ResizeObserver(entries=>{
- updateTextMode();
+ // The text-mode class can resize the observed world. Let the observer
+ // finish delivering its current layout before changing that layout again.
+ if(textModeFrame===undefined)textModeFrame=requestAnimationFrame(()=>{
+  textModeFrame=undefined;
+  updateTextMode();
+ });
  const {width,height}=entries[0].contentRect;
  if(!game.isBooted||width<=0||height<=0)return;
  worldResizePending=true;
@@ -175,6 +182,7 @@ const worldResize=new ResizeObserver(entries=>{
  else wakeRender();
 });
 worldResize.observe(worldContainer);
+let glasshouseUI:GlasshouseBoard|undefined;
 let cafeUI:CafeUI|undefined;let snackShelfUI:SnackShelfUI|undefined;let gardenUI:GardenUI|undefined;let carpentryUI:CarpentryUI|undefined;let commissionUI:CommissionUI|undefined;
 let namedWalk:{room:Room;stopId:string;startedRoom:string;owner:string}|null=null;
 let placeWalk:{room:Room;stopId:string;owner:string}|null=null;
@@ -287,6 +295,8 @@ const town=townMode?new TownClient({
   if(cue)music.cue(cue);
  },
  onSnapshot:(snapshot,previous)=>{
+  if(scene.setGlasshousePhase(snapshot.glasshouse?.project.phase??'overgrown'))refreshMenuFrame(2);
+  glasshouseUI?.refresh();
  session.setSquareStops(snapshot.orchard!==undefined?ORCHARD_STOPS:undefined);
  const celebrateBridge=!needResync&&freshBridgeOpening(previous??null,snapshot);
  skyOffset=snapshot.serverTime-Date.now();const identityChanged=residentId!==snapshot.playerId;const expandedInPlace=session.room==='home'&&snapshot.position.room==='home-expanded'&&snapshot.position.homePlotId===homePlotId;
@@ -307,6 +317,10 @@ async function flushMovement(force=false):Promise<void>{
  const action=town.movement(value).then(()=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;lastSent=hash;confirmedDistance=Math.max(confirmedDistance,sentDistance);const nextContext=contextKey(value.room,value.homePlotId,value.districtId);if(nextContext!==confirmedContext)confirmedDoor();confirmedContext=nextContext;music.setLocation(value.room,value.position);moveBackoff=0;}).catch(async error=>{if(epoch!==movementEpoch||town.snapshot?.playerId!==sentPlayerId)return;moveBackoff=Date.now()+2000;needResync=true;session.lock(true);feedback.textContent='Movement could not be confirmed. Reconnecting to the local town…';try{const snapshot=await town.load();if(snapshot.playerId!==sentPlayerId||town.snapshot?.playerId!==sentPlayerId)return;homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);lastSent=JSON.stringify(snapshot.position);}catch{/* SSE reconnect reloads the authoritative position. */}if(force)throw error;}).finally(()=>{if(movement===action)movement=null;});
  movement=action;await action;
 }
+if(town)glasshouseUI=new GlasshouseBoard({
+ open:()=>openPanel(INKWOOD_GLASSHOUSE.name),body,
+ atDoor:()=>session.room==='trail'&&session.nearby()?.id===INKWOOD_GLASSHOUSE.id,
+},town);
 const remoteWorkshop=town?.workshopAdapter();
 const outingUI=new OutingUI({open:openPanel,body,position:()=>({room:session.room,position:session.position}),go:id=>goNamedDestination('square',id),changed:()=>{scene.refreshOuting();refreshMenuFrame(2);},feedback:message=>feedback.textContent=message},town);
 scene.outingState=()=>outingUI.snapshot();
@@ -680,7 +694,11 @@ function activate(stop: Stop) {
     else openSharedTownChoice('Bridge committee', 'Help repair the bridge and explore Inkwood in shared practice. Your workshop in this browser has its own save.');
     return;
   }
-  if(stop.id===INKWOOD_GLASSHOUSE.id){openPanel(stop.name);body.append(paragraph(stop.text));return;}
+  if(stop.id===INKWOOD_GLASSHOUSE.id){
+    if(town?.snapshot?.glasshouse&&glasshouseUI)glasshouseUI.show();
+    else{openPanel(stop.name);body.append(paragraph(stop.text));}
+    return;
+  }
   if(town&&session.room==='trail'&&(TRAIL_LANDMARK_IDS as readonly string[]).includes(stop.id)){townUI!.showTrail(stop.id);return;}
   if(!town&&(stop.id==='plot'||stop.id==='home-front')){openSharedTownChoice(stop.id==='plot'?'Housing Registry':'Home visits',stop.id==='plot'?stop.text:'Earned homes and their front doors are in shared practice. Your browser-only workshop stays saved separately.');return;}
   if(town&&stop.id==='plot'){townUI!.showPlots();return;}

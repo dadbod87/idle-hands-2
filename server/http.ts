@@ -133,7 +133,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(result.ok&&!result.replayed&&result.publicChanged&&current.value.homePlotId
        &&command&&typeof command==='object'&&(command as {kind?:unknown}).kind==='display-home-keepsake')
       invalidate(id,current.value.homePlotId);
-    if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(['contribute','claim-plot','upgrade-plot','edit-plot','housing-confirm','housing-finish','housing-arrange','redeem-lesson'].includes(String((command as {kind?:unknown}).kind))||((command as {kind?:unknown}).kind==='stamp-trail'&&result.snapshot.trail.pennantOwned)||(['garden','carpentry','commission','cafe-serve'].includes(String((command as {kind?:unknown}).kind))&&result.publicChanged)))invalidate(id);
+    if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(['contribute','claim-plot','upgrade-plot','edit-plot','housing-confirm','housing-finish','housing-arrange','redeem-lesson'].includes(String((command as {kind?:unknown}).kind))||((command as {kind?:unknown}).kind==='stamp-trail'&&result.snapshot.trail.pennantOwned)||(['garden','carpentry','commission','cafe-serve','glasshouse-confirm'].includes(String((command as {kind?:unknown}).kind))&&result.publicChanged)))invalidate(id);
     return json(res,200,{...result,snapshot:clientSnapshot(result.snapshot)});
     },protectPresence);
     }finally{const remaining=(pendingBodies.get(id)??1)-1;if(remaining)pendingBodies.set(id,remaining);else pendingBodies.delete(id);}

@@ -32,6 +32,8 @@ export type SnapshotRows={
  cafe:Record<string,unknown>;housing_sites:TownSnapshot['housingSites'];
  housing:Awaited<ReturnType<typeof privateHousing>>;
  outing:{state:unknown}|null;
+ glasshouse:unknown;
+ glasshouse_review:unknown;
 };
 
 // Explicit public projections keep other residents' private JSON out of the result.
@@ -90,7 +92,9 @@ const query = `select /* coherent-town-snapshot */
    'quote',(select quote from ih2.housing_quotes where owner_id=$1 order by ordinal desc limit 1),
    'nextPlotId',(select (greatest(coalesce((select max(id) from ih2.plots),0),coalesce((select max(plot_id) from ih2.housing_builds),0))+1)::text)
  ) as housing,
- (select jsonb_build_object('state',v.state) from ih2.outings v where v.player_id=$1) as outing
+ (select jsonb_build_object('state',v.state) from ih2.outings v where v.player_id=$1) as outing,
+ (select v.state from ih2.glasshouse_project v where v.id=1) as glasshouse,
+ (select v.review from ih2.glasshouse_reviews v where v.player_id=$1) as glasshouse_review
  from ih2.players resident where resident.id=$1`;
 
 export async function readSnapshotRows(client:PoolClient,id:string,now:number,key:string):Promise<SnapshotRows|undefined>{

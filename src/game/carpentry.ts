@@ -1,3 +1,4 @@
+import {GLASSHOUSE_RULES} from './glasshouse.ts';
 import {z} from 'zod';
 import {defaultGardenRules,type GardenRules,type GardenLike,GARDEN_HOUR,GARDEN_DAY,GARDEN_TIME_MAX,type GardenState} from './garden.ts';
 
@@ -9,7 +10,7 @@ const count=z.number().int().min(0).max(CARPENTRY_RULES.counterMax);
 const clock=z.number().int().min(0).max(GARDEN_TIME_MAX);
 const deadline=z.number().int().min(0).max(Number.MAX_SAFE_INTEGER);
 export const carpentrySchema=z.object({
- version:z.literal(2),commissionPine:count.max(2).refine(n=>n===0||n===2),observedAt:clock,lessonAt:clock.nullable(),
+ version:z.literal(2),glasshousePine:z.literal(GLASSHOUSE_RULES.pine).optional(),commissionPine:count.max(2).refine(n=>n===0||n===2),observedAt:clock,lessonAt:clock.nullable(),
  saw:z.object({owned:z.boolean(),equipped:z.boolean()}).strict(),
  pine:z.object({available:count.max(6),lastAt:clock,carried:count.max(24),gathered:count,spent:count}).strict(),
  job:z.object({startedAt:clock,readyAt:deadline}).strict().nullable(),
@@ -19,7 +20,7 @@ export const carpentrySchema=z.object({
  const issue=(message:string)=>ctx.addIssue({code:'custom',message});
  if(s.lessonAt===null&&(s.saw.owned||s.saw.equipped||s.pine.gathered>0||s.started>0))issue('The practical lesson has not been completed.');
  if(s.lessonAt!==null&&s.lessonAt>s.observedAt||s.saw.equipped&&!s.saw.owned)issue('Invalid protected tool entitlement.');
- if(s.pine.lastAt>s.observedAt||s.pine.gathered!==s.pine.carried+s.pine.spent||s.pine.spent!==4*s.started+s.hampers+s.commissionPine)issue('Pine does not conserve gathered and used wood.');
+ if(s.pine.lastAt>s.observedAt||s.pine.gathered!==s.pine.carried+s.pine.spent||s.pine.spent!==4*s.started+s.hampers+s.commissionPine+(s.glasshousePine??0))issue('Pine does not conserve gathered and used wood.');
  if(s.started!==s.produced+(s.job?1:0)||s.recorded>s.produced)issue('Craft records must refer to completed, kept easels.');
  if(s.job&&(s.job.startedAt>s.observedAt||s.lessonAt===null||s.job.startedAt<s.lessonAt||s.job.readyAt-s.job.startedAt!==CARPENTRY_RULES.easelMs))issue('Invalid finishing deadline.');
  if(s.recorded<6?s.sixthRecordAt!==null:s.sixthRecordAt===null||s.sixthRecordAt>s.observedAt||s.lessonAt===null||s.sixthRecordAt<s.lessonAt)issue('Invalid personal sixth-record history.');

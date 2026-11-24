@@ -1128,6 +1128,16 @@
       "id": "glasshouse-overgrown",
       "path": "art/glasshouse/overgrown.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "glasshouse-under-repair",
+      "path": "art/glasshouse/under-repair.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "glasshouse-restored",
+      "path": "art/glasshouse/restored.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

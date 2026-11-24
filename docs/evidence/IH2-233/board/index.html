@@ -16,8 +16,10 @@
     <p id="supplies"></p>
    </aside>
    <section aria-labelledby="phase">
-    <h2 id="phase"></h2>
-    <p id="phase-note"></p>
+    <div class="facade-status">
+     <div id="facade" class="facade" aria-hidden="true"><span></span><img width="148" height="112" alt=""></div>
+     <div><h2 id="phase" tabindex="-1"></h2><p id="phase-note"></p></div>
+    </div>
     <div id="jobs"></div>
     <button id="advance" type="button" hidden>Simulate a visit tomorrow</button>
    </section>
@@ -31,7 +33,7 @@
    </section>
    <form id="tour" hidden>
     <fieldset>
-     <legend>Choose a plant from the first tour</legend>
+     <legend>Choose a plant to keep</legend>
      <div class="plants">
       <label><input type="radio" name="plant" value="committee-fern" required><img src="../tour/committee-fern.svg" width="72" height="84" alt=""><strong>Committee fern</strong></label>
       <label><input type="radio" name="plant" value="very-patient-sundew" required><img src="../tour/very-patient-sundew.svg" width="72" height="84" alt=""><strong>Very patient sundew</strong></label>

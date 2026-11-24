@@ -60,6 +60,17 @@ const keep = tour.querySelector<HTMLButtonElement>('button')!;
 const receipt = document.querySelector<HTMLElement>('#receipt')!;
 const phase = document.querySelector<HTMLElement>('#phase')!;
 const note = document.querySelector<HTMLElement>('#phase-note')!;
+const facade = document.querySelector<HTMLElement>('#facade')!;
+const facadeArt = facade.querySelector('img')!;
+const openingLight = facade.querySelector('span')!;
+const facadePaths = {
+ 'overgrown':'/art/glasshouse/overgrown.svg',
+ 'under-repair':new URL('../facade/under-repair.svg',document.baseURI).href,
+ 'open':new URL('../facade/restored.svg',document.baseURI).href,
+};
+function clearOpeningLight(){openingLight.classList.remove('opening-light');}
+openingLight.addEventListener('animationend',clearOpeningLight);
+openingLight.addEventListener('animationcancel',clearOpeningLight);
 
 for (const [index, person] of residents.entries()) roles.add(new Option(person.name,String(index)));
 const resident = () => residents[Number(roles.value)];
@@ -78,9 +89,15 @@ function paint() {
  const pending=visits.get(person.name);
  supplies.textContent=person.account.pine.carried+' pine · '+person.trailStamps+' observations';
  jobs.hidden=current.phase!=='overgrown';
+ if(facade.dataset.phase!==current.phase){
+  const opened=facade.dataset.phase==='under-repair'&&current.phase==='open';
+  facade.dataset.phase=current.phase;
+  facadeArt.src=facadePaths[current.phase];
+  if(opened&&!matchMedia('(prefers-reduced-motion: reduce)').matches)openingLight.classList.add('opening-light');
+ }
  phase.textContent=current.phase==='open'?'The Glasshouse is open':current.phase==='under-repair'?'The crew is fitting the panes':'Three jobs for the Glasshouse';
  note.textContent=current.phase==='open'
-  ?'First tour for anyone, including people who arrived after the work.'
+  ?'Every resident can keep a plant.'
   :current.phase==='under-repair'
    ?'The trial schedule is twelve real hours from the final job.'
    :'The committee has found both the keys and something to do.';
@@ -159,7 +176,9 @@ advance.onclick=()=>{
  now=project.opensAt+1;
  visits.clear();
  paint();
- say('The panes are in. The first tour is available.');
+ receipt.textContent='The panes are in. You can choose a plant.';
+ phase.focus({preventScroll:true});
+ facade.closest('.facade-status')?.scrollIntoView({block:'nearest'});
 };
 tour.onchange=()=>{keep.disabled=!tour.querySelector(':checked');};
 tour.onsubmit=event=>{

@@ -24,6 +24,7 @@ button { cursor: pointer; font-weight: bold; }
 button:disabled { cursor: default; color: #626c5b; background: #eee8da; }
 button:focus-visible, select:focus-visible, input:focus-visible, #receipt:focus-visible { outline: 3px solid #955238; outline-offset: 3px; }
 #jobs { display: grid; gap: .38rem; margin-top: .5rem; }
+#jobs[hidden] { display:none; }
 .job { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .3rem .5rem; padding: .55rem; border-top: 1px solid var(--line); }
 .job[data-done="true"] h3::before { content: "✓ "; }
 .job p { font-size: .86rem; }
@@ -39,4 +40,33 @@ legend { font-weight: bold; }
 @media (max-width: 420px) {
  aside p { width:100%; }
  .job button { width:100%; text-align:left; }
+}
+
+.facade-status {
+ display:grid;
+ grid-template-columns:auto minmax(0,1fr);
+ align-items:center;
+ gap:.65rem;
+ padding:.5rem;
+ border:1px solid var(--line);
+ border-radius:5px;
+ background:#f2e8d1;
+}
+.facade { position:relative; width:clamp(68px,25vw,118px); aspect-ratio:148 / 112; isolation:isolate; }
+.facade img { position:relative; display:block; width:100%; height:auto; }
+.facade span {
+ position:absolute;
+ inset:20% 2% 0;
+ border-radius:42%;
+ background:radial-gradient(ellipse,#ffdc80cc,transparent 72%);
+ opacity:0;
+}
+#phase:focus-visible { outline:3px solid #955238; outline-offset:3px; }
+@media(prefers-reduced-motion:no-preference) {
+ .facade .opening-light { animation:welcome-light 620ms ease-out; }
+}
+@keyframes welcome-light {
+ from { opacity:0; transform:scale(.9); }
+ 38% { opacity:1; }
+ to { opacity:0; transform:scale(1.15); }
 }

@@ -18,8 +18,16 @@ export class GardenUI{
  private el<K extends keyof HTMLElementTagNameMap>(tag:K,text='',className=''){const e=document.createElement(tag);e.textContent=text;if(className)e.className=className;return e;}
  private image(key:string,size=48){const image=this.el('img');image.src='/art/garden/'+key+'.svg';image.alt='';image.width=size;image.height=size;return image;}
  private button(text:string,fn:()=>void,kind=''){const b=this.el('button',text,'destination');b.type='button';b.onclick=fn;if(kind)b.dataset.gardenAction=kind;return b;}
- private view(){const raw=this.workshop.state.garden,actual=this.workshop.gardenClock();return{state:raw?settleGarden(raw,Math.max(actual,raw.observedAt)):undefined,now:Math.max(actual,raw?.observedAt??actual),clockOk:!raw||actual>=raw.observedAt};}
- private blocked(action:GardenAction){const save=this.workshop.gardenSaveStatus();return this.owner!==this.host.owner()||this.busy||save.busy||save.canRetry||save.readOnly||!this.view().clockOk||!this.host.canUse(action);}
+ private view(){
+  const raw=this.workshop.state.garden,actual=this.workshop.gardenClock();
+  const now=Math.max(actual,raw?.observedAt??actual);
+  return{state:raw?settleGarden(raw,now):undefined,now};
+ }
+ private clockCaughtUp(){
+  const garden=this.workshop.state.garden;
+  return !garden||this.workshop.gardenClock()>=garden.observedAt;
+ }
+ private blocked(action:GardenAction){const save=this.workshop.gardenSaveStatus();return this.owner!==this.host.owner()||this.busy||save.busy||save.canRetry||save.readOnly||!this.clockCaughtUp()||!this.host.canUse(action);}
  private begin(title:string,neutral=this.bedFeedback){
   this.neutralFeedback=neutral;
   const owner=this.host.owner();if(owner!==this.owner){this.selected=null;this.preview=false;this.owner=owner;}
@@ -47,7 +55,7 @@ export class GardenUI{
   try{const result=await this.workshop.runGarden(action);if(status===this.status&&owner===this.host.owner()&&this.active){if(status)status.textContent=result.message;if(result.ok)this.preview=false;}if(owner===this.host.owner()){this.host.feedback(result.message);if(result.ok)this.host.accepted(action);}return result.ok;}
   finally{this.busy=false;this.host.changed();this.refresh();}
  }
- private updateRetry(button:HTMLButtonElement){const s=this.workshop.gardenSaveStatus();button.hidden=!s.canRetry;button.disabled=this.busy||s.busy;this.host.body.querySelectorAll<HTMLButtonElement>('[data-garden-nav]').forEach(b=>b.disabled=this.isSaving);if(!this.view().clockOk&&this.status)this.status.textContent='The clock has not caught up with this saved garden. Your plants are kept; actions will be available when the time can be confirmed.';else if(s.error&&this.status&&!this.status.textContent)this.status.textContent=s.error;else if(!s.error&&this.status?.textContent===this.saveError)this.status.textContent=this.neutralFeedback;this.saveError=s.error;}
+ private updateRetry(button:HTMLButtonElement){const s=this.workshop.gardenSaveStatus();button.hidden=!s.canRetry;button.disabled=this.busy||s.busy;this.host.body.querySelectorAll<HTMLButtonElement>('[data-garden-nav]').forEach(b=>b.disabled=this.isSaving);if(!this.clockCaughtUp()&&this.status)this.status.textContent='The clock has not caught up with this saved garden. Your plants are kept; actions will be available when the time can be confirmed.';else if(s.error&&this.status&&!this.status.textContent)this.status.textContent=s.error;else if(!s.error&&this.status?.textContent===this.saveError)this.status.textContent=this.neutralFeedback;this.saveError=s.error;}
  showBeds(){
   this.begin('Your rented allotment');
   const body=this.host.body;

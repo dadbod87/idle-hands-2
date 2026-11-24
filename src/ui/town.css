@@ -141,3 +141,10 @@
  #panel:has(.neighbor-directory) .dialog-head h2 { font-size:1.05rem; line-height:1.18; }
  #panel:has(.neighbor-directory) :is([data-neighborhood-enter], [data-neighbor-visit]) { padding-inline:10px; }
 }
+@media(max-width:400px) {
+ .shell.town-mode.large-text > header { flex-wrap:wrap; gap:6px 8px; padding:8px 10px; }
+ .shell.town-mode.large-text > header .brand-mark { display:none; }
+ .shell.town-mode.large-text > header .brand { flex:1 0 100%; }
+ .shell.town-mode.large-text > header .brand h1 { overflow-wrap:normal; }
+ .shell.town-mode.large-text > header #resident { margin-left:auto; }
+}

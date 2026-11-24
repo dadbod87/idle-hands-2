@@ -96,6 +96,19 @@ test('street directory finds the intended resident or address and confirms the s
    await page.getByRole('button',{name:'Fictional visitor',exact:true}).click();
    await expect(page.getByRole('dialog')).toBeHidden();
    await page.evaluate(text=>document.documentElement.style.fontSize=text+'%',shape.text);
+   if(shape.name==='phone200'){
+    await expect(page.locator('.shell')).toHaveClass(/large-text/);
+    const title=page.getByRole('heading',{name:'Idle Hands 2',exact:true});
+    await expect(title).toBeInViewport({ratio:1});
+    expect((await title.boundingBox())!.height).toBeLessThan(85);
+    expect((await page.locator('.world-wrap').boundingBox())!.height).toBeGreaterThan(180);
+    for(const label of ['Choose practice resident','Open field guide']){
+     const control=page.getByRole('button',{name:label,exact:true});
+     await expect(control).toBeInViewport({ratio:1});
+     expect((await control.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    }
+    await page.screenshot({path:output+'/neighbor-street-phone200.png'});
+   }
    const interact=page.getByRole('button',{name:'Inspect Street directory'});
    await expect(interact).toBeEnabled();
    await interact.click();

@@ -22,8 +22,8 @@
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
     "src/main.ts": "4b352c8476bc2d46355f41b5ca85ab6bd826dc259f2f0fece6ca9ba3a1046d5c",
-    "src/phaser/WorldScene.ts": "d3b2e60642669b2f74d43eec9338c652a557e33f5339bb2bd12b0fa7728c54f1",
+    "src/phaser/WorldScene.ts": "f4310fabb49824d3c1714dbd89af33f9e17072b8464d4c868ded53a3e8342584",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed frame-aligned text mode and workshop wayfinding. Original study snapshots and generated output remain frozen."
+  "currentTask": "Reviewed frame-aligned text mode and the bench label next to the normal approach. Original study snapshots and generated output remain frozen."
 }

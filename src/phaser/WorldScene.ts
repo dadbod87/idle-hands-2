@@ -554,7 +554,7 @@ export class WorldScene extends Phaser.Scene {
       this.pennantView=this.add.image(15*TILE,5.5*TILE,TRAIL_ART.pennant.world).setOrigin(TRAIL_ART.pennant.foot.x/TRAIL_ART.pennant.width,TRAIL_ART.pennant.foot.y/TRAIL_ART.pennant.height).setDepth(2*TILE).setVisible(this.homePennantOwned);
     } else {
       image('bench',3*TILE,3*TILE,5*TILE).setDisplaySize(5*TILE,3*TILE);
-      label(5.5,5.85,'Work bench').setFontSize(12).setPadding(5,3,5,3);
+      label(7.85,5.85,'Work bench').setFontSize(12).setPadding(5,3,5,3);
       this.benchPiece=this.add.image(4.75*TILE,3.48*TILE,HOME_ART.materials.timber).setDepth(5*TILE+1).setVisible(false);
       this.benchCard=label(6.65,3.3,'').setDepth(5*TILE+1).setFontSize(12).setPadding(5,3,5,3).setVisible(false);
       const rack=carpentryArt('finishing-rack-empty');this.rackView=this.add.image(12.5*TILE,6*TILE,rack.id).setOrigin(rack.foot!.x/rack.width,rack.foot!.y/rack.height).setDepth(6*TILE);label(12.5,6.6,'Pine finishing rack').setFontSize(12).setPadding(5,3,5,3);

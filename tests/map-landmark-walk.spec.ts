@@ -1,6 +1,7 @@
 import {mkdirSync} from 'node:fs';
 import {test,expect} from '@playwright/test';
 import {applyWorkshop,createWorkshop,type WorkshopState} from '../src/game/live-workshop.ts';
+import {CROP_DEFS} from '../src/game/garden.ts';
 
 test('after placing a first planter, Journal offers a short Riverwalk outing without another job',async({browser})=>{
  test.setTimeout(60_000);
@@ -393,22 +394,23 @@ test('only an earned river print can decorate a private workshop, with durable r
    page.on('pageerror',error=>errors.push(error.message));
    page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))api.push(request.url());});
    const read=(key:string)=>page.evaluate(key=>localStorage.getItem(key),key);
-   const art=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.riverPrint);
+   const art=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.workshopPrint);
    const hit=(control:ReturnType<typeof page.locator>)=> size.touch?control.tap():control.press('Enter');
    const button=(name:string)=>page.getByRole('button',{name,exact:true});
    const ready=()=>expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
    async function openFolio(){
     await hit(page.locator('#journal'));
-    await hit(page.locator('[data-river-journal] summary'));
-    await expect(page.getByRole('combobox',{name:'Choose a river print'})).toBeVisible();
+    await hit(page.locator('[data-workshop-prints] summary'));
+    await expect(page.getByRole('combobox',{name:'Choose a workshop print'})).toBeVisible();
    }
    await page.goto('/?sky-study=1&phase=day&weather=clear');
    await ready();
    await page.evaluate(scale=>document.documentElement.style.fontSize=scale+'%',size.text);
    const before=await read('ih2:workshop:v2');
    await openFolio();
-   const choice=page.getByRole('combobox',{name:'Choose a river print'});
+   const choice=page.getByRole('combobox',{name:'Choose a workshop print'});
    await expect(choice.locator('option')).toHaveText(['A ribbon of pondweed','An exceptionally wet boot']);
+   expect((await choice.boundingBox())!.height).toBeGreaterThanOrEqual(44);
    await choice.selectOption('bridge');
    await expect(button('Take print down')).toBeDisabled();
    await hit(button('Display print'));
@@ -425,6 +427,21 @@ test('only an earned river print can decorate a private workshop, with durable r
    expect(print.y-36).toBeGreaterThan(0);
    expect(print.y+48).toBeLessThan(bounds!.height);
    await page.screenshot({path:output+'/river-print-wall-'+size.name+'.png'});
+   if(size.touch){
+    await page.touchscreen.tap(bounds!.x+print.x,bounds!.y+print.y);
+   }else{
+    await hit(page.locator('#places'));
+    await hit(page.locator('[data-destination=workshop-print]'));
+    await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().nearby)).toBe('workshop-print');
+    await hit(page.locator('#interact'));
+   }
+   const inspected=page.getByRole('dialog',{name:'An exceptionally wet boot',exact:true});
+   await expect(inspected).toBeVisible();
+   await expect(inspected).toContainText('The right is still under investigation.');
+   await expect(inspected.locator('.workshop-print-inspection p')).toBeInViewport({ratio:1});
+   await expect(inspected.getByRole('button',{name:'Close panel'})).toBeInViewport();
+   await page.screenshot({path:output+'/river-print-inspect-'+size.name+'.png'});
+   await hit(button('Close panel'));
    await page.reload();
    await ready();
    await expect.poll(art).toBe('bridge');
@@ -446,9 +463,72 @@ test('only an earned river print can decorate a private workshop, with durable r
    await hit(button('Take print down'));
    await expect(page.getByText('Print taken down.')).toBeVisible();
    await expect.poll(art).toBeNull();
+   await hit(button('Close panel'));
+   await hit(page.locator('#places'));
+   await expect(page.locator('[data-destination=workshop-print]')).toHaveCount(0);
    expect(await read('ih2:river-print:v1')).toBeNull();
    expect(await read('ih2:river-survey:v1')).toBe(record);
    expect(await read('ih2:workshop:v2')).toBe(before);
+   expect(errors).toEqual([]);
+   expect(api).toEqual([]);
+  }finally{await context.close();}
+ }
+});
+
+test('the first harvested marigold earns a print without spending the flower',async({browser})=>{
+ const output=process.env.QA_EVIDENCE_DIR??'test-results/browser/marigold-print';
+ mkdirSync(output,{recursive:true});
+ const plantedAt=Date.now()-CROP_DEFS.marigold.durationMs-1000;
+ const initial=createWorkshop(plantedAt);
+ const bed=applyWorkshop(initial,{kind:'garden',gardenAction:{action:'plant',bed:0,crop:'marigold'},
+  id:'print-grown-flower',expectedRevision:initial.revision},plantedAt);
+ expect(bed.ok).toBe(true);
+ for(const size of [{name:'desktop',width:1440,height:900,touch:false},{name:'phone',width:320,height:640,touch:true}]){
+  const context=await browser.newContext({viewport:{width:size.width,height:size.height},hasTouch:size.touch});
+  try{
+   await context.addInitScript(workshop=>{
+    if(!localStorage.getItem('ih2:workshop:v2'))localStorage.setItem('ih2:workshop:v2',workshop);
+   },JSON.stringify(bed.state));
+   const page=await context.newPage(),errors:string[]=[],api:string[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))api.push(request.url());});
+   const read=(key:string)=>page.evaluate(key=>localStorage.getItem(key),key);
+   const ready=()=>expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   const art=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.workshopPrint);
+   const hit=(control:ReturnType<typeof page.locator>)=>size.touch?control.tap():control.press('Enter');
+   const button=(name:string)=>page.getByRole('button',{name,exact:true});
+   const folio=page.locator('[data-workshop-prints]');
+   await page.goto('/?sky-study=1&phase=day&weather=clear');
+   await ready();
+   await hit(page.locator('#journal'));
+   await expect(folio).toBeHidden();
+   await hit(button('Your allotment · crops, markers & quests'));
+   await hit(button('Walk to the beds'));
+   const harvest=button('Harvest · 1 produce + 1 seed');
+   await expect(harvest).toBeEnabled({timeout:25000});
+   await expect(button('Preview your marigold print')).toBeHidden();
+   await hit(harvest);
+   await expect(page.locator('.garden-status')).toContainText('A new flower print is in Journal');
+   const held=await read('ih2:workshop:v2');
+   expect(JSON.parse(held!).garden.produce.marigold).toBe(1);
+   expect(await read('ih2:river-print:v1')).toBeNull();
+   await hit(button('Preview your marigold print'));
+   await expect(folio.getByRole('combobox')).toBeFocused();
+   await expect(folio.getByRole('combobox')).toHaveValue('marigold');
+   await expect(folio.locator('option')).toHaveText(['A marigold on leave']);
+   await expect(folio.locator('.workshop-print-preview')).toHaveAttribute('src','/art/garden/pressed-marigold.svg');
+   await hit(button('Display print'));
+   await expect(folio.getByText('On display · A marigold on leave')).toBeVisible();
+   await button('Display print').scrollIntoViewIfNeeded();
+   await page.screenshot({path:output+'/marigold-print-panel-'+size.name+'.png'});
+   await hit(button('See it in the workshop'));
+   await expect.poll(art,{timeout:35000}).toBe('marigold');
+   await page.screenshot({path:output+'/marigold-print-workshop-'+size.name+'.png'});
+   await page.reload();
+   await ready();
+   await expect.poll(art).toBe('marigold');
+   expect(await read('ih2:workshop:v2')).toBe(held);
+   expect(await read('ih2:river-survey:v1')).toBeNull();
    expect(errors).toEqual([]);
    expect(api).toEqual([]);
   }finally{await context.close();}

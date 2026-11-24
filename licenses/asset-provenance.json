@@ -2243,6 +2243,16 @@
       "modifications": "Original boarding-house study adapted to the browser practice map and its walkable footprints."
     },
     {
+      "id": "garden-pressed-marigold",
+      "path": "public/art/garden/pressed-marigold.svg",
+      "sha256": "892eb2b153dea7b31eccc9fd050a4dff3ab7cb7afb931c7436644ef4f0eb2e8c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/garden/pressed-marigold.svg",
+      "date": "2026-11-24",
+      "modifications": "Original pressed-flower workshop print, drawn for the first marigold harvest. No imported media."
+    },
+    {
       "id": "river-perch",
       "path": "public/art/river/perch.svg",
       "sha256": "1b7a5351c2bb92c01b102011e1f830ab9b22fb9668e8b37c2a9f51a4cc9d42cf",

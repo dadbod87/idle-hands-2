@@ -1,4 +1,5 @@
 import { NATURALIST_KEEPSAKE } from './home-keepsake.ts';
+import { WORKSHOP_PRINT_STOP } from './workshop-print.ts';
 import { TILE, worlds, canStand, clearSegment, routeTo, type Room, type Point, type Stop,type World } from './world.ts';
 import { LODGING_BEDSIDE, LODGING_FRONT, LODGING_ROOM, squareWithLodging } from './lodging.ts';
 
@@ -20,6 +21,7 @@ export class Session {
   private moving = false;
   private pendingStop: string | null = null;
   private squareStops: readonly Stop[] = worlds.square.stops;
+  private workshopStops: readonly Stop[] = worlds.workshop.stops;
   private readonly squareLayout?: World;
   readonly recoveredLodgingFootprint: boolean = false;
   private extraSquareStops?:readonly Stop[];
@@ -45,8 +47,15 @@ export class Session {
   }
   get stops(): readonly Stop[] {
     if(this.room==='square')return this.squareStops;
+    if(this.room==='workshop')return this.workshopStops;
     if(this.room==='home'||this.room==='home-expanded')return this.homeStops[this.room];
     return worlds[this.room].stops;
+  }
+  setWorkshopPrint(shown:boolean){
+    const available=this.workshopStops!==worlds.workshop.stops;
+    if(shown===available)return;
+    this.workshopStops=shown?[...worlds.workshop.stops,WORKSHOP_PRINT_STOP]:worlds.workshop.stops;
+    if(!shown&&this.pendingStop===WORKSHOP_PRINT_STOP.id)this.stop();
   }
   setSquareStops(extra?:readonly Stop[]){
     if(this.extraSquareStops===extra)return;

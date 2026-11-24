@@ -1125,6 +1125,11 @@
       "kind": "original-svg"
     },
     {
+      "id": "garden-pressed-marigold",
+      "path": "art/garden/pressed-marigold.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "river-perch",
       "path": "art/river/perch.svg",
       "kind": "original-svg"

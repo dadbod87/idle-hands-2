@@ -3,7 +3,7 @@ import{gardenBedView,gardenGrowthLabel,plantingConfirmation,gardenSideActivity}f
 import {WorkshopUI,duration,type WorkshopCommandResult} from './workshop.ts';
 import './garden.css';
 type PublicGarden={credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};
-type GardenHost={open:(title:string)=>void;body:HTMLElement;feedback:(text:string)=>void;changed:()=>void;owner:()=>string;shared:boolean;publicState:()=>PublicGarden|undefined;canUse:(action:GardenAction)=>boolean;go:(room:'square'|'garden',stopId:string)=>void;accepted:(action:GardenAction)=>void};
+type GardenHost={open:(title:string)=>void;body:HTMLElement;feedback:(text:string)=>void;changed:()=>void;owner:()=>string;shared:boolean;publicState:()=>PublicGarden|undefined;canUse:(action:GardenAction)=>boolean;go:(room:'square'|'garden',stopId:string)=>void;accepted:(action:GardenAction)=>void;showFlowerPrint?:()=>void};
 const choiceNames={'sound-end':'The firm, unbroken end','paint-mark':'The painted stripe','square-notch':'The square notch'};
 function writeText(element:HTMLElement,text:string){if(element.textContent!==text)element.textContent=text;}
 function setDisabled(element:HTMLButtonElement|HTMLInputElement|HTMLSelectElement,disabled:boolean){if(element.disabled!==disabled)element.disabled=disabled;}
@@ -54,7 +54,15 @@ export class GardenUI{
  private async retry(afterRetry?:(result:WorkshopCommandResult)=>void){if(this.busy||this.owner!==this.host.owner())return;const status=this.status,owner=this.owner;this.busy=true;this.refresh();try{const r=await this.workshop.retryGarden();if(status===this.status&&owner===this.host.owner()&&this.active){afterRetry?.(r);if(r.ok)this.preview=false;if(status)status.textContent=r.message;}}finally{this.busy=false;this.host.changed();this.refresh();}}
  private async perform(action:GardenAction){
   if(this.blocked(action))return false;const status=this.status,owner=this.owner;this.busy=true;if(this.status)this.status.textContent='Saving this change…';this.refresh();this.host.changed();
-  try{const result=await this.workshop.runGarden(action);if(status===this.status&&owner===this.host.owner()&&this.active){if(status)status.textContent=result.message;if(result.ok)this.preview=false;}if(owner===this.host.owner()){this.host.feedback(result.message);if(result.ok)this.host.accepted(action);}return result.ok;}
+  const firstFlower=action.action==='harvest'&&!this.host.shared&&!this.workshop.cafeLocalStatus()?.state?.garden.harvested.marigold;
+  try{
+   const result=await this.workshop.runGarden(action);
+   const print=firstFlower&&result.ok&&!!this.workshop.cafeLocalStatus()?.state?.garden.harvested.marigold;
+   const message=result.message+(print?' A new flower print is in Journal → Workshop prints.':'');
+   if(status===this.status&&owner===this.host.owner()&&this.active){if(status)status.textContent=message;if(result.ok)this.preview=false;}
+   if(owner===this.host.owner()){this.host.feedback(message);if(result.ok)this.host.accepted(action);}
+   return result.ok;
+  }
   finally{this.busy=false;this.host.changed();this.refresh();}
  }
  private updateRetry(button:HTMLButtonElement){
@@ -74,6 +82,8 @@ export class GardenUI{
   const atBeds=this.host.canUse({action:'plant',bed:0,crop:'radish'});
   if(!atBeds)body.append(walk);else body.querySelector('.garden-scope')?.remove();
   const next=this.el('section','','garden-next'),nextReason=this.el('p'),nextActions=this.el('div');next.append(nextReason,nextActions);body.append(next);
+  const flowerPrint=this.host.showFlowerPrint?this.button('Preview your marigold print',this.host.showFlowerPrint,'flower-print'):null;
+  if(flowerPrint){flowerPrint.hidden=true;flowerPrint.dataset.gardenNav='true';}
   let layoutMode:'harvest'|'attendant'|'field'|'errand'|'display'|null|undefined,layoutRevision=-1,layoutSelection=-1,receiptBed:number|null=null;
   const row=this.el('div','','garden-bed-list');
   const rows:Array<{button:HTMLButtonElement;img:HTMLImageElement;name:HTMLElement;crop:HTMLElement;time:HTMLElement;short:HTMLElement}>=[];
@@ -96,7 +106,7 @@ export class GardenUI{
   const facts=this.el('section','','garden-plant-facts'),factsTitle=this.el('h3'),factsList=this.el('dl'),factValues:HTMLElement[]=[];facts.dataset.gardenFacts='';for(const label of['Seed','Grow','Harvest']){const term=this.el('dt',label),value=this.el('dd');factValues.push(value);const line=this.el('div');line.append(term,value);factsList.append(line);}facts.append(factsTitle,factsList);body.append(facts);
   const actions=this.el('div','','garden-primary-actions');
   const preview=this.button('Preview planting · free',()=>{receiptBed=null;this.preview=true;this.refresh();this.focusQuote(previewText);},'preview-plant');
-  const harvest=this.button('Harvest · 1 produce + 1 seed',()=>{receiptBed=null;void this.perform({action:'harvest',bed:this.selected??0});},'harvest');actions.append(preview,harvest);body.append(actions,bedNotice);
+  const harvest=this.button('Harvest · 1 produce + 1 seed',()=>{receiptBed=null;void this.perform({action:'harvest',bed:this.selected??0});},'harvest');actions.append(preview,harvest);body.append(actions,bedNotice);if(flowerPrint)body.append(flowerPrint);
   const previewBox=this.el('section','','garden-preview'),previewText=this.el('p');previewText.dataset.gardenQuote='true';previewText.tabIndex=-1;
   const confirm=this.button('Confirm planting · 1 bound seed',()=>{
    const selected=this.selected??0,owner=this.host.owner(),dialog=confirm.closest('dialog');
@@ -193,6 +203,10 @@ export class GardenUI{
    writeText(cancel,showingReceipt?'Close planting receipt':'Cancel preview · free');
    writeText(bedNotice,!bed?(s.seeds[this.crop]>0?'Empty · choose a seed and preview planting.':'No selected seed in hand. Growing plants return theirs at harvest; the attendant replaces missing starter supply.'):
     s.produce[bed.crop]>=12?'This produce space is full. The plant and seed wait safely; use produce or tend another bed.':bed.readyAt>now?'Growing · '+duration(bed.readyAt-now)+' left. Ready plants wait safely.':'Ready · harvest one produce, one seed and at least one practice point.');
+   if(flowerPrint){
+    const earned=!!this.workshop.cafeLocalStatus()?.state?.garden.harvested.marigold;
+    if(flowerPrint.hidden===earned)flowerPrint.hidden=!earned;
+   }
    setDisabled(harvest,this.blocked({action:'harvest',bed:this.selected!})||!bed||bed.readyAt>now||s.produce[bed.crop]>=12);
    const harvestTitle=bed&&s.produce[bed.crop]>=12?'This produce space is full. The ready plant and seed will wait.':'Use a ready bed with output space.';
    if(harvest.title!==harvestTitle)harvest.title=harvestTitle;

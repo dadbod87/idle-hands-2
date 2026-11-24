@@ -1,6 +1,7 @@
-import {CAST_MS,RIVER_SPOT_IDS,type RiverSurvey,type RiverSpot} from '../game/river-survey.ts';
+import {CAST_MS,RIVER_SPOT_IDS,type RiverSurvey} from '../game/river-survey.ts';
 import {createRiverFindList,updateRiverFinds} from './river-survey.ts';
-import {RiverPrintControls} from './river-print.ts';
+import {WorkshopPrintControls} from './workshop-print.ts';
+import type {WorkshopPrint} from '../game/workshop-print.ts';
 import type {FieldNote} from '../game/recent-field-notes.ts';
 import { gardenBedView } from '../game/garden-view.ts';
 import {APPLE_CAP,ORCHARD_BRANCHES,SNACK_CAP,type BranchId,type OrchardPantry} from '../game/orchard.ts';
@@ -27,7 +28,7 @@ type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Reco
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
 type StarterDestination=typeof RESOURCE_IDS[number]|'bench';
 type WorkshopTrip={text:string;label:string;walk:()=>void};
-type PanelHost={readyWork?:(ready:boolean)=>void;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void;print?:{selected:()=>RiverSpot|null;choose:(spot:RiverSpot|null)=>boolean}};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToWorkshop?:()=>void;walkToStarter?:(destination:StarterDestination)=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
+type PanelHost={readyWork?:(ready:boolean)=>void;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};savedMarigold?:(earned:boolean)=>void;prints?:{selected:()=>WorkshopPrint|null;choose:(print:WorkshopPrint|null)=>boolean};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToWorkshop?:()=>void;walkToStarter?:(destination:StarterDestination)=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -75,7 +76,7 @@ export class WorkshopUI {
   window.addEventListener('storage',e=>{if(e.key===SAVE_KEY||e.key===LEGACY_SAVE_KEY){const r=this.localWriter?.reload();if(r)this.acceptLocal(r);}});
   this.ticker=window.setInterval(()=>{const state=this.localWriter?.snapshot();if(state)this.state=settleWorkshop(state,Date.now());this.updateClocks();},1000);
  }
- private acceptLocal(r:WriterOutcome){if(r.status==='saved'&&r.teapotAwarded)this.host.cue?.('craft');this.localOutcome=r;this.ownsSave=r.ownsLease&&r.working!==null;this.saved=!r.dirty&&!['save-failed','unreadable','unavailable','conflict'].includes(r.status);if(r.working)this.state=r.working;this.localReadOnlyReason=['ready','saved','unsaved'].includes(r.status)?'':r.message+(r.status==='unreadable'?' Saved data kept unchanged; actions are read-only.':'');if(this.localReadOnlyReason)this.host.feedback(this.localReadOnlyReason);const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=r.dirty?'Unsaved practice · keep tab open':r.status==='ready'||r.status==='saved'?'Local workshop · saved here':'Kept save · read-only';this.host.changed();this.updateClocks();}
+ private acceptLocal(r:WriterOutcome){if(r.status==='saved'&&r.teapotAwarded)this.host.cue?.('craft');this.localOutcome=r;this.host.savedMarigold?.(!!r.state?.garden.harvested.marigold);this.ownsSave=r.ownsLease&&r.working!==null;this.saved=!r.dirty&&!['save-failed','unreadable','unavailable','conflict'].includes(r.status);if(r.working)this.state=r.working;this.localReadOnlyReason=['ready','saved','unsaved'].includes(r.status)?'':r.message+(r.status==='unreadable'?' Saved data kept unchanged; actions are read-only.':'');if(this.localReadOnlyReason)this.host.feedback(this.localReadOnlyReason);const tag=document.querySelector('.pilot-tag span');if(tag)tag.textContent=r.dirty?'Unsaved practice · keep tab open':r.status==='ready'||r.status==='saved'?'Local workshop · saved here':'Kept save · read-only';this.host.changed();this.updateClocks();}
  public localSaveRecovery(action:'retry'|'flush'|'reload'|'cancel'){if(!this.localWriter)return;const r=action==='retry'?this.localWriter.retry():action==='flush'?this.localWriter.flush():action==='reload'?this.localWriter.discardAndReload():null;if(action==='cancel'&&this.localWriter.cancelPending())this.acceptLocal(this.localWriter.reload());if(r)this.acceptLocal(r);}
 
  confirmedBenchJob():WorkshopState['job']{
@@ -83,7 +84,7 @@ export class WorkshopUI {
   return this.localOutcome?.state?.job??null;
  }
  snapshot(){return JSON.parse(JSON.stringify(this.state));}
- closed(){this.recentNotes=undefined;this.bag?.destroy();this.bag=null;this.notebook?.destroy();this.notebook=null;this.host.body.closest('dialog')?.classList.remove('notebook-dialog');this.collectionView?.destroy();this.collectionView=null;this.host.body.classList.remove('collection-panel');this.host.body.closest('dialog')?.classList.remove('collection-dialog');this.active=null;this.status=null;this.preview=null;}
+ closed(){this.recentNotes=undefined;this.prints=undefined;this.bag?.destroy();this.bag=null;this.notebook?.destroy();this.notebook=null;this.host.body.closest('dialog')?.classList.remove('notebook-dialog');this.collectionView?.destroy();this.collectionView=null;this.host.body.classList.remove('collection-panel');this.host.body.closest('dialog')?.classList.remove('collection-dialog');this.active=null;this.status=null;this.preview=null;}
  private acceptRemote(state:WorkshopState){this.state=state;if(!this.remote?.canRetry())this.remoteError='';this.host.changed();this.updateClocks();this.host.body.querySelectorAll<HTMLElement>('[data-quantity]').forEach(el=>el.textContent=String(state.inventory[el.dataset.quantity as typeof RESOURCE_IDS[number]]));}
  private remoteNotice(){
   if(!this.remote||!this.status)return;
@@ -284,12 +285,17 @@ export class WorkshopUI {
   for(const id of PROP_IDS){const opt=document.createElement('option');opt.value=id;opt.textContent=names[id];select.append(opt);}select.value=this.selected;select.onchange=()=>{this.selected=select.value;this.preview=null;this.renderPlacement();};arrangement.append(select);
   const placement=document.createElement('div');placement.id='placement';arrangement.append(placement);b.append(arrangement);this.renderPlacement();this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Bag',render);if(arrange)this.bag?.arrange();else if(received)this.bag?.focusFurniture(received);else if(equipment)this.bag?.openPocket('equipment',true);}
- private riverPrint?:RiverPrintControls;
+ private prints?:WorkshopPrintControls;
+ private earnedPrints(): WorkshopPrint[]{
+  const found:WorkshopPrint[]=[...(this.host.river?.read()?.recorded??[])];
+  if(this.localOutcome?.state?.garden.harvested.marigold)found.push('marigold');
+  return found;
+ }
  private firstRiverwalk(river:RiverSurvey|null|undefined){
   return this.saved&&this.ownsSave&&!this.state.job&&this.state.stats.planterPlacedAfterCraft
    &&this.state.stats.bridgeJobsStarted===0&&!!river&&!river.cast&&!river.recorded.length;
  }
- showJournal(){const render=()=>{
+ showJournal(print?:WorkshopPrint){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Notes & progress',()=>this.showInventory()));
   const guidance=document.createElement('section');guidance.dataset.journalGuidance='';const heading=document.createElement('h3');heading.textContent='Your next step';const quest=this.p('','quest-card');quest.dataset.quest='';guidance.append(heading,quest);b.append(guidance);
   const now=this.gardenClock();
@@ -320,18 +326,6 @@ export class WorkshopUI {
    const summary=document.createElement('summary');
    const finds=createRiverFindList('Riverwalk journal finds');
    folio.append(summary,finds);
-   const print=this.host.river.print;
-   if(print&&this.host.walkToWorkshop){
-    this.riverPrint=new RiverPrintControls({
-     choose:spot=>{
-      const saved=print.choose(spot);
-      this.riverPrint?.update(this.host.river?.read()?.recorded??[],print.selected());
-      return saved;
-     },
-     visit:this.host.walkToWorkshop,inWorkshop:this.host.inside,
-    });
-    folio.append(this.riverPrint.root);
-   }
    b.append(folio);
   }
   if(this.host.orchardWalk){
@@ -350,6 +344,24 @@ export class WorkshopUI {
    }else b.append(parcel);
   }
   if(notes.some(note=>note.phase==='ready'))b.insertBefore(this.notebook.root,guidance);
+  const prints=this.host.prints;
+  if(prints&&this.host.walkToWorkshop){
+   const folio=document.createElement('details');
+   folio.className='river-journal';
+   folio.dataset.workshopPrints='';
+   const heading=document.createElement('summary');
+   heading.textContent='Workshop prints';
+   this.prints=new WorkshopPrintControls({
+    choose:print=>{
+     const saved=prints.choose(print);
+     this.prints?.update(this.earnedPrints(),prints.selected());
+     return saved;
+    },
+    visit:this.host.walkToWorkshop,inWorkshop:this.host.inside,
+   });
+   folio.append(heading,this.prints.root);
+   b.append(folio);
+  }
   if(this.host.recentFieldNotes){
    const notes=document.createElement('details');notes.className='journal-recent-notes';
    const caption=document.createElement('summary');caption.textContent='Recent field notes';
@@ -364,7 +376,12 @@ export class WorkshopUI {
   if(this.host.cafeParcels)other.append(this.button('Check for café parcels',()=>this.host.cafeParcels?.(),'destination'));
   if(this.host.commission)other.append(this.button('Pip’s post · route & letterbox',()=>this.host.commission!(),'destination'));if(this.host.outings)other.append(this.button('Woodland work · borrowed tools & journal',()=>this.host.outings!(),'destination'));other.append(this.button('Town sketchbook · optional fieldwork',()=>this.showSketchbook(),'destination'));if(this.host.carpentry)other.append(this.button('Pine workshop · tools, easels & hampers',()=>this.host.carpentry!(),'destination'));if(this.host.discoveries)other.append(this.button('Trail field notebook',()=>this.host.discoveries?.(),'destination'));b.append(other);
   const progress=document.createElement('details');progress.className='journal-progress';const title=document.createElement('summary');title.textContent='Skills & town progress';const skill=this.p('');skill.dataset.skills='';const kits=this.p('');kits.dataset.kits='';progress.append(title,skill,kits);if(this.host.orchard){const tasting=this.p('');tasting.dataset.orchardTasting='';progress.append(tasting);}if(this.host.returns)progress.append(this.button('Since your last visit',()=>this.host.returns?.(),'destination'));b.append(progress);this.notice();b.append(this.disclosure());this.updateClocks();
- };this.begin('Journal',render);}
+ };this.begin('Journal',render);
+  if(print&&this.earnedPrints().includes(print)){
+   const folio=this.host.body.querySelector<HTMLDetailsElement>('[data-workshop-prints]');
+   if(folio){folio.open=true;this.prints?.focusPreview(print);}
+  }
+ }
  private firstEmptyWorkshopSlot(){
   return PLACEMENT_SLOTS.find(slot=>!this.state.placements[slot.id]);
  }
@@ -502,7 +519,12 @@ export class WorkshopUI {
    const label='Riverwalk finds · '+recorded.length+' of '+RIVER_SPOT_IDS.length;
    if(summary.textContent!==label)summary.textContent=label;
    updateRiverFinds(folio.querySelector('ul')!,recorded);
-   this.riverPrint?.update(recorded,this.host.river?.print?.selected()??null);
+  }
+  const printFolio=b.querySelector<HTMLDetailsElement>('[data-workshop-prints]');
+  if(printFolio){
+   const earned=this.earnedPrints();
+   printFolio.hidden=!earned.length;
+   this.prints?.update(earned,this.host.prints?.selected()??null);
   }
   const orchardParcel=b.querySelector<HTMLElement>('[data-orchard-parcel]');
   if(orchardParcel){

@@ -77,9 +77,19 @@
 #panel-body .river-print-controls :is(h4,p) { margin: 0 0 .4rem; }
 .river-print-controls label { display: block; }
 .river-print-controls select {
+ appearance: none;
+ box-sizing: border-box;
  font: inherit;
  min-height: 44px;
  width: 100%;
+ color: var(--ink);
+ padding: .35rem 1.5rem .35rem .55rem;
+ border: 1px solid #807255;
+ border-radius: 4px;
+ background:
+  linear-gradient(45deg,transparent 50%,#514a34 50%) right 14px center / 6px 6px no-repeat,
+  linear-gradient(135deg,#514a34 50%,transparent 50%) right 8px center / 6px 6px no-repeat,
+  #fff8e8;
 }
 .river-print-actions {
  display: flex;
@@ -89,3 +99,8 @@
 }
 .river-print-actions button { min-height: 44px; }
 .river-print-controls [role=status]:empty { display: none; }
+.workshop-print-preview:not([hidden]) {
+ display: block;
+ object-fit: contain;
+ margin-block-start: .55rem;
+}

@@ -36,8 +36,7 @@ import { PLACEMENT_SLOTS, type WorkshopState,type PropId } from '../game/live-wo
 import { ORIGINAL_STATIC, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 import catalog from '../../public/art/variety/catalog.json';
 import {RESIDENT_IDS,TREE_KINDS,BUILDING_KINDS,residentArt,residentFrame,ambientPose,cosmeticStep} from '../art/variety.ts';
-import { RIVER_FIND_ART } from '../game/river-print.ts';
-import type { RiverSpot } from '../game/river-survey.ts';
+import { WORKSHOP_PRINTS, WORKSHOP_PRINT_STAND, type WorkshopPrint } from '../game/workshop-print.ts';
 type ArtAsset={id:string;width:number;height:number;foot?:{x:number;y:number};occlusion?:{x:number;y:number;width:number;height:number};lightingWindows?:Array<{x:number;y:number;width:number;height:number}>};
 const assets=catalog.assets as ArtAsset[];
 const art=(id:string)=>{const asset=assets.find(a=>a.id===id);if(!asset)throw new Error('Missing authored art: '+id);return asset;};
@@ -57,23 +56,23 @@ export class WorldScene extends Phaser.Scene {
     return true;
   }
 
-  riverPrintEnabled = false;
-  private riverPrint: RiverSpot | null = null;
-  private riverPrintFrame?: Phaser.GameObjects.Container;
-  private riverPrintArt?: Phaser.GameObjects.Image;
-  setRiverPrint(spot: RiverSpot | null) {
-    if (spot === this.riverPrint) return false;
-    this.riverPrint = spot;
-    this.paintRiverPrint();
+  workshopPrintEnabled = false;
+  private workshopPrint: WorkshopPrint | null = null;
+  private workshopPrintFrame?: Phaser.GameObjects.Container;
+  private workshopPrintArt?: Phaser.GameObjects.Image;
+  setWorkshopPrint(spot: WorkshopPrint | null) {
+    if (spot === this.workshopPrint) return false;
+    this.workshopPrint = spot;
+    this.paintWorkshopPrint();
     return true;
   }
 
-  private paintRiverPrint() {
-    if (!this.riverPrintFrame || !this.riverPrintArt) return;
-    const texture = this.riverPrint ? 'river-print-' + RIVER_FIND_ART[this.riverPrint] : null;
+  private paintWorkshopPrint() {
+    if (!this.workshopPrintFrame || !this.workshopPrintArt) return;
+    const texture = this.workshopPrint ? 'workshop-print-' + this.workshopPrint : null;
     const ready = texture !== null && this.textures.exists(texture);
-    this.riverPrintFrame.setVisible(ready);
-    if (ready) this.riverPrintArt.setTexture(texture).setDisplaySize(62, 51);
+    this.workshopPrintFrame.setVisible(ready);
+    if (ready) this.workshopPrintArt.setTexture(texture).setDisplaySize(62, 51);
   }
 
   districtId?:string;private loadedDistrictId?:string;
@@ -406,9 +405,9 @@ export class WorldScene extends Phaser.Scene {
     for(const key of DEPOT_ASSETS)this.load.svg(key,`/art/depots/${key}.svg`);
     for(const motif of ['leaf','sun','moth'])this.load.svg('letterbox-'+motif+'-closed','/art/commission/letterbox-'+motif+'-closed.svg');
     if(this.loadingRoom==='workshop'){
-      if(this.riverPrintEnabled)for(const art of Object.values(RIVER_FIND_ART)){
-        const key='river-print-'+art;
-        if(!this.textures.exists(key))this.load.svg(key,`/art/river/${art}.svg`);
+      if(this.workshopPrintEnabled)for(const [id,print] of Object.entries(WORKSHOP_PRINTS)){
+        const key='workshop-print-'+id;
+        if(!this.textures.exists(key))this.load.svg(key,print.art);
       }
     }
     // Peer sprites use the four ordinary rigs. Activity/equipment sheets belong
@@ -446,8 +445,8 @@ export class WorldScene extends Phaser.Scene {
     }
     this.headwearLayer=undefined;
     this.keepsakeView=undefined;
-    this.riverPrintFrame=undefined;
-    this.riverPrintArt=undefined;
+    this.workshopPrintFrame=undefined;
+    this.workshopPrintArt=undefined;
     this.bedPose=undefined;this.bedQuilt=undefined;this.lodgingLabels=[];
     this.orchardMotion=null;this.orchardLabels=[];this.orchardLabelTick=0;this.orchardTable=undefined;this.orchardTableLabel=undefined;
     this.outingPost=undefined;this.outingCrossing=undefined;this.outingKey='';this.depotViews=[];this.surveyLabels=[];
@@ -590,15 +589,16 @@ export class WorldScene extends Phaser.Scene {
       this.benchCard=label(6.65,3.3,'').setDepth(5*TILE+1).setFontSize(12).setPadding(5,3,5,3).setVisible(false);
       const rack=carpentryArt('finishing-rack-empty');this.rackView=this.add.image(12.5*TILE,6*TILE,rack.id).setOrigin(rack.foot!.x/rack.width,rack.foot!.y/rack.height).setDepth(6*TILE);label(12.5,6.6,'Pine finishing rack').setFontSize(12).setPadding(5,3,5,3);
       image('crates',3*TILE,8*TILE,10*TILE);
-      if(this.riverPrintEnabled){
+      if(this.workshopPrintEnabled){
         const backing=this.add.rectangle(0,0,87,71,0x7b543e).setStrokeStyle(2,0x303930);
         const canvas=this.add.rectangle(0,0,78,62,0xf5e5bd).setStrokeStyle(1,0x957850);
-        this.riverPrintArt=this.add.image(0,0,'__WHITE');
+        this.workshopPrintArt=this.add.image(0,0,'__WHITE');
         const legs=this.add.graphics();
         legs.lineStyle(5,0x4a3b31).lineBetween(-29,28,-37,48).lineBetween(26,28,34,48);
         legs.lineStyle(3,0xa98962).lineBetween(-13,36,14,36);
-        this.riverPrintFrame=this.add.container(12.35*TILE,10.1*TILE,[legs,backing,canvas,this.riverPrintArt]).setDepth(11.6*TILE);
-        this.paintRiverPrint();
+        const stand=WORKSHOP_PRINT_STAND;
+        this.workshopPrintFrame=this.add.container(stand.x*TILE,stand.y*TILE,[legs,backing,canvas,this.workshopPrintArt]).setDepth((stand.y+1.5)*TILE);
+        this.paintWorkshopPrint();
       }
       this.add.rectangle(9.5*TILE,14*TILE,3*TILE,2*TILE,0x8c7757).setStrokeStyle(2,0x343c36).setDepth(0);
       label(9.5,14,'Square ↓');
@@ -685,7 +685,7 @@ export class WorldScene extends Phaser.Scene {
     }
     this.residentialLife?.replace(chimneys);this.sky?.setWindows(this.streetWindows);
   }
-  visualState(){const camera=this.cameras.main;return {resting:!!this.bedPose?.visible,headwear:this.headwearLayer?.visible?{texture:this.headwearLayer.texture.key,frame:this.headwearLayer.frame.name,x:this.headwearLayer.x,y:this.headwearLayer.y}:null,canopyTransformWrites:this.canopyTransformWrites,riverPrint:this.riverPrintFrame?.visible?this.riverPrint:null,ordinaryBench:{phase:this.benchPhase,recipe:this.benchRecipe,piece:this.benchPiece?.visible?this.benchPiece.texture.key:null},walkTarget:this.walkMark?.visible?{x:this.walkMark.x/TILE-.5,y:this.walkMark.y/TILE-.5}:null,commons:{signs:this.commonsSigns,life:this.commonsLife?.snapshot()??null,framing:this.room==='square'?commonsFrame(this.session.position,camera.width,camera.height):null,shelters:this.occluders.filter(o=>o.image instanceof Phaser.GameObjects.Graphics).map(o=>({alpha:o.image.alpha,x:o.x,y:o.y,width:o.width,height:o.height}))},camera:{zoom:camera.zoom,scrollX:camera.scrollX,scrollY:camera.scrollY,worldView:{x:camera.worldView.x,y:camera.worldView.y,width:camera.worldView.width,height:camera.worldView.height},matrix:Array.from(camera.matrixCombined.matrix).slice(0,6)},neighborhood:{yardItems:this.yardViews.map(v=>({texture:v.texture.key,depth:v.depth,bounds:v.getBounds()})),districtId:this.districtId??null,life:this.residentialLife?.snapshot()??null,windows:this.streetWindows.map(w=>({...w})),sites:this.streetViews.map(v=>({slot:v.slot,plotId:v.plotId,texture:v.image.texture.key,label:v.label.text,bounds:v.image.getBounds(),labelBounds:v.label.getBounds()}))},depots:this.depotViews.map(d=>({resource:d.resource,key:d.image.texture.key,depth:d.image.depth,bounds:d.image.getBounds(),labelBounds:d.label.getBounds(),label:d.label.text})),letterboxes:this.decorationViews.filter((v):v is Phaser.GameObjects.Image=>v instanceof Phaser.GameObjects.Image&&v.texture.key.startsWith('letterbox-')).map(v=>v.texture.key),carpentry:{pineTextures:this.pineViews.map(v=>v.image.texture.key),rackTexture:this.rackView?.texture.key??null,noticeboardTexture:this.noticeboardView?.texture.key??null,equipped:this.carpentryState?.()?.saw.equipped??false,lastAction:this.lastCarpentryAction,action:this.carpentryMotion?.action??null},garden:{room:this.room,lastAction:this.lastGardenAction,bedTextures:this.gardenViews.map(v=>v.texture.key),bedFeet:this.gardenViews.map(v=>({x:v.x,y:v.y})),labels:this.gardenLabels.map((v,i)=>({text:v.text,target:this.gardenLabelTargets[i],bounds:v.getBounds(),hitBounds:this.gardenLabelHit(v)})),action:this.gardenMotion?.action??null,actorTexture:this.actor?.texture.key??null,welcomeTexture:this.gardenWelcomeView?.texture.key??null},bridge:{ceremony:!!this.bridgeRibbon?.visible,phase:this.bridgePhase??(this.bridgeRestored?'open':'collecting'),texture:this.bridgeView?.texture.key??null,readyAt:this.bridgeReadyAt},home:{keepsakeVisible:!!this.keepsakeView?.visible,pennantVisible:this.pennantView?.visible??false,pennantTexture:this.pennantView?.texture.key??null,pennantPosition:this.pennantView?{x:this.pennantView.x,y:this.pennantView.y}:null,room:this.room,plotId:this.loadedHomePlotId??null,ownerName:this.homeOwnerName,level:this.homeLevel,decorations:this.room.startsWith('home')&&this.decorations?this.decorations():null,interiorTexture:this.room.startsWith('home')?this.loadedInteriorKey:null,furniture:this.decorationViews.map(view=>({texture:view.texture.key,x:view.x,y:view.y,alpha:view.alpha}))},facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:(this.room==='square'||this.room==='neighborhood')?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
+  visualState(){const camera=this.cameras.main;return {resting:!!this.bedPose?.visible,headwear:this.headwearLayer?.visible?{texture:this.headwearLayer.texture.key,frame:this.headwearLayer.frame.name,x:this.headwearLayer.x,y:this.headwearLayer.y}:null,canopyTransformWrites:this.canopyTransformWrites,workshopPrint:this.workshopPrintFrame?.visible?this.workshopPrint:null,ordinaryBench:{phase:this.benchPhase,recipe:this.benchRecipe,piece:this.benchPiece?.visible?this.benchPiece.texture.key:null},walkTarget:this.walkMark?.visible?{x:this.walkMark.x/TILE-.5,y:this.walkMark.y/TILE-.5}:null,commons:{signs:this.commonsSigns,life:this.commonsLife?.snapshot()??null,framing:this.room==='square'?commonsFrame(this.session.position,camera.width,camera.height):null,shelters:this.occluders.filter(o=>o.image instanceof Phaser.GameObjects.Graphics).map(o=>({alpha:o.image.alpha,x:o.x,y:o.y,width:o.width,height:o.height}))},camera:{zoom:camera.zoom,scrollX:camera.scrollX,scrollY:camera.scrollY,worldView:{x:camera.worldView.x,y:camera.worldView.y,width:camera.worldView.width,height:camera.worldView.height},matrix:Array.from(camera.matrixCombined.matrix).slice(0,6)},neighborhood:{yardItems:this.yardViews.map(v=>({texture:v.texture.key,depth:v.depth,bounds:v.getBounds()})),districtId:this.districtId??null,life:this.residentialLife?.snapshot()??null,windows:this.streetWindows.map(w=>({...w})),sites:this.streetViews.map(v=>({slot:v.slot,plotId:v.plotId,texture:v.image.texture.key,label:v.label.text,bounds:v.image.getBounds(),labelBounds:v.label.getBounds()}))},depots:this.depotViews.map(d=>({resource:d.resource,key:d.image.texture.key,depth:d.image.depth,bounds:d.image.getBounds(),labelBounds:d.label.getBounds(),label:d.label.text})),letterboxes:this.decorationViews.filter((v):v is Phaser.GameObjects.Image=>v instanceof Phaser.GameObjects.Image&&v.texture.key.startsWith('letterbox-')).map(v=>v.texture.key),carpentry:{pineTextures:this.pineViews.map(v=>v.image.texture.key),rackTexture:this.rackView?.texture.key??null,noticeboardTexture:this.noticeboardView?.texture.key??null,equipped:this.carpentryState?.()?.saw.equipped??false,lastAction:this.lastCarpentryAction,action:this.carpentryMotion?.action??null},garden:{room:this.room,lastAction:this.lastGardenAction,bedTextures:this.gardenViews.map(v=>v.texture.key),bedFeet:this.gardenViews.map(v=>({x:v.x,y:v.y})),labels:this.gardenLabels.map((v,i)=>({text:v.text,target:this.gardenLabelTargets[i],bounds:v.getBounds(),hitBounds:this.gardenLabelHit(v)})),action:this.gardenMotion?.action??null,actorTexture:this.actor?.texture.key??null,welcomeTexture:this.gardenWelcomeView?.texture.key??null},bridge:{ceremony:!!this.bridgeRibbon?.visible,phase:this.bridgePhase??(this.bridgeRestored?'open':'collecting'),texture:this.bridgeView?.texture.key??null,readyAt:this.bridgeReadyAt},home:{keepsakeVisible:!!this.keepsakeView?.visible,pennantVisible:this.pennantView?.visible??false,pennantTexture:this.pennantView?.texture.key??null,pennantPosition:this.pennantView?{x:this.pennantView.x,y:this.pennantView.y}:null,room:this.room,plotId:this.loadedHomePlotId??null,ownerName:this.homeOwnerName,level:this.homeLevel,decorations:this.room.startsWith('home')&&this.decorations?this.decorations():null,interiorTexture:this.room.startsWith('home')?this.loadedInteriorKey:null,furniture:this.decorationViews.map(view=>({texture:view.texture.key,x:view.x,y:view.y,alpha:view.alpha}))},facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:(this.room==='square'||this.room==='neighborhood')?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
   private updateAmbient(delta:number){
     this.ambientEnabled=!document.hidden&&!this.reducedMotion.matches;
     this.sky?.motion(0,this.ambientEnabled);

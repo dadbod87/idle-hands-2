@@ -1,0 +1,488 @@
+{
+  "classification": "Deterministic gameplay model, not live player playtime, retention or hosted/database acceptance.",
+  "assumptions": [
+    "A fresh 42-day town with 1 or 3 scripted residents; the primary resident alone may miss days 2 through 8. A planned visit is an opportunity, not a requirement.",
+    "Workshop, carpentry, garden, and Glasshouse contribution commands run actual pure rules. The bridge fee and three-credit gate copy the current server constants. Each trail visit assumes instant travel, known answers and all three notes.",
+    "The simulation spends real modeled wood and materials but holds collected kits for conditional affordability after bridge donations. It neither buys nor simulates house construction or leases.",
+    "Only the first observed opening visit counts the plant. Conditions such as real walk times, stock max by other activity, consumed handoff time, distractions and new residents are omitted."
+  ],
+  "sources": {
+    "tools/simulate-glasshouse-pacing.ts": "9a5bfaba1326b0f949aaad481640a3f865e91edf46481dc17b5e9eaf69aab116",
+    "src/game/live-workshop.ts": "8fe97dca4d67614691ef21c6528624c01de0c25d0d8072bf42f399561c907f76",
+    "src/game/workshop.ts": "ae2fbf2dff8b8ed779e2959a8313476669d83dd06e51beade7f02aa1f50f3436",
+    "src/game/glasshouse.ts": "edd7ac0198e1bfce15aec27c993d44ce74526b857131d4a9f35d590c09e98504",
+    "src/game/garden.ts": "7ba870682d15f40ef83f21302a25fc736e2a19a5f6b73b2e8cca20cbfe6ca5da",
+    "src/game/carpentry.ts": "81b7c035f7159828d6c554345593ccb3f43055c9a00d578b5f97507a4ae8d68e",
+    "src/game/town-rules.ts": "ec21ce6a1b5ed3ae0824e6e141e78080b6cf4955d1b1173fd30bdd25062d457e"
+  },
+  "report": [
+    {
+      "schedule": "once daily",
+      "residents": 1,
+      "weekAway": false,
+      "volunteer": true,
+      "bridgeFundsAtHours": 48,
+      "glasshouseOpensAtHours": 84,
+      "projectDeadline": 1795867200000,
+      "people": [
+        {
+          "firstPlantAtHours": 96,
+          "firstEaselAtHours": 48,
+          "starterBudgetAtHours": 336,
+          "upgradeBudgetAtHours": 912,
+          "visits": 42,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 0,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 2
+        }
+      ],
+      "easelDelayHours": [
+        0
+      ]
+    },
+    {
+      "schedule": "once daily",
+      "residents": 1,
+      "weekAway": true,
+      "volunteer": true,
+      "bridgeFundsAtHours": 216,
+      "glasshouseOpensAtHours": 252,
+      "projectDeadline": 1796472000000,
+      "people": [
+        {
+          "firstPlantAtHours": 264,
+          "firstEaselAtHours": 216,
+          "starterBudgetAtHours": 504,
+          "upgradeBudgetAtHours": null,
+          "visits": 35,
+          "skippedVisits": 7,
+          "ordinaryWaitVisitsWithOtherWork": 0,
+          "heldKits": 32,
+          "heldEasels": 6,
+          "pineContributed": 2
+        }
+      ],
+      "easelDelayHours": [
+        0
+      ]
+    },
+    {
+      "schedule": "once daily",
+      "residents": 3,
+      "weekAway": false,
+      "volunteer": true,
+      "bridgeFundsAtHours": 0.35,
+      "glasshouseOpensAtHours": 36.33,
+      "projectDeadline": 1795695600000,
+      "people": [
+        {
+          "firstPlantAtHours": 48,
+          "firstEaselAtHours": 48,
+          "starterBudgetAtHours": 288,
+          "upgradeBudgetAtHours": 864,
+          "visits": 42,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 0,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 0
+        },
+        {
+          "firstPlantAtHours": 48.17,
+          "firstEaselAtHours": 48.17,
+          "starterBudgetAtHours": 288.17,
+          "upgradeBudgetAtHours": 864.17,
+          "visits": 42,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 0,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 2
+        },
+        {
+          "firstPlantAtHours": 48.33,
+          "firstEaselAtHours": 48.33,
+          "starterBudgetAtHours": 288.33,
+          "upgradeBudgetAtHours": 864.33,
+          "visits": 42,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 0,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 0
+        }
+      ],
+      "easelDelayHours": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "schedule": "once daily",
+      "residents": 3,
+      "weekAway": true,
+      "volunteer": true,
+      "bridgeFundsAtHours": 0.35,
+      "glasshouseOpensAtHours": 204,
+      "projectDeadline": 1796299200000,
+      "people": [
+        {
+          "firstPlantAtHours": 216,
+          "firstEaselAtHours": 216,
+          "starterBudgetAtHours": 456,
+          "upgradeBudgetAtHours": null,
+          "visits": 35,
+          "skippedVisits": 7,
+          "ordinaryWaitVisitsWithOtherWork": 0,
+          "heldKits": 34,
+          "heldEasels": 6,
+          "pineContributed": 0
+        },
+        {
+          "firstPlantAtHours": 216.17,
+          "firstEaselAtHours": 48.17,
+          "starterBudgetAtHours": 288.17,
+          "upgradeBudgetAtHours": 864.17,
+          "visits": 42,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 0,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 2
+        },
+        {
+          "firstPlantAtHours": 216.33,
+          "firstEaselAtHours": 48.33,
+          "starterBudgetAtHours": 288.33,
+          "upgradeBudgetAtHours": 864.33,
+          "visits": 42,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 0,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 0
+        }
+      ],
+      "easelDelayHours": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "schedule": "morning and evening",
+      "residents": 1,
+      "weekAway": false,
+      "volunteer": true,
+      "bridgeFundsAtHours": 36,
+      "glasshouseOpensAtHours": 60,
+      "projectDeadline": 1795780800000,
+      "people": [
+        {
+          "firstPlantAtHours": 60,
+          "firstEaselAtHours": 24,
+          "starterBudgetAtHours": 180,
+          "upgradeBudgetAtHours": 468,
+          "visits": 84,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 1,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 2
+        }
+      ],
+      "easelDelayHours": [
+        0
+      ]
+    },
+    {
+      "schedule": "morning and evening",
+      "residents": 1,
+      "weekAway": true,
+      "volunteer": true,
+      "bridgeFundsAtHours": 204,
+      "glasshouseOpensAtHours": 228,
+      "projectDeadline": 1796385600000,
+      "people": [
+        {
+          "firstPlantAtHours": 228,
+          "firstEaselAtHours": 192,
+          "starterBudgetAtHours": 348,
+          "upgradeBudgetAtHours": 636,
+          "visits": 70,
+          "skippedVisits": 14,
+          "ordinaryWaitVisitsWithOtherWork": 1,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 2
+        }
+      ],
+      "easelDelayHours": [
+        0
+      ]
+    },
+    {
+      "schedule": "morning and evening",
+      "residents": 3,
+      "weekAway": false,
+      "volunteer": true,
+      "bridgeFundsAtHours": 0.35,
+      "glasshouseOpensAtHours": 24.33,
+      "projectDeadline": 1795652400000,
+      "people": [
+        {
+          "firstPlantAtHours": 36,
+          "firstEaselAtHours": 24,
+          "starterBudgetAtHours": 156,
+          "upgradeBudgetAtHours": 444,
+          "visits": 84,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 1,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 0
+        },
+        {
+          "firstPlantAtHours": 36.17,
+          "firstEaselAtHours": 24.17,
+          "starterBudgetAtHours": 156.17,
+          "upgradeBudgetAtHours": 444.17,
+          "visits": 84,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 1,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 2
+        },
+        {
+          "firstPlantAtHours": 24.33,
+          "firstEaselAtHours": 24.33,
+          "starterBudgetAtHours": 156.33,
+          "upgradeBudgetAtHours": 444.33,
+          "visits": 84,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 1,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 0
+        }
+      ],
+      "easelDelayHours": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "schedule": "morning and evening",
+      "residents": 3,
+      "weekAway": true,
+      "volunteer": true,
+      "bridgeFundsAtHours": 0.35,
+      "glasshouseOpensAtHours": 24.33,
+      "projectDeadline": 1795652400000,
+      "people": [
+        {
+          "firstPlantAtHours": 192,
+          "firstEaselAtHours": 192,
+          "starterBudgetAtHours": 324,
+          "upgradeBudgetAtHours": 612,
+          "visits": 70,
+          "skippedVisits": 14,
+          "ordinaryWaitVisitsWithOtherWork": 1,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 0
+        },
+        {
+          "firstPlantAtHours": 36.17,
+          "firstEaselAtHours": 24.17,
+          "starterBudgetAtHours": 156.17,
+          "upgradeBudgetAtHours": 444.17,
+          "visits": 84,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 1,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 2
+        },
+        {
+          "firstPlantAtHours": 24.33,
+          "firstEaselAtHours": 24.33,
+          "starterBudgetAtHours": 156.33,
+          "upgradeBudgetAtHours": 444.33,
+          "visits": 84,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 1,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 0
+        }
+      ],
+      "easelDelayHours": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "schedule": "frequent short visits",
+      "residents": 1,
+      "weekAway": false,
+      "volunteer": true,
+      "bridgeFundsAtHours": 28,
+      "glasshouseOpensAtHours": 48,
+      "projectDeadline": 1795737600000,
+      "people": [
+        {
+          "firstPlantAtHours": 48,
+          "firstEaselAtHours": 20,
+          "starterBudgetAtHours": 172,
+          "upgradeBudgetAtHours": 460,
+          "visits": 252,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 14,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 2
+        }
+      ],
+      "easelDelayHours": [
+        0
+      ]
+    },
+    {
+      "schedule": "frequent short visits",
+      "residents": 1,
+      "weekAway": true,
+      "volunteer": true,
+      "bridgeFundsAtHours": 192,
+      "glasshouseOpensAtHours": 212,
+      "projectDeadline": 1796328000000,
+      "people": [
+        {
+          "firstPlantAtHours": 212,
+          "firstEaselAtHours": 20,
+          "starterBudgetAtHours": 336,
+          "upgradeBudgetAtHours": 624,
+          "visits": 210,
+          "skippedVisits": 42,
+          "ordinaryWaitVisitsWithOtherWork": 11,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 2
+        }
+      ],
+      "easelDelayHours": [
+        0
+      ]
+    },
+    {
+      "schedule": "frequent short visits",
+      "residents": 3,
+      "weekAway": false,
+      "volunteer": true,
+      "bridgeFundsAtHours": 0.35,
+      "glasshouseOpensAtHours": 20.33,
+      "projectDeadline": 1795638000000,
+      "people": [
+        {
+          "firstPlantAtHours": 24,
+          "firstEaselAtHours": 20,
+          "starterBudgetAtHours": 148,
+          "upgradeBudgetAtHours": 436,
+          "visits": 252,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 14,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 0
+        },
+        {
+          "firstPlantAtHours": 24.17,
+          "firstEaselAtHours": 20.17,
+          "starterBudgetAtHours": 148.17,
+          "upgradeBudgetAtHours": 436.17,
+          "visits": 252,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 14,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 2
+        },
+        {
+          "firstPlantAtHours": 20.33,
+          "firstEaselAtHours": 20.33,
+          "starterBudgetAtHours": 148.33,
+          "upgradeBudgetAtHours": 436.33,
+          "visits": 252,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 14,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 0
+        }
+      ],
+      "easelDelayHours": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "schedule": "frequent short visits",
+      "residents": 3,
+      "weekAway": true,
+      "volunteer": true,
+      "bridgeFundsAtHours": 0.35,
+      "glasshouseOpensAtHours": 20.33,
+      "projectDeadline": 1795638000000,
+      "people": [
+        {
+          "firstPlantAtHours": 192,
+          "firstEaselAtHours": 20,
+          "starterBudgetAtHours": 312,
+          "upgradeBudgetAtHours": 600,
+          "visits": 210,
+          "skippedVisits": 42,
+          "ordinaryWaitVisitsWithOtherWork": 11,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 0
+        },
+        {
+          "firstPlantAtHours": 24.17,
+          "firstEaselAtHours": 20.17,
+          "starterBudgetAtHours": 148.17,
+          "upgradeBudgetAtHours": 436.17,
+          "visits": 252,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 14,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 2
+        },
+        {
+          "firstPlantAtHours": 20.33,
+          "firstEaselAtHours": 20.33,
+          "starterBudgetAtHours": 148.33,
+          "upgradeBudgetAtHours": 436.33,
+          "visits": 252,
+          "skippedVisits": 0,
+          "ordinaryWaitVisitsWithOtherWork": 14,
+          "heldKits": 36,
+          "heldEasels": 6,
+          "pineContributed": 0
+        }
+      ],
+      "easelDelayHours": [
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

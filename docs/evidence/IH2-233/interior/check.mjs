@@ -57,11 +57,36 @@ try{
    assert.equal(await resident.getAttribute('style'),entry);
    await hit('Seed drawers');
    await expect(status).toContainText('Your garden seeds stay where you left them.');
+   await page.goto('http://'+host+'/docs/evidence/IH2-233/tour/');
+   if(shape.text!==100)await page.evaluate(percent=>document.documentElement.style.fontSize=percent+'%',shape.text);
+   const name=shape.name==='desktop'?'Committee fern':'Very patient sundew';
+   const choice=page.getByRole('radio',{name});
+   if(shape.touch)await page.getByText(name,{exact:true}).tap();
+   else await choice.press('Space');
+   await hit('Keep this plant · free');
+   await expect(status).toContainText(name+' kept in this preview.');
+   await expect(page.getByRole('img',{name})).toBeHidden();
+   await hit('Visitor view');
+   await expect(page.getByText('The windowsill is empty.',{exact:true})).toBeVisible();
+   await expect(status).toBeHidden();
+   await expect(control('Put plant on windowsill')).toBeHidden();
+   await hit('Visitor view');
+   await hit('Put plant on windowsill');
+   await hit('Visitor view');
+   await expect(page.getByRole('img',{name})).toBeVisible();
+   await expect(page.getByText(name+' is on display.',{exact:true})).toBeVisible();
+   await control('Visitor view').evaluate(button=>button.scrollIntoView({block:'center'}));
+   await page.screenshot({path:output+'/'+shape.name+'-display.png'});
+   await hit('Visitor view');
+   await hit('Keep plant private');
+   await expect(status).toContainText('returned to your private collection');
+   await hit('Visitor view');
+   await expect(page.getByRole('img',{name})).toBeHidden();
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
    assert.equal(await page.evaluate(()=>localStorage.length),0);
    assert.deepEqual(unexpected,[]);
    assert.deepEqual(errors,[]);
-   results.push({...shape,visitedBoth:true,reenteredAtDoor:true,errors,unexpected});
+   results.push({...shape,visitedBoth:true,reenteredAtDoor:true,keptPlantPrivateByDefault:true,optionalWindowDisplay:true,errors,unexpected});
   }finally{await context.close();}
  }
 }finally{

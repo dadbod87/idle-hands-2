@@ -28,6 +28,14 @@
   button:disabled { opacity:.64; cursor:default; }
   #result:empty { margin:0; }
   #result { margin:.5rem 0 0; line-height:1.35; font-weight:bold; }
+  #display { border-top:1px solid var(--line); margin-top:1rem; padding-top:.75rem; }
+  #display h2 { margin:0 0 .4rem; font-size:1.2rem; }
+  .sill { position:relative; width:min(100%,450px); height:clamp(100px,22vh,180px); margin:0 0 .6rem; overflow:hidden; border:2px solid #697752; border-radius:5px; background:#e5ceaa; }
+  .sill-room { position:absolute; inset:0; background:url('/art/interiors/cottage-starter-interior.svg') center top / 128% auto no-repeat; }
+  .sill-shelf { position:absolute; left:82%; top:59%; width:25%; height:8px; transform:translateX(-50%); background:#a78058; border:1px solid #4a4538; border-radius:2px; box-shadow:0 2px #4a453833; }
+  .sill img { position:absolute; left:82%; top:59%; transform:translate(-50%,-89.3%); width:clamp(42px,10vw,68px); height:auto; }
+  .display-actions { display:flex; flex-wrap:wrap; gap:.45rem; }
+  .display-actions button:last-child { color:var(--ink); background:#f9efdc; }
   @media(max-height:480px) and (min-width:600px) {
    body { padding:8px; place-items:start center; }
    header { padding:.5rem .7rem; }
@@ -60,20 +68,64 @@
    <div class="confirmation"><button type="submit" disabled>Keep this plant · free</button></div>
   </form>
   <p id="result" role="status" tabindex="-1"></p>
+  <section id="display" hidden>
+   <h2 id="display-title">Your windowsill</h2>
+   <figure class="sill" aria-labelledby="display-title">
+    <div class="sill-room" aria-hidden="true"></div>
+    <div class="sill-shelf" aria-hidden="true"></div>
+    <img id="display-plant" width="96" height="112" alt="" hidden>
+   </figure>
+   <p id="display-note"></p>
+   <div class="display-actions">
+    <button id="place-plant" type="button">Put plant on windowsill</button>
+    <button id="visit-plant" type="button" aria-pressed="false">Visitor view</button>
+   </div>
+  </section>
  </div>
 </main>
 <script>
  const form=document.querySelector('form'),button=form.querySelector('button'),result=document.querySelector('#result');
- const names={fern:'Committee fern',sundew:'Very patient sundew'};
+ const display=document.querySelector('#display'),displayTitle=document.querySelector('#display-title');
+ const plant=document.querySelector('#display-plant'),displayNote=document.querySelector('#display-note');
+ const place=document.querySelector('#place-plant'),visitor=document.querySelector('#visit-plant');
+ const plants={
+  fern:{name:'Committee fern',image:'committee-fern.svg'},
+  sundew:{name:'Very patient sundew',image:'very-patient-sundew.svg'},
+ };
+ let owned,displayed=false,visiting=false;
+ function updateDisplay(){
+  displayTitle.textContent=visiting?'What a visitor sees':'Your windowsill';
+  displayNote.textContent=displayed?owned.name+' is on display.':visiting?'The windowsill is empty.':owned.name+' is kept privately.';
+  plant.hidden=!displayed;
+  place.hidden=visiting;
+  place.textContent=displayed?'Keep plant private':'Put plant on windowsill';
+  visitor.setAttribute('aria-pressed',String(visiting));
+ }
+ place.addEventListener('click',()=>{
+  if(visiting||!owned)return;
+  displayed=!displayed;
+  result.textContent=displayed?owned.name+' placed on the windowsill.':owned.name+' returned to your private collection.';
+  updateDisplay();
+ });
+ visitor.addEventListener('click',()=>{
+  if(!owned)return;
+  visiting=!visiting;
+  result.hidden=visiting;
+  updateDisplay();
+ });
  form.addEventListener('change',()=>{button.disabled=!form.querySelector(':checked');});
  form.addEventListener('submit',event=>{
   event.preventDefault();
-  if(button.disabled)return;
+  if(button.disabled||owned)return;
   const choice=form.querySelector(':checked');
   if(!choice)return;
-  result.textContent=names[choice.value]+' chosen in this preview.';
-  form.querySelector('fieldset').disabled=true;
-  button.disabled=true;
+  owned=plants[choice.value];
+  plant.src=owned.image;
+  plant.alt=owned.name;
+  result.textContent=owned.name+' kept in this preview.';
+  form.hidden=true;
+  display.hidden=false;
+  updateDisplay();
   result.focus();
  });
 </script>

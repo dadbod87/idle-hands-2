@@ -1,4 +1,5 @@
-import { NATURALIST_KEEPSAKE, earnedNaturalist } from '../game/home-keepsake.ts';
+import { HOME_KEEPSAKES, NATURALIST_KEEPSAKE, displayedHomeKeepsake, earnedNaturalist, type HomeKeepsake } from '../game/home-keepsake.ts';
+import { earnedFieldCertificate } from '../game/outing.ts';
 import {returnStops,returnSummary,type VisitBaseline} from '../game/return-summary.ts';
 import{housingPanel,type HousingViewState}from'./housing.ts';
 import {furnishingCopies,homeDisplays,furnishingIcon,homeInterior,homeInteriorPath} from '../game/home-identity.ts';
@@ -113,9 +114,9 @@ export class TownUI {
   this.start('Housing registry');this.panel='plots';const root=this.host.body;root.dataset.liveHousing='';
   this.housingTick=housingPanel(root,this.client,this.housingView,c=>void this.action(c,()=>this.showHousing()),()=>this.showHousing(),id=>void this.host.enterHome?.(id));this.notice();
  }
- private keepsakeImage(alt=''){
+ private keepsakeImage(id:HomeKeepsake,alt=''){
   const art=document.createElement('img');
-  art.src=NATURALIST_KEEPSAKE.art;
+  art.src=HOME_KEEPSAKES[id].art;
   art.alt=alt;
   return art;
  }
@@ -128,21 +129,26 @@ export class TownUI {
   label.dataset.townFocus='wall-keepsake';
   label.textContent='Keepsake display';
   fold.append(label);
-  if(plot.keepsake){
+  const current=displayedHomeKeepsake(plot);
+  if(current){
    const take=this.button('Take down frame',()=>void this.action({kind:'display-home-keepsake',plotId:plot.id,keepsake:null},refresh));
    take.dataset.townFocus='take-down-keepsake';
-   fold.append(this.p('Your certificate is on display.'),take);
+   fold.append(this.p('On display · '+HOME_KEEPSAKES[current].name),take);
+  }
+  const choices:HomeKeepsake[]=[];
+  if(earnedNaturalist(snapshot.workshop.sketches)&&current!=='naturalist')choices.push('naturalist');
+  if(snapshot.homeKeepsakeChoices===true&&snapshot.outing&&earnedFieldCertificate(snapshot.outing.journal)&&current!=='woodland-certificate')choices.push('woodland-certificate');
+  if(!choices.length){
+   if(!current)fold.append(this.p(snapshot.homeKeepsakeChoices===true?'Finish three tree studies or both woodland repairs to earn a certificate.':'Record three tree studies to earn the Neighborhood Naturalist certificate.'));
    return fold;
   }
-  if(!earnedNaturalist(snapshot.workshop.sketches)){
-   fold.append(this.p('Record three tree studies to earn the Neighborhood Naturalist certificate.'));
-   return fold;
-  }
+  let choice=choices[0];
   const room=document.createElement('img'),interior=homeInterior(plot.level,plot.planId);
   room.alt='';
   room.src=homeInteriorPath(interior);
   const layout=document.createElement('div'),frame=document.createElement('div');
-  frame.append(this.keepsakeImage('Neighborhood Naturalist preview'));
+  const artwork=this.keepsakeImage(choice,HOME_KEEPSAKES[choice].name+' preview');
+  frame.append(artwork);
   layout.className='keepsake-room-preview';
   const {x,y,width}=NATURALIST_KEEPSAKE.frame,roomWidth=plot.level===2?768:576;
   frame.style.left=(100*x/roomWidth)+'%';
@@ -153,19 +159,36 @@ export class TownUI {
   const options=document.createElement('div');
   options.className='keepsake-preview-options';
   options.hidden=true;
+  let picker:HTMLSelectElement|null=null;
   const preview=this.button('Preview your certificate',()=>{
    preview.hidden=true;
    options.hidden=false;
-   hang.focus();
+   (picker??hang).focus();
   });
   preview.dataset.townFocus='preview-keepsake';
-  const hang=this.button('Display for visitors',()=>void this.action({kind:'display-home-keepsake',plotId:plot.id,keepsake:NATURALIST_KEEPSAKE.id},refresh));
+  const hang=this.button('Display for visitors',()=>void this.action({kind:'display-home-keepsake',plotId:plot.id,keepsake:choice},refresh));
   hang.dataset.townFocus='hang-keepsake';
   const cancel=this.button('Cancel preview',()=>{
    options.hidden=true;
    preview.hidden=false;
    preview.focus();
   });
+  if(choices.length>1){
+   const label=document.createElement('label'),select=document.createElement('select');
+   picker=select;
+   label.textContent='Choose a certificate';
+   select.dataset.townFocus='choose-keepsake';
+   select.replaceChildren(...choices.map(id=>new Option(HOME_KEEPSAKES[id].name,id)));
+   select.onchange=()=>{
+    const selected=choices.find(id=>id===select.value);
+    if(!selected)return;
+    choice=selected;
+    artwork.src=HOME_KEEPSAKES[choice].art;
+    artwork.alt=HOME_KEEPSAKES[choice].name+' preview';
+   };
+   label.append(select);
+   options.append(label);
+  }
   options.append(layout,this.p('Private until you display it.'),hang,cancel);
   fold.append(preview,options);
   return fold;
@@ -241,13 +264,16 @@ export class TownUI {
      if(s.homeKeepsakes===true){
       const card=document.createElement('article');
       card.className='home-display';
-      card.dataset.homeDisplay='naturalist';
-      card.hidden=!plot.keepsake;
-      const art=this.keepsakeImage('');
+      const shown=displayedHomeKeepsake(plot);
+      card.dataset.keepsakeCard='';
+      card.dataset.homeDisplay=shown??'naturalist';
+      card.hidden=!shown;
+      const art=this.keepsakeImage(shown??'naturalist');
       art.width=48;art.height=32;
       const description=document.createElement('div'),name=document.createElement('strong');
-      name.textContent=NATURALIST_KEEPSAKE.name;
-      description.append(name,this.p(NATURALIST_KEEPSAKE.story));
+      const keepsake=HOME_KEEPSAKES[shown??'naturalist'];
+      name.textContent=keepsake.name;
+      description.append(name,this.p(keepsake.story));
       card.append(art,description);
       display.append(card);
      }
@@ -255,7 +281,7 @@ export class TownUI {
      if(!homeDisplays(plot).length&&!plot.pennantOwned){
       const blank=this.p('A fresh start. The owner’s finds and furnishings will appear here when displayed.');
       blank.dataset.homeDisplayEmpty='';
-      blank.hidden=!!plot.keepsake;
+      blank.hidden=!!displayedHomeKeepsake(plot);
       display.append(blank);
      }
      const details=document.createElement('details');details.className='home-secondary';
@@ -271,14 +297,22 @@ export class TownUI {
   this.host.body.append(reload);this.notice();if(inside)this.status?.classList.add('home-status');
  }
  private refreshGuestKeepsake(snapshot:TownSnapshot){
-  const card=this.host.body.querySelector<HTMLElement>('[data-home-display=naturalist]');
+  const card=this.host.body.querySelector<HTMLElement>('[data-keepsake-card]');
   const plotId=card?.closest<HTMLElement>('[data-home-plot]')?.dataset.homePlot;
   if(!card||!plotId)return;
-  const visible=plotId===snapshot.position.homePlotId&&snapshot.plots.some(plot=>plot.id===plotId&&!!plot.keepsake);
-  if(card.hidden===!visible)return;
-  card.hidden=!visible;
+  const plot=snapshot.position.homePlotId===plotId?snapshot.plots.find(plot=>plot.id===plotId):undefined;
+  const shown=displayedHomeKeepsake(plot);
+  if(shown&&card.dataset.homeDisplay!==shown){
+   const keepsake=HOME_KEEPSAKES[shown];
+   card.dataset.homeDisplay=shown;
+   card.querySelector('img')!.src=keepsake.art;
+   card.querySelector('strong')!.textContent=keepsake.name;
+   card.querySelector('p')!.textContent=keepsake.story;
+  }
+  if(card.hidden===!shown)return;
+  card.hidden=!shown;
   const blank=this.host.body.querySelector<HTMLElement>('[data-home-display-empty]');
-  if(blank)blank.hidden=visible;
+  if(blank)blank.hidden=!!shown;
  }
  private revealHomeFocus(target:HTMLElement){
   if(!target.isConnected||!this.host.body.contains(target))return;

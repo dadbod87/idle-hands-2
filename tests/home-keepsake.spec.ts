@@ -4,13 +4,19 @@ import { mkdirSync } from 'node:fs';
 import { emptyWorkroom } from '../src/game/live-home-layout.ts';
 import { applyWorkshop, createWorkshop } from '../src/game/live-workshop.ts';
 import { SURVEY_IDS, SURVEYS } from '../src/game/fieldwork.ts';
-import { NATURALIST_KEEPSAKE } from '../src/game/home-keepsake.ts';
+import { HOME_KEEPSAKES, NATURALIST_KEEPSAKE, type HomeKeepsake } from '../src/game/home-keepsake.ts';
 import { TILE } from '../src/game/world.ts';
 
-const output = 'test-results/browser/home-keepsake';
+import { woodlandRepairs } from './helpers/woodland-keepsake.ts';
 
-test('the owner previews privately and the guest sees only the confirmed keepsake', async ({ browser }) => {
+for(const [variant,name] of [
+ ['naturalist','the owner previews privately and the guest sees only the confirmed keepsake'],
+ ['woodland-certificate','the owner chooses an earned woodland certificate for current visitors'],
+] as const)test(name, async ({ browser }) => {
+ const output = (process.env.QA_EVIDENCE_DIR??'test-results/browser/home-keepsake')+'/'+variant;
  const now = Date.now();
+ const earnedWoodland=variant==='woodland-certificate'?woodlandRepairs(now,2):undefined;
+ const shown=HOME_KEEPSAKES[variant];
  let ownerState = createWorkshop(now);
  for (const station of SURVEY_IDS) {
   const action = {
@@ -20,7 +26,7 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   expect(result.ok,result.message).toBe(true);
   ownerState = result.state;
  }
- let keepsake: 'naturalist' | null = null;
+ let keepsake: HomeKeepsake | null = null;
  const commands: Array<Record<string,unknown>> = [];
  let release!:()=>void;
  const held = new Promise<void>(resolve=>release=resolve);
@@ -37,9 +43,9 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   const position = {room:'home',homePlotId:'1',position:{x:9,y:isOwner?7:11}};
   const snapshot = () => {
    const plot = {id:'1',ownerId:'keepsake-owner',ownerName:'Rowan',level:1,placements:ownerState.placements,
-    workroomPlacements:emptyWorkroom(),...(keepsake?{keepsake}:{})};
+    workroomPlacements:emptyWorkroom(),...(keepsake==='naturalist'?{keepsake}:keepsake?{wallDisplay:keepsake}:{})};
    return {
-    homeKeepsakes:true,playerId:identity.id,name:identity.name,workshop:isOwner?ownerState:guestState,position,
+    homeKeepsakes:true,...(earnedWoodland?{homeKeepsakeChoices:true,...(isOwner?{outing:earnedWoodland}:{})}:{}),playerId:identity.id,name:identity.name,workshop:isOwner?ownerState:guestState,position,
     plot:isOwner?plot:null,plots:[plot],quest:{contentVersion:1,awarded:[]},
     bridge:{contributed:0,target:3,restored:false},seasonKey:'2026-11-13',scores:[],serverTime:Date.now(),
    };
@@ -80,7 +86,7 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
      return route.fulfill({json:{ok:true,replayed:true,message:'Certificate displayed for visitors.',snapshot:snapshot()}});
     }
     expect(command.expectedRevision).toBe(ownerState.revision);
-    if(command.keepsake==='naturalist')await held;
+    if(command.keepsake===variant)await held;
     keepsake=command.keepsake;
     ownerState={...ownerState,revision:ownerState.revision+1};
     if(keepsake)return route.abort('failed');
@@ -112,7 +118,16 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   await arrange(owner);
   await openFrame();
   await owner.getByRole('button',{name:'Preview your certificate'}).click();
-  await expect(owner.getByRole('button',{name:'Display for visitors'})).toBeFocused();
+  const picker=owner.getByRole('combobox',{name:'Choose a certificate'});
+  if(earnedWoodland){
+   await expect(picker).toBeFocused();
+   await expect(picker.locator('option')).toHaveText(['Neighborhood Naturalist','Qualified to point left']);
+   await picker.selectOption(variant);
+   await expect(owner.getByRole('img',{name:shown.name+' preview'})).toHaveAttribute('src',shown.art);
+  }else{
+   await expect(picker).toHaveCount(0);
+   await expect(owner.getByRole('button',{name:'Display for visitors'})).toBeFocused();
+  }
   expect(commands).toEqual([]);
   await arrange(guest);
   await expect(guest.locator('[data-home-display=naturalist]')).toHaveCount(1);
@@ -130,29 +145,31 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   await retry.click();
   await expect(owner.getByRole('button',{name:'Take down frame'})).toBeVisible();
   expect(commands.slice(0,2)[0]).toEqual(commands.slice(0,2)[1]);
+  expect(commands[0].keepsake).toBe(variant);
   await close(owner);
   await expect.poll(()=>visual(owner)).toBe(true);
   await owner.screenshot({path:output+'/desktop-hung.png'});
 
   await guest.evaluate(()=>(window as any).__homeKeepsakeRefresh());
   await expect.poll(()=>visual(guest)).toBe(true);
-  await expect(guest.locator('[data-home-display=naturalist]')).toBeVisible();
+  await expect.poll(()=>guest.evaluate(()=>(window as any).__pilot.metrics().visual.home.keepsakeTexture)).toBe('home-'+variant);
+  await expect(guest.locator('[data-home-display='+variant+']')).toBeVisible();
   await close(guest);
   await guest.screenshot({path:output+'/phone-room.png'});
   const frame=NATURALIST_KEEPSAKE.frame;
   const tap=await guest.evaluate(p=>(window as any).__pilot.screenPoint(p.x,p.y),{x:frame.x/TILE-.5,y:frame.y/TILE-.5});
   await guest.locator('canvas').tap({position:tap});
-  await expect(guest.getByRole('heading',{name:'Neighborhood Naturalist',exact:true})).toBeVisible();
-  await expect(guest.locator('[data-reading-keepsake] figcaption')).toContainText('Three tree studies');
+  await expect(guest.getByRole('heading',{name:shown.name,exact:true})).toBeVisible();
+  await expect(guest.locator('[data-reading-keepsake] figcaption')).toContainText(shown.story);
   await guest.screenshot({path:output+'/phone-reading.png'});
   await close(guest);
-  await guest.getByRole('button',{name:'Inspect Neighborhood Naturalist',exact:true}).focus();
+  await guest.getByRole('button',{name:'Inspect '+shown.name,exact:true}).focus();
   await guest.keyboard.press('Enter');
   await expect(guest.locator('[data-reading-keepsake]')).toBeVisible();
   expect(commands).toHaveLength(2);
   await close(guest);
   await arrange(guest);
-  await expect(guest.locator('[data-home-display=naturalist]')).toContainText('Neighborhood Naturalist');
+  await expect(guest.locator('[data-home-display='+variant+']')).toContainText(shown.name);
   await expect(guest.getByRole('button',{name:'Take down frame'})).toHaveCount(0);
   await guest.screenshot({path:output+'/phone-visitor.png'});
 
@@ -170,7 +187,7 @@ test('the owner previews privately and the guest sees only the confirmed keepsak
   await close(owner);
   await expect.poll(()=>visual(owner)).toBe(false);
   await guest.evaluate(()=>(window as any).__homeKeepsakeRefresh());
-  await expect(guest.locator('[data-home-display=naturalist]')).toBeHidden();
+  await expect(guest.locator('[data-keepsake-card]')).toBeHidden();
   await expect.poll(()=>visual(guest)).toBe(false);
   expect(ownerState.sketches).toEqual([...SURVEY_IDS]);
   expect(errors).toEqual([]);

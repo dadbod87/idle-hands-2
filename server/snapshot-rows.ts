@@ -46,10 +46,14 @@ const query = `select /* coherent-town-snapshot */
  coalesce((select jsonb_agg(to_jsonb(v)-'plot_order' order by v.plot_order) from (
    select p.id as plot_order,p.id::text as id,p.owner_id,p.level,p.placements,p.workroom_placements,
      p.plan_id,p.yard,p.housing_revision,u.name,
-     case when p.keepsake='naturalist' and resident.position->>'homePlotId'=p.id::text
-       and resident.position->>'room' in ('home','home-expanded')
-       and (u.workshop->'sketches') ?& array['oak','birch','fruit']
-       then p.keepsake else null end as keepsake,
+     case when resident.position->>'homePlotId'=p.id::text
+       and resident.position->>'room' in ('home','home-expanded') then
+       case when p.keepsake='naturalist' and (u.workshop->'sketches') ?& array['oak','birch','fruit'] then p.keepsake
+            when p.keepsake='woodland-certificate' and exists(
+              select 1 from ih2.outings o where o.player_id=p.owner_id
+                and o.state @> '{"journal":[{"variant":"wind"},{"variant":"soft-bank"}]}'::jsonb
+            ) then p.keepsake else null end
+       else null end as keepsake,
      case when p.glasshouse_plant_visible and resident.position->>'homePlotId'=p.id::text
        and resident.position->>'room' in ('home','home-expanded')
        then (select plant from ih2.glasshouse_plants where player_id=p.owner_id and project_revision=1)

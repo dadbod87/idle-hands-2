@@ -5,6 +5,8 @@ import './garden.css';
 type PublicGarden={credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};
 type GardenHost={open:(title:string)=>void;body:HTMLElement;feedback:(text:string)=>void;changed:()=>void;owner:()=>string;shared:boolean;publicState:()=>PublicGarden|undefined;canUse:(action:GardenAction)=>boolean;go:(room:'square'|'garden',stopId:string)=>void;accepted:(action:GardenAction)=>void};
 const choiceNames={'sound-end':'The firm, unbroken end','paint-mark':'The painted stripe','square-notch':'The square notch'};
+function writeText(element:HTMLElement,text:string){if(element.textContent!==text)element.textContent=text;}
+function setDisabled(element:HTMLButtonElement|HTMLInputElement|HTMLSelectElement,disabled:boolean){if(element.disabled!==disabled)element.disabled=disabled;}
 export class GardenUI{
  private active:(()=>void)|null=null;private selected:number|null=null;private crop:CropId='radish';private owner='';
  private notes:HTMLDetailsElement|null=null;private layoutObserver:ResizeObserver|null=null;
@@ -63,7 +65,16 @@ export class GardenUI{
   }
   finally{this.busy=false;this.host.changed();this.refresh();}
  }
- private updateRetry(button:HTMLButtonElement){const s=this.workshop.gardenSaveStatus();button.hidden=!s.canRetry;button.disabled=this.busy||s.busy;this.host.body.querySelectorAll<HTMLButtonElement>('[data-garden-nav]').forEach(b=>b.disabled=this.isSaving);if(!this.clockCaughtUp()&&this.status)this.status.textContent='The clock has not caught up with this saved garden. Your plants are kept; actions will be available when the time can be confirmed.';else if(s.error&&this.status&&!this.status.textContent)this.status.textContent=s.error;else if(!s.error&&this.status?.textContent===this.saveError)this.status.textContent=this.neutralFeedback;this.saveError=s.error;}
+ private updateRetry(button:HTMLButtonElement){
+  const s=this.workshop.gardenSaveStatus();
+  if(button.hidden===s.canRetry)button.hidden=!s.canRetry;
+  setDisabled(button,this.busy||s.busy);
+  this.host.body.querySelectorAll<HTMLButtonElement>('[data-garden-nav]').forEach(b=>setDisabled(b,this.isSaving));
+  if(this.status&&!this.clockCaughtUp())writeText(this.status,'The clock has not caught up with this saved garden. Your plants are kept; actions will be available when the time can be confirmed.');
+  else if(s.error&&this.status&&!this.status.textContent)writeText(this.status,s.error);
+  else if(!s.error&&this.status?.textContent===this.saveError)writeText(this.status,this.neutralFeedback);
+  this.saveError=s.error;
+ }
  showBeds(){
   this.begin('Your rented allotment');
   const body=this.host.body;
@@ -152,9 +163,12 @@ export class GardenUI{
     if(r.img.getAttribute('src')!==art)r.img.src=art;
     if(r.button.disabled!==this.busy)r.button.disabled=this.busy;
    }
-   stock.textContent=`Radish ${s.produce.radish}/12 · Marigold ${s.produce.marigold}/12`;
-   practice.textContent=`Gardening practice: ${s.practice}. Every harvest +1; rested bonus +1 when available (${s.rested.available}/6). An empty bonus bank never blocks base progress.`;
-   for(const[i,crop]of CROP_IDS.entries()){counts[i].textContent=s.seeds[crop]+' available';radios[i].disabled=this.busy;}
+   writeText(stock,`Radish ${s.produce.radish}/12 · Marigold ${s.produce.marigold}/12`);
+   writeText(practice,`Gardening practice: ${s.practice}. Every harvest +1; rested bonus +1 when available (${s.rested.available}/6). An empty bonus bank never blocks base progress.`);
+   for(const[i,crop]of CROP_IDS.entries()){
+    writeText(counts[i],s.seeds[crop]+' available');
+    setDisabled(radios[i],this.busy);
+   }
    const bed=s.beds[this.selected!],action:GardenAction={action:'plant',bed:this.selected!,crop:this.crop};
    // Reorder only for an explicit selection or confirmed command, never a
    // passive one-second countdown. The existing route keeps its identity.
@@ -171,21 +185,31 @@ export class GardenUI{
     }
     layoutRevision=this.workshop.state.revision;layoutSelection=this.selected!;
    }
-   reviewHarvest.disabled=this.isSaving;
+   setDisabled(reviewHarvest,this.isSaving);
    const previousNeutral=this.neutralFeedback;
    this.neutralFeedback=bed&&s.produce[bed.crop]>=12?'The plant and seed stay safe. Review produce uses or choose another bed.':bed&&bed.readyAt>now?'Plants wait safely while you explore another activity.':bed?'A harvest is ready. Review its bed before collecting.':this.bedFeedback;
    if(previousNeutral!==this.neutralFeedback&&this.status?.textContent===previousNeutral)this.status.textContent=this.neutralFeedback;
-   const factsView=gardenBedView(s,this.selected!,this.crop,now),grow=factsView.durationMs;factsTitle.textContent='Bed '+(this.selected!+1)+' · '+factsView.name;factValues[0].textContent=factsView.seedCost+' seed · '+factsView.seedsHeld+' held';factValues[1].textContent=gardenGrowthLabel(grow,factsView.firstRadish);factValues[2].textContent=factsView.produce+' '+factsView.crop+' + '+factsView.seedReturned+' seed back';confirm.textContent=plantingConfirmation(this.selected!,this.crop);
-   preview.disabled=this.busy||!!bed||s.seeds[this.crop]===0;
-   previewBox.hidden=!this.preview&&receiptBed===null;
-   previewText.textContent=this.preview?`Bed ${this.selected!+1} · ${CROP_DEFS[this.crop].name}. Cost: 1 seed. ${duration(grow)} real time.${this.host.canUse(action)?'':' Confirm at your beds.'}`:receiptBed!==null?`Bed ${receiptBed+1} planted. One bound seed was spent. This receipt stays until you close it or choose another bed; your plant waits safely.`:'Preview a seed and bed before planting. Nothing is spent until you confirm.';
-   confirm.disabled=!this.preview||this.blocked(action)||!!bed||s.seeds[this.crop]===0;cancel.disabled=this.busy||!this.preview&&receiptBed===null;cancel.textContent=!this.preview&&receiptBed!==null?'Close planting receipt · free':'Cancel preview · free';
-   bedNotice.textContent=!bed?(s.seeds[this.crop]>0?'Empty · choose a seed and preview planting.':'No selected seed in hand. Growing plants return theirs at harvest; the attendant replaces missing starter supply.'):
-    s.produce[bed.crop]>=12?'This produce space is full. The plant and seed wait safely; use produce or tend another bed.':bed.readyAt>now?'Growing · '+duration(bed.readyAt-now)+' left. Ready plants wait safely.':'Ready · harvest one produce, one seed and at least one practice point.';
-   harvest.disabled=this.blocked({action:'harvest',bed:this.selected!})||!bed||bed.readyAt>now||s.produce[bed.crop]>=12;
-   harvest.title=bed&&s.produce[bed.crop]>=12?'This produce space is full. The ready plant and seed will wait.':'Use a ready bed with output space.';
-   inspect.disabled=this.blocked({action:'observe',bed:this.selected!})||!bed||bed.cared;swap.disabled=this.busy;
-   swapButton.disabled=this.blocked({action:'swap-beds',from:this.selected!,to:Number(swap.value)})||Number(swap.value)===this.selected;
+   const factsView=gardenBedView(s,this.selected!,this.crop,now),grow=factsView.durationMs;
+   writeText(factsTitle,'Bed '+(this.selected!+1)+' · '+factsView.name);
+   writeText(factValues[0],factsView.seedCost+' seed · '+factsView.seedsHeld+' held');
+   writeText(factValues[1],gardenGrowthLabel(grow,factsView.firstRadish));
+   writeText(factValues[2],factsView.produce+' '+factsView.crop+' + '+factsView.seedReturned+' seed back');
+   writeText(confirm,plantingConfirmation(this.selected!,this.crop));
+   setDisabled(preview,this.busy||!!bed||s.seeds[this.crop]===0);
+   const hideQuote=!this.preview&&receiptBed===null;
+   if(previewBox.hidden!==hideQuote)previewBox.hidden=hideQuote;
+   writeText(previewText,this.preview?`Bed ${this.selected!+1} · ${CROP_DEFS[this.crop].name}. Cost: 1 seed. ${duration(grow)} real time.${this.host.canUse(action)?'':' Confirm at your beds.'}`:receiptBed!==null?`Bed ${receiptBed+1} planted. One bound seed was spent. This receipt stays until you close it or choose another bed; your plant waits safely.`:'Preview a seed and bed before planting. Nothing is spent until you confirm.');
+   setDisabled(confirm,!this.preview||this.blocked(action)||!!bed||s.seeds[this.crop]===0);
+   setDisabled(cancel,this.busy||hideQuote);
+   writeText(cancel,!this.preview&&receiptBed!==null?'Close planting receipt · free':'Cancel preview · free');
+   writeText(bedNotice,!bed?(s.seeds[this.crop]>0?'Empty · choose a seed and preview planting.':'No selected seed in hand. Growing plants return theirs at harvest; the attendant replaces missing starter supply.'):
+    s.produce[bed.crop]>=12?'This produce space is full. The plant and seed wait safely; use produce or tend another bed.':bed.readyAt>now?'Growing · '+duration(bed.readyAt-now)+' left. Ready plants wait safely.':'Ready · harvest one produce, one seed and at least one practice point.');
+   setDisabled(harvest,this.blocked({action:'harvest',bed:this.selected!})||!bed||bed.readyAt>now||s.produce[bed.crop]>=12);
+   const harvestTitle=bed&&s.produce[bed.crop]>=12?'This produce space is full. The ready plant and seed will wait.':'Use a ready bed with output space.';
+   if(harvest.title!==harvestTitle)harvest.title=harvestTitle;
+   setDisabled(inspect,this.blocked({action:'observe',bed:this.selected!})||!bed||bed.cared);
+   setDisabled(swap,this.busy);
+   setDisabled(swapButton,this.blocked({action:'swap-beds',from:this.selected!,to:Number(swap.value)})||Number(swap.value)===this.selected);
    this.updateRetry(retry);
   };
   swap.onchange=()=>this.refresh();this.refresh();

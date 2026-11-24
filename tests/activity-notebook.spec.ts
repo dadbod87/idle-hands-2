@@ -149,7 +149,7 @@ test('Journal keeps the full recent field note after it has left the playfield',
    await page.screenshot({path:evidence+'/'+name+'.png'});
    if(name==='short'){
     const last=log.getByRole('listitem').last();
-    await last.scrollIntoViewIfNeeded();
+    await last.evaluate(note=>note.scrollIntoView({block:'center',behavior:'instant'}));
     await expect(last).toBeInViewport({ratio:1});
     await page.screenshot({path:evidence+'/short-scrolled.png'});
    }

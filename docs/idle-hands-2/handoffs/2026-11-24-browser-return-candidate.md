@@ -1,0 +1,7 @@
+# November 24 · Browser return candidate
+
+This candidate starts at accepted main `168e85720d680dd125d6204e84a12e455bf14878`. It brings together recent field notes, one recoverable Riverwalk line, illustrated permanent finds, an optional print in the private workshop, a choice of activities during long bench work and ready cards on reopen. Established shared-town command paths and save formats are unchanged. The wide return-loop study also has marigold prints and an inspectable stand. Carry those separately after accepting this smaller batch.
+
+The initial WebKit pass exposed layout changes inside the older resize observer. This batch applies the existing render-step repair from the wider visual study. Recent-notes coverage scrolls the last entry into the middle and continues to require the whole row to be visible at 200%.
+
+The compiled candidate passed 11 selected browser cases in Chromium and eight in WebKit. The broader initial attempt confirmed that an existing test requires a real shared API. Keep that test in the full workflow and run it with its proper isolated database. The local pass includes intercepted fictional accounts for the identity-separation assertion and marked elapsed fixtures. The prior runtime test pass for this candidate recorded 445 local passes and 28 database skips. Roadmap and design checks were inspected locally. Full database coverage and all three exact-head hosted browser shards still gate acceptance. No hosted jobs were started for this branch.

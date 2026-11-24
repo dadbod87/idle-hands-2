@@ -11,18 +11,47 @@
  h1 { font-size:1.68rem; }
  p { margin:.35rem 0 .75rem; font-size:.88rem; }
  figure { margin:0; }
- figure img { display:block; width:min(576px,100%); height:auto; margin-inline:auto; }
- figcaption { margin:.5rem 0 0; line-height:1.35; font-size:.92rem; }
+ .room { position:relative; width:min(576px,100%); margin-inline:auto; }
+ .room > .room-art { display:block; width:100%; height:auto; }
+ .resident { position:absolute; width:8%; height:auto; transform:translate(-50%,-92%); pointer-events:none; }
+ .glint { position:absolute; width:4px; aspect-ratio:1; border-radius:50%; background:#faf1c5; pointer-events:none; }
+ .feedback { min-height:3.2rem; margin:.5rem 0; padding:.42rem .55rem; background:#ede1c5; border:1px solid #9c8866; line-height:1.3; }
+ .destinations { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+ button { min-height:44px; padding:.35rem .5rem; font:inherit; line-height:1.15; color:#304435; background:#fff4da; border:1px solid #637653; border-radius:5px; cursor:pointer; }
+ button:focus-visible { outline:3px solid #965035; outline-offset:2px; }
+ button[aria-current="location"] { background:#dce1bd; border-color:#445a45; }
+ .arrival-mark { visibility:hidden; margin-inline-end:.28em; }
+ [aria-current="location"] .arrival-mark { visibility:visible; }
+ #exit { width:100%; margin-top:6px; background:#405c4d; color:#fff4da; }
+ .exterior { width:min(296px,100%); height:auto; display:block; margin:.75rem auto; }
+ [hidden] { display:none !important; }
  @media(max-height:480px) and (min-width:620px) {
   main { padding:8px; margin:4px auto; }
-  figure img { width:min(320px,100%); }
+  #inside { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.6rem; align-items:start; }
+  .room { width:min(305px,100%); }
+  .feedback { margin-top:0; }
   h1 { font-size:1.26rem; }
  }
 </style>
 <main>
  <h1>Inside the Glasshouse</h1>
  <p>Design preview · Restored interior</p>
- <figure><img src="glasshouse-room.svg" width="576" height="480" alt="Glass roof and warm stone apron, separate fern and sundew tables with a wide straight aisle from the open door.">
- <figcaption>A central aisle keeps the doorway and both growing tables easy to reach.</figcaption></figure>
+ <div id="inside">
+  <figure class="room">
+   <img class="room-art" src="glasshouse-room.svg" width="576" height="480" alt="Glass roof and warm stone apron, separate fern and sundew tables with a wide straight aisle from the open door.">
+   <img class="resident" id="resident" src="/art/original/employee-south-1.svg" alt="">
+  </figure>
+  <div>
+   <p class="feedback" id="stop-note" role="status" tabindex="-1">Choose a stop. Your resident walks there.</p>
+   <nav class="destinations" aria-label="Glasshouse stops"></nav>
+   <button id="exit" type="button">Back to Inkwood trail</button>
+  </div>
+ </div>
+ <div id="outside" hidden>
+  <img class="exterior" src="../facade/restored.svg" width="148" height="112" alt="Restored Glasshouse from the trail">
+  <p class="feedback">You step back onto the Inkwood trail at the Glasshouse door.</p>
+  <button id="return" type="button">Enter the Glasshouse</button>
+ </div>
 </main>
+<script type="module" src="./tour.ts"></script>
 </html>

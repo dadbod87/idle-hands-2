@@ -16,6 +16,7 @@
 
 /* Enlarge text without covering the door: optional location/sky details remain in the guide. */
 @media(max-width:650px){.shell.large-text .location-tag{display:none}}
+@media(max-height:480px) and (min-width:651px){.shell.large-text .location-tag #town-sky{display:none}}
 #guide-sky{padding:.65rem;background:#e3e8d6;border:1px solid #7b8060;color:#343c36}
 
 /* Keep changing field notes from resizing the playfield. Longer notes scroll. */

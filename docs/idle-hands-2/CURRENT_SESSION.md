@@ -1,6 +1,6 @@
 # November 24 — optional outings, ready work and earned prints
 
-The [return-loop checkpoint](handoffs/2026-11-24-return-loop.md) collects the new browser-practice batch and the separate, unregistered Glasshouse command contract. Keep the saved previews and databases stopped. Main is `168e857`. PR #108 remains open and #109 remains a draft. Use the exact combined validation and timed return evidence before considering another hosted batch.
+The [return-loop checkpoint](handoffs/2026-11-24-return-loop.md) collects the new browser-practice batch and the separate, unregistered Glasshouse command contract. Keep the saved previews and databases stopped. Main is `168e857`. PR #108 remains open and #109 remains a draft. The [smaller playable review branch](https://github.com/dadbod87/idle-hands-2/tree/fix/riverwalk-cast-position) has 168 selected local Chromium checks on source `1f33dd9`. Use its local evidence and the exact release gates before a hosted batch. The timed resize work is still being recorded in the dated handoff.
 
 # November 23 — town visual follow-up
 

@@ -260,7 +260,20 @@ test('illustrated Riverwalk records stay readable and do not enter the Bag', asy
    }
    await page.reload();
    await expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   await hit(page.locator('#journal'));
+   const folio=page.locator('[data-river-journal]');
+   const caption=folio.locator('summary');
+   await expect(caption).toHaveText('Riverwalk finds · 3 of 3');
+   await hit(caption);
+   const journalFinds=folio.getByRole('list',{name:'Riverwalk journal finds'});
+   await expect(journalFinds.getByRole('listitem')).toHaveCount(3);
+   for(const [,name] of findings)await expect(journalFinds).toContainText(name);
+   expect(await journalFinds.evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
+   await caption.scrollIntoViewIfNeeded();
+   await page.screenshot({path:output+'/journal-findings-'+size.name+'.png'});
+   await hit(page.getByRole('button',{name:'Close panel'}));
    if(size.name==='phone')await page.route('**/art/river/wet-boot.svg',route=>route.abort());
+
    await hit(page.locator('#interact'));
    await expect(log.getByRole('listitem')).toHaveCount(3);
    if(size.name==='phone'){

@@ -50,3 +50,19 @@ test('return shortcuts only use confirmed ready work and group same-stop tasks',
  state.lesson.redeemed=false;state.lesson.legacySatisfied=true;
  assert.deepEqual(returnStops(state),[]);
 });
+
+test('an open nursery offers a visit without hiding ready workshop work or revisiting a kept plant',()=>{
+ const hub=snapshot(19_000);
+ const project={phase:'under-repair',opensAt:20_000,entrance:true,frame:true,chart:true} as const;
+ hub.glasshouse={project,review:null};
+ hub.bridge.restored=true;
+ hub.workshop.job={recipe:'planter',startedAt:0,readyAt:5_000};
+ assert.deepEqual(returnStops(hub).map(stop=>stop.stop),['bench']);
+ assert.match(returnSummary(hub,null).join(' '),/Glasshouse repairs are funded/);
+ hub.serverTime=20_000;
+ hub.glasshouse.project={...project,phase:'open'};
+ assert.deepEqual(returnStops(hub).map(stop=>stop.stop),['bench','glasshouse-keeper']);
+ assert.match(returnSummary(hub,null).join(' '),/free plant for every first visitor/);
+ hub.glasshousePlant='committee-fern';
+ assert.deepEqual(returnStops(hub).map(stop=>stop.stop),['bench']);
+});

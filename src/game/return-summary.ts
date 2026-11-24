@@ -1,7 +1,9 @@
+import type {GlasshouseSnapshot} from './glasshouse.ts';
+import type {GlasshousePlant} from './glasshouse-plants.ts';
 import type {WorkshopState as CurrentWorkshopState} from './live-workshop.ts';
 type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
 import type {WorkshopState as LegacyWorkshopState} from './workshop.ts';
-export type VisitSnapshot={playerId:string;serverTime:number;workshop:WorkshopState;plot:{id:string;level?:number;tier?:number}|null;bridge:{contributed:number;target:number;restored:boolean};lesson?:{startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;legacySatisfied:boolean}};
+export type VisitSnapshot={playerId:string;serverTime:number;workshop:WorkshopState;plot:{id:string;level?:number;tier?:number}|null;bridge:{contributed:number;target:number;restored:boolean};lesson?:{startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;legacySatisfied:boolean};glasshouse?:GlasshouseSnapshot;glasshousePlant?:GlasshousePlant};
 export type VisitBaseline={version:1;playerId:string;serverTime:number;jobReadyAt:number|null;jobRecipe:string|null;homeId:string|null;homeLevel:number;bridgeCount:number;bridgeOpen?:boolean};
 export function visitBaseline(snapshot:VisitSnapshot):VisitBaseline{return{version:1,playerId:snapshot.playerId,serverTime:snapshot.serverTime,jobReadyAt:snapshot.workshop.job?.readyAt??null,jobRecipe:snapshot.workshop.job?.recipe??null,homeId:snapshot.plot?.id??null,homeLevel:snapshot.plot?.level??snapshot.plot?.tier??0,bridgeCount:snapshot.bridge.contributed,bridgeOpen:snapshot.bridge.restored};}
 export function parseVisit(value:unknown,playerId:string):VisitBaseline|null{
@@ -24,13 +26,20 @@ export function returnSummary(current:VisitSnapshot,previous:VisitBaseline|null)
    else{const seconds=Math.ceil((lesson.readyAt-current.serverTime)/1000);lines.push('Your paid orientation maintenance is preparing: '+(seconds>=60?Math.floor(seconds/60)+'m '+seconds%60+'s':seconds+'s')+' remaining. Its materials are already paid; your bench job keeps its own timer.');}
   }else lines.push('Orientation maintenance has not started. Review its quote at the workbench before paying.');
  }
+ if(current.glasshouse?.project.phase==='under-repair'){
+  const opensAt=current.glasshouse.project.opensAt;
+  if(opensAt!==null)lines.push('Glasshouse repairs are funded. Opens '+new Date(opensAt).toLocaleString(undefined,{weekday:'short',hour:'numeric',minute:'2-digit'})+'.');
+ }else if(current.glasshouse?.project.phase==='open'&&!current.glasshousePlant){
+  lines.push('The Inkwood Glasshouse is open. The nursery keeper has a free plant for every first visitor.');
+ }
  lines.push('Personal depots recover one unit every 4 real hours, up to 6 each and at most 24 hours per absence. Completed work waits for collection.');
  lines.push('No currency or items are awarded by this summary. Your bag shows the server-confirmed quantities.');return lines;
 }
 
 type ReturnStop =
  | { room:'workshop'; stop:'bench'; label:string }
- | { room:'square'; stop:'bridge'; label:string };
+ | { room:'square'; stop:'bridge'; label:string }
+ | { room:'glasshouse'; stop:'glasshouse-keeper'; label:string };
 
 export function returnStops(current:VisitSnapshot):ReturnStop[]{
  const {job}=current.workshop,lesson=current.lesson,now=current.serverTime;
@@ -40,5 +49,7 @@ export function returnStops(current:VisitSnapshot):ReturnStop[]{
   stops.push({room:'workshop',stop:'bench',label:'Walk to the workbench'});
  }
  if(pendingLesson?.completed)stops.push({room:'square',stop:'bridge',label:'Walk to the bridge committee'});
+ if(current.bridge.restored&&current.glasshouse?.project.phase==='open'&&!current.glasshousePlant)
+  stops.push({room:'glasshouse',stop:'glasshouse-keeper',label:'Visit the Glasshouse keeper'});
  return stops;
 }

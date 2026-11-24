@@ -19,7 +19,10 @@ test('a late visitor previews a free plant, retries the same receipt and keeps i
    const requests:Array<{id:string;expectedRevision:number;kind:string;plant:GlasshousePlant}>=[];
    page.on('pageerror',error=>errors.push(error.message));
    const base=createWorkshop(Date.now());
-   let signedIn=false,kept:GlasshousePlant|undefined,where={room:'glasshouse',position:GLASSHOUSE_ENTRY};
+   const visitFromTown=shape.name==='desktop';
+   let signedIn=false,kept:GlasshousePlant|undefined,where=visitFromTown
+    ?{room:'square',position:{x:25.5,y:12.6}}:{room:'glasshouse',position:GLASSHOUSE_ENTRY};
+   const visitedRooms=new Set([where.room]);
    const snapshot=()=>({playerId:'aster',name:'Aster',workshop:{...base,revision:kept?1:0},position:where,
     quest:{contentVersion:1,awarded:[]},bridge:{contributed:3,target:3,restored:true,phase:'open'},
     glasshouse:{review:null,project:{phase:'open',opensAt:Date.now()-60000,entrance:true,frame:true,chart:true}},
@@ -34,7 +37,11 @@ test('a late visitor previews a free plant, retries the same receipt and keeps i
     if(endpoint==='fixtures')return route.fulfill({json:{fixtures:[{id:'aster',name:'Aster'}]}});
     if(endpoint==='login'){signedIn=true;return route.fulfill({json:{snapshot:snapshot()}});}
     if(endpoint==='snapshot')return signedIn?route.fulfill({json:{snapshot:snapshot()}}):route.fulfill({status:401});
-    if(endpoint==='movement'){where=route.request().postDataJSON();return route.fulfill({json:{ok:true,position:where}});}
+    if(endpoint==='movement'){
+     where=route.request().postDataJSON();
+     visitedRooms.add(where.room);
+     return route.fulfill({json:{ok:true,position:where}});
+    }
     if(endpoint==='command'){
      const command=route.request().postDataJSON();
      requests.push(command);
@@ -48,12 +55,23 @@ test('a late visitor previews a free plant, retries the same receipt and keeps i
    await page.goto('/?town=1&sky-study=1&phase=day');
    await button('Aster').click();
    await page.evaluate(scale=>document.documentElement.style.fontSize=scale,shape.scale);
-   await page.locator('#places').click();
-   await page.getByRole('button',{name:/Nursery keeper/}).click();
    const world=()=>page.evaluate(()=>(window as any).__pilot.snapshot());
-   await expect.poll(async()=>(await world()).nearby).toBe('glasshouse-keeper');
-   await expect.poll(async()=>(await world()).walking).toBe(false);
-   await page.locator('#interact').click();
+   if(visitFromTown){
+    await page.locator('#journal').click();
+    await page.locator('.journal-progress summary').click();
+    await button('Since your last visit').click();
+    await expect(page.getByRole('dialog')).toContainText('free plant for every first visitor');
+    await page.screenshot({path:out+'/return-nursery.png'});
+    await button('Visit the Glasshouse keeper').press('Enter');
+    await expect(page.getByRole('heading',{name:'Nursery keeper',exact:true})).toBeVisible({timeout:12_000});
+    expect([...visitedRooms]).toEqual(['square','trail','glasshouse']);
+   }else{
+    await page.locator('#places').click();
+    await page.getByRole('button',{name:/Nursery keeper/}).click();
+    await expect.poll(async()=>(await world()).nearby).toBe('glasshouse-keeper');
+    await expect.poll(async()=>(await world()).walking).toBe(false);
+    await page.locator('#interact').click();
+   }
    await expect(button('Choose a plant')).toBeDisabled();
    const option=page.locator('[data-plant="'+shape.plant+'"]');
    if(shape.hasTouch)await option.tap();else await option.press('Enter');

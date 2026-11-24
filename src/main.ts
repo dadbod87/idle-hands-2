@@ -371,8 +371,13 @@ function followNamedWalk(){
  if(!namedWalk||!ready||!scene.roomReady||panel.open||session.locked||transitionBusy||townMode&&(!town?.snapshot||needResync||contextKey(session.room,homePlotId)!==confirmedContext))return;
  if(namedWalk.owner!==(town?.snapshot?.playerId??'local')){namedWalk=null;return;}
  if(namedWalk.startedRoom===session.room)return;
- const target=namedWalk,exitRoom=session.room==='glasshouse'?'trail':'square',portal=target.room==='garden'?'allotment':target.room==='workshop'?'workshop':null;
- const stop=session.room===target.room?session.stops.find(s=>s.id===target.stopId):session.room==='square'?(portal?worlds.square.stops.find(s=>s.id===portal):undefined):worlds[session.room].stops.find(s=>s.transition===exitRoom);
+ const target=namedWalk;
+ const inNursery=session.room==='glasshouse',toNursery=target.room==='glasshouse';
+ const squarePortal=target.room==='garden'?'allotment':target.room==='workshop'?'workshop':toNursery?'trail-gate':null;
+ const stop=session.room===target.room?session.stops.find(s=>s.id===target.stopId)
+  :session.room==='square'?worlds.square.stops.find(s=>s.id===squarePortal)
+  :session.room==='trail'&&toNursery?INKWOOD_GLASSHOUSE
+  :worlds[session.room].stops.find(s=>s.transition===(inNursery?'trail':'square'));
  if(!stop){namedWalk=null;feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
  if(Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.25){
   if(session.room===target.room&&stop.id===target.stopId)namedWalk=null;

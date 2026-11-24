@@ -10,7 +10,7 @@
 .sketch-card img,.sketch-keepsake {display:block;max-width:100%;height:auto;margin:.5rem auto;}
 .sketch-card img[hidden],.sketch-keepsake[hidden] {display:none;}
 
-/* A receipt never creates space after a press. Literal status remains keyboard-scrollable. */
+/* Keep Collect above its fixed, keyboard-scrollable receipt even when a route is offered. */
 .collection-dialog{max-width:calc(100vw - 16px)}
 .collection-panel .resource-list dd{min-width:2ch}
 .collection-action{display:grid;grid-template-columns:minmax(0,1fr) 72px;gap:12px;align-items:center;min-height:96px}
@@ -21,6 +21,8 @@
 .collection-status-wrap{height:6.4rem;overflow:auto;scrollbar-gutter:stable;border-block:1px solid var(--line);margin:12px 0 8px;padding:9px 0;overflow-wrap:anywhere}
 #panel-body .collection-status{margin:0;padding:0;min-height:0;font-weight:bold;line-height:1.4}
 .collection-receipt>.remote-retry{width:100%;height:3.8em;min-height:46px;margin:0}
+.collection-receipt>.collection-next{width:100%;height:max(44px,3.4rem);margin:0;overflow:auto;overflow-wrap:anywhere}
+.collection-receipt>.collection-next[data-reserved][hidden]{display:block;visibility:hidden}
 #panel-body .collection-art-note{font-size:.8rem;line-height:1.4;height:2.8em;overflow:auto;margin:8px 0 12px}
 .collection-control[aria-disabled=true]{cursor:default;box-shadow:none}
 .collection-control.primary[aria-disabled=true]{background:#e1dbc8;color:#626955}

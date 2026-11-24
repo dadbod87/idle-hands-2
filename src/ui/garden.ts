@@ -107,11 +107,14 @@ export class GardenUI{
   const harvest=this.button('Harvest · 1 produce + 1 seed',()=>{receiptBed=null;void this.perform({action:'harvest',bed:this.selected??0});},'harvest');actions.append(preview,harvest);body.append(actions,bedNotice);
   const previewBox=this.el('section','','garden-preview'),previewText=this.el('p');previewText.dataset.gardenQuote='true';previewText.tabIndex=-1;
   const confirm=this.button('Confirm planting · 1 bound seed',()=>{
-   const selected=this.selected??0,owner=this.host.owner(),returnFocus=document.activeElement===confirm;
+   const selected=this.selected??0,owner=this.host.owner(),dialog=confirm.closest('dialog');
+   // A pointer activation can keep the quote or dialog focused in WebKit.
+   const stillOnQuote=()=>document.activeElement===confirm||document.activeElement===previewText||document.activeElement===dialog;
+   const returnFocus=stillOnQuote();
    receiptBed=selected;
    void this.perform({action:'plant',bed:selected,crop:this.crop}).then(ok=>{
     if(!ok&&!this.workshop.gardenSaveStatus().canRetry)receiptBed=null;
-    if(ok&&returnFocus&&!this.preview&&owner===this.host.owner()&&body.contains(confirm)&&confirm.closest('dialog')?.open&&(document.activeElement===confirm||document.activeElement===document.body)){
+    if(ok&&returnFocus&&!this.preview&&owner===this.host.owner()&&body.contains(confirm)&&dialog?.open&&(stillOnQuote()||document.activeElement===document.body)){
      // Return the selected action and its facts to view after confirming;
      // keep the receipt in place and respect a different chosen focus.
      harvest.scrollIntoView({block:'center',behavior:'instant'});this.ensureVisible(harvest);this.status?.focus({preventScroll:true});

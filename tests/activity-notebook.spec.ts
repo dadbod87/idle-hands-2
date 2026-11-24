@@ -43,6 +43,7 @@ test('Journal puts confirmed finished work before waiting jobs on reopen',async(
    await expect(page.locator('[data-orchard-parcel]')).toHaveCount(1);
    await expect(page.locator('[data-activity=garden]')).toHaveCount(1);
    await expect(page.getByRole('dialog').getByRole('button',{name:'Close panel'})).toBeInViewport();
+   await expect(parcel.getByRole('button',{name:'Walk to the packing table'})).toBeInViewport({ratio:1});
    expect(await page.getByRole('dialog').evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
    await page.screenshot({path:output+'/'+name+'.png'});
    const action=page.getByRole('button',{name:'Your allotment · crops, markers & quests',exact:true});

@@ -129,3 +129,16 @@ export function glasshouseSnapshot(project:unknown, rawReview:unknown, residentI
   ?{id:checked.data.id,task:checked.data.task,pine:checked.data.pine,expiresAt:checked.data.expiresAt}:null;
  return glasshouseSnapshotSchema.parse({project:shown,review});
 }
+
+type GlasshouseObservation={playerId:string;serverInstance?:string;serverTime:number;glasshouse?:GlasshouseSnapshot};
+export const GLASSHOUSE_OPENING_RECENCY_MS=30_000;
+
+/** Presentation only. A first visit or a late reload sees the finished facade silently. */
+export function freshGlasshouseOpening(previous:GlasshouseObservation|null|undefined,current:GlasshouseObservation){
+ const before=previous?.glasshouse?.project,after=current.glasshouse?.project;
+ if(!previous?.serverInstance||previous.serverInstance!==current.serverInstance||previous.playerId!==current.playerId)return false;
+ if(before?.phase!=='under-repair'||after?.phase!=='open'||after.opensAt===null||before.opensAt!==after.opensAt)return false;
+ return Number.isSafeInteger(current.serverTime)&&Number.isSafeInteger(previous.serverTime)&&
+  previous.serverTime<after.opensAt&&current.serverTime>=after.opensAt&&
+  current.serverTime-after.opensAt<=GLASSHOUSE_OPENING_RECENCY_MS;
+}

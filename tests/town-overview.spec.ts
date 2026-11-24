@@ -302,3 +302,59 @@ test('Glasshouse board confirms the quoted pine once and shows the restored faca
   expect(errors).toEqual([]);
  }finally{await context.close();}
 });
+
+test('one real facade update gives a local opening cue and respects reduced motion',async({browser})=>{
+ const out=process.env.QA_EVIDENCE_DIR??'test-results/browser/glasshouse-opening';
+ mkdirSync(out,{recursive:true});
+ for(const reducedMotion of ['no-preference','reduce'] as const){
+  const context=await browser.newContext({viewport:{width:844,height:390},reducedMotion});
+  try{
+   const page=await context.newPage();
+   const workshop=createWorkshop(Date.now()),errors:string[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   let signedIn=false,open=false;
+   const opensAt=Date.now()+120_000;
+   const snapshot=()=>({playerId:'aster',name:'Aster',workshop,position:{room:'trail',position:GLASSHOUSE_FRONT},
+    bridge:{contributed:3,target:3,phase:'open',restored:true},trail:{stamps:[],pennantOwned:false},
+    glasshouse:{review:null,project:{phase:open?'open':'under-repair',opensAt,entrance:true,frame:true,chart:true}},
+    plot:null,plots:[],quest:{contentVersion:1,awarded:[]},seasonKey:'2026-11-24',scores:[],
+    serverTime:open?opensAt:Date.now(),serverInstance:'opening-fixture'});
+   await page.addInitScript(()=>{
+    Object.defineProperty(window,'EventSource',{value:class extends EventTarget{
+     onopen?:()=>void;
+     constructor(){super();Object.assign(window,{__openingRefresh:()=>this.dispatchEvent(new Event('invalidate'))});
+      queueMicrotask(()=>this.onopen?.());}
+     close(){}
+    }});
+   });
+   await page.route('**/api/town/**',route=>{
+    const endpoint=new URL(route.request().url()).pathname.split('/').at(-1);
+    if(endpoint==='fixtures')return route.fulfill({json:{fixtures:[{id:'aster',name:'Aster'}]}});
+    if(endpoint==='login'){signedIn=true;return route.fulfill({json:{snapshot:snapshot()}});}
+    if(endpoint==='snapshot')return signedIn?route.fulfill({json:{snapshot:snapshot()}}):route.fulfill({status:401});
+    return route.fulfill({status:404});
+   });
+   const state=()=>page.evaluate(()=>(window as any).__pilot?.metrics());
+   const refresh=()=>page.evaluate(()=>(window as any).__openingRefresh());
+   const count=reducedMotion==='reduce'?0:1;
+   await page.goto('/?town=1&sky-study=1&phase=day');
+   await page.getByRole('button',{name:'Aster',exact:true}).click();
+   await expect.poll(async()=> (await state())?.visual.glasshouse).toBe('glasshouse-under-repair');
+   await expect.poll(async()=> (await state())?.ready).toBe(true);
+   open=true;
+   await refresh();
+   await expect.poll(async()=> (await state())?.visual.glasshouse).toBe('glasshouse-restored');
+   await expect(page.locator('#feedback')).toContainText('vines have filed a complaint');
+   await expect.poll(async()=> (await state())?.visual.glasshouseOpening.count).toBe(count);
+   if(count)await expect.poll(async()=> (await state())?.visual.glasshouseOpening.active).toBe(true);
+   await page.screenshot({path:out+'/'+reducedMotion+'.png'});
+   await expect.poll(async()=> (await state())?.visual.glasshouseOpening.active).toBe(false);
+   await refresh();
+   await expect.poll(async()=> (await state())?.visual.glasshouseOpening.count).toBe(count);
+   await page.reload();
+   await expect.poll(async()=> (await state())?.visual.glasshouse).toBe('glasshouse-restored');
+   await expect.poll(async()=> (await state())?.visual.glasshouseOpening.count).toBe(0);
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});

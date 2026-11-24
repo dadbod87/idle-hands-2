@@ -1,3 +1,4 @@
+import {freshGlasshouseOpening} from './game/glasshouse.ts';
 import {WINDOWSILL_STOP} from './game/home-windowsill.ts';
 import {showHomeWindowsill} from './ui/home-windowsill.ts';
 import {showNurseryKeeper} from './ui/glasshouse-plants.ts';
@@ -299,6 +300,8 @@ const town=townMode?new TownClient({
  },
  onSnapshot:(snapshot,previous)=>{
   if(scene.setGlasshousePhase(snapshot.glasshouse?.project.phase??'overgrown'))refreshMenuFrame(2);
+  if(!needResync&&!panel.open&&freshGlasshouseOpening(previous,snapshot)&&scene.playGlasshouseOpening())
+   feedback.textContent='The Glasshouse is open. The vines have filed a complaint.';
   glasshouseUI?.refresh();
  session.setSquareStops(snapshot.orchard!==undefined?ORCHARD_STOPS:undefined);
  const celebrateBridge=!needResync&&freshBridgeOpening(previous??null,snapshot);

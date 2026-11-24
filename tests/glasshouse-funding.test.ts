@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import type {PoolClient} from 'pg';
 import {fundGlasshouse} from '../server/glasshouse.ts';
-import {GLASSHOUSE_RULES, glasshouseSnapshot, newGlasshouse, type GlasshouseReview} from '../src/game/glasshouse.ts';
+import {GLASSHOUSE_RULES, freshGlasshouseOpening, glasshouseSnapshot, newGlasshouse, type GlasshouseReview} from '../src/game/glasshouse.ts';
 import {applyWorkshop, createWorkshop, isCurrentWorkshop, type WorkshopState} from '../src/game/live-workshop.ts';
 
 const at=Date.UTC(2026,10,24,23);
@@ -79,4 +79,18 @@ test('funding reads bounded quotes and conserves exact pine while sharing one fi
  assert.deepEqual(Object.keys(glasshouseSnapshot(project,null,'late',project.opensAt!)!.project).sort(),[
   'chart','entrance','frame','opensAt','phase',
  ]);
+});
+
+test('the opening cue needs a recent real phase transition on the same resident and service',()=>{
+ const make=(phase:'under-repair'|'open',serverTime:number,serverInstance='one',playerId='aster')=>({
+  playerId,serverInstance,serverTime,glasshouse:{project:{phase,opensAt:at,entrance:true,frame:true,chart:true},review:null},
+ });
+ const waiting=make('under-repair',at-1),open=make('open',at);
+ assert.equal(freshGlasshouseOpening(waiting,open),true);
+ assert.equal(freshGlasshouseOpening(open,open),false);
+ assert.equal(freshGlasshouseOpening(null,open),false);
+ assert.equal(freshGlasshouseOpening(waiting,make('open',at+30_001)),false);
+ assert.equal(freshGlasshouseOpening(waiting,make('open',at-1)),false);
+ assert.equal(freshGlasshouseOpening(waiting,make('open',at,'new-boot')),false);
+ assert.equal(freshGlasshouseOpening(waiting,make('open',at,'one','bea')),false);
 });

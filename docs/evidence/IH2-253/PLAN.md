@@ -1,0 +1,5 @@
+# IH2-253 · A small welcome when the Glasshouse opens
+
+The porch lamps glow briefly when a nearby player sees the same confirmed construction deadline cross into open. The world door and field note carry the result. The cue uses no goods, traps no input and never plays an unrequested sound. Reduced motion gets the same completed facade and note with no glow. Reloading or arriving after the opening sees the ordinary open door. The cue is cosmetic and has no authority over the timer.
+
+The live client tests used the actual scene and a fictional same-resident snapshot invalidation to cross the deadline. Chromium and WebKit saw the complete phase change, one temporary glow, no repeated glow after another snapshot or reload, and zero glows with reduced motion. Unit coverage rejects an old deadline, wrong resident, replacement server, backward time and already-open observations. Full connected testing remains pending. The screenshots are from the isolated 844×390 viewport with intercepted snapshots and an advanced fictional service clock.

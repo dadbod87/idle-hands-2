@@ -2,7 +2,7 @@ import {headwearName} from './art/headwear.ts';
 import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
 import { benchWork } from './game/crafting-view.ts';
 import { SUNROOM_NOTEBOOK } from './game/home-sunroom.ts';
-import { NATURALIST_KEEPSAKE } from './game/home-keepsake.ts';
+import { displayedHomeKeepsake, HOME_KEEPSAKES } from './game/home-keepsake.ts';
 import {FIRST_MORNING_KEY,readFirstMorning,saveFirstMorning,type MorningRead} from './game/first-morning.ts';
 import {mountDoorLight} from './ui/door-light.ts';
 import {ARRIVAL_STORIES} from './game/arrival-stories.ts';
@@ -165,8 +165,14 @@ game.events.on(Phaser.Core.Events.STEP,()=>{
   game.scale.setParentSize(width,height);
  }
 });
+let textModeFrame:number|undefined;
 const worldResize=new ResizeObserver(entries=>{
- updateTextMode();
+ // The text-mode class can resize the observed world. Let the observer
+ // finish delivering its current layout before changing that layout again.
+ if(textModeFrame===undefined)textModeFrame=requestAnimationFrame(()=>{
+  textModeFrame=undefined;
+  updateTextMode();
+ });
  const {width,height}=entries[0].contentRect;
  if(!game.isBooted||width<=0||height<=0)return;
  worldResizePending=true;
@@ -545,15 +551,16 @@ function paintLodgeWork(target:HTMLElement,snapshot:TownSnapshot){
 }
 
 function syncHomeStops(plot:TownPlot|undefined,snapshot:TownSnapshot){
- const keepsake=plot?.keepsake==='naturalist';
+ const keepsake=displayedHomeKeepsake(plot);
  const note=noteForHome(plot);
  session.setHomeStops(keepsake,note);
  if(scene.setHomeKeepsake(keepsake))refreshMenuFrame(2);
  if(!panel.open)return;
  const notebook=body.querySelector<HTMLElement>('[data-home-plan-note]');
- const removedCertificate=!keepsake&&body.querySelector('[data-reading-keepsake]');
+ const certificate=body.querySelector<HTMLElement>('[data-reading-keepsake]');
+ const changedCertificate=certificate&&certificate.dataset.readingKeepsake!==keepsake;
  const changedNotebook=notebook&&(notebook.dataset.homePlanNote!==note?.id||notebook.dataset.plot!==plot?.id||notebook.dataset.owner!==String(plot?.ownerId===snapshot.playerId));
- if(removedCertificate||changedNotebook){closePanel();return;}
+ if(changedCertificate||changedNotebook){closePanel();return;}
  const board=notebook?.querySelector<HTMLElement>('[data-lodge-work]');
  if(board&&plot?.ownerId===snapshot.playerId)paintLodgeWork(board,snapshot);
 }
@@ -598,17 +605,19 @@ function readHomePlanNote(note:Stop){
 }
 
 function readHomeKeepsake(){
- if(!session.stops.some(stop=>stop.id==='home-keepsake'))return;
- openPanel(NATURALIST_KEEPSAKE.name);
+ const choice=displayedHomeKeepsake(town?.snapshot?.plots.find(plot=>plot.id===homePlotId));
+ if(!choice||!session.stops.some(stop=>stop.id==='home-keepsake'))return;
+ const keepsake=HOME_KEEPSAKES[choice];
+ openPanel(keepsake.name);
  const card=document.createElement('figure');
  card.className='reading-keepsake';
- card.dataset.readingKeepsake='';
+ card.dataset.readingKeepsake=choice;
  const art=document.createElement('img');
- art.src=NATURALIST_KEEPSAKE.art;
- art.alt='Neighborhood Naturalist certificate with two leaves and a gold seal';
+ art.src=keepsake.art;
+ art.alt=choice==='naturalist'?'Neighborhood Naturalist certificate with two leaves and a gold seal':'Woodland field certificate with a wooden waymarker';
  art.width=300;art.height=200;
  const caption=document.createElement('figcaption');
- caption.textContent=NATURALIST_KEEPSAKE.story;
+ caption.textContent=keepsake.story;
  card.append(art,caption);
  body.append(card);
 }

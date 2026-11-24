@@ -1,4 +1,4 @@
-import { NATURALIST_KEEPSAKE } from './home-keepsake.ts';
+import { HOME_KEEPSAKES, NATURALIST_KEEPSAKE, type HomeKeepsake } from './home-keepsake.ts';
 import { TILE, worlds, canStand, clearSegment, routeTo, type Room, type Point, type Stop,type World } from './world.ts';
 import { LODGING_BEDSIDE, LODGING_FRONT, LODGING_ROOM, squareWithLodging } from './lodging.ts';
 
@@ -30,13 +30,13 @@ export class Session {
     if (room==='neighborhood') return this.geometry;
   }
   private homeStops={home:worlds.home.stops,'home-expanded':worlds['home-expanded'].stops};
-  private keepsakeShown=false;
+  private keepsakeShown:HomeKeepsake|null=null;
   private roomNote:Stop|null=null;
-  setHomeStops(keepsake:boolean,note:Stop|null){
+  setHomeStops(keepsake:HomeKeepsake|null,note:Stop|null){
     if(keepsake===this.keepsakeShown&&note===this.roomNote)return;
     this.keepsakeShown=keepsake;
     this.roomNote=note;
-    const common=keepsake?[keepsakeStop]:[];
+    const common=keepsake?[{...keepsakeStop,name:HOME_KEEPSAKES[keepsake].name,text:HOME_KEEPSAKES[keepsake].story}]:[];
     this.homeStops={
       home:[...worlds.home.stops,...common],
       'home-expanded':[...worlds['home-expanded'].stops,...common,...(note?[note]:[])],

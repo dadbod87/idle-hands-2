@@ -1,4 +1,6 @@
-import { earnedNaturalist, type HomeKeepsake } from '../src/game/home-keepsake.ts';
+import { earnedNaturalist, HOME_KEEPSAKE_IDS, type HomeKeepsakeProjection } from '../src/game/home-keepsake.ts';
+import { earnedFieldCertificate } from '../src/game/outing.ts';
+import { privateOuting } from './outing.ts';
 import {atParcelShelf,lockSnackParcel,readSnackShelf,snackCommandSchema,snackSlotHeld,writeSnackParcel} from './snack-shelf.ts';
 import {confirmOrchardAction,orchardSnapshot} from './orchard-command.ts';
 import {orchardActionSchema,type OrchardPantry} from '../src/game/orchard.ts';
@@ -27,7 +29,7 @@ import { canStand, worlds, TRAIL_LANDMARK_IDS, type Point, type Room } from '../
 import { PLOT_CLAIM_KITS, PLOT_UPGRADE_KITS, MAINTENANCE_MS, MAINTENANCE_COST, BRIDGE_BUILD_MS, TRAIL_PENNANT_AWARD } from '../src/game/town-rules.ts';
 
 export type TownPosition = { room: Room; position: Point; homePlotId?: string; districtId?:string };
-export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'];workroomPlacements:HomeLayout['workroomPlacements']; pennantOwned:boolean;letterboxMotif:LetterboxMotif|null;planId?:string|null;yard?:ReturnType<typeof emptyYard>;construction?:string|null;housingRevision?:number;keepsake?:HomeKeepsake };
+export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'];workroomPlacements:HomeLayout['workroomPlacements']; pennantOwned:boolean;letterboxMotif:LetterboxMotif|null;planId?:string|null;yard?:ReturnType<typeof emptyYard>;construction?:string|null;housingRevision?:number;keepsake?:HomeKeepsakeProjection['keepsake'];wallDisplay?:HomeKeepsakeProjection['wallDisplay'] };
 export type MaintenanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot = {
   outing:OutingState;
@@ -61,7 +63,7 @@ const specialSchema = z.discriminatedUnion('kind', [
   z.object({ ...base, kind:z.literal('redeem-lesson'),route:z.enum(['construction','upkeep']),expectedBridgeContributed:z.number().int().min(0).max(3) }).strict(),
   z.object({ ...base, kind: z.literal('claim-plot') }).strict(),
   z.object({ ...base, kind: z.literal('upgrade-plot'), plotId: z.string().regex(/^[1-9][0-9]{0,17}$/) }).strict(),
-  z.object({...base,kind:z.literal('display-home-keepsake'),plotId:z.string().regex(/^[1-9][0-9]{0,17}$/),keepsake:z.literal('naturalist').nullable()}).strict(),
+  z.object({...base,kind:z.literal('display-home-keepsake'),plotId:z.string().regex(/^[1-9][0-9]{0,17}$/),keepsake:z.enum(HOME_KEEPSAKE_IDS).nullable()}).strict(),
   z.object({ ...base, kind: z.literal('edit-plot'), plotId: z.string().regex(/^[1-9][0-9]{0,17}$/), action: z.enum(['place', 'remove']), slot: slotSchema, prop: z.enum(PROP_IDS).optional(), fromSlot: slotSchema.optional() }).strict()
 ]);
 const orchardCommandSchema = z.object({...base,kind:z.literal('orchard'),expectedPlayerId:idSchema,action:orchardActionSchema}).strict();
@@ -143,7 +145,9 @@ export class TownStore {
     const plots:TownPlot[] = data.plots.map(p => ({ id:p.id,ownerId:p.owner_id,ownerName:p.name,level:p.level as 1|2,placements:p.placements,workroomPlacements:p.workroom_placements,pennantOwned:p.pennant_owned,planId:p.plan_id,yard:p.yard,housingRevision:p.housing_revision,letterboxMotif:(MOTIFS as readonly unknown[]).includes(p.letterbox_motif)?p.letterbox_motif as LetterboxMotif:null }));
     const position=canonicalHomePosition(confirmedPosition?.()??player.position,plots);
     const visited=isHome(position.room)?plots.find(p=>p.id===position.homePlotId):undefined;
-    if(visited&&data.plots.find(p=>p.id===visited.id)?.keepsake==='naturalist')visited.keepsake='naturalist';
+    const displayed=data.plots.find(p=>p.id===visited?.id)?.keepsake;
+    if(visited&&displayed==='naturalist')visited.keepsake=displayed;
+    if(visited&&displayed==='woodland-certificate')visited.wallDisplay=displayed;
     if(plots.some(p=>!validPublicHouse(p)))throw new Error('Stored home layout failed validation. Progress was not replaced.');
     const bridgeRow = data.bridge;
     // Explicit projection only: never select other residents' private garden JSON.
@@ -304,8 +308,10 @@ export class TownStore {
           }else if(action.kind==='display-home-keepsake'){
             if(!ownPlot||ownPlot.id!==action.plotId||!isHome(position.room)||position.homePlotId!==ownPlot.id)
               reject('Only the owner can change the keepsake from inside this home.');
-            else if(action.keepsake&&!earnedNaturalist(state.sketches))
+            else if(action.keepsake==='naturalist'&&!earnedNaturalist(state.sketches))
               reject('Record all three tree studies to earn the certificate.');
+            else if(action.keepsake==='woodland-certificate'&&!earnedFieldCertificate((await privateOuting(client,id)).journal))
+              reject('Record both woodland conditions to earn the field certificate.');
             else if(action.keepsake===ownPlot.keepsake)
               reject(action.keepsake?'This certificate is already displayed.':'The display is already empty.');
             else {

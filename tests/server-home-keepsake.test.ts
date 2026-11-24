@@ -6,6 +6,7 @@ import { createTownServer } from '../server/http.ts';
 import { TOWN_SCHEMA } from '../src/game/protocol-version.ts';
 import { setTimeout as pause } from 'node:timers/promises';
 import { SURVEY_IDS, SURVEYS } from '../src/game/fieldwork.ts';
+import { woodlandRepairs } from './helpers/woodland-keepsake.ts';
 
 const target = process.env.IH2_TEST_DATABASE_URL;
 if (target) {
@@ -16,7 +17,8 @@ if (target) {
  assert.ok(url.pathname === '/ih2_test' && (isolatedCI || isolatedLocal), 'Use the isolated disposable town database.');
 }
 
-test('shared home keepsake requires earned ownership and projects only to its current visitors', { skip: !target, timeout: 25000 }, async () => {
+for(const [variant,key] of [['naturalist','keepsake'],['woodland-certificate','wallDisplay']] as const)
+test('shared home '+variant+' requires earned ownership and projects only to its current visitors', { skip: !target, timeout: 25000 }, async () => {
  const pool = database(target);
  try {
   await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');
@@ -34,17 +36,34 @@ test('shared home keepsake requires earned ownership and projects only to its cu
   const outside:TownPosition = { room:'square', position:{x:30,y:35.5} };
   await store.savePosition(owner.playerId, inside);
   await store.savePosition(guest.playerId, inside);
-  const display = {kind:'display-home-keepsake', plotId, keepsake:'naturalist'};
+  const display = {kind:'display-home-keepsake', plotId, keepsake:variant};
   const denied = await store.execute(owner.playerId, {...display,id:'unearned',expectedRevision:0},inside);
   assert.equal(denied.ok,false);
-  assert.match(denied.message,/earn the certificate/);
-  assert.equal(Object.hasOwn(denied.snapshot.plot!,'keepsake'),false);
+  assert.match(denied.message,/earn the (field )?certificate/);
+  assert.equal(Object.hasOwn(denied.snapshot.plot!,key),false);
   for (const station of SURVEY_IDS) {
    const state = await store.snapshot(owner.playerId);
    const result = await store.execute(owner.playerId, {
     kind:'survey', id:'survey-'+station, expectedRevision:state.workshop.revision, station, choice:SURVEYS[station].answer,
    }, { room:'square', position:SURVEYS[station].point });
    assert.equal(result.ok,true,result.message);
+  }
+  if(variant==='woodland-certificate'){
+   const save=async(value:ReturnType<typeof woodlandRepairs>)=>pool.query(
+    'insert into ih2.outings(player_id,state) values($1,$2) on conflict(player_id) do update set state=excluded.state',
+    [owner.playerId,value],
+   );
+   const single=woodlandRepairs(now,1);
+   await save(single);
+   const revision=(await store.snapshot(owner.playerId)).workshop.revision;
+   const singleDenied=await store.execute(owner.playerId,{...display,id:'one-condition',expectedRevision:revision},inside);
+   assert.equal(singleDenied.ok,false);
+   assert.equal(singleDenied.revision,revision);
+   await save({...single,runs:2,journal:[...single.journal,{...single.journal[0],id:'same-condition-again'}]});
+   const duplicateDenied=await store.execute(owner.playerId,{...display,id:'same-condition',expectedRevision:revision},inside);
+   assert.equal(duplicateDenied.ok,false);
+   assert.equal(duplicateDenied.revision,revision);
+   await save(woodlandRepairs(now,2));
   }
   const enter = await store.execute(owner.playerId,{
    kind:'enter-home', id:'reenter', plotId, expectedRevision:(await store.snapshot(owner.playerId)).workshop.revision,
@@ -103,24 +122,29 @@ test('shared home keepsake requires earned ownership and projects only to its cu
    const previous=await request('snapshot',guestCookie);
    const visiting=(await previous.json()).snapshot;
    assert.equal(visiting.homeKeepsakes,true);
-   assert.equal(visiting.plots[0].keepsake,'naturalist');
+   assert.equal(visiting.plots[0][key],variant);
+   if(variant==='woodland-certificate'){
+    assert.equal(visiting.homeKeepsakeChoices,true);
+    assert.equal(Object.hasOwn(visiting.plots[0],'keepsake'),false);
+    assert.equal(visiting.outing.journal.length,0);
+   }
    const doorway={...inside,position:{x:9,y:12}};
    assert.equal((await request('movement',guestCookie,doorway)).status,200);
    assert.equal((await request('movement',guestCookie,outside)).status,200);
    await store.savePosition(guest.playerId,inside);
    const departed=(await (await request('snapshot',guestCookie)).json()).snapshot;
    assert.deepEqual(departed.position,outside);
-   assert.equal(Object.hasOwn(departed.plots[0],'keepsake'),false);
+   assert.equal(Object.hasOwn(departed.plots[0],key),false);
    const relogged=(await (await request('login',undefined,{fixtureId:guest.playerId})).json()).snapshot;
    assert.deepEqual(relogged.position,outside);
-   assert.equal(Object.hasOwn(relogged.plots[0],'keepsake'),false);
+   assert.equal(Object.hasOwn(relogged.plots[0],key),false);
   } finally {
    abort.abort();
    try{await Promise.all(pumps);}finally{await app.close();}
   }
   assert.equal(hung.ok,true,hung.message);
   assert.equal(hung.publicChanged,true);
-  assert.equal(hung.snapshot.plot?.keepsake,'naturalist');
+  assert.equal(hung.snapshot.plot?.[key],variant);
   for (const key of ['sketches','inventory','owned','job','bridgeKits','skills'] as const)
    assert.deepEqual(hung.snapshot.workshop[key],before[key],key);
   const replay = await store.execute(owner.playerId,command,inside);
@@ -128,10 +152,10 @@ test('shared home keepsake requires earned ownership and projects only to its cu
   assert.equal(replay.revision,hung.revision);
   const fresh = new TownStore(pool,{now:()=>now});
   const guests = await fresh.snapshot(guest.playerId);
-  assert.equal(guests.plots[0].keepsake,'naturalist');
+  assert.equal(guests.plots[0][key],variant);
   assert.equal('sketches' in guests.plots[0],false);
   assert.deepEqual(guests.workshop.sketches,[]);
-  assert.equal(Object.hasOwn((await fresh.snapshot('keepsake-outside')).plots[0],'keepsake'),false);
+  assert.equal(Object.hasOwn((await fresh.snapshot('keepsake-outside')).plots[0],key),false);
   const remove = {...display, keepsake:null, id:'take-down',expectedRevision:hung.revision};
   const guestDenied = await store.execute(guest.playerId,{...remove,id:'guest-denied',expectedRevision:0},inside);
   const outsideDenied = await store.execute(owner.playerId,{...remove,id:'outside-denied'},outside);
@@ -144,16 +168,17 @@ test('shared home keepsake requires earned ownership and projects only to its cu
    for each row when (new.command_id='take-down') execute function ih2.test_keep_receipt_failure()`);
   try {
    await assert.rejects(store.execute(owner.playerId,remove,inside),/isolated keepsake receipt failure/);
-   assert.equal((await fresh.snapshot(guest.playerId)).plots[0].keepsake,'naturalist');
+   assert.equal((await fresh.snapshot(guest.playerId)).plots[0][key],variant);
    assert.equal((await fresh.snapshot(owner.playerId)).workshop.revision,hung.revision);
   } finally {
    await pool.query('drop function ih2.test_keep_receipt_failure() cascade');
   }
   const taken = await fresh.execute(owner.playerId,remove,inside);
   assert.equal(taken.ok,true,taken.message);
-  assert.equal(Object.hasOwn(taken.snapshot.plot!,'keepsake'),false);
+  assert.equal(Object.hasOwn(taken.snapshot.plot!,key),false);
   assert.deepEqual(taken.snapshot.workshop.sketches,before.sketches);
-  assert.equal(Object.hasOwn((await fresh.snapshot(guest.playerId)).plots[0],'keepsake'),false);
+  if(variant==='woodland-certificate')assert.deepEqual(taken.snapshot.outing,woodlandRepairs(now,2));
+  assert.equal(Object.hasOwn((await fresh.snapshot(guest.playerId)).plots[0],key),false);
  } finally {
   await pool.end();
  }

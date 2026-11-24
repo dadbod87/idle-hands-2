@@ -1,4 +1,4 @@
-import{OUTING_STOPS,condition,createOuting,type OutingState,type OutingIntent,type OutingStation}from'../game/outing.ts';
+import{OUTING_STOPS,condition,createOuting,earnedFieldCertificate,type OutingState,type OutingIntent,type OutingStation}from'../game/outing.ts';
 import{OutingSaveWriter}from'../persistence/outing-save.ts';import type{TownClient}from'./town-client.ts';import './outing.css';
 type Host={open:(title:string)=>void;body:HTMLElement;position:()=>{room:string;position:{x:number;y:number}};go:(id:string)=>void;changed:()=>void;feedback:(message:string)=>void};
 export class OutingUI{
@@ -30,10 +30,11 @@ export class OutingUI{
  }
  private fieldCertificate(entries:OutingState['journal']){
   const completed=new Set(entries.map(entry=>entry.variant));
+  const earned=earnedFieldCertificate(entries);
   const signoff=document.createElement('section');
   signoff.className='outing-signoff';
-  signoff.dataset.outingCertificate=completed.size===2?'earned':'in-progress';
-  if(completed.size===2){
+  signoff.dataset.outingCertificate=earned?'earned':'in-progress';
+  if(earned){
    const art=document.createElement('img');
    art.src='/art/outing/field-certificate.svg';art.alt='';art.width=144;art.height=110;art.loading='lazy';
    signoff.append(art);
@@ -41,7 +42,7 @@ export class OutingUI{
   const copy=document.createElement('div');
   const title=document.createElement('h4');
   title.textContent='Field certificate';
-  const progress=this.p(completed.size===2
+  const progress=this.p(earned
    ?'Earned · Qualified to point left.'
    :'One more condition to sign off.');
   const checks=document.createElement('ul');

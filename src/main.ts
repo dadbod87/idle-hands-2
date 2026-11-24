@@ -165,8 +165,14 @@ game.events.on(Phaser.Core.Events.STEP,()=>{
   game.scale.setParentSize(width,height);
  }
 });
+let textModeFrame:number|undefined;
 const worldResize=new ResizeObserver(entries=>{
- updateTextMode();
+ // The text-mode class can resize the observed world. Let the observer
+ // finish delivering its current layout before changing that layout again.
+ if(textModeFrame===undefined)textModeFrame=requestAnimationFrame(()=>{
+  textModeFrame=undefined;
+  updateTextMode();
+ });
  const {width,height}=entries[0].contentRect;
  if(!game.isBooted||width<=0||height<=0)return;
  worldResizePending=true;

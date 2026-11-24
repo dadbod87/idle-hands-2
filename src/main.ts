@@ -735,7 +735,10 @@ function activate(stop: Stop) {
   if(stop.id.startsWith('commons-')){
     openPanel(stop.name);
     const walkBack=()=>goNamedDestination('square','workshop');
-    if(stop.id==='commons-riverwalk'&&!town){cleanupRiverSurvey=showRiverSurvey(body,refreshRiverCast,walkBack);return;}
+    if(stop.id==='commons-riverwalk'&&!town){
+     cleanupRiverSurvey=showRiverSurvey(body,action=>{if(action.kind==='cast')save();refreshRiverCast();},walkBack);
+     return;
+    }
     body.append(paragraph(stop.text));
     const back=document.createElement('button');back.type='button';
     if(stop.id==='commons-riverwalk')back.className='destination';

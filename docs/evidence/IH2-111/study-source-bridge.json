@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8cd1ccb5fa0d426b7bcadf3a0115185c97037fef08c402f606fa2ff459b2f364",
-    "src/main.ts": "c7bb2fef1684f56a50267d7f1bc378692f5976fbfc08f28117acf66d258248e0",
+    "src/main.ts": "04b0d997b2829f7c0bccdcc249bc6dc954de4c1de5e357fc3ca17aa8e05cdf9c",
     "src/phaser/WorldScene.ts": "5ecae295fc2a0ebda0b5c5cda6f3a90169c7355d44e5b22178aa21108bdad5cd",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the workshop arrival note and Riverwalk reward visibility. Original study snapshots and generated output remain frozen."
+  "currentTask": "Reviewed the Riverwalk reward and the confirmed cast position save. Original study snapshots and generated output remain frozen."
 }

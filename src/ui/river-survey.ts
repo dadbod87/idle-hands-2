@@ -28,7 +28,7 @@ export function updateRiverFinds(list:HTMLUListElement,recorded:readonly RiverSp
   }
 }
 
-export function showRiverSurvey(body:HTMLElement,onSave:()=>void,walkBack:()=>void):()=>void {
+export function showRiverSurvey(body:HTMLElement,onSave:(action:RiverAction)=>void,walkBack:()=>void):()=>void {
  const surface=document.createElement('section');
  surface.className='river-survey';
  const title=document.createElement('h3');title.textContent='Borrow a rod';
@@ -65,7 +65,7 @@ export function showRiverSurvey(body:HTMLElement,onSave:()=>void,walkBack:()=>vo
     const encoded=JSON.stringify(result);
     try{localStorage.setItem(RIVER_SURVEY_KEY,encoded);}
     catch(error){if(localStorage.getItem(RIVER_SURVEY_KEY)!==encoded)throw error;}
-    onSave();
+    onSave(action);
     recorded=action.kind==='reel'?action.cast.spot:null;
     showReceipt=recorded!==null;
     note=action.kind==='cast'?'Line out at '+RIVER_SPOTS[action.spot].name+'.':'Recorded in your Journal.';

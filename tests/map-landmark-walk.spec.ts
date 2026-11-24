@@ -174,12 +174,20 @@ test('Riverwalk practice lets a resident leave a line out and return to record t
    };
    await boot();
    const before=await state();
+   // The resident is already at the river. Make the durable feet go stale so
+   // only the confirmed cast can write the current position back.
+   await page.evaluate(()=>localStorage.removeItem('ih2:pilot-position:v1'));
    await open();
    const cast=page.getByRole('button',{name:'Cast at Reed bank'});
    if(touch)await cast.tap();else await cast.press('Enter');
    const reel=page.getByRole('button',{name:'Reel in and record'});
    await expect(reel).toBeDisabled();
    await expect(page.getByRole('status').filter({hasText:'Line out at Reed bank'})).toBeVisible();
+   const standing=await page.evaluate(()=>({
+    current:(window as any).__pilot.snapshot().position,
+    saved:JSON.parse(localStorage.getItem('ih2:pilot-position:v1')??'null'),
+   }));
+   expect(standing.saved).toEqual({version:1,room:'square',position:standing.current});
    await page.screenshot({path:out+'/waiting-'+name+'.png'});
    await page.getByRole('button',{name:'Close panel'}).click();
    if(name!=='short'){

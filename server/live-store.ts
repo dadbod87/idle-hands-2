@@ -1,5 +1,5 @@
 import {fundGlasshouse} from './glasshouse.ts';
-import {glasshouseSnapshot,type GlasshouseSnapshot} from '../src/game/glasshouse.ts';
+import {glasshouseView,glasshouseSnapshot,type GlasshouseSnapshot} from '../src/game/glasshouse.ts';
 import { earnedNaturalist, type HomeKeepsake } from '../src/game/home-keepsake.ts';
 import {atParcelShelf,lockSnackParcel,readSnackShelf,snackCommandSchema,snackSlotHeld,writeSnackParcel} from './snack-shelf.ts';
 import {confirmOrchardAction,orchardSnapshot} from './orchard-command.ts';
@@ -103,6 +103,8 @@ export function seasonKey(now: number): string {
 }
 
 /** Trusted server boundary only. Caller authenticates synthetic identity and validates movement/rate before execute. */
+export class GlasshouseClosed extends Error {}
+
 export class TownStore {
   readonly pool: Pool;
   private now: () => number;private occupants:()=>readonly Occupant[];private roster?:ReadonlySet<string>;
@@ -127,8 +129,13 @@ export class TownStore {
   async savePosition(id: string, position: TownPosition): Promise<void> {
     if (!(positionContextValid(position)&&(position.room==='neighborhood'?canStand(position.room,position.position,housingWorld((await this.pool.query('select id::text,plan_id as "planId" from ih2.plots')).rows,position.districtId!)):validPosition(position)))) throw new Error('Invalid server-validated position.');
     if(position.room==='trail'&&(await this.snapshot(id)).bridge.phase!=='open')throw new Error('The trail is not open.');
+    if(position.room==='glasshouse'&&!(await this.glasshouseOpen()))throw new GlasshouseClosed('The Glasshouse is still closed.');
     if(isHome(position.room)){const plot=(await this.pool.query('select level from ih2.plots where id=$1',[position.homePlotId])).rows[0];if(!plot||(plot.level===2?'home-expanded':'home')!==position.room)throw new Error('Home instance is not valid.');}
     await this.pool.query('update ih2.players set position=$2,updated_at=now() where id=$1', [id, position]);
+  }
+  private async glasshouseOpen():Promise<boolean>{
+    const row=(await this.pool.query('select state from ih2.glasshouse_project where id=1')).rows[0];
+    return glasshouseView(row?.state,this.clock())?.phase==='open';
   }
   private async settleBridge(client:PoolClient,now:number,includeCafe=true){
     const opened=await client.query("update ih2.bridge set phase='open',opened_at=ready_at where id=1 and phase='building' and ready_at<=$1 returning ready_at",[now]);

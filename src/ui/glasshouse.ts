@@ -13,7 +13,7 @@ const facades={
  'open':'/art/glasshouse/restored.svg',
 };
 
-type Host = {open:()=>void;body:HTMLElement;atDoor:()=>boolean};
+type Host = {open:()=>void;body:HTMLElement;atDoor:()=>boolean;enter:()=>void};
 
 export class GlasshouseBoard {
  private section?:HTMLElement;
@@ -65,7 +65,7 @@ export class GlasshouseBoard {
   const note=document.createElement('p');
   note.textContent=project.phase==='overgrown'?'Pick any unfinished job. One resident can do them all, or neighbors can divide the work.'
    :project.phase==='under-repair'&&project.opensAt!==null?'The crew has until '+new Date(project.opensAt).toLocaleString(undefined,{weekday:'short',hour:'numeric',minute:'2-digit'})+'. Come back whenever you like.'
-   :'The doors and new planting beds are ready. Interior visits are still in development.';
+   :'The nursery is open. Come in and meet the keeper.';
   const lead=document.createElement('div');
   lead.className='glasshouse-lead';
   const intro=document.createElement('div');
@@ -114,6 +114,7 @@ export class GlasshouseBoard {
     section.append(row);
    }
   }
+  if(project.phase==='open'&&here&&!retry)section.append(this.button('Enter Glasshouse',this.host.enter));
   if(retry)section.append(this.button('Retry the same request',()=>void this.send()));
  }
 

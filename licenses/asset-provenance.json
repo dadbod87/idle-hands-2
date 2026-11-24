@@ -2271,6 +2271,16 @@
       "source": "public/art/glasshouse/restored.svg",
       "date": "2026-11-24",
       "modifications": "Original repair and restored facade from the Inkwood expansion study, sized for the existing doorway and colliders."
+    },
+    {
+      "id": "glasshouse-interior",
+      "path": "public/art/glasshouse/interior.svg",
+      "sha256": "43412ac8987fc0a3968a49c8e7381205a31b4a762dd7d43c7922290501c88a38",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/glasshouse/interior.svg",
+      "date": "2026-11-24",
+      "modifications": "Restored room adapted from the original IH2-233 interior study, with the validated doors and usable aisles."
     }
   ],
   "comparison": {

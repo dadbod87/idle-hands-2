@@ -6,10 +6,10 @@ import {createHmac,timingSafeEqual,randomUUID} from 'node:crypto';
 import type {Pool} from 'pg';
 import {z} from 'zod';
 import {TransportAdmission,BoundedStream} from './transport.ts';
-import {TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './live-store.ts';
+import {GlasshouseClosed,TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './live-store.ts';
 import {canStand,routeTo,worlds} from '../src/game/world.ts';
 const DEFAULT_FIXTURES=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}];
-const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden','neighborhood']),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(positionContextValid);
+const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden','neighborhood','glasshouse']),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(positionContextValid);
 const COOKIE='ih2_fixture';
 function json(res:ServerResponse,status:number,data:unknown){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(data));}
 async function body(req:IncomingMessage){let text='';for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>16384)throw new Error('Body too large');}return JSON.parse(text||'{}') as unknown;}
@@ -59,7 +59,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
   for(const item of connections)
    if(item.id!==except&&(!homePlotId||residents.get(item.id)?.value.homePlotId===homePlotId))send(item,'invalidate',{});
  }
- function presence(){for(const item of connections)item.stream.check();if(!dirty)return;dirty=false;const active=new Set([...connections].map(c=>c.id));for(const item of connections){const own=residents.get(item.id);if(!own)continue;const others=[...residents].filter(([id,entry])=>id!==item.id&&active.has(id)&&((['square','trail','neighborhood'].includes(entry.value.room)&&entry.value.room===own.value.room&&(entry.value.room!=='neighborhood'||entry.value.districtId===own.value.districtId))||isHome(entry.value.room)&&entry.value.room===own.value.room&&entry.value.homePlotId===own.value.homePlotId)).map(([id,entry])=>({id,name:fixtures.find(f=>f.id===id)!.name,...entry.value}));if(send(item,'presence',others))metrics.presenceEvents++;}}
+ function presence(){for(const item of connections)item.stream.check();if(!dirty)return;dirty=false;const active=new Set([...connections].map(c=>c.id));for(const item of connections){const own=residents.get(item.id);if(!own)continue;const others=[...residents].filter(([id,entry])=>id!==item.id&&active.has(id)&&((['square','trail','neighborhood','glasshouse'].includes(entry.value.room)&&entry.value.room===own.value.room&&(entry.value.room!=='neighborhood'||entry.value.districtId===own.value.districtId))||isHome(entry.value.room)&&entry.value.room===own.value.room&&entry.value.homePlotId===own.value.homePlotId)).map(([id,entry])=>({id,name:fixtures.find(f=>f.id===id)!.name,...entry.value}));if(send(item,'presence',others))metrics.presenceEvents++;}}
  const ticker=setInterval(presence,200);ticker.unref();const heartbeat=setInterval(()=>{for(const item of connections)send(item,'heartbeat',null);},15000);heartbeat.unref();
  const server=createServer(async(req,res)=>{
   try{
@@ -117,8 +117,19 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
      valid=valid&&!!portal&&!!expected&&expected.room===next.room&&expected.districtId===next.districtId&&Math.hypot(next.position.x-expected.position.x,next.position.y-expected.position.y)<.05;
     }
     if(!valid){metrics.movementRejected++;return json(res,409,{message:'That move was not accepted. Returning to the last confirmed position.',position:previous});}
+    // No optimistic position update for a doorway that still needs to check
+    // its durable opening deadline and write the confirmed checkpoint.
+    if(next.room!==previous.room&&next.room==='glasshouse'){
+     try{await store.savePosition(id,next);}
+     catch(error){
+      if(!(error instanceof GlasshouseClosed))throw error;
+      metrics.movementRejected++;
+      return json(res,409,{message:error.message,position:previous});
+     }
+     metrics.positionCheckpoints++;
+    }
     current.value=next;current.at=now();current.credit=next.room===previous.room?Math.max(0,credit-spent):1;dirty=true;metrics.movementAccepted++;
-    if(next.room!==previous.room){await store.savePosition(id,next);metrics.positionCheckpoints++;}
+    if(next.room!==previous.room&&next.room!=='glasshouse'){await store.savePosition(id,next);metrics.positionCheckpoints++;}
     return json(res,200,{ok:true,position:next});
     });
     },false);

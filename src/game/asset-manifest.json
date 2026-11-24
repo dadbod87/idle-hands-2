@@ -1138,6 +1138,11 @@
       "id": "glasshouse-restored",
       "path": "art/glasshouse/restored.svg",
       "kind": "original-svg"
+    },
+    {
+      "id": "glasshouse-interior",
+      "path": "art/glasshouse/interior.svg",
+      "kind": "original-svg"
     }
   ],
   "comparison_only": [

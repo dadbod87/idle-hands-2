@@ -1,3 +1,4 @@
+import {GLASSHOUSE_ENTRY,GLASSHOUSE_FRONT} from '../src/game/glasshouse-room';
 import {test, expect} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {TOWN_SIZE} from '../src/game/town-expansion.ts';
@@ -263,10 +264,40 @@ test('Glasshouse board confirms the quoted pine once and shows the restored faca
   project={...project,phase:'open'};
   await page.reload();
   await expect.poll(facade).toBe('glasshouse-restored');
-  await open();
-  await expect(page.getByRole('heading',{name:'Glasshouse restored'})).toBeVisible();
-  await expect(button('Review window frame')).toHaveCount(0);
+  const pilot=()=>page.evaluate(()=>(window as any).__pilot.snapshot());
+  await expect(button('Enter Inkwood Glasshouse')).toBeEnabled();
   await page.screenshot({path:output+'/restored-desktop.png'});
+  const glassDoor=await page.evaluate(x=>(window as any).__pilot.screenPoint(x,4.7),GLASSHOUSE_FRONT.x);
+  await page.locator('canvas').click({position:glassDoor});
+  await expect.poll(()=>where).toEqual({room:'glasshouse',position:GLASSHOUSE_ENTRY});
+  await expect.poll(async()=>(await pilot()).room).toBe('glasshouse');
+  await page.screenshot({path:output+'/interior-desktop.png'});
+
+  await page.setViewportSize({width:320,height:640});
+  await page.locator('#places').tap();
+  await page.getByRole('button',{name:/Fern bench/}).tap();
+  await expect.poll(async()=>(await pilot()).nearby,{timeout:12_000}).toBe('glasshouse-fern');
+  await expect.poll(async()=>(await pilot()).walking).toBe(false);
+  await page.locator('#interact').tap();
+  await expect(page.getByRole('dialog')).toContainText('already formed two more leaves');
+  await page.screenshot({path:output+'/interior-phone.png'});
+  await button('Close panel').tap();
+
+  await page.reload();
+  await expect.poll(async()=>(await pilot()).room).toBe('glasshouse');
+  await page.setViewportSize({width:844,height:390});
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  await page.locator('#places').tap();
+  await page.getByRole('button',{name:/Inkwood trail/}).tap();
+  await expect.poll(async()=>(await pilot()).nearby,{timeout:12_000}).toBe('glasshouse-exit');
+  await expect.poll(async()=>(await pilot()).walking).toBe(false);
+  const exit=button('Enter Inkwood trail');
+  await exit.scrollIntoViewIfNeeded();
+  await expect(exit).toBeInViewport({ratio:1});
+  await page.screenshot({path:output+'/interior-exit-short.png'});
+  await exit.press('Enter');
+  await expect.poll(()=>where).toEqual({room:'trail',position:GLASSHOUSE_FRONT});
+  await expect.poll(async()=>(await pilot()).nearby).toBe(INKWOOD_GLASSHOUSE.id);
   expect(commands).toHaveLength(4);
   expect(errors).toEqual([]);
  }finally{await context.close();}

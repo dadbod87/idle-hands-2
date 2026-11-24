@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
+import {createTownServer} from '../server/http.ts';
+import {GLASSHOUSE_ENTRY, GLASSHOUSE_FRONT, GLASSHOUSE_ROOM} from '../src/game/glasshouse-room.ts';
+import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {database, migrate} from '../server/db.ts';
 import {TownStore, type TownPosition} from '../server/live-store.ts';
 import {GLASSHOUSE_RULES} from '../src/game/glasshouse.ts';
@@ -96,6 +99,51 @@ test('Glasshouse funding commits one payer, rejects false presence, and replays 
   assert.equal(returned.glasshouse?.project.opensAt,now);
   assert.equal(returned.glasshouse?.review,null);
  }finally{
+  await pool.end();
+ }
+});
+
+test('Glasshouse door validates its own exact threshold and writes only confirmed room changes', {skip:!target,timeout:25000},async()=>{
+ const pool=database(target);
+ let now=Date.UTC(2026,10,24,23);
+ let app:ReturnType<typeof createTownServer>|undefined;
+ const front={room:'trail',position:GLASSHOUSE_FRONT};
+ const arrival={room:'glasshouse',position:GLASSHOUSE_ENTRY};
+ try{
+  await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');
+  await migrate(pool);
+  const store=new TownStore(pool,{now:()=>now});
+  await store.ensurePlayer('aster','Aster');
+  await pool.query("update ih2.bridge set contributed=3,phase='open',grandfathered=true where id=1");
+  await store.savePosition('aster',front as TownPosition);
+  const work={resident:'aster',at:now};
+  const opensAt=now+GLASSHOUSE_RULES.buildMs;
+  await pool.query('update ih2.glasshouse_project set state=$1 where id=1',[
+   {revision:1,work:{entrance:work,frame:work,chart:work},opensAt},
+  ]);
+  app=createTownServer({pool,secret:'isolated-glasshouse-room-http-proof-key',now:()=>now,port:0});
+  const base='http://127.0.0.1:'+await app.listen();
+  const headers={Origin:base,'X-IH2-Schema':TOWN_SCHEMA,'Content-Type':'application/json'};
+  // The synthetic sign-in remains valid across the simulated opening.
+  const login=await fetch(base+'/api/town/login',{method:'POST',headers,body:JSON.stringify({fixtureId:'aster'})});
+  assert.equal(login.status,200);
+  const cookie=login.headers.get('set-cookie')!.split(';',1)[0];
+  const move=(where:unknown)=>fetch(base+'/api/town/movement',{method:'POST',headers:{...headers,Cookie:cookie},body:JSON.stringify(where)});
+  now=opensAt-1;
+  assert.equal((await move(arrival)).status,409);
+  assert.deepEqual((await store.snapshot('aster')).position,front);
+  now++;
+  assert.equal((await move({...arrival,position:{x:9,y:10}})).status,409);
+  assert.equal((await move(arrival)).status,200);
+  assert.deepEqual((await store.snapshot('aster')).position,arrival);
+  now+=250;
+  const door=GLASSHOUSE_ROOM.stops.find(stop=>stop.id==='glasshouse-exit')!;
+  assert.equal((await move({room:'glasshouse',position:door.point})).status,200);
+  assert.equal((await move(front)).status,200);
+  assert.deepEqual((await store.snapshot('aster')).position,front);
+  assert.equal(app.metrics.positionCheckpoints,2);
+ }finally{
+  await app?.close();
   await pool.end();
  }
 });

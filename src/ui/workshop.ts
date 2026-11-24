@@ -26,7 +26,8 @@ const names:Record<string,string>={scrap:'Scrap',timber:'Timber',supplies:'Suppl
 export const duration=(ms:number)=>{const seconds=Math.max(0,Math.ceil(ms/1000));return seconds>=3600?`${Math.floor(seconds/3600)}h ${Math.floor(seconds%3600/60)}m`:`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;};
 type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Record<string,unknown>;playerId?:string;collection?:CollectionGrant};
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;canReuseNotes?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
-type PanelHost={townHeadwear?:()=>TownHeadwear|undefined;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void;print?:{selected:()=>RiverSpot|null;choose:(spot:RiverSpot|null)=>boolean}};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToMaterial?:(id:typeof RESOURCE_IDS[number])=>void;walkToWorkshop?:()=>void;walkToWorkbench?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
+type WorkshopTrip={text:string;label:string;walk:()=>void};
+type PanelHost={townHeadwear?:()=>TownHeadwear|undefined;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void;print?:{selected:()=>RiverSpot|null;choose:(spot:RiverSpot|null)=>boolean}};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToMaterial?:(id:typeof RESOURCE_IDS[number])=>void;walkToWorkshop?:()=>void;walkToWorkbench?:()=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -576,7 +577,7 @@ export class WorkshopUI {
    const study=SURVEY_IDS.find(id=>!this.state.sketches.includes(id));
    const garden=this.state.garden;
    const walkToStudy=this.host.walkToStudy,walkToAllotment=this.host.walkToAllotment;
-   const trips: {text:string;label:string;walk:()=>void}[] = [];
+   const trips: WorkshopTrip[] = [];
    if(study&&walkToStudy){
     trips.push({text:'Sketch a tree while your piece takes shape.',label:'Walk to the '+SURVEYS[study].name.toLowerCase(),walk:()=>walkToStudy(study)});
    }
@@ -592,6 +593,10 @@ export class WorkshopUI {
     if(ripe&&walkToBranch){
      trips.push({text:'An apple is ready to pick in the orchard.',label:'Walk to the '+ripe.name.toLowerCase(),walk:()=>walkToBranch(ripe.id)});
     }
+   }
+   if(trips.length<2){
+    const woodland=this.host.woodlandTrip?.();
+    if(woodland)trips.push(woodland);
    }
    const [trip,alternate]=trips;
    if(trip){

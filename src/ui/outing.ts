@@ -1,4 +1,4 @@
-import{OUTING_STOPS,condition,createOuting,type OutingState,type OutingIntent,type OutingStation}from'../game/outing.ts';
+import{OUTING_STOPS,condition,createOuting,outingNext,type OutingState,type OutingIntent,type OutingStation}from'../game/outing.ts';
 import{OutingSaveWriter}from'../persistence/outing-save.ts';import type{TownClient}from'./town-client.ts';import './outing.css';
 type Host={open:(title:string)=>void;body:HTMLElement;position:()=>{room:string;position:{x:number;y:number}};go:(id:string)=>void;changed:()=>void;feedback:(message:string)=>void};
 export class OutingUI{
@@ -11,6 +11,27 @@ export class OutingUI{
   window.addEventListener('resize',()=>{const target=document.activeElement;if(this.opened&&target instanceof HTMLElement&&this.host.body.contains(target))this.reveal(target);});
  }
  snapshot():OutingState{return this.town?this.town.snapshot?.outing??createOuting():this.local.state;}
+ benchTrip(){
+  if(this.town||this.local.blocked||this.local.canRetry)return;
+  const state=this.snapshot();
+  if(!state.active&&(state.runs>=10000||state.journal.length>=1000))return;
+  const next=outingNext(state);
+  if(!state.active)return {
+   label:'Walk to the woodland work desk',
+   text:'Borrow a tool and mend a waymarker. No materials needed.',
+   walk:()=>this.host.go(next),
+  };
+  if(state.active.stage===4)return {
+   label:'Report back at the woodland desk',
+   text:'Your waymarker is fixed. Record the repair and return your tool.',
+   walk:()=>this.host.go(next),
+  };
+  return {
+   label:next==='outing-crossing'?'Walk to the woodland bend':'Walk to the leaning waymarker',
+   text:'Continue your borrowed-tool outing.',
+   walk:()=>this.host.go(next),
+  };
+ }
  closed(){this.opened=false;this.epoch++;this.host.body.closest('dialog')?.classList.remove('outing-dialog');}
  refresh(){if(!this.opened||this.busy)return;const key=JSON.stringify([this.town?.snapshot?.playerId??'local',this.snapshot().revision]);if(key!==this.key)this.render();}
  show(){this.host.open('Woodland work');this.opened=true;this.owner=this.town?.snapshot?.playerId??'local';this.message='';this.render();this.host.body.closest('dialog')?.classList.add('outing-dialog');if(this.snapshot().active&&(innerHeight<500||parseFloat(getComputedStyle(document.documentElement).fontSize)>20))this.focusNext();}

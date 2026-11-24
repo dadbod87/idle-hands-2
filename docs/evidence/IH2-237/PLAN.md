@@ -1,0 +1,7 @@
+# IH2-237 · Resume at the orchard packing table
+
+Taking the first packed snack took a resident back to an unrelated start position when the browser closed without saving the last walk. The parcel itself stayed saved, and the ready return route reached the orchard in about 18 seconds. A resident who walked away to the workshop before closing correctly resumed from the workshop and returned via the Journal.
+
+Record the current standing position immediately after a successful local pack using the normal optional position save. The real two-apple debit and 30-minute deadline still belong to the orchard writer. A stale, failed or shared pack does not run the local position callback. A position-write failure can't reverse the snack or spend anything again.
+
+All five focused orchard cases passed in Chromium and WebKit. The ordinary profile now asserts the actual table position was written while the parcel was queued, before closing the page. In a separate fresh persistent Chromium profile, both apples were picked normally, the browser process closed through the full 30-minute interval, and reopening restored the same packing-table position (104, 45). The Journal route reopened the table from there in about 0.2 seconds. One explicit collection delivered one snack and cleared the parcel. Workshop bytes stayed unchanged, with no artificial elapsed time, progress, position or API response.

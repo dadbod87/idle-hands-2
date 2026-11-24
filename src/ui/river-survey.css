@@ -64,3 +64,24 @@
 .river-survey-notebook:empty { display: none; }
 .river-survey-status { font-weight: bold; }
 @media(max-height:480px) { .river-survey-sketch { display: none; } }
+
+.river-print-controls {
+ border-block-start: 1px solid #b6a788;
+ margin-block: .65rem;
+ padding-block-start: .45rem;
+}
+#panel-body .river-print-controls :is(h4,p) { margin: 0 0 .4rem; }
+.river-print-controls label { display: block; }
+.river-print-controls select {
+ font: inherit;
+ min-height: 44px;
+ width: 100%;
+}
+.river-print-actions {
+ display: flex;
+ flex-wrap: wrap;
+ gap: .45rem;
+ margin-block-start: .55rem;
+}
+.river-print-actions button { min-height: 44px; }
+.river-print-controls [role=status]:empty { display: none; }

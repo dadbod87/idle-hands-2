@@ -21,8 +21,8 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "e1393ad4d534e2fc8c34f799be2d4b4ac17b1c036135a671edf12372e8ed929a",
-    "src/main.ts": "f1d3ceb6fadace0746949f3391e2fddd78f2b577b7c8a3558090a1772a303e66",
-    "src/phaser/WorldScene.ts": "6801d1534981cbcec02ffc7086ae8254df8eded59c2f472778a1fb004210919d",
+    "src/main.ts": "c5d116c8d9f119ce08bbf3294a0481fef589dcaa7a71bcf61f55864a26c54a38",
+    "src/phaser/WorldScene.ts": "d7c68cf6b0ed2b9ec3bc5152a0a7b40148e3e70ff0b1828bed415e2dc297f56c",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
   "currentTask": "Reviewed combined town, Bag, lookup, Riverwalk and closed Glasshouse gameplay. Original study snapshots and generated output remain frozen."

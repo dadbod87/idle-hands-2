@@ -290,3 +290,84 @@ test('illustrated Riverwalk records stay readable and do not enter the Bag', asy
   }
  }
 });
+
+test('only an earned river print can decorate a private workshop, with durable removal',async({browser})=>{
+ const output=process.env.QA_EVIDENCE_DIR??'test-results/browser/river-survey';
+ mkdirSync(output,{recursive:true});
+ const record=JSON.stringify({version:1,recorded:['reeds','bridge'],cast:null});
+ for(const size of [
+  {name:'desktop',width:1440,height:900,text:100,touch:false},
+  {name:'phone',width:320,height:640,text:100,touch:true},
+  {name:'short',width:844,height:390,text:200,touch:true},
+ ]){
+  const context=await browser.newContext({viewport:{width:size.width,height:size.height},hasTouch:size.touch});
+  try{
+   await context.addInitScript(({record,inWorkshop})=>{
+    if(!localStorage.getItem('ih2:river-survey:v1'))localStorage.setItem('ih2:river-survey:v1',record);
+    if(inWorkshop&&!localStorage.getItem('ih2:pilot-position:v1'))localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'workshop',position:{x:9,y:11}}));
+   },{record,inWorkshop:size.name!=='phone'});
+   const page=await context.newPage(),errors:string[]=[],api:string[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))api.push(request.url());});
+   const read=(key:string)=>page.evaluate(key=>localStorage.getItem(key),key);
+   const art=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual.riverPrint);
+   const hit=(control:ReturnType<typeof page.locator>)=> size.touch?control.tap():control.press('Enter');
+   const button=(name:string)=>page.getByRole('button',{name,exact:true});
+   const ready=()=>expect.poll(()=>page.evaluate(()=>(window as any).__pilot?.metrics().ready)).toBe(true);
+   async function openFolio(){
+    await hit(page.locator('#journal'));
+    await hit(page.locator('[data-river-journal] summary'));
+    await expect(page.getByRole('combobox',{name:'Choose a river print'})).toBeVisible();
+   }
+   await page.goto('/?sky-study=1&phase=day&weather=clear');
+   await ready();
+   await page.evaluate(scale=>document.documentElement.style.fontSize=scale+'%',size.text);
+   const before=await read('ih2:workshop:v2');
+   await openFolio();
+   const choice=page.getByRole('combobox',{name:'Choose a river print'});
+   await expect(choice.locator('option')).toHaveText(['A ribbon of pondweed','An exceptionally wet boot']);
+   await choice.selectOption('bridge');
+   await expect(button('Take print down')).toBeDisabled();
+   await hit(button('Display print'));
+   await expect(page.getByText('On display · An exceptionally wet boot')).toBeVisible();
+   await expect.poll(()=>read('ih2:river-print:v1')).toBe('bridge');
+   await page.screenshot({path:output+'/river-print-panel-'+size.name+'.png'});
+   if(size.name==='phone')await hit(button('See it in the workshop'));
+   else await hit(button('Close panel'));
+   await expect.poll(art,{timeout:30000}).toBe('bridge');
+   const bounds=await page.locator('canvas').boundingBox();
+   const print=await page.evaluate(()=>(window as any).__pilot.screenPoint(11.85,9.6));
+   expect(print.x-45).toBeGreaterThan(0);
+   expect(print.x+45).toBeLessThan(bounds!.width);
+   expect(print.y-36).toBeGreaterThan(0);
+   expect(print.y+48).toBeLessThan(bounds!.height);
+   await page.screenshot({path:output+'/river-print-wall-'+size.name+'.png'});
+   await page.reload();
+   await ready();
+   await expect.poll(art).toBe('bridge');
+   await openFolio();
+   if(size.name==='phone'){
+    await page.evaluate(()=>{
+     const set=Storage.prototype.setItem;
+     Storage.prototype.setItem=function(key,value){
+      if(key==='ih2:river-print:v1')throw new DOMException('Test print write failure','QuotaExceededError');
+      return set.call(this,key,value);
+     };
+    });
+    await choice.selectOption('reeds');
+    await hit(button('Display print'));
+    await expect(page.getByText('The print change could not be saved.')).toBeVisible();
+    await expect.poll(art).toBe('bridge');
+    expect(await read('ih2:river-print:v1')).toBe('bridge');
+   }
+   await hit(button('Take print down'));
+   await expect(page.getByText('Print taken down.')).toBeVisible();
+   await expect.poll(art).toBeNull();
+   expect(await read('ih2:river-print:v1')).toBeNull();
+   expect(await read('ih2:river-survey:v1')).toBe(record);
+   expect(await read('ih2:workshop:v2')).toBe(before);
+   expect(errors).toEqual([]);
+   expect(api).toEqual([]);
+  }finally{await context.close();}
+ }
+});

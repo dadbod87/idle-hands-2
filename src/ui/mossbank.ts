@@ -138,8 +138,12 @@ export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem
   if(!state?.joined)return;
   const entry=document.createElement('section');entry.className='journal-ready-return mossbank-field-card';entry.dataset.mossbankJournal='';
   const title=document.createElement('h3');title.textContent='Mossbank route card';entry.append(title);
-  if(state.finished)entry.append(sample(),line('Alder swatch · Received from Wren after recording the windrow and flood line.'));
-  else entry.append(mark(state));
+  if(state.finished){
+   const reward=line('Alder swatch');
+   reward.className='field-keepsake-summary';
+   reward.prepend(sample());
+   entry.append(reward);
+  }else entry.append(mark(state));
   if(state.finished&&host.preview){
    const preview=document.createElement('button');
    preview.type='button';preview.className='destination';

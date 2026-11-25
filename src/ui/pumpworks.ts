@@ -360,10 +360,18 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const entry=document.createElement('section');entry.className='journal-ready-return';entry.dataset.pumpJournal='';
   const title=document.createElement('h3');title.textContent='The Pumpworks';
   const note=state.satchel==='at-pump'?'Your field satchel is on the lost property shelf.':
-   state.reported?'Field seal · Silt hopper cleared and the pump inspected.':
+   state.reported?'Field seal':
    state.cleared?'The inspection desk is clear. Collect the field seal.':
    state.rod==='packed'?'Equip the sounding rod in Bag before entering the chamber.':'Your survey gear is ready for the pump chamber.';
-  entry.append(title,paragraph(note),state.reported
+  const description=paragraph(note);
+  if(state.reported){
+   description.className='field-keepsake-summary';
+   const art=document.createElement('img');
+   art.src='/art/pumpworks/field-seal.svg';art.alt='';
+   art.width=58;art.height=46;
+   description.prepend(art);
+  }
+  entry.append(title,description,state.reported
    ?button('Preview field seal',previewSeal)
    :button('Walk to the Pumpworks',walkToDoor));
   body.append(entry);

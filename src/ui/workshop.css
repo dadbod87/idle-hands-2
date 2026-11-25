@@ -47,6 +47,12 @@
 #panel-body .journal-ready-return{background:#e4ead6;border:1px solid #809072;padding:10px 12px;margin:0 0 12px}
 #panel-body .journal-ready-return h3{margin:0 0 4px}
 #panel-body .journal-ready-return p{margin:0 0 5px}
+#panel-body .field-keepsake-summary {
+ display:flex;align-items:center;gap:.65rem;font-weight:bold;
+}
+#panel-body .field-keepsake-summary img {
+ display:block;width:58px;height:46px;max-width:none;max-height:none;object-fit:contain;margin:0;flex:none;
+}
 #panel-body .journal-ready-return .destination{width:100%;min-height:44px;margin:4px 0 0}
 #panel-body .journal-first-outing{border-top:1px solid var(--line);margin-block:.55rem .85rem;padding-block-start:.5rem}
 #panel-body .journal-first-outing h3{margin:0 0 .3rem}

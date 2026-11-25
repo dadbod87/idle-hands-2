@@ -24,7 +24,7 @@ See [combined evidence](../../evidence/IH2-255/PLAN.md) and individual evidence 
 
 ## Observed elapsed trials
 
-Four fresh isolated browser profiles closed after an ordinary game action. Each trial uses an immutable local artifact and its exact profile. Time advances normally. The Glasshouse's authority is fictional and projected through the real rule. These records are pending until a return receipt exists.
+Four fresh isolated browser profiles closed after an ordinary game action. Each trial uses an immutable local artifact and its exact profile. Time advances normally. The Glasshouse's authority is fictional and projected through the real rule. All four return receipts are archived. Each release boundary below identifies its own source and whether shared responses were simulated.
 
 | Activity | Pacific expected return | Initial isolated origin | Tested source |
 | --- | --- | --- | --- |
@@ -63,8 +63,22 @@ A fresh 320px Chromium touch profile, starting with its normal empty inventory, 
 
 ### Follow-up and full browser collection
 
-The [Glasshouse quote recovery](https://github.com/dadbod87/idle-hands-2/tree/fix/nov25-glasshouse-review-recovery) is backed up independently at `cd6acde`. A malformed stored price or expiry leaves the resident at a usable board, with the review cleared and no charge. Its build, 456 local domain cases, and five focused Chromium cases passed. Incorporate this exact source into the final connected check. The compatibility branch collects all 274 browser cases in three disjoint groups of 91, 90 and 93. Collection confirms coverage assignment only. No hosted run was started.
+The [Glasshouse quote recovery](https://github.com/dadbod87/idle-hands-2/tree/fix/nov25-glasshouse-review-recovery) is backed up independently at `cd6acde`. A malformed stored price or expiry leaves the resident at a usable board, with the review cleared and no charge. Its build, 456 local domain cases, and five focused Chromium cases passed. The final local review build incorporates the same correction. The compatibility branch collects all 274 browser cases in three disjoint groups of 91, 90 and 93. Collection confirms coverage assignment only. No hosted run was started.
 
 ### Twelve-hour bridge kit receipt
 
 An independent 320px Chromium touch profile on the same frozen source 076c6a3 closed November 24 at 2:48:17.108 p.m. Pacific. It returned November 25 after 2:48:18 a.m., with identical saved job and inventory before collection. The Journal marker appeared, an explicit review collected exactly one kit, and the correct inventory and clear marker survived reopening. The ordinary starter workshop and Riverwalk were played before closing. No API request, state, stock, position or clock fixture was used.
+
+### Twelve-hour Glasshouse receipt
+
+The frozen local build of 8311a4b used a real clock and an isolated fictional connected browser. The ordinary frame review accepted exactly two of six pine. The project was funded November 24 at 4:01:56.044 p.m. Pacific and the browser closed at 4:01:56.189 p.m. It opened November 25 at 4:01:56.044 a.m. and the browser returned at 4:02:04.163 a.m. The restored facade opened into the nursery, the Journal exposed the keeper route and one explicit plant claim saved. There was no late replay of the opening effect and no second debit. All three fixture commands and zero script errors are in the receipt. Authentication, movement, writes and shared responses were intercepted. Durable PostgreSQL/restart behavior and real shared concurrency still require the connected checks. The archived harness uses “published candidate” to mean locally compiled bytes. This test exposed no public site.
+
+### Next adoption decisions
+
+The [residential-art experiment](https://github.com/dadbod87/idle-hands-2/tree/perf/nov25-room-art) is separate at `7fe40a4`. Moving 16 requests out of the square improved median cold readiness by 444 ms in five throttled pairs. It added about 0.43–0.47 seconds to the first direct street visit in two sampled viewports. Keep it separate until the first-entry transition can be inspected on a slow link, including actual visible frames.
+
+The first useful player study is one fresh resident on a phone. Give them a single goal, “Make your workshop feel like yours,” then leave the route open. Observe whether they start a job and independently find an outdoor or creative use for the wait, can stop without fear of losing progress, and know exactly what to collect on return. A second familiar resident can choose to help the Glasshouse and see their own decoration goal stay achievable. Ask each person what they wanted to do next and where they had to search for a control. Advance pigments or other long requirements only after the existing choice, return and display loop makes sense to real players.
+
+### Final local runtime with quote recovery
+
+Runtime `d64d51f3ff81157cfbedfb878ce0081c814b515f` combines the reviewed game candidate and quote recovery. Its compressed production-mode local build, tracker/design validation, all 40 pinned skill files and whitespace checks passed. The 489 domain cases returned 456 passes and 33 skips because the database was stopped. The selected 12 Chromium and 11 WebKit browser cases passed. Shared commands used fictional intercepted requests. The exact build artifact fingerprints and raw local results are in the session `closeout` folder. These are local results. Connected and exact hosted checks remain open.

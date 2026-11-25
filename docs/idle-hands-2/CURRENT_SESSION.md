@@ -1,6 +1,6 @@
 # November 25 — local overnight review candidate
 
-The [overnight handoff](handoffs/2026-11-25-overnight-play.md) identifies the exact combined local source, independently backed-up candidates, pending real-duration receipts and next steps. Accepted main and the existing PRs remain separate. Keep saved previews and databases stopped. The new shared gameplay still needs its complete connected validation.
+The [overnight handoff](handoffs/2026-11-25-overnight-play.md) identifies the exact combined local source, independently backed-up candidates, completed real-duration receipts and next steps. Accepted main and the existing PRs remain separate. Keep saved previews and databases stopped. Use runtime `d64d51f` from `study/nov25-pr-compat` for local review. The new shared gameplay still needs its complete connected validation.
 
 # November 23 — shared-town and practice batches
 

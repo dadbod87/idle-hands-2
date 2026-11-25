@@ -12,9 +12,12 @@ import { woodlandRepairs } from './helpers/woodland-keepsake.ts';
 for(const [variant,name] of [
  ['naturalist','the owner previews privately and the guest sees only the confirmed keepsake'],
  ['woodland-certificate','the owner chooses an earned woodland certificate for current visitors'],
+ ['collector-gauge','the earned Collector gauge survives display retry and stays visitor-scoped'],
 ] as const)test(name, async ({ browser }) => {
  const output = (process.env.QA_EVIDENCE_DIR??'test-results/browser/home-keepsake')+'/'+variant;
  const now = Date.now();
+ const earnedGauge=variant==='collector-gauge';
+ const previewLabel=earnedGauge?'Preview a keepsake':'Preview your certificate';
  const earnedWoodland=variant==='woodland-certificate'?woodlandRepairs(now,2):undefined;
  const shown=HOME_KEEPSAKES[variant];
  let ownerState = createWorkshop(now);
@@ -45,7 +48,7 @@ for(const [variant,name] of [
    const plot = {id:'1',ownerId:'keepsake-owner',ownerName:'Rowan',level:1,placements:ownerState.placements,
     workroomPlacements:emptyWorkroom(),...(keepsake==='naturalist'?{keepsake}:keepsake?{wallDisplay:keepsake}:{})};
    return {
-    homeKeepsakes:true,...(earnedWoodland?{homeKeepsakeChoices:true,...(isOwner?{outing:earnedWoodland}:{})}:{}),playerId:identity.id,name:identity.name,workshop:isOwner?ownerState:guestState,position,
+    homeKeepsakes:true,...(earnedGauge?{homeKeepsakeChoices:true,...(isOwner?{collectorGaugeOwned:true}:{})}:{}),...(earnedWoodland?{homeKeepsakeChoices:true,...(isOwner?{outing:earnedWoodland}:{})}:{}),playerId:identity.id,name:identity.name,workshop:isOwner?ownerState:guestState,position,
     plot:isOwner?plot:null,plots:[plot],quest:{contentVersion:1,awarded:[]},
     bridge:{contributed:0,target:3,restored:false},seasonKey:'2026-11-13',scores:[],serverTime:Date.now(),
    };
@@ -117,11 +120,11 @@ for(const [variant,name] of [
   await expect.poll(()=>visual(guest)).toBe(false);
   await arrange(owner);
   await openFrame();
-  await owner.getByRole('button',{name:'Preview your certificate'}).click();
-  const picker=owner.getByRole('combobox',{name:'Choose a certificate'});
-  if(earnedWoodland){
+  await owner.getByRole('button',{name:previewLabel}).click();
+  const picker=owner.getByRole('combobox',{name:earnedGauge?'Choose a keepsake':'Choose a certificate'});
+  if(earnedWoodland||earnedGauge){
    await expect(picker).toBeFocused();
-   await expect(picker.locator('option')).toHaveText(['Neighborhood Naturalist','Qualified to point left']);
+   await expect(picker.locator('option')).toHaveText(['Neighborhood Naturalist',shown.name]);
    await picker.selectOption(variant);
    await expect(owner.getByRole('img',{name:shown.name+' preview'})).toHaveAttribute('src',shown.art);
   }else{
@@ -183,7 +186,7 @@ for(const [variant,name] of [
   await owner.screenshot({path:output+'/short-owner.png'});
   await owner.keyboard.press('Enter');
   await expect.poll(()=>commands.length).toBe(3);
-  await expect(owner.getByRole('button',{name:'Preview your certificate'})).toBeVisible();
+  await expect(owner.getByRole('button',{name:previewLabel})).toBeVisible();
   await close(owner);
   await expect.poll(()=>visual(owner)).toBe(false);
   await guest.evaluate(()=>(window as any).__homeKeepsakeRefresh());

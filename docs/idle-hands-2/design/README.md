@@ -8,7 +8,7 @@ IH2-054 design package, 2026-11-10. **Design candidates, not implemented feature
 
 - [Owner direction and decision boundaries](OWNER_DIRECTIONS.md)
 - [World and systems design](WORLD_AND_SYSTEMS_DESIGN.md): opening, homes, construction, exploration, combat/recovery and social contracts
-- [World concept map](WORLD_CONCEPT.svg) and [region data](REGION_PLAN.json): candidate connections and distinct services; not a playable map or travel-time measurement
+- [World atlas](WORLD_CONCEPT.svg) and [regional design](WORLD_AND_SYSTEMS_DESIGN.md#world-structure-one-route-before-five-cities) show the candidate connections and Hidden Valley. The [dated region data](REGION_PLAN.json) pairs with the original design catalog for the historical study checks.
 - [Item/art production plan](ASSET_PRODUCTION_PLAN.md) and [candidate content catalog](CONTENT_CATALOG.json): current gaps, production batches and required representations
 - [Phone storyboards](PHONE_STORYBOARDS.svg): proposed interaction, not gameplay screenshots
 - [Pacing experiment](PACING_EXPERIMENT.md): assumptions, spending, cohorts, construction and recovery tradeoffs

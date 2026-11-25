@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1000" viewBox="0 0 1480 1000" role="img" aria-labelledby="title desc">
 <title id="title">Idle Hands 2 candidate world connections</title>
-<desc id="desc">Design concept only: Ledgerwick connects to Inkwood, an optional Pumpworks dungeon, Mossbank and Bellwether Quay. All expansion regions are unimplemented. This is not a playable map or travel scale.</desc>
+<desc id="desc">Design concept: Ledgerwick leads to Inkwood and Mossbank. The Pumpworks is an optional outing. Hidden Valley and Bellwether Quay are future towns beyond Mossbank. Illustration distances do not measure travel time.</desc>
 <rect width="1480" height="1000" fill="#f7efdc"/>
 <rect x="22" y="22" width="1436" height="956" rx="12" fill="none" stroke="#343c36" stroke-width="3"/>
 <style>text{fill:#343c36;font-family:Georgia,serif}.mono{font-family:monospace;letter-spacing:1px}.small{font-size:17px}.card{fill:#fff9eb;stroke:#6b795c;stroke-width:2}.road{fill:none;stroke-linecap:round;stroke-linejoin:round}</style>
@@ -9,7 +9,7 @@
 <text x="65" y="146" font-size="19">One useful neighborhood first. A larger world, built in deliberate steps.</text>
 <rect x="1140" y="59" width="273" height="56" rx="5" fill="#e7d69f" stroke="#857247"/>
 <text x="1276" y="83" text-anchor="middle" class="mono" font-size="14">DESIGN CONCEPT</text>
-<text x="1276" y="104" text-anchor="middle" font-size="14">Candidate names · not playable</text>
+<text x="1276" y="104" text-anchor="middle" font-size="14">Concept map · no travel scale</text>
 <ellipse cx="755" cy="448" rx="635" ry="263" fill="#e4e7cc"/>
 <ellipse cx="1008" cy="754" rx="357" ry="138" fill="#d7e4df"/>
 <path d="M419 185C350 340 505 440 455 581S509 769 466 896" class="road" stroke="#9db6b5" stroke-width="48"/>
@@ -59,6 +59,7 @@
 <path d="M785 440Q843 406 930 381" class="road" stroke="#a76d58" stroke-width="7" stroke-dasharray="9 13"/>
 <path d="M841 494Q951 510 1077 514" class="road" stroke="#7a8b69" stroke-width="7" stroke-dasharray="9 13"/>
 <path d="M1211 632Q1210 690 1117 735" class="road" stroke="#7a8b69" stroke-width="7" stroke-dasharray="9 13"/>
+<path d="M1349 516Q1423 435 1397 356T1335 333" class="road" stroke="#7a8b69" stroke-width="7" stroke-dasharray="9 13"/>
 <g transform="translate(449 560) rotate(-24)"><rect x="-38" y="-17" width="76" height="34" fill="#b58d62" stroke="#63543e" stroke-width="3"/><path d="M-24-17v34M-8-17v34M8-17v34M24-17v34" stroke="#63543e" stroke-width="2"/></g>
 <text x="411" y="658" class="small">First trail: materials + inspection time</text>
 <text x="965" y="465" class="small" text-anchor="middle">Later restoration route</text>
@@ -75,7 +76,7 @@
 <text x="245" y="682" font-size="16" text-anchor="middle">Workshop · café · infirmary</text>
 <text x="245" y="707" font-size="16" text-anchor="middle">Earned homes and public projects</text>
 </g>
-<g data-region-id="inkwood" id="region-inkwood"><title>First woodland route. Not implemented; first trail remains IH2-053 work.</title>
+<g data-region-id="inkwood" id="region-inkwood"><title>First woodland region. The bounded trail is playable in local candidates.</title>
 <path d="M668 396v24" stroke="#6d6250" stroke-width="7"/>
 <path d="M643 395Q634 361 666 356Q701 362 693 396Z" fill="#8da67d" stroke="#576e56" stroke-width="2"/>
 <path d="M710 378v24" stroke="#6d6250" stroke-width="7"/>
@@ -88,7 +89,7 @@
 <text x="710" y="527" font-size="16" text-anchor="middle">Pine/birch · herbs · fruit</text>
 <text x="710" y="552" font-size="16" text-anchor="middle">Safe trail + optional creature pockets</text>
 </g>
-<g data-region-id="pumpworks" id="region-pumpworks"><title>Optional small cooperative dungeon. Design candidate only; no combat or dungeon runtime exists.</title>
+<g data-region-id="pumpworks" id="region-pumpworks"><title>Optional small dungeon. Browser-practice combat is playable. Shared combat is a future design.</title>
 <rect x="878" y="165" width="104" height="62" fill="#909b8b" stroke="#343c36" stroke-width="3"/>
 <path d="M878 165l12-24 20 8 18-16 18 16 18-7 18 23" fill="#a6ad96" stroke="#343c36" stroke-width="3"/>
 <path d="M909 227v-26q21-31 42 0v26" fill="#45594f" stroke="#343c36" stroke-width="3"/>
@@ -96,10 +97,10 @@
 <rect class="card" x="793" y="245" width="274" height="136" rx="7"/>
 <text x="930" y="274" font-size="25" font-weight="bold" text-anchor="middle">The Old Pumpworks</text>
 <text x="930" y="298" font-size="14" font-style="italic" text-anchor="middle">The maintenance request is overdue.</text>
-<text x="930" y="332" font-size="16" text-anchor="middle">Small optional cooperative outing</text>
+<text x="930" y="332" font-size="16" text-anchor="middle">Small optional combat outing</text>
 <text x="930" y="357" font-size="16" text-anchor="middle">Fittings and decorative salvage</text>
 </g>
-<g data-region-id="mossbank" id="region-mossbank"><title>Woodland service settlement. Future regional candidate; not a second shipped town.</title>
+<g data-region-id="mossbank" id="region-mossbank"><title>Woodland service settlement. The road, sawmill and survey are playable in a local candidate.</title>
 <rect x="1152" y="411" width="116" height="64" fill="#b18e67" stroke="#343c36" stroke-width="3"/>
 <path d="M1142 411l11-29 119 13 7 16Z" fill="#76917b" stroke="#343c36" stroke-width="3"/>
 <path d="M1153 429h114m-114 17h114m-114 17h114" stroke="#796549"/>
@@ -109,6 +110,19 @@
 <text x="1210" y="543" font-size="14" font-style="italic" text-anchor="middle">Locally sourced. Extensively discussed.</text>
 <text x="1210" y="577" font-size="16" text-anchor="middle">Sawmill · nursery · natural dyes</text>
 <text x="1210" y="602" font-size="16" text-anchor="middle">Cabins and woodland finishes</text>
+</g>
+<g data-region-id="hidden-valley" id="region-hidden-valley">
+<title>Future hillside town with an orchard nursery, cider court, and a safe route through Mossbank.</title>
+<path d="M1184 192l37-53 32 32 27-22 52 43z" fill="#9ca981" stroke="#5c745b" stroke-width="3" stroke-linejoin="round"/>
+<path d="M1218 144l6 21 12-11m41-1 5 16 12-9" fill="none" stroke="#d2d7ad" stroke-width="3" stroke-linecap="round"/>
+<path d="M1214 190h99m-73-12h56" fill="none" stroke="#c6ae7e" stroke-width="5" stroke-linecap="round"/>
+<rect x="1252" y="176" width="24" height="21" fill="#e6cd9d" stroke="#343c36" stroke-width="2"/>
+<path d="M1248 176l16-13 16 13z" fill="#a76d58" stroke="#343c36" stroke-width="2" stroke-linejoin="round"/>
+<rect class="card" x="1123" y="210" width="274" height="124" rx="7"/>
+<text x="1260" y="241" font-size="25" font-weight="bold" text-anchor="middle">Hidden Valley</text>
+<text x="1260" y="265" font-size="14" font-style="italic" text-anchor="middle">Cider pending an inspection.</text>
+<text x="1260" y="293" font-size="16" text-anchor="middle">Orchard grafts · a shared press</text>
+<text x="1260" y="316" font-size="16" text-anchor="middle">Terrace houses above the green</text>
 </g>
 <g data-region-id="bellwether-quay" id="region-bellwether-quay"><title>Coastal trade settlement. Future regional candidate, not a configured market or travel system.</title>
 <rect x="952" y="633" width="86" height="89" fill="#e1d6b7" stroke="#343c36" stroke-width="3"/>
@@ -128,6 +142,6 @@
 <text x="140" y="943" font-size="17">First planned expansion</text>
 <path d="M448 937h55" stroke="#7a8b69" stroke-width="6" stroke-dasharray="8 10"/>
 <text x="518" y="943" font-size="17">Later candidate connection</text>
-<text x="1410" y="938" font-size="15" text-anchor="end">No travel scale · Expansion areas unimplemented</text>
+<text x="1410" y="938" font-size="15" text-anchor="end">Layout study · Hidden Valley and the Quay are future towns</text>
 <text x="1410" y="959" font-size="15" text-anchor="end">Safe town/home progress has a noncombat route</text>
 </svg>

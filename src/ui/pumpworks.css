@@ -77,6 +77,9 @@
  .shell:has(#pump-controls:not([hidden])) {
   height:100dvh;min-height:0;grid-template-rows:auto minmax(112px,1fr) auto;
  }
+ .shell:has(#pump-controls:not([hidden])) > header { padding:3px 8px; }
+ .shell:has(#pump-controls:not([hidden])) > header :is(.brand-mark,.pilot-tag) { display:none; }
+ .shell:has(#pump-controls:not([hidden])) > header .brand h1 { font-size:1.25rem; }
  .shell:has(#pump-controls:not([hidden])) > footer { display:grid;grid-template-columns:minmax(110px,.26fr) minmax(0,1fr);gap:6px;padding:4px 8px; }
  .shell:has(#pump-controls:not([hidden])) > footer #feedback {
   display:block;height:3.9em;min-height:0;margin:0;overflow:auto;

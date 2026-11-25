@@ -1,0 +1,9 @@
+# IH2-257 · Pending PR compatibility
+
+This review worktree composes the local overnight candidate with the exact draft PR #109 head `4d1812ed5f765d2e654d61aa9237088a51efc928`. Its ancestry already contains the exact PR #108 hood head, so that change is included once. The remote PRs and main stay separate. This branch makes it possible to apply one later acceptance batch while keeping the independently verified source.
+
+The merge preserves both existing headwear choices, present residents and wave expiry, opt-in touch travel and culling, as well as the prior Pond and Glasshouse routes. The shared Glasshouse has its own room context for peers, and the existing wave gesture remains limited to the square. The frame and plant retain separate visitor controls. The three established test groups and existing exact-final merge gates remain intact.
+
+On runtime commit `2a11f0e2181a314cc6819f71ebf0b6c4180e1469`, the build, 455 local domain tests, 12 focused Chromium cases and 11 WebKit cases passed. Thirty-three database tests remain omitted while services are stopped. The native gesture case uses Chromium CDP and runs in Chromium. The WebKit-only local selection leaves out that one unsupported CDP case while preserving the existing full Chromium coverage. Shared residents, movements, clock and command responses in these browser cases use declared fictional fixtures. There are no live-account writes.
+
+The first reconciliation missed a duplicate fixture import and retained two old tracker states. Those were separated and corrected using the existing accepted Bag proof. A separate exact #109 WebKit check reproduced the map width defect, and the bounded native select correction passed on both the independent and combined sources. See [IH2-256](../IH2-256/PLAN.md). The recorded results are local, not a new check on either open PR.

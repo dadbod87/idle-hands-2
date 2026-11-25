@@ -60,3 +60,13 @@ On the exact integrated runtime, the 56-case browser selection recorded 52 passe
 ### Glasshouse stored review recovery
 
 A malformed persisted quote with the wrong price could make the read projection throw. The same two-minute and exact-price validation now guards both projection and confirmation. The board stays visible with no quote, so the resident can review again without a debit or changed project stage. The regression covers a wrong pine amount and an incorrect expiry, alongside valid quote recovery. The build and 456 local domain cases passed. Five focused Chromium cases covered the nursery, returning to work and home privacy with intercepted shared responses. The 33 database tests remain outstanding.
+
+### Residential art startup experiment
+
+Five alternating fresh 390×844 Chromium profiles used gzip and a controlled 150 ms RTT, 1.6 Mbit/s downlink and 4× CPU throttle. The accepted main had median readiness 7.348 s, 118 transfers and 649,264 B. The earlier combined runtime had median 7.549 s, 118 transfers and 670,538 B. Normal movement and no shared API were used. Native touch opened Places on every run.
+
+The experiment moves 16 street-specific illustrations off the square's preload path. The registry stays available in the square. Against the identical recovery parent, median first readiness fell from 7.534 to 7.090 s. Transfers fell from 118 to 102 and bytes before ready from 670,558 to 654,100. Native Places median fell from 7.674 to 7.224 s. Those five paired results are comparative local estimates. They do not measure a physical phone or production transport.
+
+The first direct street entry moves the loading time to that room. In one separately throttled native shared-UI attempt per width, all 24 street sites rendered 740/749 ms after activation on the deferred client, versus 314/281 ms before the change. A traveler spending time elsewhere benefits at first load. A returning resident's first street visit still needs those bytes. This result argues for testing approach-time loading or a clearly visible first-entry cue before adopting the experiment. It does not establish canvas visibility between sampled frames.
+
+Twelve existing Chromium first-morning and home-interior cases passed. Focused Chromium and WebKit first-entry checks confirmed living home art, 24 possible sites, a single entry command and a native reload. The shared endpoints and resident placement were fictional. Chrome sent teardown beacons to the deliberately disabled proxy, and no saved service answered. Terra saw a complete occupied house and an unobstructed main control on desktop and phone. The art experiment stays separate from the recommended game review branch.

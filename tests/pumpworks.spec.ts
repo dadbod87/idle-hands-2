@@ -173,6 +173,20 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     for(const name of ['Strike','Brace','Eat oatcake · +3 health','Places','Bag','Journal'])await expect(button(name)).toBeInViewport({ratio:1});
     await expect(page.locator('#interact')).toBeInViewport({ratio:1});
     expect(await page.locator('canvas').evaluate(el=>el.getBoundingClientRect().height)).toBeGreaterThan(145);
+    // Deliver lifecycle events without depending on headless window management.
+    await page.evaluate(()=>{
+     document.dispatchEvent(new Event('freeze'));
+     window.dispatchEvent(new Event('blur'));
+    });
+    const frozen=(await read(page))!;
+    await page.waitForTimeout(1400);
+    await page.evaluate(()=>document.dispatchEvent(new Event('resume')));
+    await page.waitForTimeout(160);
+    const unfocused=(await read(page))!;
+    expect(unfocused.combat.hopper).toEqual(frozen.combat.hopper);
+    expect(unfocused.state).toEqual(frozen.state);
+    await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+    await expect.poll(async()=>(await read(page))!.combat.hopper).not.toEqual(frozen.combat.hopper);
     await press('Journal');
     const paused=(await read(page))!;
     await page.setViewportSize({width:820,height:390});

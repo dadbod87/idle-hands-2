@@ -50,6 +50,8 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  let hopper=freshHopper();
  let impact:FieldImpact|null=null;
  let priorAt=0;
+ let browserPaused=false;
+ let windowUnfocused=false;
  let retryAt=0;
  let practiceReadyAt=0;
  let renderedControls='';
@@ -96,6 +98,20 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  const current=()=>record.ok?record.state:null;
  const refresh=()=>{record=readPumpworks(storage);host.update(record);};
  window.addEventListener('storage',event=>{if(event.key===PUMPWORKS_KEY||event.key===null)refresh();});
+ const resetFrameClock=()=>{priorAt=0;};
+ const pauseBrowser=()=>{browserPaused=true;resetFrameClock();};
+ const wakeClock=()=>{
+  resetFrameClock();
+  if(host.combat().inRoom)host.wakeFrame();
+ };
+ const resumeBrowser=()=>{browserPaused=false;wakeClock();};
+ document.addEventListener('freeze',pauseBrowser);
+ document.addEventListener('resume',resumeBrowser);
+ document.addEventListener('visibilitychange',resetFrameClock);
+ window.addEventListener('pagehide',pauseBrowser);
+ window.addEventListener('pageshow',resumeBrowser);
+ window.addEventListener('blur',()=>{windowUnfocused=true;resetFrameClock();});
+ window.addEventListener('focus',()=>{windowUnfocused=false;wakeClock();});
 
  function button(label:string,click:()=>void){
   const item=document.createElement('button');
@@ -152,12 +168,12 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   if(busy||!record.ok)return;
   const expected=record.raw;
   const before=record.state.revision;
-  await change(action,'arena',()=>host.combat().able,expected,true);
+  await change(action,'arena',()=>!browserPaused&&!windowUnfocused&&host.combat().able,expected,true);
   if(before===current()?.revision)retryAt=performance.now()+1800;
  }
  function input(action:'strike'|'brace'|'eat'){
   const context=host.combat(),state=current();
-  if(!context.able||!state||busy||state.recovering)return;
+  if(browserPaused||windowUnfocused||!context.able||!state||busy||state.recovering)return;
   if(!state.fight){
    const now=performance.now();
    if(action==='strike'&&state.rod==='equipped'&&inPracticeReach(context.position)&&now>=practiceReadyAt){
@@ -201,12 +217,13 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    return;
   }
   if(impact&&now>=impact.until)impact=null;
-  const dt=priorAt?(now-priorAt)/1000:0;
-  priorAt=now;
+  const running=context.able&&!browserPaused&&!windowUnfocused;
+  const dt=running&&priorAt?(now-priorAt)/1000:0;
+  priorAt=running?now:0;
   if(!state||state.cleared||state.recovering){
    if(hopper.phase!=='idle')hopper=freshHopper();
   }
-  else if(context.able&&!busy){
+  else if(running&&!busy){
    if(!state.fight){
     hopper=patrolHopper(hopper,dt);
     if(hopperNotices(context.position,hopper.feet)&&now>=retryAt)void combatAction('begin');

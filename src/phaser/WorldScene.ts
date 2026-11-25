@@ -975,6 +975,7 @@ export class WorldScene extends Phaser.Scene {
     const motionChanged=()=>this.updateAmbient(0);this.reducedMotion.addEventListener('change',motionChanged);
     document.addEventListener('keydown', onDown); document.addEventListener('keyup', onUp);
     window.addEventListener('blur', clear); document.addEventListener('visibilitychange', clear);
+    document.addEventListener('freeze', clear);window.addEventListener('pagehide', clear);
     const pointAt = (screenX: number, screenY: number) => {
       const pos = this.cameras.main.getWorldPoint(screenX, screenY);
       const to = { x: pos.x / TILE - .5, y: pos.y / TILE - .5 };
@@ -1070,7 +1071,7 @@ export class WorldScene extends Phaser.Scene {
       this.scale.off(Phaser.Scale.Events.RESIZE,cancelTouch);
       cancelTouch();touchRing?.remove();
     });
-    this.events.once('shutdown', () => { this.reducedMotion.removeEventListener('change',motionChanged);document.removeEventListener('focusin',readingFocus);document.removeEventListener('keydown', onDown); document.removeEventListener('keyup', onUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear); });
+    this.events.once('shutdown', () => { this.reducedMotion.removeEventListener('change',motionChanged);document.removeEventListener('focusin',readingFocus);document.removeEventListener('keydown', onDown); document.removeEventListener('keyup', onUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear);document.removeEventListener('freeze', clear);window.removeEventListener('pagehide', clear); });
   }
   private gardenLabelHit(text:Phaser.GameObjects.Text){
     const b=text.getBounds(),minimum=44/this.cameras.main.zoom;

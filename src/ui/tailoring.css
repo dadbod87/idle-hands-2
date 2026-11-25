@@ -20,7 +20,7 @@
 .sewing-pickers {
  grid-column:1/-1;
  display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
+ grid-template-columns:repeat(auto-fit,minmax(min(100%,8em),1fr));
  gap:8px;
 }
 .sewing-pickers select { min-width:0; }
@@ -29,3 +29,5 @@
 .sewing-clock:empty { display:none; }
 
 .sewing-controls:empty { display:none; }
+
+#panel:has(.sewing-order) { scroll-padding-top:4.5rem; }

@@ -35,6 +35,11 @@ test('Earned finishes can layer and show to a nearby resident, then leave no pac
   await expect(sewing.locator('[data-gold-edge]')).toBeVisible();
   await owner.setViewportSize({width:320,height:640});
   await owner.evaluate(()=>document.documentElement.style.fontSize='200%');
+  const color=owner.getByLabel('Kerchief color');
+  const tie=owner.getByLabel('Kerchief tie');
+  const [colorBox,tieBox]=await Promise.all([color.boundingBox(),tie.boundingBox()]);
+  expect(colorBox?.width).toBeGreaterThan(200);
+  expect(tieBox?.y).toBeGreaterThan(colorBox!.y);
   const saveKerchief=button(owner,'Save kerchief');
   await saveKerchief.scrollIntoViewIfNeeded();
   await expect(saveKerchief).toBeInViewport({ratio:1});

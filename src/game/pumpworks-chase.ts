@@ -3,7 +3,7 @@ import type {Point} from './world.ts';
 
 export const HOPPER_MOVEMENT={
  awareness:4.8,windupRange:2.25,reach:1.8,impactRadius:.87,splashRadius:2.55,lowHealth:4,
- chaseSpeed:1.75,windupSeconds:1.18,chargeSeconds:.28,restSeconds:1.18,
+ patrolSeconds:9.6,chaseSpeed:1.75,windupSeconds:1.18,chargeSeconds:.28,restSeconds:1.18,
  strikeCooldown:.46,braceSeconds:1.45,braceCooldown:2.2,
 } as const;
 type Phase='idle'|'chase'|'windup'|'charge'|'recover';
@@ -28,7 +28,18 @@ const bounded=(p:Point):Point=>({x:clamp(p.x,12.75,19.15),y:clamp(p.y,4.35,12.6)
 const mix=(a:Point,b:Point,t:number):Point=>({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t});
 
 export const hopperLeash=inside;
-export const hopperNotices=(player:Point)=>inside(player)&&distance(player,HOPPER_FEET)<=HOPPER_MOVEMENT.awareness;
+export const hopperNotices=(player:Point,hopperFeet:Point=HOPPER_FEET)=>
+ inside(player)&&distance(player,hopperFeet)<=HOPPER_MOVEMENT.awareness;
+
+export function patrolHopper(state:HopperMotion,seconds:number):HopperMotion{
+ const idle=state.phase==='idle'?state:freshHopper();
+ const elapsed=(idle.elapsed+clamp(seconds,0,.15))%HOPPER_MOVEMENT.patrolSeconds;
+ const angle=elapsed/HOPPER_MOVEMENT.patrolSeconds*Math.PI*2;
+ return {...idle,elapsed,feet:{
+  x:HOPPER_FEET.x+.7*Math.sin(angle),
+  y:HOPPER_FEET.y+.4*(1-Math.cos(angle)),
+ }};
+}
 
 function segmentDistance(p:Point,a:Point,b:Point){
  const dx=b.x-a.x,dy=b.y-a.y,length=dx*dx+dy*dy;

@@ -3,7 +3,7 @@ import {
  FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PUMPWORKS_KEY,readPumpworks,savePumpworks,
  type PumpworksAction,type PumpworksPlace,
 } from '../game/pumpworks.ts';
-import {braceForHopper,freshHopper,hopperLeash,hopperNotices,stepHopper,swingAtHopper,FIELD_IMPACT_MS,type FieldImpact} from '../game/pumpworks-chase.ts';
+import {braceForHopper,freshHopper,hopperLeash,hopperNotices,stepHopper,swingAtHopper,patrolHopper,FIELD_IMPACT_MS,type FieldImpact} from '../game/pumpworks-chase.ts';
 import type {Point} from '../game/world.ts';
 import './pumpworks.css';
 
@@ -178,7 +178,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   if(!context.inRoom){
    if(!host.controls.hidden)host.controls.hidden=true;
    impact=null;
-   if(hopper.phase!=='idle')hopper=freshHopper();
+   if(hopper.phase!=='idle'||hopper.elapsed>0)hopper=freshHopper();
    priorAt=0;
    return;
   }
@@ -189,16 +189,17 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    if(hopper.phase!=='idle')hopper=freshHopper();
   }
   else if(context.able&&!busy){
-   if(!hopperLeash(context.position)){
+   if(!state.fight){
+    hopper=patrolHopper(hopper,dt);
+    if(hopperNotices(context.position,hopper.feet)&&now>=retryAt)void combatAction('begin');
+   }else if(!hopperLeash(context.position)){
     hopper=freshHopper();
-    if(state.fight&&now>=retryAt)void combatAction('retreat');
-   }else if(state.fight){
+    if(now>=retryAt)void combatAction('retreat');
+   }else{
     const next=stepHopper(hopper,context.position,dt,state.fight.health);
     if(hopper.phase!=='windup'&&next.motion.phase==='windup')host.cue(next.motion.pattern);
     hopper=next.motion;
     if(next.impact)void combatAction(next.impact==='braced'?'guard':next.impact==='splash'?'splash-hit':'hit');
-   }else if(hopperNotices(context.position)&&now>=retryAt){
-    void combatAction('begin');
    }
   }
   paintControls(state);

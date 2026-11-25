@@ -134,6 +134,13 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    await press('Enter the Pumpworks');
    await ready('pumpworks');
    await expect(page.locator('#pump-health')).toContainText('Health 8 / 8');
+   const patrolStart=(await read(page))!.combat.hopper.feet;
+   await expect.poll(async()=>{
+    const live=(await read(page))!;
+    expect(live.state.fight).toBeNull();
+    const feet=live.combat.hopper.feet;
+    return Math.hypot(feet.x-patrolStart.x,feet.y-patrolStart.y);
+   },{timeout:3500,intervals:[55]}).toBeGreaterThan(.12);
    await capture('arrival');
    await station('pumpworks-locker');
    await press('Pack the survey kit');

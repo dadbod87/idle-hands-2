@@ -2,8 +2,8 @@ import {FIELD_CUES,renderFieldCue} from '../src/audio/combat-cues.ts';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {applyPumpworks,FIELD_HEALTH,freshPumpworks,PUMPWORKS_KEY,readPumpworks,savePumpworks,type PumpworksAction,type PumpworksPlace,type PumpworksState} from '../src/game/pumpworks.ts';
-import {PUMPWORKS_DOOR,PUMPWORKS_ENTRY,PUMPWORKS_ROOM} from '../src/game/pumpworks-room.ts';
-import {braceForHopper,freshHopper,hopperNotices,stepHopper,swingAtHopper,type HopperMotion} from '../src/game/pumpworks-chase.ts';
+import {HOPPER_FEET,PUMPWORKS_DOOR,PUMPWORKS_ENTRY,PUMPWORKS_ROOM} from '../src/game/pumpworks-room.ts';
+import {braceForHopper,freshHopper,hopperLeash,hopperNotices,patrolHopper,stepHopper,swingAtHopper,type HopperMotion} from '../src/game/pumpworks-chase.ts';
 import {Session} from '../src/game/session.ts';
 import {earnedWorkshopPrints,selectedWorkshopPrint} from '../src/game/workshop-print.ts';
 import {canStand,clearSegment,routeTo} from '../src/game/world.ts';
@@ -194,4 +194,26 @@ test('A tired hopper alternates wider splashes with lunges and rewards backing o
  assert.equal(untilPhase(dodge.motion,player,'windup',3).motion.pattern,'lunge');
  const hurt=play(play(prepared(),'begin','arena'),'splash-hit','arena');
  assert.equal(hurt.health,6);
+});
+
+test('The visible patrol stays on dry chamber floor and senses from the hopper’s actual feet',()=>{
+ const boundary={x:12.8,y:11.9};
+ assert.equal(hopperNotices(boundary),false);
+ let patrol=freshHopper(),notices=false;
+ assert.deepEqual(patrol.feet,HOPPER_FEET);
+ for(let i=0;i<192;i++){
+  patrol=patrolHopper(patrol,.05);
+  assert.equal(patrol.phase,'idle');
+  assert.equal(hopperLeash(patrol.feet),true);
+  assert.equal(canStand('pumpworks',patrol.feet,PUMPWORKS_ROOM),true);
+  assert.equal(hopperNotices(PUMPWORKS_ENTRY,patrol.feet),false);
+  if(hopperNotices(boundary,patrol.feet)){
+   notices=true;
+   const chasing=stepHopper(patrol,boundary,.05).motion;
+   assert.equal(chasing.phase,'chase');
+   assert.deepEqual(chasing.feet,patrol.feet);
+  }
+ }
+ assert.equal(notices,true);
+ assert.ok(Math.hypot(patrol.feet.x-HOPPER_FEET.x,patrol.feet.y-HOPPER_FEET.y)<.01);
 });

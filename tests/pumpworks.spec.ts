@@ -231,7 +231,9 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     expect(await page.evaluate(()=>localStorage.getItem('ih2:river-print:v1'))).toBeNull();
     await press('Preview field seal');
     await expect(page.getByLabel('Choose a workshop print')).toHaveValue('pumpworks-seal');
-    await expect(page.locator('.workshop-print-preview')).toHaveAttribute('src','/art/pumpworks/field-seal.svg');
+    const preview=page.locator('.workshop-print-preview');
+    await expect(preview).toHaveAttribute('src','/art/pumpworks/field-seal.svg');
+    await expect.poll(()=>preview.evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
     await capture('seal-preview');
     await press('Display print');
     await expect(page.getByText('On display · Pumpworks inspection seal')).toBeVisible();

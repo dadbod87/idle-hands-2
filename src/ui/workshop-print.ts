@@ -59,6 +59,8 @@ export class WorkshopPrintControls {
   focusPreview(print: WorkshopPrint) {
     if ([...this.select.options].some(option => option.value === print)) {
       this.select.value = print;
+      // Opening a named preview is an explicit request for the artwork.
+      this.preview.loading = 'eager';
       this.previewChoice();
     }
     this.select.focus({preventScroll: true});

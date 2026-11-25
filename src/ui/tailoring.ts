@@ -9,7 +9,7 @@ export function showTailoring(host:Host,town:TownClient,fromBag=false){
  const player=town.snapshot?.playerId;
  if(!player||town.snapshot?.tailoring===undefined||!fromBag&&!host.atTable())return;
  if(fromBag&&town.snapshot?.tailoring?.collectedAt==null)return;
- host.open(fromBag?'Trail kerchief':'Sewing table');
+ host.open(fromBag?'Style kerchief':'Sewing table');
  const section=document.createElement('section');section.className='sewing-order';
  host.body.append(section);
  const image=kerchiefPreview(host.look());image.element.classList.add('sewing-preview');image.element.style.display='none';
@@ -56,7 +56,7 @@ export function showTailoring(host:Host,town:TownClient,fromBag=false){
   }else if(stage==='dye'){
    const currentDye=state?savedKerchiefDye(state):'none';
    const worn=state?.worn!=='none',currentTie=state?.tie??'knot';
-   detail.textContent=currentDye==='none'?'Choose a dye.':KERCHIEF_COLORS[currentDye].label+(worn?' · Worn':' · Packed')+' · '+KERCHIEF_TIE_NAMES[currentTie];
+   detail.textContent=currentDye==='none'?'Choose a dye.':KERCHIEF_COLORS[currentDye].label+(worn?' · Worn':' · Packed')+' · '+KERCHIEF_TIE_NAMES[currentTie]+(worn?'':' · Preview');
    const picker=kerchiefDyePicker(currentDye,worn,currentTie);
    const apply=button('Save kerchief',null);
    const preview=()=>{

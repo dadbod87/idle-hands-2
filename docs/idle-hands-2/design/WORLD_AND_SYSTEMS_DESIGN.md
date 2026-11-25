@@ -52,6 +52,7 @@ All names and IDs here are **candidates**. The runtime room `square` is not rena
 | `inkwood` · Inkwood | Readable woodland paths, species-specific resources, orchard edge and an optional encounter clearing | Restored Ledgerwick bridge leads to one small trail | Safe marked path reaches noncombat resources; roaming enemies have readable threat/leash boundaries. |
 | `pumpworks` · The Pumpworks | Optional small authored cooperative PvE space; flooded maintenance machinery and questionable inspection notes | Clearly warned entrance from Inkwood | One compact encounter/return loop before procedural generation, raids or many floors. |
 | `mossbank` · Mossbank | Forestry settlement with a distinct wood/service/housing language | One later repaired route from Inkwood | Not a second full starter town in the first neighborhood milestone. |
+| `hidden-valley` · Hidden Valley | Future inland town built around hillside homes, terraces and orchard stewardship | An optional road survey beyond Mossbank, after the forestry route is established | Explore one lane and restore one useful shared place before offering another housing district. |
 | `bellwether-quay` · Bellwether Quay | Later coastal/trade city, regional goods and another property style | Later bounded road/ferry restoration | No player market, shipping simulation or enormous city library is implied. |
 
 Author a small route graph: named exits have stable portal IDs, destination region/instance, access predicate and collision-safe arrival point. Tap a door once to approach and enter when close; do not add a second compulsory Enter press. Exit onto the correct side of that doorway, not the center of the square. Interiors preserve identity and private ownership; they do not become shared rooms because their art is similar.
@@ -59,6 +60,14 @@ Author a small route graph: named exits have stable portal IDs, destination regi
 Server transition contract: validate actor identity, current room/position/revision, portal proximity and access; accept one transition ID and return confirmed room, instance and feet. No client-supplied arbitrary destination is trusted. A repeated transition returns its receipt; competing transition intents choose one current revision. Cancel before submission stops the approach. If the response is lost, resolve that transition before a conflicting move. Client camera fades/door poses are optional presentation after confirmation; reduced motion uses a brief static state change.
 
 Dungeon rooms require explicit instance IDs and entrance/exit/respawn anchors. Do not close an instance containing a recoverable corpse without a reachable recovery alternative. Route art must not advertise an explorable destination when the authoritative route still ends at an inspection panel.
+
+### Hidden Valley
+
+Keep Ledgerwick as the starting town. Beyond Mossbank, use a narrow wooded approach that opens onto an overlook. From there the player can see the orchard terraces, a cluster of hillside homes and the path down to the meeting green. Give the approach, residential lane and open green distinct silhouettes so players can find their way by sight. Leave room around the doorways for phone navigation and returning visitors.
+
+The first visit should have one useful trip: learn an orchard graft at the nursery, carry it back to a personal garden, and see the result after it grows. During that wait, players can work on the existing sawmill route or help repair Hidden Valley's communal cider press. An open press should give the town a repeatable shared use for surplus fruit. Start with one soil bed and one recipe to validate the loop. Let the dry terrace walls and old survey posts carry the humor. A sign beside the same bend that the path goes around could read “Scenic bypass. The original road was promoted.”
+
+The road and orchard are safe, and home visits follow ordinary owner-controlled visibility. Optional exploration beyond the terraces can have enemies once there is a tested return route. The first playable slice does not allocate a second property or transfer a player's existing one. Keep layout, prices, crop timers and road requirements as design candidates until measured play and saved-state tests support them.
 
 ## Homes remain a slow, safe source of identity
 
@@ -193,7 +202,8 @@ This is a dependency proposal for later roadmap updates, not new active work. Ea
 8. **Optional woodland PvE slice:** one readable roaming enemy/clearing, health/heal/retreat, fixed-once outcome and no property gate. Synthetic non-destructive death preview until recovery policy is reviewed.
 9. **Recovery slice:** settle the open loss/grace rules, implement one death/bed/corpse loop and all replay/ownership/expiry/instance tests. Only then enable real loss in an invited test.
 10. **Pumpworks party slice:** one small dungeon with usable entry/exit, cooperative entitlement, corpse accessibility and party privacy; no procedural city-sized content promise.
-11. **Mossbank connection:** a distinct service/material/housing style after the existing region remains meaningful. Bellwether Quay follows only if travel, collaboration, property migration and operating costs support it.
+11. **Mossbank connection:** a distinct forestry service and material style after the existing region remains meaningful.
+12. **Hidden Valley:** test one safe lane, orchard graft and shared project. Revisit additional housing only after travel, collaboration, property migration and operating costs are understood. Bellwether Quay remains a later coastal candidate.
 
 Gifting/buffs/pranks are separate bounded social slices, not automatic extras to chat or combat. Keep provider choices, native packaging and cloud costs behind existing readiness gates. The browser/phone-first client, possible PWA and later wrapper are delivery options, not solutions to server load or a promise of a native rewrite.
 

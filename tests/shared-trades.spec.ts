@@ -85,7 +85,7 @@ test('Earned finishes can layer and show to a nearby resident, then leave no pac
   await owner.screenshot({path:info.outputPath('desktop-brass-vest-bag.png')});
   await button(owner,'Close panel').click();
   await walk(owner,'pumpworks-exit');
-  await button(owner,'Enter town square').click();
+  await button(owner,'Return to Willow meadow').click();
   await expect(owner.locator('#location')).toHaveAttribute('data-room','square');
 
   await peer.goto(baseURL+condition);

@@ -96,10 +96,20 @@ test('a late visitor previews a free plant, retries the same receipt and keeps i
    expect(confirmed.workshop.placements).toEqual(base.placements);
    expect(confirmed.glasshousePlant).toBe(shape.plant);
    await page.reload();
+   await page.evaluate(scale=>document.documentElement.style.fontSize=scale,shape.scale);
    await expect.poll(async()=>(await world()).nearby).toBe('glasshouse-keeper');
    await page.locator('#interact').click();
    await expect(page.locator('.nursery-keepsake h3')).toHaveText(shape.plantName);
    await expect(page.locator('[data-plant]')).toHaveCount(0);
+   await button('Close panel').click();
+   await page.locator('#bag').click();
+   const owned=page.locator('.bag-nursery-keepsake');
+   await expect(owned).toContainText(shape.plantName);
+   await owned.scrollIntoViewIfNeeded();
+   await expect(owned).toBeInViewport({ratio:1});
+   expect(await page.getByRole('dialog').evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
+   await expect(owned.getByRole('button',{name:'Walk to your windowsill',exact:true})).toHaveCount(0);
+   await page.screenshot({path:out+'/'+shape.name+'-bag.png'});
    expect(requests).toHaveLength(2);
    expect(errors).toEqual([]);
   }finally{await context.close();}

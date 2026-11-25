@@ -1,0 +1,7 @@
+# IH2-258 · Show the keeper's gift in Bag and clear the short nursery view
+
+The plant that a resident keeps appears as a small illustrated card near the top of Bag. The exact same plant can be found away from the nursery after reloading. Inside the owner's house the card can lead to their windowsill. This route changes nothing by itself. Display or return still happens through the separate confirmation at the window. Visitors see only the plant the owner puts out, and a visitor's own Bag shows only their own collected item. There is no new stack count, duplicate allocation or furniture charge.
+
+Short enlarged views of the small Glasshouse room keep the room title and reveal the labeled furniture and exit. The decorative location details are unnecessary there. Normal desktop room card, indoor stop controls, task options and movement remain unchanged.
+
+The build and local repository checks passed. Chromium and WebKit both passed the nursery return and resident/guest display, including native Bag-to-windowsill travel. The final Bag reruns reapplied 200% after reload, checking fully visible artwork and no horizontal overflow on the short viewport. Terra reviewed the original phone Bag and improved interior title, and the final enlarged capture was checked separately. Fictional town snapshots, movements and confirmations were intercepted, with no database or physical-phone result claimed.

@@ -262,7 +262,9 @@ test('the owner can show one earned plant to a current visitor and make it priva
   const [owner,guest]=await Promise.all([fixture(true),fixture(false)]);
   await expect(inspect(owner)).toBeEnabled();
   await expect(inspect(guest)).toHaveCount(0);
-  await inspect(owner).press('Enter');
+  await owner.locator('#bag').click();
+  await expect(owner.locator('.bag-nursery-keepsake')).toContainText('Very patient sundew');
+  await owner.getByRole('button',{name:'Walk to your windowsill',exact:true}).press('Enter');
   await expect(owner.getByRole('dialog')).toContainText('Private in your collection');
   await expect.poll(()=>visual(owner)).toBe(null);
   expect(calls).toHaveLength(0);

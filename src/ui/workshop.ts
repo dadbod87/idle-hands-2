@@ -1,3 +1,4 @@
+import {GLASSHOUSE_PLANTS,glasshousePlantArt,type GlasshousePlant} from '../game/glasshouse-plants.ts';
 import {CAST_MS,RIVER_SPOT_IDS,type RiverSurvey} from '../game/river-survey.ts';
 import {createRiverFindList,updateRiverFinds} from './river-survey.ts';
 import {WorkshopPrintControls} from './workshop-print.ts';
@@ -29,7 +30,7 @@ type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Reco
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
 type StarterDestination=typeof RESOURCE_IDS[number]|'bench';
 type WorkshopTrip={text:string;label:string;walk:()=>void};
-type PanelHost={townHeadwear?:()=>TownHeadwear|undefined;readyWork?:(ready:boolean)=>void;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};savedMarigold?:(earned:boolean)=>void;prints?:{earned:()=>WorkshopPrint[];selected:()=>WorkshopPrint|null;choose:(print:WorkshopPrint|null)=>boolean};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;pondWatch?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToWorkshop?:()=>void;walkToStarter?:(destination:StarterDestination)=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
+type PanelHost={nurseryPlant?:()=>{plant:GlasshousePlant;walk?:()=>void}|undefined;townHeadwear?:()=>TownHeadwear|undefined;readyWork?:(ready:boolean)=>void;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};savedMarigold?:(earned:boolean)=>void;prints?:{earned:()=>WorkshopPrint[];selected:()=>WorkshopPrint|null;choose:(print:WorkshopPrint|null)=>boolean};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;pondWatch?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToWorkshop?:()=>void;walkToStarter?:(destination:StarterDestination)=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -291,6 +292,23 @@ export class WorkshopUI {
    });
   }});
   this.bag=bag;
+  const nursery=this.host.nurseryPlant?.();
+  if(nursery){
+   const card=document.createElement('section');
+   card.className='bag-nursery-keepsake';
+   const icon=document.createElement('img');
+   icon.src=glasshousePlantArt(nursery.plant);
+   icon.alt='';
+   icon.width=48;
+   icon.height=48;
+   const label=document.createElement('div');
+   const title=document.createElement('strong');
+   title.textContent=GLASSHOUSE_PLANTS[nursery.plant].name;
+   label.append(title,this.p('Glasshouse keepsake'));
+   card.append(icon,label);
+   if(nursery.walk)card.append(this.button('Walk to your windowsill',nursery.walk,'destination'));
+   b.append(card);
+  }
   b.append(bag.root);
   if(this.host.home&&this.host.homeAvailable?.())b.append(this.button('Inspect or arrange a house',()=>this.host.home?.(),'destination'));
   const arrangement=document.createElement('details');arrangement.className='bag-arrangement';const summary=document.createElement('summary');summary.textContent='Arrange workshop furniture';arrangement.append(summary);

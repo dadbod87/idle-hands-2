@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="201" height="144" viewBox="0 0 201 144">
+ <title>Original grafting house</title>
+ <ellipse cx="103" cy="134" rx="93" ry="9" fill="#455343" opacity=".2"/>
+ <g stroke="#405144" stroke-width="3" stroke-linejoin="round">
+  <path d="M7 59l41-42 55 9 45 28h47v68H7Z" fill="#b6c9ad"/>
+  <path d="M6 60l41-43 56 9 44 27h49v10H6z" fill="#667f6c"/>
+  <path d="M28 68h45v31H28zM113 67h65v32h-65Z" fill="#a2bcb0"/>
+  <path d="M48 68v31m-20-16h45m23-21v53m37-48v32m20-32v32m-40-17h65" fill="none" stroke="#e2d5ac"/>
+  <path d="M7 108h187v16H7z" fill="#a48666"/>
+  <path d="M78 85h24v44H78Z" fill="#678779"/>
+  <path d="M84 92h11v19H84z" fill="#e4ca83"/>
+  <path d="M14 101l10-14 11 15m15-4 17-15 7 17m44-4 8-11 8 14m13-1 9-13 8 12" fill="none" stroke="#627e5b" stroke-width="3"/>
+  <path d="M116 38h71v16h-71Z" fill="#eed9a7"/>
+ </g>
+ <text x="152" y="49" font-family="Georgia,serif" font-size="9.5" font-weight="bold" fill="#425b4b" text-anchor="middle">GRAFTS</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="1408" viewBox="0 0 2048 1408">
+ <title>Hidden Valley road, terraces, and orchard</title>
+ <defs>
+  <pattern id="field" width="229" height="178" patternUnits="userSpaceOnUse">
+   <path d="M18 35l4-6 5 6m132 65l3-7 5 7m49 56l2-5 4 5M52 130l3-5 4 5" fill="none" stroke="#6f885e" stroke-width="2" opacity=".48"/>
+   <ellipse cx="83" cy="32" rx="31" ry="8" fill="#d1cc92" opacity=".25"/><ellipse cx="130" cy="142" rx="25" ry="7" fill="#6d875c" opacity=".26"/>
+   <circle cx="94" cy="89" r="2" fill="#d9d39b"/><circle cx="208" cy="47" r="2" fill="#eed797"/>
+  </pattern>
+  <pattern id="water" width="60" height="65" patternUnits="userSpaceOnUse">
+   <rect width="60" height="65" fill="#6f9c8c"/>
+   <path d="M11 0q-5 9 0 16t0 12m21 5q-5 7 0 14m18-43 2 8m-6 37 3 8" fill="none" stroke="#c1d0ae" stroke-width="2" opacity=".68"/>
+  </pattern>
+  <pattern id="pavers" width="32" height="25" patternUnits="userSpaceOnUse">
+   <rect width="32" height="25" fill="#c4ac7d"/><path d="M0 12h32M0 0h32M6 0v12m16 0v13" fill="none" stroke="#a38d67" stroke-width="1.4"/>
+  </pattern>
+  <pattern id="decks" width="29" height="78" patternUnits="userSpaceOnUse">
+   <rect width="29" height="78" fill="#aa7d55"/><path d="M1 0v78m14-71v22m4 14v22" stroke="#705842" fill="none" stroke-width="2"/>
+  </pattern>
+ </defs>
+ <rect width="2048" height="1408" fill="#a7b47a"/>
+ <path d="M0 0h2048v250q-158 90-353 28-180-64-350-112-144-40-368 42-256 112-484 18Q314 176 0 330Zm0 0v1410h352Q197 1185 239 926T163 488Q135 345 0 383Zm2048 998q-133 56-196 181-68 107-262 220h458z" fill="#889f72"/>
+ <path d="M0 107q142 12 292 79t397 28 371-43 371 18 270 61 347-45 M0 1280q112-54 172-279t-40-328-97-222 M2048 1211q-95 29-209 103" stroke="#d8cd9b" stroke-width="3" stroke-dasharray="3 13" fill="none" opacity=".72"/>
+ <rect width="2048" height="1408" fill="url(#field)"/>
+ <path d="M242 954Q329 816 428 791q90-43 178 20l134-18m-411-105q95-79 217-78t249 63 327-15m-669-152q108-32 229-12t227 53 235-30m243 145q205-70 601-51m-581 117q256-41 545 15m-512 106q189-35 470 26m-446 105q157-15 407 50" fill="none" stroke="#8b8667" stroke-width="12" stroke-linecap="round"/>
+ <path d="M242 951Q329 813 428 788q90-43 178 20l134-18m-411-105q95-79 217-78t249 63 327-15m-669-152q108-32 229-12t227 53 235-30m243 145q205-70 601-51m-581 117q256-41 545 15m-512 106q189-35 470 26m-446 105q157-15 407 50" fill="none" stroke="#d5cb97" stroke-width="3" stroke-dasharray="4 11" stroke-linecap="round"/>
+ <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M-14 1155Q208 1175 281 1082t163-185q155-42 247 37t211 60 321-5l150-3q132-5 199-122t-39-270q-45-21-149-11l-244 5q-163-7-215-120T791 426Q690 455 652 611T573 826m944 93q149-66 314-22t226 37" stroke="#879266" stroke-width="103" opacity=".58"/>
+  <path d="M-14 1155Q208 1175 281 1082t163-185q155-42 247 37t211 60 321-5l150-3q132-5 199-122t-39-270q-45-21-149-11l-244 5q-163-7-215-120T791 426Q690 455 652 611T573 826m944 93q149-66 314-22t226 37" stroke="#d0b987" stroke-width="77"/>
+  <path d="M44 1133q125 14 196-42m195-211q108-34 162 4m370 135h190m417-177q46-128-30-201m-442-70q-103 1-165-75m-228 66q-30 68-33 116m917 187q157-26 242 29" stroke="#e9d5a1" stroke-width="4" stroke-dasharray="19 12 3 14" opacity=".7"/>
+ </g>
+ <path d="M1217-10h165l-9 196 10 218-12 235 8 211-10 191 13 372h-180l12-315-6-247 13-209-7-207 9-263Z" fill="#758f75" stroke="#607f6b" stroke-width="12"/>
+ <path d="M1230-10h129l-4 198 10 218-11 233 8 211-10 191 12 372h-138l8-315-5-246 13-210-8-208 10-260Z" fill="url(#water)" stroke="#476c61" stroke-width="4"/>
+ <g fill="url(#decks)" stroke="#674e39" stroke-width="5">
+  <rect x="1204" y="523" width="175" height="119" rx="5"/>
+  <rect x="1204" y="899" width="173" height="114" rx="5"/>
+  <path d="M1206 535h171m-171 96h171m-171 280h169m-169 91h169" fill="none" stroke="#78533a" stroke-width="7"/>
+ </g>
+ <path d="M644 413q72-74 147-82l148 64-15 77q-169 20-290-14Z" fill="url(#pavers)" opacity=".8"/>
+ <path d="M685 933q143-89 257-39l86 104q-120 118-321 23Z" fill="url(#pavers)" opacity=".8"/>
+ <g fill="#e1c97f" opacity=".72">
+  <circle cx="445" cy="890" r="4"/><circle cx="452" cy="896" r="2"/><circle cx="463" cy="879" r="3"/>
+  <circle cx="1138" cy="925" r="4"/><circle cx="1150" cy="937" r="2"/><circle cx="1145" cy="919" r="3"/>
+  <circle cx="1789" cy="854" r="4"/><circle cx="1798" cy="865" r="2"/><circle cx="1806" cy="847" r="3"/>
+ </g>
+</svg>

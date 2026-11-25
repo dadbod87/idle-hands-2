@@ -1,3 +1,4 @@
+import {HIDDEN_VALLEY_ROOM} from './hidden-valley-room.ts';
 import {SEWING_TABLE} from './tailoring.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROOM} from './mossbank-room.ts';
 import {PUMPWORKS_ROOM} from './pumpworks-room.ts';
@@ -8,8 +9,8 @@ import {SURVEY_IDS,SURVEYS} from './fieldwork.ts';
 import {TOWN_PEOPLE} from './town-people.ts';
 import {GLASSHOUSE_ENTRY,GLASSHOUSE_FRONT,GLASSHOUSE_ROOM} from './glasshouse-room.ts';
 import {LODGING_ROOM} from './lodging.ts';
-export type Room = 'square' | 'workshop' | 'home' | 'home-expanded' | 'trail' | 'garden' | 'neighborhood' | 'lodging' | 'glasshouse' | 'pumpworks' | 'mossbank';
-export const practiceRoom=(room:Room)=>room==='lodging'||room==='pumpworks';
+export type Room = 'square' | 'workshop' | 'home' | 'home-expanded' | 'trail' | 'garden' | 'neighborhood' | 'lodging' | 'glasshouse' | 'pumpworks' | 'mossbank' | 'hidden-valley';
+export const practiceRoom=(room:Room)=>room==='lodging'||room==='pumpworks'||room==='hidden-valley';
 export type Point = { x: number; y: number };
 export type Stop = { id: string; name: string; point: Point; text: string; transition?: Room; arrival?: Point; doorArea?: [number, number, number, number] };
 export type World = { width: number; height: number; blocked: [number, number, number, number][]; stops: Stop[] };
@@ -21,6 +22,7 @@ export const INKWOOD_GLASSHOUSE:Stop={
 };
 export const worlds: Record<Room, World> = {
   mossbank:MOSSBANK_ROOM,
+  'hidden-valley':HIDDEN_VALLEY_ROOM,
   pumpworks:PUMPWORKS_ROOM,
   lodging: LODGING_ROOM,
   glasshouse: GLASSHOUSE_ROOM,

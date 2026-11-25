@@ -5,6 +5,26 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "valley-terrace-roofs",
+      "path": "art/hidden-valley/terrace-roofs.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "valley-ground",
+      "path": "art/hidden-valley/ground.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "valley-grafting-house",
+      "path": "art/hidden-valley/grafting-house.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "valley-cider-press",
+      "path": "art/hidden-valley/cider-press.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "pumpworks-breeze-staff",
       "path": "art/pumpworks/breeze-staff.svg",
       "kind": "original-svg"

@@ -1,5 +1,7 @@
 import {expect,test,type Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
+import {MOSSBANK_VALLEY_FRONT} from '../src/game/hidden-valley-room.ts';
+import {MOSSBANK_KEY} from '../src/game/mossbank.ts';
 import {MOSSBANK_FRONT} from '../src/game/mossbank-room.ts';
 
 const output=process.env.QA_EVIDENCE_DIR??'test-results/browser';
@@ -208,3 +210,81 @@ test('Mossbank uses a painted frame while its first regional art is still loadin
   await page.screenshot({path:output+'/mossbank-settled-after-hold.png'});
  }finally{release();}
 });
+
+for(const shape of [{name:'2k',width:2560,height:1440,touch:false},{name:'phone',width:320,height:640,touch:true}]){
+ test('Hidden Valley orchard and terrace circuit · '+shape.name,async({browser})=>{
+  test.setTimeout(100000);
+  mkdirSync(output,{recursive:true});
+  const context=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch});
+  const page=await context.newPage();
+  const errors:string[]=[],api:string[]=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))api.push(request.url());});
+  const press=async(name:string)=>{
+   const control=page.getByRole('button',{name,exact:true});
+   if(shape.touch)await control.tap();else await control.click();
+  };
+  const route=async(name:string,id:string)=>{
+   await press('Places');
+   const menu=page.getByText('Hidden Valley map',{exact:true});
+   if(shape.touch)await menu.tap();else await menu.press('Enter');
+   const map=page.getByRole('navigation',{name:'Hidden Valley map destinations'});
+   const control=map.getByRole('button',{name:'Walk to '+name,exact:true});
+   const img=map.locator('img');
+   await expect.poll(()=>img.evaluate((photo:HTMLImageElement)=>photo.naturalWidth)).toBe(2048);
+   await expect(control).toBeInViewport({ratio:1});
+   if(shape.touch)await control.tap();else await control.press('Enter');
+   await expect(page.getByRole('dialog')).toBeHidden();
+   await expect.poll(()=>nearby(page),{timeout:35000}).toBe(id);
+  };
+  const capture=(name:string)=>page.screenshot({path:output+'/hidden-valley-'+shape.name+'-'+name+'.png'});
+  const room=async(name:string)=>{
+   await expect(page.locator('#location')).toHaveAttribute('data-room',name,{timeout:10000});
+   await expect(page.locator('[data-room-frame]')).toHaveCount(0);
+  };
+  try{
+   await page.addInitScript(position=>{
+    if(!localStorage.getItem('ih2:pilot-position:v1')){
+     localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'mossbank',position}));
+    }
+   },MOSSBANK_VALLEY_FRONT);
+   await page.goto('/?sky-study=1&phase=day&weather=clear');
+   await room('mossbank');
+   await expect(page.getByRole('button',{name:'Enter Hidden Valley',exact:true})).toHaveCount(0);
+   // Use a fictional resident that already finished the tested Wren route.
+   await page.evaluate(key=>localStorage.setItem(key,JSON.stringify({
+    version:1,joined:true,windrow:true,flume:true,finished:true,
+   })),MOSSBANK_KEY);
+   await page.reload();
+   await room('mossbank');
+   await press('Enter Hidden Valley');
+   await room('hidden-valley');
+   await capture('arrival');
+   const holdings=await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'));
+   if(!shape.touch){
+    const frame=await page.evaluate(()=>document.querySelector('canvas')!.getBoundingClientRect().width);
+    expect(frame).toBeGreaterThan(2450);
+   }
+   await route('Terrace overlook','valley-overlook');
+   await press('Inspect Terrace overlook');
+   await expect(page.locator('#feedback')).toContainText('The path drops away');
+   await expect(page.getByRole('dialog')).toBeHidden();
+   await capture('overlook');
+   await route('Cider court','valley-cider-court');
+   await capture('press');
+   await route('Terrace lane','valley-terrace-lane');
+   await capture('terrace');
+   await page.reload();
+   await room('hidden-valley');
+   expect(await nearby(page)).toBe('valley-terrace-lane');
+   await route('Grafting house','valley-grafting-house');
+   await capture('grafts');
+   await route('Mossbank road','valley-mossbank-road');
+   await press('Enter Mossbank');
+   await room('mossbank');
+   expect(await nearby(page)).toBe('mossbank-hidden-valley');
+   expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toBe(holdings);
+   expect(errors).toEqual([]);expect(api).toEqual([]);
+  }finally{await context.close();}
+ });
+}

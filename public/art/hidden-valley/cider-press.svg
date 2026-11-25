@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="218" height="189" viewBox="0 0 218 189">
+ <title>Original cider press and open awning</title>
+ <ellipse cx="108" cy="182" rx="107" ry="7" fill="#455343" opacity=".27"/>
+ <g stroke="#404b3c" stroke-width="3" stroke-linejoin="round">
+  <path d="M174 55V18h22v42Z" fill="#9d7660"/>
+  <path d="M171 17h28v9h-28Z" fill="#725e50"/>
+  <path d="M21 69h178v111H21z" fill="#c0a579"/>
+  <path d="M19 74L57 20h115l37 51Z" fill="#758476"/>
+  <path d="M31 68l33-39h101l30 39Z" fill="#8d9b84"/>
+  <path d="M46 52h139m-152 16h165" fill="none" stroke="#566657" stroke-width="2"/>
+  <path d="M22 148h176v32H22Z" fill="#aa926b"/>
+  <path d="M27 156h164m-167 12h168m-143-12v11m98-12v11m-33 1v12m51-12v12" stroke="#786f55" fill="none" stroke-width="1.5"/>
+  <path d="M37 120h25v25H37zM156 110h24v29h-24z" fill="#edce87"/>
+  <path d="M49 121v25m-12-12h25m107-23v28m-13-15h24" stroke="#836a4a" fill="none" stroke-width="2"/>
+  <path d="M70 131h77v49H70Z" fill="#4d634f"/>
+  <path d="M63 107h87l-9 26H70Z" fill="#9a725a"/>
+  <path d="M72 130h69m-58 5v41m49-41v41" fill="none" stroke="#c5a47e"/>
+  <circle cx="105" cy="151" r="14" fill="#c4945d"/>
+  <path d="M91 151h29m-15-14v26m10-21-20 20m1-21 19 19" stroke="#62533d" fill="none" stroke-width="2"/>
+  <path d="M48 75h123v24H48Z" fill="#e7d5a5"/>
+ </g>
+ <text x="109" y="92" font-family="Georgia,serif" font-size="14" font-weight="bold" fill="#424a3d" text-anchor="middle">CIDER PRESS</text>
+</svg>

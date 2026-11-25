@@ -3,6 +3,46 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "valley-terrace-roofs",
+      "path": "public/art/hidden-valley/terrace-roofs.svg",
+      "sha256": "31e780f90838e90365f04b57cfd45f7d1252b7eb358c337be4c91beb4deec05f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/hidden-valley/terrace-roofs.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored Hidden Valley landscape and buildings. No imported media."
+    },
+    {
+      "id": "valley-ground",
+      "path": "public/art/hidden-valley/ground.svg",
+      "sha256": "569cbe78e350a2c25c366cc7dcbc112c42e2425481f066622fa7b735acc8516d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/hidden-valley/ground.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored Hidden Valley landscape and buildings. No imported media."
+    },
+    {
+      "id": "valley-grafting-house",
+      "path": "public/art/hidden-valley/grafting-house.svg",
+      "sha256": "8cd514122cb3d23a219f3e0128855da422bd47bc477051ff9d92027d3b7944ad",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/hidden-valley/grafting-house.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored Hidden Valley landscape and buildings. No imported media."
+    },
+    {
+      "id": "valley-cider-press",
+      "path": "public/art/hidden-valley/cider-press.svg",
+      "sha256": "d8692b843cba6dad0794475f8938fa81ac36a10b7450df6e661f3f262fc52d1a",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/hidden-valley/cider-press.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored Hidden Valley landscape and buildings. No imported media."
+    },
+    {
       "id": "pumpworks-breeze-staff",
       "path": "public/art/pumpworks/breeze-staff.svg",
       "sha256": "5e90252ddd94ee77349a7acf70f7c97d25812e4963e2cede0a732febff146946",

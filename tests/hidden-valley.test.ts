@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import {test} from 'node:test';
+import {HIDDEN_VALLEY_ROOM,MOSSBANK_VALLEY_FRONT,MOSSBANK_VALLEY_ROAD,VALLEY_ENTRY,VALLEY_STOPS} from '../src/game/hidden-valley-room.ts';
+import {MOSSBANK_ROOM} from '../src/game/mossbank-room.ts';
+import {Session} from '../src/game/session.ts';
+import {canStand,clearSegment,routeTo} from '../src/game/world.ts';
+
+test('Hidden Valley reaches each distinct stop and both bridges with continuous room geometry',()=>{
+ for(const stop of VALLEY_STOPS){
+  assert.equal(canStand('hidden-valley',stop.point,HIDDEN_VALLEY_ROOM),true,stop.id);
+  assert.ok(routeTo('hidden-valley',VALLEY_ENTRY,stop.point,HIDDEN_VALLEY_ROOM).length,stop.id);
+ }
+ assert.equal(canStand('hidden-valley',VALLEY_ENTRY,HIDDEN_VALLEY_ROOM),true);
+ assert.equal(canStand('mossbank',MOSSBANK_VALLEY_FRONT,MOSSBANK_ROOM),true);
+ assert.equal(clearSegment('hidden-valley',{x:34,y:24},{x:46,y:24},HIDDEN_VALLEY_ROOM),false);
+ for(const y of [17.85,29.2]){
+  assert.equal(clearSegment('hidden-valley',{x:35,y},{x:44,y},HIDDEN_VALLEY_ROOM),true);
+ }
+ assert.ok(HIDDEN_VALLEY_ROOM.width*32>=2048);
+});
+
+test('The new road appears only in browser practice after a completed survey',()=>{
+ const player=new Session(undefined,undefined,true);
+ player.enter('mossbank',MOSSBANK_VALLEY_FRONT);
+ assert.equal(player.stops.some(stop=>stop.id===MOSSBANK_VALLEY_ROAD.id),false);
+ player.setHiddenValleyRoad(true);
+ assert.equal(player.nearby()?.id,MOSSBANK_VALLEY_ROAD.id);
+ player.enter('hidden-valley',VALLEY_ENTRY);
+ const saved=player.save();
+ assert.equal(new Session(saved,undefined,true).room,'hidden-valley');
+ const connected=new Session(saved);
+ assert.equal(connected.room,'square');
+ connected.enter('mossbank',MOSSBANK_VALLEY_FRONT);
+ connected.setHiddenValleyRoad(true);
+ assert.equal(connected.stops.some(stop=>stop.id===MOSSBANK_VALLEY_ROAD.id),false);
+ assert.throws(()=>connected.enter('hidden-valley',VALLEY_ENTRY));
+});

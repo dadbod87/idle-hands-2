@@ -2,14 +2,15 @@ import {placesView} from '../game/places-view.ts';
 import type {WorkshopState} from '../game/live-workshop.ts';
 import type {Point, Room, Stop} from '../game/world.ts';
 import {townMap,type MapResident} from './town-map.ts';
-import {mossbankMap} from './mossbank-map.ts';
+import {regionalMap} from './mossbank-map.ts';
 
 export function renderPlaces(body: HTMLElement, options: {
  room: Room; position: Point; stops: Stop[]; state: WorkshopState; goal: {id: string; destination?: string};
  now: number; wave?:()=>Promise<void>; peers?:readonly MapResident[]|null; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void;
 }) {
  const view = placesView(options.room, options.stops, options.state, options.goal, options.now, options.neighborhood);
- if(options.room!=='mossbank'){
+ const regionalRoom=options.room==='mossbank'||options.room==='hidden-valley'?options.room:null;
+ if(!regionalRoom){
   const intro = document.createElement('p');
   intro.className = 'places-intro';
   intro.textContent = 'Choose a place to walk. Inspect or enter when you arrive.';
@@ -29,7 +30,7 @@ export function renderPlaces(body: HTMLElement, options: {
  };
 
  const browse = document.createElement('div');
- const regional=options.room==='mossbank'?mossbankMap(options.position,options.stops,options.walk,options.peers,options.wave):undefined;
+ const regional=regionalRoom?regionalMap(regionalRoom,options.position,options.stops,options.walk,options.peers,options.wave):undefined;
  if(regional)browse.append(regional.element);
  if (view.primary.length) {
   const heading = document.createElement('h3');

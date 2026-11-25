@@ -1,3 +1,4 @@
+import {MOSSBANK_VALLEY_ROAD,VALLEY_STOPS,VALLEY_TREES} from '../game/hidden-valley-room.ts';
 import {KERCHIEF_COLORS,validKerchief,type FieldKerchief} from '../game/field-appearance.ts';
 import {SEWING_TABLE} from '../game/tailoring.ts';
 import {KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
@@ -58,6 +59,7 @@ type ArtAsset={id:string;width:number;height:number;foot?:{x:number;y:number};oc
 const assets=catalog.assets as ArtAsset[];
 const art=(id:string)=>{const asset=assets.find(a=>a.id===id);if(!asset)throw new Error('Missing authored art: '+id);return asset;};
 const KERCHIEF_RIG_WIDTH={aster:1,bea:1.12,casey:.87,devon:1.06} as const;
+const regionalRoom=(room:string)=>room==='mossbank'||room==='pumpworks'||room==='hidden-valley';
 type KerchiefLayer={ink:Phaser.GameObjects.Graphics;key:string};
 
 export class WorldScene extends Phaser.Scene {
@@ -687,9 +689,11 @@ export class WorldScene extends Phaser.Scene {
   mossbankSurvey?:()=>MossbankSurvey|null;
   private mossbankMarks?:{windrow:Phaser.GameObjects.Text;flume:Phaser.GameObjects.Text};
   private mossbankWren?:Phaser.GameObjects.Image;
+  private mossbankValleySign?:Phaser.GameObjects.Container;
   private mossbankRipples:{image:Phaser.GameObjects.Image;y:number;offset:number}[]=[];
   paintMossbankSurvey(){
     const survey=this.mossbankSurvey?.(),marks=this.mossbankMarks;
+    if(this.mossbankValleySign?.active)this.mossbankValleySign.setVisible(survey?.finished===true);
     if(marks?.windrow.active&&marks.flume.active){
       marks.windrow.setText(survey?.windrow?'✓ Alder windrow':'Alder windrow');
       marks.flume.setText(survey?.flume?'✓ Flume landing':'Flume landing');
@@ -698,9 +702,15 @@ export class WorldScene extends Phaser.Scene {
   preload() {
     this.loadingRoom=this.session.room;
     const regionalArt=this.loadingRoom==='mossbank'?['ground','sawmill','alder','fir','wren','ripple',this.session.hasLodging?'road-west':'road-inkwood']
+            :this.loadingRoom==='hidden-valley'?['fir','ripple']
       :this.loadingRoom==='square'&&this.session.hasLodging||this.loadingRoom==='trail'&&!this.session.hasLodging?['road-sign']:[];
     for(const id of regionalArt){
       if(!this.textures.exists('mossbank-'+id))this.load.svg('mossbank-'+id,'/art/mossbank/'+id+'.svg');
+    }
+    if(this.loadingRoom==='hidden-valley'){
+      for(const id of ['ground','cider-press','grafting-house','terrace-roofs']){
+        if(!this.textures.exists('valley-'+id))this.load.svg('valley-'+id,'/art/hidden-valley/'+id+'.svg');
+      }
     }
     const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','breeze-staff','padded-vest-poses']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
     for(const id of fieldArt){
@@ -801,7 +811,8 @@ export class WorldScene extends Phaser.Scene {
     this.load.on('filecomplete',activityLoaded);
     this.events.once('shutdown',()=>{this.load.off('filecomplete',activityLoaded);this.activityLoading.clear();});
     this.mossbankMarks=undefined;
-    this.mossbankWren=undefined;this.mossbankRipples=[];
+    this.mossbankWren=undefined;this.mossbankValleySign=undefined;this.mossbankRipples=[];
+    this.steam=undefined;
     this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;
     this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;this.fieldStaff=undefined;this.fieldVest=undefined;this.fieldKerchief=undefined;this.peerLocalKerchief=undefined;
     this.decorationKey='';
@@ -817,7 +828,7 @@ export class WorldScene extends Phaser.Scene {
     const image=(key:string,x:number,y:number,depth:number)=>this.add.image(x,y,key).setOrigin(0).setDepth(depth);
     this.loadedInteriorKey=this.room.startsWith('home')?this.interiorKey():'';
     const homeGround=this.textures.exists(this.loadedInteriorKey)?this.loadedInteriorKey:homeInterior(this.session.room==='home-expanded'?2:1);
-    image(this.room==='neighborhood'?'neighborhood-ground':this.room==='square'?'variety-ground-square':this.room==='garden'?'garden-ground':this.room==='lodging'?'lodging-rented-room':this.room==='trail'?TRAIL_ART.ground:this.room==='glasshouse'?'glasshouse-interior':this.room==='pumpworks'?'pumpworks-floor':this.room==='mossbank'?'mossbank-ground':this.room.startsWith('home')?homeGround:'ground-workshop',0,0,-1000);
+    image(this.room==='neighborhood'?'neighborhood-ground':this.room==='square'?'variety-ground-square':this.room==='garden'?'garden-ground':this.room==='lodging'?'lodging-rented-room':this.room==='trail'?TRAIL_ART.ground:this.room==='glasshouse'?'glasshouse-interior':this.room==='pumpworks'?'pumpworks-floor':this.room==='mossbank'?'mossbank-ground':this.room==='hidden-valley'?'valley-ground':this.room.startsWith('home')?homeGround:'ground-workshop',0,0,-1000);
     const label=(x:number,y:number,value:string)=>this.add.text(x*TILE,y*TILE,value,{fontFamily:'Georgia,serif',fontSize:13,color:'#343c36',backgroundColor:'#f3e6c5',padding:{x:9,y:5}}).setOrigin(.5).setDepth(y*TILE);
     if(this.room==='square') {
       if(this.session.hasLodging){
@@ -978,6 +989,61 @@ export class WorldScene extends Phaser.Scene {
       const road=point('mossbank-return');
       this.add.image((road.x+.5)*TILE,road.y*TILE,this.session.hasLodging?'mossbank-road-west':'mossbank-road-inkwood').setOrigin(.5,.93).setDepth(road.y*TILE);
       label(road.x+.5,road.y+.8,this.session.hasLodging?'← Ledgerwick road':'← Inkwood road');
+      if(this.session.hasLodging){
+        const valley=MOSSBANK_VALLEY_ROAD.point;
+        const px=(valley.x+.5)*TILE,py=15*TILE;
+        const back=this.add.graphics();
+        back.lineStyle(4,0x5d5844).lineBetween(-30,-37,-30,0).lineBetween(30,-37,30,0);
+        back.fillStyle(0xe1c78f).fillRoundedRect(-53,-35,106,24,3).lineStyle(2,0x5d5844).strokeRoundedRect(-53,-35,106,24,3);
+        const sign=this.add.text(0,-23,'Hidden Valley ↑',{fontFamily:'Georgia',fontSize:13,color:'#334c3e',fontStyle:'bold'}).setOrigin(.5);
+        this.mossbankValleySign=this.add.container(px,py,[back,sign]).setDepth(py);
+        this.paintMossbankSurvey();
+      }
+    } else if(this.room==='hidden-valley'){
+      const stations=new Map(VALLEY_STOPS.map(stop=>[stop.id,stop]));
+      for(const [index,[x,y,kind]] of VALLEY_TREES.entries()){
+        const px=(x+.5)*TILE,py=(y+.5)*TILE;
+        if(kind==='pine'){
+          this.add.image(px,py,'mossbank-fir').setOrigin(.48,.94).setScale(index%3===0?1.12:.88+index%3*.04).setDepth(py);
+          continue;
+        }
+        const meta=art('tree-'+kind+'-canopy'),foot=meta.foot!;
+        const size=kind==='fruit'?.86:index%3===0?1.04:.95;
+        for(const layer of ['trunk','canopy']){
+          const tree=this.add.image(px,py,'variety-tree-'+kind+'-'+layer)
+            .setOrigin(foot.x/meta.width,foot.y/meta.height).setScale(size).setDepth(py);
+          if(layer==='canopy')this.canopies.push({key:kind,image:tree,phase:index*1.7,baseX:px});
+        }
+      }
+      const cider=stations.get('valley-cider-court')!.point;
+      const cx=(cider.x+.5)*TILE,cy=29.3*TILE;
+      this.add.image(cx,cy,'valley-cider-press').setOrigin(.5,.96).setDepth(cy);
+      litWindows.push({x:cx-74,y:cy-62,width:24,height:25},{x:cx+45,y:cy-71,width:24,height:28});
+      this.steamBaseY=cy-168;
+      this.steam=this.add.graphics().setPosition(cx+78,this.steamBaseY).setDepth(cy+1);
+      this.steam.fillStyle(0xf6ebce,.9).fillEllipse(0,-9,17,10).fillEllipse(8,-16,16,10).fillEllipse(15,-22,21,13);
+      const graft=stations.get('valley-grafting-house')!.point;
+      const gx=(graft.x+.5)*TILE,gy=12.38*TILE;
+      this.add.image(gx,gy,'valley-grafting-house').setOrigin(.5,.92).setDepth(gy);
+      litWindows.push({x:gx-73,y:gy-59,width:43,height:29});
+      const roofKey='valley-terrace-roofs',roofTexture=this.textures.get(roofKey);
+      if(!roofTexture.has('0'))this.textures.addSpriteSheet('',roofTexture,{frameWidth:176,frameHeight:155});
+      for(const [frame,x,y,size] of [[0,48.8,20.0,1.07],[1,56.65,22.2,1.16],[2,56.8,29.9,.94]]){
+        const px=(x+.5)*TILE,py=y*TILE;
+        this.add.image(px,py,roofKey,frame).setOrigin(.5,.95).setScale(size).setDepth(py);
+        litWindows.push({x:px-53*size,y:py-66*size,width:22*size,height:20*size});
+      }
+      const look=stations.get('valley-overlook')!.point;
+      const lx=(look.x+.5)*TILE,ly=24.55*TILE;
+      const overlook=this.add.graphics().setDepth(ly);
+      overlook.fillStyle(0xac9a75).fillRoundedRect(lx-66,ly-37,130,33,5);
+      overlook.lineStyle(3,0x635c48).strokeRoundedRect(lx-66,ly-37,130,33,5);
+      overlook.lineStyle(6,0x78593e).lineBetween(lx-25,ly-19,lx+25,ly-19).lineBetween(lx-20,ly-16,lx-20,ly-7).lineBetween(lx+20,ly-16,lx+20,ly-7);
+      for(const stop of VALLEY_STOPS)label(stop.point.x+.5,stop.point.y+.8,stop.id==='valley-mossbank-road'?'← Mossbank road':stop.name);
+      const starts=[[1260,140],[1307,262],[1269,395],[1308,697],[1259,819],[1302,1073],[1249,1182],[1312,1292]];
+      this.mossbankRipples=starts.map(([x,y],index)=>({
+        image:this.add.image(x,y,'mossbank-ripple').setDepth(-999).setVisible(false),y,offset:index*.39,
+      }));
     } else if(this.room==='pumpworks') {
       const station=(x:number,y:number,width:number,height:number,color:number,title:string)=>{
         const px=(x+.5)*TILE,py=(y+.5)*TILE;
@@ -1080,7 +1146,7 @@ export class WorldScene extends Phaser.Scene {
       }
       const followY=this.room==='lodging'?this.lodgingFollow(height):this.room==='pumpworks'&&height<230?26:0;
       camera.setZoom(1).setFollowOffset(0,followY);if(this.room==='neighborhood'){const b=residentialFrame(width,height,1);camera.setBounds(b.x,b.y,b.width,b.height);return;}
-      if(this.room==='square'||this.room==='mossbank'){camera.setZoom(outdoorZoom(width,height,w.width*TILE,w.height*TILE));return;}
+      if(this.room==='square'||this.room==='mossbank'||this.room==='hidden-valley'){camera.setZoom(outdoorZoom(width,height,w.width*TILE,w.height*TILE));return;}
       const worldWidth=w.width*TILE,worldHeight=w.height*TILE;
       camera.setBounds(-Math.max(0,(width-worldWidth)/2),-Math.max(0,(height-worldHeight)/2),Math.max(width,worldWidth),Math.max(height,worldHeight));
     };
@@ -1281,7 +1347,7 @@ export class WorldScene extends Phaser.Scene {
   }
   update(time: number, delta: number) {
     if (this.room !== this.session.room||(this.room==='neighborhood'&&this.loadedDistrictId!==this.districtId)||(this.room.startsWith('home')&&(this.loadedHomePlotId!==this.homePlotId||this.loadedInteriorKey!==this.interiorKey()))) {
-      if(this.room==='mossbank'||this.room==='pumpworks'||this.session.room==='mossbank'||this.session.room==='pumpworks'){
+      if(regionalRoom(this.room)||regionalRoom(this.session.room)){
         this.startRegionalRoom();
       }else this.scene.restart();
       return;

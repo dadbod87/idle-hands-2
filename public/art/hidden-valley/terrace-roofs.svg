@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="528" height="155" viewBox="0 0 528 155">
+ <title>Three separate Hidden Valley house facades</title>
+ <g stroke="#3d493d" stroke-width="3" stroke-linejoin="round">
+  <ellipse cx="90" cy="146" rx="80" ry="7" fill="#455343" stroke="none" opacity=".2"/>
+  <path d="M20 65h134v78H20Z" fill="#ddca9a"/>
+  <path d="M10 66l78-54 77 54Z" fill="#678783"/>
+  <path d="M30 61l58-43 59 43M36 53h105m-91-10h76" fill="none" stroke="#aac2a8" stroke-width="2"/>
+  <path d="M25 123h124v20H25Z" fill="#ac9d7b"/><path d="M81 95h24v47H81Z" fill="#54746a"/>
+  <path d="M36 83h26v25H36zM117 83h26v25h-26Z" fill="#eed691"/>
+  <path d="M49 84v24m81-24v24m-94-12h26m55 0h26" fill="none" stroke="#8b7750" stroke-width="1.4"/>
+ </g>
+ <g transform="translate(176 0)" stroke="#41463b" stroke-width="3" stroke-linejoin="round">
+  <ellipse cx="87" cy="146" rx="78" ry="7" fill="#455343" stroke="none" opacity=".27"/>
+  <path d="M21 58h127v86H21Z" fill="#b4b97f"/>
+  <path d="M11 63l69-56 48 26 30 30Z" fill="#a96d5b"/>
+  <path d="M31 56l49-42 59 42m-92-9h78m-63-11h45" fill="none" stroke="#d7ac87" stroke-width="2"/>
+  <path d="M35 111h118l10 12H22Z" fill="#d5b680"/>
+  <path d="M32 123v21m121-21v21" stroke="#89664e" stroke-width="5"/>
+  <path d="M72 99h27v45H72Z" fill="#61796a"/>
+  <path d="M35 75h25v22H35zM115 74h22v25h-22Z" fill="#e5c986"/>
+  <path d="M27 137h130" stroke="#738357" fill="none" stroke-width="2"/>
+ </g>
+ <g transform="translate(352 0)" stroke="#414b3f" stroke-width="3" stroke-linejoin="round">
+  <ellipse cx="86" cy="146" rx="75" ry="7" fill="#455343" stroke="none" opacity=".22"/>
+  <path d="M31 55h106v89H31Z" fill="#b0a78d"/>
+  <path d="M25 55l19-35 54-9 52 44Z" fill="#827c72"/>
+  <path d="M43 48h96m-90-10h78m-68-9h56" fill="none" stroke="#b3ab91" stroke-width="2"/>
+  <path d="M31 72h106m-106 21h106m-106 23h106m-84-45v20m67-36v16m-13 22v22m-63-22v22" fill="none" stroke="#827c67" stroke-width="1.4"/>
+  <path d="M72 98h25v46H72Z" fill="#81937a"/>
+  <path d="M47 73h22v23H47zM103 72h20v25h-20Z" fill="#e9d599"/>
+  <path d="M56 74v21m57-23v24" fill="none" stroke="#89764d" stroke-width="1.6"/>
+ </g>
+</svg>

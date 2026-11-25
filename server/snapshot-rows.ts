@@ -1,3 +1,4 @@
+import type {tailoringFromRow} from './tailoring.ts';
 import {MOSSBANK_AWARDS} from '../src/game/mossbank.ts';
 /** One statement, with the caller's transaction and clock. No cache or writes. */
 import type {PoolClient} from 'pg';
@@ -37,6 +38,7 @@ export type SnapshotRows={
  glasshouse_review:unknown;
  glasshouse_plant:unknown;
  inkmint:unknown;
+ tailoring:Parameters<typeof tailoringFromRow>[0];
 };
 
 // Explicit public projections keep other residents' private JSON out of the result.
@@ -112,7 +114,9 @@ const query = `select /* coherent-town-snapshot */
  (select v.review from ih2.glasshouse_reviews v where v.player_id=$1) as glasshouse_review,
  (select v.plant from ih2.glasshouse_plants v where v.player_id=$1 and v.project_revision=1) as glasshouse_plant,
  (select jsonb_build_object('phase',v.inkmint_phase,'readyAt',v.inkmint_ready_at)
-    from ih2.glasshouse_plants v where v.player_id=$1 and v.project_revision=1) as inkmint
+    from ih2.glasshouse_plants v where v.player_id=$1 and v.project_revision=1) as inkmint,
+ (select jsonb_build_object('started_at',t.started_at,'ready_at',t.ready_at,'collected_at',t.collected_at,'worn',t.worn)
+    from ih2.tailored_kerchiefs t where t.player_id=$1) as tailoring
  from ih2.players resident where resident.id=$1`;
 
 export async function readSnapshotRows(client:PoolClient,id:string,now:number,key:string):Promise<SnapshotRows|undefined>{

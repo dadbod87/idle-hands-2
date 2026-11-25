@@ -1,3 +1,4 @@
+import {SEWING_TABLE} from './tailoring.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROOM} from './mossbank-room.ts';
 import {PUMPWORKS_ROOM} from './pumpworks-room.ts';
 import{OUTING_STOPS}from'./outing.ts';
@@ -77,6 +78,7 @@ export const worlds: Record<Room, World> = {
     stops: [
       { id: 'bench', name: 'Work bench', point: { x: 5, y: 5 }, doorArea:[3,3,5,3], text: 'Make useful things. Submit questionable paperwork.' },
       {id:'finishing-rack',name:'Pine finishing rack',point:{x:12,y:6.5},doorArea:[10.75,3,3.5,3.75],text:'Garden study easels finish here on their own twelve-hour timer. The ordinary bench stays available.'},
+      SEWING_TABLE,
       { id: 'door', name: 'Town square', point: { x: 9, y: 13 }, transition: 'square', arrival: { x: 19.5, y: 22.3 }, doorArea: [8, 13, 3, 2], text: 'Back to the square. Meetings are outdoors now. There was an incident with a flip chart.' }
     ]
   }

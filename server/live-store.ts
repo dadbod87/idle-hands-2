@@ -1,3 +1,5 @@
+import {SEWING_TABLE,type Tailoring} from '../src/game/tailoring.ts';
+import {tailoringFromRow,writeTailoring} from './tailoring.ts';
 import {MOSSBANK_AWARDS,SURVEY_ACTIONS,mossbankFromAwards,surveyMossbank,type SurveyAction,type SurveyPlace} from '../src/game/mossbank.ts';
 import {INKMINT_STATIONS,inkmintSchema,type Inkmint} from '../src/game/nursery-inkmint.ts';
 import {writeInkmint} from './nursery-inkmint.ts';
@@ -55,6 +57,7 @@ export type TownSnapshot = {
   projectJournal:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;
   trail:{stamps:string[];pennantOwned:boolean};
   headwear?:TownHeadwear;
+  tailoring?:Tailoring|null;
   plot: TownPlot | null; plots: TownPlot[];
   noticeboard:NoticeboardState;
   commissionTown:{styles:Array<{ownerId:string;ownerName:string;motif:LetterboxMotif}>};
@@ -206,7 +209,7 @@ export class TownStore {
     const keptPlant=glasshousePlantSchema.safeParse(data.glasshouse_plant);
     const inkmint=inkmintSchema.safeParse(data.inkmint);
     const glasshouse=glasshouseSnapshot(data.glasshouse,near(position,'trail',INKWOOD_GLASSHOUSE.id)?data.glasshouse_review:null,id,now);
-    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {plantWindowsill:true,...(glasshouse?{glasshouse}:{}),...(keptPlant.success?{glasshousePlant:keptPlant.data,...(inkmint.success?{inkmint:inkmint.data}:{})}:{}),orchard:orchardSnapshot(player.orchard),outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position, lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},headwear:townHeadwear(awarded.includes(TRAIL_PENNANT_AWARD),player.worn_headwear,workshop.carpentry.recorded>0),bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {plantWindowsill:true,tailoring:tailoringFromRow(data.tailoring),...(glasshouse?{glasshouse}:{}),...(keptPlant.success?{glasshousePlant:keptPlant.data,...(inkmint.success?{inkmint:inkmint.data}:{})}:{}),orchard:orchardSnapshot(player.orchard),outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position, lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},headwear:townHeadwear(awarded.includes(TRAIL_PENNANT_AWARD),player.worn_headwear,workshop.carpentry.recorded>0),bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string, confirmedPosition?: () => TownPosition | undefined): Promise<TownSnapshot> {
     const client = await this.pool.connect();
@@ -270,6 +273,15 @@ export class TownStore {
       else if (!(position.room==='neighborhood'?canStand(position.room,position.position,housingWorld((await client.query('select id::text,plan_id as "planId" from ih2.plots')).rows,position.districtId!)):validPosition(position))||!validContext) reject('A valid server position is required.');
       else if (clockWentBack || now < state.observedAt) reject('The server clock moved backwards. Your progress is unchanged.');
       else if (state.revision >= 1_000_000) reject('Prototype command limit reached. Your progress is unchanged.');
+      else if(cmd.kind==='tailoring'){
+        const decision=await writeTailoring(client,id,raw,near(position,'workshop',SEWING_TABLE.id),state.inventory.supplies,now);
+        if(!decision.ok)reject(decision.message);
+        else{
+          state={...state,inventory:{...state.inventory,supplies:state.inventory.supplies-decision.cost},
+            revision:state.revision+1,observedAt:now,lastMessage:decision.message};
+          result={ok:true,message:decision.message,revision:state.revision};
+        }
+      }
       else if(cmd.kind==='mossbank-survey'){
         const submitted=mossbankCommandSchema.safeParse(raw);
         if(!submitted.success)reject('That route card request is invalid.');

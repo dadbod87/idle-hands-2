@@ -1,4 +1,5 @@
-import {KERCHIEF_COLORS} from '../game/field-appearance.ts';
+import {KERCHIEF_COLORS,validKerchief,type FieldKerchief} from '../game/field-appearance.ts';
+import {SEWING_TABLE} from '../game/tailoring.ts';
 import {KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
 import {BOW_DRAW_SECONDS,BOW_TRACE_MS,STAFF_PULSE_MS,type BowDraw,type BowTrace,type StaffPulse} from '../game/field-weapons.ts';
 import type {MossbankSurvey} from '../game/mossbank.ts';
@@ -56,6 +57,9 @@ type GlasshousePhase = GlasshouseSnapshot['project']['phase'];
 type ArtAsset={id:string;width:number;height:number;foot?:{x:number;y:number};occlusion?:{x:number;y:number;width:number;height:number};lightingWindows?:Array<{x:number;y:number;width:number;height:number}>};
 const assets=catalog.assets as ArtAsset[];
 const art=(id:string)=>{const asset=assets.find(a=>a.id===id);if(!asset)throw new Error('Missing authored art: '+id);return asset;};
+const KERCHIEF_RIG_WIDTH={aster:1,bea:1.12,casey:.87,devon:1.06} as const;
+type KerchiefLayer={ink:Phaser.GameObjects.Graphics;key:string};
+
 export class WorldScene extends Phaser.Scene {
   outingState?:()=>OutingState;private outingPost?:Phaser.GameObjects.Image;private outingCrossing?:Phaser.GameObjects.Image;private outingKey='';
   refreshOuting(){this.outingKey='';}
@@ -196,8 +200,8 @@ export class WorldScene extends Phaser.Scene {
   private ambientEnabled=false;
   private gestureOffset=0;
   private reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  residents:Array<{id:string;name:string;room:string;homePlotId?:string;districtId?:string;headwear?:EarnedHeadwear;waveUntil?:number;position:{x:number;y:number}}>=[];
-  private residentViews=new Map<string,{image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text;motion:ResidentMotion;headwear?:Phaser.GameObjects.Image}>();
+  residents:Array<{id:string;name:string;room:string;homePlotId?:string;districtId?:string;headwear?:EarnedHeadwear;kerchief?:FieldKerchief;waveUntil?:number;position:{x:number;y:number}}>=[];
+  private residentViews=new Map<string,{image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text;motion:ResidentMotion;headwear?:Phaser.GameObjects.Image;kerchief?:KerchiefLayer}>();
   private visiblePeerWalking=false;
   localWaveUntil=0;
   waveTime=Date.now;
@@ -527,8 +531,36 @@ export class WorldScene extends Phaser.Scene {
   private fieldBow?:Phaser.GameObjects.Image;
   private fieldStaff?:Phaser.GameObjects.Image;
   private fieldVest?:Phaser.GameObjects.Image;
-  private fieldKerchief?:Phaser.GameObjects.Graphics;
-  private kerchiefPaint='';
+  private fieldKerchief?:KerchiefLayer;
+  private peerLocalKerchief?:KerchiefLayer;
+  sharedKerchief:FieldKerchief='none';
+
+  private drawKerchief(layer:KerchiefLayer|undefined,color:FieldKerchief,facing:Facing,x:number,y:number,rig:string,frame:number){
+    if(color==='none'){
+      if(layer?.ink.visible)layer.ink.setVisible(false);
+      return layer;
+    }
+    const view=layer??{ink:this.add.graphics(),key:''},ink=view.ink;
+    if(!ink.visible)ink.setVisible(true);
+    const key=facing+':'+color;
+    if(key!==view.key){
+      view.key=key;
+      const shape=KERCHIEF_OUTLINES[facing];
+      const vector=({x,y}:Point)=>new Phaser.Math.Vector2(x,y);
+      const edge=shape.cloth.map(vector);
+      ink.clear();
+      ink.fillStyle(KERCHIEF_COLORS[color].fill).fillPoints(edge,true);
+      ink.lineStyle(1.35,KERCHIEF_INK).strokePoints(edge,true);
+      ink.lineStyle(1,KERCHIEF_TRIM).strokePoints(shape.seam.map(vector));
+    }
+    const sx=ART.actorScale*KERCHIEF_RIG_WIDTH[residentArt(rig)],sy=ART.actorScale;
+    const bob=frame>0?.8*Math.abs(Math.sin((frame-1)*Math.PI/3)):0;
+    const left=x-32*sx,top=y-(72+bob)*sy;
+    if(ink.x!==left||ink.y!==top)ink.setPosition(left,top);
+    if(ink.depth!==y+.75)ink.setDepth(y+.75);
+    if(ink.scaleX!==sx||ink.scaleY!==sy)ink.setScale(sx,sy);
+    return view;
+  }
   paintPumpworks(){
     if(!this.hopper||!this.hopperWarning||!this.hopperName||!this.combatInk)return;
     const state=this.pumpworksState?.(),encounter=this.pumpworksEncounter?.(),motion=encounter?.hopper;
@@ -592,24 +624,6 @@ export class WorldScene extends Phaser.Scene {
     this.fieldBow?.setVisible(state?.bow==='equipped');
     this.fieldStaff?.setVisible(state?.staff==='equipped');
     this.fieldVest?.setVisible(state?.vest==='equipped');
-    const kerchief=state?.kerchief??'none';
-    const cloth=this.fieldKerchief;
-    if(cloth){
-      cloth.setVisible(kerchief!=='none');
-      const key=this.facing+':'+kerchief;
-      if(key!==this.kerchiefPaint){
-        this.kerchiefPaint=key;
-        cloth.clear();
-        if(kerchief!=='none'){
-          const shape=KERCHIEF_OUTLINES[this.facing];
-          const vector=({x,y}:Point)=>new Phaser.Math.Vector2(x,y);
-          const edge=shape.cloth.map(vector);
-          cloth.fillStyle(KERCHIEF_COLORS[kerchief].fill).fillPoints(edge,true);
-          cloth.lineStyle(1.35,KERCHIEF_INK).strokePoints(edge,true);
-          cloth.lineStyle(1,KERCHIEF_TRIM).strokePoints(shape.seam.map(vector));
-        }
-      }
-    }
     const draw=encounter?.draw;
     if(draw){
       const px=(draw.from.x+.5)*TILE,py=(draw.from.y+.5)*TILE-45;
@@ -789,7 +803,7 @@ export class WorldScene extends Phaser.Scene {
     this.mossbankMarks=undefined;
     this.mossbankWren=undefined;this.mossbankRipples=[];
     this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;
-    this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;this.fieldStaff=undefined;this.fieldVest=undefined;this.fieldKerchief=undefined;this.kerchiefPaint='';
+    this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;this.fieldStaff=undefined;this.fieldVest=undefined;this.fieldKerchief=undefined;this.peerLocalKerchief=undefined;
     this.decorationKey='';
     this.decorationViews=[];
     this.furnitureOccluders=[];
@@ -991,7 +1005,6 @@ export class WorldScene extends Phaser.Scene {
       const vestKey='pumpworks-padded-vest-poses',vestTexture=this.textures.get(vestKey);
       if(!vestTexture.has('0'))this.textures.addSpriteSheet('',vestTexture,{frameWidth:64,frameHeight:80});
       this.fieldVest=this.add.image(0,0,vestKey,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setVisible(false);
-      this.fieldKerchief=this.add.graphics().setVisible(false);
       this.paintPumpworks();
     } else if(this.room==='glasshouse') {
       for(const stop of w.stops)label(stop.point.x+.5,stop.point.y+.98,stop.id==='glasshouse-exit'?'Inkwood trail ↓':stop.name);
@@ -1023,6 +1036,17 @@ export class WorldScene extends Phaser.Scene {
       this.benchCard=label(6.65,3.3,'').setDepth(5*TILE+1).setFontSize(12).setPadding(5,3,5,3).setVisible(false);
       const rack=carpentryArt('finishing-rack-empty');this.rackView=this.add.image(12.5*TILE,6*TILE,rack.id).setOrigin(rack.foot!.x/rack.width,rack.foot!.y/rack.height).setDepth(6*TILE);label(12.5,6.6,'Pine finishing rack').setFontSize(12).setPadding(5,3,5,3);
       image('crates',3*TILE,8*TILE,10*TILE);
+      if(this.session.stops.some(stop=>stop.id===SEWING_TABLE.id)){
+        const x=(SEWING_TABLE.point.x+.5)*TILE,y=9.8*TILE;
+        const seam=this.add.graphics().setDepth(y);
+        seam.fillStyle(0x3d5143,.22).fillEllipse(x,y+2,79,14);
+        seam.lineStyle(3,0x454638).fillStyle(0xb28c62).fillRoundedRect(x-34,y-25,68,24,3).strokeRoundedRect(x-34,y-25,68,24,3);
+        seam.lineBetween(x-25,y-2,x-25,y+6).lineBetween(x+25,y-2,x+25,y+6);
+        seam.fillStyle(0xbf7563).fillRoundedRect(x-24,y-19,30,12,2);
+        seam.lineStyle(1,0xf4d7ad).lineBetween(x-21,y-16,x+2,y-16);
+        seam.fillStyle(0xe1c37d).fillCircle(x+19,y-17,6);
+        label(SEWING_TABLE.point.x+.5,SEWING_TABLE.point.y+.65,SEWING_TABLE.name).setFontSize(12).setDepth(y+8);
+      }
       if(this.workshopPrintEnabled){
         const backing=this.add.rectangle(0,0,87,71,0x7b543e).setStrokeStyle(2,0x303930);
         const canvas=this.add.rectangle(0,0,78,62,0xf5e5bd).setStrokeStyle(1,0x957850);
@@ -1217,7 +1241,9 @@ export class WorldScene extends Phaser.Scene {
       worker:this.mossbankWren?.texture.key??null,
       ripples:this.mossbankRipples.filter(ripple=>ripple.image.visible).map(ripple=>({x:ripple.image.x,y:ripple.image.y})),
     },
-    fieldEquipment:{vest:this.fieldVest?.visible===true,kerchief:this.fieldKerchief?.visible===true?this.kerchiefPaint:null},
+    fieldEquipment:{vest:this.fieldVest?.visible===true,kerchief:this.fieldKerchief?.ink.visible===true?this.fieldKerchief.key:null},
+    wornCloth:{own:this.peerLocalKerchief?.ink.visible?this.peerLocalKerchief.key:null,
+      peers:[...this.residentViews].filter(([,view])=>view.kerchief?.ink.visible).map(([id,view])=>({id,appearance:view.kerchief!.key}))},
     steering:!!this.fieldSteering,waving:this.localWaveLabel?.visible===true,peerWaves:[...this.residentViews].filter(([,view])=>view.label.text.startsWith('Waves hello!\n')).map(([id])=>id),peerMotion:[...this.residentViews].map(([id,{motion,headwear}])=>({id,position:{...motion.position},facing:motion.facing,frame:motion.frame,hat:headwear?.visible?Number(headwear.frame.name):null,walking:motion.walking})),peerHeadwear:[...this.residentViews].filter(([,view])=>view.headwear?.visible).map(([id,view])=>({id,texture:view.headwear!.texture.key})),resting:!!this.bedPose?.visible,headwear:this.headwearLayer?.visible?{texture:this.headwearLayer.texture.key,frame:this.headwearLayer.frame.name,x:this.headwearLayer.x,y:this.headwearLayer.y}:null,canopyTransformWrites:this.canopyTransformWrites,glasshouse:this.glasshouseView?.texture.key??null,glasshouseOpening:{active:this.glasshouseGlint?.visible??false,count:this.glasshouseOpeningCount},workshopPrint:this.workshopPrintFrame?.visible?this.workshopPrint:null,ordinaryBench:{phase:this.benchPhase,recipe:this.benchRecipe,piece:this.benchPiece?.visible?this.benchPiece.texture.key:null},walkTarget:this.walkMark?.visible?{x:this.walkMark.x/TILE-.5,y:this.walkMark.y/TILE-.5}:null,commons:{signs:this.commonsSigns,life:this.commonsLife?.snapshot()??null,framing:this.room==='square'?commonsFrame(this.session.position,camera.width,camera.height):null,shelters:this.occluders.filter(o=>o.image instanceof Phaser.GameObjects.Graphics).map(o=>({alpha:o.image.alpha,x:o.x,y:o.y,width:o.width,height:o.height}))},camera:{zoom:camera.zoom,scrollX:camera.scrollX,scrollY:camera.scrollY,worldView:{x:camera.worldView.x,y:camera.worldView.y,width:camera.worldView.width,height:camera.worldView.height},matrix:Array.from(camera.matrixCombined.matrix).slice(0,6)},neighborhood:{yardItems:this.yardViews.map(v=>({texture:v.texture.key,depth:v.depth,bounds:v.getBounds()})),districtId:this.districtId??null,life:this.residentialLife?.snapshot()??null,windows:this.streetWindows.map(w=>({...w})),sites:this.streetViews.map(v=>({slot:v.slot,plotId:v.plotId,texture:v.image.texture.key,label:v.label.text,bounds:v.image.getBounds(),labelBounds:v.label.getBounds()}))},depots:this.depotViews.map(d=>({resource:d.resource,key:d.image.texture.key,depth:d.image.depth,bounds:d.image.getBounds(),labelBounds:d.label.getBounds(),label:d.label.text})),letterboxes:this.decorationViews.filter((v):v is Phaser.GameObjects.Image=>v instanceof Phaser.GameObjects.Image&&v.texture.key.startsWith('letterbox-')).map(v=>v.texture.key),carpentry:{pineTextures:this.pineViews.map(v=>v.image.texture.key),rackTexture:this.rackView?.texture.key??null,noticeboardTexture:this.noticeboardView?.texture.key??null,equipped:this.carpentryState?.()?.saw.equipped??false,lastAction:this.lastCarpentryAction,action:this.carpentryMotion?.action??null},garden:{room:this.room,lastAction:this.lastGardenAction,bedTextures:this.gardenViews.map(v=>v.texture.key),bedFeet:this.gardenViews.map(v=>({x:v.x,y:v.y})),labels:this.gardenLabels.map((v,i)=>({text:v.text,target:this.gardenLabelTargets[i],bounds:v.getBounds(),hitBounds:this.gardenLabelHit(v)})),action:this.gardenMotion?.action??null,actorTexture:this.actor?.texture.key??null,welcomeTexture:this.gardenWelcomeView?.texture.key??null},bridge:{ceremony:!!this.bridgeRibbon?.visible,phase:this.bridgePhase??(this.bridgeRestored?'open':'collecting'),texture:this.bridgeView?.texture.key??null,readyAt:this.bridgeReadyAt},home:{windowsillPlant:this.windowsillView?.visible?this.windowsillPlant:null,windowsillStriped:this.windowsillView?.visible&&this.windowsillStriped,keepsakeVisible:!!this.keepsakeView?.visible,keepsakeTexture:this.keepsakeView?.visible?this.keepsakeArt?.texture.key??null:null,pennantVisible:this.pennantView?.visible??false,pennantTexture:this.pennantView?.texture.key??null,pennantPosition:this.pennantView?{x:this.pennantView.x,y:this.pennantView.y}:null,room:this.room,plotId:this.loadedHomePlotId??null,ownerName:this.homeOwnerName,level:this.homeLevel,decorations:this.room.startsWith('home')&&this.decorations?this.decorations():null,interiorTexture:this.room.startsWith('home')?this.loadedInteriorKey:null,furniture:this.decorationViews.map(view=>({texture:view.texture.key,x:view.x,y:view.y,alpha:view.alpha}))},facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:(this.room==='square'||this.room==='neighborhood')?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
   private updateAmbient(delta:number){
     this.ambientEnabled=!document.hidden&&!this.reducedMotion.matches;
@@ -1306,16 +1332,15 @@ export class WorldScene extends Phaser.Scene {
     this.soundingRod?.setPosition(x+14,y-3).setDepth(y+1);
     this.fieldBow?.setPosition(x+14,y-5).setDepth(y+1);
     this.fieldStaff?.setPosition(x+14,y-1).setDepth(y+1);
-    if(this.fieldVest?.visible||this.fieldKerchief?.visible){
-      const width={aster:1,bea:1.12,casey:.87,devon:1.06}[residentArt(this.residentId)];
-      const sx=ART.actorScale*width,sy=ART.actorScale;
-      const bob=this.frame>0?.8*Math.abs(Math.sin((this.frame-1)*Math.PI/3)):0,top=y-bob*sy;
-      if(this.fieldVest?.visible){
-        const pose=FACINGS.indexOf(this.facing);
-        if(String(this.fieldVest.frame.name)!==String(pose))this.fieldVest.setFrame(pose);
-        this.fieldVest.setPosition(x,top).setDepth(y+.5).setScale(sx,sy);
-      }
-      if(this.fieldKerchief?.visible)this.fieldKerchief.setPosition(x-32*sx,top-72*sy).setDepth(y+.75).setScale(sx,sy);
+    if(this.fieldVest?.visible){
+      const sx=ART.actorScale*KERCHIEF_RIG_WIDTH[rig],sy=ART.actorScale;
+      const bob=this.frame>0?.8*Math.abs(Math.sin((this.frame-1)*Math.PI/3)):0;
+      const pose=FACINGS.indexOf(this.facing);
+      if(String(this.fieldVest.frame.name)!==String(pose))this.fieldVest.setFrame(pose);
+      this.fieldVest.setPosition(x,y-bob*sy).setDepth(y+.5).setScale(sx,sy);
+    }
+    if(this.room==='pumpworks'){
+      this.fieldKerchief=this.drawKerchief(this.fieldKerchief,this.pumpworksState?.()?.kerchief??'none',this.facing,x,y,rig,this.frame);
     }
     if(this.bedPose&&this.bedQuilt){
       if(this.bedPose.visible!==this.resting){
@@ -1328,6 +1353,8 @@ export class WorldScene extends Phaser.Scene {
       if(this.actor.visible===this.resting)this.actor.setVisible(!this.resting);
     }
     const actionFacing=available?(orchard?.facing??motion?.facing??gardenMotion?.facing):undefined;
+    this.peerLocalKerchief=this.drawKerchief(this.peerLocalKerchief,this.resting?'none':this.sharedKerchief,
+      actionFacing??this.facing,x,y,rig,actionFacing?0:this.frame);
     this.headwearLayer=this.paintHeadwear(this.resting?null:this.headwear,this.headwearLayer,x,y,residentFrame(actionFacing??this.facing,actionFacing?0:this.frame));
     this.drawGarden();this.drawCarpentry();this.drawOuting();
     this.updateAmbient(delta);
@@ -1352,7 +1379,7 @@ export class WorldScene extends Phaser.Scene {
     });
     const nearPeers=new Set(peers.map(peer=>peer.id));
     for(const [id,view] of this.residentViews)if(!nearPeers.has(id)){
-      view.image.destroy();view.label.destroy();view.headwear?.destroy();this.residentViews.delete(id);
+      view.image.destroy();view.label.destroy();view.headwear?.destroy();view.kerchief?.ink.destroy();this.residentViews.delete(id);
     }
     const waveNow=this.waveTime();
     if(waveRoom(this.room)&&activeWave(this.localWaveUntil,waveNow)){
@@ -1385,6 +1412,8 @@ export class WorldScene extends Phaser.Scene {
       const waving=waveRoom(this.room)&&activeWave(peer.waveUntil,waveNow);
       const label=waving?'Waves hello!\n'+peer.name:peer.name;
       if(view.label.text!==label)view.label.setText(label).setBackgroundColor(waving?'#ffe6a3':'#f8f1df');
+      view.kerchief=this.drawKerchief(view.kerchief,validKerchief(peer.kerchief)?peer.kerchief:'none',
+        view.motion.facing,px,py,peer.id,frame%7);
       view.headwear=this.paintHeadwear(peer.headwear===INKWOOD_HOOD||peer.headwear===CLERK_CAP?peer.headwear:null,view.headwear,px,py,frame);
     }
     this.onFrame?.();

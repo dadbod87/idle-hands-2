@@ -1,3 +1,5 @@
+import {SEWING_TABLE} from './game/tailoring.ts';
+import {showTailoring,tailoringBagCards} from './ui/tailoring.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD} from './game/mossbank-room.ts';
 import {MOSSBANK_KEY,mossbankFromAwards,readMossbank,type SurveyPlace} from './game/mossbank.ts';
 import {createMossbank} from './ui/mossbank.ts';
@@ -386,6 +388,10 @@ const town=townMode?new TownClient({
   if(!needResync&&!panel.open&&freshGlasshouseOpening(previous,snapshot)&&scene.playGlasshouseOpening())
    feedback.textContent='The Glasshouse is open. The vines have filed a complaint.';
   glasshouseUI?.refresh();
+  if(scene.sharedKerchief!==(snapshot.tailoring?.worn??'none')){
+   scene.sharedKerchief=snapshot.tailoring?.worn??'none';
+   refreshMenuFrame(2);
+  }
  session.setSquareStops(snapshot.orchard!==undefined?ORCHARD_STOPS:undefined);
  const celebrateBridge=!needResync&&freshBridgeOpening(previous??null,snapshot);
  skyOffset=snapshot.serverTime-Date.now();const identityChanged=residentId!==snapshot.playerId;const expandedInPlace=session.room==='home'&&snapshot.position.room==='home-expanded'&&snapshot.position.homePlotId===homePlotId;
@@ -546,7 +552,8 @@ const mossbank=createMossbank({
   }
  },
 }:undefined);
-const workshop=new WorkshopUI({fieldGear:pumpworks?.gear,fieldJournal:pumpworks?(body)=>{pumpworks.journal(body,()=>{
+const sewingHost={open:openPanel,body,atTable:()=>session.room==='workshop'&&session.nearby()?.id===SEWING_TABLE.id&&!needResync,cue:()=>music.cue('craft')};
+const workshop=new WorkshopUI({fieldGear:pumpworks?.gear??(town?()=>tailoringBagCards(town,()=>showTailoring(sewingHost,town,true)):undefined),fieldJournal:pumpworks?(body)=>{pumpworks.journal(body,()=>{
  const state=pumpworks.current();
  if(session.room==='pumpworks'){
   goNamedDestination('pumpworks',state?.satchel==='at-pump'?'pumpworks-cache':state?.cleared?'pumpworks-report':'pumpworks-hopper');
@@ -928,6 +935,10 @@ async function savePondObservation(id:PondWatchId,choice:string,active:()=>boole
 function activate(stop: Stop) {
   if(session.room==='mossbank'&&stop.id.startsWith('mossbank-')&&!stop.transition){
     mossbank.show(stop.id as SurveyPlace);
+    return;
+  }
+  if(town&&stop.id===SEWING_TABLE.id){
+    showTailoring(sewingHost,town);
     return;
   }
   if(pumpworks&&session.room==='pumpworks'&&stop.id==='pumpworks-bell'){

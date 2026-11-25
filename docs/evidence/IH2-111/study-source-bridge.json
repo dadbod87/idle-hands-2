@@ -20,10 +20,10 @@
     }
   },
   "reviewedCurrent": {
-    "src/game/world.ts": "798d798e6dda52b5b2a3d671ed10c8cbe40de5fba543a4b2e78eebb4f3565664",
-    "src/main.ts": "9cf698ed1a582c1bddf91fe3fef2e05fb60ed1e8694e6aaa4fa1440582414dce",
-    "src/phaser/WorldScene.ts": "5c22754add3c472ec30bd8547a21d697c32e5e8d4824837fd20f6c823a4c7348",
+    "src/game/world.ts": "18e4cb72f222ca227edc3950dcb0e61393be0b06dc8d5bffe7ec294f86a842f4",
+    "src/main.ts": "25bfc8da25b0bb4fd5ad8185123bd64842dcfa593144517fa089397e3c4dc59b",
+    "src/phaser/WorldScene.ts": "270c06635e9eb73e1853b6cab83b2cf9dd1b3458e8a5c7e49e546259cb998b5c",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the Pumpworks-only three weapon styles, vest and dye layers and Mossbank/Pumpworks entry continuity. Archived study inputs and generated output remain frozen."
+  "currentTask": "Reviewed the regional entry, field equipment, and connected workshop sewing table and kerchief layers. Garden geometry and the archived study inputs and generated output remain frozen."
 }

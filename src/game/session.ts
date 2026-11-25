@@ -1,3 +1,4 @@
+import {SEWING_TABLE} from './tailoring.ts';
 import {MOSSBANK_ENTRY,MOSSBANK_STOPS} from './mossbank-room.ts';
 import {practiceRoom} from './world.ts';
 import {PUMPWORKS_ENTRY} from './pumpworks-room.ts';
@@ -26,7 +27,8 @@ export class Session {
   private moving = false;
   private pendingStop: string | null = null;
   private squareStops: readonly Stop[] = worlds.square.stops;
-  private workshopStops: readonly Stop[] = worlds.workshop.stops;
+  private readonly workshopBaseStops:readonly Stop[];
+  private workshopStops:readonly Stop[];
   private readonly squareLayout?: World;
   readonly recoveredLodgingFootprint: boolean = false;
   private extraSquareStops?:readonly Stop[];
@@ -60,9 +62,9 @@ export class Session {
     return worlds[this.room].stops;
   }
   setWorkshopPrint(shown:boolean){
-    const available=this.workshopStops!==worlds.workshop.stops;
+    const available=this.workshopStops!==this.workshopBaseStops;
     if(shown===available)return;
-    this.workshopStops=shown?[...worlds.workshop.stops,WORKSHOP_PRINT_STOP]:worlds.workshop.stops;
+    this.workshopStops=shown?[...this.workshopBaseStops,WORKSHOP_PRINT_STOP]:this.workshopBaseStops;
     if(!shown&&this.pendingStop===WORKSHOP_PRINT_STOP.id)this.stop();
   }
   setSquareStops(extra?:readonly Stop[]){
@@ -72,6 +74,8 @@ export class Session {
     this.squareStops=extra?.length?[...base,...extra]:base;
   }
   constructor(saved?: unknown, extraSquareStops?: readonly Stop[], localLodging = false) {
+    this.workshopBaseStops=localLodging?worlds.workshop.stops.filter(stop=>stop.id!==SEWING_TABLE.id):worlds.workshop.stops;
+    this.workshopStops=this.workshopBaseStops;
     if(localLodging){
       this.squareLayout=squareWithLodging(worlds.square);
       this.squareStops=this.squareLayout.stops;

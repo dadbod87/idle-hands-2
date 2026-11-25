@@ -1,0 +1,9 @@
+.sewing-order { display:grid; gap:10px; }
+.sewing-controls { display:grid; gap:8px; }
+.sewing-controls label { display:grid; gap:4px; }
+.sewing-controls select { width:100%; min-height:44px; padding:6px 9px; font:inherit; }
+.sewing-controls .destination { margin:0; }
+#panel-body .sewing-order p { margin:0; }
+#panel-body .sewing-note:empty { display:none; }
+.sewing-preview { width:74px; height:64px; margin:auto; }
+.sewing-order .sewing-preview { background:#e5d8ae; border:1px solid #938774; border-radius:3px; }

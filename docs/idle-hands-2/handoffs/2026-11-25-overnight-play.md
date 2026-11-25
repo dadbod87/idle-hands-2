@@ -64,3 +64,7 @@ A fresh 320px Chromium touch profile, starting with its normal empty inventory, 
 ### Follow-up and full browser collection
 
 The [Glasshouse quote recovery](https://github.com/dadbod87/idle-hands-2/tree/fix/nov25-glasshouse-review-recovery) is backed up independently at `cd6acde`. A malformed stored price or expiry leaves the resident at a usable board, with the review cleared and no charge. Its build, 456 local domain cases, and five focused Chromium cases passed. Incorporate this exact source into the final connected check. The compatibility branch collects all 274 browser cases in three disjoint groups of 91, 90 and 93. Collection confirms coverage assignment only. No hosted run was started.
+
+### Twelve-hour bridge kit receipt
+
+An independent 320px Chromium touch profile on the same frozen source 076c6a3 closed November 24 at 2:48:17.108 p.m. Pacific. It returned November 25 after 2:48:18 a.m., with identical saved job and inventory before collection. The Journal marker appeared, an explicit review collected exactly one kit, and the correct inventory and clear marker survived reopening. The ordinary starter workshop and Riverwalk were played before closing. No API request, state, stock, position or clock fixture was used.

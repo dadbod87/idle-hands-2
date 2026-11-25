@@ -1,3 +1,6 @@
+import {LowerWorksArt} from './LowerWorksArt.ts';
+import {DEPTHS_HATCH, isFieldRoute, isLowerRoom} from '../game/lower-pumpworks-room.ts';
+import type {LowerView} from '../game/lower-pumpworks.ts';
 import {GRAFT_IDS,type GraftId} from '../game/valley-graft.ts';
 import {orchardKeeperPose,ORCHARD_KEEPER_NAME} from '../game/valley-keeper.ts';
 import {equippedArmor} from '../game/pumpworks.ts';
@@ -64,7 +67,7 @@ type GlasshousePhase = GlasshouseSnapshot['project']['phase'];
 type ArtAsset={id:string;width:number;height:number;foot?:{x:number;y:number};occlusion?:{x:number;y:number;width:number;height:number};lightingWindows?:Array<{x:number;y:number;width:number;height:number}>};
 const assets=catalog.assets as ArtAsset[];
 const art=(id:string)=>{const asset=assets.find(a=>a.id===id);if(!asset)throw new Error('Missing authored art: '+id);return asset;};
-const regionalRoom=(room:string)=>room==='mossbank'||room==='pumpworks'||room==='hidden-valley';
+const regionalRoom=(room:string)=>room==='mossbank'||room==='pumpworks'||room==='hidden-valley'||isLowerRoom(room);
 type KerchiefLayer={ink:Phaser.GameObjects.Graphics;key:string};
 
 export class WorldScene extends Phaser.Scene {
@@ -528,6 +531,8 @@ export class WorldScene extends Phaser.Scene {
   }
   constructor(public session: Session) { super('world'); }
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
+  depthsView?:()=>LowerView|null;
+  private depthsArt?:LowerWorksArt;
   pumpworksState?:()=>PumpworksState|null;
   pumpworksEncounter?:()=>{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;sweep:RodSweep|null;pulse:StaffPulse|null;enemyHealth:number|null;recovering:boolean};
   private hopper?:Phaser.GameObjects.Image;
@@ -775,7 +780,7 @@ export class WorldScene extends Phaser.Scene {
         if(!this.textures.exists('valley-'+id))this.load.svg('valley-'+id,'/art/hidden-valley/'+id+'.svg');
       }
     }
-    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','breeze-staff','dry-forge']:this.loadingRoom==='square'&&(this.session.hasLodging||this.session.sharedPumpworks)?['hatch']:[];
+    const fieldArt=this.loadingRoom&&isLowerRoom(this.loadingRoom)?['sounding-rod','field-bow','breeze-staff']:this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','breeze-staff','dry-forge']:this.loadingRoom==='square'&&(this.session.hasLodging||this.session.sharedPumpworks)?['hatch']:[];
     const practiceGear=this.pumpworksState?.();
     if(this.loadingRoom==='pumpworks'||practiceGear&&practiceGear.rod!=='unissued'){
       fieldArt.push(...FIELD_VEST_ATLASES);
@@ -880,6 +885,7 @@ export class WorldScene extends Phaser.Scene {
     this.mossbankMarks=undefined;
     this.mossbankWren=undefined;this.mossbankValleySign=undefined;this.mossbankRipples=[];
     this.steam=undefined;
+    this.depthsArt=undefined;
     this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;
     this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;this.fieldStaff=undefined;this.fieldVest=undefined;this.forgeGlow=undefined;this.fieldKerchief=undefined;this.peerLocalKerchief=undefined;
     this.decorationKey='';
@@ -895,7 +901,7 @@ export class WorldScene extends Phaser.Scene {
     const image=(key:string,x:number,y:number,depth:number)=>this.add.image(x,y,key).setOrigin(0).setDepth(depth);
     this.loadedInteriorKey=this.room.startsWith('home')?this.interiorKey():'';
     const homeGround=this.textures.exists(this.loadedInteriorKey)?this.loadedInteriorKey:homeInterior(this.session.room==='home-expanded'?2:1);
-    image(this.room==='neighborhood'?'neighborhood-ground':this.room==='square'?'variety-ground-square':this.room==='garden'?'garden-ground':this.room==='lodging'?'lodging-rented-room':this.room==='trail'?TRAIL_ART.ground:this.room==='glasshouse'?'glasshouse-interior':this.room==='pumpworks'?'pumpworks-floor':this.room==='mossbank'?'mossbank-ground':this.room==='hidden-valley'?'valley-ground':this.room.startsWith('home')?homeGround:'ground-workshop',0,0,-1000);
+    if(!isLowerRoom(this.room))image(this.room==='neighborhood'?'neighborhood-ground':this.room==='square'?'variety-ground-square':this.room==='garden'?'garden-ground':this.room==='lodging'?'lodging-rented-room':this.room==='trail'?TRAIL_ART.ground:this.room==='glasshouse'?'glasshouse-interior':this.room==='pumpworks'?'pumpworks-floor':this.room==='mossbank'?'mossbank-ground':this.room==='hidden-valley'?'valley-ground':this.room.startsWith('home')?homeGround:'ground-workshop',0,0,-1000);
     const label=(x:number,y:number,value:string)=>this.add.text(x*TILE,y*TILE,value,{fontFamily:'Georgia,serif',fontSize:13,color:'#343c36',backgroundColor:'#f3e6c5',padding:{x:9,y:5}}).setOrigin(.5).setDepth(y*TILE);
     if(this.room==='square') {
       if(this.session.hasLodging){
@@ -1141,7 +1147,21 @@ export class WorldScene extends Phaser.Scene {
       this.mossbankRipples=starts.map(([x,y],index)=>({
         image:this.add.image(x,y,'mossbank-ripple').setDepth(-999).setVisible(false),y,offset:index*.39,
       }));
+    } else if(isLowerRoom(this.room)) {
+      this.depthsArt=new LowerWorksArt(this,this.room);
+      if(this.textures.exists('pumpworks-sounding-rod'))this.soundingRod=this.add.image(0,0,'pumpworks-sounding-rod').setScale(.55).setOrigin(.5,1).setVisible(false);
+      if(this.textures.exists('pumpworks-field-bow'))this.fieldBow=this.add.image(0,0,'pumpworks-field-bow').setScale(.49).setOrigin(.5,1).setVisible(false);
+      if(this.textures.exists('pumpworks-breeze-staff'))this.fieldStaff=this.add.image(0,0,'pumpworks-breeze-staff').setScale(.56).setOrigin(.5,1).setVisible(false);
     } else if(this.room==='pumpworks') {
+      if(this.session.sharedPumpworks){
+        const {x,y}=DEPTHS_HATCH.point;
+        const hatch=this.add.graphics().setDepth(y*TILE);
+        const px=(x+.5)*TILE,py=(y+.5)*TILE;
+        hatch.fillStyle(0x334039,1).fillRoundedRect(px-28,py-45,56,39,5);
+        hatch.fillStyle(0x8e7957,1).fillRoundedRect(px-24,py-40,48,30,4);
+        for(let slat=0;slat<4;slat++)hatch.lineStyle(2,0x524c3d,1).lineBetween(px-19,py-35+slat*6,px+19,py-35+slat*6);
+        label(x+.5,y+.7,'Lower Pumpworks ↓');
+      }
       const station=(x:number,y:number,width:number,height:number,color:number,title:string)=>{
         const px=(x+.5)*TILE,py=(y+.5)*TILE;
         this.add.ellipse(px,py,width+9,10,0x35453a,.24).setDepth(py-2);
@@ -1255,7 +1275,7 @@ export class WorldScene extends Phaser.Scene {
     };
     roomBounds();this.scale.on(Phaser.Scale.Events.RESIZE,roomBounds);this.events.once('shutdown',()=>this.scale.off(Phaser.Scale.Events.RESIZE,roomBounds));
     this.cameras.main.startFollow(this.actor, true, 1, 1);roomBounds();
-    this.sky=new TownSky(this,this.room==='neighborhood'?this.streetWindows:litWindows);this.sky.update(this.skyNow(),0,this.room==='workshop'||this.room==='lodging'||this.room==='glasshouse'||this.room==='pumpworks'||this.room.startsWith('home'),!document.hidden&&!this.reducedMotion.matches,this.skyFixture);
+    this.sky=new TownSky(this,this.room==='neighborhood'?this.streetWindows:litWindows);this.sky.update(this.skyNow(),0,this.room==='workshop'||this.room==='lodging'||this.room==='glasshouse'||isFieldRoute(this.room)||this.room.startsWith('home'),!document.hidden&&!this.reducedMotion.matches,this.skyFixture);
     const onDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLElement && e.target.closest('button,input,select,dialog,[data-ui-scroll]')&&!e.target.closest('.pump-controls')) return;
       const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
@@ -1263,7 +1283,7 @@ export class WorldScene extends Phaser.Scene {
     };
     const onUp = (e: KeyboardEvent) => this.keys.delete(e.key.length === 1 ? e.key.toLowerCase() : e.key);
     let touch: {id:number;x:number;y:number;at:number;steering:boolean}|null=null;
-    const touchRing=this.room==='pumpworks'?document.createElement('div'):null;
+    const touchRing=isFieldRoute(this.room)?document.createElement('div'):null;
     if(touchRing){
       touchRing.className='field-touch-ring';touchRing.hidden=true;touchRing.ariaHidden='true';
       this.game.canvas.parentElement?.append(touchRing);
@@ -1288,7 +1308,7 @@ export class WorldScene extends Phaser.Scene {
       const to = { x: pos.x / TILE - .5, y: pos.y / TILE - .5 };
       if(!this.session.locked){
         this.onSteer?.();
-        if(this.room==='pumpworks'&&(this.pumpworksEncounter?.().hopper.phase??'idle')!=='idle'){
+        if(this.room==='pumpworks'&&(this.pumpworksEncounter?.().hopper.phase??'idle')!=='idle'||isLowerRoom(this.room)&&!!this.depthsView?.()?.enemy){
           if(!this.session.walk(to))this.onWalkFailure?.();
           return;
         }
@@ -1318,7 +1338,7 @@ export class WorldScene extends Phaser.Scene {
       if(event.pointerType!=='touch')return;
       if(!event.isPrimary){
         // A second thumb may use Strike or Brace without ending the drag.
-        if(this.room!=='pumpworks'||event.target===canvas)cancelTouch();
+        if(!isFieldRoute(this.room)||event.target===canvas)cancelTouch();
         return;
       }
       if(event.target!==canvas||this.session.locked)return;
@@ -1328,7 +1348,7 @@ export class WorldScene extends Phaser.Scene {
     };
     const moveTouch = (event:PointerEvent) => {
       if(!touch||event.pointerId!==touch.id)return;
-      if(this.room!=='pumpworks'){
+      if(!isFieldRoute(this.room)){
         if(touchSlop(event))cancelTouch();
         return;
       }
@@ -1366,7 +1386,7 @@ export class WorldScene extends Phaser.Scene {
     window.addEventListener('pointermove',moveTouch,true);
     window.addEventListener('pointerup',finishTouch,true);
     const cancelPointer=(event:PointerEvent)=>{
-      if(this.room!=='pumpworks'||touch?.id===event.pointerId)cancelTouch();
+      if(!isFieldRoute(this.room)||touch?.id===event.pointerId)cancelTouch();
     };
     window.addEventListener('pointercancel',cancelPointer,true);
     this.scale.on(Phaser.Scale.Events.RESIZE,cancelTouch);
@@ -1563,7 +1583,7 @@ export class WorldScene extends Phaser.Scene {
     this.headwearLayer=this.paintHeadwear(this.resting?null:this.headwear,this.headwearLayer,x,y,residentFrame(actionFacing??this.facing,actionFacing?0:this.frame));
     this.drawGarden();this.drawCarpentry();this.drawOuting();
     this.updateAmbient(delta);
-    this.sky?.update(this.skyNow(),delta,this.room==='workshop'||this.room==='lodging'||this.room==='glasshouse'||this.room==='pumpworks'||this.room.startsWith('home'),this.ambientEnabled,this.skyFixture);
+    this.sky?.update(this.skyNow(),delta,this.room==='workshop'||this.room==='lodging'||this.room==='glasshouse'||isFieldRoute(this.room)||this.room.startsWith('home'),this.ambientEnabled,this.skyFixture);
     for(const item of this.occluders){const hidden=x>item.x&&x<item.x+item.width&&y<item.y&&y>item.y-item.height;item.image.setAlpha(hidden?.55:1);}
     if (this.samplePresentationFrames && this.lastFrame && !document.hidden) { this.frameSamples.push(time - this.lastFrame); if (this.frameSamples.length > 600) this.frameSamples.shift(); }
     this.lastFrame = this.samplePresentationFrames?time:0;
@@ -1625,5 +1645,12 @@ export class WorldScene extends Phaser.Scene {
     }
     this.onFrame?.();
     if(this.room==='pumpworks')this.paintPumpworks();
+    if(this.depthsArt){
+      const view=this.depthsView?.()??null;
+      this.depthsArt.paint(view,this.session.position);
+      this.soundingRod?.setVisible(view?.weapon==='rod');
+      this.fieldBow?.setVisible(view?.weapon==='bow');
+      this.fieldStaff?.setVisible(view?.weapon==='staff');
+    }
   }
 }

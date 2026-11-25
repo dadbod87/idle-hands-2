@@ -1,3 +1,7 @@
+import {LowerWorksOuting, LowerWorksDenied} from './lower-pumpworks-outing.ts';
+import {LowerWorksStore} from './lower-pumpworks-store.ts';
+import {lowerInputSchema, type LowerView} from '../src/game/lower-pumpworks.ts';
+import {DEPTHS_HATCH, LOWER_ROOMS, isFieldRoute, isLowerRoom} from '../src/game/lower-pumpworks-room.ts';
 import type {FieldKerchief,KerchiefTie,WornArmor} from '../src/game/field-appearance.ts';
 import type {EarnedHeadwear} from '../src/game/earned-headwear.ts';
 import{housingWorld}from'../src/game/housing-world.ts';
@@ -17,7 +21,7 @@ import {sharedFieldInputSchema,type SharedFieldView} from '../src/game/shared-fi
 import {GlasshouseClosed,MossbankClosed,TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './live-store.ts';
 import {canStand,routeTo,worlds} from '../src/game/world.ts';
 const DEFAULT_FIXTURES=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}];
-const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden','neighborhood','glasshouse','mossbank','pumpworks']),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(positionContextValid);
+const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden','neighborhood','glasshouse','mossbank','pumpworks',...LOWER_ROOMS]),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(positionContextValid);
 const COOKIE='ih2_fixture';
 const waveSchema=z.object({}).strict();
 function json(res:ServerResponse,status:number,data:unknown){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(data));}
@@ -29,7 +33,9 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  const admission=new TransportAdmission(fixtures.map(f=>f.id),options.transportNow);
  const serverInstance=randomUUID();
  const now=options.now??Date.now;
- const field=new SharedField(new FieldStore(options.pool),serverInstance);
+ const fieldStore=new FieldStore(options.pool);
+ const field=new SharedField(fieldStore,serverInstance);
+ const depths=new LowerWorksOuting(new LowerWorksStore(options.pool),fieldStore,serverInstance);
  const store=new TownStore(options.pool,{now,roster:fixtures.map(f=>f.id),occupants:()=>[...residents.values()].filter(r=>r.value.room==='neighborhood'&&(now()-r.at<60000||[...connections].some(c=>residents.get(c.id)===r))).map(r=>({districtId:r.value.districtId!,point:{x:r.value.position.x+.5,y:r.value.position.y+.5}}))});
  const homes=new Map<string,TownPlot>();let bridgeOpen=false;let cafeOpened=false;
  function cacheHomes(snapshot:Pick<TownSnapshot,'plots'|'bridge'>&{cafe?:TownSnapshot['cafe']}){if(snapshot.cafe?.phase==='open'&&!cafeOpened){cafeOpened=true;invalidate('');}bridgeOpen=bridgeOpen||snapshot.bridge.phase==='open';for(const plot of snapshot.plots){const previous=homes.get(plot.id);if(!previous||plot.level>=previous.level&&(plot.housingRevision??0)>=(previous.housingRevision??0)){if(plot.keepsake!==undefined||plot.windowsillPlant!==undefined||plot.wallDisplay!==undefined){const publicPlot={...plot};delete publicPlot.keepsake;delete publicPlot.windowsillPlant;delete publicPlot.windowsillStriped;delete publicPlot.wallDisplay;homes.set(plot.id,publicPlot);}else homes.set(plot.id,plot);}}for(const entry of residents.values()){const normalized=canonicalHomePosition(entry.value,[...homes.values()]);if(JSON.stringify(normalized)!==JSON.stringify(entry.value)){entry.value=normalized;entry.credit=1;entry.at=now();dirty=true;}}}
@@ -70,7 +76,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
   const prior=presenceGate;let release!:()=>void;presenceGate=new Promise<void>(resolve=>release=resolve);
   await prior;try{return await work();}finally{release();}
  }
- const metrics={commands:0,snapshots:0,movementAccepted:0,movementRejected:0,presenceEvents:0,positionCheckpoints:0,transport:admission.metrics,sseSubmittedBytes:0,sseSubmittedFrames:0,sseSuppressedPresence:0,sseExpired:0,sseBackpressure:0,sseOversize:0,fieldFrames:0,fieldBytes:0,fieldUpdates:0,fieldErrors:0};
+ const metrics={commands:0,snapshots:0,movementAccepted:0,movementRejected:0,presenceEvents:0,positionCheckpoints:0,transport:admission.metrics,sseSubmittedBytes:0,sseSubmittedFrames:0,sseSuppressedPresence:0,sseExpired:0,sseBackpressure:0,sseOversize:0,fieldFrames:0,fieldBytes:0,fieldUpdates:0,fieldErrors:0,depthsFrames:0,depthsUpdates:0,depthsErrors:0};
  const sign=(value:string)=>createHmac('sha256',options.secret).update(value).digest('base64url');
  function cookie(id:string){const payload=Buffer.from(JSON.stringify({id,expires:now()+24*3600_000})).toString('base64url');return payload+'.'+sign(payload);}
  function identity(req:IncomingMessage){try{const token=req.headers.cookie?.split(';').map(s=>s.trim()).find(s=>s.startsWith(COOKIE+'='))?.slice(COOKIE.length+1);if(!token)return null;const[payload,mac]=token.split('.');if(!payload||!mac)return null;const expected=Buffer.from(sign(payload)),actual=Buffer.from(mac);if(expected.length!==actual.length||!timingSafeEqual(expected,actual))return null;const data=JSON.parse(Buffer.from(payload,'base64url').toString());return fixtures.some(f=>f.id===data.id)&&Number.isSafeInteger(data.expires)&&data.expires>now()?{id:data.id as string,expires:data.expires as number}:null;}catch{return null;}}
@@ -124,6 +130,16 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
    metrics.fieldBytes+=connection.stream.metrics.submittedBytes-before;
   }
  }
+ function sendDepths(id:string,view:LowerView){
+  for(const connection of connections)if(connection.id===id&&send(connection,'depths',view))metrics.depthsFrames++;
+ }
+ function moveToDepthsLanding(current:Resident,view:LowerView){
+  if(!view.returnTo||!view.room||!isLowerRoom(current.value.room))return false;
+  const point=view.returnTo;
+  if(current.value.room===view.room&&Math.hypot(point.x-current.value.position.x,point.y-current.value.position.y)<.001)return false;
+  current.value={room:view.room,position:point};current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;
+  return true;
+ }
  function fieldFailure(id:string){field.invalidate(id);metrics.fieldErrors++;}
  async function settleFieldInterruption(id:string){
   if(!interruptedFields.has(id))return;
@@ -132,7 +148,22 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  }
  const fieldTicker=setInterval(()=>{
   for(const [id,current] of residents){
-   if(current.value.room!=='pumpworks'||operations.has(id))continue;
+   if(operations.has(id))continue;
+   if(isLowerRoom(current.value.room)){
+    if(!fieldConnected(id))continue;
+    metrics.depthsUpdates++;
+    void actorWork(id,async()=>{
+     if(!fieldConnected(id))return;
+     const at=now(),outing=await depths.tick(id,current.value,at);
+     if(depths.due(outing,at)){
+      const view=depths.view(id,outing,at);
+      moveToDepthsLanding(current,view);
+      sendDepths(id,view);
+     }
+    }).catch(()=>{depths.leave(id);metrics.depthsErrors++;});
+    continue;
+   }
+   if(current.value.room!=='pumpworks')continue;
    if(!fieldConnected(id)&&!field.inRoom(id)&&!interruptedFields.has(id))continue;
    metrics.fieldUpdates++;
    void actorWork(id,async()=>{
@@ -168,6 +199,30 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
    const session=identity(req);if(!session)return json(res,401,{message:'Choose a synthetic practice resident to continue.'});
    const {id}=session;
    if(path==='/api/town/snapshot'&&req.method==='GET'){if(!admission.rate('snapshot',id))return throttled(res);const release=admission.acquire('snapshot',id);if(!release)return throttled(res);try{const current=await resident(id);if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});metrics.snapshots++;const snapshot=await store.snapshot(id,()=>current.value);cacheHomes(snapshot);alignSnapshotPosition(snapshot,current.value);return json(res,200,{snapshot:clientSnapshot(snapshot)});}finally{release();}}
+   if(path==='/api/town/depths'&&(req.method==='GET'||req.method==='POST')){
+    if(!admission.rate('depths',id))return throttled(res);
+    const release=admission.acquire('depths',id);if(!release)return throttled(res);
+    try{
+     const intent=payload?lowerInputSchema.parse(await payload):null;
+     const current=await resident(id);
+     return await serial(id,res,async()=>{
+      if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
+      const at=now();
+      const connected=fieldConnected(id);
+      const outing=connected&&isLowerRoom(current.value.room)
+       ?await depths.tick(id,current.value,at):await depths.get(id,current.value,at);
+      const view=depths.view(id,outing,at);
+      if(moveToDepthsLanding(current,view)){
+       sendDepths(id,view);
+       if(intent)return json(res,200,{ok:false,message:'Back at the landing. Take a breath before heading down again.',view});
+      }
+      if(!intent)return json(res,200,{view});
+      const result=await depths.input(id,current.value,intent,at,connected);
+      if(result.view.room)sendDepths(id,result.view);
+      return json(res,200,result);
+     },false);
+    }finally{release();}
+   }
    if(path==='/api/town/field'&&(req.method==='GET'||req.method==='POST')){
     if(!admission.rate('field',id))return throttled(res);
     const release=admission.acquire('field',id);if(!release)return throttled(res);
@@ -184,6 +239,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
         const run=await field.get(id,current.value,at);
         const view=field.view(id,run,at);fieldPosition(current,view);publishFieldOutfit(current,view);return json(res,200,{view});
        }
+       if(isLowerRoom(current.value.room))return json(res,409,{message:'Change field equipment near the survey locker upstairs.'});
        const result=await field.input(id,current.value,intent,at,fieldConnected(id));
        fieldPosition(current,result.view);publishFieldOutfit(current,result.view);
        if(result.view.inRoom)sendField(id,result.view);
@@ -206,7 +262,11 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(!admission.rate('events',id))return throttled(res);const release=admission.acquire('events',id);if(!release)return throttled(res);try{await resident(id);}catch(error){release();throw error;}if(session.expires<=now()){release();return json(res,401,{message:'Your practice session expired.'});}
     res.writeHead(200,{'Content-Type':'text/event-stream','Cache-Control':'no-cache,no-transform','Connection':'keep-alive','X-Accel-Buffering':'no'});res.flushHeaders();
     const connection={id,res,stream:null as unknown as BoundedStream};connection.stream=new BoundedStream(res,session.expires,now,reason=>{release();connections.delete(connection);dirty=true;
-    if(residents.get(id)?.value.room==='pumpworks'&&!fieldConnected(id))interruptedFields.add(id);
+    const room=residents.get(id)?.value.room;
+    if(room&&!fieldConnected(id)){
+     if(room==='pumpworks')interruptedFields.add(id);
+     if(isLowerRoom(room))depths.leave(id);
+    }
     if(reason==='expired')metrics.sseExpired++;if(reason==='backpressure')metrics.sseBackpressure++;if(reason==='oversize')metrics.sseOversize++;});connections.add(connection);dirty=true;req.on('close',()=>connection.stream.close());res.on('error',()=>connection.stream.close());send(connection,'ready',{synthetic:true});return;
    }
    if(path==='/api/town/wave'&&req.method==='POST'){
@@ -247,14 +307,24 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
       }
      }catch(error){fieldFailure(id);throw error;}
     }
+    if(isLowerRoom(current.value.room)&&fieldConnected(id)){
+     const at=now(),outing=await depths.tick(id,current.value,at);
+     const view=depths.view(id,outing,at);
+     if(moveToDepthsLanding(current,view)){
+      sendDepths(id,view);metrics.movementRejected++;
+      return json(res,409,{message:'Back at the landing.',position:current.value});
+     }
+    }
     return await withPresence(async()=>{
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
-    const previous=current.value,elapsed=Math.max(0,(now()-current.at)/1000);const credit=Math.min(2,current.credit+elapsed*5);const geometry=next.room==='neighborhood'?housingWorld([...homes.values()],next.districtId!):next.room==='pumpworks'?worlds.pumpworks:undefined;let spent=0,valid=canStand(next.room,next.position,geometry)&&((next.room!=='trail'&&next.room!=='mossbank')||bridgeOpen)&&(!isHome(next.room)||next.homePlotId===previous.homePlotId&&!!homes.get(next.homePlotId!)&&next.room===(homes.get(next.homePlotId!)!.level===2?'home-expanded':'home'));
+    const previous=current.value,elapsed=Math.max(0,(now()-current.at)/1000);const credit=Math.min(2,current.credit+elapsed*5);const geometry=next.room==='neighborhood'?housingWorld([...homes.values()],next.districtId!):isFieldRoute(next.room)?worlds[next.room]:undefined;let spent=0,valid=canStand(next.room,next.position,geometry)&&((next.room!=='trail'&&next.room!=='mossbank')||bridgeOpen)&&(!isHome(next.room)||next.homePlotId===previous.homePlotId&&!!homes.get(next.homePlotId!)&&next.room===(homes.get(next.homePlotId!)!.level===2?'home-expanded':'home'));
+    let crossingPortal:typeof DEPTHS_HATCH|undefined;
     if(next.room===previous.room){valid=valid&&next.homePlotId===previous.homePlotId&&next.districtId===previous.districtId;const distance=Math.hypot(next.position.x-previous.position.x,next.position.y-previous.position.y),route=distance<.0001?[]:routeTo(next.room,previous.position,next.position,geometry);let prior=previous.position;const travelled=route.reduce((total,p)=>{const step=Math.hypot(p.x-prior.x,p.y-prior.y);prior=p;return total+step;},0);valid=valid&&(distance<.0001||route.length>0)&&travelled<=credit+.001;spent=travelled;}
     else{
      if(isHome(next.room)||next.room==='neighborhood'&&!isHome(previous.room))valid=false;
-     const portals=previous.room==='square'&&next.room==='pumpworks'?[PUMPWORKS_DOOR]:worlds[previous.room].stops;
+     const portals=previous.room==='square'&&next.room==='pumpworks'?[PUMPWORKS_DOOR]:previous.room==='pumpworks'?[...worlds.pumpworks.stops,DEPTHS_HATCH]:worlds[previous.room].stops;
      const portal=portals.find(s=>(isHome(previous.room)?s.id==='home-door':s.transition===next.room)&&Math.hypot(previous.position.x-s.point.x,previous.position.y-s.point.y)<=1.9);
+     crossingPortal=portal;
      const expected=isHome(previous.room)?exitForHome(previous):portal?.arrival?{room:portal.transition,position:portal.arrival,districtId:undefined}:null;
      valid=valid&&!!portal&&!!expected&&expected.room===next.room&&expected.districtId===next.districtId&&Math.hypot(next.position.x-expected.position.x,next.position.y-expected.position.y)<.05;
     }
@@ -263,14 +333,18 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     // its durable opening deadline and write the confirmed checkpoint.
     const crossing=next.room!==previous.room;
     const fieldExit=crossing&&previous.room==='pumpworks';
-    const gatedEntry=crossing&&(next.room==='glasshouse'||next.room==='mossbank'||next.room==='pumpworks'||fieldExit);
+    const usesDepths=crossing&&(isLowerRoom(previous.room)||isLowerRoom(next.room));
+    const gatedEntry=crossing&&(next.room==='glasshouse'||next.room==='mossbank'||next.room==='pumpworks'||fieldExit||usesDepths);
     if(fieldExit){
      try{await field.leave(id,now());}catch(error){fieldFailure(id);throw error;}
     }
     if(gatedEntry){
-     try{await store.savePosition(id,next);}
+     try{
+      const alreadySaved=usesDepths&&crossingPortal&&await depths.cross(id,previous,next,crossingPortal,now());
+      if(!alreadySaved)await store.savePosition(id,next);
+     }
      catch(error){
-      if(!(error instanceof GlasshouseClosed||error instanceof MossbankClosed))throw error;
+      if(!(error instanceof GlasshouseClosed||error instanceof MossbankClosed||error instanceof LowerWorksDenied))throw error;
       metrics.movementRejected++;
       return json(res,409,{message:error.message,position:previous});
      }
@@ -278,6 +352,10 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     }
     current.value=next;current.at=now();current.credit=next.room===previous.room?Math.max(0,credit-spent):1;dirty=true;metrics.movementAccepted++;
     if(crossing)waves.delete(id);
+    if(usesDepths){
+     depths.leave(id);
+     if(isLowerRoom(next.room)){const entered=await depths.get(id,next,now());sendDepths(id,depths.view(id,entered,now()));}
+    }
     if(fieldExit){
      const run=await field.get(id,next,now());sendField(id,field.view(id,run,now()));
     }

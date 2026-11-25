@@ -1,3 +1,5 @@
+import {isFieldRoute, isLowerRoom, lowerTransitionLabel, LIFT_TOP_ID} from './game/lower-pumpworks-room.ts';
+import {setupDepths} from './ui/lower-pumpworks.ts';
 import {graftReady,readValleyGraft,startValleyGraft,VALLEY_GRAFT_KEY,VALLEY_GRAFT_STOP_ID,type GraftId} from './game/valley-graft.ts';
 import {showValleyGraft,valleyGraftJournal} from './ui/valley-graft.ts';
 import {nearbyOutfits,residentOutfit} from './ui/nearby-outfits.ts';
@@ -102,7 +104,7 @@ app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
  <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">${townMode?'NEIGHBORHOOD STUDY':'<strong id="local-resident-badge" dir="auto">NEIGHBORHOOD STUDY</strong>'}<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
  <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div id="door-light" aria-hidden="true"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><button id="stop-assisted-walk" type="button" aria-keyshortcuts="Escape" hidden>Stop walking</button><button id="wake-resident" class="primary" type="button" hidden>Get up</button><aside class="pump-health" id="pump-health" aria-label="Field health" hidden></aside><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
- <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><section class="pump-controls" id="pump-controls" aria-label="Combat controls" hidden></section><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal<span class="journal-ready-mark" id="journal-ready-mark" aria-hidden="true" hidden></span></button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav><span id="journal-ready-description" hidden>Work is ready to check in the Journal.</span><span class="town-wave-announcement" role="status" aria-live="polite"></span></footer>
+ <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><section class="pump-controls" id="pump-controls" aria-label="Combat controls" hidden></section><section class="pump-controls" id="depths-controls" aria-label="Lower Pumpworks combat" hidden></section><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal<span class="journal-ready-mark" id="journal-ready-mark" aria-hidden="true" hidden></span></button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav><span id="journal-ready-description" hidden>Work is ready to check in the Journal.</span><span class="town-wave-announcement" role="status" aria-live="polite"></span></footer>
 </main>
 <dialog id="panel" aria-labelledby="panel-title"><form method="dialog"><header class="dialog-head"><div><p class="eyebrow">TOWN INFORMATION SERVICES</p><h2 id="panel-title">Places to go</h2></div><div class="dialog-actions"><button id="quick-music" class="sound-icon" type="button" hidden></button><button aria-label="Close panel" value="close">×</button></div></header><div id="panel-body"></div></form></dialog>`;
 const panel = document.querySelector<HTMLDialogElement>('#panel')!;
@@ -407,6 +409,19 @@ function adoptTownPosition(snapshot:TownSnapshot, throughDoor=false){
  if(entered)confirmedDoor();
 }
 let fieldRecoveryHandled='';
+let depthsRecoveryHandled='';
+const depthsAtControl=()=>isLowerRoom(session.room)&&!panel.open&&!session.locked&&scene.roomReady&&!document.hidden;
+const depths=setupDepths({
+ root:document.querySelector<HTMLElement>('#depths-controls')!,
+ view:()=>town?.depthsView?.room===session.room?town.depthsView:null,
+ canAct:()=>depthsAtControl(),
+ send:async input=>{
+  if(!town)throw Error('Choose a resident first.');
+  await flushMovement(true);
+  return town.sendDepths(input);
+ },
+ message:message=>feedback.textContent=message,
+});
 const town=townMode?new TownClient({
  onField:view=>{
   pumpworks?.syncRemote();
@@ -422,6 +437,20 @@ const town=townMode?new TownClient({
   if(panel.open)closePanel();
   adoptTownPosition({...town.snapshot,position:{room:'pumpworks',position:view.returnTo}});
   openRecovery=true;
+ },
+ onDepths:view=>{
+  if(!isLowerRoom(session.room))return;
+  if(view.room===session.room&&view.enemy&&panel.open){
+   closePanel();feedback.textContent='Step away from the fight to use menus.';
+  }
+  if(view.returnTo&&view.room&&view.playerId===town?.snapshot?.playerId){
+   const key=view.playerId+':'+view.serverInstance+':'+view.progress.revision;
+   if(depthsRecoveryHandled===key)return;
+   depthsRecoveryHandled=key;
+   if(panel.open)closePanel();
+   adoptTownPosition({...town.snapshot,position:{room:view.room,position:view.returnTo}});
+   feedback.textContent='First aid brought you back to the lamplit landing.';
+  }
  },
  onConfirmedCommand:(command,reward)=>{
   const cue=reward.teapot?'craft':command.kind==='gather'&&!reward.collection?undefined:rewardCue(command);
@@ -470,7 +499,17 @@ const town=townMode?new TownClient({
  onConnection:message=>{feedback.textContent=message;if(message.includes('interrupted')){needResync=true;session.lock(true);scene.residents=[];scene.localWaveUntil=0;refreshPlaces?.(null);}},
  beforeCommand:()=>flushMovement(true)
 }):null;
-if(town)scene.waveTime=town.serverNow;
+if(town){
+ scene.waveTime=town.serverNow;
+ scene.depthsView=()=>town.depthsView;
+}
+document.addEventListener('keydown',event=>{
+ if(!depthsAtControl()||event.repeat||event.ctrlKey||event.metaKey||event.altKey)return;
+ if(event.target instanceof HTMLElement&&event.target.closest('button,input,select,textarea'))return;
+ if(event.code==='Space'){event.preventDefault();void depths.attack('strike');}
+ if(event.key==='Shift')void depths.attack('brace');
+});
+
 async function flushMovement(force=false):Promise<void>{
  if(!town?.snapshot)return;if(movement){if(!force)return;await movement;}
  if(!town.snapshot)return;
@@ -700,6 +739,8 @@ function placeArrival(stop:Stop){
  if(stop.id==='lodging-door'){feedback.textContent='At the boarding house. Choose Enter lodging.';return;}
  if(stop.id==='lodging-exit'){feedback.textContent='At the door. Choose Step outside.';return;}
  if(stop.id==='pumpworks-exit'){feedback.textContent='You’re at the exit to Willow meadow.';return;}
+ const depthsAction=lowerTransitionLabel(stop);
+ if(depthsAction){feedback.textContent=stop.text;return;}
  const next=stop.id==='trail-gate'&&!scene.bridgeRestored?'Inspect the bridge committee':stop.transition?'Enter':'Inspect';
  feedback.textContent='At '+stop.name+'. Choose '+next+'.';
 }
@@ -882,13 +923,16 @@ async function enterHome(plotId:string){
 }
 async function enterRemotePortal(stop:Stop){
  if(!town?.snapshot||!stop.transition||needResync)return;
+ if(stop.id===LIFT_TOP_ID&&!town.depthsView?.progress.liftOpen){
+  feedback.textContent='The freight lift latch opens from below.';return;
+ }
  const intent=++portalIntent,epoch=movementEpoch,playerId=town.snapshot.playerId,sourceRoom=session.room,targetRoom=stop.transition;
  transitionBusy=true;session.lock(true);feedback.textContent='Confirming your arrival before entering…';
  try{
   // Confirm the final source-room approach before the separate portal request.
   await flushMovement(true);
   if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||session.room!==sourceRoom||panel.open||needResync)return;
-  if(['mossbank','pumpworks'].includes(targetRoom)||['mossbank','pumpworks'].includes(sourceRoom)){
+  if(isFieldRoute(targetRoom)||isFieldRoute(sourceRoom)||targetRoom==='mossbank'||sourceRoom==='mossbank'){
    const destination={room:targetRoom,position:stop.arrival!};
    const receipt=await town.movement(destination);
    if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||session.room!==sourceRoom||panel.open||needResync)return;
@@ -896,7 +940,12 @@ async function enterRemotePortal(stop:Stop){
    session.enter(targetRoom,receipt.position.position);
    lastSent=JSON.stringify(destination);confirmedContext=contextKey(targetRoom);
    scene.residents=[];music.setLocation(targetRoom,receipt.position.position);confirmedDoor();focusWorld();
-   feedback.textContent=targetRoom==='pumpworks'?'Pick up a survey kit at the locker. Your hopper encounter is private.':sourceRoom==='pumpworks'?'Back in Willow meadow.':targetRoom==='mossbank'?'Mossbank outskirts. The sawmill is up the road.':'Back on the Inkwood trail.';
+   if(isLowerRoom(targetRoom)){
+    feedback.textContent=targetRoom==='pumpworks-depths'?'Follow the lamps to the next room, or look for the Stores.':'Head toward the spillway or take the lift back up.';
+    void town.loadDepths().catch(()=>{});
+    return;
+   }
+   feedback.textContent=isLowerRoom(sourceRoom)?'Back upstairs by the survey locker.':targetRoom==='pumpworks'?'Pick up a survey kit at the locker. Your hopper encounter is private.':sourceRoom==='pumpworks'?'Back in Willow meadow.':targetRoom==='mossbank'?'Mossbank outskirts. The sawmill is up the road.':'Back on the Inkwood trail.';
    if(targetRoom==='pumpworks')void town.loadField().then(()=>pumpworks.syncRemote()).catch(()=>{});
    return;
   }
@@ -904,7 +953,7 @@ async function enterRemotePortal(stop:Stop){
   feedback.textContent=targetRoom==='neighborhood'?'Back in neighborhood '+districtId+'. Each door leads to its own home.':targetRoom==='glasshouse'?'The nursery is open. Walk up to a bench or meet the keeper.':sourceRoom==='glasshouse'?'Back on the Glasshouse front step.':targetRoom==='trail'?'Inkwood trail. Three landmarks, one extremely official field notebook.':targetRoom==='garden'?'Your allotment. Inspect the three beds or visit the attendant.':targetRoom==='workshop'?workshopArrivalNote():(scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
  }catch{
   if(intent===portalIntent&&epoch===movementEpoch&&town.snapshot?.playerId===playerId&&!needResync){
-   if(['mossbank','pumpworks'].includes(targetRoom)||['mossbank','pumpworks'].includes(sourceRoom)){
+   if(isFieldRoute(targetRoom)||isFieldRoute(sourceRoom)||targetRoom==='mossbank'||sourceRoom==='mossbank'){
     needResync=true;
     try{
      const snapshot=await town.load();
@@ -1060,7 +1109,10 @@ function activate(stop: Stop) {
     showTailoring(sewingHost,town);
     return;
   }
-  if(pumpworks&&session.room==='pumpworks'&&stop.id==='pumpworks-bell'){
+  if(isLowerRoom(session.room)&&stop.id==='depths-tool-chest'){
+  void depths.toolChest();return;
+ }
+ if(pumpworks&&session.room==='pumpworks'&&stop.id==='pumpworks-bell'){
     const field=pumpworks.current();
     feedback.textContent=field?.bow==='equipped'?'Hold still and Shoot at the bell.':field?.staff==='equipped'?'Try Pulse on the bell.':field?.rod==='equipped'?'Try Strike on the bell.':'Equip a weapon to ring the bell.';
     return;
@@ -1264,8 +1316,9 @@ document.addEventListener('keydown', e => {
 scene.onFrame = () => {
   const now=performance.now();
   pumpworks?.tick(now);
+  depths.paint(isLowerRoom(session.room));
   if(town)paintJournalReady();
-  frameLimit(!ready||panel.open||now<wakeRenderUntil||scene.needsFullRate()||pumpworks?.encounterActive()?0:10);
+  frameLimit(!ready||panel.open||now<wakeRenderUntil||scene.needsFullRate()||pumpworks?.encounterActive()||isLowerRoom(session.room)&&!!town?.depthsView?.enemy?0:10);
   if(panel.open){const second=Math.floor((town?.serverNow()??Date.now())/1000);if(second!==guidanceSecond){guidanceSecond=second;paintGuideObjective();}}
   if(town&&!document.hidden)void flushMovement().catch(()=>{});
   else if(!town)music.setLocation(session.room,session.position);
@@ -1299,7 +1352,7 @@ scene.onFrame = () => {
   const state = (district?.name??'')+contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored))+':'+String(resting())+':'+(stop?.transition??'')+':'+String(pullValleyPrint);
   if (state !== lastContext) {
     lastContext = state;
-    const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='glasshouse'?'Inkwood Glasshouse':session.room==='garden'?'Your allotment':session.room==='mossbank'?'Mossbank outskirts':session.room==='hidden-valley'?'Hidden Valley':session.room==='pumpworks'?'The Pumpworks':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
+    const roomName=isLowerRoom(session.room)?(session.room==='pumpworks-depths'?'Lower Pumpworks':'Lower sluice'):session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='glasshouse'?'Inkwood Glasshouse':session.room==='garden'?'Your allotment':session.room==='mossbank'?'Mossbank outskirts':session.room==='hidden-valley'?'Hidden Valley':session.room==='pumpworks'?'The Pumpworks':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
     const hint=session.room==='square'?district!.hint:session.room==='neighborhood'?'Homes, not cubicles.':session.room==='trail'?'A path worth the paperwork.':session.room==='glasshouse'?'A warm aisle and five things to inspect.':session.room==='garden'?'Ready plants wait safely.':session.room==='mossbank'?'The sawmill is up the road.':session.room==='hidden-valley'?'Terraces, orchard paths and a covered press.':session.room==='pumpworks'?(matchMedia('(pointer:coarse)').matches?'Tap or drag to steer.':'Mind the water.'):session.room==='lodging'?'Your rented room. Nothing due today.':session.room.startsWith('home')?(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved'):'Great things take time.';
     if(district&&district.name!=='Town square'&&(feedback.textContent?.startsWith('Tap the three material depots')||feedback.textContent===lastDistrictHint)){feedback.textContent=district.hint;lastDistrictHint=district.hint;}
     if(location.dataset.room!==session.room)location.dataset.room=session.room;
@@ -1309,7 +1362,8 @@ scene.onFrame = () => {
       const label = 'Practice town · ' + (town?.snapshot?.name ?? 'choose a resident');
       if (practiceLabel.textContent !== label) practiceLabel.textContent = label;
     }
-    interactLabel.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='glasshouse'?'nursery':stop.transition==='mossbank'?'Mossbank':stop.transition==='hidden-valley'?'Hidden Valley':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby';
+    const depthsAction=stop?lowerTransitionLabel(stop)??(stop.id==='depths-tool-chest'?'Open Stores chest':undefined):undefined;
+    interactLabel.textContent = depthsAction??(stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='glasshouse'?'nursery':stop.transition==='mossbank'?'Mossbank':stop.transition==='hidden-valley'?'Hidden Valley':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby');
     if(pullValleyPrint)interactLabel.textContent='Pull a cider print';
     if(stop?.id==='lodging-door')interactLabel.textContent='Enter lodging';
     if(stop?.id==='lodging-exit')interactLabel.textContent='Step outside';
@@ -1317,7 +1371,7 @@ scene.onFrame = () => {
     if(stop&&orchardAvailable()&&orchardBranchFromStop(stop.id))interactLabel.textContent='Inspect branch';
     if(stop?.id==='trail-gate'&&!scene.bridgeRestored)interactLabel.textContent='Inspect bridge';
 
-    interactButton.setAttribute('aria-label', pullValleyPrint?'Pull a cider print':stop?.id==='lodging-door'?'Enter boarding house':stop?.id==='lodging-exit'?'Step outside to the square':stop?.id==='pumpworks-exit'?pumpworksExitLabel:stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='glasshouse'?'Inkwood Glasshouse':stop.transition==='mossbank'?'Mossbank':stop.transition==='hidden-valley'?'Hidden Valley':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
+    interactButton.setAttribute('aria-label', depthsAction??(pullValleyPrint?'Pull a cider print':stop?.id==='lodging-door'?'Enter boarding house':stop?.id==='lodging-exit'?'Step outside to the square':stop?.id==='pumpworks-exit'?pumpworksExitLabel:stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='glasshouse'?'Inkwood Glasshouse':stop.transition==='mossbank'?'Mossbank':stop.transition==='hidden-valley'?'Hidden Valley':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby'));
   }
   // A named stop can be visible while its restored shared position is still syncing.
   // Keep Inspect unavailable until the same input guard would accept its click.
@@ -1348,6 +1402,7 @@ Object.defineProperty(window, '__pilot', { value: Object.freeze({
   pumpworks:()=>pumpworks?.current()??null,
   pumpworksMotion:()=>pumpworks.encounter(),
   sharedField:()=>town?.fieldView??null,
+  sharedDepths:()=>town?.depthsView??null,
   metrics: () => {
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);
     return { climate:scene.climateState(), ready, presentation:{menuBackdropPaused:menuRenderPaused,renderedFrames,idleFrameLimit:game.loop.fpsLimit,frameSamplePolicy:'Visible mixed normal and 10Hz idle intervals; modal gaps excluded'}, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };

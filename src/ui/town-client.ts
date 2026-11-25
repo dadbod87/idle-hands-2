@@ -1,3 +1,4 @@
+import {lowerViewSchema, type LowerInput, type LowerReply, type LowerView} from '../game/lower-pumpworks.ts';
 import {pumpworksRecordSchema} from '../game/pumpworks.ts';
 import type {SharedFieldInput,SharedFieldReply,SharedFieldView} from '../game/shared-field.ts';
 import {sewingJob,tailoringSchema,type Tailoring,type TailoringAction} from '../game/tailoring.ts';
@@ -28,7 +29,7 @@ export type TownPlot={id:string;ownerId:string|null;ownerName?:string;tier?:numb
 export type TownLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot={sharedPumpworks?:true;tailoring?:Tailoring|null;headwear?:TownHeadwear;glasshouse?:GlasshouseSnapshot;glasshousePlant?:GlasshousePlant;inkmint?:Inkmint;homeKeepsakes?:true;homeKeepsakeChoices?:true;plantWindowsill?:true;orchard?:OrchardPantry|'unavailable'|null;outing?:OutingState;housingSites?:Array<{plotId:string;ownerId:string;ownerName:string;phase:string}>;housing?:{build:HousingBuild|null;quote:HousingQuote|null;nextPlotId:string};cafe?:CafePublicState;commissionTown?:{styles:Array<{ownerId:string;ownerName:string;motif:LetterboxMotif}>};serverInstance?:string;noticeboard?:NoticeboardState;playerId:string;name:string;workshop:WorkshopState;position:TownPosition;quest:{contentVersion:string|number;awarded:unknown};bridge:{contributed:number;target:number;restored:boolean;phase?:'collecting'|'building'|'open';startedAt?:number|null;readyAt?:number|null;openedAt?:number|null;grandfathered?:boolean};trail?:{stamps:string[];pennantOwned:boolean};projectJournal?:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;plot:TownPlot|null;plots:TownPlot[];seasonKey:string;scores:unknown;serverTime:number;gardenTown?:{credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};lesson?:TownLesson;lessonQuote?:{route:'construction'|'upkeep';expectedBridgeContributed:number}};
 export type TownCommand=Record<string,unknown>&{kind:string;id?:string;expectedRevision?:number};
-export type TownHooks={onConfirmedCommand?:(command:TownCommand, reward:{collection:boolean;teapot:boolean})=>void;beforeCommand?:()=>Promise<void>;onSnapshot?:(snapshot:TownSnapshot,previous?:TownSnapshot|null)=>void;onPresence?:(presence:unknown)=>void;onField?:(view:SharedFieldView)=>void;onConnection?:(state:string)=>void};
+export type TownHooks={onConfirmedCommand?:(command:TownCommand, reward:{collection:boolean;teapot:boolean})=>void;beforeCommand?:()=>Promise<void>;onSnapshot?:(snapshot:TownSnapshot,previous?:TownSnapshot|null)=>void;onPresence?:(presence:unknown)=>void;onField?:(view:SharedFieldView)=>void;onDepths?:(view:LowerView)=>void;onConnection?:(state:string)=>void};
 type CommandOutcome={snapshot:TownSnapshot;message:string;ok:boolean;replayed:boolean;command:TownCommand;playerId:string;collection?:CollectionGrant};
 type Provenance={generation:number;epoch:number;playerId?:string};
 type TownRequestError=Error&{definite?:boolean;staleBoot?:boolean};
@@ -37,6 +38,7 @@ export const PUBLIC_REFRESH_WINDOW_MS = 75;
 export class TownClient {
  snapshot:TownSnapshot|null=null;
  fieldView:SharedFieldView|null=null;
+ depthsView:LowerView|null=null;
  private fieldLoading:Promise<SharedFieldView>|null=null;
  lastMessage='';
  private loading:Promise<TownSnapshot>|null=null;
@@ -105,7 +107,7 @@ export class TownClient {
   return result;
  }
  private obsolete(){return new DOMException('The practice resident changed; the old request was discarded.','AbortError');}
- private changeIdentity(){this.fieldView=null;this.fieldLoading=null;this.generation++;this.identityAbort.abort();this.identityAbort=new AbortController();this.loading=null;this.refreshDirty=false;this.refreshRecovery=false;this.cancelPublicRefresh();this.cancelClock();this.cancelStreamRetry(true);this.events?.close();this.events=null;this.bootEpoch++;this.retiredBoots.clear();this.recovery='';}
+ private changeIdentity(){this.fieldView=null;this.fieldLoading=null;this.depthsView=null;this.generation++;this.identityAbort.abort();this.identityAbort=new AbortController();this.loading=null;this.refreshDirty=false;this.refreshRecovery=false;this.cancelPublicRefresh();this.cancelClock();this.cancelStreamRetry(true);this.events?.close();this.events=null;this.bootEpoch++;this.retiredBoots.clear();this.recovery='';}
  private staleBoot():TownRequestError{return Object.assign(new Error('The service changed before this reply could be confirmed. Retry the same request to confirm it.'),{staleBoot:true});}
  private provenance(generation=this.generation,playerId=this.snapshot?.playerId):Provenance{return{generation,epoch:this.bootEpoch,playerId};}
  private validateReply(context:Provenance,snapshot?:TownSnapshot){
@@ -148,7 +150,7 @@ export class TownClient {
   if(!changed&&previous?.playerId===snapshot.playerId&&previous.cafe&&snapshot.cafe){const prior=previous.cafe,next=snapshot.cafe;if(next.credits<prior.credits||prior.readyAt!==null&&next.readyAt!==prior.readyAt||prior.phase==='open'&&next.phase!=='open')snapshot={...snapshot,cafe:prior};}
   let reconnect=false;
   if(changed){
-   this.fieldView=null;this.fieldLoading=null;
+   this.fieldView=null;this.fieldLoading=null;this.depthsView=null;
    if(old){this.retiredBoots.add(old);if(this.retiredBoots.size>16)this.retiredBoots.delete(this.retiredBoots.values().next().value!);}
    this.bootEpoch++;
    if(previous?.playerId===snapshot.playerId&&(snapshot.workshop.revision<previous.workshop.revision||snapshot.serverTime<previous.serverTime))this.recovery='The service recovered an earlier saved state. The confirmed town below may have older progress.';
@@ -204,6 +206,36 @@ export class TownClient {
    data=(await this.request('field',input,generation)).data;
   }
   const view=this.acceptField(data.view);
+  return {...data,view};
+ }
+ private acceptDepths(raw:unknown){
+  const checked=lowerViewSchema.safeParse(raw);
+  if(!checked.success||checked.data.playerId!==this.snapshot?.playerId||checked.data.serverInstance!==marker(this.snapshot))
+   throw Error('The Lower Pumpworks view could not be confirmed.');
+  const view=checked.data;
+  if(this.depthsView&&view.sequence<=this.depthsView.sequence)return this.depthsView;
+  this.depthsView=view;
+  this.hooks.onDepths?.(view);
+  return view;
+ }
+ async loadDepths(){
+  const {data}=await this.request('depths');
+  return this.acceptDepths(data.view);
+ }
+ async sendDepths(input:LowerInput):Promise<LowerReply>{
+  const generation=this.generation,boot=marker(this.snapshot);
+  if(!boot||!this.snapshot?.sharedPumpworks)throw Error('Shared field practice is unavailable.');
+  let data:LowerReply;
+  try{data=(await this.request('depths',input,generation)).data;}
+  catch(error){
+   if((error as TownRequestError).definite||generation!==this.generation||marker(this.snapshot)!==boot)throw error;
+   data=(await this.request('depths',input,generation)).data;
+  }
+  const view=this.acceptDepths(data.view);
+  if(data.stockChanged){
+   // The claim is already settled. A delayed refresh must never unclaim it.
+   void this.load().catch(()=>{});
+  }
   return {...data,view};
  }
  async fixtures(){const {data}=await this.request('fixtures');return (data.fixtures??data) as Array<{id:string;name:string}>;}
@@ -283,6 +315,9 @@ export class TownClient {
  connect(){this.cancelPublicRefresh();this.cancelStreamRetry();this.events?.close();this.events=null;if(this.closed||document.hidden)return;const generation=this.generation,epoch=this.bootEpoch;const source=new EventSource('/api/town/events?schema='+TOWN_SCHEMA,{withCredentials:true});this.events=source;const current=()=>generation===this.generation&&epoch===this.bootEpoch&&this.events===source;const reload=()=>{if(current())this.refreshFromEvent();};source.onopen=()=>{if(!current())return;this.cancelStreamRetry(true);if(!this.pending)this.notify('Connected · practice town');this.refreshFromEvent(true);};source.onerror=()=>{if(!current())return;if(!this.pending)this.notify('Connection interrupted. Reconnecting; changes require server confirmation.');if(source.readyState===2){this.cancelPublicRefresh();source.close();this.events=null;this.retryClosedStream(generation,epoch);}};source.addEventListener('invalidate',reload);source.addEventListener('snapshot',event=>{if(!current())return;try{const data=JSON.parse((event as MessageEvent).data);this.accept(data.snapshot??data,{generation,epoch,playerId:this.snapshot?.playerId});}catch{reload();}});source.addEventListener('field',event=>{
   if(!current()||!this.snapshot?.sharedPumpworks)return;
   try{this.acceptField(JSON.parse((event as MessageEvent).data));}catch{/* A later authoritative view will replace it. */}
+ });source.addEventListener('depths',event=>{
+  if(!current()||!this.snapshot?.sharedPumpworks)return;
+  try{this.acceptDepths(JSON.parse((event as MessageEvent).data));}catch{/* A later authoritative view will replace it. */}
  });source.addEventListener('presence',event=>{if(!current())return;try{this.hooks.onPresence?.(JSON.parse((event as MessageEvent).data));}catch{/* Next presence update replaces this one. */}});}
  subscribe(listener:(snapshot:TownSnapshot)=>void){
   this.listeners.add(listener);

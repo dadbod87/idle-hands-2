@@ -1,3 +1,4 @@
+import {isFieldRoute} from '../src/game/lower-pumpworks-room.ts';
 import {SEWING_TABLE,type Tailoring} from '../src/game/tailoring.ts';
 import {tailoringFromRow,writeTailoring} from './tailoring.ts';
 import {MOSSBANK_AWARDS,SURVEY_ACTIONS,mossbankFromAwards,surveyMossbank,type SurveyAction,type SurveyPlace} from '../src/game/mossbank.ts';
@@ -103,7 +104,7 @@ function canonical(value: unknown): string {
 }
 function hash(value: unknown): string { return createHash('sha256').update(canonical(value)).digest('hex'); }
 export function isHome(room:Room):boolean{return room==='home'||room==='home-expanded';}
-function validPosition(value:TownPosition):boolean{return value.room!=='lodging'&&!!worlds[value.room]&&canStand(value.room,value.position,value.room==='pumpworks'?worlds.pumpworks:undefined)&&positionContextValid(value);}
+function validPosition(value:TownPosition):boolean{return value.room!=='lodging'&&!!worlds[value.room]&&canStand(value.room,value.position,isFieldRoute(value.room)?worlds[value.room]:undefined)&&positionContextValid(value);}
 export function canonicalHomePosition(value:TownPosition,plots:TownPlot[]):TownPosition{
  if(value.room==='lodging'||!positionContextValid(value))throw new Error('Invalid durable room context.');
  if(value.room==='neighborhood'&&!districtExists(value.districtId!,plots))throw new Error('Unknown durable neighborhood.');

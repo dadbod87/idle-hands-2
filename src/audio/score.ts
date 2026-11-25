@@ -15,6 +15,7 @@ export const SCORE_NAMES: Record<PlaceScore, string> = {
 
 export function scoreForRoom(room: Room): PlaceScore {
   if (room === 'lodging') return 'lodging';
+  if (room === 'pumpworks-depths' || room === 'pumpworks-sluice') return 'pumpworks';
   if (room === 'mossbank' || room === 'pumpworks') return room;
   if (room === 'trail' || room === 'glasshouse') return 'woodland';
   if (room === 'home' || room === 'home-expanded') return 'home';

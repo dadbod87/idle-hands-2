@@ -90,6 +90,7 @@
     "public-refresh.spec.ts",
     "pumpworks.spec.ts",
     "return-trip.spec.ts",
+    "lower-pumpworks.spec.ts",
     "shared-pumpworks.spec.ts",
     "shared-trades.spec.ts",
     "serving-study.spec.ts",

@@ -5,6 +5,16 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "mossbank-ripple",
+      "path": "art/mossbank/ripple.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "mossbank-wren",
+      "path": "art/mossbank/wren.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "pumpworks-practice-bell",
       "path": "art/pumpworks/practice-bell.svg",
       "kind": "original-svg"

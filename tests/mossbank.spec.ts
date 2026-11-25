@@ -3,6 +3,7 @@ import {mkdirSync} from 'node:fs';
 import {MOSSBANK_FRONT} from '../src/game/mossbank-room.ts';
 
 const output=process.env.QA_EVIDENCE_DIR??'test-results/browser';
+type MossbankVisual={worker:string|null;ripples:{x:number;y:number}[]};
 function nearby(page:Page){
  return page.evaluate(()=> (window as Window&{__pilot?:{snapshot():{nearby:string}}}).__pilot?.snapshot().nearby);
 }
@@ -25,6 +26,9 @@ for(const shape of [{name:'desktop',width:1440,height:900,touch:false},{name:'ph
    await expect(page.locator('#location')).toHaveAttribute('data-room',name,{timeout:45000});
   };
   const take=(name:string)=>page.screenshot({path:output+'/mossbank-'+shape.name+'-'+name+'.png'});
+  const visual=()=>page.evaluate(()=>(window as Window&{
+   __pilot?:{metrics():{visual:{mossbank:MossbankVisual}}};
+  }).__pilot?.metrics().visual.mossbank);
 
   try{
    // Start beside the road in a fresh browser save. No quest, bait, items or combat result is seeded.
@@ -58,6 +62,19 @@ for(const shape of [{name:'desktop',width:1440,height:900,touch:false},{name:'ph
    if(shape.touch)await page.locator('[data-destination=mossbank-mill]').tap();
    else await page.locator('[data-destination=mossbank-mill]').click();
    await expect.poll(()=>nearby(page),{timeout:18000}).toBe('mossbank-mill');
+   await expect.poll(async()=>(await visual())?.worker).toBe('mossbank-wren');
+   await take('wren');
+   if(shape.name==='desktop'){
+    await expect.poll(async()=>(await visual())?.ripples.length).toBeGreaterThan(0);
+    const before=(await visual())!.ripples;
+    await expect.poll(async()=>(await visual())!.ripples).not.toEqual(before);
+    expect((await visual())!.ripples.every(({x})=>x>810&&x<932)).toBe(true);
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await expect.poll(async()=>(await visual())!.ripples).toEqual([]);
+    await page.emulateMedia({reducedMotion:'no-preference'});
+    await expect.poll(async()=>(await visual())!.ripples.length).toBeGreaterThan(0);
+    await take('river');
+   }
    await press('Inspect Wren · sawmill');
    await press('Take the route card');
    await expect(page.locator('[data-mossbank]')).toContainText('Choose either stop first.');
@@ -100,6 +117,7 @@ for(const shape of [{name:'desktop',width:1440,height:900,touch:false},{name:'ph
    await press('Enter town square');
    await room('square');
    await expect.poll(()=>nearby(page)).toBe('mossbank-road');
+   await expect.poll(visual).toEqual({worker:null,ripples:[]});
    if(shape.name==='desktop'){
     await press('Journal');
     await press('Preview the swatch in your workshop');

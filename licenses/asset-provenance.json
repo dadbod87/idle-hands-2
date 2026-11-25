@@ -3,6 +3,26 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "mossbank-ripple",
+      "path": "public/art/mossbank/ripple.svg",
+      "sha256": "06bf58f4e618e9ced3d6f675d87bc7e4e95c90a2764801df3d376875f6663565",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/mossbank/ripple.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration. No imported media."
+    },
+    {
+      "id": "mossbank-wren",
+      "path": "public/art/mossbank/wren.svg",
+      "sha256": "b5951ee55a11bd6dba95ff210d4edef162eb20b2493693c55dc03250510f17f9",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/mossbank/wren.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration. No imported media."
+    },
+    {
       "id": "pumpworks-practice-bell",
       "path": "public/art/pumpworks/practice-bell.svg",
       "sha256": "2facc3a0a9b48800c31782557fcd42ccace522bd3d82a638bcae21b27ed04667",
@@ -2520,7 +2540,7 @@
       "license": "project-original",
       "source": "public/art/pond/bank-clue.svg",
       "date": "2026-11-24",
-      "modifications": "Original colored illustration for the Founders’ Pond field walk. No imported media."
+      "modifications": "Original colored illustration for the Founders\u2019 Pond field walk. No imported media."
     },
     {
       "id": "pond-print",
@@ -2530,7 +2550,7 @@
       "license": "project-original",
       "source": "public/art/pond/pond-print.svg",
       "date": "2026-11-24",
-      "modifications": "Original colored illustration for the Founders’ Pond field walk. No imported media."
+      "modifications": "Original colored illustration for the Founders\u2019 Pond field walk. No imported media."
     },
     {
       "id": "pond-reed-clue",
@@ -2540,7 +2560,7 @@
       "license": "project-original",
       "source": "public/art/pond/reed-clue.svg",
       "date": "2026-11-24",
-      "modifications": "Original colored illustration for the Founders’ Pond field walk. No imported media."
+      "modifications": "Original colored illustration for the Founders\u2019 Pond field walk. No imported media."
     },
     {
       "id": "pond-water-clue",
@@ -2550,7 +2570,7 @@
       "license": "project-original",
       "source": "public/art/pond/water-clue.svg",
       "date": "2026-11-24",
-      "modifications": "Original colored illustration for the Founders’ Pond field walk. No imported media."
+      "modifications": "Original colored illustration for the Founders\u2019 Pond field walk. No imported media."
     }
   ],
   "comparison": {

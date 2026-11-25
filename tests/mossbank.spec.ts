@@ -65,27 +65,22 @@ for(const shape of [{name:'desktop',width:1440,height:900,touch:false},{name:'ph
    await take('card');
 
    const flumeFirst=shape.name==='phone';
-   const visit=async(place:'flume'|'windrow',fromMill:boolean)=>{
-    if(place==='flume'){
-     await press('Walk to the flume landing');
-     await expect(page.locator('[data-mossbank=mossbank-flume]')).toBeVisible({timeout:22000});
-     await press('Mark the higher shelf for timber');
-     await expect(page.locator('[data-mossbank] [role=status]').filter({hasText:'Flume recorded'})).toBeVisible();
-    }else{
-     await press('Walk to the alder windrow');
-     await expect(page.locator('[data-mossbank=mossbank-windrow]')).toBeVisible({timeout:22000});
-     await press('Record the alder windrow');
-     await expect(page.locator('[data-mossbank] [role=status]').filter({hasText:'Windrow recorded'})).toBeVisible();
-    }
-    if(fromMill&&shape.name==='desktop'){
-     await page.reload();
-     await room('mossbank');
-     await press(place==='flume'?'Inspect Flume landing':'Inspect Alder windrow');
-    }
+   const visit=async(place:'flume'|'windrow')=>{
+    await press(place==='flume'?'Walk to the flume landing':'Walk to the alder windrow');
+    await expect(page.locator('#feedback')).toContainText(place==='flume'?'Flume recorded':'Windrow recorded',{timeout:22000});
+    await expect(page.getByRole('dialog')).toBeHidden();
    };
-   await visit(flumeFirst?'flume':'windrow',true);
-   await visit(flumeFirst?'windrow':'flume',false);
-   await press('Walk back to Wren');
+   await visit(flumeFirst?'flume':'windrow');
+   await take('field-note');
+   if(shape.name==='desktop'){
+    await page.reload();
+    await room('mossbank');
+   }
+   await press('Journal');
+   await expect(page.locator('[data-mossbank-journal]')).toContainText('Recorded · '+(flumeFirst?'Flume landing':'Alder windrow'));
+   await visit(flumeFirst?'windrow':'flume');
+   await press('Journal');
+   await press('Walk to Wren');
    const claim=page.getByRole('button',{name:'Trade the survey for an alder swatch',exact:true});
    await expect(claim).toBeVisible({timeout:22000});
    await press('Trade the survey for an alder swatch');

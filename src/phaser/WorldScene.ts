@@ -1,3 +1,4 @@
+import type {MossbankSurvey} from '../game/mossbank.ts';
 import {HOPPER_MOVEMENT,type HopperMotion} from '../game/pumpworks-chase.ts';
 import {MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
 import {HOPPER_FEET,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
@@ -416,7 +417,8 @@ export class WorldScene extends Phaser.Scene {
       if(key!==this.decorationKey){
         this.decorationKey=key;
         for(const view of this.decorationViews)view.destroy();
-        this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;this.soundingRod=undefined;
+        this.mossbankMarks=undefined;
+    this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;this.soundingRod=undefined;
     this.decorationViews=[];
         this.furnitureOccluders=[];
         for(const slot of home?homeSlots(this.homeLevel):PLACEMENT_SLOTS){
@@ -523,6 +525,15 @@ export class WorldScene extends Phaser.Scene {
     }
     if((motion?.guard??0)>0&&this.actor){
       warning.lineStyle(3,0x395d67,1).strokeEllipse(this.actor.x,this.actor.y-2,46,25);
+    }
+  }
+  mossbankSurvey?:()=>MossbankSurvey|null;
+  private mossbankMarks?:{windrow:Phaser.GameObjects.Text;flume:Phaser.GameObjects.Text};
+  paintMossbankSurvey(){
+    const survey=this.mossbankSurvey?.(),marks=this.mossbankMarks;
+    if(marks?.windrow.active&&marks.flume.active){
+      marks.windrow.setText(survey?.windrow?'✓ Alder windrow':'Alder windrow');
+      marks.flume.setText(survey?.flume?'✓ Flume landing':'Flume landing');
     }
   }
   preload() {
@@ -772,12 +783,14 @@ export class WorldScene extends Phaser.Scene {
         const x=(windrow.x+.5+offset)*TILE,y=(windrow.y-.55-index*.31)*TILE;
         this.add.image(x,y,'mossbank-alder').setOrigin(.44,.94).setScale(.78+index*.09).setDepth(y);
       }
-      label(windrow.x+.5,windrow.y+.45,'Alder windrow');
+      const windrowLabel=label(windrow.x+.5,windrow.y+.45,'Alder windrow');
       const flume=point('mossbank-flume'),fx=(flume.x+.5)*TILE,fy=23.05*TILE;
       this.add.rectangle(fx,fy-18,109,36,0xac8156).setStrokeStyle(3,0x514b3c).setDepth(fy);
       this.add.rectangle(fx,fy-26,106,6,0xe4be7c).setDepth(fy+1);
       for(const dx of [-48,48])this.add.rectangle(fx+dx,fy-7,7,17,0x785940).setDepth(fy+1);
-      label(flume.x+.5,flume.y+.45,'Flume landing');
+      const flumeLabel=label(flume.x+.5,flume.y+.45,'Flume landing');
+      this.mossbankMarks={windrow:windrowLabel,flume:flumeLabel};
+      this.paintMossbankSurvey();
       const beds=point('mossbank-nursery');
       for(const dx of [-59,0,59]){
         const x=(beds.x+.5)*TILE+dx,y=9.55*TILE;
@@ -868,7 +881,8 @@ export class WorldScene extends Phaser.Scene {
         for(const text of this.gardenLabels)text.setScale(1/layout.zoom);
         return;
       }
-      camera.setZoom(1).setFollowOffset(0,this.room==='lodging'?this.lodgingFollow(height):0);if(this.room==='neighborhood'){const b=residentialFrame(width,height,1);camera.setBounds(b.x,b.y,b.width,b.height);return;}
+      const followY=this.room==='lodging'?this.lodgingFollow(height):this.room==='pumpworks'&&height<230?26:0;
+      camera.setZoom(1).setFollowOffset(0,followY);if(this.room==='neighborhood'){const b=residentialFrame(width,height,1);camera.setBounds(b.x,b.y,b.width,b.height);return;}
       if(this.room==='square'||this.room==='mossbank'){camera.setZoom(outdoorZoom(width,height,w.width*TILE,w.height*TILE));return;}
       const worldWidth=w.width*TILE,worldHeight=w.height*TILE;
       camera.setBounds(-Math.max(0,(width-worldWidth)/2),-Math.max(0,(height-worldHeight)/2),Math.max(width,worldWidth),Math.max(height,worldHeight));
@@ -899,6 +913,10 @@ export class WorldScene extends Phaser.Scene {
       const to = { x: pos.x / TILE - .5, y: pos.y / TILE - .5 };
       if(!this.session.locked){
         this.onSteer?.();
+        if(this.room==='pumpworks'&&(this.pumpworksEncounter?.().hopper.phase??'idle')!=='idle'){
+          if(!this.session.walk(to))this.onWalkFailure?.();
+          return;
+        }
         const label=this.room==='garden'?this.gardenLabels.findIndex(text=>this.gardenLabelHit(text).contains(pos.x,pos.y)):-1;
         // Caption taps use the same approach/arrival validation as a body tap.
         // They never open a panel or authorize a command from a distance.

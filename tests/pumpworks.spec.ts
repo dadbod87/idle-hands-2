@@ -116,8 +116,9 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    await expect(page.locator('dialog')).toBeHidden();
    await capture('lunge');
    if(shape.name==='short200'){
-    for(const name of ['Strike','Brace','Eat oatcake · +3 health','Places','Bag','Journal','Nothing nearby'])await expect(button(name)).toBeInViewport({ratio:1});
-    expect(await page.locator('canvas').evaluate(el=>el.getBoundingClientRect().height)).toBeGreaterThan(100);
+    for(const name of ['Strike','Brace','Eat oatcake · +3 health','Places','Bag','Journal'])await expect(button(name)).toBeInViewport({ratio:1});
+    await expect(page.locator('#interact')).toBeInViewport({ratio:1});
+    expect(await page.locator('canvas').evaluate(el=>el.getBoundingClientRect().height)).toBeGreaterThan(145);
    }
    if(shape.name==='desktop'){
     // Standing still through several lunges is a genuine loss condition.

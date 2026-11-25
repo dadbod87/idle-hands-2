@@ -227,10 +227,14 @@ function readLocalPondWatch(){
  try{return readPondWatch(localStorage.getItem(POND_WATCH_KEY));}
  catch{return null;}
 }
-const ownsAlderSwatch=()=>!townMode&&readMossbank(morningStorage)?.state.finished===true;
-const printRights={marigold:false,woodland:false,pond:completePondWatch(readLocalPondWatch()),alder:ownsAlderSwatch()};
+const readMossbankSurvey=()=>townMode?null:readMossbank(morningStorage)?.state??null;
+let mossbankSurvey=readMossbankSurvey();
+scene.mossbankSurvey=()=>mossbankSurvey;
+const printRights={marigold:false,woodland:false,pond:completePondWatch(readLocalPondWatch()),alder:mossbankSurvey?.finished===true};
 function refreshMossbankPrint(){
- printRights.alder=ownsAlderSwatch();
+ mossbankSurvey=readMossbankSurvey();
+ printRights.alder=mossbankSurvey?.finished===true;
+ scene.paintMossbankSurvey();
  refreshWorkshopPrint();
 }
 function refreshPondPrint(){
@@ -509,7 +513,7 @@ window.addEventListener('keydown',event=>{
 const mossbank=townMode?undefined:createMossbank({
  open:openPanel,body,place:()=>session.room==='mossbank'?session.nearby()?.id:undefined,
  feedback:message=>feedback.textContent=message,
- saved:refreshMossbankPrint,
+ saved:refreshMossbankPrint,inMossbank:()=>session.room==='mossbank',observationCue:()=>music.cue('gather'),
  preview:()=>workshop.showJournal('mossbank-swatch'),
  walk:place=>{
   if(place==='mossbank-road')goNamedDestination(session.room==='mossbank'?'mossbank':'square',session.room==='mossbank'?'mossbank-mill':place);

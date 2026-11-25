@@ -5,7 +5,7 @@ import './mossbank.css';
 type Host={
  body:HTMLElement;open:(title:string)=>void;place:()=>string|undefined;
  walk:(place:SurveyPlace|'mossbank-road')=>void;feedback:(message:string)=>void;
- saved:()=>void;preview:()=>void;
+ saved:()=>void;preview:()=>void;inMossbank:()=>boolean;observationCue:()=>void;
 };
 
 function line(copy:string){
@@ -22,15 +22,44 @@ function mark(state:MossbankSurvey){
 }
 
 export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem'>){
+ let saving=false;
+ async function save(action:SurveyAction,place:SurveyPlace,expected:string|null,present:()=>boolean){
+  if(!navigator.locks)return 'This browser cannot safely save the route card across tabs.';
+  if(saving||!present())return '';
+  saving=true;
+  try{
+   const result=await navigator.locks.request(MOSSBANK_KEY,()=>present()
+    ?saveMossbank(storage,expected,action,place)
+    :{ok:false,message:'Return to the route marker first.'} as const);
+   if(result.ok){host.saved();if(action==='windrow'||action==='flume')host.observationCue();}
+   return result.message;
+  }catch{return 'The route card could not be confirmed.';}
+  finally{saving=false;}
+ }
+
+ async function observe(place:'mossbank-windrow'|'mossbank-flume',record:NonNullable<ReturnType<typeof readMossbank>>){
+  const action=place==='mossbank-windrow'?'windrow':'flume';
+  if(record.state[action]){
+   host.feedback(record.state.finished?'Wren filed this observation.':'Already recorded. Check the route card in Journal.');
+   return;
+  }
+  const message=await save(action,place,record.raw,()=>host.inMossbank()&&host.place()===place);
+  if(message)host.feedback(message);
+ }
+
  function show(place:SurveyPlace){
   const stop=MOSSBANK_STOPS.find(stop=>stop.id===place);
   if(!stop||host.place()!==place)return;
+  let record=readMossbank(storage);
+  if(record?.state.joined&&(place==='mossbank-windrow'||place==='mossbank-flume')){
+   void observe(place,record);
+   return;
+  }
   host.open(stop.name);
   const section=document.createElement('section');
   section.className='mossbank-field-card';section.dataset.mossbank=place;
   host.body.append(section);
 
-  let record=readMossbank(storage);
   let busy=false;
   const present=()=>section.isConnected&&host.place()===place;
   const button=(label:string,callback:()=>void)=>{
@@ -68,12 +97,6 @@ export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem
     section.append(line('Alder grows by the wet bank. Pine prefers the dry rise. The rabbits prefer what you planted last.'));
    }else if(!state.joined){
     next('Meet Wren at the sawmill','mossbank-mill');
-   }else{
-    if(place==='mossbank-flume'&&!state.flume)action('Mark the higher shelf for timber','flume');
-    else if(place==='mossbank-windrow'&&!state.windrow)action('Record the alder windrow','windrow');
-    else if(!state.windrow)next('Walk to the alder windrow','mossbank-windrow');
-    else if(!state.flume)next('Walk to the flume landing','mossbank-flume');
-    else next('Walk back to Wren','mossbank-mill');
    }
    const status=line(message);
    status.className='mossbank-status';status.role='status';status.tabIndex=-1;
@@ -83,18 +106,12 @@ export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem
   async function commit(kind:SurveyAction){
    if(!record||busy||!present())return;
    const expected=record.raw;
-   if(!navigator.locks){render('This browser cannot safely save the route card across tabs.');return;}
    for(const item of section.querySelectorAll('button'))item.disabled=true;
    busy=true;
-   let result:string;
-   try{
-    result=await navigator.locks.request(MOSSBANK_KEY,()=>present()
-     ?saveMossbank(storage,expected,kind,place).message
-     :'Return to the route marker first.');
-   }catch{result='The route card could not be confirmed.';}
-   finally{busy=false;}
+   const result=await save(kind,place,expected,present);
+   busy=false;
    record=readMossbank(storage);
-   host.saved();host.feedback(result);
+   if(result)host.feedback(result);
    if(!present())return;
    render(result);
    section.querySelector<HTMLElement>('[role=status]')?.focus({preventScroll:true});
@@ -122,10 +139,19 @@ export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem
    preview.textContent='Preview the swatch in your workshop';preview.onclick=host.preview;
    entry.append(preview);
   }
-  const button=document.createElement('button');
-  button.type='button';button.className='destination';
-  button.textContent=host.place()?'Walk to Wren':'Walk toward Mossbank';button.onclick=()=>host.walk('mossbank-road');
-  entry.append(button);body.append(entry);
+  const route=(name:string,destination:SurveyPlace|'mossbank-road')=>{
+   const button=document.createElement('button');
+   button.type='button';button.className='destination';
+   button.textContent=name;button.onclick=()=>host.walk(destination);
+   entry.append(button);
+  };
+  if(!host.inMossbank())route('Walk toward Mossbank','mossbank-road');
+  else if(state.finished||state.windrow&&state.flume)route('Walk to Wren','mossbank-mill');
+  else{
+   if(!state.windrow)route('Walk to the alder windrow','mossbank-windrow');
+   if(!state.flume)route('Walk to the flume landing','mossbank-flume');
+  }
+  body.append(entry);
  }
 
  return {show,journal};

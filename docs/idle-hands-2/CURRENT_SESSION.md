@@ -1,3 +1,7 @@
+# November 25 — field smithing, nearby outfits and the Hidden Valley orchard
+
+Use `feat/nov25-game-review` and the [latest review and acceptance notes](handoffs/2026-11-25-exploration-combat.md#field-smithing-nearby-outfits-and-a-living-orchard). This combines the pressed souvenir, movement-based combat, clothing layers, nearby outfit inspection, a finite smithing trial and the local orchard graft. Keep saved previews and databases stopped. Review the exact source and recorded checks before opening or updating a PR.
+
 # November 25 — Hidden Valley and layered wardrobe
 
 Continue from `feat/nov25-valley-press` and the [latest exploration handoff](handoffs/2026-11-25-exploration-combat.md#hidden-valley-and-layered-wardrobe). Hidden Valley is walkable in browser practice after Wren's survey. A two-resident shared practice check verified the independently dyed and tied kerchief. This is local review work. Start from a disposable browser state and keep saved previews and databases stopped.

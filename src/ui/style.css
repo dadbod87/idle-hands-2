@@ -191,3 +191,9 @@
 }
 #wake-resident { position: absolute; bottom: 14px; right: 14px; min-width: 118px; }
 .first-morning-resting .location-tag #town-sky { display: none; }
+
+/* Small indoor rooms keep just their title on very short enlarged screens. */
+@media (max-height: 480px) and (min-width: 651px) {
+ .shell.large-text #location[data-room='glasshouse'] > :is(span, small) { display: none; }
+ .shell.large-text #location[data-room='glasshouse'] { max-width: calc(100% - 80px); }
+}

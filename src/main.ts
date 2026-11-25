@@ -403,7 +403,18 @@ const orchardUI=new OrchardUI({
 },orchardTable,orchardPort);
 scene.orchardState=()=>orchardAvailable()?orchardUI.state:undefined;
 scene.orchardNow=orchardPort?.now??Date.now;
-const workshop=new WorkshopUI({recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
+function nurseryPlantForBag(){
+ const snapshot=town?.snapshot,plant=snapshot?.glasshousePlant;
+ if(!plant)return;
+ const ownerHere=snapshot.plantWindowsill===true&&session.room.startsWith('home')&&
+  snapshot.plot?.id===homePlotId&&session.stops.some(stop=>stop.id===WINDOWSILL_STOP.id);
+ return {plant,...(ownerHere?{walk:()=>{
+  if(town?.snapshot?.playerId!==snapshot.playerId||homePlotId!==snapshot.plot?.id||
+     !session.stops.some(stop=>stop.id===WINDOWSILL_STOP.id))return;
+  goNamedDestination(session.room,WINDOWSILL_STOP.id);
+ }}:{})};
+}
+const workshop=new WorkshopUI({nurseryPlant:nurseryPlantForBag,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
  savedMarigold:!town?(earned)=>{
   if(earned===printRights.marigold)return;
   printRights.marigold=earned;
@@ -948,6 +959,7 @@ scene.onFrame = () => {
     const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='glasshouse'?'Inkwood Glasshouse':session.room==='garden'?'Your allotment':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
     const hint=session.room==='square'?district!.hint:session.room==='neighborhood'?'Homes, not cubicles.':session.room==='trail'?'A path worth the paperwork.':session.room==='glasshouse'?'A warm aisle and five things to inspect.':session.room==='garden'?'Ready plants wait safely.':session.room==='lodging'?'Your rented room. Nothing due today.':session.room.startsWith('home')?(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved'):'Great things take time.';
     if(district&&district.name!=='Town square'&&(feedback.textContent?.startsWith('Tap the three material depots')||feedback.textContent===lastDistrictHint)){feedback.textContent=district.hint;lastDistrictHint=district.hint;}
+    if(location.dataset.room!==session.room)location.dataset.room=session.room;
     if (locationTitle.data !== roomName) locationTitle.data = roomName;
     if (locationHint.textContent !== hint) locationHint.textContent = hint;
     if (practiceLabel) {

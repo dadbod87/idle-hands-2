@@ -291,6 +291,9 @@ test('Glasshouse board confirms the quoted pine once and shows the restored faca
   await page.getByRole('button',{name:/Inkwood trail/}).tap();
   await expect.poll(async()=>(await pilot()).nearby,{timeout:12_000}).toBe('glasshouse-exit');
   await expect.poll(async()=>(await pilot()).walking).toBe(false);
+  const title=page.locator('#location');
+  await expect(title).toContainText('Inkwood Glasshouse');
+  await expect.poll(()=>title.evaluate(el=>el.getBoundingClientRect().height)).toBeLessThan(55);
   const exit=button('Enter Inkwood trail');
   await exit.scrollIntoViewIfNeeded();
   await expect(exit).toBeInViewport({ratio:1});

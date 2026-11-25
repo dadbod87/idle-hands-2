@@ -193,3 +193,18 @@
  dialog:has(.workshop-print-inspection){width:min(620px,calc(100vw - 24px))}
  .workshop-print-inspection{grid-template-columns:108px minmax(0,1fr);align-items:start}
 }
+
+.bag-nursery-keepsake {
+ display:grid;
+ grid-template-columns:48px minmax(0,1fr);
+ gap:.35rem .55rem;
+ align-items:center;
+ margin:0 0 .65rem;
+ padding:.45rem;
+ border:1px solid var(--line);
+ border-radius:5px;
+ background:#e8e7d1;
+}
+.bag-nursery-keepsake img { width:48px; height:48px; object-fit:contain; }
+#panel-body .bag-nursery-keepsake p { margin:0; font-size:.84em; }
+.bag-nursery-keepsake .destination { grid-column:1 / -1; margin:0; min-height:44px; }

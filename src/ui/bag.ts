@@ -1,3 +1,5 @@
+import {headwearName} from '../art/headwear.ts';
+import {INKWOOD_HOOD,CLERK_CAP,EARNED_HEADWEAR,ownsHeadwear,type EarnedHeadwear,type TownHeadwear} from '../game/earned-headwear.ts';
 import type {OrchardPantry} from '../game/orchard.ts';
 import type {WorkshopState as LegacyWorkshopState} from '../game/workshop.ts';
 type WorkshopState=LegacyWorkshopState|CurrentWorkshopState;
@@ -9,6 +11,7 @@ type BagEquipmentActions={
  openSawLesson?:()=>void;
  backToWork?:()=>void;
  wardrobe?:{label:string;open:()=>void};
+ townHeadwear?:{wear:(item:TownHeadwear['worn'])=>void;trail?:()=>void;carpentry?:()=>void};
 };
 
 const POCKET_LABELS:Record<BagGroup,string>={furniture:'Furniture',materials:'Materials',garden:'Garden',equipment:'Equipment'};
@@ -22,6 +25,9 @@ export class BagView {
  private status=document.createElement('p');
  private countKey=document.createElement('p');
  private appearance:HTMLElement|null=null;
+ private pocket:BagGroup='furniture';
+ private headwearCards=new Map<EarnedHeadwear,{card:HTMLElement;title:HTMLElement;state:HTMLElement;wear:HTMLButtonElement;find:HTMLButtonElement;notice:HTMLElement}>();
+ private townHeadwear?:TownHeadwear;
  private readonly pockets=new Map<BagGroup,HTMLButtonElement>();
  private readonly equipAction=document.createElement('button');
  private readonly sawLesson=document.createElement('button');
@@ -146,10 +152,34 @@ export class BagView {
    this.root.append(appearance);
    this.appearance=appearance;
   }
+  if(equipment?.townHeadwear)for(const item of EARNED_HEADWEAR){
+   const {wear,trail,carpentry}=equipment.townHeadwear;
+   const card=document.createElement('section'),title=document.createElement('h4'),state=document.createElement('p'),icon=document.createElement('span');
+   const action=document.createElement('button'),find=document.createElement('button'),notice=document.createElement('p');
+   card.className='bag-appearance bag-earned-headwear';
+   card.dataset.earnedHeadwear=item;
+   icon.className='bag-headwear-icon';
+   icon.setAttribute('aria-hidden','true');
+   card.hidden=true;
+   title.textContent=headwearName[item];
+   title.tabIndex=-1;
+   state.setAttribute('role','status');
+   action.type=find.type='button';
+   action.className=find.className='bag-headwear-action';
+   action.onclick=()=>wear(action.dataset.worn==='true'?null:item);
+   find.textContent=item===INKWOOD_HOOD?'Open trail journal':'Open Nella’s workshop';
+   find.onclick=()=>{if(item===INKWOOD_HOOD)trail?.();else carpentry?.();};
+   notice.setAttribute('role','status');
+   card.append(icon,title,state,action,find,notice);
+   this.root.append(card);
+   this.headwearCards.set(item,{card,title,state,wear:action,find,notice});
+  }
   this.restoreOrder();
   const note=document.createElement('p');note.className='bag-note';note.textContent='Collect finished crafts to put them here. Inspecting never uses an item.';this.root.append(note,this.orderBar);this.root.addEventListener('focusin',this.focused);
  }
  openPocket(group:BagGroup,focus=false){
+  this.pocket=group;
+  for(const [item,{card}] of this.headwearCards)card.hidden=!this.showHeadwear(item);
   if(group==='equipment'&&this.editing)this.setEditing(false);
   else this.select(null);
   this.orderButton.disabled=group==='equipment';
@@ -171,6 +201,35 @@ export class BagView {
   if(this.equipAction.disabled!==blocked)this.equipAction.disabled=blocked;
   if(this.sawLesson.hidden!==saw.owned)this.sawLesson.hidden=saw.owned;
   if(this.sawLesson.disabled!==blocked)this.sawLesson.disabled=blocked;
+ }
+
+ private showHeadwear(item:EarnedHeadwear){
+  return this.pocket==='equipment'&&!!this.townHeadwear&&(item===INKWOOD_HOOD||this.townHeadwear.clerkOwned!==undefined);
+ }
+
+ updateHeadwear(headwear:TownHeadwear|undefined,blocked:boolean){
+  this.townHeadwear=headwear;
+  for(const [item,{card,state,wear,find}] of this.headwearCards){
+   const hidden=!this.showHeadwear(item);
+   if(card.hidden!==hidden)card.hidden=hidden;
+   const owned=!!headwear&&ownsHeadwear(headwear,item);
+   const worn=owned&&headwear?.worn===item;
+   const unlock=item===INKWOOD_HOOD?'Record all three Inkwood discoveries to earn it.':'Record your first completed easel with Nella to earn it.';
+   const text=worn?'Wearing · visible to nearby residents':owned?'Earned · put away':unlock;
+   if(state.textContent!==text)state.textContent=text;
+   const label=worn?(item===CLERK_CAP?'Put cap away':'Put hood away'):'Wear '+headwearName[item];
+   if(wear.textContent!==label)wear.textContent=label;
+   if(wear.dataset.worn!==String(worn))wear.dataset.worn=String(worn);
+   if(wear.hidden===owned)wear.hidden=!owned;
+   if(find.hidden!==owned)find.hidden=owned;
+   if(wear.disabled!==blocked)wear.disabled=blocked;
+   if(find.disabled!==blocked)find.disabled=blocked;
+  }
+ }
+
+ headwearNotice(item:EarnedHeadwear,message:string){
+  const notice=this.headwearCards.get(item)?.notice;
+  if(notice&&notice.textContent!==message)notice.textContent=message;
  }
 
  private restoreOrder(){
@@ -234,12 +293,19 @@ export class BagView {
 
  arrange(selector='select[aria-label="Furniture to place"]'){const dialog=this.root.closest('dialog'),target=dialog?.querySelector<HTMLElement>(selector),header=dialog?.querySelector('header');if(dialog&&target&&header){const details=target.closest('details');if(details)details.open=true;target.focus({preventScroll:true});dialog.scrollTop+=target.getBoundingClientRect().top-header.getBoundingClientRect().bottom-12;}}
  focusFurniture(id:PropId){
-  const slot=this.slots.get(id),button=slot?.choose;
+  const slot=this.slots.get(id);
+  if(slot?.choose&&!slot.choose.hidden)this.focusCardAction(slot.card,slot.choose);
+ }
+ focusHeadwear(item:EarnedHeadwear){
+  const entry=this.headwearCards.get(item);
+  if(entry&&!entry.card.hidden)this.focusCardAction(entry.card,entry.title);
+ }
+ private focusCardAction(card:HTMLElement,action:HTMLElement){
   const dialog=this.root.closest('dialog'),header=dialog?.querySelector('header');
-  if(!slot||!button||button.hidden||!dialog||!header)return;
+  if(!dialog||!header)return;
   const available=dialog.getBoundingClientRect().bottom-header.getBoundingClientRect().bottom-24;
-  const target=slot.card.getBoundingClientRect().height<=available?slot.card:button;
-  button.focus({preventScroll:true});
+  const target=card.getBoundingClientRect().height<=available?card:action;
+  action.focus({preventScroll:true});
   dialog.scrollTop+=target.getBoundingClientRect().top-header.getBoundingClientRect().bottom-12;
  }
  private focused=(event:FocusEvent)=>{const t=event.target;if(!(t instanceof HTMLElement)||!t.matches(':focus-visible'))return;const dialog=this.root.closest('dialog'),header=dialog?.querySelector('header');if(!dialog||!header)return;const b=t.getBoundingClientRect(),h=header.getBoundingClientRect(),d=dialog.getBoundingClientRect();if(b.top<h.bottom+8||b.bottom>d.bottom-8)dialog.scrollTop+=b.top-h.bottom-8;};

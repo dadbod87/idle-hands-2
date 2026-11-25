@@ -1,6 +1,8 @@
 import {COMMONS_PATHS, COMMONS_PONDS, COMMONS_STOPS, COMMONS_TREES, TOWN_SIZE, townDistrict} from '../game/town-expansion.ts';
 import type {Point, Stop} from '../game/world.ts';
 
+export type MapResident = {name:string; room:string; position:Point};
+
 const x = (value: number) => 100 * value / TOWN_SIZE.width + '%';
 const y = (value: number) => 100 * value / TOWN_SIZE.height + '%';
 
@@ -20,14 +22,17 @@ function rectangle(className: string, left: number, top: number, width: number, 
 }
 
 /** Use the same current room stops and walk callback as every other Places control. */
-export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => void) {
+export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => void, peers?: readonly MapResident[]|null, wave?:()=>Promise<void>) {
  const details = document.createElement('details');
  details.className = 'places-group places-map';
  const summary = document.createElement('summary');
  summary.textContent = 'Town map';
  details.append(summary);
+ let refresh: (()=>void)|undefined;
+ const updateResidents = (next:readonly MapResident[]|null) => {peers=next;if(details.open)refresh?.();};
  details.addEventListener('toggle', () => {
-  if (!details.open || details.childElementCount > 1) return;
+  if (!details.open) return;
+  if (details.childElementCount > 1) {refresh?.();return;}
   const figure = document.createElement('figure');
   const sketch = document.createElement('div');
   sketch.className = 'town-map-sketch';
@@ -70,6 +75,75 @@ export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => vo
   caption.textContent = 'You are here · ' + townDistrict(position).name;
   figure.append(sketch, caption);
   details.append(figure);
+  if (peers!==undefined) {
+   const list = document.createElement('section');
+   list.className = 'town-map-residents';
+   list.setAttribute('aria-labelledby','town-map-residents-title');
+   const title = document.createElement('h3');
+   title.id = 'town-map-residents-title';
+   title.textContent = 'Around town';
+   const key = document.createElement('p');
+   key.className = 'map-residents-key';
+   key.textContent = 'Map badges count residents by district.';
+   const empty = document.createElement('p');
+   const roster = document.createElement('dl');
+   list.append(title,key,empty,roster);
+   const waveButton=wave?document.createElement('button'):undefined;
+   if(wave&&waveButton){
+    const status=document.createElement('p');
+    status.className='town-wave-status';
+    status.setAttribute('role','status');
+    waveButton.className='destination town-wave-action';
+    waveButton.type='button';
+    waveButton.textContent='Wave to the square';
+    waveButton.onclick=async()=>{
+     waveButton.disabled=true;
+     status.textContent='Sending your wave…';
+     try{await wave();}
+     catch(error){if(list.isConnected)status.textContent=error instanceof Error?error.message:'The wave could not be confirmed.';}
+     finally{waveButton.disabled=false;}
+    };
+    list.append(waveButton,status);
+   }
+
+   details.append(list);
+
+   let previous = '';
+   refresh = () => {
+    const areas = new Map<string,string[]>();
+    const squarePeers = (peers??[]).filter(({room,position})=>room==='square'&&
+     Number.isFinite(position?.x)&&Number.isFinite(position?.y)&&position.x>=0&&position.x<TOWN_SIZE.width&&position.y>=0&&position.y<TOWN_SIZE.height);
+    for (const peer of squarePeers) {
+     const {name} = townDistrict(peer.position);
+     const residents = areas.get(name)??[];
+     residents.push(peer.name);
+     areas.set(name,residents);
+    }
+    const groups = [...pins.values()].map(pin=>({name:pin.textContent??'',pin})).filter(({name})=>areas.has(name));
+    const signature = peers===null?'unavailable':JSON.stringify(groups.map(({name})=>[name,areas.get(name)!.sort()]));
+    if (signature===previous) return;
+    previous=signature;
+    empty.hidden=groups.length>0;
+    key.hidden=groups.length===0;
+    if(waveButton){
+     if(!groups.length&&document.activeElement===waveButton)summary.focus();
+     waveButton.hidden=groups.length===0;
+    }
+    empty.textContent=peers===null?'Resident locations are temporarily unavailable.':'No other residents in this part of town.';
+    roster.replaceChildren();
+    for (const pin of pins.values()) delete pin.dataset.residents;
+    for (const {name,pin} of groups) {
+     const residents = areas.get(name)!;
+     pin.dataset.residents=String(residents.length);
+     const district = document.createElement('dt'), names = document.createElement('dd');
+     district.textContent=name;
+     names.textContent=residents.join(', ');
+     roster.append(district,names);
+    }
+   };
+   refresh();
+  }
+
   const landmarks = stops.filter(stop => pins.has(stop.id));
   if (landmarks.length) {
    const controls = document.createElement('div');
@@ -93,6 +167,7 @@ export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => vo
     selected = landmarks.find(stop => stop.id === select.value);
     if (selected) pins.get(selected.id)?.classList.add('map-destination');
     button.disabled = !selected;
+    button.textContent = selected?'Walk to '+selected.name:'Walk there';
    };
    button.onclick = () => { if (selected) walk(selected); };
    controls.append(label, button);
@@ -102,5 +177,5 @@ export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => vo
   const header = dialog?.querySelector('.dialog-head');
   if (dialog && header) dialog.scrollTop += summary.getBoundingClientRect().top - header.getBoundingClientRect().bottom - 8;
  });
- return details;
+ return {element:details,updateResidents};
 }

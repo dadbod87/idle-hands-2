@@ -2,6 +2,20 @@
 
 The [overnight handoff](handoffs/2026-11-25-overnight-play.md) identifies the exact combined local source, independently backed-up candidates, pending real-duration receipts and next steps. Accepted main and the existing PRs remain separate. Keep saved previews and databases stopped. The new shared gameplay still needs its complete connected validation.
 
+# November 23 — shared-town and practice batches
+
+The [current handoff](handoffs/2026-11-23-shared-town-and-practice.md) records the two batches and their check boundaries. Main is `168e857`. Exact green PR #108 is open. `perf/mount-nearby-residents` contains the shared-town batch on top of it. `feat/browser-practice-journal` combines the separate Riverwalk and Journal experiences. Keep saved previews and databases stopped.
+
+# November 23 — earned headwear ready for review
+
+PR #107 is accepted on main `168e857`. PR #108 is green on `df1c22b` and remains open. The Clerk cap and nearby-resident animation are staged in the separate follow-up branches. [Exact checks, branch order and Actions closeout](handoffs/2026-11-23-headwear-closeout.md). Keep saved previews and databases stopped.
+
+# November 23 — Bag equipment accepted
+
+PR #107 merged as `168e85720d680dd125d6204e84a12e455bf14878`. Its exact main checks passed 593 domain/database tests and 254 browser cases. [Verification](../evidence/IH2-191/EXACT_CI.json).
+
+The next batch is the [Inkwood hood and trail guidance](handoffs/2026-11-23-inkwood-hood.md) on `feat/inkwood-hood`. Saved previews and databases remain stopped.
+
 # November 23 — first arrival and Bag movement accepted
 
 PR #106 merged as `a2421996266fa96115db72034395c9a6b1282430`. Main passed 592 domain and database tests and 253 browser cases on its exact commit. [Verification](../evidence/IH2-188/EXACT_CI.json).

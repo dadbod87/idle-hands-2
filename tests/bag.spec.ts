@@ -329,3 +329,144 @@ test('Bag Equipment keeps an earned saw through equip, pine work, put away and r
   }finally{await context.close();}
  }
 });
+
+test('shared earned headwear switches a single slot and renders on a visible neighbor',async({browser})=>{
+ mkdirSync(out,{recursive:true});
+ for(const [shape,width,height] of [['desktop',1440,900],['phone',320,640],['short',844,390]] as const){
+  const context=await browser.newContext({viewport:{width,height},hasTouch:shape!=='desktop'});
+  try{
+   const page=await context.newPage(),errors:string[]=[];
+   const position={room:'square',position:{x:24,y:25}};
+   let workshop=createWorkshop(Date.now()),logged=false,owned=false,clerkOwned=false,worn:null|'inkwood'|'clerk'=null;
+   const snapshot=()=>({playerId:'aster',name:'Aster',workshop,position,headwear:{owned,clerkOwned,worn},quest:{contentVersion:1,awarded:[]},bridge:{contributed:3,target:3,restored:true,phase:'open'},trail:{stamps:owned?['trailhead','old-sign','lookout']:[],pennantOwned:owned},plot:null,plots:[],seasonKey:'2026-11-20',scores:[],serverTime:Date.now(),serverInstance:'headwear-visual-fixture'});
+   const commands:{kind:string;item:string|null}[]=[];
+   page.on('pageerror',error=>errors.push(error.message));
+   await page.addInitScript(()=>{
+    class Events extends EventTarget{
+     onopen:(()=>void)|null=null;
+     constructor(){super();(window as any).__headwearStream=this;queueMicrotask(()=>this.onopen?.());}
+     close(){}
+    }
+    (window as any).EventSource=Events;
+   });
+   await page.route('**/api/town/**',async route=>{
+    const path=new URL(route.request().url()).pathname.split('/').at(-1);
+    if(path==='fixtures')return route.fulfill({json:{fixtures:[{id:'aster',name:'Aster'}]}});
+    if(path==='login'){logged=true;return route.fulfill({json:{snapshot:snapshot()}});}
+    if(path==='snapshot')return logged?route.fulfill({json:{snapshot:snapshot()}}):route.fulfill({status:401,json:{message:'Choose a fixture.'}});
+    if(path==='movement')return route.fulfill({json:{ok:true,position}});
+    if(path==='command'){
+     const command=route.request().postDataJSON();
+     commands.push(command);
+     if(command.kind==='wear-headwear'&&(command.item===null||(command.item==='inkwood'?owned:clerkOwned))){
+      worn=command.item;
+      workshop={...workshop,revision:workshop.revision+1};
+      return route.fulfill({json:{ok:true,message:'Headwear saved.',snapshot:snapshot()}});
+     }
+    }
+    return route.fulfill({status:400,json:{message:'Unknown fixture command.'}});
+   });
+   await page.goto('/?town=1&sky-study=1&phase=day');
+   await page.getByRole('button',{name:'Aster',exact:true}).click();
+   await ready(page);
+   const bag=page.locator('#bag'),equipment=page.getByRole('button',{name:'Equipment',exact:true});
+   const card=page.locator('[data-earned-headwear=inkwood]');
+   const cap=page.locator('[data-earned-headwear=clerk]');
+   const wear=page.getByRole('button',{name:'Wear Inkwood hood',exact:true});
+   const putAway=page.getByRole('button',{name:'Put hood away',exact:true});
+   await bag.click();await equipment.click();
+   await expect(card).toContainText('Record all three Inkwood discoveries');
+   await expect(wear).toBeHidden();
+   await expect(cap).toContainText('Record your first completed easel');
+   await expect(cap.getByRole('button',{name:'Wear Clerk cap',exact:true})).toBeHidden();
+   expect(commands).toEqual([]);
+   await page.getByRole('button',{name:'Open trail journal',exact:true}).click();
+   const rewardLink=page.getByRole('button',{name:'Open Bag · Inkwood hood',exact:true});
+   await expect(rewardLink).toBeHidden();
+   owned=true;
+   await page.evaluate(()=>document.dispatchEvent(new Event('visibilitychange')));
+   await rewardLink.click();
+   await expect(equipment).toHaveAttribute('aria-pressed','true');
+   await expect(wear).toBeEnabled();
+   await expect(card.getByRole('heading',{name:'Inkwood hood'})).toBeFocused();
+   await expect(wear).toBeInViewport();
+   if(shape==='desktop'){await page.keyboard.press('Tab');await expect(wear).toBeFocused();await page.keyboard.press('Enter');}else await wear.tap();
+   await expect(card).toContainText('Wearing · visible to nearby residents');
+   expect(commands).toHaveLength(1);
+   expect(commands[0]).toMatchObject({kind:'wear-headwear',item:'inkwood'});
+   await putAway.scrollIntoViewIfNeeded();
+   await page.screenshot({path:out+'/inkwood-equipment-'+shape+'.png'});
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   const visual=()=>page.evaluate(()=>(window as any).__pilot.metrics().visual);
+   await expect.poll(async()=>(await visual()).headwear?.texture).toBe('headwear-inkwood');
+   const presence=(headwear?:'inkwood'|'clerk',x=22)=>page.evaluate(({headwear,x})=>{
+    const data=[{id:'bea',name:'Bea',room:'square',position:{x,y:25.5},...(headwear?{headwear}:{})}];
+    (window as any).__headwearStream.dispatchEvent(new MessageEvent('presence',{data:JSON.stringify(data)}));
+   },{headwear,x});
+   await presence('inkwood');
+   await expect.poll(async()=>(await visual()).peerHeadwear).toEqual([{id:'bea',texture:'headwear-inkwood'}]);
+   await page.screenshot({path:out+'/inkwood-neighbor-'+shape+'.png'});
+   if(shape==='desktop'){
+    const cadence=()=>page.evaluate(()=>(window as any).__pilot.metrics().presentation.idleFrameLimit);
+    await expect.poll(cadence).toBe(10);
+    await presence('inkwood',22.9);
+    await page.waitForFunction(()=>{
+     const {visual,presentation}=(window as any).__pilot.metrics();
+     const peer=visual.peerMotion[0];
+     return presentation.idleFrameLimit===0&&peer?.walking&&peer.position.x>=22&&peer.position.x<22.9&&peer.frame===peer.hat&&peer.facing==='east';
+    });
+    await expect.poll(async()=>(await visual()).peerMotion[0]).toMatchObject({position:{x:22.9,y:25.5},facing:'east',frame:14,hat:14,walking:false});
+    await expect.poll(cadence).toBe(10);
+    await page.screenshot({path:out+'/inkwood-neighbor-side.png'});
+   }else if(shape==='phone'){
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await presence('inkwood',22.9);
+    await expect.poll(async()=>(await visual()).peerMotion[0]).toMatchObject({position:{x:22.9,y:25.5},facing:'east',frame:14,hat:14,walking:false});
+    await page.screenshot({path:out+'/inkwood-neighbor-phone-side.png'});
+   }
+
+   await presence();
+   await expect.poll(async()=>(await visual()).peerHeadwear).toEqual([]);
+   await bag.click();await equipment.click();await putAway.click();
+   await expect(card).toContainText('Earned · put away');
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   await expect.poll(async()=>(await visual()).headwear).toBeNull();
+   expect(commands).toHaveLength(2);
+   clerkOwned=true;
+   await bag.click();await equipment.click();
+   await cap.getByRole('button',{name:'Wear Clerk cap',exact:true}).click();
+   await expect(cap).toContainText('Wearing · visible to nearby residents');
+   await expect(card).toContainText('Earned · put away');
+   await cap.getByRole('button',{name:'Put cap away',exact:true}).scrollIntoViewIfNeeded();
+   await page.screenshot({path:out+'/clerk-cap-'+shape+'.png'});
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   await expect.poll(async()=>(await visual()).headwear?.texture).toBe('headwear-clerk');
+   await presence('clerk');
+   await expect.poll(async()=>(await visual()).peerHeadwear).toEqual([{id:'bea',texture:'headwear-clerk'}]);
+   await bag.click();await equipment.click();
+   await wear.click();
+   await expect(cap).toContainText('Earned · put away');
+   await expect(card).toContainText('Wearing · visible to nearby residents');
+   await page.getByRole('button',{name:'Close panel',exact:true}).click();
+   await expect.poll(async()=>(await visual()).headwear?.texture).toBe('headwear-inkwood');
+   expect(commands.slice(2).map(command=>command.item)).toEqual(['clerk','inkwood']);
+   if(shape==='desktop'){
+    const emitResidents=(farX:number)=>page.evaluate(x=>{
+     const peers=[{id:'bea',name:'Bea',room:'square',position:{x:22,y:25.5},headwear:'clerk'},
+      {id:'casey',name:'Casey',room:'square',position:{x,y:25.5},headwear:'inkwood'},
+      ...Array.from({length:24},(_,index)=>({id:'far-'+index,name:'Neighbor '+index,room:'square',position:{x:93+index%5,y:35+Math.floor(index/5)}}))];
+     (window as any).__headwearStream.dispatchEvent(new MessageEvent('presence',{data:JSON.stringify(peers)}));
+    },farX);
+    await emitResidents(110);
+    await expect.poll(async()=>(await visual()).peerMotion.map((peer:{id:string})=>peer.id)).toEqual(['bea']);
+    await emitResidents(27);
+    await expect.poll(async()=>(await visual()).peerHeadwear).toEqual([{id:'bea',texture:'headwear-clerk'},{id:'casey',texture:'headwear-inkwood'}]);
+    await page.screenshot({path:out+'/nearby-residents-desktop.png'});
+    await emitResidents(110);
+    await expect.poll(async()=>(await visual()).peerMotion.map((peer:{id:string})=>peer.id)).toEqual(['bea']);
+   }
+
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
+});

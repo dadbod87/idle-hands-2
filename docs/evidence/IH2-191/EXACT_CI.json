@@ -1,0 +1,22 @@
+{
+  "pullRequest": 107,
+  "pr": {
+    "sha": "7b238991a34db6f614694ecfe1cf0721e5fa26f4",
+    "run": 45209891516,
+    "attempt": 1,
+    "conclusion": "success",
+    "domain": 593,
+    "browser": 254,
+    "runnerMinutes": 47.63
+  },
+  "main": {
+    "sha": "168e85720d680dd125d6204e84a12e455bf14878",
+    "run": 45213779084,
+    "attempt": 1,
+    "conclusion": "success",
+    "domain": 593,
+    "browser": 254,
+    "runnerMinutes": 51.0
+  },
+  "matchingTrees": true
+}

@@ -111,3 +111,5 @@
    linear-gradient(135deg,#514a34 50%,transparent 50%) right 8px center / 6px 6px no-repeat,
    #fff8e8;
  }
+
+[data-trail-next][hidden],[data-trail-headwear][hidden]{display:none}

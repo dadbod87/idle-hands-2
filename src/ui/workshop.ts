@@ -3,6 +3,7 @@ import {createRiverFindList,updateRiverFinds} from './river-survey.ts';
 import {WorkshopPrintControls} from './workshop-print.ts';
 import type {WorkshopPrint} from '../game/workshop-print.ts';
 import type {FieldNote} from '../game/recent-field-notes.ts';
+import {ownsHeadwear,type EarnedHeadwear,type TownHeadwear} from '../game/earned-headwear.ts';
 import { gardenBedView } from '../game/garden-view.ts';
 import {APPLE_CAP,ORCHARD_BRANCHES,SNACK_CAP,type BranchId,type OrchardPantry} from '../game/orchard.ts';
 import { rewardCue, type WorldCue } from '../audio/world-sounds.ts';
@@ -28,7 +29,7 @@ type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Reco
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
 type StarterDestination=typeof RESOURCE_IDS[number]|'bench';
 type WorkshopTrip={text:string;label:string;walk:()=>void};
-type PanelHost={readyWork?:(ready:boolean)=>void;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};savedMarigold?:(earned:boolean)=>void;prints?:{earned:()=>WorkshopPrint[];selected:()=>WorkshopPrint|null;choose:(print:WorkshopPrint|null)=>boolean};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;pondWatch?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToWorkshop?:()=>void;walkToStarter?:(destination:StarterDestination)=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
+type PanelHost={townHeadwear?:()=>TownHeadwear|undefined;readyWork?:(ready:boolean)=>void;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};savedMarigold?:(earned:boolean)=>void;prints?:{earned:()=>WorkshopPrint[];selected:()=>WorkshopPrint|null;choose:(print:WorkshopPrint|null)=>boolean};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;pondWatch?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToWorkshop?:()=>void;walkToStarter?:(destination:StarterDestination)=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -252,8 +253,10 @@ export class WorkshopUI {
   const rules=document.createElement('details'),rulesTitle=document.createElement('summary');rules.className='bench-rules';rulesTitle.textContent='How crafting works';rules.append(rulesTitle,this.p('Materials are spent when a job starts. Time is real, even while you are away. Finished work waits for you to collect it into your bag. Jobs never repeat automatically. Your first planter takes five seconds; later ones take eight hours.'),this.p('This bench is extremely optimistic.'));b.append(rules);this.notice();b.append(this.disclosure());this.updateClocks();
  };this.begin('Your work bench',render);}
  private toolSwitch(label:string,open:()=>void){const row=document.createElement('div');row.className='personal-tool-switch';const copy=this.p(label);row.append(copy,this.button(label==='Belongings'?'Open journal':'Open bag',()=>{open();this.host.body.closest('dialog')?.querySelector<HTMLButtonElement>('[aria-label="Close panel"]')?.focus({preventScroll:true});}));return row;}
+ get clerkCapOwned(){return this.host.townHeadwear?.()?.clerkOwned===true;}
  showEquipment(backToWork?:()=>void){this.showInventory(false,undefined,{backToWork});}
- showInventory(arrange=false,received?:PropId,equipment?:{backToWork?:()=>void}){const render=()=>{
+ showHeadwear(item:EarnedHeadwear){this.showInventory(false,undefined,{item});}
+ showInventory(arrange=false,received?:PropId,equipment?:{backToWork?:()=>void;item?:EarnedHeadwear}){const render=()=>{
   const b=this.host.body;b.replaceChildren();b.closest('dialog')?.classList.add('notebook-dialog');b.append(this.toolSwitch('Belongings',()=>this.showJournal()));
   const chooseFurniture=this.host.inside()?(id:PropId)=>{
    this.selected=id;
@@ -265,8 +268,19 @@ export class WorkshopUI {
   }:undefined;
   this.bag?.destroy();
   const owner=this.host.owner?.();
-  const bag=new BagView(this.state,this.host.orchard?.()!==undefined?()=>this.host.orchard?.()??null:undefined,chooseFurniture,owner,{wardrobe:this.host.wardrobe?.(),openSawLesson:this.host.carpentry,backToWork:equipment?.backToWork,equipSaw:()=>{
-   const present=()=>this.bag===bag&&owner===this.host.owner?.();
+  const present=()=>this.bag===bag&&owner===this.host.owner?.();
+  const bag=new BagView(this.state,this.host.orchard?.()!==undefined?()=>this.host.orchard?.()??null:undefined,chooseFurniture,owner,{
+   wardrobe:this.host.wardrobe?.(),openSawLesson:this.host.carpentry,backToWork:equipment?.backToWork,
+   townHeadwear:this.remote?{trail:this.host.discoveries,carpentry:this.host.carpentry,wear:item=>{
+    const owned=this.host.townHeadwear?.();
+    const target=item??owned?.worn;
+    if(!present()||!owned||!target||!ownsHeadwear(owned,target)||item===owned.worn||this.remoteBusy||this.remote?.busy?.()||this.remoteError||this.remote?.canRetry())return;
+    bag.headwearNotice(target,'Saving headwear…');
+    void this.remoteDispatch({kind:'wear-headwear',item},present).then(result=>{
+     if(present())bag.headwearNotice(target,result.ok?'':result.message);
+    });
+   }}:undefined,
+   equipSaw:()=>{
    const save=this.gardenSaveStatus(),saw=this.state.carpentry.saw;
    if(!present()||!saw.owned||save.busy||save.canRetry||save.readOnly||(this.remote&&(this.remote.busy?.()||this.remoteError)))return;
    bag.equipmentStatus('Saving equipment…');
@@ -284,7 +298,7 @@ export class WorkshopUI {
   const select=document.createElement('select');select.setAttribute('aria-label','Furniture to place');
   for(const id of PROP_IDS){const opt=document.createElement('option');opt.value=id;opt.textContent=names[id];select.append(opt);}select.value=this.selected;select.onchange=()=>{this.selected=select.value;this.preview=null;this.renderPlacement();};arrangement.append(select);
   const placement=document.createElement('div');placement.id='placement';arrangement.append(placement);b.append(arrangement);this.renderPlacement();this.notice();b.append(this.disclosure());this.updateClocks();
- };this.begin('Bag',render);if(arrange)this.bag?.arrange();else if(received)this.bag?.focusFurniture(received);else if(equipment)this.bag?.openPocket('equipment',true);}
+ };this.begin('Bag',render);if(arrange)this.bag?.arrange();else if(received)this.bag?.focusFurniture(received);else if(equipment){this.bag?.openPocket('equipment',true);if(equipment.item)this.bag?.focusHeadwear(equipment.item);}}
  private prints?:WorkshopPrintControls;
  private firstRiverwalk(river:RiverSurvey|null|undefined){
   return this.saved&&this.ownsSave&&!this.state.job&&this.state.stats.planterPlacedAfterCraft
@@ -483,12 +497,14 @@ export class WorkshopUI {
    // a read refreshes; spending/placement panels still use the ordinary guards.
    const confirmedNotes=this.remote.hasSnapshot?.()===true&&!!this.notebook&&this.host.body.contains(this.notebook.root);
    this.host.body.setAttribute('aria-busy',String(this.remoteBusy&&!confirmedNotes));
-   this.host.body.querySelectorAll<HTMLButtonElement>('button:not(.remote-retry):not(.collection-control):not(.bag-equip-action)').forEach(button=>{if(blocked&&!confirmedNotes){if(button.dataset.remoteDisabled===undefined)button.dataset.remoteDisabled=String(button.disabled);button.disabled=true;}else if(button.dataset.remoteDisabled!==undefined){button.disabled=button.dataset.remoteDisabled==='true';delete button.dataset.remoteDisabled;}});
+   this.host.body.querySelectorAll<HTMLButtonElement>('button:not(.remote-retry):not(.collection-control):not(.bag-equip-action):not(.bag-headwear-action)').forEach(button=>{if(blocked&&!confirmedNotes){if(button.dataset.remoteDisabled===undefined)button.dataset.remoteDisabled=String(button.disabled);button.disabled=true;}else if(button.dataset.remoteDisabled!==undefined){button.disabled=button.dataset.remoteDisabled==='true';delete button.dataset.remoteDisabled;}});
    if(confirmedNotes&&this.status&&!this.remoteError&&!this.remote.canRetry()){const message=pending?'Last confirmed work · update pending.':'Confirmed work notes.';if(this.status.textContent!==message)this.status.textContent=message;const retry=this.host.body.querySelector<HTMLButtonElement>('.remote-retry');if(retry){retry.hidden=true;retry.disabled=pending;}}else this.remoteNotice();
   }
   if(this.bag){
    const save=this.gardenSaveStatus();
-   this.bag.updateEquipment(this.state.carpentry.saw,save.busy||save.readOnly||save.canRetry||!!this.remote&&(!!this.remote.busy?.()||!!this.remoteError));
+   const blocked=save.busy||save.readOnly||save.canRetry||!!this.remote&&(!!this.remote.busy?.()||!!this.remoteError);
+   this.bag.updateEquipment(this.state.carpentry.saw,blocked);
+   this.bag.updateHeadwear(this.host.townHeadwear?.(),blocked);
   }
   const now=this.remote?.now()??Date.now(),b=this.host.body;
   const river=b.querySelector<HTMLElement>('[data-river-entry]');

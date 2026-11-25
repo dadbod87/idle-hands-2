@@ -193,3 +193,12 @@
  dialog:has(.workshop-print-inspection){width:min(620px,calc(100vw - 24px))}
  .workshop-print-inspection{grid-template-columns:108px minmax(0,1fr);align-items:start}
 }
+
+.bag-earned-headwear{display:grid;grid-template-columns:48px minmax(0,1fr);gap:4px 8px}
+.bag-earned-headwear[hidden]{display:none}
+.bag-headwear-icon{grid-row:span 2;width:48px;height:44px;background-position:-8px 0;background-repeat:no-repeat}
+[data-earned-headwear=inkwood] .bag-headwear-icon{background-image:url('/art/headwear/inkwood.svg')}
+[data-earned-headwear=clerk] .bag-headwear-icon{background-image:url('/art/headwear/clerk.svg')}
+.bag-earned-headwear h4{align-self:end}
+.bag-earned-headwear button,.bag-earned-headwear p[role=status]:last-child{grid-column:1/-1}
+.bag-earned-headwear p:empty{display:none}

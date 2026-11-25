@@ -1,0 +1,9 @@
+# IH2-196 · Wave hello in the square
+
+Places → Town map offers **Wave to the square** when another resident is present. A confirmed wave returns the sender to the square and shows a brief label above their character. Others see who waved in the scene and receive an accessible announcement. The paper-map roster stays distinct from the travel control. The action introduces a low-stakes way to greet someone during shared work or a first visit.
+
+The authenticated local HTTP route accepts only an empty object and uses the listener's confirmed square presence. The effect lasts three seconds and the server accepts one every six seconds per resident. Bounded request admission protects the route separately. A wave uses the current scoped presence transport, with no save, new polling or progress transaction. The existing scope excludes workrooms, homes, the trail and other districts from square waves. Leaving the square clears that wave. Session state and emotes do not survive service restart. No messages or text history are introduced.
+
+The dedicated transport test uses actual signed loopback HTTP and server-sent events with stubbed storage and fictional residents. It covers unauthorized and spoofed requests, missing or out-of-square recipients, cooldown, expiry and lack of progress or position writes. Browser acceptance uses intercepted fictional responses with the actual client at desktop, 320px phone and short landscape. The full database and three-browser-group gate remains part of the later batched PR.
+
+Local pinned Node checks passed: build, 444 domain cases with 28 database-only cases skipped, three focused Chromium cases, and source and roadmap verification. Terra 6.1 found an initial overlap with Pip’s name and confirmed its removal in the revised desktop, phone and short landscape captures. A physical phone, shared saved preview and hosted database validation are pending.

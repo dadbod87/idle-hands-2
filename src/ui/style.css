@@ -102,6 +102,9 @@
  background: #ffedaa;
 }
 .town-map-landmark[data-landmark='commons-pond'] { transform: translate(-43%, .53rem); }
+@container (max-width: 275px) {
+ .town-map-landmark[data-landmark='commons-pond'] { transform: translate(-43%, 15px); }
+}
 .town-map-player,
 .places-map figcaption::before {
  width: .6rem;
@@ -132,6 +135,39 @@
  display: inline-block;
  flex: 0 0 auto;
 }
+.town-map-landmark[data-residents]::before {
+ content: attr(data-residents);
+ position: absolute;
+ bottom: calc(100% + 2px);
+ right: 1px;
+ display: grid;
+ place-items: center;
+ min-width: 17px;
+ height: 17px;
+ padding-inline: 3px;
+ border: 1px solid #273d35;
+ border-radius: 50%;
+ background: #36594e;
+ color: #fff8e6;
+ font: bold 11px/1 'Courier New', monospace;
+}
+.town-map-residents {
+ margin-block: .65rem;
+ padding: .55rem .7rem;
+ border: 1px solid var(--line);
+ border-radius: 4px;
+ background: #efe6cd;
+}
+.town-map-residents dl { display: grid; grid-template-columns: fit-content(50%) minmax(0,1fr); gap: .3rem .55rem; margin: 0; }
+.town-map-residents dt { font-weight: bold; }
+.town-map-residents dd { margin: 0; overflow-wrap: anywhere; }
+#panel-body .town-map-residents h3 { margin: 0 0 .35rem; }
+#panel-body .town-map-residents p { margin: 0; }
+#panel-body .town-map-residents .map-residents-key { margin-bottom: .35rem; font-size: .85rem; }
+.town-wave-action { margin-top: .5rem; min-height: 44px; }
+.town-wave-action[hidden] { display: none; }
+#panel-body .town-wave-status:not(:empty) { margin-top: .35rem; }
+.town-wave-announcement { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .town-map-route {
  display: grid;
  grid-template-columns: minmax(0, 1fr) auto;
@@ -156,6 +192,11 @@
  color: var(--ink);
 }
 .town-map-route select:focus-visible { outline: 3px solid #b8653e; outline-offset: 2px; }
+.town-map-route button { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 365px) {
+ .town-map-residents dl { grid-template-columns: minmax(0,1fr); }
+ .town-map-residents dd:not(:last-child) { margin-bottom: .25rem; }
+}
 @media (max-width: 365px), (max-height: 480px) {
  .town-map-route { grid-template-columns: minmax(0, 1fr); }
 }

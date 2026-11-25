@@ -1,6 +1,6 @@
 # November 25 — real-time Pumpworks and shared Mossbank
 
-The [exploration and active combat handoff](handoffs/2026-11-25-exploration-combat.md) records the playable candidate, device checks, boundaries and next work. The hopper chases nearby players in browser practice. The connected Mossbank route and visitor-visible swatch use the isolated shared town. Keep saved previews and databases stopped.
+The [exploration and active combat handoff](handoffs/2026-11-25-exploration-combat.md) records the playable candidate, device checks, boundaries and next work. Start with the later combined candidate on `fix/nov25-mossbank-return`. The hopper chases nearby players in browser practice. The connected Mossbank route and visitor-visible swatch use the isolated shared town. Keep saved previews and databases stopped.
 
 # November 25 — connected Glasshouse and first Inkmint finish
 

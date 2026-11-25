@@ -21,7 +21,7 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "fd88e047d075bfd02f98f6871078ea2cbcd7b67ad6a12da327c70ba3f4950c9c",
-    "src/main.ts": "dbb5e8845259445447e1aad97922f10eed8cb61b3b5e0c35f2c179419a3be6bd",
+    "src/main.ts": "930e254cf9a6269d8a6329348940bd98940b25add2f9a740f4fd1945f6dbf973",
     "src/phaser/WorldScene.ts": "0c156aa09d5d45ac3c55275be5e12b1cadb223871df800a6d282ae40e7348699",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },

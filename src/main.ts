@@ -642,7 +642,21 @@ function currentStops():Stop[]{return session.stops.map(stop=>{if(session.room!=
 async function enterNeighborhood(block:string,homeAfter?:string){
  if(!town?.snapshot||!routeAvailable())return;const source=worlds[session.room].stops.find(s=>s.id===(session.room==='square'?'residential-gate':'neighborhood-directory'));
  if(!source){feedback.textContent='Leave the building before choosing a neighborhood.';return;}
- if(Math.hypot(session.position.x-source.point.x,session.position.y-source.point.y)>1.25){closePanel();pendingDistrictId=block;pendingHomePlotId=homeAfter;if(!session.approach(source.id)){pendingDistrictId=undefined;pendingHomePlotId=undefined;feedback.textContent='The neighborhood gate could not be reached.';}else if(session.room==='square')scene.prepareStreetApproach();return;}
+ const approachDistance=Math.hypot(session.position.x-source.point.x,session.position.y-source.point.y);
+ if(approachDistance>1.25){
+  closePanel();
+  pendingDistrictId=block;
+  pendingHomePlotId=homeAfter;
+  if(!session.approach(source.id)){
+   pendingDistrictId=undefined;
+   pendingHomePlotId=undefined;
+   feedback.textContent='The neighborhood gate could not be reached.';
+  }else if(session.room==='square'&&approachDistance>=5){
+   // Leave enough walking time for the queued art to finish before the room changes.
+   scene.prepareStreetApproach();
+  }
+  return;
+ }
  closePanel();pendingDistrictId=undefined;pendingHomePlotId=undefined;const intent=++portalIntent,epoch=movementEpoch,playerId=town.snapshot.playerId;transitionBusy=true;session.lock(true);feedback.textContent='Confirming the neighborhood gate…';
  try{await flushMovement(true);if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||needResync)return;const snapshot=await town.command({kind:'enter-neighborhood',districtId:block});if(snapshot.position.room==='neighborhood'&&snapshot.position.districtId===block){adoptTownPosition(snapshot,true);feedback.textContent='Neighborhood '+block+'. Each front door belongs to one home.';focusWorld();}else feedback.textContent=town.lastMessage;}
  catch(error){showPendingRequest((error as Error).message);}finally{transitionBusy=false;unlockWorld();}

@@ -8,7 +8,10 @@
  border-radius:5px;
  background:#a2ac80;
 }
-.mossbank-map-sketch img { display:block;width:100%;height:100%;border-radius:3px; }
+#panel-body .mossbank-map-sketch img {
+ position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;max-height:none;
+ margin:0;object-fit:fill;border-radius:3px;
+}
 .mossbank-map .mossbank-map-pin {
  position:absolute;
  left:clamp(23px,var(--map-x),calc(100% - 23px));top:var(--map-y);
@@ -36,7 +39,8 @@
  filter:drop-shadow(0 0 1px white);
  pointer-events:none;
 }
+.mossbank-map-player[data-near-pin] { transform:translate(-50%,calc(-105% - 19px)); }
 .mossbank-map figcaption { margin:4px 0 0;text-align:center;color:#2d4b60;font-size:.85em; }
 @media (max-height:480px) and (min-width:651px) {
- .mossbank-map-sketch { width:min(100%,18rem,67dvh); }
+ .mossbank-map-sketch { width:min(100%,18rem,54dvh); }
 }

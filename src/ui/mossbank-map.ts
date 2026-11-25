@@ -53,6 +53,9 @@ export function mossbankMap(position:Point,stops:Stop[],walk:(stop:Stop)=>void){
   here.className='mossbank-map-player';
   here.setAttribute('aria-hidden','true');
   positionAt(here,position);
+  if(stops.some(stop=>labels[stop.id]&&Math.hypot(stop.point.x-position.x,stop.point.y-position.y)<4.6)){
+   here.dataset.nearPin='';
+  }
   sketch.append(here);
   const caption=document.createElement('figcaption');
   caption.textContent='▲ You';

@@ -63,8 +63,16 @@ for(const shape of [{name:'desktop',width:1440,height:900,touch:false},{name:'ph
    if(shape.touch)await openMap.tap();else await openMap.press('Enter');
    const map=page.getByRole('navigation',{name:'Mossbank map destinations'});
    await expect(map.getByRole('button')).toHaveCount(5);
-   await expect(map.locator('.mossbank-map-player')).toBeVisible();
-   await expect.poll(()=>map.locator('img').evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
+   const playerPin=map.locator('.mossbank-map-player');
+   await expect(playerPin).toBeVisible();
+   const floor=map.locator('img');
+   await expect.poll(()=>floor.evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
+   const view=(await map.boundingBox())!,art=(await floor.boundingBox())!;
+   expect(Math.abs(view.width-art.width-4)).toBeLessThan(1);
+   expect(Math.abs(view.height-art.height-4)).toBeLessThan(1);
+   const road=(await map.locator('[data-map-destination=mossbank-return]').boundingBox())!;
+   const player=(await playerPin.boundingBox())!;
+   expect(player.y+player.height).toBeLessThan(road.y+road.height/3);
    await take('places-map');
    const millPin=map.getByRole('button',{name:'Walk to Wren · sawmill'});
    if(shape.touch)await millPin.tap();else await millPin.press('Enter');

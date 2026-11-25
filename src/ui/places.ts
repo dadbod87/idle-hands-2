@@ -9,10 +9,12 @@ export function renderPlaces(body: HTMLElement, options: {
  now: number; wave?:()=>Promise<void>; peers?:readonly MapResident[]|null; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void;
 }) {
  const view = placesView(options.room, options.stops, options.state, options.goal, options.now, options.neighborhood);
- const intro = document.createElement('p');
- intro.className = 'places-intro';
- intro.textContent = 'Choose a place to walk. Inspect or enter when you arrive.';
- body.append(intro);
+ if(options.room!=='mossbank'){
+  const intro = document.createElement('p');
+  intro.className = 'places-intro';
+  intro.textContent = 'Choose a place to walk. Inspect or enter when you arrive.';
+  body.append(intro);
+ }
 
  const appendStops = (host: HTMLElement, stops: Stop[]) => {
   for (const stop of stops) {

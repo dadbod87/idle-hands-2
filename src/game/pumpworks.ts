@@ -18,9 +18,10 @@ const recordSchema=z.object({
  recovering:z.boolean(),
  cleared:z.boolean(),
  reported:z.boolean(),
+ rematch:z.boolean().default(false),
 }).strict().superRefine((state,ctx)=>{
  if(state.recovering!==(state.health===0)
-    ||state.reported&&!state.cleared
+    ||state.rematch!==(state.reported&&!state.cleared)
     ||state.fight&&(state.recovering||state.cleared)
     ||state.rod==='unissued'&&state.oatcake!=='unissued'
     ||(state.rod==='unissued')!==(state.satchel==='none')){
@@ -28,12 +29,12 @@ const recordSchema=z.object({
  }
 });
 export type PumpworksState=z.infer<typeof recordSchema>;
-export type PumpworksAction='issue'|'oatcake'|'eat'|'equip'|'pack'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'wake'|'recover'|'report';
+export type PumpworksAction='issue'|'oatcake'|'eat'|'equip'|'pack'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
 export type PumpworksPlace='locker'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
 type Result={ok:false;message:string}|{ok:true;state:PumpworksState;message:string;returnToBed?:true};
 
 export const freshPumpworks=():PumpworksState=>({
- version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,
+ version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,rematch:false,
 });
 
 export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place:PumpworksPlace):Result{
@@ -70,7 +71,9 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
    if(place!=='arena'||!state.fight||state.rod!=='equipped')return refuse('Get within reach with the rod equipped.');
    const damage=action==='counter'?4:1;
    const remaining=state.fight.health-damage;
-   if(remaining<=0)return accept({fight:null,cleared:true},'The hopper slipped into the grate. The inspection desk is clear.');
+   if(remaining<=0)return accept({fight:null,cleared:true,rematch:false},state.rematch
+    ?'The hopper slipped away. Rematch complete.'
+    :'The hopper slipped into the grate. The inspection desk is clear.');
    return accept({fight:{health:remaining}},action==='counter'?'Good timing. The hopper was open.':'The rod clips the hopper.');
   }
   case 'hit':
@@ -93,6 +96,9 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
    if(place!=='bench'&&place!=='bed')return refuse('Find the dry bench or your boarding-house bed.');
    if(state.health===FIELD_HEALTH&&!state.fight)return refuse('Your health is already full.');
    return accept({health:FIELD_HEALTH,fight:null},'Health restored.');
+  case 'rematch':
+   if(place!=='bench'||!state.reported||!state.cleared)return refuse('Finish the inspection and return to the dry bench first.');
+   return accept({cleared:false,rematch:true,health:FIELD_HEALTH},'The hopper is patrolling again. Your inspection seal is still earned.');
   case 'wake':
    if(place!=='bed'||!state.recovering)return refuse('There is no recovery to confirm here.');
    return accept({health:FIELD_HEALTH,recovering:false},state.satchel==='at-pump'

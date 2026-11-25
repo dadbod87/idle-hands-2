@@ -302,6 +302,23 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     await expect(page.getByText('No print on display.')).toBeVisible();
     await expect(page.getByLabel('Choose a workshop print').locator('option[value="pumpworks-seal"]')).toHaveCount(1);
    }
+   if(shape.name==='desktop'){
+    await close(page).click();
+    await station('pumpworks-bench');
+    await press('Start a rematch');
+    await expect(page.locator('[data-pumpworks=bench]')).toContainText('The hopper is patrolling again');
+    await close(page).click();
+    await page.reload();
+    await ready('pumpworks');
+    expect((await read(page))!.state).toMatchObject({reported:true,cleared:false,rematch:true,oatcake:'used'});
+    await walk('pumpworks-hopper');
+    await expect.poll(async()=>(await read(page))?.state.fight,{timeout:13000}).not.toBeNull();
+    await fight();
+    expect((await read(page))!.state).toMatchObject({reported:true,cleared:true,rematch:false,oatcake:'used'});
+    await press('Journal');
+    await expect(button('Preview field seal')).toBeVisible();
+    await capture('rematch-seal');
+   }
    expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toEqual(workshop);
    expect(requests).toEqual([]);
    expect(errors).toEqual([]);

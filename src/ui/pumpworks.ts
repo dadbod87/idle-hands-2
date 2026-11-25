@@ -94,7 +94,6 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  }
  const actionRow=document.createElement('div');actionRow.className='pump-action-row';
  actionRow.append(strikeButton,braceButton,oatcakeButton);
- host.controls.append(fieldReadout,actionRow);
  const current=()=>record.ok?record.state:null;
  const refresh=()=>{record=readPumpworks(storage);host.update(record);};
  window.addEventListener('storage',event=>{if(event.key===PUMPWORKS_KEY||event.key===null)refresh();});
@@ -211,7 +210,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  function tick(now:number){
   const context=host.combat(),state=current();
   if(!context.inRoom){
-   if(!host.controls.hidden)host.controls.hidden=true;
+   if(!host.controls.hidden){
+    host.controls.hidden=true;
+    fieldReadout.remove();actionRow.remove();
+   }
    impact=null;practiceReadyAt=0;
    if(hopper.phase!=='idle'||hopper.elapsed>0)hopper=freshHopper();
    priorAt=0;
@@ -242,7 +244,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  }
 
  function paintControls(state:ReturnType<typeof current>,position:Point,now:number){
-  if(host.controls.hidden)host.controls.hidden=false;
+  if(host.controls.hidden){
+   host.controls.append(fieldReadout,actionRow);
+   host.controls.hidden=false;
+  }
   const disabled=!state?.fight||hopper.phase==='idle'||busy;
   const practice=!!state&&!state.fight&&!state.recovering&&state.rod==='equipped'&&inPracticeReach(position);
   const strikeDisabled=practice?busy||now<practiceReadyAt:disabled||state?.rod!=='equipped'||hopper.strikeCooldown>0;
@@ -300,6 +305,9 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     if(state.recovering){
      panel.append(paragraph(state.satchel==='at-pump'?'You’re back in Ledgerwick. The field satchel is on the lost property shelf in the Pumpworks.':'You’re back in Ledgerwick. Get up when you’re ready.'));
      add('Get up and recover','wake');
+    }else if(place==='bench'&&state.reported&&state.cleared){
+     panel.append(paragraph('Start at full health. Your inspection seal stays earned.'));
+     add('Start a rematch','rematch');
     }else if(state.health<FIELD_HEALTH||state.fight){
      panel.append(paragraph('Rest here to restore health and reset an unfinished encounter.'));
      add('Rest and restore health','rest');

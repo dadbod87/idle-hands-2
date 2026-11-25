@@ -228,3 +228,36 @@ test('The visible patrol stays on dry chamber floor and senses from the hopperâ€
  assert.equal(notices,true);
  assert.ok(Math.hypot(patrol.feet.x-HOPPER_FEET.x,patrol.feet.y-HOPPER_FEET.y)<.01);
 });
+
+test('A rematch starts only from the dry bench after reporting and keeps the earned seal',()=>{
+ const clear=(state:PumpworksState)=>{
+  const going=play(state,'begin','arena');
+  return play(play(play(going,'counter','arena'),'counter','arena'),'counter','arena');
+ };
+ const finished=clear(prepared());
+ assert.equal(applyPumpworks(finished,'rematch','bench').ok,false);
+ const stamp=play(finished,'report','desk');
+ const {rematch:priorField,...old}=stamp;
+ assert.equal(priorField,false);
+ let raw=JSON.stringify(old);
+ const storage={getItem:()=>raw,setItem:(_key:string,value:string)=>{raw=value;}};
+ const before=readPumpworks(storage);
+ if(!before.ok)assert.fail(before.message);
+ assert.equal(before.state.rematch,false);
+ assert.equal(applyPumpworks(before.state,'rematch','arena').ok,false);
+ const ready=savePumpworks(storage,raw,'rematch','bench');
+ if(!ready.ok)assert.fail(ready.message);
+ assert.equal(ready.state.reported,true);
+ assert.equal(ready.state.rematch,true);
+ assert.equal(ready.state.cleared,false);
+ assert.equal(ready.state.health,FIELD_HEALTH);
+ assert.equal(ready.state.oatcake,stamp.oatcake);
+ assert.equal(ready.state.satchel,stamp.satchel);
+ assert.equal(ready.state.rod,stamp.rod);
+ assert.equal(savePumpworks(storage,raw,'rematch','bench').ok,false);
+ const result=clear(ready.state);
+ assert.equal(result.reported,true);
+ assert.equal(result.rematch,false);
+ assert.equal(result.cleared,true);
+ assert.equal(applyPumpworks(result,'report','desk').ok,false);
+});

@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import {FIELD_KERCHIEFS,KERCHIEF_DYES,type FieldKerchief} from './field-appearance.ts';
+import {FIELD_KERCHIEFS,KERCHIEF_DYES,KERCHIEF_TIES,type FieldKerchief,type KerchiefFit} from './field-appearance.ts';
 import type {Stop} from './world.ts';
 
 export const TAILOR_COST=1;
@@ -10,21 +10,22 @@ export const SEWING_TABLE={
 } satisfies Stop;
 const time=z.number().int().min(0).max(Number.MAX_SAFE_INTEGER);
 export const tailoringSchema=z.object({
- startedAt:time,readyAt:time,collectedAt:time.nullable(),worn:z.enum(FIELD_KERCHIEFS),dye:z.enum(FIELD_KERCHIEFS).optional(),
+ startedAt:time,readyAt:time,collectedAt:time.nullable(),worn:z.enum(FIELD_KERCHIEFS),dye:z.enum(FIELD_KERCHIEFS).optional(),tie:z.enum(KERCHIEF_TIES).optional(),
 }).strict().refine(row=>row.readyAt===row.startedAt+TAILOR_MS
  &&(row.collectedAt===null?row.worn==='none'&&savedKerchiefDye(row)==='none':row.collectedAt>=row.readyAt)
+ &&(row.tie!=='wrap'||savedKerchiefDye(row)!=='none')
  &&(row.worn==='none'||row.worn===savedKerchiefDye(row)));
 export type Tailoring=z.infer<typeof tailoringSchema>;
 export function savedKerchiefDye(order:{worn:FieldKerchief;dye?:FieldKerchief}){
  return order.dye??order.worn;
 }
 export type TailoringAction={kind:'start'}|{kind:'collect'}|{kind:'wear';color:FieldKerchief}
- |{kind:'style';dye:typeof KERCHIEF_DYES[number];wear:boolean};
+ |({kind:'style'}&Omit<KerchiefFit,'tie'>&Partial<Pick<KerchiefFit,'tie'>>);
 export const tailoringActionSchema=z.discriminatedUnion('kind',[
  z.object({kind:z.literal('start')}).strict(),
  z.object({kind:z.literal('collect')}).strict(),
  z.object({kind:z.literal('wear'),color:z.enum(FIELD_KERCHIEFS)}).strict(),
- z.object({kind:z.literal('style'),dye:z.enum(KERCHIEF_DYES),wear:z.boolean()}).strict(),
+ z.object({kind:z.literal('style'),dye:z.enum(KERCHIEF_DYES),wear:z.boolean(),tie:z.enum(KERCHIEF_TIES).optional()}).strict(),
 ]);
 
 type Decision={ok:true;state:Tailoring;cost:number;message:string}|{ok:false;message:string};
@@ -37,7 +38,7 @@ export function tailor(current:Tailoring|null,action:TailoringAction,atTable:boo
    if(current)return refuse('You already have a kerchief in this order.');
    if(now>Number.MAX_SAFE_INTEGER-TAILOR_MS)return refuse('The sewing clock is out of range.');
    if(supplies<TAILOR_COST)return refuse('Bring '+TAILOR_COST+' Supplies.');
-   return {ok:true,state:{startedAt:now,readyAt:now+TAILOR_MS,collectedAt:null,worn:'none',dye:'none'},cost:TAILOR_COST,
+   return {ok:true,state:{startedAt:now,readyAt:now+TAILOR_MS,collectedAt:null,worn:'none',dye:'none',tie:'knot'},cost:TAILOR_COST,
     message:'Kerchief started.'};
   case 'collect':
    if(!current||current.collectedAt!==null||now<current.readyAt)return refuse('There is no finished kerchief to collect.');
@@ -48,8 +49,10 @@ export function tailor(current:Tailoring|null,action:TailoringAction,atTable:boo
    const before=savedKerchiefDye(current);
    const dye=action.kind==='style'?action.dye:action.color==='none'?before:action.color;
    const worn=action.kind==='style'?(action.wear?dye:'none'):action.color;
-   if(current.worn===worn&&before===dye)return refuse('This look is already saved.');
-   return {ok:true,state:{...current,worn,dye},cost:0,
+   const previousTie=current.tie??'knot';
+   const tie=(action.kind==='style'?action.tie:undefined)??previousTie;
+   if(current.worn===worn&&before===dye&&tie===previousTie)return refuse('This look is already saved.');
+   return {ok:true,state:{...current,worn,dye,tie},cost:0,
     message:worn==='none'?'Kerchief packed. Its dye stays with it.':'Kerchief worn. Nearby residents can see it.'};
   }
  }

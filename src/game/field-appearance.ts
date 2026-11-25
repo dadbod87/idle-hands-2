@@ -1,6 +1,12 @@
 export const FIELD_KERCHIEFS=['none','clay','fern','indigo'] as const;
 export type FieldKerchief=typeof FIELD_KERCHIEFS[number];
 export const KERCHIEF_DYES=['clay','fern','indigo'] as const;
+export type KerchiefDye=typeof KERCHIEF_DYES[number];
+export const KERCHIEF_TIES=['knot','wrap'] as const;
+export type KerchiefTie=typeof KERCHIEF_TIES[number];
+export const KERCHIEF_TIE_NAMES={knot:'Trail knot',wrap:'Shoulder wrap'} as const;
+export type KerchiefFit={dye:KerchiefDye;wear:boolean;tie:KerchiefTie};
+
 
 export const KERCHIEF_COLORS={
  clay:{label:'Clay',fill:0xbd6455},
@@ -18,7 +24,7 @@ export const KERCHIEF_PACK_ACTIONS={
  'kerchief-pack-fern':'fern',
  'kerchief-pack-indigo':'indigo',
 } as const;
-export type FieldDyeAction=keyof typeof KERCHIEF_ACTIONS|keyof typeof KERCHIEF_PACK_ACTIONS;
+export type FieldDyeAction=keyof typeof KERCHIEF_ACTIONS|keyof typeof KERCHIEF_PACK_ACTIONS|KerchiefFit;
 
 export function validKerchief(value:unknown):value is FieldKerchief{
  return (FIELD_KERCHIEFS as readonly unknown[]).includes(value);

@@ -1,7 +1,7 @@
 import {residentArt} from '../art/variety.ts';
 import type {Headwear} from '../art/headwear.ts';
 import {KERCHIEF_RIG_WIDTH,KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
-import {KERCHIEF_COLORS,KERCHIEF_DYES,type FieldKerchief} from '../game/field-appearance.ts';
+import {KERCHIEF_COLORS,KERCHIEF_DYES,KERCHIEF_TIES,type FieldKerchief,type KerchiefTie} from '../game/field-appearance.ts';
 import type {Point} from '../game/world.ts';
 
 export type OutfitLook={rig:string;headwear:Headwear|null};
@@ -34,9 +34,8 @@ export function kerchiefPreview(look?:OutfitLook){
  const cloth=document.createElementNS(svg,'polygon'),trim=document.createElementNS(svg,'polyline');
  const points=(list:Point[])=>list.map(({x,y})=>x+','+y).join(' ');
  const swatch=(ink:number)=>'#'+ink.toString(16).padStart(6,'0');
- cloth.setAttribute('points',points(KERCHIEF_OUTLINES.south.cloth));
  cloth.setAttribute('stroke',swatch(KERCHIEF_INK));cloth.setAttribute('stroke-width','1.3');
- trim.setAttribute('points',points(KERCHIEF_OUTLINES.south.seam));trim.setAttribute('fill','none');
+ trim.setAttribute('fill','none');
  trim.setAttribute('stroke',swatch(KERCHIEF_TRIM));trim.setAttribute('stroke-width','1.2');
  clothes.append(cloth,trim);
  preview.append(vest,clothes);
@@ -47,18 +46,24 @@ export function kerchiefPreview(look?:OutfitLook){
  }
  return {
   element:preview,
-  paint(color:FieldKerchief,wearVest=false){
+  paint(color:FieldKerchief,wearVest=false,tie:KerchiefTie='knot'){
    vest.style.display=wearVest?'':'none';
    const wearing=color!=='none';
    cloth.style.display=trim.style.display=wearing?'':'none';
-   if(wearing)cloth.setAttribute('fill',swatch(KERCHIEF_COLORS[color].fill));
+   if(wearing){
+    const shape=KERCHIEF_OUTLINES[tie].south;
+    cloth.setAttribute('points',points(shape.cloth));
+    trim.setAttribute('points',points(shape.seam));
+    cloth.setAttribute('fill',swatch(KERCHIEF_COLORS[color].fill));
+   }
+   preview.dataset.tie=tie;
    preview.setAttribute('aria-label',wearing?KERCHIEF_COLORS[color].label+' kerchief preview':'No kerchief');
   },
  };
 }
 
 
-export function kerchiefDyePicker(color:FieldKerchief,worn:boolean){
+export function kerchiefDyePicker(color:FieldKerchief,worn:boolean,initialTie:KerchiefTie='knot'){
  const colorLabel=document.createElement('label');colorLabel.textContent='Kerchief color';
  const select=document.createElement('select');
  const placeholder=new Option('Choose a dye','none');placeholder.disabled=true;
@@ -66,8 +71,14 @@ export function kerchiefDyePicker(color:FieldKerchief,worn:boolean){
  for(const dye of KERCHIEF_DYES)select.append(new Option(KERCHIEF_COLORS[dye].label,dye));
  select.value=color;
  colorLabel.append(select);
+ const tieLabel=document.createElement('label');tieLabel.textContent='Kerchief tie';
+ const style=document.createElement('select');
+ style.append(new Option('Knot','knot'),new Option('Wrap','wrap'));
+ style.value=initialTie;
+ tieLabel.append(style);
+ const row=document.createElement('div');row.className='sewing-pickers';row.append(colorLabel,tieLabel);
  const wearLabel=document.createElement('label');wearLabel.className='sewing-wear';
  const wear=document.createElement('input');wear.type='checkbox';wear.checked=color==='none'||worn;
  wearLabel.append(wear,' Wear kerchief');
- return {colorLabel,select,wearLabel,wear,dye:()=>KERCHIEF_DYES.find(dye=>dye===select.value)};
+ return {row,select,style,wearLabel,wear,tie:()=>KERCHIEF_TIES.find(tie=>tie===style.value)??'knot',dye:()=>KERCHIEF_DYES.find(dye=>dye===select.value)};
 }

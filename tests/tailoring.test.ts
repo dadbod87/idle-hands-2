@@ -33,10 +33,11 @@ test('Tailoring quotes and spends one known cost, then requires collection at th
  assert.equal(dye,'indigo');
  assert.equal(savedKerchiefDye(tailoringSchema.parse(legacy)),'indigo');
  assert.equal(tailoringSchema.safeParse({...worn.state,dye:'fern'}).success,false);
- const pack=tailor(legacy,{kind:'style',dye:'indigo',wear:false},false,0,ready);
+ const pack=tailor(legacy,{kind:'style',dye:'indigo',wear:false,tie:'wrap'},false,0,ready);
  if(!pack.ok)assert.fail(pack.message);
  assert.equal(pack.state.worn,'none');
  assert.equal(pack.state.dye,'indigo');
+ assert.equal(pack.state.tie,'wrap');
  const recolor=tailor(pack.state,{kind:'style',dye:'clay',wear:false},false,0,ready);
  if(!recolor.ok)assert.fail(recolor.message);
  assert.equal(recolor.state.worn,'none');
@@ -44,9 +45,11 @@ test('Tailoring quotes and spends one known cost, then requires collection at th
  const putOn=tailor(recolor.state,{kind:'style',dye:'clay',wear:true},false,0,ready);
  if(!putOn.ok)assert.fail(putOn.message);
  assert.equal(putOn.state.worn,'clay');
+ assert.equal(putOn.state.tie,'wrap');
  const oldPack=tailor(putOn.state,{kind:'wear',color:'none'},false,0,ready);
  if(!oldPack.ok)assert.fail(oldPack.message);
  assert.equal(oldPack.state.dye,'clay');
+ assert.equal(oldPack.state.tie,'wrap');
 });
 
 test('The connected sewing table is reachable without nudging the established bench and door',()=>{

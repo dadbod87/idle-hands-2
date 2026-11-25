@@ -402,8 +402,10 @@ const town=townMode?new TownClient({
   if(!needResync&&!panel.open&&freshGlasshouseOpening(previous,snapshot)&&scene.playGlasshouseOpening())
    feedback.textContent='The Glasshouse is open. The vines have filed a complaint.';
   glasshouseUI?.refresh();
-  if(scene.sharedKerchief!==(snapshot.tailoring?.worn??'none')){
-   scene.sharedKerchief=snapshot.tailoring?.worn??'none';
+  const cloth=snapshot.tailoring?.worn??'none',tie=cloth==='none'?'knot':snapshot.tailoring?.tie??'knot';
+  if(scene.sharedKerchief!==cloth||scene.sharedKerchiefTie!==tie){
+   scene.sharedKerchief=cloth;
+   scene.sharedKerchiefTie=tie;
    refreshMenuFrame(2);
   }
  session.setSquareStops(snapshot.orchard!==undefined?ORCHARD_STOPS:undefined);

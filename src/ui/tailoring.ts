@@ -1,6 +1,6 @@
 import {kerchiefDyePicker,kerchiefPreview,type OutfitLook} from './kerchief-preview.ts';
 import {TAILOR_COST,TAILOR_MS,savedKerchiefDye,sewingReady,type TailoringAction} from '../game/tailoring.ts';
-import {KERCHIEF_COLORS} from '../game/field-appearance.ts';
+import {KERCHIEF_COLORS,KERCHIEF_TIE_NAMES} from '../game/field-appearance.ts';
 import type {TownClient} from './town-client.ts';
 import './tailoring.css';
 
@@ -55,21 +55,22 @@ export function showTailoring(host:Host,town:TownClient,fromBag=false){
    controls.append(collect);
   }else if(stage==='dye'){
    const currentDye=state?savedKerchiefDye(state):'none';
-   const worn=state?.worn!=='none';
-   detail.textContent=currentDye==='none'?'Choose a dye.':KERCHIEF_COLORS[currentDye].label+(worn?' · Worn':' · Packed');
-   const picker=kerchiefDyePicker(currentDye,worn);
+   const worn=state?.worn!=='none',currentTie=state?.tie??'knot';
+   detail.textContent=currentDye==='none'?'Choose a dye.':KERCHIEF_COLORS[currentDye].label+(worn?' · Worn':' · Packed')+' · '+KERCHIEF_TIE_NAMES[currentTie];
+   const picker=kerchiefDyePicker(currentDye,worn,currentTie);
    const apply=button('Save kerchief',null);
    const preview=()=>{
     const dye=picker.dye();
     image.element.style.display=dye?'':'none';
-    image.paint(dye??'none');
-    apply.disabled=busy||town.isSaving||town.retryAvailable||!dye||dye===currentDye&&picker.wear.checked===worn;
+    image.paint(dye??'none',false,picker.tie());
+    apply.disabled=busy||town.isSaving||town.retryAvailable||!dye||dye===currentDye&&picker.wear.checked===worn&&picker.tie()===currentTie;
    };
-   apply.onclick=()=>{const dye=picker.dye();if(dye)void save({kind:'style',dye,wear:picker.wear.checked});};
+   apply.onclick=()=>{const dye=picker.dye();if(dye)void save({kind:'style',dye,wear:picker.wear.checked,tie:picker.tie()});};
    picker.select.addEventListener('change',preview);
    picker.wear.addEventListener('change',preview);
+   picker.style.addEventListener('change',preview);
    preview();
-   controls.append(picker.colorLabel,picker.wearLabel,apply);
+   controls.append(picker.row,picker.wearLabel,apply);
   }
   if(town.tailoringRetryAvailable)controls.append(button('Retry sewing request',null));
  }
@@ -100,7 +101,7 @@ export function tailoringBagCards(town:TownClient,open:()=>void){
  const icon=document.createElement('div');icon.className='bag-slot-art';
  const preview=kerchiefPreview();preview.element.classList.add('sewing-preview');
  const dye=savedKerchiefDye(state);
- preview.paint(dye==='none'?'fern':dye);
+ preview.paint(dye==='none'?'fern':dye,false,state.tie);
  preview.element.setAttribute('aria-hidden','true');
  icon.append(preview.element);
  const title=document.createElement('h4');title.textContent='Trail kerchief';

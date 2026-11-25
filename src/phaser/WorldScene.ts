@@ -1,5 +1,5 @@
 import {MOSSBANK_VALLEY_ROAD,VALLEY_STOPS,VALLEY_TREES,valleyFollow} from '../game/hidden-valley-room.ts';
-import {KERCHIEF_COLORS,validKerchief,type FieldKerchief} from '../game/field-appearance.ts';
+import {KERCHIEF_COLORS,validKerchief,type FieldKerchief,type KerchiefTie} from '../game/field-appearance.ts';
 import {SEWING_TABLE} from '../game/tailoring.ts';
 import {KERCHIEF_RIG_WIDTH,KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
 import {BOW_DRAW_SECONDS,BOW_TRACE_MS,STAFF_PULSE_MS,type BowDraw,type BowTrace,type StaffPulse} from '../game/field-weapons.ts';
@@ -201,7 +201,7 @@ export class WorldScene extends Phaser.Scene {
   private ambientEnabled=false;
   private gestureOffset=0;
   private reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  residents:Array<{id:string;name:string;room:string;homePlotId?:string;districtId?:string;headwear?:EarnedHeadwear;kerchief?:FieldKerchief;waveUntil?:number;position:{x:number;y:number}}>=[];
+  residents:Array<{id:string;name:string;room:string;homePlotId?:string;districtId?:string;headwear?:EarnedHeadwear;kerchief?:FieldKerchief;kerchiefTie?:KerchiefTie;waveUntil?:number;position:{x:number;y:number}}>=[];
   private residentViews=new Map<string,{image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text;motion:ResidentMotion;headwear?:Phaser.GameObjects.Image;kerchief?:KerchiefLayer}>();
   private visiblePeerWalking=false;
   localWaveUntil=0;
@@ -535,18 +535,19 @@ export class WorldScene extends Phaser.Scene {
   private fieldKerchief?:KerchiefLayer;
   private peerLocalKerchief?:KerchiefLayer;
   sharedKerchief:FieldKerchief='none';
+  sharedKerchiefTie:KerchiefTie='knot';
 
-  private drawKerchief(layer:KerchiefLayer|undefined,color:FieldKerchief,facing:Facing,x:number,y:number,rig:string,frame:number){
+  private drawKerchief(layer:KerchiefLayer|undefined,color:FieldKerchief,facing:Facing,x:number,y:number,rig:string,frame:number,tie:KerchiefTie='knot'){
     if(color==='none'){
       if(layer?.ink.visible)layer.ink.setVisible(false);
       return layer;
     }
     const view=layer??{ink:this.add.graphics(),key:''},ink=view.ink;
     if(!ink.visible)ink.setVisible(true);
-    const key=facing+':'+color;
+    const key=facing+':'+tie+':'+color;
     if(key!==view.key){
       view.key=key;
-      const shape=KERCHIEF_OUTLINES[facing];
+      const shape=KERCHIEF_OUTLINES[tie][facing];
       const vector=({x,y}:Point)=>new Phaser.Math.Vector2(x,y);
       const edge=shape.cloth.map(vector);
       ink.clear();
@@ -1424,7 +1425,7 @@ export class WorldScene extends Phaser.Scene {
       this.fieldVest.setPosition(x,y-bob*sy).setDepth(y+.5).setScale(sx,sy);
     }
     if(this.room==='pumpworks'){
-      this.fieldKerchief=this.drawKerchief(this.fieldKerchief,this.pumpworksState?.()?.kerchief??'none',this.facing,x,y,rig,this.frame);
+      this.fieldKerchief=this.drawKerchief(this.fieldKerchief,this.pumpworksState?.()?.kerchief??'none',this.facing,x,y,rig,this.frame,this.pumpworksState?.()?.kerchiefTie);
     }
     if(this.bedPose&&this.bedQuilt){
       if(this.bedPose.visible!==this.resting){
@@ -1438,7 +1439,7 @@ export class WorldScene extends Phaser.Scene {
     }
     const actionFacing=available?(orchard?.facing??motion?.facing??gardenMotion?.facing):undefined;
     this.peerLocalKerchief=this.drawKerchief(this.peerLocalKerchief,this.resting?'none':this.sharedKerchief,
-      actionFacing??this.facing,x,y,rig,actionFacing?0:this.frame);
+      actionFacing??this.facing,x,y,rig,actionFacing?0:this.frame,this.sharedKerchiefTie);
     this.headwearLayer=this.paintHeadwear(this.resting?null:this.headwear,this.headwearLayer,x,y,residentFrame(actionFacing??this.facing,actionFacing?0:this.frame));
     this.drawGarden();this.drawCarpentry();this.drawOuting();
     this.updateAmbient(delta);
@@ -1497,7 +1498,7 @@ export class WorldScene extends Phaser.Scene {
       const label=waving?'Waves hello!\n'+peer.name:peer.name;
       if(view.label.text!==label)view.label.setText(label).setBackgroundColor(waving?'#ffe6a3':'#f8f1df');
       view.kerchief=this.drawKerchief(view.kerchief,validKerchief(peer.kerchief)?peer.kerchief:'none',
-        view.motion.facing,px,py,peer.id,frame%7);
+        view.motion.facing,px,py,peer.id,frame%7,peer.kerchiefTie==='wrap'?'wrap':'knot');
       view.headwear=this.paintHeadwear(peer.headwear===INKWOOD_HOOD||peer.headwear===CLERK_CAP?peer.headwear:null,view.headwear,px,py,frame);
     }
     this.onFrame?.();

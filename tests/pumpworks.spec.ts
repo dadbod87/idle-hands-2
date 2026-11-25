@@ -433,6 +433,10 @@ for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:32
    const packedLook=(await read(page))!.state;
    expect(packedLook.kerchief).toBe('none');
    await color.selectOption('indigo');
+   const tie=kerchief.getByLabel('Kerchief tie');
+   await tie.selectOption('wrap');
+   await expect(kerchief.locator('.outfit-preview')).toHaveAttribute('data-tie','wrap');
+   await expect(kerchief.locator('[data-outfit-layer=armor]')).toBeVisible();
    expect((await read(page))!.state).toEqual(packedLook);
    await activate(button('Save kerchief'));
    await expect(kerchief).toContainText('Indigo kerchief worn');
@@ -441,16 +445,18 @@ for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:32
    await wear.uncheck();
    await activate(button('Save kerchief'));
    await expect(kerchief).toContainText('Indigo · Packed');
-   expect((await read(page))!.state).toMatchObject({kerchief:'none',kerchiefDye:'indigo',vest:'equipped',bow:'equipped'});
+   expect((await read(page))!.state).toMatchObject({kerchief:'none',kerchiefDye:'indigo',kerchiefTie:'wrap',vest:'equipped',bow:'equipped'});
    await expect(color).toHaveValue('indigo');
+   await expect(tie).toHaveValue('wrap');
    await wear.check();
    await activate(button('Save kerchief'));
    await expect(kerchief).toContainText('Indigo kerchief worn');
+   await kerchief.locator('.outfit-preview').scrollIntoViewIfNeeded();
    await page.screenshot({path:output+'/field-kerchief-'+shape.name+'-bag.png'});
    await activate(close(page));
    await expect(button('Shoot')).toBeInViewport({ratio:1});
    const layers=()=>page.evaluate(()=>(window as Window&{__pilot?:Pilot}).__pilot?.metrics().visual.fieldEquipment);
-   await expect.poll(layers).toEqual({vest:true,kerchief:expect.stringMatching(/:indigo$/)});
+   await expect.poll(layers).toEqual({vest:true,kerchief:expect.stringMatching(/:wrap:indigo$/)});
    await expect(page.locator('.pump-armor')).toHaveText('Armor 1');
    await expect(page.locator('.pump-armor')).toBeInViewport({ratio:1});
 
@@ -509,7 +515,7 @@ for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:32
    await expect(page.locator('.pump-armor')).toHaveText('Armor 1');
    expect((await read(page))!.state.vest).toBe('equipped');
    expect((await read(page))!.state.kerchief).toBe('indigo');
-   await expect.poll(layers).toEqual({vest:true,kerchief:expect.stringMatching(/:indigo$/)});
+   await expect.poll(layers).toEqual({vest:true,kerchief:expect.stringMatching(/:wrap:indigo$/)});
   }finally{await context.close();}
  });
 }

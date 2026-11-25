@@ -346,12 +346,13 @@ test('Kerchief dyes and hiding the clothing layer never change armor, weapon, or
  assert.equal(off.kerchief,'none');
  assert.equal(off.kerchiefDye,'indigo');
  assert.equal(off.vest,'equipped');
- const packed=play(off,'kerchief-pack-clay','elsewhere');
+ const packed=play(off,{dye:'clay',wear:false,tie:'wrap'},'elsewhere');
  assert.equal(packed.kerchief,'none');
  assert.equal(packed.kerchiefDye,'clay');
  const restored=readPumpworks({getItem:()=>JSON.stringify(packed)});
  if(!restored.ok)assert.fail(restored.message);
  assert.equal(restored.state.kerchiefDye,'clay');
+ assert.equal(restored.state.kerchiefTie,'wrap');
  const dressed=play(restored.state,'kerchief-clay','elsewhere');
  assert.equal(dressed.kerchief,'clay');
  assert.equal(dressed.vest,'equipped');

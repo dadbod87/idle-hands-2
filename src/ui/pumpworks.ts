@@ -1,5 +1,5 @@
 import {kerchiefDyePicker,kerchiefPreview,type OutfitLook} from './kerchief-preview.ts';
-import {KERCHIEF_COLORS,type FieldDyeAction} from '../game/field-appearance.ts';
+import {KERCHIEF_COLORS,KERCHIEF_TIE_NAMES} from '../game/field-appearance.ts';
 import type {FieldCue} from '../audio/combat-cues.ts';
 import {BOW_DRAW_SECONDS,BOW_STILL_RADIUS,BOW_TRACE_MS,STAFF_PULSE_MS,equippedFieldWeapon,FIELD_WEAPONS,type BowDraw,type BowTrace,type FieldWeapon,type StaffPulse} from '../game/field-weapons.ts';
 import {
@@ -479,7 +479,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const appearance=document.createElement('div');appearance.className='bag-slot-art';
   const preview=kerchiefPreview(host.look());
   appearance.append(preview.element);
-  const picker=kerchiefDyePicker(state.kerchiefDye??state.kerchief,state.kerchief!=='none');
+  const picker=kerchiefDyePicker(state.kerchiefDye??state.kerchief,state.kerchief!=='none',state.kerchiefTie);
   const saveLook=button('Save kerchief',()=>{});
   saveLook.className='bag-equip-action';
   const status=paragraph('');status.className='bag-equip-notice';status.role='status';
@@ -489,24 +489,26 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    const selected=picker.dye();
    const saved=live.kerchiefDye??live.kerchief;
    const worn=live.kerchief!=='none';
-   preview.paint(selected??'none',live.vest==='equipped');
-   detail.textContent=saved==='none'?'Undyed · Packed':worn?KERCHIEF_COLORS[saved].label+' kerchief worn':KERCHIEF_COLORS[saved].label+' · Packed';
-   picker.select.disabled=picker.wear.disabled=busy||!!live.fight||live.recovering;
-   saveLook.disabled=picker.select.disabled||!selected||selected===saved&&picker.wear.checked===worn;
+   const tie=live.kerchiefTie??'knot';
+   preview.paint(selected??'none',live.vest==='equipped',picker.tie());
+   const detailText=saved==='none'?'Undyed · Packed':worn?KERCHIEF_COLORS[saved].label+' kerchief worn':KERCHIEF_COLORS[saved].label+' · Packed';
+   detail.textContent=saved==='none'?detailText:detailText+' · '+KERCHIEF_TIE_NAMES[tie];
+   picker.select.disabled=picker.wear.disabled=picker.style.disabled=busy||!!live.fight||live.recovering;
+   saveLook.disabled=picker.select.disabled||!selected||selected===saved&&picker.wear.checked===worn&&picker.tie()===tie;
    status.textContent=message;
   };
   repaints.push(paintLook);
-  picker.select.onchange=picker.wear.onchange=()=>paintLook();
+  picker.select.onchange=picker.wear.onchange=picker.style.onchange=()=>paintLook();
   saveLook.onclick=async()=>{
    const dyeChoice=picker.dye();
    if(saveLook.disabled||!dyeChoice)return;
-   const action:FieldDyeAction=picker.wear.checked?`kerchief-${dyeChoice}`:`kerchief-pack-${dyeChoice}`;
+   const action={dye:dyeChoice,wear:picker.wear.checked,tie:picker.tie()};
    saveLook.disabled=true;
    const message=await change(action,'elsewhere',()=>dye.isConnected,shownRaw);
    if(record.ok)shownRaw=record.raw;
    if(dye.isConnected)for(const repaint of repaints)repaint(repaint===paintLook?message:'');
   };
-  dye.append(appearance,title,detail,picker.colorLabel,picker.wearLabel,saveLook,status);
+  dye.append(appearance,title,detail,picker.row,picker.wearLabel,saveLook,status);
   paintLook();
   return [...cards,dye];
  }

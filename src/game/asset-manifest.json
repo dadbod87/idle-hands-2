@@ -5,6 +5,26 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "valley-graft-sapling",
+      "path": "art/hidden-valley/graft-sapling.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "valley-graft-candlewick",
+      "path": "art/hidden-valley/graft-candlewick.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "valley-graft-inkspotted",
+      "path": "art/hidden-valley/graft-inkspotted.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "valley-graft-rivergreen",
+      "path": "art/hidden-valley/graft-rivergreen.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "valley-grafting-basket",
       "path": "art/hidden-valley/grafting-basket.svg",
       "kind": "original-svg"

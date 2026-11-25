@@ -1,6 +1,7 @@
+import {GRAFT_MS,VALLEY_GRAFT_KEY} from '../src/game/valley-graft.ts';
 import {expect,test,type Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
-import {MOSSBANK_VALLEY_FRONT} from '../src/game/hidden-valley-room.ts';
+import {MOSSBANK_VALLEY_FRONT,VALLEY_STOPS} from '../src/game/hidden-valley-room.ts';
 import {MOSSBANK_KEY} from '../src/game/mossbank.ts';
 import {VALLEY_PRINT_KEY} from '../src/game/valley-print.ts';
 import {MOSSBANK_FRONT} from '../src/game/mossbank-room.ts';
@@ -320,3 +321,51 @@ for(const shape of [{name:'2k',width:2560,height:1440,touch:false},{name:'phone'
   }finally{await context.close();}
  });
 }
+
+test('A graft previews three varieties and grows once at the exact deadline on an enlarged short screen',async({browser})=>{
+ const context=await browser.newContext({viewport:{width:844,height:390},hasTouch:true});
+ const page=await context.newPage();
+ try{
+  const button=(name:string)=>page.getByRole('button',{name,exact:true});
+  const tree=()=>page.evaluate(()=>(window as Window&{
+   __pilot?:{metrics():{visual:{valleyGraft:string|null}}};
+  }).__pilot?.metrics().visual.valleyGraft);
+  await page.addInitScript(({key,point})=>{
+   if(localStorage.getItem('ih2:pilot-position:v1')!==null)return;
+   localStorage.setItem(key,JSON.stringify({version:1,joined:true,windrow:true,flume:true,finished:true}));
+   localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'hidden-valley',position:point}));
+  },{key:MOSSBANK_KEY,point:VALLEY_STOPS[2].point});
+  await page.emulateMedia({reducedMotion:'reduce'});
+  const now=Date.UTC(2026,10,25,19);
+  await page.clock.setFixedTime(now);
+  await page.goto('/?sky-study=1&phase=day&weather=clear');
+  await expect(page.locator('#location')).toHaveAttribute('data-room','hidden-valley');
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  const holdings=await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'));
+  await expect.poll(tree).toBeNull();
+  await button('Inspect Grafting house').tap();
+  const form=page.locator('.valley-graft');
+  const dialog=page.getByRole('dialog');
+  await expect(form.getByRole('radio')).toHaveCount(3);
+  await expect(button('Set the graft')).toBeDisabled();
+  expect(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth)).toBe(true);
+  await form.getByRole('radio',{name:'Candlewick'}).check();
+  expect(await page.evaluate(key=>localStorage.getItem(key),VALLEY_GRAFT_KEY)).toBeNull();
+  await button('Set the graft').tap();
+  await expect(form).toContainText('Ready in 20:00');
+  await expect(form.getByRole('radio')).toHaveCount(0);
+  await button('Close panel').tap();
+  await expect.poll(tree).toBe('valley-graft-sapling');
+  await page.clock.setFixedTime(now+GRAFT_MS-1);
+  await page.reload();
+  await expect.poll(tree).toBe('valley-graft-sapling');
+  await page.clock.setFixedTime(now+GRAFT_MS);
+  await expect.poll(tree).toBe('valley-graft-candlewick');
+  await button('Inspect Grafting house').tap();
+  await expect(form).toContainText('Established.');
+  expect(await page.evaluate(key=>JSON.parse(localStorage.getItem(key)??'null'),VALLEY_GRAFT_KEY)).toMatchObject({
+   variety:'candlewick',startedAt:now,readyAt:now+GRAFT_MS,
+  });
+  expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toBe(holdings);
+ }finally{await context.close();}
+});

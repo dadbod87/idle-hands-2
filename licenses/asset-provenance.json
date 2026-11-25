@@ -3,6 +3,46 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "valley-graft-sapling",
+      "path": "public/art/hidden-valley/graft-sapling.svg",
+      "sha256": "7a52f45a8e72d62c1541d3d8bfd16392a2a629c0e7fa008dd4718441238a35a6",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/hidden-valley/graft-sapling.svg",
+      "date": "2026-11-25",
+      "modifications": "Original Hidden Valley graft artwork."
+    },
+    {
+      "id": "valley-graft-candlewick",
+      "path": "public/art/hidden-valley/graft-candlewick.svg",
+      "sha256": "2cfc507c20f9591b30ee07a533874deb721a670d14f2c550c929ead7af13c4c2",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/hidden-valley/graft-candlewick.svg",
+      "date": "2026-11-25",
+      "modifications": "Original Hidden Valley graft artwork."
+    },
+    {
+      "id": "valley-graft-inkspotted",
+      "path": "public/art/hidden-valley/graft-inkspotted.svg",
+      "sha256": "52fc7792af073d8f2f51f4638d764992ef26d85a683f2e83c7fdae05762608fd",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/hidden-valley/graft-inkspotted.svg",
+      "date": "2026-11-25",
+      "modifications": "Original Hidden Valley graft artwork."
+    },
+    {
+      "id": "valley-graft-rivergreen",
+      "path": "public/art/hidden-valley/graft-rivergreen.svg",
+      "sha256": "c359d80e5951c37f925ac41b54416b3403bd7c083c8f30c81ed4db19f3947e87",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/hidden-valley/graft-rivergreen.svg",
+      "date": "2026-11-25",
+      "modifications": "Original Hidden Valley graft artwork."
+    },
+    {
       "id": "valley-grafting-basket",
       "path": "public/art/hidden-valley/grafting-basket.svg",
       "sha256": "fee47c382f14a64f5e6e63b81005091fdacdda33153af6b8d83cd64e7c952510",

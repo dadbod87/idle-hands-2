@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="132" viewBox="0 0 128 132">
+ <title>Graft settling beside the house</title>
+ <ellipse cx="64" cy="119" rx="26" ry="7" fill="#465b4829"/>
+ <path d="M75 115V45m-49 71h68" fill="none" stroke="#806347" stroke-width="6" stroke-linecap="round"/>
+ <path d="M56 116l5-65 4 1-1 65" fill="#ad885a" stroke="#524b3a" stroke-width="3" stroke-linejoin="round"/>
+ <path d="M61 64Q39 56 46 40q18 4 17 19m1 3q2-19 21-16-7 19-21 16Z" fill="#759566" stroke="#506141" stroke-width="2"/>
+ <path d="M54 74h24m-22 5h20" stroke="#c08b5d" stroke-width="4" stroke-linecap="round"/>
+</svg>

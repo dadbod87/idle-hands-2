@@ -19,6 +19,8 @@ export const VALLEY_TREES=[
  [45,5,'pine'],[57,40,'pine'],[33,35,'oak'],
 ] as const;
 
+export const GRAFT_TREE_FEET={x:28.85,y:12.3} as const satisfies Point;
+
 export const VALLEY_STOPS=[
  {id:'valley-mossbank-road',name:'Mossbank road',point:{x:2.45,y:35.5},
   transition:'mossbank',arrival:MOSSBANK_VALLEY_FRONT,doorArea:[.9,34.15,2.6,2.7],
@@ -45,7 +47,7 @@ export const HIDDEN_VALLEY_ROOM:World={
  width:64,height:44,
  blocked:[
   [38,0,4.5,16.1],[38,20.3,4.5,7.2],[38,31.95,4.5,12.05],
-  [20.8,8.25,6.8,4.15],[23.2,24.05,7.05,5.3],
+  [28.55,12.13,.68,.48],[20.8,8.25,6.8,4.15],[23.2,24.05,7.05,5.3],
   [46.3,16.1,5.5,4.0],[53.65,18.15,5.8,4.05],[54.45,25.5,4.8,4.4],
   [11.75,23.65,4.9,.6],[8.35,32.45,.98,.5],[10.75,21.75,3.0,1.0],[16.8,22.15,2.45,1.0],
   ...VALLEY_TREES.map(([x,y])=>[x+.15,y-.09,.7,.65] as [number,number,number,number]),

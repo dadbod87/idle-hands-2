@@ -1,0 +1,32 @@
+.valley-graft { display:grid; gap:10px; }
+#panel-body .valley-graft p { margin:0; }
+.valley-graft h3 { margin:0; }
+.graft-choices {
+ display:grid;
+ gap:6px;
+ margin:0;
+ padding:7px;
+ border:1px solid var(--line);
+ min-width:0;
+}
+.graft-choices label {
+ display:grid;
+ grid-template-columns:20px 44px minmax(0,1fr);
+ align-items:center;
+ gap:8px;
+ min-height:44px;
+ cursor:pointer;
+ padding:2px 5px;
+ border-radius:4px;
+ font-weight:bold;
+ overflow-wrap:anywhere;
+}
+.graft-choices label:has(input:checked) { background:#e1e9ce; }
+.graft-choices input { accent-color:#496353; width:18px; height:18px; }
+.valley-graft .destination { margin:0; }
+@media(max-height:440px) and (min-width:651px) {
+ .graft-choices { grid-template-columns:repeat(3,minmax(0,1fr)); }
+ .graft-choices label { grid-template-columns:20px minmax(0,1fr); }
+ .graft-choices img { grid-column:2; }
+ .graft-choices span { grid-column:2; }
+}

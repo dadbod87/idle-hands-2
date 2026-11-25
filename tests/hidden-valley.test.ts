@@ -1,3 +1,4 @@
+import {GRAFT_MS,VALLEY_GRAFT_KEY,graftReady,readValleyGraft,startValleyGraft} from '../src/game/valley-graft.ts';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {HIDDEN_VALLEY_ROOM,MOSSBANK_VALLEY_FRONT,MOSSBANK_VALLEY_ROAD,VALLEY_ENTRY,VALLEY_STOPS,valleyFollow} from '../src/game/hidden-valley-room.ts';
@@ -72,4 +73,23 @@ test('Mabel follows reachable orchard lanes and reduced motion leaves an anchore
  assert.deepEqual(orchardKeeperPose(25000,false),orchardKeeperPose(0,false));
  assert.deepEqual(orchardKeeperPose(500,true),orchardKeeperPose(0,false));
  assert.notDeepEqual(orchardKeeperPose(5500,true),orchardKeeperPose(0,true));
+});
+
+test('One graft uses a fixed deadline, preserves legacy and corrupt records, and never changes holdings',()=>{
+ const data=new Map([['workshop','untouched']]);
+ const storage={getItem:(key:string)=>data.get(key)??null,setItem:(key:string,value:string)=>data.set(key,value)};
+ const now=Date.UTC(2026,10,25,19);
+ assert.deepEqual(readValleyGraft(storage),{ok:true,order:null});
+ assert.equal(startValleyGraft(storage,'rivergreen',false,now).ok,false);
+ const started=startValleyGraft(storage,'inkspotted',true,now);
+ if(!started.ok||!started.order)assert.fail('Expected a saved graft order');
+ assert.equal(started.order.readyAt,now+GRAFT_MS);
+ assert.equal(graftReady(started.order,started.order.readyAt-1),false);
+ assert.equal(graftReady(started.order,started.order.readyAt),true);
+ assert.equal(startValleyGraft(storage,'rivergreen',true,started.order.readyAt).ok,false);
+ assert.deepEqual(readValleyGraft(storage),started);
+ assert.equal(data.get('workshop'),'untouched');
+ data.set(VALLEY_GRAFT_KEY,'malformed');
+ assert.equal(startValleyGraft(storage,'candlewick',true,now).ok,false);
+ assert.equal(data.get(VALLEY_GRAFT_KEY),'malformed');
 });

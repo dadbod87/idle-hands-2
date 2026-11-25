@@ -1,6 +1,7 @@
+import {GRAFT_IDS,type GraftId} from '../game/valley-graft.ts';
 import {orchardKeeperPose,ORCHARD_KEEPER_NAME} from '../game/valley-keeper.ts';
 import {equippedArmor} from '../game/pumpworks.ts';
-import {MOSSBANK_VALLEY_ROAD,VALLEY_STOPS,VALLEY_TREES,valleyFollow} from '../game/hidden-valley-room.ts';
+import {GRAFT_TREE_FEET,MOSSBANK_VALLEY_ROAD,VALLEY_STOPS,VALLEY_TREES,valleyFollow} from '../game/hidden-valley-room.ts';
 import {KERCHIEF_COLORS,validKerchief,type FieldKerchief,type KerchiefTie} from '../game/field-appearance.ts';
 import {SEWING_TABLE} from '../game/tailoring.ts';
 import {KERCHIEF_RIG_WIDTH,KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
@@ -535,6 +536,21 @@ export class WorldScene extends Phaser.Scene {
   private fieldStaff?:Phaser.GameObjects.Image;
   private fieldVest?:Phaser.GameObjects.Image;
   private forgeGlow?:Phaser.GameObjects.Ellipse;
+  private graftTree?:Phaser.GameObjects.Image;
+  private graftStake?:Phaser.GameObjects.Graphics;
+  private graftArt:GraftId|'sapling'|null=null;
+  setValleyGraft(art:GraftId|'sapling'|null){
+    if(art===this.graftArt)return false;
+    this.graftArt=art;
+    this.paintValleyGraft();
+    return true;
+  }
+  private paintValleyGraft(){
+    if(!this.graftTree)return;
+    this.graftTree.setVisible(this.graftArt!==null);
+    this.graftStake?.setVisible(this.graftArt===null);
+    if(this.graftArt)this.graftTree.setTexture('valley-graft-'+this.graftArt);
+  }
   private orchardKeeper?:{actor:Phaser.GameObjects.Image;basket:Phaser.GameObjects.Image;tag:Phaser.GameObjects.Text};
   private fieldKerchief?:KerchiefLayer;
   private peerLocalKerchief?:KerchiefLayer;
@@ -711,7 +727,8 @@ export class WorldScene extends Phaser.Scene {
       if(!this.textures.exists('mossbank-'+id))this.load.svg('mossbank-'+id,'/art/mossbank/'+id+'.svg');
     }
     if(this.loadingRoom==='hidden-valley'){
-      for(const id of ['ground','cider-press','grafting-house','terrace-roofs','grafting-basket']){
+      const grafts=['sapling',...GRAFT_IDS].map(id=>'graft-'+id);
+      for(const id of ['ground','cider-press','grafting-house','terrace-roofs','grafting-basket',...grafts]){
         if(!this.textures.exists('valley-'+id))this.load.svg('valley-'+id,'/art/hidden-valley/'+id+'.svg');
       }
     }
@@ -809,7 +826,7 @@ export class WorldScene extends Phaser.Scene {
     this.movementReset=true;
     this.room = this.session.room;this.loadedHomePlotId=this.homePlotId;this.loadedDistrictId=this.districtId;this.streetViews=[];this.streetDirty=true;this.residentialLife=undefined;this.houseView=undefined;this.pennantView=undefined;
     this.canopyTransformWrites=0;
-    this.canopies=[];this.townfolk=[];this.steam=undefined;this.orchardKeeper=undefined;this.ambientMs=0;
+    this.canopies=[];this.townfolk=[];this.steam=undefined;this.orchardKeeper=undefined;this.graftTree=undefined;this.graftStake=undefined;this.ambientMs=0;
     for(const id of RESIDENT_IDS){const texture=this.textures.get('variety-resident-'+id);if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});}
     for(const id of RESIDENT_IDS)for(const prefix of this.activityPrefixes)this.parseActivityTexture(prefix+id);
     const activityLoaded=(key:string)=>{this.activityLoading.delete(key);this.parseActivityTexture(key);};
@@ -1039,6 +1056,13 @@ export class WorldScene extends Phaser.Scene {
       const tag=label(0,0,ORCHARD_KEEPER_NAME).setFontSize(12).setVisible(false);
       this.orchardKeeper={actor:keeper,basket,tag};
       this.paintOrchardKeeper();
+      const treeX=(GRAFT_TREE_FEET.x+.5)*TILE,treeY=(GRAFT_TREE_FEET.y+.5)*TILE;
+      this.graftStake=this.add.graphics().setPosition(treeX,treeY).setDepth(treeY)
+        .fillStyle(0x625c43,.28).fillEllipse(0,-3,32,10)
+        .lineStyle(5,0x725b43).lineBetween(0,0,0,-32)
+        .lineStyle(3,0xd6b975).lineBetween(-5,-25,5,-25);
+      this.graftTree=this.add.image(treeX,treeY,'valley-graft-sapling').setOrigin(.5,.91).setDepth(treeY);
+      this.paintValleyGraft();
       const roofKey='valley-terrace-roofs',roofTexture=this.textures.get(roofKey);
       if(!roofTexture.has('0'))this.textures.addSpriteSheet('',roofTexture,{frameWidth:176,frameHeight:155});
       for(const [frame,x,y,size] of [[0,48.8,20.0,1.07],[1,56.65,22.2,1.16],[2,56.8,29.9,.94]]){
@@ -1344,6 +1368,7 @@ export class WorldScene extends Phaser.Scene {
       worker:this.mossbankWren?.texture.key??null,
       ripples:this.mossbankRipples.filter(ripple=>ripple.image.visible).map(ripple=>({x:ripple.image.x,y:ripple.image.y})),
     },
+    valleyGraft:this.graftTree?.visible?this.graftTree.texture.key:null,
     orchardKeeper:this.orchardKeeper?{x:this.orchardKeeper.actor.x,y:this.orchardKeeper.actor.y,frame:this.orchardKeeper.actor.frame.name}:null,
     fieldArmorArt:this.fieldVest?.visible===true?this.fieldVest.texture.key:null,
     fieldEquipment:{vest:this.fieldVest?.visible===true,kerchief:this.fieldKerchief?.ink.visible===true?this.fieldKerchief.key:null},

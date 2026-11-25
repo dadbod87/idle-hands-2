@@ -1,3 +1,5 @@
+import {graftReady,readValleyGraft,startValleyGraft,VALLEY_GRAFT_KEY,VALLEY_GRAFT_STOP_ID,type GraftId} from './game/valley-graft.ts';
+import {showValleyGraft,valleyGraftJournal} from './ui/valley-graft.ts';
 import {nearbyOutfits,residentOutfit} from './ui/nearby-outfits.ts';
 import {earnedValleyPrint,takeValleyPrint,VALLEY_PRINT_KEY,VALLEY_PRINT_STOP_ID} from './game/valley-print.ts';
 import {MOSSBANK_VALLEY_ROAD} from './game/hidden-valley-room.ts';
@@ -247,6 +249,19 @@ function refreshValleyPrint(){
 function canPullValleyPrint(stop:Stop|undefined){
  return !townMode&&session.room==='hidden-valley'&&stop?.id===VALLEY_PRINT_STOP_ID&&mossbankSurvey?.finished===true&&!printRights.valley;
 }
+let graftWake=0;
+const localGraft=()=>{const saved=readValleyGraft(morningStorage);return saved.ok?saved.order:null;};
+function paintGraft(){
+ window.clearTimeout(graftWake);
+ if(townMode)return;
+ const order=localGraft(),now=Date.now();
+ const art=order?(graftReady(order,now)?order.variety:'sapling'):null;
+ if(scene.setValleyGraft(art)&&ready&&session.room==='hidden-valley')refreshMenuFrame(2);
+ if(order&&art==='sapling'){
+  graftWake=window.setTimeout(paintGraft,Math.min(2_147_483_647,Math.max(50,order.readyAt-now+5)));
+ }
+}
+if(!townMode)paintGraft();
 function refreshMossbankPrint(){
  mossbankSurvey=readMossbankSurvey();
  session.setHiddenValleyRoad(mossbankSurvey?.finished===true);
@@ -273,8 +288,8 @@ function refreshRiverCast(){
 }
 if(!townMode){
  refreshRiverCast();
- window.addEventListener('storage',event=>{if(event.key===VALLEY_PRINT_KEY||event.key===null)refreshValleyPrint();if(event.key===POND_WATCH_KEY||event.key===null)refreshPondPrint();if(event.key===MOSSBANK_KEY||event.key===null)refreshMossbankPrint();if(event.key===RIVER_SURVEY_KEY||event.key===null)refreshRiverCast();else if(event.key===WORKSHOP_PRINT_KEY)refreshWorkshopPrint();});
- window.addEventListener('pageshow',event=>{if(event.persisted){refreshPondPrint();refreshMossbankPrint();refreshValleyPrint();refreshRiverCast();}});
+ window.addEventListener('storage',event=>{if(event.key===VALLEY_GRAFT_KEY||event.key===null)paintGraft();if(event.key===VALLEY_PRINT_KEY||event.key===null)refreshValleyPrint();if(event.key===POND_WATCH_KEY||event.key===null)refreshPondPrint();if(event.key===MOSSBANK_KEY||event.key===null)refreshMossbankPrint();if(event.key===RIVER_SURVEY_KEY||event.key===null)refreshRiverCast();else if(event.key===WORKSHOP_PRINT_KEY)refreshWorkshopPrint();});
+ window.addEventListener('pageshow',event=>{if(event.persisted){refreshPondPrint();refreshMossbankPrint();refreshValleyPrint();paintGraft();refreshRiverCast();}});
 }
 let lastContext = '';
 let lastDistrictHint='';
@@ -577,7 +592,9 @@ const workshop=new WorkshopUI({fieldGear:pumpworks?.gear??(town?()=>tailoringBag
  if(session.room==='pumpworks'){
   goNamedDestination('pumpworks',state?.satchel==='at-pump'?'pumpworks-cache':state?.cleared?'pumpworks-report':'pumpworks-hopper');
  }else goNamedDestination('square',PUMPWORKS_DOOR.id);
-},()=>workshop.showJournal('pumpworks-seal'),()=>goNamedDestination('pumpworks',FORGE_STOP.id));mossbank.journal(body);}:body=>{
+},()=>workshop.showJournal('pumpworks-seal'),()=>goNamedDestination('pumpworks',FORGE_STOP.id));
+ mossbank.journal(body);
+ valleyGraftJournal(body,localGraft(),()=>goNamedDestination('hidden-valley',VALLEY_GRAFT_STOP_ID));}:body=>{
  mossbank.journal(body);
  if(town)sewingJournal(body,town,()=>goNamedDestination('workshop',SEWING_TABLE.id));
 },inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
@@ -622,12 +639,14 @@ function followNamedWalk(){
  const fromInkwoodSide=session.room==='glasshouse'||(townMode&&session.room==='mossbank');
  const toNursery=target.room==='glasshouse',toMossbank=townMode&&target.room==='mossbank';
  const toPumpworks=!townMode&&target.room==='pumpworks';
- const squarePortal=toPumpworks?PUMPWORKS_DOOR.id:target.room==='garden'?'allotment':target.room==='workshop'?'workshop':toNursery||toMossbank?'trail-gate':null;
+ const toValley=!townMode&&target.room==='hidden-valley';
+ const squarePortal=toValley?MOSSBANK_ROAD.id:toPumpworks?PUMPWORKS_DOOR.id:target.room==='garden'?'allotment':target.room==='workshop'?'workshop':toNursery||toMossbank?'trail-gate':null;
  const stop=session.room===target.room?session.stops.find(s=>s.id===target.stopId)
   :session.room==='square'?worlds.square.stops.find(s=>s.id===squarePortal)
   :session.room==='trail'&&toNursery?INKWOOD_GLASSHOUSE
   :session.room==='trail'&&toMossbank?INKWOOD_MOSSBANK_ROAD
-  :session.stops.find(s=>s.transition===(fromInkwoodSide?'trail':toPumpworks&&session.room==='hidden-valley'?'mossbank':'square'));
+  :session.room==='mossbank'&&toValley?session.stops.find(stop=>stop.id===MOSSBANK_VALLEY_ROAD.id)
+  :session.stops.find(s=>s.transition===(fromInkwoodSide?'trail':session.room==='hidden-valley'?'mossbank':'square'));
  if(!stop){namedWalk=null;feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
  if(Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.25){
   if(session.room===target.room&&stop.id===target.stopId)namedWalk=null;
@@ -970,6 +989,20 @@ async function savePondObservation(id:PondWatchId,choice:string,active:()=>boole
 }
 function activate(stop: Stop) {
   if(session.room==='hidden-valley'&&!stop.transition){
+    if(stop.id===VALLEY_GRAFT_STOP_ID){
+      const eligible=()=>session.room==='hidden-valley'&&session.nearby()?.id===VALLEY_GRAFT_STOP_ID&&mossbankSurvey?.finished===true;
+      if(!eligible())return;
+      openPanel('Grafting house');
+      showValleyGraft(body,{read:()=>readValleyGraft(morningStorage),start:async(id:GraftId,present)=>{
+        if(!navigator.locks)return {ok:false,message:'This browser cannot safely save the graft across tabs.'};
+        return navigator.locks.request(VALLEY_GRAFT_KEY,()=>{
+          const result=startValleyGraft(morningStorage,id,present()&&eligible(),Date.now());
+          if(result.ok){paintGraft();music.cue('craft');}
+          return result;
+        });
+      }});
+      return;
+    }
     if(canPullValleyPrint(stop)){
       const saved=takeValleyPrint(morningStorage,session.nearby()?.id===VALLEY_PRINT_STOP_ID);
       if(saved){refreshValleyPrint();music.cue('craft');}

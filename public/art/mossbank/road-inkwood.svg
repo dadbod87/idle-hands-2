@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="134" height="110" viewBox="0 0 134 110">
+ <ellipse cx="66" cy="102" rx="59" ry="7" fill="#35463e" opacity=".2"/>
+ <path d="M30 98V11h8v87m60 0V11h8v87" fill="#846b4d" stroke="#4d513f" stroke-width="3"/>
+ <path d="M122 24H27L7 44l20 19h95Z" fill="#e2cb95" stroke="#4d513f" stroke-width="4"/>
+ <path d="M114 29H29L14 44l15 13h85" fill="none" stroke="#a18153" stroke-width="2"/>
+ <text x="68" y="48" fill="#435446" font-size="13" font-weight="bold" font-family="Georgia,serif" text-anchor="middle">INKWOOD</text>
+ <path d="M36 92q12-21 17 0m34 2q6-19 14 2" fill="none" stroke="#728760" stroke-width="4" stroke-linecap="round"/>
+</svg>

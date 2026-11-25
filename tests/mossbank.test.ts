@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {freshMossbank,MOSSBANK_KEY,readMossbank,saveMossbank,type SurveyPlace} from '../src/game/mossbank.ts';
-import {MOSSBANK_ENTRY,MOSSBANK_ROAD,MOSSBANK_ROOM} from '../src/game/mossbank-room.ts';
+import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ENTRY,MOSSBANK_ROAD,MOSSBANK_ROOM} from '../src/game/mossbank-room.ts';
 import {earnedWorkshopPrints,selectedWorkshopPrint} from '../src/game/workshop-print.ts';
 import {Session} from '../src/game/session.ts';
 import {canStand,clearSegment,routeTo} from '../src/game/world.ts';
@@ -33,7 +33,7 @@ test('The Mossbank survey accepts either landmark order and cannot reissue its s
  }
 });
 
-test('Mossbank has two safe bridge crossings, safe authored roads, and browser-only geometry',()=>{
+test('Mossbank has two safe bridge crossings, safe roads and distinct browser and shared exits',()=>{
  const practice=new Session(undefined,[MOSSBANK_ROAD],true);
  assert.ok(practice.approach(MOSSBANK_ROAD.id));
  practice.enter('mossbank',MOSSBANK_ENTRY);
@@ -45,11 +45,14 @@ test('Mossbank has two safe bridge crossings, safe authored roads, and browser-o
   assert.ok(clearSegment('mossbank',{x:23,y},{x:31,y},MOSSBANK_ROOM));
  }
  assert.equal(clearSegment('mossbank',{x:23,y:19},{x:31,y:19},MOSSBANK_ROOM),false);
- assert.equal(canStand('mossbank',MOSSBANK_ENTRY),false);
+ assert.equal(canStand('mossbank',MOSSBANK_ENTRY),true);
+ assert.equal(canStand('trail',INKWOOD_MOSSBANK_ROAD.point),true);
+ assert.equal(practice.stops[0].transition,'square');
  const shared=new Session(practice.save());
  assert.equal(shared.room,'square');
- assert.throws(()=>shared.enter('mossbank'));
  assert.equal(shared.stops.some(stop=>stop.id===MOSSBANK_ROAD.id),false);
+ shared.enter('mossbank');
+ assert.equal(shared.stops[0].transition,'trail');
  assert.equal(new Session(practice.save(),undefined,true).room,'mossbank');
 });
 

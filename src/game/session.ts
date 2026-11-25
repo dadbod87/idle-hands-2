@@ -1,4 +1,4 @@
-import {MOSSBANK_ENTRY} from './mossbank-room.ts';
+import {MOSSBANK_ENTRY,MOSSBANK_STOPS} from './mossbank-room.ts';
 import {practiceRoom} from './world.ts';
 import {PUMPWORKS_ENTRY} from './pumpworks-room.ts';
 import {WINDOWSILL_STOP} from './home-windowsill.ts';
@@ -55,6 +55,7 @@ export class Session {
   get stops(): readonly Stop[] {
     if(this.room==='square')return this.squareStops;
     if(this.room==='workshop')return this.workshopStops;
+    if(this.room==='mossbank'&&this.hasLodging)return MOSSBANK_STOPS;
     if(this.room==='home'||this.room==='home-expanded')return this.homeStops[this.room];
     return worlds[this.room].stops;
   }
@@ -79,7 +80,7 @@ export class Session {
     if (!saved || typeof saved !== 'object') return;
     const s = saved as Partial<SavedPosition>;
     if (s.version !== 1 || !s.position) return;
-    if (s.room === 'square' || s.room === 'workshop' || s.room === 'garden' || (localLodging && s.room && practiceRoom(s.room))) {
+    if (s.room === 'square' || s.room === 'workshop' || s.room === 'garden' || (localLodging && s.room && (practiceRoom(s.room)||s.room==='mossbank'))) {
       if (canStand(s.room, s.position, this.roomGeometry(s.room))) {
         this.room = s.room; this.position = { ...s.position };
       } else if (localLodging && s.room === 'square' && canStand(s.room, s.position)) {

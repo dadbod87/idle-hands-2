@@ -3,6 +3,16 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "mossbank-road-inkwood",
+      "path": "public/art/mossbank/road-inkwood.svg",
+      "sha256": "4b2cff9d1f1fcb76dd51d512977ec0ae92f18b70a436068dffc94bb705f89012",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/mossbank/road-inkwood.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
       "id": "pumpworks-oatcake",
       "path": "public/art/pumpworks/oatcake.svg",
       "sha256": "d45fc6204808930237332eae9a6ec223606180e1f1cb43a6c8235b5755de8df8",

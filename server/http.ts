@@ -8,10 +8,10 @@ import {createHmac,timingSafeEqual,randomUUID} from 'node:crypto';
 import type {Pool} from 'pg';
 import {z} from 'zod';
 import {TransportAdmission,BoundedStream} from './transport.ts';
-import {GlasshouseClosed,TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './live-store.ts';
+import {GlasshouseClosed,MossbankClosed,TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './live-store.ts';
 import {canStand,routeTo,worlds} from '../src/game/world.ts';
 const DEFAULT_FIXTURES=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}];
-const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden','neighborhood','glasshouse']),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(positionContextValid);
+const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden','neighborhood','glasshouse','mossbank']),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(positionContextValid);
 const COOKIE='ih2_fixture';
 const waveSchema=z.object({}).strict();
 function json(res:ServerResponse,status:number,data:unknown){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(data));}
@@ -75,7 +75,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
   for(const item of connections){
    const own=residents.get(item.id);if(!own)continue;
    const others=[...residents].filter(([id,entry])=>id!==item.id&&active.has(id)&&
-    ((['square','trail','neighborhood','glasshouse'].includes(entry.value.room)&&entry.value.room===own.value.room&&
+    ((['square','trail','neighborhood','glasshouse','mossbank'].includes(entry.value.room)&&entry.value.room===own.value.room&&
     (entry.value.room!=='neighborhood'||entry.value.districtId===own.value.districtId))||
      isHome(entry.value.room)&&entry.value.room===own.value.room&&entry.value.homePlotId===own.value.homePlotId))
     .map(([id,entry])=>{
@@ -151,7 +151,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     const rawPosition=await payload;if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
     return await withPresence(async()=>{
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
-    const next=positionSchema.parse(rawPosition),previous=current.value,elapsed=Math.max(0,(now()-current.at)/1000);const credit=Math.min(2,current.credit+elapsed*5);const geometry=next.room==='neighborhood'?housingWorld([...homes.values()],next.districtId!):undefined;let spent=0,valid=canStand(next.room,next.position,geometry)&&(next.room!=='trail'||bridgeOpen)&&(!isHome(next.room)||next.homePlotId===previous.homePlotId&&!!homes.get(next.homePlotId!)&&next.room===(homes.get(next.homePlotId!)!.level===2?'home-expanded':'home'));
+    const next=positionSchema.parse(rawPosition),previous=current.value,elapsed=Math.max(0,(now()-current.at)/1000);const credit=Math.min(2,current.credit+elapsed*5);const geometry=next.room==='neighborhood'?housingWorld([...homes.values()],next.districtId!):undefined;let spent=0,valid=canStand(next.room,next.position,geometry)&&((next.room!=='trail'&&next.room!=='mossbank')||bridgeOpen)&&(!isHome(next.room)||next.homePlotId===previous.homePlotId&&!!homes.get(next.homePlotId!)&&next.room===(homes.get(next.homePlotId!)!.level===2?'home-expanded':'home'));
     if(next.room===previous.room){valid=valid&&next.homePlotId===previous.homePlotId&&next.districtId===previous.districtId;const distance=Math.hypot(next.position.x-previous.position.x,next.position.y-previous.position.y),route=distance<.0001?[]:routeTo(next.room,previous.position,next.position,geometry);let prior=previous.position;const travelled=route.reduce((total,p)=>{const step=Math.hypot(p.x-prior.x,p.y-prior.y);prior=p;return total+step;},0);valid=valid&&(distance<.0001||route.length>0)&&travelled<=credit+.001;spent=travelled;}
     else{
      if(isHome(next.room)||next.room==='neighborhood'&&!isHome(previous.room))valid=false;
@@ -162,10 +162,11 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(!valid){metrics.movementRejected++;return json(res,409,{message:'That move was not accepted. Returning to the last confirmed position.',position:previous});}
     // No optimistic position update for a doorway that still needs to check
     // its durable opening deadline and write the confirmed checkpoint.
-    if(next.room!==previous.room&&next.room==='glasshouse'){
+    const gatedEntry=next.room!==previous.room&&(next.room==='glasshouse'||next.room==='mossbank');
+    if(gatedEntry){
      try{await store.savePosition(id,next);}
      catch(error){
-      if(!(error instanceof GlasshouseClosed))throw error;
+      if(!(error instanceof GlasshouseClosed||error instanceof MossbankClosed))throw error;
       metrics.movementRejected++;
       return json(res,409,{message:error.message,position:previous});
      }
@@ -173,7 +174,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     }
     current.value=next;current.at=now();current.credit=next.room===previous.room?Math.max(0,credit-spent):1;dirty=true;metrics.movementAccepted++;
     if(next.room!==previous.room)waves.delete(id);
-    if(next.room!==previous.room&&next.room!=='glasshouse'){await store.savePosition(id,next);metrics.positionCheckpoints++;}
+    if(next.room!==previous.room&&!gatedEntry){await store.savePosition(id,next);metrics.positionCheckpoints++;}
     return json(res,200,{ok:true,position:next});
     });
     },false);

@@ -8,6 +8,13 @@ export const MOSSBANK_ROAD={
  text:'A safe forestry road past the east orchard. Follow it to the sawmill.',
 } satisfies Stop;
 
+export const MOSSBANK_INKWOOD_FRONT={x:12.3,y:7.4} as const satisfies Point;
+export const INKWOOD_MOSSBANK_ROAD={
+ id:'inkwood-mossbank-road',name:'Road to Mossbank',point:MOSSBANK_INKWOOD_FRONT,
+ transition:'mossbank',arrival:MOSSBANK_ENTRY,doorArea:[11.45,6.15,2.45,2.45],
+ text:'A safe forestry road onward from Inkwood. Follow it to the sawmill.',
+} satisfies Stop;
+
 export const MOSSBANK_TREES=[
  {x:3,y:18,kind:'pine'},{x:6.2,y:14.1,kind:'oak'},{x:3.8,y:8.3,kind:'birch'},
  {x:11.3,y:8.8,kind:'pine'},{x:10.2,y:17,kind:'pine'},{x:5.5,y:31.3,kind:'birch'},
@@ -31,6 +38,11 @@ export const MOSSBANK_STOPS=[
   text:'Wren has labeled every sapling. The rabbits are submitting corrections.'},
 ] satisfies Stop[];
 
+const sharedReturn:Stop={
+ ...MOSSBANK_STOPS[0],name:'Inkwood road',transition:'trail',arrival:MOSSBANK_INKWOOD_FRONT,
+ text:'Back to Inkwood. The restored bridge leads home from the trail.',
+};
+
 export const MOSSBANK_ROOM:World={
  width:48,height:35,
  blocked:[
@@ -39,5 +51,5 @@ export const MOSSBANK_ROOM:World={
   [36.7,21.5,3.2,1.6],
   ...MOSSBANK_TREES.map(({x,y})=>[x+.15,y-.09,.7,.65] as [number,number,number,number]),
  ],
- stops:MOSSBANK_STOPS,
+ stops:[sharedReturn,...MOSSBANK_STOPS.slice(1)],
 };

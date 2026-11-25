@@ -1,4 +1,4 @@
-import {MOSSBANK_ROAD} from './game/mossbank-room.ts';
+import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD} from './game/mossbank-room.ts';
 import {MOSSBANK_KEY,readMossbank,type SurveyPlace} from './game/mossbank.ts';
 import {createMossbank} from './ui/mossbank.ts';
 import {PUMPWORKS_DOOR} from './game/pumpworks-room.ts';
@@ -564,12 +564,12 @@ function followNamedWalk(){
  if(namedWalk.owner!==(town?.snapshot?.playerId??'local')){namedWalk=null;return;}
  if(namedWalk.startedRoom===session.room)return;
  const target=namedWalk;
- const inNursery=session.room==='glasshouse',toNursery=target.room==='glasshouse';
+ const fromInkwoodSide=session.room==='glasshouse'||(townMode&&session.room==='mossbank'),toNursery=target.room==='glasshouse';
  const squarePortal=target.room==='garden'?'allotment':target.room==='workshop'?'workshop':toNursery?'trail-gate':null;
  const stop=session.room===target.room?session.stops.find(s=>s.id===target.stopId)
   :session.room==='square'?worlds.square.stops.find(s=>s.id===squarePortal)
   :session.room==='trail'&&toNursery?INKWOOD_GLASSHOUSE
-  :worlds[session.room].stops.find(s=>s.transition===(inNursery?'trail':'square'));
+  :session.stops.find(s=>s.transition===(fromInkwoodSide?'trail':'square'));
  if(!stop){namedWalk=null;feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
  if(Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.25){
   if(session.room===target.room&&stop.id===target.stopId)namedWalk=null;
@@ -705,7 +705,7 @@ document.querySelector('#field-guide')!.addEventListener('click',()=>{
   body.querySelector('#guide-workshop')!.addEventListener('click',()=>{
    if(session.room==='square'){goNamedDestination('square','workshop');return;}
    if(session.room==='workshop'){goNamedDestination('workshop','bench');return;}
-   if(session.room==='glasshouse'){goNamedDestination('square','workshop');return;}
+   if(session.room==='glasshouse'||session.room==='mossbank'){goNamedDestination('square','workshop');return;}
    const exit=worlds[session.room].stops.find(stop=>stop.transition==='square');if(exit)goNamedDestination(session.room,exit.id);
   });
 });
@@ -725,6 +725,7 @@ document.querySelector('#places')!.addEventListener('click', () => {
 });
 function openSharedTownChoice(heading:string,intro='Homes live in shared practice. Your browser-only workshop stays saved here; shared town progress is separate.'){openPanel(heading);body.append(paragraph(intro));const enter=document.createElement('button');enter.type='button';enter.className='destination';enter.dataset.openTown='';enter.textContent='Open shared practice town';enter.onclick=()=>{const url=new URL(window.location.href);url.searchParams.set('town','1');window.location.assign(url);};body.append(enter);}
 function resolvedStop(stop:Stop):Stop{
+ if(stop.id===INKWOOD_MOSSBANK_ROAD.id&&!townMode)return{...stop,transition:undefined,arrival:undefined};
  if(stop.id===INKWOOD_GLASSHOUSE.id&&town?.snapshot?.glasshouse?.project.phase!=='open')return{...stop,transition:undefined,arrival:undefined};
  if(stop.id==='home-door'&&districtId){const exit=exitForHome({homePlotId,districtId});return{...stop,name:'Front door',transition:exit.room,arrival:exit.position};}return stop;}
 function currentStops():Stop[]{return session.stops.map(stop=>{if(session.room!=='neighborhood'||!districtId||!stop.id.startsWith(HOME_SITE_PREFIX))return resolvedStop(stop);const id=plotAtAddress(districtId,Number(stop.id.slice(HOME_SITE_PREFIX.length))),plot=town?.snapshot?.plots.find(p=>p.id===id);return{...stop,name:stop.name+' · '+(plot?plot.ownerName??'Resident':'Future home site')};});}
@@ -755,10 +756,31 @@ async function enterRemotePortal(stop:Stop){
   // Confirm the final source-room approach before the separate portal request.
   await flushMovement(true);
   if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||session.room!==sourceRoom||panel.open||needResync)return;
+  if(targetRoom==='mossbank'||sourceRoom==='mossbank'){
+   const destination={room:targetRoom,position:stop.arrival!};
+   const receipt=await town.movement(destination);
+   if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||session.room!==sourceRoom||panel.open||needResync)return;
+   if(receipt.ok!==true||receipt.position?.room!==targetRoom)throw new Error('Road arrival was not confirmed.');
+   session.enter(targetRoom,receipt.position.position);
+   lastSent=JSON.stringify(destination);confirmedContext=contextKey(targetRoom);
+   scene.residents=[];music.setLocation(targetRoom,receipt.position.position);confirmedDoor();focusWorld();
+   feedback.textContent=targetRoom==='mossbank'?'Mossbank outskirts. The sawmill is up the road.':'Back on the Inkwood trail.';
+   return;
+  }
   session.enter(targetRoom,stop.arrival);districtId=targetRoom==='neighborhood'?districtId:undefined;scene.districtId=districtId;if(!targetRoom.startsWith('home')){homePlotId=undefined;scene.homePlotId=undefined;}save();focusWorld();
   feedback.textContent=targetRoom==='neighborhood'?'Back in neighborhood '+districtId+'. Each door leads to its own home.':targetRoom==='glasshouse'?'The nursery is open. Walk up to a bench or meet the keeper.':sourceRoom==='glasshouse'?'Back on the Glasshouse front step.':targetRoom==='trail'?'Inkwood trail. Three landmarks, one extremely official field notebook.':targetRoom==='garden'?'Your allotment. Inspect the three beds or visit the attendant.':targetRoom==='workshop'?workshopArrivalNote():(scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
  }catch{
-  if(intent===portalIntent&&epoch===movementEpoch&&town.snapshot?.playerId===playerId&&!needResync)feedback.textContent='Entry could not be confirmed. Try the door again.';
+  if(intent===portalIntent&&epoch===movementEpoch&&town.snapshot?.playerId===playerId&&!needResync){
+   if(targetRoom==='mossbank'||sourceRoom==='mossbank'){
+    needResync=true;
+    try{
+     const snapshot=await town.load();
+     if(snapshot.playerId!==playerId)return;
+     if(needResync)adoptTownPosition(snapshot);
+     feedback.textContent=snapshot.position.room===targetRoom?'Road arrival recovered.':'Still at the road. Try entering again.';
+    }catch{showPendingRequest('Refresh the last confirmed road position before walking.');}
+   }else feedback.textContent='Entry could not be confirmed. Try the door again.';
+  }
  }finally{
   transitionBusy=false;
   unlockWorld();
@@ -875,8 +897,10 @@ async function savePondObservation(id:PondWatchId,choice:string,active:()=>boole
  }catch{return 'The observation could not be saved. Your earlier notes are safe.';}
 }
 function activate(stop: Stop) {
-  if(mossbank&&session.room==='mossbank'&&stop.id.startsWith('mossbank-')&&!stop.transition){
-    mossbank.show(stop.id as SurveyPlace);return;
+  if(session.room==='mossbank'&&stop.id.startsWith('mossbank-')&&!stop.transition){
+    if(mossbank)mossbank.show(stop.id as SurveyPlace);
+    else{openPanel(stop.name);body.append(paragraph(stop.text));}
+    return;
   }
   if(pumpworks&&session.room==='pumpworks'&&stop.id==='pumpworks-hopper'){
     feedback.textContent='Dodge the marked lunge. Space or Strike attacks in reach. Shift or Brace reduces the hit.';

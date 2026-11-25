@@ -118,6 +118,7 @@ export function seasonKey(now: number): string {
 
 /** Trusted server boundary only. Caller authenticates synthetic identity and validates movement/rate before execute. */
 export class GlasshouseClosed extends Error {}
+export class MossbankClosed extends Error {}
 
 export class TownStore {
   readonly pool: Pool;
@@ -142,7 +143,10 @@ export class TownStore {
   }
   async savePosition(id: string, position: TownPosition): Promise<void> {
     if (!(positionContextValid(position)&&(position.room==='neighborhood'?canStand(position.room,position.position,housingWorld((await this.pool.query('select id::text,plan_id as "planId" from ih2.plots')).rows,position.districtId!)):validPosition(position)))) throw new Error('Invalid server-validated position.');
-    if(position.room==='trail'&&(await this.snapshot(id)).bridge.phase!=='open')throw new Error('The trail is not open.');
+    if((position.room==='trail'||position.room==='mossbank')&&(await this.snapshot(id)).bridge.phase!=='open'){
+      if(position.room==='mossbank')throw new MossbankClosed('The restored Inkwood bridge leads to Mossbank.');
+      throw new Error('The trail is not open.');
+    }
     if(position.room==='glasshouse'&&!(await this.glasshouseOpen()))throw new GlasshouseClosed('The Glasshouse is still closed.');
     if(isHome(position.room)){const plot=(await this.pool.query('select level from ih2.plots where id=$1',[position.homePlotId])).rows[0];if(!plot||(plot.level===2?'home-expanded':'home')!==position.room)throw new Error('Home instance is not valid.');}
     await this.pool.query('update ih2.players set position=$2,updated_at=now() where id=$1', [id, position]);

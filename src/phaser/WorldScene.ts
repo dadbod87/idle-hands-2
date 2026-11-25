@@ -1,6 +1,6 @@
 import type {MossbankSurvey} from '../game/mossbank.ts';
 import {HOPPER_MOVEMENT,type HopperMotion} from '../game/pumpworks-chase.ts';
-import {MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
+import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
 import {HOPPER_FEET,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
 import {HOPPER_HEALTH,type PumpworksState} from '../game/pumpworks.ts';
 import {activeWave} from '../game/town-wave.ts';
@@ -538,7 +538,8 @@ export class WorldScene extends Phaser.Scene {
   }
   preload() {
     this.loadingRoom=this.session.room;
-    const regionalArt=this.loadingRoom==='mossbank'?['ground','sawmill','alder','fir','road-west']:this.loadingRoom==='square'&&this.session.hasLodging?['road-sign']:[];
+    const regionalArt=this.loadingRoom==='mossbank'?['ground','sawmill','alder','fir',this.session.hasLodging?'road-west':'road-inkwood']
+      :this.loadingRoom==='square'&&this.session.hasLodging||this.loadingRoom==='trail'&&!this.session.hasLodging?['road-sign']:[];
     for(const id of regionalArt){
       if(!this.textures.exists('mossbank-'+id))this.load.svg('mossbank-'+id,'/art/mossbank/'+id+'.svg');
     }
@@ -749,6 +750,11 @@ export class WorldScene extends Phaser.Scene {
       ];
       this.add.rectangle(242,185,21,15,0xf1e1b6).setStrokeStyle(1,0x927e5b).setRotation(-.16).setDepth(183);
     } else if(this.room==='trail') {
+      if(!this.session.hasLodging){
+        const {x,y}=INKWOOD_MOSSBANK_ROAD.point;
+        this.add.image((x+.5)*TILE,y*TILE,'mossbank-road-sign').setOrigin(.5,.83).setScale(.58).setDepth(y*TILE);
+        label(x-.7,y+.83,'Road to Mossbank').setFontSize(11);
+      }
       for(const [index,planting] of TRAIL_ART.treePlacements.entries()){const kind=planting.kind,meta=art('tree-'+kind+'-canopy'),foot=meta.foot!,footX=(planting.tileX+1)*TILE,footY=(planting.tileY+2)*TILE;for(const layer of ['trunk','canopy']){const tree=this.add.image(footX,footY,'variety-tree-'+kind+'-'+layer).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(footY+(layer==='canopy'?.1:0));if(layer==='canopy'){this.canopies.push({key:kind,image:tree,phase:index*1.7,baseX:footX});const bounds=meta.occlusion??{x:4,y:0,width:meta.width-8,height:foot.y};this.occluders.push({image:tree,x:footX-foot.x+bounds.x,y:footY-foot.y+bounds.y+bounds.height,width:bounds.width,height:bounds.height});}}}
       for(const meta of Object.values(TRAIL_ART.landmarks)){const x=(meta.point.x+.5)*TILE,y=meta.point.y*TILE;this.add.image(x,y,meta.key).setOrigin(meta.foot.x/meta.width,meta.foot.y/meta.height).setDepth(y);label(meta.point.x+.5,meta.point.y+1.1,'Field note');}
       const glasshouse=INKWOOD_GLASSHOUSE.point;
@@ -777,7 +783,7 @@ export class WorldScene extends Phaser.Scene {
       litWindows.push({x:millX-28,y:millY-55,width:47,height:30});
       const wrenX=millX+60,wrenY=(wren.y+.5)*TILE-14;
       this.add.image(wrenX,wrenY,'variety-resident-'+RESIDENT_IDS[1],0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale).setDepth(wrenY);
-      label(wren.x+.5,wren.y+.45,'Wren · sawmill').setDepth(wrenY+14);
+      label(wren.x+2.15,wren.y+.82,'Wren · sawmill').setDepth(wrenY+14);
       const windrow=point('mossbank-windrow');
       for(const [index,offset] of [-1,1,.15].entries()){
         const x=(windrow.x+.5+offset)*TILE,y=(windrow.y-.55-index*.31)*TILE;
@@ -799,8 +805,8 @@ export class WorldScene extends Phaser.Scene {
       }
       label(beds.x+.5,beds.y+.45,'Sapling beds');
       const road=point('mossbank-return');
-      this.add.image((road.x+.5)*TILE,road.y*TILE,'mossbank-road-west').setOrigin(.5,.93).setDepth(road.y*TILE);
-      label(road.x+.5,road.y+.8,'← Ledgerwick road');
+      this.add.image((road.x+.5)*TILE,road.y*TILE,this.session.hasLodging?'mossbank-road-west':'mossbank-road-inkwood').setOrigin(.5,.93).setDepth(road.y*TILE);
+      label(road.x+.5,road.y+.8,this.session.hasLodging?'← Ledgerwick road':'← Inkwood road');
     } else if(this.room==='pumpworks') {
       const station=(x:number,y:number,width:number,height:number,color:number,title:string)=>{
         const px=(x+.5)*TILE,py=(y+.5)*TILE;

@@ -33,4 +33,4 @@ trap 'exit 143' TERM
 cd -- "$repo"
 IH2_TEST_DATABASE_URL="postgres://ih2@127.0.0.1:$port/ih2_test" \
 IH2_GLASSHOUSE_TEMP_DATA="$data" \
-  node --experimental-strip-types --test tests/server-glasshouse-funding.test.ts
+  node --experimental-strip-types --test --test-concurrency=1 tests/server-glasshouse-funding.test.ts tests/server-mossbank-route.test.ts

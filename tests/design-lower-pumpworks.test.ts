@@ -34,5 +34,9 @@ test('Both Lower Pumpworks floors have reachable landmarks, a side-chest loop, a
  const oldReturn=distance('lower',chamber,up)+distance('upper',down,named('upper','exit'));
  const shortReturn=distance('lower',chamber,lift)+distance('upper',LANDING_RETURN,named('upper','exit'));
  assert.ok(shortReturn<oldReturn*.7,'Exploration should unlock a visibly shorter route home.');
- assert.ok(distance('lower',LOWER_START,kiln,lift)>0,'The kiln chest and exit can be reached without entering the boss chamber.');
+ const lower=DUNGEON.lower;
+ const bossRoom=lower.spaces.find(space=>space.kind==='danger')!;
+ const withoutBoss={...lower.world,blocked:[...lower.world.blocked,bossRoom.bounds]};
+ assert.ok(routeTo('pumpworks',LOWER_START,kiln,withoutBoss).length>0,'The kiln remains reachable when the boss chamber is closed.');
+ assert.ok(routeTo('pumpworks',kiln,lift,withoutBoss).length>0,'The freight lift remains reachable when the boss chamber is closed.');
 });

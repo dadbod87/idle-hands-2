@@ -206,6 +206,14 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     await capture('retreat');
     await walk('pumpworks-hopper');
     await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{timeout:11000,intervals:[40]}).toBe('windup');
+    await expect.poll(async()=>(await read(page))?.state.health,{intervals:[30]}).toBe(5);
+    await page.keyboard.press('f');
+    await expect.poll(async()=>(await read(page))?.combat.impact?.kind,{intervals:[20]}).toBe('heal');
+    const restored=(await read(page))!.state;
+    expect(restored.health).toBe(8);
+    expect(restored.oatcake).toBe('used');
+    await capture('heal');
+    await expect(button('Eat oatcake · +3 health')).toBeDisabled();
     // Standing still through several lunges is a genuine loss condition.
     await expect(page.locator('[data-pumpworks=bed]')).toBeVisible({timeout:19000});
     await ready('lodging');

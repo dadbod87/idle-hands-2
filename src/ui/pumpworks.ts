@@ -136,7 +136,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    });
    if(result.ok&&onField){
     const kind=action==='strike'||action==='counter'?action:
-     action==='guard'?'blocked':action==='hit'||action==='splash-hit'?'damage':null;
+     action==='guard'?'blocked':action==='hit'||action==='splash-hit'?'damage':action==='eat'?'heal':null;
     if(kind){
      const point=kind==='strike'||kind==='counter'?hopper.feet:host.combat().position;
      impact={kind,point:{...point},until:performance.now()+FIELD_IMPACT_MS};
@@ -144,6 +144,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     }
     if(action==='hit'||action==='splash-hit')host.cue('thud');
     if(action==='guard')host.cue('block');
+    if(action==='eat')host.cue('heal');
    }
    refresh();
    host.feedback(result.message);

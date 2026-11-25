@@ -518,7 +518,11 @@ export class WorldScene extends Phaser.Scene {
       const extent=reduced?15:15+10*(1-remaining/FIELD_IMPACT_MS);
       const color=impact.kind==='blocked'||impact.kind==='shell'?0xb3d1d2:impact.kind==='damage'?0xd28466:0xffd07c;
       const alpha=reduced?1:Math.min(1,remaining/110);
-      if(impact.kind==='blocked'||impact.kind==='shell'){
+      if(impact.kind==='heal'){
+        const rise=reduced?0:12*(1-remaining/FIELD_IMPACT_MS),up=iy-22-rise;
+        ink.lineStyle(7,0x30483c,alpha).lineBetween(ix-9,up,ix+9,up).lineBetween(ix,up-9,ix,up+9);
+        ink.lineStyle(3,0xf1f0ba,alpha).lineBetween(ix-9,up,ix+9,up).lineBetween(ix,up-9,ix,up+9);
+      }else if(impact.kind==='blocked'||impact.kind==='shell'){
         ink.lineStyle(5,0x3b3b31,alpha).strokeRoundedRect(ix-extent,iy-extent,extent*2,extent*2,6);
         ink.lineStyle(2,color,alpha).strokeRoundedRect(ix-extent,iy-extent,extent*2,extent*2,6);
       }else{

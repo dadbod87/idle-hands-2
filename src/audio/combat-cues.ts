@@ -1,4 +1,4 @@
-export const FIELD_CUES=['lunge','splash','swing','thud','block','bell'] as const;
+export const FIELD_CUES=['lunge','splash','swing','thud','block','bell','heal'] as const;
 export type FieldCue=typeof FIELD_CUES[number];
 
 const shape:Record<FieldCue,{body:number;tail:number;seconds:number;noise:number;gain:number}>={
@@ -8,6 +8,7 @@ const shape:Record<FieldCue,{body:number;tail:number;seconds:number;noise:number
  thud:{body:114,tail:67,seconds:.15,noise:.31,gain:.18},
  block:{body:345,tail:194,seconds:.11,noise:.13,gain:.13},
  bell:{body:724,tail:701,seconds:.175,noise:.05,gain:.08},
+ heal:{body:311,tail:406,seconds:.14,noise:.10,gain:.09},
 };
 
 /** Short original cues, synthesized once when game effects are enabled. */

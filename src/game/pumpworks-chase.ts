@@ -7,7 +7,7 @@ export const HOPPER_MOVEMENT={
  strikeCooldown:.46,braceSeconds:1.45,braceCooldown:2.2,
 } as const;
 type Phase='idle'|'chase'|'windup'|'charge'|'recover';
-export type FieldImpactKind='strike'|'counter'|'damage'|'blocked'|'bell'|'shell';
+export type FieldImpactKind='strike'|'counter'|'damage'|'blocked'|'bell'|'shell'|'heal';
 export type FieldImpact={kind:FieldImpactKind;point:Point;until:number};
 export const FIELD_IMPACT_MS=450;
 export type HopperMotion={

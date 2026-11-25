@@ -1,7 +1,9 @@
+import {FIELD_CUES,renderFieldCue} from '../src/audio/combat-cues.ts';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {applyPumpworks,FIELD_HEALTH,freshPumpworks,PUMPWORKS_KEY,readPumpworks,savePumpworks,type PumpworksAction,type PumpworksPlace,type PumpworksState} from '../src/game/pumpworks.ts';
 import {PUMPWORKS_DOOR,PUMPWORKS_ENTRY,PUMPWORKS_ROOM} from '../src/game/pumpworks-room.ts';
+import {braceForHopper,freshHopper,hopperNotices,stepHopper,swingAtHopper,type HopperMotion} from '../src/game/pumpworks-chase.ts';
 import {Session} from '../src/game/session.ts';
 import {canStand,clearSegment,routeTo} from '../src/game/world.ts';
 
@@ -14,31 +16,33 @@ function prepared(){
  const issued=play(freshPumpworks(),'issue','locker');
  return play(issued,'equip','elsewhere');
 }
-test('Pumpworks requires its own equipped gear and rewards reading the telegraph',()=>{
+test('The hopper can chase an unarmed resident, and only equipped strikes damage it',()=>{
  const initial=freshPumpworks();
  assert.equal(applyPumpworks(initial,'issue','arena').ok,false);
  assert.equal(applyPumpworks(initial,'equip','elsewhere').ok,false);
- assert.equal(applyPumpworks(initial,'begin','arena').ok,false);
+ const surprised=play(initial,'begin','arena');
+ assert.equal(applyPumpworks(surprised,'strike','arena').ok,false);
  let state=play(prepared(),'begin','arena');
  assert.equal(applyPumpworks(state,'pack','elsewhere').ok,false);
  assert.equal(applyPumpworks(state,'strike','bench').ok,false);
  state=play(state,'strike','arena');
- assert.deepEqual(state.fight,{health:6,tell:'rush'});
- state=play(state,'brace','arena');
- assert.equal(state.health,5);
- state=play(state,'strike','arena');
- assert.deepEqual(state.fight,{health:1,tell:'probe'});
- state=play(state,'strike','arena');
+ assert.deepEqual(state.fight,{health:7});
+ assert.equal(state.health,FIELD_HEALTH);
+ state=play(state,'guard','arena');
+ assert.equal(state.health,7);
+ state=play(state,'counter','arena');
+ assert.deepEqual(state.fight,{health:3});
+ state=play(state,'counter','arena');
  assert.equal(state.cleared,true);
  state=play(state,'report','desk');
  assert.equal(state.reported,true);
  assert.equal(applyPumpworks(state,'report','desk').ok,false);
  assert.equal(applyPumpworks(state,'begin','arena').ok,false);
 });
-test('Heavy rush returns the resident to bed and the lost satchel has one safe recovery',()=>{
+test('Real-time impacts can cause a return to bed and the lost satchel has one safe recovery',()=>{
  let state=play(prepared(),'begin','arena');
- state=play(state,'strike','arena');
- const defeat=applyPumpworks(state,'strike','arena');
+ state=play(play(state,'hit','arena'),'hit','arena');
+ const defeat=applyPumpworks(state,'hit','arena');
  if(!defeat.ok)assert.fail(defeat.message);
  assert.equal(defeat.returnToBed,true);
  state=defeat.state;
@@ -53,9 +57,9 @@ test('Heavy rush returns the resident to bed and the lost satchel has one safe r
  assert.equal(state.satchel,'carried');
  assert.equal(applyPumpworks(state,'recover','cache').ok,false);
  state=play(state,'begin','arena');
- state=play(state,'strike','arena');
+ state=play(state,'hit','arena');
  state=play(state,'retreat','arena');
- assert.equal(state.health,6);
+ assert.equal(state.health,5);
  state=play(state,'rest','bench');
  assert.equal(state.health,FIELD_HEALTH);
 });
@@ -95,7 +99,7 @@ test('All Pumpworks stations are reachable and the canal requires its footbridge
 test('An oatcake heals once, never at full health, and waits with a lost satchel',()=>{
  let state=play(prepared(),'begin','arena');
  assert.equal(applyPumpworks(state,'eat','arena').ok,false);
- state=play(state,'strike','arena');
+ state=play(state,'hit','arena');
  const warning=state.fight;
  state=play(state,'eat','arena');
  assert.equal(state.health,FIELD_HEALTH);
@@ -104,9 +108,9 @@ test('An oatcake heals once, never at full health, and waits with a lost satchel
  assert.equal(applyPumpworks(state,'eat','arena').ok,false);
  assert.equal(applyPumpworks(state,'oatcake','locker').ok,false);
  let old=play(prepared(),'begin','arena');
- old=play(play(old,'strike','arena'),'strike','arena');
+ old=play(play(play(old,'hit','arena'),'hit','arena'),'hit','arena');
  old=play(old,'wake','bed');
- old=play(play(old,'begin','arena'),'strike','arena');
+ old=play(play(old,'begin','arena'),'hit','arena');
  assert.equal(old.satchel,'at-pump');
  assert.equal(applyPumpworks(old,'eat','arena').ok,false);
  const {oatcake,...legacy}=prepared();
@@ -115,4 +119,60 @@ test('An oatcake heals once, never at full health, and waits with a lost satchel
  if(!decoded.ok)assert.fail(decoded.message);
  assert.equal(decoded.state.oatcake,'unissued');
  assert.equal(play(decoded.state,'oatcake','locker').oatcake,'packed');
+});
+
+function untilPhase(start:HopperMotion,player:{x:number;y:number},phase:HopperMotion['phase']){
+ let motion=start;
+ const impacts:string[]=[];
+ for(let i=0;i<240&&motion.phase!==phase;i++){
+  const next=stepHopper(motion,player,.025);
+  motion=next.motion;
+  if(next.impact)impacts.push(next.impact);
+ }
+ assert.equal(motion.phase,phase);
+ return {motion,impacts};
+}
+test('The real-time hopper notices, follows, and locks its lunge to a dodgeable line',()=>{
+ const player={x:13.7,y:10};
+ assert.equal(hopperNotices({x:10,y:10}),false);
+ assert.equal(hopperNotices(player),true);
+ const started=stepHopper(freshHopper(),player,.04).motion;
+ const moved=stepHopper(started,player,.04).motion;
+ assert.ok(moved.feet.x<started.feet.x);
+ const windup=untilPhase(moved,player,'windup').motion;
+ assert.deepEqual(windup.aim,player);
+ const sidestep={x:13.8,y:11.8};
+ const dodge=untilPhase(windup,sidestep,'recover');
+ assert.deepEqual(dodge.impacts,[]);
+ assert.deepEqual(dodge.motion.feet,player);
+ const stationary=untilPhase(windup,player,'recover');
+ assert.deepEqual(stationary.impacts,['hit']);
+ const guard=braceForHopper(windup,player)!;
+ assert.equal(braceForHopper(guard,player),null);
+ assert.deepEqual(untilPhase(guard,player,'recover').impacts,['braced']);
+ const retreat=stepHopper(windup,{x:11.5,y:12},.04);
+ assert.equal(retreat.motion.phase,'idle');
+ assert.equal(retreat.impact,null);
+});
+test('Swings need reach and gear, have a cooldown, and deal more after a lunge',()=>{
+ const player={x:15,y:9};
+ const windup=untilPhase(freshHopper(),player,'windup').motion;
+ const recover=untilPhase(windup,player,'recover').motion;
+ assert.equal(swingAtHopper(recover,player,false),null);
+ const miss=swingAtHopper(recover,{x:13,y:5},true)!;
+ assert.equal(miss.hit,null);
+ assert.equal(swingAtHopper(miss.motion,player,true),null);
+ assert.equal(swingAtHopper(recover,player,true)?.hit,'counter');
+});
+
+test('Combat cues are short, bounded and silent at their endpoints',()=>{
+ const clips=FIELD_CUES.map(cue=>renderFieldCue(cue,22050));
+ for(const clip of clips){
+  assert.ok(clip.length<4000);
+  assert.equal(Math.abs(clip[0]),0);
+  assert.equal(Math.abs(clip.at(-1)!),0);
+  assert.ok(clip.every(sample=>Number.isFinite(sample)&&Math.abs(sample)<.2));
+  assert.ok(clip.some(sample=>Math.abs(sample)>.01));
+ }
+ assert.notDeepEqual(clips[0],clips[1]);
 });

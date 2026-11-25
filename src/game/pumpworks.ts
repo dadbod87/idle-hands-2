@@ -2,17 +2,8 @@ import {z} from 'zod';
 
 export const FIELD_HEALTH=8;
 export const OATCAKE_HEAL=3;
-const HOPPER_HEALTH=9;
+export const HOPPER_HEALTH=9;
 export const PUMPWORKS_KEY='ih2:pumpworks:v1';
-const tells=z.enum(['probe','rush','exposed']);
-type Tell=z.infer<typeof tells>;
-export const HOPPER_TELLS={
- probe:'The hopper tests its footing. A quick swipe is coming.',
- rush:'It crouches low. A rush is coming. Brace for this one.',
- exposed:'It has slid on the wet tiles. This is a clear opening.',
-} as const satisfies Record<Tell,string>;
-const nextTell={probe:'rush',rush:'exposed',exposed:'probe'} as const satisfies Record<Tell,Tell>;
-
 const recordSchema=z.object({
  version:z.literal(1),
  revision:z.number().int().min(0).max(100000),
@@ -20,21 +11,24 @@ const recordSchema=z.object({
  rod:z.enum(['unissued','packed','equipped']),
  oatcake:z.enum(['unissued','packed','used']).default('unissued'),
  satchel:z.enum(['none','carried','at-pump']),
- fight:z.object({health:z.number().int().min(1).max(HOPPER_HEALTH),tell:tells}).strict().nullable(),
+ fight:z.object({
+  health:z.number().int().min(1).max(HOPPER_HEALTH),
+  tell:z.enum(['probe','rush','exposed']).optional(),
+ }).strict().transform(({health})=>({health})).nullable(),
  recovering:z.boolean(),
  cleared:z.boolean(),
  reported:z.boolean(),
 }).strict().superRefine((state,ctx)=>{
  if(state.recovering!==(state.health===0)
     ||state.reported&&!state.cleared
-    ||state.fight&&(state.rod!=='equipped'||state.recovering||state.cleared)
+    ||state.fight&&(state.recovering||state.cleared)
     ||state.rod==='unissued'&&state.oatcake!=='unissued'
     ||(state.rod==='unissued')!==(state.satchel==='none')){
   ctx.addIssue({code:'custom',message:'The survey record is inconsistent.'});
  }
 });
 export type PumpworksState=z.infer<typeof recordSchema>;
-export type PumpworksAction='issue'|'oatcake'|'eat'|'equip'|'pack'|'begin'|'strike'|'brace'|'retreat'|'rest'|'wake'|'recover'|'report';
+export type PumpworksAction='issue'|'oatcake'|'eat'|'equip'|'pack'|'begin'|'strike'|'counter'|'hit'|'guard'|'retreat'|'rest'|'wake'|'recover'|'report';
 export type PumpworksPlace='locker'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
 type Result={ok:false;message:string}|{ok:true;state:PumpworksState;message:string;returnToBed?:true};
 
@@ -70,34 +64,37 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
    return refuse('Check your current outing gear.');
   case 'begin':
    if(place!=='arena'||state.cleared||state.fight)return refuse('There is no new encounter here.');
-   if(state.rod!=='equipped')return refuse('Equip the sounding rod from Bag first.');
-   return accept({fight:{health:HOPPER_HEALTH,tell:'probe'}},'The hopper notices you.');
+   return accept({fight:{health:HOPPER_HEALTH}},state.rod==='equipped'?'The hopper spotted you.':'The hopper spotted you. The survey locker has a rod.');
   case 'strike':
-  case 'brace': {
-   const fight=state.fight;
-   if(place!=='arena'||!fight)return refuse('Walk up to the encounter first.');
-   const damage=action==='strike'?(fight.tell==='exposed'?5:3):0;
-   const remaining=fight.health-damage;
-   if(remaining<=0)return accept({fight:null,cleared:true},'The hopper slips through the grate. The inspection desk is clear.');
-   const incoming=fight.tell==='exposed'?0:action==='brace'?1:fight.tell==='rush'?6:2;
-   const health=Math.max(0,state.health-incoming);
-   if(!health)return accept({
+  case 'counter': {
+   if(place!=='arena'||!state.fight||state.rod!=='equipped')return refuse('Get within reach with the rod equipped.');
+   const damage=action==='counter'?4:2;
+   const remaining=state.fight.health-damage;
+   if(remaining<=0)return accept({fight:null,cleared:true},'The hopper slipped into the grate. The inspection desk is clear.');
+   return accept({fight:{health:remaining}},action==='counter'?'Good timing. The hopper was open.':'The rod clips the hopper.');
+  }
+  case 'hit':
+  case 'guard': {
+   if(place!=='arena'||!state.fight)return refuse('There is no encounter here.');
+   const damage=action==='guard'?1:3;
+   const health=Math.max(0,state.health-damage);
+   if(health===0)return accept({
     health:0,recovering:true,fight:null,satchel:state.satchel==='carried'?'at-pump':state.satchel,
-   },'You wake at the boarding house. Your field satchel is on the Pumpworks shelf.',true);
-   const outcome=action==='strike'?('You land a strike for '+damage+'.'):'You brace against the hopper.';
-   const hit=incoming?' You lose '+incoming+' health.':' You take no damage.';
-   return accept({health,fight:{health:remaining,tell:nextTell[fight.tell]}},outcome+hit);
+   },state.satchel==='none'?'You wake at the boarding house.':
+    'You wake at the boarding house. Your field satchel is on the Pumpworks shelf.',true);
+   return accept({health},action==='guard'?'Braced · lost 1 health.':'Hit by the lunge · lost 3 health.');
   }
   case 'retreat':
    if(place!=='arena'||!state.fight)return refuse('There is no active encounter to leave.');
-   return accept({fight:null},'You step back. Rest at the dry bench before trying again.');
+   return accept({fight:null},'You got away. Rest at the dry bench if you need it.');
   case 'rest':
    if(place!=='bench'&&place!=='bed')return refuse('Find the dry bench or your boarding-house bed.');
    if(state.health===FIELD_HEALTH&&!state.fight)return refuse('Your health is already full.');
    return accept({health:FIELD_HEALTH,fight:null},'Health restored.');
   case 'wake':
    if(place!=='bed'||!state.recovering)return refuse('There is no recovery to confirm here.');
-   return accept({health:FIELD_HEALTH,recovering:false},'Health restored. Your field satchel can be picked up without another fight.');
+   return accept({health:FIELD_HEALTH,recovering:false},state.satchel==='at-pump'
+    ?'Health restored. Your field satchel can be picked up without another fight.':'Health restored.');
   case 'recover':
    if(place!=='cache'||state.satchel!=='at-pump')return refuse('There is no field satchel to collect here.');
    return accept({satchel:'carried'},'Field satchel recovered.');

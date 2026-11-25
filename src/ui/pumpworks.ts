@@ -1,7 +1,10 @@
+import type {FieldCue} from '../audio/combat-cues.ts';
 import {
- FIELD_HEALTH,HOPPER_TELLS,OATCAKE_HEAL,PUMPWORKS_KEY,readPumpworks,savePumpworks,
+ FIELD_HEALTH,OATCAKE_HEAL,PUMPWORKS_KEY,readPumpworks,savePumpworks,
  type PumpworksAction,type PumpworksPlace,
 } from '../game/pumpworks.ts';
+import {braceForHopper,freshHopper,hopperLeash,hopperNotices,stepHopper,swingAtHopper} from '../game/pumpworks-chase.ts';
+import type {Point} from '../game/world.ts';
 import './pumpworks.css';
 
 const ROD_ART='/art/pumpworks/sounding-rod.svg';
@@ -9,6 +12,10 @@ const ROD_ART='/art/pumpworks/sounding-rod.svg';
 type Host={
  body:HTMLElement;
  hud:HTMLElement;
+ controls:HTMLElement;
+ combat:()=>{inRoom:boolean;able:boolean;position:Point};
+ wakeFrame:()=>void;
+ cue:(cue:FieldCue)=>void;
  open:(title:string)=>void;
  place:()=>PumpworksPlace;
  equipment:()=>void;
@@ -18,7 +25,7 @@ type Host={
 };
 
 const titles:Partial<Record<PumpworksPlace,string>>={
- locker:'Survey locker',arena:'Silt hopper',bench:'Dry bench',bed:'Boarding-house bed',
+ locker:'Survey locker',bench:'Dry bench',bed:'Boarding-house bed',
  cache:'Lost property shelf',desk:'Inspection desk',
 };
 function paragraph(text:string){
@@ -36,6 +43,30 @@ function meter(label:string,value:number,max:number){
 export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setItem'>){
  let record=readPumpworks(storage);
  let busy=false;
+ let hopper=freshHopper();
+ let priorAt=0;
+ let retryAt=0;
+ let renderedControls='';
+ const fieldStatus=document.createElement('span');
+ fieldStatus.className='pump-control-status';
+ const fieldReadout=document.createElement('div');fieldReadout.className='pump-readout';
+ fieldReadout.append(fieldStatus);
+ const worldHud=host.hud.parentElement!;
+ const strikeButton=button('Strike',()=>strike());
+ const braceButton=button('Brace',()=>brace());
+ const oatcakeButton=button('Eat',()=>eat());
+ strikeButton.setAttribute('aria-keyshortcuts','Space');
+ braceButton.setAttribute('aria-keyshortcuts','Shift');
+ oatcakeButton.setAttribute('aria-keyshortcuts','F');
+ oatcakeButton.setAttribute('aria-label','Eat oatcake · +'+OATCAKE_HEAL+' health');
+ for(const [action,label,key] of [[strikeButton,'Strike','Space'],[braceButton,'Brace','Shift'],[oatcakeButton,'Eat oatcake · +'+OATCAKE_HEAL+' health','F']] as const){
+  action.setAttribute('aria-label',label);
+  const hint=document.createElement('kbd');hint.setAttribute('aria-hidden','true');hint.textContent=key;
+  action.append(hint);
+ }
+ const actionRow=document.createElement('div');actionRow.className='pump-action-row';
+ actionRow.append(strikeButton,braceButton,oatcakeButton);
+ host.controls.append(fieldReadout,actionRow);
  const current=()=>record.ok?record.state:null;
  const refresh=()=>{record=readPumpworks(storage);host.update();};
  window.addEventListener('storage',event=>{if(event.key===PUMPWORKS_KEY||event.key===null)refresh();});
@@ -47,7 +78,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   return item;
  }
 
- async function change(action:PumpworksAction,place:PumpworksPlace,present:()=>boolean,expected:string|null){
+ async function change(action:PumpworksAction,place:PumpworksPlace,present:()=>boolean,expected:string|null,onField=false){
   if(!present()||busy)return '';
   record=readPumpworks(storage);
   if(!record.ok){host.feedback(record.message);return record.message;}
@@ -58,17 +89,107 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   busy=true;
   try{
    const result=await navigator.locks.request(PUMPWORKS_KEY,()=>{
-    if(!present()||(place!=='elsewhere'&&host.place()!==place))return {ok:false as const,message:'Return to the marked spot first.'};
+    if(!present()||(!onField&&place!=='elsewhere'&&host.place()!==place))return {ok:false as const,message:'Return to the marked spot first.'};
     return savePumpworks(storage,expected,action,place);
    });
    refresh();
    host.feedback(result.message);
+   if(result.ok&&onField){
+    if(action==='hit')host.cue('thud');
+    if(action==='guard')host.cue('block');
+   }
    if(result.ok&&result.returnToBed)host.moveToBed();
    return result.message;
   }catch{
    const text='The outing could not be confirmed in this browser.';
    host.feedback(text);return text;
   }finally{busy=false;}
+ }
+
+ const encounterActive=()=>hopper.phase!=='idle';
+ function encounter(){
+  const currentFight=current()?.fight;
+  return {
+   hopper,
+   enemyHealth:currentFight?.health??null,
+   recovering:current()?.recovering??false,
+  };
+ }
+ async function combatAction(action:PumpworksAction){
+  if(busy||!record.ok)return;
+  const expected=record.raw;
+  const before=record.state.revision;
+  await change(action,'arena',()=>host.combat().able,expected,true);
+  if(before===current()?.revision)retryAt=performance.now()+1800;
+ }
+ function input(action:'strike'|'brace'|'eat'){
+  const context=host.combat(),state=current();
+  if(!context.able||!state?.fight||busy||state.cleared||state.recovering)return;
+  if(action==='strike'){
+   const attack=swingAtHopper(hopper,context.position,state.rod==='equipped');
+   if(!attack)return;
+   hopper=attack.motion;
+   host.cue('swing');
+   if(attack.hit)void combatAction(attack.hit);
+   else host.feedback('Out of reach. Get closer after it lands.');
+  }else if(action==='brace'){
+   const next=braceForHopper(hopper,context.position);
+   if(!next)return;
+   hopper=next;
+  }else if(state.oatcake==='packed'&&state.satchel==='carried'&&state.health<FIELD_HEALTH&&hopperLeash(context.position)){
+   void combatAction('eat');
+  }
+  host.wakeFrame();
+ }
+ function strike(){input('strike');}
+ function brace(){input('brace');}
+ function eat(){input('eat');}
+
+ function tick(now:number){
+  const context=host.combat(),state=current();
+  if(!context.inRoom){
+   if(!host.controls.hidden)host.controls.hidden=true;
+   if(hopper.phase!=='idle')hopper=freshHopper();
+   priorAt=0;
+   return;
+  }
+  const dt=priorAt?(now-priorAt)/1000:0;
+  priorAt=now;
+  if(!state||state.cleared||state.recovering){
+   if(hopper.phase!=='idle')hopper=freshHopper();
+  }
+  else if(context.able&&!busy){
+   if(!hopperLeash(context.position)){
+    hopper=freshHopper();
+    if(state.fight&&now>=retryAt)void combatAction('retreat');
+   }else if(state.fight){
+    const next=stepHopper(hopper,context.position,dt);
+    if(hopper.phase!=='windup'&&next.motion.phase==='windup')host.cue('lunge');
+    hopper=next.motion;
+    if(next.impact)void combatAction(next.impact==='braced'?'guard':'hit');
+   }else if(hopperNotices(context.position)&&now>=retryAt){
+    void combatAction('begin');
+   }
+  }
+  paintControls(state);
+ }
+
+ function paintControls(state:ReturnType<typeof current>){
+  if(host.controls.hidden)host.controls.hidden=false;
+  const disabled=!state?.fight||hopper.phase==='idle'||busy;
+  const strikeDisabled=disabled||state?.rod!=='equipped'||hopper.strikeCooldown>0;
+  const braceDisabled=disabled||hopper.braceCooldown>0;
+  const eatDisabled=disabled||state?.oatcake!=='packed'||state?.satchel!=='carried'||state.health===FIELD_HEALTH;
+  const text=state?.cleared?'Cleared':hopper.phase==='windup'?'Lunge coming':hopper.phase==='charge'?'Lunging':hopper.phase==='recover'?'Open to strike':hopper.phase==='chase'?'Chasing':'Cross the bridge';
+  const status=hopper.guard>0?'Braced':text;
+  const key=[status,strikeDisabled,braceDisabled,eatDisabled,hopper.phase].join(':');
+  if(renderedControls===key)return;
+  renderedControls=key;
+  fieldStatus.textContent=status;
+  host.controls.dataset.phase=hopper.phase;
+  strikeButton.disabled=strikeDisabled;
+  braceButton.disabled=braceDisabled;
+  oatcakeButton.disabled=eatDisabled;
  }
 
  function show(place:PumpworksPlace){
@@ -100,36 +221,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      panel.append(button('Open Bag',host.equipment));
      if(state.oatcake==='unissued')add('Pack your oatcake','oatcake');
     }
-   }else if(place==='arena'){
-    const gauges=document.createElement('div');gauges.className='pump-gauges';
-    gauges.append(meter('Your health',state.health,FIELD_HEALTH));
-    panel.append(gauges);
-    if(state.cleared)panel.append(paragraph('The hopper slipped through the grate. The inspection desk is clear.'));
-    else if(state.fight){
-     gauges.append(meter('Silt hopper',state.fight.health,9));
-     const tell=paragraph(HOPPER_TELLS[state.fight.tell]);
-     tell.className='pump-tell';tell.dataset.tell=state.fight.tell;
-     panel.append(tell);
-     const actions=document.createElement('div');
-     actions.className='pump-actions';
-     actions.append(button('Strike with rod',()=>void submit('strike')),button('Brace',()=>void submit('brace')));
-     const options=document.createElement('div');options.className='pump-actions pump-options';
-     options.append(button('Step back',()=>void submit('retreat')));
-     if(state.oatcake==='packed'&&state.satchel==='carried'){
-      const snack=button('Eat oatcake · +'+OATCAKE_HEAL+' health',()=>void submit('eat'));
-      snack.disabled=busy||state.health>=FIELD_HEALTH;
-      options.append(snack);
-     }
-     panel.append(actions,options);
-    }else{
-     panel.append(paragraph('The hopper waits past the wet tiles. Read its movements, and brace when it crouches.'));
-     if(state.rod==='equipped')add('Face the Silt hopper','begin');
-     else panel.append(button('Open Bag to equip the rod',host.equipment));
-    }
    }else if(place==='bench'||place==='bed'){
     panel.append(meter('Your health',state.health,FIELD_HEALTH));
     if(state.recovering){
-     panel.append(paragraph('You’re back in Ledgerwick. The field satchel is on the lost property shelf in the Pumpworks.'));
+     panel.append(paragraph(state.satchel==='at-pump'?'You’re back in Ledgerwick. The field satchel is on the lost property shelf in the Pumpworks.':'You’re back in Ledgerwick. Get up when you’re ready.'));
      add('Get up and recover','wake');
     }else if(state.health<FIELD_HEALTH||state.fight){
      panel.append(paragraph('Rest here to restore health and reset an unfinished encounter.'));
@@ -155,7 +250,6 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    if(present()){
     render();
     if(note)panel.querySelector<HTMLElement>('[role=status]')?.focus({preventScroll:true});
-    if(place==='arena')panel.closest('dialog')?.scrollTo(0,0);
    }
   }
   refresh();
@@ -217,7 +311,9 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   body.append(entry);
  }
 
- function paintHealth(visible:boolean){
+ function paintHealth(visible:boolean,field=false){
+  const home=field?fieldReadout:worldHud;
+  if(host.hud.parentElement!==home)home.append(host.hud);
   const state=current();
   host.hud.hidden=!visible||!state;
   if(host.hud.hidden||!state)return;
@@ -228,5 +324,5 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   }
  }
 
- return {current,show,gear,journal,paintHealth};
+ return {current,show,gear,journal,paintHealth,tick,encounter,encounterActive,strike,brace,eat};
 }

@@ -1,31 +1,43 @@
 import {expect,test,type Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
-import {PUMPWORKS_FRONT} from '../src/game/pumpworks-room.ts';
+import {PUMPWORKS_FRONT,HOPPER_FEET} from '../src/game/pumpworks-room.ts';
+import type {PumpworksState} from '../src/game/pumpworks.ts';
+import type {HopperMotion} from '../src/game/pumpworks-chase.ts';
+import type {Point} from '../src/game/world.ts';
 
 const output=process.env.QA_EVIDENCE_DIR??'test-results/browser';
 const close=(page:Page)=>page.getByRole('button',{name:'Close panel',exact:true});
+type Pilot={
+ snapshot():{room:string;nearby:string|null;position:Point;walking:boolean};
+ pumpworks():PumpworksState;
+ pumpworksMotion():{hopper:HopperMotion;enemyHealth:number|null};
+ screenPoint(x:number,y:number):Point;
+};
 const read=(page:Page)=>page.evaluate(()=>{
- const pilot=(window as Window&{__pilot?:{snapshot():{room:string;nearby:string|null};pumpworks():{health:number}}}).__pilot;
- return pilot?{...pilot.snapshot(),field:pilot.pumpworks()}:null;
+ const pilot=(window as Window&{__pilot?:Pilot}).__pilot;
+ return pilot?{...pilot.snapshot(),state:pilot.pumpworks(),combat:pilot.pumpworksMotion()}:null;
 });
 
 for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},{name:'phone',width:320,height:640,text:100,touch:true},{name:'short200',width:844,height:390,text:200,touch:true}]){
- test('Pumpworks field outing through walking, Bag, combat and Journal · '+shape.name,async({browser})=>{
-  test.setTimeout(90000);
+ test('Pumpworks real-time chase, dodge, equipment and field seal · '+shape.name,async({browser})=>{
+  test.setTimeout(120000);
   mkdirSync(output,{recursive:true});
-  const context=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch});
+  const recording=process.env.QA_RECORD_PUMPWORKS==='1'&&shape.name==='phone'?{dir:output+'/raw-motion',size:{width:320,height:640}}:undefined;
+  const context=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch,recordVideo:recording});
   const page=await context.newPage();
   const errors:string[]=[],requests:string[]=[];
   page.on('pageerror',error=>errors.push(error.message));
   page.on('request',request=>{if(new URL(request.url()).pathname.startsWith('/api/'))requests.push(request.url());});
-  const press=async(name:string)=>{
-   const button=page.getByRole('button',{name,exact:true});
-   if(shape.touch)await button.tap();else await button.click();
+  const button=(name:string)=>page.getByRole('button',{name,exact:true});
+  const press=async(name:string)=>{if(shape.touch)await button(name).tap();else await button(name).click();};
+  const capture=(id:string)=>page.screenshot({path:output+'/pumpworks-'+shape.name+'-'+id+'.png'});
+  const walk=async(id:string)=>{
+   await press('Places');
+   const destination=page.locator('[data-destination="'+id+'"]');
+   if(shape.touch)await destination.tap();else await destination.click();
   };
   const station=async(id:string)=>{
-   await press('Places');
-   const button=page.locator('[data-destination="'+id+'"]');
-   if(shape.touch)await button.tap();else await button.click();
+   await walk(id);
    await expect.poll(async()=>(await read(page))?.nearby,{timeout:23000}).toBe(id);
    await page.locator('#interact').click();
   };
@@ -34,8 +46,45 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    await expect(page.locator('#location')).toHaveAttribute('data-room',room);
    await page.evaluate(text=>document.documentElement.style.fontSize=text+'%',shape.text);
   }
+  async function move(point:Point){
+   const position=await page.evaluate(point=>(window as Window&{__pilot?:Pilot}).__pilot!.screenPoint(point.x,point.y),point);
+   const canvas=page.locator('canvas');
+   if(shape.touch)await canvas.tap({position});else await canvas.click({position});
+  }
+  async function outmaneuver(){
+   await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{timeout:7500,intervals:[35]}).toBe('windup');
+   const before=(await read(page))!;
+   const {aim,origin}=before.combat.hopper;
+   const vector={x:aim!.x-origin!.x,y:aim!.y-origin!.y};
+   const magnitude=Math.hypot(vector.x,vector.y)||1;
+   const perpendicular={x:vector.y/magnitude,y:-vector.x/magnitude};
+   const points=[1,-1].map(s=>({x:aim!.x+perpendicular.x*1.45*s,y:aim!.y+perpendicular.y*1.45*s}));
+   const target=points.find(p=>p.x>13&&p.x<18.9&&p.y>4.7&&p.y<12.3)??{x:15,y:6.4};
+   await move(target);
+   await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{timeout:4500,intervals:[35]}).toBe('recover');
+   expect((await read(page))!.state.health).toBe(before.state.health);
+  }
+  async function fight(){
+   for(let turns=0;turns<32;turns++){
+    const live=(await read(page))!;
+    if(live.state.cleared)return;
+    expect(live.room).toBe('pumpworks');
+    if(live.combat.hopper.phase==='windup'&&live.combat.hopper.braceCooldown===0){
+     if(shape.touch)await press('Brace');else await page.keyboard.press('Shift');
+    }
+    if(live.state.oatcake==='packed'&&live.state.health<=5&&live.state.satchel==='carried'&&await button('Eat oatcake · +3 health').isEnabled()){
+     await press('Eat oatcake · +3 health');
+    }
+    if(await button('Strike').isEnabled()){
+     if(shape.touch)await press('Strike');else await page.keyboard.press('Space');
+    }
+    await page.waitForTimeout(130);
+   }
+   expect((await read(page))!.state.cleared).toBe(true);
+  }
   try{
-   // Only starting position and lighting are fixtures. Progress is earned through native UI input.
+   // Only starting feet and cosmetic lighting are seeded. Enemy motion and
+   // actions use the real browser clock with no API or action interception.
    await page.addInitScript(point=>{
     if(!localStorage.getItem('ih2:pilot-position:v1')){
      localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:point}));
@@ -44,95 +93,78 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    await page.goto('/?sky-study=1&phase=day&weather=clear');
    await ready('square');
    const workshop=await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'));
-   await page.screenshot({path:output+'/pumpworks-'+shape.name+'-hatch.png'});
-   await press('Inspect The Pumpworks');
+   await capture('hatch');
    await press('Enter the Pumpworks');
    await ready('pumpworks');
    await expect(page.locator('#pump-health')).toContainText('Health 8 / 8');
-   await page.screenshot({path:output+'/pumpworks-'+shape.name+'-arrival.png'});
+   await capture('arrival');
    await station('pumpworks-locker');
    await press('Pack the survey kit');
    await press('Open Bag');
    await expect(page.locator('[data-bag-pocket=equipment]')).toHaveAttribute('aria-pressed','true');
    const gear=page.getByRole('list',{name:'Equipment'}).locator('[data-pump-bag]');
    await expect(gear.locator('.bag-stack-count')).toHaveText('1');
-   if(shape.name==='desktop'){
-    await press('Materials');
-    await expect(gear).toBeHidden();
-    await press('Equipment');
-   }
    await press('Equip sounding rod');
-   await expect(page.locator('[data-pump-bag]')).toContainText('Equipped');
-   await page.screenshot({path:output+'/pumpworks-'+shape.name+'-bag.png'});
+   await expect(gear).toContainText('Equipped');
+   await capture('bag');
    await close(page).click();
-   await station('pumpworks-hopper');
-   await press('Face the Silt hopper');
-   await press('Strike with rod');
-   await expect(page.locator('[data-tell=rush]')).toContainText('Brace');
+
+   await walk('pumpworks-hopper');
+   await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{timeout:15000,intervals:[40]}).toBe('windup');
+   const first=(await read(page))!;
+   expect(first.combat.hopper.feet).not.toEqual(HOPPER_FEET);
+   await expect(page.locator('dialog')).toBeHidden();
+   await capture('lunge');
    if(shape.name==='short200'){
-    for(const target of ['[data-tell=rush]','.pump-actions:not(.pump-options)']){
-     await expect(page.locator(target)).toBeInViewport({ratio:1});
-     const top=await page.locator(target).evaluate(el=>el.getBoundingClientRect().top);
-     const header=await page.locator('.dialog-head').evaluate(el=>el.getBoundingClientRect().bottom);
-     expect(top).toBeGreaterThanOrEqual(header);
-    }
+    for(const name of ['Strike','Brace','Eat oatcake · +3 health'])await expect(button(name)).toBeInViewport({ratio:1});
+    expect(await page.locator('canvas').evaluate(el=>el.getBoundingClientRect().height)).toBeGreaterThan(100);
    }
-   await page.screenshot({path:output+'/pumpworks-'+shape.name+'-telegraph.png'});
    if(shape.name==='desktop'){
-    await page.reload();
-    await ready('pumpworks');
-    await station('pumpworks-hopper');
-    await expect(page.locator('[data-tell=rush]')).toBeVisible();
-    await press('Strike with rod');
+    // Standing still through several lunges is a genuine loss condition.
+    await expect(page.locator('[data-pumpworks=bed]')).toBeVisible({timeout:19000});
     await ready('lodging');
-    await expect(page.locator('[data-pumpworks=bed]')).toBeVisible();
     await page.reload();
     await ready('lodging');
     await expect(page.locator('#pump-health')).toContainText('Health 0 / 8');
-    await page.screenshot({path:output+'/pumpworks-desktop-bed.png'});
+    await capture('bed');
     await press('Get up and recover');
     await expect(page.locator('[data-pumpworks=bed]')).toContainText('Health restored');
     await close(page).click();
     await station('lodging-exit');
     await ready('square');
     await page.locator('#journal').click();
+    await expect(button('Walk to the Pumpworks')).toBeVisible();
     await press('Walk to the Pumpworks');
-    await expect(page.getByRole('button',{name:'Enter the Pumpworks',exact:true})).toBeVisible({timeout:45000});
-    await press('Enter the Pumpworks');
+    await expect(page.locator('#location')).toHaveAttribute('data-room','pumpworks',{timeout:45000});
     await ready('pumpworks');
     await station('pumpworks-cache');
     await press('Recover your field satchel');
     await expect(page.locator('[data-pumpworks=cache]')).toContainText('Field satchel recovered');
     await close(page).click();
-    await station('pumpworks-hopper');
-    await press('Face the Silt hopper');
-    await press('Strike with rod');
+    await walk('pumpworks-hopper');
+    await expect.poll(async()=>(await read(page))?.state.fight,{timeout:14000}).not.toBeNull();
+   }else if(shape.name==='phone'){
+    await outmaneuver();
+    const before=(await read(page))!.combat.enemyHealth!;
+    await press('Strike');
+    await expect.poll(async()=>(await read(page))?.combat.enemyHealth).toBe(before-4);
+    await capture('after-dodge');
    }
-   await expect(page.locator('[data-tell=rush]')).toBeVisible();
-   if(shape.name==='phone'){
-    await press('Eat oatcake · +3 health');
-    await expect(page.locator('[data-pumpworks=arena]')).toContainText('You regain 2 health');
-    await expect(page.locator('[data-tell=rush]')).toBeVisible();
-    await expect(page.getByRole('button',{name:'Eat oatcake · +3 health',exact:true})).toHaveCount(0);
-   }
-   const brace=page.getByRole('button',{name:'Brace',exact:true});
-   if(shape.touch)await brace.tap();
-   else{await brace.focus();await expect(brace).toBeFocused();await page.keyboard.press('Enter');}
-   await expect(page.locator('[data-tell=exposed]')).toBeVisible();
-   await press('Strike with rod');
-   await press('Strike with rod');
-   await expect(page.locator('[data-pumpworks=arena]')).toContainText('inspection desk is clear');
-   await close(page).click();
+   await fight();
    await station('pumpworks-report');
    await press('Take the field seal');
    await close(page).click();
    await press('Journal');
    await expect(page.locator('[data-pump-journal]')).toContainText('Field seal');
-   await page.screenshot({path:output+'/pumpworks-'+shape.name+'-seal.png'});
+   await capture('seal');
    expect(await page.locator('dialog').evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
    expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toEqual(workshop);
    expect(requests).toEqual([]);
    expect(errors).toEqual([]);
-  }finally{await context.close();}
+  }finally{
+   const video=page.video();
+   await context.close();
+   if(video)await video.saveAs(output+'/pumpworks-phone-playthrough.webm');
+  }
  });
 }

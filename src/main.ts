@@ -1,7 +1,7 @@
 import {MOSSBANK_ROAD} from './game/mossbank-room.ts';
 import {MOSSBANK_KEY,readMossbank,type SurveyPlace} from './game/mossbank.ts';
 import {createMossbank} from './ui/mossbank.ts';
-import {PUMPWORKS_DOOR,PUMPWORKS_ENTRY} from './game/pumpworks-room.ts';
+import {PUMPWORKS_DOOR} from './game/pumpworks-room.ts';
 import {FIELD_HEALTH,readPumpworks,type PumpworksPlace} from './game/pumpworks.ts';
 import {LODGING_BEDSIDE} from './game/lodging.ts';
 import {createPumpworks} from './ui/pumpworks.ts';
@@ -94,7 +94,7 @@ app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
  <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">${townMode?'NEIGHBORHOOD STUDY':'<strong id="local-resident-badge" dir="auto">NEIGHBORHOOD STUDY</strong>'}<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
  <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div id="door-light" aria-hidden="true"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><button id="stop-assisted-walk" type="button" aria-keyshortcuts="Escape" hidden>Stop walking</button><button id="wake-resident" class="primary" type="button" hidden>Get up</button><aside class="pump-health" id="pump-health" aria-label="Field health" hidden></aside><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
- <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal<span class="journal-ready-mark" id="journal-ready-mark" aria-hidden="true" hidden></span></button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav><span id="journal-ready-description" hidden>Work is ready to check in the Journal.</span><span class="town-wave-announcement" role="status" aria-live="polite"></span></footer>
+ <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><section class="pump-controls" id="pump-controls" aria-label="Combat controls" hidden></section><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal<span class="journal-ready-mark" id="journal-ready-mark" aria-hidden="true" hidden></span></button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav><span id="journal-ready-description" hidden>Work is ready to check in the Journal.</span><span class="town-wave-announcement" role="status" aria-live="polite"></span></footer>
 </main>
 <dialog id="panel" aria-labelledby="panel-title"><form method="dialog"><header class="dialog-head"><div><p class="eyebrow">TOWN INFORMATION SERVICES</p><h2 id="panel-title">Places to go</h2></div><div class="dialog-actions"><button id="quick-music" class="sound-icon" type="button" hidden></button><button aria-label="Close panel" value="close">×</button></div></header><div id="panel-body"></div></form></dialog>`;
 const panel = document.querySelector<HTMLDialogElement>('#panel')!;
@@ -473,13 +473,19 @@ function inkmintForJournal(){
  };
 }
 const fieldStations:Record<string,PumpworksPlace>={
- 'pumpworks-locker':'locker','pumpworks-bench':'bench','pumpworks-hopper':'arena',
+ 'pumpworks-locker':'locker','pumpworks-bench':'bench',
  'pumpworks-cache':'cache','pumpworks-report':'desk','lodging-note':'bed',
 };
 const fieldPlace=()=>fieldStations[session.nearby()?.id??'']??'elsewhere';
 let openRecovery=!!(fieldSave?.ok&&fieldSave.state.recovering);
 const pumpworks=townMode?undefined:createPumpworks({
- body,hud:document.querySelector('#pump-health')!,open:openPanel,place:fieldPlace,
+ body,hud:document.querySelector('#pump-health')!,controls:document.querySelector('#pump-controls')!,
+ open:openPanel,place:fieldPlace,wakeFrame:wakeRender,cue:music.cue,
+ combat:()=>({
+  inRoom:session.room==='pumpworks',
+  able:session.room==='pumpworks'&&scene.roomReady&&!panel.open&&!session.locked&&!document.hidden,
+  position:session.position,
+ }),
  equipment:()=>workshop.showFieldGear(),
  feedback:message=>feedback.textContent=message,
  update:()=>{scene.paintPumpworks();refreshMenuFrame(2);},
@@ -491,6 +497,15 @@ const pumpworks=townMode?undefined:createPumpworks({
  },
 },morningStorage);
 scene.pumpworksState=pumpworks?.current;
+scene.pumpworksEncounter=pumpworks?.encounter;
+window.addEventListener('keydown',event=>{
+ if(!pumpworks||session.room!=='pumpworks'||!scene.roomReady||panel.open||event.repeat||event.ctrlKey||event.metaKey||event.altKey)return;
+ if(event.target instanceof HTMLElement&&event.target.closest('input,textarea,select,summary,[contenteditable]'))return;
+ if(event.code==='Space'&&(!(event.target instanceof HTMLElement)||!event.target.closest('button'))){
+  event.preventDefault();pumpworks.strike();
+ }else if(event.key==='Shift')pumpworks.brace();
+ else if(event.key.toLowerCase()==='f')pumpworks.eat();
+});
 const mossbank=townMode?undefined:createMossbank({
  open:openPanel,body,place:()=>session.room==='mossbank'?session.nearby()?.id:undefined,
  feedback:message=>feedback.textContent=message,
@@ -859,17 +874,9 @@ function activate(stop: Stop) {
   if(mossbank&&session.room==='mossbank'&&stop.id.startsWith('mossbank-')&&!stop.transition){
     mossbank.show(stop.id as SurveyPlace);return;
   }
-  if(pumpworks&&stop.id===PUMPWORKS_DOOR.id){
-    openPanel(stop.name);
-    body.append(paragraph('The old flood station has a blocked pump. Borrow a rod, read the creature’s movements, and bring back a field seal. This optional outing uses its own health and gear.'));
-    const enter=document.createElement('button');
-    enter.type='button';enter.className='destination primary';enter.textContent='Enter the Pumpworks';
-    enter.onclick=()=>{
-      if(!enter.isConnected||session.room!=='square'||session.nearby()?.id!==stop.id)return;
-      closePanel();session.enter('pumpworks',PUMPWORKS_ENTRY);music.setLocation('pumpworks',PUMPWORKS_ENTRY);
-      confirmedDoor();save();focusWorld();feedback.textContent='The survey locker is on the dry side.';
-    };
-    body.append(enter);return;
+  if(pumpworks&&session.room==='pumpworks'&&stop.id==='pumpworks-hopper'){
+    feedback.textContent='Dodge the marked lunge. Space or Strike attacks in reach. Shift or Brace reduces the hit.';
+    return;
   }
   if(pumpworks&&session.room==='pumpworks'&&fieldStations[stop.id]){
     pumpworks.show(fieldStations[stop.id]);return;
@@ -1042,7 +1049,7 @@ function activate(stop: Stop) {
   if (stop.transition) {
     if(stop.id==='lodging-exit'&&morning.record?.phase==='awake'){void changeMorning('leave');return;}
     if(town){void enterRemotePortal(stop);return;}
-    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='mossbank-road'?'Mossbank outskirts. See Wren at the sawmill.':stop.id==='mossbank-return'?'Back by the Ledgerwick orchard.':stop.id==='pumpworks-exit'?'Back in Willow meadow.':stop.id==='lodging-exit'?'Follow the path east to Marlow.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? workshopArrivalNote() : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
+    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='pumpworks-door'?'Gear up at the locker. The hopper guards the far bank.':stop.id==='mossbank-road'?'Mossbank outskirts. See Wren at the sawmill.':stop.id==='mossbank-return'?'Back by the Ledgerwick orchard.':stop.id==='pumpworks-exit'?'Back in Willow meadow.':stop.id==='lodging-exit'?'Follow the path east to Marlow.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? workshopArrivalNote() : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
     const note = paragraph(townMode?'Shared practice keeps your town projects and home progress.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);
@@ -1063,7 +1070,9 @@ document.addEventListener('keydown', e => {
   e.preventDefault(); interact();
 });
 scene.onFrame = () => {
-  frameLimit(!ready||panel.open||performance.now()<wakeRenderUntil||scene.needsFullRate()?0:10);
+  const now=performance.now();
+  pumpworks?.tick(now);
+  frameLimit(!ready||panel.open||now<wakeRenderUntil||scene.needsFullRate()||pumpworks?.encounterActive()?0:10);
   if(panel.open){const second=Math.floor((town?.serverNow()??Date.now())/1000);if(second!==guidanceSecond){guidanceSecond=second;paintGuideObjective();}}
   if(town&&!document.hidden)void flushMovement().catch(()=>{});
   else if(!town)music.setLocation(session.room,session.position);
@@ -1076,7 +1085,7 @@ scene.onFrame = () => {
       if(needResync&&town.snapshot)adoptTownPosition(town.snapshot);town.connect();
     }).catch(()=>townUI!.showLogin(()=>closePanel()));}
   }
-  pumpworks?.paintHealth(session.room==='pumpworks'||(session.room==='lodging'&&!!pumpworks.current()?.recovering));
+  pumpworks?.paintHealth(session.room==='pumpworks'||(session.room==='lodging'&&!!pumpworks.current()?.recovering),session.room==='pumpworks');
   if(openRecovery&&session.room==='lodging'&&scene.roomReady&&!panel.open){
     openRecovery=false;pumpworks?.show('bed');
   }
@@ -1104,13 +1113,13 @@ scene.onFrame = () => {
       const label = 'Practice town · ' + (town?.snapshot?.name ?? 'choose a resident');
       if (practiceLabel.textContent !== label) practiceLabel.textContent = label;
     }
-    interactLabel.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='glasshouse'?'nursery':stop.transition==='mossbank'?'Mossbank':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby';
+    interactLabel.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='glasshouse'?'nursery':stop.transition==='mossbank'?'Mossbank':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby';
     if(stop?.id==='lodging-door')interactLabel.textContent='Enter lodging';
     if(stop?.id==='lodging-exit')interactLabel.textContent='Step outside';
     if(stop&&orchardAvailable()&&orchardBranchFromStop(stop.id))interactLabel.textContent='Inspect branch';
     if(stop?.id==='trail-gate'&&!scene.bridgeRestored)interactLabel.textContent='Inspect bridge';
 
-    interactButton.setAttribute('aria-label', stop?.id==='lodging-door'?'Enter boarding house':stop?.id==='lodging-exit'?'Step outside to the square':stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='glasshouse'?'Inkwood Glasshouse':stop.transition==='mossbank'?'Mossbank':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
+    interactButton.setAttribute('aria-label', stop?.id==='lodging-door'?'Enter boarding house':stop?.id==='lodging-exit'?'Step outside to the square':stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='glasshouse'?'Inkwood Glasshouse':stop.transition==='mossbank'?'Mossbank':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
   }
   // A named stop can be visible while its restored shared position is still syncing.
   // Keep Inspect unavailable until the same input guard would accept its click.
@@ -1139,6 +1148,7 @@ Object.defineProperty(window, '__pilot', { value: Object.freeze({
   town:()=>town?.snapshot?JSON.parse(JSON.stringify(town.snapshot)):null,
   workshop:()=>workshop.snapshot(),
   pumpworks:()=>pumpworks?.current()??null,
+  pumpworksMotion:()=>pumpworks?.encounter()??null,
   metrics: () => {
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);
     return { climate:scene.climateState(), ready, presentation:{menuBackdropPaused:menuRenderPaused,renderedFrames,idleFrameLimit:game.loop.fpsLimit,frameSamplePolicy:'Visible mixed normal and 10Hz idle intervals; modal gaps excluded'}, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };

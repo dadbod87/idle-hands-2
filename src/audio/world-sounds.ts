@@ -1,4 +1,6 @@
-export type WorldCue = 'door' | 'gather' | 'craft';
+import {FIELD_CUES,renderFieldCue,type FieldCue} from './combat-cues.ts';
+
+export type WorldCue = 'door' | 'gather' | 'craft' | FieldCue;
 
 export function rewardCue(command: Record<string, unknown>): WorldCue | undefined {
   const action = (value: unknown) => (value as { action?: string } | undefined)?.action;
@@ -62,12 +64,15 @@ export class WorldSounds {
       gain.gain.value = this.volume;
       gain.connect(context.destination);
       this.gain = gain;
-      for (const cue of ['door', 'gather', 'craft'] as const) {
-        const samples = renderAccent(cue);
-        const buffer = context.createBuffer(1, samples.length, AUDIO_RATE);
+      const output=context;
+      const add=(cue:WorldCue,samples:Float32Array<ArrayBuffer>)=>{
+
+        const buffer = output.createBuffer(1, samples.length, AUDIO_RATE);
         buffer.copyToChannel(samples, 0);
         this.clips.set(cue, buffer);
-      }
+      };
+      for(const cue of ['door','gather','craft'] as const)add(cue,renderAccent(cue));
+      for(const cue of FIELD_CUES)add(cue,renderFieldCue(cue,AUDIO_RATE));
       context.onstatechange = () => {
         if (this.context === context && context?.state !== 'running') this.disable();
       };

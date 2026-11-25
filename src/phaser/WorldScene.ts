@@ -1,6 +1,7 @@
+import {HOPPER_MOVEMENT,type HopperMotion} from '../game/pumpworks-chase.ts';
 import {MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
 import {HOPPER_FEET,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
-import type {PumpworksState} from '../game/pumpworks.ts';
+import {HOPPER_HEALTH,type PumpworksState} from '../game/pumpworks.ts';
 import {activeWave} from '../game/town-wave.ts';
 import {INKWOOD_HOOD,CLERK_CAP,type EarnedHeadwear} from '../game/earned-headwear.ts';
 import {glasshousePlantArt,type GlasshousePlant} from '../game/glasshouse-plants.ts';
@@ -415,7 +416,7 @@ export class WorldScene extends Phaser.Scene {
       if(key!==this.decorationKey){
         this.decorationKey=key;
         for(const view of this.decorationViews)view.destroy();
-        this.hopper=undefined;this.soundingRod=undefined;
+        this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;this.soundingRod=undefined;
     this.decorationViews=[];
         this.furnitureOccluders=[];
         for(const slot of home?homeSlots(this.homeLevel):PLACEMENT_SLOTS){
@@ -470,12 +471,52 @@ export class WorldScene extends Phaser.Scene {
   constructor(public session: Session) { super('world'); }
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
   pumpworksState?:()=>PumpworksState|null;
+  pumpworksEncounter?:()=>{hopper:HopperMotion;enemyHealth:number|null;recovering:boolean};
   private hopper?:Phaser.GameObjects.Image;
+  private hopperWarning?:Phaser.GameObjects.Graphics;
+  private hopperName?:Phaser.GameObjects.Text;
   private soundingRod?:Phaser.GameObjects.Image;
   paintPumpworks(){
-    const state=this.pumpworksState?.();
-    this.hopper?.setVisible(!state?.cleared).setScale(1,state?.fight?.tell==='rush'?.8:1);
+    if(!this.hopper||!this.hopperWarning||!this.hopperName)return;
+    const state=this.pumpworksState?.(),encounter=this.pumpworksEncounter?.(),motion=encounter?.hopper;
+    const feet=motion?.feet??HOPPER_FEET;
+    const x=(feet.x+.5)*TILE,y=(feet.y+.5)*TILE;
+    const visible=!state?.cleared;
+    const reduced=this.reducedMotion.matches;
+    const hop=motion?.phase==='chase'?Math.abs(Math.sin(motion.elapsed*7.5))*7:
+      motion?.phase==='charge'?Math.sin(Math.PI*Math.min(1,motion.elapsed/HOPPER_MOVEMENT.chargeSeconds))*16:0;
+    this.hopper.setPosition(x,y-(reduced?0:hop)).setDepth(y).setVisible(visible);
+    this.hopper.setScale(1,!reduced&&motion?.phase==='windup'?.8:1);
+    const health=encounter?.enemyHealth;
+    const label=health&&motion?.phase!=='idle'?'Silt hopper · '+health+'/'+HOPPER_HEALTH:'Silt hopper';
+    if(this.hopperName.text!==label)this.hopperName.setText(label);
+    this.hopperName.setPosition(x,y+15).setDepth(y+1).setVisible(visible);
     this.soundingRod?.setVisible(state?.rod==='equipped');
+    const strike=motion?.strikeCooldown??0;
+    this.soundingRod?.setRotation(!reduced&&strike>.24?1.2*Math.sin((HOPPER_MOVEMENT.strikeCooldown-strike)*13):0);
+    const danger=visible&&motion?.aim&&motion.origin&&(motion.phase==='windup'||motion.phase==='charge');
+    const warning=this.hopperWarning;
+    warning.clear();
+    if(danger&&motion?.aim&&motion.origin){
+      const ax=(motion.aim.x+.5)*TILE,ay=(motion.aim.y+.5)*TILE;
+      const ox=(motion.origin.x+.5)*TILE,oy=(motion.origin.y+.5)*TILE;
+      const radius=HOPPER_MOVEMENT.impactRadius*TILE;
+      warning.lineStyle(radius*2,0x8a4c36,.37).lineBetween(ox,oy,ax,ay);
+      warning.lineStyle(2,0x392e2a,1).lineBetween(ox,oy,ax,ay);
+      warning.fillStyle(0xf1a54f,.64).fillCircle(ax,ay,radius);
+      warning.lineStyle(3,0x502f28,1).strokeCircle(ax,ay,radius);
+      warning.lineBetween(ax-10,ay,ax+10,ay).lineBetween(ax,ay-10,ax,ay+10);
+    }else if(motion?.phase==='recover'&&visible){
+      warning.lineStyle(3,0xf0dda2,1).strokeEllipse(x,y-4,78,29);
+    }
+    if(!reduced&&strike>.31&&this.actor){
+      const angle=Math.atan2(y-this.actor.y,x-this.actor.x);
+      warning.lineStyle(3,0xffecb8,.88).beginPath();
+      warning.arc(this.actor.x,this.actor.y-15,29,angle-.52,angle+.52).strokePath();
+    }
+    if((motion?.guard??0)>0&&this.actor){
+      warning.lineStyle(3,0x395d67,1).strokeEllipse(this.actor.x,this.actor.y-2,46,25);
+    }
   }
   preload() {
     this.loadingRoom=this.session.room;
@@ -755,7 +796,8 @@ export class WorldScene extends Phaser.Scene {
       label(4.25,17.05,'Willow meadow ↓');
       const hx=(HOPPER_FEET.x+.5)*TILE,hy=(HOPPER_FEET.y+.5)*TILE;
       this.hopper=this.add.image(hx,hy,'pumpworks-silt-hopper').setOrigin(.5,.94).setDepth(hy);
-      label(HOPPER_FEET.x+.5,HOPPER_FEET.y+.82,'Silt hopper').setDepth(hy+1);
+      this.hopperName=label(HOPPER_FEET.x+.5,HOPPER_FEET.y+.82,'Silt hopper').setDepth(hy+1);
+      this.hopperWarning=this.add.graphics().setDepth(2);
       this.soundingRod=this.add.image(0,0,'pumpworks-sounding-rod').setScale(.55).setOrigin(.5,1).setVisible(false);
       this.paintPumpworks();
     } else if(this.room==='glasshouse') {
@@ -828,7 +870,7 @@ export class WorldScene extends Phaser.Scene {
     this.cameras.main.startFollow(this.actor, true, 1, 1);roomBounds();
     this.sky=new TownSky(this,this.room==='neighborhood'?this.streetWindows:litWindows);this.sky.update(this.skyNow(),0,this.room==='workshop'||this.room==='lodging'||this.room==='glasshouse'||this.room==='pumpworks'||this.room.startsWith('home'),!document.hidden&&!this.reducedMotion.matches,this.skyFixture);
     const onDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLElement && e.target.closest('button,input,select,dialog,[data-ui-scroll]')) return;
+      if (e.target instanceof HTMLElement && e.target.closest('button,input,select,dialog,[data-ui-scroll]')&&!e.target.closest('.pump-controls')) return;
       const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'a', 's', 'd'].includes(key)) {if(!this.session.locked)this.onSteer?.(); this.keys.add(key); e.preventDefault(); }
     };
@@ -1074,5 +1116,6 @@ export class WorldScene extends Phaser.Scene {
       view.headwear=this.paintHeadwear(peer.headwear===INKWOOD_HOOD||peer.headwear===CLERK_CAP?peer.headwear:null,view.headwear,px,py,frame);
     }
     this.onFrame?.();
+    if(this.room==='pumpworks')this.paintPumpworks();
   }
 }

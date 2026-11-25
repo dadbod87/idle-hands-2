@@ -16,22 +16,30 @@
 .pumpworks-panel { display:grid; gap:.55rem; }
 #panel-body .pumpworks-panel p { margin:0; }
 .pumpworks-panel .destination { min-height:44px; margin:0; }
-.pump-actions { display:grid; gap:.5rem; grid-template-columns:repeat(2,minmax(0,1fr)); }
-.pump-tell { padding:.55rem; background:#e4ead5; border-inline-start:4px solid #738967; }
-.pump-tell[data-tell=rush] { background:#f0dfbd; border-color:#975b38; }
 #panel-body .pumpworks-panel [role=status]:empty { display:none; }
-.pump-gauges { display:grid; gap:.65rem; grid-template-columns:repeat(2,minmax(0,1fr)); }
-.pump-gauges span { font-size:.85em; }
+.pump-controls {
+ display:grid;gap:4px;min-width:0;padding:5px 8px;border:1px solid #819582;background:#e6ebd7;
+ font-size:.8rem;align-self:stretch;
+}
+.pump-controls[hidden] { display:none; }
+.pump-action-row { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px; }
+.pump-action-row button { min-width:0;min-height:44px;padding:6px 9px;font-size:.9rem; }
+.pump-controls[data-phase=windup] { background:#f5d9a6;border-color:#8a6445; }
+.pump-controls[data-phase=recover] { background:#e0ead4;border-color:#587250; }
+.pump-control-status { font-weight:bold; }
+#panel-body .pump-oatcake { grid-column:1/-1;display:flex;align-items:center;gap:6px;margin:0;font-size:.78rem; }
+.pump-oatcake img { width:32px;height:32px; }
 @media(max-width:650px), (max-height:480px) {
  #location[data-room=pumpworks] { padding:5px 8px; }
  #location[data-room=pumpworks] > :is(span,small) { display:none; }
 }
 @media(max-width:650px) {
- .pump-health { top:66px; bottom:auto; right:10px; width:100px; }
+ .pump-health { top:66px;bottom:auto;right:10px;width:100px; }
+ .game-controls .pump-controls { flex:1 0 100%; }
 }
 @media(max-height:480px) and (min-width:651px) {
- .pump-health { top:6px; bottom:auto; right:9px; width:135px; font-size:.62rem; }
- #location[data-room=pumpworks] { top:6px; left:8px; max-width:38%; font-size:.74rem; }
+ .pump-health { top:6px;bottom:auto;right:9px;width:135px;font-size:.62rem; }
+ #location[data-room=pumpworks] { top:6px;left:8px;max-width:38%;font-size:.74rem; }
  #panel:has(.pumpworks-panel) { width:min(680px,calc(100vw - 24px)); }
  #panel:has(.pumpworks-panel) .dialog-head { padding:6px 12px; }
  #panel:has(.pumpworks-panel) .dialog-head h2 { font-size:1.12rem; }
@@ -39,10 +47,25 @@
  .pumpworks-panel { gap:7px; }
  #panel-body .pumpworks-panel p { line-height:1.25; }
  .pumpworks-panel .destination { padding:6px 12px; }
- .pump-tell,.pumpworks-panel [role=status] { padding:5px 9px; }
+ .game-controls .pump-controls { flex:1 0 100%; }
+ .pump-controls { padding:2px 6px; }
 }
 
-.pump-options { grid-template-columns:minmax(0,1fr) minmax(0,1.5fr); }
-.pump-options button:only-child { grid-column:1/-1; }
-#panel-body .pump-oatcake { grid-column:1/-1; display:flex; align-items:center; gap:6px; margin:0; font-size:.78rem; }
-.pump-oatcake img { width:32px; height:32px; }
+.pump-action-row kbd { display:block;opacity:.83;font:500 .68em/1.3 'Courier New',monospace; }
+@media(pointer:coarse),(max-height:480px) { .pump-action-row kbd { display:none; } }
+
+.pump-controls .pump-health {
+ position:static;width:auto;max-width:none;padding:0;
+ background:transparent;box-shadow:none;border:0;
+ font-size:.85em;
+}
+.pump-controls .pump-health label { gap:2px; }
+.pump-controls .pump-health progress { height:.45rem; }
+.pump-readout { min-width:0; }
+@media(max-width:650px),(max-height:480px) {
+ .game-controls .pump-controls { display:flex;align-items:center;gap:8px; }
+ .game-controls .pump-controls[hidden] { display:none; }
+ .pump-readout { flex:1 1 auto; }
+ .pump-action-row { flex:0 0 57%; }
+ .pump-action-row button { min-height:44px; }
+}

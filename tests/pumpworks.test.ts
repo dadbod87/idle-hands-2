@@ -91,3 +91,28 @@ test('All Pumpworks stations are reachable and the canal requires its footbridge
  assert.equal(new Session(local.save()).room,'square');
  assert.equal(new Session(local.save(),undefined,true).room,'pumpworks');
 });
+
+test('An oatcake heals once, never at full health, and waits with a lost satchel',()=>{
+ let state=play(prepared(),'begin','arena');
+ assert.equal(applyPumpworks(state,'eat','arena').ok,false);
+ state=play(state,'strike','arena');
+ const warning=state.fight;
+ state=play(state,'eat','arena');
+ assert.equal(state.health,FIELD_HEALTH);
+ assert.equal(state.oatcake,'used');
+ assert.deepEqual(state.fight,warning);
+ assert.equal(applyPumpworks(state,'eat','arena').ok,false);
+ assert.equal(applyPumpworks(state,'oatcake','locker').ok,false);
+ let old=play(prepared(),'begin','arena');
+ old=play(play(old,'strike','arena'),'strike','arena');
+ old=play(old,'wake','bed');
+ old=play(play(old,'begin','arena'),'strike','arena');
+ assert.equal(old.satchel,'at-pump');
+ assert.equal(applyPumpworks(old,'eat','arena').ok,false);
+ const {oatcake,...legacy}=prepared();
+ const storage={getItem:()=>JSON.stringify(legacy)};
+ const decoded=readPumpworks(storage);
+ if(!decoded.ok)assert.fail(decoded.message);
+ assert.equal(decoded.state.oatcake,'unissued');
+ assert.equal(play(decoded.state,'oatcake','locker').oatcake,'packed');
+});

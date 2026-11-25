@@ -1,5 +1,5 @@
 import {
- FIELD_HEALTH,HOPPER_TELLS,PUMPWORKS_KEY,readPumpworks,savePumpworks,
+ FIELD_HEALTH,HOPPER_TELLS,OATCAKE_HEAL,PUMPWORKS_KEY,readPumpworks,savePumpworks,
  type PumpworksAction,type PumpworksPlace,
 } from '../game/pumpworks.ts';
 import './pumpworks.css';
@@ -93,11 +93,12 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    };
    if(place==='locker'){
     if(state.rod==='unissued'){
-     panel.append(paragraph('Borrow a sounding rod and field satchel before crossing the water.'));
+     panel.append(paragraph('Borrow a sounding rod, field satchel and one oatcake before crossing the water.'));
      add('Pack the survey kit','issue');
     }else{
      panel.append(paragraph(state.rod==='equipped'?'Your rod is equipped. Cross the footbridge to the hopper.':'Your rod is packed. Equip it in Bag before you approach the hopper.'));
      panel.append(button('Open Bag',host.equipment));
+     if(state.oatcake==='unissued')add('Pack your oatcake','oatcake');
     }
    }else if(place==='arena'){
     const gauges=document.createElement('div');gauges.className='pump-gauges';
@@ -112,8 +113,14 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      const actions=document.createElement('div');
      actions.className='pump-actions';
      actions.append(button('Strike with rod',()=>void submit('strike')),button('Brace',()=>void submit('brace')));
-     panel.append(actions);
-     add('Step back','retreat');
+     const options=document.createElement('div');options.className='pump-actions pump-options';
+     options.append(button('Step back',()=>void submit('retreat')));
+     if(state.oatcake==='packed'&&state.satchel==='carried'){
+      const snack=button('Eat oatcake · +'+OATCAKE_HEAL+' health',()=>void submit('eat'));
+      snack.disabled=busy||state.health>=FIELD_HEALTH;
+      options.append(snack);
+     }
+     panel.append(actions,options);
     }else{
      panel.append(paragraph('The hopper waits past the wet tiles. Read its movements, and brace when it crouches.'));
      if(state.rod==='equipped')add('Face the Silt hopper','begin');
@@ -155,19 +162,24 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   render();
  }
 
- function bag(body:HTMLElement){
+ function gear(){
   if(!record.ok)return;
   const state=record.state;
   let shownRaw=record.raw;
   if(state.rod==='unissued')return;
-  const card=document.createElement('section');card.className='pump-bag-card';card.dataset.pumpBag='';
-  const art=document.createElement('img');art.src=ROD_ART;art.alt='';art.width=40;art.height=46;
-  const copy=document.createElement('div');
-  const title=document.createElement('strong');title.textContent='Sounding rod';
-  copy.append(title,paragraph(state.rod==='equipped'?'Equipped · Pumpworks survey gear':'Packed · Pumpworks survey gear'));
-  card.append(art,copy);
+  const card=document.createElement('li');card.className='bag-slot';card.dataset.pumpBag='';
+  const artwork=document.createElement('div');artwork.className='bag-slot-art';
+  const art=document.createElement('img');art.src=ROD_ART;art.alt='';art.width=64;art.height=64;
+  const count=document.createElement('span');count.className='bag-stack-count';count.textContent='1';
+  count.setAttribute('aria-label','One sounding rod');
+  artwork.append(art,count);
+  const title=document.createElement('h4');title.textContent='Sounding rod';
+  const detail=paragraph(state.rod==='equipped'?'Equipped · Pumpworks survey gear':'Packed · Pumpworks survey gear');
+  detail.className='bag-slot-detail';
+  card.append(artwork,title,detail);
   const control=button(state.rod==='equipped'?'Pack sounding rod':'Equip sounding rod',()=>{});
-  const status=paragraph('');status.className='glasshouse-status';status.role='status';
+  control.className='bag-equip-action';
+  const status=paragraph('');status.className='bag-equip-notice';status.role='status';
   control.disabled=busy||!!state.fight||state.recovering;
   control.onclick=async()=>{
    if(busy)return;
@@ -176,13 +188,20 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    if(record.ok)shownRaw=record.raw;
    if(!card.isConnected)return;
    const after=current();
-   copy.lastElementChild!.textContent=after?.rod==='equipped'?'Equipped · Pumpworks survey gear':'Packed · Pumpworks survey gear';
+   detail.textContent=after?.rod==='equipped'?'Equipped · Pumpworks survey gear':'Packed · Pumpworks survey gear';
    control.textContent=after?.rod==='equipped'?'Pack sounding rod':'Equip sounding rod';
    control.disabled=!!after?.fight||!!after?.recovering;
    status.textContent=message;
   };
   card.append(control,status);
-  body.append(card);
+  if(state.oatcake!=='unissued'){
+   const snack=paragraph(state.oatcake==='used'?'Oatcake used':state.satchel==='at-pump'?'Oatcake in the lost satchel':'Oatcake ×1 · restores up to '+OATCAKE_HEAL+' health during the encounter');
+   snack.className='pump-oatcake';
+   const icon=document.createElement('img');icon.src='/art/pumpworks/oatcake.svg';icon.alt='';
+   snack.prepend(icon);
+   card.append(snack);
+  }
+  return card;
  }
 
  function journal(body:HTMLElement,walkToDoor:()=>void){
@@ -209,5 +228,5 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   }
  }
 
- return {current,show,bag,journal,paintHealth};
+ return {current,show,gear,journal,paintHealth};
 }

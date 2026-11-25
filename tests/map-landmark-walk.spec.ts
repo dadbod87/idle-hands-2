@@ -102,7 +102,10 @@ test('map destination highlights the landmark and waits for deliberate travel', 
    else await disclosure.press('Enter');
    const select=page.getByLabel('Map destination');
    const button=page.locator('.town-map-route button');
-   await expect(select.locator('option')).toHaveCount(7);
+   await expect(select.locator('option')).toHaveCount(9);
+   expect(await select.locator('option').evaluateAll(options=>options.map(option=>option.getAttribute('value')))).toEqual([
+    '', 'commons-riverwalk','commons-green','commons-orchard','commons-pond','commons-west','commons-meadow','pumpworks-door','mossbank-road',
+   ]);
    await expect(button).toBeDisabled();
    await select.selectOption(spec.target);
    await expect(page.locator('.map-destination')).toHaveAttribute('data-landmark',spec.target);

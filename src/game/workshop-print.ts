@@ -3,14 +3,15 @@ import type { Stop } from './world.ts';
 
 // Preserve preferences created before the stand could display other fieldwork.
 export const WORKSHOP_PRINT_KEY = 'ih2:river-print:v1';
-export type WorkshopPrint = RiverSpot | 'marigold' | 'woodland-certificate' | 'pond';
-export type WorkshopPrintRights = Readonly<{marigold:boolean;woodland:boolean;pond:boolean}>;
+export type WorkshopPrint = RiverSpot | 'marigold' | 'woodland-certificate' | 'pond' | 'mossbank-swatch';
+export type WorkshopPrintRights = Readonly<{marigold:boolean;woodland:boolean;pond:boolean;alder?:boolean}>;
 export const WORKSHOP_PRINTS: Record<WorkshopPrint, {name:string; art:string; story:string}> = {
   reeds: {name:RIVER_SPOTS.reeds.find,art:'/art/river/pondweed.svg',story:RIVER_SPOTS.reeds.note},
   bridge: {name:RIVER_SPOTS.bridge.find,art:'/art/river/wet-boot.svg',story:RIVER_SPOTS.bridge.note},
   riffle: {name:RIVER_SPOTS.riffle.find,art:'/art/river/perch.svg',story:RIVER_SPOTS.riffle.note},
   marigold: {name:'A marigold on leave',art:'/art/garden/pressed-marigold.svg',story:'Recorded after your first harvest. It is still out of office.'},
   pond: {name:'The pond is in session',art:'/art/pond/pond-print.svg',story:'Three shores recorded. The moorhen chaired the meeting.'},
+  'mossbank-swatch': {name:'Wren’s alder swatch',art:'/art/mossbank/alder-swatch.svg',story:'Honey-brown alder from the Mossbank sawmill. The grain follows the windrow; the label follows office policy.'},
   'woodland-certificate': {name:'Qualified to point left',art:'/art/outing/field-certificate.svg',story:'Awarded for two different woodland repairs. The arrow now reports to you.'},
 };
 export const WORKSHOP_PRINT_STAND = {x:12.35,y:10.1} as const;
@@ -25,6 +26,7 @@ export function earnedWorkshopPrints(survey: RiverSurvey | null, rights: Worksho
   if (rights.marigold) prints.push('marigold');
   if (rights.woodland) prints.push('woodland-certificate');
   if (rights.pond) prints.push('pond');
+  if (rights.alder) prints.push('mossbank-swatch');
   return prints;
 }
 

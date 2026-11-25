@@ -5,6 +5,11 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "pumpworks-oatcake",
+      "path": "art/pumpworks/oatcake.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "mossbank-fir",
       "path": "art/mossbank/fir.svg",
       "kind": "original-svg"

@@ -1,5 +1,5 @@
 import {MOSSBANK_ROAD} from './game/mossbank-room.ts';
-import type {SurveyPlace} from './game/mossbank.ts';
+import {MOSSBANK_KEY,readMossbank,type SurveyPlace} from './game/mossbank.ts';
 import {createMossbank} from './ui/mossbank.ts';
 import {PUMPWORKS_DOOR,PUMPWORKS_ENTRY} from './game/pumpworks-room.ts';
 import {FIELD_HEALTH,readPumpworks,type PumpworksPlace} from './game/pumpworks.ts';
@@ -227,7 +227,12 @@ function readLocalPondWatch(){
  try{return readPondWatch(localStorage.getItem(POND_WATCH_KEY));}
  catch{return null;}
 }
-const printRights={marigold:false,woodland:false,pond:completePondWatch(readLocalPondWatch())};
+const ownsAlderSwatch=()=>!townMode&&readMossbank(morningStorage)?.state.finished===true;
+const printRights={marigold:false,woodland:false,pond:completePondWatch(readLocalPondWatch()),alder:ownsAlderSwatch()};
+function refreshMossbankPrint(){
+ printRights.alder=ownsAlderSwatch();
+ refreshWorkshopPrint();
+}
 function refreshPondPrint(){
  printRights.pond=completePondWatch(readLocalPondWatch());
  refreshWorkshopPrint();
@@ -247,8 +252,8 @@ function refreshRiverCast(){
 }
 if(!townMode){
  refreshRiverCast();
- window.addEventListener('storage',event=>{if(event.key===POND_WATCH_KEY||event.key===null)refreshPondPrint();if(event.key===RIVER_SURVEY_KEY||event.key===null)refreshRiverCast();else if(event.key===WORKSHOP_PRINT_KEY)refreshWorkshopPrint();});
- window.addEventListener('pageshow',event=>{if(event.persisted){refreshPondPrint();refreshRiverCast();}});
+ window.addEventListener('storage',event=>{if(event.key===POND_WATCH_KEY||event.key===null)refreshPondPrint();if(event.key===MOSSBANK_KEY||event.key===null)refreshMossbankPrint();if(event.key===RIVER_SURVEY_KEY||event.key===null)refreshRiverCast();else if(event.key===WORKSHOP_PRINT_KEY)refreshWorkshopPrint();});
+ window.addEventListener('pageshow',event=>{if(event.persisted){refreshPondPrint();refreshMossbankPrint();refreshRiverCast();}});
 }
 let lastContext = '';
 let lastDistrictHint='';
@@ -475,7 +480,7 @@ const fieldPlace=()=>fieldStations[session.nearby()?.id??'']??'elsewhere';
 let openRecovery=!!(fieldSave?.ok&&fieldSave.state.recovering);
 const pumpworks=townMode?undefined:createPumpworks({
  body,hud:document.querySelector('#pump-health')!,open:openPanel,place:fieldPlace,
- equipment:()=>workshop.showInventory(),
+ equipment:()=>workshop.showFieldGear(),
  feedback:message=>feedback.textContent=message,
  update:()=>{scene.paintPumpworks();refreshMenuFrame(2);},
  moveToBed:()=>{
@@ -489,12 +494,14 @@ scene.pumpworksState=pumpworks?.current;
 const mossbank=townMode?undefined:createMossbank({
  open:openPanel,body,place:()=>session.room==='mossbank'?session.nearby()?.id:undefined,
  feedback:message=>feedback.textContent=message,
+ saved:refreshMossbankPrint,
+ preview:()=>workshop.showJournal('mossbank-swatch'),
  walk:place=>{
   if(place==='mossbank-road')goNamedDestination(session.room==='mossbank'?'mossbank':'square',session.room==='mossbank'?'mossbank-mill':place);
   else goNamedDestination('mossbank',place);
  },
 },morningStorage);
-const workshop=new WorkshopUI({pumpBag:pumpworks?.bag,fieldJournal:pumpworks?(body)=>{pumpworks.journal(body,()=>{
+const workshop=new WorkshopUI({fieldGear:pumpworks?.gear,fieldJournal:pumpworks?(body)=>{pumpworks.journal(body,()=>{
  const state=pumpworks.current();
  if(session.room==='pumpworks'){
   goNamedDestination('pumpworks',state?.satchel==='at-pump'?'pumpworks-cache':state?.cleared?'pumpworks-report':'pumpworks-hopper');

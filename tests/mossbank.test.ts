@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {freshMossbank,MOSSBANK_KEY,readMossbank,saveMossbank,type SurveyPlace} from '../src/game/mossbank.ts';
 import {MOSSBANK_ENTRY,MOSSBANK_ROAD,MOSSBANK_ROOM} from '../src/game/mossbank-room.ts';
+import {earnedWorkshopPrints,selectedWorkshopPrint} from '../src/game/workshop-print.ts';
 import {Session} from '../src/game/session.ts';
 import {canStand,clearSegment,routeTo} from '../src/game/world.ts';
 
@@ -50,4 +51,11 @@ test('Mossbank has two safe bridge crossings, safe authored roads, and browser-o
  assert.throws(()=>shared.enter('mossbank'));
  assert.equal(shared.stops.some(stop=>stop.id===MOSSBANK_ROAD.id),false);
  assert.equal(new Session(practice.save(),undefined,true).room,'mossbank');
+});
+
+test('The earned alder swatch joins the workshop display choices without replacing a preference',()=>{
+ const prior={marigold:true,woodland:true,pond:true};
+ assert.equal(selectedWorkshopPrint('mossbank-swatch',null,prior),null);
+ assert.equal(selectedWorkshopPrint('pond',null,{...prior,alder:true}),'pond');
+ assert.deepEqual(earnedWorkshopPrints(null,{...prior,alder:true}),['marigold','woodland-certificate','pond','mossbank-swatch']);
 });

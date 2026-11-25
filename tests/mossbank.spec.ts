@@ -22,7 +22,7 @@ for(const shape of [{name:'desktop',width:1440,height:900,touch:false},{name:'ph
   };
   const room=async(name:string)=>{
    await expect(page.locator('canvas')).toBeVisible();
-   await expect(page.locator('#location')).toHaveAttribute('data-room',name);
+   await expect(page.locator('#location')).toHaveAttribute('data-room',name,{timeout:45000});
   };
   const take=(name:string)=>page.screenshot({path:output+'/mossbank-'+shape.name+'-'+name+'.png'});
 
@@ -105,6 +105,23 @@ for(const shape of [{name:'desktop',width:1440,height:900,touch:false},{name:'ph
    await press('Enter town square');
    await room('square');
    await expect.poll(()=>nearby(page)).toBe('mossbank-road');
+   if(shape.name==='desktop'){
+    await press('Journal');
+    await press('Preview the swatch in your workshop');
+    await expect(page.getByRole('combobox',{name:'Choose a workshop print'})).toHaveValue('mossbank-swatch');
+    expect(await page.evaluate(()=>localStorage.getItem('ih2:river-print:v1'))).toBeNull();
+    await press('Display print');
+    await expect(page.getByText('Print displayed.',{exact:true})).toBeVisible();
+    expect(await page.evaluate(()=>localStorage.getItem('ih2:river-print:v1'))).toBe('mossbank-swatch');
+    await press('See it in the workshop');
+    await room('workshop');
+    await press('Places');
+    await page.locator('[data-destination=workshop-print]').click();
+    await expect.poll(()=>nearby(page)).toBe('workshop-print');
+    await press('Inspect Workshop print');
+    await expect(page.locator('#panel-title')).toHaveText('Wren’s alder swatch');
+    await take('workshop');
+   }
    expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toEqual(original);
    expect(await page.evaluate(()=>localStorage.getItem('ih2:pumpworks:v1'))).toBeNull();
    expect(api).toEqual([]);

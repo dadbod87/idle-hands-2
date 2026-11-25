@@ -53,6 +53,14 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    await station('pumpworks-locker');
    await press('Pack the survey kit');
    await press('Open Bag');
+   await expect(page.locator('[data-bag-pocket=equipment]')).toHaveAttribute('aria-pressed','true');
+   const gear=page.getByRole('list',{name:'Equipment'}).locator('[data-pump-bag]');
+   await expect(gear.locator('.bag-stack-count')).toHaveText('1');
+   if(shape.name==='desktop'){
+    await press('Materials');
+    await expect(gear).toBeHidden();
+    await press('Equipment');
+   }
    await press('Equip sounding rod');
    await expect(page.locator('[data-pump-bag]')).toContainText('Equipped');
    await page.screenshot({path:output+'/pumpworks-'+shape.name+'-bag.png'});
@@ -62,7 +70,7 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    await press('Strike with rod');
    await expect(page.locator('[data-tell=rush]')).toContainText('Brace');
    if(shape.name==='short200'){
-    for(const target of ['[data-tell=rush]','.pump-actions']){
+    for(const target of ['[data-tell=rush]','.pump-actions:not(.pump-options)']){
      await expect(page.locator(target)).toBeInViewport({ratio:1});
      const top=await page.locator(target).evaluate(el=>el.getBoundingClientRect().top);
      const header=await page.locator('.dialog-head').evaluate(el=>el.getBoundingClientRect().bottom);
@@ -101,6 +109,12 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     await press('Strike with rod');
    }
    await expect(page.locator('[data-tell=rush]')).toBeVisible();
+   if(shape.name==='phone'){
+    await press('Eat oatcake · +3 health');
+    await expect(page.locator('[data-pumpworks=arena]')).toContainText('You regain 2 health');
+    await expect(page.locator('[data-tell=rush]')).toBeVisible();
+    await expect(page.getByRole('button',{name:'Eat oatcake · +3 health',exact:true})).toHaveCount(0);
+   }
    const brace=page.getByRole('button',{name:'Brace',exact:true});
    if(shape.touch)await brace.tap();
    else{await brace.focus();await expect(brace).toBeFocused();await page.keyboard.press('Enter');}

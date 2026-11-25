@@ -3,6 +3,16 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "pumpworks-oatcake",
+      "path": "public/art/pumpworks/oatcake.svg",
+      "sha256": "d45fc6204808930237332eae9a6ec223606180e1f1cb43a6c8235b5755de8df8",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/oatcake.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
       "id": "mossbank-fir",
       "path": "public/art/mossbank/fir.svg",
       "sha256": "444a4ef51a1cc8a219cc638334e9ef00ff857f67a5e0735184fc4b7dda8df98e",

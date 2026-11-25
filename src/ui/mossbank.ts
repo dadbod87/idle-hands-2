@@ -5,6 +5,7 @@ import './mossbank.css';
 type Host={
  body:HTMLElement;open:(title:string)=>void;place:()=>string|undefined;
  walk:(place:SurveyPlace|'mossbank-road')=>void;feedback:(message:string)=>void;
+ saved:()=>void;preview:()=>void;
 };
 
 function line(copy:string){
@@ -93,7 +94,7 @@ export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem
    }catch{result='The route card could not be confirmed.';}
    finally{busy=false;}
    record=readMossbank(storage);
-   host.feedback(result);
+   host.saved();host.feedback(result);
    if(!present())return;
    render(result);
    section.querySelector<HTMLElement>('[role=status]')?.focus({preventScroll:true});
@@ -115,6 +116,12 @@ export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem
   const title=document.createElement('h3');title.textContent='Mossbank route card';entry.append(title);
   if(state.finished)entry.append(sample(),line('Alder swatch · Received from Wren after recording the windrow and flood line.'));
   else entry.append(mark(state));
+  if(state.finished){
+   const preview=document.createElement('button');
+   preview.type='button';preview.className='destination';
+   preview.textContent='Preview the swatch in your workshop';preview.onclick=host.preview;
+   entry.append(preview);
+  }
   const button=document.createElement('button');
   button.type='button';button.className='destination';
   button.textContent=host.place()?'Walk to Wren':'Walk toward Mossbank';button.onclick=()=>host.walk('mossbank-road');

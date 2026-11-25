@@ -8,6 +8,7 @@ import type {PropId,WorkshopState as CurrentWorkshopState} from '../game/live-wo
 
 type BagEquipmentActions={
  equipSaw:()=>void;
+ fieldGear?:HTMLElement;
  openSawLesson?:()=>void;
  backToWork?:()=>void;
  wardrobe?:{label:string;open:()=>void};
@@ -25,6 +26,7 @@ export class BagView {
  private status=document.createElement('p');
  private countKey=document.createElement('p');
  private appearance:HTMLElement|null=null;
+ private readonly fieldGear?:HTMLElement;
  private pocket:BagGroup='furniture';
  private headwearCards=new Map<EarnedHeadwear,{card:HTMLElement;title:HTMLElement;state:HTMLElement;wear:HTMLButtonElement;find:HTMLButtonElement;notice:HTMLElement}>();
  private townHeadwear?:TownHeadwear;
@@ -175,6 +177,8 @@ export class BagView {
    this.headwearCards.set(item,{card,title,state,wear:action,find,notice});
   }
   this.restoreOrder();
+  this.fieldGear=equipment?.fieldGear;
+  if(this.fieldGear)this.groups.get('equipment')!.prepend(this.fieldGear);
   const note=document.createElement('p');note.className='bag-note';note.textContent='Collect finished crafts to put them here. Inspecting never uses an item.';this.root.append(note,this.orderBar);this.root.addEventListener('focusin',this.focused);
  }
  openPocket(group:BagGroup,focus=false){
@@ -283,7 +287,7 @@ export class BagView {
    list.insertBefore(source.card,target.card);
    list.insertBefore(target.card,sibling);
   }
-  const ids=[...this.groups.values()].flatMap(pocket=>Array.from(pocket.children,card=>(card as HTMLElement).dataset.bagItem));
+  const ids=[...this.groups.values()].flatMap(pocket=>Array.from(pocket.children,card=>(card as HTMLElement).dataset.bagItem)).filter(id=>id&&this.items.has(id));
   let message=this.items.get(from)!.name+' moved.';
   try{localStorage.setItem(this.layoutKey,JSON.stringify(ids));}
   catch{message+=' This browser could not save the arrangement.';}
@@ -295,6 +299,10 @@ export class BagView {
  focusFurniture(id:PropId){
   const slot=this.slots.get(id);
   if(slot?.choose&&!slot.choose.hidden)this.focusCardAction(slot.card,slot.choose);
+ }
+ focusFieldGear(){
+  const action=this.fieldGear?.querySelector('button');
+  if(action&&this.fieldGear&&!action.disabled)this.focusCardAction(this.fieldGear,action);
  }
  focusHeadwear(item:EarnedHeadwear){
   const entry=this.headwearCards.get(item);

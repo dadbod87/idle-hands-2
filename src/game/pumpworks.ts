@@ -1,6 +1,7 @@
 import {z} from 'zod';
 
 export const FIELD_HEALTH=8;
+export const OATCAKE_HEAL=3;
 const HOPPER_HEALTH=9;
 export const PUMPWORKS_KEY='ih2:pumpworks:v1';
 const tells=z.enum(['probe','rush','exposed']);
@@ -17,6 +18,7 @@ const recordSchema=z.object({
  revision:z.number().int().min(0).max(100000),
  health:z.number().int().min(0).max(FIELD_HEALTH),
  rod:z.enum(['unissued','packed','equipped']),
+ oatcake:z.enum(['unissued','packed','used']).default('unissued'),
  satchel:z.enum(['none','carried','at-pump']),
  fight:z.object({health:z.number().int().min(1).max(HOPPER_HEALTH),tell:tells}).strict().nullable(),
  recovering:z.boolean(),
@@ -26,17 +28,18 @@ const recordSchema=z.object({
  if(state.recovering!==(state.health===0)
     ||state.reported&&!state.cleared
     ||state.fight&&(state.rod!=='equipped'||state.recovering||state.cleared)
+    ||state.rod==='unissued'&&state.oatcake!=='unissued'
     ||(state.rod==='unissued')!==(state.satchel==='none')){
   ctx.addIssue({code:'custom',message:'The survey record is inconsistent.'});
  }
 });
 export type PumpworksState=z.infer<typeof recordSchema>;
-export type PumpworksAction='issue'|'equip'|'pack'|'begin'|'strike'|'brace'|'retreat'|'rest'|'wake'|'recover'|'report';
+export type PumpworksAction='issue'|'oatcake'|'eat'|'equip'|'pack'|'begin'|'strike'|'brace'|'retreat'|'rest'|'wake'|'recover'|'report';
 export type PumpworksPlace='locker'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
 type Result={ok:false;message:string}|{ok:true;state:PumpworksState;message:string;returnToBed?:true};
 
 export const freshPumpworks=():PumpworksState=>({
- version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,
+ version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,
 });
 
 export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place:PumpworksPlace):Result{
@@ -49,7 +52,16 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
  switch(action){
   case 'issue':
    if(place!=='locker'||state.rod!=='unissued')return refuse('Your survey kit is already issued or the locker is out of reach.');
-   return accept({rod:'packed',satchel:'carried'},'Sounding rod and field satchel packed.');
+   return accept({rod:'packed',oatcake:'packed',satchel:'carried'},'Sounding rod, field satchel and oatcake packed.');
+  case 'oatcake':
+   if(place!=='locker'||state.rod==='unissued'||state.oatcake!=='unissued')return refuse('There is no new oatcake in the survey locker.');
+   return accept({oatcake:'packed'},'The survey locker still had your oatcake.');
+  case 'eat': {
+   if(place!=='arena'||!state.fight||state.oatcake!=='packed'||state.satchel!=='carried')return refuse('You need the oatcake in your field satchel during an encounter.');
+   if(state.health===FIELD_HEALTH)return refuse('Your health is already full. Save the oatcake.');
+   const health=Math.min(FIELD_HEALTH,state.health+OATCAKE_HEAL);
+   return accept({oatcake:'used',health},'Oatcake eaten. You regain '+(health-state.health)+' health. The hopper is still preparing the same move.');
+  }
   case 'equip':
   case 'pack':
    if(state.fight)return refuse('End the encounter before changing gear.');

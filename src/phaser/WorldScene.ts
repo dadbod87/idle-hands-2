@@ -484,13 +484,14 @@ export class WorldScene extends Phaser.Scene {
     const visible=!state?.cleared;
     const reduced=this.reducedMotion.matches;
     const hop=motion?.phase==='chase'?Math.abs(Math.sin(motion.elapsed*7.5))*7:
-      motion?.phase==='charge'?Math.sin(Math.PI*Math.min(1,motion.elapsed/HOPPER_MOVEMENT.chargeSeconds))*16:0;
+      motion?.phase==='charge'&&motion.pattern==='lunge'?Math.sin(Math.PI*Math.min(1,motion.elapsed/HOPPER_MOVEMENT.chargeSeconds))*16:0;
     this.hopper.setPosition(x,y-(reduced?0:hop)).setDepth(y).setVisible(visible);
     this.hopper.setScale(1,!reduced&&motion?.phase==='windup'?.8:1);
     const health=encounter?.enemyHealth;
     const label=health&&motion?.phase!=='idle'?'Silt hopper · '+health+'/'+HOPPER_HEALTH:'Silt hopper';
     if(this.hopperName.text!==label)this.hopperName.setText(label);
-    this.hopperName.setPosition(x,y+15).setDepth(y+1).setVisible(visible);
+    const labelY=motion&&motion.phase!=='idle'?y-83-(reduced?0:hop):y+15;
+    this.hopperName.setPosition(x,labelY).setDepth(y+1).setVisible(visible);
     this.soundingRod?.setVisible(state?.rod==='equipped');
     const strike=motion?.strikeCooldown??0;
     this.soundingRod?.setRotation(!reduced&&strike>.24?1.2*Math.sin((HOPPER_MOVEMENT.strikeCooldown-strike)*13):0);
@@ -500,12 +501,18 @@ export class WorldScene extends Phaser.Scene {
     if(danger&&motion?.aim&&motion.origin){
       const ax=(motion.aim.x+.5)*TILE,ay=(motion.aim.y+.5)*TILE;
       const ox=(motion.origin.x+.5)*TILE,oy=(motion.origin.y+.5)*TILE;
-      const radius=HOPPER_MOVEMENT.impactRadius*TILE;
-      warning.lineStyle(radius*2,0x8a4c36,.37).lineBetween(ox,oy,ax,ay);
-      warning.lineStyle(2,0x392e2a,1).lineBetween(ox,oy,ax,ay);
-      warning.fillStyle(0xf1a54f,.64).fillCircle(ax,ay,radius);
-      warning.lineStyle(3,0x502f28,1).strokeCircle(ax,ay,radius);
-      warning.lineBetween(ax-10,ay,ax+10,ay).lineBetween(ax,ay-10,ax,ay+10);
+      const radius=(motion.pattern==='splash'?HOPPER_MOVEMENT.splashRadius:HOPPER_MOVEMENT.impactRadius)*TILE;
+      if(motion.pattern==='splash'){
+        warning.fillStyle(0xeaa651,motion.phase==='charge'?.48:.26).fillCircle(ax,ay,radius);
+        warning.lineStyle(3,0x563e32,1).strokeCircle(ax,ay,radius).strokeCircle(ax,ay,radius-9);
+        warning.lineStyle(2,0xffedbd,1).strokeCircle(ax,ay,radius-4);
+      }else{
+        warning.lineStyle(radius*2,0x8a4c36,.37).lineBetween(ox,oy,ax,ay);
+        warning.lineStyle(2,0x392e2a,1).lineBetween(ox,oy,ax,ay);
+        warning.fillStyle(0xf1a54f,.64).fillCircle(ax,ay,radius);
+        warning.lineStyle(3,0x502f28,1).strokeCircle(ax,ay,radius);
+        warning.lineBetween(ax-10,ay,ax+10,ay).lineBetween(ax,ay-10,ax,ay+10);
+      }
     }else if(motion?.phase==='recover'&&visible){
       warning.lineStyle(3,0xf0dda2,1).strokeEllipse(x,y-4,78,29);
     }

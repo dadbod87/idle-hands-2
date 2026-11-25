@@ -28,7 +28,7 @@ const recordSchema=z.object({
  }
 });
 export type PumpworksState=z.infer<typeof recordSchema>;
-export type PumpworksAction='issue'|'oatcake'|'eat'|'equip'|'pack'|'begin'|'strike'|'counter'|'hit'|'guard'|'retreat'|'rest'|'wake'|'recover'|'report';
+export type PumpworksAction='issue'|'oatcake'|'eat'|'equip'|'pack'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'wake'|'recover'|'report';
 export type PumpworksPlace='locker'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
 type Result={ok:false;message:string}|{ok:true;state:PumpworksState;message:string;returnToBed?:true};
 
@@ -74,15 +74,17 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
    return accept({fight:{health:remaining}},action==='counter'?'Good timing. The hopper was open.':'The rod clips the hopper.');
   }
   case 'hit':
+  case 'splash-hit':
   case 'guard': {
    if(place!=='arena'||!state.fight)return refuse('There is no encounter here.');
-   const damage=action==='guard'?1:3;
+   const damage=action==='guard'?1:action==='splash-hit'?2:3;
    const health=Math.max(0,state.health-damage);
    if(health===0)return accept({
     health:0,recovering:true,fight:null,satchel:state.satchel==='carried'?'at-pump':state.satchel,
    },state.satchel==='none'?'You wake at the boarding house.':
     'You wake at the boarding house. Your field satchel is on the Pumpworks shelf.',true);
-   return accept({health},action==='guard'?'Braced · lost 1 health.':'Hit by the lunge · lost 3 health.');
+   return accept({health},action==='guard'?'Braced · lost 1 health.':
+    action==='splash-hit'?'Caught by the splash · lost 2 health.':'Hit by the lunge · lost 3 health.');
   }
   case 'retreat':
    if(place!=='arena'||!state.fight)return refuse('There is no active encounter to leave.');

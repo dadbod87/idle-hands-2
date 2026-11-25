@@ -2,7 +2,7 @@ import {expect,test,type Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {PUMPWORKS_FRONT,HOPPER_FEET} from '../src/game/pumpworks-room.ts';
 import type {PumpworksState} from '../src/game/pumpworks.ts';
-import type {HopperMotion} from '../src/game/pumpworks-chase.ts';
+import {HOPPER_MOVEMENT,type HopperMotion} from '../src/game/pumpworks-chase.ts';
 import type {Point} from '../src/game/world.ts';
 
 const output=process.env.QA_EVIDENCE_DIR??'test-results/browser';
@@ -116,7 +116,7 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    await expect(page.locator('dialog')).toBeHidden();
    await capture('lunge');
    if(shape.name==='short200'){
-    for(const name of ['Strike','Brace','Eat oatcake · +3 health'])await expect(button(name)).toBeInViewport({ratio:1});
+    for(const name of ['Strike','Brace','Eat oatcake · +3 health','Places','Bag','Journal','Nothing nearby'])await expect(button(name)).toBeInViewport({ratio:1});
     expect(await page.locator('canvas').evaluate(el=>el.getBoundingClientRect().height)).toBeGreaterThan(100);
    }
    if(shape.name==='desktop'){
@@ -149,6 +149,26 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     await press('Strike');
     await expect.poll(async()=>(await read(page))?.combat.enemyHealth).toBe(before-4);
     await capture('after-dodge');
+    await expect.poll(async()=>(await read(page))?.combat.hopper.strikeCooldown,{intervals:[30]}).toBe(0);
+    await press('Strike');
+    await expect.poll(async()=>(await read(page))?.combat.enemyHealth).toBe(1);
+    await expect.poll(async()=>{
+     const motion=(await read(page))?.combat.hopper;
+     return motion?.phase==='windup'?motion.pattern:null;
+    },{timeout:7500,intervals:[40]}).toBe('splash');
+    const start=(await read(page))!;
+    const center=start.combat.hopper.aim!;
+    const radius=HOPPER_MOVEMENT.splashRadius+.4;
+    const target=Array.from({length:8},(_,index)=>({
+     x:center.x+Math.cos(index*Math.PI/4)*radius,
+     y:center.y+Math.sin(index*Math.PI/4)*radius,
+    })).filter(p=>p.x>13&&p.x<18.9&&p.y>4.7&&p.y<12.3).sort((a,b)=>
+     Math.hypot(a.x-start.position.x,a.y-start.position.y)-Math.hypot(b.x-start.position.x,b.y-start.position.y)
+    )[0];
+    await capture('splash');
+    await move(target);
+    await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{timeout:4500,intervals:[35]}).toBe('recover');
+    expect((await read(page))!.state.health).toBe(start.state.health);
    }
    await fight();
    await station('pumpworks-report');

@@ -121,11 +121,11 @@ test('An oatcake heals once, never at full health, and waits with a lost satchel
  assert.equal(play(decoded.state,'oatcake','locker').oatcake,'packed');
 });
 
-function untilPhase(start:HopperMotion,player:{x:number;y:number},phase:HopperMotion['phase']){
+function untilPhase(start:HopperMotion,player:{x:number;y:number},phase:HopperMotion['phase'],enemyHealth=9){
  let motion=start;
  const impacts:string[]=[];
  for(let i=0;i<240&&motion.phase!==phase;i++){
-  const next=stepHopper(motion,player,.025);
+  const next=stepHopper(motion,player,.025,enemyHealth);
   motion=next.motion;
   if(next.impact)impacts.push(next.impact);
  }
@@ -175,4 +175,19 @@ test('Combat cues are short, bounded and silent at their endpoints',()=>{
   assert.ok(clip.some(sample=>Math.abs(sample)>.01));
  }
  assert.notDeepEqual(clips[0],clips[1]);
+});
+
+test('A tired hopper alternates wider splashes with lunges and rewards backing out of the ring',()=>{
+ const player={x:15,y:9};
+ const windup=untilPhase(freshHopper(),player,'windup',3).motion;
+ assert.equal(windup.pattern,'splash');
+ assert.deepEqual(windup.aim,windup.feet);
+ const sidestep={x:14.75,y:10};
+ assert.deepEqual(untilPhase(windup,sidestep,'recover',3).impacts,['splash']);
+ const out={x:13.2,y:9};
+ const dodge=untilPhase(windup,out,'recover',3);
+ assert.deepEqual(dodge.impacts,[]);
+ assert.equal(untilPhase(dodge.motion,player,'windup',3).motion.pattern,'lunge');
+ const hurt=play(play(prepared(),'begin','arena'),'splash-hit','arena');
+ assert.equal(hurt.health,6);
 });

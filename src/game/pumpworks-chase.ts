@@ -2,19 +2,19 @@ import {HOPPER_FEET} from './pumpworks-room.ts';
 import type {Point} from './world.ts';
 
 export const HOPPER_MOVEMENT={
- awareness:4.8,windupRange:2.25,reach:1.8,impactRadius:.87,
+ awareness:4.8,windupRange:2.25,reach:1.8,impactRadius:.87,splashRadius:2.55,lowHealth:4,
  chaseSpeed:1.75,windupSeconds:1.18,chargeSeconds:.28,restSeconds:1.18,
  strikeCooldown:.46,braceSeconds:1.45,braceCooldown:2.2,
 } as const;
 type Phase='idle'|'chase'|'windup'|'charge'|'recover';
 export type HopperMotion={
- feet:Point;phase:Phase;elapsed:number;aim:Point|null;origin:Point|null;
+ feet:Point;phase:Phase;pattern:'lunge'|'splash';elapsed:number;aim:Point|null;origin:Point|null;
  contact:boolean;guard:number;braceCooldown:number;strikeCooldown:number;
 };
-export type HopperStep={motion:HopperMotion;impact:'braced'|'hit'|null};
+export type HopperStep={motion:HopperMotion;impact:'braced'|'hit'|'splash'|null};
 
 export const freshHopper=():HopperMotion=>({
- feet:HOPPER_FEET,phase:'idle',elapsed:0,aim:null,origin:null,
+ feet:HOPPER_FEET,phase:'idle',pattern:'lunge',elapsed:0,aim:null,origin:null,
  contact:false,guard:0,braceCooldown:0,strikeCooldown:0,
 });
 
@@ -36,7 +36,7 @@ function setPhase(state:HopperMotion,phase:Phase,more:Partial<HopperMotion>={}):
  return {...state,phase,elapsed:0,...more};
 }
 
-export function stepHopper(state:HopperMotion,player:Point,seconds:number):HopperStep{
+export function stepHopper(state:HopperMotion,player:Point,seconds:number,enemyHealth=9):HopperStep{
  const dt=clamp(seconds,0,.065),rules=HOPPER_MOVEMENT;
  const active={...state,
   elapsed:state.elapsed+dt,guard:Math.max(0,state.guard-dt),
@@ -49,7 +49,9 @@ export function stepHopper(state:HopperMotion,player:Point,seconds:number):Hoppe
   case 'chase':{
    const remaining=distance(active.feet,player);
    if(remaining<=rules.windupRange){
-    return result(setPhase(active,'windup',{aim:bounded(player),origin:active.feet,contact:false}));
+    const pattern=enemyHealth<=rules.lowHealth&&active.pattern!=='splash'?'splash':'lunge';
+    const aim=pattern==='splash'?active.feet:bounded(player);
+    return result(setPhase(active,'windup',{pattern,aim,origin:active.feet,contact:false}));
    }
    return result({...active,feet:mix(active.feet,player,Math.min(1,dt*rules.chaseSpeed/remaining))});
   }
@@ -57,10 +59,12 @@ export function stepHopper(state:HopperMotion,player:Point,seconds:number):Hoppe
    return result(active.elapsed>=rules.windupSeconds?setPhase(active,'charge'):active);
   case 'charge':{
    const next=mix(active.origin!,active.aim!,Math.min(1,active.elapsed/rules.chargeSeconds));
-   const landed=!active.contact&&segmentDistance(player,active.feet,next)<=rules.impactRadius;
+   const splash=active.pattern==='splash';
+   const meets=splash?distance(player,next)<=rules.splashRadius:segmentDistance(player,active.feet,next)<=rules.impactRadius;
+   const landed=!active.contact&&meets;
    const nextState={...active,feet:next,contact:active.contact||landed};
    return result(active.elapsed>=rules.chargeSeconds?setPhase(nextState,'recover',{aim:null,origin:null}):nextState,
-    landed?(active.guard>0?'braced':'hit'):null);
+    landed?(active.guard>0?'braced':splash?'splash':'hit'):null);
   }
   case 'recover':return result(active.elapsed>=rules.restSeconds?setPhase(active,'chase'):active);
  }

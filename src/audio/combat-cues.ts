@@ -1,8 +1,9 @@
-export const FIELD_CUES=['lunge','swing','thud','block'] as const;
+export const FIELD_CUES=['lunge','splash','swing','thud','block'] as const;
 export type FieldCue=typeof FIELD_CUES[number];
 
 const shape:Record<FieldCue,{body:number;tail:number;seconds:number;noise:number;gain:number}>={
  lunge:{body:145,tail:225,seconds:.17,noise:.24,gain:.09},
+ splash:{body:199,tail:285,seconds:.17,noise:.68,gain:.11},
  swing:{body:238,tail:104,seconds:.12,noise:.44,gain:.11},
  thud:{body:114,tail:67,seconds:.15,noise:.31,gain:.18},
  block:{body:345,tail:194,seconds:.11,noise:.13,gain:.13},

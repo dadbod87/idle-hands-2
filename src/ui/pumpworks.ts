@@ -95,7 +95,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    refresh();
    host.feedback(result.message);
    if(result.ok&&onField){
-    if(action==='hit')host.cue('thud');
+    if(action==='hit'||action==='splash-hit')host.cue('thud');
     if(action==='guard')host.cue('block');
    }
    if(result.ok&&result.returnToBed)host.moveToBed();
@@ -163,10 +163,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     hopper=freshHopper();
     if(state.fight&&now>=retryAt)void combatAction('retreat');
    }else if(state.fight){
-    const next=stepHopper(hopper,context.position,dt);
-    if(hopper.phase!=='windup'&&next.motion.phase==='windup')host.cue('lunge');
+    const next=stepHopper(hopper,context.position,dt,state.fight.health);
+    if(hopper.phase!=='windup'&&next.motion.phase==='windup')host.cue(next.motion.pattern);
     hopper=next.motion;
-    if(next.impact)void combatAction(next.impact==='braced'?'guard':'hit');
+    if(next.impact)void combatAction(next.impact==='braced'?'guard':next.impact==='splash'?'splash-hit':'hit');
    }else if(hopperNotices(context.position)&&now>=retryAt){
     void combatAction('begin');
    }
@@ -180,13 +180,14 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const strikeDisabled=disabled||state?.rod!=='equipped'||hopper.strikeCooldown>0;
   const braceDisabled=disabled||hopper.braceCooldown>0;
   const eatDisabled=disabled||state?.oatcake!=='packed'||state?.satchel!=='carried'||state.health===FIELD_HEALTH;
-  const text=state?.cleared?'Cleared':hopper.phase==='windup'?'Lunge coming':hopper.phase==='charge'?'Lunging':hopper.phase==='recover'?'Open to strike':hopper.phase==='chase'?'Chasing':'Cross the bridge';
+  const text=state?.cleared?'Cleared':hopper.phase==='windup'?(hopper.pattern==='splash'?'Splash coming':'Lunge coming'):hopper.phase==='charge'?(hopper.pattern==='splash'?'Splashing':'Lunging'):hopper.phase==='recover'?'Open to strike':hopper.phase==='chase'?'Chasing':'Cross the bridge';
   const status=hopper.guard>0?'Braced':text;
   const key=[status,strikeDisabled,braceDisabled,eatDisabled,hopper.phase].join(':');
   if(renderedControls===key)return;
   renderedControls=key;
   fieldStatus.textContent=status;
   host.controls.dataset.phase=hopper.phase;
+  host.controls.dataset.pattern=hopper.pattern;
   strikeButton.disabled=strikeDisabled;
   braceButton.disabled=braceDisabled;
   oatcakeButton.disabled=eatDisabled;

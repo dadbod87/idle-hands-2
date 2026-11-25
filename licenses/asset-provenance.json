@@ -45,7 +45,7 @@
     {
       "id": "mossbank-road-inkwood",
       "path": "public/art/mossbank/road-inkwood.svg",
-      "sha256": "4b2cff9d1f1fcb76dd51d512977ec0ae92f18b70a436068dffc94bb705f89012",
+      "sha256": "2f9d0ab807c14cd69ff1ba936417a25d9be318da8aac5ea9dbf978aa7aa4af65",
       "creator": "Original code-authored for Idle Hands 2",
       "license": "project-original",
       "source": "public/art/mossbank/road-inkwood.svg",
@@ -115,7 +115,7 @@
     {
       "id": "mossbank-road-west",
       "path": "public/art/mossbank/road-west.svg",
-      "sha256": "a58577d127f83966576aac3baecbd1a566dda01a1a6bde8bd25beda8f74afe7c",
+      "sha256": "6df2b1f180552f7f1431300118c66b7bda6886fce296489a2c8ac3e699e0cb6a",
       "creator": "Original code-authored for Idle Hands 2",
       "license": "project-original",
       "source": "public/art/mossbank/road-west.svg",

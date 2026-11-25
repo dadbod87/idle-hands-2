@@ -29,3 +29,14 @@ A four-hour refill or twelve-hour craft can support a workday game only when the
 Candidate connected outing: grow food → a neighbor prepares supplies → a short pump-station objective → bring home a recognizable keepsake/blueprint → asynchronous contributions restore a useful route. This is a design example, not accepted combat, edible-food, party, blueprint or restoration content.
 
 Next after IH2-117: audit/reproduce the saturated player's actual options, then select one repeatable woodland activity with a visible use/payoff. Do not automatically accelerate existing jobs, create infinite resource income, add all systems at once or promise retention. An invited playtest must distinguish agent-tested functionality from whether coworkers voluntarily return, cooperate and share stories.
+
+## Town layouts and small references, November 25
+
+Keep the useful spatial ideas and draw original towns. The [official Britain guide](https://uo.com/wiki/ultima-online-wiki/world/cities-and-towns/cities-and-towns-britain/) describes services and shared gathering spots close enough for visits to cross. The [official travel guide](https://uo.com/wiki/ultima-online-wiki/beginning-the-adventure/movement-and-travel/) describes marking a place for a later return. These are design references across the game's history. They do not establish a specific 1997 layout or ruleset.
+
+- Put a regular service, a recognizable meeting spot and a sign toward home along the same traveled route. Let one walk work for errands, neighbor visits and a chance encounter.
+- Put wilderness danger beyond a recognizable threshold, with sight lines and a safe way around it. In a dungeon, teach by showing footwork and consequences on the floor. Keep hints short and the controls close.
+- Hidden Valley uses a wooded approach, terrace houses, an orchard and a cider court around a common green. Give the town an optional loop past the gardens and back to the green before extending the road. The housing lane and road geometry are original.
+- A small carved return stone now sits at the foot of the Mossbank exit signs. It points to the existing road. It is an original visual nod to marked travel stones, and walking remains the way home. Future regions can share this wayfinding motif. Prefer small things that an old player can recognize without prompting a lore lesson.
+
+Use original art, layout geometry, dialogue, audio and names. Keep the present [sound decision](../DECISIONS.md) for legacy recordings.

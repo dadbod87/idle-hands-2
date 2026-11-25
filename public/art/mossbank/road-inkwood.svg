@@ -5,4 +5,10 @@
  <path d="M114 29H29L14 44l15 13h85" fill="none" stroke="#a18153" stroke-width="2"/>
  <text x="68" y="48" fill="#435446" font-size="13" font-weight="bold" font-family="Georgia,serif" text-anchor="middle">INKWOOD</text>
  <path d="M36 92q12-21 17 0m34 2q6-19 14 2" fill="none" stroke="#728760" stroke-width="4" stroke-linecap="round"/>
+ <g aria-hidden="true">
+  <ellipse cx="80" cy="101" rx="24" ry="5" fill="#35463e" opacity=".2"/>
+  <path d="M64 100l-3-16 7-10 15-2 11 7 4 20z" fill="#7a8580" stroke="#40544d" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M64 85l6-8 13-2 9 6" fill="none" stroke="#a8b0a0" stroke-width="2" stroke-linecap="round"/>
+  <path d="M84 88H72m4-4-4 4 4 4m10-10v2m2-1h-4" fill="none" stroke="#eee1af" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+ </g>
 </svg>

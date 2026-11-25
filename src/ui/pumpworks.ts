@@ -1,9 +1,10 @@
+import {FORGE_ORDER_MS,forgeReady} from '../game/forge-order.ts';
 import {kerchiefDyePicker,kerchiefPreview,type OutfitLook} from './kerchief-preview.ts';
 import {KERCHIEF_COLORS,KERCHIEF_TIE_NAMES} from '../game/field-appearance.ts';
 import type {FieldCue} from '../audio/combat-cues.ts';
 import {BOW_DRAW_SECONDS,BOW_STILL_RADIUS,BOW_TRACE_MS,STAFF_PULSE_MS,equippedFieldWeapon,FIELD_WEAPONS,type BowDraw,type BowTrace,type FieldWeapon,type StaffPulse} from '../game/field-weapons.ts';
 import {
- FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PADDED_VEST_ARMOR,PUMPWORKS_KEY,readPumpworks,savePumpworks,
+ fieldArmor,FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PADDED_VEST_ARMOR,PUMPWORKS_KEY,readPumpworks,savePumpworks,
  type PumpworksAction,type PumpworksPlace,
 } from '../game/pumpworks.ts';
 import {
@@ -37,13 +38,14 @@ type Host={
  place:()=>PumpworksPlace;
  equipment:()=>void;
  look:()=>OutfitLook;
+ reward:()=>void;
  moveToBed:()=>void;
  update:(state:ReturnType<typeof readPumpworks>)=>void;
  feedback:(message:string)=>void;
 };
 
 const titles:Partial<Record<PumpworksPlace,string>>={
- locker:'Survey locker',bench:'Dry bench',bed:'Boarding-house bed',
+ locker:'Survey locker',forge:'Dry-side forge',bench:'Dry bench',bed:'Boarding-house bed',
  cache:'Lost property shelf',desk:'Inspection desk',
 };
 function paragraph(text:string){
@@ -360,8 +362,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   host.body.append(panel);
   let note='';
   let shownRaw:string|null=null;
+  let forgeTimer=0;
   const present=()=>panel.isConnected&&host.place()===place;
   const render=()=>{
+   window.clearTimeout(forgeTimer);
    if(!present())return;
    panel.replaceChildren();
    const state=current();
@@ -386,6 +390,37 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      }
      panel.append(button('Open Bag',host.equipment));
      if(state.oatcake==='unissued')add('Pack your oatcake','oatcake');
+    }
+   }else if(place==='forge'){
+    const order=state.forge;
+    const preview=document.createElement('div');preview.className='forge-profile';
+    const image=document.createElement('img');image.src='/art/pumpworks/riveted-vest.svg';image.alt='';
+    image.width=64;image.height=64;
+    const title=document.createElement('h3');title.textContent='Riveted survey vest';
+    preview.append(image,title,paragraph('Armor '+PADDED_VEST_ARMOR));
+    panel.append(preview);
+    if(state.rod==='unissued'){
+     panel.append(paragraph('Take a survey kit at the locker. The forge has one practice blank for each kit.'));
+    }else if(!order){
+     panel.append(paragraph('One supplied blank · '+FORGE_ORDER_MS/60000+' minutes'));
+     add('Start riveted vest','start-forge');
+    }else if(order.phase==='working'){
+     const status=paragraph('');panel.append(status);
+     const tick=()=>{
+      if(!present()||!status.isConnected)return;
+      if(forgeReady(order,Date.now())){
+       if(status.textContent===''){status.textContent='Your vest is ready.';add('Collect and equip vest','collect-forge');}
+       else render();
+       return;
+      }
+      const seconds=Math.max(1,Math.ceil((order.readyAt-Date.now())/1000));
+      status.textContent='Ready in '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
+      forgeTimer=window.setTimeout(tick,500);
+     };
+     tick();
+    }else{
+     panel.append(paragraph('This forge has stamped your vest. Procurement put its name on the inside.'));
+     panel.append(button('Open Bag',host.equipment));
     }
    }else if(place==='bench'||place==='bed'){
     panel.append(meter('Your health',state.health,FIELD_HEALTH));
@@ -417,6 +452,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    for(const control of panel.querySelectorAll('button'))control.disabled=true;
    note=await change(action,place,present,shownRaw);
    if(present()){
+    if(action==='collect-forge'&&current()?.forge?.phase==='equipped')host.reward();
     render();
     if(note)panel.querySelector<HTMLElement>('[role=status]')?.focus({preventScroll:true});
    }
@@ -473,6 +509,34 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    }
    return card;
   });
+  if(state.forge&&state.forge.phase!=='working'){
+   const card=document.createElement('li');card.className='bag-slot';card.dataset.pumpBag='riveted';
+   const art=document.createElement('div');art.className='bag-slot-art';
+   const image=document.createElement('img');image.src='/art/pumpworks/riveted-vest.svg';image.alt='';image.width=64;image.height=64;
+   art.append(image);
+   const title=document.createElement('h4');title.textContent='Riveted survey vest';
+   const detail=paragraph('');detail.className='bag-slot-detail';
+   const control=button('',()=>{});control.className='bag-equip-action';
+   const status=paragraph('');status.className='bag-equip-notice';status.role='status';
+   const paint=(message='')=>{
+    const live=current();
+    const worn=live?.forge?.phase==='equipped';
+    control.textContent=worn?'Pack riveted vest':'Equip riveted vest';
+    control.disabled=busy||!!live?.fight||!!live?.recovering;
+    detail.textContent=(worn?'Equipped':'Packed')+' · Armor '+PADDED_VEST_ARMOR;
+    status.textContent=message;
+   };
+   control.onclick=async()=>{
+    if(control.disabled)return;
+    const action=current()?.forge?.phase==='equipped'?'pack-riveted':'equip-riveted';
+    control.disabled=true;
+    const message=await change(action,'elsewhere',()=>card.isConnected,shownRaw);
+    if(record.ok)shownRaw=record.raw;
+    if(card.isConnected)for(const repaint of repaints)repaint(repaint===paint?message:'');
+   };
+   card.append(art,title,detail,control,status);
+   cards.push(card);repaints.push(paint);paint();
+  }
   const dye=document.createElement('li');dye.className='bag-slot field-kerchief';dye.dataset.fieldKerchief='';
   const title=document.createElement('h4');title.textContent='Trail kerchief';
   const detail=paragraph('');detail.className='bag-slot-detail';
@@ -490,7 +554,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    const saved=live.kerchiefDye??live.kerchief;
    const worn=live.kerchief!=='none';
    const tie=live.kerchiefTie??'knot';
-   preview.paint(selected??'none',live.vest==='equipped',picker.tie());
+   preview.paint(selected??'none',live.vest==='equipped',picker.tie(),live.forge?.phase==='equipped');
    const detailText=saved==='none'?'Undyed · Packed':worn?KERCHIEF_COLORS[saved].label+' kerchief worn':KERCHIEF_COLORS[saved].label+' · Packed';
    detail.textContent=saved==='none'?detailText:detailText+' · '+KERCHIEF_TIE_NAMES[tie];
    picker.select.disabled=picker.wear.disabled=picker.style.disabled=busy||!!live.fight||live.recovering;
@@ -513,7 +577,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   return [...cards,dye];
  }
 
- function journal(body:HTMLElement,walkToDoor:()=>void,previewSeal:()=>void){
+ function journal(body:HTMLElement,walkToDoor:()=>void,previewSeal:()=>void,walkToForge:()=>void){
   const state=current();
   if(!state||state.rod==='unissued')return;
   const entry=document.createElement('section');entry.className='journal-ready-return';entry.dataset.pumpJournal='';
@@ -534,6 +598,12 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    ?button('Preview field seal',previewSeal)
    :button('Walk to the Pumpworks',walkToDoor));
   body.append(entry);
+  if(state.forge?.phase==='working'){
+   const order=document.createElement('section');order.className='journal-ready-return';order.dataset.forgeJournal='';
+   const title=document.createElement('h3');title.textContent='Riveted survey vest';
+   order.append(title,paragraph(forgeReady(state.forge,Date.now())?'Ready to collect.':'At the forge.'),button('Walk to the forge',walkToForge));
+   body.append(order);
+  }
  }
 
  function paintHealth(visible:boolean,field=false){
@@ -542,7 +612,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const state=current();
   host.hud.hidden=!visible||!state;
   if(host.hud.hidden||!state)return;
-  const armor=field&&state.vest==='equipped'?PADDED_VEST_ARMOR:0;
+  const armor=field?fieldArmor(state):0;
   const key=state.health+':'+armor;
   if(host.hud.dataset.readout!==key){
    host.hud.dataset.readout=key;

@@ -6,7 +6,7 @@ import {BOW_DRAW_SECONDS,BOW_TRACE_MS,STAFF_PULSE_MS,type BowDraw,type BowTrace,
 import type {MossbankSurvey} from '../game/mossbank.ts';
 import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,hopperOpen,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
-import {HOPPER_FEET,PRACTICE_BELL,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
+import {FORGE_STOP,HOPPER_FEET,PRACTICE_BELL,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
 import {HOPPER_HEALTH,type PumpworksState} from '../game/pumpworks.ts';
 import {activeWave,waveRoom} from '../game/town-wave.ts';
 import {INKWOOD_HOOD,CLERK_CAP,type EarnedHeadwear} from '../game/earned-headwear.ts';
@@ -625,7 +625,6 @@ export class WorldScene extends Phaser.Scene {
     this.soundingRod?.setRotation(!reduced&&strike>.24?1.2*Math.sin((HOPPER_MOVEMENT.strikeCooldown-strike)*13):0);
     this.fieldBow?.setVisible(state?.bow==='equipped');
     this.fieldStaff?.setVisible(state?.staff==='equipped');
-    this.fieldVest?.setVisible(state?.vest==='equipped');
     const draw=encounter?.draw;
     if(draw){
       const px=(draw.from.x+.5)*TILE,py=(draw.from.y+.5)*TILE-45;
@@ -712,7 +711,11 @@ export class WorldScene extends Phaser.Scene {
         if(!this.textures.exists('valley-'+id))this.load.svg('valley-'+id,'/art/hidden-valley/'+id+'.svg');
       }
     }
-    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','breeze-staff','padded-vest-poses']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
+    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','breeze-staff','dry-forge']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
+    const practiceGear=this.pumpworksState?.();
+    if(this.loadingRoom==='pumpworks'||practiceGear&&practiceGear.rod!=='unissued'){
+      fieldArt.push('padded-vest-poses','riveted-vest-poses');
+    }
     for(const id of fieldArt){
       if(!this.textures.exists('pumpworks-'+id))this.load.svg('pumpworks-'+id,'/art/pumpworks/'+id+'.svg');
     }
@@ -1069,6 +1072,9 @@ export class WorldScene extends Phaser.Scene {
       };
       station(3,8.6,51,74,0x778c73,'Survey locker');
       station(3,4.6,60,26,0x8d744f,'Dry bench');
+      const fx=FORGE_STOP.point.x*TILE,fy=5.3*TILE;
+      this.add.image(fx,fy,'pumpworks-dry-forge').setOrigin(.5,.93).setScale(.83).setDepth(fy);
+      label(FORGE_STOP.point.x+.5,FORGE_STOP.point.y+.72,FORGE_STOP.name).setFontSize(12).setDepth(fy+1);
       const bellX=(PRACTICE_BELL.x+.5)*TILE,bellY=(PRACTICE_BELL.y+.5)*TILE;
       this.add.image(bellX,bellY,'pumpworks-practice-bell').setOrigin(.5,.95).setDepth(bellY);
       label(PRACTICE_BELL.x+.5,PRACTICE_BELL.y+.9,'Practice bell').setDepth(bellY+1);
@@ -1083,9 +1089,6 @@ export class WorldScene extends Phaser.Scene {
       this.soundingRod=this.add.image(0,0,'pumpworks-sounding-rod').setScale(.55).setOrigin(.5,1).setVisible(false);
       this.fieldBow=this.add.image(0,0,'pumpworks-field-bow').setScale(.49).setOrigin(.5,1).setVisible(false);
       this.fieldStaff=this.add.image(0,0,'pumpworks-breeze-staff').setScale(.56).setOrigin(.5,1).setVisible(false);
-      const vestKey='pumpworks-padded-vest-poses',vestTexture=this.textures.get(vestKey);
-      if(!vestTexture.has('0'))this.textures.addSpriteSheet('',vestTexture,{frameWidth:64,frameHeight:80});
-      this.fieldVest=this.add.image(0,0,vestKey,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setVisible(false);
       this.paintPumpworks();
     } else if(this.room==='glasshouse') {
       for(const stop of w.stops)label(stop.point.x+.5,stop.point.y+.98,stop.id==='glasshouse-exit'?'Inkwood trail ↓':stop.name);
@@ -1148,6 +1151,14 @@ export class WorldScene extends Phaser.Scene {
     this.walkMark.fillEllipse(0, 0, 21, 14).strokeEllipse(0, 0, 21, 14);
     this.walkMark.lineStyle(2, 0x50694d).lineBetween(-4, 0, 4, 0).lineBetween(0, -3, 0, 3);
     this.actor=this.add.image(0,0,'variety-resident-'+residentArt(this.residentId),0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale);
+    const paddedKey='pumpworks-padded-vest-poses';
+    if(this.pumpworksState&&this.textures.exists(paddedKey)){
+      for(const key of [paddedKey,'pumpworks-riveted-vest-poses']){
+        const texture=this.textures.get(key);
+        if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});
+      }
+      this.fieldVest=this.add.image(0,0,paddedKey,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setVisible(false);
+    }
     this.cameras.main.setBackgroundColor(this.room === 'square' ? '#aebc92' : this.room==='trail'?'#87966f':'#c5b28d');
     this.cameras.main.setBounds(0, 0, w.width * TILE, w.height * TILE);
     // Small interiors and the bounded trail stay centred on large screens; phones retain follow-and-pan.
@@ -1322,6 +1333,7 @@ export class WorldScene extends Phaser.Scene {
       worker:this.mossbankWren?.texture.key??null,
       ripples:this.mossbankRipples.filter(ripple=>ripple.image.visible).map(ripple=>({x:ripple.image.x,y:ripple.image.y})),
     },
+    fieldArmorArt:this.fieldVest?.visible===true?this.fieldVest.texture.key:null,
     fieldEquipment:{vest:this.fieldVest?.visible===true,kerchief:this.fieldKerchief?.ink.visible===true?this.fieldKerchief.key:null},
     wornCloth:{own:this.peerLocalKerchief?.ink.visible?this.peerLocalKerchief.key:null,
       peers:[...this.residentViews].filter(([,view])=>view.kerchief?.ink.visible).map(([id,view])=>({id,appearance:view.kerchief!.key}))},
@@ -1417,15 +1429,21 @@ export class WorldScene extends Phaser.Scene {
     this.soundingRod?.setPosition(x+14,y-3).setDepth(y+1);
     this.fieldBow?.setPosition(x+14,y-5).setDepth(y+1);
     this.fieldStaff?.setPosition(x+14,y-1).setDepth(y+1);
-    if(this.fieldVest?.visible){
-      const sx=ART.actorScale*KERCHIEF_RIG_WIDTH[rig],sy=ART.actorScale;
-      const bob=this.frame>0?.8*Math.abs(Math.sin((this.frame-1)*Math.PI/3)):0;
-      const pose=FACINGS.indexOf(this.facing);
-      if(String(this.fieldVest.frame.name)!==String(pose))this.fieldVest.setFrame(pose);
-      this.fieldVest.setPosition(x,y-bob*sy).setDepth(y+.5).setScale(sx,sy);
+    const practiceGear=this.pumpworksState?.();
+    if(this.fieldVest){
+      const riveted=practiceGear?.forge?.phase==='equipped',padded=practiceGear?.vest==='equipped';
+      const visible=!this.resting&&(riveted||padded);
+      if(this.fieldVest.visible!==visible)this.fieldVest.setVisible(visible);
+      if(visible){
+        const sx=ART.actorScale*KERCHIEF_RIG_WIDTH[rig],sy=ART.actorScale;
+        const bob=this.frame>0?.8*Math.abs(Math.sin((this.frame-1)*Math.PI/3)):0;
+        const pose=FACINGS.indexOf(this.facing),key='pumpworks-'+(riveted?'riveted':'padded')+'-vest-poses';
+        if(this.fieldVest.texture.key!==key||String(this.fieldVest.frame.name)!==String(pose))this.fieldVest.setTexture(key,pose);
+        this.fieldVest.setPosition(x,y-bob*sy).setDepth(y+.5).setScale(sx,sy);
+      }
     }
-    if(this.room==='pumpworks'){
-      this.fieldKerchief=this.drawKerchief(this.fieldKerchief,this.pumpworksState?.()?.kerchief??'none',this.facing,x,y,rig,this.frame,this.pumpworksState?.()?.kerchiefTie);
+    if(practiceGear){
+      this.fieldKerchief=this.drawKerchief(this.fieldKerchief,this.resting?'none':practiceGear.kerchief,this.facing,x,y,rig,this.frame,practiceGear.kerchiefTie);
     }
     if(this.bedPose&&this.bedQuilt){
       if(this.bedPose.visible!==this.resting){

@@ -5,6 +5,21 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "pumpworks-dry-forge",
+      "path": "art/pumpworks/dry-forge.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pumpworks-riveted-vest",
+      "path": "art/pumpworks/riveted-vest.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pumpworks-riveted-vest-poses",
+      "path": "art/pumpworks/riveted-vest-poses.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "valley-cider-print",
       "path": "art/hidden-valley/cider-print.svg",
       "kind": "original-svg"

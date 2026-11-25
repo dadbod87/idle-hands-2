@@ -1,3 +1,4 @@
+import {FORGE_ORDER_MS,forgeOrderSchema,forgeReady} from './forge-order.ts';
 import {z} from 'zod';
 import {FIELD_KERCHIEFS,KERCHIEF_ACTIONS,type FieldKerchief,KERCHIEF_COLORS,KERCHIEF_PACK_ACTIONS,KERCHIEF_TIES,type FieldDyeAction} from './field-appearance.ts';
 import {equippedFieldWeapon,FIELD_WEAPON_IDS,FIELD_WEAPONS,wieldWeapon} from './field-weapons.ts';
@@ -18,6 +19,7 @@ const recordSchema=z.object({
  kerchief:z.enum(FIELD_KERCHIEFS).default('none'),
  kerchiefDye:z.enum(FIELD_KERCHIEFS).optional(),
  kerchiefTie:z.enum(KERCHIEF_TIES).optional(),
+ forge:forgeOrderSchema.optional(),
  oatcake:z.enum(['unissued','packed','used']).default('unissued'),
  satchel:z.enum(['none','carried','at-pump']),
  fight:z.object({
@@ -35,6 +37,8 @@ const recordSchema=z.object({
     ||FIELD_WEAPON_IDS.filter(slot=>state[slot]==='equipped').length>1
     ||state.kerchief!=='none'&&state.kerchiefDye!==undefined&&state.kerchief!==state.kerchiefDye
     ||state.kerchiefTie==='wrap'&&(state.kerchiefDye??state.kerchief)==='none'
+    ||state.forge?.phase==='equipped'&&state.vest==='equipped'
+    ||state.rod==='unissued'&&state.forge!==undefined
     ||state.rod==='unissued'&&state.kerchiefDye!==undefined&&state.kerchiefDye!=='none'
     ||state.rod==='unissued'&&(state.oatcake!=='unissued'||state.bow!=='unissued'||state.staff!=='unissued'||state.vest!=='unissued'||state.kerchief!=='none')
     ||(state.rod==='unissued')!==(state.satchel==='none')){
@@ -42,15 +46,19 @@ const recordSchema=z.object({
  }
 });
 export type PumpworksState=z.infer<typeof recordSchema>;
-export type PumpworksAction=FieldDyeAction|'issue'|'borrow-bow'|'borrow-staff'|'equip-staff'|'pack-staff'|'borrow-vest'|'equip-vest'|'pack-vest'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
-export type PumpworksPlace='locker'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
+export type PumpworksAction=FieldDyeAction|'issue'|'borrow-bow'|'borrow-staff'|'equip-staff'|'pack-staff'|'borrow-vest'|'equip-vest'|'pack-vest'|'start-forge'|'collect-forge'|'equip-riveted'|'pack-riveted'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
+export type PumpworksPlace='locker'|'forge'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
 type Result={ok:false;message:string}|{ok:true;state:PumpworksState;message:string;returnToBed?:true};
 
 export const freshPumpworks=():PumpworksState=>({
  version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',bow:'unissued',staff:'unissued',vest:'unissued',kerchief:'none',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,rematch:false,
 });
 
-export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place:PumpworksPlace):Result{
+export function fieldArmor(state:PumpworksState){
+ return state.vest==='equipped'||state.forge?.phase==='equipped'?PADDED_VEST_ARMOR:0;
+}
+
+export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place:PumpworksPlace,now=Date.now()):Result{
  const refuse=(message:string):Result=>({ok:false,message});
  const accept=(changes:Partial<PumpworksState>,message:string,returnToBed?:true):Result=>({
   ok:true,state:{...state,...changes,revision:state.revision+1},message,...(returnToBed?{returnToBed}:{}),
@@ -89,13 +97,37 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
    return accept(wieldWeapon(state,'staff'),'Breeze staff equipped.');
   case 'borrow-vest':
    if(place!=='locker'||state.rod==='unissued'||state.vest!=='unissued'||state.fight)return refuse('The padded vest is on loan from the survey locker.');
-   return accept({vest:'equipped'},'Padded vest equipped.');
+   const forge=state.forge?.phase==='equipped'?{...state.forge,phase:'packed' as const}:state.forge;
+   return accept({vest:'equipped',...(forge?{forge}:{})},'Padded vest equipped.');
   case 'equip-vest':
   case 'pack-vest':
    if(state.fight)return refuse('End the encounter before changing gear.');
-   if(action==='equip-vest'&&state.vest==='packed')return accept({vest:'equipped'},'Padded vest equipped.');
+   if(action==='equip-vest'&&state.vest==='packed'){
+    const forge=state.forge?.phase==='equipped'?{...state.forge,phase:'packed' as const}:state.forge;
+    return accept({vest:'equipped',...(forge?{forge}:{})},'Padded vest equipped.');
+   }
    if(action==='pack-vest'&&state.vest==='equipped')return accept({vest:'packed'},'Padded vest packed.');
    return refuse('Check your current outing gear.');
+  case 'start-forge':
+   if(place!=='forge'||state.rod==='unissued'||state.fight)return refuse('Bring the survey kit to the dry-side forge.');
+   if(state.forge)return refuse('The forge has one training blank per kit.');
+   if(!Number.isSafeInteger(now)||now<0||now>Number.MAX_SAFE_INTEGER-FORGE_ORDER_MS)return refuse('The forge clock needs to settle.');
+   return accept({forge:{startedAt:now,readyAt:now+FORGE_ORDER_MS,phase:'working'}},'The riveted vest is underway.');
+  case 'collect-forge': {
+   if(place!=='forge'||!state.forge||!forgeReady(state.forge,now)||state.fight)return refuse('Collect the finished vest at the dry-side forge.');
+   const vest=state.vest==='equipped'?'packed':state.vest;
+   return accept({vest,forge:{...state.forge,phase:'equipped'}},'Riveted vest collected and equipped.');
+  }
+  case 'equip-riveted':
+  case 'pack-riveted': {
+   if(!state.forge||state.fight)return refuse('Check the forge and end the encounter before changing armor.');
+   if(action==='pack-riveted'&&state.forge.phase==='equipped')return accept({forge:{...state.forge,phase:'packed'}},'Riveted vest packed.');
+   if(action==='equip-riveted'&&state.forge.phase==='packed'){
+    const vest=state.vest==='equipped'?'packed':state.vest;
+    return accept({vest,forge:{...state.forge,phase:'equipped'}},'Riveted vest equipped.');
+   }
+   return refuse('Check your current outing gear.');
+  }
   case 'oatcake':
    if(place!=='locker'||state.rod==='unissued'||state.oatcake!=='unissued')return refuse('There is no new oatcake in the survey locker.');
    return accept({oatcake:'packed'},'The survey locker still had your oatcake.');
@@ -145,7 +177,7 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
   case 'guard': {
    if(place!=='arena'||!state.fight)return refuse('There is no encounter here.');
    const baseDamage=action==='guard'?1:action==='splash-hit'?2:3;
-   const armor=state.vest==='equipped'?PADDED_VEST_ARMOR:0;
+   const armor=fieldArmor(state);
    const damage=Math.max(1,baseDamage-armor);
    const health=Math.max(0,state.health-damage);
    if(health===0)return accept({
@@ -191,11 +223,11 @@ export function readPumpworks(storage:StorageAccess):Read{
  }catch{/* A corrupt or inaccessible save remains untouched. */}
  return {ok:false,message:'The Pumpworks save could not be read. It has been kept unchanged.'};
 }
-export function savePumpworks(storage:StorageAccess,expected:string|null,action:PumpworksAction,place:PumpworksPlace):Result{
+export function savePumpworks(storage:StorageAccess,expected:string|null,action:PumpworksAction,place:PumpworksPlace,now=Date.now()):Result{
  const current=readPumpworks(storage);
  if(!current.ok)return current;
  if(current.raw!==expected)return {ok:false,message:'This outing changed in another tab. Review the refreshed record.'};
- const result=applyPumpworks(current.state,action,place);
+ const result=applyPumpworks(current.state,action,place,now);
  if(!result.ok)return result;
  const next=JSON.stringify(recordSchema.parse(result.state));
  try{

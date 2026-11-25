@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="100" viewBox="0 0 96 100">
+ <title>Dry-side survey forge</title>
+ <ellipse cx="48" cy="88" rx="42" ry="8" fill="#293d3540"/>
+ <path d="M57 15h23v35H55z" fill="#596063" stroke="#343b36" stroke-width="3"/>
+ <path d="M54 16h29v9H54z" fill="#82706a" stroke="#343b36" stroke-width="3"/>
+ <path d="M31 39h54v44H31z" fill="#93694c" stroke="#343b36" stroke-width="3"/>
+ <path d="M32 55h53M32 70h53m-39-30v15m22-15v15M62 70v13" fill="none" stroke="#d0a97b" stroke-width="2"/>
+ <path d="M44 80V63q0-19 16-19t16 19v17Z" fill="#483f39" stroke="#343b36" stroke-width="3"/>
+ <path d="M46 75q7-4 9-14 3 3 4 8 6-4 8-10 6 9 4 16Z" fill="#e7ac65" stroke="#a46c48" stroke-width="2"/>
+ <path d="M5 53h36l-5 9H25v11h8v9H10v-9h7V62H9Z" fill="#648483" stroke="#334541" stroke-width="3"/>
+ <path d="M7 54h30m10 27h27" stroke="#d9d2a9" stroke-width="2"/>
+ <path d="M12 49l9-12 6 5-7 12" fill="#b58a56" stroke="#534539" stroke-width="2"/>
+</svg>

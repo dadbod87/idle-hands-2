@@ -5,7 +5,7 @@ import {sewingJournal,showTailoring,tailoringBagCards} from './ui/tailoring.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD} from './game/mossbank-room.ts';
 import {MOSSBANK_KEY,mossbankFromAwards,readMossbank,type SurveyPlace} from './game/mossbank.ts';
 import {createMossbank} from './ui/mossbank.ts';
-import {PUMPWORKS_DOOR} from './game/pumpworks-room.ts';
+import {FORGE_STOP,PUMPWORKS_DOOR} from './game/pumpworks-room.ts';
 import {FIELD_HEALTH,readPumpworks,type PumpworksPlace} from './game/pumpworks.ts';
 import {LODGING_BEDSIDE} from './game/lodging.ts';
 import {createPumpworks} from './ui/pumpworks.ts';
@@ -500,7 +500,7 @@ function inkmintForJournal(){
  };
 }
 const fieldStations:Record<string,PumpworksPlace>={
- 'pumpworks-locker':'locker','pumpworks-bench':'bench',
+ 'pumpworks-locker':'locker','pumpworks-bench':'bench',[FORGE_STOP.id]:'forge',
  'pumpworks-cache':'cache','pumpworks-report':'desk','lodging-note':'bed',
 };
 const fieldPlace=()=>fieldStations[session.nearby()?.id??'']??'elsewhere';
@@ -515,6 +515,7 @@ const pumpworks=townMode?undefined:createPumpworks({
  }),
  equipment:()=>workshop.showFieldGear(),
  look:()=>({rig:scene.residentId,headwear:scene.headwear}),
+ reward:()=>music.cue('craft'),
  feedback:message=>feedback.textContent=message,
  update:record=>{
   const earned=record.ok&&record.state.reported;
@@ -575,7 +576,7 @@ const workshop=new WorkshopUI({fieldGear:pumpworks?.gear??(town?()=>tailoringBag
  if(session.room==='pumpworks'){
   goNamedDestination('pumpworks',state?.satchel==='at-pump'?'pumpworks-cache':state?.cleared?'pumpworks-report':'pumpworks-hopper');
  }else goNamedDestination('square',PUMPWORKS_DOOR.id);
-},()=>workshop.showJournal('pumpworks-seal'));mossbank.journal(body);}:body=>{
+},()=>workshop.showJournal('pumpworks-seal'),()=>goNamedDestination('pumpworks',FORGE_STOP.id));mossbank.journal(body);}:body=>{
  mossbank.journal(body);
  if(town)sewingJournal(body,town,()=>goNamedDestination('workshop',SEWING_TABLE.id));
 },inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
@@ -619,12 +620,13 @@ function followNamedWalk(){
  const target=namedWalk;
  const fromInkwoodSide=session.room==='glasshouse'||(townMode&&session.room==='mossbank');
  const toNursery=target.room==='glasshouse',toMossbank=townMode&&target.room==='mossbank';
- const squarePortal=target.room==='garden'?'allotment':target.room==='workshop'?'workshop':toNursery||toMossbank?'trail-gate':null;
+ const toPumpworks=!townMode&&target.room==='pumpworks';
+ const squarePortal=toPumpworks?PUMPWORKS_DOOR.id:target.room==='garden'?'allotment':target.room==='workshop'?'workshop':toNursery||toMossbank?'trail-gate':null;
  const stop=session.room===target.room?session.stops.find(s=>s.id===target.stopId)
   :session.room==='square'?worlds.square.stops.find(s=>s.id===squarePortal)
   :session.room==='trail'&&toNursery?INKWOOD_GLASSHOUSE
   :session.room==='trail'&&toMossbank?INKWOOD_MOSSBANK_ROAD
-  :session.stops.find(s=>s.transition===(fromInkwoodSide?'trail':'square'));
+  :session.stops.find(s=>s.transition===(fromInkwoodSide?'trail':toPumpworks&&session.room==='hidden-valley'?'mossbank':'square'));
  if(!stop){namedWalk=null;feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
  if(Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.25){
   if(session.room===target.room&&stop.id===target.stopId)namedWalk=null;

@@ -3,6 +3,36 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "pumpworks-dry-forge",
+      "path": "public/art/pumpworks/dry-forge.svg",
+      "sha256": "75cc5d4398c97551e515687564b5f4bac4b8687cd6c8227bb03f3f9aada9c8e7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/dry-forge.svg",
+      "date": "2026-11-25",
+      "modifications": "Original dry-side forge and wearable riveted vest art."
+    },
+    {
+      "id": "pumpworks-riveted-vest",
+      "path": "public/art/pumpworks/riveted-vest.svg",
+      "sha256": "022e144dff6cf3c7e86efee8b825803b7e96b4b97391c7ccca8001fb6a41e250",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/riveted-vest.svg",
+      "date": "2026-11-25",
+      "modifications": "Original dry-side forge and wearable riveted vest art."
+    },
+    {
+      "id": "pumpworks-riveted-vest-poses",
+      "path": "public/art/pumpworks/riveted-vest-poses.svg",
+      "sha256": "23fd1cc6c06791006f303d13f3e371d88ff2bca68cb329ce47d4327a373a7c50",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/riveted-vest-poses.svg",
+      "date": "2026-11-25",
+      "modifications": "Original dry-side forge and wearable riveted vest art."
+    },
+    {
       "id": "valley-cider-print",
       "path": "public/art/hidden-valley/cider-print.svg",
       "sha256": "4d8bf8be17f819aaa8193cbd66f2550f69b59b8a2b1b6288dcc5304dd11103a2",

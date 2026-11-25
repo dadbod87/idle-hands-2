@@ -46,8 +46,9 @@ export function kerchiefPreview(look?:OutfitLook){
  }
  return {
   element:preview,
-  paint(color:FieldKerchief,wearVest=false,tie:KerchiefTie='knot'){
-   vest.style.display=wearVest?'':'none';
+  paint(color:FieldKerchief,wearVest=false,tie:KerchiefTie='knot',riveted=false){
+   vest.style.display=wearVest||riveted?'':'none';
+   if(rig&&(wearVest||riveted))vest.setAttribute('href','/art/pumpworks/'+(riveted?'riveted':'padded')+'-vest-poses.svg');
    const wearing=color!=='none';
    cloth.style.display=trim.style.display=wearing?'':'none';
    if(wearing){

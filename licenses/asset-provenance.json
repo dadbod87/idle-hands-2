@@ -3,6 +3,26 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "pumpworks-riveted-vest-brass",
+      "path": "public/art/pumpworks/riveted-vest-brass.svg",
+      "sha256": "4f1545ef94731aaefd99b77fbf2e5a2f6c9d10bf8218055c6402d59f24bc9d51",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/riveted-vest.svg",
+      "date": "2026-11-25",
+      "modifications": "Original brass finish for the riveted vest. Retains the four pose frames and the distinct metalwork."
+    },
+    {
+      "id": "pumpworks-riveted-vest-brass-poses",
+      "path": "public/art/pumpworks/riveted-vest-brass-poses.svg",
+      "sha256": "8f4df6df63cbd9797fe54f176dfdf16ed246828c4954b308adfa33ac6a1fe086",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/riveted-vest-poses.svg",
+      "date": "2026-11-25",
+      "modifications": "Original brass finish for the riveted vest. Retains the four pose frames and the distinct metalwork."
+    },
+    {
       "id": "pumpworks-padded-vest-blackberry-poses",
       "path": "public/art/pumpworks/padded-vest-blackberry-poses.svg",
       "sha256": "e4a6434a4353f91a6c2127b728d514c88340034206da7e06b2522a4d9e136ef7",

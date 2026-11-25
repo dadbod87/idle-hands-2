@@ -4,8 +4,8 @@ import {equippedArmor} from '../game/pumpworks.ts';
 import {GRAFT_TREE_FEET,MOSSBANK_VALLEY_ROAD,VALLEY_STOPS,VALLEY_TREES,valleyFollow} from '../game/hidden-valley-room.ts';
 import {KERCHIEF_COLORS,validKerchief,type FieldKerchief,type KerchiefTie} from '../game/field-appearance.ts';
 import {SEWING_TABLE} from '../game/tailoring.ts';
-import {KERCHIEF_RIG_WIDTH,KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
-import {armorArtName,VEST_FINISHES} from '../game/field-appearance.ts';
+import {KERCHIEF_RIG_WIDTH,KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM,KERCHIEF_GOLD_TRIM} from '../art/field-kerchief.ts';
+import {armorArtName,validWornArmor,VEST_FINISHES,type FieldArmor,type VestFinish,type WornArmor} from '../game/field-appearance.ts';
 import {BOW_DRAW_SECONDS,BOW_TRACE_MS,ROD_SWEEP_MS,STAFF_PULSE_MS,type BowDraw,type BowTrace,type RodSweep,type StaffPulse} from '../game/field-weapons.ts';
 import type {MossbankSurvey} from '../game/mossbank.ts';
 import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,hopperOpen,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
@@ -57,7 +57,7 @@ import { ORIGINAL_STATIC, ART, FACINGS, facingFor, walkFrame, type Facing } from
 import catalog from '../../public/art/variety/catalog.json';
 import {RESIDENT_IDS,TREE_KINDS,BUILDING_KINDS,residentArt,residentFrame,ambientPose,cosmeticStep} from '../art/variety.ts';
 import { WORKSHOP_PRINTS, WORKSHOP_PRINT_STAND, type WorkshopPrint } from '../game/workshop-print.ts';
-const FIELD_VEST_ATLASES=(['padded','riveted'] as const).flatMap(armor=>VEST_FINISHES.map(finish=>armorArtName(armor,finish,true)));
+const FIELD_VEST_ATLASES=(['padded','riveted'] as const).flatMap(armor=>VEST_FINISHES.filter(finish=>armor==='riveted'||finish!=='brass').map(finish=>armorArtName(armor,finish,true)));
 
 const glasshouseTextures={overgrown:'glasshouse-overgrown','under-repair':'glasshouse-under-repair',open:'glasshouse-restored'} as const;
 type GlasshousePhase = GlasshouseSnapshot['project']['phase'];
@@ -207,8 +207,8 @@ export class WorldScene extends Phaser.Scene {
   private ambientEnabled=false;
   private gestureOffset=0;
   private reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-  residents:Array<{id:string;name:string;room:string;homePlotId?:string;districtId?:string;headwear?:EarnedHeadwear;kerchief?:FieldKerchief;kerchiefTie?:KerchiefTie;waveUntil?:number;position:{x:number;y:number}}>=[];
-  private residentViews=new Map<string,{image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text;motion:ResidentMotion;headwear?:Phaser.GameObjects.Image;kerchief?:KerchiefLayer}>();
+  residents:Array<{id:string;name:string;room:string;homePlotId?:string;districtId?:string;headwear?:EarnedHeadwear;kerchief?:FieldKerchief;kerchiefTie?:KerchiefTie;kerchiefGoldEdge?:true;wornArmor?:WornArmor;waveUntil?:number;position:{x:number;y:number}}>=[];
+  private residentViews=new Map<string,{image:Phaser.GameObjects.Image;label:Phaser.GameObjects.Text;motion:ResidentMotion;headwear?:Phaser.GameObjects.Image;armor?:Phaser.GameObjects.Image;kerchief?:KerchiefLayer}>();
   private visiblePeerWalking=false;
   localWaveUntil=0;
   waveTime=Date.now;
@@ -538,6 +538,38 @@ export class WorldScene extends Phaser.Scene {
   private fieldBow?:Phaser.GameObjects.Image;
   private fieldStaff?:Phaser.GameObjects.Image;
   private fieldVest?:Phaser.GameObjects.Image;
+  private requestedVestArt=new Set<string>();
+
+  private drawFieldArmor(layer:Phaser.GameObjects.Image|undefined,armor:FieldArmor|null,finish:VestFinish|undefined,
+   facing:Facing,x:number,y:number,rig:string,frame:number){
+    if(!armor){
+      if(layer?.visible)layer.setVisible(false);
+      return layer;
+    }
+    const atlas=armorArtName(armor,finish,true),key='pumpworks-'+atlas;
+    if(!this.textures.exists(key)){
+      if(layer?.visible)layer.setVisible(false);
+      if(!this.requestedVestArt.has(key)){
+        this.requestedVestArt.add(key);
+        this.load.svg(key,'/art/pumpworks/'+atlas+'.svg');
+        if(!this.load.isLoading())this.load.start();
+      }
+      return layer;
+    }
+    const texture=this.textures.get(key);
+    if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});
+    const pose=FACINGS.indexOf(facing);
+    const image=layer??this.add.image(x,y,key,pose).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y);
+    if(image.texture.key!==key||String(image.frame.name)!==String(pose))image.setTexture(key,pose);
+    const sx=ART.actorScale*KERCHIEF_RIG_WIDTH[residentArt(rig)],sy=ART.actorScale;
+    const bob=frame>0?.8*Math.abs(Math.sin((frame-1)*Math.PI/3)):0;
+    const top=y-bob*sy;
+    if(image.x!==x||image.y!==top)image.setPosition(x,top);
+    if(image.depth!==y+.5)image.setDepth(y+.5);
+    if(image.scaleX!==sx||image.scaleY!==sy)image.setScale(sx,sy);
+    if(!image.visible)image.setVisible(true);
+    return image;
+  }
   private forgeGlow?:Phaser.GameObjects.Ellipse;
   private graftTree?:Phaser.GameObjects.Image;
   private graftStake?:Phaser.GameObjects.Graphics;
@@ -559,15 +591,16 @@ export class WorldScene extends Phaser.Scene {
   private peerLocalKerchief?:KerchiefLayer;
   sharedKerchief:FieldKerchief='none';
   sharedKerchiefTie:KerchiefTie='knot';
+  sharedKerchiefGoldEdge=false;
 
-  private drawKerchief(layer:KerchiefLayer|undefined,color:FieldKerchief,facing:Facing,x:number,y:number,rig:string,frame:number,tie:KerchiefTie='knot'){
+  private drawKerchief(layer:KerchiefLayer|undefined,color:FieldKerchief,facing:Facing,x:number,y:number,rig:string,frame:number,tie:KerchiefTie='knot',goldEdge=false){
     if(color==='none'){
       if(layer?.ink.visible)layer.ink.setVisible(false);
       return layer;
     }
     const view=layer??{ink:this.add.graphics(),key:''},ink=view.ink;
     if(!ink.visible)ink.setVisible(true);
-    const key=facing+':'+tie+':'+color;
+    const key=facing+':'+tie+':'+color+(goldEdge?':gold-edge':'');
     if(key!==view.key){
       view.key=key;
       const shape=KERCHIEF_OUTLINES[tie][facing];
@@ -576,7 +609,7 @@ export class WorldScene extends Phaser.Scene {
       ink.clear();
       ink.fillStyle(KERCHIEF_COLORS[color].fill).fillPoints(edge,true);
       ink.lineStyle(1.35,KERCHIEF_INK).strokePoints(edge,true);
-      ink.lineStyle(1,KERCHIEF_TRIM).strokePoints(shape.seam.map(vector));
+      ink.lineStyle(goldEdge?2.1:1,goldEdge?KERCHIEF_GOLD_TRIM:KERCHIEF_TRIM).strokePoints(shape.seam.map(vector));
     }
     const sx=ART.actorScale*KERCHIEF_RIG_WIDTH[residentArt(rig)],sy=ART.actorScale;
     const bob=frame>0?.8*Math.abs(Math.sin((frame-1)*Math.PI/3)):0;
@@ -1198,14 +1231,6 @@ export class WorldScene extends Phaser.Scene {
     this.walkMark.fillEllipse(0, 0, 21, 14).strokeEllipse(0, 0, 21, 14);
     this.walkMark.lineStyle(2, 0x50694d).lineBetween(-4, 0, 4, 0).lineBetween(0, -3, 0, 3);
     this.actor=this.add.image(0,0,'variety-resident-'+residentArt(this.residentId),0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale);
-    const paddedKey='pumpworks-padded-vest-poses';
-    if(this.pumpworksState&&this.textures.exists(paddedKey)){
-      for(const name of FIELD_VEST_ATLASES){
-        const texture=this.textures.get('pumpworks-'+name);
-        if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});
-      }
-      this.fieldVest=this.add.image(0,0,paddedKey,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setVisible(false);
-    }
     this.cameras.main.setBackgroundColor(this.room === 'square' ? '#aebc92' : this.room==='trail'?'#87966f':'#c5b28d');
     this.cameras.main.setBounds(0, 0, w.width * TILE, w.height * TILE);
     // Small interiors and the bounded trail stay centred on large screens; phones retain follow-and-pan.
@@ -1383,6 +1408,7 @@ export class WorldScene extends Phaser.Scene {
     valleyGraft:this.graftTree?.visible?this.graftTree.texture.key:null,
     orchardKeeper:this.orchardKeeper?{x:this.orchardKeeper.actor.x,y:this.orchardKeeper.actor.y,frame:this.orchardKeeper.actor.frame.name}:null,
     fieldArmorArt:this.fieldVest?.visible===true?this.fieldVest.texture.key:null,
+    peerArmor:[...this.residentViews].flatMap(([id,view])=>view.armor?.visible?[{id,texture:view.armor.texture.key}]:[]),
     fieldArmorFrame:this.fieldVest?.visible===true?{name:this.fieldVest.frame.name,width:this.fieldVest.frame.width}:null,
     fieldEquipment:{vest:this.fieldVest?.visible===true,kerchief:this.fieldKerchief?.ink.visible===true?this.fieldKerchief.key:null},
     wornCloth:{own:this.peerLocalKerchief?.ink.visible?this.peerLocalKerchief.key:null,
@@ -1510,17 +1536,10 @@ export class WorldScene extends Phaser.Scene {
     this.fieldBow?.setPosition(handX,y-5).setDepth(propDepth).setFlipX(leftHand);
     this.fieldStaff?.setPosition(handX,y-1).setDepth(propDepth).setFlipX(leftHand);
     const practiceGear=this.pumpworksState?.();
-    if(this.fieldVest){
-      const armor=!this.resting&&practiceGear?equippedArmor(practiceGear):null;
-      if(this.fieldVest.visible!==!!armor)this.fieldVest.setVisible(!!armor);
-      if(armor){
-        const sx=ART.actorScale*KERCHIEF_RIG_WIDTH[rig],sy=ART.actorScale;
-        const bob=this.frame>0?.8*Math.abs(Math.sin((this.frame-1)*Math.PI/3)):0;
-        const pose=FACINGS.indexOf(this.facing),key='pumpworks-'+armorArtName(armor,practiceGear?.armorFinishes?.[armor],true);
-        if(this.fieldVest.texture.key!==key||String(this.fieldVest.frame.name)!==String(pose))this.fieldVest.setTexture(key,pose);
-        this.fieldVest.setPosition(x,y-bob*sy).setDepth(y+.5).setScale(sx,sy);
-      }
-    }
+    const actionFacing=available?(orchard?.facing??motion?.facing??gardenMotion?.facing):undefined;
+    const armor=!this.resting&&practiceGear?equippedArmor(practiceGear):null;
+    this.fieldVest=this.drawFieldArmor(this.fieldVest,armor,armor?practiceGear?.armorFinishes?.[armor]:undefined,
+      actionFacing??this.facing,x,y,rig,actionFacing?0:this.frame);
     if(practiceGear){
       this.fieldKerchief=this.drawKerchief(this.fieldKerchief,this.resting?'none':practiceGear.kerchief,this.facing,x,y,rig,this.frame,practiceGear.kerchiefTie);
     }
@@ -1534,9 +1553,8 @@ export class WorldScene extends Phaser.Scene {
       if(this.resting&&this.bedPose.texture.key!=='variety-resident-'+rig)this.bedPose.setTexture('variety-resident-'+rig,0);
       if(this.actor.visible===this.resting)this.actor.setVisible(!this.resting);
     }
-    const actionFacing=available?(orchard?.facing??motion?.facing??gardenMotion?.facing):undefined;
     this.peerLocalKerchief=this.drawKerchief(this.peerLocalKerchief,this.resting?'none':this.sharedKerchief,
-      actionFacing??this.facing,x,y,rig,actionFacing?0:this.frame,this.sharedKerchiefTie);
+      actionFacing??this.facing,x,y,rig,actionFacing?0:this.frame,this.sharedKerchiefTie,this.sharedKerchiefGoldEdge);
     this.headwearLayer=this.paintHeadwear(this.resting?null:this.headwear,this.headwearLayer,x,y,residentFrame(actionFacing??this.facing,actionFacing?0:this.frame));
     this.drawGarden();this.drawCarpentry();this.drawOuting();
     this.updateAmbient(delta);
@@ -1561,7 +1579,7 @@ export class WorldScene extends Phaser.Scene {
     });
     const nearPeers=new Set(peers.map(peer=>peer.id));
     for(const [id,view] of this.residentViews)if(!nearPeers.has(id)){
-      view.image.destroy();view.label.destroy();view.headwear?.destroy();view.kerchief?.ink.destroy();this.residentViews.delete(id);
+      view.image.destroy();view.label.destroy();view.headwear?.destroy();view.armor?.destroy();view.kerchief?.ink.destroy();this.residentViews.delete(id);
     }
     const waveNow=this.waveTime();
     if(waveRoom(this.room)&&activeWave(this.localWaveUntil,waveNow)){
@@ -1594,8 +1612,10 @@ export class WorldScene extends Phaser.Scene {
       const waving=waveRoom(this.room)&&activeWave(peer.waveUntil,waveNow);
       const label=waving?'Waves hello!\n'+peer.name:peer.name;
       if(view.label.text!==label)view.label.setText(label).setBackgroundColor(waving?'#ffe6a3':'#f8f1df');
+      const vest=validWornArmor(peer.wornArmor)?peer.wornArmor:null;
+      view.armor=this.drawFieldArmor(view.armor,vest?.armor??null,vest?.finish,view.motion.facing,px,py,peer.id,frame%7);
       view.kerchief=this.drawKerchief(view.kerchief,validKerchief(peer.kerchief)?peer.kerchief:'none',
-        view.motion.facing,px,py,peer.id,frame%7,peer.kerchiefTie==='wrap'?'wrap':'knot');
+        view.motion.facing,px,py,peer.id,frame%7,peer.kerchiefTie==='wrap'?'wrap':'knot',peer.kerchiefGoldEdge===true);
       view.headwear=this.paintHeadwear(peer.headwear===INKWOOD_HOOD||peer.headwear===CLERK_CAP?peer.headwear:null,view.headwear,px,py,frame);
     }
     this.onFrame?.();

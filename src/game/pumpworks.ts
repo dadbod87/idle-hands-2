@@ -1,3 +1,4 @@
+import {beginFinishing,finishingOrderSchema,finishingReady,tradeRank} from './trade-practice.ts';
 import {FORGE_ORDER_MS,forgeOrderSchema,forgeReady} from './forge-order.ts';
 import {z} from 'zod';
 import {FIELD_KERCHIEFS,KERCHIEF_ACTIONS,type FieldKerchief,KERCHIEF_COLORS,KERCHIEF_PACK_ACTIONS,KERCHIEF_TIES,type FieldDyeAction,VEST_FINISHES,type FieldArmor,type ArmorFinishAction} from './field-appearance.ts';
@@ -23,6 +24,7 @@ export const pumpworksRecordSchema=z.object({
  kerchiefDye:z.enum(FIELD_KERCHIEFS).optional(),
  kerchiefTie:z.enum(KERCHIEF_TIES).optional(),
  forge:forgeOrderSchema.optional(),
+ stamp:finishingOrderSchema.optional(),
  armorFinishes:z.object({padded:z.enum(VEST_FINISHES).optional(),riveted:z.enum(VEST_FINISHES).optional()}).strict().optional(),
  weaponPractice:z.object({rod:practiceMarks.optional(),bow:practiceMarks.optional(),staff:practiceMarks.optional()}).strict().optional(),
  oatcake:z.enum(['unissued','packed','used']).default('unissued'),
@@ -39,6 +41,9 @@ export const pumpworksRecordSchema=z.object({
  if(state.recovering!==(state.health===0)
     ||state.rematch!==(state.reported&&!state.cleared)
     ||state.fight&&(state.recovering||state.cleared)
+    ||state.stamp!==undefined&&(!state.forge||state.forge.phase==='working'||state.stamp.startedAt<state.forge.readyAt)
+    ||state.armorFinishes?.padded==='brass'
+    ||state.armorFinishes?.riveted==='brass'&&state.stamp?.collectedAt==null
     ||state.armorFinishes?.padded!==undefined&&state.vest==='unissued'
     ||state.armorFinishes?.riveted!==undefined&&(!state.forge||state.forge.phase==='working')
     ||FIELD_WEAPON_IDS.some(slot=>state[slot]==='unissued'&&(state.weaponPractice?.[slot]??0)>0)
@@ -54,7 +59,7 @@ export const pumpworksRecordSchema=z.object({
  }
 });
 export type PumpworksState=z.infer<typeof pumpworksRecordSchema>;
-export type PumpworksAction=ArmorFinishAction|FieldDyeAction|'issue'|'borrow-bow'|'borrow-staff'|'equip-staff'|'pack-staff'|'borrow-vest'|'equip-vest'|'pack-vest'|'start-forge'|'collect-forge'|'equip-riveted'|'pack-riveted'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
+export type PumpworksAction=ArmorFinishAction|FieldDyeAction|'issue'|'borrow-bow'|'borrow-staff'|'equip-staff'|'pack-staff'|'borrow-vest'|'equip-vest'|'pack-vest'|'start-forge'|'collect-forge'|'start-stamp'|'collect-stamp'|'equip-riveted'|'pack-riveted'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
 export type PumpworksPlace='locker'|'forge'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
 type Result={ok:false;message:string}|{ok:true;state:PumpworksState;message:string;returnToBed?:true};
 
@@ -65,6 +70,13 @@ export const freshPumpworks=():PumpworksState=>({
 export type {FieldArmor} from './field-appearance.ts';
 export function equippedArmor(state:PumpworksState):FieldArmor|null{
  return state.forge?.phase==='equipped'?'riveted':state.vest==='equipped'?'padded':null;
+}
+export function smithingRank(state:PumpworksState){
+ return tradeRank(!!state.forge&&state.forge.phase!=='working',state.stamp?.collectedAt!=null);
+}
+export function pendingForgeWork(state:PumpworksState|null|undefined){
+ if(state?.forge?.phase==='working')return {item:'vest' as const,readyAt:state.forge.readyAt};
+ return state?.stamp?.collectedAt===null?{item:'brass' as const,readyAt:state.stamp.readyAt}:null;
 }
 export function fieldArmor(state:PumpworksState){
  return equippedArmor(state)?PADDED_VEST_ARMOR:0;
@@ -88,6 +100,7 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
   const {armor,finish}=action;
   const owned=armor==='padded'?state.vest!=='unissued':state.forge&&state.forge.phase!=='working';
   if(place!=='elsewhere'||state.fight||!owned)return refuse('Finish changing your armor after the encounter and with the vest in Bag.');
+  if(finish==='brass'&&(armor!=='riveted'||state.stamp?.collectedAt==null))return refuse('Finish the brass plate at the forge first.');
   if((state.armorFinishes?.[armor]??'original')===finish)return refuse('This armor finish is already saved.');
   return accept({armorFinishes:{...state.armorFinishes,[armor]:finish}},'Armor finish saved.');
  }
@@ -135,8 +148,19 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
   case 'collect-forge': {
    if(place!=='forge'||!state.forge||!forgeReady(state.forge,now)||state.fight)return refuse('Collect the finished vest at the dry-side forge.');
    const vest=state.vest==='equipped'?'packed':state.vest;
-   return accept({vest,forge:{...state.forge,phase:'equipped'}},'Riveted vest collected and equipped.');
+   return accept({vest,forge:{...state.forge,phase:'equipped'}},'Riveted vest collected and equipped. Smithing rank 1.');
   }
+  case 'start-stamp': {
+   if(place!=='forge'||!state.forge||state.forge.phase==='working'||state.fight||now<state.forge.readyAt)
+    return refuse('Bring your finished riveted vest to the forge.');
+   if(state.stamp)return refuse('Your brass plate already has a forge order.');
+   const stamp=beginFinishing(now);
+   return stamp?accept({stamp},'Brass plate underway. The stamp is surprisingly official.'):refuse('The forge clock needs to settle.');
+  }
+  case 'collect-stamp':
+   if(place!=='forge'||state.fight||!state.stamp||!finishingReady(state.stamp,now))
+    return refuse('Collect the finished brass plate at the dry-side forge.');
+   return accept({stamp:{...state.stamp,collectedAt:now}},'Brass plate finish unlocked. Smithing rank 2.');
   case 'equip-riveted':
   case 'pack-riveted': {
    if(!state.forge||state.fight)return refuse('Check the forge and end the encounter before changing armor.');

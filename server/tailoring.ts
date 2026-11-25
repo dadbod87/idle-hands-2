@@ -6,11 +6,18 @@ const commandSchema=z.object({
  id:z.string().regex(/^[a-zA-Z0-9:_-]{1,80}$/),expectedRevision:z.number().int().min(0).max(1_000_000),
  kind:z.literal('tailoring'),action:tailoringActionSchema,
 }).strict();
-type Row={started_at:string|number;ready_at:string|number;collected_at:string|number|null;worn:unknown;dye:unknown;tie:unknown};
+type Time=string|number;
+type Row={
+ started_at:Time;ready_at:Time;collected_at:Time|null;worn:unknown;dye:unknown;tie:unknown;
+ edging_started_at?:Time|null;edging_ready_at?:Time|null;edging_collected_at?:Time|null;gold_edge?:boolean;
+};
 export function tailoringFromRow(row:Row|null){
  return row?tailoringSchema.parse({
   startedAt:Number(row.started_at),readyAt:Number(row.ready_at),
   collectedAt:row.collected_at===null?null:Number(row.collected_at),worn:row.worn,dye:row.dye,tie:row.tie,
+  ...(row.edging_started_at==null?{}:{edging:{startedAt:Number(row.edging_started_at),readyAt:Number(row.edging_ready_at),
+   collectedAt:row.edging_collected_at==null?null:Number(row.edging_collected_at)}}),
+  ...(row.gold_edge?{goldEdge:true}:{}),
  }):null;
 }
 
@@ -18,17 +25,18 @@ export function tailoringFromRow(row:Row|null){
 export async function writeTailoring(client:PoolClient,id:string,raw:unknown,atTable:boolean,supplies:number,now:number){
  const request=commandSchema.safeParse(raw);
  if(!request.success)return {ok:false as const,message:'That sewing request is invalid.'};
- const {rows}=await client.query<Row>('select started_at,ready_at,collected_at,worn,dye,tie from ih2.tailored_kerchiefs where player_id=$1',[id]);
+ const {rows}=await client.query<Row>('select started_at,ready_at,collected_at,worn,dye,tie,edging_started_at,edging_ready_at,edging_collected_at,gold_edge from ih2.tailored_kerchiefs where player_id=$1',[id]);
  const before=tailoringFromRow(rows[0]??null);
  const applied=tailor(before,request.data.action,atTable,supplies,now);
  if(!applied.ok)return applied;
  const {state}=applied;
  if(before===null){
   await client.query('insert into ih2.tailored_kerchiefs(player_id,started_at,ready_at) values($1,$2,$3)',[id,state.startedAt,state.readyAt]);
- }else if(before.collectedAt===null){
-  await client.query('update ih2.tailored_kerchiefs set collected_at=$2 where player_id=$1',[id,state.collectedAt]);
  }else{
-  await client.query('update ih2.tailored_kerchiefs set worn=$2,dye=$3,tie=$4 where player_id=$1',[id,state.worn,savedKerchiefDye(state),state.tie??'knot']);
+  await client.query(`update ih2.tailored_kerchiefs set collected_at=$2,worn=$3,dye=$4,tie=$5,
+    edging_started_at=$6,edging_ready_at=$7,edging_collected_at=$8,gold_edge=$9 where player_id=$1`,
+   [id,state.collectedAt,state.worn,savedKerchiefDye(state),state.tie??'knot',state.edging?.startedAt??null,
+    state.edging?.readyAt??null,state.edging?.collectedAt??null,!!state.goldEdge]);
  }
  return applied;
 }

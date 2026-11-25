@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "b4e5b843e2f5f60dd18d282ab2b8aea74e181f95342e97117e0298928a57a7e2",
-    "src/main.ts": "44ec8e9a47f02bd5d50db449c97be4d0750f791bba4f5058c964a95fef869753",
-    "src/phaser/WorldScene.ts": "2776f498ebb9a1d3a89af6c236db33418e062b8b8e16a97b25c0101257857d26",
+    "src/main.ts": "ab3e41579b182fa1fb45fc545aa15be3d2b01f15d831a16d0539ec918cd3d5ee",
+    "src/phaser/WorldScene.ts": "9d37c8a216eda2750d56616fe9bc74b5e770001bd3458b6b0a2e757e48267909",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Compared trial Hidden Valley geometry, entry and art, and checked the existing sewing station. Garden geometry and the archived study inputs and generated output remain frozen."
+  "currentTask": "Reviewed the shared Pumpworks route and wearable layers against current source. Garden geometry, archived study inputs and generated study output remain frozen."
 }

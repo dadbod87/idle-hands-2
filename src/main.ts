@@ -4,12 +4,12 @@ import {nearbyOutfits,residentOutfit} from './ui/nearby-outfits.ts';
 import {earnedValleyPrint,takeValleyPrint,VALLEY_PRINT_KEY,VALLEY_PRINT_STOP_ID} from './game/valley-print.ts';
 import {MOSSBANK_VALLEY_ROAD} from './game/hidden-valley-room.ts';
 import {SEWING_TABLE,sewingReady} from './game/tailoring.ts';
-import {sewingJournal,showTailoring,tailoringBagCards} from './ui/tailoring.ts';
+import {refreshSewingJournal,sewingJournal,showTailoring,tailoringBagCards} from './ui/tailoring.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD} from './game/mossbank-room.ts';
 import {MOSSBANK_KEY,mossbankFromAwards,readMossbank,type SurveyPlace} from './game/mossbank.ts';
 import {createMossbank} from './ui/mossbank.ts';
 import {FORGE_STOP,PUMPWORKS_DOOR} from './game/pumpworks-room.ts';
-import {FIELD_HEALTH,readPumpworks,type PumpworksPlace} from './game/pumpworks.ts';
+import {equippedArmor,FIELD_HEALTH,readPumpworks,type PumpworksPlace} from './game/pumpworks.ts';
 import {LODGING_BEDSIDE} from './game/lodging.ts';
 import {createPumpworks} from './ui/pumpworks.ts';
 import {INKMINT_STATIONS} from './game/nursery-inkmint.ts';
@@ -410,7 +410,12 @@ let fieldRecoveryHandled='';
 const town=townMode?new TownClient({
  onField:view=>{
   pumpworks?.syncRemote();
-  if(!view.returnTo||session.room!=='pumpworks'||view.playerId!==town?.snapshot?.playerId)return;
+  if(session.room!=='pumpworks'||view.playerId!==town?.snapshot?.playerId)return;
+  if(view.state.fight&&panel.open){
+   closePanel();
+   feedback.textContent='The hopper is active. Step back across the footbridge to use menus.';
+  }
+  if(!view.returnTo)return;
   const key=view.playerId+':'+view.serverInstance+':'+view.state.revision;
   if(key===fieldRecoveryHandled)return;
   fieldRecoveryHandled=key;
@@ -431,10 +436,13 @@ const town=townMode?new TownClient({
   if(!needResync&&!panel.open&&freshGlasshouseOpening(previous,snapshot)&&scene.playGlasshouseOpening())
    feedback.textContent='The Glasshouse is open. The vines have filed a complaint.';
   glasshouseUI?.refresh();
+  if(town)refreshSewingJournal(body,town);
   const cloth=snapshot.tailoring?.worn??'none',tie=cloth==='none'?'knot':snapshot.tailoring?.tie??'knot';
-  if(scene.sharedKerchief!==cloth||scene.sharedKerchiefTie!==tie){
+  const goldEdge=cloth!=='none'&&snapshot.tailoring?.goldEdge===true;
+  if(scene.sharedKerchief!==cloth||scene.sharedKerchiefTie!==tie||scene.sharedKerchiefGoldEdge!==goldEdge){
    scene.sharedKerchief=cloth;
    scene.sharedKerchiefTie=tie;
+   scene.sharedKerchiefGoldEdge=goldEdge;
    refreshMenuFrame(2);
   }
  session.setSquareStops([
@@ -610,7 +618,10 @@ const mossbank=createMossbank({
   }
  },
 }:undefined);
-const sewingHost={open:openPanel,body,look:()=>({rig:scene.residentId,headwear:scene.headwear}),atTable:()=>session.room==='workshop'&&session.nearby()?.id===SEWING_TABLE.id&&!needResync,cue:()=>music.cue('craft')};
+const sewingHost={open:openPanel,body,look:()=>({rig:scene.residentId,headwear:scene.headwear}),armor:()=>{
+ const field=pumpworks.current(),armor=field?equippedArmor(field):null;
+ return armor?{armor,finish:field?.armorFinishes?.[armor]??'original' as const}:null;
+},walkToSupplies:()=>goNamedDestination('square','supplies'),atTable:()=>session.room==='workshop'&&session.nearby()?.id===SEWING_TABLE.id&&!needResync,cue:()=>music.cue('craft')};
 const workshop=new WorkshopUI({fieldGear:()=>{
  const field=pumpworks.gear()??[];
  const clothing=town?tailoringBagCards(town,()=>showTailoring(sewingHost,town,true))??[]:[];

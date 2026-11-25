@@ -115,7 +115,9 @@ const query = `select /* coherent-town-snapshot */
  (select v.plant from ih2.glasshouse_plants v where v.player_id=$1 and v.project_revision=1) as glasshouse_plant,
  (select jsonb_build_object('phase',v.inkmint_phase,'readyAt',v.inkmint_ready_at)
     from ih2.glasshouse_plants v where v.player_id=$1 and v.project_revision=1) as inkmint,
- (select jsonb_build_object('started_at',t.started_at,'ready_at',t.ready_at,'collected_at',t.collected_at,'worn',t.worn,'dye',t.dye,'tie',t.tie)
+ (select jsonb_build_object('started_at',t.started_at,'ready_at',t.ready_at,'collected_at',t.collected_at,'worn',t.worn,'dye',t.dye,'tie',t.tie,
+     'edging_started_at',t.edging_started_at,'edging_ready_at',t.edging_ready_at,
+     'edging_collected_at',t.edging_collected_at,'gold_edge',t.gold_edge)
     from ih2.tailored_kerchiefs t where t.player_id=$1) as tailoring
  from ih2.players resident where resident.id=$1`;
 

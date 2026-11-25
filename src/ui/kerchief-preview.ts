@@ -1,6 +1,6 @@
 import {residentArt} from '../art/variety.ts';
 import type {Headwear} from '../art/headwear.ts';
-import {KERCHIEF_RIG_WIDTH,KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
+import {KERCHIEF_RIG_WIDTH,KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM,KERCHIEF_GOLD_TRIM} from '../art/field-kerchief.ts';
 import {armorArtName,KERCHIEF_COLORS,KERCHIEF_DYES,KERCHIEF_TIES,type FieldKerchief,type KerchiefTie,type VestFinish} from '../game/field-appearance.ts';
 import type {FieldArmor} from '../game/pumpworks.ts';
 import type {Point} from '../game/world.ts';
@@ -37,7 +37,6 @@ export function kerchiefPreview(look?:OutfitLook){
  const swatch=(ink:number)=>'#'+ink.toString(16).padStart(6,'0');
  cloth.setAttribute('stroke',swatch(KERCHIEF_INK));cloth.setAttribute('stroke-width','1.3');
  trim.setAttribute('fill','none');
- trim.setAttribute('stroke',swatch(KERCHIEF_TRIM));trim.setAttribute('stroke-width','1.2');
  clothes.append(cloth,trim);
  preview.append(vest,clothes);
  if(look?.headwear){
@@ -47,7 +46,7 @@ export function kerchiefPreview(look?:OutfitLook){
  }
  return {
   element:preview,
-  paint(color:FieldKerchief,armor:FieldArmor|null=null,tie:KerchiefTie='knot',finish:VestFinish='original'){
+  paint(color:FieldKerchief,armor:FieldArmor|null=null,tie:KerchiefTie='knot',finish:VestFinish='original',goldEdge=false){
    vest.style.display=armor?'':'none';
    if(armor)vest.setAttribute('href','/art/pumpworks/'+armorArtName(armor,finish,!!rig)+'.svg');
    const wearing=color!=='none';
@@ -56,10 +55,13 @@ export function kerchiefPreview(look?:OutfitLook){
     const shape=KERCHIEF_OUTLINES[tie].south;
     cloth.setAttribute('points',points(shape.cloth));
     trim.setAttribute('points',points(shape.seam));
+    trim.setAttribute('stroke',swatch(goldEdge?KERCHIEF_GOLD_TRIM:KERCHIEF_TRIM));
+    trim.setAttribute('stroke-width',goldEdge?'2.1':'1.2');
     cloth.setAttribute('fill',swatch(KERCHIEF_COLORS[color].fill));
    }
    preview.dataset.tie=tie;
-   preview.setAttribute('aria-label',wearing?KERCHIEF_COLORS[color].label+' kerchief preview':'No kerchief');
+   preview.toggleAttribute('data-gold-edge',wearing&&goldEdge);
+   preview.setAttribute('aria-label',wearing?KERCHIEF_COLORS[color].label+' kerchief preview'+(goldEdge?' with gold edge':''):'No kerchief');
   },
  };
 }

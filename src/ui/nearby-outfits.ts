@@ -1,5 +1,5 @@
 import {headwearName,isHeadwear} from '../art/headwear.ts';
-import {KERCHIEF_COLORS,KERCHIEF_TIE_NAMES,validKerchief} from '../game/field-appearance.ts';
+import {KERCHIEF_COLORS,KERCHIEF_TIE_NAMES,VEST_FINISH_NAMES,validKerchief,validWornArmor} from '../game/field-appearance.ts';
 import type {Point} from '../game/world.ts';
 import {kerchiefPreview} from './kerchief-preview.ts';
 import type {MapResident} from './town-map.ts';
@@ -14,7 +14,7 @@ export function nearbyOutfits(
   &&(!room.startsWith('home')||!!scope.homePlotId&&peer.homePlotId===scope.homePlotId)
   &&(room!=='neighborhood'||!!scope.districtId&&peer.districtId===scope.districtId)
   &&Math.hypot(peer.position?.x-feet.x,peer.position?.y-feet.y)<=radius
-  &&(isHeadwear(peer.headwear)||validKerchief(peer.kerchief)&&peer.kerchief!=='none'));
+  &&(isHeadwear(peer.headwear)||validWornArmor(peer.wornArmor)||validKerchief(peer.kerchief)&&peer.kerchief!=='none'));
 }
 
 export function nearbyOutfitList(room:string,position:Point,scope:OutfitScope,inspect:(id:string)=>void){
@@ -60,19 +60,22 @@ export function residentOutfit(body:HTMLElement,back:()=>void){
   const hat=isHeadwear(peer?.headwear)?peer.headwear:null;
   const color=validKerchief(peer?.kerchief)?peer.kerchief:'none';
   const tie=peer?.kerchiefTie==='wrap'?'wrap':'knot';
-  const state=peer?JSON.stringify([peer.id,peer.name,hat,color,tie]):'away';
+  const vest=validWornArmor(peer?.wornArmor)?peer.wornArmor:null;
+  const goldEdge=color!=='none'&&peer?.kerchiefGoldEdge===true;
+  const state=peer?JSON.stringify([peer.id,peer.name,hat,vest,color,tie,goldEdge]):'away';
   if(state===section.dataset.outfit)return;
   section.dataset.outfit=state;
   appearance.replaceChildren();itemList.replaceChildren();
   status.textContent=peer?'':'This resident has moved away or packed their outfit.';
   if(!peer)return;
   const preview=kerchiefPreview({rig:peer.id!,headwear:hat});
-  preview.paint(color,null,tie);
+  preview.paint(color,vest?.armor??null,tie,vest?.finish,goldEdge);
   preview.element.setAttribute('aria-label',peer.name+'’s outfit');
   appearance.append(preview.element);
   for(const name of [
    ...(hat?[headwearName[hat]]:[]),
-   ...(color!=='none'?[KERCHIEF_COLORS[color].label+' · '+KERCHIEF_TIE_NAMES[tie]]:[]),
+   ...(vest?[(vest.armor==='riveted'?'Riveted survey vest':'Padded vest')+(vest.finish==='original'?'':' · '+VEST_FINISH_NAMES[vest.finish])]:[]),
+   ...(color!=='none'?[KERCHIEF_COLORS[color].label+' · '+KERCHIEF_TIE_NAMES[tie]+(goldEdge?' · Gold edge':'')]:[]),
   ]){
    const item=document.createElement('li');item.textContent=name;itemList.append(item);
   }

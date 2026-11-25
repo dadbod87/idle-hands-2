@@ -91,6 +91,7 @@
     "pumpworks.spec.ts",
     "return-trip.spec.ts",
     "shared-pumpworks.spec.ts",
+    "shared-trades.spec.ts",
     "serving-study.spec.ts",
     "stream-reconnect.spec.ts",
     "town-overview.spec.ts",

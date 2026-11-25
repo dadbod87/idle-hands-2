@@ -6,6 +6,9 @@ import {setTimeout as delay} from 'node:timers/promises';
 import {database,migrate} from '../server/db.ts';
 import {createTownServer} from '../server/http.ts';
 import {TownStore,type TownPosition} from '../server/live-store.ts';
+import {FORGE_ORDER_MS} from '../src/game/forge-order.ts';
+import {FINISHING_MS} from '../src/game/trade-practice.ts';
+import {smithingRank} from '../src/game/pumpworks.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {PUMPWORKS_DOOR,PUMPWORKS_ENTRY,PUMPWORKS_SAFE_BENCH} from '../src/game/pumpworks-room.ts';
 import type {SharedFieldInput,SharedFieldReply,SharedFieldView} from '../src/game/shared-field.ts';
@@ -76,7 +79,7 @@ test('Shared Pumpworks verifies hits from its own room, feet, clock and encounte
   const response=await request(member,'field',action);assert.equal(response.status,200,JSON.stringify(await response.clone().json()));
   return await response.json() as SharedFieldReply;
  }
- const station=async(member:Member,action:'issue'|'wake'|'borrow-vest',current?:SharedFieldView)=>send(member,{
+ const station=async(member:Member,action:Extract<SharedFieldInput,{kind:'station'}>['action'],current?:SharedFieldView)=>send(member,{
   id:randomUUID(),kind:'station',revision:(current??await view(member)).state.revision,action,
  });
  const use=(current:SharedFieldView,action:'attack'|'brace'|'eat'='attack'):SharedFieldInput=>{
@@ -138,6 +141,23 @@ test('Shared Pumpworks verifies hits from its own room, feet, clock and encounte
   const aRoom=await view('aster'),bRoom=await view('bea');
   assert.ok(aRoom.encounter&&bRoom.encounter&&aRoom.encounter!==bRoom.encounter);
   assert.equal((await send('bea',use(aRoom))).ok,false);
+  await walk('bea',{x:4.55,y:9.6});
+  assert.equal((await station('bea','issue')).ok,true);
+  assert.equal((await station('bea','borrow-bow')).ok,true);
+  await walk('bea',{x:5.7,y:8.1});
+  const bow=await send('bea',use(await view('bea')));
+  assert.equal(bow.ok,true);
+  assert.ok(bow.view.draw?.practice);
+  await walk('bea',{x:6.25,y:8.1});
+  const released=await advance('bea',entry=>entry.draw===null);
+  assert.equal(released.shot,null);
+  assert.equal(released.impact,null);
+  assert.equal(released.state.weaponPractice,undefined);
+  await walk('bea',{x:5.7,y:8.1});
+  assert.ok((await send('bea',use(await view('bea')))).view.draw);
+  const rang=await advance('bea',entry=>entry.impact?.kind==='bell');
+  assert.ok(rang.shot);
+  assert.equal(rang.state.weaponPractice,undefined);
   await walk('aster',{x:4.55,y:9.6});
   const issued=await station('aster','issue');assert.equal(issued.ok,true);
   assert.equal((await station('aster','borrow-vest')).ok,true);
@@ -185,5 +205,62 @@ test('Shared Pumpworks verifies hits from its own room, feet, clock and encounte
   assert.equal(replay.view.state.weaponPractice?.rod,2);
   assert.equal((await pool.query('select relrowsecurity from pg_class where oid=\'ih2.field_outings\'::regclass')).rows[0]?.relrowsecurity,true);
   assert.equal(app.metrics.fieldErrors,0);
+  const previousWorkshop=(await store.snapshot('aster')).workshop;
+  await stream('aster');
+  feet.aster={...PUMPWORKS_SAFE_BENCH};
+  assert.equal((await station('aster','start-forge')).ok,false);
+  const forge=worlds.pumpworks.stops.find(stop=>stop.id==='pumpworks-forge')!;
+  await walk('aster',forge.point);
+  const forged=await station('aster','start-forge');
+  assert.equal(forged.ok,true);
+  assert.equal(forged.view.state.forge?.readyAt,now+FORGE_ORDER_MS);
+  assert.equal(smithingRank(forged.view.state),0);
+  assert.equal((await station('aster','start-stamp')).ok,false);
+  assert.equal((await station('aster','collect-forge')).ok,false);
+  now+=FORGE_ORDER_MS;
+  const vest=await station('aster','collect-forge');
+  assert.equal(vest.ok,true);
+  assert.equal(smithingRank(vest.view.state),1);
+  const brass={armor:'riveted',finish:'brass'} as const;
+  const finish=async()=>send('aster',{kind:'station',id:randomUUID(),revision:(await view('aster')).state.revision,
+   action:brass});
+  assert.equal((await finish()).ok,false);
+  const stamp=await station('aster','start-stamp');
+  assert.equal(stamp.ok,true);
+  assert.equal(stamp.view.state.stamp?.readyAt,now+FINISHING_MS);
+  now+=FINISHING_MS-1;
+  assert.equal((await station('aster','collect-stamp')).ok,false);
+  now++;
+  const collect:SharedFieldInput={kind:'station',id:randomUUID(),revision:stamp.view.state.revision,action:'collect-stamp'};
+  const collected=await send('aster',collect);
+  assert.equal(collected.ok,true);
+  assert.equal((await send('aster',collect)).replayed,true);
+  assert.equal(smithingRank(collected.view.state),2);
+  assert.equal((await finish()).view.state.armorFinishes?.riveted,'brass');
+  assert.deepEqual((await store.snapshot('aster')).workshop,previousWorkshop);
+  assert.equal(smithingRank((await view('bea')).state),0);
+
+  // A full second visit proves recovery, clearing, and the one-time seal
+  // without giving a fixture combat results or placing it in the chamber.
+  const gate=worlds.pumpworks.stops.find(stop=>stop.id==='pumpworks-report')!;
+  assert.equal((await station('aster','report')).ok,false);
+  await walk('aster',{x:15.7,y:9.1});
+  for(let openingCount=0;openingCount<3;openingCount++){
+   const warning=await advance('aster',entry=>entry.hopper.phase==='windup'&&entry.hopper.elapsed>=.65);
+   assert.equal((await send('aster',use(warning,'brace'))).ok,true);
+   const counter=await advance('aster',entry=>entry.hopper.phase==='recover');
+   assert.equal((await send('aster',use(counter))).ok,true);
+  }
+  const cleared=await view('aster');
+  assert.equal(cleared.state.cleared,true);
+  assert.equal(cleared.state.reported,false);
+  assert.notEqual(cleared.state.weaponPractice?.rod,trained.state.weaponPractice?.rod);
+  await walk('aster',gate.point);
+  const report:SharedFieldInput={kind:'station',id:randomUUID(),revision:(await view('aster')).state.revision,action:'report'};
+  const seal=await send('aster',report);
+  assert.equal(seal.view.state.reported,true);
+  assert.equal((await send('aster',report)).replayed,true);
+  assert.equal((await station('aster','report')).ok,false);
+  assert.equal((await view('bea')).state.reported,false);
  }finally{for(const s of streams)s.abort();await app.close();await pool.end();}
 });

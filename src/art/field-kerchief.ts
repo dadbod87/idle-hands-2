@@ -16,6 +16,7 @@ const left={cloth:mirror(right.cloth),seam:mirror(right.seam)};
 const knot:Record<Facing,Outline>={south:front,north:back,east:right,west:left};
 export const KERCHIEF_INK=0x394138;
 export const KERCHIEF_TRIM=0xf2d2a0;
+export const KERCHIEF_GOLD_TRIM=0xffcc54;
 export const KERCHIEF_RIG_WIDTH={aster:1,bea:1.12,casey:.87,devon:1.06} as const;
 
 const wrapSouth=outline(

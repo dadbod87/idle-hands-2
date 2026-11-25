@@ -8,7 +8,8 @@ import type {Point} from './world.ts';
 const id=z.uuid();
 const stationAction=z.union([
  z.enum(['issue','borrow-bow','borrow-staff','borrow-vest','equip','pack','equip-bow','pack-bow',
-  'equip-staff','pack-staff','equip-vest','pack-vest','oatcake','rest','rematch','wake','recover','report']),
+  'equip-staff','pack-staff','equip-vest','pack-vest','oatcake','rest','rematch','wake','recover','report',
+  'start-forge','collect-forge','start-stamp','collect-stamp','equip-riveted','pack-riveted']),
  z.object({armor:z.enum(['padded','riveted']),finish:z.enum(VEST_FINISHES)}).strict(),
 ]);
 const actionBase={id,revision:z.number().int().min(0).max(100000)};

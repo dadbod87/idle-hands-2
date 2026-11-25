@@ -1,3 +1,4 @@
+import {FINISHING_MS,finishingReady} from '../game/trade-practice.ts';
 import {sharedFieldInputSchema,type SharedFieldInput,type SharedFieldReply,type SharedFieldView} from '../game/shared-field.ts';
 import {learnedCounter,learnedReach,MAX_WEAPON_RANK,PUMPWORKS_TRAINING_RANK,WEAPON_RANK_MARKS,WEAPON_SKILL_NAMES,weaponRank} from '../game/weapon-practice.ts';
 import {FORGE_ORDER_MS,forgeReady} from '../game/forge-order.ts';
@@ -6,7 +7,7 @@ import {armorArtName,KERCHIEF_COLORS,KERCHIEF_TIE_NAMES,VEST_FINISH_NAMES,VEST_F
 import type {FieldCue} from '../audio/combat-cues.ts';
 import {BOW_DRAW_SECONDS,BOW_STILL_RADIUS,BOW_TRACE_MS,ROD_SWEEP_MS,STAFF_PULSE_MS,equippedFieldWeapon,FIELD_WEAPONS,type BowDraw,type BowTrace,type FieldWeapon,type RodSweep,type StaffPulse} from '../game/field-weapons.ts';
 import {
- fieldArmor,equippedArmor,FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PADDED_VEST_ARMOR,PUMPWORKS_KEY,readPumpworks,savePumpworks,
+ fieldArmor,equippedArmor,pendingForgeWork,smithingRank,FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PADDED_VEST_ARMOR,PUMPWORKS_KEY,readPumpworks,savePumpworks,
  type PumpworksAction,type PumpworksPlace,
 } from '../game/pumpworks.ts';
 import {
@@ -131,10 +132,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  let forgeJournalStatus:HTMLParagraphElement|null=null;
  function updateForgeReminder(){
   window.clearTimeout(forgeReminderTimer);
-  const forge=current()?.forge,now=wallNow(),ready=forgeReady(forge,now);
+  const forge=pendingForgeWork(current()),now=wallNow(),ready=!!forge&&now>=forge.readyAt;
   host.forgeReminder(ready);
   if(forgeJournalStatus?.isConnected){
-   if(forge?.phase==='working'){
+   if(forge){
     const next=ready?'Ready to collect.':'At the forge.';
     if(forgeJournalStatus.textContent!==next)forgeJournalStatus.textContent=next;
    }else{
@@ -142,7 +143,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     forgeJournalStatus=null;
    }
   }else forgeJournalStatus=null;
-  if(forge?.phase==='working'&&!ready){
+  if(forge&&!ready){
    forgeReminderTimer=window.setTimeout(updateForgeReminder,Math.min(2_147_483_647,Math.max(50,forge.readyAt-now)));
   }
  }
@@ -195,7 +196,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     }
     return savePumpworks(storage,expected,action,place);
    });
-   if(result.ok&&action==='collect-forge')host.reward();
+   if(result.ok&&(action==='collect-forge'||action==='collect-stamp'))host.reward();
    if(result.ok&&onField){
     const kind=action==='strike'||action==='counter'?action:
      action==='guard'?'blocked':action==='hit'||action==='splash-hit'?'damage':action==='eat'?'heal':null;
@@ -233,6 +234,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    await remote.beforeInput();
    if(!present()||!remote.ready())return 'The field position changed. Try again.';
    const result=await remote.send(parsed.data);
+   if(parsed.data.kind==='station'&&result.ok&&!result.replayed&&['collect-forge','collect-stamp'].includes(String(parsed.data.action)))host.reward();
    if(result.message)host.feedback(result.message);
    return result.message;
   }catch(error){
@@ -502,17 +504,13 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      if(state.oatcake==='unissued')add('Pack your oatcake','oatcake');
     }
    }else if(place==='forge'){
-    if(remote&&!remote.view()?.state.forge){
-     panel.append(paragraph('Dry-side forge. The training blank is awaiting approval.'));
-     return;
-    }
     const order=state.forge;
     const preview=document.createElement('div');preview.className='forge-profile';
     const image=document.createElement('img');image.src='/art/pumpworks/riveted-vest.svg';image.alt='';
     image.width=64;image.height=64;
     const title=document.createElement('h3');title.textContent='Riveted survey vest';
     preview.append(image,title,paragraph('Armor '+PADDED_VEST_ARMOR));
-    panel.append(preview);
+    panel.append(preview,paragraph('Smithing · Rank '+smithingRank(state)));
     if(state.rod==='unissued'){
      panel.append(paragraph('Take a survey kit at the locker. The forge has one practice blank for each kit.'));
     }else if(!order){
@@ -527,13 +525,32 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
        else render();
        return;
       }
-      const seconds=Math.max(1,Math.ceil((order.readyAt-wallNow())/1000));
+      const seconds=Math.max(1,Math.ceil((order.readyAt-Math.max(order.startedAt,wallNow()))/1000));
       status.textContent='Ready in '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
       forgeTimer=window.setTimeout(tick,500);
      };
      tick();
     }else{
-     panel.append(paragraph('This forge has stamped your vest. Procurement put its name on the inside.'));
+     if(!state.stamp){
+      panel.append(paragraph('Brass plate finish · One supplied plate · '+FINISHING_MS/60000+' minutes'));
+      add('Start brass plate','start-stamp');
+     }else if(state.stamp.collectedAt===null){
+      const status=paragraph('');panel.append(status);
+      const tick=()=>{
+       if(!present()||!status.isConnected)return;
+       if(finishingReady(state.stamp,wallNow())){
+        if(status.textContent===''){
+         status.textContent='The brass plate is ready.';
+         add('Collect brass plate','collect-stamp');
+        }else render();
+        return;
+       }
+       const seconds=Math.max(1,Math.ceil((state.stamp!.readyAt-Math.max(state.stamp!.startedAt,wallNow()))/1000));
+       status.textContent='Brass plate ready in '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
+       forgeTimer=window.setTimeout(tick,500);
+      };
+      tick();
+     }else panel.append(paragraph('Brass plate is available as a finish on your riveted vest.'));
      panel.append(button('Open Bag',host.equipment));
     }
    }else if(place==='bench'||place==='bed'){
@@ -595,9 +612,12 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    const status=paragraph('');status.className='bag-equip-notice';status.role='status';
    const skill=document.createElement('div');skill.className='pump-weapon-skill';
    const armor=item==='vest'?'padded':item==='riveted'?'riveted':null;
+   if(item==='riveted'){
+    skill.append(paragraph('Smithing · Rank '+smithingRank(state)));
+   }
    const control=button('',()=>{});
    control.className='bag-equip-action';
-   card.append(artwork,title,detail,...(item==='vest'||item==='riveted'?[]:[skill]),control,status);
+   card.append(artwork,title,detail,...(item==='vest'?[]:[skill]),control,status);
    const paint=(message='')=>{
     const live=current();
     if(!live)return;
@@ -636,7 +656,8 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     const finishRow=document.createElement('div');finishRow.className='pump-armor-finish';
     const label=document.createElement('label');label.textContent=profile.name+' finish';
     const select=document.createElement('select');
-    for(const finish of VEST_FINISHES)select.append(new Option(VEST_FINISH_NAMES[finish],finish));
+    const finishes=VEST_FINISHES.filter(finish=>finish!=='brass'||armor==='riveted'&&state.stamp?.collectedAt!=null);
+    for(const finish of finishes)select.append(new Option(VEST_FINISH_NAMES[finish],finish));
     select.value=state.armorFinishes?.[armor]??'original';
     const save=button('Save finish',()=>{});
     save.setAttribute('aria-label','Save '+name+' finish');
@@ -645,7 +666,11 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      if(!live)return;
      const saved=live.armorFinishes?.[armor]??'original';
      select.disabled=busy||!!live.fight||live.recovering;
-     save.disabled=select.disabled||select.value===saved;
+     const unchanged=select.disabled||select.value===saved;
+     // Bag can temporarily disable a control while refreshing town contents.
+     // Preserve the draft choice for the state restored when the read ends.
+     if(save.dataset.remoteDisabled!==undefined)save.dataset.remoteDisabled=String(unchanged);
+     else save.disabled=unchanged;
      const finish=VEST_FINISHES.find(option=>option===select.value)??saved;
      art.src='/art/pumpworks/'+armorArtName(armor,finish)+'.svg';
     };
@@ -736,10 +761,11 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   }
   entry.append(title,description,...(state.reported?(remote?[]:[button('Preview field seal',previewSeal)]):[button('Walk to the Pumpworks',walkToDoor)]));
   body.append(entry);
-  if(state.forge?.phase==='working'){
+  const pending=pendingForgeWork(state);
+  if(pending){
    const order=document.createElement('section');order.className='journal-ready-return';order.dataset.forgeJournal='';
-   const title=document.createElement('h3');title.textContent='Riveted survey vest';
-   forgeJournalStatus=paragraph(forgeReady(state.forge,wallNow())?'Ready to collect.':'At the forge.');
+   const title=document.createElement('h3');title.textContent=pending.item==='vest'?'Riveted survey vest':'Brass plate';
+   forgeJournalStatus=paragraph(wallNow()>=pending.readyAt?'Ready to collect.':'At the forge.');
    forgeJournalStatus.setAttribute('role','status');
    order.append(title,forgeJournalStatus,button('Walk to the forge',walkToForge));
    body.append(order);

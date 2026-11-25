@@ -30,11 +30,19 @@ export function validKerchief(value:unknown):value is FieldKerchief{
  return (FIELD_KERCHIEFS as readonly unknown[]).includes(value);
 }
 
-export const VEST_FINISHES=['original','blackberry','dusk'] as const;
+export const VEST_FINISHES=['original','blackberry','dusk','brass'] as const;
 export type VestFinish=typeof VEST_FINISHES[number];
-export const VEST_FINISH_NAMES={original:'Original',blackberry:'Blackberry',dusk:'Dusk blue'} as const;
+export const VEST_FINISH_NAMES={original:'Original',blackberry:'Blackberry',dusk:'Dusk blue',brass:'Brass plate'} as const;
 export type FieldArmor='padded'|'riveted';
-export type ArmorFinishAction={armor:FieldArmor;finish:VestFinish};
+export type WornArmor={armor:FieldArmor;finish:VestFinish};
+export type ArmorFinishAction=WornArmor;
+
+export function validWornArmor(value:unknown):value is WornArmor{
+ if(!value||typeof value!=='object')return false;
+ const {armor,finish}=value as Partial<WornArmor>;
+ return (armor==='padded'||armor==='riveted')&&finish!==undefined&&VEST_FINISHES.includes(finish)
+  &&(armor==='riveted'||finish!=='brass');
+}
 
 export function armorArtName(armor:FieldArmor,finish:VestFinish='original',poses=false){
  const variant=finish==='original'?'':'-'+finish;

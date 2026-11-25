@@ -136,3 +136,9 @@
 }
 .forge-profile img { grid-row:1/3; }
 .forge-profile h3 { margin:0; }
+
+@media(max-width:650px) {
+ .world-wrap:has(#location[data-room=pumpworks]) #stop-assisted-walk {
+  top:56px;left:12px;right:auto;bottom:auto;
+ }
+}

@@ -1,4 +1,4 @@
-import type {FieldKerchief,KerchiefTie} from '../src/game/field-appearance.ts';
+import type {FieldKerchief,KerchiefTie,WornArmor} from '../src/game/field-appearance.ts';
 import type {EarnedHeadwear} from '../src/game/earned-headwear.ts';
 import{housingWorld}from'../src/game/housing-world.ts';
 import{positionContextValid,exitForHome}from'../src/game/neighborhood.ts';
@@ -11,6 +11,7 @@ import {z} from 'zod';
 import {TransportAdmission,BoundedStream} from './transport.ts';
 import {SharedField} from './field-outing.ts';
 import {FieldStore} from './field-store.ts';
+import {equippedArmor} from '../src/game/pumpworks.ts';
 import {PUMPWORKS_DOOR} from '../src/game/pumpworks-room.ts';
 import {sharedFieldInputSchema,type SharedFieldView} from '../src/game/shared-field.ts';
 import {GlasshouseClosed,MossbankClosed,TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './live-store.ts';
@@ -45,7 +46,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
    if(plot.windowsillStriped!==undefined)delete plot.windowsillStriped;
   }
  }
- type Resident={value:TownPosition;at:number;credit:number;headwear:EarnedHeadwear|null;kerchief:FieldKerchief;kerchiefTie:KerchiefTie};
+ type Resident={value:TownPosition;at:number;credit:number;headwear:EarnedHeadwear|null;kerchief:FieldKerchief;kerchiefTie:KerchiefTie;kerchiefGoldEdge:boolean;wornArmor?:WornArmor};
  const residents=new Map<string,Resident>();
  const residentLoads=new Map<string,Promise<Resident>>();
  const connections=new Set<{id:string;res:ServerResponse;stream:BoundedStream}>();
@@ -69,12 +70,12 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
   const prior=presenceGate;let release!:()=>void;presenceGate=new Promise<void>(resolve=>release=resolve);
   await prior;try{return await work();}finally{release();}
  }
- const metrics={commands:0,snapshots:0,movementAccepted:0,movementRejected:0,presenceEvents:0,positionCheckpoints:0,transport:admission.metrics,sseSubmittedBytes:0,sseSubmittedFrames:0,sseSuppressedPresence:0,sseExpired:0,sseBackpressure:0,sseOversize:0,fieldFrames:0,fieldErrors:0};
+ const metrics={commands:0,snapshots:0,movementAccepted:0,movementRejected:0,presenceEvents:0,positionCheckpoints:0,transport:admission.metrics,sseSubmittedBytes:0,sseSubmittedFrames:0,sseSuppressedPresence:0,sseExpired:0,sseBackpressure:0,sseOversize:0,fieldFrames:0,fieldBytes:0,fieldErrors:0};
  const sign=(value:string)=>createHmac('sha256',options.secret).update(value).digest('base64url');
  function cookie(id:string){const payload=Buffer.from(JSON.stringify({id,expires:now()+24*3600_000})).toString('base64url');return payload+'.'+sign(payload);}
  function identity(req:IncomingMessage){try{const token=req.headers.cookie?.split(';').map(s=>s.trim()).find(s=>s.startsWith(COOKIE+'='))?.slice(COOKIE.length+1);if(!token)return null;const[payload,mac]=token.split('.');if(!payload||!mac)return null;const expected=Buffer.from(sign(payload)),actual=Buffer.from(mac);if(expected.length!==actual.length||!timingSafeEqual(expected,actual))return null;const data=JSON.parse(Buffer.from(payload,'base64url').toString());return fixtures.some(f=>f.id===data.id)&&Number.isSafeInteger(data.expires)&&data.expires>now()?{id:data.id as string,expires:data.expires as number}:null;}catch{return null;}}
  function rate(id:string,kind:string,max:number,window:number){const key=id+':'+kind,t=now(),recent=(limits.get(key)??[]).filter(v=>t-v<window);if(recent.length>=max)return false;recent.push(t);limits.set(key,recent);return true;}
- async function resident(id:string){const existing=residents.get(id);if(existing)return existing;let pending=residentLoads.get(id);if(!pending){pending=store.snapshot(id).then(snapshot=>{cacheHomes(snapshot);const entry:Resident={value:snapshot.position,at:now(),credit:1,headwear:snapshot.headwear?.worn??null,kerchief:snapshot.tailoring?.worn??'none',kerchiefTie:snapshot.tailoring?.worn!=='none'?snapshot.tailoring?.tie??'knot':'knot'};residents.set(id,entry);return entry;}).finally(()=>residentLoads.delete(id));residentLoads.set(id,pending);}return pending;}
+ async function resident(id:string){const existing=residents.get(id);if(existing)return existing;let pending=residentLoads.get(id);if(!pending){pending=store.snapshot(id).then(snapshot=>{cacheHomes(snapshot);const entry:Resident={value:snapshot.position,at:now(),credit:1,headwear:snapshot.headwear?.worn??null,kerchief:snapshot.tailoring?.worn??'none',kerchiefTie:snapshot.tailoring?.tie??'knot',kerchiefGoldEdge:snapshot.tailoring?.goldEdge===true};residents.set(id,entry);return entry;}).finally(()=>residentLoads.delete(id));residentLoads.set(id,pending);}return pending;}
  function throttled(res:ServerResponse){res.setHeader('Retry-After','1');return json(res,429,{message:'The local town is busy. Please retry shortly.'});}
  function send(item:{stream:BoundedStream},name:string,data:unknown){const before={...item.stream.metrics};const ok=name==='presence'?item.stream.presence(data):name==='heartbeat'?item.stream.heartbeat():item.stream.event(name,data);metrics.sseSubmittedBytes+=item.stream.metrics.submittedBytes-before.submittedBytes;metrics.sseSubmittedFrames+=item.stream.metrics.submittedFrames-before.submittedFrames;metrics.sseSuppressedPresence+=item.stream.metrics.suppressedPresence-before.suppressedPresence;return ok;}
  function invalidate(except:string,homePlotId?:string){
@@ -95,7 +96,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     .map(([id,entry])=>{
      const waveUntil=waveRoom(entry.value.room)?waves.get(id):undefined;
      return {id,name:fixtures.find(f=>f.id===id)!.name,...entry.value,
-      ...(entry.headwear?{headwear:entry.headwear}:{}),...(entry.kerchief!=='none'?{kerchief:entry.kerchief,...(entry.kerchiefTie==='wrap'?{kerchiefTie:'wrap'}:{})}:{}),...(waveUntil&&waveUntil>at?{waveUntil}:{})};
+      ...(entry.headwear?{headwear:entry.headwear}:{}),...(entry.wornArmor?{wornArmor:entry.wornArmor}:{}),...(entry.kerchief!=='none'?{kerchief:entry.kerchief,...(entry.kerchiefTie==='wrap'?{kerchiefTie:'wrap'}:{}),...(entry.kerchiefGoldEdge?{kerchiefGoldEdge:true}:{})}:{}),...(waveUntil&&waveUntil>at?{waveUntil}:{})};
     });
    if(send(item,'presence',others))metrics.presenceEvents++;
   }
@@ -109,8 +110,19 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
   if(!point||current.value.room!=='pumpworks'||Math.hypot(point.x-current.value.position.x,point.y-current.value.position.y)<.001)return;
   current.value={room:'pumpworks',position:point};current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;
  }
+ function publishFieldOutfit(current:Resident,view:SharedFieldView){
+  const armor=equippedArmor(view.state);
+  const finish=armor?view.state.armorFinishes?.[armor]??'original':undefined;
+  if(current.wornArmor?.armor===(armor??undefined)&&current.wornArmor?.finish===finish)return;
+  current.wornArmor=armor&&finish?{armor,finish}:undefined;dirty=true;
+ }
  function sendField(id:string,view:SharedFieldView){
-  for(const connection of connections)if(connection.id===id&&send(connection,'field',view))metrics.fieldFrames++;
+  for(const connection of connections){
+   if(connection.id!==id)continue;
+   const before=connection.stream.metrics.submittedBytes;
+   if(send(connection,'field',view))metrics.fieldFrames++;
+   metrics.fieldBytes+=connection.stream.metrics.submittedBytes-before;
+  }
  }
  function fieldFailure(id:string){field.invalidate(id);metrics.fieldErrors++;}
  async function settleFieldInterruption(id:string){
@@ -125,7 +137,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
    if(!connected&&!field.has(id))continue;
    void actorWork(id,async()=>{
     await settleFieldInterruption(id);
-    if(!connected){await field.leave(id,now());return;}
+    if(!fieldConnected(id)){await field.leave(id,now());return;}
     const at=now(),run=await field.tick(id,current.value,at);
     if(field.due(run,at)){
      const view=field.view(id,run,at);fieldPosition(current,view);sendField(id,view);
@@ -170,10 +182,10 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
        const at=now();
        if(!intent){
         const run=await field.get(id,current.value,at);
-        const view=field.view(id,run,at);fieldPosition(current,view);return json(res,200,{view});
+        const view=field.view(id,run,at);fieldPosition(current,view);publishFieldOutfit(current,view);return json(res,200,{view});
        }
        const result=await field.input(id,current.value,intent,at,fieldConnected(id));
-       fieldPosition(current,result.view);
+       fieldPosition(current,result.view);publishFieldOutfit(current,result.view);
        if(result.view.inRoom)sendField(id,result.view);
        return json(res,200,result);
       }catch(error){fieldFailure(id);throw error;}
@@ -282,7 +294,8 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
     metrics.commands++;const result=await store.execute(id,command,current.value);cacheHomes(result.snapshot);const worn=result.snapshot.headwear?.worn??null;if(current.headwear!==worn){current.headwear=worn;dirty=true;}const cloth=result.snapshot.tailoring?.worn??'none';
     const tie=cloth==='none'?'knot':result.snapshot.tailoring?.tie??'knot';
-    if(current.kerchief!==cloth||current.kerchiefTie!==tie){current.kerchief=cloth;current.kerchiefTie=tie;dirty=true;}if(result.ok&&!result.replayed&&command&&typeof command==='object'&&['enter-home','enter-neighborhood'].includes(String((command as {kind?:unknown}).kind))){waves.delete(id);current.value=result.snapshot.position;current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;}alignSnapshotPosition(result.snapshot,current.value);
+    const goldEdge=cloth!=='none'&&result.snapshot.tailoring?.goldEdge===true;
+    if(current.kerchief!==cloth||current.kerchiefTie!==tie||current.kerchiefGoldEdge!==goldEdge){current.kerchief=cloth;current.kerchiefTie=tie;current.kerchiefGoldEdge=goldEdge;dirty=true;}if(result.ok&&!result.replayed&&command&&typeof command==='object'&&['enter-home','enter-neighborhood'].includes(String((command as {kind?:unknown}).kind))){waves.delete(id);current.value=result.snapshot.position;current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;}alignSnapshotPosition(result.snapshot,current.value);
     if(result.ok&&!result.replayed&&result.publicChanged&&current.value.homePlotId
        &&command&&typeof command==='object'&&['display-home-keepsake','glasshouse-display-plant','glasshouse-inkmint'].includes(String((command as {kind?:unknown}).kind)))
       invalidate(id,current.value.homePlotId);

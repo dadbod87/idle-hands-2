@@ -67,7 +67,15 @@ for(const shape of [
     await page.setViewportSize({width:844,height:390});
     for(const name of ['Strike','Brace','Places','Bag','Journal'])await expect(button(name)).toBeInViewport({ratio:1});
     await shot('short');
+    await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+    for(const name of ['Strike','Brace','Places','Bag','Journal'])await expect(button(name)).toBeInViewport({ratio:1});
+    expect(await page.locator('.pump-action-row').evaluate(row=>row.scrollWidth<=row.clientWidth)).toBe(true);
+    await shot('short-enlarged');
+    await page.evaluate(()=>document.documentElement.style.fontSize='100%');
     await page.setViewportSize({width:320,height:640});
+    await act('Bag');
+    await expect(page.locator('#panel')).not.toBeVisible();
+    await expect(page.locator('#feedback')).toContainText('Step back across the footbridge');
    }
    const started=performance.now();
    while(!(await view(page))?.state.weaponPractice?.rod&&performance.now()-started<16000){

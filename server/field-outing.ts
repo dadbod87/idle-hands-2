@@ -3,7 +3,7 @@ import {FieldStore,type FieldRecord,type FieldReceipt} from './field-store.ts';
 import type {TownPosition} from './live-store.ts';
 import type {SharedFieldAction,SharedFieldInput,SharedFieldReply,SharedFieldView} from '../src/game/shared-field.ts';
 import {applyPumpworks,FIELD_HEALTH,type PumpworksAction,type PumpworksPlace} from '../src/game/pumpworks.ts';
-import {PRACTICE_BELL,PUMPWORKS_ROOM,PUMPWORKS_SAFE_BENCH} from '../src/game/pumpworks-room.ts';
+import {FORGE_STOP,PRACTICE_BELL,PUMPWORKS_ROOM,PUMPWORKS_SAFE_BENCH} from '../src/game/pumpworks-room.ts';
 import {BOW_DRAW_SECONDS,BOW_STILL_RADIUS,BOW_TRACE_MS,equippedFieldWeapon,FIELD_WEAPONS,ROD_SWEEP_MS,STAFF_PULSE_MS,
  type BowDraw,type FieldWeapon} from '../src/game/field-weapons.ts';
 import {braceForHopper,FIELD_IMPACT_MS,freshHopper,hopperLeash,hopperNotices,inPracticeReach,patrolHopper,pushHopper,stepHopper,swingFieldWeapon} from '../src/game/pumpworks-chase.ts';
@@ -19,6 +19,8 @@ const stationFor:Partial<Record<Extract<SharedFieldAction,string>,{id:string;pla
  rest:{id:'pumpworks-bench',place:'bench'},rematch:{id:'pumpworks-bench',place:'bench'},
  wake:{id:'pumpworks-bench',place:'bed'},recover:{id:'pumpworks-cache',place:'cache'},
  report:{id:'pumpworks-report',place:'desk'},
+ 'start-forge':{id:FORGE_STOP.id,place:'forge'},'collect-forge':{id:FORGE_STOP.id,place:'forge'},
+ 'start-stamp':{id:FORGE_STOP.id,place:'forge'},'collect-stamp':{id:FORGE_STOP.id,place:'forge'},
 };
 type Draw={view:BowDraw;receipt:Omit<FieldReceipt,'message'>};
 type Run={
@@ -78,7 +80,10 @@ export class SharedField {
   };
  }
  due(run:Run,now:number){
-  if(now-run.sentAt<100)return false;
+  // Recovering and cleared rooms have no moving target. Keep a quiet
+  // checkpoint for reconnecting clients and send actual actions immediately.
+  const still=run.record.state.recovering||run.record.state.cleared;
+  if(now-run.sentAt<(still?1000:100))return false;
   run.sentAt=now;return true;
  }
  async leave(id:string,now:number,stay=false){

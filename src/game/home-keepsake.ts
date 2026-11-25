@@ -37,11 +37,16 @@ export const HOME_KEEPSAKES = {
  'alder-swatch':ALDER_KEEPSAKE,
  'collector-gauge':COLLECTOR_GAUGE,
 } as const;
-export const HOME_KEEPSAKE_IDS = ['naturalist','woodland-certificate','alder-swatch','collector-gauge'] as const;
-export type HomeKeepsake = typeof HOME_KEEPSAKE_IDS[number];
+const WALL_DISPLAY_IDS=['woodland-certificate','alder-swatch','collector-gauge'] as const;
+type WallDisplay=typeof WALL_DISPLAY_IDS[number];
+export const HOME_KEEPSAKE_IDS=['naturalist',...WALL_DISPLAY_IDS] as const;
+export type HomeKeepsake=typeof HOME_KEEPSAKE_IDS[number];
+export function isWallKeepsake(value:unknown):value is WallDisplay{
+ return (WALL_DISPLAY_IDS as readonly unknown[]).includes(value);
+}
 export type HomeKeepsakeProjection = {
  keepsake?: typeof NATURALIST_KEEPSAKE.id;
- wallDisplay?: Exclude<HomeKeepsake,typeof NATURALIST_KEEPSAKE.id>;
+ wallDisplay?: WallDisplay;
 };
 export function displayedHomeKeepsake(plot?:HomeKeepsakeProjection):HomeKeepsake|null{
  return plot?.wallDisplay??plot?.keepsake??null;

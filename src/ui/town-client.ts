@@ -8,7 +8,7 @@ import {activeWave} from '../game/town-wave.ts';
 import type {TownHeadwear} from '../game/earned-headwear.ts';
 import {glasshousePlantSchema,type GlasshousePlant} from '../game/glasshouse-plants.ts';
 import {glasshouseSnapshotSchema,type GlasshouseSnapshot} from '../game/glasshouse.ts';
-import type { HomeKeepsakeProjection } from '../game/home-keepsake.ts';
+import {isWallKeepsake, type HomeKeepsakeProjection} from '../game/home-keepsake.ts';
 import {snackShelfSchema,type SnackAction,type SnackShelf} from '../game/snack-shelf.ts';
 import {sharedPantrySchema,type OrchardPantry,type OrchardAction} from '../game/orchard.ts';
 import{outingSchema,type OutingState}from'../game/outing.ts';
@@ -138,7 +138,7 @@ export class TownClient {
    const inside=snapshot.position?.homePlotId===p.id&&['home','home-expanded'].includes(snapshot.position.room);
    if(!inside||snapshot.homeKeepsakes!==true)return false;
    return p.wallDisplay==null?p.keepsake==='naturalist'
-    :p.keepsake==null&&(p.wallDisplay==='woodland-certificate'||p.wallDisplay==='alder-swatch')&&snapshot.homeKeepsakeChoices===true;
+    :p.keepsake==null&&isWallKeepsake(p.wallDisplay)&&snapshot.homeKeepsakeChoices===true;
   };
   if(!Array.isArray(snapshot.plots)||snapshot.plots.some(p=>!validPlot(p))||snapshot.plot!==null&&!validPlot(snapshot.plot))throw new Error('The town returned an incompatible home layout. Reload after the service update; progress has not been replaced.');
   if(snapshot.plot&&!homeAllocationValid(snapshot.workshop,snapshot.plot))throw new Error('The town returned an invalid furniture allocation. Saved progress was not replaced.');

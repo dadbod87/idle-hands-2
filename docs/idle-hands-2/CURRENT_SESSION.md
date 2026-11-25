@@ -1,3 +1,7 @@
+# November 25 — playable Lower Pumpworks
+
+Use `feat/lower-pumpworks-outing` and the [Lower Pumpworks handoff](handoffs/2026-11-25-lower-pumpworks.md). The local review adds the two-floor outing, filter mite, Collector, one-time chests, lift, and a gauge you can display at home. Keep saved previews and databases stopped. Apply this review after the earlier batch and verify the exact candidate before merging.
+
 # November 25 — shared Pumpworks and trade practice
 
 Start from `feat/nov25-trade-practice` and the [shared combat and trade handoff](handoffs/2026-11-25-shared-combat-and-trades.md). Private server-driven combat, a riveted vest and brass finish, and a gold-edged kerchief are ready for local review. The Lower Pumpworks has a separate walkable route study. Keep the saved previews and databases stopped. Complete the batched exact-head checks before merging.

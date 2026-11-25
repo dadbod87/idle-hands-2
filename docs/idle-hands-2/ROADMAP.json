@@ -3920,9 +3920,10 @@
       ],
       "evidence": [
         "docs/idle-hands-2/design/WORLD_AND_SYSTEMS_DESIGN.md",
-        "tools/lower-pumpworks-study/index.html"
+        "tools/lower-pumpworks-study/index.html",
+        "docs/idle-hands-2/handoffs/2026-11-25-lower-pumpworks.md"
       ],
-      "progress_note": "The separate two-floor layout works with collision-checked walking, chest markers and the lift. Implement one weaker encounter and its receipt before the Collector."
+      "progress_note": "Playable local candidate has the filter mite, three owner-scoped chests, optional Collector, freight lift, and visitor-visible Overdue Gauge. Exact hosted checks and first-time player acceptance remain pending."
     }
   ],
   "source_status_note": "PR #107 accepted on main. This separate compatibility review composes the checked headwear and shared-town branch with the local overnight candidate."

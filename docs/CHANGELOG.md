@@ -1,3 +1,7 @@
+# November 25 — playable Lower Pumpworks
+
+The local review opens the two floors of Lower Pumpworks in connected practice. Dodge the filter mite, collect the side chests or take on the optional Collector for a brass gauge you can display at home. [Handoff](idle-hands-2/handoffs/2026-11-25-lower-pumpworks.md).
+
 # November 25 — server-verified combat and use-based trades
 
 The local review candidate adds private real-time Pumpworks combat in the practice town. Finished smithing and tailoring work teaches skills and unlocks brass armor and gold-edged cloth that nearby residents can see. [Handoff and validation](idle-hands-2/handoffs/2026-11-25-shared-combat-and-trades.md).

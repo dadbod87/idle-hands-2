@@ -61,6 +61,22 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  oatcakeButton.setAttribute('aria-label','Eat oatcake · +'+OATCAKE_HEAL+' health');
  for(const [action,label,key] of [[strikeButton,'Strike','Space'],[braceButton,'Brace','Shift'],[oatcakeButton,'Eat oatcake · +'+OATCAKE_HEAL+' health','F']] as const){
   action.setAttribute('aria-label',label);
+  // Browsers may omit a click for a secondary touch. Keep the other thumb
+  // free to steer while the player uses an action.
+  let secondaryPointer:number|null=null;
+  action.addEventListener('pointerdown',event=>{
+   secondaryPointer=null;
+   if(event.pointerType!=='touch'||event.isPrimary||action.disabled)return;
+   event.preventDefault();
+   secondaryPointer=event.pointerId;
+   action.click();
+  });
+  action.addEventListener('click',event=>{
+   if(secondaryPointer!==null&&event instanceof PointerEvent&&event.pointerId===secondaryPointer){
+    event.stopImmediatePropagation();
+    secondaryPointer=null;
+   }
+  },true);
   const hint=document.createElement('kbd');hint.setAttribute('aria-hidden','true');hint.textContent=key;
   action.append(hint);
  }

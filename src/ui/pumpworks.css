@@ -89,3 +89,13 @@
  }
  .shell:has(#pump-controls:not([hidden])) .pump-controls { grid-column:1/-1; }
 }
+
+.field-touch-ring {
+ position:absolute;width:58px;height:58px;transform:translate(-50%,-50%);border-radius:50%;
+ border:2px solid #d5d8bd;background:#2d40323c;box-shadow:0 0 0 1px #304137aa;pointer-events:none;
+}
+.field-touch-ring::after {
+ content:'';position:absolute;left:50%;top:50%;width:22px;height:22px;
+ transform:translate(calc(-50% + var(--thumb-x)),calc(-50% + var(--thumb-y)));
+ border-radius:50%;border:2px solid #52684d;background:#f2e8b5;
+}

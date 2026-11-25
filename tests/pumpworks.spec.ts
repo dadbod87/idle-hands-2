@@ -19,7 +19,7 @@ const read=(page:Page)=>page.evaluate(()=>{
 });
 
 for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},{name:'phone',width:320,height:640,text:100,touch:true},{name:'short200',width:844,height:390,text:200,touch:true}]){
- test('Pumpworks real-time chase, dodge, equipment and field seal · '+shape.name,async({browser})=>{
+ test('Pumpworks real-time chase, dodge, equipment and field seal · '+shape.name,async({browser,browserName})=>{
   test.setTimeout(120000);
   mkdirSync(output,{recursive:true});
   const recording=process.env.QA_RECORD_PUMPWORKS==='1'&&shape.name==='phone'?{dir:output+'/raw-motion',size:{width:320,height:640}}:undefined;
@@ -50,6 +50,37 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    const position=await page.evaluate(point=>(window as Window&{__pilot?:Pilot}).__pilot!.screenPoint(point.x,point.y),point);
    const canvas=page.locator('canvas');
    if(shape.touch)await canvas.tap({position});else await canvas.click({position});
+  }
+  async function drag(point:Point){
+   if(browserName!=='chromium'){await move(point);return;}
+   const device=await context.newCDPSession(page);
+   const canvas=(await page.locator('canvas').boundingBox())!;
+   const {position}=(await read(page))!;
+   const dx=point.x-position.x,dy=point.y-position.y,length=Math.hypot(dx,dy);
+   const x=canvas.x+canvas.width*.46,y=canvas.y+canvas.height*.58;
+   try{
+    await device.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x,y}]});
+    await device.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:1,x:x+38*dx/length,y:y+38*dy/length}]});
+    const ring=page.locator('.field-touch-ring');
+    await expect(ring).toBeVisible();
+    const brace=(await button('Brace').boundingBox())!;
+    // A second thumb can brace without canceling the live steering gesture.
+    await device.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[
+     {id:1,x:x+38*dx/length,y:y+38*dy/length},
+     {id:2,x:brace.x+brace.width/2,y:brace.y+brace.height/2},
+    ]});
+    await expect.poll(async()=>(await read(page))!.combat.hopper.guard,{timeout:450,intervals:[20]}).toBeGreaterThan(0);
+    await expect(ring).toBeVisible();
+    await capture('steering');
+    await expect.poll(async()=>{
+     const live=(await read(page))!.position;
+     return (live.x-position.x)*dx/length+(live.y-position.y)*dy/length;
+    },{timeout:950,intervals:[20]}).toBeGreaterThan(length-.13);
+   }finally{
+    await device.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+    await device.detach();
+   }
+   await expect(page.locator('.field-touch-ring')).toBeHidden();
   }
   async function outmaneuver(){
    await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{timeout:7500,intervals:[35]}).toBe('windup');
@@ -167,7 +198,7 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
      Math.hypot(a.x-start.position.x,a.y-start.position.y)-Math.hypot(b.x-start.position.x,b.y-start.position.y)
     )[0];
     await capture('splash');
-    await move(target);
+    await drag(target);
     await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{timeout:4500,intervals:[35]}).toBe('recover');
     expect((await read(page))!.state.health).toBe(start.state.health);
    }

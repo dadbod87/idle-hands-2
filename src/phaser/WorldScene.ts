@@ -452,6 +452,49 @@ export class WorldScene extends Phaser.Scene {
   private fieldSteering:Point|null=null;
   private room = '';
   private loadingRoom:Room='square';
+  private regionalRestartQueued=false;
+  private regionalFrame?:HTMLElement;
+  private startRegionalRoom(){
+    if(this.regionalRestartQueued)return;
+    this.regionalRestartQueued=true;
+    // Capture after rendering the departing room, before its textures are
+    // replaced. WebGL can clear its drawing buffer after browser composition.
+    this.game.events.once(Phaser.Core.Events.POST_RENDER,()=>{
+      this.regionalRestartQueued=false;
+      if(this.room===this.session.room)return;
+      if(!this.regionalFrame)this.keepRegionalFrame();
+      this.scene.restart();
+    });
+  }
+  private keepRegionalFrame(){
+    const canvas=this.game.canvas,world=canvas.parentElement;
+    if(!world||!canvas.width||!canvas.height)return;
+    const ratio=Math.min(1,1280/canvas.width,720/canvas.height);
+    const copy=document.createElement('canvas');
+    copy.width=Math.max(1,Math.round(canvas.width*ratio));
+    copy.height=Math.max(1,Math.round(canvas.height*ratio));
+    const paint=copy.getContext('2d');
+    if(!paint)return;
+    paint.drawImage(canvas,0,0,copy.width,copy.height);
+    const frame=document.createElement('div');
+    frame.dataset.roomFrame='';
+    frame.setAttribute('aria-hidden','true');
+    Object.assign(copy.style,{display:'block',width:'100%',height:'100%',objectFit:'cover'});
+    // This is a presentation copy. Keep it out of the real playfield input
+    // surface and out of direct canvas discovery used by the renderer.
+    frame.attachShadow({mode:'closed'}).append(copy);
+    world.append(frame);
+    this.regionalFrame=frame;
+  }
+  private revealRegionalRoom(){
+    const frame=this.regionalFrame;
+    if(!frame)return;
+    this.game.events.once(Phaser.Core.Events.POST_RENDER,()=>{
+      if(!this.roomReady||this.regionalFrame!==frame)return;
+      frame.remove();
+      this.regionalFrame=undefined;
+    });
+  }
   get roomReady(){
     return this.room===this.session.room&&this.scene.isActive()&&this.actor?.active===true;
   }
@@ -1142,6 +1185,7 @@ export class WorldScene extends Phaser.Scene {
       this.scale.off(Phaser.Scale.Events.RESIZE,cancelTouch);
       cancelTouch();touchRing?.remove();
     });
+    this.revealRegionalRoom();
     this.events.once('shutdown', () => { this.reducedMotion.removeEventListener('change',motionChanged);document.removeEventListener('focusin',readingFocus);document.removeEventListener('keydown', onDown); document.removeEventListener('keyup', onUp); window.removeEventListener('blur', clear); document.removeEventListener('visibilitychange', clear);document.removeEventListener('freeze', clear);window.removeEventListener('pagehide', clear); });
   }
   private gardenLabelHit(text:Phaser.GameObjects.Text){
@@ -1210,7 +1254,12 @@ export class WorldScene extends Phaser.Scene {
     for(const [index,person] of this.townfolk.entries()){const p=ambientPose(this.ambientMs,this.ambientEnabled&&visible(person.image.x,person.image.y),index*1.7);person.image.setScale(ART.actorScale,ART.actorScale+p.gesture*.004);const d=Math.hypot(person.image.x-this.actor.x,person.image.y-this.actor.y);person.label.setVisible(d<(person.id==='clerk'?255:100));}
   }
   update(time: number, delta: number) {
-    if (this.room !== this.session.room||(this.room==='neighborhood'&&this.loadedDistrictId!==this.districtId)||(this.room.startsWith('home')&&(this.loadedHomePlotId!==this.homePlotId||this.loadedInteriorKey!==this.interiorKey()))) { this.scene.restart(); return; }
+    if (this.room !== this.session.room||(this.room==='neighborhood'&&this.loadedDistrictId!==this.districtId)||(this.room.startsWith('home')&&(this.loadedHomePlotId!==this.homePlotId||this.loadedInteriorKey!==this.interiorKey()))) {
+      if(this.room==='mossbank'||this.room==='pumpworks'||this.session.room==='mossbank'||this.session.room==='pumpworks'){
+        this.startRegionalRoom();
+      }else this.scene.restart();
+      return;
+    }
     const pressed = (...keys: string[]) => keys.some(key => this.keys.has(key));
     const direction = this.fieldSteering??{
       x: Number(pressed('ArrowRight', 'd')) - Number(pressed('ArrowLeft', 'a')),

@@ -57,6 +57,8 @@ for(const shape of [{name:'desktop',width:1440,height:900,touch:false},{name:'ph
     await press('Enter Mossbank');
    }
    await room('mossbank');
+   await expect.poll(async()=>(await visual())?.worker).toBe('mossbank-wren');
+   await expect(page.locator('[data-room-frame]')).toHaveCount(0);
    await take('arrival');
    await press('Places');
    const openMap=page.getByText('Mossbank map',{exact:true});
@@ -158,3 +160,51 @@ for(const shape of [{name:'desktop',width:1440,height:900,touch:false},{name:'ph
   }finally{await context.close();}
  });
 }
+
+test('Mossbank uses a painted frame while its first regional art is still loading',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ mkdirSync(output,{recursive:true});
+ const {promise:waiting,resolve:begin}=Promise.withResolvers<void>();
+ const {promise:released,resolve:release}=Promise.withResolvers<void>();
+ await page.route('**/art/mossbank/ground.svg',async route=>{
+  begin();
+  await released;
+  await route.continue();
+ });
+ try{
+  await page.addInitScript(front=>{
+   if(!localStorage.getItem('ih2:pilot-position:v1')){
+    localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:front}));
+   }
+  },MOSSBANK_FRONT);
+  await page.goto('/?sky-study=1&phase=day&weather=clear');
+  const canvas=page.locator('#world canvas');
+  await expect(canvas).toBeVisible();
+  await page.getByRole('button',{name:'Enter Mossbank',exact:true}).click();
+  await waiting;
+  await expect.poll(()=>page.evaluate(()=>(window as Window&{
+   __pilot?:{snapshot():{room:string}};
+  }).__pilot?.snapshot().room)).toBe('mossbank');
+  for(const size of [{width:1440,height:900},{width:844,height:390}]){
+   await page.setViewportSize(size);
+   const rendered=await page.locator('#world').screenshot({path:output+'/mossbank-held-'+size.width+'.png'});
+   const colors=await page.evaluate(async encoded=>{
+    const shot=await fetch('data:image/png;base64,'+encoded).then(response=>response.blob()).then(createImageBitmap);
+    const view=new OffscreenCanvas(20,14).getContext('2d')!;
+    view.drawImage(shot,0,0,20,14);
+    shot.close();
+    const data=view.getImageData(1,1,18,12).data;
+    const colors=new Set<string>();
+    for(let i=0;i<data.length;i+=4)colors.add([data[i]>>4,data[i+1]>>4,data[i+2]>>4].join(','));
+    return colors.size;
+   },rendered.toString('base64'));
+   expect(colors,'frame retains visible terrain before the destination texture arrives').toBeGreaterThan(8);
+  }
+  release();
+  await expect.poll(()=>page.evaluate(()=>(window as Window&{
+   __pilot?:{metrics():{visual:{mossbank:MossbankVisual}}};
+  }).__pilot?.metrics().visual.mossbank.worker)).toBe('mossbank-wren');
+  await expect(page.locator('[data-room-frame]')).toHaveCount(0);
+  await page.screenshot({path:output+'/mossbank-settled-after-hold.png'});
+ }finally{release();}
+});

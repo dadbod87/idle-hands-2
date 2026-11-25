@@ -240,3 +240,5 @@
  .shell.large-text #location[data-room='glasshouse'] > :is(span, small) { display: none; }
  .shell.large-text #location[data-room='glasshouse'] { max-width: calc(100% - 80px); }
 }
+
+#world > [data-room-frame] { position:absolute; inset:0; pointer-events:none; overflow:hidden; }

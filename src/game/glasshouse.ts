@@ -22,7 +22,7 @@ export const glasshouseProjectSchema = z.object({
 });
 export type Glasshouse = z.infer<typeof glasshouseProjectSchema>;
 
-const reviewSchema = z.object({
+const reviewFields = z.object({
  id: z.uuid(),
  resident,
  revision: z.literal(GLASSHOUSE_RULES.revision),
@@ -31,6 +31,11 @@ const reviewSchema = z.object({
  reviewedAt: clock,
  expiresAt: deadline,
 }).strict();
+const price = (task: GlasshouseTask) => task === 'frame' ? GLASSHOUSE_RULES.pine : 0;
+const reviewSchema = reviewFields.refine(review =>
+ review.pine === price(review.task) &&
+ review.expiresAt === review.reviewedAt + GLASSHOUSE_RULES.reviewMs
+);
 export type GlasshouseReview = z.infer<typeof reviewSchema>;
 
 // The real caller must supply these from an authenticated, locked actor row and
@@ -44,7 +49,6 @@ export type GlasshouseActor = {
 
 type Visit = { ok: false; reason: 'visit' | 'already' | 'pine' | 'notes' | 'clock' | 'review' | 'unreadable' };
 const denied = (reason: Visit['reason']): Visit => ({ ok: false, reason });
-const price = (task: GlasshouseTask) => task === 'frame' ? GLASSHOUSE_RULES.pine : 0;
 const lastWork = (project: Glasshouse) => Math.max(0, ...Object.values(project.work).map(work => work?.at ?? 0));
 
 export function newGlasshouse(): Glasshouse {
@@ -95,8 +99,7 @@ export function contributeGlasshouse(input: unknown, actor: GlasshouseActor, rev
  if (!project.success) return denied('unreadable');
  if (!checked.success) return denied('review');
  const review = checked.data;
- if (review.id !== reviewId || review.resident !== actor.resident || review.pine !== price(review.task) ||
-  review.expiresAt !== review.reviewedAt + GLASSHOUSE_RULES.reviewMs ||
+ if (review.id !== reviewId || review.resident !== actor.resident ||
   now < review.reviewedAt || now >= review.expiresAt) return denied('review');
  const blocked = eligible(project.data, actor, review.task, now);
  if (blocked) return blocked;
@@ -116,7 +119,7 @@ const publicSchema = z.object({
  const funded=state.entrance&&state.frame&&state.chart;
  return funded ? state.opensAt!==null&&state.phase!=='overgrown' : state.opensAt===null&&state.phase==='overgrown';
 });
-const publicReviewSchema = reviewSchema.pick({id:true,task:true,pine:true,expiresAt:true})
+const publicReviewSchema = reviewFields.pick({id:true,task:true,pine:true,expiresAt:true})
  .refine(review=>review.pine===price(review.task));
 export const glasshouseSnapshotSchema = z.object({project:publicSchema,review:publicReviewSchema.nullable()}).strict();
 export type GlasshouseSnapshot = z.infer<typeof glasshouseSnapshotSchema>;

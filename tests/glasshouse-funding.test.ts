@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import type {PoolClient} from 'pg';
 import {fundGlasshouse} from '../server/glasshouse.ts';
-import {GLASSHOUSE_RULES, freshGlasshouseOpening, glasshouseSnapshot, newGlasshouse, type GlasshouseReview} from '../src/game/glasshouse.ts';
+import {GLASSHOUSE_RULES, contributeGlasshouse, freshGlasshouseOpening, glasshouseSnapshot, newGlasshouse, reviewGlasshouse, type GlasshouseReview} from '../src/game/glasshouse.ts';
 import {applyWorkshop, createWorkshop, isCurrentWorkshop, type WorkshopState} from '../src/game/live-workshop.ts';
 
 const at=Date.UTC(2026,10,24,23);
@@ -93,4 +93,25 @@ test('the opening cue needs a recent real phase transition on the same resident 
  assert.equal(freshGlasshouseOpening(waiting,make('open',at-1)),false);
  assert.equal(freshGlasshouseOpening(waiting,make('open',at,'new-boot')),false);
  assert.equal(freshGlasshouseOpening(waiting,make('open',at,'one','bea')),false);
+});
+
+test('an inconsistent stored review does not hide the town or authorize a debit', () => {
+ const project = newGlasshouse();
+ const actor = {resident: 'carpenter', atGlasshouse: true, pine: 6, trailStamps: 0};
+ const id = '12345678-1234-4234-8234-123456789abc';
+ const result = reviewGlasshouse(project, actor, 'frame', at, id);
+ assert.ok(result.ok);
+ const {review} = result;
+ const valid = glasshouseSnapshot(project, review, actor.resident, at + 1);
+ assert.equal(valid?.review?.id, id);
+ for (const malformed of [{...review, pine: 0}, {...review, expiresAt: review.expiresAt + 1000}]) {
+  const snapshot = glasshouseSnapshot(project, malformed, actor.resident, at + 1);
+  assert.deepEqual(snapshot, {project: valid?.project, review: null});
+  assert.deepEqual(contributeGlasshouse(project, actor, id, malformed, at + 1), {ok: false, reason: 'review'});
+ }
+ const recovered = reviewGlasshouse(project, actor, 'frame', at + 2, id);
+ assert.ok(recovered.ok);
+ assert.equal(glasshouseSnapshot(project, recovered.review, actor.resident, at + 2)?.review?.id, id);
+ assert.equal(actor.pine, 6);
+ assert.equal(project.work.frame, null);
 });

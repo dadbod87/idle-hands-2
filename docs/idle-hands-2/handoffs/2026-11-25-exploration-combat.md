@@ -1,0 +1,47 @@
+# Idle Hands 2 exploration and active combat
+
+## Resume source
+
+The sequel's [accepted main](https://github.com/dadbod87/idle-hands-2/commit/168e85720d680dd125d6204e84a12e455bf14878), [PR #108](https://github.com/dadbod87/idle-hands-2/pull/108) and [draft PR #109](https://github.com/dadbod87/idle-hands-2/pull/109) are separate from this candidate. Start with `feat/nov25-combat-feedback` and check the latest handoff amendment before developing. Keep saved previews and databases stopped.
+
+| Commit | Playable change |
+| --- | --- |
+| `cbf4bcb` | Connected nursery-to-home Inkmint work from the prior section. |
+| `75283f1` | Real-time Pumpworks encounter. The hopper notices and follows a nearby resident. Walk, strike, brace and eat while it moves. |
+| `c347650` | A wounded hopper alternates its directional lunge with a broad stationary splash. The shapes show where damage can land. |
+| `9e5d0a2` | A real shared road from restored Inkwood to Mossbank, with room-scoped presence and exactly checkpointed return. |
+| `de45172` | Shared Mossbank survey saves progress. Its once-earned alder swatch can be displayed at the owner's home for visitors. |
+| `cab2b8e` | Drag steering works alongside a second touch action on the phone. Tap steering and keyboard controls remain. |
+
+## Two playable paths
+
+In browser practice, enter the Pumpworks from Willow meadow. Take the sounding rod and oatcake, equip the rod through Bag and cross the footbridge to meet the hopper. The first encounter begins in the playfield. A lunge leaves a chance to counter after it lands. A splash calls for distance or a timed brace. Back away across the bridge to reset an unfinished fight, then rest at the dry bench if needed. A loss returns the player to a boarding-house bed. Their field satchel waits on a reachable shelf, with no expiry or ordinary-inventory loss. The optional inspection seal is earned only by clearing the room and visiting the inspection desk.
+
+The connected game uses the restored Inkwood road. Two residents can walk Mossbank together, visit the alder windrow and flume landing, and finish individual surveys at the sawmill. The resident can take the sample home or leave it in the Journal. Choosing a home wall display deliberately makes it visible to visitors to that specific home. The original Mossbank survey and an alternate path through browser practice remain available separately.
+
+## Design follow-through
+
+Keep learning on the playfield. Make windup, impact, vulnerability and escape read at a glance with distinct silhouettes, poses and patterns. Use compact descriptions at the locker or after an action. Reserve dialogs for equipment, recovery and deliberate choices. The combat room is optional and the main town, housing and resource routes remain safe. The browser fight proves feel, gear and return flow. It has no shared enemy authority, real stock consequences, expiry penalty, public environment or production player data.
+
+The first playtest needs two people, ideally one on a phone and one unfamiliar with this game. Give them “Find and inspect the old pump” and let them choose how to approach. Observe whether they notice the lunge and splash, dodge deliberately, recognize a counter window without reading a panel, and can retreat or recover without help. Ask what they would try next. Track observed actions and difficulties rather than assuming a successful automated fight predicts enjoyment. Tune timings and the safe-side route before adding a second enemy.
+
+For future shared combat, server-owned motion and state need explicit boundaries for latency, room changes and disconnect before assets or loot can legally move. First prototype a single shared encounter with private participation credit and a protected, recoverable field kit. Keep its reward separate from housing and essential exploration. Expand Mossbank with a gathering route or cooperative reason to return only when the safe route and first combat fight stand on their own.
+
+## Evidence boundaries
+
+The test captures use a cosmetic daylight override and a browser-practice starting foot position near the Pumpworks entrance. Equipment, pursuit, health, strikes, defeat, recovery and the inspection seal run through the game with its ordinary browser clock. Connected Mossbank tests use a freshly initialized loopback-only PostgreSQL fixture with fictional residents, a restored bridge and staged starting positions. The visitor-display proof additionally staged a fictional owned home after the survey reward was earned. It did not intercept browser responses. No existing player or world record was loaded.
+
+## Verified candidate and repository checks
+
+Runtime `85a5d3b1e926d1804ea59333721b74c0f9f20826` adds readable attack and retreat cues, a framed seal reward, and immediate artwork loading for an explicitly opened preview. The build's index SHA-256 is `1bc109d621134f9597029a1e73b4b36f0ba8984ac2081f47c96e8a290485484d`. At an opening, fixed corner brackets and a compact enemy-health bar keep attention on the hopper. A counter gives a distinct burst. A player can take the seal down without deleting its earned record. A pre-existing browser save that collected the seal can select it without fighting again.
+
+- The production-mode client build and both TypeScript projects completed. The 505-case ordinary domain run on the immediately preceding candidate returned 469 passes, 36 database skips and zero failures. Tracker validation, ten tracker cases, design checks, all 40 pinned skill entries and whitespace checks passed. The final preview change has focused real browser verification.
+- All six focused routes passed on the exact runtime in each of Chromium and WebKit. They include desktop, 320 px touch, and 844 × 390 at 200% text. Chromium separately verified a native two-touch gesture, field movement under a held drag, and a second finger bracing. WebKit verified native taps. The artwork check waits for a decoded image, then checks display, reload and removal. The recorded desktop fight also backs out, re-engages, loses, wakes up and retrieves the satchel.
+- An earlier broader browser candidate passed 27 selected Chromium cases. Its 24 WebKit passes included most matching cases. Two unrelated WebKit keyboard-focus failures (Sound volume and Places search) reproduced on earlier source. The earlier short-screen combat test needed to move into reach. The exact combat candidate uses that interaction and passes the short-screen case in both engines.
+- The latest connected backend passed seven targeted PostgreSQL 16 tests across Glasshouse, Inkmint, Mossbank travel and the survey/visiting boundaries. The two-browser connected route and visitor capture used real local HTTP/SSE, ordinary persistence and disposable fixture data. A physical-device and human playtest, the complete hosted browser and database suites, the main merge and a deployment remain open.
+
+Raw captures and test logs are stored in the local session output `idle-hands-2-session-2026-11-25`. View `pumpworks-seal/final-chromium` for the live walkthrough, the attack's floor cue and the movement ring. See `mossbank-survey` for the independent connected visitor proof. Original illustration and audio are registered with project provenance.
+
+## Hosted use
+
+Zero hosted runs, retries and runner minutes were triggered for this candidate. Recent exact-main validation [run 45213779084](https://github.com/dadbod87/idle-hands-2/actions/runs/45213779084) used about 51 summed runner minutes. The slowest browser shard spent 16 minutes 27 seconds executing cases and about 21 seconds installing the browser. No runner, coverage, workflow, billing, budget, visibility or required check changed. Current candidate docs and local tests are batched before any new PR.

@@ -1,7 +1,7 @@
 import type {FieldCue} from '../audio/combat-cues.ts';
 import {BOW_DRAW_SECONDS,BOW_STILL_RADIUS,BOW_TRACE_MS,equippedFieldWeapon,FIELD_WEAPONS,type BowDraw,type BowTrace,type FieldWeapon} from '../game/field-weapons.ts';
 import {
- FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PUMPWORKS_KEY,readPumpworks,savePumpworks,
+ FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PADDED_VEST_ARMOR,PUMPWORKS_KEY,readPumpworks,savePumpworks,
  type PumpworksAction,type PumpworksPlace,
 } from '../game/pumpworks.ts';
 import {
@@ -12,7 +12,14 @@ import {PRACTICE_BELL} from '../game/pumpworks-room.ts';
 import type {Point} from '../game/world.ts';
 import './pumpworks.css';
 
-const WEAPON_ART={rod:'/art/pumpworks/sounding-rod.svg',bow:'/art/pumpworks/field-bow.svg'} as const;
+const EQUIPMENT={
+ rod:{name:FIELD_WEAPONS.rod.name,art:'/art/pumpworks/sounding-rod.svg',
+  description:FIELD_WEAPONS.rod.damage+' damage · Close reach. Strong counter.',equip:'equip',pack:'pack'},
+ bow:{name:FIELD_WEAPONS.bow.name,art:'/art/pumpworks/field-bow.svg',
+  description:FIELD_WEAPONS.bow.damage+' damage · Long reach. Stand still to draw.',equip:'equip-bow',pack:'pack-bow'},
+ vest:{name:'Padded vest',art:'/art/pumpworks/padded-vest.svg',
+  description:PADDED_VEST_ARMOR+' Armor · Reduces unbraced hits.',equip:'equip-vest',pack:'pack-vest'},
+} as const;
 
 
 type Host={
@@ -355,7 +362,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      const weapon=equippedFieldWeapon(state);
      panel.append(paragraph(weapon==='bow'?'Stand still to draw the bow. The practice bell makes a good target.':
       weapon==='rod'?'Try a swing at the practice bell, then cross the footbridge.':'Equip field gear in Bag before crossing the footbridge.'));
-     if(state.bow==='unissued'&&!state.fight)add('Try a field bow','borrow-bow');
+     if(!state.fight){
+      if(state.bow==='unissued')add('Try a field bow','borrow-bow');
+      if(state.vest==='unissued')add('Borrow padded vest','borrow-vest');
+     }
      panel.append(button('Open Bag',host.equipment));
      if(state.oatcake==='unissued')add('Pack your oatcake','oatcake');
     }
@@ -402,11 +412,11 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const state=record.state;
   let shownRaw=record.raw;
   const repaints:((message?:string)=>void)[]=[];
-  const cards=(['rod','bow'] as const).filter(weapon=>state[weapon]!=='unissued').map(weapon=>{
-   const profile=FIELD_WEAPONS[weapon],name=profile.name.toLowerCase();
-   const card=document.createElement('li');card.className='bag-slot';card.dataset.pumpBag=weapon;
+  const cards=(['rod','bow','vest'] as const).filter(item=>state[item]!=='unissued').map(item=>{
+   const profile=EQUIPMENT[item],name=profile.name.toLowerCase();
+   const card=document.createElement('li');card.className='bag-slot';card.dataset.pumpBag=item;
    const artwork=document.createElement('div');artwork.className='bag-slot-art';
-   const art=document.createElement('img');art.src=WEAPON_ART[weapon];art.alt='';art.width=64;art.height=64;
+   const art=document.createElement('img');art.src=profile.art;art.alt='';art.width=64;art.height=64;
    const count=document.createElement('span');count.className='bag-stack-count';count.textContent='1';
    count.setAttribute('aria-label','One '+name);
    artwork.append(art,count);
@@ -419,8 +429,8 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    const paint=(message='')=>{
     const live=current();
     if(!live)return;
-    const equipped=live[weapon]==='equipped';
-    detail.textContent=(equipped?'Equipped':'Packed')+' · '+profile.damage+' damage · '+(weapon==='bow'?'Long reach. Stand still to draw.':'Close reach. Strong counter.');
+    const equipped=live[item]==='equipped';
+    detail.textContent=(equipped?'Equipped':'Packed')+' · '+profile.description;
     control.textContent=(equipped?'Pack ':'Equip ')+name;
     control.disabled=busy||!!live.fight||live.recovering;
     status.textContent=message;
@@ -431,13 +441,12 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     const live=current();
     if(busy||!live)return;
     control.disabled=true;
-    const pack=live[weapon]==='equipped';
-    const action=weapon==='bow'?(pack?'pack-bow':'equip-bow'):(pack?'pack':'equip');
+    const action=live[item]==='equipped'?profile.pack:profile.equip;
     const message=await change(action,'elsewhere',()=>card.isConnected,shownRaw);
     if(record.ok)shownRaw=record.raw;
     if(card.isConnected)for(const repaint of repaints)repaint(repaint===paint?message:'');
    };
-   if(weapon==='rod'&&state.oatcake!=='unissued'){
+   if(item==='rod'&&state.oatcake!=='unissued'){
     const snack=paragraph(state.oatcake==='used'?'Oatcake used':state.satchel==='at-pump'?'Oatcake in the lost satchel':'Oatcake ×1 · restores up to '+OATCAKE_HEAL+' health during the encounter');
     snack.className='pump-oatcake';
     const icon=document.createElement('img');icon.src='/art/pumpworks/oatcake.svg';icon.alt='';
@@ -478,10 +487,17 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const state=current();
   host.hud.hidden=!visible||!state;
   if(host.hud.hidden||!state)return;
-  const key=String(state.health);
-  if(host.hud.dataset.health!==key){
-   host.hud.dataset.health=key;
+  const armor=field&&state.vest==='equipped'?PADDED_VEST_ARMOR:0;
+  const key=state.health+':'+armor;
+  if(host.hud.dataset.readout!==key){
+   host.hud.dataset.readout=key;
+   host.hud.dataset.health=String(state.health);
    host.hud.replaceChildren(meter('Health',state.health,FIELD_HEALTH));
+   if(armor){
+    const text=document.createElement('span');
+    text.className='pump-armor';text.textContent='Armor '+armor;
+    host.hud.append(text);
+   }
   }
  }
 

@@ -3,6 +3,7 @@ import {equippedFieldWeapon,FIELD_WEAPONS} from './field-weapons.ts';
 
 export const FIELD_HEALTH=8;
 export const OATCAKE_HEAL=3;
+export const PADDED_VEST_ARMOR=1;
 export const HOPPER_HEALTH=9;
 export const PUMPWORKS_KEY='ih2:pumpworks:v1';
 const recordSchema=z.object({
@@ -11,6 +12,7 @@ const recordSchema=z.object({
  health:z.number().int().min(0).max(FIELD_HEALTH),
  rod:z.enum(['unissued','packed','equipped']),
  bow:z.enum(['unissued','packed','equipped']).default('unissued'),
+ vest:z.enum(['unissued','packed','equipped']).default('unissued'),
  oatcake:z.enum(['unissued','packed','used']).default('unissued'),
  satchel:z.enum(['none','carried','at-pump']),
  fight:z.object({
@@ -26,18 +28,18 @@ const recordSchema=z.object({
     ||state.rematch!==(state.reported&&!state.cleared)
     ||state.fight&&(state.recovering||state.cleared)
     ||state.bow==='equipped'&&state.rod==='equipped'
-    ||state.rod==='unissued'&&(state.oatcake!=='unissued'||state.bow!=='unissued')
+    ||state.rod==='unissued'&&(state.oatcake!=='unissued'||state.bow!=='unissued'||state.vest!=='unissued')
     ||(state.rod==='unissued')!==(state.satchel==='none')){
   ctx.addIssue({code:'custom',message:'The survey record is inconsistent.'});
  }
 });
 export type PumpworksState=z.infer<typeof recordSchema>;
-export type PumpworksAction='issue'|'borrow-bow'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
+export type PumpworksAction='issue'|'borrow-bow'|'borrow-vest'|'equip-vest'|'pack-vest'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
 export type PumpworksPlace='locker'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
 type Result={ok:false;message:string}|{ok:true;state:PumpworksState;message:string;returnToBed?:true};
 
 export const freshPumpworks=():PumpworksState=>({
- version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',bow:'unissued',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,rematch:false,
+ version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',bow:'unissued',vest:'unissued',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,rematch:false,
 });
 
 export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place:PumpworksPlace):Result{
@@ -54,6 +56,15 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
   case 'borrow-bow':
    if(place!=='locker'||state.rod==='unissued'||state.bow!=='unissued'||state.fight)return refuse('The field bow is on loan from the survey locker.');
    return accept({rod:'packed',bow:'equipped'},'Field bow equipped. Your rod is in Bag.');
+  case 'borrow-vest':
+   if(place!=='locker'||state.rod==='unissued'||state.vest!=='unissued'||state.fight)return refuse('The padded vest is on loan from the survey locker.');
+   return accept({vest:'equipped'},'Padded vest equipped.');
+  case 'equip-vest':
+  case 'pack-vest':
+   if(state.fight)return refuse('End the encounter before changing gear.');
+   if(action==='equip-vest'&&state.vest==='packed')return accept({vest:'equipped'},'Padded vest equipped.');
+   if(action==='pack-vest'&&state.vest==='equipped')return accept({vest:'packed'},'Padded vest packed.');
+   return refuse('Check your current outing gear.');
   case 'oatcake':
    if(place!=='locker'||state.rod==='unissued'||state.oatcake!=='unissued')return refuse('There is no new oatcake in the survey locker.');
    return accept({oatcake:'packed'},'The survey locker still had your oatcake.');
@@ -99,14 +110,16 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
   case 'splash-hit':
   case 'guard': {
    if(place!=='arena'||!state.fight)return refuse('There is no encounter here.');
-   const damage=action==='guard'?1:action==='splash-hit'?2:3;
+   const baseDamage=action==='guard'?1:action==='splash-hit'?2:3;
+   const armor=state.vest==='equipped'?PADDED_VEST_ARMOR:0;
+   const damage=Math.max(1,baseDamage-armor);
    const health=Math.max(0,state.health-damage);
    if(health===0)return accept({
     health:0,recovering:true,fight:null,satchel:state.satchel==='carried'?'at-pump':state.satchel,
    },state.satchel==='none'?'You wake at the boarding house.':
     'You wake at the boarding house. Your field satchel is on the Pumpworks shelf.',true);
-   return accept({health},action==='guard'?'Braced · lost 1 health.':
-    action==='splash-hit'?'Caught by the splash · lost 2 health.':'Hit by the lunge · lost 3 health.');
+   const contact=action==='guard'?'Braced':action==='splash-hit'?'Caught by the splash':'Hit by the lunge';
+   return accept({health},contact+' · lost '+damage+' health.');
   }
   case 'retreat':
    if(place!=='arena'||!state.fight)return refuse('There is no active encounter to leave.');

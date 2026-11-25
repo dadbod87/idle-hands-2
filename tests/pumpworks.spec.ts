@@ -373,7 +373,7 @@ test('Pausing while a lunge is waiting to save preserves the pending contact',as
 });
 
 for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:320,height:640,touch:true,name:'phone'}]){
- test('The field bow teaches aiming on the bell and rewards a planted shot · '+shape.name,async({browser})=>{
+ test('Field bow and vest · planted ranged shots and layered armor · '+shape.name,async({browser})=>{
   test.setTimeout(65000);
   mkdirSync(output,{recursive:true});
   const context=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch});
@@ -401,13 +401,21 @@ for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:32
    await expect.poll(async()=>(await read(page))?.nearby).toBe('pumpworks-locker');
    await activate(page.locator('#interact'));
    await activate(button('Equip rod and take kit'));
+   await activate(button('Borrow padded vest'));
+   await expect(page.locator('[data-pumpworks=locker]')).toContainText('Padded vest equipped.');
    await activate(button('Try a field bow'));
    await expect(page.locator('[data-pumpworks=locker]')).toContainText('Field bow equipped.');
    await activate(button('Open Bag'));
    const bow=page.locator('[data-pump-bag=bow]'),rod=page.locator('[data-pump-bag=rod]');
+   const vest=page.locator('[data-pump-bag=vest]');
+   await expect(vest).toContainText('Equipped · 1 Armor');
+   await activate(button('Pack padded vest'));
+   await expect(vest).toContainText('Packed');
+   await activate(button('Equip padded vest'));
+   await expect(vest).toContainText('Equipped');
    await expect(bow).toContainText('Equipped');
    await expect(rod).toContainText('Packed');
-   for(const item of [bow,rod]){
+   for(const item of [bow,rod,vest]){
     await expect.poll(()=>item.locator('.bag-slot-art img').evaluate((image:HTMLImageElement)=>image.naturalWidth)).toBeGreaterThan(0);
    }
    await page.screenshot({path:output+'/field-bow-'+shape.name+'-bag.png'});
@@ -417,8 +425,11 @@ for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:32
    await activate(button('Equip field bow'));
    await expect(bow).toContainText('Equipped');
    await expect(rod).toContainText('Packed');
+   await expect(vest).toContainText('Equipped');
    await activate(close(page));
    await expect(button('Shoot')).toBeInViewport({ratio:1});
+   await expect(page.locator('.pump-armor')).toHaveText('Armor 1');
+   await expect(page.locator('.pump-armor')).toBeInViewport({ratio:1});
 
    await go('pumpworks-bell');
    await expect(button('Shoot')).toBeEnabled();
@@ -457,10 +468,15 @@ for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:32
    expect(after.state.revision).toBe(before.state.revision+1);
    await expect(page.locator('dialog')).toBeHidden();
    await page.screenshot({path:output+'/field-bow-'+shape.name+'-ranged.png'});
+   await expect.poll(async()=>(await read(page))?.state.health,{timeout:7800,intervals:[25]}).toBe(6);
+   await expect(page.locator('#feedback')).toHaveText('Hit by the lunge · lost 2 health.');
+   await page.screenshot({path:output+'/padded-vest-'+shape.name+'-hit.png'});
    await page.reload();
    await expect(page.locator('#location')).toHaveAttribute('data-room','pumpworks');
    await expect(button('Shoot')).toBeVisible();
    expect((await read(page))!.state.bow).toBe('equipped');
+   await expect(page.locator('.pump-armor')).toHaveText('Armor 1');
+   expect((await read(page))!.state.vest).toBe('equipped');
   }finally{await context.close();}
  });
 }

@@ -3,6 +3,26 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "pumpworks-padded-vest-poses",
+      "path": "public/art/pumpworks/padded-vest-poses.svg",
+      "sha256": "6be844cd8293d85d54c97f79d9f27bc6554f5d82ea201d7d5024ea7c41ed5794",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/padded-vest-poses.svg",
+      "date": "2026-11-25",
+      "modifications": "Original quilted body armor layer for the field. No imported media."
+    },
+    {
+      "id": "pumpworks-padded-vest",
+      "path": "public/art/pumpworks/padded-vest.svg",
+      "sha256": "6b62ae6682b89d5524ec1019eaf0195e76620f6dad27fac9a7f6f67cda26c91b",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/padded-vest.svg",
+      "date": "2026-11-25",
+      "modifications": "Original quilted body armor layer for the field. No imported media."
+    },
+    {
       "id": "pumpworks-field-bow",
       "path": "public/art/pumpworks/field-bow.svg",
       "sha256": "af3d00b8c64df5135d899f1490c4283b97e8bb0fd2275434fa19c4aade0a9452",

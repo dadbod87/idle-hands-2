@@ -45,7 +45,7 @@ import {movementFrameSteps} from '../game/movement-frame.ts';
 import {ResidentMotion} from '../game/resident-motion.ts';
 import { INKWOOD_GLASSHOUSE, TILE, worlds, clearSegment, type Point, type Room } from '../game/world.ts';
 import { PLACEMENT_SLOTS, type WorkshopState,type PropId } from '../game/live-workshop.ts';
-import { ORIGINAL_STATIC, ART, facingFor, walkFrame, type Facing } from '../art/kit.ts';
+import { ORIGINAL_STATIC, ART, FACINGS, facingFor, walkFrame, type Facing } from '../art/kit.ts';
 import catalog from '../../public/art/variety/catalog.json';
 import {RESIDENT_IDS,TREE_KINDS,BUILDING_KINDS,residentArt,residentFrame,ambientPose,cosmeticStep} from '../art/variety.ts';
 import { WORKSHOP_PRINTS, WORKSHOP_PRINT_STAND, type WorkshopPrint } from '../game/workshop-print.ts';
@@ -480,6 +480,7 @@ export class WorldScene extends Phaser.Scene {
   private hopperName?:Phaser.GameObjects.Text;
   private soundingRod?:Phaser.GameObjects.Image;
   private fieldBow?:Phaser.GameObjects.Image;
+  private fieldVest?:Phaser.GameObjects.Image;
   paintPumpworks(){
     if(!this.hopper||!this.hopperWarning||!this.hopperName||!this.combatInk)return;
     const state=this.pumpworksState?.(),encounter=this.pumpworksEncounter?.(),motion=encounter?.hopper;
@@ -541,6 +542,7 @@ export class WorldScene extends Phaser.Scene {
     const strike=impact?.kind==='bell'?Math.max(0,(impact.until-performance.now())/1000):motion?.strikeCooldown??0;
     this.soundingRod?.setRotation(!reduced&&strike>.24?1.2*Math.sin((HOPPER_MOVEMENT.strikeCooldown-strike)*13):0);
     this.fieldBow?.setVisible(state?.bow==='equipped');
+    this.fieldVest?.setVisible(state?.vest==='equipped');
     const draw=encounter?.draw;
     if(draw){
       const px=(draw.from.x+.5)*TILE,py=(draw.from.y+.5)*TILE-45;
@@ -606,7 +608,7 @@ export class WorldScene extends Phaser.Scene {
     for(const id of regionalArt){
       if(!this.textures.exists('mossbank-'+id))this.load.svg('mossbank-'+id,'/art/mossbank/'+id+'.svg');
     }
-    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
+    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','padded-vest-poses']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
     for(const id of fieldArt){
       if(!this.textures.exists('pumpworks-'+id))this.load.svg('pumpworks-'+id,'/art/pumpworks/'+id+'.svg');
     }
@@ -707,7 +709,7 @@ export class WorldScene extends Phaser.Scene {
     this.mossbankMarks=undefined;
     this.mossbankWren=undefined;this.mossbankRipples=[];
     this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;
-    this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;
+    this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;this.fieldVest=undefined;
     this.decorationKey='';
     this.decorationViews=[];
     this.furnitureOccluders=[];
@@ -905,6 +907,9 @@ export class WorldScene extends Phaser.Scene {
       this.combatInk=this.add.graphics().setDepth(1100);
       this.soundingRod=this.add.image(0,0,'pumpworks-sounding-rod').setScale(.55).setOrigin(.5,1).setVisible(false);
       this.fieldBow=this.add.image(0,0,'pumpworks-field-bow').setScale(.49).setOrigin(.5,1).setVisible(false);
+      const vestKey='pumpworks-padded-vest-poses',vestTexture=this.textures.get(vestKey);
+      if(!vestTexture.has('0'))this.textures.addSpriteSheet('',vestTexture,{frameWidth:64,frameHeight:80});
+      this.fieldVest=this.add.image(0,0,vestKey,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setVisible(false);
       this.paintPumpworks();
     } else if(this.room==='glasshouse') {
       for(const stop of w.stops)label(stop.point.x+.5,stop.point.y+.98,stop.id==='glasshouse-exit'?'Inkwood trail ↓':stop.name);
@@ -1211,6 +1216,13 @@ export class WorldScene extends Phaser.Scene {
     this.actor.setPosition(x,y).setDepth(y);
     this.soundingRod?.setPosition(x+14,y-3).setDepth(y+1);
     this.fieldBow?.setPosition(x+14,y-5).setDepth(y+1);
+    if(this.fieldVest?.visible){
+      const pose=FACINGS.indexOf(this.facing);
+      const width={aster:1,bea:1.12,casey:.87,devon:1.06}[residentArt(this.residentId)];
+      const bob=this.frame>0?.8*Math.abs(Math.sin((this.frame-1)*Math.PI/3)):0;
+      if(String(this.fieldVest.frame.name)!==String(pose))this.fieldVest.setFrame(pose);
+      this.fieldVest.setPosition(x,y-bob*ART.actorScale).setDepth(y+.5).setScale(ART.actorScale*width,ART.actorScale);
+    }
     if(this.bedPose&&this.bedQuilt){
       if(this.bedPose.visible!==this.resting){
         this.bedPose.setVisible(this.resting);

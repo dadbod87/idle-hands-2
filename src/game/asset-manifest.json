@@ -5,6 +5,16 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "pumpworks-padded-vest-poses",
+      "path": "art/pumpworks/padded-vest-poses.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pumpworks-padded-vest",
+      "path": "art/pumpworks/padded-vest.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "pumpworks-field-bow",
       "path": "art/pumpworks/field-bow.svg",
       "kind": "original-svg"

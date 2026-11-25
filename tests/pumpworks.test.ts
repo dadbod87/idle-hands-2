@@ -300,3 +300,27 @@ test('The bow is obtained once, swaps the active hand, and deals less opening da
  assert.equal(swingFieldWeapon(fired.motion,atRange,'bow'),null);
  assert.equal(swingFieldWeapon({...holding,phase:'windup'},atRange,'bow')?.deflected,true);
 });
+
+test('Padded armor protects the resident independently of the equipped weapon',()=>{
+ const kit=prepared();
+ const {vest:priorVest,...legacy}=kit;
+ assert.equal(priorVest,'unissued');
+ const old=readPumpworks({getItem:()=>JSON.stringify(legacy)});
+ if(!old.ok)assert.fail(old.message);
+ assert.equal(old.state.vest,'unissued');
+ assert.equal(applyPumpworks(old.state,'borrow-vest','arena').ok,false);
+ let ready=play(old.state,'borrow-vest','locker');
+ assert.equal(ready.rod,'equipped');
+ assert.equal(applyPumpworks(ready,'borrow-vest','locker').ok,false);
+ ready=play(ready,'borrow-bow','locker');
+ assert.equal(ready.vest,'equipped');
+ assert.equal(ready.bow,'equipped');
+ const armed=play(ready,'begin','arena');
+ assert.equal(applyPumpworks(armed,'pack-vest','elsewhere').ok,false);
+ assert.equal(play(armed,'hit','arena').health,6);
+ assert.equal(play(armed,'splash-hit','arena').health,7);
+ assert.equal(play(armed,'guard','arena').health,7);
+ const without=play(play(ready,'pack-vest','elsewhere'),'begin','arena');
+ assert.equal(without.bow,'equipped');
+ assert.equal(play(without,'hit','arena').health,5);
+});

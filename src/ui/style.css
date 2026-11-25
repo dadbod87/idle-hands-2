@@ -183,6 +183,8 @@
 }
 .town-map-route select {
  width: 100%;
+ /* Keep WebKit's native option painting inside the measured control at enlarged text. */
+ overflow: clip;
  min-height: 46px;
  padding: .3rem;
  border: 2px solid var(--line);

@@ -57,6 +57,7 @@ export function townMap(position: Point, stops: Stop[], walk: (stop: Stop) => vo
     id:stop.id,name:stop.name,
     point:stop.id==='commons-pond'?{x:pondLeft+pondWidth/2,y:pondTop+pondHeight/2}:stop.point,
    })),
+   ...stops.filter(stop=>stop.id==='pumpworks-door'||stop.id==='mossbank-road'),
   ]) {
    const pin = placed('town-map-landmark', point.x + .5, point.y + .5);
    pin.dataset.landmark = id;

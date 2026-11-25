@@ -3,6 +3,76 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "mossbank-fir",
+      "path": "public/art/mossbank/fir.svg",
+      "sha256": "444a4ef51a1cc8a219cc638334e9ef00ff857f67a5e0735184fc4b7dda8df98e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/mossbank/fir.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
+      "id": "mossbank-alder-swatch",
+      "path": "public/art/mossbank/alder-swatch.svg",
+      "sha256": "30818741fd09a9fb5cc02d79e961c106bc22c0ab944a685bcdbdfb34fa15d490",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/mossbank/alder-swatch.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
+      "id": "mossbank-alder",
+      "path": "public/art/mossbank/alder.svg",
+      "sha256": "a21b14ad4ff0ef89c2d5b75d16fa31b29edbdab074dc9c62c1024f55827eeed8",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/mossbank/alder.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
+      "id": "mossbank-ground",
+      "path": "public/art/mossbank/ground.svg",
+      "sha256": "680dd71daab012cb647e705604b472443aca5caa84290396c96fcbd02e83b328",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/mossbank/ground.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
+      "id": "mossbank-road-sign",
+      "path": "public/art/mossbank/road-sign.svg",
+      "sha256": "42095eac9c008e72f880c9a42015d0bbdbd387c26062cd2164ea4e967f785a15",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/mossbank/road-sign.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
+      "id": "mossbank-road-west",
+      "path": "public/art/mossbank/road-west.svg",
+      "sha256": "a58577d127f83966576aac3baecbd1a566dda01a1a6bde8bd25beda8f74afe7c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/mossbank/road-west.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
+      "id": "mossbank-sawmill",
+      "path": "public/art/mossbank/sawmill.svg",
+      "sha256": "91f9d5ae7e8d2e80b22710dff957eaf4fbdedc9b1645c14dff85446475353e85",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/mossbank/sawmill.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
       "id": "pumpworks-floor",
       "path": "public/art/pumpworks/floor.svg",
       "sha256": "addfba871623b021baa5295cf88a03bfc4f2f5ba2e08e998e2249febb606b300",

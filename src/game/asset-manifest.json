@@ -5,6 +5,41 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "mossbank-fir",
+      "path": "art/mossbank/fir.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "mossbank-alder-swatch",
+      "path": "art/mossbank/alder-swatch.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "mossbank-alder",
+      "path": "art/mossbank/alder.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "mossbank-ground",
+      "path": "art/mossbank/ground.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "mossbank-road-sign",
+      "path": "art/mossbank/road-sign.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "mossbank-road-west",
+      "path": "art/mossbank/road-west.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "mossbank-sawmill",
+      "path": "art/mossbank/sawmill.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "pumpworks-floor",
       "path": "art/pumpworks/floor.svg",
       "kind": "original-svg"

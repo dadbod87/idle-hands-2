@@ -1,3 +1,6 @@
+import {MOSSBANK_ROAD} from './game/mossbank-room.ts';
+import type {SurveyPlace} from './game/mossbank.ts';
+import {createMossbank} from './ui/mossbank.ts';
 import {PUMPWORKS_DOOR,PUMPWORKS_ENTRY} from './game/pumpworks-room.ts';
 import {FIELD_HEALTH,readPumpworks,type PumpworksPlace} from './game/pumpworks.ts';
 import {LODGING_BEDSIDE} from './game/lodging.ts';
@@ -82,7 +85,7 @@ const morningStorage={
 let morning:MorningRead=townMode?{status:'unavailable',record:null}:readFirstMorning(morningStorage);
 let morningWriting=false;
 const resting=()=>morning.record?.phase==='bed';
-const session = new Session(townMode?null:morning.record?.saved??stored,townMode?undefined:[...ORCHARD_STOPS,...POND_WATCH_STOPS,PUMPWORKS_DOOR],!townMode);
+const session = new Session(townMode?null:morning.record?.saved??stored,townMode?undefined:[...ORCHARD_STOPS,...POND_WATCH_STOPS,PUMPWORKS_DOOR,MOSSBANK_ROAD],!townMode);
 const fieldSave=townMode?null:readPumpworks(morningStorage);
 if(fieldSave?.ok&&fieldSave.state.recovering)session.enter('lodging',LODGING_BEDSIDE);
 if(resting())session.lock(true);
@@ -483,12 +486,20 @@ const pumpworks=townMode?undefined:createPumpworks({
  },
 },morningStorage);
 scene.pumpworksState=pumpworks?.current;
-const workshop=new WorkshopUI({pumpBag:pumpworks?.bag,pumpJournal:pumpworks?(body)=>pumpworks.journal(body,()=>{
+const mossbank=townMode?undefined:createMossbank({
+ open:openPanel,body,place:()=>session.room==='mossbank'?session.nearby()?.id:undefined,
+ feedback:message=>feedback.textContent=message,
+ walk:place=>{
+  if(place==='mossbank-road')goNamedDestination(session.room==='mossbank'?'mossbank':'square',session.room==='mossbank'?'mossbank-mill':place);
+  else goNamedDestination('mossbank',place);
+ },
+},morningStorage);
+const workshop=new WorkshopUI({pumpBag:pumpworks?.bag,fieldJournal:pumpworks?(body)=>{pumpworks.journal(body,()=>{
  const state=pumpworks.current();
  if(session.room==='pumpworks'){
   goNamedDestination('pumpworks',state?.satchel==='at-pump'?'pumpworks-cache':state?.cleared?'pumpworks-report':'pumpworks-hopper');
  }else goNamedDestination('square',PUMPWORKS_DOOR.id);
-}):undefined,inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
+});mossbank?.journal(body);}:undefined,inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
  savedMarigold:!town?(earned)=>{
   if(earned===printRights.marigold)return;
   printRights.marigold=earned;
@@ -838,6 +849,9 @@ async function savePondObservation(id:PondWatchId,choice:string,active:()=>boole
  }catch{return 'The observation could not be saved. Your earlier notes are safe.';}
 }
 function activate(stop: Stop) {
+  if(mossbank&&session.room==='mossbank'&&stop.id.startsWith('mossbank-')&&!stop.transition){
+    mossbank.show(stop.id as SurveyPlace);return;
+  }
   if(pumpworks&&stop.id===PUMPWORKS_DOOR.id){
     openPanel(stop.name);
     body.append(paragraph('The old flood station has a blocked pump. Borrow a rod, read the creature’s movements, and bring back a field seal. This optional outing uses its own health and gear.'));
@@ -1021,7 +1035,7 @@ function activate(stop: Stop) {
   if (stop.transition) {
     if(stop.id==='lodging-exit'&&morning.record?.phase==='awake'){void changeMorning('leave');return;}
     if(town){void enterRemotePortal(stop);return;}
-    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='pumpworks-exit'?'Back in Willow meadow.':stop.id==='lodging-exit'?'Follow the path east to Marlow.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? workshopArrivalNote() : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
+    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='mossbank-road'?'Mossbank outskirts. See Wren at the sawmill.':stop.id==='mossbank-return'?'Back by the Ledgerwick orchard.':stop.id==='pumpworks-exit'?'Back in Willow meadow.':stop.id==='lodging-exit'?'Follow the path east to Marlow.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? workshopArrivalNote() : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
     const note = paragraph(townMode?'Shared practice keeps your town projects and home progress.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);
@@ -1073,8 +1087,8 @@ scene.onFrame = () => {
   const state = (district?.name??'')+contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored))+':'+String(resting())+':'+(stop?.transition??'');
   if (state !== lastContext) {
     lastContext = state;
-    const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='glasshouse'?'Inkwood Glasshouse':session.room==='garden'?'Your allotment':session.room==='pumpworks'?'The Pumpworks':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
-    const hint=session.room==='square'?district!.hint:session.room==='neighborhood'?'Homes, not cubicles.':session.room==='trail'?'A path worth the paperwork.':session.room==='glasshouse'?'A warm aisle and five things to inspect.':session.room==='garden'?'Ready plants wait safely.':session.room==='pumpworks'?'Mind the water.':session.room==='lodging'?'Your rented room. Nothing due today.':session.room.startsWith('home')?(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved'):'Great things take time.';
+    const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='glasshouse'?'Inkwood Glasshouse':session.room==='garden'?'Your allotment':session.room==='mossbank'?'Mossbank outskirts':session.room==='pumpworks'?'The Pumpworks':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
+    const hint=session.room==='square'?district!.hint:session.room==='neighborhood'?'Homes, not cubicles.':session.room==='trail'?'A path worth the paperwork.':session.room==='glasshouse'?'A warm aisle and five things to inspect.':session.room==='garden'?'Ready plants wait safely.':session.room==='mossbank'?'The sawmill is up the road.':session.room==='pumpworks'?'Mind the water.':session.room==='lodging'?'Your rented room. Nothing due today.':session.room.startsWith('home')?(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved'):'Great things take time.';
     if(district&&district.name!=='Town square'&&(feedback.textContent?.startsWith('Tap the three material depots')||feedback.textContent===lastDistrictHint)){feedback.textContent=district.hint;lastDistrictHint=district.hint;}
     if(location.dataset.room!==session.room)location.dataset.room=session.room;
     if (locationTitle.data !== roomName) locationTitle.data = roomName;
@@ -1083,13 +1097,13 @@ scene.onFrame = () => {
       const label = 'Practice town · ' + (town?.snapshot?.name ?? 'choose a resident');
       if (practiceLabel.textContent !== label) practiceLabel.textContent = label;
     }
-    interactLabel.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='glasshouse'?'nursery':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby';
+    interactLabel.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='glasshouse'?'nursery':stop.transition==='mossbank'?'Mossbank':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby';
     if(stop?.id==='lodging-door')interactLabel.textContent='Enter lodging';
     if(stop?.id==='lodging-exit')interactLabel.textContent='Step outside';
     if(stop&&orchardAvailable()&&orchardBranchFromStop(stop.id))interactLabel.textContent='Inspect branch';
     if(stop?.id==='trail-gate'&&!scene.bridgeRestored)interactLabel.textContent='Inspect bridge';
 
-    interactButton.setAttribute('aria-label', stop?.id==='lodging-door'?'Enter boarding house':stop?.id==='lodging-exit'?'Step outside to the square':stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='glasshouse'?'Inkwood Glasshouse':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
+    interactButton.setAttribute('aria-label', stop?.id==='lodging-door'?'Enter boarding house':stop?.id==='lodging-exit'?'Step outside to the square':stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='glasshouse'?'Inkwood Glasshouse':stop.transition==='mossbank'?'Mossbank':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
   }
   // A named stop can be visible while its restored shared position is still syncing.
   // Keep Inspect unavailable until the same input guard would accept its click.

@@ -1,3 +1,4 @@
+import {MOSSBANK_ROOM} from './mossbank-room.ts';
 import {PUMPWORKS_ROOM} from './pumpworks-room.ts';
 import{OUTING_STOPS}from'./outing.ts';
 import {TOWN_SIZE,COMMONS_STOPS,COMMONS_BLOCKED} from './town-expansion.ts';
@@ -6,8 +7,8 @@ import {SURVEY_IDS,SURVEYS} from './fieldwork.ts';
 import {TOWN_PEOPLE} from './town-people.ts';
 import {GLASSHOUSE_ENTRY,GLASSHOUSE_FRONT,GLASSHOUSE_ROOM} from './glasshouse-room.ts';
 import {LODGING_ROOM} from './lodging.ts';
-export type Room = 'square' | 'workshop' | 'home' | 'home-expanded' | 'trail' | 'garden' | 'neighborhood' | 'lodging' | 'glasshouse' | 'pumpworks';
-export const practiceRoom=(room:Room)=>room==='lodging'||room==='pumpworks';
+export type Room = 'square' | 'workshop' | 'home' | 'home-expanded' | 'trail' | 'garden' | 'neighborhood' | 'lodging' | 'glasshouse' | 'pumpworks' | 'mossbank';
+export const practiceRoom=(room:Room)=>room==='lodging'||room==='pumpworks'||room==='mossbank';
 export type Point = { x: number; y: number };
 export type Stop = { id: string; name: string; point: Point; text: string; transition?: Room; arrival?: Point; doorArea?: [number, number, number, number] };
 export type World = { width: number; height: number; blocked: [number, number, number, number][]; stops: Stop[] };
@@ -18,6 +19,7 @@ export const INKWOOD_GLASSHOUSE:Stop={
  text:'Vines hold the door shut. A committee is looking for the key. The glasshouse is closed for now.',
 };
 export const worlds: Record<Room, World> = {
+  mossbank:MOSSBANK_ROOM,
   pumpworks:PUMPWORKS_ROOM,
   lodging: LODGING_ROOM,
   glasshouse: GLASSHOUSE_ROOM,

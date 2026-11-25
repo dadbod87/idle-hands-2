@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1120" viewBox="0 0 1536 1120">
+ <defs>
+  <linearGradient id="site" x2="1" y2="1" gradientUnits="objectBoundingBox">
+   <stop stop-color="#8ea174"/><stop offset="1" stop-color="#b2b987"/>
+  </linearGradient>
+  <pattern id="grass" width="258" height="174" patternUnits="userSpaceOnUse">
+   <ellipse cx="34" cy="43" rx="35" ry="8" fill="#cbce9f" opacity=".27"/>
+   <ellipse cx="153" cy="120" rx="46" ry="12" fill="#677f61" opacity=".16"/>
+   <path d="M16 133l4-6 4 6m53-94l3-7 4 7m107 26l4-6 3 6m-55 94l3-5 4 5m90-72l4-8 4 8" fill="none" stroke="#647c59" opacity=".47" stroke-width="2"/>
+   <circle cx="56" cy="84" r="2" fill="#d6d09b"/><circle cx="210" cy="139" r="2" fill="#dad2a0"/>
+  </pattern>
+  <pattern id="water" width="58" height="62" patternUnits="userSpaceOnUse">
+   <rect width="58" height="62" fill="#5e8c82"/>
+   <path d="M8 4q9 8 0 16t0 16m24 8q-5 5 0 12m18-50q-6 8 0 15m-29 1l3 7" fill="none" stroke="#bbccad" stroke-width="2" opacity=".65"/>
+  </pattern>
+  <pattern id="deck" width="16" height="110" patternUnits="userSpaceOnUse">
+   <rect width="16" height="110" fill="#ab794f"/><path d="M1 0v110m4-98v62" stroke="#6f5241" stroke-width="2"/><path d="M8 15v45" stroke="#c79160" stroke-width="2"/>
+  </pattern>
+ </defs>
+ <rect width="1536" height="1120" fill="url(#site)"/>
+ <path d="M0 0h475q-13 111-86 200t-119 162q-52 136-270 150ZM0 1038q161-119 296-83t243 165H0Zm1037-1038q228 141 499 76v-76ZM1198 1120q28-137 110-188 110-66 228-61v249Z" fill="#81966f"/>
+ <path d="M0 49q180 40 383-49m128 1120q-116-121-236-107T0 1082m1264-17q94-126 272-116" fill="none" stroke="#c4ca99" stroke-width="3" stroke-dasharray="2 12"/>
+ <rect width="1536" height="1120" fill="url(#grass)"/>
+ <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M0 896Q157 904 245 862q134-77 246-107 110-24 174 13t166 13l96 1q119-9 197 17t120-1M501 750q25-165 95-274 42-50 145 8l92 21h105q109-6 166-127t163-21m-168 29q-51 188 13 279l93 72" stroke="#87936c" stroke-width="109" opacity=".6"/>
+  <path d="M0 896Q157 904 245 862q134-77 246-107 110-24 174 13t166 13l96 1q119-9 197 17t120-1M501 750q25-165 95-274 42-50 145 8l92 21h105q109-6 166-127t163-21m-168 29q-51 188 13 279l93 72" stroke="#cbb786" stroke-width="82"/>
+  <path d="M3 872q162 11 242-28m105-62 73-33m377-265 112 6m81 15 44-17m99 255 34 32m-563 18 93 10" stroke="#d7c69a" stroke-width="4" stroke-dasharray="18 16 6 12"/>
+ </g>
+ <path d="M802 0h141l10 179-13 189 4 218-4 164 11 203-6 167H798l-7-200 11-222-8-222 7-182Z" fill="#788b6d" stroke="#657f65" stroke-width="18"/>
+ <path d="M812 0h120l11 179-14 190 6 217-7 165 11 200-7 169H809l-7-199 10-223-9-223 7-180Z" fill="url(#water)" stroke="#435f58" stroke-width="4"/>
+ <g fill="none" stroke="#a8ba90" stroke-width="3" opacity=".85">
+  <path d="M797 80v89m3 218v29m146-161v90m-151 651v39m154-440v56m-3 249v79"/>
+ </g>
+ <g stroke="#625543" stroke-width="4">
+  <rect x="781" y="456" width="181" height="104" rx="5" fill="url(#deck)"/>
+  <rect x="780" y="726" width="182" height="108" rx="5" fill="url(#deck)"/>
+  <path d="M782 459h180m-180 99h180m-182 171h182m-182 102h182" fill="none" stroke="#624a3d" stroke-width="8"/>
+ </g>
+ <g fill="#b09c74" stroke="#6e7058" stroke-width="2">
+  <ellipse cx="783" cy="303" rx="13" ry="6"/><ellipse cx="959" cy="386" rx="10" ry="7"/>
+  <ellipse cx="976" cy="604" rx="14" ry="7"/><ellipse cx="760" cy="630" rx="9" ry="6"/>
+  <ellipse cx="964" cy="920" rx="11" ry="6"/><ellipse cx="769" cy="208" rx="16" ry="6"/>
+ </g>
+ <g fill="#c3c79b" stroke="#83916b" stroke-width="2" opacity=".85">
+  <path d="M354 623q45-25 79 8l-9 25h-73Zm209-246q61-17 112 11l-27 23-78-11Zm518 265q22-24 41-13l-4 20-40 19Zm249 212q73-19 123 14l-27 22-99-9Z"/>
+ </g>
+</svg>

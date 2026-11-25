@@ -83,6 +83,7 @@
     "map-landmark-walk.spec.ts",
     "movement-backpressure.spec.ts",
     "orchard-picking-study.spec.ts",
+    "mossbank.spec.ts",
     "personal-tools.spec.ts",
     "place-music.spec.ts",
     "places-search.spec.ts",

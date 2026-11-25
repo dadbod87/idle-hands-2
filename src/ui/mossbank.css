@@ -1,0 +1,19 @@
+.mossbank-field-card { display:grid; gap:.55rem; }
+#panel-body .mossbank-field-card :is(p,h3,button,ul) { margin:0; }
+.mossbank-checklist { display:grid; gap:.2rem; padding-left:1.4em; }
+.mossbank-field-card img { object-fit:contain; }
+.mossbank-status { padding:.35rem .5rem; border-inline-start:3px solid #6f886c; background:#e8e9d5; }
+.mossbank-status:empty { display:none; }
+@media(max-height:480px) {
+ #panel:has([data-mossbank]) { width:min(650px,calc(100vw - 24px)); }
+ #panel:has([data-mossbank]) .dialog-head { padding:6px 12px; }
+ #panel:has([data-mossbank]) .dialog-head h2 { font-size:1.12rem; }
+ #panel-body:has([data-mossbank]) { padding:8px 12px; }
+ #panel-body [data-mossbank] p { line-height:1.2; }
+ .mossbank-field-card { gap:7px; }
+}
+
+@media(max-height:480px) and (min-width:651px) {
+ #location[data-room=mossbank] { left:auto;right:10px;top:6px;font-size:.7rem;max-width:37%;padding:5px 8px; }
+ #location[data-room=mossbank] > :is(span,small) { display:none; }
+}

@@ -1,3 +1,4 @@
+import {MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
 import {HOPPER_FEET,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
 import type {PumpworksState} from '../game/pumpworks.ts';
 import {activeWave} from '../game/town-wave.ts';
@@ -478,6 +479,10 @@ export class WorldScene extends Phaser.Scene {
   }
   preload() {
     this.loadingRoom=this.session.room;
+    const regionalArt=this.loadingRoom==='mossbank'?['ground','sawmill','alder','fir','road-west']:this.loadingRoom==='square'&&this.session.hasLodging?['road-sign']:[];
+    for(const id of regionalArt){
+      if(!this.textures.exists('mossbank-'+id))this.load.svg('mossbank-'+id,'/art/mossbank/'+id+'.svg');
+    }
     const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
     for(const id of fieldArt){
       if(!this.textures.exists('pumpworks-'+id))this.load.svg('pumpworks-'+id,'/art/pumpworks/'+id+'.svg');
@@ -589,10 +594,13 @@ export class WorldScene extends Phaser.Scene {
     const image=(key:string,x:number,y:number,depth:number)=>this.add.image(x,y,key).setOrigin(0).setDepth(depth);
     this.loadedInteriorKey=this.room.startsWith('home')?this.interiorKey():'';
     const homeGround=this.textures.exists(this.loadedInteriorKey)?this.loadedInteriorKey:homeInterior(this.session.room==='home-expanded'?2:1);
-    image(this.room==='neighborhood'?'neighborhood-ground':this.room==='square'?'variety-ground-square':this.room==='garden'?'garden-ground':this.room==='lodging'?'lodging-rented-room':this.room==='trail'?TRAIL_ART.ground:this.room==='glasshouse'?'glasshouse-interior':this.room==='pumpworks'?'pumpworks-floor':this.room.startsWith('home')?homeGround:'ground-workshop',0,0,-1000);
+    image(this.room==='neighborhood'?'neighborhood-ground':this.room==='square'?'variety-ground-square':this.room==='garden'?'garden-ground':this.room==='lodging'?'lodging-rented-room':this.room==='trail'?TRAIL_ART.ground:this.room==='glasshouse'?'glasshouse-interior':this.room==='pumpworks'?'pumpworks-floor':this.room==='mossbank'?'mossbank-ground':this.room.startsWith('home')?homeGround:'ground-workshop',0,0,-1000);
     const label=(x:number,y:number,value:string)=>this.add.text(x*TILE,y*TILE,value,{fontFamily:'Georgia,serif',fontSize:13,color:'#343c36',backgroundColor:'#f3e6c5',padding:{x:9,y:5}}).setOrigin(.5).setDepth(y*TILE);
     if(this.room==='square') {
       if(this.session.hasLodging){
+        const sign=MOSSBANK_ROAD.point;
+        this.add.image((sign.x+.5)*TILE,sign.y*TILE,'mossbank-road-sign').setOrigin(.5,.93).setDepth(sign.y*TILE);
+        label(sign.x+.5,sign.y+.85,'Road to Mossbank');
         const {x,y}=PUMPWORKS_DOOR.point;
         this.add.image((x+.5)*TILE,y*TILE,'pumpworks-hatch').setOrigin(.5,.96).setDepth(y*TILE);
         label(x+.5,y+.85,'The Pumpworks');
@@ -690,6 +698,48 @@ export class WorldScene extends Phaser.Scene {
       if(this.textures.exists(texture))this.glasshouseView=this.add.image((glasshouse.x+.5)*TILE,threshold,texture).setOrigin(.5,1).setDepth(threshold);
       label(glasshouse.x+.5,glasshouse.y+1.2,'Glasshouse');
       label(9.5,24.4,'Town square ↓');
+    } else if(this.room==='mossbank') {
+      const point=(id:string)=>MOSSBANK_STOPS.find(stop=>stop.id===id)!.point;
+      for(const [index,{x,y,kind}] of MOSSBANK_TREES.entries()){
+        const px=(x+.5)*TILE,py=(y+.5)*TILE;
+        if(kind==='pine'){
+          const tree=this.add.image(px,py,'mossbank-fir').setOrigin(.48,.94).setDepth(py);
+          tree.setScale(index%2?.85:1.05);
+        }else{
+          const meta=art('tree-'+kind+'-canopy'),foot=meta.foot!;
+          for(const layer of ['trunk','canopy']){
+            const tree=this.add.image(px,py,'variety-tree-'+kind+'-'+layer).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(py);
+            if(layer==='canopy')this.canopies.push({key:kind,image:tree,phase:index*1.7,baseX:px});
+          }
+        }
+      }
+      const wren=point('mossbank-mill'),millX=(wren.x+.5)*TILE,millY=21.65*TILE;
+      this.add.image(millX,millY,'mossbank-sawmill').setOrigin(.5,.95).setDepth(millY);
+      litWindows.push({x:millX-28,y:millY-55,width:47,height:30});
+      const wrenX=millX+60,wrenY=(wren.y+.5)*TILE-14;
+      this.add.image(wrenX,wrenY,'variety-resident-'+RESIDENT_IDS[1],0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale).setDepth(wrenY);
+      label(wren.x+.5,wren.y+.45,'Wren · sawmill').setDepth(wrenY+14);
+      const windrow=point('mossbank-windrow');
+      for(const [index,offset] of [-1,1,.15].entries()){
+        const x=(windrow.x+.5+offset)*TILE,y=(windrow.y-.55-index*.31)*TILE;
+        this.add.image(x,y,'mossbank-alder').setOrigin(.44,.94).setScale(.78+index*.09).setDepth(y);
+      }
+      label(windrow.x+.5,windrow.y+.45,'Alder windrow');
+      const flume=point('mossbank-flume'),fx=(flume.x+.5)*TILE,fy=23.05*TILE;
+      this.add.rectangle(fx,fy-18,109,36,0xac8156).setStrokeStyle(3,0x514b3c).setDepth(fy);
+      this.add.rectangle(fx,fy-26,106,6,0xe4be7c).setDepth(fy+1);
+      for(const dx of [-48,48])this.add.rectangle(fx+dx,fy-7,7,17,0x785940).setDepth(fy+1);
+      label(flume.x+.5,flume.y+.45,'Flume landing');
+      const beds=point('mossbank-nursery');
+      for(const dx of [-59,0,59]){
+        const x=(beds.x+.5)*TILE+dx,y=9.55*TILE;
+        this.add.rectangle(x,y-15,49,33,0x836f52).setStrokeStyle(3,0x5c5840).setDepth(y);
+        this.add.image(x,y-9,'mossbank-alder').setScale(.47).setOrigin(.48,.93).setDepth(y+1);
+      }
+      label(beds.x+.5,beds.y+.45,'Sapling beds');
+      const road=point('mossbank-return');
+      this.add.image((road.x+.5)*TILE,road.y*TILE,'mossbank-road-west').setOrigin(.5,.93).setDepth(road.y*TILE);
+      label(road.x+.5,road.y+.8,'← Ledgerwick road');
     } else if(this.room==='pumpworks') {
       const station=(x:number,y:number,width:number,height:number,color:number,title:string)=>{
         const px=(x+.5)*TILE,py=(y+.5)*TILE;
@@ -770,7 +820,7 @@ export class WorldScene extends Phaser.Scene {
         return;
       }
       camera.setZoom(1).setFollowOffset(0,this.room==='lodging'?this.lodgingFollow(height):0);if(this.room==='neighborhood'){const b=residentialFrame(width,height,1);camera.setBounds(b.x,b.y,b.width,b.height);return;}
-      if(this.room==='square'){camera.setZoom(outdoorZoom(width,height,w.width*TILE,w.height*TILE));return;}
+      if(this.room==='square'||this.room==='mossbank'){camera.setZoom(outdoorZoom(width,height,w.width*TILE,w.height*TILE));return;}
       const worldWidth=w.width*TILE,worldHeight=w.height*TILE;
       camera.setBounds(-Math.max(0,(width-worldWidth)/2),-Math.max(0,(height-worldHeight)/2),Math.max(width,worldWidth),Math.max(height,worldHeight));
     };

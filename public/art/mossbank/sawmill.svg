@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="232" height="191" viewBox="0 0 232 191">
+ <ellipse cx="114" cy="179" rx="112" ry="10" fill="#374333" opacity=".28"/>
+ <path d="M23 171V74L112 26l89 48v97Z" fill="#b9855c" stroke="#463f34" stroke-width="4"/>
+ <path d="M23 171h178V79H23Z" fill="#c39b6b" stroke="#524637" stroke-width="4"/>
+ <path d="M28 128h168m-168-19h168m-168-18h168m-168 55h168m-168 18h168" stroke="#99764f" stroke-width="2"/>
+ <path d="M12 83 109 23l102 56-10 14-90-49-91 49Z" fill="#49635a" stroke="#35463e" stroke-width="5"/>
+ <path d="M39 76 111 35l71 39" fill="none" stroke="#819484" stroke-width="3"/>
+ <path d="M23 171V98l179 73m-179 0 178-73m-178 73h178" fill="none" stroke="#684e3a" stroke-width="5" opacity=".6"/>
+ <path d="M81 175v-60h61v60Z" fill="#566653" stroke="#423e32" stroke-width="4"/>
+ <path d="M84 161v-35h55v35Zm27-35v35" fill="#879487" stroke="#cdb78c" stroke-width="2"/>
+ <path d="M124 164h10" stroke="#e0b871" stroke-width="4" stroke-linecap="round"/>
+ <path d="M72 98h83v24H72Z" fill="#e3cf9f" stroke="#544b36" stroke-width="3"/>
+ <text x="113.5" y="115" fill="#4d4b38" font-family="Georgia,serif" font-size="12" font-weight="bold" text-anchor="middle">SAWMILL</text>
+ <path d="M157 49V10h19v45" fill="#9a7359" stroke="#513f36" stroke-width="4"/>
+ <path d="M154 11h26V6h-26Z" fill="#795744" stroke="#513f36" stroke-width="3"/>
+ <g fill="#e0b37d" stroke="#574935" stroke-width="3">
+  <path d="M12 178v-21h43v21Z"/><ellipse cx="57" cy="167" rx="10" ry="12"/>
+  <path d="M164 177v-23h47v23Z"/><ellipse cx="214" cy="166" rx="11" ry="13"/>
+ </g>
+ <path d="M216 160q-8-5-9 4t9 7m-158-10q-8 2-4 8 2 3 6 1" fill="none" stroke="#99704b" stroke-width="2"/>
+</svg>

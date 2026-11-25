@@ -13,7 +13,7 @@ export const SCORE_NAMES: Record<PlaceScore, string> = {
 
 export function scoreForRoom(room: Room): PlaceScore {
   if (room === 'lodging') return 'lodging';
-  if (room === 'trail' || room === 'glasshouse') return 'woodland';
+  if (room === 'trail' || room === 'glasshouse' || room === 'mossbank' || room === 'pumpworks') return 'woodland';
   if (room === 'home' || room === 'home-expanded') return 'home';
   return 'town';
 }

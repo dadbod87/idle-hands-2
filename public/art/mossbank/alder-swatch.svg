@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="104" viewBox="0 0 128 104">
+ <ellipse cx="61" cy="91" rx="51" ry="7" fill="#564b3c" opacity=".23"/>
+ <path d="m15 38 89-17 12 54-89 16Z" fill="#a36e49" stroke="#5a4637" stroke-width="3"/>
+ <path d="m14 30 88-17 12 54-88 17Z" fill="#d8a36a" stroke="#5a4637" stroke-width="3"/>
+ <path d="M24 40q28 5 78-17M28 62q18-7 30-4t45-11M34 74q19 1 70-17" fill="none" stroke="#a97146" stroke-width="2"/>
+ <path d="M64 51q-4-12-17-10-7 6 3 10 7 5 14 0Z" fill="none" stroke="#a97146" stroke-width="2"/>
+ <path d="m13 54 46-8 5 26-46 9Z" fill="#eee1b4" stroke="#5a5140" stroke-width="2"/>
+ <text x="38" y="67" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="bold" fill="#4c4b39" transform="rotate(-10 38 67)">ALDER</text>
+</svg>

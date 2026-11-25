@@ -38,3 +38,9 @@ Trial scripts, progress records, source artifact fingerprints and captures are i
 ## Hosted use
 
 This session triggered zero Actions runs, zero retry attempts and zero runner minutes. The most recent exact main and two PR successes were approximately 51.0, 49.9 and 51.0 summed runner-minutes. Browser case execution was 781–987 seconds per shard, while pinned browser setup was 19–36 seconds. The slowest group varied. Keep the three standard public Ubuntu shards and full coverage. If a future job approaches its cap, inspect exact job steps and move only documented independent cases. No workflow edits or repeat hosted runs were needed in this window.
+
+## Later integrated review
+
+Runtime revision `ba2af54c5be64b959062d6a8f28053988bb08824` on `study/nov25-pr-compat` includes the previous combined candidate, the exact ancestry of draft PR #109, the narrow WebKit map correction and the nursery item in Bag. A resident can identify their plant away from the keeper, and the homeowner can find their windowsill directly. Short enlarged Glasshouse play now keeps the title above clear station names. The native doors and existing selections remain.
+
+The exact integrated build passed all 455 local domain cases applicable without PostgreSQL, the tracker, design, pinned skill verification, 12 Chromium and 11 WebKit focused cases. Thirty-three database cases remain outstanding. The compatibility branch includes the Chromium-only native pointer test in Chromium. Earlier combined 8311a4b separately passed twelve resize passes per engine with native repeated dimensions from 320px to 4K. Broad local regression selection on its preceding combined runtime passed 56 and 57 cases. Preserve the specific verified artifact when following an elapsed test. The independent accepted-source branches and both open PRs have had no new check or merge.

@@ -5,7 +5,7 @@ import {
 } from '../game/pumpworks.ts';
 import {
  braceForHopper,freshHopper,hopperLeash,hopperNotices,hopperOpen,inPracticeReach,
- HOPPER_MOVEMENT,stepHopper,swingAtHopper,patrolHopper,FIELD_IMPACT_MS,type FieldImpact,
+ HOPPER_MOVEMENT,stepHopper,swingAtHopper,patrolHopper,FIELD_IMPACT_MS,type FieldImpact,type HopperMotion,
 } from '../game/pumpworks-chase.ts';
 import {PRACTICE_BELL} from '../game/pumpworks-room.ts';
 import type {Point} from '../game/world.ts';
@@ -130,7 +130,9 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   busy=true;
   try{
    const result=await navigator.locks.request(PUMPWORKS_KEY,()=>{
-    if(!present()||(!onField&&place!=='elsewhere'&&host.place()!==place))return {ok:false as const,message:'Return to the marked spot first.'};
+    if(!present()||(!onField&&place!=='elsewhere'&&host.place()!==place)){
+     return {ok:false as const,message:onField?'':'Return to the marked spot first.'};
+    }
     return savePumpworks(storage,expected,action,place);
    });
    if(result.ok&&onField){
@@ -146,7 +148,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     if(action==='eat')host.cue('heal');
    }
    refresh();
-   host.feedback(result.message);
+   if(result.message)host.feedback(result.message);
    if(result.ok&&result.returnToBed)host.moveToBed();
    return result.message;
   }catch{
@@ -164,12 +166,17 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    recovering:current()?.recovering??false,
   };
  }
- async function combatAction(action:PumpworksAction){
+ async function combatAction(action:PumpworksAction,previous?:HopperMotion){
   if(busy||!record.ok)return;
   const expected=record.raw;
-  const before=record.state.revision;
-  await change(action,'arena',()=>!browserPaused&&!windowUnfocused&&host.combat().able,expected,true);
-  if(before===current()?.revision)retryAt=performance.now()+1800;
+  const able=()=>!browserPaused&&!windowUnfocused&&host.combat().able;
+  await change(action,'arena',able,expected,true);
+  if(record.ok&&record.raw===expected){
+   if(previous)hopper=previous;
+   // Retrying a rejected contact must not leave it counted as resolved.
+   // An intentional pause can resume immediately; failed storage is throttled.
+   if(able())retryAt=performance.now()+1800;
+  }
  }
  function input(action:'strike'|'brace'|'eat'){
   const context=host.combat(),state=current();
@@ -187,9 +194,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   if(action==='strike'){
    const attack=swingAtHopper(hopper,context.position,state.rod==='equipped');
    if(!attack)return;
+   const previous=hopper;
    hopper=attack.motion;
    host.cue('swing');
-   if(attack.hit)void combatAction(attack.hit);
+   if(attack.hit)void combatAction(attack.hit,previous);
    else if(attack.deflected){
     impact={kind:'shell',point:{...hopper.feet},until:performance.now()+FIELD_IMPACT_MS};
     host.feedback('The shell deflected it.');
@@ -234,10 +242,13 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     hopper=freshHopper();
     if(now>=retryAt)void combatAction('retreat');
    }else{
-    const next=stepHopper(hopper,context.position,dt,state.fight.health);
-    if(hopper.phase!=='windup'&&next.motion.phase==='windup')host.cue(next.motion.pattern);
-    hopper=next.motion;
-    if(next.impact)void combatAction(next.impact==='braced'?'guard':next.impact==='splash'?'splash-hit':'hit');
+    const previous=hopper;
+    const next=stepHopper(previous,context.position,dt,state.fight.health);
+    if(!next.impact||now>=retryAt){
+     if(previous.phase!=='windup'&&next.motion.phase==='windup')host.cue(next.motion.pattern);
+     hopper=next.motion;
+     if(next.impact)void combatAction(next.impact==='braced'?'guard':next.impact==='splash'?'splash-hit':'hit',previous);
+    }
    }
   }
   paintControls(state,context.position,now);

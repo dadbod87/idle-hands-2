@@ -336,3 +336,37 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
   }
  });
 }
+
+test('Pausing while a lunge is waiting to save preserves the pending contact',async({page})=>{
+ const feet={x:15,y:9};
+ await page.addInitScript(position=>{
+  if(localStorage.getItem('ih2:pumpworks:v1'))return;
+  localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'pumpworks',position}));
+  localStorage.setItem('ih2:pumpworks:v1',JSON.stringify({
+   version:1,revision:1,health:8,rod:'equipped',oatcake:'packed',satchel:'carried',
+   fight:{health:9},recovering:false,cleared:false,reported:false,rematch:false,
+  }));
+ },feet);
+ await page.goto('/?sky-study=1&phase=day&weather=clear');
+ await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{intervals:[20]}).toBe('windup');
+ // Another holder delays the real persistence lock until after focus is lost.
+ await page.evaluate(()=>new Promise<void>(acquired=>{
+  const harness=window as Window&{releaseCombatLock?:()=>void};
+  void navigator.locks.request('ih2:pumpworks:v1',()=>new Promise<void>(released=>{
+   harness.releaseCombatLock=released;
+   acquired();
+  }));
+ }));
+ await expect.poll(async()=>(await read(page))?.combat.hopper.contact,{intervals:[20]}).toBe(true);
+ await page.evaluate(()=>{
+  window.dispatchEvent(new Event('blur'));
+  (window as Window&{releaseCombatLock?:()=>void}).releaseCombatLock!();
+ });
+ await expect.poll(async()=>(await read(page))?.combat.hopper.contact,{timeout:1000,intervals:[20]}).toBe(false);
+ const paused=(await read(page))!;
+ expect(paused.state.health).toBe(8);
+ expect(paused.state.revision).toBe(1);
+ await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+ await expect.poll(async()=>(await read(page))?.state.health,{timeout:850,intervals:[20]}).toBe(5);
+ expect((await read(page))!.state.revision).toBe(2);
+});

@@ -3875,6 +3875,54 @@
         "docs/evidence/IH2-200/PLAN.md"
       ],
       "progress_note": "Local renderer candidate staged behind touch and social visibility. Full hosted acceptance awaits the batched PR."
+    },
+    {
+      "id": "IH2-201",
+      "title": "Verify shared Pumpworks combat and the first smithing and tailoring techniques",
+      "status": "queued",
+      "owner_branch": "feat/nov25-trade-practice",
+      "goal": "Make a movement-based encounter authoritative and give optional makers lasting, visible rewards for finishing distinct work.",
+      "depends_on": [
+        "IH2-196",
+        "IH2-197",
+        "IH2-200"
+      ],
+      "acceptance": [
+        "Verify server timing, movement, retries, independent residents, recovery, and saved training.",
+        "Verify exact craft deadlines, distinct uses, equipped layering, nearby visibility, and workshop independence.",
+        "Run full applicable database and all three browser shards on the exact combined candidate before merging."
+      ],
+      "exclusions": [
+        "No shared-target or player-versus-player combat, gear trading, paid resources, public deployment or saved-preview restart."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/handoffs/2026-11-25-shared-combat-and-trades.md"
+      ],
+      "progress_note": "Playable local review work on feat/nov25-trade-practice. The earlier acceptance queue stays active, and the combined candidate needs the exact hosted gates."
+    },
+    {
+      "id": "IH2-202",
+      "title": "Turn the Lower Pumpworks side route into a playable dungeon outing",
+      "status": "queued",
+      "owner_branch": "feat/lower-pumpworks-outing",
+      "goal": "Give residents an optional two-floor expedition with side discoveries, different enemy tells, a boss with visibly better loot, and a meaningful return shortcut.",
+      "depends_on": [
+        "IH2-201"
+      ],
+      "acceptance": [
+        "Find the tool chest and return to town without fighting the Collector. Reach the second floor by either upper route, then open the freight lift from below.",
+        "Use motion-based combat with one distinct weak enemy before shipping the optional Collector. Test keyboard and touch reads for its rush, pressure burst and recovery.",
+        "Verify each chest and boss reward against a server-owned encounter and owner-scoped receipt, including full Bag, concurrent retry, disconnect and instance closure.",
+        "Test whether first-time players notice a side route, recognize a safe exit and use or display its reward on a later visit."
+      ],
+      "exclusions": [
+        "No party loot, open player combat, unapproved loss of persistent gear, or dependency from housing and the main story."
+      ],
+      "evidence": [
+        "docs/idle-hands-2/design/WORLD_AND_SYSTEMS_DESIGN.md",
+        "tools/lower-pumpworks-study/index.html"
+      ],
+      "progress_note": "The separate two-floor layout works with collision-checked walking, chest markers and the lift. Implement one weaker encounter and its receipt before the Collector."
     }
   ],
   "source_status_note": "PR #107 accepted on main. This separate compatibility review composes the checked headwear and shared-town branch with the local overnight candidate."

@@ -1,3 +1,7 @@
+# November 25 — shared Pumpworks and trade practice
+
+Start from `feat/nov25-trade-practice` and the [shared combat and trade handoff](handoffs/2026-11-25-shared-combat-and-trades.md). Private server-driven combat, a riveted vest and brass finish, and a gold-edged kerchief are ready for local review. The Lower Pumpworks has a separate walkable route study. Keep the saved previews and databases stopped. Complete the batched exact-head checks before merging.
+
 # November 25 — weapon practice, finished vests and playable routes
 
 Start with `feat/nov25-outfit-training-review` and the [outfit and training review](handoffs/2026-11-25-exploration-combat.md#weapon-practice-and-independent-armor-finishes). This combines Hidden Valley, the orchard graft, field smithing, shared visible clothing, three weapons and a local learn-by-doing trial. The protected previews and databases stay stopped. Check the exact review state, current PRs and Actions policy before hosted validation.

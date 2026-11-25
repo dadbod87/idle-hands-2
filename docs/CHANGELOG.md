@@ -1,3 +1,7 @@
+# November 25 — server-verified combat and use-based trades
+
+The local review candidate adds private real-time Pumpworks combat in the practice town. Finished smithing and tailoring work teaches skills and unlocks brass armor and gold-edged cloth that nearby residents can see. [Handoff and validation](idle-hands-2/handoffs/2026-11-25-shared-combat-and-trades.md).
+
 # November 25 — outfit and training review candidate
 
 The Pumpworks trial adds independent weapon practice, directional attacks and wearable vest finishes. Its forge can be revisited from the Journal. Hidden Valley and the shared kerchief are included in the review branch. This entry records local review work. See the [handoff and validation](idle-hands-2/handoffs/2026-11-25-exploration-combat.md#weapon-practice-and-independent-armor-finishes).

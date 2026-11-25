@@ -327,3 +327,10 @@ Explicit complete file groups balance diagnosed20-minute CI work without changin
 Owner requested nostalgic UO MIDI music such as Stones in suitable places/actions. Exact redistribution rights for those tracks have not been established; none are imported. The existing free-assets policy and [EA primary policy](https://help.ea.com/en/articles/security-and-rules/ea-content-policy/) do not by themselves clear this independent game soundtrack. Revisit if actual permission/license is supplied.
 
 Agent-selected reversible next step:129original eight-bar town/woodland/home-café scores and six accents, authored/synthesized independently rather than described as UO recordings. The study is separate from the game, no added dependency/service or asset purchase. Explicit playback, separate real gain controls, bounded voices/cache, silence on hidden/return and clean idle matter for phones and an office setting. Numerical/controller/still checks do not establish musical taste or physical-device audio. Human feedback can steer the next separate integration slice. [Study](../evidence/IH2-129/REPORT.md).
+
+
+## November 25 — shared field authority and trade practice
+
+The local shared town adjudicates private Pumpworks encounters from its own clock, confirmed feet, and ordered player inputs. Permanent field state and completed action receipts share the same write. The dry bench is the first defeat recovery site.
+
+Finished original items and distinct follow-up techniques teach the first two ranks of each trade. Optional styling stays reusable and preserves rank. Trade progression should reward a broader repertoire of useful things as the catalog grows. Only confirmed worn clothing is visible in the shared town. [Shared combat and trade handoff](handoffs/2026-11-25-shared-combat-and-trades.md).

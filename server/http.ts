@@ -70,7 +70,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
   const prior=presenceGate;let release!:()=>void;presenceGate=new Promise<void>(resolve=>release=resolve);
   await prior;try{return await work();}finally{release();}
  }
- const metrics={commands:0,snapshots:0,movementAccepted:0,movementRejected:0,presenceEvents:0,positionCheckpoints:0,transport:admission.metrics,sseSubmittedBytes:0,sseSubmittedFrames:0,sseSuppressedPresence:0,sseExpired:0,sseBackpressure:0,sseOversize:0,fieldFrames:0,fieldBytes:0,fieldErrors:0};
+ const metrics={commands:0,snapshots:0,movementAccepted:0,movementRejected:0,presenceEvents:0,positionCheckpoints:0,transport:admission.metrics,sseSubmittedBytes:0,sseSubmittedFrames:0,sseSuppressedPresence:0,sseExpired:0,sseBackpressure:0,sseOversize:0,fieldFrames:0,fieldBytes:0,fieldUpdates:0,fieldErrors:0};
  const sign=(value:string)=>createHmac('sha256',options.secret).update(value).digest('base64url');
  function cookie(id:string){const payload=Buffer.from(JSON.stringify({id,expires:now()+24*3600_000})).toString('base64url');return payload+'.'+sign(payload);}
  function identity(req:IncomingMessage){try{const token=req.headers.cookie?.split(';').map(s=>s.trim()).find(s=>s.startsWith(COOKIE+'='))?.slice(COOKIE.length+1);if(!token)return null;const[payload,mac]=token.split('.');if(!payload||!mac)return null;const expected=Buffer.from(sign(payload)),actual=Buffer.from(mac);if(expected.length!==actual.length||!timingSafeEqual(expected,actual))return null;const data=JSON.parse(Buffer.from(payload,'base64url').toString());return fixtures.some(f=>f.id===data.id)&&Number.isSafeInteger(data.expires)&&data.expires>now()?{id:data.id as string,expires:data.expires as number}:null;}catch{return null;}}
@@ -133,8 +133,8 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  const fieldTicker=setInterval(()=>{
   for(const [id,current] of residents){
    if(current.value.room!=='pumpworks'||operations.has(id))continue;
-   const connected=fieldConnected(id);
-   if(!connected&&!field.has(id))continue;
+   if(!fieldConnected(id)&&!field.inRoom(id)&&!interruptedFields.has(id))continue;
+   metrics.fieldUpdates++;
    void actorWork(id,async()=>{
     await settleFieldInterruption(id);
     if(!fieldConnected(id)){await field.leave(id,now());return;}

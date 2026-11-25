@@ -263,5 +263,10 @@ test('Shared Pumpworks verifies hits from its own room, feet, clock and encounte
   assert.equal((await send('aster',report)).replayed,true);
   assert.equal((await station('aster','report')).ok,false);
   assert.equal((await view('bea')).state.reported,false);
+  for(const s of streams)s.abort();
+  await delay(150);
+  const retiredUpdates=app.metrics.fieldUpdates;
+  await delay(150);
+  assert.equal(app.metrics.fieldUpdates,retiredUpdates);
  }finally{for(const s of streams)s.abort();await app.close();await pool.end();}
 });

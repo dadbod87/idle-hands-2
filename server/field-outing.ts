@@ -44,7 +44,7 @@ export class SharedField {
  private sequence=0;
  private store:FieldStore;private instance:string;
  constructor(store:FieldStore,instance:string){this.store=store;this.instance=instance;}
- has(id:string){return this.runs.has(id);}
+ inRoom(id:string){return this.runs.get(id)?.inRoom===true;}
  invalidate(id:string){this.runs.delete(id);}
  private nextSequence(run:Run){run.sequence=++this.sequence;}
  async get(id:string,position:TownPosition,now:number){

@@ -27,6 +27,7 @@ export type SnapshotRows={
  plots:PlotRow[];bridge:BridgeRow;
  display_rows:Array<{id:string;name:string;marker:unknown;motif:unknown}>;
  awards:Array<{quest_id:string}>;
+ collector_gauge_owned:boolean;
  lesson:{started_at:StoredTime;ready_at:StoredTime;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacy_satisfied:boolean}|null;
  stamps:Array<{landmark_id:string}>;
  project_events:Array<{id:string;kind:'opened'|'grandfathered';effective_at:StoredTime;recorded_at:number|string}>;
@@ -59,6 +60,10 @@ const query = `select /* coherent-town-snapshot */
             ) then p.keepsake
             when p.keepsake='alder-swatch' and exists(
               select 1 from ih2.quest_awards q where q.player_id=p.owner_id and q.quest_id=$4
+            ) then p.keepsake
+            when p.keepsake='collector-gauge' and exists(
+              select 1 from ih2.lower_pumpworks_outings d where d.player_id=p.owner_id
+                and d.progress->>'collectorClaim' is not null
             ) then p.keepsake else null end
        else null end as keepsake,
      case when p.glasshouse_plant_visible and resident.position->>'homePlotId'=p.id::text
@@ -90,6 +95,8 @@ const query = `select /* coherent-town-snapshot */
  coalesce((select jsonb_agg(to_jsonb(v) order by v.quest_id) from (
    select quest_id from ih2.quest_awards where player_id=$1
  ) v),'[]'::jsonb) as awards,
+ exists(select 1 from ih2.lower_pumpworks_outings d where d.player_id=$1 and d.progress->>'collectorClaim' is not null)
+   as collector_gauge_owned,
  (select to_jsonb(v) from ih2.maintenance_lessons v where v.player_id=$1) as lesson,
  coalesce((select jsonb_agg(to_jsonb(v) order by v.landmark_id) from (
    select landmark_id from ih2.trail_stamps where player_id=$1

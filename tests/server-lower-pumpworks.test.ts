@@ -2,11 +2,12 @@ import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
 import {realpathSync} from 'node:fs';
 import {test} from 'node:test';
+import {setTimeout as delay} from 'node:timers/promises';
 import {database, migrate} from '../server/db.ts';
 import {createTownServer} from '../server/http.ts';
 import {TownStore, type TownPosition} from '../server/live-store.ts';
-import {DEPTHS_HATCH, LOWER_ROOMS, LOWER_START, START, LOWER_WORLDS} from '../src/game/lower-pumpworks-room.ts';
-import {TOOL_LOOT, type LowerInput, type LowerReply, type LowerView} from '../src/game/lower-pumpworks.ts';
+import {DEPTHS_HATCH, LANDING_BENCH, LOWER_ROOMS, LOWER_START, START, LOWER_WORLDS} from '../src/game/lower-pumpworks-room.ts';
+import {LOWER_ENEMIES, LOWER_LOOT, PRESSURE_RADIUS, TOOL_LOOT, distance, type LowerInput, type LowerReply, type LowerView} from '../src/game/lower-pumpworks.ts';
 import {freshPumpworks} from '../src/game/pumpworks.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 import {STORAGE_LIMIT} from '../src/game/live-workshop.ts';
@@ -75,6 +76,15 @@ test('Lower Pumpworks verifies room, contact, ownership, inventory capacity and 
     const response=await send(id,'depths',input);
     assert.equal(response.status,200,await response.clone().text());
     return response.json();
+  }
+  async function waitFor(id:string,predicate:(value:LowerView)=>boolean){
+    let current=await view(id);
+    for(let tries=0;tries<65&&!predicate(current);tries++){
+      now+=100;
+      current=await view(id);
+    }
+    assert.ok(predicate(current),'Expected an observable phase in the real dungeon server');
+    return current;
   }
   async function move(id:string,next:TownPosition){
     now+=160;
@@ -177,10 +187,98 @@ test('Lower Pumpworks verifies room, contact, ownership, inventory capacity and 
     assert.equal((await move(hazel,{room:upper,position:freight.arrival!})).status,200);
     assert.equal((await view(hazel)).progress.liftOpen,true);
     assert.equal((await view(birch)).progress.liftOpen,false);
+    const liftTop=portal(upper,'depths-lift-top');
+    await walk(hazel,liftTop.point);
+    assert.equal((await move(hazel,{room:lower,position:liftTop.arrival!})).status,200);
+    const kiln=portal(lower,'depths-kiln-chest');
+    await walk(hazel,kiln.point);
+    assert.equal((await view(hazel)).enemy,null,'The kiln route bypasses the boss');
+    assert.equal((await act(hazel,{kind:'kiln-chest',id:replyId.id})).ok,false,'A request ID cannot claim another chest');
+    assert.equal((await act(hazel,{kind:'kiln-chest',id:randomUUID()})).ok,true);
+    assert.equal((await store.snapshot(hazel)).workshop.inventory.timber,1);
+
+    const boss=LOWER_ENEMIES.collector;
+    const bossChest=portal(lower,'depths-collector-chest');
+    await walk(hazel,bossChest.point);
+    const prize={kind:'collector-reward',id:randomUUID()} as const;
+    assert.match((await act(hazel,prize)).message,/guarding/);
+    assert.equal((await store.snapshot(hazel)).collectorGaugeOwned,undefined);
+    let sawPressure=false;
+    for(let openingIndex=0;openingIndex<4;openingIndex++){
+      const windup=await waitFor(hazel,value=>value.enemy?.phase==='windup');
+      const attack=windup.enemy!.warning!;
+      if(attack.kind==='pressure'){
+        sawPressure=true;
+        const away={x:attack.from.x>42?attack.from.x-3.55:attack.from.x+3.55,y:attack.from.y};
+        assert.ok(distance(away,attack.from)>PRESSURE_RADIUS);
+        await walk(hazel,away);
+      }else{
+        now=Math.max(now,windup.enemy!.until-1000);
+        const braced=await act(hazel,{kind:'combat',action:'brace',id:randomUUID(),encounter:windup.encounter!,turn:windup.turn});
+        assert.equal(braced.ok,true,braced.message);
+      }
+      now=Math.max(now,windup.enemy!.until+1);
+      const opening=await waitFor(hazel,value=>value.enemy?.phase==='opening');
+      await walk(hazel,opening.enemy!.position);
+      const counter=await act(hazel,strike(await view(hazel)));
+      assert.equal(counter.ok,true,counter.message);
+      if(openingIndex===0){
+        now+=475;
+        const second=await act(hazel,strike(await view(hazel)));
+        assert.equal(second.ok,false,'Only one Collector counter is credited per opening');
+        assert.equal(second.view.enemy?.health,boss.health-4);
+      }
+    }
+    assert.equal(sawPressure,true);
+    assert.equal((await view(hazel)).progress.collectorCleared,true);
+    assert.equal((await view(birch)).progress.collectorCleared,false);
+    await walk(hazel,bossChest.point);
+    const beforePrize=(await store.snapshot(hazel)).workshop;
+    const full={...beforePrize,inventory:{scrap:STORAGE_LIMIT,timber:0,supplies:0}};
+    await pool.query('update ih2.players set workshop=$2 where id=$1',[hazel,full]);
+    const fullPrize=await act(hazel,prize);
+    assert.equal(fullPrize.ok,false);
+    assert.match(fullPrize.message,/Free 5 material spaces/);
+    assert.equal(fullPrize.view.progress.collectorClaim,null);
+    assert.equal((await store.snapshot(hazel)).collectorGaugeOwned,undefined);
+    assert.equal((await store.snapshot(hazel)).workshop.inventory.scrap,STORAGE_LIMIT);
+    await pool.query('update ih2.players set workshop=$2 where id=$1',[hazel,beforePrize]);
+    const award=await act(hazel,prize);
+    assert.equal(award.ok,true,award.message);
+    assert.equal((await act(hazel,prize)).replayed,true);
+    const afterPrize=await store.snapshot(hazel);
+    assert.equal(afterPrize.collectorGaugeOwned,true);
+    assert.equal(afterPrize.workshop.inventory.scrap,beforePrize.inventory.scrap+LOWER_LOOT['collector-reward'].stock.scrap);
+    assert.equal(afterPrize.workshop.inventory.supplies,beforePrize.inventory.supplies+LOWER_LOOT['collector-reward'].stock.supplies);
+    assert.equal((await store.snapshot(birch)).collectorGaugeOwned,undefined);
+
+    await walk(birch,stair.point);
+    assert.equal((await move(birch,{room:lower,position:LOWER_START})).status,200);
+    await walk(birch,bossChest.point);
+    assert.equal((await act(birch,{kind:'rest',id:randomUUID()})).ok,false,'The resting action requires the landing bench');
+    let knockedOut=await view(birch);
+    for(let attempt=0;attempt<360&&knockedOut.room!==upper;attempt++){
+      now+=125;
+      knockedOut=await view(birch);
+    }
+    assert.equal(knockedOut.room,upper,JSON.stringify(knockedOut));
+    assert.ok((knockedOut.returnTo&&distance(knockedOut.returnTo,START)<.01)||birchFrames.some(frame=>frame.room===upper&&frame.returnTo!==null));
+    assert.equal(knockedOut.progress.health,8);
+    assert.equal(knockedOut.progress.collectorCleared,false);
+    assert.deepEqual((await store.snapshot(birch)).position,{room:upper,position:START});
+    positions.set(birch,{room:upper,position:START});
+    await walk(birch,LANDING_BENCH.point);
+    assert.match((await act(birch,{kind:'rest',id:randomUUID()})).message,/already full/);
+    assert.equal((await store.snapshot(birch)).workshop.inventory.scrap,STORAGE_LIMIT);
+
     assert.ok(hazelFrames.length>0&&hazelFrames.every(frame=>frame.playerId===hazel));
     assert.ok(birchFrames.length>0&&birchFrames.every(frame=>frame.playerId===birch));
 
     for(const stream of streams)stream.abort();
+    await delay(150);
+    const quiet=app.metrics.depthsUpdates;
+    await delay(130);
+    assert.equal(app.metrics.depthsUpdates,quiet,'Disconnected residents get no background fight updates');
     await app.close();app=launch();base='http://127.0.0.1:'+await app.listen();
     await connect(hazel);
     const reloaded=await view(hazel);
@@ -188,8 +286,27 @@ test('Lower Pumpworks verifies room, contact, ownership, inventory capacity and 
     assert.equal(reloaded.progress.miteCleared,true);
     assert.equal(reloaded.progress.liftOpen,true);
     assert.equal((await act(hazel,replyId)).replayed,true);
-    assert.equal((await store.snapshot(hazel)).workshop.inventory.scrap,TOOL_LOOT.scrap);
+    assert.equal(reloaded.progress.collectorClaim,prize.id);
+    assert.equal((await act(hazel,prize)).replayed,true);
+    assert.equal((await store.snapshot(hazel)).workshop.inventory.scrap,TOOL_LOOT.scrap+LOWER_LOOT['collector-reward'].stock.scrap);
     assert.equal(app.metrics.depthsErrors,0);
+
+    const plotId=(await pool.query('insert into ih2.plots(owner_id,level,placements) values($1,1,$2) returning id::text',
+      [hazel,(await store.snapshot(hazel)).workshop.placements])).rows[0].id;
+    const inside:TownPosition={room:'home',homePlotId:plotId,position:{x:9,y:11}};
+    const hang={kind:'display-home-keepsake',plotId,keepsake:'collector-gauge'};
+    await store.savePosition(hazel,inside);
+    const owner=await store.snapshot(hazel);
+    const hung=await store.execute(hazel,{...hang,id:'hang-gauge',expectedRevision:owner.workshop.revision},inside);
+    assert.equal(hung.ok,true,hung.message);
+    assert.equal((await store.snapshot(birch)).plots.find(plot=>plot.id===plotId)?.wallDisplay,undefined);
+    await store.savePosition(birch,inside);
+    const visitor=await store.snapshot(birch);
+    assert.equal(visitor.plots.find(plot=>plot.id===plotId)?.wallDisplay,'collector-gauge');
+    assert.equal(visitor.collectorGaugeOwned,undefined);
+    const cannotRemove=await store.execute(birch,{...hang,keepsake:null,id:'guest-cannot-remove',expectedRevision:visitor.workshop.revision},inside);
+    assert.equal(cannotRemove.ok,false);
+    assert.equal((await store.snapshot(birch)).plots.find(plot=>plot.id===plotId)?.wallDisplay,'collector-gauge');
   }finally{
     for(const stream of streams)stream.abort();
     await app.close();

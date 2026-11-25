@@ -1,6 +1,6 @@
 import type Phaser from 'phaser';
-import {levelFor, LOWER_ROOMS, type LowerRoom} from '../game/lower-pumpworks-room.ts';
-import {distance, miteOrigin, LOWER_STRIKE, type LowerView} from '../game/lower-pumpworks.ts';
+import {levelFor, LANDING_BENCH, LOWER_ROOMS, type LowerRoom} from '../game/lower-pumpworks-room.ts';
+import {clearedField, distance, enemyFor, LOWER_ENEMIES, LOWER_LOOT, PRESSURE_RADIUS, type LowerClaim, type LowerView} from '../game/lower-pumpworks.ts';
 import {TILE, type Point} from '../game/world.ts';
 
 const outline=0x2e3b33;
@@ -15,18 +15,18 @@ function hardware(brush:Phaser.GameObjects.Graphics,x:number,y:number,w:number,h
 export class LowerWorksArt {
   private readonly floor:Phaser.GameObjects.Graphics;
   private readonly cue:Phaser.GameObjects.Graphics;
-  private readonly mite:Phaser.GameObjects.Graphics;
-  private readonly chest:Phaser.GameObjects.Graphics;
-  private readonly chestLabel?:Phaser.GameObjects.Text;
-  private readonly miteLabel?:Phaser.GameObjects.Text;
-  private readonly chestPoint?:Point;
-  private lastClaim:boolean|null=null;
+  private readonly foe:Phaser.GameObjects.Graphics;
+  private readonly foeLabel:Phaser.GameObjects.Text;
+  private readonly chests:Array<{kind:LowerClaim;ink:Phaser.GameObjects.Graphics;label:Phaser.GameObjects.Text;point:Point;claimed:boolean|null}>=[];
+  private readonly enemyId:ReturnType<typeof enemyFor>;
   private lastView:LowerView|null=null;
   constructor(private readonly scene:Phaser.Scene, private readonly room:LowerRoom){
     this.floor=scene.add.graphics().setDepth(-1000);
     this.cue=scene.add.graphics().setDepth(0);
-    this.mite=scene.add.graphics();
-    this.chest=scene.add.graphics();
+    this.foe=scene.add.graphics();
+    this.enemyId=enemyFor(room);
+    const enemy=LOWER_ENEMIES[this.enemyId];
+    this.foeLabel=this.label(pixel(enemy.origin.x),pixel(enemy.origin.y)+16,enemy.name).setVisible(false);
     const {world,spaces,passages,markers}=levelFor(room);
     this.floor.fillStyle(0x20312f,1).fillRect(0,0,world.width*TILE,world.height*TILE);
     for(const {kind,bounds:[x,y,w,h]} of spaces){
@@ -50,17 +50,22 @@ export class LowerWorksArt {
         const name=marker.id==='exit'?'Upper Pumpworks':marker.name;
         this.label(x,y+19,name);
       }
-      if(marker.id==='store-chest'){
-        this.chestPoint=marker.point;
-        this.chestLabel=this.label(x,y+17,'Stores chest').setVisible(false);
-      }
-      if(marker.id==='mite'){
-        this.miteLabel=this.label(x,y+16,'Filter mite').setVisible(false);
-      }
+      const claim=marker.id==='store-chest'?'tool-chest':marker.id==='kiln-chest'?'kiln-chest':marker.id==='collector-chest'?'collector-reward':null;
+      if(claim)this.chests.push({
+        kind:claim,point:marker.point,ink:scene.add.graphics(),label:this.label(x,y+17,LOWER_LOOT[claim].name).setVisible(false),
+        claimed:null,
+      });
     }
     if(room===LOWER_ROOMS[0]){
+      const x=pixel(LANDING_BENCH.point.x),y=pixel(LANDING_BENCH.point.y);
+      hardware(this.floor,x-26,y-23,52,19,0xa99771);
+      this.floor.fillStyle(outline,1).fillRect(x-19,y-5,5,8).fillRect(x+14,y-5,5,8);
+      this.label(x,y+8,LANDING_BENCH.name);
       this.drawSign({x:15.1,y:25.4},'Stores →');
       this.drawSign({x:11.4,y:20.2},'Gallery ↑');
+    }else{
+      this.drawSign({x:23.8,y:28.2},'Kiln →');
+      this.drawSign({x:17.4,y:23.2},'Spillway ↑');
     }
   }
   private label(x:number,y:number,text:string){
@@ -101,19 +106,26 @@ export class LowerWorksArt {
       this.floor.fillStyle(0xf8d683,1).fillCircle(cx,cy,3);
     }
   }
-  private drawChest(claimed:boolean){
-    if(!this.chestPoint||this.lastClaim===claimed)return;
-    this.lastClaim=claimed;
-    const x=pixel(this.chestPoint.x),y=pixel(this.chestPoint.y);
-    const ink=this.chest.clear().setDepth(y);
-    hardware(ink,x-22,y-25,44,26,claimed?0x786952:0xb28350);
-    ink.fillStyle(outline,1).fillRect(x-22,y-15,44,4);
-    if(claimed)ink.fillStyle(0x524936,1).fillRect(x-17,y-26,34,11);
-    ink.fillStyle(0xf4cc83,1).fillRect(x-4,y-17,8,9);
+  private drawChests(view:LowerView|null,feet:Point){
+    for(const chest of this.chests){
+      const claimed=!!view?.progress[LOWER_LOOT[chest.kind].field];
+      const locked=chest.kind==='collector-reward'&&!view?.progress.collectorCleared;
+      const x=pixel(chest.point.x),y=pixel(chest.point.y);
+      chest.label.setVisible(distance(feet,chest.point)<6);
+      if(chest.claimed===claimed&&chest.label.text===(locked?'Collector’s chest · locked':LOWER_LOOT[chest.kind].name))continue;
+      chest.claimed=claimed;
+      chest.label.setText(locked?'Collector’s chest · locked':LOWER_LOOT[chest.kind].name);
+      const ink=chest.ink.clear().setDepth(y);
+      const width=chest.kind==='collector-reward'?54:44;
+      hardware(ink,x-width/2,y-25,width,26,claimed?0x786952:chest.kind==='collector-reward'?0x996448:0xb28350);
+      ink.fillStyle(outline,1).fillRect(x-width/2,y-15,width,4);
+      if(claimed)ink.fillStyle(0x524936,1).fillRect(x-width/2+5,y-26,width-10,11);
+      ink.fillStyle(locked?0xbcaa89:0xf4cc83,1).fillRect(x-4,y-17,8,9);
+    }
   }
   private drawMite(feet:Point,engaged:boolean,opening:boolean){
     const x=pixel(feet.x),y=pixel(feet.y);
-    const ink=this.mite.clear().setDepth(y);
+    const ink=this.foe.clear().setDepth(y);
     ink.fillStyle(outline,.30).fillEllipse(x,y+1,44,14);
     ink.lineStyle(4,outline,1);
     for(const side of [-1,1])for(let leg=0;leg<3;leg++)ink.lineBetween(x+side*12,y-12+leg*4,x+side*(23-leg),y-9+leg*5);
@@ -121,38 +133,66 @@ export class LowerWorksArt {
     ink.fillStyle(opening?0xd4ae66:0x738e64,1).fillEllipse(x,y-15,32,18);
     ink.fillStyle(0xe5d894,1).fillCircle(x-6,y-11,4).fillCircle(x+6,y-11,4);
     ink.fillStyle(outline,1).fillCircle(x-6,y-10,1.6).fillCircle(x+6,y-10,1.6);
-    this.miteLabel?.setPosition(x,y+9).setDepth(y+10).setVisible(!engaged);
+    this.foeLabel.setPosition(x,y+9).setDepth(y+10).setVisible(!engaged);
+  }
+  private drawCollector(feet:Point,engaged:boolean,opening:boolean){
+    const x=pixel(feet.x),y=pixel(feet.y);
+    const ink=this.foe.clear().setDepth(y);
+    ink.fillStyle(outline,.40).fillEllipse(x,y+2,88,23);
+    hardware(ink,x-33,y-62,66,55,0xa65c43);
+    hardware(ink,x-39,y-31,18,28,0x555b4c);
+    hardware(ink,x+21,y-31,18,28,0x555b4c);
+    ink.fillStyle(outline,1).fillRoundedRect(x-22,y-56,44,24,4);
+    ink.fillStyle(opening?0xf7e69a:0xe19a60,1).fillRect(x-15,y-50,30,9);
+    if(opening)ink.fillStyle(0xf4d383,1).fillCircle(x,y-20,12);
+    else ink.fillStyle(0x6a3d30,1).fillRoundedRect(x-17,y-29,34,16,4);
+    ink.lineStyle(7,outline,1).lineBetween(x-16,y-66,x-16,y-80).lineBetween(x-16,y-80,x+7,y-80);
+    ink.lineStyle(3,0xc3875e,1).lineBetween(x-16,y-66,x-16,y-80).lineBetween(x-16,y-80,x+7,y-80);
+    ink.fillStyle(0xedd18e,1).fillCircle(x+9,y-80,3);
+    this.foeLabel.setPosition(x,y+11).setDepth(y+13).setVisible(!engaged);
   }
   paint(view:LowerView|null,feet:Point){
     const current=view?.room===this.room?view:null;
-    this.drawChest(!!current?.progress.toolClaim);
-    this.chestLabel?.setVisible(!!this.chestPoint&&distance(feet,this.chestPoint)<6);
+    this.drawChests(current,feet);
     if(current===this.lastView)return;
     this.lastView=current;
     const cue=this.cue.clear();
-    if(this.room!==LOWER_ROOMS[0])return;
     const engaged=current?.enemy;
-    const show=!!current&&!current.progress.miteCleared;
-    this.mite.setVisible(show);
-    if(!show){this.miteLabel?.setVisible(false);return;}
-    this.drawMite(engaged?.position??miteOrigin,!!engaged,engaged?.phase==='opening');
+    const config=LOWER_ENEMIES[this.enemyId];
+    const show=!!current&&!current.progress[clearedField(this.enemyId)];
+    this.foe.setVisible(show);
+    if(show){
+      const origin=engaged?.position??config.origin,opening=engaged?.phase==='opening'&&!current?.collectorCounterUsed;
+      if(this.enemyId==='mite')this.drawMite(origin,!!engaged,opening);
+      else this.drawCollector(origin,!!engaged,opening);
+    }else this.foeLabel.setVisible(false);
     const warning=engaged?.warning;
-    if(warning){
+    if(warning?.kind==='lunge'){
       const {from,target}=warning;
-      const x=pixel(target.x),y=pixel(target.y),radius=LOWER_STRIKE.radius*TILE;
-      cue.lineStyle(radius*2,0xd79453,.45).lineBetween(pixel(from.x),pixel(from.y),x,y);
-      cue.lineStyle(2,0x6e3928,1).strokeCircle(x,y,radius);
-      cue.lineStyle(3,0x6e3928,1).lineBetween(x-7,y,x+7,y).lineBetween(x,y-7,x,y+7);
+      const x=pixel(target.x),y=pixel(target.y),radius=config.radius*TILE;
+      cue.lineStyle(radius*2,0xd79453,.55).lineBetween(pixel(from.x),pixel(from.y),x,y);
+      cue.lineStyle(3,0x6e3928,1).strokeCircle(x,y,radius);
+      cue.lineBetween(x-10,y,x+10,y).lineBetween(x,y-10,x,y+10);
+    }else if(warning?.kind==='pressure'){
+      const x=pixel(warning.from.x),y=pixel(warning.from.y),radius=PRESSURE_RADIUS*TILE;
+      cue.fillStyle(0xe6a458,.40).fillCircle(x,y,radius);
+      cue.lineStyle(5,0x652e27,1).strokeCircle(x,y,radius);
+      cue.lineStyle(2,0xffe9b3,1).strokeCircle(x,y,radius-6).strokeCircle(x,y,radius-13);
     }
     if(engaged){
-      const x=pixel(engaged.position.x),y=pixel(engaged.position.y);
-      cue.fillStyle(outline,1).fillRoundedRect(x-20,y-40,40,7,3);
-      cue.fillStyle(0xf2dda3,1).fillRect(x-18,y-38,36*engaged.health/engaged.maxHealth,3);
-      if(engaged.phase==='opening')cue.lineStyle(2,0xffe5a4,1).strokeRoundedRect(x-26,y-31,52,34,6);
+      const x=pixel(engaged.position.x),y=pixel(engaged.position.y),collector=engaged.id==='collector';
+      const meter=collector?68:36,meterY=y-(collector?94:40);
+      cue.fillStyle(outline,1).fillRoundedRect(x-meter/2-2,meterY,meter+4,7,3);
+      cue.fillStyle(0xf2dda3,1).fillRect(x-meter/2,meterY+2,meter*engaged.health/engaged.maxHealth,3);
+      if(engaged.phase==='opening'&&!current?.collectorCounterUsed){
+        const w=collector?84:52,h=collector?83:34;
+        cue.lineStyle(2,0xffe5a4,1).strokeRoundedRect(x-w/2,y-h+3,w,h,6);
+      }
     }
     if(current?.impact){
       const x=pixel(current.impact.point.x),y=pixel(current.impact.point.y)-14;
-      cue.lineStyle(3,current.impact.kind==='damage'?0xf3a786:0xffdc86,1).strokeCircle(x,y,17);
+      const radius=current.impact.kind==='clear'?25:17;
+      cue.lineStyle(3,current.impact.kind==='damage'?0xf3a786:0xffdc86,1).strokeCircle(x,y,radius);
     }
   }
 }

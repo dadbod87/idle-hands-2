@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="112" viewBox="0 0 160 112" role="img" aria-label="A brass pressure gauge on a wood plaque with an inspection pending label">
+ <rect x="5" y="5" width="150" height="102" rx="7" fill="#684a35" stroke="#273631" stroke-width="5"/>
+ <rect x="13" y="13" width="134" height="86" rx="3" fill="#9c7650" stroke="#4b3c30" stroke-width="3"/>
+ <path d="M20 23q27 5 52 0m-51 63q22-6 44 0m32-63q16 5 39-2m-29 69q14-5 27-1" fill="none" stroke="#b8915e" stroke-width="2" stroke-linecap="round"/>
+ <path d="M77 65h12v14H77z" fill="#b88a45" stroke="#3a4032" stroke-width="3"/>
+ <circle cx="81" cy="47" r="29" fill="#b48a4c" stroke="#293833" stroke-width="4"/>
+ <circle cx="81" cy="47" r="23" fill="#f1dfac" stroke="#57483a" stroke-width="2"/>
+ <path d="m63 52 4-1m0-13 4 2m10-12v5m12 4-4 3m10 10-4-1" fill="none" stroke="#505548" stroke-width="2.5" stroke-linecap="round"/>
+ <path d="m81 47 13-9" stroke="#a34d37" stroke-width="3.5" stroke-linecap="round"/>
+ <circle cx="81" cy="47" r="3.5" fill="#39473a"/>
+ <rect x="31" y="77" width="98" height="15" rx="2" fill="#e4ce88" stroke="#4b4030" stroke-width="2"/>
+ <text x="80" y="88" text-anchor="middle" font-family="Georgia,serif" font-size="7.7" font-weight="bold" fill="#3f4939">INSPECTION PENDING</text>
+</svg>

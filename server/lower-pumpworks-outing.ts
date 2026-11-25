@@ -1,9 +1,10 @@
 import {randomUUID} from 'node:crypto';
 import {equippedArmor, FIELD_HEALTH} from '../src/game/pumpworks.ts';
 import {BOW_DRAW_SECONDS, equippedFieldWeapon, FIELD_WEAPONS, type FieldWeapon} from '../src/game/field-weapons.ts';
-import {DEPTHS_HATCH, START, LOWER_ROOMS, LOWER_WORLDS, LIFT_BOTTOM_ID, LIFT_TOP_ID, isLowerRoom, type LowerRoom} from '../src/game/lower-pumpworks-room.ts';
-import {advanceMite, distance, inLunge, LOWER_STRIKE, MITE_HEALTH, miteOrigin, miteTerritory, resolveLowerStrike,
-  validDraw, type LowerEnemy, type LowerInput, type LowerProgress, type LowerReply, type LowerView} from '../src/game/lower-pumpworks.ts';
+import {DEPTHS_HATCH, LANDING_BENCH, START, LOWER_ROOMS, LOWER_WORLDS, LIFT_BOTTOM_ID, LIFT_TOP_ID, isLowerRoom, type LowerRoom} from '../src/game/lower-pumpworks-room.ts';
+import {advanceLowerEnemy, clearedField, distance, enemyFor, insideTerritory, LOWER_ENEMIES, LOWER_LOOT,
+  resolveLowerStrike, validDraw, warningHits, type LowerClaim, type LowerEnemy, type LowerEnemyId,
+  type LowerInput, type LowerProgress, type LowerReply, type LowerView} from '../src/game/lower-pumpworks.ts';
 import {clearSegment, type Point, type Stop} from '../src/game/world.ts';
 import type {TownPosition} from './live-store.ts';
 import type {FieldStore} from './field-store.ts';
@@ -13,7 +14,7 @@ type Attempt={id:string; request:string; ok:boolean; message:string};
 type Outing = {
   progress:LowerProgress; room:LowerRoom|null; at:number; sentAt:number;
   weapon:FieldWeapon|null; armor:number;
-  enemy:LowerEnemy|null; encounter:string|null; turn:number; strikeAt:number; braceUntil:number; braceAt:number;
+  enemy:LowerEnemy|null; encounter:string|null; turn:number; beat:number; counterUsed:boolean; strikeAt:number; braceUntil:number; braceAt:number;
   draw:{from:Point;until:number}|null; impact:LowerView['impact']; returnTo:Point|null; last?:Attempt;
 };
 export class LowerWorksDenied extends Error {}
@@ -28,6 +29,10 @@ export class LowerWorksOuting {
     this.store=store;this.gear=gear;this.instance=instance;
   }
   leave(playerId:string){this.outings.delete(playerId);}
+  confirmLanding(playerId:string){
+    const outing=this.outings.get(playerId);
+    if(outing)outing.returnTo=null;
+  }
   async get(playerId:string,position:TownPosition,now:number):Promise<Outing>{
     const room=isLowerRoom(position.room)?position.room:null;
     const previous=this.outings.get(playerId);
@@ -36,7 +41,7 @@ export class LowerWorksOuting {
     const outing:Outing={
       progress:previous?.progress??await this.store.load(playerId),room,at:now,sentAt:-Infinity,
       weapon:equippedFieldWeapon(gear),armor:equippedArmor(gear)?1:0,
-      enemy:null,encounter:null,turn:1,strikeAt:0,braceUntil:0,braceAt:0,draw:null,impact:null,returnTo:null,
+      enemy:null,encounter:null,turn:1,beat:0,counterUsed:false,strikeAt:0,braceUntil:0,braceAt:0,draw:null,impact:null,returnTo:null,
     };
     if(room)this.outings.set(playerId,outing);
     return outing;
@@ -45,7 +50,7 @@ export class LowerWorksOuting {
     return {
       playerId,serverInstance:this.instance,sequence:++this.sequence,serverAt:now,
       room:outing.room,progress:outing.progress,weapon:outing.weapon,armor:outing.armor,enemy:outing.enemy,
-      encounter:outing.encounter,turn:outing.turn,drawUntil:outing.draw?.until??null,
+      encounter:outing.encounter,turn:outing.turn,collectorCounterUsed:outing.enemy?.id==='collector'&&outing.counterUsed,drawUntil:outing.draw?.until??null,
       braced:outing.braceUntil>now,impact:outing.impact&&outing.impact.until>now?outing.impact:null,returnTo:outing.returnTo,
     };
   }
@@ -64,9 +69,11 @@ export class LowerWorksOuting {
     outing.progress=(await this.store.advance(playerId,outing.progress,{liftOpen:true},{position:next}))!;
     return true;
   }
-  private start(outing:Outing,origin:Point){
-    outing.enemy={position:origin,phase:'chase',health:MITE_HEALTH,maxHealth:MITE_HEALTH,until:0,warning:null};
-    outing.encounter=randomUUID();outing.turn=1;outing.strikeAt=0;outing.braceAt=0;outing.braceUntil=0;outing.last=undefined;
+  private start(outing:Outing,id:LowerEnemyId){
+    const config=LOWER_ENEMIES[id];
+    outing.enemy={id,position:config.origin,phase:'chase',health:config.health,maxHealth:config.health,until:0,warning:null};
+    outing.encounter=randomUUID();outing.turn=1;outing.beat=0;outing.counterUsed=false;
+    outing.strikeAt=0;outing.braceAt=0;outing.braceUntil=0;outing.last=undefined;
   }
   private end(outing:Outing){
     outing.enemy=null;outing.encounter=null;outing.draw=null;outing.braceUntil=0;
@@ -75,12 +82,15 @@ export class LowerWorksOuting {
     const enemy=outing.enemy,room=outing.room;
     if(!enemy||!room)return {ok:false,message:'There is no enemy within reach.'};
     const damage=resolveLowerStrike(room,enemy,feet,weapon);
-    if(!damage)return {ok:false,message:'Out of reach. Let the mite get closer.'};
+    if(enemy.id==='collector'&&(enemy.phase!=='opening'||outing.counterUsed))
+      return {ok:false,message:'The Collector’s shell is closed. Wait for its next opening.'};
+    if(!damage)return {ok:false,message:'Out of reach. Let it get closer.'};
+    if(enemy.id==='collector')outing.counterUsed=true;
     if(damage>=enemy.health){
-      outing.progress=(await this.store.advance(playerId,outing.progress,{miteCleared:true}))!;
+      outing.progress=(await this.store.advance(playerId,outing.progress,{[clearedField(enemy.id)]:true}))!;
       this.end(outing);
       outing.impact={kind:'clear',point:enemy.position,until:now+570};
-      return {ok:true,message:'Filter mite down.'};
+      return {ok:true,message:enemy.id==='mite'?'Filter mite down.':'The Collector is quiet. Its chest is unlocked.'};
     }
     outing.enemy={...enemy,health:enemy.health-damage};
     outing.impact={kind:'strike',point:enemy.position,until:now+360};
@@ -90,27 +100,30 @@ export class LowerWorksOuting {
     const outing=await this.get(playerId,position,now),room=outing.room;
     const dt=Math.min(.15,Math.max(0,(now-outing.at)/1000));
     outing.at=Math.max(outing.at,now);
-    if(room!==LOWER_ROOMS[0]||outing.progress.miteCleared)return outing;
+    if(!room)return outing;
+    const id=enemyFor(room),config=LOWER_ENEMIES[id];
+    if(outing.progress[clearedField(id)])return outing;
     const feet=position.position;
-    if(!miteTerritory(feet)){
+    if(!insideTerritory(id,feet)){
       if(outing.enemy)this.end(outing);
       return outing;
     }
     if(!outing.enemy){
-      if(distance(feet,miteOrigin)>5.2||!clearSegment(room,feet,miteOrigin,LOWER_WORLDS[room]))return outing;
-      this.start(outing,miteOrigin);
+      if(distance(feet,config.origin)>config.notice||!clearSegment(room,feet,config.origin,LOWER_WORLDS[room]))return outing;
+      this.start(outing,id);
     }
     const enemy=outing.enemy!;
     if(enemy.phase==='windup'&&now>=enemy.until){
       const warning=enemy.warning!;
-      const hit=inLunge(feet,warning)&&clearSegment(room,warning.from,feet,LOWER_WORLDS[room]);
-      if(hit&&outing.braceUntil<=now){
-        const left=outing.progress.health-Math.max(1,2-outing.armor);
+      const hit=warningHits(feet,warning,config.radius)&&clearSegment(room,warning.from,feet,LOWER_WORLDS[room]);
+      // A brace absorbs a charge. The pressure ring rewards actually leaving its radius.
+      if(hit&&(outing.braceUntil<=now||warning.kind==='pressure')){
+        const left=outing.progress.health-Math.max(1,config.damage-outing.armor);
         outing.draw=null;
         if(left<=0){
           const wake={room:LOWER_ROOMS[0],position:START};
           outing.progress=(await this.store.advance(playerId,outing.progress,{health:FIELD_HEALTH},{position:wake}))!;
-          this.end(outing);outing.returnTo=START;
+          this.end(outing);outing.room=LOWER_ROOMS[0];outing.returnTo=START;
           return outing;
         }
         outing.progress=(await this.store.advance(playerId,outing.progress,{health:left}))!;
@@ -118,10 +131,11 @@ export class LowerWorksOuting {
       }else if(hit){
         outing.impact={kind:'blocked',point:feet,until:now+430};
       }
-      outing.enemy={...enemy,position:warning.target,phase:'opening',until:now+LOWER_STRIKE.opening,warning:null};
-      outing.braceUntil=0;
+      const rest=warning.kind==='lunge'?warning.target:enemy.position;
+      outing.enemy={...enemy,position:rest,phase:'opening',until:now+config.opening,warning:null};
+      outing.beat++;outing.counterUsed=false;outing.braceUntil=0;
     }else{
-      outing.enemy=advanceMite(enemy,feet,now,dt);
+      outing.enemy=advanceLowerEnemy(enemy,feet,now,dt,outing.beat);
     }
     if(outing.draw){
       if(!validDraw(outing.draw.from,feet)){
@@ -137,18 +151,15 @@ export class LowerWorksOuting {
     const outing=await this.get(playerId,position,now);
     const reply=(ok:boolean,message:string,details:Pick<LowerReply,'replayed'|'stockChanged'>={}):LowerReply=>
       ({ok,message,view:this.view(playerId,outing,now),...details});
-    if(input.kind==='tool-chest'){
-      if(outing.progress.toolClaim===input.id)return reply(true,'This Stores claim already added 2 Scrap.',{replayed:true,stockChanged:true});
-      if(outing.progress.toolClaim)return reply(false,'You already collected the Stores chest.');
-      const room=LOWER_ROOMS[0],world=LOWER_WORLDS[room],chest=world.stops.find(stop=>stop.id==='depths-tool-chest')!;
-      if(position.room!==room||distance(position.position,chest.point)>1.4||!clearSegment(room,position.position,chest.point,world))
-        return reply(false,'Walk to the Stores chest before opening it.');
-      if(outing.enemy)return reply(false,'Step away from the mite before opening the chest.');
-      const next=await this.store.advance(playerId,outing.progress,{toolClaim:input.id},{claimTools:{at:now}});
-      if(!next)return reply(false,'Make room for 2 Scrap in your Bag. The chest will wait.');
-      outing.progress=next;
-      return reply(true,'Stores chest opened · 2 Scrap added to Bag.',{stockChanged:true});
+    if(input.kind==='rest'){
+      if(position.room!==LOWER_ROOMS[0]||distance(position.position,LANDING_BENCH.point)>1.4||
+        !clearSegment(LOWER_ROOMS[0],position.position,LANDING_BENCH.point,LOWER_WORLDS[LOWER_ROOMS[0]]))
+        return reply(false,'Walk to the lamplit bench before resting.');
+      if(outing.progress.health===FIELD_HEALTH)return reply(true,'Your health is already full.');
+      outing.progress=(await this.store.advance(playerId,outing.progress,{health:FIELD_HEALTH}))!;
+      return reply(true,'Rested · health restored.');
     }
+    if(input.kind!=='combat')return this.claim(playerId,position,outing,input.kind,input.id,now,reply);
     const request=JSON.stringify(input),last=outing.last;
     if(last?.id===input.id){
       if(last.request!==request)return reply(false,'That request belongs to another action.');
@@ -177,4 +188,28 @@ export class LowerWorksOuting {
     const result=await this.strike(playerId,outing,position.position,weapon,now);
     return finish(result.ok,result.message);
   }
+  private async claim(playerId:string,position:TownPosition,outing:Outing,kind:LowerClaim,id:string,now:number,
+    reply:(ok:boolean,message:string,details?:Pick<LowerReply,'replayed'|'stockChanged'>)=>LowerReply){
+    const loot=LOWER_LOOT[kind],field=loot.field;
+    if(outing.progress[field]===id)return reply(true,loot.name+' already collected.',{replayed:true,stockChanged:true});
+    if(outing.progress[field])return reply(false,'You already collected this chest.');
+    if(Object.values(LOWER_LOOT).some(award=>outing.progress[award.field]===id))
+      return reply(false,'That request belongs to another chest.');
+    const world=LOWER_WORLDS[loot.room],chest=world.stops.find(stop=>stop.id===loot.stop)!;
+    if(position.room!==loot.room||distance(position.position,chest.point)>1.4||!clearSegment(loot.room,position.position,chest.point,world))
+      return reply(false,'Walk to the chest before opening it.');
+    if(kind==='collector-reward'&&!outing.progress.collectorCleared)
+      return reply(false,'The Collector is guarding that chest.');
+    if(outing.enemy)return reply(false,'Step away from the fight before opening the chest.');
+    const next=await this.store.advance(playerId,outing.progress,{[field]:id},{claim:{kind,at:now}});
+    if(!next){
+      const slots=Object.values(loot.stock).reduce<number>((total,each)=>total+each,0);
+      return reply(false,kind==='tool-chest'?'Make room for 2 Scrap in your Bag. The chest will wait.':
+        'Free '+slots+' material spaces in your Bag. The chest will wait.');
+    }
+    outing.progress=next;
+    const message=kind==='tool-chest'?'Stores chest opened · 2 Scrap added to Bag.':loot.name+' opened · '+loot.reward+' collected.';
+    return reply(true,message,{stockChanged:true});
+  }
+
 }

@@ -24,16 +24,24 @@ export const ALDER_KEEPSAKE={
  alt:'A honey-brown alder sample with visible grain',
  story:'Honey-brown alder from the Mossbank sawmill. The grain follows the windrow; the label follows office policy.',
 } as const;
+export const COLLECTOR_GAUGE={
+ id:'collector-gauge',
+ name:'Collector’s Overdue Gauge',
+ art:'/art/pumpworks/collector-overdue-gauge.svg',
+ alt:'Brass pressure gauge on a warm wooden plaque',
+ story:'Recovered from Lower Pumpworks. The needle has been stuck on “Inspection pending” for years.',
+} as const;
 export const HOME_KEEPSAKES = {
  naturalist: NATURALIST_KEEPSAKE,
  'woodland-certificate': WOODLAND_KEEPSAKE,
  'alder-swatch':ALDER_KEEPSAKE,
+ 'collector-gauge':COLLECTOR_GAUGE,
 } as const;
-export const HOME_KEEPSAKE_IDS = ['naturalist','woodland-certificate','alder-swatch'] as const;
+export const HOME_KEEPSAKE_IDS = ['naturalist','woodland-certificate','alder-swatch','collector-gauge'] as const;
 export type HomeKeepsake = typeof HOME_KEEPSAKE_IDS[number];
 export type HomeKeepsakeProjection = {
  keepsake?: typeof NATURALIST_KEEPSAKE.id;
- wallDisplay?: typeof WOODLAND_KEEPSAKE.id | typeof ALDER_KEEPSAKE.id;
+ wallDisplay?: Exclude<HomeKeepsake,typeof NATURALIST_KEEPSAKE.id>;
 };
 export function displayedHomeKeepsake(plot?:HomeKeepsakeProjection):HomeKeepsake|null{
  return plot?.wallDisplay??plot?.keepsake??null;

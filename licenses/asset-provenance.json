@@ -3,6 +3,16 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "collector-overdue-gauge",
+      "path": "public/art/pumpworks/collector-overdue-gauge.svg",
+      "sha256": "ede237e0c631083c6ac347f3e7b0431cc1a4545593952644c0f953cd204a5dc1",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "Original vector artwork",
+      "date": "2026-11-25",
+      "modifications": "New brass dial and wood plaque for the Collector’s first-clear keepsake."
+    },
+    {
       "id": "pumpworks-riveted-vest-brass",
       "path": "public/art/pumpworks/riveted-vest-brass.svg",
       "sha256": "4f1545ef94731aaefd99b77fbf2e5a2f6c9d10bf8218055c6402d59f24bc9d51",

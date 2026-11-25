@@ -19,7 +19,7 @@ import {equippedArmor} from '../src/game/pumpworks.ts';
 import {PUMPWORKS_DOOR} from '../src/game/pumpworks-room.ts';
 import {sharedFieldInputSchema,type SharedFieldView} from '../src/game/shared-field.ts';
 import {GlasshouseClosed,MossbankClosed,TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './live-store.ts';
-import {canStand,routeTo,worlds} from '../src/game/world.ts';
+import {canStand,clearSegment,routeTo,worlds} from '../src/game/world.ts';
 const DEFAULT_FIXTURES=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}];
 const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden','neighborhood','glasshouse','mossbank','pumpworks',...LOWER_ROOMS]),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(positionContextValid);
 const COOKIE='ih2_fixture';
@@ -133,9 +133,10 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  function sendDepths(id:string,view:LowerView){
   for(const connection of connections)if(connection.id===id&&send(connection,'depths',view))metrics.depthsFrames++;
  }
- function moveToDepthsLanding(current:Resident,view:LowerView){
+ function moveToDepthsLanding(id:string,current:Resident,view:LowerView){
   if(!view.returnTo||!view.room||!isLowerRoom(current.value.room))return false;
   const point=view.returnTo;
+  depths.confirmLanding(id);
   if(current.value.room===view.room&&Math.hypot(point.x-current.value.position.x,point.y-current.value.position.y)<.001)return false;
   current.value={room:view.room,position:point};current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;
   return true;
@@ -157,7 +158,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
      const at=now(),outing=await depths.tick(id,current.value,at);
      if(depths.due(outing,at)){
       const view=depths.view(id,outing,at);
-      moveToDepthsLanding(current,view);
+      moveToDepthsLanding(id,current,view);
       sendDepths(id,view);
      }
     }).catch(()=>{depths.leave(id);metrics.depthsErrors++;});
@@ -207,12 +208,13 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
      const current=await resident(id);
      return await serial(id,res,async()=>{
       if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
+      try{
       const at=now();
       const connected=fieldConnected(id);
       const outing=connected&&isLowerRoom(current.value.room)
        ?await depths.tick(id,current.value,at):await depths.get(id,current.value,at);
       const view=depths.view(id,outing,at);
-      if(moveToDepthsLanding(current,view)){
+      if(moveToDepthsLanding(id,current,view)){
        sendDepths(id,view);
        if(intent)return json(res,200,{ok:false,message:'Back at the landing. Take a breath before heading down again.',view});
       }
@@ -220,6 +222,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
       const result=await depths.input(id,current.value,intent,at,connected);
       if(result.view.room)sendDepths(id,result.view);
       return json(res,200,result);
+      }catch(error){depths.leave(id);metrics.depthsErrors++;throw error;}
      },false);
     }finally{release();}
    }
@@ -310,7 +313,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(isLowerRoom(current.value.room)&&fieldConnected(id)){
      const at=now(),outing=await depths.tick(id,current.value,at);
      const view=depths.view(id,outing,at);
-     if(moveToDepthsLanding(current,view)){
+     if(moveToDepthsLanding(id,current,view)){
       sendDepths(id,view);metrics.movementRejected++;
       return json(res,409,{message:'Back at the landing.',position:current.value});
      }
@@ -325,6 +328,8 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
      const portals=previous.room==='square'&&next.room==='pumpworks'?[PUMPWORKS_DOOR]:previous.room==='pumpworks'?[...worlds.pumpworks.stops,DEPTHS_HATCH]:worlds[previous.room].stops;
      const portal=portals.find(s=>(isHome(previous.room)?s.id==='home-door':s.transition===next.room)&&Math.hypot(previous.position.x-s.point.x,previous.position.y-s.point.y)<=1.9);
      crossingPortal=portal;
+     if(portal&&(isLowerRoom(previous.room)||isLowerRoom(next.room))&&
+       !clearSegment(previous.room,previous.position,portal.point,worlds[previous.room]))valid=false;
      const expected=isHome(previous.room)?exitForHome(previous):portal?.arrival?{room:portal.transition,position:portal.arrival,districtId:undefined}:null;
      valid=valid&&!!portal&&!!expected&&expected.room===next.room&&expected.districtId===next.districtId&&Math.hypot(next.position.x-expected.position.x,next.position.y-expected.position.y)<.05;
     }

@@ -1,4 +1,4 @@
-import type {LowerInput, LowerReply, LowerView} from '../game/lower-pumpworks.ts';
+import {LOWER_ENEMIES, type LowerClaim, type LowerInput, type LowerReply, type LowerView} from '../game/lower-pumpworks.ts';
 import {FIELD_HEALTH} from '../game/pumpworks.ts';
 
 type DepthsUI={
@@ -16,6 +16,7 @@ export function setupDepths({root,view,canAct,send,message}:DepthsUI){
       <div class="pump-health">
         <label><span></span><progress max="${FIELD_HEALTH}" value="${FIELD_HEALTH}"></progress></label>
       </div>
+      <progress class="pump-enemy-meter" hidden></progress>
     </div>
     <div class="pump-action-row">
       <button type="button" aria-keyshortcuts="Space">Strike<kbd aria-hidden="true">Space</kbd></button>
@@ -23,9 +24,12 @@ export function setupDepths({root,view,canAct,send,message}:DepthsUI){
     </div>`;
   const status=root.querySelector<HTMLElement>('.pump-control-status')!;
   const health=root.querySelector<HTMLElement>('.pump-health span')!;
-  const meter=root.querySelector<HTMLProgressElement>('progress')!;
+  const meter=root.querySelector<HTMLProgressElement>('.pump-health progress')!;
+  const enemyMeter=root.querySelector<HTMLProgressElement>('.pump-enemy-meter')!;
   const [strike,brace]=root.querySelectorAll<HTMLButtonElement>('button');
   let working=false;
+  let painted:LowerView|null|undefined;
+  let paintedPending=false,paintedAllowed=false;
   const say=(part:HTMLElement,text:string)=>{if(part.textContent!==text)part.textContent=text;};
   async function perform(input:LowerInput){
     if(working||!canAct())return;
@@ -40,21 +44,34 @@ export function setupDepths({root,view,canAct,send,message}:DepthsUI){
     return perform({id:crypto.randomUUID(),kind:'combat',encounter:active.encounter,turn:active.turn,action});
   }
   function paint(show:boolean){
-    root.hidden=!show;
-    if(!show)return;
-    const active=view(),phase=active?.enemy?.phase;
+    if(root.hidden===show)root.hidden=!show;
+    if(!show){painted=undefined;return;}
+    const active=view(),allowed=canAct(),phase=active?.enemy?.phase;
+    if(painted===active&&paintedPending===working&&paintedAllowed===allowed)return;
+    painted=active;paintedPending=working;paintedAllowed=allowed;
     const current=active?.progress.health;
     say(health,current==null?'Health —':'Health '+current+' / '+FIELD_HEALTH);
     if(current==null)meter.removeAttribute('value');else if(meter.value!==current)meter.value=current;
-    if(root.dataset.phase!==phase)root.dataset.phase=phase??'safe';
-    say(status,!active?'Checking the passage…':phase==='windup'?'Lunge · move aside':phase==='opening'?'Open to strike':
-      phase==='chase'?'Filter mite chasing':active.progress.miteCleared?'Filter mite down':'Explore the passage');
+    if(root.dataset.phase!==(phase??'safe'))root.dataset.phase=phase??'safe';
+    const enemy=active?.enemy;
+    enemyMeter.hidden=!enemy;
+    if(enemy){
+      if(enemyMeter.max!==enemy.maxHealth)enemyMeter.max=enemy.maxHealth;
+      if(enemyMeter.value!==enemy.health)enemyMeter.value=enemy.health;
+      const label=LOWER_ENEMIES[enemy.id].name+' health';
+      if(enemyMeter.getAttribute('aria-label')!==label)enemyMeter.setAttribute('aria-label',label);
+    }
+    const ready=active?.room==='pumpworks-sluice'?active.progress.collectorCleared:active?.progress.miteCleared;
+    say(status,!active?'Checking the passage…':phase==='windup'?
+      (enemy?.warning?.kind==='pressure'?'Pressure burst · step out':'Lunge · move aside'):
+      phase==='opening'?(active.collectorCounterUsed?'Shell recovering':'Open to strike'):enemy?LOWER_ENEMIES[enemy.id].name+' chasing':
+      ready?(active.room==='pumpworks-sluice'?'Collector defeated':'Filter mite down'):'Explore the passage');
     const label=active?.weapon==='bow'?'Shoot':active?.weapon==='staff'?'Cast':'Strike';
     if(strike.firstChild?.textContent!==label&&strike.firstChild)strike.firstChild.textContent=label;
-    strike.disabled=working||!canAct()||!phase||!active?.weapon||!!active.drawUntil;
-    brace.disabled=working||!canAct()||!phase;
+    strike.disabled=working||!allowed||!phase||!active?.weapon||!!active.drawUntil;
+    brace.disabled=working||!allowed||!phase;
   }
   strike.onclick=()=>{void attack('strike');};
   brace.onclick=()=>{void attack('brace');};
-  return {paint,attack,toolChest:()=>perform({id:crypto.randomUUID(),kind:'tool-chest'})};
+  return {paint,attack,rest:()=>perform({id:crypto.randomUUID(),kind:'rest'}),openChest:(kind:LowerClaim)=>perform({id:crypto.randomUUID(),kind})};
 }

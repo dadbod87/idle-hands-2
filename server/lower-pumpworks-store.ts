@@ -1,6 +1,6 @@
 import type {Pool} from 'pg';
 import {RESOURCE_IDS, STORAGE_LIMIT, isCurrentWorkshop, loadWorkshop} from '../src/game/live-workshop.ts';
-import {freshLowerProgress, lowerProgressSchema, TOOL_LOOT, type LowerProgress} from '../src/game/lower-pumpworks.ts';
+import {freshLowerProgress, lowerProgressSchema, LOWER_LOOT, type LowerClaim, type LowerProgress} from '../src/game/lower-pumpworks.ts';
 import type {TownPosition} from './live-store.ts';
 
 export class LowerWorksStore {
@@ -12,27 +12,30 @@ export class LowerWorksStore {
   }
   async advance(playerId:string, before:LowerProgress, patch:Partial<LowerProgress>, options:{
     position?:TownPosition;
-    claimTools?:{at:number};
+    claim?:{kind:LowerClaim;at:number};
   }={}){
     const next=lowerProgressSchema.parse({...before,...patch,revision:before.revision+1});
     const client=await this.pool.connect();
     try{
       await client.query('begin');
       // Town commands also lock the player first. Stock and a claim commit together.
-      if(options.claimTools){
+      if(options.claim){
+        const loot=LOWER_LOOT[options.claim.kind];
         const row=(await client.query('select workshop from ih2.players where id=$1 for update',[playerId])).rows[0];
         if(!row)throw new Error('Missing resident for the Stores claim.');
-        const loaded=loadWorkshop(row.workshop,options.claimTools.at);
+        const loaded=loadWorkshop(row.workshop,options.claim.at);
         if(loaded.recovered)throw new Error('Workshop stock could not be verified.');
         const state=loaded.state;
+        if(options.claim.at<state.observedAt)throw new Error('The clock could not confirm this chest. Try again.');
         const free=STORAGE_LIMIT-RESOURCE_IDS.reduce((total,id)=>total+state.inventory[id],0);
-        if(free<TOOL_LOOT.scrap || state.revision>=1_000_000){
+        const stock=RESOURCE_IDS.reduce((total,id)=>total+loot.stock[id],0);
+        if(free<stock || state.revision>=1_000_000){
           await client.query('rollback');
           return null;
         }
-        state.inventory.scrap+=TOOL_LOOT.scrap;
+        for(const id of RESOURCE_IDS)state.inventory[id]+=loot.stock[id];
         state.revision++;
-        state.lastMessage='Stores chest · 2 Scrap added to Bag.';
+        state.lastMessage=loot.name+' · '+loot.reward+' collected.';
         if(!isCurrentWorkshop(state))throw new Error('The Stores award failed workshop validation.');
         await client.query('update ih2.players set workshop=$2,updated_at=now() where id=$1',[playerId,state]);
       }

@@ -21,8 +21,8 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "8e09d42e2dd4045d00ef5ba4b54d4118d5216220816650547e624727a725dafa",
-    "src/main.ts": "1f8b566f8e13678e178b377606992526409936f5618a2709d3cf3c295a5ffaef",
-    "src/phaser/WorldScene.ts": "5d82df3cc4edb7ba36eb0e1ec3367fb6a4b9efe6085d55ecfbb50a2590d5ff7f",
+    "src/main.ts": "d1552744bde3e9f38479b30269ae55aaeb70968e503b2f8288bce406bdcdb909",
+    "src/phaser/WorldScene.ts": "fd89d53975eb8716fa9636ee8342ada29893239abf4844aee0f8cee9af169b85",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
   "currentTask": "Reviewed the shared Pumpworks route and wearable layers against current source. Garden geometry, archived study inputs and generated study output remain frozen."

@@ -1,4 +1,5 @@
-import {isFieldRoute, isLowerRoom, lowerTransitionLabel, LIFT_TOP_ID} from './game/lower-pumpworks-room.ts';
+import {LOWER_LOOT, type LowerClaim} from './game/lower-pumpworks.ts';
+import {isFieldRoute, isLowerRoom, lowerTransitionLabel, LANDING_BENCH, LIFT_TOP_ID} from './game/lower-pumpworks-room.ts';
 import {setupDepths} from './ui/lower-pumpworks.ts';
 import {graftReady,readValleyGraft,startValleyGraft,VALLEY_GRAFT_KEY,VALLEY_GRAFT_STOP_ID,type GraftId} from './game/valley-graft.ts';
 import {showValleyGraft,valleyGraftJournal} from './ui/valley-graft.ts';
@@ -34,7 +35,7 @@ import {headwearName} from './art/headwear.ts';
 import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
 import { benchWork } from './game/crafting-view.ts';
 import { SUNROOM_NOTEBOOK } from './game/home-sunroom.ts';
-import { displayedHomeKeepsake, HOME_KEEPSAKES } from './game/home-keepsake.ts';
+import { displayedHomeKeepsake, HOME_KEEPSAKES, COLLECTOR_GAUGE } from './game/home-keepsake.ts';
 import {FIRST_MORNING_KEY,readFirstMorning,saveFirstMorning,type MorningRead} from './game/first-morning.ts';
 import {mountDoorLight} from './ui/door-light.ts';
 import {ARRIVAL_STORIES} from './game/arrival-stories.ts';
@@ -410,6 +411,7 @@ function adoptTownPosition(snapshot:TownSnapshot, throughDoor=false){
 }
 let fieldRecoveryHandled='';
 let depthsRecoveryHandled='';
+const lowerClaimByStop=new Map<string,LowerClaim>(Object.entries(LOWER_LOOT).map(([key,loot])=>[loot.stop,key as LowerClaim] as const));
 const depthsAtControl=()=>isLowerRoom(session.room)&&!panel.open&&!session.locked&&scene.roomReady&&!document.hidden;
 const depths=setupDepths({
  root:document.querySelector<HTMLElement>('#depths-controls')!,
@@ -418,7 +420,9 @@ const depths=setupDepths({
  send:async input=>{
   if(!town)throw Error('Choose a resident first.');
   await flushMovement(true);
-  return town.sendDepths(input);
+  const reply=await town.sendDepths(input);
+  if(reply.ok&&reply.stockChanged&&!reply.replayed)music.cue('craft');
+  return reply;
  },
  message:message=>feedback.textContent=message,
 });
@@ -673,6 +677,15 @@ const workshop=new WorkshopUI({fieldGear:()=>{
   }else goNamedDestination('square',PUMPWORKS_DOOR.id);
  },()=>workshop.showJournal('pumpworks-seal'),()=>goNamedDestination('pumpworks',FORGE_STOP.id));
  mossbank.journal(body);
+ if(town?.snapshot?.collectorGaugeOwned){
+  const reward=document.createElement('section');
+  reward.className='depths-journal';
+  reward.dataset.collectorKeepsake='';
+  const heading=document.createElement('h3');heading.textContent=COLLECTOR_GAUGE.name;
+  const art=document.createElement('img');art.src=COLLECTOR_GAUGE.art;art.alt=COLLECTOR_GAUGE.alt;
+  reward.append(art,heading,paragraph('Lower Pumpworks cleared. Display it using Keepsake display inside your home.'));
+  body.append(reward);
+ }
  if(town)sewingJournal(body,town,()=>goNamedDestination('workshop',SEWING_TABLE.id));
  else valleyGraftJournal(body,localGraft(),()=>goNamedDestination('hidden-valley',VALLEY_GRAFT_STOP_ID));
 },inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
@@ -1109,8 +1122,14 @@ function activate(stop: Stop) {
     showTailoring(sewingHost,town);
     return;
   }
-  if(isLowerRoom(session.room)&&stop.id==='depths-tool-chest'){
-  void depths.toolChest();return;
+  if(isLowerRoom(session.room)){
+  if(stop.id===LANDING_BENCH.id){void depths.rest();return;}
+  const claim=lowerClaimByStop.get(stop.id);
+  if(claim){
+   if(town?.depthsView?.progress[LOWER_LOOT[claim].field])feedback.textContent='You already collected this chest.';
+   else void depths.openChest(claim);
+   return;
+  }
  }
  if(pumpworks&&session.room==='pumpworks'&&stop.id==='pumpworks-bell'){
     const field=pumpworks.current();
@@ -1349,7 +1368,9 @@ scene.onFrame = () => {
   const nearby=session.nearby(),stop=nearby?resolvedStop(nearby):undefined;
   const district=session.room==='square'?townDistrict(session.position):null;
   const pullValleyPrint=canPullValleyPrint(stop);
-  const state = (district?.name??'')+contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored))+':'+String(resting())+':'+(stop?.transition??'')+':'+String(pullValleyPrint);
+  const claim=stop?lowerClaimByStop.get(stop.id):undefined;
+  const chestClaimed=claim&&!!town?.depthsView?.progress[LOWER_LOOT[claim].field];
+  const state = (district?.name??'')+contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored))+':'+String(resting())+':'+(stop?.transition??'')+':'+String(pullValleyPrint)+':'+String(!!chestClaimed);
   if (state !== lastContext) {
     lastContext = state;
     const roomName=isLowerRoom(session.room)?(session.room==='pumpworks-depths'?'Lower Pumpworks':'Lower sluice'):session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='glasshouse'?'Inkwood Glasshouse':session.room==='garden'?'Your allotment':session.room==='mossbank'?'Mossbank outskirts':session.room==='hidden-valley'?'Hidden Valley':session.room==='pumpworks'?'The Pumpworks':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
@@ -1362,7 +1383,8 @@ scene.onFrame = () => {
       const label = 'Practice town · ' + (town?.snapshot?.name ?? 'choose a resident');
       if (practiceLabel.textContent !== label) practiceLabel.textContent = label;
     }
-    const depthsAction=stop?lowerTransitionLabel(stop)??(stop.id==='depths-tool-chest'?'Open Stores chest':undefined):undefined;
+    const claimLabel=claim?(chestClaimed?LOWER_LOOT[claim].name+' collected':'Open '+LOWER_LOOT[claim].name):undefined;
+    const depthsAction=stop?lowerTransitionLabel(stop)??claimLabel??(stop.id===LANDING_BENCH.id?'Rest at lamplit bench':undefined):undefined;
     interactLabel.textContent = depthsAction??(stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='glasshouse'?'nursery':stop.transition==='mossbank'?'Mossbank':stop.transition==='hidden-valley'?'Hidden Valley':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby');
     if(pullValleyPrint)interactLabel.textContent='Pull a cider print';
     if(stop?.id==='lodging-door')interactLabel.textContent='Enter lodging';
@@ -1375,7 +1397,7 @@ scene.onFrame = () => {
   }
   // A named stop can be visible while its restored shared position is still syncing.
   // Keep Inspect unavailable until the same input guard would accept its click.
-  const disabled = !stop || session.locked || !scene.roomReady;
+  const disabled = !stop || !!chestClaimed || session.locked || !scene.roomReady;
   if (interactButton.disabled !== disabled) interactButton.disabled = disabled;
   const climate = scene.climateState();
   if (climate) {

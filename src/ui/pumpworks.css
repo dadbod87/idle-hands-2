@@ -144,8 +144,19 @@
 }
 
 #depths-controls .pump-action-row { grid-template-columns:repeat(2,minmax(0,1fr)); }
-.shell:has(#depths-controls:not([hidden])) .game-controls .pump-controls[hidden] { display:none; }
 @media(max-width:650px),(max-height:480px) {
  #location:is([data-room=pumpworks-depths],[data-room=pumpworks-sluice]) { padding:5px 8px; max-width:52%; }
  #location:is([data-room=pumpworks-depths],[data-room=pumpworks-sluice]) > :is(span,small) { display:none; }
+}
+
+.depths-journal {
+ display:grid;grid-template-columns:minmax(50px,72px) minmax(0,1fr);gap:4px 10px;
+ align-items:start;padding:8px;border:1px solid #94805f;background:#f4ead2;
+}
+.depths-journal img { grid-row:1/3;width:100%; }
+#panel-body .depths-journal :is(h3,p) { margin:0; }
+
+@media(max-width:650px) {
+ #depths-controls .pump-action-row { flex-basis:48%; }
+ #depths-controls .pump-action-row button { padding-inline:4px; overflow-wrap:anywhere; }
 }

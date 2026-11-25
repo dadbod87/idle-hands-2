@@ -45,6 +45,7 @@ export type TownPosition = { room: Room; position: Point; homePlotId?: string; d
 export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'];workroomPlacements:HomeLayout['workroomPlacements']; pennantOwned:boolean;letterboxMotif:LetterboxMotif|null;planId?:string|null;yard?:ReturnType<typeof emptyYard>;construction?:string|null;housingRevision?:number;keepsake?:HomeKeepsakeProjection['keepsake'];wallDisplay?:HomeKeepsakeProjection['wallDisplay'];windowsillPlant?:GlasshousePlant;windowsillStriped?:true };
 export type MaintenanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot = {
+  collectorGaugeOwned?:true;
   glasshouse?:GlasshouseSnapshot;
   glasshousePlant?:GlasshousePlant;
   inkmint?:Inkmint;
@@ -185,7 +186,7 @@ export class TownStore {
     const visited=isHome(position.room)?plots.find(p=>p.id===position.homePlotId):undefined;
     const displayed=data.plots.find(p=>p.id===visited?.id)?.keepsake;
     if(visited&&displayed==='naturalist')visited.keepsake=displayed;
-    if(visited&&(displayed==='woodland-certificate'||displayed==='alder-swatch'))visited.wallDisplay=displayed;
+    if(visited&&displayed&&displayed!=='naturalist')visited.wallDisplay=displayed;
 
     const visiblePlant=z.object({plant:glasshousePlantSchema,striped:z.boolean()}).safeParse(data.plots.find(p=>p.id===visited?.id)?.windowsill_plant);
     if(visited&&visiblePlant.success){
@@ -210,7 +211,7 @@ export class TownStore {
     const keptPlant=glasshousePlantSchema.safeParse(data.glasshouse_plant);
     const inkmint=inkmintSchema.safeParse(data.inkmint);
     const glasshouse=glasshouseSnapshot(data.glasshouse,near(position,'trail',INKWOOD_GLASSHOUSE.id)?data.glasshouse_review:null,id,now);
-    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {plantWindowsill:true,tailoring:tailoringFromRow(data.tailoring),...(glasshouse?{glasshouse}:{}),...(keptPlant.success?{glasshousePlant:keptPlant.data,...(inkmint.success?{inkmint:inkmint.data}:{})}:{}),orchard:orchardSnapshot(player.orchard),outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position, lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},headwear:townHeadwear(awarded.includes(TRAIL_PENNANT_AWARD),player.worn_headwear,workshop.carpentry.recorded>0),bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {...(data.collector_gauge_owned?{collectorGaugeOwned:true as const}:{}),plantWindowsill:true,tailoring:tailoringFromRow(data.tailoring),...(glasshouse?{glasshouse}:{}),...(keptPlant.success?{glasshousePlant:keptPlant.data,...(inkmint.success?{inkmint:inkmint.data}:{})}:{}),orchard:orchardSnapshot(player.orchard),outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position, lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},headwear:townHeadwear(awarded.includes(TRAIL_PENNANT_AWARD),player.worn_headwear,workshop.carpentry.recorded>0),bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string, confirmedPosition?: () => TownPosition | undefined): Promise<TownSnapshot> {
     const client = await this.pool.connect();
@@ -460,15 +461,18 @@ export class TownStore {
             else if(action.keepsake==='alder-swatch'&&!(await client.query(
               'select 1 from ih2.quest_awards where player_id=$1 and quest_id=$2',[id,MOSSBANK_AWARDS.finish],
             )).rowCount)reject('Finish Wren’s survey to earn the alder swatch.');
+            else if(action.keepsake==='collector-gauge'&&!(await client.query(
+              "select 1 from ih2.lower_pumpworks_outings where player_id=$1 and progress->>'collectorClaim' is not null",[id],
+            )).rowCount)reject('Collect the Overdue Gauge in Lower Pumpworks first.');
             else if(action.keepsake===ownPlot.keepsake)
-              reject(action.keepsake==='alder-swatch'?'The alder swatch is already displayed.':action.keepsake?'This certificate is already displayed.':'The display is already empty.');
+              reject(action.keepsake==='collector-gauge'?'The Overdue Gauge is already displayed.':action.keepsake==='alder-swatch'?'The alder swatch is already displayed.':action.keepsake?'This certificate is already displayed.':'The display is already empty.');
             else {
               await client.query('update ih2.plots set keepsake=$2 where owner_id=$1',[id,action.keepsake]);
               state.revision++;
               state.observedAt=now;
-              state.lastMessage=action.keepsake==='alder-swatch'?'Alder swatch displayed for visitors.':
+              state.lastMessage=action.keepsake==='collector-gauge'?'Overdue Gauge displayed for visitors.':action.keepsake==='alder-swatch'?'Alder swatch displayed for visitors.':
                 action.keepsake?'Certificate displayed for visitors.':
-                ownPlot.keepsake==='alder-swatch'?'Frame taken down. The swatch stays in Journal.':'Frame taken down. The certificate stays in Journal.';
+                ownPlot.keepsake==='collector-gauge'?'Gauge taken down. It stays in your Journal.':ownPlot.keepsake==='alder-swatch'?'Frame taken down. The swatch stays in Journal.':'Frame taken down. The certificate stays in Journal.';
               result={ok:true,message:state.lastMessage,revision:state.revision,publicChanged:true};
             }
           }else if(action.kind==='start-lesson'||action.kind==='complete-lesson'||action.kind==='redeem-lesson'){

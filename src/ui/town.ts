@@ -154,6 +154,8 @@ export class TownUI {
   if(earnedNaturalist(snapshot.workshop.sketches)&&current!=='naturalist')choices.push('naturalist');
   if(snapshot.homeKeepsakeChoices===true&&snapshot.outing&&earnedFieldCertificate(snapshot.outing.journal)&&current!=='woodland-certificate')choices.push('woodland-certificate');
   if(snapshot.homeKeepsakeChoices===true&&mossbankFromAwards(snapshot.quest.awarded)?.finished&&current!=='alder-swatch')choices.push('alder-swatch');
+  if(snapshot.collectorGaugeOwned&&current!=='collector-gauge')choices.push('collector-gauge');
+  const hasKeepsake=choices.includes('alder-swatch')||choices.includes('collector-gauge');
   if(!choices.length){
    if(!current)fold.append(this.p(snapshot.homeKeepsakeChoices===true?'Finish three tree studies or both woodland repairs to earn a certificate.':'Record three tree studies to earn the Neighborhood Naturalist certificate.'));
    return fold;
@@ -176,7 +178,7 @@ export class TownUI {
   options.className='keepsake-preview-options';
   options.hidden=true;
   let picker:HTMLSelectElement|null=null;
-  const preview=this.button(choices.includes('alder-swatch')?'Preview a keepsake':'Preview your certificate',()=>{
+  const preview=this.button(hasKeepsake?'Preview a keepsake':'Preview your certificate',()=>{
    preview.hidden=true;
    options.hidden=false;
    (picker??hang).focus();
@@ -192,7 +194,7 @@ export class TownUI {
   if(choices.length>1){
    const label=document.createElement('label'),select=document.createElement('select');
    picker=select;
-   label.textContent=choices.includes('alder-swatch')?'Choose a keepsake':'Choose a certificate';
+   label.textContent=hasKeepsake?'Choose a keepsake':'Choose a certificate';
    select.dataset.townFocus='choose-keepsake';
    select.replaceChildren(...choices.map(id=>new Option(HOME_KEEPSAKES[id].name,id)));
    select.onchange=()=>{

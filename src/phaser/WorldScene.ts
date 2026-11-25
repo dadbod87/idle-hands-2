@@ -1268,8 +1268,10 @@ export class WorldScene extends Phaser.Scene {
       const worldWidth=w.width*TILE,worldHeight=w.height*TILE;
       // Give the playable Pumpworks more of a tall desktop without cropping
       // either bank. Narrow and short displays keep the original scale.
-      const zoom=this.room==='pumpworks'?Math.max(1,Math.min(1.85,.87*Math.min(width/worldWidth,height/worldHeight))):1;
+      const zoom=isLowerRoom(this.room)?Math.max(1,Math.min(1.7,width/worldWidth)):
+        this.room==='pumpworks'?Math.max(1,Math.min(1.85,.87*Math.min(width/worldWidth,height/worldHeight))):1;
       const viewWidth=width/zoom,viewHeight=height/zoom;
+      if(isLowerRoom(this.room))camera.setBackgroundColor('#20312f');
       camera.setZoom(zoom).setBounds(-Math.max(0,(viewWidth-worldWidth)/2),-Math.max(0,(viewHeight-worldHeight)/2),
         Math.max(viewWidth,worldWidth),Math.max(viewHeight,worldHeight));
     };

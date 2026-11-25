@@ -50,6 +50,7 @@ export const DUNGEON:Record<Floor,Level>={
   {id:'kiln-mites',name:'Two filter mites',point:{x:41,y:26},kind:'foe'},
   {id:'kiln-chest',name:'Kiln chest',point:{x:47,y:30},kind:'chest'},
   {id:'collector',name:'The Collector',point:{x:44,y:11},kind:'boss'},
+  {id:'collector-chest',name:'Collector’s chest',point:{x:49,y:9},kind:'chest'},
  ]),
 };
 export type {Floor,Marker};
@@ -70,7 +71,11 @@ export const DEPTHS_HATCH: Stop = {
   text: 'Bring a field weapon. A dry passage leads to the old Stores and the lower sluice.',
 };
 
-export const LIFT_BOTTOM_NAME = 'Freight lift';
+export const LANDING_BENCH={
+  id:'depths-bench',name:'Lamplit bench',point:{x:7.25,y:23.8},
+  text:'Restore your health here before another descent.',
+} as const satisfies Stop;
+
 export const LIFT_TOP_ID = 'depths-lift-top';
 export const LIFT_BOTTOM_ID = 'depths-lift-bottom';
 
@@ -82,6 +87,7 @@ function landmark(room: LowerRoom, id: string, options: Omit<Stop, 'point' | 'na
 const upper = LOWER_ROOMS[0], lower = LOWER_ROOMS[1];
 export const LOWER_WORLDS: Record<LowerRoom, World> = {
   [upper]: {...DUNGEON.upper.world, stops: [
+    LANDING_BENCH,
     {id:'depths-gallery',name:'Valve gallery',point:{x:12.1,y:10.6},text:'Filter mites react to movement. Dodge their lunge and strike while they recover.'},
     landmark(upper, 'exit', {
       id: 'depths-exit', name: 'Upper Pumpworks', transition: 'pumpworks', arrival: {x:5.25,y:14.65},
@@ -92,7 +98,7 @@ export const LOWER_WORLDS: Record<LowerRoom, World> = {
       text: 'A return lift with a latch on the lower level.',
     }),
     landmark(upper, 'store-chest', {
-      id: 'depths-tool-chest', text: 'The Stores chest. Its inventory has been filed under miscellaneous.',
+      id: 'depths-tool-chest', name: 'Stores chest', text: 'The Stores chest. Its inventory has been filed under miscellaneous.',
     }),
     landmark(upper, 'stairs-down', {
       id: 'depths-stairs-down', name: 'Lower sluice', transition: lower, arrival: LOWER_START,
@@ -100,6 +106,13 @@ export const LOWER_WORLDS: Record<LowerRoom, World> = {
     }),
   ]},
   [lower]: {...DUNGEON.lower.world, stops: [
+    {id:'depths-spillway',name:'Spillway',point:{x:21,y:14},text:'Follow the painted stripe to the Collector chamber.'},
+    landmark(lower,'kiln-chest',{
+      id:'depths-kiln-chest',text:'The kiln chest holds supplies someone sensibly stored far from the Collector.',
+    }),
+    landmark(lower,'collector-chest',{
+      id:'depths-collector-chest',text:'The Collector guards the old maintenance stock and an overdue gauge.',
+    }),
     landmark(lower, 'stairs-up', {
       id: 'depths-stairs-up', name: 'Upper works', transition: upper, arrival: {x:48.6,y:9.7},
       text: 'The stairs return to Sluice bend.',

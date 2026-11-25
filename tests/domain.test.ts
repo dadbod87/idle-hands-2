@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import {isLowerRoom, LOWER_ROOMS} from '../src/game/lower-pumpworks-room.ts';
 import { Session } from '../src/game/session.ts';
 import { worlds, practiceRoom, walkable, pathTo, canStand, clearSegment, routeTo, type Room } from '../src/game/world.ts';
 
@@ -7,15 +8,20 @@ test('every named destination has a walkable route and never crosses blocked cel
  for (const room of Object.keys(worlds) as Room[]) {
   const localRoom=practiceRoom(room);
   const geometry=localRoom?worlds[room]:undefined;
-  const session=new Session(undefined,undefined,localRoom);session.enter(room);const start={...session.position};
+  const session=new Session(undefined,undefined,localRoom&&!isLowerRoom(room));
+  session.sharedPumpworks=isLowerRoom(room);session.enter(room);const start={...session.position};
   for (const stop of worlds[room].stops) {
-   if(!Number.isInteger(stop.point.x)||!Number.isInteger(stop.point.y)){const route=routeTo(room,start,stop.point,geometry);assert.ok(route.length,room+':'+stop.id);let previous=start;for(const point of route){assert.ok(clearSegment(room,previous,point,geometry));previous=point;}assert.deepEqual(previous,stop.point);continue;}
+   if(!Number.isInteger(start.x)||!Number.isInteger(start.y)||!Number.isInteger(stop.point.x)||!Number.isInteger(stop.point.y)){const route=routeTo(room,start,stop.point,geometry);assert.ok(route.length,room+':'+stop.id);let previous=start;for(const point of route){assert.ok(clearSegment(room,previous,point,geometry));previous=point;}assert.deepEqual(previous,stop.point);continue;}
    const path=pathTo(room,start,stop.point,geometry); assert.ok(path.length,room+':'+stop.id);
    let previous=start;
    for(const p of path){ assert.ok(walkable(room,p,geometry));assert.equal(Math.abs(previous.x-p.x)+Math.abs(previous.y-p.y),1);previous=p; }
    assert.deepEqual(previous,stop.point);
   }
  }
+});
+test('the Lower Pumpworks geometry is reserved for the connected session',()=>{
+ const local=new Session(undefined,undefined,true);
+ for(const room of LOWER_ROOMS)assert.throws(()=>local.enter(room));
 });
 test('blocked and out-of-world taps cannot create a movement route', () => {
  assert.deepEqual(pathTo('square',{x:24,y:25},{x:20,y:18}),[]);

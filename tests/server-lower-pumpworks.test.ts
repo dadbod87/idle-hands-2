@@ -243,6 +243,21 @@ test('Lower Pumpworks verifies room, contact, ownership, inventory capacity and 
     assert.equal((await store.snapshot(hazel)).collectorGaugeOwned,undefined);
     assert.equal((await store.snapshot(hazel)).workshop.inventory.scrap,STORAGE_LIMIT);
     await pool.query('update ih2.players set workshop=$2 where id=$1',[hazel,beforePrize]);
+    // Force the claim write to fail after the stock update. Both writes must roll back.
+    await pool.query(`create function ih2.depths_qa_fail_receipt() returns trigger language plpgsql as
+      $$begin raise exception 'isolated dungeon receipt failure';end$$;
+      create trigger depths_qa_fail_receipt before update on ih2.lower_pumpworks_outings
+      for each row when (new.progress->>'collectorClaim' is not null)
+      execute function ih2.depths_qa_fail_receipt()`);
+    try{
+      const failed=await send(hazel,'depths',prize);
+      assert.equal(failed.status,500);
+      await failed.text();
+      assert.deepEqual((await store.snapshot(hazel)).workshop,beforePrize);
+      assert.equal((await view(hazel)).progress.collectorClaim,null);
+    }finally{
+      await pool.query('drop trigger depths_qa_fail_receipt on ih2.lower_pumpworks_outings; drop function ih2.depths_qa_fail_receipt()');
+    }
     const award=await act(hazel,prize);
     assert.equal(award.ok,true,award.message);
     assert.equal((await act(hazel,prize)).replayed,true);

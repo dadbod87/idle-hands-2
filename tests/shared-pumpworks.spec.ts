@@ -79,7 +79,7 @@ for(const shape of [
     await shot('short');
     await page.evaluate(()=>document.documentElement.style.fontSize='200%');
     for(const name of ['Strike','Brace','Places','Bag','Journal'])await expect(button(name)).toBeInViewport({ratio:1});
-    expect(await page.locator('.pump-action-row').evaluate(row=>row.scrollWidth<=row.clientWidth)).toBe(true);
+    expect(await page.locator('#pump-controls .pump-action-row').evaluate(row=>row.scrollWidth<=row.clientWidth)).toBe(true);
     await shot('short-enlarged');
     await page.evaluate(()=>document.documentElement.style.fontSize='100%');
     await page.setViewportSize({width:320,height:640});

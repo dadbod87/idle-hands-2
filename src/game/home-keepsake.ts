@@ -15,15 +15,22 @@ export const WOODLAND_KEEPSAKE = {
  story: 'Awarded for two different woodland repairs. The arrow now reports to you.',
 } as const;
 
+export const ALDER_KEEPSAKE={
+ id:'alder-swatch',
+ name:'Wren’s alder swatch',
+ art:'/art/mossbank/alder-swatch.svg',
+ story:'Honey-brown alder from the Mossbank sawmill. The grain follows the windrow; the label follows office policy.',
+} as const;
 export const HOME_KEEPSAKES = {
  naturalist: NATURALIST_KEEPSAKE,
  'woodland-certificate': WOODLAND_KEEPSAKE,
+ 'alder-swatch':ALDER_KEEPSAKE,
 } as const;
-export const HOME_KEEPSAKE_IDS = ['naturalist','woodland-certificate'] as const;
+export const HOME_KEEPSAKE_IDS = ['naturalist','woodland-certificate','alder-swatch'] as const;
 export type HomeKeepsake = typeof HOME_KEEPSAKE_IDS[number];
 export type HomeKeepsakeProjection = {
  keepsake?: typeof NATURALIST_KEEPSAKE.id;
- wallDisplay?: typeof WOODLAND_KEEPSAKE.id;
+ wallDisplay?: typeof WOODLAND_KEEPSAKE.id | typeof ALDER_KEEPSAKE.id;
 };
 export function displayedHomeKeepsake(plot?:HomeKeepsakeProjection):HomeKeepsake|null{
  return plot?.wallDisplay??plot?.keepsake??null;

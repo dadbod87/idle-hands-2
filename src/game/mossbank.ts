@@ -10,12 +10,28 @@ const schema=z.object({
 }).strict().refine(s=>(s.joined||!s.windrow&&!s.flume)&&(!s.finished||s.windrow&&s.flume));
 
 export type MossbankSurvey=z.infer<typeof schema>;
-export type SurveyAction='join'|'windrow'|'flume'|'finish';
+export const SURVEY_ACTIONS=['join','windrow','flume','finish'] as const;
+export type SurveyAction=typeof SURVEY_ACTIONS[number];
+export const MOSSBANK_AWARDS={
+ join:'mossbank-route-v1',
+ windrow:'mossbank-windrow-v1',
+ flume:'mossbank-flume-v1',
+ finish:'mossbank-swatch-v1',
+} as const satisfies Record<SurveyAction,string>;
 export type SurveyPlace='mossbank-mill'|'mossbank-windrow'|'mossbank-flume'|'mossbank-nursery';
 type Outcome={ok:true;state:MossbankSurvey;message:string}|{ok:false;message:string};
 type StorageAccess=Pick<Storage,'getItem'|'setItem'>;
 
 export const freshMossbank=():MossbankSurvey=>({version:1,joined:false,windrow:false,flume:false,finished:false});
+export function mossbankFromAwards(value:unknown):MossbankSurvey|null{
+ if(!Array.isArray(value))return null;
+ const result=schema.safeParse({
+  version:1,joined:value.includes(MOSSBANK_AWARDS.join),windrow:value.includes(MOSSBANK_AWARDS.windrow),
+  flume:value.includes(MOSSBANK_AWARDS.flume),finished:value.includes(MOSSBANK_AWARDS.finish),
+ });
+ return result.success?result.data:null;
+}
+
 
 export function surveyMossbank(state:MossbankSurvey,action:SurveyAction,place:SurveyPlace):Outcome{
  const accept=(next:Partial<MossbankSurvey>,message:string):Outcome=>({ok:true,state:{...state,...next},message});

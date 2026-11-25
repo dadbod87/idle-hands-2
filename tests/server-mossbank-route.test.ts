@@ -4,8 +4,9 @@ import {realpathSync} from 'node:fs';
 import {database,migrate} from '../server/db.ts';
 import {createTownServer} from '../server/http.ts';
 import {TownStore} from '../server/live-store.ts';
-import {MOSSBANK_ENTRY,MOSSBANK_FRONT,MOSSBANK_INKWOOD_FRONT} from '../src/game/mossbank-room.ts';
+import {MOSSBANK_ENTRY,MOSSBANK_FRONT,MOSSBANK_INKWOOD_FRONT,MOSSBANK_STOPS} from '../src/game/mossbank-room.ts';
 import {PUMPWORKS_ENTRY} from '../src/game/pumpworks-room.ts';
+import {MOSSBANK_AWARDS,mossbankFromAwards} from '../src/game/mossbank.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
 
 const target=process.env.IH2_TEST_DATABASE_URL;
@@ -19,19 +20,25 @@ if(target){
   'Use the dedicated disposable town test database.');
 }
 
-test('Shared travel reaches Mossbank through the restored Inkwood road and checkpoints the exact return', {skip:!target,timeout:22000}, async()=>{
+async function disposablePool(){
  const pool=database(target);
- let app:ReturnType<typeof createTownServer>|undefined;
- let now=Date.UTC(2026,10,25,18);
- const front={room:'trail',position:MOSSBANK_INKWOOD_FRONT} as const;
- const arrival={room:'mossbank',position:MOSSBANK_ENTRY} as const;
- const orchard={room:'square',position:MOSSBANK_FRONT} as const;
  try{
   if(disposable&&new URL(target!).port==='56371'){
    const verified=await pool.query("select current_setting('data_directory') as directory, current_database() as name");
    assert.equal(verified.rows[0].name,'ih2_test');
    assert.equal(realpathSync(verified.rows[0].directory),realpathSync(disposable));
   }
+  return pool;
+ }catch(error){await pool.end();throw error;}
+}
+test('Shared travel reaches Mossbank through the restored Inkwood road and checkpoints the exact return', {skip:!target,timeout:22000}, async()=>{
+ const pool=await disposablePool();
+ let app:ReturnType<typeof createTownServer>|undefined;
+ let now=Date.UTC(2026,10,25,18);
+ const front={room:'trail',position:MOSSBANK_INKWOOD_FRONT} as const;
+ const arrival={room:'mossbank',position:MOSSBANK_ENTRY} as const;
+ const orchard={room:'square',position:MOSSBANK_FRONT} as const;
+ try{
   await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');
   await migrate(pool);
   const store=new TownStore(pool,{now:()=>now});
@@ -72,4 +79,70 @@ test('Shared travel reaches Mossbank through the restored Inkwood road and check
   await app?.close();
   await pool.end();
  }
+});
+
+test('The shared survey grants one private swatch with revision, station and replay checks', {skip:!target,timeout:22000},async()=>{
+ const pool=await disposablePool();
+ const now=Date.UTC(2026,10,25,18);
+ const store=new TownStore(pool,{now:()=>now});
+ const marker=(id:string)=>({room:'mossbank',position:MOSSBANK_STOPS.find(stop=>stop.id===id)!.point} as const);
+ const mill=marker('mossbank-mill'),flume=marker('mossbank-flume'),windrow=marker('mossbank-windrow');
+ try{
+  await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');
+  await migrate(pool);
+  await pool.query("update ih2.bridge set contributed=3,phase='open',grandfathered=true where id=1");
+  const first=await store.ensurePlayer('aster','Aster');
+  await store.ensurePlayer('bea','Bea');
+  const plotId:string=(await pool.query('insert into ih2.plots(owner_id,level,placements) values($1,1,$2) returning id::text',
+   ['aster',first.workshop.placements])).rows[0].id;
+  const inside={room:'home',homePlotId:plotId,position:{x:9,y:11}} as const;
+  const display={kind:'display-home-keepsake',keepsake:'alder-swatch',plotId};
+  const unearned=await store.execute('aster',{...display,id:'unearned-swatch',expectedRevision:0},inside);
+  assert.equal(unearned.ok,false);
+  assert.match(unearned.message,/Finish Wren’s survey/);
+  const dto=(id:string,action:string,expectedRevision:number)=>({id,kind:'mossbank-survey',action,expectedRevision});
+  const bad=await store.execute('aster',dto('survey-too-far','join',0),{room:'square',position:MOSSBANK_FRONT});
+  assert.equal(bad.ok,false);
+  const join=dto('survey-join','join',0);
+  const accepted=await store.execute('aster',join,mill);
+  assert.equal(accepted.ok,true);
+  assert.equal((await store.execute('aster',join,mill)).replayed,true);
+  assert.equal((await store.execute('aster',dto('survey-before-notes','finish',accepted.revision),mill)).ok,false);
+  const concurrent=await Promise.all([
+   store.execute('aster',dto('survey-flume-1','flume',accepted.revision),flume),
+   store.execute('aster',dto('survey-flume-2','flume',accepted.revision),flume),
+  ]);
+  assert.equal(concurrent.filter(entry=>entry.ok).length,1);
+  const written=concurrent.find(entry=>entry.ok)!;
+  assert.equal((await store.execute('aster',dto('survey-wrong-marker','windrow',written.revision),flume)).ok,false);
+  const noted=await store.execute('aster',dto('survey-windrow','windrow',written.revision),windrow);
+  assert.equal(noted.ok,true);
+  const finish=dto('survey-finish','finish',noted.revision);
+  const complete=await store.execute('aster',finish,mill);
+  assert.equal(complete.ok,true);
+  assert.equal((await store.execute('aster',finish,mill)).replayed,true);
+  assert.equal((await store.execute('aster',dto('second-swatch','finish',complete.revision),mill)).ok,false);
+  assert.equal(mossbankFromAwards(complete.snapshot.quest.awarded)?.finished,true);
+  assert.deepEqual(complete.snapshot.workshop.inventory,first.workshop.inventory);
+  assert.deepEqual(complete.snapshot.workshop.owned,first.workshop.owned);
+  const elsewhere=await new TownStore(pool,{now:()=>now}).snapshot('aster');
+  assert.equal(mossbankFromAwards(elsewhere.quest.awarded)?.finished,true);
+  assert.equal(mossbankFromAwards((await store.snapshot('bea')).quest.awarded)?.joined,false);
+  const exact=await pool.query('select count(*)::int as count from ih2.quest_awards where player_id=$1 and quest_id=$2',['aster',MOSSBANK_AWARDS.finish]);
+  assert.equal(exact.rows[0].count,1);
+  await store.savePosition('aster',inside);
+  const mounted=await store.execute('aster',{...display,id:'display-swatch',expectedRevision:complete.revision},inside);
+  assert.equal(mounted.ok,true,mounted.message);
+  assert.equal(mounted.snapshot.plot?.wallDisplay,'alder-swatch');
+  assert.equal((await store.snapshot('bea')).plots.find(plot=>plot.id===plotId)?.wallDisplay,undefined);
+  await store.savePosition('bea',inside);
+  assert.equal((await store.snapshot('bea')).plots.find(plot=>plot.id===plotId)?.wallDisplay,'alder-swatch');
+  assert.equal(mossbankFromAwards((await store.snapshot('bea')).quest.awarded)?.finished,false);
+  const cannotRemove=await store.execute('bea',{...display,keepsake:null,id:'guest-take-frame',expectedRevision:0},inside);
+  assert.equal(cannotRemove.ok,false);
+  const removed=await store.execute('aster',{...display,keepsake:null,id:'owner-take-frame',expectedRevision:mounted.revision},inside);
+  assert.equal(removed.ok,true,removed.message);
+  assert.equal((await store.snapshot('bea')).plots.find(plot=>plot.id===plotId)?.wallDisplay,undefined);
+  assert.equal(mossbankFromAwards(removed.snapshot.quest.awarded)?.finished,true);
+ }finally{await pool.end();}
 });

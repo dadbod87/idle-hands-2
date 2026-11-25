@@ -1,3 +1,4 @@
+import {MOSSBANK_AWARDS} from '../src/game/mossbank.ts';
 /** One statement, with the caller's transaction and clock. No cache or writes. */
 import type {PoolClient} from 'pg';
 import type {TownPosition,TownSnapshot} from './live-store.ts';
@@ -53,6 +54,9 @@ const query = `select /* coherent-town-snapshot */
             when p.keepsake='woodland-certificate' and exists(
               select 1 from ih2.outings o where o.player_id=p.owner_id
                 and o.state @> '{"journal":[{"variant":"wind"},{"variant":"soft-bank"}]}'::jsonb
+            ) then p.keepsake
+            when p.keepsake='alder-swatch' and exists(
+              select 1 from ih2.quest_awards q where q.player_id=p.owner_id and q.quest_id=$4
             ) then p.keepsake else null end
        else null end as keepsake,
      case when p.glasshouse_plant_visible and resident.position->>'homePlotId'=p.id::text
@@ -112,6 +116,6 @@ const query = `select /* coherent-town-snapshot */
  from ih2.players resident where resident.id=$1`;
 
 export async function readSnapshotRows(client:PoolClient,id:string,now:number,key:string):Promise<SnapshotRows|undefined>{
- const {rows}=await client.query<SnapshotRows>(query,[id,now,key]);
+ const {rows}=await client.query<SnapshotRows>(query,[id,now,key,MOSSBANK_AWARDS.finish]);
  return rows[0];
 }

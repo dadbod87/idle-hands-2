@@ -1,3 +1,4 @@
+import type {SurveyAction} from '../game/mossbank.ts';
 import {inkmintSchema,type Inkmint} from '../game/nursery-inkmint.ts';
 import {activeWave} from '../game/town-wave.ts';
 import type {TownHeadwear} from '../game/earned-headwear.ts';
@@ -129,7 +130,7 @@ export class TownClient {
    const inside=snapshot.position?.homePlotId===p.id&&['home','home-expanded'].includes(snapshot.position.room);
    if(!inside||snapshot.homeKeepsakes!==true)return false;
    return p.wallDisplay==null?p.keepsake==='naturalist'
-    :p.keepsake==null&&p.wallDisplay==='woodland-certificate'&&snapshot.homeKeepsakeChoices===true;
+    :p.keepsake==null&&(p.wallDisplay==='woodland-certificate'||p.wallDisplay==='alder-swatch')&&snapshot.homeKeepsakeChoices===true;
   };
   if(!Array.isArray(snapshot.plots)||snapshot.plots.some(p=>!validPlot(p))||snapshot.plot!==null&&!validPlot(snapshot.plot))throw new Error('The town returned an incompatible home layout. Reload after the service update; progress has not been replaced.');
   if(snapshot.plot&&!homeAllocationValid(snapshot.workshop,snapshot.plot))throw new Error('The town returned an invalid furniture allocation. Saved progress was not replaced.');
@@ -227,6 +228,9 @@ export class TownClient {
   return outcome?{state:outcome.snapshot.workshop,message:outcome.message,ok:outcome.ok,command:outcome.command,playerId:outcome.playerId,collection:outcome.collection}:{state:snapshot.workshop,message:'Town state refreshed.',ok:false};
  }
 
+ saveMossbankSurvey(action:SurveyAction,expectedRevision:number,present:()=>boolean){
+  return this.workshopOutcome(this.command({kind:'mossbank-survey',action,expectedRevision},present));
+ }
  async movement(position:TownPosition){const generation=this.generation;const {data,context}=await this.request('movement',position,generation);if(data.snapshot)this.accept(data.snapshot,context);return data;}
  async wave(){const {data}=await this.request('wave',{});if(!activeWave(data.waveUntil,this.serverNow()))throw new Error('The wave has already passed.');return data.waveUntil;}
  async logout(){this.changeIdentity();await this.request('logout',{});this.close();this.snapshot=null;this.pending=null;}

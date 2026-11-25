@@ -5,7 +5,13 @@ import './mossbank.css';
 type Host={
  body:HTMLElement;open:(title:string)=>void;place:()=>string|undefined;
  walk:(place:SurveyPlace|'mossbank-road')=>void;feedback:(message:string)=>void;
- saved:()=>void;preview:()=>void;inMossbank:()=>boolean;observationCue:()=>void;
+ saved:()=>void;preview?:()=>void;inMossbank:()=>boolean;observationCue:()=>void;
+};
+
+type SurveyRecord=NonNullable<ReturnType<typeof readMossbank>>;
+type SharedSurvey={
+ read:()=>SurveyRecord|null;
+ save:(action:SurveyAction,expected:string|null,present:()=>boolean)=>Promise<{ok:boolean;message:string}>;
 };
 
 function line(copy:string){
@@ -21,14 +27,15 @@ function mark(state:MossbankSurvey){
  return list;
 }
 
-export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem'>){
+export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem'>,shared?:SharedSurvey){
+ const read=()=>shared?shared.read():readMossbank(storage);
  let saving=false;
  async function save(action:SurveyAction,place:SurveyPlace,expected:string|null,present:()=>boolean){
-  if(!navigator.locks)return 'This browser cannot safely save the route card across tabs.';
+  if(!shared&&!navigator.locks)return 'This browser cannot safely save the route card across tabs.';
   if(saving||!present())return '';
   saving=true;
   try{
-   const result=await navigator.locks.request(MOSSBANK_KEY,()=>present()
+   const result=shared?await shared.save(action,expected,present):await navigator.locks.request(MOSSBANK_KEY,()=>present()
     ?saveMossbank(storage,expected,action,place)
     :{ok:false,message:'Return to the route marker first.'} as const);
    if(result.ok){host.saved();if(action==='windrow'||action==='flume')host.observationCue();}
@@ -37,7 +44,7 @@ export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem
   finally{saving=false;}
  }
 
- async function observe(place:'mossbank-windrow'|'mossbank-flume',record:NonNullable<ReturnType<typeof readMossbank>>){
+ async function observe(place:'mossbank-windrow'|'mossbank-flume',record:SurveyRecord){
   const action=place==='mossbank-windrow'?'windrow':'flume';
   if(record.state[action]){
    host.feedback(record.state.finished?'Wren filed this observation.':'Already recorded. Check the route card in Journal.');
@@ -50,7 +57,7 @@ export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem
  function show(place:SurveyPlace){
   const stop=MOSSBANK_STOPS.find(stop=>stop.id===place);
   if(!stop||host.place()!==place)return;
-  let record=readMossbank(storage);
+  let record=read();
   if(record?.state.joined&&(place==='mossbank-windrow'||place==='mossbank-flume')){
    void observe(place,record);
    return;
@@ -110,7 +117,7 @@ export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem
    busy=true;
    const result=await save(kind,place,expected,present);
    busy=false;
-   record=readMossbank(storage);
+   record=read();
    if(result)host.feedback(result);
    if(!present())return;
    render(result);
@@ -127,13 +134,13 @@ export function createMossbank(host:Host,storage:Pick<Storage,'getItem'|'setItem
  }
 
  function journal(body:HTMLElement){
-  const state=readMossbank(storage)?.state;
+  const state=read()?.state;
   if(!state?.joined)return;
   const entry=document.createElement('section');entry.className='journal-ready-return mossbank-field-card';entry.dataset.mossbankJournal='';
   const title=document.createElement('h3');title.textContent='Mossbank route card';entry.append(title);
   if(state.finished)entry.append(sample(),line('Alder swatch · Received from Wren after recording the windrow and flood line.'));
   else entry.append(mark(state));
-  if(state.finished){
+  if(state.finished&&host.preview){
    const preview=document.createElement('button');
    preview.type='button';preview.className='destination';
    preview.textContent='Preview the swatch in your workshop';preview.onclick=host.preview;

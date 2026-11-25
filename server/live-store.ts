@@ -1,3 +1,4 @@
+import {MOSSBANK_AWARDS,SURVEY_ACTIONS,mossbankFromAwards,surveyMossbank,type SurveyAction,type SurveyPlace} from '../src/game/mossbank.ts';
 import {INKMINT_STATIONS,inkmintSchema,type Inkmint} from '../src/game/nursery-inkmint.ts';
 import {writeInkmint} from './nursery-inkmint.ts';
 import {headwearName} from '../src/art/headwear.ts';
@@ -67,6 +68,13 @@ type PlayerRow = { id: string; name: string; workshop: WorkshopState; position: 
 const idSchema = z.string().regex(/^[a-zA-Z0-9:_-]{1,80}$/);
 const base = { id: idSchema, expectedRevision: z.number().int().min(0).max(1_000_000) };
 const slotSchema = z.enum(HOME_SLOTS.map(s => s.id) as [string, ...string[]]);
+const mossbankCommandSchema=z.object({
+ ...base,
+ kind:z.literal('mossbank-survey'),action:z.enum(SURVEY_ACTIONS),
+}).strict();
+const mossbankStation:Record<SurveyAction,SurveyPlace>={
+ join:'mossbank-mill',windrow:'mossbank-windrow',flume:'mossbank-flume',finish:'mossbank-mill',
+};
 const specialSchema = z.discriminatedUnion('kind', [
   z.object({ ...base, kind: z.literal('contribute') }).strict(),
   z.object({...base,kind:z.literal('stamp-trail'),landmarkId:z.enum(TRAIL_LANDMARK_IDS)}).strict(),
@@ -173,7 +181,7 @@ export class TownStore {
     const visited=isHome(position.room)?plots.find(p=>p.id===position.homePlotId):undefined;
     const displayed=data.plots.find(p=>p.id===visited?.id)?.keepsake;
     if(visited&&displayed==='naturalist')visited.keepsake=displayed;
-    if(visited&&displayed==='woodland-certificate')visited.wallDisplay=displayed;
+    if(visited&&(displayed==='woodland-certificate'||displayed==='alder-swatch'))visited.wallDisplay=displayed;
 
     const visiblePlant=z.object({plant:glasshousePlantSchema,striped:z.boolean()}).safeParse(data.plots.find(p=>p.id===visited?.id)?.windowsill_plant);
     if(visited&&visiblePlant.success){
@@ -262,6 +270,37 @@ export class TownStore {
       else if (!(position.room==='neighborhood'?canStand(position.room,position.position,housingWorld((await client.query('select id::text,plan_id as "planId" from ih2.plots')).rows,position.districtId!)):validPosition(position))||!validContext) reject('A valid server position is required.');
       else if (clockWentBack || now < state.observedAt) reject('The server clock moved backwards. Your progress is unchanged.');
       else if (state.revision >= 1_000_000) reject('Prototype command limit reached. Your progress is unchanged.');
+      else if(cmd.kind==='mossbank-survey'){
+        const submitted=mossbankCommandSchema.safeParse(raw);
+        if(!submitted.success)reject('That route card request is invalid.');
+        else{
+          const action=submitted.data.action,station=mossbankStation[action];
+          if(!near(position,'mossbank',station))reject('Walk to the right Mossbank station first.');
+          else{
+            const rows=await client.query<{quest_id:string}>(
+              'select quest_id from ih2.quest_awards where player_id=$1 and quest_id=any($2::text[])',
+              [id,Object.values(MOSSBANK_AWARDS)],
+            );
+            const survey=mossbankFromAwards(rows.rows.map(row=>row.quest_id));
+            if(!survey)reject('The route card could not be read. It was kept unchanged.');
+            else{
+              const applied=surveyMossbank(survey,action,station);
+              if(!applied.ok)reject(applied.message);
+              else{
+                const recorded=await client.query(
+                  'insert into ih2.quest_awards(player_id,quest_id,content_version) values($1,$2,1) on conflict do nothing returning quest_id',
+                  [id,MOSSBANK_AWARDS[action]],
+                );
+                if(!recorded.rowCount)reject('That observation is already saved.');
+                else{
+                  state={...state,revision:state.revision+1,observedAt:now,lastMessage:applied.message};
+                  result={ok:true,message:applied.message,revision:state.revision,publicChanged:false};
+                }
+              }
+            }
+          }
+        }
+      }
       else if(cmd.kind==='glasshouse-inkmint'){
         const ownSill=isHome(position.room)&&!!ownPlot&&position.homePlotId===ownPlot.id&&
           Math.hypot(position.position.x-WINDOWSILL_STOP.point.x,position.position.y-WINDOWSILL_STOP.point.y)<=1.9;
@@ -405,13 +444,18 @@ export class TownStore {
               reject('Record all three tree studies to earn the certificate.');
             else if(action.keepsake==='woodland-certificate'&&!earnedFieldCertificate((await privateOuting(client,id)).journal))
               reject('Record both woodland conditions to earn the field certificate.');
+            else if(action.keepsake==='alder-swatch'&&!(await client.query(
+              'select 1 from ih2.quest_awards where player_id=$1 and quest_id=$2',[id,MOSSBANK_AWARDS.finish],
+            )).rowCount)reject('Finish Wren’s survey to earn the alder swatch.');
             else if(action.keepsake===ownPlot.keepsake)
-              reject(action.keepsake?'This certificate is already displayed.':'The display is already empty.');
+              reject(action.keepsake==='alder-swatch'?'The alder swatch is already displayed.':action.keepsake?'This certificate is already displayed.':'The display is already empty.');
             else {
               await client.query('update ih2.plots set keepsake=$2 where owner_id=$1',[id,action.keepsake]);
               state.revision++;
               state.observedAt=now;
-              state.lastMessage=action.keepsake?'Certificate displayed for visitors.':'Frame taken down. The certificate stays in Journal.';
+              state.lastMessage=action.keepsake==='alder-swatch'?'Alder swatch displayed for visitors.':
+                action.keepsake?'Certificate displayed for visitors.':
+                ownPlot.keepsake==='alder-swatch'?'Frame taken down. The swatch stays in Journal.':'Frame taken down. The certificate stays in Journal.';
               result={ok:true,message:state.lastMessage,revision:state.revision,publicChanged:true};
             }
           }else if(action.kind==='start-lesson'||action.kind==='complete-lesson'||action.kind==='redeem-lesson'){

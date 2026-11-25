@@ -1,5 +1,5 @@
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD} from './game/mossbank-room.ts';
-import {MOSSBANK_KEY,readMossbank,type SurveyPlace} from './game/mossbank.ts';
+import {MOSSBANK_KEY,mossbankFromAwards,readMossbank,type SurveyPlace} from './game/mossbank.ts';
 import {createMossbank} from './ui/mossbank.ts';
 import {PUMPWORKS_DOOR} from './game/pumpworks-room.ts';
 import {FIELD_HEALTH,readPumpworks,type PumpworksPlace} from './game/pumpworks.ts';
@@ -378,6 +378,7 @@ const town=townMode?new TownClient({
   if(cue)music.cue(cue);
  },
  onSnapshot:(snapshot,previous)=>{
+ mossbankSurvey=mossbankFromAwards(snapshot.quest.awarded);scene.paintMossbankSurvey();
  const headwear=snapshot.headwear,worn=headwear?.worn;
  scene.headwear=headwear&&(worn===INKWOOD_HOOD||worn===CLERK_CAP)&&ownsHeadwear(headwear,worn)?worn:null;
  fieldNoteOwner=snapshot.playerId;fieldNotes.read(fieldNoteOwner);
@@ -510,22 +511,40 @@ window.addEventListener('keydown',event=>{
  }else if(event.key==='Shift')pumpworks.brace();
  else if(event.key.toLowerCase()==='f')pumpworks.eat();
 });
-const mossbank=townMode?undefined:createMossbank({
+const mossbank=createMossbank({
  open:openPanel,body,place:()=>session.room==='mossbank'?session.nearby()?.id:undefined,
  feedback:message=>feedback.textContent=message,
- saved:refreshMossbankPrint,inMossbank:()=>session.room==='mossbank',observationCue:()=>music.cue('gather'),
- preview:()=>workshop.showJournal('mossbank-swatch'),
+ saved:()=>{if(!townMode)refreshMossbankPrint();},inMossbank:()=>session.room==='mossbank',observationCue:()=>music.cue('gather'),
+ preview:townMode?undefined:()=>workshop.showJournal('mossbank-swatch'),
  walk:place=>{
   if(place==='mossbank-road')goNamedDestination(session.room==='mossbank'?'mossbank':'square',session.room==='mossbank'?'mossbank-mill':place);
   else goNamedDestination('mossbank',place);
  },
-},morningStorage);
+},morningStorage,town?{
+ read:()=>{
+  const snapshot=town.snapshot,state=mossbankFromAwards(snapshot?.quest.awarded);
+  return snapshot&&state?{state,raw:snapshot.playerId+':'+snapshot.workshop.revision}:null;
+ },
+ save:async(action,expected,present)=>{
+  const snapshot=town.snapshot;
+  if(!present()||!snapshot||expected!==snapshot.playerId+':'+snapshot.workshop.revision){
+   return {ok:false,message:'The route card changed. Open the updated card and try again.'};
+  }
+  if(town.retryAvailable){showPendingRequest();return {ok:false,message:'Confirm the previous request first.'};}
+  if(town.isSaving||needResync)return {ok:false,message:'Wait for the town to confirm your position.'};
+  try{return await town.saveMossbankSurvey(action,snapshot.workshop.revision,present);}
+  catch(error){
+   if(town.snapshot?.playerId===snapshot.playerId&&town.retryAvailable)showPendingRequest();
+   return {ok:false,message:error instanceof Error?error.message:'The route card could not be confirmed.'};
+  }
+ },
+}:undefined);
 const workshop=new WorkshopUI({fieldGear:pumpworks?.gear,fieldJournal:pumpworks?(body)=>{pumpworks.journal(body,()=>{
  const state=pumpworks.current();
  if(session.room==='pumpworks'){
   goNamedDestination('pumpworks',state?.satchel==='at-pump'?'pumpworks-cache':state?.cleared?'pumpworks-report':'pumpworks-hopper');
  }else goNamedDestination('square',PUMPWORKS_DOOR.id);
-});mossbank?.journal(body);}:undefined,inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
+});mossbank.journal(body);}:mossbank.journal,inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
  savedMarigold:!town?(earned)=>{
   if(earned===printRights.marigold)return;
   printRights.marigold=earned;
@@ -898,8 +917,7 @@ async function savePondObservation(id:PondWatchId,choice:string,active:()=>boole
 }
 function activate(stop: Stop) {
   if(session.room==='mossbank'&&stop.id.startsWith('mossbank-')&&!stop.transition){
-    if(mossbank)mossbank.show(stop.id as SurveyPlace);
-    else{openPanel(stop.name);body.append(paragraph(stop.text));}
+    mossbank.show(stop.id as SurveyPlace);
     return;
   }
   if(pumpworks&&session.room==='pumpworks'&&stop.id==='pumpworks-hopper'){

@@ -1,3 +1,4 @@
+import {ALDER_KEEPSAKE} from './home-keepsake.ts';
 import { readRiverSurvey, RIVER_SPOT_IDS, RIVER_SPOTS, RIVER_SURVEY_KEY, type RiverSpot, type RiverSurvey } from './river-survey.ts';
 import type { Stop } from './world.ts';
 
@@ -11,7 +12,7 @@ export const WORKSHOP_PRINTS: Record<WorkshopPrint, {name:string; art:string; st
   riffle: {name:RIVER_SPOTS.riffle.find,art:'/art/river/perch.svg',story:RIVER_SPOTS.riffle.note},
   marigold: {name:'A marigold on leave',art:'/art/garden/pressed-marigold.svg',story:'Recorded after your first harvest. It is still out of office.'},
   pond: {name:'The pond is in session',art:'/art/pond/pond-print.svg',story:'Three shores recorded. The moorhen chaired the meeting.'},
-  'mossbank-swatch': {name:'Wren’s alder swatch',art:'/art/mossbank/alder-swatch.svg',story:'Honey-brown alder from the Mossbank sawmill. The grain follows the windrow; the label follows office policy.'},
+  'mossbank-swatch': ALDER_KEEPSAKE,
   'woodland-certificate': {name:'Qualified to point left',art:'/art/outing/field-certificate.svg',story:'Awarded for two different woodland repairs. The arrow now reports to you.'},
 };
 export const WORKSHOP_PRINT_STAND = {x:12.35,y:10.1} as const;

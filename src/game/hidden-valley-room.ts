@@ -26,7 +26,7 @@ export const VALLEY_STOPS=[
  {id:'valley-overlook',name:'Terrace overlook',point:{x:14.5,y:26.15},doorArea:[12.8,23.7,3.3,2.5],
   text:'The path drops away to the cider court. Someone put a bench right where the committee wanted another sign.'},
  {id:'valley-grafting-house',name:'Grafting house',point:{x:24.8,y:13.2},doorArea:[21.1,8.7,6.45,4.05],
-  text:'One living tree, three varieties of apple. The paperwork is a separate species.'},
+  text:'Mabel grafts three varieties of apple onto one tree. The paperwork is a separate species.'},
  {id:'valley-cider-court',name:'Cider court',point:{x:27.2,y:30.3},doorArea:[23.3,25,6.7,4.9],
   text:'An old cider press and a broad meeting green. The press has a fine handle and no current permit.'},
  {id:'valley-terrace-lane',name:'Terrace lane',point:{x:51.15,y:26.3},doorArea:[50,24.3,3.25,1.9],

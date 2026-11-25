@@ -302,7 +302,15 @@ for(const shape of [{name:'2k',width:2560,height:1440,touch:false},{name:'phone'
    expect(await nearby(page)).toBe('valley-terrace-lane');
    expect(await page.evaluate(()=>localStorage.getItem('ih2:river-print:v1'))).toBe('cider-press-print');
    await route('Grafting house','valley-grafting-house');
+   const keeper=()=>page.evaluate(()=>(window as Window&{
+    __pilot?:{metrics():{visual:{orchardKeeper:{x:number;y:number;frame:string}|null}}};
+   }).__pilot?.metrics().visual.orchardKeeper);
+   await page.emulateMedia({reducedMotion:'reduce'});
+   await expect.poll(async()=>String((await keeper())?.frame)).toBe('0');
+   const still=await keeper();
    await capture('grafts');
+   await page.emulateMedia({reducedMotion:'no-preference'});
+   await expect.poll(keeper,{timeout:6000}).not.toEqual(still);
    await route('Mossbank road','valley-mossbank-road');
    await press('Enter Mossbank');
    await room('mossbank');

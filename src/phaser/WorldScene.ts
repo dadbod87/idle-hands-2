@@ -1,3 +1,4 @@
+import {orchardKeeperPose,ORCHARD_KEEPER_NAME} from '../game/valley-keeper.ts';
 import {equippedArmor} from '../game/pumpworks.ts';
 import {MOSSBANK_VALLEY_ROAD,VALLEY_STOPS,VALLEY_TREES,valleyFollow} from '../game/hidden-valley-room.ts';
 import {KERCHIEF_COLORS,validKerchief,type FieldKerchief,type KerchiefTie} from '../game/field-appearance.ts';
@@ -534,6 +535,7 @@ export class WorldScene extends Phaser.Scene {
   private fieldStaff?:Phaser.GameObjects.Image;
   private fieldVest?:Phaser.GameObjects.Image;
   private forgeGlow?:Phaser.GameObjects.Ellipse;
+  private orchardKeeper?:{actor:Phaser.GameObjects.Image;basket:Phaser.GameObjects.Image;tag:Phaser.GameObjects.Text};
   private fieldKerchief?:KerchiefLayer;
   private peerLocalKerchief?:KerchiefLayer;
   sharedKerchief:FieldKerchief='none';
@@ -709,7 +711,7 @@ export class WorldScene extends Phaser.Scene {
       if(!this.textures.exists('mossbank-'+id))this.load.svg('mossbank-'+id,'/art/mossbank/'+id+'.svg');
     }
     if(this.loadingRoom==='hidden-valley'){
-      for(const id of ['ground','cider-press','grafting-house','terrace-roofs']){
+      for(const id of ['ground','cider-press','grafting-house','terrace-roofs','grafting-basket']){
         if(!this.textures.exists('valley-'+id))this.load.svg('valley-'+id,'/art/hidden-valley/'+id+'.svg');
       }
     }
@@ -807,7 +809,7 @@ export class WorldScene extends Phaser.Scene {
     this.movementReset=true;
     this.room = this.session.room;this.loadedHomePlotId=this.homePlotId;this.loadedDistrictId=this.districtId;this.streetViews=[];this.streetDirty=true;this.residentialLife=undefined;this.houseView=undefined;this.pennantView=undefined;
     this.canopyTransformWrites=0;
-    this.canopies=[];this.townfolk=[];this.steam=undefined;this.ambientMs=0;
+    this.canopies=[];this.townfolk=[];this.steam=undefined;this.orchardKeeper=undefined;this.ambientMs=0;
     for(const id of RESIDENT_IDS){const texture=this.textures.get('variety-resident-'+id);if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});}
     for(const id of RESIDENT_IDS)for(const prefix of this.activityPrefixes)this.parseActivityTexture(prefix+id);
     const activityLoaded=(key:string)=>{this.activityLoading.delete(key);this.parseActivityTexture(key);};
@@ -1031,6 +1033,12 @@ export class WorldScene extends Phaser.Scene {
       const gx=(graft.x+.5)*TILE,gy=12.38*TILE;
       this.add.image(gx,gy,'valley-grafting-house').setOrigin(.5,.92).setDepth(gy);
       litWindows.push({x:gx-73,y:gy-59,width:43,height:29});
+      const keeper=this.add.image(0,0,'variety-resident-aster',0)
+        .setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale);
+      const basket=this.add.image(0,0,'valley-grafting-basket').setOrigin(.5,1).setScale(.78);
+      const tag=label(0,0,ORCHARD_KEEPER_NAME).setFontSize(12).setVisible(false);
+      this.orchardKeeper={actor:keeper,basket,tag};
+      this.paintOrchardKeeper();
       const roofKey='valley-terrace-roofs',roofTexture=this.textures.get(roofKey);
       if(!roofTexture.has('0'))this.textures.addSpriteSheet('',roofTexture,{frameWidth:176,frameHeight:155});
       for(const [frame,x,y,size] of [[0,48.8,20.0,1.07],[1,56.65,22.2,1.16],[2,56.8,29.9,.94]]){
@@ -1336,15 +1344,31 @@ export class WorldScene extends Phaser.Scene {
       worker:this.mossbankWren?.texture.key??null,
       ripples:this.mossbankRipples.filter(ripple=>ripple.image.visible).map(ripple=>({x:ripple.image.x,y:ripple.image.y})),
     },
+    orchardKeeper:this.orchardKeeper?{x:this.orchardKeeper.actor.x,y:this.orchardKeeper.actor.y,frame:this.orchardKeeper.actor.frame.name}:null,
     fieldArmorArt:this.fieldVest?.visible===true?this.fieldVest.texture.key:null,
     fieldEquipment:{vest:this.fieldVest?.visible===true,kerchief:this.fieldKerchief?.ink.visible===true?this.fieldKerchief.key:null},
     wornCloth:{own:this.peerLocalKerchief?.ink.visible?this.peerLocalKerchief.key:null,
       peers:[...this.residentViews].filter(([,view])=>view.kerchief?.ink.visible).map(([id,view])=>({id,appearance:view.kerchief!.key}))},
     steering:!!this.fieldSteering,waving:this.localWaveLabel?.visible===true,peerWaves:[...this.residentViews].filter(([,view])=>view.label.text.startsWith('Waves hello!\n')).map(([id])=>id),peerMotion:[...this.residentViews].map(([id,{motion,headwear}])=>({id,position:{...motion.position},facing:motion.facing,frame:motion.frame,hat:headwear?.visible?Number(headwear.frame.name):null,walking:motion.walking})),peerHeadwear:[...this.residentViews].filter(([,view])=>view.headwear?.visible).map(([id,view])=>({id,texture:view.headwear!.texture.key})),resting:!!this.bedPose?.visible,headwear:this.headwearLayer?.visible?{texture:this.headwearLayer.texture.key,frame:this.headwearLayer.frame.name,x:this.headwearLayer.x,y:this.headwearLayer.y}:null,canopyTransformWrites:this.canopyTransformWrites,glasshouse:this.glasshouseView?.texture.key??null,glasshouseOpening:{active:this.glasshouseGlint?.visible??false,count:this.glasshouseOpeningCount},workshopPrint:this.workshopPrintFrame?.visible?this.workshopPrint:null,ordinaryBench:{phase:this.benchPhase,recipe:this.benchRecipe,piece:this.benchPiece?.visible?this.benchPiece.texture.key:null},walkTarget:this.walkMark?.visible?{x:this.walkMark.x/TILE-.5,y:this.walkMark.y/TILE-.5}:null,commons:{signs:this.commonsSigns,life:this.commonsLife?.snapshot()??null,framing:this.room==='square'?commonsFrame(this.session.position,camera.width,camera.height):null,shelters:this.occluders.filter(o=>o.image instanceof Phaser.GameObjects.Graphics).map(o=>({alpha:o.image.alpha,x:o.x,y:o.y,width:o.width,height:o.height}))},camera:{zoom:camera.zoom,scrollX:camera.scrollX,scrollY:camera.scrollY,worldView:{x:camera.worldView.x,y:camera.worldView.y,width:camera.worldView.width,height:camera.worldView.height},matrix:Array.from(camera.matrixCombined.matrix).slice(0,6)},neighborhood:{yardItems:this.yardViews.map(v=>({texture:v.texture.key,depth:v.depth,bounds:v.getBounds()})),districtId:this.districtId??null,life:this.residentialLife?.snapshot()??null,windows:this.streetWindows.map(w=>({...w})),sites:this.streetViews.map(v=>({slot:v.slot,plotId:v.plotId,texture:v.image.texture.key,label:v.label.text,bounds:v.image.getBounds(),labelBounds:v.label.getBounds()}))},depots:this.depotViews.map(d=>({resource:d.resource,key:d.image.texture.key,depth:d.image.depth,bounds:d.image.getBounds(),labelBounds:d.label.getBounds(),label:d.label.text})),letterboxes:this.decorationViews.filter((v):v is Phaser.GameObjects.Image=>v instanceof Phaser.GameObjects.Image&&v.texture.key.startsWith('letterbox-')).map(v=>v.texture.key),carpentry:{pineTextures:this.pineViews.map(v=>v.image.texture.key),rackTexture:this.rackView?.texture.key??null,noticeboardTexture:this.noticeboardView?.texture.key??null,equipped:this.carpentryState?.()?.saw.equipped??false,lastAction:this.lastCarpentryAction,action:this.carpentryMotion?.action??null},garden:{room:this.room,lastAction:this.lastGardenAction,bedTextures:this.gardenViews.map(v=>v.texture.key),bedFeet:this.gardenViews.map(v=>({x:v.x,y:v.y})),labels:this.gardenLabels.map((v,i)=>({text:v.text,target:this.gardenLabelTargets[i],bounds:v.getBounds(),hitBounds:this.gardenLabelHit(v)})),action:this.gardenMotion?.action??null,actorTexture:this.actor?.texture.key??null,welcomeTexture:this.gardenWelcomeView?.texture.key??null},bridge:{ceremony:!!this.bridgeRibbon?.visible,phase:this.bridgePhase??(this.bridgeRestored?'open':'collecting'),texture:this.bridgeView?.texture.key??null,readyAt:this.bridgeReadyAt},home:{windowsillPlant:this.windowsillView?.visible?this.windowsillPlant:null,windowsillStriped:this.windowsillView?.visible&&this.windowsillStriped,keepsakeVisible:!!this.keepsakeView?.visible,keepsakeTexture:this.keepsakeView?.visible?this.keepsakeArt?.texture.key??null:null,pennantVisible:this.pennantView?.visible??false,pennantTexture:this.pennantView?.texture.key??null,pennantPosition:this.pennantView?{x:this.pennantView.x,y:this.pennantView.y}:null,room:this.room,plotId:this.loadedHomePlotId??null,ownerName:this.homeOwnerName,level:this.homeLevel,decorations:this.room.startsWith('home')&&this.decorations?this.decorations():null,interiorTexture:this.room.startsWith('home')?this.loadedInteriorKey:null,furniture:this.decorationViews.map(view=>({texture:view.texture.key,x:view.x,y:view.y,alpha:view.alpha}))},facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:(this.room==='square'||this.room==='neighborhood')?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
+  private paintOrchardKeeper(){
+    const keeper=this.orchardKeeper;
+    if(!keeper)return;
+    const {point,facing,frame}=orchardKeeperPose(this.ambientMs,this.ambientEnabled);
+    const x=(point.x+.5)*TILE,y=(point.y+.5)*TILE,pose=residentFrame(facing,frame);
+    if(keeper.actor.x!==x||keeper.actor.y!==y)keeper.actor.setPosition(x,y).setDepth(y);
+    if(String(keeper.actor.frame.name)!==String(pose))keeper.actor.setFrame(pose);
+    const hand=x+(facing==='west'?-9:11);
+    if(keeper.basket.x!==hand||keeper.basket.y!==y-19)keeper.basket.setPosition(hand,y-19).setDepth(y+.3);
+    if(keeper.tag.x!==x||keeper.tag.y!==y-61)keeper.tag.setPosition(x,y-61).setDepth(y+1);
+    const see=Phaser.Math.Distance.Squared(x,y,this.actor?.x??0,this.actor?.y??0)<145**2;
+    if(keeper.tag.visible!==see)keeper.tag.setVisible(see);
+  }
+
   private updateAmbient(delta:number){
     this.ambientEnabled=!document.hidden&&!this.reducedMotion.matches;
     this.sky?.motion(0,this.ambientEnabled);
     if(this.ambientEnabled)this.ambientMs+=cosmeticStep(delta);
+    this.paintOrchardKeeper();
     this.residentialLife?.update(this.ambientMs,this.ambientEnabled&&this.room==='neighborhood');
     this.commonsLife?.update(this.ambientMs,this.ambientEnabled);
     this.commonsLife?.showRiverFloat(this.riverCast,this.cameras.main.worldView,this.ambientMs,this.ambientEnabled);

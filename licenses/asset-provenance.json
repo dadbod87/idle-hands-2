@@ -3,6 +3,16 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "valley-grafting-basket",
+      "path": "public/art/hidden-valley/grafting-basket.svg",
+      "sha256": "fee47c382f14a64f5e6e63b81005091fdacdda33153af6b8d83cd64e7c952510",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/hidden-valley/grafting-basket.svg",
+      "date": "2026-11-25",
+      "modifications": "Original orchard keeper accessory."
+    },
+    {
       "id": "pumpworks-dry-forge",
       "path": "public/art/pumpworks/dry-forge.svg",
       "sha256": "75cc5d4398c97551e515687564b5f4bac4b8687cd6c8227bb03f3f9aada9c8e7",

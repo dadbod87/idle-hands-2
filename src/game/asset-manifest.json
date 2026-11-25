@@ -5,6 +5,11 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "valley-grafting-basket",
+      "path": "art/hidden-valley/grafting-basket.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "pumpworks-dry-forge",
       "path": "art/pumpworks/dry-forge.svg",
       "kind": "original-svg"

@@ -3,6 +3,7 @@ import {test} from 'node:test';
 import {HIDDEN_VALLEY_ROOM,MOSSBANK_VALLEY_FRONT,MOSSBANK_VALLEY_ROAD,VALLEY_ENTRY,VALLEY_STOPS,valleyFollow} from '../src/game/hidden-valley-room.ts';
 import {earnedValleyPrint,takeValleyPrint,VALLEY_PRINT_KEY} from '../src/game/valley-print.ts';
 import {earnedWorkshopPrints,selectedWorkshopPrint} from '../src/game/workshop-print.ts';
+import {KEEPER_WALKS,orchardKeeperPose} from '../src/game/valley-keeper.ts';
 import {MOSSBANK_ROOM} from '../src/game/mossbank-room.ts';
 import {Session} from '../src/game/session.ts';
 import {canStand,clearSegment,routeTo} from '../src/game/world.ts';
@@ -60,4 +61,15 @@ test('The press offers one local print at the court and never alters existing ho
  assert.equal(selectedWorkshopPrint(data.get('ih2:river-print:v1')!,null,after),'pond');
  assert.equal(data.get('ordinary-workshop'),'untouched');
  assert.equal(takeValleyPrint({getItem:()=>null,setItem:()=>{throw new Error('locked');}},true),false);
+});
+
+
+test('Mabel follows reachable orchard lanes and reduced motion leaves an anchored pose',()=>{
+ for(const {from,to} of KEEPER_WALKS){
+  assert.ok(canStand('hidden-valley',from,HIDDEN_VALLEY_ROOM));
+  assert.ok(clearSegment('hidden-valley',from,to,HIDDEN_VALLEY_ROOM));
+ }
+ assert.deepEqual(orchardKeeperPose(25000,false),orchardKeeperPose(0,false));
+ assert.deepEqual(orchardKeeperPose(500,true),orchardKeeperPose(0,false));
+ assert.notDeepEqual(orchardKeeperPose(5500,true),orchardKeeperPose(0,true));
 });

@@ -1,7 +1,8 @@
+import {FORGE_ORDER_MS} from '../src/game/forge-order.ts';
 import {FIELD_CUES,renderFieldCue} from '../src/audio/combat-cues.ts';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
-import {applyPumpworks,FIELD_HEALTH,freshPumpworks,PUMPWORKS_KEY,readPumpworks,savePumpworks,type PumpworksAction,type PumpworksPlace,type PumpworksState} from '../src/game/pumpworks.ts';
+import {applyPumpworks,fieldArmor,equippedArmor,FIELD_HEALTH,freshPumpworks,PUMPWORKS_KEY,readPumpworks,savePumpworks,type PumpworksAction,type PumpworksPlace,type PumpworksState} from '../src/game/pumpworks.ts';
 import {HOPPER_FEET,PRACTICE_BELL,PUMPWORKS_DOOR,PUMPWORKS_ENTRY,PUMPWORKS_ROOM} from '../src/game/pumpworks-room.ts';
 import {braceForHopper,freshHopper,hopperLeash,hopperNotices,inPracticeReach,patrolHopper,pushHopper,stepHopper,swingAtHopper,swingFieldWeapon,type HopperMotion} from '../src/game/pumpworks-chase.ts';
 import {Session} from '../src/game/session.ts';
@@ -376,4 +377,39 @@ test('The staff trades opening damage for space and a push stays on chamber floo
  const bounded=pushHopper(ledge,{x:18,y:5});
  assert.equal(hopperLeash(bounded.feet),true);
  assert.equal(canStand('pumpworks',bounded.feet,PUMPWORKS_ROOM),true);
+});
+
+
+test('The forge owns one timed practice blank and two vests cannot stack',()=>{
+ const start=Date.UTC(2026,10,25,18);
+ const at=(state:PumpworksState,action:PumpworksAction,place:PumpworksPlace,now:number)=>{
+  const result=applyPumpworks(state,action,place,now);
+  if(!result.ok)assert.fail(result.message);
+  return result.state;
+ };
+ assert.equal(applyPumpworks(freshPumpworks(),'start-forge','forge',start).ok,false);
+ const loan=play(play(prepared(),'borrow-vest','locker'),'borrow-bow','locker');
+ assert.equal(applyPumpworks(loan,'start-forge','elsewhere',start).ok,false);
+ const order=at(loan,'start-forge','forge',start);
+ assert.deepEqual(order.forge,{startedAt:start,readyAt:start+FORGE_ORDER_MS,phase:'working'});
+ assert.equal(applyPumpworks(order,'start-forge','forge',start+1).ok,false);
+ assert.equal(applyPumpworks(order,'collect-forge','forge',start+FORGE_ORDER_MS-1).ok,false);
+ assert.equal(applyPumpworks(order,'collect-forge','elsewhere',start+FORGE_ORDER_MS).ok,false);
+ const finished=at(order,'collect-forge','forge',start+FORGE_ORDER_MS);
+ assert.equal(equippedArmor(finished),'riveted');
+ assert.equal(fieldArmor(finished),1);
+ assert.equal(finished.vest,'packed');
+ assert.equal(finished.bow,'equipped');
+ assert.equal(applyPumpworks(finished,'collect-forge','forge',start+FORGE_ORDER_MS).ok,false);
+ const rival=play(finished,'equip-vest','elsewhere');
+ assert.equal(equippedArmor(rival),'padded');
+ assert.equal(rival.forge!.phase,'packed');
+ const restored=readPumpworks({getItem:()=>JSON.stringify(rival)});
+ if(!restored.ok)assert.fail(restored.message);
+ const preparedFight=play(play(restored.state,'equip-riveted','elsewhere'),'begin','arena');
+ assert.equal(play(preparedFight,'hit','arena').health,6);
+ assert.equal(applyPumpworks(preparedFight,'equip-vest','elsewhere').ok,false);
+ assert.equal(preparedFight.satchel,loan.satchel);
+ const faked={...finished,vest:'equipped'};
+ assert.equal(readPumpworks({getItem:()=>JSON.stringify(faked)}).ok,false);
 });

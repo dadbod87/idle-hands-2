@@ -54,8 +54,12 @@ export const freshPumpworks=():PumpworksState=>({
  version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',bow:'unissued',staff:'unissued',vest:'unissued',kerchief:'none',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,rematch:false,
 });
 
+export type FieldArmor='padded'|'riveted';
+export function equippedArmor(state:PumpworksState):FieldArmor|null{
+ return state.forge?.phase==='equipped'?'riveted':state.vest==='equipped'?'padded':null;
+}
 export function fieldArmor(state:PumpworksState){
- return state.vest==='equipped'||state.forge?.phase==='equipped'?PADDED_VEST_ARMOR:0;
+ return equippedArmor(state)?PADDED_VEST_ARMOR:0;
 }
 
 export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place:PumpworksPlace,now=Date.now()):Result{

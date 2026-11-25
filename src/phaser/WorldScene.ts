@@ -1,3 +1,4 @@
+import {equippedArmor} from '../game/pumpworks.ts';
 import {MOSSBANK_VALLEY_ROAD,VALLEY_STOPS,VALLEY_TREES,valleyFollow} from '../game/hidden-valley-room.ts';
 import {KERCHIEF_COLORS,validKerchief,type FieldKerchief,type KerchiefTie} from '../game/field-appearance.ts';
 import {SEWING_TABLE} from '../game/tailoring.ts';
@@ -1431,13 +1432,12 @@ export class WorldScene extends Phaser.Scene {
     this.fieldStaff?.setPosition(x+14,y-1).setDepth(y+1);
     const practiceGear=this.pumpworksState?.();
     if(this.fieldVest){
-      const riveted=practiceGear?.forge?.phase==='equipped',padded=practiceGear?.vest==='equipped';
-      const visible=!this.resting&&(riveted||padded);
-      if(this.fieldVest.visible!==visible)this.fieldVest.setVisible(visible);
-      if(visible){
+      const armor=!this.resting&&practiceGear?equippedArmor(practiceGear):null;
+      if(this.fieldVest.visible!==!!armor)this.fieldVest.setVisible(!!armor);
+      if(armor){
         const sx=ART.actorScale*KERCHIEF_RIG_WIDTH[rig],sy=ART.actorScale;
         const bob=this.frame>0?.8*Math.abs(Math.sin((this.frame-1)*Math.PI/3)):0;
-        const pose=FACINGS.indexOf(this.facing),key='pumpworks-'+(riveted?'riveted':'padded')+'-vest-poses';
+        const pose=FACINGS.indexOf(this.facing),key='pumpworks-'+armor+'-vest-poses';
         if(this.fieldVest.texture.key!==key||String(this.fieldVest.frame.name)!==String(pose))this.fieldVest.setTexture(key,pose);
         this.fieldVest.setPosition(x,y-bob*sy).setDepth(y+.5).setScale(sx,sy);
       }

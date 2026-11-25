@@ -1,3 +1,4 @@
+import {FORGE_ORDER_MS} from '../src/game/forge-order.ts';
 import {expect,test,type Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {PUMPWORKS_FRONT,HOPPER_FEET} from '../src/game/pumpworks-room.ts';
@@ -13,7 +14,7 @@ type Pilot={
  pumpworks():PumpworksState;
  pumpworksMotion():{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;pulse:StaffPulse|null;enemyHealth:number|null};
  screenPoint(x:number,y:number):Point;
- metrics():{visual:{workshopPrint:string|null;fieldEquipment:{vest:boolean;kerchief:string|null}}};
+ metrics():{visual:{fieldArmorArt?:string|null;workshopPrint:string|null;fieldEquipment:{vest:boolean;kerchief:string|null}}};
 };
 const read=(page:Page)=>page.evaluate(()=>{
  const pilot=(window as Window&{__pilot?:Pilot}).__pilot;
@@ -571,5 +572,70 @@ test('A short-screen staff pulse trades damage for room to move',async({browser}
   expect(after.state.health).toBe(before.state.health);
   await expect(page.locator('#feedback')).toHaveText('The pulse pushes the hopper back.');
   await page.screenshot({path:output+'/breeze-staff-short200-counter.png'});
+ }finally{await context.close();}
+});
+
+
+test('Dry-side forge finishes one independent order and the armor shows outside the field',async({browser})=>{
+ test.setTimeout(90000);
+ mkdirSync(output,{recursive:true});
+ const context=await browser.newContext({viewport:{width:844,height:390},hasTouch:true});
+ const page=await context.newPage();
+ const button=(name:string)=>page.getByRole('button',{name,exact:true});
+ const room=(name:string)=>expect(page.locator('#location')).toHaveAttribute('data-room',name,{timeout:15000});
+ const artwork=()=>page.evaluate(()=>(window as Window&{__pilot?:Pilot}).__pilot?.metrics().visual.fieldArmorArt);
+ const route=async(id:string)=>{
+  await button('Places').tap();
+  await page.locator('[data-destination="'+id+'"]').tap();
+  await expect.poll(async()=>(await read(page))?.nearby,{timeout:16000}).toBe(id);
+ };
+ try{
+  // Only starting feet, daylight and a synthetic wall clock for the 30-minute
+  // order. Progress, world movement, real input and storage are exercised.
+  await page.addInitScript(()=>{
+   if(!localStorage.getItem('ih2:pilot-position:v1'))localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({
+    version:1,room:'pumpworks',position:{x:4.55,y:9.6},
+   }));
+  });
+  const now=Date.UTC(2026,10,25,18,30);
+  await page.clock.setFixedTime(now);
+  await page.goto('/?sky-study=1&phase=day&weather=clear');
+  await room('pumpworks');
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  const holdings=await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'));
+  await button('Inspect Survey locker').tap();
+  await button('Equip rod and take kit').tap();
+  await button('Borrow padded vest').tap();
+  await close(page).tap();
+  await route('pumpworks-forge');
+  await button('Inspect Dry-side forge').tap();
+  const offer=page.locator('[data-pumpworks=forge]');
+  await expect(offer).toContainText('One supplied blank · 30 minutes');
+  await expect(button('Start riveted vest')).toBeInViewport({ratio:1});
+  await page.screenshot({path:output+'/dry-forge-short200-offer.png'});
+  await button('Start riveted vest').tap();
+  await expect(offer).toContainText('Ready in 30:00');
+  await expect(button('Collect and equip vest')).toHaveCount(0);
+  await page.clock.setFixedTime(now+FORGE_ORDER_MS-1);
+  await expect(offer).toContainText('Ready in 0:01');
+  await expect(button('Collect and equip vest')).toHaveCount(0);
+  await page.clock.setFixedTime(now+FORGE_ORDER_MS);
+  await expect(button('Collect and equip vest')).toBeInViewport({ratio:1});
+  await button('Collect and equip vest').tap();
+  await expect(offer).toContainText('Riveted vest collected and equipped.');
+  await expect(button('Start riveted vest')).toHaveCount(0);
+  await close(page).tap();
+  await expect.poll(artwork).toBe('pumpworks-riveted-vest-poses');
+  await expect(page.locator('.pump-armor')).toHaveText('Armor 1');
+  await route('pumpworks-exit');
+  await button('Enter town square').tap();
+  await room('square');
+  await expect.poll(artwork).toBe('pumpworks-riveted-vest-poses');
+  await page.reload();
+  await room('square');
+  await expect.poll(artwork).toBe('pumpworks-riveted-vest-poses');
+  const state=(await read(page))!.state;
+  expect(state).toMatchObject({vest:'packed',forge:{phase:'equipped',startedAt:now,readyAt:now+FORGE_ORDER_MS}});
+  expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toBe(holdings);
  }finally{await context.close();}
 });

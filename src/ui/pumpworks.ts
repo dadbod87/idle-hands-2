@@ -4,7 +4,7 @@ import {KERCHIEF_COLORS,KERCHIEF_TIE_NAMES} from '../game/field-appearance.ts';
 import type {FieldCue} from '../audio/combat-cues.ts';
 import {BOW_DRAW_SECONDS,BOW_STILL_RADIUS,BOW_TRACE_MS,STAFF_PULSE_MS,equippedFieldWeapon,FIELD_WEAPONS,type BowDraw,type BowTrace,type FieldWeapon,type StaffPulse} from '../game/field-weapons.ts';
 import {
- fieldArmor,FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PADDED_VEST_ARMOR,PUMPWORKS_KEY,readPumpworks,savePumpworks,
+ fieldArmor,equippedArmor,FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PADDED_VEST_ARMOR,PUMPWORKS_KEY,readPumpworks,savePumpworks,
  type PumpworksAction,type PumpworksPlace,
 } from '../game/pumpworks.ts';
 import {
@@ -24,6 +24,8 @@ const EQUIPMENT={
   description:FIELD_WEAPONS.staff.damage+' damage · An opening pulse pushes back.',equip:'equip-staff',pack:'pack-staff'},
  vest:{name:'Padded vest',art:'/art/pumpworks/padded-vest.svg',
   description:PADDED_VEST_ARMOR+' Armor · Reduces unbraced hits.',equip:'equip-vest',pack:'pack-vest'},
+ riveted:{name:'Riveted vest',art:'/art/pumpworks/riveted-vest.svg',
+  description:'Armor '+PADDED_VEST_ARMOR+' · Riveted finish.',equip:'equip-riveted',pack:'pack-riveted'},
 } as const;
 
 
@@ -154,6 +156,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     }
     return savePumpworks(storage,expected,action,place);
    });
+   if(result.ok&&action==='collect-forge')host.reward();
    if(result.ok&&onField){
     const kind=action==='strike'||action==='counter'?action:
      action==='guard'?'blocked':action==='hit'||action==='splash-hit'?'damage':action==='eat'?'heal':null;
@@ -452,7 +455,6 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    for(const control of panel.querySelectorAll('button'))control.disabled=true;
    note=await change(action,place,present,shownRaw);
    if(present()){
-    if(action==='collect-forge'&&current()?.forge?.phase==='equipped')host.reward();
     render();
     if(note)panel.querySelector<HTMLElement>('[role=status]')?.focus({preventScroll:true});
    }
@@ -466,8 +468,11 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const state=record.state;
   let shownRaw=record.raw;
   const repaints:((message?:string)=>void)[]=[];
-  const cards=(['rod','bow','staff','vest'] as const).filter(item=>state[item]!=='unissued').map(item=>{
+  const available=(['rod','bow','staff','vest','riveted'] as const)
+   .filter(item=>item==='riveted'?state.forge!==undefined&&state.forge.phase!=='working':state[item]!=='unissued');
+  const cards=available.map(item=>{
    const profile=EQUIPMENT[item],name=profile.name.toLowerCase();
+   const equipped=(live:typeof state)=>item==='riveted'?live.forge?.phase==='equipped':live[item]==='equipped';
    const card=document.createElement('li');card.className='bag-slot';card.dataset.pumpBag=item;
    const artwork=document.createElement('div');artwork.className='bag-slot-art';
    const art=document.createElement('img');art.src=profile.art;art.alt='';art.width=64;art.height=64;
@@ -483,9 +488,9 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    const paint=(message='')=>{
     const live=current();
     if(!live)return;
-    const equipped=live[item]==='equipped';
-    detail.textContent=(equipped?'Equipped':'Packed')+' · '+profile.description;
-    control.textContent=(equipped?'Pack ':'Equip ')+name;
+    const worn=equipped(live);
+    detail.textContent=(worn?'Equipped':'Packed')+' · '+profile.description;
+    control.textContent=(worn?'Pack ':'Equip ')+name;
     control.disabled=busy||!!live.fight||live.recovering;
     status.textContent=message;
    };
@@ -495,7 +500,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     const live=current();
     if(busy||!live)return;
     control.disabled=true;
-    const action=live[item]==='equipped'?profile.pack:profile.equip;
+    const action=equipped(live)?profile.pack:profile.equip;
     const message=await change(action,'elsewhere',()=>card.isConnected,shownRaw);
     if(record.ok)shownRaw=record.raw;
     if(card.isConnected)for(const repaint of repaints)repaint(repaint===paint?message:'');
@@ -509,34 +514,6 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    }
    return card;
   });
-  if(state.forge&&state.forge.phase!=='working'){
-   const card=document.createElement('li');card.className='bag-slot';card.dataset.pumpBag='riveted';
-   const art=document.createElement('div');art.className='bag-slot-art';
-   const image=document.createElement('img');image.src='/art/pumpworks/riveted-vest.svg';image.alt='';image.width=64;image.height=64;
-   art.append(image);
-   const title=document.createElement('h4');title.textContent='Riveted survey vest';
-   const detail=paragraph('');detail.className='bag-slot-detail';
-   const control=button('',()=>{});control.className='bag-equip-action';
-   const status=paragraph('');status.className='bag-equip-notice';status.role='status';
-   const paint=(message='')=>{
-    const live=current();
-    const worn=live?.forge?.phase==='equipped';
-    control.textContent=worn?'Pack riveted vest':'Equip riveted vest';
-    control.disabled=busy||!!live?.fight||!!live?.recovering;
-    detail.textContent=(worn?'Equipped':'Packed')+' · Armor '+PADDED_VEST_ARMOR;
-    status.textContent=message;
-   };
-   control.onclick=async()=>{
-    if(control.disabled)return;
-    const action=current()?.forge?.phase==='equipped'?'pack-riveted':'equip-riveted';
-    control.disabled=true;
-    const message=await change(action,'elsewhere',()=>card.isConnected,shownRaw);
-    if(record.ok)shownRaw=record.raw;
-    if(card.isConnected)for(const repaint of repaints)repaint(repaint===paint?message:'');
-   };
-   card.append(art,title,detail,control,status);
-   cards.push(card);repaints.push(paint);paint();
-  }
   const dye=document.createElement('li');dye.className='bag-slot field-kerchief';dye.dataset.fieldKerchief='';
   const title=document.createElement('h4');title.textContent='Trail kerchief';
   const detail=paragraph('');detail.className='bag-slot-detail';
@@ -554,7 +531,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    const saved=live.kerchiefDye??live.kerchief;
    const worn=live.kerchief!=='none';
    const tie=live.kerchiefTie??'knot';
-   preview.paint(selected??'none',live.vest==='equipped',picker.tie(),live.forge?.phase==='equipped');
+   preview.paint(selected??'none',equippedArmor(live),picker.tie());
    const detailText=saved==='none'?'Undyed · Packed':worn?KERCHIEF_COLORS[saved].label+' kerchief worn':KERCHIEF_COLORS[saved].label+' · Packed';
    detail.textContent=saved==='none'?detailText:detailText+' · '+KERCHIEF_TIE_NAMES[tie];
    picker.select.disabled=picker.wear.disabled=picker.style.disabled=busy||!!live.fight||live.recovering;

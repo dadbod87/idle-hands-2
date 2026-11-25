@@ -62,7 +62,7 @@ export function showTailoring(host:Host,town:TownClient,fromBag=false){
    const preview=()=>{
     const dye=picker.dye();
     image.element.style.display=dye?'':'none';
-    image.paint(dye??'none',false,picker.tie());
+    image.paint(dye??'none',null,picker.tie());
     apply.disabled=busy||town.isSaving||town.retryAvailable||!dye||dye===currentDye&&picker.wear.checked===worn&&picker.tie()===currentTie;
    };
    apply.onclick=()=>{const dye=picker.dye();if(dye)void save({kind:'style',dye,wear:picker.wear.checked,tie:picker.tie()});};
@@ -101,7 +101,7 @@ export function tailoringBagCards(town:TownClient,open:()=>void){
  const icon=document.createElement('div');icon.className='bag-slot-art';
  const preview=kerchiefPreview();preview.element.classList.add('sewing-preview');
  const dye=savedKerchiefDye(state);
- preview.paint(dye==='none'?'fern':dye,false,state.tie);
+ preview.paint(dye==='none'?'fern':dye,null,state.tie);
  preview.element.setAttribute('aria-hidden','true');
  icon.append(preview.element);
  const title=document.createElement('h4');title.textContent='Trail kerchief';

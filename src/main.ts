@@ -1,3 +1,7 @@
+import {PUMPWORKS_DOOR,PUMPWORKS_ENTRY} from './game/pumpworks-room.ts';
+import {FIELD_HEALTH,readPumpworks,type PumpworksPlace} from './game/pumpworks.ts';
+import {LODGING_BEDSIDE} from './game/lodging.ts';
+import {createPumpworks} from './ui/pumpworks.ts';
 import {INKMINT_STATIONS} from './game/nursery-inkmint.ts';
 import {showInkmint} from './ui/nursery-inkmint.ts';
 import {freshGlasshouseOpening} from './game/glasshouse.ts';
@@ -78,13 +82,15 @@ const morningStorage={
 let morning:MorningRead=townMode?{status:'unavailable',record:null}:readFirstMorning(morningStorage);
 let morningWriting=false;
 const resting=()=>morning.record?.phase==='bed';
-const session = new Session(townMode?null:morning.record?.saved??stored,townMode?undefined:[...ORCHARD_STOPS,...POND_WATCH_STOPS],!townMode);
+const session = new Session(townMode?null:morning.record?.saved??stored,townMode?undefined:[...ORCHARD_STOPS,...POND_WATCH_STOPS,PUMPWORKS_DOOR],!townMode);
+const fieldSave=townMode?null:readPumpworks(morningStorage);
+if(fieldSave?.ok&&fieldSave.state.recovering)session.enter('lodging',LODGING_BEDSIDE);
 if(resting())session.lock(true);
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
 <main class="shell ${townMode?'town-mode':''}">
  <header><div class="brand-mark" aria-hidden="true">II</div><div class="brand"><p class="eyebrow">THE PATRON GROUP · A NEW CHAPTER</p><h1>Idle Hands <span>2</span></h1></div><div class="pilot-tag">${townMode?'NEIGHBORHOOD STUDY':'<strong id="local-resident-badge" dir="auto">NEIGHBORHOOD STUDY</strong>'}<span>Local workshop · saved here</span></div>${townMode?'<button id="resident" type="button" aria-label="Choose practice resident">Resident</button>':''}<button id="field-guide" aria-label="Open field guide" title="Town field guide"><svg viewBox="0 0 24 24" width="23" height="23" aria-hidden="true"><path d="M3 4q5-2 9 1 4-3 9-1v16q-5-2-9 1-4-3-9-1ZM12 5v16" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></header>
- <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div id="door-light" aria-hidden="true"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><button id="stop-assisted-walk" type="button" aria-keyshortcuts="Escape" hidden>Stop walking</button><button id="wake-resident" class="primary" type="button" hidden>Get up</button><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
+ <section class="world-wrap" aria-label="Neighborhood playfield"><div id="world"></div><div id="door-light" aria-hidden="true"></div><div class="location-tag" id="location">Town square<span>Under new mismanagement.</span></div><button id="place-sound" class="sound-icon" type="button" aria-label="Sound settings"></button><button id="stop-assisted-walk" type="button" aria-keyshortcuts="Escape" hidden>Stop walking</button><button id="wake-resident" class="primary" type="button" hidden>Get up</button><aside class="pump-health" id="pump-health" aria-label="Field health" hidden></aside><p class="world-note" id="instructions">Tap the floor to walk.<span>WASD / arrows · E to interact</span></p><p class="boot" id="boot" role="status">Opening the town. Finding the keys.</p></section>
  <footer><div class="context"><span class="eyebrow">FIELD NOTES</span><p id="feedback" role="status" aria-live="polite" tabindex="0" data-ui-scroll="true" title="Scroll field notes to read longer messages.">Tap the three material depots below you. Your first planter starts here.</p></div><nav class="game-controls" aria-label="Game controls"><button id="places"><span aria-hidden="true">⌖</span> Places</button><button id="bag" title="Bag (B)" aria-keyshortcuts="B"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2M5 7h14l1 14H4ZM8 12h8v5H8Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Bag</button><button id="journal" title="Journal (J)" aria-keyshortcuts="J"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 3h14v18H5ZM3 7h4m-4 5h4m-4 5h4m3-10h6m-6 5h6" fill="none" stroke="currentColor" stroke-width="2"/></svg>Journal<span class="journal-ready-mark" id="journal-ready-mark" aria-hidden="true" hidden></span></button><button id="interact" class="primary" data-size-label="Enter workshop" disabled><span id="interaction-label">Nothing nearby</span></button></nav><span id="journal-ready-description" hidden>Work is ready to check in the Journal.</span><span class="town-wave-announcement" role="status" aria-live="polite"></span></footer>
 </main>
 <dialog id="panel" aria-labelledby="panel-title"><form method="dialog"><header class="dialog-head"><div><p class="eyebrow">TOWN INFORMATION SERVICES</p><h2 id="panel-title">Places to go</h2></div><div class="dialog-actions"><button id="quick-music" class="sound-icon" type="button" hidden></button><button aria-label="Close panel" value="close">×</button></div></header><div id="panel-body"></div></form></dialog>`;
@@ -458,7 +464,31 @@ function inkmintForJournal(){
   }}:{}),
  };
 }
-const workshop=new WorkshopUI({inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
+const fieldStations:Record<string,PumpworksPlace>={
+ 'pumpworks-locker':'locker','pumpworks-bench':'bench','pumpworks-hopper':'arena',
+ 'pumpworks-cache':'cache','pumpworks-report':'desk','lodging-note':'bed',
+};
+const fieldPlace=()=>fieldStations[session.nearby()?.id??'']??'elsewhere';
+let openRecovery=!!(fieldSave?.ok&&fieldSave.state.recovering);
+const pumpworks=townMode?undefined:createPumpworks({
+ body,hud:document.querySelector('#pump-health')!,open:openPanel,place:fieldPlace,
+ equipment:()=>workshop.showInventory(),
+ feedback:message=>feedback.textContent=message,
+ update:()=>{scene.paintPumpworks();refreshMenuFrame(2);},
+ moveToBed:()=>{
+  closePanel();
+  session.enter('lodging',LODGING_BEDSIDE);
+  music.setLocation('lodging',LODGING_BEDSIDE);
+  save();focusWorld();openRecovery=true;
+ },
+},morningStorage);
+scene.pumpworksState=pumpworks?.current;
+const workshop=new WorkshopUI({pumpBag:pumpworks?.bag,pumpJournal:pumpworks?(body)=>pumpworks.journal(body,()=>{
+ const state=pumpworks.current();
+ if(session.room==='pumpworks'){
+  goNamedDestination('pumpworks',state?.satchel==='at-pump'?'pumpworks-cache':state?.cleared?'pumpworks-report':'pumpworks-hopper');
+ }else goNamedDestination('square',PUMPWORKS_DOOR.id);
+}):undefined,inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
  savedMarigold:!town?(earned)=>{
   if(earned===printRights.marigold)return;
   printRights.marigold=earned;
@@ -808,6 +838,24 @@ async function savePondObservation(id:PondWatchId,choice:string,active:()=>boole
  }catch{return 'The observation could not be saved. Your earlier notes are safe.';}
 }
 function activate(stop: Stop) {
+  if(pumpworks&&stop.id===PUMPWORKS_DOOR.id){
+    openPanel(stop.name);
+    body.append(paragraph('The old flood station has a blocked pump. Borrow a rod, read the creature’s movements, and bring back a field seal. This optional outing uses its own health and gear.'));
+    const enter=document.createElement('button');
+    enter.type='button';enter.className='destination primary';enter.textContent='Enter the Pumpworks';
+    enter.onclick=()=>{
+      if(!enter.isConnected||session.room!=='square'||session.nearby()?.id!==stop.id)return;
+      closePanel();session.enter('pumpworks',PUMPWORKS_ENTRY);music.setLocation('pumpworks',PUMPWORKS_ENTRY);
+      confirmedDoor();save();focusWorld();feedback.textContent='The survey locker is on the dry side.';
+    };
+    body.append(enter);return;
+  }
+  if(pumpworks&&session.room==='pumpworks'&&fieldStations[stop.id]){
+    pumpworks.show(fieldStations[stop.id]);return;
+  }
+  if(pumpworks?.current()?.recovering&&stop.id==='lodging-exit'){
+    goNamedDestination('lodging','lodging-note');return;
+  }
   const pond=pondWatchId(stop.id);
   if(!townMode&&(pond||stop.id==='commons-pond')){
     feedback.textContent='At '+stop.name+'.';
@@ -946,6 +994,8 @@ function activate(stop: Stop) {
     return;
   }
   if (stop.id==='lodging-note') {
+    const field=pumpworks?.current();
+    if(!resting()&&field&&field.health<FIELD_HEALTH){pumpworks?.show('bed');return;}
     openPanel(stop.name);
     const note=document.createElement('div');
     note.className='lodging-note';
@@ -971,7 +1021,7 @@ function activate(stop: Stop) {
   if (stop.transition) {
     if(stop.id==='lodging-exit'&&morning.record?.phase==='awake'){void changeMorning('leave');return;}
     if(town){void enterRemotePortal(stop);return;}
-    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='lodging-exit'?'Follow the path east to Marlow.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? workshopArrivalNote() : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
+    session.enter(stop.transition, stop.arrival); music.setLocation(stop.transition,stop.arrival); confirmedDoor(); save(); focusWorld(); feedback.textContent = stop.id==='pumpworks-exit'?'Back in Willow meadow.':stop.id==='lodging-exit'?'Follow the path east to Marlow.':stop.transition==='lodging'?'One room, two adequate blankets. Look for the note by the bed.':stop.transition==='garden'?'Your allotment. Inspect the beds or visit the attendant.':stop.transition === 'workshop' ? workshopArrivalNote() : (scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
   } else {
     openPanel(stop.name); body.append(paragraph(stop.text));
     const note = paragraph(townMode?'Shared practice keeps your town projects and home progress.':'This workshop is saved in this browser. Shared bridge donations and plot ownership use the separate shared-practice town.'); note.className = 'disclosure'; body.append(note);
@@ -1005,6 +1055,10 @@ scene.onFrame = () => {
       if(needResync&&town.snapshot)adoptTownPosition(town.snapshot);town.connect();
     }).catch(()=>townUI!.showLogin(()=>closePanel()));}
   }
+  pumpworks?.paintHealth(session.room==='pumpworks'||(session.room==='lodging'&&!!pumpworks.current()?.recovering));
+  if(openRecovery&&session.room==='lodging'&&scene.roomReady&&!panel.open){
+    openRecovery=false;pumpworks?.show('bed');
+  }
   const arrival = session.takeArrival();
   if(arrival){if(namedWalk?.room===session.room&&namedWalk.stopId===arrival.id)namedWalk=null;activate(arrival);}
   followNamedWalk();paintPlaceArrival();
@@ -1019,8 +1073,8 @@ scene.onFrame = () => {
   const state = (district?.name??'')+contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored))+':'+String(resting())+':'+(stop?.transition??'');
   if (state !== lastContext) {
     lastContext = state;
-    const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='glasshouse'?'Inkwood Glasshouse':session.room==='garden'?'Your allotment':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
-    const hint=session.room==='square'?district!.hint:session.room==='neighborhood'?'Homes, not cubicles.':session.room==='trail'?'A path worth the paperwork.':session.room==='glasshouse'?'A warm aisle and five things to inspect.':session.room==='garden'?'Ready plants wait safely.':session.room==='lodging'?'Your rented room. Nothing due today.':session.room.startsWith('home')?(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved'):'Great things take time.';
+    const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='glasshouse'?'Inkwood Glasshouse':session.room==='garden'?'Your allotment':session.room==='pumpworks'?'The Pumpworks':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
+    const hint=session.room==='square'?district!.hint:session.room==='neighborhood'?'Homes, not cubicles.':session.room==='trail'?'A path worth the paperwork.':session.room==='glasshouse'?'A warm aisle and five things to inspect.':session.room==='garden'?'Ready plants wait safely.':session.room==='pumpworks'?'Mind the water.':session.room==='lodging'?'Your rented room. Nothing due today.':session.room.startsWith('home')?(session.room==='home-expanded'?'Workroom expansion · saved':'Starter house · saved'):'Great things take time.';
     if(district&&district.name!=='Town square'&&(feedback.textContent?.startsWith('Tap the three material depots')||feedback.textContent===lastDistrictHint)){feedback.textContent=district.hint;lastDistrictHint=district.hint;}
     if(location.dataset.room!==session.room)location.dataset.room=session.room;
     if (locationTitle.data !== roomName) locationTitle.data = roomName;
@@ -1063,6 +1117,7 @@ Object.defineProperty(window, '__pilot', { value: Object.freeze({
   snapshot: () => session.snapshot(),
   town:()=>town?.snapshot?JSON.parse(JSON.stringify(town.snapshot)):null,
   workshop:()=>workshop.snapshot(),
+  pumpworks:()=>pumpworks?.current()??null,
   metrics: () => {
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);
     return { climate:scene.climateState(), ready, presentation:{menuBackdropPaused:menuRenderPaused,renderedFrames,idleFrameLimit:game.loop.fpsLimit,frameSamplePolicy:'Visible mixed normal and 10Hz idle intervals; modal gaps excluded'}, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };

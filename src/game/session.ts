@@ -1,12 +1,14 @@
+import {practiceRoom} from './world.ts';
+import {PUMPWORKS_ENTRY} from './pumpworks-room.ts';
 import {WINDOWSILL_STOP} from './home-windowsill.ts';
 import {GLASSHOUSE_ENTRY} from './glasshouse-room.ts';
 import { HOME_KEEPSAKES, NATURALIST_KEEPSAKE, type HomeKeepsake } from './home-keepsake.ts';
 import { WORKSHOP_PRINT_STOP } from './workshop-print.ts';
 import { TILE, worlds, canStand, clearSegment, routeTo, type Room, type Point, type Stop,type World } from './world.ts';
-import { LODGING_BEDSIDE, LODGING_FRONT, LODGING_ROOM, squareWithLodging } from './lodging.ts';
+import { LODGING_BEDSIDE, LODGING_FRONT, squareWithLodging } from './lodging.ts';
 
 export type SavedPosition = { version: 1; room: Room; position: Point };
-const spawn: Record<Room, Point> = { glasshouse:GLASSHOUSE_ENTRY, lodging:LODGING_BEDSIDE, neighborhood:{x:31.5,y:2.5}, square: { x: 24, y: 25 }, workshop: { x: 9, y: 11 }, home: {x:9,y:11}, 'home-expanded': {x:9,y:11},trail:{x:9,y:22},garden:{x:9,y:14} };
+const spawn: Record<Room, Point> = { pumpworks:PUMPWORKS_ENTRY, glasshouse:GLASSHOUSE_ENTRY, lodging:LODGING_BEDSIDE, neighborhood:{x:31.5,y:2.5}, square: { x: 24, y: 25 }, workshop: { x: 9, y: 11 }, home: {x:9,y:11}, 'home-expanded': {x:9,y:11},trail:{x:9,y:22},garden:{x:9,y:14} };
 const frame=NATURALIST_KEEPSAKE.frame;
 const keepsakeStop:Stop={
  id:'home-keepsake',name:NATURALIST_KEEPSAKE.name,text:NATURALIST_KEEPSAKE.story,
@@ -30,7 +32,7 @@ export class Session {
   get hasLodging(): boolean { return !!this.squareLayout; }
   private roomGeometry(room: Room = this.room): World | undefined {
     if (room==='square') return this.squareLayout;
-    if (room==='lodging'&&this.hasLodging) return LODGING_ROOM;
+    if (practiceRoom(room)&&this.hasLodging) return worlds[room];
     if (room==='neighborhood') return this.geometry;
   }
   private homeStops={home:worlds.home.stops,'home-expanded':worlds['home-expanded'].stops};
@@ -76,7 +78,7 @@ export class Session {
     if (!saved || typeof saved !== 'object') return;
     const s = saved as Partial<SavedPosition>;
     if (s.version !== 1 || !s.position) return;
-    if (s.room === 'square' || s.room === 'workshop' || s.room === 'garden' || (localLodging && s.room === 'lodging')) {
+    if (s.room === 'square' || s.room === 'workshop' || s.room === 'garden' || (localLodging && s.room && practiceRoom(s.room))) {
       if (canStand(s.room, s.position, this.roomGeometry(s.room))) {
         this.room = s.room; this.position = { ...s.position };
       } else if (localLodging && s.room === 'square' && canStand(s.room, s.position)) {
@@ -154,7 +156,7 @@ export class Session {
   }
   nearby(): Stop | undefined { return this.stops.find(stop=>this.canInspect(stop)); }
   enter(room: Room, arrival: Point = spawn[room]): void {
-    if (room==='lodging' && !this.hasLodging) throw new Error('The boarding house belongs to browser practice.');
+    if (practiceRoom(room) && !this.hasLodging) throw new Error('This room belongs to browser practice.');
     if (!canStand(room, arrival,this.roomGeometry(room))) throw new Error('Transition arrival must be collision-safe.');
     this.stop(); this.room = room; this.position = { ...arrival };
   }

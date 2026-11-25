@@ -1,0 +1,46 @@
+.pump-health {
+ position:absolute;
+ right:12px;
+ bottom:12px;
+ width:min(11rem,calc(100% - 24px));
+ max-width:48%;
+ padding:6px 10px;
+ background:#f8f1df;
+ border:1px solid #4c6258;
+ box-shadow:2px 2px 0 #39463a3d;
+ pointer-events:none;
+ font-size:.82rem;
+}
+.pump-health label,.pumpworks-panel label { display:grid; gap:3px; }
+.pump-health progress,.pumpworks-panel progress { width:100%; height:.65rem; accent-color:#637f63; }
+.pumpworks-panel { display:grid; gap:.55rem; }
+#panel-body .pumpworks-panel p,#panel-body .pump-bag-card p { margin:0; }
+.pumpworks-panel .destination { min-height:44px; margin:0; }
+.pump-actions,.pump-bag-card { display:grid; gap:.5rem; }
+.pump-actions { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.pump-tell { padding:.55rem; background:#e4ead5; border-inline-start:4px solid #738967; }
+.pump-tell[data-tell=rush] { background:#f0dfbd; border-color:#975b38; }
+.pump-bag-card { grid-template-columns:auto minmax(0,1fr); align-items:center; margin:.65rem 0; padding:.55rem; border:1px solid #b4a78b; border-radius:4px; }
+.pump-bag-card :is(button,[role=status]) { grid-column:1/-1; margin:0; }
+#panel-body .pumpworks-panel [role=status]:empty { display:none; }
+.pump-gauges { display:grid; gap:.65rem; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.pump-gauges span { font-size:.85em; }
+@media(max-width:650px), (max-height:480px) {
+ #location[data-room=pumpworks] { padding:5px 8px; }
+ #location[data-room=pumpworks] > :is(span,small) { display:none; }
+}
+@media(max-width:650px) {
+ .pump-health { top:66px; bottom:auto; right:10px; width:100px; }
+}
+@media(max-height:480px) and (min-width:651px) {
+ .pump-health { top:6px; bottom:auto; right:9px; width:135px; font-size:.62rem; }
+ #location[data-room=pumpworks] { top:6px; left:8px; max-width:38%; font-size:.74rem; }
+ #panel:has(.pumpworks-panel) { width:min(680px,calc(100vw - 24px)); }
+ #panel:has(.pumpworks-panel) .dialog-head { padding:6px 12px; }
+ #panel:has(.pumpworks-panel) .dialog-head h2 { font-size:1.12rem; }
+ #panel-body:has(.pumpworks-panel) { padding:10px 12px; }
+ .pumpworks-panel { gap:7px; }
+ #panel-body .pumpworks-panel p { line-height:1.25; }
+ .pumpworks-panel .destination { padding:6px 12px; }
+ .pump-tell,.pumpworks-panel [role=status] { padding:5px 9px; }
+}

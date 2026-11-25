@@ -1,3 +1,4 @@
+import {PUMPWORKS_ROOM} from './pumpworks-room.ts';
 import{OUTING_STOPS}from'./outing.ts';
 import {TOWN_SIZE,COMMONS_STOPS,COMMONS_BLOCKED} from './town-expansion.ts';
 import{BLOCK_SIZE,PARCELS,TOWN_GATE,RESIDENTIAL_GATE,HOME_SITE_PREFIX,NEIGHBORHOOD_TREES}from'./neighborhood.ts';
@@ -5,7 +6,8 @@ import {SURVEY_IDS,SURVEYS} from './fieldwork.ts';
 import {TOWN_PEOPLE} from './town-people.ts';
 import {GLASSHOUSE_ENTRY,GLASSHOUSE_FRONT,GLASSHOUSE_ROOM} from './glasshouse-room.ts';
 import {LODGING_ROOM} from './lodging.ts';
-export type Room = 'square' | 'workshop' | 'home' | 'home-expanded' | 'trail' | 'garden' | 'neighborhood' | 'lodging' | 'glasshouse';
+export type Room = 'square' | 'workshop' | 'home' | 'home-expanded' | 'trail' | 'garden' | 'neighborhood' | 'lodging' | 'glasshouse' | 'pumpworks';
+export const practiceRoom=(room:Room)=>room==='lodging'||room==='pumpworks';
 export type Point = { x: number; y: number };
 export type Stop = { id: string; name: string; point: Point; text: string; transition?: Room; arrival?: Point; doorArea?: [number, number, number, number] };
 export type World = { width: number; height: number; blocked: [number, number, number, number][]; stops: Stop[] };
@@ -16,6 +18,7 @@ export const INKWOOD_GLASSHOUSE:Stop={
  text:'Vines hold the door shut. A committee is looking for the key. The glasshouse is closed for now.',
 };
 export const worlds: Record<Room, World> = {
+  pumpworks:PUMPWORKS_ROOM,
   lodging: LODGING_ROOM,
   glasshouse: GLASSHOUSE_ROOM,
   neighborhood:{...BLOCK_SIZE,blocked:[...PARCELS.map(p=>[p.building.x,p.building.y,p.building.width,p.building.height]as[number,number,number,number]),...NEIGHBORHOOD_TREES.map(([x,y])=>[x-.35,y-.75,.7,.75]as[number,number,number,number])],stops:[{id:'neighborhood-directory',name:'Street directory',point:{x:29.5,y:4.5},doorArea:[28.75,2.5,1.5,2.5],text:'Choose another neighborhood at the directory.'},{id:'neighborhood-exit',name:'Town square',point:{...TOWN_GATE},transition:'square',arrival:{...RESIDENTIAL_GATE},doorArea:[30.25,.5,2.5,2.5],text:'Back to the town square. The neighbors will still be here.'},...PARCELS.map(p=>({id:HOME_SITE_PREFIX+p.slot,name:p.number+' '+p.street,point:{...p.front},doorArea:[p.door.x,p.door.y,p.door.width,p.door.height] as [number,number,number,number],text:'An addressed home site. Earned homes belong to their residents.'}))]},
@@ -103,8 +106,8 @@ export function pathTo(room: Room, from: Point, to: Point, geometry?:World): Poi
 // Positions are continuous foot centres expressed relative to tile centres.
 export const FOOT_RADIUS = .24;
 export function canStand(room: Room, p: Point, geometry?:World): boolean {
-  // The practice-only room needs an explicitly scoped geometry from Session.
-  if (room === 'lodging' && !geometry) return false;
+  // Practice-only rooms need an explicitly scoped geometry from Session.
+  if (practiceRoom(room) && !geometry) return false;
   const w = geometry??worlds[room], cx = p.x + .5, cy = p.y + .5, r = FOOT_RADIUS;
   return Number.isFinite(cx) && Number.isFinite(cy) && cx - r >= 1 && cy - r >= 1 && cx + r <= w.width - 1 && cy + r <= w.height - 1 &&
     !w.blocked.some(([x, y, width, height]) => cx + r > x && cx - r < x + width && cy + r > y && cy - r < y + height);

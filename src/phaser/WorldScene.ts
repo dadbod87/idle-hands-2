@@ -1,3 +1,5 @@
+import {HOPPER_FEET,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
+import type {PumpworksState} from '../game/pumpworks.ts';
 import {activeWave} from '../game/town-wave.ts';
 import {INKWOOD_HOOD,CLERK_CAP,type EarnedHeadwear} from '../game/earned-headwear.ts';
 import {glasshousePlantArt,type GlasshousePlant} from '../game/glasshouse-plants.ts';
@@ -412,7 +414,8 @@ export class WorldScene extends Phaser.Scene {
       if(key!==this.decorationKey){
         this.decorationKey=key;
         for(const view of this.decorationViews)view.destroy();
-        this.decorationViews=[];
+        this.hopper=undefined;this.soundingRod=undefined;
+    this.decorationViews=[];
         this.furnitureOccluders=[];
         for(const slot of home?homeSlots(this.homeLevel):PLACEMENT_SLOTS){
           const prop=placements[slot.id];
@@ -465,8 +468,20 @@ export class WorldScene extends Phaser.Scene {
   }
   constructor(public session: Session) { super('world'); }
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
+  pumpworksState?:()=>PumpworksState|null;
+  private hopper?:Phaser.GameObjects.Image;
+  private soundingRod?:Phaser.GameObjects.Image;
+  paintPumpworks(){
+    const state=this.pumpworksState?.();
+    this.hopper?.setVisible(!state?.cleared).setScale(1,state?.fight?.tell==='rush'?.8:1);
+    this.soundingRod?.setVisible(state?.rod==='equipped');
+  }
   preload() {
     this.loadingRoom=this.session.room;
+    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
+    for(const id of fieldArt){
+      if(!this.textures.exists('pumpworks-'+id))this.load.svg('pumpworks-'+id,'/art/pumpworks/'+id+'.svg');
+    }
     this.loadingInteriorKey=this.loadingRoom.startsWith('home')?this.interiorKey():'';
     if((this.loadingInteriorKey==='garden-studio-interior'||this.loadingInteriorKey==='workshop-lodge-interior')&&!this.textures.exists(this.loadingInteriorKey)){
       this.load.svg(this.loadingInteriorKey,homeInteriorPath(this.loadingInteriorKey));
@@ -574,9 +589,14 @@ export class WorldScene extends Phaser.Scene {
     const image=(key:string,x:number,y:number,depth:number)=>this.add.image(x,y,key).setOrigin(0).setDepth(depth);
     this.loadedInteriorKey=this.room.startsWith('home')?this.interiorKey():'';
     const homeGround=this.textures.exists(this.loadedInteriorKey)?this.loadedInteriorKey:homeInterior(this.session.room==='home-expanded'?2:1);
-    image(this.room==='neighborhood'?'neighborhood-ground':this.room==='square'?'variety-ground-square':this.room==='garden'?'garden-ground':this.room==='lodging'?'lodging-rented-room':this.room==='trail'?TRAIL_ART.ground:this.room==='glasshouse'?'glasshouse-interior':this.room.startsWith('home')?homeGround:'ground-workshop',0,0,-1000);
+    image(this.room==='neighborhood'?'neighborhood-ground':this.room==='square'?'variety-ground-square':this.room==='garden'?'garden-ground':this.room==='lodging'?'lodging-rented-room':this.room==='trail'?TRAIL_ART.ground:this.room==='glasshouse'?'glasshouse-interior':this.room==='pumpworks'?'pumpworks-floor':this.room.startsWith('home')?homeGround:'ground-workshop',0,0,-1000);
     const label=(x:number,y:number,value:string)=>this.add.text(x*TILE,y*TILE,value,{fontFamily:'Georgia,serif',fontSize:13,color:'#343c36',backgroundColor:'#f3e6c5',padding:{x:9,y:5}}).setOrigin(.5).setDepth(y*TILE);
     if(this.room==='square') {
+      if(this.session.hasLodging){
+        const {x,y}=PUMPWORKS_DOOR.point;
+        this.add.image((x+.5)*TILE,y*TILE,'pumpworks-hatch').setOrigin(.5,.96).setDepth(y*TILE);
+        label(x+.5,y+.85,'The Pumpworks');
+      }
       this.occluders.push(...drawTownCommons(this,this.commonsSigns,this.pondWatchEnabled));this.commonsLife=new TownCommonsLife(this);
       for(const [key,x,y,labelText]of [['garden-gate',17.5,36.5,'Allotment'],['garden-registry',20.5,36.5,'Displays'],['garden-field',12.5,37.5,'Field clippings'],['garden-stake-forked',11.5,26.5,'Forked stake'],['garden-stake-striped',18.5,39.5,'Marked stake'],['garden-stake-notched',35.5,39.5,'Notched stake']] as const){const meta=gardenArt(key),foot=meta.foot!;this.add.image(x*TILE,y*TILE,key).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(y*TILE);label(x,y+.55,labelText);}
       for(const stop of worlds.square.stops.filter(s=>s.id.startsWith('pine-'))){const station=stop.id.slice(5),meta=carpentryArt('pine-'+station+'-available'),foot=meta.foot!,px=(stop.point.x+.5)*TILE,py=(stop.point.y+.5)*TILE;const view=this.add.image(px,py,meta.id).setOrigin(foot.x/meta.width,foot.y/meta.height).setDepth(py);this.pineViews.push({station,image:view});this.occluders.push({image:view,x:px-meta.width/2,y:py,width:meta.width,height:meta.height-12});label(stop.point.x+.5,stop.point.y+1.1,'Pine deadfall');}
@@ -670,6 +690,24 @@ export class WorldScene extends Phaser.Scene {
       if(this.textures.exists(texture))this.glasshouseView=this.add.image((glasshouse.x+.5)*TILE,threshold,texture).setOrigin(.5,1).setDepth(threshold);
       label(glasshouse.x+.5,glasshouse.y+1.2,'Glasshouse');
       label(9.5,24.4,'Town square ↓');
+    } else if(this.room==='pumpworks') {
+      const station=(x:number,y:number,width:number,height:number,color:number,title:string)=>{
+        const px=(x+.5)*TILE,py=(y+.5)*TILE;
+        this.add.ellipse(px,py,width+9,10,0x35453a,.24).setDepth(py-2);
+        this.add.rectangle(px,py-height/2,width,height,color).setStrokeStyle(3,0x394b42).setDepth(py);
+        this.add.rectangle(px,py-height+10,width-8,7,0xf0d192,.7).setDepth(py+1);
+        label(x+.5,y+.84,title).setFontSize(12).setDepth(py+2);
+      };
+      station(3,8.6,51,74,0x778c73,'Survey locker');
+      station(3,4.6,60,26,0x8d744f,'Dry bench');
+      station(16.6,13.1,68,37,0x806e51,'Lost property');
+      station(21.7,5.95,83,36,0x9a7959,'Inspection desk');
+      label(4.25,17.05,'Willow meadow ↓');
+      const hx=(HOPPER_FEET.x+.5)*TILE,hy=(HOPPER_FEET.y+.5)*TILE;
+      this.hopper=this.add.image(hx,hy,'pumpworks-silt-hopper').setOrigin(.5,.94).setDepth(hy);
+      label(HOPPER_FEET.x+.5,HOPPER_FEET.y+.82,'Silt hopper').setDepth(hy+1);
+      this.soundingRod=this.add.image(0,0,'pumpworks-sounding-rod').setScale(.55).setOrigin(.5,1).setVisible(false);
+      this.paintPumpworks();
     } else if(this.room==='glasshouse') {
       for(const stop of w.stops)label(stop.point.x+.5,stop.point.y+.98,stop.id==='glasshouse-exit'?'Inkwood trail ↓':stop.name);
       const keeper=w.stops.find(stop=>stop.id==='glasshouse-keeper')!;
@@ -738,7 +776,7 @@ export class WorldScene extends Phaser.Scene {
     };
     roomBounds();this.scale.on(Phaser.Scale.Events.RESIZE,roomBounds);this.events.once('shutdown',()=>this.scale.off(Phaser.Scale.Events.RESIZE,roomBounds));
     this.cameras.main.startFollow(this.actor, true, 1, 1);roomBounds();
-    this.sky=new TownSky(this,this.room==='neighborhood'?this.streetWindows:litWindows);this.sky.update(this.skyNow(),0,this.room==='workshop'||this.room==='lodging'||this.room==='glasshouse'||this.room.startsWith('home'),!document.hidden&&!this.reducedMotion.matches,this.skyFixture);
+    this.sky=new TownSky(this,this.room==='neighborhood'?this.streetWindows:litWindows);this.sky.update(this.skyNow(),0,this.room==='workshop'||this.room==='lodging'||this.room==='glasshouse'||this.room==='pumpworks'||this.room.startsWith('home'),!document.hidden&&!this.reducedMotion.matches,this.skyFixture);
     const onDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLElement && e.target.closest('button,input,select,dialog,[data-ui-scroll]')) return;
       const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
@@ -914,6 +952,7 @@ export class WorldScene extends Phaser.Scene {
     if(this.actor.texture.key!==actorKey||String(this.actor.frame.name)!==String(actorFrame))this.actor.setTexture(actorKey,actorFrame);
     const x=(this.session.position.x+.5)*TILE,y=(this.session.position.y+.5)*TILE;
     this.actor.setPosition(x,y).setDepth(y);
+    this.soundingRod?.setPosition(x+14,y-3).setDepth(y+1);
     if(this.bedPose&&this.bedQuilt){
       if(this.bedPose.visible!==this.resting){
         this.bedPose.setVisible(this.resting);
@@ -928,7 +967,7 @@ export class WorldScene extends Phaser.Scene {
     this.headwearLayer=this.paintHeadwear(this.resting?null:this.headwear,this.headwearLayer,x,y,residentFrame(actionFacing??this.facing,actionFacing?0:this.frame));
     this.drawGarden();this.drawCarpentry();this.drawOuting();
     this.updateAmbient(delta);
-    this.sky?.update(this.skyNow(),delta,this.room==='workshop'||this.room==='lodging'||this.room==='glasshouse'||this.room.startsWith('home'),this.ambientEnabled,this.skyFixture);
+    this.sky?.update(this.skyNow(),delta,this.room==='workshop'||this.room==='lodging'||this.room==='glasshouse'||this.room==='pumpworks'||this.room.startsWith('home'),this.ambientEnabled,this.skyFixture);
     for(const item of this.occluders){const hidden=x>item.x&&x<item.x+item.width&&y<item.y&&y>item.y-item.height;item.image.setAlpha(hidden?.55:1);}
     if (this.samplePresentationFrames && this.lastFrame && !document.hidden) { this.frameSamples.push(time - this.lastFrame); if (this.frameSamples.length > 600) this.frameSamples.shift(); }
     this.lastFrame = this.samplePresentationFrames?time:0;

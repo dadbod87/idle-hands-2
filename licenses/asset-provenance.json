@@ -3,6 +3,46 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "pumpworks-floor",
+      "path": "public/art/pumpworks/floor.svg",
+      "sha256": "addfba871623b021baa5295cf88a03bfc4f2f5ba2e08e998e2249febb606b300",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/floor.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
+      "id": "pumpworks-hatch",
+      "path": "public/art/pumpworks/hatch.svg",
+      "sha256": "a18737704e1b1fff848aba0a5f088cf4308221991fcbf45d02b9697af111b80d",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/hatch.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
+      "id": "pumpworks-silt-hopper",
+      "path": "public/art/pumpworks/silt-hopper.svg",
+      "sha256": "7662790b5a25a197ff04fb57a176c5b8110ba1988e682364da9303bc2442741e",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/silt-hopper.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
+      "id": "pumpworks-sounding-rod",
+      "path": "public/art/pumpworks/sounding-rod.svg",
+      "sha256": "c4396c0bdd1c04a96138adcd0861cb3210e9099805af7a16bcb894fc7634458b",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/sounding-rod.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored vector illustration; no imported image source."
+    },
+    {
       "id": "bench",
       "path": "public/art/original/bench.svg",
       "sha256": "b47a00f02175e4b2b8cb985fd42446d5fd8078b357f6e27d7d04eb6e70d5887e",

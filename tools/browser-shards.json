@@ -87,6 +87,7 @@
     "place-music.spec.ts",
     "places-search.spec.ts",
     "public-refresh.spec.ts",
+    "pumpworks.spec.ts",
     "return-trip.spec.ts",
     "serving-study.spec.ts",
     "stream-reconnect.spec.ts",

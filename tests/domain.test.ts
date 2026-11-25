@@ -1,12 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { Session } from '../src/game/session.ts';
-import { worlds, walkable, pathTo, canStand, clearSegment, routeTo, type Room } from '../src/game/world.ts';
+import { worlds, practiceRoom, walkable, pathTo, canStand, clearSegment, routeTo, type Room } from '../src/game/world.ts';
 
 test('every named destination has a walkable route and never crosses blocked cells', () => {
  for (const room of Object.keys(worlds) as Room[]) {
-  const localRoom=room==='lodging';
-  const geometry=localRoom?worlds.lodging:undefined;
+  const localRoom=practiceRoom(room);
+  const geometry=localRoom?worlds[room]:undefined;
   const session=new Session(undefined,undefined,localRoom);session.enter(room);const start={...session.position};
   for (const stop of worlds[room].stops) {
    if(!Number.isInteger(stop.point.x)||!Number.isInteger(stop.point.y)){const route=routeTo(room,start,stop.point,geometry);assert.ok(route.length,room+':'+stop.id);let previous=start;for(const point of route){assert.ok(clearSegment(room,previous,point,geometry));previous=point;}assert.deepEqual(previous,stop.point);continue;}

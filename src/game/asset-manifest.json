@@ -5,6 +5,26 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "pumpworks-floor",
+      "path": "art/pumpworks/floor.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pumpworks-hatch",
+      "path": "art/pumpworks/hatch.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pumpworks-silt-hopper",
+      "path": "art/pumpworks/silt-hopper.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "pumpworks-sounding-rod",
+      "path": "art/pumpworks/sounding-rod.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "bench",
       "path": "art/original/bench.svg",
       "kind": "original-svg"

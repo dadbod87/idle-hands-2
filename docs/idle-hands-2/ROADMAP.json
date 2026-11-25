@@ -3648,7 +3648,7 @@
     {
       "id": "IH2-191",
       "title": "Equip an earned hand saw directly in Bag",
-      "status": "in_progress",
+      "status": "done",
       "owner_branch": "feat/bag-equipment",
       "goal": "See which hand tool is equipped and change it without interrupting pine work.",
       "depends_on": [
@@ -3662,8 +3662,10 @@
         "Keep saved previews and databases stopped. No new gear rewards, fees, storage or original-game changes."
       ],
       "evidence": [
-        "docs/evidence/IH2-191/PLAN.md"
-      ]
+        "docs/evidence/IH2-191/PLAN.md",
+        "docs/evidence/IH2-191/EXACT_CI.json"
+      ],
+      "progress_note": "PR #107 and exact main 168e857 passed 593 domain/database tests and 254 browser cases."
     },
     {
       "id": "IH2-198",

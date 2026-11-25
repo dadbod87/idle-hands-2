@@ -694,10 +694,12 @@ function followNamedWalk(){
  if(!session.approach(stop.id)){namedWalk=null;feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
  target.startedRoom=session.room;feedback.textContent='Walking to '+stop.name+'.';
 }
+const pumpworksExitLabel='Return to Willow meadow';
 function placeArrival(stop:Stop){
  stop=resolvedStop(stop);if(stop.id==='home-door'&&stop.transition==='neighborhood'){feedback.textContent='At the front door. Choose Enter street.';return;}
  if(stop.id==='lodging-door'){feedback.textContent='At the boarding house. Choose Enter lodging.';return;}
  if(stop.id==='lodging-exit'){feedback.textContent='At the door. Choose Step outside.';return;}
+ if(stop.id==='pumpworks-exit'){feedback.textContent='You’re at the exit to Willow meadow.';return;}
  const next=stop.id==='trail-gate'&&!scene.bridgeRestored?'Inspect the bridge committee':stop.transition?'Enter':'Inspect';
  feedback.textContent='At '+stop.name+'. Choose '+next+'.';
 }
@@ -1311,10 +1313,11 @@ scene.onFrame = () => {
     if(pullValleyPrint)interactLabel.textContent='Pull a cider print';
     if(stop?.id==='lodging-door')interactLabel.textContent='Enter lodging';
     if(stop?.id==='lodging-exit')interactLabel.textContent='Step outside';
+    if(stop?.id==='pumpworks-exit')interactLabel.textContent=pumpworksExitLabel;
     if(stop&&orchardAvailable()&&orchardBranchFromStop(stop.id))interactLabel.textContent='Inspect branch';
     if(stop?.id==='trail-gate'&&!scene.bridgeRestored)interactLabel.textContent='Inspect bridge';
 
-    interactButton.setAttribute('aria-label', pullValleyPrint?'Pull a cider print':stop?.id==='lodging-door'?'Enter boarding house':stop?.id==='lodging-exit'?'Step outside to the square':stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='glasshouse'?'Inkwood Glasshouse':stop.transition==='mossbank'?'Mossbank':stop.transition==='hidden-valley'?'Hidden Valley':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
+    interactButton.setAttribute('aria-label', pullValleyPrint?'Pull a cider print':stop?.id==='lodging-door'?'Enter boarding house':stop?.id==='lodging-exit'?'Step outside to the square':stop?.id==='pumpworks-exit'?pumpworksExitLabel:stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='glasshouse'?'Inkwood Glasshouse':stop.transition==='mossbank'?'Mossbank':stop.transition==='hidden-valley'?'Hidden Valley':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
   }
   // A named stop can be visible while its restored shared position is still syncing.
   // Keep Inspect unavailable until the same input guard would accept its click.

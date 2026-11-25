@@ -642,7 +642,7 @@ test('Dry-side forge finishes one independent order and the armor shows outside 
   await expect(button('Collect and equip vest')).toHaveCount(0);
   await close(page).tap();
   await route('pumpworks-exit');
-  await button('Enter town square').tap();
+  await button('Return to Willow meadow').tap();
   await room('square');
   await page.reload();
   await room('square');
@@ -690,7 +690,7 @@ test('Dry-side forge finishes one independent order and the armor shows outside 
   await close(page).tap();
   await expect(page.locator('.pump-armor')).toHaveText('Armor 1');
   await route('pumpworks-exit');
-  await button('Enter town square').tap();
+  await button('Return to Willow meadow').tap();
   await room('square');
   await expect.poll(artwork).toBe('pumpworks-riveted-vest-dusk-poses');
   await page.reload();

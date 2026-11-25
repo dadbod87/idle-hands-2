@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Glasshouse Swatch Book · Idle Hands 2 study</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#ded9c4;color:#27372f;font:1rem/1.45 system-ui,sans-serif}
+main{max-width:57rem;margin:auto;padding:clamp(.75rem,3vw,2rem)}
+header{background:#344b40;color:#fff9e8;padding:clamp(1rem,4vw,2rem);border:2px solid #27372f;border-radius:.6rem .6rem 0 0}
+h1,h2,p{margin:0 0 .6rem}h1,h2{font-family:Georgia,serif}h1{font-size:clamp(1.65rem,4.5vw,2.4rem)}
+header p{max-width:48ch}header p:last-child{margin-bottom:0}
+section{background:#fff9e9;border:2px solid #4b5741;border-top:0;padding:clamp(.85rem,3vw,1.4rem)}
+.layout,.seeds{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))}
+article{border:1px solid #857c63;background:#f2ead4;padding:.8rem;border-radius:.4rem}
+figure{margin:0}figcaption{font-weight:750}
+svg{width:4rem;height:4rem;display:block;margin-bottom:.3rem}
+button{font:inherit;font-weight:700;background:#fff9e9;color:#27372f;border:1px solid #3f4e3f;border-radius:.3rem;min-height:2.75rem;padding:.45rem .7rem}
+button:not(:disabled){cursor:pointer}
+button:focus-visible{outline:3px solid #8f4e37;outline-offset:3px}
+button:disabled{border-color:#aaa08b;color:#6b6454;background:#e9e2d2}
+.swatches{padding:0;margin:0;list-style:none;display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr))}
+.swatches li{display:flex;flex-direction:column;gap:.3rem;align-items:stretch}
+.swatches span{border:1px solid #554e3f;height:2.4rem;border-radius:.3rem;background-color:#eee5cb}
+.stripe{background-image:repeating-linear-gradient(135deg,transparent 0 8px,var(--hue) 8px 13px)}
+.dot{background-image:radial-gradient(circle,var(--hue) 18%,transparent 22%);background-size:14px 14px}
+small{display:block}
+.receipt{margin:.5rem 0 0}
+.controls{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.65rem}
+.swatches li[data-saved] button{background:#d9e8d3;color:#34483b;border-color:#76866e}
+</style>
+<main>
+<header>
+<h1>The Glasshouse Swatch Book</h1>
+<p>Grow your own ink. The nursery committee calls this a highly controlled spill.</p>
+<p><small>Design preview. The clock and supplies belong to this page and reset on reload.</small></p>
+</header>
+<section aria-labelledby="tray-heading">
+<h2 id="tray-heading">Growing tray</h2>
+<p id="tray">The tray is empty.</p>
+<div class="seeds">
+<article>
+<figure>
+<svg viewBox="0 0 64 64" role="img" aria-label="Rounded green Inkmint leaves in a clay pot">
+<path d="M18 44h28l-4 16H22Z" fill="#c38365" stroke="#34483b" stroke-width="2"/>
+<path d="M32 45V12" stroke="#36563d" stroke-width="3"/>
+<path d="M31 37C12 40 8 23 16 21c9-2 15 4 15 16ZM33 32c1-13 10-20 17-15 6 4-3 18-17 15ZM32 22C19 23 19 6 27 5c7 0 8 8 5 17Z" fill="#6c9261" stroke="#36563d" stroke-width="2"/>
+</svg>
+<figcaption>Inkmint</figcaption></figure>
+<p>Green ink · 24 hours</p><button data-plant="inkMint">Plant Inkmint</button>
+</article>
+<article>
+<figure>
+<svg viewBox="0 0 64 64" role="img" aria-label="Pointed blue-violet Dusk basil leaves in a clay pot">
+<path d="M18 44h28l-4 16H22Z" fill="#c38365" stroke="#34483b" stroke-width="2"/>
+<path d="M32 45V14" stroke="#4a415f" stroke-width="3"/>
+<path d="M31 40Q13 40 11 22q16 2 20 18ZM33 34Q33 20 53 19q-5 14-20 15ZM32 23Q19 14 30 4q10 9 2 19Z" fill="#927db4" stroke="#4a415f" stroke-width="2"/>
+</svg>
+<figcaption>Dusk basil</figcaption></figure>
+<p>Blue-violet ink · 36 hours</p><button data-plant="duskBasil">Plant Dusk basil</button>
+</article>
+</div>
+<p class="receipt" id="receipt" role="status"></p>
+<div class="controls"><button id="harvest">Collect pigment</button> <button id="advance">Advance preview 12 hours</button></div>
+</section>
+<section aria-labelledby="book-heading">
+<h2 id="book-heading">Swatch Book</h2>
+<p id="stock"></p>
+<p class="receipt" id="book-receipt" role="status"></p>
+<ul class="swatches" id="swatches" aria-label="Swatch designs"></ul>
+</section>
+</main>
+<script type="module" src="./preview.ts"></script>
+</html>

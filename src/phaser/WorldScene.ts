@@ -57,6 +57,8 @@ import { ORIGINAL_STATIC, ART, FACINGS, facingFor, walkFrame, type Facing } from
 import catalog from '../../public/art/variety/catalog.json';
 import {RESIDENT_IDS,TREE_KINDS,BUILDING_KINDS,residentArt,residentFrame,ambientPose,cosmeticStep} from '../art/variety.ts';
 import { WORKSHOP_PRINTS, WORKSHOP_PRINT_STAND, type WorkshopPrint } from '../game/workshop-print.ts';
+const FIELD_VEST_ATLASES=(['padded','riveted'] as const).flatMap(armor=>VEST_FINISHES.map(finish=>armorArtName(armor,finish,true)));
+
 const glasshouseTextures={overgrown:'glasshouse-overgrown','under-repair':'glasshouse-under-repair',open:'glasshouse-restored'} as const;
 type GlasshousePhase = GlasshouseSnapshot['project']['phase'];
 type ArtAsset={id:string;width:number;height:number;foot?:{x:number;y:number};occlusion?:{x:number;y:number;width:number;height:number};lightingWindows?:Array<{x:number;y:number;width:number;height:number}>};
@@ -743,7 +745,7 @@ export class WorldScene extends Phaser.Scene {
     const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','breeze-staff','dry-forge']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
     const practiceGear=this.pumpworksState?.();
     if(this.loadingRoom==='pumpworks'||practiceGear&&practiceGear.rod!=='unissued'){
-      fieldArt.push(...(['padded','riveted'] as const).flatMap(armor=>VEST_FINISHES.map(finish=>armorArtName(armor,finish,true))));
+      fieldArt.push(...FIELD_VEST_ATLASES);
     }
     for(const id of fieldArt){
       if(!this.textures.exists('pumpworks-'+id))this.load.svg('pumpworks-'+id,'/art/pumpworks/'+id+'.svg');
@@ -1196,8 +1198,8 @@ export class WorldScene extends Phaser.Scene {
     this.actor=this.add.image(0,0,'variety-resident-'+residentArt(this.residentId),0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setScale(ART.actorScale);
     const paddedKey='pumpworks-padded-vest-poses';
     if(this.pumpworksState&&this.textures.exists(paddedKey)){
-      for(const key of [paddedKey,'pumpworks-riveted-vest-poses']){
-        const texture=this.textures.get(key);
+      for(const name of FIELD_VEST_ATLASES){
+        const texture=this.textures.get('pumpworks-'+name);
         if(!texture.has('0'))this.textures.addSpriteSheet('',texture,{frameWidth:64,frameHeight:80});
       }
       this.fieldVest=this.add.image(0,0,paddedKey,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setVisible(false);
@@ -1379,6 +1381,7 @@ export class WorldScene extends Phaser.Scene {
     valleyGraft:this.graftTree?.visible?this.graftTree.texture.key:null,
     orchardKeeper:this.orchardKeeper?{x:this.orchardKeeper.actor.x,y:this.orchardKeeper.actor.y,frame:this.orchardKeeper.actor.frame.name}:null,
     fieldArmorArt:this.fieldVest?.visible===true?this.fieldVest.texture.key:null,
+    fieldArmorFrame:this.fieldVest?.visible===true?{name:this.fieldVest.frame.name,width:this.fieldVest.frame.width}:null,
     fieldEquipment:{vest:this.fieldVest?.visible===true,kerchief:this.fieldKerchief?.ink.visible===true?this.fieldKerchief.key:null},
     wornCloth:{own:this.peerLocalKerchief?.ink.visible?this.peerLocalKerchief.key:null,
       peers:[...this.residentViews].filter(([,view])=>view.kerchief?.ink.visible).map(([id,view])=>({id,appearance:view.kerchief!.key}))},

@@ -14,7 +14,7 @@ type Pilot={
  pumpworks():PumpworksState;
  pumpworksMotion():{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;sweep:RodSweep|null;pulse:StaffPulse|null;enemyHealth:number|null};
  screenPoint(x:number,y:number):Point;
- metrics():{visual:{facing:string;fieldArmorArt?:string|null;workshopPrint:string|null;fieldEquipment:{vest:boolean;kerchief:string|null}}};
+ metrics():{visual:{facing:string;fieldArmorArt?:string|null;fieldArmorFrame?:{name:string|number;width:number}|null;workshopPrint:string|null;fieldEquipment:{vest:boolean;kerchief:string|null}}};
 };
 const read=(page:Page)=>page.evaluate(()=>{
  const pilot=(window as Window&{__pilot?:Pilot}).__pilot;
@@ -672,6 +672,9 @@ test('Dry-side forge finishes one independent order and the armor shows outside 
   await button('Save riveted vest finish').tap();
   await expect(riveted).toContainText('Armor finish saved.');
   await expect.poll(artwork).toBe('pumpworks-riveted-vest-dusk-poses');
+  const armorFrame=()=>page.evaluate(()=>(window as Window&{__pilot?:Pilot}).__pilot?.metrics().visual.fieldArmorFrame);
+  await expect.poll(armorFrame).toMatchObject({width:64});
+  expect(String((await armorFrame())?.name)).toMatch(/^[0-3]$/);
   await page.getByLabel('Kerchief color').selectOption('fern');
   await page.getByLabel('Kerchief tie').selectOption('wrap');
   await button('Save kerchief').tap();

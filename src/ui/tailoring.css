@@ -7,3 +7,11 @@
 #panel-body .sewing-note:empty { display:none; }
 .sewing-preview { width:74px; height:64px; margin:auto; }
 .sewing-order .sewing-preview { background:#e5d8ae; border:1px solid #938774; border-radius:3px; }
+.sewing-controls .sewing-wear {
+ display:flex;
+ align-items:center;
+ gap:9px;
+ min-height:44px;
+ cursor:pointer;
+}
+.sewing-wear input { width:20px; height:20px; accent-color:#496353; }

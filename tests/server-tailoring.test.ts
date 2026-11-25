@@ -63,8 +63,15 @@ test('Connected sewing keeps one paid order, preserves a busy bench, and private
   assert.equal(wear.ok,true);
   assert.equal(wear.snapshot.tailoring?.worn,'indigo');
   assert.deepEqual(wear.snapshot.workshop.job,busy);
+  const pack=request('pack-cloth',{kind:'style',dye:'indigo',wear:false},wear.revision);
+  const packed=await store.execute(owner,pack,street);
+  assert.equal(packed.ok,true);
+  assert.equal((await store.execute(owner,pack,street)).replayed,true);
+  assert.equal(packed.snapshot.tailoring?.worn,'none');
+  assert.equal(packed.snapshot.tailoring?.dye,'indigo');
+  assert.equal((await store.snapshot(guest)).tailoring,null);
   const restarted=await new TownStore(pool,{now:()=>now}).snapshot(owner);
-  assert.deepEqual(restarted.tailoring,wear.snapshot.tailoring);
+  assert.deepEqual(restarted.tailoring,packed.snapshot.tailoring);
   assert.equal(restarted.workshop.inventory.supplies,1);
   const sql=await pool.query('select count(*)::int as count from ih2.tailored_kerchiefs where player_id=$1',[owner]);
   assert.equal(sql.rows[0].count,1);

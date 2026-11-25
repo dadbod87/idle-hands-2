@@ -1,5 +1,6 @@
 export const FIELD_KERCHIEFS=['none','clay','fern','indigo'] as const;
 export type FieldKerchief=typeof FIELD_KERCHIEFS[number];
+export const KERCHIEF_DYES=['clay','fern','indigo'] as const;
 
 export const KERCHIEF_COLORS={
  clay:{label:'Clay',fill:0xbd6455},

@@ -1,5 +1,5 @@
 import {kerchiefPreview} from './kerchief-preview.ts';
-import {TAILOR_COST,TAILOR_MS,type TailoringAction} from '../game/tailoring.ts';
+import {TAILOR_COST,TAILOR_MS,sewingReady,type TailoringAction} from '../game/tailoring.ts';
 import {FIELD_KERCHIEFS,KERCHIEF_COLORS,validKerchief} from '../game/field-appearance.ts';
 import type {TownClient} from './town-client.ts';
 import './tailoring.css';
@@ -37,7 +37,8 @@ export function showTailoring(host:Host,town:TownClient,fromBag=false){
   if(state===undefined)return;
   const stage=!state?'start':state.collectedAt!==null?'dye':state.readyAt>town.serverNow()?'wait':'collect';
   if(stage==='wait'){
-   detail.textContent='Ready in '+displayTime(state!.readyAt-town.serverNow())+'. The main bench is available.';
+   const label='Ready in '+displayTime(state!.readyAt-town.serverNow());
+   if(detail.textContent!==label)detail.textContent=label;
   }
   if(stage===shownStage&&shownRevision===snapshot.workshop.revision)return;
   shownStage=stage;shownRevision=snapshot.workshop.revision;
@@ -110,4 +111,15 @@ export function tailoringBagCards(town:TownClient,open:()=>void){
  const button=document.createElement('button');button.type='button';button.className='bag-equip-action';button.textContent='Change kerchief color';button.onclick=open;
  card.append(icon,title,status,button);
  return [card];
+}
+
+export function sewingJournal(body:HTMLElement,town:TownClient,walk:()=>void){
+ const order=town.snapshot?.tailoring;
+ if(!order||order.collectedAt!==null)return;
+ const section=document.createElement('section');section.className='journal-ready-return';section.dataset.sewingJournal='';
+ const title=document.createElement('h3');title.textContent='Trail kerchief';
+ const note=document.createElement('p');note.textContent=sewingReady(order,town.serverNow())?'Ready to collect at the sewing table.':'Sewing in progress.';
+ const button=document.createElement('button');button.type='button';button.className='destination';
+ button.textContent='Walk to sewing table';button.onclick=walk;
+ section.append(title,note,button);body.append(section);
 }

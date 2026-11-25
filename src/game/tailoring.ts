@@ -32,7 +32,7 @@ export function tailor(current:Tailoring|null,action:TailoringAction,atTable:boo
    if(now>Number.MAX_SAFE_INTEGER-TAILOR_MS)return refuse('The sewing clock is out of range.');
    if(supplies<TAILOR_COST)return refuse('Bring '+TAILOR_COST+' Supplies.');
    return {ok:true,state:{startedAt:now,readyAt:now+TAILOR_MS,collectedAt:null,worn:'none'},cost:TAILOR_COST,
-    message:'Kerchief started. The main bench is free for other work.'};
+    message:'Kerchief started.'};
   case 'collect':
    if(!current||current.collectedAt!==null||now<current.readyAt)return refuse('There is no finished kerchief to collect.');
    return {ok:true,state:{...current,collectedAt:now},cost:0,message:'Trail kerchief collected. Pick a color to wear.'};
@@ -42,4 +42,8 @@ export function tailor(current:Tailoring|null,action:TailoringAction,atTable:boo
    return {ok:true,state:{...current,worn:action.color},cost:0,
     message:action.color==='none'?'Kerchief put away.':'Kerchief worn. Nearby residents can see it.'};
  }
+}
+
+export function sewingReady(order:Tailoring|null|undefined,now:number){
+ return !!order&&order.collectedAt===null&&now>=order.readyAt;
 }

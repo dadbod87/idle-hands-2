@@ -1,5 +1,5 @@
-import {SEWING_TABLE} from './game/tailoring.ts';
-import {showTailoring,tailoringBagCards} from './ui/tailoring.ts';
+import {SEWING_TABLE,sewingReady} from './game/tailoring.ts';
+import {sewingJournal,showTailoring,tailoringBagCards} from './ui/tailoring.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD} from './game/mossbank-room.ts';
 import {MOSSBANK_KEY,mossbankFromAwards,readMossbank,type SurveyPlace} from './game/mossbank.ts';
 import {createMossbank} from './ui/mossbank.ts';
@@ -104,10 +104,13 @@ const title = document.querySelector<HTMLElement>('#panel-title')!;
 const body = document.querySelector<HTMLDivElement>('#panel-body')!;
 const journalButton=document.querySelector<HTMLButtonElement>('#journal')!;
 const journalReadyMark=document.querySelector<HTMLElement>('#journal-ready-mark')!;
-function paintJournalReady(ready:boolean){
- if(journalReadyMark.hidden===!ready)return;
- journalReadyMark.hidden=!ready;
- if(ready)journalButton.setAttribute('aria-describedby','journal-ready-description');
+let ordinaryJournalReady=false;
+function paintJournalReady(ready=ordinaryJournalReady){
+ ordinaryJournalReady=ready;
+ const lit=ready||!!town&&sewingReady(town.snapshot?.tailoring,town.serverNow());
+ if(journalReadyMark.hidden===!lit)return;
+ journalReadyMark.hidden=!lit;
+ if(lit)journalButton.setAttribute('aria-describedby','journal-ready-description');
  else journalButton.removeAttribute('aria-describedby');
 }
 
@@ -558,7 +561,10 @@ const workshop=new WorkshopUI({fieldGear:pumpworks?.gear??(town?()=>tailoringBag
  if(session.room==='pumpworks'){
   goNamedDestination('pumpworks',state?.satchel==='at-pump'?'pumpworks-cache':state?.cleared?'pumpworks-report':'pumpworks-hopper');
  }else goNamedDestination('square',PUMPWORKS_DOOR.id);
-},()=>workshop.showJournal('pumpworks-seal'));mossbank.journal(body);}:mossbank.journal,inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
+},()=>workshop.showJournal('pumpworks-seal'));mossbank.journal(body);}:body=>{
+ mossbank.journal(body);
+ if(town)sewingJournal(body,town,()=>goNamedDestination('workshop',SEWING_TABLE.id));
+},inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
  savedMarigold:!town?(earned)=>{
   if(earned===printRights.marigold)return;
   printRights.marigold=earned;
@@ -1144,6 +1150,7 @@ document.addEventListener('keydown', e => {
 scene.onFrame = () => {
   const now=performance.now();
   pumpworks?.tick(now);
+  if(town)paintJournalReady();
   frameLimit(!ready||panel.open||now<wakeRenderUntil||scene.needsFullRate()||pumpworks?.encounterActive()?0:10);
   if(panel.open){const second=Math.floor((town?.serverNow()??Date.now())/1000);if(second!==guidanceSecond){guidanceSecond=second;paintGuideObjective();}}
   if(town&&!document.hidden)void flushMovement().catch(()=>{});

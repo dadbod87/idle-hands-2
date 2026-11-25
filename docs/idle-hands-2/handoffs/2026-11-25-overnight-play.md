@@ -56,3 +56,7 @@ The separate [Swatch Book study](https://github.com/dadbod87/idle-hands-2/tree/s
 ### Additional local Chromium regression
 
 On the exact integrated runtime, the 56-case browser selection recorded 52 passes. It covered fresh touch onboarding through Marlow to the bench, return shortcuts, local collect/reload/two-tab recovery, phone navigation, home interiors and visitor privacy, and the Pond and woodland outings. Four selected cases still require the isolated database and real API. They reached the deliberately unavailable local endpoints and did not run their gameplay assertions. Those are the real shared pine review, actual shared collection, and two garden recovery cases. This was a client-only run with no saved service started. Those cases remain in ordinary validation, with their failure captures retained separately from passing evidence.
+
+### Glasshouse stored review recovery
+
+A malformed persisted quote with the wrong price could make the read projection throw. The same two-minute and exact-price validation now guards both projection and confirmation. The board stays visible with no quote, so the resident can review again without a debit or changed project stage. The regression covers a wrong pine amount and an incorrect expiry, alongside valid quote recovery. The build and 456 local domain cases passed. Five focused Chromium cases covered the nursery, returning to work and home privacy with intercepted shared responses. The 33 database tests remain outstanding.

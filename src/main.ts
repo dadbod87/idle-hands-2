@@ -504,6 +504,7 @@ const pumpworks=townMode?undefined:createPumpworks({
   position:session.position,
  }),
  equipment:()=>workshop.showFieldGear(),
+ look:()=>({rig:scene.residentId,headwear:scene.headwear}),
  feedback:message=>feedback.textContent=message,
  update:record=>{
   const earned=record.ok&&record.state.reported;
@@ -558,7 +559,7 @@ const mossbank=createMossbank({
   }
  },
 }:undefined);
-const sewingHost={open:openPanel,body,atTable:()=>session.room==='workshop'&&session.nearby()?.id===SEWING_TABLE.id&&!needResync,cue:()=>music.cue('craft')};
+const sewingHost={open:openPanel,body,look:()=>({rig:scene.residentId,headwear:scene.headwear}),atTable:()=>session.room==='workshop'&&session.nearby()?.id===SEWING_TABLE.id&&!needResync,cue:()=>music.cue('craft')};
 const workshop=new WorkshopUI({fieldGear:pumpworks?.gear??(town?()=>tailoringBagCards(town,()=>showTailoring(sewingHost,town,true)):undefined),fieldJournal:pumpworks?(body)=>{pumpworks.journal(body,()=>{
  const state=pumpworks.current();
  if(session.room==='pumpworks'){

@@ -13,7 +13,12 @@ export const KERCHIEF_ACTIONS={
  'kerchief-fern':'fern',
  'kerchief-indigo':'indigo',
 } as const;
-export type FieldDyeAction=keyof typeof KERCHIEF_ACTIONS;
+export const KERCHIEF_PACK_ACTIONS={
+ 'kerchief-pack-clay':'clay',
+ 'kerchief-pack-fern':'fern',
+ 'kerchief-pack-indigo':'indigo',
+} as const;
+export type FieldDyeAction=keyof typeof KERCHIEF_ACTIONS|keyof typeof KERCHIEF_PACK_ACTIONS;
 
 export function validKerchief(value:unknown):value is FieldKerchief{
  return (FIELD_KERCHIEFS as readonly unknown[]).includes(value);

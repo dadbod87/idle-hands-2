@@ -103,5 +103,19 @@
 }
 
 #panel-body .field-kerchief label { grid-column:1/-1; display:grid; gap:4px; font-size:.84rem; }
+#panel-body .field-kerchief .sewing-wear { display:flex; }
 #panel-body .field-kerchief select { max-width:100%; min-height:44px; padding:6px 9px; font:inherit; }
-.field-kerchief .bag-slot-art svg { width:64px; height:64px; }
+.bag-slots[aria-label=Equipment] .field-kerchief .bag-slot-art {
+ grid-column:1/-1;
+ grid-row:auto;
+ height:104px;
+}
+.field-kerchief .bag-slot-art .outfit-preview {
+ width:76px;
+ height:100px;
+ background:#e5d8ae;
+ border:1px solid #938774;
+ border-radius:3px;
+}
+.bag-slots[aria-label=Equipment] .field-kerchief h4,
+#panel-body .field-kerchief .bag-slot-detail { grid-column:1/-1; }

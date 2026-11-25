@@ -1,7 +1,7 @@
-import {MOSSBANK_VALLEY_ROAD,VALLEY_STOPS,VALLEY_TREES} from '../game/hidden-valley-room.ts';
+import {MOSSBANK_VALLEY_ROAD,VALLEY_STOPS,VALLEY_TREES,valleyFollow} from '../game/hidden-valley-room.ts';
 import {KERCHIEF_COLORS,validKerchief,type FieldKerchief} from '../game/field-appearance.ts';
 import {SEWING_TABLE} from '../game/tailoring.ts';
-import {KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
+import {KERCHIEF_RIG_WIDTH,KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
 import {BOW_DRAW_SECONDS,BOW_TRACE_MS,STAFF_PULSE_MS,type BowDraw,type BowTrace,type StaffPulse} from '../game/field-weapons.ts';
 import type {MossbankSurvey} from '../game/mossbank.ts';
 import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,hopperOpen,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
@@ -58,7 +58,6 @@ type GlasshousePhase = GlasshouseSnapshot['project']['phase'];
 type ArtAsset={id:string;width:number;height:number;foot?:{x:number;y:number};occlusion?:{x:number;y:number;width:number;height:number};lightingWindows?:Array<{x:number;y:number;width:number;height:number}>};
 const assets=catalog.assets as ArtAsset[];
 const art=(id:string)=>{const asset=assets.find(a=>a.id===id);if(!asset)throw new Error('Missing authored art: '+id);return asset;};
-const KERCHIEF_RIG_WIDTH={aster:1,bea:1.12,casey:.87,devon:1.06} as const;
 const regionalRoom=(room:string)=>room==='mossbank'||room==='pumpworks'||room==='hidden-valley';
 type KerchiefLayer={ink:Phaser.GameObjects.Graphics;key:string};
 
@@ -1038,7 +1037,22 @@ export class WorldScene extends Phaser.Scene {
       const overlook=this.add.graphics().setDepth(ly);
       overlook.fillStyle(0xac9a75).fillRoundedRect(lx-66,ly-37,130,33,5);
       overlook.lineStyle(3,0x635c48).strokeRoundedRect(lx-66,ly-37,130,33,5);
-      overlook.lineStyle(6,0x78593e).lineBetween(lx-25,ly-19,lx+25,ly-19).lineBetween(lx-20,ly-16,lx-20,ly-7).lineBetween(lx+20,ly-16,lx+20,ly-7);
+      overlook.fillStyle(0xd0bc89).fillRoundedRect(lx-66,ly-44,130,33,5);
+      overlook.lineStyle(3,0x777155).strokeRoundedRect(lx-66,ly-44,130,33,5)
+        .lineBetween(lx-65,ly-15,lx+63,ly-15);
+      overlook.lineStyle(6,0x78593e).lineBetween(lx-25,ly-24,lx+25,ly-24)
+        .lineBetween(lx-20,ly-21,lx-20,ly-12).lineBetween(lx+20,ly-21,lx+20,ly-12);
+      overlook.lineStyle(3,0x685a3e).lineBetween(lx-58,ly-39,lx-58,ly-15)
+        .lineBetween(lx+57,ly-39,lx+57,ly-15).lineBetween(lx-58,ly-39,lx+57,ly-39);
+      const roadSignX=8.85*TILE,roadSignY=32.95*TILE;
+      const signFrame=this.add.graphics()
+        .fillStyle(0xb79062).fillRoundedRect(-42,-60,84,45,4)
+        .lineStyle(3,0x535043).strokeRoundedRect(-42,-60,84,45,4)
+        .lineBetween(-27,-15,-27,-1).lineBetween(28,-15,28,-1)
+        .fillStyle(0xc37452).fillCircle(0,-56,8)
+        .lineStyle(2,0x535043).lineBetween(0,-62,4,-67);
+      const signFace=this.add.text(0,-34,'ORCHARD ↑',{fontFamily:'Georgia',fontSize:12,color:'#382d23',fontStyle:'bold'}).setOrigin(.5);
+      this.add.container(roadSignX,roadSignY,[signFrame,signFace]).setDepth(roadSignY);
       for(const stop of VALLEY_STOPS)label(stop.point.x+.5,stop.point.y+.8,stop.id==='valley-mossbank-road'?'← Mossbank road':stop.name);
       const starts=[[1260,140],[1307,262],[1269,395],[1308,697],[1259,819],[1302,1073],[1249,1182],[1312,1292]];
       this.mossbankRipples=starts.map(([x,y],index)=>({
@@ -1318,7 +1332,11 @@ export class WorldScene extends Phaser.Scene {
     this.residentialLife?.update(this.ambientMs,this.ambientEnabled&&this.room==='neighborhood');
     this.commonsLife?.update(this.ambientMs,this.ambientEnabled);
     this.commonsLife?.showRiverFloat(this.riverCast,this.cameras.main.worldView,this.ambientMs,this.ambientEnabled);
-    if(this.room==='square'){const c=this.cameras.main,frame=commonsFrame(this.session.position,c.width,c.height);c.setFollowOffset(frame.x,frame.y);}
+    if(this.room==='square'||this.room==='hidden-valley'){
+      const camera=this.cameras.main;
+      const frame=this.room==='square'?commonsFrame(this.session.position,camera.width,camera.height):valleyFollow(this.session.position,camera.width,camera.height);
+      camera.setFollowOffset(frame.x,frame.y);
+    }
     const camera=this.cameras.main,visible=(x:number,y:number)=>x>camera.worldView.left-120&&x<camera.worldView.right+120&&y>camera.worldView.top-160&&y<camera.worldView.bottom+120;
     for(const ripple of this.mossbankRipples){
       const active=this.ambientEnabled&&visible(ripple.image.x,ripple.y);

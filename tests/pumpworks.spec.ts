@@ -437,6 +437,15 @@ for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:32
    await activate(button('Save kerchief'));
    await expect(kerchief).toContainText('Indigo kerchief worn');
    await expect(button('Save kerchief')).toBeDisabled();
+   const wear=kerchief.getByLabel('Wear kerchief');
+   await wear.uncheck();
+   await activate(button('Save kerchief'));
+   await expect(kerchief).toContainText('Indigo · Packed');
+   expect((await read(page))!.state).toMatchObject({kerchief:'none',kerchiefDye:'indigo',vest:'equipped',bow:'equipped'});
+   await expect(color).toHaveValue('indigo');
+   await wear.check();
+   await activate(button('Save kerchief'));
+   await expect(kerchief).toContainText('Indigo kerchief worn');
    await page.screenshot({path:output+'/field-kerchief-'+shape.name+'-bag.png'});
    await activate(close(page));
    await expect(button('Shoot')).toBeInViewport({ratio:1});
@@ -462,18 +471,26 @@ for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:32
    expect((await read(page))!.state).toEqual(practice);
 
    await go('pumpworks-hopper');
-   await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{intervals:[25]}).toBe('windup');
-   const windup=(await read(page))!.combat.hopper;
-   const vx=windup.aim!.x-windup.origin!.x,vy=windup.aim!.y-windup.origin!.y,length=Math.hypot(vx,vy);
-   expect(length).toBeGreaterThan(.3);
-   const sidesteps=[1,-1].map(sign=>({x:windup.aim!.x+vy/length*2.4*sign,y:windup.aim!.y-vx/length*2.4*sign}));
-   const target=sidesteps.find(p=>p.x>13.1&&p.x<18.8&&p.y>4.75&&p.y<12.1);
-   expect(target).toBeDefined();
-   await move(target!);
-   await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{intervals:[25]}).toBe('recover');
+   await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{intervals:[20]}).toBe('windup');
+   const approach=(await read(page))!;
+   const {aim,origin}=approach.combat.hopper;
+   const angle=Math.atan2(aim!.y-origin!.y,aim!.x-origin!.x);
+   // A lane near the wall can rule out a perpendicular step. Pick an open
+   // sidestep that ends outside rod range and can be reached during the tell.
+   const sidesteps=[90,-90,65,-65,115,-115,45,-45,135,-135].map(degrees=>{
+    const rotation=angle+degrees*Math.PI/180;
+    return {x:aim!.x+Math.cos(rotation)*2.18,y:aim!.y+Math.sin(rotation)*2.18};
+   }).filter(p=>p.x>13.1&&p.x<18.8&&p.y>4.65&&p.y<12.25);
+   expect(sidesteps.length).toBeGreaterThan(0);
+   const target=sidesteps.sort((a,b)=>Math.hypot(a.x-approach.position.x,a.y-approach.position.y)
+    -Math.hypot(b.x-approach.position.x,b.y-approach.position.y))[0];
+   await move(target);
+   await expect.poll(async()=>{
+    const live=(await read(page))!;
+    const gap=Math.hypot(live.position.x-live.combat.hopper.feet.x,live.position.y-live.combat.hopper.feet.y);
+    return live.combat.hopper.phase==='recover'&&!live.walking&&gap>HOPPER_MOVEMENT.reach;
+   },{intervals:[20]}).toBe(true);
    const before=(await read(page))!;
-   const gap=Math.hypot(before.position.x-before.combat.hopper.feet.x,before.position.y-before.combat.hopper.feet.y);
-   expect(gap).toBeGreaterThan(HOPPER_MOVEMENT.reach);
    await shoot();
    await expect.poll(async()=>(await read(page))?.combat.impact?.kind,{intervals:[25]}).toBe('counter');
    const after=(await read(page))!;

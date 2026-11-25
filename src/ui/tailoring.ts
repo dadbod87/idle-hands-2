@@ -1,10 +1,10 @@
-import {kerchiefPreview} from './kerchief-preview.ts';
+import {kerchiefDyePicker,kerchiefPreview,type OutfitLook} from './kerchief-preview.ts';
 import {TAILOR_COST,TAILOR_MS,savedKerchiefDye,sewingReady,type TailoringAction} from '../game/tailoring.ts';
-import {KERCHIEF_DYES,KERCHIEF_COLORS} from '../game/field-appearance.ts';
+import {KERCHIEF_COLORS} from '../game/field-appearance.ts';
 import type {TownClient} from './town-client.ts';
 import './tailoring.css';
 
-type Host={open:(title:string)=>void;body:HTMLElement;atTable:()=>boolean;cue:()=>void};
+type Host={open:(title:string)=>void;body:HTMLElement;atTable:()=>boolean;cue:()=>void;look:()=>OutfitLook};
 export function showTailoring(host:Host,town:TownClient,fromBag=false){
  const player=town.snapshot?.playerId;
  if(!player||town.snapshot?.tailoring===undefined||!fromBag&&!host.atTable())return;
@@ -12,7 +12,7 @@ export function showTailoring(host:Host,town:TownClient,fromBag=false){
  host.open(fromBag?'Trail kerchief':'Sewing table');
  const section=document.createElement('section');section.className='sewing-order';
  host.body.append(section);
- const image=kerchiefPreview();image.element.classList.add('sewing-preview');image.element.style.display='none';
+ const image=kerchiefPreview(host.look());image.element.classList.add('sewing-preview');image.element.style.display='none';
  const detail=document.createElement('p');
  const controls=document.createElement('div');controls.className='sewing-controls';
  const status=document.createElement('p');status.role='status';status.className='sewing-note';
@@ -57,29 +57,19 @@ export function showTailoring(host:Host,town:TownClient,fromBag=false){
    const currentDye=state?savedKerchiefDye(state):'none';
    const worn=state?.worn!=='none';
    detail.textContent=currentDye==='none'?'Choose a dye.':KERCHIEF_COLORS[currentDye].label+(worn?' · Worn':' · Packed');
-   const label=document.createElement('label');label.textContent='Kerchief color';
-   const choices=document.createElement('select');
-   const placeholder=new Option('Choose a dye','none');
-   placeholder.disabled=true;
-   choices.append(placeholder);
-   for(const color of KERCHIEF_DYES)choices.append(new Option(KERCHIEF_COLORS[color].label,color));
-   choices.value=currentDye;label.append(choices);
-   const wearLabel=document.createElement('label');wearLabel.className='sewing-wear';
-   const wear=document.createElement('input');wear.type='checkbox';wear.checked=currentDye==='none'||worn;
-   wearLabel.append(wear,' Wear kerchief');
+   const picker=kerchiefDyePicker(currentDye,worn);
    const apply=button('Save kerchief',null);
-   const selectedDye=()=>KERCHIEF_DYES.find(color=>color===choices.value);
    const preview=()=>{
-    const dye=selectedDye();
+    const dye=picker.dye();
     image.element.style.display=dye?'':'none';
     image.paint(dye??'none');
-    apply.disabled=busy||town.isSaving||town.retryAvailable||!dye||dye===currentDye&&wear.checked===worn;
+    apply.disabled=busy||town.isSaving||town.retryAvailable||!dye||dye===currentDye&&picker.wear.checked===worn;
    };
-   apply.onclick=()=>{const dye=selectedDye();if(dye)void save({kind:'style',dye,wear:wear.checked});};
-   choices.addEventListener('change',preview);
-   wear.addEventListener('change',preview);
+   apply.onclick=()=>{const dye=picker.dye();if(dye)void save({kind:'style',dye,wear:picker.wear.checked});};
+   picker.select.addEventListener('change',preview);
+   picker.wear.addEventListener('change',preview);
    preview();
-   controls.append(label,wearLabel,apply);
+   controls.append(picker.colorLabel,picker.wearLabel,apply);
   }
   if(town.tailoringRetryAvailable)controls.append(button('Retry sewing request',null));
  }

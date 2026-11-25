@@ -5,9 +5,11 @@
 .sewing-controls .destination { margin:0; }
 #panel-body .sewing-order p { margin:0; }
 #panel-body .sewing-note:empty { display:none; }
+.sewing-order .sewing-preview.outfit-preview { width:80px; height:116px; }
 .sewing-preview { width:74px; height:64px; margin:auto; }
-.sewing-order .sewing-preview { background:#e5d8ae; border:1px solid #938774; border-radius:3px; }
-.sewing-controls .sewing-wear {
+.sewing-order .sewing-order .sewing-preview.outfit-preview { width:80px; height:116px; }
+.sewing-preview { background:#e5d8ae; border:1px solid #938774; border-radius:3px; }
+#panel-body .sewing-wear {
  display:flex;
  align-items:center;
  gap:9px;

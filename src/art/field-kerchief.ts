@@ -15,3 +15,4 @@ const left={cloth:mirror(right.cloth),seam:mirror(right.seam)};
 export const KERCHIEF_OUTLINES:Record<Facing,Outline>={south:front,north:back,east:right,west:left};
 export const KERCHIEF_INK=0x394138;
 export const KERCHIEF_TRIM=0xf2d2a0;
+export const KERCHIEF_RIG_WIDTH={aster:1,bea:1.12,casey:.87,devon:1.06} as const;

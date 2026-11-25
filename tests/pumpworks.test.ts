@@ -344,7 +344,18 @@ test('Kerchief dyes and hiding the clothing layer never change armor, weapon, or
  assert.equal(play(fighting,'hit','arena').health,6);
  const off=play(indigo,'kerchief-none','elsewhere');
  assert.equal(off.kerchief,'none');
+ assert.equal(off.kerchiefDye,'indigo');
  assert.equal(off.vest,'equipped');
+ const packed=play(off,'kerchief-pack-clay','elsewhere');
+ assert.equal(packed.kerchief,'none');
+ assert.equal(packed.kerchiefDye,'clay');
+ const restored=readPumpworks({getItem:()=>JSON.stringify(packed)});
+ if(!restored.ok)assert.fail(restored.message);
+ assert.equal(restored.state.kerchiefDye,'clay');
+ const dressed=play(restored.state,'kerchief-clay','elsewhere');
+ assert.equal(dressed.kerchief,'clay');
+ assert.equal(dressed.vest,'equipped');
+ assert.equal(dressed.bow,'equipped');
 });
 
 test('The staff trades opening damage for space and a push stays on chamber floor',()=>{

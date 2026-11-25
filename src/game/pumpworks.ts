@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import {FIELD_KERCHIEFS,KERCHIEF_ACTIONS,KERCHIEF_COLORS,type FieldDyeAction} from './field-appearance.ts';
+import {FIELD_KERCHIEFS,KERCHIEF_ACTIONS,KERCHIEF_COLORS,KERCHIEF_PACK_ACTIONS,type FieldDyeAction} from './field-appearance.ts';
 import {equippedFieldWeapon,FIELD_WEAPON_IDS,FIELD_WEAPONS,wieldWeapon} from './field-weapons.ts';
 
 export const FIELD_HEALTH=8;
@@ -16,6 +16,7 @@ const recordSchema=z.object({
  staff:z.enum(['unissued','packed','equipped']).default('unissued'),
  vest:z.enum(['unissued','packed','equipped']).default('unissued'),
  kerchief:z.enum(FIELD_KERCHIEFS).default('none'),
+ kerchiefDye:z.enum(FIELD_KERCHIEFS).optional(),
  oatcake:z.enum(['unissued','packed','used']).default('unissued'),
  satchel:z.enum(['none','carried','at-pump']),
  fight:z.object({
@@ -31,6 +32,8 @@ const recordSchema=z.object({
     ||state.rematch!==(state.reported&&!state.cleared)
     ||state.fight&&(state.recovering||state.cleared)
     ||FIELD_WEAPON_IDS.filter(slot=>state[slot]==='equipped').length>1
+    ||state.kerchief!=='none'&&state.kerchiefDye!==undefined&&state.kerchief!==state.kerchiefDye
+    ||state.rod==='unissued'&&state.kerchiefDye!==undefined&&state.kerchiefDye!=='none'
     ||state.rod==='unissued'&&(state.oatcake!=='unissued'||state.bow!=='unissued'||state.staff!=='unissued'||state.vest!=='unissued'||state.kerchief!=='none')
     ||(state.rod==='unissued')!==(state.satchel==='none')){
   ctx.addIssue({code:'custom',message:'The survey record is inconsistent.'});
@@ -59,11 +62,17 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
   case 'kerchief-none':
   case 'kerchief-clay':
   case 'kerchief-fern':
-  case 'kerchief-indigo': {
+  case 'kerchief-indigo':
+  case 'kerchief-pack-clay':
+  case 'kerchief-pack-fern':
+  case 'kerchief-pack-indigo': {
    if(place!=='elsewhere'||state.rod==='unissued'||state.fight)return refuse('Change your look outside the encounter.');
-   const kerchief=KERCHIEF_ACTIONS[action];
-   if(state.kerchief===kerchief)return refuse('This look is already saved.');
-   return accept({kerchief},kerchief==='none'?'Kerchief put away.':KERCHIEF_COLORS[kerchief].label+' kerchief worn.');
+   const previous=state.kerchiefDye??state.kerchief;
+   const kerchief=action in KERCHIEF_ACTIONS?KERCHIEF_ACTIONS[action as keyof typeof KERCHIEF_ACTIONS]:'none';
+   const dye=action in KERCHIEF_PACK_ACTIONS?KERCHIEF_PACK_ACTIONS[action as keyof typeof KERCHIEF_PACK_ACTIONS]
+    :kerchief==='none'?previous:kerchief;
+   if(state.kerchief===kerchief&&previous===dye)return refuse('This look is already saved.');
+   return accept({kerchief,kerchiefDye:dye},kerchief==='none'?'Kerchief packed. Its dye stays with it.':KERCHIEF_COLORS[kerchief].label+' kerchief worn.');
   }
   case 'borrow-bow':
    if(place!=='locker'||state.rod==='unissued'||state.bow!=='unissued'||state.fight)return refuse('The field bow is on loan from the survey locker.');

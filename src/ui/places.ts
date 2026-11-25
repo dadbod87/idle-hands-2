@@ -29,7 +29,8 @@ export function renderPlaces(body: HTMLElement, options: {
  };
 
  const browse = document.createElement('div');
- if(options.room==='mossbank')browse.append(mossbankMap(options.position,options.stops,options.walk));
+ const regional=options.room==='mossbank'?mossbankMap(options.position,options.stops,options.walk,options.peers,options.wave):undefined;
+ if(regional)browse.append(regional.element);
  if (view.primary.length) {
   const heading = document.createElement('h3');
   heading.textContent = view.heading;
@@ -53,7 +54,7 @@ export function renderPlaces(body: HTMLElement, options: {
  if (map) browse.append(map.element);
  body.append(browse);
 
- if (!view.groups.length) return map?.updateResidents;
+ if (!view.groups.length) return map?.updateResidents??regional?.updateResidents;
  const label = document.createElement('label');
  label.className = 'places-search';
  label.textContent = 'Find a place';

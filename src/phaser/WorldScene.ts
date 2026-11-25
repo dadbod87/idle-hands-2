@@ -3,7 +3,7 @@ import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,hopperOpen,type FieldImpact,type HopperM
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
 import {HOPPER_FEET,PRACTICE_BELL,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
 import {HOPPER_HEALTH,type PumpworksState} from '../game/pumpworks.ts';
-import {activeWave} from '../game/town-wave.ts';
+import {activeWave,waveRoom} from '../game/town-wave.ts';
 import {INKWOOD_HOOD,CLERK_CAP,type EarnedHeadwear} from '../game/earned-headwear.ts';
 import {glasshousePlantArt,type GlasshousePlant} from '../game/glasshouse-plants.ts';
 import {WINDOWSILL_ART} from '../game/home-windowsill.ts';
@@ -1220,14 +1220,14 @@ export class WorldScene extends Phaser.Scene {
       view.image.destroy();view.label.destroy();view.headwear?.destroy();this.residentViews.delete(id);
     }
     const waveNow=this.waveTime();
-    if(this.room==='square'&&activeWave(this.localWaveUntil,waveNow)){
+    if(waveRoom(this.room)&&activeWave(this.localWaveUntil,waveNow)){
       this.localWaveLabel??=this.add.text(0,0,'Wave hello!',{fontFamily:'Georgia',fontSize:12,color:'#253c34',backgroundColor:'#ffe6a3',padding:{x:4,y:3}}).setOrigin(.5,1);
       const waveY=Math.max(this.cameras.main.worldView.top+22,y-94);
       if(this.localWaveLabel.x!==x||this.localWaveLabel.y!==waveY)this.localWaveLabel.setPosition(x,waveY);
       if(this.localWaveLabel.depth!==y+1)this.localWaveLabel.setDepth(y+1);
       if(!this.localWaveLabel.visible)this.localWaveLabel.setVisible(true);
     }else if(this.localWaveLabel?.visible)this.localWaveLabel.setVisible(false);
-    if(this.room!=='square')this.localWaveUntil=0;
+    if(!waveRoom(this.room))this.localWaveUntil=0;
     this.visiblePeerWalking=false;
     for(const peer of peers){
       let view=this.residentViews.get(peer.id);
@@ -1247,7 +1247,7 @@ export class WorldScene extends Phaser.Scene {
         view.image.setPosition(px,py).setDepth(py);
         view.label.setPosition(px,py-63).setDepth(py+1);
       }
-      const waving=this.room==='square'&&activeWave(peer.waveUntil,waveNow);
+      const waving=waveRoom(this.room)&&activeWave(peer.waveUntil,waveNow);
       const label=waving?'Waves hello!\n'+peer.name:peer.name;
       if(view.label.text!==label)view.label.setText(label).setBackgroundColor(waving?'#ffe6a3':'#f8f1df');
       view.headwear=this.paintHeadwear(peer.headwear===INKWOOD_HOOD||peer.headwear===CLERK_CAP?peer.headwear:null,view.headwear,px,py,frame);

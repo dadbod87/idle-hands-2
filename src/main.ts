@@ -19,7 +19,7 @@ import {earnedFieldCertificate} from './game/outing.ts';
 import {showRiverSurvey} from './ui/river-survey.ts';
 import {WORKSHOP_PRINT_KEY,WORKSHOP_PRINT_STOP,WORKSHOP_PRINTS,earnedWorkshopPrints,selectedWorkshopPrint,setWorkshopPrint,type WorkshopPrint} from './game/workshop-print.ts';
 import {RecentFieldNotes} from './game/recent-field-notes.ts';
-import {activeWave} from './game/town-wave.ts';
+import {activeWave,waveRoom} from './game/town-wave.ts';
 import {INKWOOD_HOOD,CLERK_CAP,ownsHeadwear} from './game/earned-headwear.ts';
 import {headwearName} from './art/headwear.ts';
 import { WORKSHOP_LODGE_BOARD } from './game/home-lodge.ts';
@@ -396,8 +396,8 @@ const town=townMode?new TownClient({
   scene.residents=Array.isArray(presence)?presence:[];
   refreshPlaces?.(scene.residents);
   const waved:string[]=[],at=town?.serverNow()??Date.now();
-  if(session.room==='square')for(const peer of scene.residents){
-   if(peer.room==='square'&&activeWave(peer.waveUntil,at)&&heardWaves.get(peer.id)!==peer.waveUntil){
+  if(waveRoom(session.room))for(const peer of scene.residents){
+   if(peer.room===session.room&&activeWave(peer.waveUntil,at)&&heardWaves.get(peer.id)!==peer.waveUntil){
     heardWaves.set(peer.id,peer.waveUntil);
     waved.push(peer.name);
    }
@@ -737,11 +737,12 @@ document.querySelector('#field-guide')!.addEventListener('click',()=>{
    const exit=worlds[session.room].stops.find(stop=>stop.transition==='square');if(exit)goNamedDestination(session.room,exit.id);
   });
 });
-async function waveToSquare(){
- if(!town?.snapshot||needResync||session.room!=='square')throw new Error('Enter the shared square to wave.');
- const map=body.querySelector('.places-map');
+async function waveHere(){
+ const room=session.room,player=town?.snapshot?.playerId;
+ if(!town||!player||needResync||!waveRoom(room))throw new Error('Enter the shared square or Mossbank to wave.');
+ const map=body.querySelector('.places-map,.mossbank-map');
  const until=await town.wave();
- if(session.room!=='square'||needResync)return;
+ if(session.room!==room||town.snapshot?.playerId!==player||needResync)return;
  scene.localWaveUntil=until;
  if(map?.isConnected)closePanel();
  wakeRender();
@@ -749,7 +750,7 @@ async function waveToSquare(){
 }
 document.querySelector('#places')!.addEventListener('click', () => {
   openPanel('Places to go');
-  refreshPlaces=renderPlaces(body,{room:session.room,position:session.position,wave:town?.snapshot?waveToSquare:undefined,peers:town?.snapshot?(needResync?null:scene.residents):undefined,stops:currentStops(),state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),neighborhood:districtId?{districtId,ownerPlotId:town?.snapshot?.plot?.id}:undefined,walk:walkToPlace});
+  refreshPlaces=renderPlaces(body,{room:session.room,position:session.position,wave:town?.snapshot&&waveRoom(session.room)?waveHere:undefined,peers:town?.snapshot?(needResync?null:scene.residents):undefined,stops:currentStops(),state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),neighborhood:districtId?{districtId,ownerPlotId:town?.snapshot?.plot?.id}:undefined,walk:walkToPlace});
 });
 function openSharedTownChoice(heading:string,intro='Homes live in shared practice. Your browser-only workshop stays saved here; shared town progress is separate.'){openPanel(heading);body.append(paragraph(intro));const enter=document.createElement('button');enter.type='button';enter.className='destination';enter.dataset.openTown='';enter.textContent='Open shared practice town';enter.onclick=()=>{const url=new URL(window.location.href);url.searchParams.set('town','1');window.location.assign(url);};body.append(enter);}
 function resolvedStop(stop:Stop):Stop{

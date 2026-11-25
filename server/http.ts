@@ -2,7 +2,7 @@ import type {EarnedHeadwear} from '../src/game/earned-headwear.ts';
 import{housingWorld}from'../src/game/housing-world.ts';
 import{positionContextValid,exitForHome}from'../src/game/neighborhood.ts';
 import {TOWN_SCHEMA} from '../src/game/protocol-version.ts';
-import {WAVE_VISIBLE_MS,WAVE_COOLDOWN_MS} from '../src/game/town-wave.ts';
+import {WAVE_VISIBLE_MS,WAVE_COOLDOWN_MS,waveRoom} from '../src/game/town-wave.ts';
 import {createServer,type IncomingMessage,type ServerResponse} from 'node:http';
 import {createHmac,timingSafeEqual,randomUUID} from 'node:crypto';
 import type {Pool} from 'pg';
@@ -79,7 +79,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     (entry.value.room!=='neighborhood'||entry.value.districtId===own.value.districtId))||
      isHome(entry.value.room)&&entry.value.room===own.value.room&&entry.value.homePlotId===own.value.homePlotId))
     .map(([id,entry])=>{
-     const waveUntil=entry.value.room==='square'?waves.get(id):undefined;
+     const waveUntil=waveRoom(entry.value.room)?waves.get(id):undefined;
      return {id,name:fixtures.find(f=>f.id===id)!.name,...entry.value,
       ...(entry.headwear?{headwear:entry.headwear}:{}),...(waveUntil&&waveUntil>at?{waveUntil}:{})};
     });
@@ -132,9 +132,10 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
      waveSchema.parse(await payload);
      const at=now();
      if(session.expires<=at)return json(res,401,{message:'Your practice session expired.'});
-     const active=[...connections].filter(item=>item.stream.check()&&residents.get(item.id)?.value.room==='square');
+     const room=residents.get(id)?.value.room;
+     const active=waveRoom(room)?[...connections].filter(item=>item.stream.check()&&residents.get(item.id)?.value.room===room):[];
      if(!active.some(item=>item.id===id)||!active.some(item=>item.id!==id))
-      return json(res,409,{message:'A wave needs another resident in the square.'});
+      return json(res,409,{message:room==='mossbank'?'A wave needs another resident in Mossbank.':'A wave needs another resident in the square.'});
      if(!rate(id,'wave',1,WAVE_COOLDOWN_MS))return json(res,429,{message:'Give your waving arm a moment.'});
      const waveUntil=at+WAVE_VISIBLE_MS;
      waves.set(id,waveUntil);dirty=true;

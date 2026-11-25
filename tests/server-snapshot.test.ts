@@ -44,8 +44,13 @@ test('coherent snapshot projection preserves the accepted reader and authoritati
     const before=await counted(client,()=>acceptedSnapshot120(client,id,now));
     const after=await counted(client,()=>reader.readSnapshot(client,id,now));
     assert.equal(before.queries,15);assert.equal(after.queries,1);
-    const {orchard,headwear,...unchanged}=after.value;
+    // This historical reader predates these fields. Check their fixtures
+    // explicitly while preserving the byte-for-byte legacy field comparison.
+    const {orchard,headwear,glasshouse,plantWindowsill,tailoring,...unchanged}=after.value;
     assert.equal(orchard,null);
+    assert.deepEqual(glasshouse,{project:{phase:'overgrown',frame:false,entrance:false,chart:false,opensAt:null},review:null});
+    assert.equal(plantWindowsill,true);
+    assert.equal(tailoring,null);
     assert.deepEqual(headwear,{owned:before.value.trail.pennantOwned,clerkOwned:before.value.workshop.carpentry.recorded>0,worn:null});
     assert.deepEqual(unchanged,before.value);return after.value;
    }finally{await client.query('rollback');client.release();}

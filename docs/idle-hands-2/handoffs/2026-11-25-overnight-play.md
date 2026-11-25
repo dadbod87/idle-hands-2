@@ -56,3 +56,11 @@ The separate [Swatch Book study](https://github.com/dadbod87/idle-hands-2/tree/s
 ### Additional local Chromium regression
 
 On the exact integrated runtime, the 56-case browser selection recorded 52 passes. It covered fresh touch onboarding through Marlow to the bench, return shortcuts, local collect/reload/two-tab recovery, phone navigation, home interiors and visitor privacy, and the Pond and woodland outings. Four selected cases still require the isolated database and real API. They reached the deliberately unavailable local endpoints and did not run their gameplay assertions. Those are the real shared pine review, actual shared collection, and two garden recovery cases. This was a client-only run with no saved service started. Those cases remain in ordinary validation, with their failure captures retained separately from passing evidence.
+
+### Eight-hour planter receipt
+
+A fresh 320px Chromium touch profile, starting with its normal empty inventory, made a planter and pursued Riverwalk while the bench worked. It closed November 24 at 2:48:17.108 p.m. Pacific, then reopened after 10:48:18 p.m., with the same local file and matching pre-collection record. The Journal marked it ready. One deliberate collection added exactly one planter, cleared the marker and survived reopening. No API request, state, stock, position or clock fixture was used. The earlier compiled source 076c6a3 and its paired capture remain distinct from the latest candidate.
+
+### Follow-up and full browser collection
+
+The [Glasshouse quote recovery](https://github.com/dadbod87/idle-hands-2/tree/fix/nov25-glasshouse-review-recovery) is backed up independently at `cd6acde`. A malformed stored price or expiry leaves the resident at a usable board, with the review cleared and no charge. Its build, 456 local domain cases, and five focused Chromium cases passed. Incorporate this exact source into the final connected check. The compatibility branch collects all 274 browser cases in three disjoint groups of 91, 90 and 93. Collection confirms coverage assignment only. No hosted run was started.

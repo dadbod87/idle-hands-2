@@ -1,3 +1,4 @@
+import {INKMINT_FINISH,type InkmintAction} from '../game/nursery-inkmint.ts';
 import {GLASSHOUSE_PLANTS,glasshousePlantArt,type GlasshousePlant} from '../game/glasshouse-plants.ts';
 import type {TownClient} from './town-client.ts';
 import './glasshouse.css';
@@ -9,6 +10,7 @@ export function showHomeWindowsill(body:HTMLElement,town:TownClient,plotId:strin
  view.dataset.homeWindowsill=plotId;
  body.append(view);
  let statusText='',busy=false;
+ let previous='';
  const present=()=>view.isConnected&&town.snapshot?.playerId===resident&&atSill();
  function render(){
   if(!present())return;
@@ -19,19 +21,34 @@ export function showHomeWindowsill(body:HTMLElement,town:TownClient,plotId:strin
   view.replaceChildren();
   if(!plant)return;
   const art=document.createElement('img');
-  art.src=glasshousePlantArt(plant);
+  const striped=isOwner?snapshot.inkmint?.phase==='applied':plot?.windowsillStriped===true;
+  previous=String(plant)+':'+String(striped);
+  art.src=glasshousePlantArt(plant,striped);
   art.alt='';
+  art.decoding='sync';
   art.width=96;
   art.height=96;
   const title=document.createElement('h3');
   title.textContent=GLASSHOUSE_PLANTS[plant].name;
   const detail=document.createElement('p');
   detail.textContent=GLASSHOUSE_PLANTS[plant].detail;
-  view.append(art,title,detail);
+  detail.className='windowsill-flavor';
+  const summary=document.createElement('div');
+  summary.className='windowsill-summary';
+  const copy=document.createElement('div');
+  copy.append(title,detail);
+  if(striped){
+   const finish=document.createElement('p');
+   finish.textContent=INKMINT_FINISH+' on the pot.';
+   copy.append(finish);
+  }
+  summary.append(art,copy);
+  view.append(summary);
   const consent=document.createElement('p');
+  consent.className='windowsill-consent';
   if(isOwner){
    consent.textContent=plot?.windowsillPlant?'On display for visitors.':'Private in your collection.';
-   view.append(consent);
+   copy.append(consent);
    const button=document.createElement('button');
    button.type='button';
    button.className='destination';
@@ -40,6 +57,15 @@ export function showHomeWindowsill(body:HTMLElement,town:TownClient,plotId:strin
    button.disabled=busy||town.isSaving;
    button.onclick=()=>void save(retry?null:!plot?.windowsillPlant);
    view.append(button);
+   if(!retry&&(snapshot.inkmint?.phase==='mixed'||snapshot.inkmint?.phase==='applied')){
+    const finish=document.createElement('button');
+    finish.type='button';
+    finish.className='destination';
+    finish.textContent=striped?'Restore original pot':'Apply Inkmint stripe';
+    finish.disabled=busy||town.isSaving;
+    finish.onclick=()=>void save(striped?'remove':'apply');
+    view.append(finish);
+   }
   }
   const status=document.createElement('p');
   status.className='glasshouse-status';
@@ -48,13 +74,15 @@ export function showHomeWindowsill(body:HTMLElement,town:TownClient,plotId:strin
   status.textContent=statusText;
   view.append(status);
  }
- async function save(display:boolean|null){
+ async function save(change:boolean|Extract<InkmintAction,'apply'|'remove'>|null){
   if(busy||!present()||town.snapshot?.plots.find(plot=>plot.id===plotId)?.ownerId!==resident)return;
   busy=true;
   statusText='Confirming with the town…';
   render();
   try{
-   await (display===null?town.retry(present):town.command({kind:'glasshouse-display-plant',plotId,display},present));
+   if(change===null)await town.retry(present);
+   else if(typeof change==='boolean')await town.command({kind:'glasshouse-display-plant',plotId,display:change},present);
+   else await town.command({kind:'glasshouse-inkmint',action:change},present);
    statusText=town.lastMessage;
   }catch(error){
    statusText=(error as Error).message;
@@ -68,5 +96,12 @@ export function showHomeWindowsill(body:HTMLElement,town:TownClient,plotId:strin
    }
   }
  }
+ const unsubscribe=town.subscribe(snapshot=>{
+  if(busy||!present()||snapshot.plot?.id===plotId)return;
+  const plot=snapshot.plots.find(item=>item.id===plotId);
+  const next=String(plot?.windowsillPlant)+':'+String(plot?.windowsillStriped===true);
+  if(next!==previous)render();
+ });
  render();
+ return unsubscribe;
 }

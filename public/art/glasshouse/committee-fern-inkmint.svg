@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 112">
+ <ellipse cx="48" cy="103" rx="28" ry="5" fill="#3e5347" opacity=".19"/>
+ <g stroke="#354b3c" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M49 77q-3-35-22-56m23 55Q64 46 60 14m-10 62q12-27 29-37M47 78Q38 55 15 46" fill="none" stroke-width="2.5"/>
+  <path d="M47 62q-25-2-32-18 22 0 32 18Zm-7-16Q18 43 15 26q17 4 25 20Zm-5-10Q17 29 24 14q9 5 11 22ZM51 64q7-24 23-28 0 20-23 28Zm7-14q-8-15-3-28 12 9 3 28Zm3-16q1-19 11-25 4 17-11 25Z" fill="#6b8d57" stroke-width="1.7"/>
+  <path d="M48 76q-20 0-28-11 14-6 28 11Zm8-3q10-21 28-16-6 16-28 16ZM45 59q-5-20 4-29 9 11-4 29Z" fill="#a4ac64" stroke-width="1.6"/>
+  <path d="M29 77h39l-6 23H35Z" fill="#a76649" stroke-width="2.4"/>
+ <defs>
+  <pattern id="inkmint-stripes" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(28)">
+   <path d="M0 0h12v12H0Z" fill="#a9bb75" stroke="none"/>
+   <path d="M0 0h5v12H0Z" fill="#3e704e" stroke="none"/>
+  </pattern>
+ </defs>
+ <path d="M30 78h37l-5.5 21H35.5Z" fill="url(#inkmint-stripes)" stroke="none"/>
+  <path d="M26 74h45v9H26z" fill="#c98859" stroke-width="2.2"/>
+  <path d="m38 88 22-2-1 9-19 1Z" fill="#e6d5aa" stroke="#785d48" stroke-width="1.1"/>
+  <path d="m44 91 4 2 7-4" fill="none" stroke="#62583f" stroke-width="1.4"/>
+ </g>
+</svg>

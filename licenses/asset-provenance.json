@@ -2293,6 +2293,16 @@
       "modifications": "Original illustrated potted plant from the IH2-233 tour design."
     },
     {
+      "id": "committee-fern-inkmint",
+      "path": "public/art/glasshouse/committee-fern-inkmint.svg",
+      "sha256": "0d2db6f1933288d4fedcd962db4aad03ceb2f39498f788c0d8722a8aa945a86f",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/glasshouse/committee-fern.svg",
+      "date": "2026-11-25",
+      "modifications": "Inkmint material pattern applied only to the original pot body. Leaves, silhouette, rim and marks remain."
+    },
+    {
       "id": "very-patient-sundew",
       "path": "public/art/glasshouse/very-patient-sundew.svg",
       "sha256": "c5a2e3e8f063385e23cd7cffd906e25d1da6ec458cd57ecd6312324f7177269d",
@@ -2301,6 +2311,16 @@
       "source": "public/art/glasshouse/very-patient-sundew.svg",
       "date": "2026-11-24",
       "modifications": "Original illustrated potted plant from the IH2-233 tour design."
+    },
+    {
+      "id": "very-patient-sundew-inkmint",
+      "path": "public/art/glasshouse/very-patient-sundew-inkmint.svg",
+      "sha256": "fe83d8643cbd11789cb53fab520055c1a4928d0bd85dd0acf509861c4e9f1c0a",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/glasshouse/very-patient-sundew.svg",
+      "date": "2026-11-25",
+      "modifications": "Inkmint material pattern applied only to the original pot body. Leaves, silhouette, rim and marks remain."
     },
     {
       "id": "garden-pressed-marigold",

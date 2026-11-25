@@ -1,5 +1,7 @@
+import {INKMINT_GROW_MS,INKMINT_STATIONS} from '../src/game/nursery-inkmint.ts';
 import {WINDOWSILL_STOP} from '../src/game/home-windowsill.ts';
 import assert from 'node:assert/strict';
+import {realpathSync} from 'node:fs';
 import {test} from 'node:test';
 import {createTownServer} from '../server/http.ts';
 import {GLASSHOUSE_ENTRY, GLASSHOUSE_FRONT, GLASSHOUSE_ROOM} from '../src/game/glasshouse-room.ts';
@@ -10,15 +12,32 @@ import {GLASSHOUSE_RULES} from '../src/game/glasshouse.ts';
 import {INKWOOD_GLASSHOUSE, TRAIL_LANDMARK_IDS, worlds} from '../src/game/world.ts';
 
 const target=process.env.IH2_TEST_DATABASE_URL;
+const nativeData=process.env.IH2_GLASSHOUSE_TEMP_DATA;
 if(target){
  const url=new URL(target);
  const ci=process.env.CI==='true'&&url.port==='5432'&&/^[a-f0-9]{12,64}$/.test(process.env.IH2_PG_CONTAINER??'');
  const local=url.port==='55434'&&process.env.IH2_PG_CONTAINER==='idle-hands-2-cafe-candidate-pg';
- assert.ok(url.pathname==='/ih2_test'&&(ci||local),'Use the disposable town database.');
+ const native=url.hostname==='127.0.0.1'&&url.port==='56371'&&nativeData!==undefined&&
+  /^\/(?:private\/)?tmp\/ih2-new-db\.[a-zA-Z0-9]+\/data$/.test(nativeData);
+ assert.ok(url.pathname==='/ih2_test'&&(ci||local||native),'Use the disposable town database.');
+}
+async function glasshouseTestPool(){
+ const pool=database(target);
+ if(nativeData&&new URL(target!).port==='56371'){
+  try{
+   const row=(await pool.query("select current_setting('data_directory') as folder, current_database() as name")).rows[0];
+   assert.equal(row.name,'ih2_test');
+   assert.equal(realpathSync(row.folder),realpathSync(nativeData),'Wrong temporary PostgreSQL cluster.');
+  }catch(error){
+   await pool.end();
+   throw error;
+  }
+ }
+ return pool;
 }
 
 test('Glasshouse funding commits one payer, rejects false presence, and replays the same receipt', {skip:!target,timeout:25000},async()=>{
- const pool=database(target);
+ const pool=await glasshouseTestPool();
  let now=Date.UTC(2026,10,24,23);
  try{
   await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');
@@ -105,7 +124,7 @@ test('Glasshouse funding commits one payer, rejects false presence, and replays 
 });
 
 test('Glasshouse door validates its own exact threshold and writes only confirmed room changes', {skip:!target,timeout:25000},async()=>{
- const pool=database(target);
+ const pool=await glasshouseTestPool();
  let now=Date.UTC(2026,10,24,23);
  let app:ReturnType<typeof createTownServer>|undefined;
  const front={room:'trail',position:GLASSHOUSE_FRONT};
@@ -150,7 +169,7 @@ test('Glasshouse door validates its own exact threshold and writes only confirme
 });
 
 test('a late visitor keeps one private plant with the ordinary atomic command receipt', {skip:!target,timeout:25000},async()=>{
- const pool=database(target);
+ const pool=await glasshouseTestPool();
  const time=Date.UTC(2026,10,24,23),openAt=time-GLASSHOUSE_RULES.buildMs;
  const store=new TownStore(pool,{now:()=>time});
  const keeper:TownPosition={room:'glasshouse',position:GLASSHOUSE_ROOM.stops.find(stop=>stop.id==='glasshouse-keeper')!.point};
@@ -199,7 +218,7 @@ test('a late visitor keeps one private plant with the ordinary atomic command re
 });
 
 test('a private plant is visible only in the consenting owner’s exact home', {skip:!target,timeout:25000},async()=>{
- const pool=database(target);
+ const pool=await glasshouseTestPool();
  const time=Date.UTC(2026,10,24,23);
  const store=new TownStore(pool,{now:()=>time});
  try{
@@ -233,6 +252,74 @@ test('a private plant is visible only in the consenting owner’s exact home', {
   assert.ok(removal.ok&&removal.publicChanged);
   assert.equal(removal.snapshot.glasshousePlant,'committee-fern');
   assert.equal((await store.snapshot(guest.playerId)).plots[0].windowsillPlant,undefined);
+ }finally{
+  await pool.end();
+ }
+});
+
+test('an Inkmint finish finishes exactly once and never exposes the tray to visitors',{skip:!target,timeout:25000},async()=>{
+ const pool=await glasshouseTestPool();
+ let now=Date.UTC(2026,10,25,15);
+ const store=new TownStore(pool,{now:()=>now});
+ const station=(name:string):TownPosition=>({
+  room:'glasshouse',position:GLASSHOUSE_ROOM.stops.find(stop=>stop.id===name)!.point,
+ });
+ const tray=station(INKMINT_STATIONS.tray),pottery=station(INKMINT_STATIONS.pottery);
+ const ink=(id:string,action:string,expectedRevision:number)=>({kind:'glasshouse-inkmint',id,action,expectedRevision});
+ try{
+  await pool.query('drop schema if exists ih2 cascade;drop schema if exists ih2_meta cascade');
+  await migrate(pool);
+  const owner=await store.ensurePlayer('aster','Aster');
+  await store.ensurePlayer('bea','Bea');
+  await pool.query("update ih2.bridge set contributed=3,phase='open',grandfathered=true where id=1");
+  const work={resident:'aster',at:now-GLASSHOUSE_RULES.buildMs};
+  await pool.query('update ih2.glasshouse_project set state=$1 where id=1',[
+   {revision:1,work:{entrance:work,frame:work,chart:work},opensAt:now},
+  ]);
+  assert.equal((await store.execute('aster',ink('no-plant','plant',0),tray)).ok,false);
+  const choice=await store.execute('aster',{
+   kind:'glasshouse-keep-plant',id:'choose',expectedRevision:0,plant:'very-patient-sundew',
+  },station('glasshouse-keeper'));
+  assert.ok(choice.ok,choice.message);
+  const start=await store.execute('aster',ink('start','plant',choice.revision),tray);
+  assert.ok(start.ok,start.message);
+  const due=now+INKMINT_GROW_MS;
+  assert.deepEqual(start.snapshot.inkmint,{phase:'growing',readyAt:due});
+  now=due-1;
+  assert.equal((await store.execute('aster',ink('early','collect',start.revision),tray)).ok,false);
+  now++;
+  const claims=['claim-one','claim-two'].map(id=>ink(id,'collect',start.revision));
+  const race=await Promise.all(claims.map(action=>store.execute('aster',action,tray)));
+  const winner=race.findIndex(result=>result.ok);
+  assert.equal(race.filter(result=>result.ok).length,1);
+  assert.equal((await store.execute('aster',claims[winner],pottery)).replayed,true);
+  const mixed=await store.execute('aster',ink('mix','mix',race[winner].revision),pottery);
+  assert.ok(mixed.ok,mixed.message);
+  const plotId=(await pool.query('insert into ih2.plots(owner_id,level,placements) values($1,1,$2) returning id::text',[
+   'aster',owner.workshop.placements,
+  ])).rows[0].id;
+  const sill:TownPosition={room:'home',homePlotId:plotId,position:WINDOWSILL_STOP.point};
+  await store.savePosition('aster',sill);
+  await store.savePosition('bea',sill);
+  assert.equal((await store.execute('bea',ink('guest-apply','apply',0),sill)).ok,false);
+  const applied=await store.execute('aster',ink('apply','apply',mixed.revision),sill);
+  assert.ok(applied.ok,applied.message);
+  assert.equal(applied.publicChanged,false);
+  assert.equal((await store.snapshot('bea')).plots[0].windowsillStriped,undefined);
+  const displayed=await store.execute('aster',{
+   kind:'glasshouse-display-plant',id:'show',expectedRevision:applied.revision,plotId,display:true,
+  },sill);
+  assert.ok(displayed.ok,displayed.message);
+  const guest=await store.snapshot('bea');
+  assert.equal(guest.inkmint,undefined);
+  assert.equal(guest.plots[0].windowsillStriped,true);
+  assert.equal((await store.snapshot('bea',()=>tray)).plots[0].windowsillStriped,undefined);
+  const restored=await store.execute('aster',ink('restore','remove',displayed.revision),sill);
+  assert.ok(restored.ok&&restored.publicChanged);
+  assert.equal(restored.snapshot.inkmint?.phase,'mixed');
+  assert.deepEqual(restored.snapshot.workshop.inventory,owner.workshop.inventory);
+  assert.deepEqual(restored.snapshot.workshop.owned,owner.workshop.owned);
+  assert.equal((await store.snapshot('bea')).plots[0].windowsillStriped,undefined);
  }finally{
   await pool.end();
  }

@@ -1,3 +1,4 @@
+import type {Inkmint} from '../game/nursery-inkmint.ts';
 import {GLASSHOUSE_PLANTS,glasshousePlantArt,type GlasshousePlant} from '../game/glasshouse-plants.ts';
 import {CAST_MS,RIVER_SPOT_IDS,type RiverSurvey} from '../game/river-survey.ts';
 import {createRiverFindList,updateRiverFinds} from './river-survey.ts';
@@ -30,7 +31,7 @@ type RemoteOutcome={state:WorkshopState;message:string;ok?:boolean;command?:Reco
 export type RemoteWorkshopAdapter={hasSnapshot?:()=>boolean;busy?:()=>boolean;allocatedElsewhere?:(prop:string)=>number;initial?:WorkshopState;load:()=>Promise<WorkshopState>;command:(command:Record<string,unknown>,present?:()=>boolean)=>Promise<RemoteOutcome>;retry:(present?:()=>boolean)=>Promise<RemoteOutcome>;canRetry:()=>boolean;now:()=>number;subscribe:(listener:(state:WorkshopState)=>void)=>()=>void};
 type StarterDestination=typeof RESOURCE_IDS[number]|'bench';
 type WorkshopTrip={text:string;label:string;walk:()=>void};
-type PanelHost={nurseryPlant?:()=>{plant:GlasshousePlant;walk?:()=>void}|undefined;townHeadwear?:()=>TownHeadwear|undefined;readyWork?:(ready:boolean)=>void;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};savedMarigold?:(earned:boolean)=>void;prints?:{earned:()=>WorkshopPrint[];selected:()=>WorkshopPrint|null;choose:(print:WorkshopPrint|null)=>boolean};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;pondWatch?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToWorkshop?:()=>void;walkToStarter?:(destination:StarterDestination)=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
+type PanelHost={inkmint?:()=>{state:Inkmint;tray:()=>void;pottery:()=>void;home?:()=>void}|undefined;nurseryPlant?:()=>{plant:GlasshousePlant;walk?:()=>void}|undefined;townHeadwear?:()=>TownHeadwear|undefined;readyWork?:(ready:boolean)=>void;recentFieldNotes?:()=>readonly FieldNote[];river?:{read:()=>RiverSurvey|null;walk:()=>void};savedMarigold?:(earned:boolean)=>void;prints?:{earned:()=>WorkshopPrint[];selected:()=>WorkshopPrint|null;choose:(print:WorkshopPrint|null)=>boolean};wardrobe?:()=>{label:string;open:()=>void};orchard?:()=>OrchardPantry|null|undefined;orchardWalk?:()=>void;walkToOrchardBranch?:(branch:BranchId)=>void;cafeParcels?:()=>void;cue?:(cue:WorldCue)=>void;outings?:()=>void;pondWatch?:()=>void;woodlandTrip?:()=>WorkshopTrip|undefined;owner?:()=>string;rig?:()=>string;open:(heading:string)=>void;body:HTMLElement;feedback:(message:string)=>void;inside:()=>boolean;changed:()=>void;teaching?:()=>void;discoveries?:()=>void;returns?:()=>void;home?:()=>void;homeAvailable?:()=>boolean;objective?:()=>{title:string;detail:string;complete?:boolean};commission?:()=>void;finishing?:()=>void;carpentry?:()=>void;garden?:()=>void;walkToWorkshop?:()=>void;walkToStarter?:(destination:StarterDestination)=>void;walkToStudy?:(id:SurveyId)=>void;walkToAllotment?:()=>void;kitUse?:()=>string};
 export type WorkshopCommandResult={ok:boolean;message:string;state:WorkshopState;retry:boolean};
 export class WorkshopUI {
  state:WorkshopState;
@@ -330,6 +331,16 @@ export class WorkshopUI {
    ?this.remote.hasSnapshot?.()===true&&!this.remoteError&&!this.remote.canRetry()
    :this.saved&&!this.localReadOnlyReason;
   const notes=confirmed?activityNotes(this.state,now):[];
+  if(this.host.inkmint){
+   const entry=document.createElement('section');
+   entry.className='journal-ready-return';
+   entry.dataset.inkmintJournal='';
+   entry.hidden=true;
+   const title=document.createElement('h3');
+   title.textContent='Inkmint tray';
+   entry.append(title,this.p(''),this.button('',()=>{},'destination'));
+   b.append(entry);
+  }
   this.notebook?.destroy();this.notebook=new ActivityNotebook({bench:{label:'Open work bench · jobs & recipes',open:()=>this.showBench()},rack:{label:'Open pine rack · finishing jobs & collection',open:()=>this.host.finishing?.()},garden:{label:'Your allotment · crops, markers & quests',open:()=>this.host.garden?.()}},notes);b.append(this.notebook.root);
   if(this.host.river){
    const river=document.createElement('section');
@@ -493,6 +504,8 @@ export class WorkshopUI {
   view.list.replaceChildren(...rows);
  }
  private hasReadyActivity(now:number){
+  const pigment=this.host.inkmint?.()?.state;
+  if(this.remote?.hasSnapshot?.()&&!this.remoteError&&!this.remote.canRetry()&&pigment?.phase==='growing'&&pigment.readyAt<=now)return true;
   if(!this.ownsSave||!this.saved||this.localReadOnlyReason)return false;
   const cast=this.host.river?.read()?.cast;
   if(cast&&cast.readyAt<=now)return true;
@@ -501,6 +514,35 @@ export class WorkshopUI {
   const {job,carpentry,garden}=this.state;
   return !!(job||carpentry.job||garden.beds.some(Boolean))
    &&activityNotes(this.state,now).some(note=>note.phase==='ready');
+ }
+ private updateInkmintJournal(now:number){
+  const panel=this.host.body.querySelector<HTMLElement>('[data-inkmint-journal]');
+  if(!panel)return;
+  const entry=this.host.inkmint?.();
+  const phase=entry?.state.phase;
+  panel.hidden=!phase||phase==='empty'||phase==='applied';
+  if(panel.hidden||!entry)return;
+  const detail=panel.querySelector('p')!;
+  const button=panel.querySelector('button')!;
+  let description:string,label:string,walk:(()=>void)|undefined;
+  const state=entry.state;
+  if(state.phase==='growing'){
+   description=state.readyAt<=now?'One pigment is ready to collect.':"Growing until "+new Date(state.readyAt).toLocaleString(undefined,{weekday:'short',hour:'numeric',minute:'2-digit'})+'.';
+   label='Walk to the seed drawers';
+   walk=entry.tray;
+  }else if(state.phase==='collected'){
+   description='One pigment is ready to turn into a finish.';
+   label='Walk to the pottery ledge';
+   walk=entry.pottery;
+  }else{
+   description='Inkmint stripe is ready to apply at your home windowsill.';
+   label='Find your windowsill';
+   walk=entry.home;
+  }
+  if(detail.textContent!==description)detail.textContent=description;
+  if(button.textContent!==label)button.textContent=label;
+  button.hidden=!walk;
+  button.onclick=walk??null;
  }
  private updateClocks(){
   if(this.host.readyWork)this.host.readyWork(this.hasReadyActivity(this.gardenClock()));
@@ -525,6 +567,7 @@ export class WorkshopUI {
    this.bag.updateHeadwear(this.host.townHeadwear?.(),blocked);
   }
   const now=this.remote?.now()??Date.now(),b=this.host.body;
+  this.updateInkmintJournal(now);
   const river=b.querySelector<HTMLElement>('[data-river-entry]');
   const riverState=this.host.river?.read();
   if(river){

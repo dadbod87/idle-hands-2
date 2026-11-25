@@ -1150,8 +1150,18 @@
       "kind": "original-svg"
     },
     {
+      "id": "committee-fern-inkmint",
+      "path": "art/glasshouse/committee-fern-inkmint.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "very-patient-sundew",
       "path": "art/glasshouse/very-patient-sundew.svg",
+      "kind": "original-svg"
+    },
+    {
+      "id": "very-patient-sundew-inkmint",
+      "path": "art/glasshouse/very-patient-sundew-inkmint.svg",
       "kind": "original-svg"
     },
     {

@@ -25,7 +25,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  const now=options.now??Date.now;
  const store=new TownStore(options.pool,{now,roster:fixtures.map(f=>f.id),occupants:()=>[...residents.values()].filter(r=>r.value.room==='neighborhood'&&(now()-r.at<60000||[...connections].some(c=>residents.get(c.id)===r))).map(r=>({districtId:r.value.districtId!,point:{x:r.value.position.x+.5,y:r.value.position.y+.5}}))});
  const homes=new Map<string,TownPlot>();let bridgeOpen=false;let cafeOpened=false;
- function cacheHomes(snapshot:Pick<TownSnapshot,'plots'|'bridge'>&{cafe?:TownSnapshot['cafe']}){if(snapshot.cafe?.phase==='open'&&!cafeOpened){cafeOpened=true;invalidate('');}bridgeOpen=bridgeOpen||snapshot.bridge.phase==='open';for(const plot of snapshot.plots){const previous=homes.get(plot.id);if(!previous||plot.level>=previous.level&&(plot.housingRevision??0)>=(previous.housingRevision??0)){if(plot.keepsake!==undefined||plot.windowsillPlant!==undefined||plot.wallDisplay!==undefined){const publicPlot={...plot};delete publicPlot.keepsake;delete publicPlot.windowsillPlant;delete publicPlot.wallDisplay;homes.set(plot.id,publicPlot);}else homes.set(plot.id,plot);}}for(const entry of residents.values()){const normalized=canonicalHomePosition(entry.value,[...homes.values()]);if(JSON.stringify(normalized)!==JSON.stringify(entry.value)){entry.value=normalized;entry.credit=1;entry.at=now();dirty=true;}}}
+ function cacheHomes(snapshot:Pick<TownSnapshot,'plots'|'bridge'>&{cafe?:TownSnapshot['cafe']}){if(snapshot.cafe?.phase==='open'&&!cafeOpened){cafeOpened=true;invalidate('');}bridgeOpen=bridgeOpen||snapshot.bridge.phase==='open';for(const plot of snapshot.plots){const previous=homes.get(plot.id);if(!previous||plot.level>=previous.level&&(plot.housingRevision??0)>=(previous.housingRevision??0)){if(plot.keepsake!==undefined||plot.windowsillPlant!==undefined||plot.wallDisplay!==undefined){const publicPlot={...plot};delete publicPlot.keepsake;delete publicPlot.windowsillPlant;delete publicPlot.windowsillStriped;delete publicPlot.wallDisplay;homes.set(plot.id,publicPlot);}else homes.set(plot.id,plot);}}for(const entry of residents.values()){const normalized=canonicalHomePosition(entry.value,[...homes.values()]);if(JSON.stringify(normalized)!==JSON.stringify(entry.value)){entry.value=normalized;entry.credit=1;entry.at=now();dirty=true;}}}
  function clientSnapshot(snapshot:TownSnapshot){
   return {...snapshot,serverInstance,homeKeepsakes:true,homeKeepsakeChoices:true};
  }
@@ -36,6 +36,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
    if(plot.keepsake!==undefined)delete plot.keepsake;
    if(plot.wallDisplay!==undefined)delete plot.wallDisplay;
    if(plot.windowsillPlant!==undefined)delete plot.windowsillPlant;
+   if(plot.windowsillStriped!==undefined)delete plot.windowsillStriped;
   }
  }
  const residents=new Map<string,{value:TownPosition;at:number;credit:number;headwear:EarnedHeadwear|null}>();
@@ -185,7 +186,7 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
     metrics.commands++;const result=await store.execute(id,command,current.value);cacheHomes(result.snapshot);const worn=result.snapshot.headwear?.worn??null;if(current.headwear!==worn){current.headwear=worn;dirty=true;}if(result.ok&&!result.replayed&&command&&typeof command==='object'&&['enter-home','enter-neighborhood'].includes(String((command as {kind?:unknown}).kind))){waves.delete(id);current.value=result.snapshot.position;current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;}alignSnapshotPosition(result.snapshot,current.value);
     if(result.ok&&!result.replayed&&result.publicChanged&&current.value.homePlotId
-       &&command&&typeof command==='object'&&['display-home-keepsake','glasshouse-display-plant'].includes(String((command as {kind?:unknown}).kind)))
+       &&command&&typeof command==='object'&&['display-home-keepsake','glasshouse-display-plant','glasshouse-inkmint'].includes(String((command as {kind?:unknown}).kind)))
       invalidate(id,current.value.homePlotId);
     if(result.ok&&!result.replayed&&command&&typeof command==='object'&&(['contribute','claim-plot','upgrade-plot','edit-plot','housing-confirm','housing-finish','housing-arrange','redeem-lesson'].includes(String((command as {kind?:unknown}).kind))||((command as {kind?:unknown}).kind==='stamp-trail'&&result.snapshot.trail.pennantOwned)||(['garden','carpentry','commission','cafe-serve','glasshouse-confirm'].includes(String((command as {kind?:unknown}).kind))&&result.publicChanged)))invalidate(id);
     return json(res,200,{...result,snapshot:clientSnapshot(result.snapshot)});

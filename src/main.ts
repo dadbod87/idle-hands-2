@@ -1,3 +1,5 @@
+import {INKMINT_STATIONS} from './game/nursery-inkmint.ts';
+import {showInkmint} from './ui/nursery-inkmint.ts';
 import {freshGlasshouseOpening} from './game/glasshouse.ts';
 import {WINDOWSILL_STOP} from './game/home-windowsill.ts';
 import {showHomeWindowsill} from './ui/home-windowsill.ts';
@@ -310,6 +312,12 @@ function focusWorld() { document.querySelector('canvas')?.focus(); }
 function unlockWorld(){if(!resting()&&!morningWriting&&session.locked&&!panel.open&&!transitionBusy&&!gardenUI?.isSaving&&!carpentryUI?.isSaving&&!commissionUI?.isSaving&&(!townMode||!!town?.snapshot&&!needResync&&!town.retryAvailable))session.lock(false);}
 let pendingExplicitPanelCloses=0;
 let cleanupRiverSurvey:(()=>void)|undefined;
+let cleanupInkmint:(()=>void)|undefined;
+let cleanupWindowsill:(()=>void)|undefined;
+function closeGlasshouseDetail(){
+ cleanupInkmint?.();cleanupInkmint=undefined;
+ cleanupWindowsill?.();cleanupWindowsill=undefined;
+}
 function closeRiverSurvey(){cleanupRiverSurvey?.();cleanupRiverSurvey=undefined;}
 function restorePanelFocus() {
   if (title.textContent === 'Sound settings') document.querySelector<HTMLButtonElement>('#place-sound')?.focus();
@@ -318,11 +326,11 @@ function restorePanelFocus() {
 let refreshPlaces:ReturnType<typeof renderPlaces>;
 const waveAnnouncement=document.querySelector<HTMLElement>('.town-wave-announcement')!;
 const heardWaves=new Map<string,number>();
-function closePanel() { refreshPlaces=undefined; closeRiverSurvey(); orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close(); gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed(); if(panel.open)pendingExplicitPanelCloses++;panel.close();resumeMenuRender();unlockWorld(); restorePanelFocus(); }
+function closePanel() { refreshPlaces=undefined; closeRiverSurvey(); closeGlasshouseDetail(); orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close(); gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed(); if(panel.open)pendingExplicitPanelCloses++;panel.close();resumeMenuRender();unlockWorld(); restorePanelFocus(); }
 panel.addEventListener('submit', event => { event.preventDefault(); closePanel(); });
-panel.addEventListener('close', () => {const explicit=pendingExplicitPanelCloses>0;if(explicit)pendingExplicitPanelCloses--;if(panel.open)return; refreshPlaces=undefined; closeRiverSurvey(); orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close();gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();resumeMenuRender();unlockWorld(); if(!explicit)restorePanelFocus(); });
+panel.addEventListener('close', () => {const explicit=pendingExplicitPanelCloses>0;if(explicit)pendingExplicitPanelCloses--;if(panel.open)return; refreshPlaces=undefined; closeRiverSurvey(); closeGlasshouseDetail(); orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close();gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();resumeMenuRender();unlockWorld(); if(!explicit)restorePanelFocus(); });
 panel.addEventListener('cancel', event => {event.preventDefault();closePanel();});
-function openPanel(heading: string) { refreshPlaces=undefined; closeRiverSurvey(); orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close(); namedWalk=null;placeWalk=null;gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();body.classList.remove('outing-panel','garden-panel','carpentry-panel','commission-panel','home-arrangement-panel');body.removeAttribute('aria-busy');pendingHomePlotId=undefined;pendingDistrictId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal();panel.scrollTop=0;pauseMenuRender(); }
+function openPanel(heading: string) { refreshPlaces=undefined; closeRiverSurvey(); closeGlasshouseDetail(); orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close(); namedWalk=null;placeWalk=null;gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed();body.classList.remove('outing-panel','garden-panel','carpentry-panel','commission-panel','home-arrangement-panel');body.removeAttribute('aria-busy');pendingHomePlotId=undefined;pendingDistrictId=undefined;portalIntent++; session.lock(true); title.textContent = heading; body.replaceChildren(); panel.showModal();panel.scrollTop=0;pauseMenuRender(); }
 function paragraph(text: string) { const p = document.createElement('p'); p.textContent = text; return p; }
 let townUI:TownUI|undefined;
 let pendingHomePlotId:string|undefined,pendingDistrictId:string|undefined;
@@ -433,7 +441,24 @@ function nurseryPlantForBag(){
   goNamedDestination(session.room,WINDOWSILL_STOP.id);
  }}:{})};
 }
-const workshop=new WorkshopUI({nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
+function inkmintForJournal(){
+ const snapshot=town?.snapshot;
+ if(!snapshot?.inkmint)return;
+ const home=snapshot.plot;
+ return {
+  state:snapshot.inkmint,
+  tray:()=>goNamedDestination('glasshouse',INKMINT_STATIONS.tray),
+  pottery:()=>goNamedDestination('glasshouse',INKMINT_STATIONS.pottery),
+  ...(home?{home:()=>{
+   if(town?.snapshot?.plot?.id!==home.id)return;
+   const atHome=nurseryPlantForBag()?.walk;
+   if(atHome)atHome();
+   else if(session.room==='neighborhood')void enterHome(home.id);
+   else goNamedDestination('square','home-front');
+  }}:{}),
+ };
+}
+const workshop=new WorkshopUI({inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
  savedMarigold:!town?(earned)=>{
   if(earned===printRights.marigold)return;
   printRights.marigold=earned;
@@ -445,7 +470,7 @@ const workshop=new WorkshopUI({nurseryPlant:nurseryPlantForBag,townHeadwear:()=>
    refreshWorkshopPrint();
    return saved;
   }catch{return false;}
- }}:undefined,wardrobe:showBrowserResident?()=>({label:scene.headwear?headwearName[scene.headwear]:'Original look',open:showBrowserResident}):undefined,orchard:()=>orchardAvailable()?orchardUI.state:undefined,orchardWalk:()=>goNamedDestination('square',orchardTable.id),walkToOrchardBranch:(id:BranchId)=>{const stop=ORCHARD_STOPS.find(site=>orchardBranchFromStop(site.id)===id);if(stop)goNamedDestination('square',stop.id);},cue:music.cue,outings:()=>outingUI.show(),pondWatch:townMode?undefined:()=>goNamedDestination('square','commons-pond'),woodlandTrip:()=>outingUI.benchTrip(),walkToWorkshop:()=>goNamedDestination('square','workshop'),readyWork:!townMode?paintJournalReady:undefined,walkToStarter:!townMode?target=>target==='bench'?goNamedDestination('workshop','bench'):goNamedDestination('square',target):undefined,owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),walkToAllotment:()=>goNamedDestination('garden','garden-beds'),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{cafeParcels:()=>showCafeParcelNote({open:openPanel,body,walk:()=>goNamedDestination('square','cafe')},town),objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
+ }}:undefined,wardrobe:showBrowserResident?()=>({label:scene.headwear?headwearName[scene.headwear]:'Original look',open:showBrowserResident}):undefined,orchard:()=>orchardAvailable()?orchardUI.state:undefined,orchardWalk:()=>goNamedDestination('square',orchardTable.id),walkToOrchardBranch:(id:BranchId)=>{const stop=ORCHARD_STOPS.find(site=>orchardBranchFromStop(site.id)===id);if(stop)goNamedDestination('square',stop.id);},cue:music.cue,outings:()=>outingUI.show(),pondWatch:townMode?undefined:()=>goNamedDestination('square','commons-pond'),woodlandTrip:()=>outingUI.benchTrip(),walkToWorkshop:()=>goNamedDestination('square','workshop'),readyWork:paintJournalReady,walkToStarter:!townMode?target=>target==='bench'?goNamedDestination('workshop','bench'):goNamedDestination('square',target):undefined,owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,commission:()=>commissionUI?.showPip(),finishing:()=>carpentryUI?.showRack(),carpentry:()=>carpentryUI?.showDesk(),garden:()=>gardenUI?.showBeds(),walkToStudy:(id:SurveyId)=>goNamedDestination('square','survey-'+id),walkToAllotment:()=>goNamedDestination('garden','garden-beds'),open:openPanel,body,feedback:message=>feedback.textContent=message,inside:()=>session.room==='workshop',changed:()=>{scene.refreshDecorations();scene.refreshGarden();scene.refreshCarpentry();cafeUI?.refresh();gardenUI?.refresh();carpentryUI?.refresh();commissionUI?.refresh();},...(town?{cafeParcels:()=>showCafeParcelNote({open:openPanel,body,walk:()=>goNamedDestination('square','cafe')},town),objective:()=>currentObjective(),kitUse:()=>town.snapshot&&town.snapshot.bridge.contributed>=town.snapshot.bridge.target?'Bridge funding is complete. Save ordinary kits for housing: '+PLOT_CLAIM_KITS+' to claim, '+PLOT_UPGRADE_KITS+' more to expand.':'Bring a finished ordinary kit to the collecting bridge committee.',teaching:()=>townUI?.showLesson(),discoveries:()=>townUI?.showTrail(),returns:()=>town?.snapshot&&townUI?.showReturns(previousVisit(town.snapshot.playerId)),homeAvailable:()=>session.room.startsWith('home'),home:()=>{if(session.room.startsWith('home'))townUI?.showPlots(homePlotId);else feedback.textContent='Enter a house to arrange or inspect its furnishings.';}}:{})},remoteWorkshop);
 const atCafe=()=>session.room==='square'&&Math.hypot(session.position.x-30,session.position.y-22)<=1.4;
 if(town)snackShelfUI=new SnackShelfUI({open:openPanel,body,canUse:atCafe,counter:()=>cafeUI?.show()},town);
 cafeUI=new CafeUI({open:openPanel,body,owner:()=>town?.snapshot?.playerId??'local',rig:()=>scene.residentId,headwear:()=>scene.headwear,canUse:atCafe,parcelShelf:snackShelfUI?()=>snackShelfUI?.show():undefined,project:()=>town?.snapshot?.cafe,shared:townMode,bag:()=>workshop.showInventory(),garden:()=>goNamedDestination('square','allotment'),feedback:message=>feedback.textContent=message},workshop);
@@ -694,7 +719,7 @@ function syncHomeStops(plot:TownPlot|undefined,snapshot:TownSnapshot){
  const note=noteForHome(plot);
  const windowsill=snapshot.plantWindowsill===true&&!!plot&&(!!plot.windowsillPlant||plot.ownerId===snapshot.playerId&&!!snapshot.glasshousePlant);
  session.setHomeStops(keepsake,note,windowsill);
- if(scene.setWindowsillPlant(windowsill?plot?.windowsillPlant:undefined))refreshMenuFrame(2);
+ if(scene.setWindowsillPlant(windowsill?plot?.windowsillPlant:undefined,windowsill&&plot?.windowsillStriped===true))refreshMenuFrame(2);
  if(scene.setHomeKeepsake(keepsake))refreshMenuFrame(2);
  if(!panel.open)return;
  const notebook=body.querySelector<HTMLElement>('[data-home-plan-note]');
@@ -810,7 +835,7 @@ function activate(stop: Stop) {
   if(stop.id===WINDOWSILL_STOP.id&&town&&homePlotId){
     const plotId=homePlotId;
     openPanel(WINDOWSILL_STOP.name);
-    showHomeWindowsill(body,town,plotId,()=>plotId===homePlotId&&session.nearby()?.id===stop.id);
+    cleanupWindowsill=showHomeWindowsill(body,town,plotId,()=>plotId===homePlotId&&session.nearby()?.id===stop.id);
     return;
   }
   if(stop.id==='home-keepsake'){readHomeKeepsake();return;}
@@ -887,6 +912,14 @@ function activate(stop: Stop) {
   if(stop.id==='glasshouse-keeper'&&town){
     openPanel(stop.name);
     showNurseryKeeper(body,town,()=>session.room==='glasshouse'&&session.nearby()?.id===stop.id);
+    return;
+  }
+  if(town?.snapshot?.inkmint&&session.room==='glasshouse'&&(stop.id===INKMINT_STATIONS.tray||stop.id===INKMINT_STATIONS.pottery)){
+    const station=stop.id===INKMINT_STATIONS.tray?'tray':'pottery';
+    const next=station==='tray'?INKMINT_STATIONS.pottery:INKMINT_STATIONS.tray;
+    openPanel(stop.name);
+    cleanupInkmint=showInkmint(body,town,station,()=>session.room==='glasshouse'&&session.nearby()?.id===stop.id,
+      ()=>goNamedDestination('glasshouse',next));
     return;
   }
   if(session.room==='glasshouse'&&!stop.transition){

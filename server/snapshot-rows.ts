@@ -35,6 +35,7 @@ export type SnapshotRows={
  glasshouse:unknown;
  glasshouse_review:unknown;
  glasshouse_plant:unknown;
+ inkmint:unknown;
 };
 
 // Explicit public projections keep other residents' private JSON out of the result.
@@ -56,7 +57,8 @@ const query = `select /* coherent-town-snapshot */
        else null end as keepsake,
      case when p.glasshouse_plant_visible and resident.position->>'homePlotId'=p.id::text
        and resident.position->>'room' in ('home','home-expanded')
-       then (select plant from ih2.glasshouse_plants where player_id=p.owner_id and project_revision=1)
+       then (select jsonb_build_object('plant',plant,'striped',inkmint_phase='applied')
+         from ih2.glasshouse_plants where player_id=p.owner_id and project_revision=1)
        else null end as windowsill_plant,
      exists(select 1 from ih2.quest_awards q where q.player_id=p.owner_id and q.quest_id='trail-pennant-v1') as pennant_owned,
      case when u.workshop->'owned'->'letterbox'='1'::jsonb and u.workshop->'commission'->'madeCount'='1'::jsonb and
@@ -104,7 +106,9 @@ const query = `select /* coherent-town-snapshot */
  (select jsonb_build_object('state',v.state) from ih2.outings v where v.player_id=$1) as outing,
  (select v.state from ih2.glasshouse_project v where v.id=1) as glasshouse,
  (select v.review from ih2.glasshouse_reviews v where v.player_id=$1) as glasshouse_review,
- (select v.plant from ih2.glasshouse_plants v where v.player_id=$1 and v.project_revision=1) as glasshouse_plant
+ (select v.plant from ih2.glasshouse_plants v where v.player_id=$1 and v.project_revision=1) as glasshouse_plant,
+ (select jsonb_build_object('phase',v.inkmint_phase,'readyAt',v.inkmint_ready_at)
+    from ih2.glasshouse_plants v where v.player_id=$1 and v.project_revision=1) as inkmint
  from ih2.players resident where resident.id=$1`;
 
 export async function readSnapshotRows(client:PoolClient,id:string,now:number,key:string):Promise<SnapshotRows|undefined>{

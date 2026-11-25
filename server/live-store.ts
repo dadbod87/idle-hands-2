@@ -1,3 +1,5 @@
+import {INKMINT_STATIONS,inkmintSchema,type Inkmint} from '../src/game/nursery-inkmint.ts';
+import {writeInkmint} from './nursery-inkmint.ts';
 import {headwearName} from '../src/art/headwear.ts';
 import {INKWOOD_HOOD,EARNED_HEADWEAR,ownsHeadwear,townHeadwear,type TownHeadwear} from '../src/game/earned-headwear.ts';
 import {WINDOWSILL_STOP} from '../src/game/home-windowsill.ts';
@@ -36,11 +38,12 @@ import { canStand, worlds, INKWOOD_GLASSHOUSE, TRAIL_LANDMARK_IDS, type Point, t
 import { PLOT_CLAIM_KITS, PLOT_UPGRADE_KITS, MAINTENANCE_MS, MAINTENANCE_COST, BRIDGE_BUILD_MS, TRAIL_PENNANT_AWARD } from '../src/game/town-rules.ts';
 
 export type TownPosition = { room: Room; position: Point; homePlotId?: string; districtId?:string };
-export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'];workroomPlacements:HomeLayout['workroomPlacements']; pennantOwned:boolean;letterboxMotif:LetterboxMotif|null;planId?:string|null;yard?:ReturnType<typeof emptyYard>;construction?:string|null;housingRevision?:number;keepsake?:HomeKeepsakeProjection['keepsake'];wallDisplay?:HomeKeepsakeProjection['wallDisplay'];windowsillPlant?:GlasshousePlant };
+export type TownPlot = { id: string; ownerId: string; ownerName: string; level: 1 | 2; placements: WorkshopState['placements'];workroomPlacements:HomeLayout['workroomPlacements']; pennantOwned:boolean;letterboxMotif:LetterboxMotif|null;planId?:string|null;yard?:ReturnType<typeof emptyYard>;construction?:string|null;housingRevision?:number;keepsake?:HomeKeepsakeProjection['keepsake'];wallDisplay?:HomeKeepsakeProjection['wallDisplay'];windowsillPlant?:GlasshousePlant;windowsillStriped?:true };
 export type MaintenanceLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
 export type TownSnapshot = {
   glasshouse?:GlasshouseSnapshot;
   glasshousePlant?:GlasshousePlant;
+  inkmint?:Inkmint;
   plantWindowsill?:true;
   outing:OutingState;
   orchard?: OrchardPantry | 'unavailable' | null;
@@ -168,8 +171,11 @@ export class TownStore {
     if(visited&&displayed==='naturalist')visited.keepsake=displayed;
     if(visited&&displayed==='woodland-certificate')visited.wallDisplay=displayed;
 
-    const visiblePlant=glasshousePlantSchema.safeParse(visited&&data.plots.find(p=>p.id===visited.id)?.windowsill_plant);
-    if(visited&&visiblePlant.success)visited.windowsillPlant=visiblePlant.data;
+    const visiblePlant=z.object({plant:glasshousePlantSchema,striped:z.boolean()}).safeParse(data.plots.find(p=>p.id===visited?.id)?.windowsill_plant);
+    if(visited&&visiblePlant.success){
+      visited.windowsillPlant=visiblePlant.data.plant;
+      if(visiblePlant.data.striped)visited.windowsillStriped=true;
+    }
     if(plots.some(p=>!validPublicHouse(p)))throw new Error('Stored home layout failed validation. Progress was not replaced.');
     const bridgeRow = data.bridge;
     // Explicit projection only: never select other residents' private garden JSON.
@@ -186,8 +192,9 @@ export class TownStore {
     const workshop=this.readState(player,now),own=plots.find(p=>p.ownerId===id);if(own&&!homeAllocationValid(workshop,own))throw new Error('Stored furniture allocation failed validation. Nothing was replaced.');
     const cafeRow=data.cafe;const cafe=cafePublic(this.readCafe(cafeRow));
     const keptPlant=glasshousePlantSchema.safeParse(data.glasshouse_plant);
+    const inkmint=inkmintSchema.safeParse(data.inkmint);
     const glasshouse=glasshouseSnapshot(data.glasshouse,near(position,'trail',INKWOOD_GLASSHOUSE.id)?data.glasshouse_review:null,id,now);
-    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {plantWindowsill:true,...(glasshouse?{glasshouse}:{}),...(keptPlant.success?{glasshousePlant:keptPlant.data}:{}),orchard:orchardSnapshot(player.orchard),outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position, lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},headwear:townHeadwear(awarded.includes(TRAIL_PENNANT_AWARD),player.worn_headwear,workshop.carpentry.recorded>0),bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
+    const housingSites=data.housing_sites,housing=data.housing;liveHousingAccount(id,workshop,own??null,housing.build);return {plantWindowsill:true,...(glasshouse?{glasshouse}:{}),...(keptPlant.success?{glasshousePlant:keptPlant.data,...(inkmint.success?{inkmint:inkmint.data}:{})}:{}),orchard:orchardSnapshot(player.orchard),outing:data.outing?outingSchema.parse(data.outing.state):createOuting(),housingSites,housing,cafe,commissionTown,noticeboard,gardenTown, playerId: id, name: player.name, workshop, position, lesson:lesson,lessonQuote:{route:bridgeRow.contributed<bridgeRow.target?'construction':'upkeep',expectedBridgeContributed:bridgeRow.contributed}, quest: { contentVersion: 1, awarded }, projectJournal,trail:{stamps,pennantOwned:awarded.includes(TRAIL_PENNANT_AWARD)},headwear:townHeadwear(awarded.includes(TRAIL_PENNANT_AWARD),player.worn_headwear,workshop.carpentry.recorded>0),bridge: { contributed: bridgeRow.contributed, target: bridgeRow.target, restored: bridgeRow.phase==='open',phase:bridgeRow.phase,startedAt:bridgeRow.started_at===null?null:Number(bridgeRow.started_at),readyAt:bridgeRow.ready_at===null?null:Number(bridgeRow.ready_at),openedAt:bridgeRow.opened_at===null?null:Number(bridgeRow.opened_at),grandfathered:bridgeRow.grandfathered }, plot: plots.find(p => p.ownerId === id) ?? null, plots, seasonKey: key, scores, serverTime: now };
   }
   async snapshot(id: string, confirmedPosition?: () => TownPosition | undefined): Promise<TownSnapshot> {
     const client = await this.pool.connect();
@@ -238,8 +245,8 @@ export class TownStore {
         return { ...result, replayed: prior.payload_hash === hash(raw), snapshot };
       }
       let result: Receipt = { ok: false, message: '', revision: state.revision };
-      const keepsakeColumn = cmd.kind==='display-home-keepsake'?',keepsake':'';
-      const ownPlot = (await client.query('select id::text,owner_id,level,placements,workroom_placements,plan_id,yard'+keepsakeColumn+' from ih2.plots where owner_id=$1 for update', [id])).rows[0];
+      const plotColumn = cmd.kind==='display-home-keepsake'?',keepsake':cmd.kind==='glasshouse-inkmint'?',glasshouse_plant_visible':'';
+      const ownPlot = (await client.query('select id::text,owner_id,level,placements,workroom_placements,plan_id,yard'+plotColumn+' from ih2.plots where owner_id=$1 for update', [id])).rows[0];
       const ownLayout:(HomeLayout&{yard?:ReturnType<typeof emptyYard>})|null=ownPlot?{level:ownPlot.level,placements:ownPlot.placements,workroomPlacements:ownPlot.workroom_placements,yard:ownPlot.yard}:null;
       if(ownLayout&&(!isCurrentHomeLayout(ownLayout)||!homeAllocationValid(state,ownLayout)))throw new Error('Stored home layout failed validation. Nothing was replaced.');
       const special = specialSchema.safeParse(raw);
@@ -251,6 +258,21 @@ export class TownStore {
       else if (!(position.room==='neighborhood'?canStand(position.room,position.position,housingWorld((await client.query('select id::text,plan_id as "planId" from ih2.plots')).rows,position.districtId!)):validPosition(position))||!validContext) reject('A valid server position is required.');
       else if (clockWentBack || now < state.observedAt) reject('The server clock moved backwards. Your progress is unchanged.');
       else if (state.revision >= 1_000_000) reject('Prototype command limit reached. Your progress is unchanged.');
+      else if(cmd.kind==='glasshouse-inkmint'){
+        const ownSill=isHome(position.room)&&!!ownPlot&&position.homePlotId===ownPlot.id&&
+          Math.hypot(position.position.x-WINDOWSILL_STOP.point.x,position.position.y-WINDOWSILL_STOP.point.y)<=1.9;
+        const decision=await writeInkmint(client,id,raw,{
+          tray:near(position,'glasshouse',INKMINT_STATIONS.tray),
+          pottery:near(position,'glasshouse',INKMINT_STATIONS.pottery),
+          ownSill,
+          shown:ownPlot?.glasshouse_plant_visible===true,
+        },now);
+        if(!decision.ok)reject(decision.message);
+        else{
+          state={...state,revision:state.revision+1,observedAt:now,lastMessage:decision.message};
+          result={ok:true,message:decision.message,revision:state.revision,publicChanged:decision.publicChanged};
+        }
+      }
       else if(cmd.kind==='glasshouse-display-plant'){
         const atSill=isHome(position.room)&&Math.hypot(position.position.x-WINDOWSILL_STOP.point.x,position.position.y-WINDOWSILL_STOP.point.y)<=1.9;
         const decision=await displayGlasshousePlant(client,id,raw,position.homePlotId===ownPlot?.id?ownPlot?.id:undefined,atSill);

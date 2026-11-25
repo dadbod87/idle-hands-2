@@ -1,3 +1,7 @@
+# November 25 — connected Glasshouse and first Inkmint finish
+
+The [Inkmint handoff](handoffs/2026-11-25-inkmint.md) records the separate connected candidate. The Glasshouse passed focused PostgreSQL checks. The first pigment loop is playable locally from the seed drawers through a visitor-visible finish. Hosted acceptance and a human playtest remain open. Keep saved previews and databases stopped.
+
 # November 25 — local overnight review candidate
 
 The [overnight handoff](handoffs/2026-11-25-overnight-play.md) identifies the exact combined local source, independently backed-up candidates, completed real-duration receipts and next steps. Accepted main and the existing PRs remain separate. Keep saved previews and databases stopped. Use runtime `d64d51f` from `study/nov25-pr-compat` for local review. The new shared gameplay still needs its complete connected validation.

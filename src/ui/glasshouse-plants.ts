@@ -39,6 +39,11 @@ export function showNurseryKeeper(body:HTMLElement,town:TownClient,atKeeper:()=>
    const note=document.createElement('p');
    note.textContent='Kept in your private collection.';
    root.append(plantPicture(owned),heading,note);
+   if(town.snapshot?.inkmint){
+    const tray=document.createElement('p');
+    tray.textContent='The seed drawers have an Inkmint tray for your pot.';
+    root.append(tray);
+   }
   }else{
    const note=document.createElement('p');
    note.textContent='Keep one plant for free. No committee vote required.';

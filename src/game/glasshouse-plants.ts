@@ -8,4 +8,4 @@ export const GLASSHOUSE_PLANTS={
  'very-patient-sundew':{name:'Very patient sundew',detail:'It waits for flies with admirable professionalism.'},
 } as const satisfies Record<GlasshousePlant,{name:string;detail:string}>;
 
-export const glasshousePlantArt=(plant:GlasshousePlant)=>'/art/glasshouse/'+plant+'.svg';
+export const glasshousePlantArt=(plant:GlasshousePlant,striped=false)=>'/art/glasshouse/'+plant+(striped?'-inkmint':'')+'.svg';

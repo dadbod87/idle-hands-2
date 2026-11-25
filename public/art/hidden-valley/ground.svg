@@ -21,6 +21,17 @@
  <path d="M0 0h2048v250q-158 90-353 28-180-64-350-112-144-40-368 42-256 112-484 18Q314 176 0 330Zm0 0v1410h352Q197 1185 239 926T163 488Q135 345 0 383Zm2048 998q-133 56-196 181-68 107-262 220h458z" fill="#889f72"/>
  <path d="M0 107q142 12 292 79t397 28 371-43 371 18 270 61 347-45 M0 1280q112-54 172-279t-40-328-97-222 M2048 1211q-95 29-209 103" stroke="#d8cd9b" stroke-width="3" stroke-dasharray="3 13" fill="none" opacity=".72"/>
  <rect width="2048" height="1408" fill="url(#field)"/>
+ <g aria-hidden="true">
+  <path d="M0 271q265-53 422 48c139 91 259 42 391-19 134-63 273-42 384-3v89q-171-47-341 24c-157 64-365 122-526 28Q172 344 0 404Z" fill="#91a36b"/>
+  <path d="M0 335q174-65 346 38c167 108 349 52 504-13q175-73 345-20" fill="none" stroke="#7b8a60" stroke-width="7" opacity=".7"/>
+  <path d="M0 331q174-65 346 38c167 108 349 52 504-13q175-73 345-20" fill="none" stroke="#b5b77c" stroke-width="3" opacity=".82"/>
+  <path d="M376 746q211-119 425-31 207 83 408-11l-3 38q-162 104-432 17-205-68-388 35Z" fill="#879365"/>
+  <path d="M376 746q211-119 425-31 207 83 408-11" fill="none" stroke="#cdc995" stroke-width="5"/>
+  <path d="M0 1290q198-78 353-42t372-3 389 28l85 41v94H0z" fill="#889b68" opacity=".76"/>
+  <path d="M0 1300q198-78 353-42t372-3 389 28l85 41" fill="none" stroke="#a7ab74" stroke-width="4"/>
+  <path d="M1389 1063q199 59 356 26 160-34 303 15v59q-139-56-298-17-172 38-363-33z" fill="#92986c"/>
+  <path d="M1389 1064q199 59 356 26 160-34 303 15" fill="none" stroke="#d1c896" stroke-width="5"/>
+ </g>
  <path d="M242 954Q329 816 428 791q90-43 178 20l134-18m-411-105q95-79 217-78t249 63 327-15m-669-152q108-32 229-12t227 53 235-30m243 145q205-70 601-51m-581 117q256-41 545 15m-512 106q189-35 470 26m-446 105q157-15 407 50" fill="none" stroke="#8b8667" stroke-width="12" stroke-linecap="round"/>
  <path d="M242 951Q329 813 428 788q90-43 178 20l134-18m-411-105q95-79 217-78t249 63 327-15m-669-152q108-32 229-12t227 53 235-30m243 145q205-70 601-51m-581 117q256-41 545 15m-512 106q189-35 470 26m-446 105q157-15 407 50" fill="none" stroke="#d5cb97" stroke-width="3" stroke-dasharray="4 11" stroke-linecap="round"/>
  <g fill="none" stroke-linecap="round" stroke-linejoin="round">

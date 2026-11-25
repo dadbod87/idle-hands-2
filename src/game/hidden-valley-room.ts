@@ -33,13 +33,21 @@ export const VALLEY_STOPS=[
   text:'Three different roofs mark the uphill walk. The gardens rise one terrace at a time.'},
 ] satisfies Stop[];
 
+export function valleyFollow(position:Point,width:number,height:number){
+ if(width>=650)return {x:0,y:0};
+ const proximity=(point:Point)=>Math.max(0,Math.min(1,(6-Math.hypot(position.x-point.x,position.y-point.y))/4));
+ const arrival=proximity(VALLEY_ENTRY),overlook=proximity(VALLEY_STOPS[1].point);
+ const landmark=Math.max(arrival,overlook,proximity(VALLEY_STOPS[2].point),proximity(VALLEY_STOPS[3].point),proximity(VALLEY_STOPS[4].point));
+ return {x:-Math.min(54,width/5)*Math.max(arrival,overlook),y:Math.min(54,height/5)*landmark};
+}
+
 export const HIDDEN_VALLEY_ROOM:World={
  width:64,height:44,
  blocked:[
   [38,0,4.5,16.1],[38,20.3,4.5,7.2],[38,31.95,4.5,12.05],
   [20.8,8.25,6.8,4.15],[23.2,24.05,7.05,5.3],
   [46.3,16.1,5.5,4.0],[53.65,18.15,5.8,4.05],[54.45,25.5,4.8,4.4],
-  [11.75,23.65,4.9,.6],[10.75,21.75,3.0,1.0],[16.8,22.15,2.45,1.0],
+  [11.75,23.65,4.9,.6],[8.35,32.45,.98,.5],[10.75,21.75,3.0,1.0],[16.8,22.15,2.45,1.0],
   ...VALLEY_TREES.map(([x,y])=>[x+.15,y-.09,.7,.65] as [number,number,number,number]),
  ],
  stops:VALLEY_STOPS,

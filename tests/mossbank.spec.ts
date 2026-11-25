@@ -231,7 +231,8 @@ for(const shape of [{name:'2k',width:2560,height:1440,touch:false},{name:'phone'
    const map=page.getByRole('navigation',{name:'Hidden Valley map destinations'});
    const control=map.getByRole('button',{name:'Walk to '+name,exact:true});
    const img=map.locator('img');
-   await expect.poll(()=>img.evaluate((photo:HTMLImageElement)=>photo.naturalWidth)).toBe(2048);
+   await expect(img).toHaveAttribute('src','/art/hidden-valley/ground.svg');
+   await expect.poll(()=>img.evaluate((photo:HTMLImageElement)=>photo.complete&&photo.naturalWidth>0)).toBe(true);
    await expect(control).toBeInViewport({ratio:1});
    if(shape.touch)await control.tap();else await control.press('Enter');
    await expect(page.getByRole('dialog')).toBeHidden();

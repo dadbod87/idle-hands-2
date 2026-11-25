@@ -79,12 +79,12 @@ export function mountPlaceMusic({ room, position, settings, compactBefore, quick
     open();
     const root = document.createElement('section');
     root.className = 'place-music-controls';
-    root.innerHTML = `<p role="status"></p><button type="button" class="primary"></button>
+    root.innerHTML = `<p role="status"></p><button type="button" class="primary" tabindex="0"></button>
       <label for="place-music-volume">Music volume <output for="place-music-volume" aria-hidden="true"></output></label>
-      <input id="place-music-volume" type="range" min="0" max="100" step="1">
-      <button id="toggle-effects" type="button">Turn on effects</button>
+      <input id="place-music-volume" type="range" min="0" max="100" step="1" tabindex="0">
+      <button id="toggle-effects" type="button" tabindex="0">Turn on effects</button>
       <label for="effects-volume">Effects volume <output for="effects-volume" aria-hidden="true"></output></label>
-      <input id="effects-volume" type="range" min="0" max="100" step="1">`;
+      <input id="effects-volume" type="range" min="0" max="100" step="1" tabindex="0">`;
     const play = root.querySelector('button')!;
     const range = root.querySelector('input')!;
     range.value = String(Math.round(music.volume * 100));

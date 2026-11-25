@@ -1,3 +1,5 @@
+import {KERCHIEF_COLORS} from '../game/field-appearance.ts';
+import {KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
 import {BOW_DRAW_SECONDS,BOW_TRACE_MS,type BowDraw,type BowTrace} from '../game/field-weapons.ts';
 import type {MossbankSurvey} from '../game/mossbank.ts';
 import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,hopperOpen,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
@@ -481,6 +483,8 @@ export class WorldScene extends Phaser.Scene {
   private soundingRod?:Phaser.GameObjects.Image;
   private fieldBow?:Phaser.GameObjects.Image;
   private fieldVest?:Phaser.GameObjects.Image;
+  private fieldKerchief?:Phaser.GameObjects.Graphics;
+  private kerchiefPaint='';
   paintPumpworks(){
     if(!this.hopper||!this.hopperWarning||!this.hopperName||!this.combatInk)return;
     const state=this.pumpworksState?.(),encounter=this.pumpworksEncounter?.(),motion=encounter?.hopper;
@@ -543,6 +547,24 @@ export class WorldScene extends Phaser.Scene {
     this.soundingRod?.setRotation(!reduced&&strike>.24?1.2*Math.sin((HOPPER_MOVEMENT.strikeCooldown-strike)*13):0);
     this.fieldBow?.setVisible(state?.bow==='equipped');
     this.fieldVest?.setVisible(state?.vest==='equipped');
+    const kerchief=state?.kerchief??'none';
+    const cloth=this.fieldKerchief;
+    if(cloth){
+      cloth.setVisible(kerchief!=='none');
+      const key=this.facing+':'+kerchief;
+      if(key!==this.kerchiefPaint){
+        this.kerchiefPaint=key;
+        cloth.clear();
+        if(kerchief!=='none'){
+          const shape=KERCHIEF_OUTLINES[this.facing];
+          const vector=({x,y}:Point)=>new Phaser.Math.Vector2(x,y);
+          const edge=shape.cloth.map(vector);
+          cloth.fillStyle(KERCHIEF_COLORS[kerchief].fill).fillPoints(edge,true);
+          cloth.lineStyle(1.35,KERCHIEF_INK).strokePoints(edge,true);
+          cloth.lineStyle(1,KERCHIEF_TRIM).strokePoints(shape.seam.map(vector));
+        }
+      }
+    }
     const draw=encounter?.draw;
     if(draw){
       const px=(draw.from.x+.5)*TILE,py=(draw.from.y+.5)*TILE-45;
@@ -709,7 +731,7 @@ export class WorldScene extends Phaser.Scene {
     this.mossbankMarks=undefined;
     this.mossbankWren=undefined;this.mossbankRipples=[];
     this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;
-    this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;this.fieldVest=undefined;
+    this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;this.fieldVest=undefined;this.fieldKerchief=undefined;this.kerchiefPaint='';
     this.decorationKey='';
     this.decorationViews=[];
     this.furnitureOccluders=[];
@@ -910,6 +932,7 @@ export class WorldScene extends Phaser.Scene {
       const vestKey='pumpworks-padded-vest-poses',vestTexture=this.textures.get(vestKey);
       if(!vestTexture.has('0'))this.textures.addSpriteSheet('',vestTexture,{frameWidth:64,frameHeight:80});
       this.fieldVest=this.add.image(0,0,vestKey,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setVisible(false);
+      this.fieldKerchief=this.add.graphics().setVisible(false);
       this.paintPumpworks();
     } else if(this.room==='glasshouse') {
       for(const stop of w.stops)label(stop.point.x+.5,stop.point.y+.98,stop.id==='glasshouse-exit'?'Inkwood trail ↓':stop.name);
@@ -1134,6 +1157,7 @@ export class WorldScene extends Phaser.Scene {
       worker:this.mossbankWren?.texture.key??null,
       ripples:this.mossbankRipples.filter(ripple=>ripple.image.visible).map(ripple=>({x:ripple.image.x,y:ripple.image.y})),
     },
+    fieldEquipment:{vest:this.fieldVest?.visible===true,kerchief:this.fieldKerchief?.visible===true?this.kerchiefPaint:null},
     steering:!!this.fieldSteering,waving:this.localWaveLabel?.visible===true,peerWaves:[...this.residentViews].filter(([,view])=>view.label.text.startsWith('Waves hello!\n')).map(([id])=>id),peerMotion:[...this.residentViews].map(([id,{motion,headwear}])=>({id,position:{...motion.position},facing:motion.facing,frame:motion.frame,hat:headwear?.visible?Number(headwear.frame.name):null,walking:motion.walking})),peerHeadwear:[...this.residentViews].filter(([,view])=>view.headwear?.visible).map(([id,view])=>({id,texture:view.headwear!.texture.key})),resting:!!this.bedPose?.visible,headwear:this.headwearLayer?.visible?{texture:this.headwearLayer.texture.key,frame:this.headwearLayer.frame.name,x:this.headwearLayer.x,y:this.headwearLayer.y}:null,canopyTransformWrites:this.canopyTransformWrites,glasshouse:this.glasshouseView?.texture.key??null,glasshouseOpening:{active:this.glasshouseGlint?.visible??false,count:this.glasshouseOpeningCount},workshopPrint:this.workshopPrintFrame?.visible?this.workshopPrint:null,ordinaryBench:{phase:this.benchPhase,recipe:this.benchRecipe,piece:this.benchPiece?.visible?this.benchPiece.texture.key:null},walkTarget:this.walkMark?.visible?{x:this.walkMark.x/TILE-.5,y:this.walkMark.y/TILE-.5}:null,commons:{signs:this.commonsSigns,life:this.commonsLife?.snapshot()??null,framing:this.room==='square'?commonsFrame(this.session.position,camera.width,camera.height):null,shelters:this.occluders.filter(o=>o.image instanceof Phaser.GameObjects.Graphics).map(o=>({alpha:o.image.alpha,x:o.x,y:o.y,width:o.width,height:o.height}))},camera:{zoom:camera.zoom,scrollX:camera.scrollX,scrollY:camera.scrollY,worldView:{x:camera.worldView.x,y:camera.worldView.y,width:camera.worldView.width,height:camera.worldView.height},matrix:Array.from(camera.matrixCombined.matrix).slice(0,6)},neighborhood:{yardItems:this.yardViews.map(v=>({texture:v.texture.key,depth:v.depth,bounds:v.getBounds()})),districtId:this.districtId??null,life:this.residentialLife?.snapshot()??null,windows:this.streetWindows.map(w=>({...w})),sites:this.streetViews.map(v=>({slot:v.slot,plotId:v.plotId,texture:v.image.texture.key,label:v.label.text,bounds:v.image.getBounds(),labelBounds:v.label.getBounds()}))},depots:this.depotViews.map(d=>({resource:d.resource,key:d.image.texture.key,depth:d.image.depth,bounds:d.image.getBounds(),labelBounds:d.label.getBounds(),label:d.label.text})),letterboxes:this.decorationViews.filter((v):v is Phaser.GameObjects.Image=>v instanceof Phaser.GameObjects.Image&&v.texture.key.startsWith('letterbox-')).map(v=>v.texture.key),carpentry:{pineTextures:this.pineViews.map(v=>v.image.texture.key),rackTexture:this.rackView?.texture.key??null,noticeboardTexture:this.noticeboardView?.texture.key??null,equipped:this.carpentryState?.()?.saw.equipped??false,lastAction:this.lastCarpentryAction,action:this.carpentryMotion?.action??null},garden:{room:this.room,lastAction:this.lastGardenAction,bedTextures:this.gardenViews.map(v=>v.texture.key),bedFeet:this.gardenViews.map(v=>({x:v.x,y:v.y})),labels:this.gardenLabels.map((v,i)=>({text:v.text,target:this.gardenLabelTargets[i],bounds:v.getBounds(),hitBounds:this.gardenLabelHit(v)})),action:this.gardenMotion?.action??null,actorTexture:this.actor?.texture.key??null,welcomeTexture:this.gardenWelcomeView?.texture.key??null},bridge:{ceremony:!!this.bridgeRibbon?.visible,phase:this.bridgePhase??(this.bridgeRestored?'open':'collecting'),texture:this.bridgeView?.texture.key??null,readyAt:this.bridgeReadyAt},home:{windowsillPlant:this.windowsillView?.visible?this.windowsillPlant:null,windowsillStriped:this.windowsillView?.visible&&this.windowsillStriped,keepsakeVisible:!!this.keepsakeView?.visible,keepsakeTexture:this.keepsakeView?.visible?this.keepsakeArt?.texture.key??null:null,pennantVisible:this.pennantView?.visible??false,pennantTexture:this.pennantView?.texture.key??null,pennantPosition:this.pennantView?{x:this.pennantView.x,y:this.pennantView.y}:null,room:this.room,plotId:this.loadedHomePlotId??null,ownerName:this.homeOwnerName,level:this.homeLevel,decorations:this.room.startsWith('home')&&this.decorations?this.decorations():null,interiorTexture:this.room.startsWith('home')?this.loadedInteriorKey:null,furniture:this.decorationViews.map(view=>({texture:view.texture.key,x:view.x,y:view.y,alpha:view.alpha}))},facing:this.facing,frame:this.frame,anchor:ART.actorAnchor,scale:ART.actorScale,variety:{actorId:residentArt(this.residentId),actorTexture:this.actor?.texture?.key??null,actorFrame:this.actor?.frame?.name??null,actorSize:{width:this.actor?.width??0,height:this.actor?.height??0},residentFramesReady:!!this.actor&&RESIDENT_IDS.every(id=>this.textures.get('variety-resident-'+id).has('27')),treeKinds:(this.room==='square'||this.room==='neighborhood')?[...TREE_KINDS]:[],buildingKinds:this.room==='square'?[...BUILDING_KINDS]:[],ambient:{enabled:this.ambientEnabled,canopies:this.canopies.map(c=>({key:c.key,rotation:c.image.rotation,offsetX:c.image.x-c.baseX})),steam:{alpha:this.steam?.alpha??0,y:this.steam?this.steam.y-this.steamBaseY:0},gestureOffset:this.gestureOffset}}};}
   private updateAmbient(delta:number){
     this.ambientEnabled=!document.hidden&&!this.reducedMotion.matches;
@@ -1216,12 +1240,16 @@ export class WorldScene extends Phaser.Scene {
     this.actor.setPosition(x,y).setDepth(y);
     this.soundingRod?.setPosition(x+14,y-3).setDepth(y+1);
     this.fieldBow?.setPosition(x+14,y-5).setDepth(y+1);
-    if(this.fieldVest?.visible){
-      const pose=FACINGS.indexOf(this.facing);
+    if(this.fieldVest?.visible||this.fieldKerchief?.visible){
       const width={aster:1,bea:1.12,casey:.87,devon:1.06}[residentArt(this.residentId)];
-      const bob=this.frame>0?.8*Math.abs(Math.sin((this.frame-1)*Math.PI/3)):0;
-      if(String(this.fieldVest.frame.name)!==String(pose))this.fieldVest.setFrame(pose);
-      this.fieldVest.setPosition(x,y-bob*ART.actorScale).setDepth(y+.5).setScale(ART.actorScale*width,ART.actorScale);
+      const sx=ART.actorScale*width,sy=ART.actorScale;
+      const bob=this.frame>0?.8*Math.abs(Math.sin((this.frame-1)*Math.PI/3)):0,top=y-bob*sy;
+      if(this.fieldVest?.visible){
+        const pose=FACINGS.indexOf(this.facing);
+        if(String(this.fieldVest.frame.name)!==String(pose))this.fieldVest.setFrame(pose);
+        this.fieldVest.setPosition(x,top).setDepth(y+.5).setScale(sx,sy);
+      }
+      if(this.fieldKerchief?.visible)this.fieldKerchief.setPosition(x-32*sx,top-72*sy).setDepth(y+.75).setScale(sx,sy);
     }
     if(this.bedPose&&this.bedQuilt){
       if(this.bedPose.visible!==this.resting){

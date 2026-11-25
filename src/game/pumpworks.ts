@@ -1,4 +1,5 @@
 import {z} from 'zod';
+import {FIELD_KERCHIEFS,KERCHIEF_ACTIONS,KERCHIEF_COLORS,type FieldDyeAction} from './field-appearance.ts';
 import {equippedFieldWeapon,FIELD_WEAPONS} from './field-weapons.ts';
 
 export const FIELD_HEALTH=8;
@@ -13,6 +14,7 @@ const recordSchema=z.object({
  rod:z.enum(['unissued','packed','equipped']),
  bow:z.enum(['unissued','packed','equipped']).default('unissued'),
  vest:z.enum(['unissued','packed','equipped']).default('unissued'),
+ kerchief:z.enum(FIELD_KERCHIEFS).default('none'),
  oatcake:z.enum(['unissued','packed','used']).default('unissued'),
  satchel:z.enum(['none','carried','at-pump']),
  fight:z.object({
@@ -28,18 +30,18 @@ const recordSchema=z.object({
     ||state.rematch!==(state.reported&&!state.cleared)
     ||state.fight&&(state.recovering||state.cleared)
     ||state.bow==='equipped'&&state.rod==='equipped'
-    ||state.rod==='unissued'&&(state.oatcake!=='unissued'||state.bow!=='unissued'||state.vest!=='unissued')
+    ||state.rod==='unissued'&&(state.oatcake!=='unissued'||state.bow!=='unissued'||state.vest!=='unissued'||state.kerchief!=='none')
     ||(state.rod==='unissued')!==(state.satchel==='none')){
   ctx.addIssue({code:'custom',message:'The survey record is inconsistent.'});
  }
 });
 export type PumpworksState=z.infer<typeof recordSchema>;
-export type PumpworksAction='issue'|'borrow-bow'|'borrow-vest'|'equip-vest'|'pack-vest'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
+export type PumpworksAction=FieldDyeAction|'issue'|'borrow-bow'|'borrow-vest'|'equip-vest'|'pack-vest'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
 export type PumpworksPlace='locker'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
 type Result={ok:false;message:string}|{ok:true;state:PumpworksState;message:string;returnToBed?:true};
 
 export const freshPumpworks=():PumpworksState=>({
- version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',bow:'unissued',vest:'unissued',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,rematch:false,
+ version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',bow:'unissued',vest:'unissued',kerchief:'none',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,rematch:false,
 });
 
 export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place:PumpworksPlace):Result{
@@ -53,6 +55,15 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
   case 'issue':
    if(place!=='locker'||state.rod!=='unissued')return refuse('Your survey kit is already issued or the locker is out of reach.');
    return accept({rod:'equipped',oatcake:'packed',satchel:'carried'},'Sounding rod equipped. Field satchel and oatcake packed.');
+  case 'kerchief-none':
+  case 'kerchief-clay':
+  case 'kerchief-fern':
+  case 'kerchief-indigo': {
+   if(place!=='elsewhere'||state.rod==='unissued'||state.fight)return refuse('Change your look outside the encounter.');
+   const kerchief=KERCHIEF_ACTIONS[action];
+   if(state.kerchief===kerchief)return refuse('This look is already saved.');
+   return accept({kerchief},kerchief==='none'?'Kerchief put away.':KERCHIEF_COLORS[kerchief].label+' kerchief worn.');
+  }
   case 'borrow-bow':
    if(place!=='locker'||state.rod==='unissued'||state.bow!=='unissued'||state.fight)return refuse('The field bow is on loan from the survey locker.');
    return accept({rod:'packed',bow:'equipped'},'Field bow equipped. Your rod is in Bag.');

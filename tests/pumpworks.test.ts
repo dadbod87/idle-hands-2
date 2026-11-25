@@ -324,3 +324,25 @@ test('Padded armor protects the resident independently of the equipped weapon',(
  assert.equal(without.bow,'equipped');
  assert.equal(play(without,'hit','arena').health,5);
 });
+
+test('Kerchief dyes and hiding the clothing layer never change armor, weapon, or health',()=>{
+ const kit=prepared();
+ const {kerchief:priorLook,...legacy}=kit;
+ assert.equal(priorLook,'none');
+ const old=readPumpworks({getItem:()=>JSON.stringify(legacy)});
+ if(!old.ok)assert.fail(old.message);
+ assert.equal(old.state.kerchief,'none');
+ const protectedGear=play(play(old.state,'borrow-vest','locker'),'borrow-bow','locker');
+ const indigo=play(protectedGear,'kerchief-indigo','elsewhere');
+ assert.equal(indigo.vest,'equipped');
+ assert.equal(indigo.bow,'equipped');
+ assert.equal(indigo.kerchief,'indigo');
+ assert.equal(indigo.health,protectedGear.health);
+ assert.equal(applyPumpworks(indigo,'kerchief-indigo','elsewhere').ok,false);
+ const fighting=play(indigo,'begin','arena');
+ assert.equal(applyPumpworks(fighting,'kerchief-fern','elsewhere').ok,false);
+ assert.equal(play(fighting,'hit','arena').health,6);
+ const off=play(indigo,'kerchief-none','elsewhere');
+ assert.equal(off.kerchief,'none');
+ assert.equal(off.vest,'equipped');
+});

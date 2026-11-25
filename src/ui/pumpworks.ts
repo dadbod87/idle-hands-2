@@ -1,3 +1,5 @@
+import {KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
+import {FIELD_KERCHIEFS,KERCHIEF_COLORS,type FieldDyeAction,type FieldKerchief} from '../game/field-appearance.ts';
 import type {FieldCue} from '../audio/combat-cues.ts';
 import {BOW_DRAW_SECONDS,BOW_STILL_RADIUS,BOW_TRACE_MS,equippedFieldWeapon,FIELD_WEAPONS,type BowDraw,type BowTrace,type FieldWeapon} from '../game/field-weapons.ts';
 import {
@@ -455,7 +457,62 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    }
    return card;
   });
-  return cards;
+  const dye=document.createElement('li');dye.className='bag-slot field-kerchief';dye.dataset.fieldKerchief='';
+  const title=document.createElement('h4');title.textContent='Trail kerchief';
+  const detail=paragraph('');detail.className='bag-slot-detail';
+  const appearance=document.createElement('div');appearance.className='bag-slot-art';
+  const svg='http://www.w3.org/2000/svg';
+  const preview=document.createElementNS(svg,'svg');preview.setAttribute('viewBox','15 28 34 34');
+  preview.setAttribute('role','img');
+  const vest=document.createElementNS(svg,'image');
+  for(const [key,value] of Object.entries({href:EQUIPMENT.vest.art,x:15,y:28,width:34,height:34}))vest.setAttribute(key,String(value));
+  const cloth=document.createElementNS(svg,'polygon'),trim=document.createElementNS(svg,'polyline');
+  const points=(list:Point[])=>list.map(({x,y})=>x+','+y).join(' ');
+  const swatch=(ink:number)=>'#'+ink.toString(16).padStart(6,'0');
+  cloth.setAttribute('points',points(KERCHIEF_OUTLINES.south.cloth));
+  cloth.setAttribute('stroke',swatch(KERCHIEF_INK));cloth.setAttribute('stroke-width','1.3');
+  trim.setAttribute('points',points(KERCHIEF_OUTLINES.south.seam));trim.setAttribute('fill','none');
+  trim.setAttribute('stroke',swatch(KERCHIEF_TRIM));trim.setAttribute('stroke-width','1.2');
+  preview.append(vest,cloth,trim);appearance.append(preview);
+  const label=document.createElement('label');label.textContent='Kerchief color';
+  const choices=document.createElement('select');
+  label.append(choices);
+  for(const value of FIELD_KERCHIEFS){
+   const option=document.createElement('option');option.value=value;
+   option.textContent=value==='none'?'Put away':KERCHIEF_COLORS[value].label;
+   choices.append(option);
+  }
+  choices.value=state.kerchief;
+  const saveLook=button('Save kerchief',()=>{});
+  saveLook.className='bag-equip-action';
+  const status=paragraph('');status.className='bag-equip-notice';status.role='status';
+  const paintLook=(message='')=>{
+   const live=current();
+   if(!live)return;
+   const color=choices.value as FieldKerchief;
+   const wearing=color!=='none';
+   vest.style.display=live.vest==='equipped'?'':'none';
+   cloth.style.display=trim.style.display=wearing?'':'none';
+   if(wearing)cloth.setAttribute('fill',swatch(KERCHIEF_COLORS[color].fill));
+   preview.setAttribute('aria-label',wearing?KERCHIEF_COLORS[color].label+' kerchief preview':'No kerchief');
+   detail.textContent=live.kerchief==='none'?'Put away':KERCHIEF_COLORS[live.kerchief].label+' kerchief worn';
+   choices.disabled=busy||!!live.fight||live.recovering;
+   saveLook.disabled=choices.disabled||color===live.kerchief;
+   status.textContent=message;
+  };
+  repaints.push(paintLook);
+  choices.onchange=()=>paintLook();
+  saveLook.onclick=async()=>{
+   if(saveLook.disabled)return;
+   const action=('kerchief-'+choices.value) as FieldDyeAction;
+   saveLook.disabled=true;
+   const message=await change(action,'elsewhere',()=>dye.isConnected,shownRaw);
+   if(record.ok)shownRaw=record.raw;
+   if(dye.isConnected)for(const repaint of repaints)repaint(repaint===paintLook?message:'');
+  };
+  dye.append(appearance,title,detail,label,saveLook,status);
+  paintLook();
+  return [...cards,dye];
  }
 
  function journal(body:HTMLElement,walkToDoor:()=>void,previewSeal:()=>void){

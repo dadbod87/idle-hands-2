@@ -101,3 +101,7 @@
  transform:translate(calc(-50% + var(--thumb-x)),calc(-50% + var(--thumb-y)));
  border-radius:50%;border:2px solid #52684d;background:#f2e8b5;
 }
+
+#panel-body .field-kerchief label { grid-column:1/-1; display:grid; gap:4px; font-size:.84rem; }
+#panel-body .field-kerchief select { max-width:100%; min-height:44px; padding:6px 9px; font:inherit; }
+.field-kerchief .bag-slot-art svg { width:64px; height:64px; }

@@ -22,8 +22,8 @@
   "reviewedCurrent": {
     "src/game/world.ts": "798d798e6dda52b5b2a3d671ed10c8cbe40de5fba543a4b2e78eebb4f3565664",
     "src/main.ts": "1a4e2a54e2bd3b8588586a5e09038df951a0bedb8bf906854be3314157cfa754",
-    "src/phaser/WorldScene.ts": "262b8e05dd2229613bd502d4b88292fd5ef0fc5f4e7432552fa9642209a3b058",
+    "src/phaser/WorldScene.ts": "de75d54909a45a92f06679d6d4ef422cb2de8c3b297090ee4c0931ee255011d5",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the Pumpworks equipment changes. The action, attachment, draw, projectile trace and vest layer are scoped to the field. Archived study inputs and outputs are preserved."
+  "currentTask": "Reviewed the Pumpworks-only weapon, vest and dyed kerchief layers. The archived study inputs and generated output remain frozen."
 }

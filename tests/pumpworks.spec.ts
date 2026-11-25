@@ -13,7 +13,7 @@ type Pilot={
  pumpworks():PumpworksState;
  pumpworksMotion():{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;enemyHealth:number|null};
  screenPoint(x:number,y:number):Point;
- metrics():{visual:{workshopPrint:string|null}};
+ metrics():{visual:{workshopPrint:string|null;fieldEquipment:{vest:boolean;kerchief:string|null}}};
 };
 const read=(page:Page)=>page.evaluate(()=>{
  const pilot=(window as Window&{__pilot?:Pilot}).__pilot;
@@ -373,7 +373,7 @@ test('Pausing while a lunge is waiting to save preserves the pending contact',as
 });
 
 for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:320,height:640,touch:true,name:'phone'}]){
- test('Field bow and vest · planted ranged shots and layered armor · '+shape.name,async({browser})=>{
+ test('Field bow and vest · ranged shots, armor and a dyed kerchief · '+shape.name,async({browser})=>{
   test.setTimeout(65000);
   mkdirSync(output,{recursive:true});
   const context=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch});
@@ -426,8 +426,22 @@ for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:32
    await expect(bow).toContainText('Equipped');
    await expect(rod).toContainText('Packed');
    await expect(vest).toContainText('Equipped');
+   const kerchief=page.locator('[data-field-kerchief]');
+   const color=kerchief.getByLabel('Kerchief color');
+   await color.selectOption('fern');
+   await expect(kerchief.getByRole('img',{name:'Fern kerchief preview'})).toBeVisible();
+   const packedLook=(await read(page))!.state;
+   expect(packedLook.kerchief).toBe('none');
+   await color.selectOption('indigo');
+   expect((await read(page))!.state).toEqual(packedLook);
+   await activate(button('Save kerchief'));
+   await expect(kerchief).toContainText('Indigo kerchief worn');
+   await expect(button('Save kerchief')).toBeDisabled();
+   await page.screenshot({path:output+'/field-kerchief-'+shape.name+'-bag.png'});
    await activate(close(page));
    await expect(button('Shoot')).toBeInViewport({ratio:1});
+   const layers=()=>page.evaluate(()=>(window as Window&{__pilot?:Pilot}).__pilot?.metrics().visual.fieldEquipment);
+   await expect.poll(layers).toEqual({vest:true,kerchief:expect.stringMatching(/:indigo$/)});
    await expect(page.locator('.pump-armor')).toHaveText('Armor 1');
    await expect(page.locator('.pump-armor')).toBeInViewport({ratio:1});
 
@@ -477,6 +491,8 @@ for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:32
    expect((await read(page))!.state.bow).toBe('equipped');
    await expect(page.locator('.pump-armor')).toHaveText('Armor 1');
    expect((await read(page))!.state.vest).toBe('equipped');
+   expect((await read(page))!.state.kerchief).toBe('indigo');
+   await expect.poll(layers).toEqual({vest:true,kerchief:expect.stringMatching(/:indigo$/)});
   }finally{await context.close();}
  });
 }

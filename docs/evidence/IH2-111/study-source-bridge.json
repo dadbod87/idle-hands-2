@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "798d798e6dda52b5b2a3d671ed10c8cbe40de5fba543a4b2e78eebb4f3565664",
-    "src/main.ts": "06e1265a8b84f2364a46198e08ed06b87ba13818481c49a27eb12c351abb65e9",
-    "src/phaser/WorldScene.ts": "c3a92fb3a4843f025743b400937a4526e81f25ecb07a8a9527702e3583e54af0",
+    "src/main.ts": "1a4e2a54e2bd3b8588586a5e09038df951a0bedb8bf906854be3314157cfa754",
+    "src/phaser/WorldScene.ts": "49ae129097f5baf5c78a41ba231107f043f1ed3fae5a1afa0e5200f35abad340",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the candidate shared Glasshouse funding board and facade stages. Original study snapshots and generated output remain frozen."
+  "currentTask": "Reviewed the field bow changes. The client action, texture, attachment, draw and trace are limited to Pumpworks. Archived study sources and generated output remain frozen."
 }

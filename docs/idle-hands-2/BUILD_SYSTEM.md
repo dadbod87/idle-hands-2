@@ -15,6 +15,8 @@ Use a playable outcome as the session target. Finish one end-to-end player exper
 - Run focused checks during iteration. Batch related gameplay, tests and documentation before requesting full hosted checks on the exact final revision. Keep all required database and browser coverage. Follow the [Actions usage policy](ACTIONS_USAGE_POLICY.md), stay at $0 paid GitHub usage, and keep saved previews and databases stopped while the current owner instruction applies.
 - Close out against the playable goal or the owner's cutoff. Report what a player can now do, what passed, any outstanding checks and the next playable outcome.
 
+For the Glasshouse, the connected [disposable PostgreSQL runner](../../tools/check-glasshouse-disposable.sh) covers the focused suite while saved services stay stopped. See the [fixture notes](handoffs/2026-11-25-inkmint.md#follow-up-playability-and-fast-local-checks) for its inputs and verification boundary.
+
 ## Match the verification runtime
 
 The repository workflow pins Node24.22.2. Prefer that exact runtime for full local Node/Playwright verification and record the browser/profile. A newer system runtime is not evidence that the pinned checks passed. November17diagnostics encountered local Node26stream/installer and Chrome reload-poll failures; a matching-runtime/browser check succeeded, without establishing a single root cause. Keep those observations separate. An isolated verified official Nodebinary may be used without changing system defaults or dependency locks. Use the existing CIprofile when reproducing CI; report its configured assertion windows, not a pass of the different local Chrome profile. Never change coverage, budgets or source timeouts to manufacture acceptance.

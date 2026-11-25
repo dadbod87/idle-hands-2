@@ -4,7 +4,7 @@ import './glasshouse.css';
 
 const selection=Object.keys(GLASSHOUSE_PLANTS) as GlasshousePlant[];
 
-export function showNurseryKeeper(body:HTMLElement,town:TownClient,atKeeper:()=>boolean){
+export function showNurseryKeeper(body:HTMLElement,town:TownClient,atKeeper:()=>boolean,walkToTray?:()=>void){
  const resident=town.snapshot?.playerId;
  const root=document.createElement('section');
  root.className='nursery-keepsake';
@@ -43,6 +43,7 @@ export function showNurseryKeeper(body:HTMLElement,town:TownClient,atKeeper:()=>
     const tray=document.createElement('p');
     tray.textContent='The seed drawers have an Inkmint tray for your pot.';
     root.append(tray);
+    if(walkToTray)root.append(button('Walk to the seed drawers',walkToTray));
    }
   }else{
    const note=document.createElement('p');

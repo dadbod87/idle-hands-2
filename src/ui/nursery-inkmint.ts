@@ -1,9 +1,28 @@
+import {glasshousePlantArt,type GlasshousePlant} from '../game/glasshouse-plants.ts';
 import {INKMINT_FINISH, type InkmintAction} from '../game/nursery-inkmint.ts';
 import type {TownClient} from './town-client.ts';
 import './glasshouse.css';
 
+function potPreview(plant:GlasshousePlant){
+ const comparison=document.createElement('div');
+ comparison.className='inkmint-pot-preview';
+ for(const striped of [false,true]){
+  const figure=document.createElement('figure');
+  const art=document.createElement('img');
+  art.src=glasshousePlantArt(plant,striped);
+  art.alt='';
+  art.width=56;
+  art.height=65;
+  const label=document.createElement('figcaption');
+  label.textContent=striped?INKMINT_FINISH:'Original pot';
+  figure.append(art,label);
+  comparison.append(figure);
+ }
+ return comparison;
+}
+
 export function showInkmint(
- body:HTMLElement, town:TownClient, station:'tray'|'pottery', atStation:()=>boolean, walk:()=>void,
+ body:HTMLElement, town:TownClient, station:'tray'|'pottery', atStation:()=>boolean, walk:()=>void, walkHome?:()=>void,
 ){
  const resident=town.snapshot?.playerId;
  const view=document.createElement('section');
@@ -60,10 +79,13 @@ export function showInkmint(
    control??=button('Make Inkmint stripe · 1 pigment',()=>void send('mix'));
   }else if(state.phase==='mixed'||state.phase==='applied'){
    view.append(paragraph(INKMINT_FINISH+' is available for your pot at home.'));
+   if(walkHome)control??=button('Find your windowsill',walkHome);
   }else{
    view.append(paragraph('Grow and collect an Inkmint pigment at the seed drawers.'));
    control??=button('Walk to the seed drawers',walk);
   }
+  const plant=town.snapshot?.glasshousePlant;
+  if(station==='pottery'&&plant&&['collected','mixed','applied'].includes(state.phase))view.append(potPreview(plant));
   if(control)view.append(control);
   view.append(status);
  }

@@ -435,7 +435,7 @@ function nurseryPlantForBag(){
  if(!plant)return;
  const ownerHere=snapshot.plantWindowsill===true&&session.room.startsWith('home')&&
   snapshot.plot?.id===homePlotId&&session.stops.some(stop=>stop.id===WINDOWSILL_STOP.id);
- return {plant,...(ownerHere?{walk:()=>{
+ return {plant,striped:snapshot.inkmint?.phase==='applied',...(ownerHere?{walk:()=>{
   if(town?.snapshot?.playerId!==snapshot.playerId||homePlotId!==snapshot.plot?.id||
      !session.stops.some(stop=>stop.id===WINDOWSILL_STOP.id))return;
   goNamedDestination(session.room,WINDOWSILL_STOP.id);
@@ -911,7 +911,8 @@ function activate(stop: Stop) {
   }
   if(stop.id==='glasshouse-keeper'&&town){
     openPanel(stop.name);
-    showNurseryKeeper(body,town,()=>session.room==='glasshouse'&&session.nearby()?.id===stop.id);
+    showNurseryKeeper(body,town,()=>session.room==='glasshouse'&&session.nearby()?.id===stop.id,
+      ()=>goNamedDestination('glasshouse',INKMINT_STATIONS.tray));
     return;
   }
   if(town?.snapshot?.inkmint&&session.room==='glasshouse'&&(stop.id===INKMINT_STATIONS.tray||stop.id===INKMINT_STATIONS.pottery)){
@@ -919,7 +920,7 @@ function activate(stop: Stop) {
     const next=station==='tray'?INKMINT_STATIONS.pottery:INKMINT_STATIONS.tray;
     openPanel(stop.name);
     cleanupInkmint=showInkmint(body,town,station,()=>session.room==='glasshouse'&&session.nearby()?.id===stop.id,
-      ()=>goNamedDestination('glasshouse',next));
+      ()=>goNamedDestination('glasshouse',next),inkmintForJournal()?.home);
     return;
   }
   if(session.room==='glasshouse'&&!stop.transition){

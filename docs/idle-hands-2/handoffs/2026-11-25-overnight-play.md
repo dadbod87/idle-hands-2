@@ -48,3 +48,11 @@ The exact integrated build passed all 455 local domain cases applicable without 
 ### First real-duration receipt
 
 Marigold passed in an isolated Chromium browser, with no inventory or position fixtures and no API traffic. The browser closed at November 24, 2:59:26.973 p.m. Pacific and returned at 6:59:28.757 p.m. A single harvest and separate print selection were saved and survived reopening. The result belongs to the frozen browser-practice source db6a516, with newer presentation covered separately by the integrated browser checks.
+
+### Optional nursery progression study
+
+The separate [Swatch Book study](https://github.com/dadbod87/idle-hands-2/tree/study/nov25-nursery-pigments/docs/evidence/IH2-259) at `04bbf64` gives the two original crops different waiting times and lets the player spend each collected pigment on a named stripe or dot. All four swatches take at least five days with one tray. No crops die from absence, and the collection neither pays nor gates other progression. It is a pure rule study and distinct desktop/phone preview with its own simulated clock. There is no saved-game, API or server integration. Terra review, keyboard and touch completion of all four swatches, and automated accessibility scans passed. The domain build carried 458 passes and 33 database cases left outstanding.
+
+### Additional local Chromium regression
+
+On the exact integrated runtime, the 56-case browser selection recorded 52 passes. It covered fresh touch onboarding through Marlow to the bench, return shortcuts, local collect/reload/two-tab recovery, phone navigation, home interiors and visitor privacy, and the Pond and woodland outings. Four selected cases still require the isolated database and real API. They reached the deliberately unavailable local endpoints and did not run their gameplay assertions. Those are the real shared pine review, actual shared collection, and two garden recovery cases. This was a client-only run with no saved service started. Those cases remain in ordinary validation, with their failure captures retained separately from passing evidence.

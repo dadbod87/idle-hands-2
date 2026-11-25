@@ -1,3 +1,7 @@
+# November 25 — real-time encounter, regional travel and layered field gear
+
+Start with `feat/nov25-breeze-staff` and the [exploration and combat handoff](handoffs/2026-11-25-exploration-combat.md#real-time-combat-regional-travel-and-layered-gear-checkpoint). Pumpworks practice now has rod, bow, staff, a padded vest and a dyeable kerchief. Mossbank's cold arrival retains the painted frame. Hidden Valley is a future town in the world atlas. Keep saved previews and databases stopped.
+
 # November 25 — real-time Pumpworks and shared Mossbank
 
 The [exploration and active combat handoff](handoffs/2026-11-25-exploration-combat.md) records the playable candidate, device checks, boundaries and next work. Start with the later combined candidate on `fix/nov25-mossbank-return`. The hopper chases nearby players in browser practice. The connected Mossbank route and visitor-visible swatch use the isolated shared town. Keep saved previews and databases stopped.

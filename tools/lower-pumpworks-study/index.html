@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Lower Pumpworks · Layout study</title>
+</head>
+<body>
+ <main>
+  <header><h1>Lower Pumpworks</h1><p>Walkable layout study</p></header>
+  <section class="playfield" aria-label="Dungeon practice map">
+   <canvas id="world" tabindex="0" aria-label="Dungeon floor. Tap to walk or use arrow keys. Use the nearby action to inspect."></canvas>
+   <div class="location"><strong id="place">Lamplit landing</strong><small id="floor">Upper works</small></div>
+  </section>
+  <footer>
+   <p id="status" role="status">Tap the floor or use arrow keys. Follow the lamps down.</p>
+   <div class="actions"><button id="interact" type="button" disabled>Nothing nearby</button><button id="restart" type="button">Restart walk</button></div>
+  </footer>
+ </main>
+ <script type="module" src="./main.ts"></script>
+</body>
+</html>

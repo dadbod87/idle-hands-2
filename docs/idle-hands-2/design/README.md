@@ -20,7 +20,7 @@ The map and storyboards explain the direction; they are not a substitute for art
 
 Return to a bed or workshop, see what finished, choose one useful personal goal, help a neighbor, and decide whether to explore. Gather, cook or craft; improve a home or contribute to a public project; queue something worth returning for. A short visit must leave a clear result. A longer visit offers more exploration and choices, without infinite click income or multiplying every production bonus.
 
-Town creation and home ownership remain useful without mandatory combat. Wilderness and dungeons add optional risk, materials, stories and decoration. Chat, gifts, buffs and reversible jokes connect the same people across these activities. Permanent creative work stays outside corpse loot and weekly score rollover.
+Town creation and home ownership remain useful without mandatory combat. Wilderness and dungeons add optional risk, materials, stories and decoration. Chat, gifts, buffs and reversible jokes connect the same people across these activities. Permanent creative work stays outside corpse loot and weekly score rollover. The [Lower Pumpworks dungeon plan](WORLD_AND_SYSTEMS_DESIGN.md#lower-pumpworks-dungeon) maps the first deeper outing, including side routes, chests and an optional boss.
 
 ## What the next implementation actually includes
 

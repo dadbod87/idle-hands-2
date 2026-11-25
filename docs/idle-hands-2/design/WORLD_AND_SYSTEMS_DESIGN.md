@@ -153,6 +153,31 @@ Test the same encounter with a novice rod, a ranged player and a resident who le
 
 For the next melee style, a sword should occupy the same hand and teach its own craft. A slightly slower, wider sweep offers a different spacing choice from the quick close rod. In smithing and tailoring, a completed meaningful recipe or commission can teach the work. A familiar basic recipe can remain useful once it stops advancing skill. Later specialist effects should open additional patterns, finishes and tools without creating a mandatory global production multiplier. This leaves room for a worker who plays alone, a maker who sells or gifts work, and a group that takes on a tougher outing. Aim for two good recipes or techniques and a visibly different reward per added specialty before expanding the catalog.
 
+## Lower Pumpworks dungeon
+
+November 25 owner direction is to make dungeons large enough to explore, with weaker monsters, hidden chests, and bosses with better loot. The upper Pumpworks is the short combat lesson. The Lower Pumpworks is the proposed first true dungeon, reached from its own clearly marked door. The layout starts with two levels, eight destinations, a spillway connector and a visible route back to town. A first trip should reveal a choice of routes within two minutes. Target roughly 8–12 minutes for a deliberate first descent and 15–20 for side passages as initial playtest ranges.
+
+```mermaid
+flowchart LR
+  Town[Willow meadow] --- Landing[1. Lamplit landing]
+  Landing --- Gallery[2. Valve gallery]
+  Landing --- Stores[3. Stores and tool chest]
+  Stores --- Archive[4. Flooded archive]
+  Gallery --- Bend[5. Sluice bend]
+  Archive --- Bend
+  Bend --- Junction[6. Lower walking bridge]
+  Junction --- Kiln[7. Silt kiln and optional chest]
+  Junction --- Chamber[8. Collector chamber]
+  Junction -. Open from below .-> Landing
+```
+
+- **Explore by landmarks.** Follow warm lamps to the descent, a painted inspection stripe back to safety, and sounds from the machinery toward the boss. A side route through the Stores and Archive rejoins the main route. A return shortcut opens from below. Keep at least one safe rail or turning area in each important combat room. A first-timer can find one chest and leave with something useful without fighting the boss.
+- **Teach enemies separately.** A small filter mite telegraphs one short dash with a clear sideways escape. A valve crawler has a slow sweep and a visible recovery. One optional fight combines their patterns in a wider room. The Collector boss alternates a readable rush, a wider pressure burst, and a longer vulnerable opening. Change the floor and timing to teach each move. Armor, food, bow distance and staff push each have a use.
+- **Reward the detour and the win.** A found tool chest offers a little salvage or thread. The optional kiln encounter may leave a distinctive material or furnishing pattern. A first Collector clear guarantees an original display trophy or blueprint plus a stronger material reward. Rare variants support repeat trips as publishable keepsakes. Use a clearly capped reward cadence for repeat clears. Keep gifts, neighbors' progress, housing and the main story independent of random loot.
+- **Give players a clean exit.** Gear, supplies and short encounters should support a solo trip. Party play can follow with visible assistance credit and personal claims. Separate the player’s saved discovery, reward receipt and any party’s shared defeat. Make each chest and boss reward owner-scoped and settled once, including full Bag, reconnect, retry and instance closure. Keep other players' inventories private. Follow the recovery policy below before risking persistent items.
+
+The [walkable layout study](../../../tools/lower-pumpworks-study/index.html) exercises the two paths, side chests and freight lift. It contains encounter and reward markers. The deeper dungeon is still outside the playable game. Connect one weak encounter and an owner-scoped chest first. Use a guaranteed useful material from that chest so discovery pays off on the first visit. Connect the Collector after the weaker fight, early exit and receipt are stable. Give its first clear a recognizable furnishing or plan the player can show at home. One candidate is the Collector’s Overdue Gauge, a wall ornament that perpetually reads “inspection pending.” A Stores find can supply a smith or tailor with useful stock, while the kiln offers a chance at a distinct furnishing finish. Evaluate time spent making choices, how often players find a side path without prompting, and whether they can tell where to return to safety. Evaluate loot by whether a player uses or displays the item on a later visit.
+
 ## Death, waking and corpse recovery: provisional, protected and testable
 
 Owner direction: death returns the player to town, waking in bed, with dropped items recoverable from a corpse for a limited time. Exact loss rules are **not settled**. Initial experiment only: 30 real minutes, gathered carried loot as the candidate droppable category, protected starter/essential quest gear and owner-only recovery. Whether equipped weapons/clothes ever drop, what happens on expiry and the exact recovery duration remain release decisions. Permanent property, furnishings, skills, account progress and identity are outside corpse loot.
@@ -236,7 +261,7 @@ This is a dependency proposal for later roadmap updates, not new active work. Ea
 7. **Food/tool/action slice:** one equipped weapon/tool and one usable food, complete directional art and accessible actions, server consumption/effect receipts. Add safe noncombat uses first.
 8. **Optional woodland PvE slice:** one readable roaming enemy/clearing, health/heal/retreat, fixed-once outcome and no property gate. Synthetic non-destructive death preview until recovery policy is reviewed.
 9. **Recovery slice:** settle the open loss/grace rules, implement one death/bed/corpse loop and all replay/ownership/expiry/instance tests. Only then enable real loss in an invited test.
-10. **Pumpworks party slice:** one small dungeon with usable entry/exit, cooperative entitlement, corpse accessibility and party privacy; no procedural city-sized content promise.
+10. **Lower Pumpworks slice:** prove the explorable [dungeon route, side chests and boss](#lower-pumpworks-dungeon), then add party participation and cooperative entitlement after the recovery and privacy gates.
 11. **Mossbank connection:** a distinct forestry service and material style after the existing region remains meaningful.
 12. **Hidden Valley:** test one safe lane, orchard graft and shared project. Revisit additional housing only after travel, collaboration, property migration and operating costs are understood. Bellwether Quay remains a later coastal candidate.
 

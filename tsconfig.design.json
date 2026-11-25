@@ -127,6 +127,7 @@
     "tests/commons-life.test.ts",
     "tools/create-housing-contract-study.ts",
     "tools/housing-contract-study/main.ts",
+    "tools/lower-pumpworks-study/main.ts",
     "tools/housing-contract-fixture.ts",
     "tests/housing-contract.test.ts",
     "tests/housing-contract.spec.ts",

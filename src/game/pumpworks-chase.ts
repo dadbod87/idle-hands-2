@@ -1,4 +1,4 @@
-import {FIELD_WEAPONS,type FieldWeapon} from './field-weapons.ts';
+import {FIELD_WEAPONS,STAFF_PUSH,type FieldWeapon} from './field-weapons.ts';
 import {HOPPER_FEET,PRACTICE_BELL} from './pumpworks-room.ts';
 import type {Point} from './world.ts';
 
@@ -104,4 +104,10 @@ export function swingFieldWeapon(state:HopperMotion,player:Point,weapon:FieldWea
 export function braceForHopper(state:HopperMotion,player:Point):HopperMotion|null{
  if(state.phase==='idle'||state.braceCooldown>0||!inside(player))return null;
  return {...state,guard:HOPPER_MOVEMENT.braceSeconds,braceCooldown:HOPPER_MOVEMENT.braceCooldown};
+}
+
+export function pushHopper(state:HopperMotion,player:Point):HopperMotion{
+ const dx=state.feet.x-player.x,dy=state.feet.y-player.y,reach=Math.hypot(dx,dy);
+ if(reach<.01)return state;
+ return {...state,feet:bounded({x:state.feet.x+dx/reach*STAFF_PUSH,y:state.feet.y+dy/reach*STAFF_PUSH})};
 }

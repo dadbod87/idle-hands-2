@@ -21,9 +21,9 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "798d798e6dda52b5b2a3d671ed10c8cbe40de5fba543a4b2e78eebb4f3565664",
-    "src/main.ts": "1a4e2a54e2bd3b8588586a5e09038df951a0bedb8bf906854be3314157cfa754",
-    "src/phaser/WorldScene.ts": "de75d54909a45a92f06679d6d4ef422cb2de8c3b297090ee4c0931ee255011d5",
+    "src/main.ts": "9cf698ed1a582c1bddf91fe3fef2e05fb60ed1e8694e6aaa4fa1440582414dce",
+    "src/phaser/WorldScene.ts": "f9baed395158b6c853a3431893bfb6a8cf71debdaa856770148362c830e1047d",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
-  "currentTask": "Reviewed the Pumpworks-only weapon, vest and dyed kerchief layers. The archived study inputs and generated output remain frozen."
+  "currentTask": "Reviewed the Pumpworks-only staff, weapon cues and equipment layers. Archived study inputs and generated output remain frozen."
 }

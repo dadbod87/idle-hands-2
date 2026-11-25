@@ -932,7 +932,7 @@ function activate(stop: Stop) {
   }
   if(pumpworks&&session.room==='pumpworks'&&stop.id==='pumpworks-bell'){
     const field=pumpworks.current();
-    feedback.textContent=field?.bow==='equipped'?'Hold still and Shoot at the bell.':field?.rod==='equipped'?'Try Strike on the bell.':'Equip a weapon to ring the bell.';
+    feedback.textContent=field?.bow==='equipped'?'Hold still and Shoot at the bell.':field?.staff==='equipped'?'Try Pulse on the bell.':field?.rod==='equipped'?'Try Strike on the bell.':'Equip a weapon to ring the bell.';
     return;
   }
   if(pumpworks&&session.room==='pumpworks'&&stop.id==='pumpworks-hopper'){

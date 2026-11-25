@@ -3,6 +3,16 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "pumpworks-breeze-staff",
+      "path": "public/art/pumpworks/breeze-staff.svg",
+      "sha256": "5e90252ddd94ee77349a7acf70f7c97d25812e4963e2cede0a732febff146946",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/breeze-staff.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored isolated magic staff silhouette and icon. No imported media."
+    },
+    {
       "id": "pumpworks-padded-vest-poses",
       "path": "public/art/pumpworks/padded-vest-poses.svg",
       "sha256": "6be844cd8293d85d54c97f79d9f27bc6554f5d82ea201d7d5024ea7c41ed5794",

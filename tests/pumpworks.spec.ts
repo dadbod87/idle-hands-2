@@ -1,7 +1,7 @@
 import {expect,test,type Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {PUMPWORKS_FRONT,HOPPER_FEET} from '../src/game/pumpworks-room.ts';
-import type {BowDraw,BowTrace} from '../src/game/field-weapons.ts';
+import type {BowDraw,BowTrace,StaffPulse} from '../src/game/field-weapons.ts';
 import type {PumpworksState} from '../src/game/pumpworks.ts';
 import {HOPPER_MOVEMENT,type FieldImpact,type HopperMotion} from '../src/game/pumpworks-chase.ts';
 import type {Point} from '../src/game/world.ts';
@@ -11,7 +11,7 @@ const close=(page:Page)=>page.getByRole('button',{name:'Close panel',exact:true}
 type Pilot={
  snapshot():{room:string;nearby:string|null;position:Point;walking:boolean};
  pumpworks():PumpworksState;
- pumpworksMotion():{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;enemyHealth:number|null};
+ pumpworksMotion():{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;pulse:StaffPulse|null;enemyHealth:number|null};
  screenPoint(x:number,y:number):Point;
  metrics():{visual:{workshopPrint:string|null;fieldEquipment:{vest:boolean;kerchief:string|null}}};
 };
@@ -496,3 +496,57 @@ for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:32
   }finally{await context.close();}
  });
 }
+
+test('A short-screen staff pulse trades damage for room to move',async({browser})=>{
+ test.setTimeout(40000);
+ mkdirSync(output,{recursive:true});
+ const context=await browser.newContext({viewport:{width:844,height:390},hasTouch:true});
+ const page=await context.newPage();
+ const button=(name:string)=>page.getByRole('button',{name,exact:true});
+ const go=async(id:string)=>{
+  await button('Places').tap();
+  await page.locator('[data-destination="'+id+'"]').tap();
+  await expect.poll(async()=>(await read(page))?.nearby,{timeout:12000}).toBe(id);
+ };
+ try{
+  await page.addInitScript(()=>{
+   if(localStorage.getItem('ih2:pilot-position:v1'))return;
+   localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'pumpworks',position:{x:5.05,y:9.45}}));
+  });
+  await page.goto('/?sky-study=1&phase=day&weather=clear');
+  await page.evaluate(()=>document.documentElement.style.fontSize='200%');
+  await expect.poll(async()=>(await read(page))?.nearby).toBe('pumpworks-locker');
+  await page.locator('#interact').tap();
+  await button('Equip rod and take kit').tap();
+  await button('Try a breeze staff').tap();
+  await expect(page.locator('[data-pumpworks=locker]')).toContainText('Breeze staff equipped.');
+  await close(page).tap();
+  await go('pumpworks-bell');
+  const stored=(await read(page))!.state;
+  expect(stored.rod).toBe('packed');
+  await button('Pulse').tap();
+  await expect.poll(async()=>(await read(page))?.combat.impact?.kind,{intervals:[15]}).toBe('bell');
+  expect((await read(page))!.state).toEqual(stored);
+  await page.screenshot({path:output+'/breeze-staff-short200-practice.png'});
+  await go('pumpworks-hopper');
+  await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{intervals:[25]}).toBe('windup');
+  await button('Brace').tap();
+  await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{intervals:[25]}).toBe('recover');
+  const before=(await read(page))!;
+  // After a lunge the hopper is adjacent. One small step gives the pulse
+  // an unambiguous direction and still leaves time to hit its opening.
+  const step={x:before.position.x-.65,y:before.position.y+.35};
+  const position=await page.evaluate(target=>(window as Window&{__pilot?:Pilot}).__pilot!.screenPoint(target.x,target.y),step);
+  await page.locator('canvas').tap({position});
+  await expect.poll(async()=>(await read(page))!.position.y,{timeout:500,intervals:[20]}).toBeGreaterThan(before.position.y+.16);
+  await expect(button('Pulse')).toBeInViewport({ratio:1});
+  await button('Pulse').tap();
+  await expect.poll(async()=>(await read(page))?.state.fight?.health,{intervals:[20],timeout:700}).toBe(7);
+  const after=(await read(page))!;
+  const moved=Math.hypot(after.combat.hopper.feet.x-before.combat.hopper.feet.x,after.combat.hopper.feet.y-before.combat.hopper.feet.y);
+  expect(moved).toBeGreaterThan(.5);
+  expect(after.state.health).toBe(before.state.health);
+  await expect(page.locator('#feedback')).toHaveText('The pulse pushes the hopper back.');
+  await page.screenshot({path:output+'/breeze-staff-short200-counter.png'});
+ }finally{await context.close();}
+});

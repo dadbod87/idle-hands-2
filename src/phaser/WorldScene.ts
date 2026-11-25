@@ -1,6 +1,6 @@
 import {KERCHIEF_COLORS} from '../game/field-appearance.ts';
 import {KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
-import {BOW_DRAW_SECONDS,BOW_TRACE_MS,type BowDraw,type BowTrace} from '../game/field-weapons.ts';
+import {BOW_DRAW_SECONDS,BOW_TRACE_MS,STAFF_PULSE_MS,type BowDraw,type BowTrace,type StaffPulse} from '../game/field-weapons.ts';
 import type {MossbankSurvey} from '../game/mossbank.ts';
 import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,hopperOpen,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
@@ -475,13 +475,14 @@ export class WorldScene extends Phaser.Scene {
   constructor(public session: Session) { super('world'); }
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
   pumpworksState?:()=>PumpworksState|null;
-  pumpworksEncounter?:()=>{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;enemyHealth:number|null;recovering:boolean};
+  pumpworksEncounter?:()=>{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;pulse:StaffPulse|null;enemyHealth:number|null;recovering:boolean};
   private hopper?:Phaser.GameObjects.Image;
   private hopperWarning?:Phaser.GameObjects.Graphics;
   private combatInk?:Phaser.GameObjects.Graphics;
   private hopperName?:Phaser.GameObjects.Text;
   private soundingRod?:Phaser.GameObjects.Image;
   private fieldBow?:Phaser.GameObjects.Image;
+  private fieldStaff?:Phaser.GameObjects.Image;
   private fieldVest?:Phaser.GameObjects.Image;
   private fieldKerchief?:Phaser.GameObjects.Graphics;
   private kerchiefPaint='';
@@ -546,6 +547,7 @@ export class WorldScene extends Phaser.Scene {
     const strike=impact?.kind==='bell'?Math.max(0,(impact.until-performance.now())/1000):motion?.strikeCooldown??0;
     this.soundingRod?.setRotation(!reduced&&strike>.24?1.2*Math.sin((HOPPER_MOVEMENT.strikeCooldown-strike)*13):0);
     this.fieldBow?.setVisible(state?.bow==='equipped');
+    this.fieldStaff?.setVisible(state?.staff==='equipped');
     this.fieldVest?.setVisible(state?.vest==='equipped');
     const kerchief=state?.kerchief??'none';
     const cloth=this.fieldKerchief;
@@ -584,6 +586,19 @@ export class WorldScene extends Phaser.Scene {
       ink.fillStyle(0xffe4a1,alpha).fillCircle(ex,ey,3);
     }
     this.fieldBow?.setRotation(!reduced&&draw?-.34*(1-draw.remaining/BOW_DRAW_SECONDS):0);
+    const pulse=encounter?.pulse;
+    if(pulse){
+      const fraction=1-Math.min(1,Math.max(0,pulse.until-performance.now())/STAFF_PULSE_MS);
+      const px=(pulse.from.x+.5)*TILE,py=(pulse.from.y+.5)*TILE-23;
+      const dx=(pulse.to.x-pulse.from.x)*TILE,dy=(pulse.to.y-pulse.from.y)*TILE;
+      for(const offset of [0,.28]){
+        const reach=reduced?1-offset:Math.max(.18,Math.min(1,.2+fraction*1.6-offset));
+        const radius=8+offset*16+fraction*4,alpha=Math.max(.25,1-fraction);
+        ink.lineStyle(5,0x3d645a,alpha).strokeCircle(px+dx*reach,py+dy*reach,radius);
+        ink.lineStyle(2,0xd9efdb,alpha).strokeCircle(px+dx*reach,py+dy*reach,radius);
+      }
+    }
+    this.fieldStaff?.setRotation(!reduced&&pulse?.until&&pulse.until>performance.now()?-.37:0);
     const danger=visible&&motion?.aim&&motion.origin&&(motion.phase==='windup'||motion.phase==='charge');
     const warning=this.hopperWarning;
     warning.clear();
@@ -630,7 +645,7 @@ export class WorldScene extends Phaser.Scene {
     for(const id of regionalArt){
       if(!this.textures.exists('mossbank-'+id))this.load.svg('mossbank-'+id,'/art/mossbank/'+id+'.svg');
     }
-    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','padded-vest-poses']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
+    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','breeze-staff','padded-vest-poses']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
     for(const id of fieldArt){
       if(!this.textures.exists('pumpworks-'+id))this.load.svg('pumpworks-'+id,'/art/pumpworks/'+id+'.svg');
     }
@@ -731,7 +746,7 @@ export class WorldScene extends Phaser.Scene {
     this.mossbankMarks=undefined;
     this.mossbankWren=undefined;this.mossbankRipples=[];
     this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;
-    this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;this.fieldVest=undefined;this.fieldKerchief=undefined;this.kerchiefPaint='';
+    this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;this.fieldStaff=undefined;this.fieldVest=undefined;this.fieldKerchief=undefined;this.kerchiefPaint='';
     this.decorationKey='';
     this.decorationViews=[];
     this.furnitureOccluders=[];
@@ -929,6 +944,7 @@ export class WorldScene extends Phaser.Scene {
       this.combatInk=this.add.graphics().setDepth(1100);
       this.soundingRod=this.add.image(0,0,'pumpworks-sounding-rod').setScale(.55).setOrigin(.5,1).setVisible(false);
       this.fieldBow=this.add.image(0,0,'pumpworks-field-bow').setScale(.49).setOrigin(.5,1).setVisible(false);
+      this.fieldStaff=this.add.image(0,0,'pumpworks-breeze-staff').setScale(.56).setOrigin(.5,1).setVisible(false);
       const vestKey='pumpworks-padded-vest-poses',vestTexture=this.textures.get(vestKey);
       if(!vestTexture.has('0'))this.textures.addSpriteSheet('',vestTexture,{frameWidth:64,frameHeight:80});
       this.fieldVest=this.add.image(0,0,vestKey,0).setOrigin(ART.actorAnchor.x,ART.actorAnchor.y).setVisible(false);
@@ -1240,6 +1256,7 @@ export class WorldScene extends Phaser.Scene {
     this.actor.setPosition(x,y).setDepth(y);
     this.soundingRod?.setPosition(x+14,y-3).setDepth(y+1);
     this.fieldBow?.setPosition(x+14,y-5).setDepth(y+1);
+    this.fieldStaff?.setPosition(x+14,y-1).setDepth(y+1);
     if(this.fieldVest?.visible||this.fieldKerchief?.visible){
       const width={aster:1,bea:1.12,casey:.87,devon:1.06}[residentArt(this.residentId)];
       const sx=ART.actorScale*width,sy=ART.actorScale;

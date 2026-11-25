@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {applyPumpworks,FIELD_HEALTH,freshPumpworks,PUMPWORKS_KEY,readPumpworks,savePumpworks,type PumpworksAction,type PumpworksPlace,type PumpworksState} from '../src/game/pumpworks.ts';
 import {HOPPER_FEET,PRACTICE_BELL,PUMPWORKS_DOOR,PUMPWORKS_ENTRY,PUMPWORKS_ROOM} from '../src/game/pumpworks-room.ts';
-import {braceForHopper,freshHopper,hopperLeash,hopperNotices,inPracticeReach,patrolHopper,stepHopper,swingAtHopper,swingFieldWeapon,type HopperMotion} from '../src/game/pumpworks-chase.ts';
+import {braceForHopper,freshHopper,hopperLeash,hopperNotices,inPracticeReach,patrolHopper,pushHopper,stepHopper,swingAtHopper,swingFieldWeapon,type HopperMotion} from '../src/game/pumpworks-chase.ts';
 import {Session} from '../src/game/session.ts';
 import {earnedWorkshopPrints,selectedWorkshopPrint} from '../src/game/workshop-print.ts';
 import {canStand,clearSegment,routeTo} from '../src/game/world.ts';
@@ -345,4 +345,23 @@ test('Kerchief dyes and hiding the clothing layer never change armor, weapon, or
  const off=play(indigo,'kerchief-none','elsewhere');
  assert.equal(off.kerchief,'none');
  assert.equal(off.vest,'equipped');
+});
+
+test('The staff trades opening damage for space and a push stays on chamber floor',()=>{
+ const withStaff=play(play(prepared(),'borrow-bow','locker'),'borrow-staff','locker');
+ assert.equal(withStaff.rod,'packed');
+ assert.equal(withStaff.bow,'packed');
+ assert.equal(withStaff.staff,'equipped');
+ assert.equal(play(withStaff,'equip','elsewhere').staff,'packed');
+ const armed=play(withStaff,'begin','arena');
+ assert.deepEqual(play(armed,'counter','arena').fight,{health:7});
+ const enemy={...freshHopper(),feet:{x:16,y:8},phase:'recover' as const};
+ const resident={x:14,y:9};
+ const pushed=pushHopper(enemy,resident);
+ assert.ok(Math.hypot(pushed.feet.x-enemy.feet.x,pushed.feet.y-enemy.feet.y)>.85);
+ assert.equal(pushed.phase,enemy.phase);
+ const ledge={...enemy,feet:{x:19,y:4.5}};
+ const bounded=pushHopper(ledge,{x:18,y:5});
+ assert.equal(hopperLeash(bounded.feet),true);
+ assert.equal(canStand('pumpworks',bounded.feet,PUMPWORKS_ROOM),true);
 });

@@ -701,3 +701,38 @@ test('Dry-side forge finishes one independent order and the armor shows outside 
   expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toBe(holdings);
  }finally{await context.close();}
 });
+
+test('Forge readiness lights Journal and updates its open entry without moving or settling inventory',async({page})=>{
+ const now=Date.UTC(2026,10,25,18,30),readyAt=now+1750;
+ await page.clock.setFixedTime(now);
+ await page.addInitScript(({startedAt,readyAt})=>{
+  if(localStorage.getItem('ih2:pumpworks:v1'))return;
+  localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'pumpworks',position:{x:6.3,y:5.85}}));
+  localStorage.setItem('ih2:pumpworks:v1',JSON.stringify({
+   version:1,revision:2,health:8,rod:'equipped',oatcake:'packed',satchel:'carried',
+   fight:null,recovering:false,cleared:false,reported:false,forge:{phase:'working',startedAt,readyAt},
+  }));
+ },{startedAt:readyAt-FORGE_ORDER_MS,readyAt});
+ await page.goto('/?sky-study=1&phase=day&weather=clear');
+ await expect(page.locator('#location')).toHaveAttribute('data-room','pumpworks');
+ const button=(name:string)=>page.getByRole('button',{name,exact:true});
+ const mark=page.locator('#journal-ready-mark');
+ const journal=page.locator('[data-forge-journal]');
+ const storage=()=>page.evaluate(()=>localStorage.getItem('ih2:pumpworks:v1'));
+ const before=await storage();
+ await expect(mark).toBeHidden();
+ await button('Journal').click();
+ await expect(journal.getByRole('status')).toHaveText('At the forge.');
+ await page.clock.setFixedTime(readyAt-1);
+ await expect(mark).toBeHidden();
+ await page.clock.setFixedTime(readyAt);
+ await expect(journal.getByRole('status')).toHaveText('Ready to collect.');
+ await expect(mark).toBeVisible();
+ expect(await storage()).toBe(before);
+ await button('Walk to the forge').click();
+ await button('Collect and equip vest').click();
+ await expect(mark).toBeHidden();
+ await close(page).click();
+ await button('Journal').click();
+ await expect(journal).toHaveCount(0);
+});

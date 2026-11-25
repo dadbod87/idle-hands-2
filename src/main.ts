@@ -109,10 +109,10 @@ const title = document.querySelector<HTMLElement>('#panel-title')!;
 const body = document.querySelector<HTMLDivElement>('#panel-body')!;
 const journalButton=document.querySelector<HTMLButtonElement>('#journal')!;
 const journalReadyMark=document.querySelector<HTMLElement>('#journal-ready-mark')!;
-let ordinaryJournalReady=false;
+let ordinaryJournalReady=false,forgeJournalReady=false;
 function paintJournalReady(ready=ordinaryJournalReady){
  ordinaryJournalReady=ready;
- const lit=ready||!!town&&sewingReady(town.snapshot?.tailoring,town.serverNow());
+ const lit=ready||forgeJournalReady||!!town&&sewingReady(town.snapshot?.tailoring,town.serverNow());
  if(journalReadyMark.hidden===!lit)return;
  journalReadyMark.hidden=!lit;
  if(lit)journalButton.setAttribute('aria-describedby','journal-ready-description');
@@ -533,6 +533,7 @@ const pumpworks=townMode?undefined:createPumpworks({
  equipment:()=>workshop.showFieldGear(),
  look:()=>({rig:scene.residentId,headwear:scene.headwear}),
  reward:()=>music.cue('craft'),
+ forgeReminder:ready=>{forgeJournalReady=ready;paintJournalReady();},
  feedback:message=>feedback.textContent=message,
  update:record=>{
   const earned=record.ok&&record.state.reported;

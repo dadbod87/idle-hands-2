@@ -42,6 +42,7 @@ type Host={
  equipment:()=>void;
  look:()=>OutfitLook;
  reward:()=>void;
+ forgeReminder:(ready:boolean)=>void;
  moveToBed:()=>void;
  update:(state:ReturnType<typeof readPumpworks>)=>void;
  feedback:(message:string)=>void;
@@ -118,7 +119,27 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  const actionRow=document.createElement('div');actionRow.className='pump-action-row';
  actionRow.append(strikeButton,braceButton,oatcakeButton);
  const current=()=>record.ok?record.state:null;
- const refresh=()=>{record=readPumpworks(storage);host.update(record);};
+ let forgeReminderTimer=0;
+ let forgeJournalStatus:HTMLParagraphElement|null=null;
+ function updateForgeReminder(){
+  window.clearTimeout(forgeReminderTimer);
+  const forge=current()?.forge,now=Date.now(),ready=forgeReady(forge,now);
+  host.forgeReminder(ready);
+  if(forgeJournalStatus?.isConnected){
+   if(forge?.phase==='working'){
+    const next=ready?'Ready to collect.':'At the forge.';
+    if(forgeJournalStatus.textContent!==next)forgeJournalStatus.textContent=next;
+   }else{
+    forgeJournalStatus.closest('[data-forge-journal]')?.remove();
+    forgeJournalStatus=null;
+   }
+  }else forgeJournalStatus=null;
+  if(forge?.phase==='working'&&!ready){
+   forgeReminderTimer=window.setTimeout(updateForgeReminder,Math.min(2_147_483_647,Math.max(50,forge.readyAt-now)));
+  }
+ }
+ const refresh=()=>{record=readPumpworks(storage);updateForgeReminder();host.update(record);};
+ updateForgeReminder();
  window.addEventListener('storage',event=>{if(event.key===PUMPWORKS_KEY||event.key===null)refresh();});
  const resetFrameClock=()=>{priorAt=0;};
  const pauseBrowser=()=>{browserPaused=true;resetFrameClock();};
@@ -126,10 +147,13 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   resetFrameClock();
   if(host.combat().inRoom)host.wakeFrame();
  };
- const resumeBrowser=()=>{browserPaused=false;wakeClock();};
+ const resumeBrowser=()=>{browserPaused=false;updateForgeReminder();wakeClock();};
  document.addEventListener('freeze',pauseBrowser);
  document.addEventListener('resume',resumeBrowser);
- document.addEventListener('visibilitychange',resetFrameClock);
+ document.addEventListener('visibilitychange',()=>{
+  resetFrameClock();
+  if(!document.hidden)updateForgeReminder();
+ });
  window.addEventListener('pagehide',pauseBrowser);
  window.addEventListener('pageshow',resumeBrowser);
  window.addEventListener('blur',()=>{windowUnfocused=true;resetFrameClock();});
@@ -637,7 +661,9 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   if(state.forge?.phase==='working'){
    const order=document.createElement('section');order.className='journal-ready-return';order.dataset.forgeJournal='';
    const title=document.createElement('h3');title.textContent='Riveted survey vest';
-   order.append(title,paragraph(forgeReady(state.forge,Date.now())?'Ready to collect.':'At the forge.'),button('Walk to the forge',walkToForge));
+   forgeJournalStatus=paragraph(forgeReady(state.forge,Date.now())?'Ready to collect.':'At the forge.');
+   forgeJournalStatus.setAttribute('role','status');
+   order.append(title,forgeJournalStatus,button('Walk to the forge',walkToForge));
    body.append(order);
   }
  }

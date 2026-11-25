@@ -4,8 +4,8 @@ import type { Stop } from './world.ts';
 
 // Preserve preferences created before the stand could display other fieldwork.
 export const WORKSHOP_PRINT_KEY = 'ih2:river-print:v1';
-export type WorkshopPrint = RiverSpot | 'marigold' | 'woodland-certificate' | 'pond' | 'mossbank-swatch' | 'pumpworks-seal';
-export type WorkshopPrintRights = Readonly<{marigold:boolean;woodland:boolean;pond:boolean;alder?:boolean;pumpworks?:boolean}>;
+export type WorkshopPrint = RiverSpot | 'marigold' | 'woodland-certificate' | 'pond' | 'mossbank-swatch' | 'pumpworks-seal' | 'cider-press-print';
+export type WorkshopPrintRights = Readonly<{marigold:boolean;woodland:boolean;pond:boolean;alder?:boolean;pumpworks?:boolean;valley?:boolean}>;
 export const WORKSHOP_PRINTS: Record<WorkshopPrint, {name:string; art:string; story:string}> = {
   reeds: {name:RIVER_SPOTS.reeds.find,art:'/art/river/pondweed.svg',story:RIVER_SPOTS.reeds.note},
   bridge: {name:RIVER_SPOTS.bridge.find,art:'/art/river/wet-boot.svg',story:RIVER_SPOTS.bridge.note},
@@ -14,6 +14,7 @@ export const WORKSHOP_PRINTS: Record<WorkshopPrint, {name:string; art:string; st
   pond: {name:'The pond is in session',art:'/art/pond/pond-print.svg',story:'Three shores recorded. The moorhen chaired the meeting.'},
   'mossbank-swatch': ALDER_KEEPSAKE,
   'pumpworks-seal': {name:'Pumpworks inspection seal',art:'/art/pumpworks/field-seal.svg',story:'The pump passed. The hopper has requested an independent inspection.'},
+  'cider-press-print': {name:'Hidden Valley cider press',art:'/art/hidden-valley/cider-print.svg',story:'Pulled from the old press plate. Cider production is pending committee approval.'},
   'woodland-certificate': {name:'Qualified to point left',art:'/art/outing/field-certificate.svg',story:'Awarded for two different woodland repairs. The arrow now reports to you.'},
 };
 export const WORKSHOP_PRINT_STAND = {x:12.35,y:10.1} as const;
@@ -30,6 +31,7 @@ export function earnedWorkshopPrints(survey: RiverSurvey | null, rights: Worksho
   if (rights.pond) prints.push('pond');
   if (rights.alder) prints.push('mossbank-swatch');
   if (rights.pumpworks) prints.push('pumpworks-seal');
+  if (rights.valley) prints.push('cider-press-print');
   return prints;
 }
 

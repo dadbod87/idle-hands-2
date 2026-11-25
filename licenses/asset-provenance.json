@@ -3,6 +3,16 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "valley-cider-print",
+      "path": "public/art/hidden-valley/cider-print.svg",
+      "sha256": "4d8bf8be17f819aaa8193cbd66f2550f69b59b8a2b1b6288dcc5304dd11103a2",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/hidden-valley/cider-print.svg",
+      "date": "2026-11-25",
+      "modifications": "Original press rubbing and orchard mark."
+    },
+    {
       "id": "valley-terrace-roofs",
       "path": "public/art/hidden-valley/terrace-roofs.svg",
       "sha256": "31e780f90838e90365f04b57cfd45f7d1252b7eb358c337be4c91beb4deec05f",

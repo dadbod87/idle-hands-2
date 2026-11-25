@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="96" viewBox="0 0 120 96">
+ <title>Hidden Valley cider press rubbing</title>
+ <rect x="6" y="8" width="108" height="80" rx="3" fill="#ead7aa" stroke="#6c4e3c" stroke-width="3" transform="rotate(-2 60 48)"/>
+ <path d="M14 20h92v54H14z" fill="#a9ad7b" stroke="#766452" stroke-width="1.5"/>
+ <path d="M15 59q18-21 37-16t33 11q9 4 21-7v27H15z" fill="#788c68"/>
+ <path d="M14 66q18-17 39-12t31 11q12 3 22-4M14 71q22-13 38-8t31 8" fill="none" stroke="#d9ca91" stroke-width="2"/>
+ <path d="m23 23 7 8-8 4m77-10-5 6 8 4" fill="none" stroke="#ead7aa" stroke-linecap="round" stroke-width="2"/>
+ <path d="M61 32q-9-7-17 1c-13 15 1 35 12 32q4-2 8 0c11 3 25-17 12-32-4-4-10-4-15-1Z" fill="#bb725a" stroke="#664b3d" stroke-width="2.4"/>
+ <path d="M61 32q-1-8 5-13M62 27q9-12 17-4-5 9-17 4Z" fill="#668863" stroke="#4b604b" stroke-width="2"/>
+ <circle cx="61" cy="49" r="10" fill="#eac386" stroke="#694d3b" stroke-width="2"/>
+ <path d="M51 49h20M61 39v20m-7-17 14 14m-14 0 14-14" stroke="#6f503d" stroke-width="1.5"/>
+ <text x="60" y="83" text-anchor="middle" fill="#5c4738" font-family="Georgia,serif" font-size="8" font-weight="700">HIDDEN VALLEY PRESS</text>
+</svg>

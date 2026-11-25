@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {HIDDEN_VALLEY_ROOM,MOSSBANK_VALLEY_FRONT,MOSSBANK_VALLEY_ROAD,VALLEY_ENTRY,VALLEY_STOPS,valleyFollow} from '../src/game/hidden-valley-room.ts';
+import {earnedValleyPrint,takeValleyPrint,VALLEY_PRINT_KEY} from '../src/game/valley-print.ts';
+import {earnedWorkshopPrints,selectedWorkshopPrint} from '../src/game/workshop-print.ts';
 import {MOSSBANK_ROOM} from '../src/game/mossbank-room.ts';
 import {Session} from '../src/game/session.ts';
 import {canStand,clearSegment,routeTo} from '../src/game/world.ts';
@@ -38,4 +40,24 @@ test('The new road appears only in browser practice after a completed survey',()
  connected.setHiddenValleyRoad(true);
  assert.equal(connected.stops.some(stop=>stop.id===MOSSBANK_VALLEY_ROAD.id),false);
  assert.throws(()=>connected.enter('hidden-valley',VALLEY_ENTRY));
+});
+
+
+test('The press offers one local print at the court and never alters existing holdings or frame selection',()=>{
+ const data=new Map([['ordinary-workshop','untouched'],['ih2:river-print:v1','pond']]);
+ let writes=0;
+ const storage={getItem:(key:string)=>data.get(key)??null,setItem:(key:string,value:string)=>{writes++;data.set(key,value);}};
+ const before={marigold:false,woodland:false,pond:true,valley:earnedValleyPrint(storage)};
+ assert.equal(takeValleyPrint(storage,false),false);
+ assert.equal(writes,0);
+ assert.deepEqual(earnedWorkshopPrints(null,before),['pond']);
+ assert.equal(takeValleyPrint(storage,true),true);
+ assert.equal(takeValleyPrint(storage,true),true);
+ assert.equal(writes,1);
+ assert.equal(data.get(VALLEY_PRINT_KEY),'1');
+ const after={...before,valley:earnedValleyPrint(storage)};
+ assert.deepEqual(earnedWorkshopPrints(null,after),['pond','cider-press-print']);
+ assert.equal(selectedWorkshopPrint(data.get('ih2:river-print:v1')!,null,after),'pond');
+ assert.equal(data.get('ordinary-workshop'),'untouched');
+ assert.equal(takeValleyPrint({getItem:()=>null,setItem:()=>{throw new Error('locked');}},true),false);
 });

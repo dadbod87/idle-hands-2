@@ -1,3 +1,4 @@
+import {earnedValleyPrint,takeValleyPrint,VALLEY_PRINT_KEY,VALLEY_PRINT_STOP_ID} from './game/valley-print.ts';
 import {MOSSBANK_VALLEY_ROAD} from './game/hidden-valley-room.ts';
 import {SEWING_TABLE,sewingReady} from './game/tailoring.ts';
 import {sewingJournal,showTailoring,tailoringBagCards} from './ui/tailoring.ts';
@@ -237,7 +238,14 @@ const readMossbankSurvey=()=>townMode?null:readMossbank(morningStorage)?.state??
 let mossbankSurvey=readMossbankSurvey();
 session.setHiddenValleyRoad(mossbankSurvey?.finished===true);
 scene.mossbankSurvey=()=>mossbankSurvey;
-const printRights={marigold:false,woodland:false,pond:completePondWatch(readLocalPondWatch()),alder:mossbankSurvey?.finished===true,pumpworks:!!(fieldSave?.ok&&fieldSave.state.reported)};
+const printRights={marigold:false,woodland:false,pond:completePondWatch(readLocalPondWatch()),alder:mossbankSurvey?.finished===true,pumpworks:!!(fieldSave?.ok&&fieldSave.state.reported),valley:!townMode&&earnedValleyPrint(morningStorage)};
+function refreshValleyPrint(){
+ printRights.valley=earnedValleyPrint(morningStorage);
+ refreshWorkshopPrint();
+}
+function canPullValleyPrint(stop:Stop|undefined){
+ return !townMode&&session.room==='hidden-valley'&&stop?.id===VALLEY_PRINT_STOP_ID&&mossbankSurvey?.finished===true&&!printRights.valley;
+}
 function refreshMossbankPrint(){
  mossbankSurvey=readMossbankSurvey();
  session.setHiddenValleyRoad(mossbankSurvey?.finished===true);
@@ -264,8 +272,8 @@ function refreshRiverCast(){
 }
 if(!townMode){
  refreshRiverCast();
- window.addEventListener('storage',event=>{if(event.key===POND_WATCH_KEY||event.key===null)refreshPondPrint();if(event.key===MOSSBANK_KEY||event.key===null)refreshMossbankPrint();if(event.key===RIVER_SURVEY_KEY||event.key===null)refreshRiverCast();else if(event.key===WORKSHOP_PRINT_KEY)refreshWorkshopPrint();});
- window.addEventListener('pageshow',event=>{if(event.persisted){refreshPondPrint();refreshMossbankPrint();refreshRiverCast();}});
+ window.addEventListener('storage',event=>{if(event.key===VALLEY_PRINT_KEY||event.key===null)refreshValleyPrint();if(event.key===POND_WATCH_KEY||event.key===null)refreshPondPrint();if(event.key===MOSSBANK_KEY||event.key===null)refreshMossbankPrint();if(event.key===RIVER_SURVEY_KEY||event.key===null)refreshRiverCast();else if(event.key===WORKSHOP_PRINT_KEY)refreshWorkshopPrint();});
+ window.addEventListener('pageshow',event=>{if(event.persisted){refreshPondPrint();refreshMossbankPrint();refreshValleyPrint();refreshRiverCast();}});
 }
 let lastContext = '';
 let lastDistrictHint='';
@@ -944,7 +952,12 @@ async function savePondObservation(id:PondWatchId,choice:string,active:()=>boole
 }
 function activate(stop: Stop) {
   if(session.room==='hidden-valley'&&!stop.transition){
-    feedback.textContent=stop.text;return;
+    if(canPullValleyPrint(stop)){
+      const saved=takeValleyPrint(morningStorage,session.nearby()?.id===VALLEY_PRINT_STOP_ID);
+      if(saved){refreshValleyPrint();music.cue('craft');}
+      feedback.textContent=saved?'Cider press print added to your Journal. The apples unanimously abstained.':'Your print could not be saved. Try the press again here.';
+    }else feedback.textContent=stop.text;
+    return;
   }
   if(session.room==='mossbank'&&stop.id.startsWith('mossbank-')&&!stop.transition){
     mossbank.show(stop.id as SurveyPlace);
@@ -1187,7 +1200,8 @@ scene.onFrame = () => {
   }
   const nearby=session.nearby(),stop=nearby?resolvedStop(nearby):undefined;
   const district=session.room==='square'?townDistrict(session.position):null;
-  const state = (district?.name??'')+contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored))+':'+String(resting())+':'+(stop?.transition??'');
+  const pullValleyPrint=canPullValleyPrint(stop);
+  const state = (district?.name??'')+contextKey(session.room,homePlotId)+':'+(stop?.id??'')+':'+(scene.bridgePhase??String(scene.bridgeRestored))+':'+String(resting())+':'+(stop?.transition??'')+':'+String(pullValleyPrint);
   if (state !== lastContext) {
     lastContext = state;
     const roomName=session.room==='square'?district!.name:session.room==='neighborhood'?'Neighborhood '+districtId:session.room==='trail'?'Inkwood trail':session.room==='glasshouse'?'Inkwood Glasshouse':session.room==='garden'?'Your allotment':session.room==='mossbank'?'Mossbank outskirts':session.room==='hidden-valley'?'Hidden Valley':session.room==='pumpworks'?'The Pumpworks':session.room==='lodging'?'Boarding house':session.room.startsWith('home')?scene.homeOwnerName+'’s home':'Your workshop';
@@ -1201,12 +1215,13 @@ scene.onFrame = () => {
       if (practiceLabel.textContent !== label) practiceLabel.textContent = label;
     }
     interactLabel.textContent = stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'trail':stop.transition==='glasshouse'?'nursery':stop.transition==='mossbank'?'Mossbank':stop.transition==='hidden-valley'?'Hidden Valley':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'allotment':stop.transition==='neighborhood'?'street':'square'}` : 'Inspect') : 'Nothing nearby';
+    if(pullValleyPrint)interactLabel.textContent='Pull a cider print';
     if(stop?.id==='lodging-door')interactLabel.textContent='Enter lodging';
     if(stop?.id==='lodging-exit')interactLabel.textContent='Step outside';
     if(stop&&orchardAvailable()&&orchardBranchFromStop(stop.id))interactLabel.textContent='Inspect branch';
     if(stop?.id==='trail-gate'&&!scene.bridgeRestored)interactLabel.textContent='Inspect bridge';
 
-    interactButton.setAttribute('aria-label', stop?.id==='lodging-door'?'Enter boarding house':stop?.id==='lodging-exit'?'Step outside to the square':stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='glasshouse'?'Inkwood Glasshouse':stop.transition==='mossbank'?'Mossbank':stop.transition==='hidden-valley'?'Hidden Valley':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
+    interactButton.setAttribute('aria-label', pullValleyPrint?'Pull a cider print':stop?.id==='lodging-door'?'Enter boarding house':stop?.id==='lodging-exit'?'Step outside to the square':stop?.id==='trail-gate'&&!scene.bridgeRestored?'Inspect bridge committee':stop ? (stop.transition ? `Enter ${stop.transition === 'workshop' ? 'workshop' : stop.transition==='trail'?'Inkwood trail':stop.transition==='glasshouse'?'Inkwood Glasshouse':stop.transition==='mossbank'?'Mossbank':stop.transition==='hidden-valley'?'Hidden Valley':stop.transition==='pumpworks'?'the Pumpworks':stop.transition==='garden'?'your allotment':stop.transition==='neighborhood'?'your street':'town square'}` : `Inspect ${stop.name}`) : 'Nothing nearby');
   }
   // A named stop can be visible while its restored shared position is still syncing.
   // Keep Inspect unavailable until the same input guard would accept its click.

@@ -5,6 +5,11 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "valley-cider-print",
+      "path": "art/hidden-valley/cider-print.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "valley-terrace-roofs",
       "path": "art/hidden-valley/terrace-roofs.svg",
       "kind": "original-svg"

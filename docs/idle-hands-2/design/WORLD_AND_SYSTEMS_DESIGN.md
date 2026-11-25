@@ -118,6 +118,23 @@ For the first connected trial, scope one encounter to its room and validate feet
 
 A scripted latency sensitivity check used the same hopper rules across 72 combinations per strategy. A fixed 250 ms added delivery allowance preserved all scripted movement wins. At 400 ms the default 1.18-second windows fell to 48 of 72 movement wins. A study with a 1.30-second windup and 1.30-second recovery restored 72 of 72 under that modeled allowance. Those numbers describe the script and its reaction choices. A real shared-browser playtest with measured latency, jitter and room changes is still needed to choose timing. The browser-practice tuning stays at its current values.
 
+### Weapons, layers and maker specialties
+
+Keep the basic comparison to **Health, Armor, and Damage**. Show the actual difference in a short equipment card. The verb, reach and windup of a weapon are as important as the number. Keep damage legible on the floor and keep essential exploration safe for a player who never fights.
+
+| Gear experiment | Why a player might choose it | First constraints |
+| --- | --- | --- |
+| Sounding rod | Fast close strike, strong counter when the shell opens | Get within reach and keep moving between opportunities. |
+| Field bow | Hit from farther away and pick a safe place to draw | Stand briefly to draw, bow can be interrupted, weaker opening damage than the rod. Try it as a safe loan before making recipes or broad loot. |
+| Magic staff | Line up a deliberate pulse or offer a teammate a short protective effect | One obvious cast tell and a lateral escape. No mana or spell-tree interface in the first test. |
+| Armor | Choose more protection for close engagements | Start with one small flat reduction and a minimum hit. No surprising movement tax or mandatory crafting track. |
+
+For each item, separate **what is worn**, **what is visible**, and **what it does**. A base shirt and trousers can show beneath armor; real protection follows equipped armor. A coat, belt, hood or cloak can be layered over compatible equipment. The visible parts depend on authored masks and fixed front/back draw order. A crafted garment can deliberately reveal a cuff or shoulder beneath its outer layer. A chosen cosmetic skin can change the look of gear without changing numbers. Other players see the approved visible layers and colors, with no access to private holdings. Keep visible weapon and combat warnings readable at phone scale.
+
+Dye applies to a garment or outer finish via its authored color channels. Preserve lining, trim, metal highlights and material texture unless that item allows changing them. Show the character preview from several directions before committing. Begin with a few colors and one existing frame family; shipping all rigs requires idle, walk, equip and fight coverage. Use pigments from gathering, the Glasshouse and future orchards. Pricing and whether dyes can be reclaimed remain open. Never spend a pigment if the item or dye has changed during confirmation.
+
+Tailoring and smithing are optional play styles. Let a tailor make one visibly useful garment and one furnishing from related inputs, for example a weatherproof coat and a stitched wall hanging. Let a smith make a protective vest or sturdy tool and a decorative lantern bracket. Let short practice lead to specializations and new designs. A player can learn both over time, rely on a normal supplier, or use offers from neighbors once crafting-for-others is authoritative. No single training choice blocks housing or story. Start by making, wearing and dyeing one original cloak, and by making, equipping and displaying one actual protection item. Build direct gifts or orders as a separate atomic transfer of existing items, with retry and capacity checks before adding a market.
+
 ## Death, waking and corpse recovery: provisional, protected and testable
 
 Owner direction: death returns the player to town, waking in bed, with dropped items recoverable from a corpse for a limited time. Exact loss rules are **not settled**. Initial experiment only: 30 real minutes, gathered carried loot as the candidate droppable category, protected starter/essential quest gear and owner-only recovery. Whether equipped weapons/clothes ever drop, what happens on expiry and the exact recovery duration remain release decisions. Permanent property, furnishings, skills, account progress and identity are outside corpse loot.

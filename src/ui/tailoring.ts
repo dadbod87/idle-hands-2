@@ -1,7 +1,7 @@
 import {kerchiefDyePicker,kerchiefPreview,type OutfitLook} from './kerchief-preview.ts';
 import {EDGING_COST,TAILOR_COST,TAILOR_MS,savedKerchiefDye,sewingJob,sewingReady,tailoringRank,type TailoringAction} from '../game/tailoring.ts';
 import {FINISHING_MS} from '../game/trade-practice.ts';
-import {KERCHIEF_COLORS,KERCHIEF_TIE_NAMES,type WornArmor} from '../game/field-appearance.ts';
+import {KERCHIEF_COLORS,KERCHIEF_TIE_NAMES,type KerchiefDye,type KerchiefTie,type WornArmor} from '../game/field-appearance.ts';
 import type {TownClient} from './town-client.ts';
 import './tailoring.css';
 
@@ -22,6 +22,7 @@ export function showTailoring(host:Host,town:TownClient,fromBag=false){
  const status=document.createElement('p');status.role='status';status.className='sewing-note';
  section.append(rank,image.element,detail,controls,work,clock,status);
  let busy=false,shownRevision=-1,shownStage='',workKey='',timer=0;
+ let draft:{dye:KerchiefDye;tie:KerchiefTie;wear:boolean;goldEdge:boolean}|undefined;
  const present=()=>section.isConnected&&town.snapshot?.tailoring!==undefined&&town.snapshot.playerId===player&&(fromBag||host.atTable());
  const button=(label:string,action:TailoringAction|null)=>{
   const control=document.createElement('button');control.type='button';control.className='destination';control.textContent=label;
@@ -88,9 +89,11 @@ export function showTailoring(host:Host,town:TownClient,fromBag=false){
    const currentDye=state?savedKerchiefDye(state):'none';
    const worn=state?.worn!=='none',currentTie=state?.tie??'knot';
    detail.textContent=currentDye==='none'?'Choose a dye.':KERCHIEF_COLORS[currentDye].label+(worn?' · Worn':' · Packed')+' · '+KERCHIEF_TIE_NAMES[currentTie]+(worn?'':' · Preview');
-   const picker=kerchiefDyePicker(currentDye,worn,currentTie);
+   const picker=kerchiefDyePicker(draft?.dye??currentDye,draft?.wear??worn,draft?.tie??currentTie);
    const edgeLabel=document.createElement('label');edgeLabel.className='sewing-wear';
-   const edge=document.createElement('input');edge.type='checkbox';edge.checked=state?.goldEdge===true;
+   const canAddEdge=state?.edging?.collectedAt!=null;
+   const edge=document.createElement('input');edge.type='checkbox';
+   edge.checked=canAddEdge&&(draft?.goldEdge??state?.goldEdge??false);
    edgeLabel.append(edge,' Gold edge');
    const apply=button('Save kerchief',null);
    const preview=()=>{
@@ -101,13 +104,15 @@ export function showTailoring(host:Host,town:TownClient,fromBag=false){
     apply.disabled=busy||town.isSaving||town.retryAvailable||!dye||dye===currentDye&&picker.wear.checked===worn&&picker.tie()===currentTie&&edge.checked===!!state?.goldEdge;
    };
    apply.onclick=()=>{const dye=picker.dye();if(dye)void save({kind:'style',dye,wear:picker.wear.checked,tie:picker.tie(),goldEdge:edge.checked});};
-   picker.select.addEventListener('change',preview);
-   picker.wear.addEventListener('change',preview);
-   picker.style.addEventListener('change',preview);
-   edge.addEventListener('change',preview);
+   const revise=()=>{
+    const dye=picker.dye();
+    draft=dye?{dye,tie:picker.tie(),wear:picker.wear.checked,goldEdge:edge.checked}:undefined;
+    preview();
+   };
+   for(const input of [picker.select,picker.wear,picker.style,edge])input.addEventListener('change',revise);
    preview();
    controls.append(picker.row,picker.wearLabel);
-   if(state?.edging?.collectedAt!=null)controls.append(edgeLabel);
+   if(canAddEdge)controls.append(edgeLabel);
    controls.append(apply);
   }
  }
@@ -119,6 +124,7 @@ export function showTailoring(host:Host,town:TownClient,fromBag=false){
    const result=await town.saveTailoring(action,shownRevision,present);
    if(!present())return;
    status.textContent=result.message;
+   if(result.ok&&action?.kind==='style')draft=undefined;
    if(result.ok&&(action?.kind==='collect'||action?.kind==='collect-edging'))host.cue();
   }catch(error){if(present())status.textContent=error instanceof Error?error.message:'The last sewing request is unresolved.';}
   finally{busy=false;shownStage='';workKey='';render();}

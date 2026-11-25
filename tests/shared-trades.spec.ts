@@ -27,10 +27,12 @@ test('Earned finishes can layer and show to a nearby resident, then leave no pac
   await button(owner,'Inspect Sewing table').click();
   const sewing=owner.locator('.sewing-order');
   await expect(sewing).toContainText('Tailoring · Rank 1');
-  await button(owner,'Collect gold edging').click();
-  await expect(sewing).toContainText('Tailoring · Rank 2');
   await owner.getByLabel('Kerchief color').selectOption('indigo');
   await owner.getByLabel('Kerchief tie').selectOption('wrap');
+  await button(owner,'Collect gold edging').click();
+  await expect(sewing).toContainText('Tailoring · Rank 2');
+  await expect(owner.getByLabel('Kerchief color')).toHaveValue('indigo');
+  await expect(owner.getByLabel('Kerchief tie')).toHaveValue('wrap');
   await owner.getByLabel('Gold edge').check();
   await expect(sewing.locator('[data-gold-edge]')).toBeVisible();
   await owner.setViewportSize({width:320,height:640});

@@ -20,9 +20,9 @@ test('Hidden Valley reaches each distinct stop and both bridges with continuous 
  }
  assert.ok(HIDDEN_VALLEY_ROOM.width*32>=2048);
  assert.deepEqual(valleyFollow(VALLEY_ENTRY,2560,1280),{x:0,y:0});
- assert.deepEqual(valleyFollow(VALLEY_ENTRY,320,380),{x:-54,y:54});
+ assert.deepEqual(valleyFollow(VALLEY_ENTRY,320,380),{x:-54*.22,y:54});
  assert.ok(valleyFollow(VALLEY_STOPS[3].point,320,160).y<=32);
- assert.ok(Math.abs(valleyFollow({x:VALLEY_ENTRY.x+1,y:VALLEY_ENTRY.y},320,380).x)>=36);
+ assert.ok(valleyFollow({x:VALLEY_ENTRY.x+1,y:VALLEY_ENTRY.y},320,380).x<0);
 });
 
 test('The new road appears only in browser practice after a completed survey',()=>{

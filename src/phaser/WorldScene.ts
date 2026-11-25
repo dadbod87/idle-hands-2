@@ -533,6 +533,7 @@ export class WorldScene extends Phaser.Scene {
   private fieldBow?:Phaser.GameObjects.Image;
   private fieldStaff?:Phaser.GameObjects.Image;
   private fieldVest?:Phaser.GameObjects.Image;
+  private forgeGlow?:Phaser.GameObjects.Ellipse;
   private fieldKerchief?:KerchiefLayer;
   private peerLocalKerchief?:KerchiefLayer;
   sharedKerchief:FieldKerchief='none';
@@ -818,7 +819,7 @@ export class WorldScene extends Phaser.Scene {
     this.mossbankWren=undefined;this.mossbankValleySign=undefined;this.mossbankRipples=[];
     this.steam=undefined;
     this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;
-    this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;this.fieldStaff=undefined;this.fieldVest=undefined;this.fieldKerchief=undefined;this.peerLocalKerchief=undefined;
+    this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;this.fieldStaff=undefined;this.fieldVest=undefined;this.forgeGlow=undefined;this.fieldKerchief=undefined;this.peerLocalKerchief=undefined;
     this.decorationKey='';
     this.decorationViews=[];
     this.furnitureOccluders=[];
@@ -1075,7 +1076,8 @@ export class WorldScene extends Phaser.Scene {
       station(3,4.6,60,26,0x8d744f,'Dry bench');
       const fx=FORGE_STOP.point.x*TILE,fy=5.3*TILE;
       this.add.image(fx,fy,'pumpworks-dry-forge').setOrigin(.5,.93).setScale(.83).setDepth(fy);
-      label(FORGE_STOP.point.x+.5,FORGE_STOP.point.y+.72,FORGE_STOP.name).setFontSize(12).setDepth(fy+1);
+      this.forgeGlow=this.add.ellipse(fx+10,fy-15,22,14,0xf6bd70,.22).setBlendMode(Phaser.BlendModes.ADD).setDepth(fy+.1).setVisible(false);
+      label(FORGE_STOP.point.x,3.03,FORGE_STOP.name).setFontSize(12).setDepth(fy+1);
       const bellX=(PRACTICE_BELL.x+.5)*TILE,bellY=(PRACTICE_BELL.y+.5)*TILE;
       this.add.image(bellX,bellY,'pumpworks-practice-bell').setOrigin(.5,.95).setDepth(bellY);
       label(PRACTICE_BELL.x+.5,PRACTICE_BELL.y+.9,'Practice bell').setDepth(bellY+1);
@@ -1352,6 +1354,12 @@ export class WorldScene extends Phaser.Scene {
       camera.setFollowOffset(frame.x,frame.y);
     }
     const camera=this.cameras.main,visible=(x:number,y:number)=>x>camera.worldView.left-120&&x<camera.worldView.right+120&&y>camera.worldView.top-160&&y<camera.worldView.bottom+120;
+    if(this.forgeGlow){
+      const ember=this.forgeGlow,working=this.pumpworksState?.()?.forge?.phase==='working';
+      const show=working&&visible(ember.x,ember.y);
+      if(ember.visible!==show)ember.setVisible(show);
+      if(show)ember.setAlpha(this.ambientEnabled?.18+.09*Math.sin(this.ambientMs/280):.18);
+    }
     for(const ripple of this.mossbankRipples){
       const active=this.ambientEnabled&&visible(ripple.image.x,ripple.y);
       if(ripple.image.visible!==active)ripple.image.setVisible(active);

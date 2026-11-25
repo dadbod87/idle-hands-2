@@ -38,7 +38,7 @@ export function valleyFollow(position:Point,width:number,height:number){
  const proximity=(point:Point)=>Math.max(0,Math.min(1,(6-Math.hypot(position.x-point.x,position.y-point.y))/4));
  const arrival=proximity(VALLEY_ENTRY),overlook=proximity(VALLEY_STOPS[1].point);
  const landmark=Math.max(arrival,overlook,proximity(VALLEY_STOPS[2].point),proximity(VALLEY_STOPS[3].point),proximity(VALLEY_STOPS[4].point));
- return {x:-Math.min(54,width/5)*Math.max(arrival,overlook),y:Math.min(54,height/5)*landmark};
+ return {x:-Math.min(54,width/5)*Math.max(arrival*.22,overlook),y:Math.min(54,height/5)*landmark};
 }
 
 export const HIDDEN_VALLEY_ROOM:World={

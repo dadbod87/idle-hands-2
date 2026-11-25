@@ -500,3 +500,69 @@ test('the shared town map groups current residents by district and clears stale 
   }finally{await context.close();}
  }
 });
+
+test('Nearby outfit preview stays scoped to visible gear and closes the view when the resident leaves',async({browser})=>{
+ const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+ const page=await context.newPage();
+ try{
+  // Synthetic view packets exercise presence changes without changing real player progress.
+  await page.addInitScript(()=>{
+   class OutfitStream extends EventTarget {
+    onopen:(()=>void)|null=null;
+    constructor(){
+     super();
+     Object.assign(window,{outfitStream:this});
+     queueMicrotask(()=>this.onopen?.());
+    }
+    close(){}
+   }
+   window.EventSource=OutfitStream as unknown as typeof EventSource;
+  });
+  const snapshot={playerId:'aster',name:'Aster',workshop:createWorkshop(Date.now()),
+   position:{room:'square',position:{x:24,y:25}},quest:{contentVersion:1,awarded:[]},
+   bridge:{contributed:0,target:3,restored:false},trail:{stamps:[],pennantOwned:false},
+   plot:null,plots:[],seasonKey:'2026-11-20',scores:[],serverTime:Date.now()};
+  const unexpected:string[]=[];
+  let signedIn=false;
+  await page.route('**/api/town/**',route=>{
+   const path=new URL(route.request().url()).pathname.split('/').at(-1)!;
+   if(path==='fixtures')return route.fulfill({json:{fixtures:[{id:'aster',name:'Aster'}]}});
+   if(path==='login')signedIn=true;
+   if(path==='login'||path==='snapshot')return signedIn?route.fulfill({json:{snapshot}}):route.fulfill({status:401});
+   unexpected.push(path);
+   return route.fulfill({status:400});
+  });
+  const button=(name:string)=>page.getByRole('button',{name,exact:true});
+  await page.goto('/?town=1');
+  await button('Aster').tap();
+  await expect.poll(()=>page.evaluate(()=>Boolean((window as Window&{outfitStream?:EventTarget}).outfitStream))).toBe(true);
+  const emit=(peers:unknown[])=>page.evaluate(data=>{
+   const stream=(window as Window&{outfitStream:EventTarget}).outfitStream;
+   stream.dispatchEvent(new MessageEvent('presence',{data:JSON.stringify(data)}));
+  },peers);
+  const closePeer={id:'bea',name:'Bea',room:'square',position:{x:25,y:26},headwear:'inkwood',kerchief:'indigo',kerchiefTie:'wrap'};
+  await button('Places').tap();
+  await expect(page.getByText('Nearby outfits',{exact:true})).toBeHidden();
+  await emit([closePeer,
+   {id:'far',name:'Far resident',room:'square',position:{x:73,y:63},headwear:'clerk'},
+   {id:'other',name:'Other room',room:'home',position:{x:24,y:25},headwear:'clerk'}]);
+  await page.getByText('Nearby outfits',{exact:true}).tap();
+  await expect(button('See Bea’s outfit')).toBeVisible();
+  await expect(button('See Far resident’s outfit')).toHaveCount(0);
+  await expect(button('See Other room’s outfit')).toHaveCount(0);
+  await button('See Bea’s outfit').tap();
+  const outfit=page.locator('.resident-outfit');
+  await expect(outfit).toContainText('Inkwood hood');
+  await expect(outfit).toContainText('Indigo · Shoulder wrap');
+  await expect(outfit.locator('.outfit-preview')).toHaveAttribute('data-tie','wrap');
+  await expect(button('Back to Places')).toBeInViewport({ratio:1});
+  await emit([{...closePeer,kerchief:'fern',kerchiefTie:undefined}]);
+  await expect(outfit).toContainText('Fern · Trail knot');
+  await emit([{...closePeer,position:{x:100,y:60}}]);
+  await expect(outfit.locator('.outfit-preview')).toHaveCount(0);
+  await expect(outfit).toContainText('moved away');
+  await button('Back to Places').tap();
+  await expect(page.getByText('Nearby outfits',{exact:true})).toBeHidden();
+  expect(unexpected).toEqual([]);
+ }finally{await context.close();}
+});

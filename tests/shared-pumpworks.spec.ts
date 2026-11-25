@@ -4,10 +4,12 @@ import type {Point} from '../src/game/world.ts';
 
 type Pilot={
  sharedField():SharedFieldView|null;
+ metrics():{visual:{camera:{zoom:number}}};
  snapshot():{room:string;nearby:string|null;position:Point;walking:boolean};
 };
 const view=(page:Page)=>page.evaluate(()=>(window as Window&{__pilot?:Pilot}).__pilot?.sharedField());
 const snapshot=(page:Page)=>page.evaluate(()=>(window as Window&{__pilot?:Pilot}).__pilot?.snapshot());
+const zoom=(page:Page)=>page.evaluate(()=>(window as Window&{__pilot?:Pilot}).__pilot?.metrics().visual.camera.zoom);
 
 for(const shape of [
  {member:'Tamsin',width:1440,height:900,touch:false,name:'desktop'},
@@ -44,6 +46,13 @@ for(const shape of [
    await act('Enter the Pumpworks');
    await expect(page.locator('#location')).toHaveAttribute('data-room','pumpworks');
    await expect.poll(async()=>(await view(page))?.encounter,{timeout:15000}).toEqual(expect.any(String));
+   if(!shape.touch){
+    await page.setViewportSize({width:2560,height:1440});
+    await expect.poll(()=>zoom(page)).toBeGreaterThan(1.5);
+    await shot('wide-framing');
+    await page.setViewportSize({width:shape.width,height:shape.height});
+    await expect.poll(()=>zoom(page)).toBeLessThan(1.3);
+   }
    await walk('pumpworks-locker');
    await act('Inspect Survey locker');
    await act('Equip rod and take kit');
@@ -65,6 +74,7 @@ for(const shape of [
    await shot('lunge');
    if(shape.touch){
     await page.setViewportSize({width:844,height:390});
+    await expect.poll(()=>zoom(page)).toBe(1);
     for(const name of ['Strike','Brace','Places','Bag','Journal'])await expect(button(name)).toBeInViewport({ratio:1});
     await shot('short');
     await page.evaluate(()=>document.documentElement.style.fontSize='200%');

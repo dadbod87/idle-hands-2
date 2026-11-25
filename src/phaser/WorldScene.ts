@@ -1246,7 +1246,12 @@ export class WorldScene extends Phaser.Scene {
       camera.setZoom(1).setFollowOffset(0,followY);if(this.room==='neighborhood'){const b=residentialFrame(width,height,1);camera.setBounds(b.x,b.y,b.width,b.height);return;}
       if(this.room==='square'||this.room==='mossbank'||this.room==='hidden-valley'){camera.setZoom(outdoorZoom(width,height,w.width*TILE,w.height*TILE));return;}
       const worldWidth=w.width*TILE,worldHeight=w.height*TILE;
-      camera.setBounds(-Math.max(0,(width-worldWidth)/2),-Math.max(0,(height-worldHeight)/2),Math.max(width,worldWidth),Math.max(height,worldHeight));
+      // Give the playable Pumpworks more of a tall desktop without cropping
+      // either bank. Narrow and short displays keep the original scale.
+      const zoom=this.room==='pumpworks'?Math.max(1,Math.min(1.85,.87*Math.min(width/worldWidth,height/worldHeight))):1;
+      const viewWidth=width/zoom,viewHeight=height/zoom;
+      camera.setZoom(zoom).setBounds(-Math.max(0,(viewWidth-worldWidth)/2),-Math.max(0,(viewHeight-worldHeight)/2),
+        Math.max(viewWidth,worldWidth),Math.max(viewHeight,worldHeight));
     };
     roomBounds();this.scale.on(Phaser.Scale.Events.RESIZE,roomBounds);this.events.once('shutdown',()=>this.scale.off(Phaser.Scale.Events.RESIZE,roomBounds));
     this.cameras.main.startFollow(this.actor, true, 1, 1);roomBounds();

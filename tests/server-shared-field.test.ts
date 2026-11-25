@@ -152,6 +152,7 @@ test('Shared Pumpworks verifies hits from its own room, feet, clock and encounte
   const released=await advance('bea',entry=>entry.draw===null);
   assert.equal(released.shot,null);
   assert.equal(released.impact,null);
+  assert.match(released.message,/Stand still before shooting/);
   assert.equal(released.state.weaponPractice,undefined);
   await walk('bea',{x:5.7,y:8.1});
   assert.ok((await send('bea',use(await view('bea')))).view.draw);

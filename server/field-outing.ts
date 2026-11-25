@@ -130,8 +130,10 @@ export class SharedField {
   }
   if(run.draw){
    const draw=run.draw;
-   if(!this.practiceOrFight(run,point,'bow')||distance(point,draw.view.from)>BOW_STILL_RADIUS)run.draw=null;
-   else{
+   if(!this.practiceOrFight(run,point,'bow')||distance(point,draw.view.from)>BOW_STILL_RADIUS){
+    run.draw=null;
+    run.message='Bow draw canceled. Stand still before shooting.';
+   }else{
     draw.view.remaining-=dt;
     if(draw.view.remaining<=0){
      run.draw=null;

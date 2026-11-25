@@ -1,3 +1,7 @@
+# November 25 — outfit and training review candidate
+
+The Pumpworks trial adds independent weapon practice, directional attacks and wearable vest finishes. Its forge can be revisited from the Journal. Hidden Valley and the shared kerchief are included in the review branch. This entry records local review work. See the [handoff and validation](idle-hands-2/handoffs/2026-11-25-exploration-combat.md#weapon-practice-and-independent-armor-finishes).
+
 # November 23 — Bag equipment accepted
 
 PR #107 merged as `168e85720d680dd125d6204e84a12e455bf14878`. Its exact main checks passed 593 domain/database tests and 254 browser cases. [Verification](evidence/IH2-191/EXACT_CI.json).

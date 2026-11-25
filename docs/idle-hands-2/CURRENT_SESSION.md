@@ -1,3 +1,7 @@
+# November 25 — weapon practice, finished vests and playable routes
+
+Start with `feat/nov25-outfit-training-review` and the [outfit and training review](handoffs/2026-11-25-exploration-combat.md#weapon-practice-and-independent-armor-finishes). This combines Hidden Valley, the orchard graft, field smithing, shared visible clothing, three weapons and a local learn-by-doing trial. The protected previews and databases stay stopped. Check the exact review state, current PRs and Actions policy before hosted validation.
+
 # November 25 — field smithing, nearby outfits and the Hidden Valley orchard
 
 Use `feat/nov25-game-review` and the [latest review and acceptance notes](handoffs/2026-11-25-exploration-combat.md#field-smithing-nearby-outfits-and-a-living-orchard). This combines the pressed souvenir, movement-based combat, clothing layers, nearby outfit inspection, a finite smithing trial and the local orchard graft. Keep saved previews and databases stopped. Review the exact source and recorded checks before opening or updating a PR.

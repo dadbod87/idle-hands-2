@@ -4,8 +4,8 @@ import type { Stop } from './world.ts';
 
 // Preserve preferences created before the stand could display other fieldwork.
 export const WORKSHOP_PRINT_KEY = 'ih2:river-print:v1';
-export type WorkshopPrint = RiverSpot | 'marigold' | 'woodland-certificate' | 'pond' | 'mossbank-swatch';
-export type WorkshopPrintRights = Readonly<{marigold:boolean;woodland:boolean;pond:boolean;alder?:boolean}>;
+export type WorkshopPrint = RiverSpot | 'marigold' | 'woodland-certificate' | 'pond' | 'mossbank-swatch' | 'pumpworks-seal';
+export type WorkshopPrintRights = Readonly<{marigold:boolean;woodland:boolean;pond:boolean;alder?:boolean;pumpworks?:boolean}>;
 export const WORKSHOP_PRINTS: Record<WorkshopPrint, {name:string; art:string; story:string}> = {
   reeds: {name:RIVER_SPOTS.reeds.find,art:'/art/river/pondweed.svg',story:RIVER_SPOTS.reeds.note},
   bridge: {name:RIVER_SPOTS.bridge.find,art:'/art/river/wet-boot.svg',story:RIVER_SPOTS.bridge.note},
@@ -13,6 +13,7 @@ export const WORKSHOP_PRINTS: Record<WorkshopPrint, {name:string; art:string; st
   marigold: {name:'A marigold on leave',art:'/art/garden/pressed-marigold.svg',story:'Recorded after your first harvest. It is still out of office.'},
   pond: {name:'The pond is in session',art:'/art/pond/pond-print.svg',story:'Three shores recorded. The moorhen chaired the meeting.'},
   'mossbank-swatch': ALDER_KEEPSAKE,
+  'pumpworks-seal': {name:'Pumpworks inspection seal',art:'/art/pumpworks/field-seal.svg',story:'The pump passed. The hopper has requested an independent inspection.'},
   'woodland-certificate': {name:'Qualified to point left',art:'/art/outing/field-certificate.svg',story:'Awarded for two different woodland repairs. The arrow now reports to you.'},
 };
 export const WORKSHOP_PRINT_STAND = {x:12.35,y:10.1} as const;
@@ -28,6 +29,7 @@ export function earnedWorkshopPrints(survey: RiverSurvey | null, rights: Worksho
   if (rights.woodland) prints.push('woodland-certificate');
   if (rights.pond) prints.push('pond');
   if (rights.alder) prints.push('mossbank-swatch');
+  if (rights.pumpworks) prints.push('pumpworks-seal');
   return prints;
 }
 

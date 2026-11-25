@@ -5,6 +5,7 @@ import {applyPumpworks,FIELD_HEALTH,freshPumpworks,PUMPWORKS_KEY,readPumpworks,s
 import {PUMPWORKS_DOOR,PUMPWORKS_ENTRY,PUMPWORKS_ROOM} from '../src/game/pumpworks-room.ts';
 import {braceForHopper,freshHopper,hopperNotices,stepHopper,swingAtHopper,type HopperMotion} from '../src/game/pumpworks-chase.ts';
 import {Session} from '../src/game/session.ts';
+import {earnedWorkshopPrints,selectedWorkshopPrint} from '../src/game/workshop-print.ts';
 import {canStand,clearSegment,routeTo} from '../src/game/world.ts';
 
 function play(state:PumpworksState,action:PumpworksAction,at:PumpworksPlace){
@@ -34,7 +35,10 @@ test('The hopper can chase an unarmed resident, and only equipped strikes damage
  assert.deepEqual(state.fight,{health:3});
  state=play(state,'counter','arena');
  assert.equal(state.cleared,true);
+ const rights={marigold:false,woodland:false,pond:false,pumpworks:state.reported};
+ assert.equal(selectedWorkshopPrint('pumpworks-seal',null,rights),null);
  state=play(state,'report','desk');
+ assert.deepEqual(earnedWorkshopPrints(null,{...rights,pumpworks:state.reported}),['pumpworks-seal']);
  assert.equal(state.reported,true);
  assert.equal(applyPumpworks(state,'report','desk').ok,false);
  assert.equal(applyPumpworks(state,'begin','arena').ok,false);

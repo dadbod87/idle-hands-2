@@ -230,7 +230,7 @@ function readLocalPondWatch(){
 const readMossbankSurvey=()=>townMode?null:readMossbank(morningStorage)?.state??null;
 let mossbankSurvey=readMossbankSurvey();
 scene.mossbankSurvey=()=>mossbankSurvey;
-const printRights={marigold:false,woodland:false,pond:completePondWatch(readLocalPondWatch()),alder:mossbankSurvey?.finished===true};
+const printRights={marigold:false,woodland:false,pond:completePondWatch(readLocalPondWatch()),alder:mossbankSurvey?.finished===true,pumpworks:!!(fieldSave?.ok&&fieldSave.state.reported)};
 function refreshMossbankPrint(){
  mossbankSurvey=readMossbankSurvey();
  printRights.alder=mossbankSurvey?.finished===true;
@@ -493,7 +493,14 @@ const pumpworks=townMode?undefined:createPumpworks({
  }),
  equipment:()=>workshop.showFieldGear(),
  feedback:message=>feedback.textContent=message,
- update:()=>{scene.paintPumpworks();refreshMenuFrame(2);},
+ update:record=>{
+  const earned=record.ok&&record.state.reported;
+  if(earned!==printRights.pumpworks){
+   printRights.pumpworks=earned;
+   refreshWorkshopPrint();
+  }
+  scene.paintPumpworks();refreshMenuFrame(2);
+ },
  moveToBed:()=>{
   closePanel();
   session.enter('lodging',LODGING_BEDSIDE);
@@ -544,7 +551,7 @@ const workshop=new WorkshopUI({fieldGear:pumpworks?.gear,fieldJournal:pumpworks?
  if(session.room==='pumpworks'){
   goNamedDestination('pumpworks',state?.satchel==='at-pump'?'pumpworks-cache':state?.cleared?'pumpworks-report':'pumpworks-hopper');
  }else goNamedDestination('square',PUMPWORKS_DOOR.id);
-});mossbank.journal(body);}:mossbank.journal,inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
+},()=>workshop.showJournal('pumpworks-seal'));mossbank.journal(body);}:mossbank.journal,inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
  savedMarigold:!town?(earned)=>{
   if(earned===printRights.marigold)return;
   printRights.marigold=earned;

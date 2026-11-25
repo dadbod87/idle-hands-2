@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="138" viewBox="0 0 180 138">
+ <title>Pumpworks inspection seal</title>
+ <rect x="9" y="9" width="166" height="124" rx="8" fill="#403c31" opacity=".3"/>
+ <rect x="5" y="4" width="166" height="124" rx="8" fill="#905e42" stroke="#403b32" stroke-width="3"/>
+ <rect x="12" y="11" width="152" height="110" rx="3" fill="#f0dfb0" stroke="#534536" stroke-width="3"/>
+ <rect x="18" y="17" width="140" height="98" rx="1" fill="#ddc998" stroke="#ae9665" stroke-width="1.5"/>
+ <g fill="none" stroke="#a4885c" stroke-width="1">
+  <path d="M24 37V25h12m104 0h12v12m0 60v12h-12m-104 0H24V97"/>
+  <path d="M44 28h88M43 103h90"/>
+ </g>
+ <path d="M85 31c3.5-2.7 5.5-2.7 9 0l5 4 6 .6c4 .4 5.8 2 6.5 6l1 6 4 5c2.6 3.5 2.6 5.5 0 9l-4 5-1 6c-.7 4-2.5 5.6-6.5 6l-6 .6-5 4c-3.5 2.7-5.5 2.7-9 0l-5-4-6-.6c-4-.4-5.8-2-6.5-6l-1-6-4-5c-2.6-3.5-2.6-5.5 0-9l4-5 1-6c.7-4 2.5-5.6 6.5-6l6-.6Z" fill="#b87f52" stroke="#654734" stroke-width="2.5"/>
+ <circle cx="89.5" cy="57.5" r="21" fill="#e6c37e" stroke="#73523b" stroke-width="2"/>
+ <path d="M75 63q4-3 8 0t8 0 8 0 8 0m-31 5q4-3 8 0t8 0 8 0 7 0" fill="none" stroke="#46645d" stroke-width="2" stroke-linecap="round"/>
+ <path d="m78 54 8 6 14-17" fill="none" stroke="#4c5540" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+ <text x="88" y="96" text-anchor="middle" fill="#483d30" font-family="Georgia,serif" font-size="10" font-weight="bold" letter-spacing=".65">PUMP INSPECTED</text>
+</svg>

@@ -5,6 +5,11 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "pumpworks-field-seal",
+      "path": "art/pumpworks/field-seal.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "mossbank-road-inkwood",
       "path": "art/mossbank/road-inkwood.svg",
       "kind": "original-svg"

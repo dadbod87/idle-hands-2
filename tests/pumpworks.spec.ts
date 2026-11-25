@@ -12,6 +12,7 @@ type Pilot={
  pumpworks():PumpworksState;
  pumpworksMotion():{hopper:HopperMotion;impact:FieldImpact|null;enemyHealth:number|null};
  screenPoint(x:number,y:number):Point;
+ metrics():{visual:{workshopPrint:string|null}};
 };
 const read=(page:Page)=>page.evaluate(()=>{
  const pilot=(window as Window&{__pilot?:Pilot}).__pilot;
@@ -96,7 +97,7 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    expect((await read(page))!.state.health).toBe(before.state.health);
   }
   async function fight(){
-   for(let turns=0;turns<32;turns++){
+   for(let turns=0;turns<48;turns++){
     const live=(await read(page))!;
     if(live.state.cleared)return;
     expect(live.room).toBe('pumpworks');
@@ -106,7 +107,12 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     if(live.state.oatcake==='packed'&&live.state.health<=5&&live.state.satchel==='carried'&&await button('Eat oatcake · +3 health').isEnabled()){
      await press('Eat oatcake · +3 health');
     }
-    if(await button('Strike').isEnabled()){
+    const feet=live.combat.hopper.feet;
+    const dx=live.position.x-feet.x,dy=live.position.y-feet.y;
+    const distance=Math.hypot(dx,dy);
+    if(distance>HOPPER_MOVEMENT.reach&&live.combat.hopper.phase==='recover'){
+     await move({x:feet.x+dx/distance*1.1,y:feet.y+dy/distance*1.1});
+    }else if(distance<=HOPPER_MOVEMENT.reach&&await button('Strike').isEnabled()){
      if(shape.touch)await press('Strike');else await page.keyboard.press('Space');
     }
     await page.waitForTimeout(130);
@@ -221,6 +227,29 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    await expect(page.locator('[data-pump-journal]')).toContainText('Field seal');
    await capture('seal');
    expect(await page.locator('dialog').evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
+   if(shape.name==='phone'){
+    expect(await page.evaluate(()=>localStorage.getItem('ih2:river-print:v1'))).toBeNull();
+    await press('Preview field seal');
+    await expect(page.getByLabel('Choose a workshop print')).toHaveValue('pumpworks-seal');
+    await expect(page.locator('.workshop-print-preview')).toHaveAttribute('src','/art/pumpworks/field-seal.svg');
+    await capture('seal-preview');
+    await press('Display print');
+    await expect(page.getByText('On display · Pumpworks inspection seal')).toBeVisible();
+    await press('See it in the workshop');
+    await expect(page.locator('#location')).toHaveAttribute('data-room','workshop',{timeout:60000});
+    const display=()=>page.evaluate(()=>(window as Window&{__pilot?:Pilot}).__pilot?.metrics().visual.workshopPrint);
+    await expect.poll(display).toBe('pumpworks-seal');
+    await capture('workshop-seal');
+    await page.reload();
+    await ready('workshop');
+    await expect.poll(display).toBe('pumpworks-seal');
+    await press('Journal');
+    await press('Preview field seal');
+    await expect(page.getByText('On display · Pumpworks inspection seal')).toBeVisible();
+    await press('Take print down');
+    await expect(page.getByText('No print on display.')).toBeVisible();
+    await expect(page.getByLabel('Choose a workshop print').locator('option[value="pumpworks-seal"]')).toHaveCount(1);
+   }
    expect(await page.evaluate(()=>localStorage.getItem('ih2:workshop:v2'))).toEqual(workshop);
    expect(requests).toEqual([]);
    expect(errors).toEqual([]);

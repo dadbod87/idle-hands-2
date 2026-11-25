@@ -20,7 +20,7 @@ type Host={
  place:()=>PumpworksPlace;
  equipment:()=>void;
  moveToBed:()=>void;
- update:()=>void;
+ update:(state:ReturnType<typeof readPumpworks>)=>void;
  feedback:(message:string)=>void;
 };
 
@@ -89,7 +89,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  actionRow.append(strikeButton,braceButton,oatcakeButton);
  host.controls.append(fieldReadout,actionRow);
  const current=()=>record.ok?record.state:null;
- const refresh=()=>{record=readPumpworks(storage);host.update();};
+ const refresh=()=>{record=readPumpworks(storage);host.update(record);};
  window.addEventListener('storage',event=>{if(event.key===PUMPWORKS_KEY||event.key===null)refresh();});
 
  function button(label:string,click:()=>void){
@@ -332,7 +332,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   return card;
  }
 
- function journal(body:HTMLElement,walkToDoor:()=>void){
+ function journal(body:HTMLElement,walkToDoor:()=>void,previewSeal:()=>void){
   const state=current();
   if(!state||state.rod==='unissued')return;
   const entry=document.createElement('section');entry.className='journal-ready-return';entry.dataset.pumpJournal='';
@@ -341,7 +341,9 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    state.reported?'Field seal · Silt hopper cleared and the pump inspected.':
    state.cleared?'The inspection desk is clear. Collect the field seal.':
    state.rod==='packed'?'Equip the sounding rod in Bag before entering the chamber.':'Your survey gear is ready for the pump chamber.';
-  entry.append(title,paragraph(note),button('Walk to the Pumpworks',walkToDoor));
+  entry.append(title,paragraph(note),state.reported
+   ?button('Preview field seal',previewSeal)
+   :button('Walk to the Pumpworks',walkToDoor));
   body.append(entry);
  }
 

@@ -1,3 +1,7 @@
+# November 25 — Hidden Valley and layered wardrobe
+
+Continue from `feat/nov25-valley-press` and the [latest exploration handoff](handoffs/2026-11-25-exploration-combat.md#hidden-valley-and-layered-wardrobe). Hidden Valley is walkable in browser practice after Wren's survey. A two-resident shared practice check verified the independently dyed and tied kerchief. This is local review work. Start from a disposable browser state and keep saved previews and databases stopped.
+
 # November 25 — real-time encounter, regional travel and layered field gear
 
 Start with `feat/nov25-breeze-staff` and the [exploration and combat handoff](handoffs/2026-11-25-exploration-combat.md#real-time-combat-regional-travel-and-layered-gear-checkpoint). Pumpworks practice now has rod, bow, staff, a padded vest and a dyeable kerchief. Mossbank's cold arrival retains the painted frame. Hidden Valley is a future town in the world atlas. Keep saved previews and databases stopped.

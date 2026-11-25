@@ -462,6 +462,22 @@ export class WorldScene extends Phaser.Scene {
   }
   constructor(public session: Session) { super('world'); }
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
+  private queueStreetArt(){
+    for(const asset of HOUSING_ASSETS){
+      if(!this.textures.exists(asset.id))this.load.svg(asset.id,'/art/housing/'+asset.file);
+    }
+    for(const asset of RESIDENTIAL_ASSETS){
+      if(!this.textures.exists(asset.id))this.load.svg(asset.id,(asset.id.startsWith('housing-')?'/art/housing/':'/art/residential/')+asset.file);
+    }
+    for(const asset of NEIGHBORHOOD_ASSETS){
+      if(asset.id!=='housing-registry'&&!this.textures.exists(asset.id))this.load.svg(asset.id,'/art/neighborhood/'+asset.file);
+    }
+  }
+  prepareStreetApproach(){
+    if(this.room!=='square'||!this.roomReady||this.textures.exists('neighborhood-ground'))return;
+    this.queueStreetArt();
+    if(!this.load.isLoading())this.load.start();
+  }
   preload() {
     this.loadingRoom=this.session.room;
     this.loadingInteriorKey=this.loadingRoom.startsWith('home')?this.interiorKey():'';
@@ -518,17 +534,7 @@ export class WorldScene extends Phaser.Scene {
       const registry=neighborhoodArt('housing-registry');
       this.load.svg(registry.id,'/art/neighborhood/'+registry.file);
     }
-    if(this.loadingRoom==='neighborhood'){
-      for(const asset of HOUSING_ASSETS){
-        if(!this.textures.exists(asset.id))this.load.svg(asset.id,'/art/housing/'+asset.file);
-      }
-      for(const asset of RESIDENTIAL_ASSETS){
-        if(!this.textures.exists(asset.id))this.load.svg(asset.id,(asset.id.startsWith('housing-')?'/art/housing/':'/art/residential/')+asset.file);
-      }
-      for(const asset of NEIGHBORHOOD_ASSETS){
-        if(asset.id!=='housing-registry'&&!this.textures.exists(asset.id))this.load.svg(asset.id,'/art/neighborhood/'+asset.file);
-      }
-    }
+    if(this.loadingRoom==='neighborhood')this.queueStreetArt();
     for (const key of ORIGINAL_STATIC) if(!['ground-square','workshop','cafe','tree'].includes(key))this.load.svg(key, `/art/original/${key}.svg`);
     const keys=['ground-square',...BUILDING_KINDS.map(k=>'building-'+k),...TREE_KINDS.flatMap(k=>['tree-'+k+'-trunk','tree-'+k+'-canopy']),...RESIDENT_IDS.map(k=>'resident-'+k)];
     for(const key of keys)this.load.svg('variety-'+key,`/art/variety/${key}.svg`);

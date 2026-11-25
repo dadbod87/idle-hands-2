@@ -21,8 +21,8 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "fd88e047d075bfd02f98f6871078ea2cbcd7b67ad6a12da327c70ba3f4950c9c",
-    "src/main.ts": "991bb1fccd23fa277d048cba3853df73b40ffe0b9a8db33657d7cbae22bfecfb",
-    "src/phaser/WorldScene.ts": "ed943432c32873bf7dfa8faa1841e6981189517361236a97aac271621e79357a",
+    "src/main.ts": "dbb5e8845259445447e1aad97922f10eed8cb61b3b5e0c35f2c179419a3be6bd",
+    "src/phaser/WorldScene.ts": "0c156aa09d5d45ac3c55275be5e12b1cadb223871df800a6d282ae40e7348699",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
   "currentTask": "Reviewed the candidate shared Glasshouse funding board and facade stages. Original study snapshots and generated output remain frozen."

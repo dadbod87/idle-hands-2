@@ -29,3 +29,14 @@ export type FieldDyeAction=keyof typeof KERCHIEF_ACTIONS|keyof typeof KERCHIEF_P
 export function validKerchief(value:unknown):value is FieldKerchief{
  return (FIELD_KERCHIEFS as readonly unknown[]).includes(value);
 }
+
+export const VEST_FINISHES=['original','blackberry','dusk'] as const;
+export type VestFinish=typeof VEST_FINISHES[number];
+export const VEST_FINISH_NAMES={original:'Original',blackberry:'Blackberry',dusk:'Dusk blue'} as const;
+export type FieldArmor='padded'|'riveted';
+export type ArmorFinishAction={armor:FieldArmor;finish:VestFinish};
+
+export function armorArtName(armor:FieldArmor,finish:VestFinish='original',poses=false){
+ const variant=finish==='original'?'':'-'+finish;
+ return armor+'-vest'+variant+(poses?'-poses':'');
+}

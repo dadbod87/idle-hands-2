@@ -21,8 +21,8 @@
   },
   "reviewedCurrent": {
     "src/game/world.ts": "b4e5b843e2f5f60dd18d282ab2b8aea74e181f95342e97117e0298928a57a7e2",
-    "src/main.ts": "5379ea1d5001ab446e9afc3363196e2eeb109427998aab9db5d29408cafbf9e4",
-    "src/phaser/WorldScene.ts": "cce736e3d153100b59ea50b2b2cb990544206c5d1daf688002f72dd3ef8d6731",
+    "src/main.ts": "a3fb9c91e18b72bebfffdf43bcf0c2b4d433c51156c701689eab41e5d4ce5139",
+    "src/phaser/WorldScene.ts": "f22af77c5894742d6b95c08b8c9b0b5c9000384cdf61136ce0073d79fe88522f",
     "tools/create-allotment-study.ts": "7bd9bb6e26e22ed4fb08653a174e9ba98e4fb64821521ecf6ac9cb443a161ab3"
   },
   "currentTask": "Compared trial Hidden Valley geometry, entry and art, and checked the existing sewing station. Garden geometry and the archived study inputs and generated output remain frozen."

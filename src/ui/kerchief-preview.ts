@@ -1,7 +1,7 @@
 import {residentArt} from '../art/variety.ts';
 import type {Headwear} from '../art/headwear.ts';
 import {KERCHIEF_RIG_WIDTH,KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
-import {KERCHIEF_COLORS,KERCHIEF_DYES,KERCHIEF_TIES,type FieldKerchief,type KerchiefTie} from '../game/field-appearance.ts';
+import {armorArtName,KERCHIEF_COLORS,KERCHIEF_DYES,KERCHIEF_TIES,type FieldKerchief,type KerchiefTie,type VestFinish} from '../game/field-appearance.ts';
 import type {FieldArmor} from '../game/pumpworks.ts';
 import type {Point} from '../game/world.ts';
 
@@ -47,9 +47,9 @@ export function kerchiefPreview(look?:OutfitLook){
  }
  return {
   element:preview,
-  paint(color:FieldKerchief,armor:FieldArmor|null=null,tie:KerchiefTie='knot'){
+  paint(color:FieldKerchief,armor:FieldArmor|null=null,tie:KerchiefTie='knot',finish:VestFinish='original'){
    vest.style.display=armor?'':'none';
-   if(rig&&armor)vest.setAttribute('href','/art/pumpworks/'+armor+'-vest-poses.svg');
+   if(armor)vest.setAttribute('href','/art/pumpworks/'+armorArtName(armor,finish,!!rig)+'.svg');
    const wearing=color!=='none';
    cloth.style.display=trim.style.display=wearing?'':'none';
    if(wearing){

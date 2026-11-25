@@ -121,7 +121,7 @@ export class Session {
     if(!target||this.locked)return false;
     const accepted=this.walk(target.point);if(accepted)this.pendingStop=target.id;return accepted;
   }
-  private canInspect(stop:Stop):boolean {
+  canInspect(stop:Stop):boolean {
     if (Math.hypot(this.position.x-stop.point.x,this.position.y-stop.point.y)>1.25) return false;
     const needsClearSight=this.extraSquareStops?.includes(stop)||stop.id==='lodging-door';
     return !needsClearSight||clearSegment(this.room,this.position,stop.point,this.roomGeometry());

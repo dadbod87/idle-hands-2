@@ -1,7 +1,7 @@
 import {learnedCounter,learnedReach,MAX_WEAPON_RANK,PUMPWORKS_TRAINING_RANK,WEAPON_RANK_MARKS,WEAPON_SKILL_NAMES,weaponRank} from '../game/weapon-practice.ts';
 import {FORGE_ORDER_MS,forgeReady} from '../game/forge-order.ts';
 import {kerchiefDyePicker,kerchiefPreview,type OutfitLook} from './kerchief-preview.ts';
-import {KERCHIEF_COLORS,KERCHIEF_TIE_NAMES} from '../game/field-appearance.ts';
+import {armorArtName,KERCHIEF_COLORS,KERCHIEF_TIE_NAMES,VEST_FINISH_NAMES,VEST_FINISHES,type VestFinish} from '../game/field-appearance.ts';
 import type {FieldCue} from '../audio/combat-cues.ts';
 import {BOW_DRAW_SECONDS,BOW_STILL_RADIUS,BOW_TRACE_MS,ROD_SWEEP_MS,STAFF_PULSE_MS,equippedFieldWeapon,FIELD_WEAPONS,type BowDraw,type BowTrace,type FieldWeapon,type RodSweep,type StaffPulse} from '../game/field-weapons.ts';
 import {
@@ -38,7 +38,7 @@ type Host={
  wakeFrame:()=>void;
  cue:(cue:FieldCue)=>void;
  open:(title:string)=>void;
- place:()=>PumpworksPlace;
+ atStation:(place:PumpworksPlace)=>boolean;
  equipment:()=>void;
  look:()=>OutfitLook;
  reward:()=>void;
@@ -153,7 +153,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   busy=true;
   try{
    const result=await navigator.locks.request(PUMPWORKS_KEY,()=>{
-    if(!present()||(!onField&&place!=='elsewhere'&&host.place()!==place)){
+    if(!present()||(!onField&&place!=='elsewhere'&&!host.atStation(place))){
      return {ok:false as const,message:onField?'':'Return to the marked spot first.'};
     }
     return savePumpworks(storage,expected,action,place);
@@ -364,7 +364,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
 
  function show(place:PumpworksPlace){
   const title=titles[place];
-  if(!title||host.place()!==place)return;
+  if(!title||!host.atStation(place))return;
   host.open(title);
   const panel=document.createElement('section');
   panel.className='pumpworks-panel';
@@ -373,7 +373,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   let note='';
   let shownRaw:string|null=null;
   let forgeTimer=0;
-  const present=()=>panel.isConnected&&host.place()===place;
+  const present=()=>panel.isConnected&&host.atStation(place);
   const render=()=>{
    window.clearTimeout(forgeTimer);
    if(!present())return;
@@ -393,6 +393,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      panel.append(paragraph(weapon==='bow'?'Stand still to draw the bow. The practice bell makes a good target.':
       weapon==='staff'?'Pulse at the practice bell. Catch the hopper open to push it back.':
       weapon==='rod'?'Try a swing at the practice bell, then cross the footbridge.':'Equip field gear in Bag before crossing the footbridge.'));
+     panel.append(paragraph('Hits on the hopper train the weapon you use. Check Bag for progress.'));
      if(!state.fight){
       if(state.bow==='unissued')add('Try a field bow','borrow-bow');
       if(state.staff==='unissued')add('Try a breeze staff','borrow-staff');
@@ -490,6 +491,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    const detail=paragraph('');detail.className='bag-slot-detail';
    const status=paragraph('');status.className='bag-equip-notice';status.role='status';
    const skill=document.createElement('div');skill.className='pump-weapon-skill';
+   const armor=item==='vest'?'padded':item==='riveted'?'riveted':null;
    const control=button('',()=>{});
    control.className='bag-equip-action';
    card.append(artwork,title,detail,...(item==='vest'||item==='riveted'?[]:[skill]),control,status);
@@ -500,10 +502,16 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     detail.textContent=(worn?'Equipped':'Packed')+' · '+profile.description;
     if(item!=='vest'&&item!=='riveted'){
      const marks=live.weaponPractice?.[item]??0,rank=weaponRank(marks),name=WEAPON_SKILL_NAMES[item];
-     const label=name+' '+rank+' / '+MAX_WEAPON_RANK;
-     const benefits=[learnedCounter(marks)?'+'+learnedCounter(marks)+' counter damage':'',learnedReach(marks)?'Slightly longer reach':''].filter(Boolean);
-     skill.replaceChildren(rank>=PUMPWORKS_TRAINING_RANK?paragraph(label+' · Pumpworks training complete'):
-      meter(label,marks-WEAPON_RANK_MARKS[rank]!,WEAPON_RANK_MARKS[rank+1]!-WEAPON_RANK_MARKS[rank]!));
+     skill.replaceChildren(paragraph(name+' · Rank '+rank+' of '+MAX_WEAPON_RANK));
+     if(rank<PUMPWORKS_TRAINING_RANK){
+      const progress=document.createElement('progress');
+      progress.max=WEAPON_RANK_MARKS[rank+1]!-WEAPON_RANK_MARKS[rank]!;
+      progress.value=marks-WEAPON_RANK_MARKS[rank]!;
+      progress.setAttribute('aria-label',name+' practice toward rank '+(rank+1));
+      skill.append(progress);
+     }else skill.append(paragraph('Pumpworks training complete'));
+     const counterBonus=learnedCounter(marks);
+     const benefits=[counterBonus?'+'+counterBonus+' counter damage':'',learnedReach(marks)?'Slightly longer reach':''].filter(Boolean);
      if(benefits.length)skill.append(paragraph(benefits.join(' · ')));
     }
     control.textContent=(worn?'Pack ':'Equip ')+name;
@@ -521,6 +529,39 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     if(record.ok)shownRaw=record.raw;
     if(card.isConnected)for(const repaint of repaints)repaint(repaint===paint?message:'');
    };
+   if(armor){
+    const finishRow=document.createElement('div');finishRow.className='pump-armor-finish';
+    const label=document.createElement('label');label.textContent=profile.name+' finish';
+    const select=document.createElement('select');
+    for(const finish of VEST_FINISHES)select.append(new Option(VEST_FINISH_NAMES[finish],finish));
+    select.value=state.armorFinishes?.[armor]??'original';
+    const save=button('Save finish',()=>{});
+    save.setAttribute('aria-label','Save '+name+' finish');
+    const paintFinish=()=>{
+     const live=current();
+     if(!live)return;
+     const saved=live.armorFinishes?.[armor]??'original';
+     select.disabled=busy||!!live.fight||live.recovering;
+     save.disabled=select.disabled||select.value===saved;
+     const finish=VEST_FINISHES.find(option=>option===select.value)??saved;
+     art.src='/art/pumpworks/'+armorArtName(armor,finish)+'.svg';
+    };
+    select.onchange=paintFinish;
+    save.onclick=async()=>{
+     if(save.disabled)return;
+     const finish=VEST_FINISHES.find(option=>option===select.value);
+     if(!finish)return;
+     save.disabled=true;
+     const message=await change({armor,finish},'elsewhere',()=>finishRow.isConnected,shownRaw);
+     if(!finishRow.isConnected)return;
+     if(record.ok)shownRaw=record.raw;
+     for(const repaint of repaints)repaint(repaint===paint?message:'');
+    };
+    repaints.push(paintFinish);
+    label.append(select);finishRow.append(label,save);
+    control.after(finishRow);
+    paintFinish();
+   }
    if(item==='rod'&&state.oatcake!=='unissued'){
     const snack=paragraph(state.oatcake==='used'?'Oatcake used':state.satchel==='at-pump'?'Oatcake in the lost satchel':'Oatcake ×1 · restores up to '+OATCAKE_HEAL+' health during the encounter');
     snack.className='pump-oatcake';
@@ -547,7 +588,9 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    const saved=live.kerchiefDye??live.kerchief;
    const worn=live.kerchief!=='none';
    const tie=live.kerchiefTie??'knot';
-   preview.paint(selected??'none',equippedArmor(live),picker.tie());
+   const armor=equippedArmor(live);
+   const finish:VestFinish=armor?live.armorFinishes?.[armor]??'original':'original';
+   preview.paint(selected??'none',armor,picker.tie(),finish);
    const detailText=saved==='none'?'Undyed · Packed':worn?KERCHIEF_COLORS[saved].label+' kerchief worn':KERCHIEF_COLORS[saved].label+' · Packed';
    detail.textContent=saved==='none'?detailText:detailText+' · '+KERCHIEF_TIE_NAMES[tie];
    picker.select.disabled=picker.wear.disabled=picker.style.disabled=busy||!!live.fight||live.recovering;

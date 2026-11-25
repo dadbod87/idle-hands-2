@@ -3,6 +3,86 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "pumpworks-padded-vest-blackberry-poses",
+      "path": "public/art/pumpworks/padded-vest-blackberry-poses.svg",
+      "sha256": "e4a6434a4353f91a6c2127b728d514c88340034206da7e06b2522a4d9e136ef7",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/padded-vest-poses.svg",
+      "date": "2026-11-25",
+      "modifications": "Recolored the cloth and seams. Retained original stitching or rivets, outlines and four-direction shapes."
+    },
+    {
+      "id": "pumpworks-padded-vest-blackberry",
+      "path": "public/art/pumpworks/padded-vest-blackberry.svg",
+      "sha256": "00b9d373ff42f4730844c05245534a6579ca8c499086d4ae971c389a4490b3dc",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/padded-vest.svg",
+      "date": "2026-11-25",
+      "modifications": "Recolored the cloth and seams. Retained original stitching or rivets, outlines and four-direction shapes."
+    },
+    {
+      "id": "pumpworks-padded-vest-dusk-poses",
+      "path": "public/art/pumpworks/padded-vest-dusk-poses.svg",
+      "sha256": "6e9f89e1f49aec70d489ff34de1670919d21a6ba9a03fe204cb3b3834054de15",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/padded-vest-poses.svg",
+      "date": "2026-11-25",
+      "modifications": "Recolored the cloth and seams. Retained original stitching or rivets, outlines and four-direction shapes."
+    },
+    {
+      "id": "pumpworks-padded-vest-dusk",
+      "path": "public/art/pumpworks/padded-vest-dusk.svg",
+      "sha256": "06d06ddce8a6d3a6a1e22f99d514faf0af5b1e9f22b185bc1ce383a60f922022",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/padded-vest.svg",
+      "date": "2026-11-25",
+      "modifications": "Recolored the cloth and seams. Retained original stitching or rivets, outlines and four-direction shapes."
+    },
+    {
+      "id": "pumpworks-riveted-vest-blackberry-poses",
+      "path": "public/art/pumpworks/riveted-vest-blackberry-poses.svg",
+      "sha256": "29c659384008a1f00bde3fd84e8ba2e53579303e07a4b393969e49874630bafe",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/riveted-vest-poses.svg",
+      "date": "2026-11-25",
+      "modifications": "Recolored the cloth and seams. Retained original stitching or rivets, outlines and four-direction shapes."
+    },
+    {
+      "id": "pumpworks-riveted-vest-blackberry",
+      "path": "public/art/pumpworks/riveted-vest-blackberry.svg",
+      "sha256": "537789e7667996c8f3624dfb6f52c4885d9390b342f57d647067d0b8296b6908",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/riveted-vest.svg",
+      "date": "2026-11-25",
+      "modifications": "Recolored the cloth and seams. Retained original stitching or rivets, outlines and four-direction shapes."
+    },
+    {
+      "id": "pumpworks-riveted-vest-dusk-poses",
+      "path": "public/art/pumpworks/riveted-vest-dusk-poses.svg",
+      "sha256": "e7a042bcb9eedfa3e07dcf4417e772d59b1e5c7846024833eccc111844578197",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/riveted-vest-poses.svg",
+      "date": "2026-11-25",
+      "modifications": "Recolored the cloth and seams. Retained original stitching or rivets, outlines and four-direction shapes."
+    },
+    {
+      "id": "pumpworks-riveted-vest-dusk",
+      "path": "public/art/pumpworks/riveted-vest-dusk.svg",
+      "sha256": "2dfeb21c63932a4a495913a1d470c5f31a088f650e6134a238c29713a4e4e19c",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/riveted-vest.svg",
+      "date": "2026-11-25",
+      "modifications": "Recolored the cloth and seams. Retained original stitching or rivets, outlines and four-direction shapes."
+    },
+    {
       "id": "valley-graft-sapling",
       "path": "public/art/hidden-valley/graft-sapling.svg",
       "sha256": "7a52f45a8e72d62c1541d3d8bfd16392a2a629c0e7fa008dd4718441238a35a6",

@@ -434,6 +434,10 @@ test('Successful use advances only the equipped skill and Pumpworks tops out bel
  assert.deepEqual(trainedBow.weaponPractice,{rod:5,bow:2});
  const rankTwo=play({...fight,weaponPractice:{rod:WEAPON_RANK_MARKS[2]}},'counter','arena');
  assert.equal(rankTwo.fight?.health,4);
+ const open={...freshHopper(),phase:'recover',feet:HOPPER_FEET} as const;
+ const atEdge={x:HOPPER_FEET.x+1.9,y:HOPPER_FEET.y};
+ assert.equal(swingFieldWeapon(open,atEdge,'rod',WEAPON_RANK_MARKS[2])?.hit,null);
+ assert.equal(swingFieldWeapon(open,atEdge,'rod',WEAPON_RANK_MARKS[3])?.hit,'counter');
  const atLimit=play({...fight,weaponPractice:{rod:PUMPWORKS_TRAINING_MARKS-1}},'counter','arena');
  assert.equal(atLimit.weaponPractice?.rod,PUMPWORKS_TRAINING_MARKS);
  assert.deepEqual(play(atLimit,'strike','arena').weaponPractice,atLimit.weaponPractice);
@@ -442,4 +446,24 @@ test('Successful use advances only the equipped skill and Pumpworks tops out bel
  for(let index=2;index<WEAPON_RANK_MARKS.length;index++){
   assert.ok(WEAPON_RANK_MARKS[index]!-WEAPON_RANK_MARKS[index-1]!>WEAPON_RANK_MARKS[index-1]!-WEAPON_RANK_MARKS[index-2]!);
  }
+});
+
+
+test('Vest finishes follow the individual owned piece and leave protection and cloth untouched',()=>{
+ const arm=play(prepared(),'borrow-vest','locker');
+ const look=play(arm,{dye:'fern',wear:true,tie:'wrap'},'elsewhere');
+ const change={armor:'padded',finish:'blackberry'} as const;
+ const custom=play(look,change,'elsewhere');
+ assert.equal(fieldArmor(custom),fieldArmor(look));
+ assert.equal(custom.kerchief,'fern');
+ assert.equal(custom.kerchiefTie,'wrap');
+ const packed=play(custom,'pack-vest','elsewhere');
+ assert.equal(fieldArmor(packed),0);
+ assert.deepEqual(packed.armorFinishes,{padded:'blackberry'});
+ assert.deepEqual(play(packed,'equip-vest','elsewhere').armorFinishes,packed.armorFinishes);
+ assert.equal(applyPumpworks(prepared(),change,'elsewhere').ok,false);
+ assert.equal(applyPumpworks(custom,change,'elsewhere').ok,false);
+ assert.equal(applyPumpworks(custom,{armor:'riveted',finish:'dusk'},'elsewhere').ok,false);
+ const fighting=play(custom,'begin','arena');
+ assert.equal(applyPumpworks(fighting,{armor:'padded',finish:'dusk'},'elsewhere').ok,false);
 });

@@ -520,11 +520,11 @@ const fieldStations:Record<string,PumpworksPlace>={
  'pumpworks-locker':'locker','pumpworks-bench':'bench',[FORGE_STOP.id]:'forge',
  'pumpworks-cache':'cache','pumpworks-report':'desk','lodging-note':'bed',
 };
-const fieldPlace=()=>fieldStations[session.nearby()?.id??'']??'elsewhere';
+const atFieldStation=(place:PumpworksPlace)=>session.stops.some(stop=>fieldStations[stop.id]===place&&session.canInspect(stop));
 let openRecovery=!!(fieldSave?.ok&&fieldSave.state.recovering);
 const pumpworks=townMode?undefined:createPumpworks({
  body,hud:document.querySelector('#pump-health')!,controls:document.querySelector('#pump-controls')!,
- open:openPanel,place:fieldPlace,wakeFrame:wakeRender,cue:music.cue,
+ open:openPanel,atStation:atFieldStation,wakeFrame:wakeRender,cue:music.cue,
  combat:()=>({
   inRoom:session.room==='pumpworks',
   able:session.room==='pumpworks'&&scene.roomReady&&!panel.open&&!session.locked&&!document.hidden,

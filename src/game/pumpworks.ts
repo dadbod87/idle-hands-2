@@ -1,6 +1,6 @@
 import {FORGE_ORDER_MS,forgeOrderSchema,forgeReady} from './forge-order.ts';
 import {z} from 'zod';
-import {FIELD_KERCHIEFS,KERCHIEF_ACTIONS,type FieldKerchief,KERCHIEF_COLORS,KERCHIEF_PACK_ACTIONS,KERCHIEF_TIES,type FieldDyeAction} from './field-appearance.ts';
+import {FIELD_KERCHIEFS,KERCHIEF_ACTIONS,type FieldKerchief,KERCHIEF_COLORS,KERCHIEF_PACK_ACTIONS,KERCHIEF_TIES,type FieldDyeAction,VEST_FINISHES,type FieldArmor,type ArmorFinishAction} from './field-appearance.ts';
 import {equippedFieldWeapon,FIELD_WEAPON_IDS,FIELD_WEAPONS,wieldWeapon} from './field-weapons.ts';
 
 import {learnedCounter,MAX_WEAPON_RANK,practiceGain,WEAPON_RANK_MARKS,WEAPON_SKILL_NAMES,weaponRank} from './weapon-practice.ts';
@@ -23,6 +23,7 @@ const recordSchema=z.object({
  kerchiefDye:z.enum(FIELD_KERCHIEFS).optional(),
  kerchiefTie:z.enum(KERCHIEF_TIES).optional(),
  forge:forgeOrderSchema.optional(),
+ armorFinishes:z.object({padded:z.enum(VEST_FINISHES).optional(),riveted:z.enum(VEST_FINISHES).optional()}).strict().optional(),
  weaponPractice:z.object({rod:practiceMarks.optional(),bow:practiceMarks.optional(),staff:practiceMarks.optional()}).strict().optional(),
  oatcake:z.enum(['unissued','packed','used']).default('unissued'),
  satchel:z.enum(['none','carried','at-pump']),
@@ -38,6 +39,8 @@ const recordSchema=z.object({
  if(state.recovering!==(state.health===0)
     ||state.rematch!==(state.reported&&!state.cleared)
     ||state.fight&&(state.recovering||state.cleared)
+    ||state.armorFinishes?.padded!==undefined&&state.vest==='unissued'
+    ||state.armorFinishes?.riveted!==undefined&&(!state.forge||state.forge.phase==='working')
     ||FIELD_WEAPON_IDS.some(slot=>state[slot]==='unissued'&&(state.weaponPractice?.[slot]??0)>0)
     ||FIELD_WEAPON_IDS.filter(slot=>state[slot]==='equipped').length>1
     ||state.kerchief!=='none'&&state.kerchiefDye!==undefined&&state.kerchief!==state.kerchiefDye
@@ -51,7 +54,7 @@ const recordSchema=z.object({
  }
 });
 export type PumpworksState=z.infer<typeof recordSchema>;
-export type PumpworksAction=FieldDyeAction|'issue'|'borrow-bow'|'borrow-staff'|'equip-staff'|'pack-staff'|'borrow-vest'|'equip-vest'|'pack-vest'|'start-forge'|'collect-forge'|'equip-riveted'|'pack-riveted'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
+export type PumpworksAction=ArmorFinishAction|FieldDyeAction|'issue'|'borrow-bow'|'borrow-staff'|'equip-staff'|'pack-staff'|'borrow-vest'|'equip-vest'|'pack-vest'|'start-forge'|'collect-forge'|'equip-riveted'|'pack-riveted'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
 export type PumpworksPlace='locker'|'forge'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
 type Result={ok:false;message:string}|{ok:true;state:PumpworksState;message:string;returnToBed?:true};
 
@@ -59,7 +62,7 @@ export const freshPumpworks=():PumpworksState=>({
  version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',bow:'unissued',staff:'unissued',vest:'unissued',kerchief:'none',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,rematch:false,
 });
 
-export type FieldArmor='padded'|'riveted';
+export type {FieldArmor} from './field-appearance.ts';
 export function equippedArmor(state:PumpworksState):FieldArmor|null{
  return state.forge?.phase==='equipped'?'riveted':state.vest==='equipped'?'padded':null;
 }
@@ -80,7 +83,14 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
   return accept({kerchief,kerchiefDye:dye,kerchiefTie:tie},
    kerchief==='none'?'Kerchief packed. Its dye stays with it.':KERCHIEF_COLORS[kerchief].label+' kerchief worn.');
  };
- if(typeof action==='object')return fitKerchief(action.dye,action.wear?action.dye:'none',action.tie);
+ if(typeof action==='object'){
+  if(!('armor' in action))return fitKerchief(action.dye,action.wear?action.dye:'none',action.tie);
+  const {armor,finish}=action;
+  const owned=armor==='padded'?state.vest!=='unissued':state.forge&&state.forge.phase!=='working';
+  if(place!=='elsewhere'||state.fight||!owned)return refuse('Finish changing your armor after the encounter and with the vest in Bag.');
+  if((state.armorFinishes?.[armor]??'original')===finish)return refuse('This armor finish is already saved.');
+  return accept({armorFinishes:{...state.armorFinishes,[armor]:finish}},'Armor finish saved.');
+ }
  switch(action){
   case 'issue':
    if(place!=='locker'||state.rod!=='unissued')return refuse('Your survey kit is already issued or the locker is out of reach.');

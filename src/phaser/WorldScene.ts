@@ -5,6 +5,7 @@ import {GRAFT_TREE_FEET,MOSSBANK_VALLEY_ROAD,VALLEY_STOPS,VALLEY_TREES,valleyFol
 import {KERCHIEF_COLORS,validKerchief,type FieldKerchief,type KerchiefTie} from '../game/field-appearance.ts';
 import {SEWING_TABLE} from '../game/tailoring.ts';
 import {KERCHIEF_RIG_WIDTH,KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
+import {armorArtName,VEST_FINISHES} from '../game/field-appearance.ts';
 import {BOW_DRAW_SECONDS,BOW_TRACE_MS,ROD_SWEEP_MS,STAFF_PULSE_MS,type BowDraw,type BowTrace,type RodSweep,type StaffPulse} from '../game/field-weapons.ts';
 import type {MossbankSurvey} from '../game/mossbank.ts';
 import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,hopperOpen,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
@@ -742,7 +743,7 @@ export class WorldScene extends Phaser.Scene {
     const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','breeze-staff','dry-forge']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
     const practiceGear=this.pumpworksState?.();
     if(this.loadingRoom==='pumpworks'||practiceGear&&practiceGear.rod!=='unissued'){
-      fieldArt.push('padded-vest-poses','riveted-vest-poses');
+      fieldArt.push(...(['padded','riveted'] as const).flatMap(armor=>VEST_FINISHES.map(finish=>armorArtName(armor,finish,true))));
     }
     for(const id of fieldArt){
       if(!this.textures.exists('pumpworks-'+id))this.load.svg('pumpworks-'+id,'/art/pumpworks/'+id+'.svg');
@@ -1510,7 +1511,7 @@ export class WorldScene extends Phaser.Scene {
       if(armor){
         const sx=ART.actorScale*KERCHIEF_RIG_WIDTH[rig],sy=ART.actorScale;
         const bob=this.frame>0?.8*Math.abs(Math.sin((this.frame-1)*Math.PI/3)):0;
-        const pose=FACINGS.indexOf(this.facing),key='pumpworks-'+armor+'-vest-poses';
+        const pose=FACINGS.indexOf(this.facing),key='pumpworks-'+armorArtName(armor,practiceGear?.armorFinishes?.[armor],true);
         if(this.fieldVest.texture.key!==key||String(this.fieldVest.frame.name)!==String(pose))this.fieldVest.setTexture(key,pose);
         this.fieldVest.setPosition(x,y-bob*sy).setDepth(y+.5).setScale(sx,sy);
       }

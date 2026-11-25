@@ -30,8 +30,11 @@
 .pump-control-status { font-weight:bold; }
 #panel-body .pump-oatcake { grid-column:1/-1;display:flex;align-items:center;gap:6px;margin:0;font-size:.78rem; }
 .pump-oatcake img { width:32px;height:32px; }
+.pump-armor-finish { grid-column:1/-1;display:grid;gap:6px;min-width:0; }
+.pump-armor-finish label { display:grid;gap:4px;font-size:.82rem; }
+.pump-armor-finish :is(select,button) { min-height:44px;min-width:0;font:inherit; }
+.pump-armor-finish button { margin:0; }
 .pump-weapon-skill { grid-column:1/-1;display:grid;gap:3px;min-width:0;font-size:.82rem;color:#344e41; }
-.pump-weapon-skill label { display:grid;gap:3px; }
 .pump-weapon-skill progress { display:block;width:100%;height:.65rem;accent-color:#637f63; }
 #panel-body .pump-weapon-skill p { margin:0; }
 

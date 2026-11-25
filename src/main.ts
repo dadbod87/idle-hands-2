@@ -142,6 +142,7 @@ fieldNotes.record(fieldNoteOwner,feedback.textContent,Date.now());
 const stopWalkButton = document.querySelector<HTMLButtonElement>('#stop-assisted-walk')!;
 new MutationObserver(()=>{feedback.scrollTop=0;fieldNotes.record(fieldNoteOwner,feedback.textContent,Date.now());}).observe(feedback,{childList:true,characterData:true,subtree:true});
 if(session.room==='lodging')feedback.textContent=resting()?'Your first morning in Ledgerwick. Get up when you’re ready.':'Read the note by the bed, or step outside to find Marlow.';
+if(session.room==='hidden-valley')feedback.textContent='Follow the orchard path to the grafting house or the cider court.';
 if(session.recoveredLodgingFootprint){
  feedback.textContent='You’re by the boarding house. The new front steps are just behind you.';
  save();
@@ -799,14 +800,14 @@ async function waveHere(){
 }
 function showPlaces(){
   openPanel('Places to go');
-  refreshPlaces=renderPlaces(body,{room:session.room,position:session.position,wave:town?.snapshot&&waveRoom(session.room)?waveHere:undefined,peers:town?.snapshot?(needResync?null:scene.residents):undefined,stops:currentStops(),state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),neighborhood:districtId?{districtId,ownerPlotId:town?.snapshot?.plot?.id}:undefined,walk:walkToPlace,inspectOutfit:town?.snapshot?showPeerOutfit:undefined});
+  refreshPlaces=renderPlaces(body,{room:session.room,position:session.position,wave:town?.snapshot&&waveRoom(session.room)?waveHere:undefined,peers:town?.snapshot?(needResync?null:scene.residents):undefined,stops:currentStops(),state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),neighborhood:districtId?{districtId,ownerPlotId:town?.snapshot?.plot?.id}:undefined,walk:walkToPlace,inspectOutfit:town?.snapshot?showPeerOutfit:undefined,outfitScope:{homePlotId,districtId}});
 }
 document.querySelector('#places')!.addEventListener('click',showPlaces);
 function showPeerOutfit(id:string){
  const context=contextKey(session.room,homePlotId),owner=town?.snapshot?.playerId;
  if(!owner||needResync)return;
  const current=()=>contextKey(session.room,homePlotId)===context&&town?.snapshot?.playerId===owner&&!needResync
-  ?nearbyOutfits(scene.residents,session.room,session.position).find(peer=>peer.id===id):undefined;
+  ?nearbyOutfits(scene.residents,session.room,session.position,{homePlotId,districtId}).find(peer=>peer.id===id):undefined;
  const peer=current();
  if(!peer)return;
  openPanel(peer.name+'’s outfit');

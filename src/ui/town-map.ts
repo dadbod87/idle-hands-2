@@ -4,7 +4,7 @@ import type {Headwear} from '../art/headwear.ts';
 import type {Point, Stop} from '../game/world.ts';
 
 export type MapResident = {
- id?:string; name:string; room:string; position:Point;
+ id?:string; name:string; room:string; position:Point; homePlotId?:string; districtId?:string;
  headwear?:Headwear; kerchief?:FieldKerchief; kerchiefTie?:KerchiefTie;
 };
 

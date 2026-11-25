@@ -3,7 +3,7 @@ import type {Point} from './world.ts';
 
 export const ORCHARD_KEEPER_NAME='Mabel · Orchard keeper';
 const stations=[
- {x:24.25,y:13.75,wait:4100},
+ {x:22.5,y:14.4,wait:4100},
  {x:19,y:15.65,wait:0},
  {x:17.55,y:18.75,wait:3200},
  {x:18.1,y:21.3,wait:2800},

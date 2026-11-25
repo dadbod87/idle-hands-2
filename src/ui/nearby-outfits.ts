@@ -6,15 +6,18 @@ import type {MapResident} from './town-map.ts';
 import './nearby-outfits.css';
 
 const radius=7;
+export type OutfitScope={homePlotId?:string;districtId?:string};
 export function nearbyOutfits(
- peers:readonly MapResident[]|null|undefined,room:string,feet:Point,
+ peers:readonly MapResident[]|null|undefined,room:string,feet:Point,scope:OutfitScope,
 ){
  return (peers??[]).filter(peer=>!!peer.id&&peer.room===room
+  &&(!room.startsWith('home')||!!scope.homePlotId&&peer.homePlotId===scope.homePlotId)
+  &&(room!=='neighborhood'||!!scope.districtId&&peer.districtId===scope.districtId)
   &&Math.hypot(peer.position?.x-feet.x,peer.position?.y-feet.y)<=radius
   &&(isHeadwear(peer.headwear)||validKerchief(peer.kerchief)&&peer.kerchief!=='none'));
 }
 
-export function nearbyOutfitList(room:string,position:Point,inspect:(id:string)=>void){
+export function nearbyOutfitList(room:string,position:Point,scope:OutfitScope,inspect:(id:string)=>void){
  const section=document.createElement('details');
  section.className='places-group nearby-outfits';
  const summary=document.createElement('summary');
@@ -24,7 +27,7 @@ export function nearbyOutfitList(room:string,position:Point,inspect:(id:string)=
  section.append(summary,choices);
  let shown='';
  return {section,update(peers:readonly MapResident[]|null|undefined){
-  const residents=nearbyOutfits(peers,room,position).slice(0,12);
+  const residents=nearbyOutfits(peers,room,position,scope).slice(0,12);
   const key=JSON.stringify(residents.map(({id,name})=>[id,name]));
   if(key===shown)return;
   shown=key;

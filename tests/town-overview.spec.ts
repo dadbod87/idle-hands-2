@@ -39,7 +39,11 @@ test('the optional paper map shows the current town position and preserves norma
    await openMap();
    await expect(map).toBeVisible();
    await expect(p.locator('.places-map figcaption')).toContainText('You are here · Town square');
-   await expect(map.locator('.town-map-landmark')).toHaveCount(7);
+   const landmarks=await map.locator('.town-map-landmark').evaluateAll(nodes=>nodes.map(node=>node.getAttribute('data-landmark')));
+   expect(landmarks).toEqual([
+    'square','commons-riverwalk','commons-green','commons-orchard','commons-pond','commons-west','commons-meadow',
+    'pumpworks-door','mossbank-road',
+   ]);
    expect((await readPin()).x).toBeCloseTo(100*(start.position.x+.5)/TOWN_SIZE.width,3);
    expect((await readPin()).y).toBeCloseTo(100*(start.position.y+.5)/TOWN_SIZE.height,3);
    expect((await feet()).position).toEqual(start.position);

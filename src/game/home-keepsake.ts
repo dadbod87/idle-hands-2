@@ -4,6 +4,7 @@ export const NATURALIST_KEEPSAKE = {
  id: 'naturalist',
  name: 'Neighborhood Naturalist',
  art: '/art/fieldwork/naturalist-keepsake.svg',
+ alt: 'Neighborhood Naturalist certificate with two leaves and a gold seal',
  frame: { x: 386, y: 226, width: 80, height: 56 },
  story: 'Three tree studies approved by two shrubs and a committee.',
 } as const;
@@ -12,6 +13,7 @@ export const WOODLAND_KEEPSAKE = {
  id: 'woodland-certificate',
  name: 'Qualified to point left',
  art: '/art/outing/field-certificate.svg',
+ alt: 'Woodland field certificate with a wooden waymarker',
  story: 'Awarded for two different woodland repairs. The arrow now reports to you.',
 } as const;
 
@@ -19,6 +21,7 @@ export const ALDER_KEEPSAKE={
  id:'alder-swatch',
  name:'Wren’s alder swatch',
  art:'/art/mossbank/alder-swatch.svg',
+ alt:'A honey-brown alder sample with visible grain',
  story:'Honey-brown alder from the Mossbank sawmill. The grain follows the windrow; the label follows office policy.',
 } as const;
 export const HOME_KEEPSAKES = {

@@ -524,8 +524,8 @@ const mossbank=createMossbank({
  saved:()=>{if(!townMode)refreshMossbankPrint();},inMossbank:()=>session.room==='mossbank',observationCue:()=>music.cue('gather'),
  preview:townMode?undefined:()=>workshop.showJournal('mossbank-swatch'),
  walk:place=>{
-  if(place==='mossbank-road')goNamedDestination(session.room==='mossbank'?'mossbank':'square',session.room==='mossbank'?'mossbank-mill':place);
-  else goNamedDestination('mossbank',place);
+  if(place==='mossbank-road'&&!townMode)goNamedDestination('square',place);
+  else goNamedDestination('mossbank',place==='mossbank-road'?'mossbank-mill':place);
  },
 },morningStorage,town?{
  read:()=>{
@@ -590,11 +590,13 @@ function followNamedWalk(){
  if(namedWalk.owner!==(town?.snapshot?.playerId??'local')){namedWalk=null;return;}
  if(namedWalk.startedRoom===session.room)return;
  const target=namedWalk;
- const fromInkwoodSide=session.room==='glasshouse'||(townMode&&session.room==='mossbank'),toNursery=target.room==='glasshouse';
- const squarePortal=target.room==='garden'?'allotment':target.room==='workshop'?'workshop':toNursery?'trail-gate':null;
+ const fromInkwoodSide=session.room==='glasshouse'||(townMode&&session.room==='mossbank');
+ const toNursery=target.room==='glasshouse',toMossbank=townMode&&target.room==='mossbank';
+ const squarePortal=target.room==='garden'?'allotment':target.room==='workshop'?'workshop':toNursery||toMossbank?'trail-gate':null;
  const stop=session.room===target.room?session.stops.find(s=>s.id===target.stopId)
   :session.room==='square'?worlds.square.stops.find(s=>s.id===squarePortal)
   :session.room==='trail'&&toNursery?INKWOOD_GLASSHOUSE
+  :session.room==='trail'&&toMossbank?INKWOOD_MOSSBANK_ROAD
   :session.stops.find(s=>s.transition===(fromInkwoodSide?'trail':'square'));
  if(!stop){namedWalk=null;feedback.textContent='That route could not be reached. Choose a clear nearby destination.';return;}
  if(Math.hypot(session.position.x-stop.point.x,session.position.y-stop.point.y)<=1.25){
@@ -897,7 +899,7 @@ function readHomeKeepsake(){
  card.dataset.readingKeepsake=choice;
  const art=document.createElement('img');
  art.src=keepsake.art;
- art.alt=choice==='naturalist'?'Neighborhood Naturalist certificate with two leaves and a gold seal':'Woodland field certificate with a wooden waymarker';
+ art.alt=keepsake.alt;
  art.width=300;art.height=200;
  const caption=document.createElement('figcaption');
  caption.textContent=keepsake.story;

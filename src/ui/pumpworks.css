@@ -30,6 +30,11 @@
 .pump-control-status { font-weight:bold; }
 #panel-body .pump-oatcake { grid-column:1/-1;display:flex;align-items:center;gap:6px;margin:0;font-size:.78rem; }
 .pump-oatcake img { width:32px;height:32px; }
+.pump-weapon-skill { grid-column:1/-1;display:grid;gap:3px;min-width:0;font-size:.82rem;color:#344e41; }
+.pump-weapon-skill label { display:grid;gap:3px; }
+.pump-weapon-skill progress { display:block;width:100%;height:.65rem;accent-color:#637f63; }
+#panel-body .pump-weapon-skill p { margin:0; }
+
 @media(max-width:650px), (max-height:480px) {
  #location[data-room=pumpworks] { padding:5px 8px; }
  #location[data-room=pumpworks] > :is(span,small) { display:none; }

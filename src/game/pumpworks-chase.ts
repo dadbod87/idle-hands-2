@@ -1,3 +1,4 @@
+import {learnedReach} from './weapon-practice.ts';
 import {FIELD_WEAPONS,STAFF_PUSH,type FieldWeapon} from './field-weapons.ts';
 import {HOPPER_FEET,PRACTICE_BELL} from './pumpworks-room.ts';
 import type {Point} from './world.ts';
@@ -91,10 +92,10 @@ export const hopperOpen=(state:HopperMotion)=>state.phase==='recover'&&!state.co
 export function swingAtHopper(state:HopperMotion,player:Point,wielding:boolean){
  return wielding?swingFieldWeapon(state,player,'rod'):null;
 }
-export function swingFieldWeapon(state:HopperMotion,player:Point,weapon:FieldWeapon){
+export function swingFieldWeapon(state:HopperMotion,player:Point,weapon:FieldWeapon,marks=0){
  if(state.phase==='idle'||state.strikeCooldown>0||!inside(player))return null;
  const profile=FIELD_WEAPONS[weapon];
- const withinReach=distance(player,state.feet)<=profile.reach;
+ const withinReach=distance(player,state.feet)<=profile.reach+learnedReach(marks);
  const deflected=withinReach&&(state.phase==='windup'||state.phase==='charge');
  const counter=withinReach&&hopperOpen(state);
  const motion={...state,counterUsed:counter||state.counterUsed,strikeCooldown:profile.cooldown};

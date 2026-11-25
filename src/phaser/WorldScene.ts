@@ -5,7 +5,7 @@ import {GRAFT_TREE_FEET,MOSSBANK_VALLEY_ROAD,VALLEY_STOPS,VALLEY_TREES,valleyFol
 import {KERCHIEF_COLORS,validKerchief,type FieldKerchief,type KerchiefTie} from '../game/field-appearance.ts';
 import {SEWING_TABLE} from '../game/tailoring.ts';
 import {KERCHIEF_RIG_WIDTH,KERCHIEF_INK,KERCHIEF_OUTLINES,KERCHIEF_TRIM} from '../art/field-kerchief.ts';
-import {BOW_DRAW_SECONDS,BOW_TRACE_MS,STAFF_PULSE_MS,type BowDraw,type BowTrace,type StaffPulse} from '../game/field-weapons.ts';
+import {BOW_DRAW_SECONDS,BOW_TRACE_MS,ROD_SWEEP_MS,STAFF_PULSE_MS,type BowDraw,type BowTrace,type RodSweep,type StaffPulse} from '../game/field-weapons.ts';
 import type {MossbankSurvey} from '../game/mossbank.ts';
 import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,hopperOpen,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
@@ -526,7 +526,7 @@ export class WorldScene extends Phaser.Scene {
   constructor(public session: Session) { super('world'); }
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
   pumpworksState?:()=>PumpworksState|null;
-  pumpworksEncounter?:()=>{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;pulse:StaffPulse|null;enemyHealth:number|null;recovering:boolean};
+  pumpworksEncounter?:()=>{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;sweep:RodSweep|null;pulse:StaffPulse|null;enemyHealth:number|null;recovering:boolean};
   private hopper?:Phaser.GameObjects.Image;
   private hopperWarning?:Phaser.GameObjects.Graphics;
   private combatInk?:Phaser.GameObjects.Graphics;
@@ -641,8 +641,10 @@ export class WorldScene extends Phaser.Scene {
       }
     }
     this.soundingRod?.setVisible(state?.rod==='equipped');
-    const strike=impact?.kind==='bell'?Math.max(0,(impact.until-performance.now())/1000):motion?.strikeCooldown??0;
-    this.soundingRod?.setRotation(!reduced&&strike>.24?1.2*Math.sin((HOPPER_MOVEMENT.strikeCooldown-strike)*13):0);
+    const handedness=this.facing==='west'?-1:1;
+    const sweep=encounter?.sweep;
+    const sweepProgress=sweep?1-Math.max(0,sweep.until-performance.now())/ROD_SWEEP_MS:0;
+    this.soundingRod?.setRotation(!reduced&&sweep?handedness*(sweepProgress*1.2-.4):0);
     this.fieldBow?.setVisible(state?.bow==='equipped');
     this.fieldStaff?.setVisible(state?.staff==='equipped');
     const draw=encounter?.draw;
@@ -663,7 +665,7 @@ export class WorldScene extends Phaser.Scene {
       ink.lineStyle(2,0xffe4a1,alpha).lineBetween(sx,sy,ex,ey);
       ink.fillStyle(0xffe4a1,alpha).fillCircle(ex,ey,3);
     }
-    this.fieldBow?.setRotation(!reduced&&draw?-.34*(1-draw.remaining/BOW_DRAW_SECONDS):0);
+    this.fieldBow?.setRotation(!reduced&&draw?-handedness*.34*(1-draw.remaining/BOW_DRAW_SECONDS):0);
     const pulse=encounter?.pulse;
     if(pulse){
       const fraction=1-Math.min(1,Math.max(0,pulse.until-performance.now())/STAFF_PULSE_MS);
@@ -676,7 +678,7 @@ export class WorldScene extends Phaser.Scene {
         ink.lineStyle(2,0xd9efdb,alpha).strokeCircle(px+dx*reach,py+dy*reach,radius);
       }
     }
-    this.fieldStaff?.setRotation(!reduced&&pulse?.until&&pulse.until>performance.now()?-.37:0);
+    this.fieldStaff?.setRotation(!reduced&&pulse?.until&&pulse.until>performance.now()?-handedness*.37:0);
     const danger=visible&&motion?.aim&&motion.origin&&(motion.phase==='windup'||motion.phase==='charge');
     const warning=this.hopperWarning;
     warning.clear();
@@ -696,10 +698,15 @@ export class WorldScene extends Phaser.Scene {
         warning.lineBetween(ax-10,ay,ax+10,ay).lineBetween(ax,ay-10,ax,ay+10);
       }
     }
-    if(!reduced&&strike>.31&&this.actor){
-      const angle=Math.atan2(y-this.actor.y,x-this.actor.x);
-      warning.lineStyle(3,0xffecb8,.88).beginPath();
-      warning.arc(this.actor.x,this.actor.y-15,29,angle-.52,angle+.52).strokePath();
+    if(sweep){
+      const angle=Math.atan2(sweep.to.y-sweep.from.y,sweep.to.x-sweep.from.x);
+      const px=(sweep.from.x+.5)*TILE,py=(sweep.from.y+.5)*TILE-15;
+      const radius=reduced?32:26+sweepProgress*12;
+      const alpha=reduced?1:Math.max(.15,1-sweepProgress);
+      ink.lineStyle(6,0x34423b,alpha).beginPath();
+      ink.arc(px,py,radius,angle-.52,angle+.52).strokePath();
+      ink.lineStyle(3,0xffecb8,alpha).beginPath();
+      ink.arc(px,py,radius,angle-.52,angle+.52).strokePath();
     }
     if((motion?.guard??0)>0&&this.actor){
       warning.lineStyle(3,0x395d67,1).strokeEllipse(this.actor.x,this.actor.y-2,46,25);
@@ -1464,6 +1471,13 @@ export class WorldScene extends Phaser.Scene {
     const moving=Math.hypot(dx,dy)>.00001;
     if(moving)this.travelled+=Math.hypot(dx,dy)*TILE;
     this.facing=facingFor(dx,dy,this.facing);
+    if(!moving&&this.room==='pumpworks'){
+      const encounter=this.pumpworksEncounter?.();
+      const draw=encounter?.draw;
+      const attack=encounter?.sweep??encounter?.shot??encounter?.pulse;
+      const aim=draw?(draw.practice?PRACTICE_BELL:encounter?.hopper.feet):attack?.to;
+      if(aim)this.facing=facingFor(aim.x-this.session.position.x,aim.y-this.session.position.y,this.facing);
+    }
     const reduced=this.reducedMotion.matches;
     this.frame=walkFrame(this.travelled,moving,reduced);
     if(moving||document.hidden||this.gardenMotion&&performance.now()-this.gardenMotion.started>260)this.gardenMotion=null;
@@ -1484,9 +1498,11 @@ export class WorldScene extends Phaser.Scene {
     if(this.actor.texture.key!==actorKey||String(this.actor.frame.name)!==String(actorFrame))this.actor.setTexture(actorKey,actorFrame);
     const x=(this.session.position.x+.5)*TILE,y=(this.session.position.y+.5)*TILE;
     this.actor.setPosition(x,y).setDepth(y);
-    this.soundingRod?.setPosition(x+14,y-3).setDepth(y+1);
-    this.fieldBow?.setPosition(x+14,y-5).setDepth(y+1);
-    this.fieldStaff?.setPosition(x+14,y-1).setDepth(y+1);
+    const leftHand=this.facing==='west', handX=x+(leftHand?-14:14);
+    const propDepth=y+(this.facing==='north'?-.25:1);
+    this.soundingRod?.setPosition(handX,y-3).setDepth(propDepth).setFlipX(leftHand);
+    this.fieldBow?.setPosition(handX,y-5).setDepth(propDepth).setFlipX(leftHand);
+    this.fieldStaff?.setPosition(handX,y-1).setDepth(propDepth).setFlipX(leftHand);
     const practiceGear=this.pumpworksState?.();
     if(this.fieldVest){
       const armor=!this.resting&&practiceGear?equippedArmor(practiceGear):null;

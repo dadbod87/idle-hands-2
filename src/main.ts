@@ -643,7 +643,7 @@ function followNamedWalk(){
  const toValley=!townMode&&target.room==='hidden-valley';
  const squarePortal=toValley?MOSSBANK_ROAD.id:toPumpworks?PUMPWORKS_DOOR.id:target.room==='garden'?'allotment':target.room==='workshop'?'workshop':toNursery||toMossbank?'trail-gate':null;
  const stop=session.room===target.room?session.stops.find(s=>s.id===target.stopId)
-  :session.room==='square'?worlds.square.stops.find(s=>s.id===squarePortal)
+  :session.room==='square'?session.stops.find(s=>s.id===squarePortal)
   :session.room==='trail'&&toNursery?INKWOOD_GLASSHOUSE
   :session.room==='trail'&&toMossbank?INKWOOD_MOSSBANK_ROAD
   :session.room==='mossbank'&&toValley?session.stops.find(stop=>stop.id===MOSSBANK_VALLEY_ROAD.id)

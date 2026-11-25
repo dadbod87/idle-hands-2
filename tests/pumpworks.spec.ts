@@ -1,8 +1,8 @@
 import {FORGE_ORDER_MS} from '../src/game/forge-order.ts';
 import {expect,test,type Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
-import {PUMPWORKS_FRONT,HOPPER_FEET} from '../src/game/pumpworks-room.ts';
-import type {BowDraw,BowTrace,StaffPulse} from '../src/game/field-weapons.ts';
+import {PUMPWORKS_FRONT,HOPPER_FEET,PRACTICE_BELL} from '../src/game/pumpworks-room.ts';
+import type {BowDraw,BowTrace,RodSweep,StaffPulse} from '../src/game/field-weapons.ts';
 import type {PumpworksState} from '../src/game/pumpworks.ts';
 import {HOPPER_MOVEMENT,type FieldImpact,type HopperMotion} from '../src/game/pumpworks-chase.ts';
 import type {Point} from '../src/game/world.ts';
@@ -12,9 +12,9 @@ const close=(page:Page)=>page.getByRole('button',{name:'Close panel',exact:true}
 type Pilot={
  snapshot():{room:string;nearby:string|null;position:Point;walking:boolean};
  pumpworks():PumpworksState;
- pumpworksMotion():{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;pulse:StaffPulse|null;enemyHealth:number|null};
+ pumpworksMotion():{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;sweep:RodSweep|null;pulse:StaffPulse|null;enemyHealth:number|null};
  screenPoint(x:number,y:number):Point;
- metrics():{visual:{fieldArmorArt?:string|null;workshopPrint:string|null;fieldEquipment:{vest:boolean;kerchief:string|null}}};
+ metrics():{visual:{facing:string;fieldArmorArt?:string|null;workshopPrint:string|null;fieldEquipment:{vest:boolean;kerchief:string|null}}};
 };
 const read=(page:Page)=>page.evaluate(()=>{
  const pilot=(window as Window&{__pilot?:Pilot}).__pilot;
@@ -164,13 +164,20 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
 
    await walk('pumpworks-bell');
    await expect.poll(async()=>(await read(page))?.nearby).toBe('pumpworks-bell');
+   // From east of the bell, the walking pose points east. Strike must turn
+   // west, toward the bell rather than the hopper across the canal.
+   await move({x:PRACTICE_BELL.x+.78,y:PRACTICE_BELL.y});
+   await expect.poll(async()=>{const live=await read(page);return live&&!live.walking&&live.position.x>PRACTICE_BELL.x+.55;}).toBe(true);
    await expect(page.locator('#pump-controls')).toContainText('Try a swing');
    const beforePractice=(await read(page))!.state;
    if(shape.touch)await press('Strike');else await page.keyboard.press('Space');
    await expect.poll(async()=>(await read(page))?.combat.impact?.kind,{intervals:[20]}).toBe('bell');
    expect((await read(page))!.state).toEqual(beforePractice);
+   await expect.poll(()=>page.evaluate(()=>(window as Window&{__pilot?:Pilot}).__pilot?.metrics().visual.facing)).toBe('west');
    await expect(page.locator('dialog')).toBeHidden();
    await capture('practice');
+   // Accepted hits train the weapon; this dry-side swing left all marks alone.
+   expect(beforePractice.weaponPractice).toBeUndefined();
 
    await walk('pumpworks-hopper');
    await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{timeout:15000,intervals:[40]}).toBe('windup');
@@ -279,6 +286,20 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     expect((await read(page))!.state.health).toBe(start.state.health);
    }
    await fight();
+   const earned=(await read(page))!.state.weaponPractice;
+   expect(earned?.rod).toBeGreaterThanOrEqual(4);
+   expect(earned?.bow).toBeUndefined();
+   expect(earned?.staff).toBeUndefined();
+   await press('Bag');
+   await press('Equipment');
+   const practiceCard=page.locator('[data-pump-bag=rod] .pump-weapon-skill');
+   await expect(practiceCard).toContainText('Rodwork');
+   await practiceCard.scrollIntoViewIfNeeded();
+   await capture('skills');
+   await close(page).click();
+   await page.reload();
+   await ready('pumpworks');
+   expect((await read(page))!.state.weaponPractice).toEqual(earned);
    await station('pumpworks-report');
    await press('Take the field seal');
    await close(page).click();
@@ -619,8 +640,19 @@ test('Dry-side forge finishes one independent order and the armor shows outside 
   await page.clock.setFixedTime(now+FORGE_ORDER_MS-1);
   await expect(offer).toContainText('Ready in 0:01');
   await expect(button('Collect and equip vest')).toHaveCount(0);
+  await close(page).tap();
+  await route('pumpworks-exit');
+  await button('Enter town square').tap();
+  await room('square');
+  await page.reload();
+  await room('square');
+  expect((await read(page))!.state.forge?.readyAt).toBe(now+FORGE_ORDER_MS);
   await page.clock.setFixedTime(now+FORGE_ORDER_MS);
-  await expect(button('Collect and equip vest')).toBeInViewport({ratio:1});
+  await button('Journal').tap();
+  await expect(page.locator('[data-forge-journal]')).toContainText('Ready to collect.');
+  await button('Walk to the forge').tap();
+  await room('pumpworks');
+  await expect(button('Collect and equip vest')).toBeInViewport({ratio:1,timeout:18000});
   await button('Collect and equip vest').tap();
   await expect(offer).toContainText('Riveted vest collected and equipped.');
   await expect(button('Start riveted vest')).toHaveCount(0);

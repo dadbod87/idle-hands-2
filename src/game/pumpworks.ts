@@ -3,6 +3,9 @@ import {z} from 'zod';
 import {FIELD_KERCHIEFS,KERCHIEF_ACTIONS,type FieldKerchief,KERCHIEF_COLORS,KERCHIEF_PACK_ACTIONS,KERCHIEF_TIES,type FieldDyeAction} from './field-appearance.ts';
 import {equippedFieldWeapon,FIELD_WEAPON_IDS,FIELD_WEAPONS,wieldWeapon} from './field-weapons.ts';
 
+import {learnedCounter,MAX_WEAPON_RANK,practiceGain,WEAPON_RANK_MARKS,WEAPON_SKILL_NAMES,weaponRank} from './weapon-practice.ts';
+
+const practiceMarks=z.number().int().min(0).max(WEAPON_RANK_MARKS[MAX_WEAPON_RANK]!);
 export const FIELD_HEALTH=8;
 export const OATCAKE_HEAL=3;
 export const PADDED_VEST_ARMOR=1;
@@ -20,6 +23,7 @@ const recordSchema=z.object({
  kerchiefDye:z.enum(FIELD_KERCHIEFS).optional(),
  kerchiefTie:z.enum(KERCHIEF_TIES).optional(),
  forge:forgeOrderSchema.optional(),
+ weaponPractice:z.object({rod:practiceMarks.optional(),bow:practiceMarks.optional(),staff:practiceMarks.optional()}).strict().optional(),
  oatcake:z.enum(['unissued','packed','used']).default('unissued'),
  satchel:z.enum(['none','carried','at-pump']),
  fight:z.object({
@@ -34,6 +38,7 @@ const recordSchema=z.object({
  if(state.recovering!==(state.health===0)
     ||state.rematch!==(state.reported&&!state.cleared)
     ||state.fight&&(state.recovering||state.cleared)
+    ||FIELD_WEAPON_IDS.some(slot=>state[slot]==='unissued'&&(state.weaponPractice?.[slot]??0)>0)
     ||FIELD_WEAPON_IDS.filter(slot=>state[slot]==='equipped').length>1
     ||state.kerchief!=='none'&&state.kerchiefDye!==undefined&&state.kerchief!==state.kerchiefDye
     ||state.kerchiefTie==='wrap'&&(state.kerchiefDye??state.kerchief)==='none'
@@ -167,14 +172,20 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
    const weapon=equippedFieldWeapon(state);
    if(place!=='arena'||!state.fight||!weapon)return refuse('Get within reach with a weapon equipped.');
    const profile=FIELD_WEAPONS[weapon];
-   const damage=action==='counter'?profile.counter:profile.damage;
+   const practiced=state.weaponPractice?.[weapon]??0;
+   const marks=practiceGain(practiced,action);
+   const previousRank=weaponRank(practiced),rank=weaponRank(marks);
+   const advance=rank>previousRank?' '+WEAPON_SKILL_NAMES[weapon]+' reached rank '+rank+'.':'';
+   const progress=marks!==practiced?{weaponPractice:{...state.weaponPractice,[weapon]:marks}}:{};
+   const damage=action==='counter'?profile.counter+learnedCounter(practiced):profile.damage;
    const remaining=state.fight.health-damage;
-   if(remaining<=0)return accept({fight:null,cleared:true,rematch:false},state.rematch
+   if(remaining<=0)return accept({...progress,fight:null,cleared:true,rematch:false},(state.rematch
     ?'The hopper slipped away. Rematch complete.'
-    :'The hopper slipped into the grate. The inspection desk is clear.');
-   return accept({fight:{health:remaining}},action==='counter'?
+    :'The hopper slipped into the grate. The inspection desk is clear.')+advance);
+   const contact=action==='counter'?
     (weapon==='staff'?'The pulse pushes the hopper back.':'Good timing. The hopper was open.'):
-    weapon==='staff'?'The pulse clips the hopper.':weapon==='bow'?'The shot clips the hopper.':'The rod clips the hopper.');
+    weapon==='staff'?'The pulse clips the hopper.':weapon==='bow'?'The shot clips the hopper.':'The rod clips the hopper.';
+   return accept({...progress,fight:{health:remaining}},contact+advance);
   }
   case 'hit':
   case 'splash-hit':

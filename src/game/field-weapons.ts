@@ -11,6 +11,7 @@ export type FieldItemState='unissued'|'packed'|'equipped';
 export const BOW_DRAW_SECONDS=.38;
 export const BOW_STILL_RADIUS=.18;
 export const BOW_TRACE_MS=280;
+export const ROD_SWEEP_MS=240;
 
 export type FieldLoadout=Record<FieldWeapon,FieldItemState>;
 export function equippedFieldWeapon(gear:FieldLoadout):FieldWeapon|null{
@@ -27,3 +28,4 @@ export const STAFF_PULSE_MS=300;
 export type StaffPulse={from:Point;to:Point;until:number};
 export type BowDraw={from:Point;remaining:number;practice:boolean};
 export type BowTrace={from:Point;to:Point;until:number};
+export type RodSweep={from:Point;to:Point;until:number};

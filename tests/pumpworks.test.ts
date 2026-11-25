@@ -1,3 +1,4 @@
+import {MAX_WEAPON_RANK,PUMPWORKS_TRAINING_MARKS,WEAPON_RANK_MARKS,weaponRank} from '../src/game/weapon-practice.ts';
 import {FORGE_ORDER_MS} from '../src/game/forge-order.ts';
 import {FIELD_CUES,renderFieldCue} from '../src/audio/combat-cues.ts';
 import assert from 'node:assert/strict';
@@ -412,4 +413,33 @@ test('The forge owns one timed practice blank and two vests cannot stack',()=>{
  assert.equal(preparedFight.satchel,loan.satchel);
  const faked={...finished,vest:'equipped'};
  assert.equal(readPumpworks({getItem:()=>JSON.stringify(faked)}).ok,false);
+});
+
+
+test('Successful use advances only the equipped skill and Pumpworks tops out below mastery',()=>{
+ const starter=play(freshPumpworks(),'issue','locker');
+ const fight=play(starter,'begin','arena');
+ const first=play(fight,'counter','arena');
+ const second=play(first,'counter','arena');
+ assert.equal(first.weaponPractice?.rod,2);
+ assert.equal(second.weaponPractice?.rod,4);
+ assert.equal(second.fight?.health,1);
+ assert.equal(weaponRank(second.weaponPractice!.rod!),1);
+ assert.equal(second.weaponPractice?.bow,undefined);
+ assert.equal(applyPumpworks(second,'strike','bench').ok,false);
+ const lethal=play(second,'strike','arena');
+ assert.equal(lethal.weaponPractice?.rod,5);
+ const bow=play(play(play(lethal,'report','desk'),'borrow-bow','locker'),'rematch','bench');
+ const trainedBow=play(play(bow,'begin','arena'),'counter','arena');
+ assert.deepEqual(trainedBow.weaponPractice,{rod:5,bow:2});
+ const rankTwo=play({...fight,weaponPractice:{rod:WEAPON_RANK_MARKS[2]}},'counter','arena');
+ assert.equal(rankTwo.fight?.health,4);
+ const atLimit=play({...fight,weaponPractice:{rod:PUMPWORKS_TRAINING_MARKS-1}},'counter','arena');
+ assert.equal(atLimit.weaponPractice?.rod,PUMPWORKS_TRAINING_MARKS);
+ assert.deepEqual(play(atLimit,'strike','arena').weaponPractice,atLimit.weaponPractice);
+ assert.equal(weaponRank(PUMPWORKS_TRAINING_MARKS),4);
+ assert.equal(weaponRank(WEAPON_RANK_MARKS[MAX_WEAPON_RANK]!),10);
+ for(let index=2;index<WEAPON_RANK_MARKS.length;index++){
+  assert.ok(WEAPON_RANK_MARKS[index]!-WEAPON_RANK_MARKS[index-1]!>WEAPON_RANK_MARKS[index-1]!-WEAPON_RANK_MARKS[index-2]!);
+ }
 });

@@ -6,6 +6,15 @@ Authority: Nick delegated routine design/technical choices on 2026-11-09 and req
 
 Every session must read [ACTIONS_USAGE_POLICY](ACTIONS_USAGE_POLICY.md) before requesting hosted validation. Follow its local-first batching, existing-run inspection, quota hold and closeout rules. Required final-head checks remain unchanged.
 
+## Faster development during long sessions
+
+Use a playable outcome as the session target. Finish one end-to-end player experience at a time, including its result, persistence and relevant desktop and phone checks. Use a small complete version to assess clarity and enjoyment before expanding the catalog.
+
+- Use an injected clock in focused tests for timer boundaries, reloads and one-time collection. Test just before, at and after readiness. Reserve elapsed-clock trials for changes to timekeeping, persistence or tab suspension, or when investigating a concrete timing issue. Keep production timers and all required acceptance tests as specified.
+- Start justified elapsed-clock trials in isolated fixtures. Record the tested revision, due time and expected outcome. Continue ready, independent work while they run. Check at meaningful milestones and collect the results before making an acceptance claim. If a test or release gate blocks a dependency, continue work that can be completed safely without it.
+- Run focused checks during iteration. Batch related gameplay, tests and documentation before requesting full hosted checks on the exact final revision. Keep all required database and browser coverage. Follow the [Actions usage policy](ACTIONS_USAGE_POLICY.md), stay at $0 paid GitHub usage, and keep saved previews and databases stopped while the current owner instruction applies.
+- Close out against the playable goal or the owner's cutoff. Report what a player can now do, what passed, any outstanding checks and the next playable outcome.
+
 ## Match the verification runtime
 
 The repository workflow pins Node24.22.2. Prefer that exact runtime for full local Node/Playwright verification and record the browser/profile. A newer system runtime is not evidence that the pinned checks passed. November17diagnostics encountered local Node26stream/installer and Chrome reload-poll failures; a matching-runtime/browser check succeeded, without establishing a single root cause. Keep those observations separate. An isolated verified official Nodebinary may be used without changing system defaults or dependency locks. Use the existing CIprofile when reproducing CI; report its configured assertion windows, not a pass of the different local Chrome profile. Never change coverage, budgets or source timeouts to manufacture acceptance.
@@ -37,7 +46,7 @@ The generated prompt supplies the selected task and startup/closeout rules. Nick
 5. Run task acceptance checks and relevant regression checks. A failed/missing required check keeps the task open. Separate local, fixture, device, preview, production and owner acceptance. Never call an emulated mobile viewport a real-device test.
 6. Update ROADMAP, DECISIONS if changed, latest handoff and append a dated history entry. Include exact commands/results, commit/PR, screenshots, fixture interception, unresolved problems and the next executable task. No credentials in evidence.
 7. Run tracker `check`; review diff for scope/secrets/licenses; commit/PR and satisfy the owning repo's release gates. In the original 1.0 repository all three existing jobs must succeed before merge even for bridge/planning work. In this public sequel repository, follow AGENTS and require both domain-build-plan and browser-playtest success on the exact final PR head before merge. Inspect actual branch protection; until it enforces all required checks, retain the manual exact-head gate. Source/CI is not a hosted game release. Mark work `done` only after its acceptance artifacts exist. Record final merge/release evidence in the handoff or PR closeout; do not falsely claim a still-pending release.
-8. End with outcome, remaining limits and the next task. Stop at a completed task boundary; the next prompt resumes. Do not request routine reapproval or advance into a new major milestone without closing the current one.
+8. End with outcome, remaining limits and the next task. For a single-task request, stop at the completed task boundary. During a continuation window, pick the next ready task and keep going within the approved scope. Preserve dependency and acceptance gates for major milestones.
 
 ## Delegation and escalation
 

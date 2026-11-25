@@ -2,6 +2,8 @@
 
 The [overnight handoff](handoffs/2026-11-25-overnight-play.md) identifies the exact combined local source, independently backed-up candidates, completed real-duration receipts and next steps. Accepted main and the existing PRs remain separate. Keep saved previews and databases stopped. Use runtime `d64d51f` from `study/nov25-pr-compat` for local review. The new shared gameplay still needs its complete connected validation.
 
+Follow the [long-session workflow](BUILD_SYSTEM.md#faster-development-during-long-sessions). The next playable goal is connected Glasshouse validation. After acceptance, build one pigment loop from growing a crop to making a finish, applying it to an earned decoration and verifying that a visitor sees the result. Keep the existing Swatch Book study separate until integration.
+
 # November 23 — shared-town and practice batches
 
 The [current handoff](handoffs/2026-11-23-shared-town-and-practice.md) records the two batches and their check boundaries. Main is `168e857`. Exact green PR #108 is open. `perf/mount-nearby-residents` contains the shared-town batch on top of it. `feat/browser-practice-journal` combines the separate Riverwalk and Journal experiences. Keep saved previews and databases stopped.

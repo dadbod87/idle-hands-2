@@ -1,3 +1,7 @@
+# November 25 — local overnight review candidate
+
+The [overnight handoff](handoffs/2026-11-25-overnight-play.md) identifies the exact combined local source, independently backed-up candidates, pending real-duration receipts and next steps. Accepted main and the existing PRs remain separate. Keep saved previews and databases stopped. The new shared gameplay still needs its complete connected validation.
+
 # November 23 — first arrival and Bag movement accepted
 
 PR #106 merged as `a2421996266fa96115db72034395c9a6b1282430`. Main passed 592 domain and database tests and 253 browser cases on its exact commit. [Verification](../evidence/IH2-188/EXACT_CI.json).

@@ -1,0 +1,9 @@
+# IH2-255 · Combined local playable review
+
+The combined candidate puts the earlier browser-practice return and creative loops beside the staged shared Glasshouse and home displays. It is a local review integration of independent feature branches, with no change to accepted main or the two open PRs. Preserve the same movement, database authority, stock and exact checks. The tradeoff is more features to validate together. Shared-only work still needs its real fit with the pending headwear and nearby-resident branches.
+
+The first combined run showed both certificate views correctly but omitted their artwork identifier from the diagnostic state. The two affected tests failed on that missing field. The merge correction retained the original exact texture accessor. On runtime commit 8311a4b, 452 local domain tests passed and 33 connected cases were skipped. Chromium and WebKit each passed nine focused native browser cases including Riverwalk, Pond, nursery return, both home certificates, private plant consent and the visible town doors. The existing three browser groups collect 91, 89 and 91 cases. Collection does not prove the full test gate.
+
+The individual Pond candidate's broader final pass recorded 167 of 168 cases. A fake-clock Bag test observed two idle ticks where it expected three during the broad run. Its separate rerun passed unchanged. The older short certificate follow-up also passed. Both are logged as local results. Do not report them as a passing shared service or a hosted result.
+
+The actual game visuals were inspected across desktop, emulated 320px phone and 200% short landscape. Some desktop shots used the cosmetic midday view. In the short enlarged game, the existing deliberate page scroll preserves both the collision canvas and large controls. Phone coverage used Chromium or WebKit emulation. No physical device or real multiplayer claim is supported yet.

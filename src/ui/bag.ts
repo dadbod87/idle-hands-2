@@ -8,7 +8,7 @@ import type {PropId,WorkshopState as CurrentWorkshopState} from '../game/live-wo
 
 type BagEquipmentActions={
  equipSaw:()=>void;
- fieldGear?:HTMLElement;
+ fieldGear?:HTMLElement[];
  openSawLesson?:()=>void;
  backToWork?:()=>void;
  wardrobe?:{label:string;open:()=>void};
@@ -26,7 +26,7 @@ export class BagView {
  private status=document.createElement('p');
  private countKey=document.createElement('p');
  private appearance:HTMLElement|null=null;
- private readonly fieldGear?:HTMLElement;
+ private readonly fieldGear?:HTMLElement[];
  private pocket:BagGroup='furniture';
  private headwearCards=new Map<EarnedHeadwear,{card:HTMLElement;title:HTMLElement;state:HTMLElement;wear:HTMLButtonElement;find:HTMLButtonElement;notice:HTMLElement}>();
  private townHeadwear?:TownHeadwear;
@@ -178,7 +178,7 @@ export class BagView {
   }
   this.restoreOrder();
   this.fieldGear=equipment?.fieldGear;
-  if(this.fieldGear)this.groups.get('equipment')!.prepend(this.fieldGear);
+  if(this.fieldGear)this.groups.get('equipment')!.prepend(...this.fieldGear);
   const note=document.createElement('p');note.className='bag-note';note.textContent='Collect finished crafts to put them here. Inspecting never uses an item.';this.root.append(note,this.orderBar);this.root.addEventListener('focusin',this.focused);
  }
  openPocket(group:BagGroup,focus=false){
@@ -301,8 +301,9 @@ export class BagView {
   if(slot?.choose&&!slot.choose.hidden)this.focusCardAction(slot.card,slot.choose);
  }
  focusFieldGear(){
-  const action=this.fieldGear?.querySelector('button');
-  if(action&&this.fieldGear&&!action.disabled)this.focusCardAction(this.fieldGear,action);
+  const first=this.fieldGear?.[0];
+  const action=first?.querySelector('button');
+  if(first&&action&&!action.disabled)this.focusCardAction(first,action);
  }
  focusHeadwear(item:EarnedHeadwear){
   const entry=this.headwearCards.get(item);

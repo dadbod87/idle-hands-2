@@ -1,10 +1,11 @@
+import {FIELD_WEAPONS,type FieldWeapon} from './field-weapons.ts';
 import {HOPPER_FEET,PRACTICE_BELL} from './pumpworks-room.ts';
 import type {Point} from './world.ts';
 
 export const HOPPER_MOVEMENT={
- awareness:4.8,windupRange:2.25,reach:1.8,impactRadius:.87,splashRadius:2.55,lowHealth:4,
+ awareness:4.8,windupRange:2.25,reach:FIELD_WEAPONS.rod.reach,impactRadius:.87,splashRadius:2.55,lowHealth:4,
  patrolSeconds:9.6,chaseSpeed:1.75,windupSeconds:1.18,chargeSeconds:.28,restSeconds:1.18,
- strikeCooldown:.46,braceSeconds:1.45,braceCooldown:2.2,
+ strikeCooldown:FIELD_WEAPONS.rod.cooldown,braceSeconds:1.45,braceCooldown:2.2,
 } as const;
 type Phase='idle'|'chase'|'windup'|'charge'|'recover';
 export type FieldImpactKind='strike'|'counter'|'damage'|'blocked'|'bell'|'shell'|'heal';
@@ -28,7 +29,7 @@ const bounded=(p:Point):Point=>({x:clamp(p.x,12.75,19.15),y:clamp(p.y,4.35,12.6)
 const mix=(a:Point,b:Point,t:number):Point=>({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t});
 
 export const hopperLeash=inside;
-export const inPracticeReach=(player:Point)=>distance(player,PRACTICE_BELL)<=HOPPER_MOVEMENT.reach;
+export const inPracticeReach=(player:Point,weapon:FieldWeapon='rod')=>distance(player,PRACTICE_BELL)<=FIELD_WEAPONS[weapon].reach;
 export const hopperNotices=(player:Point,hopperFeet:Point=HOPPER_FEET)=>
  inside(player)&&distance(player,hopperFeet)<=HOPPER_MOVEMENT.awareness;
 
@@ -88,11 +89,15 @@ export function stepHopper(state:HopperMotion,player:Point,seconds:number,enemyH
 export const hopperOpen=(state:HopperMotion)=>state.phase==='recover'&&!state.counterUsed;
 
 export function swingAtHopper(state:HopperMotion,player:Point,wielding:boolean){
- if(state.phase==='idle'||state.strikeCooldown>0||!inside(player)||!wielding)return null;
- const withinReach=distance(player,state.feet)<=HOPPER_MOVEMENT.reach;
+ return wielding?swingFieldWeapon(state,player,'rod'):null;
+}
+export function swingFieldWeapon(state:HopperMotion,player:Point,weapon:FieldWeapon){
+ if(state.phase==='idle'||state.strikeCooldown>0||!inside(player))return null;
+ const profile=FIELD_WEAPONS[weapon];
+ const withinReach=distance(player,state.feet)<=profile.reach;
  const deflected=withinReach&&(state.phase==='windup'||state.phase==='charge');
  const counter=withinReach&&hopperOpen(state);
- const motion={...state,counterUsed:counter||state.counterUsed,strikeCooldown:HOPPER_MOVEMENT.strikeCooldown};
+ const motion={...state,counterUsed:counter||state.counterUsed,strikeCooldown:profile.cooldown};
  const hit=withinReach&&!deflected?(counter?'counter' as const:'strike' as const):null;
  return {motion,hit,deflected};
 }

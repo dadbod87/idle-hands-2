@@ -1,3 +1,4 @@
+import {BOW_DRAW_SECONDS,BOW_TRACE_MS,type BowDraw,type BowTrace} from '../game/field-weapons.ts';
 import type {MossbankSurvey} from '../game/mossbank.ts';
 import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,hopperOpen,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
@@ -472,12 +473,13 @@ export class WorldScene extends Phaser.Scene {
   constructor(public session: Session) { super('world'); }
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
   pumpworksState?:()=>PumpworksState|null;
-  pumpworksEncounter?:()=>{hopper:HopperMotion;impact:FieldImpact|null;enemyHealth:number|null;recovering:boolean};
+  pumpworksEncounter?:()=>{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;enemyHealth:number|null;recovering:boolean};
   private hopper?:Phaser.GameObjects.Image;
   private hopperWarning?:Phaser.GameObjects.Graphics;
   private combatInk?:Phaser.GameObjects.Graphics;
   private hopperName?:Phaser.GameObjects.Text;
   private soundingRod?:Phaser.GameObjects.Image;
+  private fieldBow?:Phaser.GameObjects.Image;
   paintPumpworks(){
     if(!this.hopper||!this.hopperWarning||!this.hopperName||!this.combatInk)return;
     const state=this.pumpworksState?.(),encounter=this.pumpworksEncounter?.(),motion=encounter?.hopper;
@@ -538,6 +540,26 @@ export class WorldScene extends Phaser.Scene {
     this.soundingRod?.setVisible(state?.rod==='equipped');
     const strike=impact?.kind==='bell'?Math.max(0,(impact.until-performance.now())/1000):motion?.strikeCooldown??0;
     this.soundingRod?.setRotation(!reduced&&strike>.24?1.2*Math.sin((HOPPER_MOVEMENT.strikeCooldown-strike)*13):0);
+    this.fieldBow?.setVisible(state?.bow==='equipped');
+    const draw=encounter?.draw;
+    if(draw){
+      const px=(draw.from.x+.5)*TILE,py=(draw.from.y+.5)*TILE-45;
+      ink.fillStyle(0x31473c,1).fillRoundedRect(px-15,py-3,30,7,2);
+      ink.fillStyle(0xffe6a6,1).fillRect(px-13,py-1,26*(1-draw.remaining/BOW_DRAW_SECONDS),3);
+    }
+    const bowShot=encounter?.shot;
+    if(bowShot){
+      const fraction=Math.min(1,1-Math.max(0,bowShot.until-performance.now())/BOW_TRACE_MS);
+      const x0=(bowShot.from.x+.5)*TILE,y0=(bowShot.from.y+.5)*TILE-21;
+      const x1=(bowShot.to.x+.5)*TILE,y1=(bowShot.to.y+.5)*TILE-21;
+      const tip=reduced?1:Math.min(1,fraction*1.6+.15),tail=reduced?0:Math.max(0,tip-.38);
+      const sx=x0+(x1-x0)*tail,sy=y0+(y1-y0)*tail,ex=x0+(x1-x0)*tip,ey=y0+(y1-y0)*tip;
+      const alpha=Math.max(.2,1-fraction);
+      ink.lineStyle(5,0x34423b,alpha).lineBetween(sx,sy,ex,ey);
+      ink.lineStyle(2,0xffe4a1,alpha).lineBetween(sx,sy,ex,ey);
+      ink.fillStyle(0xffe4a1,alpha).fillCircle(ex,ey,3);
+    }
+    this.fieldBow?.setRotation(!reduced&&draw?-.34*(1-draw.remaining/BOW_DRAW_SECONDS):0);
     const danger=visible&&motion?.aim&&motion.origin&&(motion.phase==='windup'||motion.phase==='charge');
     const warning=this.hopperWarning;
     warning.clear();
@@ -584,7 +606,7 @@ export class WorldScene extends Phaser.Scene {
     for(const id of regionalArt){
       if(!this.textures.exists('mossbank-'+id))this.load.svg('mossbank-'+id,'/art/mossbank/'+id+'.svg');
     }
-    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
+    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
     for(const id of fieldArt){
       if(!this.textures.exists('pumpworks-'+id))this.load.svg('pumpworks-'+id,'/art/pumpworks/'+id+'.svg');
     }
@@ -685,7 +707,7 @@ export class WorldScene extends Phaser.Scene {
     this.mossbankMarks=undefined;
     this.mossbankWren=undefined;this.mossbankRipples=[];
     this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;
-    this.combatInk=undefined;this.soundingRod=undefined;
+    this.combatInk=undefined;this.soundingRod=undefined;this.fieldBow=undefined;
     this.decorationKey='';
     this.decorationViews=[];
     this.furnitureOccluders=[];
@@ -882,6 +904,7 @@ export class WorldScene extends Phaser.Scene {
       this.hopperWarning=this.add.graphics().setDepth(2);
       this.combatInk=this.add.graphics().setDepth(1100);
       this.soundingRod=this.add.image(0,0,'pumpworks-sounding-rod').setScale(.55).setOrigin(.5,1).setVisible(false);
+      this.fieldBow=this.add.image(0,0,'pumpworks-field-bow').setScale(.49).setOrigin(.5,1).setVisible(false);
       this.paintPumpworks();
     } else if(this.room==='glasshouse') {
       for(const stop of w.stops)label(stop.point.x+.5,stop.point.y+.98,stop.id==='glasshouse-exit'?'Inkwood trail ↓':stop.name);
@@ -1187,6 +1210,7 @@ export class WorldScene extends Phaser.Scene {
     const x=(this.session.position.x+.5)*TILE,y=(this.session.position.y+.5)*TILE;
     this.actor.setPosition(x,y).setDepth(y);
     this.soundingRod?.setPosition(x+14,y-3).setDepth(y+1);
+    this.fieldBow?.setPosition(x+14,y-5).setDepth(y+1);
     if(this.bedPose&&this.bedQuilt){
       if(this.bedPose.visible!==this.resting){
         this.bedPose.setVisible(this.resting);

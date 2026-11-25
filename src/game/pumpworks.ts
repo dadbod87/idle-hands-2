@@ -1,4 +1,5 @@
 import {z} from 'zod';
+import {equippedFieldWeapon,FIELD_WEAPONS} from './field-weapons.ts';
 
 export const FIELD_HEALTH=8;
 export const OATCAKE_HEAL=3;
@@ -9,6 +10,7 @@ const recordSchema=z.object({
  revision:z.number().int().min(0).max(100000),
  health:z.number().int().min(0).max(FIELD_HEALTH),
  rod:z.enum(['unissued','packed','equipped']),
+ bow:z.enum(['unissued','packed','equipped']).default('unissued'),
  oatcake:z.enum(['unissued','packed','used']).default('unissued'),
  satchel:z.enum(['none','carried','at-pump']),
  fight:z.object({
@@ -23,18 +25,19 @@ const recordSchema=z.object({
  if(state.recovering!==(state.health===0)
     ||state.rematch!==(state.reported&&!state.cleared)
     ||state.fight&&(state.recovering||state.cleared)
-    ||state.rod==='unissued'&&state.oatcake!=='unissued'
+    ||state.bow==='equipped'&&state.rod==='equipped'
+    ||state.rod==='unissued'&&(state.oatcake!=='unissued'||state.bow!=='unissued')
     ||(state.rod==='unissued')!==(state.satchel==='none')){
   ctx.addIssue({code:'custom',message:'The survey record is inconsistent.'});
  }
 });
 export type PumpworksState=z.infer<typeof recordSchema>;
-export type PumpworksAction='issue'|'oatcake'|'eat'|'equip'|'pack'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
+export type PumpworksAction='issue'|'borrow-bow'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
 export type PumpworksPlace='locker'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
 type Result={ok:false;message:string}|{ok:true;state:PumpworksState;message:string;returnToBed?:true};
 
 export const freshPumpworks=():PumpworksState=>({
- version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,rematch:false,
+ version:1,revision:0,health:FIELD_HEALTH,rod:'unissued',bow:'unissued',oatcake:'unissued',satchel:'none',fight:null,recovering:false,cleared:false,reported:false,rematch:false,
 });
 
 export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place:PumpworksPlace):Result{
@@ -48,6 +51,9 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
   case 'issue':
    if(place!=='locker'||state.rod!=='unissued')return refuse('Your survey kit is already issued or the locker is out of reach.');
    return accept({rod:'equipped',oatcake:'packed',satchel:'carried'},'Sounding rod equipped. Field satchel and oatcake packed.');
+  case 'borrow-bow':
+   if(place!=='locker'||state.rod==='unissued'||state.bow!=='unissued'||state.fight)return refuse('The field bow is on loan from the survey locker.');
+   return accept({rod:'packed',bow:'equipped'},'Field bow equipped. Your rod is in Bag.');
   case 'oatcake':
    if(place!=='locker'||state.rod==='unissued'||state.oatcake!=='unissued')return refuse('There is no new oatcake in the survey locker.');
    return accept({oatcake:'packed'},'The survey locker still had your oatcake.');
@@ -60,21 +66,34 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
   case 'equip':
   case 'pack':
    if(state.fight)return refuse('End the encounter before changing gear.');
-   if(action==='equip'&&state.rod==='packed')return accept({rod:'equipped'},'Sounding rod equipped.');
+   if(action==='equip'&&state.rod==='packed')return accept({
+    rod:'equipped',bow:state.bow==='equipped'?'packed':state.bow,
+   },'Sounding rod equipped.');
    if(action==='pack'&&state.rod==='equipped')return accept({rod:'packed'},'Sounding rod packed.');
+   return refuse('Check your current outing gear.');
+  case 'equip-bow':
+  case 'pack-bow':
+   if(state.fight)return refuse('End the encounter before changing gear.');
+   if(action==='equip-bow'&&state.bow==='packed')return accept({
+    bow:'equipped',rod:state.rod==='equipped'?'packed':state.rod,
+   },'Field bow equipped.');
+   if(action==='pack-bow'&&state.bow==='equipped')return accept({bow:'packed'},'Field bow packed.');
    return refuse('Check your current outing gear.');
   case 'begin':
    if(place!=='arena'||state.cleared||state.fight)return refuse('There is no new encounter here.');
-   return accept({fight:{health:HOPPER_HEALTH}},state.rod==='equipped'?'The hopper spotted you.':'The hopper spotted you. The survey locker has a rod.');
+   return accept({fight:{health:HOPPER_HEALTH}},equippedFieldWeapon(state)?'The hopper spotted you.':'The hopper spotted you. The survey locker has a rod.');
   case 'strike':
   case 'counter': {
-   if(place!=='arena'||!state.fight||state.rod!=='equipped')return refuse('Get within reach with the rod equipped.');
-   const damage=action==='counter'?4:1;
+   const weapon=equippedFieldWeapon(state);
+   if(place!=='arena'||!state.fight||!weapon)return refuse('Get within reach with a weapon equipped.');
+   const profile=FIELD_WEAPONS[weapon];
+   const damage=action==='counter'?profile.counter:profile.damage;
    const remaining=state.fight.health-damage;
    if(remaining<=0)return accept({fight:null,cleared:true,rematch:false},state.rematch
     ?'The hopper slipped away. Rematch complete.'
     :'The hopper slipped into the grate. The inspection desk is clear.');
-   return accept({fight:{health:remaining}},action==='counter'?'Good timing. The hopper was open.':'The rod clips the hopper.');
+   return accept({fight:{health:remaining}},action==='counter'?'Good timing. The hopper was open.':
+    weapon==='bow'?'The shot clips the hopper.':'The rod clips the hopper.');
   }
   case 'hit':
   case 'splash-hit':

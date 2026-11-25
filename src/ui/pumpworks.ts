@@ -1,17 +1,19 @@
 import type {FieldCue} from '../audio/combat-cues.ts';
+import {BOW_DRAW_SECONDS,BOW_STILL_RADIUS,BOW_TRACE_MS,equippedFieldWeapon,FIELD_WEAPONS,type BowDraw,type BowTrace,type FieldWeapon} from '../game/field-weapons.ts';
 import {
  FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PUMPWORKS_KEY,readPumpworks,savePumpworks,
  type PumpworksAction,type PumpworksPlace,
 } from '../game/pumpworks.ts';
 import {
  braceForHopper,freshHopper,hopperLeash,hopperNotices,hopperOpen,inPracticeReach,
- HOPPER_MOVEMENT,stepHopper,swingAtHopper,patrolHopper,FIELD_IMPACT_MS,type FieldImpact,type HopperMotion,
+ HOPPER_MOVEMENT,stepHopper,swingFieldWeapon,patrolHopper,FIELD_IMPACT_MS,type FieldImpact,type HopperMotion,
 } from '../game/pumpworks-chase.ts';
 import {PRACTICE_BELL} from '../game/pumpworks-room.ts';
 import type {Point} from '../game/world.ts';
 import './pumpworks.css';
 
-const ROD_ART='/art/pumpworks/sounding-rod.svg';
+const WEAPON_ART={rod:'/art/pumpworks/sounding-rod.svg',bow:'/art/pumpworks/field-bow.svg'} as const;
+
 
 type Host={
  body:HTMLElement;
@@ -49,6 +51,8 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  let busy=false;
  let hopper=freshHopper();
  let impact:FieldImpact|null=null;
+ let draw:BowDraw|null=null;
+ let shot:BowTrace|null=null;
  let priorAt=0;
  let browserPaused=false;
  let windowUnfocused=false;
@@ -143,7 +147,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      impact={kind,point:{...point},until:performance.now()+FIELD_IMPACT_MS};
      host.wakeFrame();
     }
-    if(action==='hit'||action==='splash-hit')host.cue('thud');
+    if(action==='hit'||action==='splash-hit'){
+     draw=null;
+     host.cue('thud');
+    }
     if(action==='guard')host.cue('block');
     if(action==='eat')host.cue('heal');
    }
@@ -161,7 +168,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  function encounter(){
   const currentFight=current()?.fight;
   return {
-   hopper,impact,
+   hopper,impact,draw,shot,
    enemyHealth:currentFight?.health??null,
    recovering:current()?.recovering??false,
   };
@@ -178,38 +185,69 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    if(able())retryAt=performance.now()+1800;
   }
  }
+ function attackWith(weapon:FieldWeapon,position:Point,practice:boolean,now:number){
+  const profile=FIELD_WEAPONS[weapon];
+  if(weapon==='bow'){
+   const target=practice?PRACTICE_BELL:hopper.feet;
+   const range=Math.hypot(target.x-position.x,target.y-position.y);
+   const scale=range>profile.reach?profile.reach/range:1;
+   shot={from:{...position},to:{x:position.x+(target.x-position.x)*scale,y:position.y+(target.y-position.y)*scale},until:now+BOW_TRACE_MS};
+   host.cue('bow');
+  }
+  if(practice){
+   practiceReadyAt=now+profile.cooldown*1000;
+   impact={kind:'bell',point:PRACTICE_BELL,until:now+FIELD_IMPACT_MS};
+   host.cue('bell');
+   return;
+  }
+  const attack=swingFieldWeapon(hopper,position,weapon);
+  if(!attack)return;
+  const previous=hopper;
+  hopper=attack.motion;
+  if(weapon==='rod')host.cue('swing');
+  if(attack.hit)void combatAction(attack.hit,previous);
+  else if(attack.deflected){
+   impact={kind:'shell',point:{...hopper.feet},until:now+FIELD_IMPACT_MS};
+   host.feedback('The shell deflected it.');
+  }else host.feedback('Out of reach. Get closer after it lands.');
+ }
  function input(action:'strike'|'brace'|'eat'){
   const context=host.combat(),state=current();
   if(browserPaused||windowUnfocused||!context.able||!state||busy||state.recovering)return;
-  if(!state.fight){
-   const now=performance.now();
-   if(action==='strike'&&state.rod==='equipped'&&inPracticeReach(context.position)&&now>=practiceReadyAt){
-    practiceReadyAt=now+HOPPER_MOVEMENT.strikeCooldown*1000;
-    impact={kind:'bell',point:PRACTICE_BELL,until:now+FIELD_IMPACT_MS};
-    host.cue('bell');
-    host.wakeFrame();
-   }
-   return;
-  }
   if(action==='strike'){
-   const attack=swingAtHopper(hopper,context.position,state.rod==='equipped');
-   if(!attack)return;
-   const previous=hopper;
-   hopper=attack.motion;
-   host.cue('swing');
-   if(attack.hit)void combatAction(attack.hit,previous);
-   else if(attack.deflected){
-    impact={kind:'shell',point:{...hopper.feet},until:performance.now()+FIELD_IMPACT_MS};
-    host.feedback('The shell deflected it.');
-   }else host.feedback('Out of reach. Get closer after it lands.');
-  }else if(action==='brace'){
+   const weapon=equippedFieldWeapon(state);
+   if(!weapon||draw)return;
+   const now=performance.now();
+   const practice=!state.fight&&inPracticeReach(context.position,weapon)&&now>=practiceReadyAt;
+   if(!practice&&(!state.fight||hopper.phase==='idle'||hopper.strikeCooldown>0||!hopperLeash(context.position)))return;
+   if(weapon==='bow')draw={from:{...context.position},remaining:BOW_DRAW_SECONDS,practice};
+   else attackWith(weapon,context.position,practice,now);
+  }else if(state.fight&&action==='brace'){
    const next=braceForHopper(hopper,context.position);
    if(!next)return;
+   draw=null;
    hopper=next;
-  }else if(state.oatcake==='packed'&&state.satchel==='carried'&&state.health<FIELD_HEALTH&&hopperLeash(context.position)){
+  }else if(state.fight&&action==='eat'&&state.oatcake==='packed'&&state.satchel==='carried'&&state.health<FIELD_HEALTH&&hopperLeash(context.position)){
+   draw=null;
    void combatAction('eat');
   }
   host.wakeFrame();
+ }
+ function advanceDraw(position:Point,dt:number,now:number){
+  if(!draw)return;
+  const state=current();
+  const {from,practice}=draw;
+  const placeStillValid=practice?!state?.fight&&inPracticeReach(position,'bow'):!!state?.fight&&hopperLeash(position);
+  if(!state||state.recovering||equippedFieldWeapon(state)!=='bow'||!placeStillValid||
+     Math.hypot(position.x-from.x,position.y-from.y)>BOW_STILL_RADIUS){
+   draw=null;
+   return;
+  }
+  draw={from,practice,remaining:draw.remaining-Math.min(.065,dt)};
+  if(draw.remaining<=0){
+   draw=null;
+   attackWith('bow',position,practice,now);
+  }
  }
  function strike(){input('strike');}
  function brace(){input('brace');}
@@ -222,12 +260,13 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     host.controls.hidden=true;
     fieldReadout.remove();actionRow.remove();
    }
-   impact=null;practiceReadyAt=0;
+   impact=null;draw=null;shot=null;practiceReadyAt=0;
    if(hopper.phase!=='idle'||hopper.elapsed>0)hopper=freshHopper();
    priorAt=0;
    return;
   }
   if(impact&&now>=impact.until)impact=null;
+  if(shot&&now>=shot.until)shot=null;
   const running=context.able&&!browserPaused&&!windowUnfocused;
   const dt=running&&priorAt?(now-priorAt)/1000:0;
   priorAt=running?now:0;
@@ -251,6 +290,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     }
    }
   }
+  if(running&&!busy)advanceDraw(context.position,dt,now);
   paintControls(state,context.position,now);
  }
 
@@ -260,16 +300,18 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    host.controls.hidden=false;
   }
   const disabled=!state?.fight||hopper.phase==='idle'||busy;
-  const practice=!!state&&!state.fight&&!state.recovering&&state.rod==='equipped'&&inPracticeReach(position);
-  const strikeDisabled=practice?busy||now<practiceReadyAt:disabled||state?.rod!=='equipped'||hopper.strikeCooldown>0;
+  const weapon=state?equippedFieldWeapon(state):null;
+  const practice=!!state&&!state.fight&&!state.recovering&&!!weapon&&inPracticeReach(position,weapon);
+  const strikeDisabled=!!draw||(practice?busy||now<practiceReadyAt:disabled||!weapon||hopper.strikeCooldown>0);
   const braceDisabled=disabled||hopper.braceCooldown>0;
   const eatDisabled=disabled||state?.oatcake!=='packed'||state?.satchel!=='carried'||state.health===FIELD_HEALTH;
   const text=state?.cleared?'Cleared':hopper.phase==='windup'?(hopper.pattern==='splash'?'Splash coming':'Lunge coming'):
    hopper.phase==='charge'?(hopper.pattern==='splash'?'Splashing':'Lunging'):
    hopper.phase==='recover'?(hopperOpen(hopper)?'Open to strike':'Recovering'):hopper.phase==='chase'?'Chasing':'Cross the bridge';
-  const status=practice?'Try a swing':hopper.guard>0?'Braced':text;
+  const status=hopper.phase==='windup'||hopper.phase==='charge'?text:
+   draw?'Drawing bow':practice?(weapon==='bow'?'Try a shot':'Try a swing'):hopper.guard>0?'Braced':text;
   const enemyHealth=hopper.phase!=='idle'?state?.fight?.health:null;
-  const key=[status,strikeDisabled,braceDisabled,eatDisabled,hopper.phase,enemyHealth].join(':');
+  const key=[status,weapon,strikeDisabled,braceDisabled,eatDisabled,hopper.phase,enemyHealth].join(':');
   if(renderedControls===key)return;
   renderedControls=key;
   fieldStatus.textContent=status;
@@ -277,6 +319,9 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   if(enemyHealth!=null)enemyMeter.value=enemyHealth;
   host.controls.dataset.phase=hopper.phase;
   host.controls.dataset.pattern=hopper.pattern;
+  const attackLabel=weapon==='bow'?'Shoot':'Strike';
+  strikeButton.firstChild!.textContent=attackLabel;
+  strikeButton.setAttribute('aria-label',attackLabel);
   strikeButton.disabled=strikeDisabled;
   braceButton.disabled=braceDisabled;
   oatcakeButton.disabled=eatDisabled;
@@ -307,7 +352,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      panel.append(paragraph('The kit comes with a field satchel and one oatcake.'));
      add('Equip rod and take kit','issue');
     }else{
-     panel.append(paragraph(state.rod==='equipped'?'Try a swing at the practice bell, then cross the footbridge.':'Your rod is packed. Equip it in Bag before you approach the hopper.'));
+     const weapon=equippedFieldWeapon(state);
+     panel.append(paragraph(weapon==='bow'?'Stand still to draw the bow. The practice bell makes a good target.':
+      weapon==='rod'?'Try a swing at the practice bell, then cross the footbridge.':'Equip field gear in Bag before crossing the footbridge.'));
+     if(state.bow==='unissued'&&!state.fight)add('Try a field bow','borrow-bow');
      panel.append(button('Open Bag',host.equipment));
      if(state.oatcake==='unissued')add('Pack your oatcake','oatcake');
     }
@@ -350,45 +398,55 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  }
 
  function gear(){
-  if(!record.ok)return;
+  if(!record.ok||record.state.rod==='unissued')return;
   const state=record.state;
   let shownRaw=record.raw;
-  if(state.rod==='unissued')return;
-  const card=document.createElement('li');card.className='bag-slot';card.dataset.pumpBag='';
-  const artwork=document.createElement('div');artwork.className='bag-slot-art';
-  const art=document.createElement('img');art.src=ROD_ART;art.alt='';art.width=64;art.height=64;
-  const count=document.createElement('span');count.className='bag-stack-count';count.textContent='1';
-  count.setAttribute('aria-label','One sounding rod');
-  artwork.append(art,count);
-  const title=document.createElement('h4');title.textContent='Sounding rod';
-  const detail=paragraph(state.rod==='equipped'?'Equipped · Pumpworks survey gear':'Packed · Pumpworks survey gear');
-  detail.className='bag-slot-detail';
-  card.append(artwork,title,detail);
-  const control=button(state.rod==='equipped'?'Pack sounding rod':'Equip sounding rod',()=>{});
-  control.className='bag-equip-action';
-  const status=paragraph('');status.className='bag-equip-notice';status.role='status';
-  control.disabled=busy||!!state.fight||state.recovering;
-  control.onclick=async()=>{
-   if(busy)return;
-   control.disabled=true;
-   const message=await change(control.textContent==='Pack sounding rod'?'pack':'equip','elsewhere',()=>card.isConnected,shownRaw);
-   if(record.ok)shownRaw=record.raw;
-   if(!card.isConnected)return;
-   const after=current();
-   detail.textContent=after?.rod==='equipped'?'Equipped · Pumpworks survey gear':'Packed · Pumpworks survey gear';
-   control.textContent=after?.rod==='equipped'?'Pack sounding rod':'Equip sounding rod';
-   control.disabled=!!after?.fight||!!after?.recovering;
-   status.textContent=message;
-  };
-  card.append(control,status);
-  if(state.oatcake!=='unissued'){
-   const snack=paragraph(state.oatcake==='used'?'Oatcake used':state.satchel==='at-pump'?'Oatcake in the lost satchel':'Oatcake ×1 · restores up to '+OATCAKE_HEAL+' health during the encounter');
-   snack.className='pump-oatcake';
-   const icon=document.createElement('img');icon.src='/art/pumpworks/oatcake.svg';icon.alt='';
-   snack.prepend(icon);
-   card.append(snack);
-  }
-  return card;
+  const repaints:((message?:string)=>void)[]=[];
+  const cards=(['rod','bow'] as const).filter(weapon=>state[weapon]!=='unissued').map(weapon=>{
+   const profile=FIELD_WEAPONS[weapon],name=profile.name.toLowerCase();
+   const card=document.createElement('li');card.className='bag-slot';card.dataset.pumpBag=weapon;
+   const artwork=document.createElement('div');artwork.className='bag-slot-art';
+   const art=document.createElement('img');art.src=WEAPON_ART[weapon];art.alt='';art.width=64;art.height=64;
+   const count=document.createElement('span');count.className='bag-stack-count';count.textContent='1';
+   count.setAttribute('aria-label','One '+name);
+   artwork.append(art,count);
+   const title=document.createElement('h4');title.textContent=profile.name;
+   const detail=paragraph('');detail.className='bag-slot-detail';
+   const status=paragraph('');status.className='bag-equip-notice';status.role='status';
+   const control=button('',()=>{});
+   control.className='bag-equip-action';
+   card.append(artwork,title,detail,control,status);
+   const paint=(message='')=>{
+    const live=current();
+    if(!live)return;
+    const equipped=live[weapon]==='equipped';
+    detail.textContent=(equipped?'Equipped':'Packed')+' · '+profile.damage+' damage · '+(weapon==='bow'?'Long reach. Stand still to draw.':'Close reach. Strong counter.');
+    control.textContent=(equipped?'Pack ':'Equip ')+name;
+    control.disabled=busy||!!live.fight||live.recovering;
+    status.textContent=message;
+   };
+   repaints.push(paint);
+   paint();
+   control.onclick=async()=>{
+    const live=current();
+    if(busy||!live)return;
+    control.disabled=true;
+    const pack=live[weapon]==='equipped';
+    const action=weapon==='bow'?(pack?'pack-bow':'equip-bow'):(pack?'pack':'equip');
+    const message=await change(action,'elsewhere',()=>card.isConnected,shownRaw);
+    if(record.ok)shownRaw=record.raw;
+    if(card.isConnected)for(const repaint of repaints)repaint(repaint===paint?message:'');
+   };
+   if(weapon==='rod'&&state.oatcake!=='unissued'){
+    const snack=paragraph(state.oatcake==='used'?'Oatcake used':state.satchel==='at-pump'?'Oatcake in the lost satchel':'Oatcake ×1 · restores up to '+OATCAKE_HEAL+' health during the encounter');
+    snack.className='pump-oatcake';
+    const icon=document.createElement('img');icon.src='/art/pumpworks/oatcake.svg';icon.alt='';
+    snack.prepend(icon);
+    card.append(snack);
+   }
+   return card;
+  });
+  return cards;
  }
 
  function journal(body:HTMLElement,walkToDoor:()=>void,previewSeal:()=>void){
@@ -399,7 +457,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const note=state.satchel==='at-pump'?'Your field satchel is on the lost property shelf.':
    state.reported?'Field seal':
    state.cleared?'The inspection desk is clear. Collect the field seal.':
-   state.rod==='packed'?'Equip the sounding rod in Bag before entering the chamber.':'Your survey gear is ready for the pump chamber.';
+   !equippedFieldWeapon(state)?'Equip a weapon in Bag before entering the chamber.':'Your survey gear is ready for the pump chamber.';
   const description=paragraph(note);
   if(state.reported){
    description.className='field-keepsake-summary';

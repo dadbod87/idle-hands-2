@@ -1,6 +1,7 @@
 import {expect,test,type Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {PUMPWORKS_FRONT,HOPPER_FEET} from '../src/game/pumpworks-room.ts';
+import type {BowDraw,BowTrace} from '../src/game/field-weapons.ts';
 import type {PumpworksState} from '../src/game/pumpworks.ts';
 import {HOPPER_MOVEMENT,type FieldImpact,type HopperMotion} from '../src/game/pumpworks-chase.ts';
 import type {Point} from '../src/game/world.ts';
@@ -10,7 +11,7 @@ const close=(page:Page)=>page.getByRole('button',{name:'Close panel',exact:true}
 type Pilot={
  snapshot():{room:string;nearby:string|null;position:Point;walking:boolean};
  pumpworks():PumpworksState;
- pumpworksMotion():{hopper:HopperMotion;impact:FieldImpact|null;enemyHealth:number|null};
+ pumpworksMotion():{hopper:HopperMotion;impact:FieldImpact|null;draw:BowDraw|null;shot:BowTrace|null;enemyHealth:number|null};
  screenPoint(x:number,y:number):Point;
  metrics():{visual:{workshopPrint:string|null}};
 };
@@ -370,3 +371,96 @@ test('Pausing while a lunge is waiting to save preserves the pending contact',as
  await expect.poll(async()=>(await read(page))?.state.health,{timeout:850,intervals:[20]}).toBe(5);
  expect((await read(page))!.state.revision).toBe(2);
 });
+
+for(const shape of [{width:1440,height:900,touch:false,name:'desktop'},{width:320,height:640,touch:true,name:'phone'}]){
+ test('The field bow teaches aiming on the bell and rewards a planted shot · '+shape.name,async({browser})=>{
+  test.setTimeout(65000);
+  mkdirSync(output,{recursive:true});
+  const context=await browser.newContext({viewport:{width:shape.width,height:shape.height},hasTouch:shape.touch});
+  const page=await context.newPage();
+  const button=(name:string)=>page.getByRole('button',{name,exact:true});
+  const activate=async(control:ReturnType<typeof button>)=>shape.touch?control.tap():control.click();
+  const go=async(id:string)=>{
+   await activate(button('Places'));
+   await activate(page.locator('[data-destination="'+id+'"]'));
+   await expect.poll(async()=>(await read(page))?.nearby,{timeout:14000}).toBe(id);
+  };
+  const move=async(point:Point)=>{
+   const position=await page.evaluate(target=>(window as Window&{__pilot?:Pilot}).__pilot!.screenPoint(target.x,target.y),point);
+   const canvas=page.locator('canvas');
+   if(shape.touch)await canvas.tap({position});else await canvas.click({position});
+  };
+  const shoot=()=>shape.touch?activate(button('Shoot')):page.keyboard.press('Space');
+  try{
+   await page.addInitScript(()=>{
+    if(localStorage.getItem('ih2:pilot-position:v1'))return;
+    localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'pumpworks',position:{x:5.05,y:9.45}}));
+   });
+   await page.goto('/?sky-study=1&phase=day&weather=clear');
+   await expect(page.locator('#location')).toHaveAttribute('data-room','pumpworks');
+   await expect.poll(async()=>(await read(page))?.nearby).toBe('pumpworks-locker');
+   await activate(page.locator('#interact'));
+   await activate(button('Equip rod and take kit'));
+   await activate(button('Try a field bow'));
+   await expect(page.locator('[data-pumpworks=locker]')).toContainText('Field bow equipped.');
+   await activate(button('Open Bag'));
+   const bow=page.locator('[data-pump-bag=bow]'),rod=page.locator('[data-pump-bag=rod]');
+   await expect(bow).toContainText('Equipped');
+   await expect(rod).toContainText('Packed');
+   for(const item of [bow,rod]){
+    await expect.poll(()=>item.locator('.bag-slot-art img').evaluate((image:HTMLImageElement)=>image.naturalWidth)).toBeGreaterThan(0);
+   }
+   await page.screenshot({path:output+'/field-bow-'+shape.name+'-bag.png'});
+   await activate(button('Equip sounding rod'));
+   await expect(bow).toContainText('Packed');
+   await expect(rod).toContainText('Equipped');
+   await activate(button('Equip field bow'));
+   await expect(bow).toContainText('Equipped');
+   await expect(rod).toContainText('Packed');
+   await activate(close(page));
+   await expect(button('Shoot')).toBeInViewport({ratio:1});
+
+   await go('pumpworks-bell');
+   await expect(button('Shoot')).toBeEnabled();
+   const practice=(await read(page))!.state;
+   await shoot();
+   await expect.poll(async()=>(await read(page))?.combat.draw?.practice,{intervals:[15]}).toBe(true);
+   await move({x:6.6,y:8.15});
+   await expect.poll(async()=>(await read(page))?.combat.draw,{intervals:[20]}).toBeNull();
+   expect((await read(page))!.combat.shot).toBeNull();
+   expect((await read(page))!.state).toEqual(practice);
+
+   await go('pumpworks-bell');
+   await shoot();
+   await expect.poll(async()=>(await read(page))?.combat.impact?.kind,{intervals:[20]}).toBe('bell');
+   await page.screenshot({path:output+'/field-bow-'+shape.name+'-practice.png'});
+   expect((await read(page))!.state).toEqual(practice);
+
+   await go('pumpworks-hopper');
+   await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{intervals:[25]}).toBe('windup');
+   const windup=(await read(page))!.combat.hopper;
+   const vx=windup.aim!.x-windup.origin!.x,vy=windup.aim!.y-windup.origin!.y,length=Math.hypot(vx,vy);
+   expect(length).toBeGreaterThan(.3);
+   const sidesteps=[1,-1].map(sign=>({x:windup.aim!.x+vy/length*2.4*sign,y:windup.aim!.y-vx/length*2.4*sign}));
+   const target=sidesteps.find(p=>p.x>13.1&&p.x<18.8&&p.y>4.75&&p.y<12.1);
+   expect(target).toBeDefined();
+   await move(target!);
+   await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{intervals:[25]}).toBe('recover');
+   const before=(await read(page))!;
+   const gap=Math.hypot(before.position.x-before.combat.hopper.feet.x,before.position.y-before.combat.hopper.feet.y);
+   expect(gap).toBeGreaterThan(HOPPER_MOVEMENT.reach);
+   await shoot();
+   await expect.poll(async()=>(await read(page))?.combat.impact?.kind,{intervals:[25]}).toBe('counter');
+   const after=(await read(page))!;
+   expect(after.state.fight?.health).toBe(6);
+   expect(after.state.health).toBe(8);
+   expect(after.state.revision).toBe(before.state.revision+1);
+   await expect(page.locator('dialog')).toBeHidden();
+   await page.screenshot({path:output+'/field-bow-'+shape.name+'-ranged.png'});
+   await page.reload();
+   await expect(page.locator('#location')).toHaveAttribute('data-room','pumpworks');
+   await expect(button('Shoot')).toBeVisible();
+   expect((await read(page))!.state.bow).toBe('equipped');
+  }finally{await context.close();}
+ });
+}

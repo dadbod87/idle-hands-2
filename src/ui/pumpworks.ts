@@ -1,9 +1,9 @@
 import type {FieldCue} from '../audio/combat-cues.ts';
 import {
- FIELD_HEALTH,OATCAKE_HEAL,PUMPWORKS_KEY,readPumpworks,savePumpworks,
+ FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PUMPWORKS_KEY,readPumpworks,savePumpworks,
  type PumpworksAction,type PumpworksPlace,
 } from '../game/pumpworks.ts';
-import {braceForHopper,freshHopper,hopperLeash,hopperNotices,stepHopper,swingAtHopper} from '../game/pumpworks-chase.ts';
+import {braceForHopper,freshHopper,hopperLeash,hopperNotices,stepHopper,swingAtHopper,FIELD_IMPACT_MS,type FieldImpact} from '../game/pumpworks-chase.ts';
 import type {Point} from '../game/world.ts';
 import './pumpworks.css';
 
@@ -44,13 +44,18 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  let record=readPumpworks(storage);
  let busy=false;
  let hopper=freshHopper();
+ let impact:FieldImpact|null=null;
  let priorAt=0;
  let retryAt=0;
  let renderedControls='';
  const fieldStatus=document.createElement('span');
  fieldStatus.className='pump-control-status';
+ const enemyMeter=document.createElement('meter');
+ enemyMeter.className='pump-enemy-meter';
+ enemyMeter.max=HOPPER_HEALTH;enemyMeter.hidden=true;
+ enemyMeter.setAttribute('aria-label','Silt hopper health');
  const fieldReadout=document.createElement('div');fieldReadout.className='pump-readout';
- fieldReadout.append(fieldStatus);
+ fieldReadout.append(fieldStatus,enemyMeter);
  const worldHud=host.hud.parentElement!;
  const strikeButton=button('Strike',()=>strike());
  const braceButton=button('Brace',()=>brace());
@@ -108,12 +113,19 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     if(!present()||(!onField&&place!=='elsewhere'&&host.place()!==place))return {ok:false as const,message:'Return to the marked spot first.'};
     return savePumpworks(storage,expected,action,place);
    });
-   refresh();
-   host.feedback(result.message);
    if(result.ok&&onField){
+    const kind=action==='strike'||action==='counter'?action:
+     action==='guard'?'blocked':action==='hit'||action==='splash-hit'?'damage':null;
+    if(kind){
+     const point=kind==='strike'||kind==='counter'?hopper.feet:host.combat().position;
+     impact={kind,point:{...point},until:performance.now()+FIELD_IMPACT_MS};
+     host.wakeFrame();
+    }
     if(action==='hit'||action==='splash-hit')host.cue('thud');
     if(action==='guard')host.cue('block');
    }
+   refresh();
+   host.feedback(result.message);
    if(result.ok&&result.returnToBed)host.moveToBed();
    return result.message;
   }catch{
@@ -126,7 +138,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  function encounter(){
   const currentFight=current()?.fight;
   return {
-   hopper,
+   hopper,impact,
    enemyHealth:currentFight?.health??null,
    recovering:current()?.recovering??false,
   };
@@ -165,10 +177,12 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const context=host.combat(),state=current();
   if(!context.inRoom){
    if(!host.controls.hidden)host.controls.hidden=true;
+   impact=null;
    if(hopper.phase!=='idle')hopper=freshHopper();
    priorAt=0;
    return;
   }
+  if(impact&&now>=impact.until)impact=null;
   const dt=priorAt?(now-priorAt)/1000:0;
   priorAt=now;
   if(!state||state.cleared||state.recovering){
@@ -198,10 +212,13 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const eatDisabled=disabled||state?.oatcake!=='packed'||state?.satchel!=='carried'||state.health===FIELD_HEALTH;
   const text=state?.cleared?'Cleared':hopper.phase==='windup'?(hopper.pattern==='splash'?'Splash coming':'Lunge coming'):hopper.phase==='charge'?(hopper.pattern==='splash'?'Splashing':'Lunging'):hopper.phase==='recover'?'Open to strike':hopper.phase==='chase'?'Chasing':'Cross the bridge';
   const status=hopper.guard>0?'Braced':text;
-  const key=[status,strikeDisabled,braceDisabled,eatDisabled,hopper.phase].join(':');
+  const enemyHealth=hopper.phase!=='idle'?state?.fight?.health:null;
+  const key=[status,strikeDisabled,braceDisabled,eatDisabled,hopper.phase,enemyHealth].join(':');
   if(renderedControls===key)return;
   renderedControls=key;
   fieldStatus.textContent=status;
+  enemyMeter.hidden=enemyHealth==null;
+  if(enemyHealth!=null)enemyMeter.value=enemyHealth;
   host.controls.dataset.phase=hopper.phase;
   host.controls.dataset.pattern=hopper.pattern;
   strikeButton.disabled=strikeDisabled;

@@ -1,5 +1,5 @@
 import type {MossbankSurvey} from '../game/mossbank.ts';
-import {HOPPER_MOVEMENT,type HopperMotion} from '../game/pumpworks-chase.ts';
+import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
 import {HOPPER_FEET,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
 import {HOPPER_HEALTH,type PumpworksState} from '../game/pumpworks.ts';
@@ -417,9 +417,7 @@ export class WorldScene extends Phaser.Scene {
       if(key!==this.decorationKey){
         this.decorationKey=key;
         for(const view of this.decorationViews)view.destroy();
-        this.mossbankMarks=undefined;
-    this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;this.soundingRod=undefined;
-    this.decorationViews=[];
+        this.decorationViews=[];
         this.furnitureOccluders=[];
         for(const slot of home?homeSlots(this.homeLevel):PLACEMENT_SLOTS){
           const prop=placements[slot.id];
@@ -474,13 +472,14 @@ export class WorldScene extends Phaser.Scene {
   constructor(public session: Session) { super('world'); }
   private bridgeTexture(){return this.bridgeRestored||this.bridgePhase==='open'?TRAIL_ART.bridge.open:this.bridgePhase==='building'?(this.bridgeReadyAt!==null&&this.skyNow()>=this.bridgeReadyAt?TRAIL_ART.bridge.ready:TRAIL_ART.bridge.building):TRAIL_ART.bridge.collecting;}
   pumpworksState?:()=>PumpworksState|null;
-  pumpworksEncounter?:()=>{hopper:HopperMotion;enemyHealth:number|null;recovering:boolean};
+  pumpworksEncounter?:()=>{hopper:HopperMotion;impact:FieldImpact|null;enemyHealth:number|null;recovering:boolean};
   private hopper?:Phaser.GameObjects.Image;
   private hopperWarning?:Phaser.GameObjects.Graphics;
+  private combatInk?:Phaser.GameObjects.Graphics;
   private hopperName?:Phaser.GameObjects.Text;
   private soundingRod?:Phaser.GameObjects.Image;
   paintPumpworks(){
-    if(!this.hopper||!this.hopperWarning||!this.hopperName)return;
+    if(!this.hopper||!this.hopperWarning||!this.hopperName||!this.combatInk)return;
     const state=this.pumpworksState?.(),encounter=this.pumpworksEncounter?.(),motion=encounter?.hopper;
     const feet=motion?.feet??HOPPER_FEET;
     const x=(feet.x+.5)*TILE,y=(feet.y+.5)*TILE;
@@ -489,12 +488,46 @@ export class WorldScene extends Phaser.Scene {
     const hop=motion?.phase==='chase'?Math.abs(Math.sin(motion.elapsed*7.5))*7:
       motion?.phase==='charge'&&motion.pattern==='lunge'?Math.sin(Math.PI*Math.min(1,motion.elapsed/HOPPER_MOVEMENT.chargeSeconds))*16:0;
     this.hopper.setPosition(x,y-(reduced?0:hop)).setDepth(y).setVisible(visible);
-    this.hopper.setScale(1,!reduced&&motion?.phase==='windup'?.8:1);
+    const open=motion?.phase==='recover';
+    this.hopper.setScale(1,!reduced&&(motion?.phase==='windup'||open)?.8:1);
     const health=encounter?.enemyHealth;
-    const label=health&&motion?.phase!=='idle'?'Silt hopper · '+health+'/'+HOPPER_HEALTH:'Silt hopper';
-    if(this.hopperName.text!==label)this.hopperName.setText(label);
-    const labelY=motion&&motion.phase!=='idle'?y-83-(reduced?0:hop):y+15;
-    this.hopperName.setPosition(x,labelY).setDepth(y+1).setVisible(visible);
+    const engaged=visible&&health!=null&&motion?.phase!=='idle';
+    this.hopperName.setPosition(x,y+15).setDepth(y+1).setVisible(visible&&!engaged);
+    const ink=this.combatInk;
+    ink.clear();
+    if(engaged){
+      const meterY=y-75-(reduced?0:hop);
+      ink.fillStyle(0x344239,1).fillRoundedRect(x-26,meterY,52,9,3);
+      ink.fillStyle(0xffedc2,1).fillRect(x-23,meterY+2,46*health/HOPPER_HEALTH,5);
+    }
+    if(open&&visible){
+      // Four stationary corners mark the opening even with motion disabled.
+      for(const horizontal of [-1,1])for(const vertical of [-1,1]){
+        const edge=x+horizontal*43,top=y-32+vertical*24;
+        ink.lineStyle(6,0x353a31,1).lineBetween(edge,top,edge-horizontal*11,top);
+        ink.lineBetween(edge,top,edge,top-vertical*10);
+        ink.lineStyle(2,0xffe5a3,1).lineBetween(edge,top,edge-horizontal*11,top);
+        ink.lineBetween(edge,top,edge,top-vertical*10);
+      }
+    }
+    const impact=encounter?.impact;
+    if(impact){
+      const remaining=Math.max(0,impact.until-performance.now());
+      const ix=(impact.point.x+.5)*TILE,iy=(impact.point.y+.5)*TILE-16;
+      const extent=reduced?15:15+10*(1-remaining/FIELD_IMPACT_MS);
+      const color=impact.kind==='blocked'?0xb3d1d2:impact.kind==='damage'?0xd28466:0xffd07c;
+      const alpha=reduced?1:Math.min(1,remaining/110);
+      if(impact.kind==='blocked')ink.lineStyle(3,color,alpha).strokeRoundedRect(ix-extent,iy-extent,extent*2,extent*2,6);
+      else{
+        const n=impact.kind==='counter'?8:impact.kind==='damage'?4:6;
+        for(let i=0;i<n;i++){
+          const a=(i+.5)*Math.PI*2/n,dx=Math.cos(a),dy=Math.sin(a);
+          const segment=[ix+dx*extent*.7,iy+dy*extent*.7,ix+dx*(extent+8),iy+dy*(extent+8)] as const;
+          ink.lineStyle(6,0x3b3b31,alpha).lineBetween(...segment);
+          ink.lineStyle(3,color,alpha).lineBetween(...segment);
+        }
+      }
+    }
     this.soundingRod?.setVisible(state?.rod==='equipped');
     const strike=motion?.strikeCooldown??0;
     this.soundingRod?.setRotation(!reduced&&strike>.24?1.2*Math.sin((HOPPER_MOVEMENT.strikeCooldown-strike)*13):0);
@@ -516,8 +549,6 @@ export class WorldScene extends Phaser.Scene {
         warning.lineStyle(3,0x502f28,1).strokeCircle(ax,ay,radius);
         warning.lineBetween(ax-10,ay,ax+10,ay).lineBetween(ax,ay-10,ax,ay+10);
       }
-    }else if(motion?.phase==='recover'&&visible){
-      warning.lineStyle(3,0xf0dda2,1).strokeEllipse(x,y-4,78,29);
     }
     if(!reduced&&strike>.31&&this.actor){
       const angle=Math.atan2(y-this.actor.y,x-this.actor.x);
@@ -642,6 +673,9 @@ export class WorldScene extends Phaser.Scene {
     // a missing file on every frame or block progress/input on artwork.
     this.load.on('filecomplete',activityLoaded);
     this.events.once('shutdown',()=>{this.load.off('filecomplete',activityLoaded);this.activityLoading.clear();});
+    this.mossbankMarks=undefined;
+    this.hopper=undefined;this.hopperWarning=undefined;this.hopperName=undefined;
+    this.combatInk=undefined;this.soundingRod=undefined;
     this.decorationKey='';
     this.decorationViews=[];
     this.furnitureOccluders=[];
@@ -825,6 +859,7 @@ export class WorldScene extends Phaser.Scene {
       this.hopper=this.add.image(hx,hy,'pumpworks-silt-hopper').setOrigin(.5,.94).setDepth(hy);
       this.hopperName=label(HOPPER_FEET.x+.5,HOPPER_FEET.y+.82,'Silt hopper').setDepth(hy+1);
       this.hopperWarning=this.add.graphics().setDepth(2);
+      this.combatInk=this.add.graphics().setDepth(1100);
       this.soundingRod=this.add.image(0,0,'pumpworks-sounding-rod').setScale(.55).setOrigin(.5,1).setVisible(false);
       this.paintPumpworks();
     } else if(this.room==='glasshouse') {

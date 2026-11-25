@@ -27,6 +27,10 @@
  <path d="M236 346h164v67H236Z" fill="#594f3e" stroke="#39483e" stroke-width="4"/>
  <path d="M239 352h159v54H239Z" fill="url(#planks)" stroke="#d0a470" stroke-width="2"/>
  <path d="M239 350h159m-159 60h159" stroke="#584539" stroke-width="4"/>
+ <g stroke-linecap="round" stroke-linejoin="round" fill="none">
+  <path d="M428 369l-12 10 12 10m-15-20-12 10 12 10" stroke="#585747" stroke-width="7"/>
+  <path d="M428 369l-12 10 12 10m-15-20-12 10 12 10" stroke="#e7cea0" stroke-width="3"/>
+ </g>
  <path d="M639 99h135v41H639Z" fill="#667b70" stroke="#3e5048" stroke-width="4"/>
  <path d="M688 110V66h81" fill="none" stroke="#526f64" stroke-width="18"/>
  <path d="M688 109V66h81" fill="none" stroke="#a7b4a0" stroke-width="4"/>

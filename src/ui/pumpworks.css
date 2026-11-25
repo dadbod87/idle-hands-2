@@ -62,6 +62,7 @@
 .pump-controls .pump-health label { gap:2px; }
 .pump-controls .pump-health progress { height:.45rem; }
 .pump-readout { min-width:0; }
+.pump-enemy-meter { position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden; }
 @media(max-width:650px),(max-height:480px) {
  .game-controls .pump-controls { display:flex;align-items:center;gap:8px; }
  .game-controls .pump-controls[hidden] { display:none; }

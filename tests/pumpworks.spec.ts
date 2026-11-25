@@ -2,7 +2,7 @@ import {expect,test,type Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {PUMPWORKS_FRONT,HOPPER_FEET} from '../src/game/pumpworks-room.ts';
 import type {PumpworksState} from '../src/game/pumpworks.ts';
-import {HOPPER_MOVEMENT,type HopperMotion} from '../src/game/pumpworks-chase.ts';
+import {HOPPER_MOVEMENT,type FieldImpact,type HopperMotion} from '../src/game/pumpworks-chase.ts';
 import type {Point} from '../src/game/world.ts';
 
 const output=process.env.QA_EVIDENCE_DIR??'test-results/browser';
@@ -10,7 +10,7 @@ const close=(page:Page)=>page.getByRole('button',{name:'Close panel',exact:true}
 type Pilot={
  snapshot():{room:string;nearby:string|null;position:Point;walking:boolean};
  pumpworks():PumpworksState;
- pumpworksMotion():{hopper:HopperMotion;enemyHealth:number|null};
+ pumpworksMotion():{hopper:HopperMotion;impact:FieldImpact|null;enemyHealth:number|null};
  screenPoint(x:number,y:number):Point;
 };
 const read=(page:Page)=>page.evaluate(()=>{
@@ -152,6 +152,12 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     expect(await page.locator('canvas').evaluate(el=>el.getBoundingClientRect().height)).toBeGreaterThan(145);
    }
    if(shape.name==='desktop'){
+    await move({x:12.45,y:11.55});
+    await expect.poll(async()=>(await read(page))?.state.fight,{timeout:4500}).toBeNull();
+    await expect(page.locator('#pump-controls')).toContainText('Cross the bridge');
+    await capture('retreat');
+    await walk('pumpworks-hopper');
+    await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{timeout:11000,intervals:[40]}).toBe('windup');
     // Standing still through several lunges is a genuine loss condition.
     await expect(page.locator('[data-pumpworks=bed]')).toBeVisible({timeout:19000});
     await ready('lodging');
@@ -177,9 +183,14 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     await expect.poll(async()=>(await read(page))?.state.fight,{timeout:14000}).not.toBeNull();
    }else if(shape.name==='phone'){
     await outmaneuver();
+    await capture('opening');
     const before=(await read(page))!.combat.enemyHealth!;
     await press('Strike');
-    await expect.poll(async()=>(await read(page))?.combat.enemyHealth).toBe(before-4);
+    await expect.poll(async()=>(await read(page))?.combat.enemyHealth,{intervals:[25]}).toBe(before-4);
+    expect((await read(page))!.combat.impact?.kind).toBe('counter');
+    await capture('counter');
+    await expect(page.getByRole('meter',{name:'Silt hopper health'})).toHaveJSProperty('value',before-4);
+    await expect.poll(async()=>(await read(page))?.combat.impact,{intervals:[25]}).toBeNull();
     await capture('after-dodge');
     await expect.poll(async()=>(await read(page))?.combat.hopper.strikeCooldown,{intervals:[30]}).toBe(0);
     await press('Strike');

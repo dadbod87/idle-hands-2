@@ -1,3 +1,4 @@
+import {renderRegionalScore} from './regional-score.ts';
 import { renderLodgingScore } from './lodging-score.ts';
 import {renderOrchardScore} from './orchard-score.ts';
 import { AUDIO_RATE, audioMetrics, renderTheme } from '../design/audio-sketch.ts';
@@ -15,9 +16,10 @@ worker.onmessage = ({ data }) => {
     return;
   }
   try {
-    const render = data === 'orchard' ? renderOrchardScore
-      : data === 'lodging' ? renderLodgingScore : () => renderTheme(data);
-    const samples = render();
+    const samples = data === 'orchard' ? renderOrchardScore()
+      : data === 'lodging' ? renderLodgingScore()
+      : data === 'mossbank' || data === 'pumpworks' ? renderRegionalScore(data)
+      : renderTheme(data);
     audioMetrics(samples);
     if (AUDIO_RATE !== SCORE_RATE || samples.length !== SCORE_FRAMES[data]) {
       throw new Error('Unexpected score format.');

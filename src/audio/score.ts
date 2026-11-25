@@ -1,7 +1,7 @@
 import type { Point, Room } from '../game/world.ts';
 
 export const SCORE_RATE = 22050;
-export const SCORE_FRAMES = { town: 569230, woodland: 667915, home: 649049, orchard: 480060, lodging: 593460 } as const;
+export const SCORE_FRAMES = { town: 569230, woodland: 667915, home: 649049, orchard: 480060, lodging: 593460, mossbank: 481091, pumpworks: 588000 } as const;
 export type PlaceScore = keyof typeof SCORE_FRAMES;
 export const SCORE_NAMES: Record<PlaceScore, string> = {
   town: 'Business as unusual',
@@ -9,11 +9,14 @@ export const SCORE_NAMES: Record<PlaceScore, string> = {
   home: 'Furniture, finally',
   orchard: 'Little brass labels',
   lodging: 'The second blanket',
+  mossbank: 'The grain runs downstream',
+  pumpworks: 'Pressure within reason',
 };
 
 export function scoreForRoom(room: Room): PlaceScore {
   if (room === 'lodging') return 'lodging';
-  if (room === 'trail' || room === 'glasshouse' || room === 'mossbank' || room === 'pumpworks') return 'woodland';
+  if (room === 'mossbank' || room === 'pumpworks') return room;
+  if (room === 'trail' || room === 'glasshouse') return 'woodland';
   if (room === 'home' || room === 'home-expanded') return 'home';
   return 'town';
 }

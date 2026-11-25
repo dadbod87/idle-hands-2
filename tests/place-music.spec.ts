@@ -1,4 +1,6 @@
-import {SCORE_FRAMES} from '../src/audio/score.ts';
+import {SCORE_FRAMES,SCORE_NAMES} from '../src/audio/score.ts';
+import {MOSSBANK_FRONT} from '../src/game/mossbank-room.ts';
+import {PUMPWORKS_FRONT} from '../src/game/pumpworks-room.ts';
 import {createWorkshop} from '../src/game/live-workshop.ts';
 import { test, expect, type Page } from '@playwright/test';
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -633,4 +635,52 @@ test('short landscape puts the same Sound control beside the field guide and cle
   } finally {
     await context.close();
   }
+});
+
+
+test('regional music is opt-in, follows real entries, and restores the cached town theme',async({browser})=>{
+ test.setTimeout(80000);
+ const places=[
+  {room:'mossbank',front:MOSSBANK_FRONT,enter:'Enter Mossbank',exit:'mossbank-return'},
+  {room:'pumpworks',front:PUMPWORKS_FRONT,enter:'Enter the Pumpworks',exit:'pumpworks-exit'},
+ ] as const;
+ for(const place of places){
+  const context=await browser.newContext({viewport:{width:320,height:640},hasTouch:true});
+  const page=await context.newPage();
+  const errors:string[]=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  try{
+   await instrument(page);
+   await page.addInitScript(front=>{
+    if(!localStorage.getItem('ih2:pilot-position:v1')){
+     localStorage.setItem('ih2:pilot-position:v1',JSON.stringify({version:1,room:'square',position:front}));
+    }
+   },place.front);
+   await ready(page);
+   const button=(name:string)=>page.getByRole('button',{name,exact:true});
+   const sound=button('Sound settings'),status=page.locator('.place-music-controls').getByRole('status');
+   await sound.tap();
+   await expect(status).toHaveText('Music is off.');
+   expect(await evidence(page)).toMatchObject({contexts:0,workers:0,starts:0});
+   await button('Play music').tap();
+   await expect(status).toHaveText('Playing · '+SCORE_NAMES.town);
+   await button('Close panel').tap();
+   await button(place.enter).tap();
+   await expect(page.locator('#location')).toHaveAttribute('data-room',place.room);
+   await expect.poll(async()=>(await evidence(page)).frames).toBe(SCORE_FRAMES[place.room]+176400);
+   await sound.tap();
+   await expect(status).toHaveText('Playing · '+SCORE_NAMES[place.room]);
+   expect(await evidence(page)).toMatchObject({contexts:1,workers:2,starts:2,effects:[]});
+   await page.screenshot({path:output+'/'+place.room+'-regional-phone.png'});
+   await button('Close panel').tap();
+   await button('Places').tap();
+   await page.locator('[data-destination="'+place.exit+'"]').tap();
+   await expect.poll(()=>page.evaluate(()=>(window as any).__pilot.snapshot().nearby)).toBe(place.exit);
+   await page.locator('#interact').tap();
+   await expect(page.locator('#location')).toHaveAttribute('data-room','square');
+   await expect.poll(async()=>(await evidence(page)).frames).toBe(SCORE_FRAMES.town+176400);
+   expect(await evidence(page)).toMatchObject({contexts:1,workers:2,starts:3,effects:[]});
+   expect(errors).toEqual([]);
+  }finally{await context.close();}
+ }
 });

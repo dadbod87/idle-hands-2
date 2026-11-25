@@ -3,7 +3,10 @@ import {
  FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PUMPWORKS_KEY,readPumpworks,savePumpworks,
  type PumpworksAction,type PumpworksPlace,
 } from '../game/pumpworks.ts';
-import {braceForHopper,freshHopper,hopperLeash,hopperNotices,inPracticeReach,HOPPER_MOVEMENT,stepHopper,swingAtHopper,patrolHopper,FIELD_IMPACT_MS,type FieldImpact} from '../game/pumpworks-chase.ts';
+import {
+ braceForHopper,freshHopper,hopperLeash,hopperNotices,hopperOpen,inPracticeReach,
+ HOPPER_MOVEMENT,stepHopper,swingAtHopper,patrolHopper,FIELD_IMPACT_MS,type FieldImpact,
+} from '../game/pumpworks-chase.ts';
 import {PRACTICE_BELL} from '../game/pumpworks-room.ts';
 import type {Point} from '../game/world.ts';
 import './pumpworks.css';
@@ -171,7 +174,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    hopper=attack.motion;
    host.cue('swing');
    if(attack.hit)void combatAction(attack.hit);
-   else host.feedback('Out of reach. Get closer after it lands.');
+   else if(attack.deflected){
+    impact={kind:'shell',point:{...hopper.feet},until:performance.now()+FIELD_IMPACT_MS};
+    host.feedback('The shell deflected it.');
+   }else host.feedback('Out of reach. Get closer after it lands.');
   }else if(action==='brace'){
    const next=braceForHopper(hopper,context.position);
    if(!next)return;
@@ -224,7 +230,9 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const strikeDisabled=practice?busy||now<practiceReadyAt:disabled||state?.rod!=='equipped'||hopper.strikeCooldown>0;
   const braceDisabled=disabled||hopper.braceCooldown>0;
   const eatDisabled=disabled||state?.oatcake!=='packed'||state?.satchel!=='carried'||state.health===FIELD_HEALTH;
-  const text=state?.cleared?'Cleared':hopper.phase==='windup'?(hopper.pattern==='splash'?'Splash coming':'Lunge coming'):hopper.phase==='charge'?(hopper.pattern==='splash'?'Splashing':'Lunging'):hopper.phase==='recover'?'Open to strike':hopper.phase==='chase'?'Chasing':'Cross the bridge';
+  const text=state?.cleared?'Cleared':hopper.phase==='windup'?(hopper.pattern==='splash'?'Splash coming':'Lunge coming'):
+   hopper.phase==='charge'?(hopper.pattern==='splash'?'Splashing':'Lunging'):
+   hopper.phase==='recover'?(hopperOpen(hopper)?'Open to strike':'Recovering'):hopper.phase==='chase'?'Chasing':'Cross the bridge';
   const status=practice?'Try a swing':hopper.guard>0?'Braced':text;
   const enemyHealth=hopper.phase!=='idle'?state?.fight?.health:null;
   const key=[status,strikeDisabled,braceDisabled,eatDisabled,hopper.phase,enemyHealth].join(':');

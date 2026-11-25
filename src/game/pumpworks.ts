@@ -68,7 +68,7 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
   case 'strike':
   case 'counter': {
    if(place!=='arena'||!state.fight||state.rod!=='equipped')return refuse('Get within reach with the rod equipped.');
-   const damage=action==='counter'?4:2;
+   const damage=action==='counter'?4:1;
    const remaining=state.fight.health-damage;
    if(remaining<=0)return accept({fight:null,cleared:true},'The hopper slipped into the grate. The inspection desk is clear.');
    return accept({fight:{health:remaining}},action==='counter'?'Good timing. The hopper was open.':'The rod clips the hopper.');

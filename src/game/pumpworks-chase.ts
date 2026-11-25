@@ -7,18 +7,18 @@ export const HOPPER_MOVEMENT={
  strikeCooldown:.46,braceSeconds:1.45,braceCooldown:2.2,
 } as const;
 type Phase='idle'|'chase'|'windup'|'charge'|'recover';
-export type FieldImpactKind='strike'|'counter'|'damage'|'blocked'|'bell';
+export type FieldImpactKind='strike'|'counter'|'damage'|'blocked'|'bell'|'shell';
 export type FieldImpact={kind:FieldImpactKind;point:Point;until:number};
 export const FIELD_IMPACT_MS=450;
 export type HopperMotion={
  feet:Point;phase:Phase;pattern:'lunge'|'splash';elapsed:number;aim:Point|null;origin:Point|null;
- contact:boolean;guard:number;braceCooldown:number;strikeCooldown:number;
+ contact:boolean;counterUsed:boolean;guard:number;braceCooldown:number;strikeCooldown:number;
 };
 export type HopperStep={motion:HopperMotion;impact:'braced'|'hit'|'splash'|null};
 
 export const freshHopper=():HopperMotion=>({
  feet:HOPPER_FEET,phase:'idle',pattern:'lunge',elapsed:0,aim:null,origin:null,
- contact:false,guard:0,braceCooldown:0,strikeCooldown:0,
+ contact:false,counterUsed:false,guard:0,braceCooldown:0,strikeCooldown:0,
 });
 
 const distance=(a:Point,b:Point)=>Math.hypot(a.x-b.x,a.y-b.y);
@@ -78,17 +78,23 @@ export function stepHopper(state:HopperMotion,player:Point,seconds:number,enemyH
    const meets=splash?distance(player,next)<=rules.splashRadius:segmentDistance(player,active.feet,next)<=rules.impactRadius;
    const landed=!active.contact&&meets;
    const nextState={...active,feet:next,contact:active.contact||landed};
-   return result(active.elapsed>=rules.chargeSeconds?setPhase(nextState,'recover',{aim:null,origin:null}):nextState,
+   return result(active.elapsed>=rules.chargeSeconds?setPhase(nextState,'recover',{aim:null,origin:null,counterUsed:false}):nextState,
     landed?(active.guard>0?'braced':splash?'splash':'hit'):null);
   }
   case 'recover':return result(active.elapsed>=rules.restSeconds?setPhase(active,'chase'):active);
  }
 }
 
+export const hopperOpen=(state:HopperMotion)=>state.phase==='recover'&&!state.counterUsed;
+
 export function swingAtHopper(state:HopperMotion,player:Point,wielding:boolean){
  if(state.phase==='idle'||state.strikeCooldown>0||!inside(player)||!wielding)return null;
- const motion={...state,strikeCooldown:HOPPER_MOVEMENT.strikeCooldown};
- return {motion,hit:distance(player,state.feet)<=HOPPER_MOVEMENT.reach?(state.phase==='recover'?'counter' as const:'strike' as const):null};
+ const withinReach=distance(player,state.feet)<=HOPPER_MOVEMENT.reach;
+ const deflected=withinReach&&(state.phase==='windup'||state.phase==='charge');
+ const counter=withinReach&&hopperOpen(state);
+ const motion={...state,counterUsed:counter||state.counterUsed,strikeCooldown:HOPPER_MOVEMENT.strikeCooldown};
+ const hit=withinReach&&!deflected?(counter?'counter' as const:'strike' as const):null;
+ return {motion,hit,deflected};
 }
 export function braceForHopper(state:HopperMotion,player:Point):HopperMotion|null{
  if(state.phase==='idle'||state.braceCooldown>0||!inside(player))return null;

@@ -213,11 +213,11 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     expect((await read(page))!.combat.impact?.kind).toBe('counter');
     await capture('counter');
     await expect(page.getByRole('meter',{name:'Silt hopper health'})).toHaveJSProperty('value',before-4);
-    await expect.poll(async()=>(await read(page))?.combat.impact,{intervals:[25]}).toBeNull();
-    await capture('after-dodge');
-    await expect.poll(async()=>(await read(page))?.combat.hopper.strikeCooldown,{intervals:[30]}).toBe(0);
+    expect((await read(page))!.combat.hopper.counterUsed).toBe(true);
+    await expect.poll(async()=>(await read(page))?.combat.hopper.strikeCooldown,{intervals:[25]}).toBe(0);
     await press('Strike');
-    await expect.poll(async()=>(await read(page))?.combat.enemyHealth).toBe(1);
+    await expect.poll(async()=>(await read(page))?.combat.enemyHealth,{intervals:[25]}).toBe(before-5);
+    await capture('after-dodge');
     await expect.poll(async()=>{
      const motion=(await read(page))?.combat.hopper;
      return motion?.phase==='windup'?motion.pattern:null;

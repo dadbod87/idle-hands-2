@@ -27,12 +27,12 @@ test('The hopper can chase an unarmed resident, and only equipped strikes damage
  assert.equal(applyPumpworks(state,'pack','elsewhere').ok,false);
  assert.equal(applyPumpworks(state,'strike','bench').ok,false);
  state=play(state,'strike','arena');
- assert.deepEqual(state.fight,{health:7});
+ assert.deepEqual(state.fight,{health:8});
  assert.equal(state.health,FIELD_HEALTH);
  state=play(state,'guard','arena');
  assert.equal(state.health,7);
  state=play(state,'counter','arena');
- assert.deepEqual(state.fight,{health:3});
+ assert.deepEqual(state.fight,{health:4});
  state=play(state,'counter','arena');
  assert.equal(state.cleared,true);
  const rights={marigold:false,woodland:false,pond:false,pumpworks:state.reported};
@@ -166,7 +166,15 @@ test('Swings need reach and gear, have a cooldown, and deal more after a lunge',
  const miss=swingAtHopper(recover,{x:13,y:5},true)!;
  assert.equal(miss.hit,null);
  assert.equal(swingAtHopper(miss.motion,player,true),null);
- assert.equal(swingAtHopper(recover,player,true)?.hit,'counter');
+ const shell=swingAtHopper(windup,windup.feet,true)!;
+ assert.equal(shell.hit,null);
+ assert.equal(shell.deflected,true);
+ const counter=swingAtHopper(recover,player,true)!;
+ assert.equal(counter.hit,'counter');
+ const followup=swingAtHopper({...counter.motion,strikeCooldown:0},player,true);
+ assert.equal(followup?.hit,'strike');
+ const nextOpening=untilPhase(untilPhase(counter.motion,player,'windup',4).motion,player,'recover',4);
+ assert.equal(swingAtHopper(nextOpening.motion,player,true)?.hit,'counter');
 });
 
 test('Combat cues are short, bounded and silent at their endpoints',()=>{

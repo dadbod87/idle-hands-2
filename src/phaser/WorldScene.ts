@@ -1,5 +1,5 @@
 import type {MossbankSurvey} from '../game/mossbank.ts';
-import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
+import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,hopperOpen,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
 import {HOPPER_FEET,PRACTICE_BELL,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
 import {HOPPER_HEALTH,type PumpworksState} from '../game/pumpworks.ts';
@@ -488,8 +488,9 @@ export class WorldScene extends Phaser.Scene {
     const hop=motion?.phase==='chase'?Math.abs(Math.sin(motion.elapsed*7.5))*7:
       motion?.phase==='charge'&&motion.pattern==='lunge'?Math.sin(Math.PI*Math.min(1,motion.elapsed/HOPPER_MOVEMENT.chargeSeconds))*16:0;
     this.hopper.setPosition(x,y-(reduced?0:hop)).setDepth(y).setVisible(visible);
-    const open=motion?.phase==='recover';
-    this.hopper.setScale(1,!reduced&&(motion?.phase==='windup'||open)?.8:1);
+    const open=!!motion&&hopperOpen(motion);
+    const closed=motion?.phase==='windup'||motion?.phase==='charge';
+    this.hopper.setScale(1,!reduced&&closed?.72:1);
     const health=encounter?.enemyHealth;
     const engaged=visible&&health!=null&&motion?.phase!=='idle';
     this.hopperName.setPosition(x,y+15).setDepth(y+1).setVisible(visible&&!engaged);
@@ -515,10 +516,12 @@ export class WorldScene extends Phaser.Scene {
       const remaining=Math.max(0,impact.until-performance.now());
       const ix=(impact.point.x+.5)*TILE,iy=(impact.point.y+.5)*TILE-(impact.kind==='bell'?33:16);
       const extent=reduced?15:15+10*(1-remaining/FIELD_IMPACT_MS);
-      const color=impact.kind==='blocked'?0xb3d1d2:impact.kind==='damage'?0xd28466:0xffd07c;
+      const color=impact.kind==='blocked'||impact.kind==='shell'?0xb3d1d2:impact.kind==='damage'?0xd28466:0xffd07c;
       const alpha=reduced?1:Math.min(1,remaining/110);
-      if(impact.kind==='blocked')ink.lineStyle(3,color,alpha).strokeRoundedRect(ix-extent,iy-extent,extent*2,extent*2,6);
-      else{
+      if(impact.kind==='blocked'||impact.kind==='shell'){
+        ink.lineStyle(5,0x3b3b31,alpha).strokeRoundedRect(ix-extent,iy-extent,extent*2,extent*2,6);
+        ink.lineStyle(2,color,alpha).strokeRoundedRect(ix-extent,iy-extent,extent*2,extent*2,6);
+      }else{
         const n=impact.kind==='counter'||impact.kind==='bell'?8:impact.kind==='damage'?4:6;
         for(let i=0;i<n;i++){
           const a=(i+.5)*Math.PI*2/n,dx=Math.cos(a),dy=Math.sin(a);

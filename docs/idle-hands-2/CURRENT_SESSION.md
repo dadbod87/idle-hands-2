@@ -4,7 +4,7 @@ The [overnight handoff](handoffs/2026-11-25-overnight-play.md) identifies the ex
 
 Follow the [long-session workflow](BUILD_SYSTEM.md#faster-development-during-long-sessions). The next playable goal is connected Glasshouse validation. After acceptance, build one pigment loop from growing a crop to making a finish, applying it to an earned decoration and verifying that a visitor sees the result. Keep the existing Swatch Book study separate until integration.
 
-The connected walkthrough passed on a disposable PostgreSQL cluster. Continue player review from the separate [Inkmint stripe candidate](https://github.com/dadbod87/idle-hands-2/blob/feat/nov25-inkmint-stripe/docs/idle-hands-2/handoffs/2026-11-25-inkmint.md), runtime `41835f4`. It includes the Journal return route and a visitor-visible pot finish. The complete hosted gate and human playtest are pending.
+The connected walkthrough passed on a disposable PostgreSQL cluster. Continue player review from the separate [Inkmint stripe candidate](https://github.com/dadbod87/idle-hands-2/blob/feat/nov25-inkmint-stripe/docs/idle-hands-2/handoffs/2026-11-25-inkmint.md), runtime `cbf4bcb`. It includes the Journal return route and a visitor-visible pot finish. The complete hosted gate and human playtest are pending.
 
 # November 23 — shared-town and practice batches
 

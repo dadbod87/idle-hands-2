@@ -1,7 +1,6 @@
 import {GLASSHOUSE_ENTRY,GLASSHOUSE_FRONT} from '../src/game/glasshouse-room';
 import {test, expect} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
-import {createWorkshop} from '../src/game/live-workshop.ts';
 import {TOWN_SIZE} from '../src/game/town-expansion.ts';
 import {applyWorkshop,createWorkshop} from '../src/game/live-workshop.ts';
 import {INKWOOD_GLASSHOUSE} from '../src/game/world.ts';

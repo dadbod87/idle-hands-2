@@ -34,10 +34,11 @@ export class Session {
   readonly recoveredLodgingFootprint: boolean = false;
   private extraSquareStops?:readonly Stop[];
   private mossbankLocalStops:readonly Stop[]=MOSSBANK_STOPS;
+  sharedPumpworks=false;
   get hasLodging(): boolean { return !!this.squareLayout; }
   private roomGeometry(room: Room = this.room): World | undefined {
     if (room==='square') return this.squareLayout;
-    if (practiceRoom(room)&&this.hasLodging) return worlds[room];
+    if (practiceRoom(room)&&(this.hasLodging||room==='pumpworks'&&this.sharedPumpworks)) return worlds[room];
     if (room==='neighborhood') return this.geometry;
   }
   private homeStops={home:worlds.home.stops,'home-expanded':worlds['home-expanded'].stops};
@@ -169,7 +170,7 @@ export class Session {
   }
   nearby(): Stop | undefined { return this.stops.find(stop=>this.canInspect(stop)); }
   enter(room: Room, arrival: Point = spawn[room]): void {
-    if (practiceRoom(room) && !this.hasLodging) throw new Error('This room belongs to browser practice.');
+    if (practiceRoom(room) && !this.hasLodging && !(room==='pumpworks'&&this.sharedPumpworks)) throw new Error('This room belongs to browser practice.');
     if (!canStand(room, arrival,this.roomGeometry(room))) throw new Error('Transition arrival must be collision-safe.');
     this.stop(); this.room = room; this.position = { ...arrival };
   }

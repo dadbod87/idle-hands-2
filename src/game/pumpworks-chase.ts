@@ -53,7 +53,7 @@ function setPhase(state:HopperMotion,phase:Phase,more:Partial<HopperMotion>={}):
  return {...state,phase,elapsed:0,...more};
 }
 
-export function stepHopper(state:HopperMotion,player:Point,seconds:number,enemyHealth=9):HopperStep{
+export function stepHopper(state:HopperMotion,player:Point,seconds:number,enemyHealth=9,timing:{windupSeconds:number;restSeconds:number}=HOPPER_MOVEMENT):HopperStep{
  const dt=clamp(seconds,0,.065),rules=HOPPER_MOVEMENT;
  const active={...state,
   elapsed:state.elapsed+dt,guard:Math.max(0,state.guard-dt),
@@ -73,7 +73,7 @@ export function stepHopper(state:HopperMotion,player:Point,seconds:number,enemyH
    return result({...active,feet:mix(active.feet,player,Math.min(1,dt*rules.chaseSpeed/remaining))});
   }
   case 'windup':
-   return result(active.elapsed>=rules.windupSeconds?setPhase(active,'charge'):active);
+   return result(active.elapsed>=timing.windupSeconds?setPhase(active,'charge'):active);
   case 'charge':{
    const next=mix(active.origin!,active.aim!,Math.min(1,active.elapsed/rules.chargeSeconds));
    const splash=active.pattern==='splash';
@@ -83,7 +83,7 @@ export function stepHopper(state:HopperMotion,player:Point,seconds:number,enemyH
    return result(active.elapsed>=rules.chargeSeconds?setPhase(nextState,'recover',{aim:null,origin:null,counterUsed:false}):nextState,
     landed?(active.guard>0?'braced':splash?'splash':'hit'):null);
   }
-  case 'recover':return result(active.elapsed>=rules.restSeconds?setPhase(active,'chase'):active);
+  case 'recover':return result(active.elapsed>=timing.restSeconds?setPhase(active,'chase'):active);
  }
 }
 

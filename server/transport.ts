@@ -1,6 +1,6 @@
 /** Local synthetic transport limits; these do not authenticate a real resident. */
-export type TransportRoute='login'|'snapshot'|'events'|'fixtures'|'shelf'|'wave';
-const budgets={login:{global:120,member:10,window:60_000,total:32,each:32},snapshot:{global:1200,member:60,window:10_000,total:32,each:2},events:{global:240,member:12,window:60_000,total:64,each:2},fixtures:{global:120,member:120,window:60_000,total:32,each:32},shelf:{global:240,member:12,window:60_000,total:12,each:1},wave:{global:64,member:4,window:1_000,total:8,each:1}} as const;
+export type TransportRoute='login'|'snapshot'|'events'|'fixtures'|'shelf'|'wave'|'field';
+const budgets={login:{global:120,member:10,window:60_000,total:32,each:32},snapshot:{global:1200,member:60,window:10_000,total:32,each:2},events:{global:240,member:12,window:60_000,total:64,each:2},fixtures:{global:120,member:120,window:60_000,total:32,each:32},shelf:{global:240,member:12,window:60_000,total:12,each:1},wave:{global:64,member:4,window:1_000,total:8,each:1},field:{global:192,member:8,window:1_000,total:32,each:2}} as const;
 export class TransportAdmission {
  private allowed:Set<string>;private samples=new Map<string,number[]>();private active=new Map<string,number>();private last=0;
  readonly metrics={rejectedRate:0,rejectedCapacity:0,activeRequests:0,peakRequests:0,activeStreams:0,peakStreams:0};

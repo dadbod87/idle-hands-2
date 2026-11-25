@@ -7,6 +7,7 @@ export const PUMPWORKS_DOOR={
  transition:'pumpworks',arrival:PUMPWORKS_ENTRY,
  text:'The old flood station. A copper sign says to borrow a sounding rod before crossing the water.',
 } satisfies Stop;
+export const PUMPWORKS_SAFE_BENCH={x:4.7,y:5.1} as const satisfies Point;
 export const PRACTICE_BELL={x:5.55,y:7.35} as const satisfies Point;
 export const FORGE_STOP={
  id:'pumpworks-forge',name:'Dry-side forge',point:{x:6.3,y:5.85},doorArea:[5.3,3.2,2,2.25],
@@ -23,7 +24,7 @@ export const PUMPWORKS_ROOM:World={
    text:'One sounding rod, one field satchel, and a very reasonable expectation that you return both.'},
   {id:'pumpworks-bell',name:'Practice bell',point:PRACTICE_BELL,
    text:'Test a swing on the dry side of the footbridge.'},
-  {id:'pumpworks-bench',name:'Dry bench',point:{x:4.7,y:5.1},doorArea:[2,4,2.6,1.35],
+  {id:'pumpworks-bench',name:'Dry bench',point:PUMPWORKS_SAFE_BENCH,doorArea:[2,4,2.6,1.35],
    text:'A dry spot to take a breath before crossing the water.'},
   FORGE_STOP,
   {id:'pumpworks-hopper',name:'Hopper chamber',point:{x:16.2,y:9.5},

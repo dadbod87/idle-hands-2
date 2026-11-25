@@ -742,7 +742,7 @@ export class WorldScene extends Phaser.Scene {
         if(!this.textures.exists('valley-'+id))this.load.svg('valley-'+id,'/art/hidden-valley/'+id+'.svg');
       }
     }
-    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','breeze-staff','dry-forge']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
+    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell','field-bow','breeze-staff','dry-forge']:this.loadingRoom==='square'&&(this.session.hasLodging||this.session.sharedPumpworks)?['hatch']:[];
     const practiceGear=this.pumpworksState?.();
     if(this.loadingRoom==='pumpworks'||practiceGear&&practiceGear.rod!=='unissued'){
       fieldArt.push(...FIELD_VEST_ATLASES);
@@ -869,6 +869,8 @@ export class WorldScene extends Phaser.Scene {
         const sign=MOSSBANK_ROAD.point;
         this.add.image((sign.x+.5)*TILE,sign.y*TILE,'mossbank-road-sign').setOrigin(.5,.93).setDepth(sign.y*TILE);
         label(sign.x+.5,sign.y+.85,'Road to Mossbank');
+      }
+      if(this.session.hasLodging||this.session.sharedPumpworks){
         const {x,y}=PUMPWORKS_DOOR.point;
         this.add.image((x+.5)*TILE,y*TILE,'pumpworks-hatch').setOrigin(.5,.96).setDepth(y*TILE);
         label(x+.5,y+.85,'The Pumpworks');

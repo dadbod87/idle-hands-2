@@ -1,3 +1,4 @@
+import {sharedFieldInputSchema,type SharedFieldInput,type SharedFieldReply,type SharedFieldView} from '../game/shared-field.ts';
 import {learnedCounter,learnedReach,MAX_WEAPON_RANK,PUMPWORKS_TRAINING_RANK,WEAPON_RANK_MARKS,WEAPON_SKILL_NAMES,weaponRank} from '../game/weapon-practice.ts';
 import {FORGE_ORDER_MS,forgeReady} from '../game/forge-order.ts';
 import {kerchiefDyePicker,kerchiefPreview,type OutfitLook} from './kerchief-preview.ts';
@@ -64,8 +65,14 @@ function meter(label:string,value:number,max:number){
  return line;
 }
 
-export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setItem'>){
- let record=readPumpworks(storage);
+type RemoteField={
+ view:()=>SharedFieldView|null; now:()=>number;
+ ready:()=>boolean; beforeInput:()=>Promise<void>;
+ send:(input:SharedFieldInput)=>Promise<SharedFieldReply>;
+};
+export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setItem'>,remote?:RemoteField){
+ let record=readPumpworks(remote?{getItem:()=>null}:storage);
+ const wallNow=remote?.now??Date.now;
  let busy=false;
  let hopper=freshHopper();
  let impact:FieldImpact|null=null;
@@ -118,12 +125,13 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  }
  const actionRow=document.createElement('div');actionRow.className='pump-action-row';
  actionRow.append(strikeButton,braceButton,oatcakeButton);
- const current=()=>record.ok?record.state:null;
+ const current=()=>remote?remote.view()?.state??null:record.ok?record.state:null;
+ const token=()=>remote?String(remote.view()?.state.revision??''):record.ok?record.raw:null;
  let forgeReminderTimer=0;
  let forgeJournalStatus:HTMLParagraphElement|null=null;
  function updateForgeReminder(){
   window.clearTimeout(forgeReminderTimer);
-  const forge=current()?.forge,now=Date.now(),ready=forgeReady(forge,now);
+  const forge=current()?.forge,now=wallNow(),ready=forgeReady(forge,now);
   host.forgeReminder(ready);
   if(forgeJournalStatus?.isConnected){
    if(forge?.phase==='working'){
@@ -140,7 +148,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  }
  const refresh=()=>{record=readPumpworks(storage);updateForgeReminder();host.update(record);};
  updateForgeReminder();
- window.addEventListener('storage',event=>{if(event.key===PUMPWORKS_KEY||event.key===null)refresh();});
+ if(!remote)window.addEventListener('storage',event=>{if(event.key===PUMPWORKS_KEY||event.key===null)refresh();});
  const resetFrameClock=()=>{priorAt=0;};
  const pauseBrowser=()=>{browserPaused=true;resetFrameClock();};
  const wakeClock=()=>{
@@ -168,6 +176,11 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
 
  async function change(action:PumpworksAction,place:PumpworksPlace,present:()=>boolean,expected:string|null,onField=false){
   if(!present()||busy)return '';
+  if(remote){
+   const view=remote.view();
+   if(!view||!remote.ready()||token()!==expected)return 'Check the confirmed field record and try again.';
+   return await remoteInput({id:crypto.randomUUID(),kind:'station',revision:view.state.revision,action},present);
+  }
   record=readPumpworks(storage);
   if(!record.ok){host.feedback(record.message);return record.message;}
   if(!navigator.locks){
@@ -211,6 +224,58 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   }finally{busy=false;}
  }
 
+ async function remoteInput(intent:unknown,present:()=>boolean){
+  if(!remote)return '';
+  const parsed=sharedFieldInputSchema.safeParse(intent);
+  if(!parsed.success)return 'That field action is unavailable in shared practice.';
+  busy=true;host.wakeFrame();
+  try{
+   await remote.beforeInput();
+   if(!present()||!remote.ready())return 'The field position changed. Try again.';
+   const result=await remote.send(parsed.data);
+   if(result.message)host.feedback(result.message);
+   return result.message;
+  }catch(error){
+   const message=(error as Error).message||'The field action could not be confirmed.';
+   host.feedback(message);return message;
+  }finally{busy=false;host.wakeFrame();}
+ }
+ let remoteRevision='';
+ let recentImpact:number|null=null;
+ let recentProp:number|null=null;
+ let remoteMessage='';
+ function syncRemote(){
+  if(!remote)return;
+  const view=remote.view();
+  if(!view)return;
+  const key=view.playerId+':'+view.serverInstance+':'+view.state.revision;
+  if(key!==remoteRevision){remoteRevision=key;updateForgeReminder();}
+  if(!view.inRoom)return;
+  if(hopper.phase!=='windup'&&view.hopper.phase==='windup'&&host.combat().inRoom)host.cue(view.hopper.pattern);
+  hopper=view.hopper;
+  draw=view.draw;
+  const localize=<T extends {until:number}>(effect:T|null)=>effect?{...effect,until:performance.now()+Math.max(0,effect.until-wallNow())}:null;
+  impact=localize(view.impact);shot=localize(view.shot);sweep=localize(view.sweep);pulse=localize(view.pulse);
+  practiceReadyAt=performance.now()+Math.max(0,view.practiceReadyAt-wallNow());
+  if(view.impact&&view.impact.until!==recentImpact){
+   recentImpact=view.impact.until;
+   const kind=view.impact.kind;
+   if(kind==='bell')host.cue('bell');
+   if(kind==='damage')host.cue('thud');
+   if(kind==='blocked')host.cue('block');
+   if(kind==='heal')host.cue('heal');
+  }
+  const activeProp=view.shot??view.sweep??view.pulse;
+  if(activeProp&&activeProp.until!==recentProp){
+   recentProp=activeProp.until;
+   host.cue(view.shot?'bow':view.pulse?'staff':'swing');
+  }
+  if(view.message!==remoteMessage){
+   remoteMessage=view.message;
+   if(remoteMessage&&host.combat().inRoom)host.feedback(remoteMessage);
+  }
+  host.wakeFrame();
+ }
  const encounterActive=()=>hopper.phase!=='idle';
  function encounter(){
   const currentFight=current()?.fight;
@@ -271,6 +336,14 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  function input(action:'strike'|'brace'|'eat'){
   const context=host.combat(),state=current();
   if(browserPaused||windowUnfocused||!context.able||!state||busy||state.recovering)return;
+  if(remote){
+   const view=remote.view();
+   if(!remote.ready()||!view?.encounter||!view.inRoom)return;
+   const actionType=action==='strike'?'attack':action;
+   void remoteInput({id:crypto.randomUUID(),kind:'combat',revision:state.revision,encounter:view.encounter,
+    turn:view.nextTurn,action:actionType},()=>host.combat().able);
+   return;
+  }
   if(action==='strike'){
    const weapon=equippedFieldWeapon(state);
    if(!weapon||draw)return;
@@ -326,6 +399,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   if(shot&&now>=shot.until)shot=null;
   if(sweep&&now>=sweep.until)sweep=null;
   if(pulse&&now>=pulse.until)pulse=null;
+  if(remote){paintControls(state,context.position,now);return;}
   const running=context.able&&!browserPaused&&!windowUnfocused;
   const dt=running&&priorAt?(now-priorAt)/1000:0;
   priorAt=running?now:0;
@@ -358,16 +432,17 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    host.controls.append(fieldReadout,actionRow);
    host.controls.hidden=false;
   }
-  const disabled=!state?.fight||hopper.phase==='idle'||busy;
+  const unavailable=!!remote&&!remote.ready();
+  const disabled=unavailable||!state?.fight||hopper.phase==='idle'||busy;
   const weapon=state?equippedFieldWeapon(state):null;
   const practice=!!state&&!state.fight&&!state.recovering&&!!weapon&&inPracticeReach(position,weapon);
-  const strikeDisabled=!!draw||(practice?busy||now<practiceReadyAt:disabled||!weapon||hopper.strikeCooldown>0);
+  const strikeDisabled=unavailable||!!draw||(practice?busy||now<practiceReadyAt:disabled||!weapon||hopper.strikeCooldown>0);
   const braceDisabled=disabled||hopper.braceCooldown>0;
   const eatDisabled=disabled||state?.oatcake!=='packed'||state?.satchel!=='carried'||state.health===FIELD_HEALTH;
   const text=state?.cleared?'Cleared':hopper.phase==='windup'?(hopper.pattern==='splash'?'Splash coming':'Lunge coming'):
    hopper.phase==='charge'?(hopper.pattern==='splash'?'Splashing':'Lunging'):
    hopper.phase==='recover'?(hopperOpen(hopper)?'Open to strike':'Recovering'):hopper.phase==='chase'?'Chasing':'Cross the bridge';
-  const status=hopper.phase==='windup'||hopper.phase==='charge'?text:
+  const status=unavailable?'Confirming field':hopper.phase==='windup'||hopper.phase==='charge'?text:
    draw?'Drawing bow':practice?(weapon==='bow'?'Try a shot':weapon==='staff'?'Try a pulse':'Try a swing'):hopper.guard>0?'Braced':text;
   const enemyHealth=hopper.phase!=='idle'?state?.fight?.health:null;
   const key=[status,weapon,strikeDisabled,braceDisabled,eatDisabled,hopper.phase,enemyHealth].join(':');
@@ -403,7 +478,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    if(!present())return;
    panel.replaceChildren();
    const state=current();
-   if(record.ok)shownRaw=record.raw;
+   shownRaw=token();
    if(!state){panel.append(paragraph('The outing record is unavailable. Your workshop is still available.'));return;}
    const add=(label:string,action:PumpworksAction)=>{
     panel.append(button(label,()=>void submit(action)));
@@ -427,6 +502,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      if(state.oatcake==='unissued')add('Pack your oatcake','oatcake');
     }
    }else if(place==='forge'){
+    if(remote&&!remote.view()?.state.forge){
+     panel.append(paragraph('Dry-side forge. The training blank is awaiting approval.'));
+     return;
+    }
     const order=state.forge;
     const preview=document.createElement('div');preview.className='forge-profile';
     const image=document.createElement('img');image.src='/art/pumpworks/riveted-vest.svg';image.alt='';
@@ -443,12 +522,12 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      const status=paragraph('');panel.append(status);
      const tick=()=>{
       if(!present()||!status.isConnected)return;
-      if(forgeReady(order,Date.now())){
+      if(forgeReady(order,wallNow())){
        if(status.textContent===''){status.textContent='Your vest is ready.';add('Collect and equip vest','collect-forge');}
        else render();
        return;
       }
-      const seconds=Math.max(1,Math.ceil((order.readyAt-Date.now())/1000));
+      const seconds=Math.max(1,Math.ceil((order.readyAt-wallNow())/1000));
       status.textContent='Ready in '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0');
       forgeTimer=window.setTimeout(tick,500);
      };
@@ -460,7 +539,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    }else if(place==='bench'||place==='bed'){
     panel.append(meter('Your health',state.health,FIELD_HEALTH));
     if(state.recovering){
-     panel.append(paragraph(state.satchel==='at-pump'?'You’re back in Ledgerwick. The field satchel is on the lost property shelf in the Pumpworks.':'You’re back in Ledgerwick. Get up when you’re ready.'));
+     panel.append(paragraph(remote?'First aid brought you to the dry bench. Recover here before walking back.':state.satchel==='at-pump'?'You’re back in Ledgerwick. The field satchel is on the lost property shelf in the Pumpworks.':'You’re back in Ledgerwick. Get up when you’re ready.'));
      add('Get up and recover','wake');
     }else if(place==='bench'&&state.reported&&state.cleared){
      panel.append(paragraph('Start at full health. Your inspection seal stays earned.'));
@@ -496,9 +575,9 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  }
 
  function gear(){
-  if(!record.ok||record.state.rod==='unissued')return;
-  const state=record.state;
-  let shownRaw=record.raw;
+  const state=current();
+  if(!state||state.rod==='unissued')return;
+  let shownRaw=token();
   const repaints:((message?:string)=>void)[]=[];
   const available=(['rod','bow','staff','vest','riveted'] as const)
    .filter(item=>item==='riveted'?state.forge!==undefined&&state.forge.phase!=='working':state[item]!=='unissued');
@@ -550,7 +629,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     control.disabled=true;
     const action=equipped(live)?profile.pack:profile.equip;
     const message=await change(action,'elsewhere',()=>card.isConnected,shownRaw);
-    if(record.ok)shownRaw=record.raw;
+    shownRaw=token();
     if(card.isConnected)for(const repaint of repaints)repaint(repaint===paint?message:'');
    };
    if(armor){
@@ -578,7 +657,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
      save.disabled=true;
      const message=await change({armor,finish},'elsewhere',()=>finishRow.isConnected,shownRaw);
      if(!finishRow.isConnected)return;
-     if(record.ok)shownRaw=record.raw;
+     shownRaw=token();
      for(const repaint of repaints)repaint(repaint===paint?message:'');
     };
     repaints.push(paintFinish);
@@ -595,6 +674,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    }
    return card;
   });
+  if(remote)return cards;
   const dye=document.createElement('li');dye.className='bag-slot field-kerchief';dye.dataset.fieldKerchief='';
   const title=document.createElement('h4');title.textContent='Trail kerchief';
   const detail=paragraph('');detail.className='bag-slot-detail';
@@ -629,7 +709,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    const action={dye:dyeChoice,wear:picker.wear.checked,tie:picker.tie()};
    saveLook.disabled=true;
    const message=await change(action,'elsewhere',()=>dye.isConnected,shownRaw);
-   if(record.ok)shownRaw=record.raw;
+   shownRaw=token();
    if(dye.isConnected)for(const repaint of repaints)repaint(repaint===paintLook?message:'');
   };
   dye.append(appearance,title,detail,picker.row,picker.wearLabel,saveLook,status);
@@ -654,14 +734,12 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    art.width=58;art.height=46;
    description.prepend(art);
   }
-  entry.append(title,description,state.reported
-   ?button('Preview field seal',previewSeal)
-   :button('Walk to the Pumpworks',walkToDoor));
+  entry.append(title,description,...(state.reported?(remote?[]:[button('Preview field seal',previewSeal)]):[button('Walk to the Pumpworks',walkToDoor)]));
   body.append(entry);
   if(state.forge?.phase==='working'){
    const order=document.createElement('section');order.className='journal-ready-return';order.dataset.forgeJournal='';
    const title=document.createElement('h3');title.textContent='Riveted survey vest';
-   forgeJournalStatus=paragraph(forgeReady(state.forge,Date.now())?'Ready to collect.':'At the forge.');
+   forgeJournalStatus=paragraph(forgeReady(state.forge,wallNow())?'Ready to collect.':'At the forge.');
    forgeJournalStatus.setAttribute('role','status');
    order.append(title,forgeJournalStatus,button('Walk to the forge',walkToForge));
    body.append(order);
@@ -688,5 +766,5 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   }
  }
 
- return {current,show,gear,journal,paintHealth,tick,encounter,encounterActive,strike,brace,eat};
+ return {current,show,gear,journal,paintHealth,tick,encounter,encounterActive,strike,brace,eat,syncRemote};
 }

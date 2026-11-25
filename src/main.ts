@@ -93,6 +93,7 @@ let morning:MorningRead=townMode?{status:'unavailable',record:null}:readFirstMor
 let morningWriting=false;
 const resting=()=>morning.record?.phase==='bed';
 const session = new Session(townMode?null:morning.record?.saved??stored,townMode?undefined:[...ORCHARD_STOPS,...POND_WATCH_STOPS,PUMPWORKS_DOOR,MOSSBANK_ROAD],!townMode);
+session.sharedPumpworks=townMode;
 const fieldSave=townMode?null:readPumpworks(morningStorage);
 if(fieldSave?.ok&&fieldSave.state.recovering)session.enter('lodging',LODGING_BEDSIDE);
 if(resting())session.lock(true);
@@ -405,7 +406,18 @@ function adoptTownPosition(snapshot:TownSnapshot, throughDoor=false){
  portalIntent++;scene.residents=[];scene.localWaveUntil=0;heardWaves.clear();refreshPlaces?.(scene.residents);homePlotId=snapshot.position.homePlotId;districtId=snapshot.position.districtId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??'1');session.enter(snapshot.position.room,snapshot.position.position);walkedDistance=0;confirmedDistance=0;confirmedContext=contextKey(snapshot.position.room,homePlotId);movementEpoch++;residentId=snapshot.playerId;lastContext='';serverInstance=snapshot.serverInstance??serverInstance;needResync=false;lastSent=JSON.stringify(snapshot.position);scene.homePlotId=homePlotId;scene.districtId=districtId;session.geometry=housingWorld(snapshot.plots,snapshot.position.districtId??districtId??'1');scene.neighborhoodPlots=snapshot.plots;scene.constructionSites=snapshot.housingSites??[];const visited=snapshot.plots.find(plot=>plot.id===homePlotId);scene.homeOwnerName=visited?.ownerName??'Resident';scene.homeLevel=Number(visited?.level??1);scene.homePennantOwned=!!visited?.pennantOwned;syncHomeStops(visited,snapshot);unlockWorld();
  if(entered)confirmedDoor();
 }
+let fieldRecoveryHandled='';
 const town=townMode?new TownClient({
+ onField:view=>{
+  pumpworks?.syncRemote();
+  if(!view.returnTo||session.room!=='pumpworks'||view.playerId!==town?.snapshot?.playerId)return;
+  const key=view.playerId+':'+view.serverInstance+':'+view.state.revision;
+  if(key===fieldRecoveryHandled)return;
+  fieldRecoveryHandled=key;
+  if(panel.open)closePanel();
+  adoptTownPosition({...town.snapshot,position:{room:'pumpworks',position:view.returnTo}});
+  openRecovery=true;
+ },
  onConfirmedCommand:(command,reward)=>{
   const cue=reward.teapot?'craft':command.kind==='gather'&&!reward.collection?undefined:rewardCue(command);
   if(cue)music.cue(cue);
@@ -425,7 +437,11 @@ const town=townMode?new TownClient({
    scene.sharedKerchiefTie=tie;
    refreshMenuFrame(2);
   }
- session.setSquareStops(snapshot.orchard!==undefined?ORCHARD_STOPS:undefined);
+ session.setSquareStops([
+  ...(snapshot.orchard!==undefined?ORCHARD_STOPS:[]),
+  ...(snapshot.sharedPumpworks?[PUMPWORKS_DOOR]:[]),
+ ]);
+ if(snapshot.sharedPumpworks&&!town?.fieldView)void town?.loadField().catch(()=>{});
  const celebrateBridge=!needResync&&freshBridgeOpening(previous??null,snapshot);
  skyOffset=snapshot.serverTime-Date.now();const identityChanged=residentId!==snapshot.playerId;const expandedInPlace=session.room==='home'&&snapshot.position.room==='home-expanded'&&snapshot.position.homePlotId===homePlotId;
  // Ordinary snapshots can race acknowledged movement. Only explicit entry/resume or an in-place forward expansion adopts feet.
@@ -522,7 +538,7 @@ const fieldStations:Record<string,PumpworksPlace>={
 };
 const atFieldStation=(place:PumpworksPlace)=>session.stops.some(stop=>fieldStations[stop.id]===place&&session.canInspect(stop));
 let openRecovery=!!(fieldSave?.ok&&fieldSave.state.recovering);
-const pumpworks=townMode?undefined:createPumpworks({
+const pumpworks=createPumpworks({
  body,hud:document.querySelector('#pump-health')!,controls:document.querySelector('#pump-controls')!,
  open:openPanel,atStation:atFieldStation,wakeFrame:wakeRender,cue:music.cue,
  combat:()=>({
@@ -537,7 +553,7 @@ const pumpworks=townMode?undefined:createPumpworks({
  feedback:message=>feedback.textContent=message,
  update:record=>{
   const earned=record.ok&&record.state.reported;
-  if(earned!==printRights.pumpworks){
+  if(!townMode&&earned!==printRights.pumpworks){
    printRights.pumpworks=earned;
    refreshWorkshopPrint();
   }
@@ -549,9 +565,15 @@ const pumpworks=townMode?undefined:createPumpworks({
   music.setLocation('lodging',LODGING_BEDSIDE);
   save();focusWorld();openRecovery=true;
  },
-},morningStorage);
-scene.pumpworksState=pumpworks?.current;
-scene.pumpworksEncounter=pumpworks?.encounter;
+},morningStorage,town?{
+ view:()=>town.fieldView,
+ now:town.serverNow,
+ ready:()=>!!town.snapshot?.sharedPumpworks&&!needResync&&!transitionBusy&&!town.retryAvailable&&!town.isSaving,
+ beforeInput:async()=>{await flushMovement(true);},
+ send:input=>town.sendField(input),
+}:undefined);
+scene.pumpworksState=pumpworks.current;
+scene.pumpworksEncounter=pumpworks.encounter;
 window.addEventListener('keydown',event=>{
  if(!pumpworks||session.room!=='pumpworks'||!scene.roomReady||panel.open||event.repeat||event.ctrlKey||event.metaKey||event.altKey)return;
  if(event.target instanceof HTMLElement&&event.target.closest('input,textarea,select,summary,[contenteditable]'))return;
@@ -589,16 +611,20 @@ const mossbank=createMossbank({
  },
 }:undefined);
 const sewingHost={open:openPanel,body,look:()=>({rig:scene.residentId,headwear:scene.headwear}),atTable:()=>session.room==='workshop'&&session.nearby()?.id===SEWING_TABLE.id&&!needResync,cue:()=>music.cue('craft')};
-const workshop=new WorkshopUI({fieldGear:pumpworks?.gear??(town?()=>tailoringBagCards(town,()=>showTailoring(sewingHost,town,true)):undefined),fieldJournal:pumpworks?(body)=>{pumpworks.journal(body,()=>{
- const state=pumpworks.current();
- if(session.room==='pumpworks'){
-  goNamedDestination('pumpworks',state?.satchel==='at-pump'?'pumpworks-cache':state?.cleared?'pumpworks-report':'pumpworks-hopper');
- }else goNamedDestination('square',PUMPWORKS_DOOR.id);
-},()=>workshop.showJournal('pumpworks-seal'),()=>goNamedDestination('pumpworks',FORGE_STOP.id));
- mossbank.journal(body);
- valleyGraftJournal(body,localGraft(),()=>goNamedDestination('hidden-valley',VALLEY_GRAFT_STOP_ID));}:body=>{
+const workshop=new WorkshopUI({fieldGear:()=>{
+ const field=pumpworks.gear()??[];
+ const clothing=town?tailoringBagCards(town,()=>showTailoring(sewingHost,town,true))??[]:[];
+ return [...field,...clothing];
+},fieldJournal:body=>{
+ pumpworks.journal(body,()=>{
+  const state=pumpworks.current();
+  if(session.room==='pumpworks'){
+   goNamedDestination('pumpworks',state?.satchel==='at-pump'?'pumpworks-cache':state?.cleared?'pumpworks-report':state?.rod==='unissued'?'pumpworks-locker':'pumpworks-hopper');
+  }else goNamedDestination('square',PUMPWORKS_DOOR.id);
+ },()=>workshop.showJournal('pumpworks-seal'),()=>goNamedDestination('pumpworks',FORGE_STOP.id));
  mossbank.journal(body);
  if(town)sewingJournal(body,town,()=>goNamedDestination('workshop',SEWING_TABLE.id));
+ else valleyGraftJournal(body,localGraft(),()=>goNamedDestination('hidden-valley',VALLEY_GRAFT_STOP_ID));
 },inkmint:inkmintForJournal,nurseryPlant:nurseryPlantForBag,townHeadwear:()=>town?.snapshot?.headwear,recentFieldNotes:()=>fieldNotes.read(townMode?town?.snapshot?.playerId??null:fieldNoteOwner),river:!town?{read:()=>riverSurvey,walk:()=>goNamedDestination('square','commons-riverwalk')}:undefined,
  savedMarigold:!town?(earned)=>{
   if(earned===printRights.marigold)return;
@@ -640,7 +666,7 @@ function followNamedWalk(){
  const target=namedWalk;
  const fromInkwoodSide=session.room==='glasshouse'||(townMode&&session.room==='mossbank');
  const toNursery=target.room==='glasshouse',toMossbank=townMode&&target.room==='mossbank';
- const toPumpworks=!townMode&&target.room==='pumpworks';
+ const toPumpworks=target.room==='pumpworks'&&(!townMode||town?.snapshot?.sharedPumpworks===true);
  const toValley=!townMode&&target.room==='hidden-valley';
  const squarePortal=toValley?MOSSBANK_ROAD.id:toPumpworks?PUMPWORKS_DOOR.id:target.room==='garden'?'allotment':target.room==='workshop'?'workshop':toNursery||toMossbank?'trail-gate':null;
  const stop=session.room===target.room?session.stops.find(s=>s.id===target.stopId)
@@ -849,7 +875,7 @@ async function enterRemotePortal(stop:Stop){
   // Confirm the final source-room approach before the separate portal request.
   await flushMovement(true);
   if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||session.room!==sourceRoom||panel.open||needResync)return;
-  if(targetRoom==='mossbank'||sourceRoom==='mossbank'){
+  if(['mossbank','pumpworks'].includes(targetRoom)||['mossbank','pumpworks'].includes(sourceRoom)){
    const destination={room:targetRoom,position:stop.arrival!};
    const receipt=await town.movement(destination);
    if(intent!==portalIntent||epoch!==movementEpoch||town.snapshot?.playerId!==playerId||session.room!==sourceRoom||panel.open||needResync)return;
@@ -857,14 +883,15 @@ async function enterRemotePortal(stop:Stop){
    session.enter(targetRoom,receipt.position.position);
    lastSent=JSON.stringify(destination);confirmedContext=contextKey(targetRoom);
    scene.residents=[];music.setLocation(targetRoom,receipt.position.position);confirmedDoor();focusWorld();
-   feedback.textContent=targetRoom==='mossbank'?'Mossbank outskirts. The sawmill is up the road.':'Back on the Inkwood trail.';
+   feedback.textContent=targetRoom==='pumpworks'?'Pick up a survey kit at the locker. Your hopper encounter is private.':sourceRoom==='pumpworks'?'Back in Willow meadow.':targetRoom==='mossbank'?'Mossbank outskirts. The sawmill is up the road.':'Back on the Inkwood trail.';
+   if(targetRoom==='pumpworks')void town.loadField().then(()=>pumpworks.syncRemote()).catch(()=>{});
    return;
   }
   session.enter(targetRoom,stop.arrival);districtId=targetRoom==='neighborhood'?districtId:undefined;scene.districtId=districtId;if(!targetRoom.startsWith('home')){homePlotId=undefined;scene.homePlotId=undefined;}save();focusWorld();
   feedback.textContent=targetRoom==='neighborhood'?'Back in neighborhood '+districtId+'. Each door leads to its own home.':targetRoom==='glasshouse'?'The nursery is open. Walk up to a bench or meet the keeper.':sourceRoom==='glasshouse'?'Back on the Glasshouse front step.':targetRoom==='trail'?'Inkwood trail. Three landmarks, one extremely official field notebook.':targetRoom==='garden'?'Your allotment. Inspect the three beds or visit the attendant.':targetRoom==='workshop'?workshopArrivalNote():(scene.bridgeRestored?'Back in the square. The bridge is repaired; the committee has finally earned its name.':'Back in the square. The committee has made no measurable progress.');
  }catch{
   if(intent===portalIntent&&epoch===movementEpoch&&town.snapshot?.playerId===playerId&&!needResync){
-   if(targetRoom==='mossbank'||sourceRoom==='mossbank'){
+   if(['mossbank','pumpworks'].includes(targetRoom)||['mossbank','pumpworks'].includes(sourceRoom)){
     needResync=true;
     try{
      const snapshot=await town.load();
@@ -1239,8 +1266,10 @@ scene.onFrame = () => {
     }).catch(()=>townUI!.showLogin(()=>closePanel()));}
   }
   pumpworks?.paintHealth(session.room==='pumpworks'||(session.room==='lodging'&&!!pumpworks.current()?.recovering),session.room==='pumpworks');
-  if(openRecovery&&session.room==='lodging'&&scene.roomReady&&!panel.open){
-    openRecovery=false;pumpworks?.show('bed');
+  if(openRecovery&&scene.roomReady&&!panel.open){
+    if(session.room==='lodging'||townMode&&session.room==='pumpworks'){
+     openRecovery=false;pumpworks.show(townMode?'bench':'bed');
+    }
   }
   const arrival = session.takeArrival();
   if(arrival){if(namedWalk?.room===session.room&&namedWalk.stopId===arrival.id)namedWalk=null;activate(arrival);}
@@ -1303,7 +1332,8 @@ Object.defineProperty(window, '__pilot', { value: Object.freeze({
   town:()=>town?.snapshot?JSON.parse(JSON.stringify(town.snapshot)):null,
   workshop:()=>workshop.snapshot(),
   pumpworks:()=>pumpworks?.current()??null,
-  pumpworksMotion:()=>pumpworks?.encounter()??null,
+  pumpworksMotion:()=>pumpworks.encounter(),
+  sharedField:()=>town?.fieldView??null,
   metrics: () => {
     const samples = scene.frameSamples.slice().sort((a, b) => a - b);
     return { climate:scene.climateState(), ready, presentation:{menuBackdropPaused:menuRenderPaused,renderedFrames,idleFrameLimit:game.loop.fpsLimit,frameSamplePolicy:'Visible mixed normal and 10Hz idle intervals; modal gaps excluded'}, frameSamples: samples.length, p95FrameMs: samples[Math.floor(samples.length * .95)] ?? null, renderer: game.renderer?.type, renderOptions:{textureSmoothing:game.config.antialias,contextAntialias:game.renderer?.type===Phaser.WEBGL?(game.renderer as Phaser.Renderer.WebGL.WebGLRenderer).gl.getContextAttributes()?.antialias:null}, phaser: Phaser.VERSION, visual:scene.visualState() };

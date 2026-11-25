@@ -11,7 +11,7 @@ export const OATCAKE_HEAL=3;
 export const PADDED_VEST_ARMOR=1;
 export const HOPPER_HEALTH=9;
 export const PUMPWORKS_KEY='ih2:pumpworks:v1';
-const recordSchema=z.object({
+export const pumpworksRecordSchema=z.object({
  version:z.literal(1),
  revision:z.number().int().min(0).max(100000),
  health:z.number().int().min(0).max(FIELD_HEALTH),
@@ -53,7 +53,7 @@ const recordSchema=z.object({
   ctx.addIssue({code:'custom',message:'The survey record is inconsistent.'});
  }
 });
-export type PumpworksState=z.infer<typeof recordSchema>;
+export type PumpworksState=z.infer<typeof pumpworksRecordSchema>;
 export type PumpworksAction=ArmorFinishAction|FieldDyeAction|'issue'|'borrow-bow'|'borrow-staff'|'equip-staff'|'pack-staff'|'borrow-vest'|'equip-vest'|'pack-vest'|'start-forge'|'collect-forge'|'equip-riveted'|'pack-riveted'|'oatcake'|'eat'|'equip'|'pack'|'equip-bow'|'pack-bow'|'begin'|'strike'|'counter'|'hit'|'splash-hit'|'guard'|'retreat'|'rest'|'rematch'|'wake'|'recover'|'report';
 export type PumpworksPlace='locker'|'forge'|'arena'|'bench'|'bed'|'cache'|'desk'|'elsewhere';
 type Result={ok:false;message:string}|{ok:true;state:PumpworksState;message:string;returnToBed?:true};
@@ -237,12 +237,12 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
 
 type StorageAccess=Pick<Storage,'getItem'|'setItem'>;
 type Read={ok:true;raw:string|null;state:PumpworksState}|{ok:false;message:string};
-export function readPumpworks(storage:StorageAccess):Read{
+export function readPumpworks(storage:Pick<StorageAccess,'getItem'>):Read{
  try{
   const raw=storage.getItem(PUMPWORKS_KEY);
   if(raw===null)return {ok:true,raw,state:freshPumpworks()};
   if(raw.length<=1000){
-   const record=recordSchema.safeParse(JSON.parse(raw));
+   const record=pumpworksRecordSchema.safeParse(JSON.parse(raw));
    if(record.success)return {ok:true,raw,state:record.data};
   }
  }catch{/* A corrupt or inaccessible save remains untouched. */}
@@ -254,7 +254,7 @@ export function savePumpworks(storage:StorageAccess,expected:string|null,action:
  if(current.raw!==expected)return {ok:false,message:'This outing changed in another tab. Review the refreshed record.'};
  const result=applyPumpworks(current.state,action,place,now);
  if(!result.ok)return result;
- const next=JSON.stringify(recordSchema.parse(result.state));
+ const next=JSON.stringify(pumpworksRecordSchema.parse(result.state));
  try{
   storage.setItem(PUMPWORKS_KEY,next);
   return result;

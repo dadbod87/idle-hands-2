@@ -9,10 +9,14 @@ import {createHmac,timingSafeEqual,randomUUID} from 'node:crypto';
 import type {Pool} from 'pg';
 import {z} from 'zod';
 import {TransportAdmission,BoundedStream} from './transport.ts';
+import {SharedField} from './field-outing.ts';
+import {FieldStore} from './field-store.ts';
+import {PUMPWORKS_DOOR} from '../src/game/pumpworks-room.ts';
+import {sharedFieldInputSchema,type SharedFieldView} from '../src/game/shared-field.ts';
 import {GlasshouseClosed,MossbankClosed,TownStore,isHome,canonicalHomePosition,type TownPlot,type TownSnapshot,type TownPosition} from './live-store.ts';
 import {canStand,routeTo,worlds} from '../src/game/world.ts';
 const DEFAULT_FIXTURES=[{id:'aster',name:'Aster'},{id:'bea',name:'Bea'},{id:'casey',name:'Casey'}];
-const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden','neighborhood','glasshouse','mossbank']),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(positionContextValid);
+const positionSchema=z.object({room:z.enum(['square','workshop','home','home-expanded','trail','garden','neighborhood','glasshouse','mossbank','pumpworks']),districtId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),homePlotId:z.string().regex(/^[1-9][0-9]{0,17}$/).optional(),position:z.object({x:z.number().finite(),y:z.number().finite()}).strict()}).strict().refine(positionContextValid);
 const COOKIE='ih2_fixture';
 const waveSchema=z.object({}).strict();
 function json(res:ServerResponse,status:number,data:unknown){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(data));}
@@ -24,11 +28,12 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  const admission=new TransportAdmission(fixtures.map(f=>f.id),options.transportNow);
  const serverInstance=randomUUID();
  const now=options.now??Date.now;
+ const field=new SharedField(new FieldStore(options.pool),serverInstance);
  const store=new TownStore(options.pool,{now,roster:fixtures.map(f=>f.id),occupants:()=>[...residents.values()].filter(r=>r.value.room==='neighborhood'&&(now()-r.at<60000||[...connections].some(c=>residents.get(c.id)===r))).map(r=>({districtId:r.value.districtId!,point:{x:r.value.position.x+.5,y:r.value.position.y+.5}}))});
  const homes=new Map<string,TownPlot>();let bridgeOpen=false;let cafeOpened=false;
  function cacheHomes(snapshot:Pick<TownSnapshot,'plots'|'bridge'>&{cafe?:TownSnapshot['cafe']}){if(snapshot.cafe?.phase==='open'&&!cafeOpened){cafeOpened=true;invalidate('');}bridgeOpen=bridgeOpen||snapshot.bridge.phase==='open';for(const plot of snapshot.plots){const previous=homes.get(plot.id);if(!previous||plot.level>=previous.level&&(plot.housingRevision??0)>=(previous.housingRevision??0)){if(plot.keepsake!==undefined||plot.windowsillPlant!==undefined||plot.wallDisplay!==undefined){const publicPlot={...plot};delete publicPlot.keepsake;delete publicPlot.windowsillPlant;delete publicPlot.windowsillStriped;delete publicPlot.wallDisplay;homes.set(plot.id,publicPlot);}else homes.set(plot.id,plot);}}for(const entry of residents.values()){const normalized=canonicalHomePosition(entry.value,[...homes.values()]);if(JSON.stringify(normalized)!==JSON.stringify(entry.value)){entry.value=normalized;entry.credit=1;entry.at=now();dirty=true;}}}
  function clientSnapshot(snapshot:TownSnapshot){
-  return {...snapshot,serverInstance,homeKeepsakes:true,homeKeepsakeChoices:true};
+  return {...snapshot,serverInstance,homeKeepsakes:true,homeKeepsakeChoices:true,sharedPumpworks:true};
  }
  function alignSnapshotPosition(snapshot:TownSnapshot,position:TownPosition){
   snapshot.position=position;
@@ -44,20 +49,27 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
  const residents=new Map<string,Resident>();
  const residentLoads=new Map<string,Promise<Resident>>();
  const connections=new Set<{id:string;res:ServerResponse;stream:BoundedStream}>();
+ const interruptedFields=new Set<string>();
  const limits=new Map<string,number[]>(),waves=new Map<string,number>();let dirty=false;
  let presenceGate=Promise.resolve();
  const pendingBodies=new Map<string,number>();
  const operations=new Map<string,Promise<void>>(),queued=new Map<string,number>();
- async function serial(id:string,res:ServerResponse,work:()=>Promise<unknown>,protectPresence=true){
+ function serial(id:string,res:ServerResponse,work:()=>Promise<unknown>,protectPresence=true){
   if((queued.get(id)??0)>=4)return json(res,429,{message:'The town is still confirming your last position. Try again shortly.'});
+  return actorWork(id,()=>protectPresence?withPresence(work):work());
+ }
+ async function actorWork<T>(id:string,work:()=>Promise<T>){
   const prior=operations.get(id)??Promise.resolve();let release!:()=>void;const gate=new Promise<void>(resolve=>release=resolve);operations.set(id,gate);queued.set(id,(queued.get(id)??0)+1);
-  await prior;try{return protectPresence?await withPresence(work):await work();}finally{release();queued.set(id,(queued.get(id)??1)-1);if(operations.get(id)===gate)operations.delete(id);}
+  await prior;try{return await work();}finally{
+   release();const remaining=(queued.get(id)??1)-1;if(remaining)queued.set(id,remaining);else queued.delete(id);
+   if(operations.get(id)===gate)operations.delete(id);
+  }
  }
  async function withPresence<T>(work:()=>Promise<T>){
   const prior=presenceGate;let release!:()=>void;presenceGate=new Promise<void>(resolve=>release=resolve);
   await prior;try{return await work();}finally{release();}
  }
- const metrics={commands:0,snapshots:0,movementAccepted:0,movementRejected:0,presenceEvents:0,positionCheckpoints:0,transport:admission.metrics,sseSubmittedBytes:0,sseSubmittedFrames:0,sseSuppressedPresence:0,sseExpired:0,sseBackpressure:0,sseOversize:0};
+ const metrics={commands:0,snapshots:0,movementAccepted:0,movementRejected:0,presenceEvents:0,positionCheckpoints:0,transport:admission.metrics,sseSubmittedBytes:0,sseSubmittedFrames:0,sseSuppressedPresence:0,sseExpired:0,sseBackpressure:0,sseOversize:0,fieldFrames:0,fieldErrors:0};
  const sign=(value:string)=>createHmac('sha256',options.secret).update(value).digest('base64url');
  function cookie(id:string){const payload=Buffer.from(JSON.stringify({id,expires:now()+24*3600_000})).toString('base64url');return payload+'.'+sign(payload);}
  function identity(req:IncomingMessage){try{const token=req.headers.cookie?.split(';').map(s=>s.trim()).find(s=>s.startsWith(COOKIE+'='))?.slice(COOKIE.length+1);if(!token)return null;const[payload,mac]=token.split('.');if(!payload||!mac)return null;const expected=Buffer.from(sign(payload)),actual=Buffer.from(mac);if(expected.length!==actual.length||!timingSafeEqual(expected,actual))return null;const data=JSON.parse(Buffer.from(payload,'base64url').toString());return fixtures.some(f=>f.id===data.id)&&Number.isSafeInteger(data.expires)&&data.expires>now()?{id:data.id as string,expires:data.expires as number}:null;}catch{return null;}}
@@ -89,6 +101,38 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
   }
  }
 
+ function fieldConnected(id:string){
+  return [...connections].some(connection=>connection.id===id&&connection.stream.expires>now());
+ }
+ function fieldPosition(current:Resident,view:SharedFieldView){
+  const point=view.returnTo;
+  if(!point||current.value.room!=='pumpworks'||Math.hypot(point.x-current.value.position.x,point.y-current.value.position.y)<.001)return;
+  current.value={room:'pumpworks',position:point};current.credit=1;current.at=now();dirty=true;metrics.positionCheckpoints++;
+ }
+ function sendField(id:string,view:SharedFieldView){
+  for(const connection of connections)if(connection.id===id&&send(connection,'field',view))metrics.fieldFrames++;
+ }
+ function fieldFailure(id:string){field.invalidate(id);metrics.fieldErrors++;}
+ async function settleFieldInterruption(id:string){
+  if(!interruptedFields.has(id))return;
+  await field.leave(id,now());
+  interruptedFields.delete(id);
+ }
+ const fieldTicker=setInterval(()=>{
+  for(const [id,current] of residents){
+   if(current.value.room!=='pumpworks'||operations.has(id))continue;
+   const connected=fieldConnected(id);
+   if(!connected&&!field.has(id))continue;
+   void actorWork(id,async()=>{
+    await settleFieldInterruption(id);
+    if(!connected){await field.leave(id,now());return;}
+    const at=now(),run=await field.tick(id,current.value,at);
+    if(field.due(run,at)){
+     const view=field.view(id,run,at);fieldPosition(current,view);sendField(id,view);
+    }
+   }).catch(()=>fieldFailure(id));
+  }
+ },50);fieldTicker.unref();
  const ticker=setInterval(presence,200);ticker.unref();const heartbeat=setInterval(()=>{for(const item of connections)send(item,'heartbeat',null);},15000);heartbeat.unref();
  const server=createServer(async(req,res)=>{
   try{
@@ -112,6 +156,30 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
    const session=identity(req);if(!session)return json(res,401,{message:'Choose a synthetic practice resident to continue.'});
    const {id}=session;
    if(path==='/api/town/snapshot'&&req.method==='GET'){if(!admission.rate('snapshot',id))return throttled(res);const release=admission.acquire('snapshot',id);if(!release)return throttled(res);try{const current=await resident(id);if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});metrics.snapshots++;const snapshot=await store.snapshot(id,()=>current.value);cacheHomes(snapshot);alignSnapshotPosition(snapshot,current.value);return json(res,200,{snapshot:clientSnapshot(snapshot)});}finally{release();}}
+   if(path==='/api/town/field'&&(req.method==='GET'||req.method==='POST')){
+    if(!admission.rate('field',id))return throttled(res);
+    const release=admission.acquire('field',id);if(!release)return throttled(res);
+    try{
+     const intent=payload?sharedFieldInputSchema.parse(await payload):null;
+     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
+     const current=await resident(id);
+     return await serial(id,res,async()=>{
+      if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
+      try{
+       await settleFieldInterruption(id);
+       const at=now();
+       if(!intent){
+        const run=await field.get(id,current.value,at);
+        const view=field.view(id,run,at);fieldPosition(current,view);return json(res,200,{view});
+       }
+       const result=await field.input(id,current.value,intent,at,fieldConnected(id));
+       fieldPosition(current,result.view);
+       if(result.view.inRoom)sendField(id,result.view);
+       return json(res,200,result);
+      }catch(error){fieldFailure(id);throw error;}
+     },false);
+    }finally{release();}
+   }
    if(path==='/api/town/snack-shelf'&&req.method==='GET'){
     if(!admission.rate('shelf',id))return throttled(res);
     const release=admission.acquire('shelf',id);
@@ -125,7 +193,9 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
    if(path==='/api/town/events'&&req.method==='GET'){
     if(!admission.rate('events',id))return throttled(res);const release=admission.acquire('events',id);if(!release)return throttled(res);try{await resident(id);}catch(error){release();throw error;}if(session.expires<=now()){release();return json(res,401,{message:'Your practice session expired.'});}
     res.writeHead(200,{'Content-Type':'text/event-stream','Cache-Control':'no-cache,no-transform','Connection':'keep-alive','X-Accel-Buffering':'no'});res.flushHeaders();
-    const connection={id,res,stream:null as unknown as BoundedStream};connection.stream=new BoundedStream(res,session.expires,now,reason=>{release();connections.delete(connection);dirty=true;if(reason==='expired')metrics.sseExpired++;if(reason==='backpressure')metrics.sseBackpressure++;if(reason==='oversize')metrics.sseOversize++;});connections.add(connection);dirty=true;req.on('close',()=>connection.stream.close());res.on('error',()=>connection.stream.close());send(connection,'ready',{synthetic:true});return;
+    const connection={id,res,stream:null as unknown as BoundedStream};connection.stream=new BoundedStream(res,session.expires,now,reason=>{release();connections.delete(connection);dirty=true;
+    if(residents.get(id)?.value.room==='pumpworks'&&!fieldConnected(id))interruptedFields.add(id);
+    if(reason==='expired')metrics.sseExpired++;if(reason==='backpressure')metrics.sseBackpressure++;if(reason==='oversize')metrics.sseOversize++;});connections.add(connection);dirty=true;req.on('close',()=>connection.stream.close());res.on('error',()=>connection.stream.close());send(connection,'ready',{synthetic:true});return;
    }
    if(path==='/api/town/wave'&&req.method==='POST'){
     if(!admission.rate('wave',id))return throttled(res);
@@ -152,20 +222,39 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
     // Keep this actor's order while reading; other residents must not wait for its network body.
     const rawPosition=await payload;if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
+    const next=positionSchema.parse(rawPosition);
+    if(current.value.room==='pumpworks'){
+     try{
+      await settleFieldInterruption(id);
+      const at=now(),run=fieldConnected(id)?await field.tick(id,current.value,at):await field.get(id,current.value,at);
+      const view=field.view(id,run,at);
+      if(view.state.recovering){
+       fieldPosition(current,view);sendField(id,view);
+       metrics.movementRejected++;
+       return json(res,409,{message:'Recover at the dry bench first.',position:current.value});
+      }
+     }catch(error){fieldFailure(id);throw error;}
+    }
     return await withPresence(async()=>{
     if(session.expires<=now())return json(res,401,{message:'Your practice session expired.'});
-    const next=positionSchema.parse(rawPosition),previous=current.value,elapsed=Math.max(0,(now()-current.at)/1000);const credit=Math.min(2,current.credit+elapsed*5);const geometry=next.room==='neighborhood'?housingWorld([...homes.values()],next.districtId!):undefined;let spent=0,valid=canStand(next.room,next.position,geometry)&&((next.room!=='trail'&&next.room!=='mossbank')||bridgeOpen)&&(!isHome(next.room)||next.homePlotId===previous.homePlotId&&!!homes.get(next.homePlotId!)&&next.room===(homes.get(next.homePlotId!)!.level===2?'home-expanded':'home'));
+    const previous=current.value,elapsed=Math.max(0,(now()-current.at)/1000);const credit=Math.min(2,current.credit+elapsed*5);const geometry=next.room==='neighborhood'?housingWorld([...homes.values()],next.districtId!):next.room==='pumpworks'?worlds.pumpworks:undefined;let spent=0,valid=canStand(next.room,next.position,geometry)&&((next.room!=='trail'&&next.room!=='mossbank')||bridgeOpen)&&(!isHome(next.room)||next.homePlotId===previous.homePlotId&&!!homes.get(next.homePlotId!)&&next.room===(homes.get(next.homePlotId!)!.level===2?'home-expanded':'home'));
     if(next.room===previous.room){valid=valid&&next.homePlotId===previous.homePlotId&&next.districtId===previous.districtId;const distance=Math.hypot(next.position.x-previous.position.x,next.position.y-previous.position.y),route=distance<.0001?[]:routeTo(next.room,previous.position,next.position,geometry);let prior=previous.position;const travelled=route.reduce((total,p)=>{const step=Math.hypot(p.x-prior.x,p.y-prior.y);prior=p;return total+step;},0);valid=valid&&(distance<.0001||route.length>0)&&travelled<=credit+.001;spent=travelled;}
     else{
      if(isHome(next.room)||next.room==='neighborhood'&&!isHome(previous.room))valid=false;
-     const portal=worlds[previous.room].stops.find(s=>(isHome(previous.room)?s.id==='home-door':s.transition===next.room)&&Math.hypot(previous.position.x-s.point.x,previous.position.y-s.point.y)<=1.9);
+     const portals=previous.room==='square'&&next.room==='pumpworks'?[PUMPWORKS_DOOR]:worlds[previous.room].stops;
+     const portal=portals.find(s=>(isHome(previous.room)?s.id==='home-door':s.transition===next.room)&&Math.hypot(previous.position.x-s.point.x,previous.position.y-s.point.y)<=1.9);
      const expected=isHome(previous.room)?exitForHome(previous):portal?.arrival?{room:portal.transition,position:portal.arrival,districtId:undefined}:null;
      valid=valid&&!!portal&&!!expected&&expected.room===next.room&&expected.districtId===next.districtId&&Math.hypot(next.position.x-expected.position.x,next.position.y-expected.position.y)<.05;
     }
     if(!valid){metrics.movementRejected++;return json(res,409,{message:'That move was not accepted. Returning to the last confirmed position.',position:previous});}
     // No optimistic position update for a doorway that still needs to check
     // its durable opening deadline and write the confirmed checkpoint.
-    const gatedEntry=next.room!==previous.room&&(next.room==='glasshouse'||next.room==='mossbank');
+    const crossing=next.room!==previous.room;
+    const fieldExit=crossing&&previous.room==='pumpworks';
+    const gatedEntry=crossing&&(next.room==='glasshouse'||next.room==='mossbank'||next.room==='pumpworks'||fieldExit);
+    if(fieldExit){
+     try{await field.leave(id,now());}catch(error){fieldFailure(id);throw error;}
+    }
     if(gatedEntry){
      try{await store.savePosition(id,next);}
      catch(error){
@@ -176,7 +265,10 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
      metrics.positionCheckpoints++;
     }
     current.value=next;current.at=now();current.credit=next.room===previous.room?Math.max(0,credit-spent):1;dirty=true;metrics.movementAccepted++;
-    if(next.room!==previous.room)waves.delete(id);
+    if(crossing)waves.delete(id);
+    if(fieldExit){
+     const run=await field.get(id,next,now());sendField(id,field.view(id,run,now()));
+    }
     if(next.room!==previous.room&&!gatedEntry){await store.savePosition(id,next);metrics.positionCheckpoints++;}
     return json(res,200,{ok:true,position:next});
     });
@@ -202,5 +294,5 @@ export function createTownServer(options:{pool:Pool;secret:string;now?:()=>numbe
    return json(res,404,{message:'Unknown fixture route.'});
   }catch(error){const bad=error instanceof z.ZodError||error instanceof SyntaxError;json(res,bad?400:500,{message:bad?'That local request is not valid. No progress was changed.':'The town could not confirm this request. Retry the same request before making another change.'});}
  });
- return{server,store,metrics,listen:()=>new Promise<number>(resolve=>server.listen(options.port??4186,'127.0.0.1',()=>resolve((server.address() as {port:number}).port))),close:async()=>{clearInterval(ticker);clearInterval(heartbeat);for(const c of connections)c.stream.close();await new Promise<void>(resolve=>server.close(()=>resolve()));server.closeAllConnections();}};
+ return{server,store,metrics,listen:()=>new Promise<number>(resolve=>server.listen(options.port??4186,'127.0.0.1',()=>resolve((server.address() as {port:number}).port))),close:async()=>{clearInterval(ticker);clearInterval(heartbeat);clearInterval(fieldTicker);for(const c of connections)c.stream.close();await new Promise<void>(resolve=>server.close(()=>resolve()));server.closeAllConnections();}};
 }

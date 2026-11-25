@@ -90,6 +90,7 @@
     "public-refresh.spec.ts",
     "pumpworks.spec.ts",
     "return-trip.spec.ts",
+    "shared-pumpworks.spec.ts",
     "serving-study.spec.ts",
     "stream-reconnect.spec.ts",
     "town-overview.spec.ts",

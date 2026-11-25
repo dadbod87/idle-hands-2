@@ -1,3 +1,5 @@
+import {pumpworksRecordSchema} from '../game/pumpworks.ts';
+import type {SharedFieldInput,SharedFieldReply,SharedFieldView} from '../game/shared-field.ts';
 import {tailoringSchema,type Tailoring,type TailoringAction} from '../game/tailoring.ts';
 import type {SurveyAction} from '../game/mossbank.ts';
 import {inkmintSchema,type Inkmint} from '../game/nursery-inkmint.ts';
@@ -24,9 +26,9 @@ import type {RemoteWorkshopAdapter} from './workshop.ts';
 export type TownPosition={room:Room;position:Point;homePlotId?:string;districtId?:string};
 export type TownPlot={id:string;ownerId:string|null;ownerName?:string;tier?:number;level:1|2;placements:HomeLayout['placements'];workroomPlacements:HomeLayout['workroomPlacements'];pennantOwned?:boolean;letterboxMotif?:LetterboxMotif|null;planId?:string|null;yard?:ReturnType<typeof emptyYard>;keepsake?:HomeKeepsakeProjection['keepsake'];wallDisplay?:HomeKeepsakeProjection['wallDisplay'];windowsillPlant?:GlasshousePlant;windowsillStriped?:true};
 export type TownLesson={startedAt:number|null;readyAt:number|null;completed:boolean;redeemed:boolean;route:'construction'|'upkeep'|null;legacySatisfied:boolean};
-export type TownSnapshot={tailoring?:Tailoring|null;headwear?:TownHeadwear;glasshouse?:GlasshouseSnapshot;glasshousePlant?:GlasshousePlant;inkmint?:Inkmint;homeKeepsakes?:true;homeKeepsakeChoices?:true;plantWindowsill?:true;orchard?:OrchardPantry|'unavailable'|null;outing?:OutingState;housingSites?:Array<{plotId:string;ownerId:string;ownerName:string;phase:string}>;housing?:{build:HousingBuild|null;quote:HousingQuote|null;nextPlotId:string};cafe?:CafePublicState;commissionTown?:{styles:Array<{ownerId:string;ownerName:string;motif:LetterboxMotif}>};serverInstance?:string;noticeboard?:NoticeboardState;playerId:string;name:string;workshop:WorkshopState;position:TownPosition;quest:{contentVersion:string|number;awarded:unknown};bridge:{contributed:number;target:number;restored:boolean;phase?:'collecting'|'building'|'open';startedAt?:number|null;readyAt?:number|null;openedAt?:number|null;grandfathered?:boolean};trail?:{stamps:string[];pennantOwned:boolean};projectJournal?:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;plot:TownPlot|null;plots:TownPlot[];seasonKey:string;scores:unknown;serverTime:number;gardenTown?:{credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};lesson?:TownLesson;lessonQuote?:{route:'construction'|'upkeep';expectedBridgeContributed:number}};
+export type TownSnapshot={sharedPumpworks?:true;tailoring?:Tailoring|null;headwear?:TownHeadwear;glasshouse?:GlasshouseSnapshot;glasshousePlant?:GlasshousePlant;inkmint?:Inkmint;homeKeepsakes?:true;homeKeepsakeChoices?:true;plantWindowsill?:true;orchard?:OrchardPantry|'unavailable'|null;outing?:OutingState;housingSites?:Array<{plotId:string;ownerId:string;ownerName:string;phase:string}>;housing?:{build:HousingBuild|null;quote:HousingQuote|null;nextPlotId:string};cafe?:CafePublicState;commissionTown?:{styles:Array<{ownerId:string;ownerName:string;motif:LetterboxMotif}>};serverInstance?:string;noticeboard?:NoticeboardState;playerId:string;name:string;workshop:WorkshopState;position:TownPosition;quest:{contentVersion:string|number;awarded:unknown};bridge:{contributed:number;target:number;restored:boolean;phase?:'collecting'|'building'|'open';startedAt?:number|null;readyAt?:number|null;openedAt?:number|null;grandfathered?:boolean};trail?:{stamps:string[];pennantOwned:boolean};projectJournal?:Array<{id:string;kind:'opened'|'grandfathered';effectiveAt:number|null;recordedAt:number}>;plot:TownPlot|null;plots:TownPlot[];seasonKey:string;scores:unknown;serverTime:number;gardenTown?:{credits:number;target:6;markers:Array<{ownerId:string;ownerName:string;marker:MarkerId}>};lesson?:TownLesson;lessonQuote?:{route:'construction'|'upkeep';expectedBridgeContributed:number}};
 export type TownCommand=Record<string,unknown>&{kind:string;id?:string;expectedRevision?:number};
-export type TownHooks={onConfirmedCommand?:(command:TownCommand, reward:{collection:boolean;teapot:boolean})=>void;beforeCommand?:()=>Promise<void>;onSnapshot?:(snapshot:TownSnapshot,previous?:TownSnapshot|null)=>void;onPresence?:(presence:unknown)=>void;onConnection?:(state:string)=>void};
+export type TownHooks={onConfirmedCommand?:(command:TownCommand, reward:{collection:boolean;teapot:boolean})=>void;beforeCommand?:()=>Promise<void>;onSnapshot?:(snapshot:TownSnapshot,previous?:TownSnapshot|null)=>void;onPresence?:(presence:unknown)=>void;onField?:(view:SharedFieldView)=>void;onConnection?:(state:string)=>void};
 type CommandOutcome={snapshot:TownSnapshot;message:string;ok:boolean;replayed:boolean;command:TownCommand;playerId:string;collection?:CollectionGrant};
 type Provenance={generation:number;epoch:number;playerId?:string};
 type TownRequestError=Error&{definite?:boolean;staleBoot?:boolean};
@@ -34,6 +36,8 @@ const marker=(snapshot:TownSnapshot|null|undefined)=>typeof snapshot?.serverInst
 export const PUBLIC_REFRESH_WINDOW_MS = 75;
 export class TownClient {
  snapshot:TownSnapshot|null=null;
+ fieldView:SharedFieldView|null=null;
+ private fieldLoading:Promise<SharedFieldView>|null=null;
  lastMessage='';
  private loading:Promise<TownSnapshot>|null=null;
  private refreshDirty=false;
@@ -101,7 +105,7 @@ export class TownClient {
   return result;
  }
  private obsolete(){return new DOMException('The practice resident changed; the old request was discarded.','AbortError');}
- private changeIdentity(){this.generation++;this.identityAbort.abort();this.identityAbort=new AbortController();this.loading=null;this.refreshDirty=false;this.refreshRecovery=false;this.cancelPublicRefresh();this.cancelClock();this.cancelStreamRetry(true);this.events?.close();this.events=null;this.bootEpoch++;this.retiredBoots.clear();this.recovery='';}
+ private changeIdentity(){this.fieldView=null;this.fieldLoading=null;this.generation++;this.identityAbort.abort();this.identityAbort=new AbortController();this.loading=null;this.refreshDirty=false;this.refreshRecovery=false;this.cancelPublicRefresh();this.cancelClock();this.cancelStreamRetry(true);this.events?.close();this.events=null;this.bootEpoch++;this.retiredBoots.clear();this.recovery='';}
  private staleBoot():TownRequestError{return Object.assign(new Error('The service changed before this reply could be confirmed. Retry the same request to confirm it.'),{staleBoot:true});}
  private provenance(generation=this.generation,playerId=this.snapshot?.playerId):Provenance{return{generation,epoch:this.bootEpoch,playerId};}
  private validateReply(context:Provenance,snapshot?:TownSnapshot){
@@ -144,6 +148,7 @@ export class TownClient {
   if(!changed&&previous?.playerId===snapshot.playerId&&previous.cafe&&snapshot.cafe){const prior=previous.cafe,next=snapshot.cafe;if(next.credits<prior.credits||prior.readyAt!==null&&next.readyAt!==prior.readyAt||prior.phase==='open'&&next.phase!=='open')snapshot={...snapshot,cafe:prior};}
   let reconnect=false;
   if(changed){
+   this.fieldView=null;this.fieldLoading=null;
    if(old){this.retiredBoots.add(old);if(this.retiredBoots.size>16)this.retiredBoots.delete(this.retiredBoots.values().next().value!);}
    this.bootEpoch++;
    if(previous?.playerId===snapshot.playerId&&(snapshot.workshop.revision<previous.workshop.revision||snapshot.serverTime<previous.serverTime))this.recovery='The service recovered an earlier saved state. The confirmed town below may have older progress.';
@@ -167,6 +172,39 @@ export class TownClient {
   const snapshot=data.snapshot??(data.workshop?data:undefined);this.validateReply(context,snapshot);
   if(!response.ok){if(snapshot)this.accept(snapshot,context);const error:TownRequestError=new Error(data.message??data.error??'The town request failed.');error.definite=response.status>=400&&response.status<500;throw error;}
   return{data,context};
+ }
+ private acceptField(value:unknown){
+  const view=value as SharedFieldView|null;
+  if(!view||view.playerId!==this.snapshot?.playerId||view.serverInstance!==marker(this.snapshot)||
+   !Number.isSafeInteger(view.sequence)||!Number.isSafeInteger(view.serverAt))
+   throw new Error('The field view could not be confirmed.');
+  if(this.fieldView&&view.sequence<=this.fieldView.sequence)return this.fieldView;
+  if(!this.fieldView||view.state?.revision!==this.fieldView.state.revision){
+   if(!pumpworksRecordSchema.safeParse(view.state).success)throw new Error('The saved field record could not be confirmed.');
+  }else view.state=this.fieldView.state;
+  this.fieldView=view;
+  this.hooks.onField?.(view);
+  return view;
+ }
+ loadField():Promise<SharedFieldView>{
+  if(this.fieldLoading)return this.fieldLoading;
+  if(!this.snapshot?.sharedPumpworks)return Promise.reject(new Error('Shared field practice is unavailable.'));
+  const run=this.request('field').then(({data})=>this.acceptField(data.view))
+   .finally(()=>{if(this.fieldLoading===run)this.fieldLoading=null;});
+  this.fieldLoading=run;return run;
+ }
+ async sendField(input:SharedFieldInput):Promise<SharedFieldReply>{
+  const generation=this.generation,boot=marker(this.snapshot);
+  if(!boot||!this.snapshot?.sharedPumpworks)throw new Error('Shared field practice is unavailable.');
+  let data:SharedFieldReply;
+  try{data=(await this.request('field',input,generation)).data;}
+  catch(error){
+   if((error as TownRequestError).definite||generation!==this.generation||marker(this.snapshot)!==boot)throw error;
+   // A lost response can follow a confirmed hit. Retry the identical envelope once.
+   data=(await this.request('field',input,generation)).data;
+  }
+  const view=this.acceptField(data.view);
+  return {...data,view};
  }
  async fixtures(){const {data}=await this.request('fixtures');return (data.fixtures??data) as Array<{id:string;name:string}>;}
  async login(fixtureId:string){if(this.pending)throw new Error('Resolve the previous resident’s pending request before switching residents.');this.changeIdentity();this.snapshot=null;this.closed=false;const generation=this.generation;const {data,context}=await this.request('login',{fixtureId},generation,fixtureId);const snapshot=data.snapshot??data;this.accept(snapshot,context);this.connect();return snapshot as TownSnapshot;}
@@ -242,7 +280,10 @@ export class TownClient {
  async wave(){const {data}=await this.request('wave',{});if(!activeWave(data.waveUntil,this.serverNow()))throw new Error('The wave has already passed.');return data.waveUntil;}
  async logout(){this.changeIdentity();await this.request('logout',{});this.close();this.snapshot=null;this.pending=null;}
  close(){this.closed=true;this.changeIdentity();}
- connect(){this.cancelPublicRefresh();this.cancelStreamRetry();this.events?.close();this.events=null;if(this.closed||document.hidden)return;const generation=this.generation,epoch=this.bootEpoch;const source=new EventSource('/api/town/events?schema='+TOWN_SCHEMA,{withCredentials:true});this.events=source;const current=()=>generation===this.generation&&epoch===this.bootEpoch&&this.events===source;const reload=()=>{if(current())this.refreshFromEvent();};source.onopen=()=>{if(!current())return;this.cancelStreamRetry(true);if(!this.pending)this.notify('Connected · practice town');this.refreshFromEvent(true);};source.onerror=()=>{if(!current())return;if(!this.pending)this.notify('Connection interrupted. Reconnecting; changes require server confirmation.');if(source.readyState===2){this.cancelPublicRefresh();source.close();this.events=null;this.retryClosedStream(generation,epoch);}};source.addEventListener('invalidate',reload);source.addEventListener('snapshot',event=>{if(!current())return;try{const data=JSON.parse((event as MessageEvent).data);this.accept(data.snapshot??data,{generation,epoch,playerId:this.snapshot?.playerId});}catch{reload();}});source.addEventListener('presence',event=>{if(!current())return;try{this.hooks.onPresence?.(JSON.parse((event as MessageEvent).data));}catch{/* Next presence update replaces this one. */}});}
+ connect(){this.cancelPublicRefresh();this.cancelStreamRetry();this.events?.close();this.events=null;if(this.closed||document.hidden)return;const generation=this.generation,epoch=this.bootEpoch;const source=new EventSource('/api/town/events?schema='+TOWN_SCHEMA,{withCredentials:true});this.events=source;const current=()=>generation===this.generation&&epoch===this.bootEpoch&&this.events===source;const reload=()=>{if(current())this.refreshFromEvent();};source.onopen=()=>{if(!current())return;this.cancelStreamRetry(true);if(!this.pending)this.notify('Connected · practice town');this.refreshFromEvent(true);};source.onerror=()=>{if(!current())return;if(!this.pending)this.notify('Connection interrupted. Reconnecting; changes require server confirmation.');if(source.readyState===2){this.cancelPublicRefresh();source.close();this.events=null;this.retryClosedStream(generation,epoch);}};source.addEventListener('invalidate',reload);source.addEventListener('snapshot',event=>{if(!current())return;try{const data=JSON.parse((event as MessageEvent).data);this.accept(data.snapshot??data,{generation,epoch,playerId:this.snapshot?.playerId});}catch{reload();}});source.addEventListener('field',event=>{
+  if(!current()||!this.snapshot?.sharedPumpworks)return;
+  try{this.acceptField(JSON.parse((event as MessageEvent).data));}catch{/* A later authoritative view will replace it. */}
+ });source.addEventListener('presence',event=>{if(!current())return;try{this.hooks.onPresence?.(JSON.parse((event as MessageEvent).data));}catch{/* Next presence update replaces this one. */}});}
  subscribe(listener:(snapshot:TownSnapshot)=>void){
   this.listeners.add(listener);
   return ()=>{this.listeners.delete(listener);};

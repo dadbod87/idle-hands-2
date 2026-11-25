@@ -293,10 +293,10 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
    };
    if(place==='locker'){
     if(state.rod==='unissued'){
-     panel.append(paragraph('Borrow a sounding rod, field satchel and one oatcake before crossing the water.'));
-     add('Pack the survey kit','issue');
+     panel.append(paragraph('The kit comes with a field satchel and one oatcake.'));
+     add('Equip rod and take kit','issue');
     }else{
-     panel.append(paragraph(state.rod==='equipped'?'Your rod is equipped. Cross the footbridge to the hopper.':'Your rod is packed. Equip it in Bag before you approach the hopper.'));
+     panel.append(paragraph(state.rod==='equipped'?'Try a swing at the practice bell, then cross the footbridge.':'Your rod is packed. Equip it in Bag before you approach the hopper.'));
      panel.append(button('Open Bag',host.equipment));
      if(state.oatcake==='unissued')add('Pack your oatcake','oatcake');
     }

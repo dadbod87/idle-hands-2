@@ -47,7 +47,7 @@ export function applyPumpworks(state:PumpworksState,action:PumpworksAction,place
  switch(action){
   case 'issue':
    if(place!=='locker'||state.rod!=='unissued')return refuse('Your survey kit is already issued or the locker is out of reach.');
-   return accept({rod:'packed',oatcake:'packed',satchel:'carried'},'Sounding rod, field satchel and oatcake packed.');
+   return accept({rod:'equipped',oatcake:'packed',satchel:'carried'},'Sounding rod equipped. Field satchel and oatcake packed.');
   case 'oatcake':
    if(place!=='locker'||state.rod==='unissued'||state.oatcake!=='unissued')return refuse('There is no new oatcake in the survey locker.');
    return accept({oatcake:'packed'},'The survey locker still had your oatcake.');

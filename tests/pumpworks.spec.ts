@@ -143,14 +143,21 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    },{timeout:3500,intervals:[55]}).toBeGreaterThan(.12);
    await capture('arrival');
    await station('pumpworks-locker');
-   await press('Pack the survey kit');
-   await press('Open Bag');
-   await expect(page.locator('[data-bag-pocket=equipment]')).toHaveAttribute('aria-pressed','true');
-   const gear=page.getByRole('list',{name:'Equipment'}).locator('[data-pump-bag]');
-   await expect(gear.locator('.bag-stack-count')).toHaveText('1');
-   await press('Equip sounding rod');
-   await expect(gear).toContainText('Equipped');
-   await capture('bag');
+   await press('Equip rod and take kit');
+   await expect(page.locator('[data-pumpworks=locker]')).toContainText('Sounding rod equipped.');
+   expect((await read(page))!.state.rod).toBe('equipped');
+   if(shape.name==='desktop'){
+    await press('Open Bag');
+    await expect(page.locator('[data-bag-pocket=equipment]')).toHaveAttribute('aria-pressed','true');
+    const gear=page.getByRole('list',{name:'Equipment'}).locator('[data-pump-bag]');
+    await expect(gear.locator('.bag-stack-count')).toHaveText('1');
+    await expect(gear).toContainText('Equipped');
+    await press('Pack sounding rod');
+    await expect(gear).toContainText('Packed');
+    await press('Equip sounding rod');
+    await expect(gear).toContainText('Equipped');
+    await capture('bag');
+   }
    await close(page).click();
 
    await walk('pumpworks-bell');

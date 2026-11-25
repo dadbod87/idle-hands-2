@@ -14,8 +14,7 @@ function play(state:PumpworksState,action:PumpworksAction,at:PumpworksPlace){
  return result.state;
 }
 function prepared(){
- const issued=play(freshPumpworks(),'issue','locker');
- return play(issued,'equip','elsewhere');
+ return play(freshPumpworks(),'issue','locker');
 }
 test('The hopper can chase an unarmed resident, and only equipped strikes damage it',()=>{
  const initial=freshPumpworks();
@@ -72,10 +71,20 @@ test('Pumpworks saves keep unrelated, stale, and corrupted records untouched',()
  const storage={getItem:(key:string)=>data.get(key)??null,setItem:(key:string,value:string)=>{data.set(key,value);}};
  assert.equal(savePumpworks(storage,null,'issue','locker').ok,true);
  const borrowed=data.get(PUMPWORKS_KEY)!;
- assert.equal(savePumpworks(storage,null,'equip','elsewhere').ok,false);
+ const first=readPumpworks(storage);
+ if(!first.ok)assert.fail(first.message);
+ assert.equal(first.state.rod,'equipped');
+ assert.equal(first.state.oatcake,'packed');
+ assert.equal(first.state.satchel,'carried');
+ assert.equal(first.state.revision,1);
+ assert.equal(savePumpworks(storage,borrowed,'issue','locker').ok,false);
+ assert.equal(savePumpworks(storage,null,'pack','elsewhere').ok,false);
  assert.equal(data.get(PUMPWORKS_KEY),borrowed);
- assert.equal(savePumpworks({...storage,setItem:()=>{throw Error('quota');}},borrowed,'equip','elsewhere').ok,false);
+ assert.equal(savePumpworks({...storage,setItem:()=>{throw Error('quota');}},borrowed,'pack','elsewhere').ok,false);
  assert.equal(data.get(PUMPWORKS_KEY),borrowed);
+ const legacy={...first.state,rod:'packed' as const};
+ data.set(PUMPWORKS_KEY,JSON.stringify(legacy));
+ assert.equal(savePumpworks(storage,JSON.stringify(legacy),'equip','elsewhere').ok,true);
  data.set(PUMPWORKS_KEY,'damaged');
  assert.equal(readPumpworks(storage).ok,false);
  assert.equal(savePumpworks(storage,'damaged','issue','locker').ok,false);

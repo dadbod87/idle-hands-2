@@ -2,6 +2,7 @@ import {placesView} from '../game/places-view.ts';
 import type {WorkshopState} from '../game/live-workshop.ts';
 import type {Point, Room, Stop} from '../game/world.ts';
 import {townMap,type MapResident} from './town-map.ts';
+import {mossbankMap} from './mossbank-map.ts';
 
 export function renderPlaces(body: HTMLElement, options: {
  room: Room; position: Point; stops: Stop[]; state: WorkshopState; goal: {id: string; destination?: string};
@@ -26,6 +27,7 @@ export function renderPlaces(body: HTMLElement, options: {
  };
 
  const browse = document.createElement('div');
+ if(options.room==='mossbank')browse.append(mossbankMap(options.position,options.stops,options.walk));
  if (view.primary.length) {
   const heading = document.createElement('h3');
   heading.textContent = view.heading;

@@ -59,8 +59,16 @@ for(const shape of [{name:'desktop',width:1440,height:900,touch:false},{name:'ph
    await room('mossbank');
    await take('arrival');
    await press('Places');
-   if(shape.touch)await page.locator('[data-destination=mossbank-mill]').tap();
-   else await page.locator('[data-destination=mossbank-mill]').click();
+   const openMap=page.getByText('Mossbank map',{exact:true});
+   if(shape.touch)await openMap.tap();else await openMap.press('Enter');
+   const map=page.getByRole('navigation',{name:'Mossbank map destinations'});
+   await expect(map.getByRole('button')).toHaveCount(5);
+   await expect(map.locator('.mossbank-map-player')).toBeVisible();
+   await expect.poll(()=>map.locator('img').evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
+   await take('places-map');
+   const millPin=map.getByRole('button',{name:'Walk to Wren · sawmill'});
+   if(shape.touch)await millPin.tap();else await millPin.press('Enter');
+   await expect(page.getByRole('dialog')).toBeHidden();
    await expect.poll(()=>nearby(page),{timeout:18000}).toBe('mossbank-mill');
    await expect.poll(async()=>(await visual())?.worker).toBe('mossbank-wren');
    await take('wren');

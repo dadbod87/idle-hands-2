@@ -3,7 +3,8 @@ import {
  FIELD_HEALTH,HOPPER_HEALTH,OATCAKE_HEAL,PUMPWORKS_KEY,readPumpworks,savePumpworks,
  type PumpworksAction,type PumpworksPlace,
 } from '../game/pumpworks.ts';
-import {braceForHopper,freshHopper,hopperLeash,hopperNotices,stepHopper,swingAtHopper,patrolHopper,FIELD_IMPACT_MS,type FieldImpact} from '../game/pumpworks-chase.ts';
+import {braceForHopper,freshHopper,hopperLeash,hopperNotices,inPracticeReach,HOPPER_MOVEMENT,stepHopper,swingAtHopper,patrolHopper,FIELD_IMPACT_MS,type FieldImpact} from '../game/pumpworks-chase.ts';
+import {PRACTICE_BELL} from '../game/pumpworks-room.ts';
 import type {Point} from '../game/world.ts';
 import './pumpworks.css';
 
@@ -47,6 +48,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  let impact:FieldImpact|null=null;
  let priorAt=0;
  let retryAt=0;
+ let practiceReadyAt=0;
  let renderedControls='';
  const fieldStatus=document.createElement('span');
  fieldStatus.className='pump-control-status';
@@ -152,7 +154,17 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
  }
  function input(action:'strike'|'brace'|'eat'){
   const context=host.combat(),state=current();
-  if(!context.able||!state?.fight||busy||state.cleared||state.recovering)return;
+  if(!context.able||!state||busy||state.recovering)return;
+  if(!state.fight){
+   const now=performance.now();
+   if(action==='strike'&&state.rod==='equipped'&&inPracticeReach(context.position)&&now>=practiceReadyAt){
+    practiceReadyAt=now+HOPPER_MOVEMENT.strikeCooldown*1000;
+    impact={kind:'bell',point:PRACTICE_BELL,until:now+FIELD_IMPACT_MS};
+    host.cue('bell');
+    host.wakeFrame();
+   }
+   return;
+  }
   if(action==='strike'){
    const attack=swingAtHopper(hopper,context.position,state.rod==='equipped');
    if(!attack)return;
@@ -177,7 +189,7 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
   const context=host.combat(),state=current();
   if(!context.inRoom){
    if(!host.controls.hidden)host.controls.hidden=true;
-   impact=null;
+   impact=null;practiceReadyAt=0;
    if(hopper.phase!=='idle'||hopper.elapsed>0)hopper=freshHopper();
    priorAt=0;
    return;
@@ -202,17 +214,18 @@ export function createPumpworks(host:Host,storage:Pick<Storage,'getItem'|'setIte
     if(next.impact)void combatAction(next.impact==='braced'?'guard':next.impact==='splash'?'splash-hit':'hit');
    }
   }
-  paintControls(state);
+  paintControls(state,context.position,now);
  }
 
- function paintControls(state:ReturnType<typeof current>){
+ function paintControls(state:ReturnType<typeof current>,position:Point,now:number){
   if(host.controls.hidden)host.controls.hidden=false;
   const disabled=!state?.fight||hopper.phase==='idle'||busy;
-  const strikeDisabled=disabled||state?.rod!=='equipped'||hopper.strikeCooldown>0;
+  const practice=!!state&&!state.fight&&!state.recovering&&state.rod==='equipped'&&inPracticeReach(position);
+  const strikeDisabled=practice?busy||now<practiceReadyAt:disabled||state?.rod!=='equipped'||hopper.strikeCooldown>0;
   const braceDisabled=disabled||hopper.braceCooldown>0;
   const eatDisabled=disabled||state?.oatcake!=='packed'||state?.satchel!=='carried'||state.health===FIELD_HEALTH;
   const text=state?.cleared?'Cleared':hopper.phase==='windup'?(hopper.pattern==='splash'?'Splash coming':'Lunge coming'):hopper.phase==='charge'?(hopper.pattern==='splash'?'Splashing':'Lunging'):hopper.phase==='recover'?'Open to strike':hopper.phase==='chase'?'Chasing':'Cross the bridge';
-  const status=hopper.guard>0?'Braced':text;
+  const status=practice?'Try a swing':hopper.guard>0?'Braced':text;
   const enemyHealth=hopper.phase!=='idle'?state?.fight?.health:null;
   const key=[status,strikeDisabled,braceDisabled,eatDisabled,hopper.phase,enemyHealth].join(':');
   if(renderedControls===key)return;

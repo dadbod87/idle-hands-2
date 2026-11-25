@@ -153,6 +153,16 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
    await capture('bag');
    await close(page).click();
 
+   await walk('pumpworks-bell');
+   await expect.poll(async()=>(await read(page))?.nearby).toBe('pumpworks-bell');
+   await expect(page.locator('#pump-controls')).toContainText('Try a swing');
+   const beforePractice=(await read(page))!.state;
+   if(shape.touch)await press('Strike');else await page.keyboard.press('Space');
+   await expect.poll(async()=>(await read(page))?.combat.impact?.kind,{intervals:[20]}).toBe('bell');
+   expect((await read(page))!.state).toEqual(beforePractice);
+   await expect(page.locator('dialog')).toBeHidden();
+   await capture('practice');
+
    await walk('pumpworks-hopper');
    await expect.poll(async()=>(await read(page))?.combat.hopper.phase,{timeout:15000,intervals:[40]}).toBe('windup');
    const first=(await read(page))!;

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="66" height="76" viewBox="0 0 66 76">
+ <title>Practice bell</title>
+ <ellipse cx="33" cy="70" rx="27" ry="4" fill="#584b39" opacity=".27"/>
+ <g stroke="#4b4639" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M10 69V15h46v54m-46-1H5m51 0h5m-48-53v-5h41v5" fill="none" stroke-width="6"/>
+  <path d="M14 21h38M10 32l10-11m36 11L46 21" fill="none" stroke="#977d55" stroke-width="3"/>
+  <path d="M32 23v7" fill="none" stroke-width="3"/>
+  <circle cx="32" cy="50" r="4" fill="#b18951" stroke-width="2"/>
+  <path d="M20 43q4-3 6-15h13q1 10 6 15l3 2v3H17v-3Z" fill="#c6a067" stroke-width="2.5"/>
+  <path d="M30 31q-1 8-4 11m-5 4h23" fill="none" stroke="#f1d18d" stroke-width="2"/>
+  <path d="M25 58h16v9H25Z" fill="#ead6a3" stroke-width="1.7"/>
+  <path d="M29 62h8" stroke="#7f6b4b" stroke-width="1.6"/>
+ </g>
+</svg>

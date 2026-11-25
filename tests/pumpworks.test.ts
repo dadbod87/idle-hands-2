@@ -2,8 +2,8 @@ import {FIELD_CUES,renderFieldCue} from '../src/audio/combat-cues.ts';
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {applyPumpworks,FIELD_HEALTH,freshPumpworks,PUMPWORKS_KEY,readPumpworks,savePumpworks,type PumpworksAction,type PumpworksPlace,type PumpworksState} from '../src/game/pumpworks.ts';
-import {HOPPER_FEET,PUMPWORKS_DOOR,PUMPWORKS_ENTRY,PUMPWORKS_ROOM} from '../src/game/pumpworks-room.ts';
-import {braceForHopper,freshHopper,hopperLeash,hopperNotices,patrolHopper,stepHopper,swingAtHopper,type HopperMotion} from '../src/game/pumpworks-chase.ts';
+import {HOPPER_FEET,PRACTICE_BELL,PUMPWORKS_DOOR,PUMPWORKS_ENTRY,PUMPWORKS_ROOM} from '../src/game/pumpworks-room.ts';
+import {braceForHopper,freshHopper,hopperLeash,hopperNotices,inPracticeReach,patrolHopper,stepHopper,swingAtHopper,type HopperMotion} from '../src/game/pumpworks-chase.ts';
 import {Session} from '../src/game/session.ts';
 import {earnedWorkshopPrints,selectedWorkshopPrint} from '../src/game/workshop-print.ts';
 import {canStand,clearSegment,routeTo} from '../src/game/world.ts';
@@ -199,6 +199,9 @@ test('A tired hopper alternates wider splashes with lunges and rewards backing o
 test('The visible patrol stays on dry chamber floor and senses from the hopper’s actual feet',()=>{
  const boundary={x:12.8,y:11.9};
  assert.equal(hopperNotices(boundary),false);
+ assert.equal(inPracticeReach(PRACTICE_BELL),true);
+ assert.equal(hopperLeash(PRACTICE_BELL),false);
+ assert.equal(inPracticeReach(HOPPER_FEET),false);
  let patrol=freshHopper(),notices=false;
  assert.deepEqual(patrol.feet,HOPPER_FEET);
  for(let i=0;i<192;i++){

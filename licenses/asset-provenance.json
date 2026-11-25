@@ -3,6 +3,16 @@
   "selected_direction": "original illustrated company town",
   "original": [
     {
+      "id": "pumpworks-practice-bell",
+      "path": "public/art/pumpworks/practice-bell.svg",
+      "sha256": "2facc3a0a9b48800c31782557fcd42ccace522bd3d82a638bcae21b27ed04667",
+      "creator": "Original code-authored for Idle Hands 2",
+      "license": "project-original",
+      "source": "public/art/pumpworks/practice-bell.svg",
+      "date": "2026-11-25",
+      "modifications": "Hand-authored illustrated bell. No imported media."
+    },
+    {
       "id": "pumpworks-field-seal",
       "path": "public/art/pumpworks/field-seal.svg",
       "sha256": "659720c4463ae537ae341f00da617051d85f6fed54c79223ff38c5affca9cb45",

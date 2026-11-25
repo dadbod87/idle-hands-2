@@ -7,6 +7,7 @@ export const PUMPWORKS_DOOR={
  transition:'pumpworks',arrival:PUMPWORKS_ENTRY,
  text:'The old flood station. A copper sign says to borrow a sounding rod before crossing the water.',
 } satisfies Stop;
+export const PRACTICE_BELL={x:5.55,y:7.35} as const satisfies Point;
 export const HOPPER_FEET={x:16.2,y:8.3} as const;
 export const PUMPWORKS_ROOM:World={
  width:26,height:18,
@@ -16,6 +17,8 @@ export const PUMPWORKS_ROOM:World={
    transition:'square',arrival:PUMPWORKS_FRONT,text:'Back to Willow meadow.'},
   {id:'pumpworks-locker',name:'Survey locker',point:{x:4.4,y:9.2},doorArea:[2,7,2.5,2.5],
    text:'One sounding rod, one field satchel, and a very reasonable expectation that you return both.'},
+  {id:'pumpworks-bell',name:'Practice bell',point:PRACTICE_BELL,
+   text:'Test a swing on the dry side of the footbridge.'},
   {id:'pumpworks-bench',name:'Dry bench',point:{x:4.7,y:5.1},doorArea:[2,4,2.6,1.35],
    text:'A dry spot to take a breath before crossing the water.'},
   {id:'pumpworks-hopper',name:'Hopper chamber',point:{x:16.2,y:9.5},

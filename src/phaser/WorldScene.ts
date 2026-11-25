@@ -1,7 +1,7 @@
 import type {MossbankSurvey} from '../game/mossbank.ts';
 import {FIELD_IMPACT_MS,HOPPER_MOVEMENT,type FieldImpact,type HopperMotion} from '../game/pumpworks-chase.ts';
 import {INKWOOD_MOSSBANK_ROAD,MOSSBANK_ROAD,MOSSBANK_STOPS,MOSSBANK_TREES} from '../game/mossbank-room.ts';
-import {HOPPER_FEET,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
+import {HOPPER_FEET,PRACTICE_BELL,PUMPWORKS_DOOR} from '../game/pumpworks-room.ts';
 import {HOPPER_HEALTH,type PumpworksState} from '../game/pumpworks.ts';
 import {activeWave} from '../game/town-wave.ts';
 import {INKWOOD_HOOD,CLERK_CAP,type EarnedHeadwear} from '../game/earned-headwear.ts';
@@ -513,13 +513,13 @@ export class WorldScene extends Phaser.Scene {
     const impact=encounter?.impact;
     if(impact){
       const remaining=Math.max(0,impact.until-performance.now());
-      const ix=(impact.point.x+.5)*TILE,iy=(impact.point.y+.5)*TILE-16;
+      const ix=(impact.point.x+.5)*TILE,iy=(impact.point.y+.5)*TILE-(impact.kind==='bell'?33:16);
       const extent=reduced?15:15+10*(1-remaining/FIELD_IMPACT_MS);
       const color=impact.kind==='blocked'?0xb3d1d2:impact.kind==='damage'?0xd28466:0xffd07c;
       const alpha=reduced?1:Math.min(1,remaining/110);
       if(impact.kind==='blocked')ink.lineStyle(3,color,alpha).strokeRoundedRect(ix-extent,iy-extent,extent*2,extent*2,6);
       else{
-        const n=impact.kind==='counter'?8:impact.kind==='damage'?4:6;
+        const n=impact.kind==='counter'||impact.kind==='bell'?8:impact.kind==='damage'?4:6;
         for(let i=0;i<n;i++){
           const a=(i+.5)*Math.PI*2/n,dx=Math.cos(a),dy=Math.sin(a);
           const segment=[ix+dx*extent*.7,iy+dy*extent*.7,ix+dx*(extent+8),iy+dy*(extent+8)] as const;
@@ -529,7 +529,7 @@ export class WorldScene extends Phaser.Scene {
       }
     }
     this.soundingRod?.setVisible(state?.rod==='equipped');
-    const strike=motion?.strikeCooldown??0;
+    const strike=impact?.kind==='bell'?Math.max(0,(impact.until-performance.now())/1000):motion?.strikeCooldown??0;
     this.soundingRod?.setRotation(!reduced&&strike>.24?1.2*Math.sin((HOPPER_MOVEMENT.strikeCooldown-strike)*13):0);
     const danger=visible&&motion?.aim&&motion.origin&&(motion.phase==='windup'||motion.phase==='charge');
     const warning=this.hopperWarning;
@@ -575,7 +575,7 @@ export class WorldScene extends Phaser.Scene {
     for(const id of regionalArt){
       if(!this.textures.exists('mossbank-'+id))this.load.svg('mossbank-'+id,'/art/mossbank/'+id+'.svg');
     }
-    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
+    const fieldArt=this.loadingRoom==='pumpworks'?['floor','silt-hopper','sounding-rod','practice-bell']:this.loadingRoom==='square'&&this.session.hasLodging?['hatch']:[];
     for(const id of fieldArt){
       if(!this.textures.exists('pumpworks-'+id))this.load.svg('pumpworks-'+id,'/art/pumpworks/'+id+'.svg');
     }
@@ -852,6 +852,9 @@ export class WorldScene extends Phaser.Scene {
       };
       station(3,8.6,51,74,0x778c73,'Survey locker');
       station(3,4.6,60,26,0x8d744f,'Dry bench');
+      const bellX=(PRACTICE_BELL.x+.5)*TILE,bellY=(PRACTICE_BELL.y+.5)*TILE;
+      this.add.image(bellX,bellY,'pumpworks-practice-bell').setOrigin(.5,.95).setDepth(bellY);
+      label(PRACTICE_BELL.x+.5,PRACTICE_BELL.y+.9,'Practice bell').setDepth(bellY+1);
       station(16.6,13.1,68,37,0x806e51,'Lost property');
       station(21.7,5.95,83,36,0x9a7959,'Inspection desk');
       label(4.25,17.05,'Willow meadow ↓');

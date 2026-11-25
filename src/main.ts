@@ -927,6 +927,10 @@ function activate(stop: Stop) {
     mossbank.show(stop.id as SurveyPlace);
     return;
   }
+  if(pumpworks&&session.room==='pumpworks'&&stop.id==='pumpworks-bell'){
+    feedback.textContent=pumpworks.current()?.rod==='equipped'?'Try Strike on the bell.':'Equip the sounding rod to ring the bell.';
+    return;
+  }
   if(pumpworks&&session.room==='pumpworks'&&stop.id==='pumpworks-hopper'){
     feedback.textContent='Dodge the marked lunge. Space or Strike attacks in reach. Shift or Brace reduces the hit.';
     return;

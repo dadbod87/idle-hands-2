@@ -5,6 +5,11 @@
   "provenance": "licenses/asset-provenance.json",
   "assets": [
     {
+      "id": "pumpworks-practice-bell",
+      "path": "art/pumpworks/practice-bell.svg",
+      "kind": "original-svg"
+    },
+    {
       "id": "pumpworks-field-seal",
       "path": "art/pumpworks/field-seal.svg",
       "kind": "original-svg"

@@ -1,4 +1,4 @@
-import {HOPPER_FEET} from './pumpworks-room.ts';
+import {HOPPER_FEET,PRACTICE_BELL} from './pumpworks-room.ts';
 import type {Point} from './world.ts';
 
 export const HOPPER_MOVEMENT={
@@ -7,7 +7,7 @@ export const HOPPER_MOVEMENT={
  strikeCooldown:.46,braceSeconds:1.45,braceCooldown:2.2,
 } as const;
 type Phase='idle'|'chase'|'windup'|'charge'|'recover';
-export type FieldImpactKind='strike'|'counter'|'damage'|'blocked';
+export type FieldImpactKind='strike'|'counter'|'damage'|'blocked'|'bell';
 export type FieldImpact={kind:FieldImpactKind;point:Point;until:number};
 export const FIELD_IMPACT_MS=450;
 export type HopperMotion={
@@ -28,6 +28,7 @@ const bounded=(p:Point):Point=>({x:clamp(p.x,12.75,19.15),y:clamp(p.y,4.35,12.6)
 const mix=(a:Point,b:Point,t:number):Point=>({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t});
 
 export const hopperLeash=inside;
+export const inPracticeReach=(player:Point)=>distance(player,PRACTICE_BELL)<=HOPPER_MOVEMENT.reach;
 export const hopperNotices=(player:Point,hopperFeet:Point=HOPPER_FEET)=>
  inside(player)&&distance(player,hopperFeet)<=HOPPER_MOVEMENT.awareness;
 

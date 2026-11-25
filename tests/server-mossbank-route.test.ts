@@ -34,6 +34,7 @@ async function disposablePool(){
 test('Shared travel reaches Mossbank through the restored Inkwood road and checkpoints the exact return', {skip:!target,timeout:22000}, async()=>{
  const pool=await disposablePool();
  let app:ReturnType<typeof createTownServer>|undefined;
+ const streams:AbortController[]=[];
  let now=Date.UTC(2026,10,25,18);
  const front={room:'trail',position:MOSSBANK_INKWOOD_FRONT} as const;
  const arrival={room:'mossbank',position:MOSSBANK_ENTRY} as const;
@@ -46,8 +47,10 @@ test('Shared travel reaches Mossbank through the restored Inkwood road and check
   await assert.rejects(store.savePosition('aster',arrival),/restored Inkwood bridge/);
   await pool.query("update ih2.bridge set contributed=3,phase='open',grandfathered=true where id=1");
   await store.ensurePlayer('bea','Bea');
+  await store.ensurePlayer('casey','Casey');
   await store.savePosition('aster',front);
   await store.savePosition('bea',orchard);
+  await store.savePosition('casey',front);
   app=createTownServer({pool,secret:'isolated-mossbank-road-synthetic-signing-key',now:()=>now,port:0});
   const origin='http://127.0.0.1:'+await app.listen();
   const headers={Origin:origin,'X-IH2-Schema':TOWN_SCHEMA,'Content-Type':'application/json'};
@@ -59,7 +62,14 @@ test('Shared travel reaches Mossbank through the restored Inkwood road and check
    assert.equal(response.status,200);
    return response.headers.get('set-cookie')!.split(';',1)[0];
   }
-  const aster=await login('aster'),bea=await login('bea');
+  async function connect(cookie:string){
+   const controller=new AbortController();streams.push(controller);
+   const response=await fetch(origin+'/api/town/events?schema='+TOWN_SCHEMA,{
+    headers:{Cookie:cookie},signal:controller.signal,
+   });
+   assert.equal(response.status,200);
+  }
+  const aster=await login('aster'),bea=await login('bea'),casey=await login('casey');
   assert.equal((await request('movement',arrival,bea)).status,409);
   assert.deepEqual((await store.snapshot('bea')).position,orchard);
   assert.equal((await request('movement',{...arrival,position:{x:9,y:22}},aster)).status,409);
@@ -69,13 +79,26 @@ test('Shared travel reaches Mossbank through the restored Inkwood road and check
   assert.equal(enter.status,200);
   assert.deepEqual((await enter.json()).position,arrival);
   assert.deepEqual((await store.snapshot('aster')).position,arrival);
+  await connect(aster);await connect(bea);
+  const isolation=await request('wave',{},aster);
+  assert.equal(isolation.status,409);
+  assert.equal((await isolation.json()).message,'A wave needs another resident in Mossbank.');
+  assert.equal((await request('movement',arrival,casey)).status,200);
+  await connect(casey);
+  const revision=(await store.snapshot('aster')).workshop.revision;
+  const greeting=await request('wave',{},aster);
+  assert.equal(greeting.status,200);
+  assert.ok((await greeting.json()).waveUntil>now);
+  assert.equal((await request('wave',{},aster)).status,429);
+  assert.equal((await store.snapshot('aster')).workshop.revision,revision);
   assert.equal((await request('movement',front,aster)).status,409);
   now+=250;
   assert.equal((await request('movement',{room:'mossbank',position:{x:4,y:27.4}},aster)).status,200);
   assert.equal((await request('movement',front,aster)).status,200);
   assert.deepEqual((await store.snapshot('aster')).position,front);
-  assert.equal(app.metrics.positionCheckpoints,2);
+  assert.equal(app.metrics.positionCheckpoints,3);
  }finally{
+  for(const controller of streams)controller.abort();
   await app?.close();
   await pool.end();
  }

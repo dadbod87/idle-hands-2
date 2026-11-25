@@ -173,6 +173,17 @@ for(const shape of [{name:'desktop',width:1440,height:900,text:100,touch:false},
     for(const name of ['Strike','Brace','Eat oatcake · +3 health','Places','Bag','Journal'])await expect(button(name)).toBeInViewport({ratio:1});
     await expect(page.locator('#interact')).toBeInViewport({ratio:1});
     expect(await page.locator('canvas').evaluate(el=>el.getBoundingClientRect().height)).toBeGreaterThan(145);
+    await press('Journal');
+    const paused=(await read(page))!;
+    await page.setViewportSize({width:820,height:390});
+    await page.waitForTimeout(1350);
+    const afterResize=(await read(page))!;
+    expect(afterResize.combat.hopper).toEqual(paused.combat.hopper);
+    expect(afterResize.state).toEqual(paused.state);
+    const canvas=page.locator('canvas');
+    await expect(canvas).toBeInViewport({ratio:1});
+    await close(page).tap();
+    await expect.poll(async()=>(await read(page))!.combat.hopper).not.toEqual(paused.combat.hopper);
    }
    if(shape.name==='desktop'){
     await move({x:12.45,y:11.55});

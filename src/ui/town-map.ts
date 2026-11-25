@@ -1,7 +1,12 @@
 import {COMMONS_PATHS, COMMONS_PONDS, COMMONS_STOPS, COMMONS_TREES, TOWN_SIZE, townDistrict} from '../game/town-expansion.ts';
+import type {FieldKerchief,KerchiefTie} from '../game/field-appearance.ts';
+import type {Headwear} from '../art/headwear.ts';
 import type {Point, Stop} from '../game/world.ts';
 
-export type MapResident = {name:string; room:string; position:Point};
+export type MapResident = {
+ id?:string; name:string; room:string; position:Point;
+ headwear?:Headwear; kerchief?:FieldKerchief; kerchiefTie?:KerchiefTie;
+};
 
 const x = (value: number) => 100 * value / TOWN_SIZE.width + '%';
 const y = (value: number) => 100 * value / TOWN_SIZE.height + '%';

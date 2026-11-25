@@ -1,0 +1,28 @@
+.nearby-outfits .destination {
+ margin:4px 0;
+ min-height:44px;
+ overflow-wrap:anywhere;
+}
+.resident-outfit {
+ display:grid;
+ gap:8px;
+}
+.resident-outfit .outfit-preview {
+ width:100px;
+ height:148px;
+ display:block;
+ margin:auto;
+ background:#e5d8ae;
+ border:1px solid #938774;
+ border-radius:3px;
+}
+.resident-outfit ul {
+ margin:4px 0 0;
+ padding-inline-start:1.3em;
+}
+.resident-outfit ul:empty,
+.resident-outfit [role=status]:empty { display:none; }
+.resident-outfit .destination { min-height:44px; margin:0; }
+@media(max-height:440px) {
+ .resident-outfit .outfit-preview { width:70px; height:92px; }
+}

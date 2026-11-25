@@ -1,3 +1,4 @@
+import {nearbyOutfits,residentOutfit} from './ui/nearby-outfits.ts';
 import {earnedValleyPrint,takeValleyPrint,VALLEY_PRINT_KEY,VALLEY_PRINT_STOP_ID} from './game/valley-print.ts';
 import {MOSSBANK_VALLEY_ROAD} from './game/hidden-valley-room.ts';
 import {SEWING_TABLE,sewingReady} from './game/tailoring.ts';
@@ -357,7 +358,7 @@ function restorePanelFocus() {
   if (title.textContent === 'Sound settings') document.querySelector<HTMLButtonElement>('#place-sound')?.focus();
   else focusWorld();
 }
-let refreshPlaces:ReturnType<typeof renderPlaces>;
+let refreshPlaces:ReturnType<typeof renderPlaces>|undefined;
 const waveAnnouncement=document.querySelector<HTMLElement>('.town-wave-announcement')!;
 const heardWaves=new Map<string,number>();
 function closePanel() { refreshPlaces=undefined; closeRiverSurvey(); closeGlasshouseDetail(); orchardUI?.closed();outingUI?.closed();cafeUI?.close();snackShelfUI?.close(); gardenUI?.closed();carpentryUI?.closed();commissionUI?.closed();workshop.closed(); if(panel.open)pendingExplicitPanelCloses++;panel.close();resumeMenuRender();unlockWorld(); restorePanelFocus(); }
@@ -777,10 +778,23 @@ async function waveHere(){
  wakeRender();
  feedback.textContent='You waved hello. Informally, no paperwork required.';
 }
-document.querySelector('#places')!.addEventListener('click', () => {
+function showPlaces(){
   openPanel('Places to go');
-  refreshPlaces=renderPlaces(body,{room:session.room,position:session.position,wave:town?.snapshot&&waveRoom(session.room)?waveHere:undefined,peers:town?.snapshot?(needResync?null:scene.residents):undefined,stops:currentStops(),state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),neighborhood:districtId?{districtId,ownerPlotId:town?.snapshot?.plot?.id}:undefined,walk:walkToPlace});
-});
+  refreshPlaces=renderPlaces(body,{room:session.room,position:session.position,wave:town?.snapshot&&waveRoom(session.room)?waveHere:undefined,peers:town?.snapshot?(needResync?null:scene.residents):undefined,stops:currentStops(),state:workshop.state,goal:currentObjective(),now:remoteWorkshop?.now()??Date.now(),neighborhood:districtId?{districtId,ownerPlotId:town?.snapshot?.plot?.id}:undefined,walk:walkToPlace,inspectOutfit:town?.snapshot?showPeerOutfit:undefined});
+}
+document.querySelector('#places')!.addEventListener('click',showPlaces);
+function showPeerOutfit(id:string){
+ const context=contextKey(session.room,homePlotId),owner=town?.snapshot?.playerId;
+ if(!owner||needResync)return;
+ const current=()=>contextKey(session.room,homePlotId)===context&&town?.snapshot?.playerId===owner&&!needResync
+  ?nearbyOutfits(scene.residents,session.room,session.position).find(peer=>peer.id===id):undefined;
+ const peer=current();
+ if(!peer)return;
+ openPanel(peer.name+'’s outfit');
+ const display=residentOutfit(body,showPlaces);
+ refreshPlaces=()=>display(current());
+ refreshPlaces(scene.residents);
+}
 function openSharedTownChoice(heading:string,intro='Homes live in shared practice. Your browser-only workshop stays saved here; shared town progress is separate.'){openPanel(heading);body.append(paragraph(intro));const enter=document.createElement('button');enter.type='button';enter.className='destination';enter.dataset.openTown='';enter.textContent='Open shared practice town';enter.onclick=()=>{const url=new URL(window.location.href);url.searchParams.set('town','1');window.location.assign(url);};body.append(enter);}
 function resolvedStop(stop:Stop):Stop{
  if(stop.id===INKWOOD_MOSSBANK_ROAD.id&&!townMode)return{...stop,transition:undefined,arrival:undefined};

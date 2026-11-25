@@ -1,3 +1,4 @@
+import {nearbyOutfitList} from './nearby-outfits.ts';
 import {placesView} from '../game/places-view.ts';
 import type {WorkshopState} from '../game/live-workshop.ts';
 import type {Point, Room, Stop} from '../game/world.ts';
@@ -6,7 +7,7 @@ import {regionalMap} from './mossbank-map.ts';
 
 export function renderPlaces(body: HTMLElement, options: {
  room: Room; position: Point; stops: Stop[]; state: WorkshopState; goal: {id: string; destination?: string};
- now: number; wave?:()=>Promise<void>; peers?:readonly MapResident[]|null; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void;
+ now: number; wave?:()=>Promise<void>; peers?:readonly MapResident[]|null; neighborhood?: {districtId: string; ownerPlotId?: string}; walk: (stop: Stop) => void; inspectOutfit?:(id:string)=>void;
 }) {
  const view = placesView(options.room, options.stops, options.state, options.goal, options.now, options.neighborhood);
  const regionalRoom=options.room==='mossbank'||options.room==='hidden-valley'?options.room:null;
@@ -32,6 +33,13 @@ export function renderPlaces(body: HTMLElement, options: {
  const browse = document.createElement('div');
  const regional=regionalRoom?regionalMap(regionalRoom,options.position,options.stops,options.walk,options.peers,options.wave):undefined;
  if(regional)browse.append(regional.element);
+ const outfits=options.inspectOutfit?nearbyOutfitList(options.room,options.position,options.inspectOutfit):undefined;
+ if(outfits){outfits.update(options.peers);browse.append(outfits.section);}
+ const updateResidents=(peers:readonly MapResident[]|null)=>{
+  outfits?.update(peers);
+  regional?.updateResidents(peers);
+  map?.updateResidents(peers);
+ };
  if (view.primary.length) {
   const heading = document.createElement('h3');
   heading.textContent = view.heading;
@@ -55,7 +63,7 @@ export function renderPlaces(body: HTMLElement, options: {
  if (map) browse.append(map.element);
  body.append(browse);
 
- if (!view.groups.length) return map?.updateResidents??regional?.updateResidents;
+ if (!view.groups.length) return updateResidents;
  const label = document.createElement('label');
  label.className = 'places-search';
  label.textContent = 'Find a place';
@@ -107,5 +115,5 @@ export function renderPlaces(body: HTMLElement, options: {
  body.insertBefore(label, browse);
  body.insertBefore(status, browse);
  body.insertBefore(results, browse);
- return map?.updateResidents;
+ return updateResidents;
 }
